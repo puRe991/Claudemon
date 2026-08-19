@@ -97,6 +97,42 @@ add_custom_command(TARGET codemon POST_BUILD
             "${SRC_DIR}/assets" "$<TARGET_FILE_DIR:codemon>/assets"
     COMMENT "Staging maps/ and assets/ next to the game binary")
 
+# --- Map editor (Dear ImGui) ------------------------------------------------
+# Optional so lean/cross builds (e.g. the Win32 game package) can skip pulling
+# ImGui. Fetches Dear ImGui + ImGui-SFML and reuses the SFML resolved above.
+option(CODEMON_BUILD_EDITOR "Build the ImGui-based map editor" ON)
+
+if(CODEMON_BUILD_EDITOR)
+    include(FetchContent)
+
+    # Dear ImGui ships no CMakeLists; ImGui-SFML compiles it from IMGUI_DIR.
+    FetchContent_Declare(imgui
+        GIT_REPOSITORY https://github.com/ocornut/imgui.git
+        GIT_TAG        v1.90.9)
+    FetchContent_GetProperties(imgui)
+    if(NOT imgui_POPULATED)
+        FetchContent_Populate(imgui)
+    endif()
+    set(IMGUI_DIR "${imgui_SOURCE_DIR}")
+
+    set(IMGUI_SFML_FIND_SFML OFF)   # reuse the SFML targets resolved above
+    set(IMGUI_SFML_IMGUI_DEMO OFF)
+    FetchContent_Declare(imgui-sfml
+        GIT_REPOSITORY https://github.com/SFML/imgui-sfml.git
+        GIT_TAG        v2.6)
+    FetchContent_MakeAvailable(imgui-sfml)
+
+    add_executable(codemon_editor "${CMAKE_CURRENT_SOURCE_DIR}/editor/editor_main.cpp")
+    target_link_libraries(codemon_editor PRIVATE monsta_engine ImGui-SFML::ImGui-SFML)
+
+    add_custom_command(TARGET codemon_editor POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+                "${SRC_DIR}/maps"   "$<TARGET_FILE_DIR:codemon_editor>/maps"
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+                "${SRC_DIR}/assets" "$<TARGET_FILE_DIR:codemon_editor>/assets"
+        COMMENT "Staging maps/ and assets/ next to the editor binary")
+endif()
+
 # --- Tests ------------------------------------------------------------------
 enable_testing()
 

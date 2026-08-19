@@ -24,6 +24,7 @@ jobs:
         run: >
           cmake -S . -B build -A Win32
           -DCODEMON_FETCH_SFML=ON
+          -DCODEMON_BUILD_EDITOR=OFF
           -DCMAKE_MSVC_RUNTIME_LIBRARY=MultiThreaded
 
       - name: Build (Release)
