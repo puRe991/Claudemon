@@ -2,7 +2,7 @@
 #include <string>
 #include <fstream>
 
-#include "tile.h"
+#include "Tile.h"
 #include "Window.h"
 #include "SFML/Graphics.hpp"
 #include "direction.h"

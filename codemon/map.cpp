@@ -59,8 +59,8 @@ Map::Map(std::string map_path, std::string sheet_path) {
 
         //Read in height and width data and then create the tile map storage
         std::getline(mapfile, new_row);
-        this->set_width(unsigned int(new_row[0] - '0'));
-        this->set_height(unsigned int(new_row[2] - '0'));
+        this->set_width((unsigned int)(new_row[0] - '0'));
+        this->set_height((unsigned int)(new_row[2] - '0'));
 
         //Create the tile storage matrix
         this->tile_map = new Tile[this->get_width() * this->get_height()];
