@@ -64,3 +64,6 @@
 
 # Windows batch scripts need CRLF line endings
 *.bat text eol=crlf
+
+# Font binaries
+*.ttf binary

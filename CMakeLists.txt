@@ -71,7 +71,10 @@ set(ENGINE_SOURCES
     "${SRC_DIR}/Window.cpp"
     "${SRC_DIR}/character.cpp"
     "${SRC_DIR}/map.cpp"
-    "${SRC_DIR}/data_structures.cpp")
+    "${SRC_DIR}/data_structures.cpp"
+    "${SRC_DIR}/view_utils.cpp"
+    "${SRC_DIR}/MenuModel.cpp"
+    "${SRC_DIR}/MainMenu.cpp")
 
 add_library(monsta_engine STATIC ${ENGINE_SOURCES})
 target_include_directories(monsta_engine PUBLIC "${SRC_DIR}")
