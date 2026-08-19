@@ -51,6 +51,17 @@ Now as I finally finish my formal education and have amassed a decade or so of p
 > > * Would be nice if the harness suite also timed each major alorigthm automagically.
 
 
+## Sprites
+
+Pokémon sprite artwork is pulled in from [PokeAPI/sprites](https://github.com/PokeAPI/sprites)
+as a git submodule under `sprites/`. Clone the project with submodules to get it:
+
+```sh
+git clone --recurse-submodules <repo-url>
+# or, in an existing checkout:
+git submodule update --init --depth 1 sprites
+```
+
 ## Building & Running
 
 The project builds with CMake and needs a system install of **SFML 2.5+**.
