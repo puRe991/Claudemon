@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-  #include "data_structures.h"
-=======
 #include "data_structures.h"
 #include <stdexcept>
-
->>>>>>> 058ad7da46f5823deab6ba62e1972d7ba5c9fa8e
+#include <cstdlib>
 
 //Generic Linked List class - singly linked for now.
 Node::Node(void* data_ptr) 
@@ -23,27 +19,19 @@ Node* Node::get_next()
 {
 	return this->next;
 }
-<<<<<<< HEAD
-void Node::set_next(Node* next_node) {
-=======
-Node* Node::set_next(Node* next_node) 
+Node* Node::set_next(Node* next_node)
 {
->>>>>>> 058ad7da46f5823deab6ba62e1972d7ba5c9fa8e
 	this->next = next_node;
 	return this;
 }
 //Just keep the pointer to the data, don't store all of it.
-<<<<<<< HEAD
-void Node::set_data(void* new_data) {
-=======
-Node* Node::set_data(void* new_data) 
+Node* Node::set_data(void* new_data)
 {
 	//Guard 1 - Node has contain a valid pointer
 	if (new_data == nullptr)
 	{
 		throw std::invalid_argument("Node received null pointer");
 	}
->>>>>>> 058ad7da46f5823deab6ba62e1972d7ba5c9fa8e
 	//TODO when setting data, reconfirm that the data's deleted too.
 	this->data = new_data;
 	return this;
@@ -143,18 +131,6 @@ bool Linked_list::remove_at(unsigned int index) {
 	else {
 		return false;
 	}
-<<<<<<< HEAD
-
-	return true;
-}
-
-//Remove a node from the linked list -
-// - Remove the node with the dataptr that matches
-bool linked_list::remove_node(void* remove_me) {
-	return false;
-=======
-	
->>>>>>> 058ad7da46f5823deab6ba62e1972d7ba5c9fa8e
 }
 
 

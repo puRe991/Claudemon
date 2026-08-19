@@ -10,16 +10,12 @@ private:
 public:
     //Constructor: Intended that the new node becomes the head of the list.
     Node(void* data_ptr);
-    //Get the next node in the list. 
+    //Get the next node in the list.
     Node* get_next();
-    void set_next(Node* next_node);
+    Node* set_next(Node* next_node);
     //Just keep the pointer to the data, don't store all of it.
-<<<<<<< HEAD
-    void set_data(void* new_data);
-=======
     Node* set_data(void* new_data);
     void* get_data();
->>>>>>> 058ad7da46f5823deab6ba62e1972d7ba5c9fa8e
 };
 
 class Linked_list

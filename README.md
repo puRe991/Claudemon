@@ -51,6 +51,32 @@ Now as I finally finish my formal education and have amassed a decade or so of p
 > > * Would be nice if the harness suite also timed each major alorigthm automagically.
 
 
+## Building & Running
+
+The project builds with CMake and needs a system install of **SFML 2.5+**.
+
+```sh
+# Dependencies (Debian/Ubuntu)
+sudo apt-get install libsfml-dev cmake g++
+
+# Configure & build
+cmake -S . -B build
+cmake --build build
+
+# Run the tests (headless, no display needed)
+ctest --test-dir build --output-on-failure
+
+# Start the game (needs a display; maps/ and assets/ are copied next to the binary)
+./build/codemon
+```
+
+The Windows `.lib` files under `codemon/SFML/` are MSVC-specific and are not
+used by this build, so the same tree cross-compiles on Linux/macOS. On Windows
+the bundled Visual Studio solution (`codemon.sln`) still works.
+
+The `codemon_tests` target exercises the display-independent core logic
+(`Coordinates`, `Tile`, the hand-rolled `Linked_list`) and is wired into CTest.
+
 ### To-do bucket:<br>
 - add collision
 - add bounds checking
