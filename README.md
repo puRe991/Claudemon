@@ -62,6 +62,19 @@ git clone --recurse-submodules <repo-url>
 git submodule update --init --depth 1 sprites
 ```
 
+## The Region
+
+The game world is a data-driven **region** under [`codemon/region/`](codemon/region/):
+a manifest (`kanto.region`) plus one map file per area, wiring ~30 areas
+(coastal village → cities → forests → caves → industry → islands → a monumental
+mountain complex) into one connected, two-way-traversable world.
+
+The `Region` class (`codemon/Region.h`) loads the manifest headlessly (no SFML),
+and `main.cpp` walks the player from area to area through **warp** tiles. See
+[`codemon/region/README.md`](codemon/region/README.md) for the geography, the
+area list, the connection graph and the file formats. Regenerate the data with
+`python3 codemon/tools/gen_region.py`.
+
 ## Building & Running
 
 The project builds with CMake and needs a system install of **SFML 2.5+**.
@@ -102,8 +115,11 @@ The `codemon_tests` target exercises the display-independent core logic
 (`Coordinates`, `Tile`, the hand-rolled `Linked_list`) and is wired into CTest.
 
 ### To-do bucket:<br>
-- add collision
-- add bounds checking
+- add a camera / scrolling so areas larger than the 16x16 window are fully visible
+- per-area tile sheets (the region maps currently share the placeholder sheet)
+- ~~Multiple maps + easy transitions between them~~ (done: see `codemon/region/`)
+- ~~add collision~~ (done: blocking terrain is not walkable)
+- ~~add bounds checking~~ (done: moves are bounds-checked against the active map)
 - add music
 - Redo assest importation: Make it a little bit more flexible. Had to use some hardcoding that I am unsatisfied with. Should ideally use macros to leverage preprocessor. This would ideally allow us to navigate to the target assets at compile time.
 - Add a testing suite for the low level data structures. I regret rolling my own but at this point adding the testing suite is the only way to nail everything down.

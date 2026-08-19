@@ -143,6 +143,7 @@
     <ClCompile Include="Coordinates.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="map.cpp" />
+    <ClCompile Include="Region.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="Tile.cpp" />
   </ItemGroup>
@@ -151,6 +152,7 @@
     <ClInclude Include="Coordinates.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="map.h" />
+    <ClInclude Include="Region.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>

@@ -4,6 +4,7 @@
 #include "map.h"
 #include "Window.h"
 #include "direction.h"
+#include "Region.h"
 
 #include <list>
 #include <string>
@@ -32,6 +33,29 @@ DIR convert_key_event(sf::Event *event) {
     return input_dir;
 }
 
+// Tiles a character cannot walk onto. Everything else (grass, path, sand,
+// floors, cave floors, bridges, stairs, warps, ...) is walkable.
+static bool is_walkable(Tile::tile t) {
+    switch (t) {
+    case Tile::water:
+    case Tile::tree:
+    case Tile::rock:
+    case Tile::building:
+    case Tile::wall:
+    case Tile::cave_wall:
+    case Tile::sign:
+    case Tile::lava:
+    case Tile::deep_water:
+        return false;
+    default:
+        return true;
+    }
+}
+
+// One shared tile sheet stands in for all region areas until per-area art
+// lands. The region maps only depend on tile ids, not on this placeholder.
+static const std::string REGION_SHEET = "maps/map_set/map_00.png";
+
 //Welcome to Codemon!
 int main()
 {
@@ -46,8 +70,29 @@ int main()
     Character player;
     player.load_sprite_sheet();
 
-    //Load in test map
-    Map game_map("maps/map_00.txt", "maps/map_set/map_00.png");
+    // Load the region structure. The manifest wires ~30 areas together with
+    // warps; the player roams one area map at a time and warps between them.
+    Region region("region/kanto.region");
+
+    // Current area + its loaded map. Fall back to the legacy demo map if the
+    // region manifest is missing so the game still starts.
+    std::string current_area;
+    Coordinates player_tile(0, 0);
+    Map* game_map = nullptr;
+
+    if (region.loaded() && region.start_area() != nullptr) {
+        const RegionArea* start = region.start_area();
+        current_area = start->id;
+        player_tile = start->start;
+        game_map = new Map(start->map_path, REGION_SHEET);
+    } else {
+        game_map = new Map("maps/map_00.txt", "maps/map_set/map_00.png");
+        player_tile = game_map->get_start_pos();
+    }
+
+    // Keep the drawn sprite on the player's tile (position is in pixels).
+    player.set_x(player_tile.get_x() * 32);
+    player.set_y(player_tile.get_y() * 32);
 
     //Flag declarations
     bool key_input = false;
@@ -55,7 +100,7 @@ int main()
 
     //So long as the active_window is still open.
     while (scr.get_window()->isOpen())
-    {   
+    {
         //Create a storage event for processing system/input events
         sf::Event event;
         while (scr.get_event(&event))
@@ -74,15 +119,46 @@ int main()
             }
         }
         /*
-        Process Game State + Input 
+        Process Game State + Input
         */
 
         //If a keyboard input was pressed
         if (key_input && input_dir != DIR::NONE) {
-            //Check bounds and if fine move. Currently disabled
-            game_map.in_bounds(player.move_cord(input_dir));
+            // Work out the target tile for this move.
+            Coordinates target = player_tile;
+            switch (input_dir) {
+            case DIR::N: if (player_tile.get_y() > 0) target.set_y(player_tile.get_y() - 1); break;
+            case DIR::S: target.set_y(player_tile.get_y() + 1); break;
+            case DIR::W: if (player_tile.get_x() > 0) target.set_x(player_tile.get_x() - 1); break;
+            case DIR::E: target.set_x(player_tile.get_x() + 1); break;
+            default: break;
+            }
 
-            player.move(input_dir);
+            // Only step there if it is on the map and not blocked terrain.
+            if (game_map->in_bounds(target) && is_walkable(game_map->tile_at(target))) {
+                player_tile = target;
+
+                // Did we just step onto a warp? If so, switch to the target
+                // area's map and drop the player at the warp's destination.
+                const RegionWarp* w = region.loaded()
+                    ? region.warp_at(current_area, player_tile)
+                    : nullptr;
+                if (w != nullptr) {
+                    const RegionArea* dest = region.get_area(w->to_id);
+                    if (dest != nullptr) {
+                        Map* next = new Map(dest->map_path, REGION_SHEET);
+                        delete game_map;
+                        game_map = next;
+                        current_area = dest->id;
+                        player_tile = w->to_pos;
+                    }
+                }
+            }
+
+            // Face the input direction and advance the walk animation.
+            player.set_facing(input_dir);
+            player.set_x(player_tile.get_x() * 32);
+            player.set_y(player_tile.get_y() * 32);
             player.update_sprite_pos();
 
             //Reset the flags
@@ -96,7 +172,7 @@ int main()
 
         scr.clear();
         //draw the sprite to the window
-        game_map.render_map(&scr);
+        game_map->render_map(&scr);
         scr.draw(&player);
 
 
@@ -104,5 +180,6 @@ int main()
         scr.display();
     }
 
+    delete game_map;
     return 0;
 }

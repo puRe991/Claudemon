@@ -42,6 +42,8 @@ private:
 public:
 	//get a pointer to the map
 	Tile* get_map();
+	//Type of the tile at a coordinate (short_grass for out-of-bounds).
+	Tile::tile tile_at(Coordinates coord);
 	//Load a given map from its bin map and a tilesheet
 	Map(std::string map_path, std::string sheet_path);
 	//Into a given window render this map

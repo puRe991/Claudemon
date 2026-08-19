@@ -1,0 +1,108 @@
+# Kanto-style region manifest for Cod-e-mon (Monsta engine).
+# Pipe-delimited. Loaded by Region (Region.cpp).
+#
+#   AREA|<id>|<Display Name>|<map path>|<start_x>|<start_y>
+#   WARP|<from id>|<x>|<y>|<to id>|<dest_x>|<dest_y>
+#
+# START names the area the player spawns in.
+START|pallet_town
+#
+# ---- areas ----
+AREA|pallet_town|Pallet Town|region/maps/pallet_town.map|7|6
+AREA|route_01|Route 1|region/maps/route_01.map|7|6
+AREA|viridian_city|Viridian City|region/maps/viridian_city.map|7|6
+AREA|viridian_forest|Viridian Forest|region/maps/viridian_forest.map|7|6
+AREA|pewter_city|Pewter City|region/maps/pewter_city.map|7|6
+AREA|route_03|Route 3|region/maps/route_03.map|7|6
+AREA|mt_moon|Mt. Moon|region/maps/mt_moon.map|1|6
+AREA|cerulean_city|Cerulean City|region/maps/cerulean_city.map|7|6
+AREA|nugget_bridge|Nugget Bridge|region/maps/nugget_bridge.map|7|11
+AREA|vermilion_city|Vermilion City|region/maps/vermilion_city.map|7|2
+AREA|ss_anne|S.S. Anne|region/maps/ss_anne.map|7|11
+AREA|diglett_cave|Diglett's Cave|region/maps/diglett_cave.map|7|11
+AREA|route_11|Route 11|region/maps/route_11.map|1|6
+AREA|rock_tunnel|Rock Tunnel|region/maps/rock_tunnel.map|1|6
+AREA|lavender_town|Lavender Town|region/maps/lavender_town.map|7|6
+AREA|pokemon_tower|Pokemon Tower|region/maps/pokemon_tower.map|7|11
+AREA|celadon_city|Celadon City|region/maps/celadon_city.map|7|6
+AREA|rocket_hideout|Rocket Hideout|region/maps/rocket_hideout.map|7|11
+AREA|saffron_city|Saffron City|region/maps/saffron_city.map|7|6
+AREA|silph_co|Silph Co.|region/maps/silph_co.map|7|11
+AREA|fuchsia_city|Fuchsia City|region/maps/fuchsia_city.map|7|6
+AREA|safari_zone|Safari Zone|region/maps/safari_zone.map|7|11
+AREA|cycling_road|Cycling Road|region/maps/cycling_road.map|7|6
+AREA|seafoam_islands|Seafoam Islands|region/maps/seafoam_islands.map|1|6
+AREA|cinnabar_island|Cinnabar Island|region/maps/cinnabar_island.map|7|6
+AREA|pokemon_mansion|Pokemon Mansion|region/maps/pokemon_mansion.map|7|11
+AREA|power_plant|Power Plant|region/maps/power_plant.map|7|11
+AREA|sea_route|Sea Route|region/maps/sea_route.map|7|6
+AREA|victory_road|Victory Road|region/maps/victory_road.map|13|6
+AREA|indigo_plateau|Indigo Plateau|region/maps/indigo_plateau.map|7|11
+#
+# ---- warps (two-way) ----
+WARP|pallet_town|7|0|route_01|7|11
+WARP|route_01|7|12|pallet_town|7|1
+WARP|route_01|7|0|viridian_city|7|11
+WARP|viridian_city|7|12|route_01|7|1
+WARP|viridian_city|7|0|viridian_forest|7|11
+WARP|viridian_forest|7|12|viridian_city|7|1
+WARP|viridian_forest|7|0|pewter_city|7|11
+WARP|pewter_city|7|12|viridian_forest|7|1
+WARP|pewter_city|14|6|route_03|1|6
+WARP|route_03|0|6|pewter_city|13|6
+WARP|route_03|14|6|mt_moon|1|6
+WARP|mt_moon|0|6|route_03|13|6
+WARP|mt_moon|14|6|cerulean_city|1|6
+WARP|cerulean_city|0|6|mt_moon|13|6
+WARP|cerulean_city|7|0|nugget_bridge|7|11
+WARP|nugget_bridge|7|12|cerulean_city|7|1
+WARP|cerulean_city|14|6|rock_tunnel|1|6
+WARP|rock_tunnel|0|6|cerulean_city|13|6
+WARP|rock_tunnel|7|12|lavender_town|7|1
+WARP|lavender_town|7|0|rock_tunnel|7|11
+WARP|rock_tunnel|7|0|power_plant|7|11
+WARP|power_plant|7|12|rock_tunnel|7|1
+WARP|cerulean_city|7|12|saffron_city|7|1
+WARP|saffron_city|7|0|cerulean_city|7|11
+WARP|saffron_city|7|12|vermilion_city|7|1
+WARP|vermilion_city|7|0|saffron_city|7|11
+WARP|saffron_city|0|6|celadon_city|13|6
+WARP|celadon_city|14|6|saffron_city|1|6
+WARP|saffron_city|14|6|lavender_town|1|6
+WARP|lavender_town|0|6|saffron_city|13|6
+WARP|saffron_city|7|2|silph_co|7|11
+WARP|silph_co|7|12|saffron_city|7|2
+WARP|lavender_town|7|3|pokemon_tower|7|11
+WARP|pokemon_tower|7|12|lavender_town|7|3
+WARP|celadon_city|4|4|rocket_hideout|7|11
+WARP|rocket_hideout|7|12|celadon_city|4|4
+WARP|celadon_city|7|12|cycling_road|7|1
+WARP|cycling_road|7|0|celadon_city|7|11
+WARP|vermilion_city|10|3|ss_anne|7|11
+WARP|ss_anne|7|12|vermilion_city|10|3
+WARP|vermilion_city|14|6|route_11|1|6
+WARP|route_11|0|6|vermilion_city|13|6
+WARP|route_11|7|0|diglett_cave|7|11
+WARP|diglett_cave|7|12|route_11|7|1
+WARP|diglett_cave|7|0|route_01|2|2
+WARP|route_01|2|2|diglett_cave|7|1
+WARP|cycling_road|7|12|fuchsia_city|7|1
+WARP|fuchsia_city|7|0|cycling_road|7|11
+WARP|fuchsia_city|7|3|safari_zone|7|11
+WARP|safari_zone|7|12|fuchsia_city|7|3
+WARP|fuchsia_city|7|12|sea_route|7|1
+WARP|sea_route|7|0|fuchsia_city|7|11
+WARP|sea_route|7|12|seafoam_islands|7|1
+WARP|seafoam_islands|7|0|sea_route|7|11
+WARP|sea_route|0|6|cinnabar_island|13|6
+WARP|cinnabar_island|14|6|sea_route|1|6
+WARP|seafoam_islands|7|12|cinnabar_island|7|1
+WARP|cinnabar_island|7|0|seafoam_islands|7|11
+WARP|cinnabar_island|4|6|pokemon_mansion|7|11
+WARP|pokemon_mansion|7|11|cinnabar_island|4|6
+WARP|sea_route|14|6|pallet_town|7|11
+WARP|pallet_town|7|12|sea_route|13|6
+WARP|viridian_city|0|6|victory_road|13|6
+WARP|victory_road|14|6|viridian_city|1|6
+WARP|victory_road|0|6|indigo_plateau|13|6
+WARP|indigo_plateau|14|6|victory_road|1|6

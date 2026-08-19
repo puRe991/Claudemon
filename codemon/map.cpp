@@ -57,10 +57,16 @@ Map::Map(std::string map_path, std::string sheet_path) {
         std::string new_row;
         std::string tile;
 
-        //Read in height and width data and then create the tile map storage
+        //Read in the "width,height" header and then create the tile storage.
+        //Parse each field with stoi so maps are not capped at single-digit
+        //dimensions - the region maps are larger than 9x9.
         std::getline(mapfile, new_row);
-        this->set_width((unsigned int)(new_row[0] - '0'));
-        this->set_height((unsigned int)(new_row[2] - '0'));
+        std::stringstream header(new_row);
+        std::string dim;
+        std::getline(header, dim, ',');
+        this->set_width((unsigned int)std::stoi(dim));
+        std::getline(header, dim, ',');
+        this->set_height((unsigned int)std::stoi(dim));
 
         //Create the tile storage matrix
         this->tile_map = new Tile[this->get_width() * this->get_height()];
@@ -94,9 +100,11 @@ void Map::render_map(Window* active_window)
     sf::Sprite to_draw(this->map_sheet);
     //Read through tile_map and render each tile
     for (unsigned int y = 0; y < this->get_height(); y++) {             //Each row
-        for (unsigned int x = 0; x < this->get_height(); x++) {         //Each column in each row
-            //Get the tile representation
-            Tile::tile curr_tile = this->tile_map[y * this->get_height() + x].get_data();
+        for (unsigned int x = 0; x < this->get_width(); x++) {          //Each column in each row
+            //Get the tile representation. Index by width so non-square maps
+            //(most of the region) address the right tile - storage is row-major
+            //on width (see add_tile).
+            Tile::tile curr_tile = this->tile_map[y * this->get_width() + x].get_data();
 
             /* Set the appropriate sprite_sheet area to draw */
             //Calculatex offset of the current tile from the spirite sheet
@@ -159,9 +167,23 @@ void Map::set_start_pos(Coordinates start) {
     this->start_pos = start;
 }
 
+Coordinates Map::get_start_pos() {
+    return this->start_pos;
+}
+
 Tile* Map::get_map()
 {
     return this->tile_map;
+}
+
+//Type of the tile at a coordinate. Out-of-bounds reads report short_grass so
+//callers can treat it as generic open ground rather than crashing.
+Tile::tile Map::tile_at(Coordinates coord)
+{
+    if (!this->in_bounds(coord)) {
+        return Tile::short_grass;
+    }
+    return this->tile_map[coord.get_x() + coord.get_y() * this->get_width()].get_data();
 }
 
 void Map::add_tile(Tile* new_tile)

@@ -10,9 +10,12 @@
 #include "Tile.h"
 #include "direction.h"
 #include "data_structures.h"
+#include "Region.h"
 
 #include <cstdio>
 #include <cstdlib>
+#include <string>
+#include <vector>
 
 static int failures = 0;
 
@@ -86,12 +89,122 @@ static void test_linked_list() {
     CHECK(list.get_head()->get_next()->get_data() == &a);
 }
 
+// Path to the region manifest, injected by CMake so the test finds the data
+// regardless of the working directory it is launched from.
+#ifndef REGION_MANIFEST_PATH
+#define REGION_MANIFEST_PATH "region/kanto.region"
+#endif
+
+static void test_tile_terrain() {
+    std::printf("[tile terrain]\n");
+    // Legacy ids must stay pinned - the old map sheet and saves rely on them.
+    CHECK((int)Tile::short_grass == 0);
+    CHECK((int)Tile::long_grass == 1);
+    // The expanded vocabulary the region maps are authored against.
+    CHECK((int)Tile::path == 2);
+    CHECK((int)Tile::water == 3);
+    CHECK((int)Tile::cave_wall == 12);
+    CHECK((int)Tile::warp == 16);
+    CHECK((int)Tile::deep_water == 20);
+}
+
+static void test_region() {
+    std::printf("[region]\n");
+    Region region(REGION_MANIFEST_PATH);
+    CHECK(region.loaded());
+    if (!region.loaded()) {
+        std::printf("  (region manifest not found at %s - skipping)\n",
+                    REGION_MANIFEST_PATH);
+        return;
+    }
+
+    // The full described region: 30 areas wired by 66 (33 reciprocal) warps.
+    CHECK(region.area_count() == 30);
+    CHECK(region.warp_count() == 66);
+
+    // The journey begins in the southern coastal village.
+    const RegionArea* start = region.start_area();
+    CHECK(start != nullptr);
+    if (start != nullptr) {
+        CHECK(start->id == "pallet_town");
+        CHECK(start->start.get_x() == 7);
+        CHECK(start->start.get_y() == 6);
+    }
+
+    // A named area resolves and carries its map file + display name.
+    const RegionArea* indigo = region.get_area("indigo_plateau");
+    CHECK(indigo != nullptr);
+    if (indigo != nullptr) {
+        CHECK(indigo->name == "Indigo Plateau");
+        CHECK(indigo->map_path == "region/maps/indigo_plateau.map");
+    }
+    CHECK(region.get_area("no_such_place") == nullptr);
+
+    // Stepping onto Pallet Town's north exit warps north to Route 1.
+    const RegionWarp* north = region.warp_at("pallet_town", Coordinates(7, 0));
+    CHECK(north != nullptr);
+    if (north != nullptr) {
+        CHECK(north->to_id == "route_01");
+    }
+    // A tile with no warp yields nothing.
+    CHECK(region.warp_at("pallet_town", Coordinates(3, 3)) == nullptr);
+
+    // Every warp is reciprocal: some warp leads back from its destination to
+    // its origin. This is what keeps the region traversable in both ways.
+    bool all_reciprocal = true;
+    for (const RegionWarp& w : region.warps()) {
+        bool has_return = false;
+        for (const RegionWarp& r : region.warps()) {
+            if (r.from_id == w.to_id && r.to_id == w.from_id) {
+                has_return = true;
+                break;
+            }
+        }
+        if (!has_return) {
+            all_reciprocal = false;
+            std::printf("  no return warp for %s -> %s\n",
+                        w.from_id.c_str(), w.to_id.c_str());
+        }
+    }
+    CHECK(all_reciprocal);
+
+    // Connectivity: every area is reachable from the start by walking warps.
+    // A hand-rolled BFS over area ids - no <set>/<map> to keep it lightweight.
+    std::vector<std::string> seen;
+    seen.push_back(start->id);
+    for (std::size_t i = 0; i < seen.size(); ++i) {
+        std::vector<std::string> next = region.neighbors(seen[i]);
+        for (const std::string& n : next) {
+            bool known = false;
+            for (const std::string& s : seen) {
+                if (s == n) { known = true; break; }
+            }
+            if (!known) {
+                seen.push_back(n);
+            }
+        }
+    }
+    CHECK(seen.size() == region.area_count());
+
+    // Every warp points at a real, declared area (no dangling ids).
+    bool all_targets_exist = true;
+    for (const RegionWarp& w : region.warps()) {
+        if (region.get_area(w.from_id) == nullptr ||
+            region.get_area(w.to_id) == nullptr) {
+            all_targets_exist = false;
+        }
+    }
+    CHECK(all_targets_exist);
+}
+
 int main() {
     std::printf("Running Monsta engine core tests...\n");
     test_coordinates();
     test_tile();
+    test_tile_terrain();
     test_direction();
     test_linked_list();
+    test_region();
 
     if (failures == 0) {
         std::printf("OK: all core tests passed.\n");

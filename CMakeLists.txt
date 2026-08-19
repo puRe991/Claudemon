@@ -53,6 +53,7 @@ set(ENGINE_SOURCES
     "${SRC_DIR}/Window.cpp"
     "${SRC_DIR}/character.cpp"
     "${SRC_DIR}/map.cpp"
+    "${SRC_DIR}/Region.cpp"
     "${SRC_DIR}/data_structures.cpp")
 
 add_library(monsta_engine STATIC ${ENGINE_SOURCES})
@@ -74,12 +75,19 @@ add_custom_command(TARGET codemon POST_BUILD
             "${SRC_DIR}/maps"   "$<TARGET_FILE_DIR:codemon>/maps"
     COMMAND ${CMAKE_COMMAND} -E copy_directory
             "${SRC_DIR}/assets" "$<TARGET_FILE_DIR:codemon>/assets"
-    COMMENT "Staging maps/ and assets/ next to the game binary")
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+            "${SRC_DIR}/region" "$<TARGET_FILE_DIR:codemon>/region"
+    COMMENT "Staging maps/, assets/ and region/ next to the game binary")
 
 # --- Tests ------------------------------------------------------------------
 enable_testing()
 
 add_executable(codemon_tests "${SRC_DIR}/tests/tests.cpp")
 target_link_libraries(codemon_tests PRIVATE monsta_engine)
+
+# Point the tests at the in-tree region manifest so they can validate the
+# region structure no matter where CTest launches them from.
+target_compile_definitions(codemon_tests PRIVATE
+    REGION_MANIFEST_PATH="${SRC_DIR}/region/kanto.region")
 
 add_test(NAME core_logic COMMAND codemon_tests)
