@@ -17,8 +17,12 @@ Files in this repo taken from / derived from that pack:
 |------|--------|
 | `assets/art/mpwsp01_tileset.png` | the pack's `tileset/tileset.png` (unmodified) |
 | `assets/art/mpwsp01_trainer.png` | the pack's `character overworld/ow1.png` (unmodified) |
-| `region/region_tiles.png` | **derived**: terrain tiles cut from the tileset and laid out one-per-`Tile` id (see `tools/build_tiles.py`) |
+| `region/region_tiles.png` | **derived**: terrain tiles + whole-building / tree stamps (houses, Oak's lab, trees) cut from the tileset, laid out one cell per tile id (see `tools/build_tiles.py` and `tools/stamps_def.py`) |
 | `assets/Red_player.png` | **derived**: the `ow1` trainer re-laid into the engine's 3-frame × 4-direction sheet (see `tools/build_tiles.py`) |
+
+The lab roof is the green house stamp recoloured red; the bush, wooden fence
+and signpost tiles are **original** art drawn in `tools/build_tiles.py` (no
+third-party source).
 
 Regenerate the derived files with `python3 codemon/tools/build_tiles.py`.
 

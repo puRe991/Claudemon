@@ -49,6 +49,15 @@ def build_tileset():
         d.line([1, 1, SRC_TS - 2, 1], fill=lt + (255,))
         return t
 
+    def gen_sign():
+        t = grass.copy()
+        d = ImageDraw.Draw(t)
+        d.rectangle([7, 8, 8, 14], fill=(110, 74, 40))                       # post
+        d.rectangle([3, 3, 12, 9], fill=(178, 140, 92), outline=(110, 74, 40))  # board
+        d.line([5, 5, 10, 5], fill=(120, 84, 50))
+        d.line([5, 7, 9, 7], fill=(120, 84, 50))
+        return t
+
     # Tile::tile id -> 16x16 source tile. Real cells picked from the tileset for
     # the common terrains; matching solids for the few fills the pack lacks.
     M = {
@@ -69,7 +78,7 @@ def build_tileset():
         14: flat((170, 120, 60)),  # bridge
         15: flat((185, 180, 175)), # stairs
         16: real(31, 13),          # warp (door)
-        17: flat((120, 80, 46)),   # sign
+        17: gen_sign(),            # sign (drawn signpost)
         18: real(2, 0),            # ice (snow)
         19: real(43, 18),          # lava (red)
         20: flat((28, 66, 140)),   # deep_water
@@ -78,12 +87,76 @@ def build_tileset():
         23: flat((196, 74, 60)),   # roof_red (lab / civic roof)
         24: real(33, 12),          # wall_window (house front with window)
     }
-    n = len(M)
+    # ---- multi-tile stamps (whole buildings, trees, fences) ----------------
+    # Each stamp yields a list of 16x16 cells, row-major, composited over grass
+    # so any transparent corners (gable roofs, tree canopies) show grass, not
+    # black. Ids are assigned by stamps_def in the same order.
+    def cells(c, r, w, h):
+        out = []
+        for rr in range(h):
+            for cc in range(w):
+                out.append(real(c + cc, r + rr, bg=grass))
+        return out
+
+    def recolor_roof_red(cell_list, w, h, roof_rows):
+        # Turn greenish roof pixels red on the top `roof_rows` rows, keeping
+        # the shading, so Oak's lab reads as a distinct red-roofed building.
+        for idx, im2 in enumerate(cell_list):
+            row = idx // w
+            if row >= roof_rows:
+                continue
+            px = im2.load()
+            for y in range(SRC_TS):
+                for x in range(SRC_TS):
+                    r, g, b, a = px[x, y]
+                    if a > 0 and g > r and g > b and g > 60:
+                        px[x, y] = (min(255, g), int(r * 0.5), int(b * 0.45), a)
+        return cell_list
+
+    def gen_bush():
+        t = Image.new("RGBA", (SRC_TS, SRC_TS), (0, 0, 0, 0))
+        d = ImageDraw.Draw(t)
+        base = t.copy(); base.alpha_composite(grass); t = base
+        d = ImageDraw.Draw(t)
+        d.ellipse([2, 5, 13, 14], fill=(46, 120, 58), outline=(28, 84, 40))
+        d.ellipse([4, 4, 9, 9], fill=(70, 150, 78))          # highlight
+        t.putpixel((6, 6), (150, 200, 130, 255))
+        return [t]
+
+    def gen_fence_h():
+        t = Image.new("RGBA", (SRC_TS, SRC_TS), (0, 0, 0, 0))
+        base = t.copy(); base.alpha_composite(grass); t = base
+        d = ImageDraw.Draw(t)
+        wood, dk, lt = (150, 104, 58), (110, 74, 40), (186, 140, 92)
+        d.rectangle([0, 4, SRC_TS - 1, 6], fill=wood)         # top rail
+        d.rectangle([0, 10, SRC_TS - 1, 12], fill=wood)       # bottom rail
+        d.line([0, 4, SRC_TS - 1, 4], fill=lt)
+        for px in (2, 8, 14):                                 # posts
+            d.rectangle([px, 2, px + 1, 15], fill=dk)
+        return [t]
+
+    from stamps_def import STAMPS, BASE_COUNT, total_tiles
+    producers = {
+        "house_green":  lambda: cells(30, 10, 5, 4),
+        "house_purple": lambda: cells(30, 16, 5, 4),
+        "lab_red":      lambda: recolor_roof_red(cells(30, 10, 5, 4), 5, 4, 2),
+        "tree":         lambda: cells(0, 19, 2, 3),
+        "bush":         gen_bush,
+        "fence_h":      gen_fence_h,
+    }
+
+    n = total_tiles()
     sheet = Image.new("RGBA", (n * OUT_TS, OUT_TS), (0, 0, 0, 0))
-    for i in range(n):
+    for i in range(BASE_COUNT):
         sheet.paste(M[i].resize((OUT_TS, OUT_TS), Image.NEAREST), (i * OUT_TS, 0))
+    nid = BASE_COUNT
+    for name, w, h in STAMPS:
+        for cell_img in producers[name]():
+            sheet.paste(cell_img.resize((OUT_TS, OUT_TS), Image.NEAREST), (nid * OUT_TS, 0))
+            nid += 1
+    assert nid == n, (nid, n)
     sheet.save(OUT_SHEET)
-    print("wrote", OUT_SHEET, sheet.size)
+    print("wrote", OUT_SHEET, sheet.size, "(%d tiles)" % n)
 
 
 def build_player():

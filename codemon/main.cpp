@@ -20,26 +20,27 @@ static DIR held_direction() {
     return DIR::NONE;
 }
 
-// Tiles a character cannot walk onto. Everything else (grass, path, sand,
-// floors, cave floors, bridges, stairs, warps, ...) is walkable.
+// Ground the player can stand on. Everything else - water, trees, buildings,
+// roofs, walls, fences and every multi-tile building/decor stamp (ids >= 25) -
+// blocks. Listing the walkable ids (rather than the blocking ones) keeps new
+// decorative tiles solid by default.
 static bool is_walkable(Tile::tile t) {
     switch (t) {
-    case Tile::water:
-    case Tile::tree:
-    case Tile::rock:
-    case Tile::building:
-    case Tile::wall:
-    case Tile::cave_wall:
-    case Tile::sign:
-    case Tile::lava:
-    case Tile::deep_water:
-    case Tile::roof_green:
-    case Tile::roof_purple:
-    case Tile::roof_red:
-    case Tile::wall_window:
-        return false;
-    default:
+    case Tile::short_grass:
+    case Tile::long_grass:
+    case Tile::path:
+    case Tile::sand:
+    case Tile::flower:
+    case Tile::floor:
+    case Tile::cave_floor:
+    case Tile::ledge:
+    case Tile::bridge:
+    case Tile::stairs:
+    case Tile::warp:
+    case Tile::ice:
         return true;
+    default:
+        return false;
     }
 }
 
