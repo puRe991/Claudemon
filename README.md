@@ -109,6 +109,19 @@ The launcher needs winget (ships with Windows 10/11 as "App Installer"). The
 older Visual Studio solution (`codemon.sln`) is still present but uses
 machine-specific absolute paths; the launcher/CMake path is preferred.
 
+#### 32-bit Windows (no build needed)
+
+Modern C++ toolchains no longer run on 32-bit Windows (Visual Studio 2022 is
+64-bit only), so the game cannot be built locally there. Instead, download the
+prebuilt 32-bit binary produced by CI:
+
+1. Open the [Windows 32-bit build workflow](https://github.com/puRe991/Claudemon/actions/workflows/windows-build.yml).
+2. Open the newest successful run and download the **`codemon-win32`** artifact.
+3. Unzip it and double-click `codemon.exe` (keep `maps\` and `assets\` next to it).
+
+That build is statically linked, so it needs no SFML DLLs and no Visual C++
+redistributable.
+
 The `codemon_tests` target exercises the display-independent core logic
 (`Coordinates`, `Tile`, the hand-rolled `Linked_list`) and is wired into CTest.
 

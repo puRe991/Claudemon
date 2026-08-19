@@ -153,11 +153,13 @@ if ($needInstall) {
     if ($needMsvc) {
         if (-not [Environment]::Is64BitOperatingSystem) {
             Write-Host ""
-            Write-Host "[ERROR] Visual Studio 2022 Build Tools require 64-bit Windows, but this" -ForegroundColor Red
-            Write-Host "        machine is running 32-bit Windows, so the MSVC toolchain cannot be" -ForegroundColor Red
-            Write-Host "        installed. A 32-bit toolchain (MinGW-w64) is needed instead." -ForegroundColor Red
-            Write-Host "        Please let the maintainer know your OS is 32-bit so a MinGW-based" -ForegroundColor Red
-            Write-Host "        path can be added." -ForegroundColor Red
+            Write-Host "[ERROR] This is 32-bit Windows, which cannot install a modern C++ toolchain" -ForegroundColor Red
+            Write-Host "        (Visual Studio 2022 is 64-bit only), so the game cannot be built here." -ForegroundColor Red
+            Write-Host ""
+            Write-Host "        Use the prebuilt 32-bit download instead - no toolchain needed:" -ForegroundColor Yellow
+            Write-Host "          1. Open https://github.com/puRe991/Claudemon/actions/workflows/windows-build.yml"
+            Write-Host "          2. Open the newest successful run and download the 'codemon-win32' artifact."
+            Write-Host "          3. Unzip it and double-click codemon.exe (keep maps\ and assets\ next to it)."
             Pause-Exit 1
         }
 
