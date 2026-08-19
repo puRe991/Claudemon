@@ -81,9 +81,22 @@ ctest --test-dir build --output-on-failure
 ./build/codemon
 ```
 
-The Windows `.lib` files under `codemon/SFML/` are MSVC-specific and are not
-used by this build, so the same tree cross-compiles on Linux/macOS. On Windows
-the bundled Visual Studio solution (`codemon.sln`) still works.
+### Windows
+
+Double-click **`run-windows.bat`** (or run it from a terminal) to configure,
+build and start the game in one step:
+
+```bat
+run-windows.bat            :: Release build, then run
+run-windows.bat Debug      :: Debug build, then run
+```
+
+It drives the same CMake build and, unless you set `SFML_DIR` yourself, links
+the MSVC SFML bundled under `codemon\SFML` statically, so no separate SFML
+install or DLLs are needed. It requires CMake and a C++ toolchain (e.g. Visual
+Studio Build Tools). The older Visual Studio solution (`codemon.sln`) is still
+present but uses machine-specific absolute paths; the batch/CMake path is
+preferred.
 
 The `codemon_tests` target exercises the display-independent core logic
 (`Coordinates`, `Tile`, the hand-rolled `Linked_list`) and is wired into CTest.
