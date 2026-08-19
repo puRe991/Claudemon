@@ -8,6 +8,7 @@
 // ---------------------------------------------------------------------------
 #include "Coordinates.h"
 #include "Tile.h"
+#include "TileMap.h"
 #include "direction.h"
 #include "data_structures.h"
 
@@ -86,12 +87,62 @@ static void test_linked_list() {
     CHECK(list.get_head()->get_next()->get_data() == &a);
 }
 
+static void test_tilemap() {
+    std::printf("[tilemap]\n");
+
+    TileMap m(4, 3, 0);
+    CHECK(m.get_width() == 4);
+    CHECK(m.get_height() == 3);
+    CHECK(m.in_bounds(3, 2));
+    CHECK(!m.in_bounds(4, 2));
+    CHECK(m.get_tile(0, 0) == 0);
+    CHECK(m.get_tile(99, 99) == -1); // out of range read
+
+    m.set_tile(1, 2, 7);
+    CHECK(m.get_tile(1, 2) == 7);
+    m.set_tile(99, 99, 5); // out of range write is ignored
+    CHECK(m.get_tile(99, 99) == -1);
+
+    m.set_start(2, 1);
+    CHECK(m.get_start_x() == 2);
+    CHECK(m.get_start_y() == 1);
+
+    // resize preserves overlapping tiles and clamps the spawn
+    m.resize(2, 2, 0);
+    CHECK(m.get_width() == 2);
+    CHECK(m.get_start_x() == 1); // clamped from x=2 into a width-2 map
+
+    // save -> load round trip
+    const char* path = "tilemap_roundtrip.tmp";
+    TileMap src(3, 2, 0);
+    src.set_tile(0, 0, 1);
+    src.set_tile(2, 1, 9);
+    src.set_start(1, 1);
+    CHECK(src.save_to_file(path));
+
+    TileMap dst;
+    CHECK(dst.load_from_file(path));
+    CHECK(dst.get_width() == 3);
+    CHECK(dst.get_height() == 2);
+    CHECK(dst.get_tile(0, 0) == 1);
+    CHECK(dst.get_tile(2, 1) == 9);
+    CHECK(dst.get_tile(1, 0) == 0);
+    CHECK(dst.get_start_x() == 1);
+    CHECK(dst.get_start_y() == 1);
+    std::remove(path);
+
+    // loading a non-existent file fails cleanly
+    TileMap missing;
+    CHECK(!missing.load_from_file("does_not_exist_12345.tmp"));
+}
+
 int main() {
     std::printf("Running Monsta engine core tests...\n");
     test_coordinates();
     test_tile();
     test_direction();
     test_linked_list();
+    test_tilemap();
 
     if (failures == 0) {
         std::printf("OK: all core tests passed.\n");

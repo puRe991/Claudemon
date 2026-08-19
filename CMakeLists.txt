@@ -50,6 +50,7 @@ set(SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/codemon")
 set(ENGINE_SOURCES
     "${SRC_DIR}/Coordinates.cpp"
     "${SRC_DIR}/Tile.cpp"
+    "${SRC_DIR}/TileMap.cpp"
     "${SRC_DIR}/Window.cpp"
     "${SRC_DIR}/character.cpp"
     "${SRC_DIR}/map.cpp"
