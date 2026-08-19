@@ -32,17 +32,34 @@ endif()
 # to the MSVC SFML that ships with the repo under codemon/SFML. That bundled
 # build has no runtime DLLs (only static + import libraries), so link SFML
 # statically there to produce a self-contained codemon.exe.
-if(WIN32 AND NOT DEFINED SFML_DIR AND NOT DEFINED ENV{SFML_DIR})
-    set(SFML_STATIC_LIBRARIES TRUE)
-    set(SFML_DIR "${CMAKE_CURRENT_SOURCE_DIR}/codemon/SFML/lib/cmake/SFML")
-endif()
+# CODEMON_FETCH_SFML builds SFML from source (guaranteeing an ABI match with
+# the local compiler) instead of using a system/bundled SFML. The Windows
+# launcher turns this on automatically as a fallback if linking the bundled
+# MSVC libraries fails. Default OFF keeps the Linux/macOS path using system SFML.
+option(CODEMON_FETCH_SFML "Build SFML from source via FetchContent" OFF)
 
-set(SFML_COMPONENTS graphics window system)
-if(WIN32)
-    # sfml-main provides the WinMain -> main shim used by the VS project.
-    list(APPEND SFML_COMPONENTS main)
+if(CODEMON_FETCH_SFML)
+    message(STATUS "SFML: building from source via FetchContent")
+    include(FetchContent)
+    set(SFML_BUILD_AUDIO   OFF CACHE BOOL "" FORCE)
+    set(SFML_BUILD_NETWORK OFF CACHE BOOL "" FORCE)
+    set(BUILD_SHARED_LIBS  OFF CACHE BOOL "" FORCE) # static -> self-contained binary
+    FetchContent_Declare(SFML
+        GIT_REPOSITORY https://github.com/SFML/SFML.git
+        GIT_TAG        2.6.2)
+    FetchContent_MakeAvailable(SFML)
+else()
+    if(WIN32 AND NOT DEFINED SFML_DIR AND NOT DEFINED ENV{SFML_DIR})
+        set(SFML_STATIC_LIBRARIES TRUE)
+        set(SFML_DIR "${CMAKE_CURRENT_SOURCE_DIR}/codemon/SFML/lib/cmake/SFML")
+    endif()
+    set(SFML_COMPONENTS graphics window system)
+    if(WIN32)
+        # sfml-main provides the WinMain -> main shim used by the VS project.
+        list(APPEND SFML_COMPONENTS main)
+    endif()
+    find_package(SFML 2.5 COMPONENTS ${SFML_COMPONENTS} REQUIRED)
 endif()
-find_package(SFML 2.5 COMPONENTS ${SFML_COMPONENTS} REQUIRED)
 
 set(SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/codemon")
 

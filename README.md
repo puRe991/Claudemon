@@ -83,20 +83,31 @@ ctest --test-dir build --output-on-failure
 
 ### Windows
 
-Double-click **`run-windows.bat`** (or run it from a terminal) to configure,
-build and start the game in one step:
+Double-click **`run-windows.bat`** (or run it from a terminal). It hands off to
+`scripts\windows-setup.ps1`, which **checks the build dependencies, installs any
+that are missing (via winget), then builds and starts the game** in one step:
 
 ```bat
 run-windows.bat            :: Release build, then run
 run-windows.bat Debug      :: Debug build, then run
 ```
 
-It drives the same CMake build and, unless you set `SFML_DIR` yourself, links
-the MSVC SFML bundled under `codemon\SFML` statically, so no separate SFML
-install or DLLs are needed. It requires CMake and a C++ toolchain (e.g. Visual
-Studio Build Tools). The older Visual Studio solution (`codemon.sln`) is still
-present but uses machine-specific absolute paths; the batch/CMake path is
-preferred.
+What it does:
+
+- Checks for **CMake** and a **C++ toolchain** (MSVC). If either is missing it
+  installs it with `winget` (Kitware.CMake / Visual Studio Build Tools with the
+  "Desktop development with C++" workload), asking for administrator rights via
+  UAC when needed.
+- Configures and builds with CMake. By default it links the MSVC SFML bundled
+  under `codemon\SFML` statically, so no separate SFML install or DLLs are
+  needed. If that fails to link (toolset mismatch), it automatically retries by
+  building SFML from source (`-DCODEMON_FETCH_SFML=ON`). You can also point at
+  your own SFML with `set SFML_DIR=...` before running.
+- Keeps the console window open on exit so any messages are readable.
+
+The launcher needs winget (ships with Windows 10/11 as "App Installer"). The
+older Visual Studio solution (`codemon.sln`) is still present but uses
+machine-specific absolute paths; the launcher/CMake path is preferred.
 
 The `codemon_tests` target exercises the display-independent core logic
 (`Coordinates`, `Tile`, the hand-rolled `Linked_list`) and is wired into CTest.
