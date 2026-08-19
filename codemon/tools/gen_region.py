@@ -267,7 +267,13 @@ def build():
         per_area[a].append((ax, ay))
         per_area[b].append((bx, by))
 
+    # Areas whose .map is hand-authored (see tools/build_pallet_town.py etc.)
+    # are never overwritten by the procedural generator.
+    MANUAL = {"pallet_town"}
+
     for aid, (name, theme, sx, sy, coast_south) in AREAS.items():
+        if aid in MANUAL:
+            continue
         g = blank(theme)
         scatter(g, theme)
         carve_spine(g, theme)

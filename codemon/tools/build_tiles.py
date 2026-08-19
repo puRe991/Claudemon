@@ -73,6 +73,10 @@ def build_tileset():
         18: real(2, 0),            # ice (snow)
         19: real(43, 18),          # lava (red)
         20: flat((28, 66, 140)),   # deep_water
+        21: real(31, 11),          # roof_green (house roof)
+        22: real(31, 17),          # roof_purple (house roof)
+        23: flat((196, 74, 60)),   # roof_red (lab / civic roof)
+        24: real(33, 12),          # wall_window (house front with window)
     }
     n = len(M)
     sheet = Image.new("RGBA", (n * OUT_TS, OUT_TS), (0, 0, 0, 0))

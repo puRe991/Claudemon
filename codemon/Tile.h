@@ -33,7 +33,11 @@ public:
 		sign        = 17,  // signs / points of interest
 		ice         = 18,  // frozen cave floor (Seafoam)
 		lava        = 19,  // volcanic terrain (Cinnabar)
-		deep_water  = 20   // open ocean / sea routes
+		deep_water  = 20,  // open ocean / sea routes
+		roof_green  = 21,  // building roof (house style A) - blocking
+		roof_purple = 22,  // building roof (house style B) - blocking
+		roof_red    = 23,  // building roof (lab / civic) - blocking
+		wall_window = 24   // building front wall with a window - blocking
 	};
 
 	/* Constructors */

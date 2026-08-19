@@ -33,6 +33,10 @@ static bool is_walkable(Tile::tile t) {
     case Tile::sign:
     case Tile::lava:
     case Tile::deep_water:
+    case Tile::roof_green:
+    case Tile::roof_purple:
+    case Tile::roof_red:
+    case Tile::wall_window:
         return false;
     default:
         return true;
