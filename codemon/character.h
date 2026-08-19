@@ -67,6 +67,11 @@ public:
 	sf::Sprite* get_current_sprite();
 	bool load_sprite_sheet();
 	void update_sprite_pos();
+	//Move the drawn sprite to the character's current pixel position without
+	//advancing the walk cycle. Used every frame while gliding between tiles.
+	void refresh_position();
+	//Show the standing (non-walking) frame for the current facing.
+	void set_standing();
 	void set_facing(DIR dir);
 };
 

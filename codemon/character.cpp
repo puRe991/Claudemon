@@ -212,6 +212,23 @@ void Character::update_sprite_pos() {
 	this->walk_anim_index = (this->walk_anim_index + 1) % 3;
 }
 
+// Reposition the drawn sprite to the current pixel position only. No walk-cycle
+// advance - used on every in-between frame while the character glides.
+void Character::refresh_position() {
+	this->current_sprite.setPosition((float)this->get_x(), (float)this->get_y());
+}
+
+// Show the standing frame (walk index 0) for the current facing direction.
+void Character::set_standing() {
+	this->walk_anim_index = 0;
+	sf::IntRect stand_mask = sf::IntRect(
+		0, this->facing * this->sprite_width,
+		this->sprite_width, this->sprite_height
+	);
+	this->current_sprite.setTextureRect(stand_mask);
+	this->current_sprite.setPosition((float)this->get_x(), (float)this->get_y());
+}
+
 /*Getter - updates facing direction to the given direction.*/
 void Character::set_facing(DIR dir)
 {

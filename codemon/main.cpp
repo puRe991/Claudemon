@@ -9,28 +9,14 @@
 #include <list>
 #include <string>
 
-//Convert the key input into direction input
-DIR convert_key_event(sf::Event *event) {
-    DIR input_dir = DIR::NONE;
-
-    //Recode event as a input direction for game state.
-    //Up was pressed
-    if (event->key.code == sf::Keyboard::W) {
-        input_dir = DIR::N;
-    }
-    //Down was pressed
-    else if (event->key.code == sf::Keyboard::S) {
-        input_dir = DIR::S;
-    }
-    //Left was pressed
-    else if (event->key.code == sf::Keyboard::A) {
-        input_dir = DIR::W;
-    }
-    //Right was pressed
-    else if (event->key.code == sf::Keyboard::D) {
-        input_dir = DIR::E;
-    }
-    return input_dir;
+// Which movement key is currently held (real-time state, so holding a key
+// keeps you walking). North wins ties, then S, W, E.
+static DIR held_direction() {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) return DIR::N;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) return DIR::S;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) return DIR::W;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) return DIR::E;
+    return DIR::NONE;
 }
 
 // Tiles a character cannot walk onto. Everything else (grass, path, sand,
@@ -65,6 +51,10 @@ static const int VIEW_TILES_Y = 9;
 static const int SCALE = 2;
 static const int TILE_PX = 32;
 
+// Walk speed in pixels per frame (at 60 fps). Must divide TILE_PX so a step
+// lands exactly on the next tile: 4 px -> 8 frames per tile (~130 ms).
+static const float MOVE_PX = 4.0f;
+
 // Keep a camera axis inside the map: centre on the target, but never scroll
 // past an edge. If the map is smaller than the view, centre the whole map.
 static float clamp_camera(float center, float half_view, float map_size) {
@@ -80,6 +70,19 @@ static float clamp_camera(float center, float half_view, float map_size) {
     return center;
 }
 
+// The tile a step in `dir` from `from` would land on. Returns false (and leaves
+// `out` unchanged) when the step would run off the top/left edge.
+static bool step_target(Coordinates from, DIR dir, Coordinates* out) {
+    unsigned int x = from.get_x(), y = from.get_y();
+    switch (dir) {
+    case DIR::N: if (y == 0) return false; *out = Coordinates(x, y - 1); return true;
+    case DIR::S: *out = Coordinates(x, y + 1); return true;
+    case DIR::W: if (x == 0) return false; *out = Coordinates(x - 1, y); return true;
+    case DIR::E: *out = Coordinates(x + 1, y); return true;
+    default: return false;
+    }
+}
+
 //Welcome to Codemon!
 int main()
 {
@@ -87,6 +90,8 @@ int main()
     // at SCALE zoom. The camera (set each frame) scrolls the map beneath it.
     Window scr(VIEW_TILES_X * TILE_PX * SCALE,
                VIEW_TILES_Y * TILE_PX * SCALE, "Codemon!");
+    // Cap the framerate so walk speed (pixels per frame) is machine-independent.
+    scr.get_window()->setFramerateLimit(60);
 
     //Just keep track of all the windows created
     std::list<Window> windows_list;
@@ -116,56 +121,78 @@ int main()
         player_tile = game_map->get_start_pos();
     }
 
-    // Keep the drawn sprite on the player's tile (position is in pixels).
-    player.set_x(player_tile.get_x() * 32);
-    player.set_y(player_tile.get_y() * 32);
+    // Smooth-movement state. (px,py) is the player's on-screen pixel position;
+    // while moving it glides toward (tx,ty), the target tile's pixel position.
+    float px = player_tile.get_x() * (float)TILE_PX;
+    float py = player_tile.get_y() * (float)TILE_PX;
+    float tx = px, ty = py;
+    bool moving = false;
+    int anim_tick = 0;
 
-    //Flag declarations
-    bool key_input = false;
-    DIR input_dir = NONE;
+    player.set_x((int)px);
+    player.set_y((int)py);
+    player.set_standing();
 
     //So long as the active_window is still open.
     while (scr.get_window()->isOpen())
     {
-        //Create a storage event for processing system/input events
+        //Drain system events. Movement is read from live key state below, so
+        //here we only care about the window being closed.
         sf::Event event;
         while (scr.get_event(&event))
         {
-            //If the player has closed the game
-            switch (event.type) {
-            //Close button clicked
-            case sf::Event::Closed:
+            if (event.type == sf::Event::Closed) {
                 scr.close();
-                break;
-            //A keyboard key has been pressed
-            case sf::Event::KeyPressed:
-                key_input = true;
-                input_dir = convert_key_event(&event);
-                break;
             }
         }
+
         /*
         Process Game State + Input
         */
 
-        //If a keyboard input was pressed
-        if (key_input && input_dir != DIR::NONE) {
-            // Work out the target tile for this move.
-            Coordinates target = player_tile;
-            switch (input_dir) {
-            case DIR::N: if (player_tile.get_y() > 0) target.set_y(player_tile.get_y() - 1); break;
-            case DIR::S: target.set_y(player_tile.get_y() + 1); break;
-            case DIR::W: if (player_tile.get_x() > 0) target.set_x(player_tile.get_x() - 1); break;
-            case DIR::E: target.set_x(player_tile.get_x() + 1); break;
-            default: break;
+        // Only accept a new step when the previous one has finished, so the
+        // grid stays aligned and movement animates one tile at a time.
+        if (!moving) {
+            DIR d = held_direction();
+            if (d != DIR::NONE) {
+                player.set_facing(d);
+                Coordinates target(0, 0);
+                if (step_target(player_tile, d, &target) &&
+                    game_map->in_bounds(target) &&
+                    is_walkable(game_map->tile_at(target))) {
+                    // Begin gliding toward the target tile.
+                    player_tile = target;
+                    tx = target.get_x() * (float)TILE_PX;
+                    ty = target.get_y() * (float)TILE_PX;
+                    moving = true;
+                } else {
+                    // Blocked or at an edge: just turn to face that way.
+                    player.set_standing();
+                }
+            } else {
+                player.set_standing();
             }
+        }
 
-            // Only step there if it is on the map and not blocked terrain.
-            if (game_map->in_bounds(target) && is_walkable(game_map->tile_at(target))) {
-                player_tile = target;
+        if (moving) {
+            // Advance the glide toward the target on the moving axis.
+            if (px < tx) px = (px + MOVE_PX > tx) ? tx : px + MOVE_PX;
+            else if (px > tx) px = (px - MOVE_PX < tx) ? tx : px - MOVE_PX;
+            if (py < ty) py = (py + MOVE_PX > ty) ? ty : py + MOVE_PX;
+            else if (py > ty) py = (py - MOVE_PX < ty) ? ty : py - MOVE_PX;
 
-                // Did we just step onto a warp? If so, switch to the target
-                // area's map and drop the player at the warp's destination.
+            player.set_x((int)px);
+            player.set_y((int)py);
+            // Shuffle the walk cycle a few times across the step.
+            if (++anim_tick % 4 == 0) player.update_sprite_pos();
+            else player.refresh_position();
+
+            // Arrived on the tile centre?
+            if (px == tx && py == ty) {
+                moving = false;
+                player.set_standing();
+
+                // Stepping onto a warp tile switches areas on arrival.
                 const RegionWarp* w = region.loaded()
                     ? region.warp_at(current_area, player_tile)
                     : nullptr;
@@ -177,19 +204,14 @@ int main()
                         game_map = next;
                         current_area = dest->id;
                         player_tile = w->to_pos;
+                        px = tx = player_tile.get_x() * (float)TILE_PX;
+                        py = ty = player_tile.get_y() * (float)TILE_PX;
+                        player.set_x((int)px);
+                        player.set_y((int)py);
+                        player.set_standing();
                     }
                 }
             }
-
-            // Face the input direction and advance the walk animation.
-            player.set_facing(input_dir);
-            player.set_x(player_tile.get_x() * 32);
-            player.set_y(player_tile.get_y() * 32);
-            player.update_sprite_pos();
-
-            //Reset the flags
-            key_input = false;
-            input_dir = DIR::NONE;
         }
 
         /*
@@ -199,11 +221,9 @@ int main()
         // Scroll the camera to follow the player, clamped to the map edges.
         const float view_w = VIEW_TILES_X * TILE_PX;
         const float view_h = VIEW_TILES_Y * TILE_PX;
-        float cam_x = clamp_camera(player.get_x() + TILE_PX / 2.0f,
-                                   view_w / 2.0f,
+        float cam_x = clamp_camera(px + TILE_PX / 2.0f, view_w / 2.0f,
                                    game_map->get_width() * (float)TILE_PX);
-        float cam_y = clamp_camera(player.get_y() + TILE_PX / 2.0f,
-                                   view_h / 2.0f,
+        float cam_y = clamp_camera(py + TILE_PX / 2.0f, view_h / 2.0f,
                                    game_map->get_height() * (float)TILE_PX);
         scr.set_camera(cam_x, cam_y, view_w, view_h);
 
@@ -211,7 +231,6 @@ int main()
         //draw the sprite to the window
         game_map->render_map(&scr);
         scr.draw(&player);
-
 
         //Update the window to draw stuff
         scr.display();
