@@ -44,8 +44,21 @@ function Test-Admin {
 
 function Find-Msvc {
     # Returns $true if a C++ (VC) toolset is installed, via vswhere.
-    $vswhere = Join-Path ${env:ProgramFiles(x86)} "Microsoft Visual Studio\Installer\vswhere.exe"
-    if (-not (Test-Path $vswhere)) { return $false }
+    # Note: read env vars through the .NET API - "${env:ProgramFiles(x86)}" is
+    # parsed inconsistently across PowerShell versions and can come back null.
+    $pf86 = [Environment]::GetEnvironmentVariable("ProgramFiles(x86)")
+    $pf   = [Environment]::GetEnvironmentVariable("ProgramFiles")
+
+    $candidates = @()
+    foreach ($base in @($pf86, $pf)) {
+        if ($base) {
+            $candidates += (Join-Path $base "Microsoft Visual Studio\Installer\vswhere.exe")
+        }
+    }
+
+    $vswhere = $candidates | Where-Object { Test-Path $_ } | Select-Object -First 1
+    if (-not $vswhere) { return $false }
+
     $path = & $vswhere -latest -products * `
         -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 `
         -property installationPath 2>$null
@@ -58,10 +71,13 @@ function Pause-Exit($code) {
     exit $code
 }
 
+$osBits = if ([Environment]::Is64BitOperatingSystem) { "64-bit" } else { "32-bit" }
+
 Write-Host "============================================" -ForegroundColor Green
 Write-Host "  Cod-e-mon Windows setup & launcher"        -ForegroundColor Green
 Write-Host "  Repo:   $RepoRoot"
 Write-Host "  Config: $Config"
+Write-Host "  OS:     Windows $osBits ($([Environment]::OSVersion.Version))"
 Write-Host "============================================" -ForegroundColor Green
 
 # ---------------------------------------------------------------------------
@@ -135,6 +151,16 @@ if ($needInstall) {
     }
 
     if ($needMsvc) {
+        if (-not [Environment]::Is64BitOperatingSystem) {
+            Write-Host ""
+            Write-Host "[ERROR] Visual Studio 2022 Build Tools require 64-bit Windows, but this" -ForegroundColor Red
+            Write-Host "        machine is running 32-bit Windows, so the MSVC toolchain cannot be" -ForegroundColor Red
+            Write-Host "        installed. A 32-bit toolchain (MinGW-w64) is needed instead." -ForegroundColor Red
+            Write-Host "        Please let the maintainer know your OS is 32-bit so a MinGW-based" -ForegroundColor Red
+            Write-Host "        path can be added." -ForegroundColor Red
+            Pause-Exit 1
+        }
+
         Write-Head "Installing Visual Studio Build Tools with the C++ workload (winget)"
         Write-Host "This is a large download (several GB) and can take a while." -ForegroundColor Yellow
         winget install --id Microsoft.VisualStudio.2022.BuildTools -e --source winget `
