@@ -80,6 +80,21 @@ add_custom_command(TARGET codemon POST_BUILD
             "${SRC_DIR}/region" "$<TARGET_FILE_DIR:codemon>/region"
     COMMENT "Staging maps/, assets/ and region/ next to the game binary")
 
+# --- External map editor ----------------------------------------------------
+# A standalone tool (separate from the game) for painting the .map files.
+add_executable(codemon_editor "${SRC_DIR}/editor/editor.cpp")
+target_link_libraries(codemon_editor PRIVATE monsta_engine)
+if(WIN32)
+    target_link_libraries(codemon_editor PRIVATE sfml-main)
+endif()
+
+# The editor reads/writes region/ (tile sheet + maps) relative to the working
+# directory; stage it next to the editor binary too.
+add_custom_command(TARGET codemon_editor POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+            "${SRC_DIR}/region" "$<TARGET_FILE_DIR:codemon_editor>/region"
+    COMMENT "Staging region/ next to the editor binary")
+
 # --- Tests ------------------------------------------------------------------
 enable_testing()
 
@@ -92,3 +107,6 @@ target_compile_definitions(codemon_tests PRIVATE
     REGION_MANIFEST_PATH="${SRC_DIR}/region/kanto.region")
 
 add_test(NAME core_logic COMMAND codemon_tests)
+
+# Headless round-trip test of the editor's map load/save (no display needed).
+add_test(NAME editor_selftest COMMAND codemon_editor --selftest)

@@ -87,6 +87,14 @@ move is blocked, a blip on area transitions), regenerated with
 same names to replace them. See [`codemon/assets/CREDITS.md`](codemon/assets/CREDITS.md)
 for attribution and for why the other requested packs are not bundled.
 
+## Map editor
+
+A standalone external editor, `codemon_editor`, paints the region's `.map`
+files against the real terrain sheet (WYSIWYG with the game). Build it with the
+same CMake, then from the build directory run `./codemon_editor
+region/maps/<area>.map` — left-click the palette to pick a tile, drag to paint,
+`S` to save. See [`codemon/editor/README.md`](codemon/editor/README.md).
+
 ## Building & Running
 
 The project builds with CMake and needs a system install of **SFML 2.5+**.
