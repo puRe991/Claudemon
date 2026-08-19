@@ -5,6 +5,7 @@
 #include "Window.h"
 #include "direction.h"
 #include "Region.h"
+#include "Audio.h"
 
 #include <list>
 #include <string>
@@ -101,6 +102,12 @@ int main()
     Character player;
     player.load_sprite_sheet();
 
+    // Sound effects. Missing files are silently ignored, so the game still
+    // runs without audio; drop your own licensed audio into assets/sfx/.
+    Audio audio;
+    audio.load("bump", "assets/sfx/bump.wav");
+    audio.load("warp", "assets/sfx/warp.wav");
+
     // Load the region structure. The manifest wires ~30 areas together with
     // warps; the player roams one area map at a time and warps between them.
     Region region("region/kanto.region");
@@ -128,6 +135,7 @@ int main()
     float tx = px, ty = py;
     bool moving = false;
     int anim_tick = 0;
+    DIR blocked_dir = DIR::NONE;   // last direction we bumped, to debounce the sfx
 
     player.set_x((int)px);
     player.set_y((int)py);
@@ -165,12 +173,19 @@ int main()
                     tx = target.get_x() * (float)TILE_PX;
                     ty = target.get_y() * (float)TILE_PX;
                     moving = true;
+                    blocked_dir = DIR::NONE;
                 } else {
-                    // Blocked or at an edge: just turn to face that way.
+                    // Blocked or at an edge: just turn to face that way, and
+                    // thud once (not every frame the key is held into a wall).
                     player.set_standing();
+                    if (d != blocked_dir) {
+                        audio.play("bump");
+                        blocked_dir = d;
+                    }
                 }
             } else {
                 player.set_standing();
+                blocked_dir = DIR::NONE;
             }
         }
 
@@ -209,6 +224,7 @@ int main()
                         player.set_x((int)px);
                         player.set_y((int)py);
                         player.set_standing();
+                        audio.play("warp");
                     }
                 }
             }

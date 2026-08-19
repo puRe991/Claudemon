@@ -75,6 +75,18 @@ and `main.cpp` walks the player from area to area through **warp** tiles. See
 area list, the connection graph and the file formats. Regenerate the data with
 `python3 codemon/tools/gen_region.py`.
 
+## Art & audio
+
+Terrain tiles (`region/region_tiles.png`) and the player trainer
+(`assets/Red_player.png`) are derived from **scarloxy's "MyPixelWorld Special
+Packs #01"** (CC-BY 4.0); the source art lives in `assets/art/` and the derived
+sheets are rebuilt with `python3 codemon/tools/build_tiles.py`. The game plays
+short **original** placeholder sound effects from `assets/sfx/` (a bump when a
+move is blocked, a blip on area transitions), regenerated with
+`python3 codemon/tools/make_sfx.py`; drop your own licensed audio in with the
+same names to replace them. See [`codemon/assets/CREDITS.md`](codemon/assets/CREDITS.md)
+for attribution and for why the other requested packs are not bundled.
+
 ## Building & Running
 
 The project builds with CMake and needs a system install of **SFML 2.5+**.
@@ -116,7 +128,9 @@ The `codemon_tests` target exercises the display-independent core logic
 
 ### To-do bucket:<br>
 - ~~add a camera / scrolling~~ (done: the view follows the player and clamps to map edges)
-- per-area tile sheets (the region maps currently share `region/region_tiles.png`)
+- per-area tile sheets (all areas currently share the one `region/region_tiles.png`)
+- background music, and richer sound effects (an `Audio` system + placeholder SFX exist)
+- ~~real tile / character art~~ (done: CC-BY pixel art, see `assets/CREDITS.md`)
 - ~~Multiple maps + easy transitions between them~~ (done: see `codemon/region/`)
 - ~~add collision~~ (done: blocking terrain is not walkable)
 - ~~add bounds checking~~ (done: moves are bounds-checked against the active map)
