@@ -1,0 +1,48 @@
+name: Windows 32-bit build
+
+# Produces a ready-to-run 32-bit (x86) Windows build so it can run on 32-bit
+# Windows, where no local C++ toolchain can be installed. SFML is compiled from
+# source for x86 with a static runtime, so the resulting codemon.exe needs no
+# SFML DLLs and no Visual C++ redistributable.
+
+on:
+  push:
+    branches: [ "**" ]
+  workflow_dispatch:
+
+jobs:
+  build-win32:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: false
+
+      - name: Configure (Win32, SFML from source, static runtime)
+        run: >
+          cmake -S . -B build -A Win32
+          -DCODEMON_FETCH_SFML=ON
+          -DCMAKE_MSVC_RUNTIME_LIBRARY=MultiThreaded
+
+      - name: Build (Release)
+        run: cmake --build build --config Release
+
+      - name: Run tests
+        run: ctest --test-dir build -C Release --output-on-failure
+
+      - name: Stage package
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force dist | Out-Null
+          Copy-Item build/Release/codemon.exe dist/
+          Copy-Item build/Release/maps   dist/maps   -Recurse -Force
+          Copy-Item build/Release/assets dist/assets -Recurse -Force
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: codemon-win32
+          path: dist
+          if-no-files-found: error
