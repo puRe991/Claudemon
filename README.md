@@ -51,6 +51,17 @@ Now as I finally finish my formal education and have amassed a decade or so of p
 > > * Would be nice if the harness suite also timed each major alorigthm automagically.
 
 
+## Sprites
+
+Pokémon sprite artwork is pulled in from [PokeAPI/sprites](https://github.com/PokeAPI/sprites)
+as a git submodule under `sprites/`. Clone the project with submodules to get it:
+
+```sh
+git clone --recurse-submodules <repo-url>
+# or, in an existing checkout:
+git submodule update --init --depth 1 sprites
+```
+
 ## Building & Running
 
 The project builds with CMake and needs a system install of **SFML 2.5+**.
@@ -70,9 +81,22 @@ ctest --test-dir build --output-on-failure
 ./build/codemon
 ```
 
-The Windows `.lib` files under `codemon/SFML/` are MSVC-specific and are not
-used by this build, so the same tree cross-compiles on Linux/macOS. On Windows
-the bundled Visual Studio solution (`codemon.sln`) still works.
+### Windows
+
+Double-click **`run-windows.bat`** (or run it from a terminal) to configure,
+build and start the game in one step:
+
+```bat
+run-windows.bat            :: Release build, then run
+run-windows.bat Debug      :: Debug build, then run
+```
+
+It drives the same CMake build and, unless you set `SFML_DIR` yourself, links
+the MSVC SFML bundled under `codemon\SFML` statically, so no separate SFML
+install or DLLs are needed. It requires CMake and a C++ toolchain (e.g. Visual
+Studio Build Tools). The older Visual Studio solution (`codemon.sln`) is still
+present but uses machine-specific absolute paths; the batch/CMake path is
+preferred.
 
 The `codemon_tests` target exercises the display-independent core logic
 (`Coordinates`, `Tile`, the hand-rolled `Linked_list`) and is wired into CTest.

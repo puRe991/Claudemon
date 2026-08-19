@@ -25,11 +25,24 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
 endif()
 
 # --- SFML -------------------------------------------------------------------
-# Uses a system/toolchain provided SFML 2.x. On Debian/Ubuntu:
+# Linux/macOS use a system/toolchain provided SFML 2.x. On Debian/Ubuntu:
 #   sudo apt-get install libsfml-dev
-# The Windows .lib files bundled under codemon/SFML are MSVC specific and are
-# intentionally NOT used here so the same tree cross builds on Linux/macOS.
-find_package(SFML 2.5 COMPONENTS graphics window system REQUIRED)
+#
+# On Windows, if the caller did not point CMake at an SFML install, fall back
+# to the MSVC SFML that ships with the repo under codemon/SFML. That bundled
+# build has no runtime DLLs (only static + import libraries), so link SFML
+# statically there to produce a self-contained codemon.exe.
+if(WIN32 AND NOT DEFINED SFML_DIR AND NOT DEFINED ENV{SFML_DIR})
+    set(SFML_STATIC_LIBRARIES TRUE)
+    set(SFML_DIR "${CMAKE_CURRENT_SOURCE_DIR}/codemon/SFML/lib/cmake/SFML")
+endif()
+
+set(SFML_COMPONENTS graphics window system)
+if(WIN32)
+    # sfml-main provides the WinMain -> main shim used by the VS project.
+    list(APPEND SFML_COMPONENTS main)
+endif()
+find_package(SFML 2.5 COMPONENTS ${SFML_COMPONENTS} REQUIRED)
 
 set(SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/codemon")
 
@@ -49,6 +62,9 @@ target_link_libraries(monsta_engine PUBLIC sfml-graphics sfml-window sfml-system
 # --- Game executable --------------------------------------------------------
 add_executable(codemon "${SRC_DIR}/main.cpp")
 target_link_libraries(codemon PRIVATE monsta_engine)
+if(WIN32)
+    target_link_libraries(codemon PRIVATE sfml-main)
+endif()
 
 # The game loads its assets through paths that are relative to the working
 # directory (e.g. "maps/map_00.txt", "assets/Red_player.png"). Copy them next
