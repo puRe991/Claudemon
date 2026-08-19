@@ -35,6 +35,9 @@ public:
 	//Is this tile coordinate inside the map?
 	bool in_bounds(Coordinates proposed_coord);
 
+	//Does the tile at this coordinate block movement (tree/water/fence)?
+	bool is_solid(Coordinates coord);
+
 	/* Dimensions */
 	unsigned int get_width();    //in tiles
 	unsigned int get_height();   //in tiles

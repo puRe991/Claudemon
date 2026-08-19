@@ -51,6 +51,17 @@ bool Map::in_bounds(Coordinates proposed_coord)
 	return this->m_data.in_bounds(proposed_coord.get_x(), proposed_coord.get_y());
 }
 
+// Tiles that block movement: 2 = tree, 3 = water, 7 = fence.
+static bool solid_tile_id(int id)
+{
+	return id == 2 || id == 3 || id == 7;
+}
+
+bool Map::is_solid(Coordinates coord)
+{
+	return solid_tile_id(this->m_data.get_tile(coord.get_x(), coord.get_y()));
+}
+
 unsigned int Map::get_width()  { return this->m_data.get_width(); }
 unsigned int Map::get_height() { return this->m_data.get_height(); }
 unsigned int Map::get_tile_width()  { return this->tile_w; }

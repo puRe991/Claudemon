@@ -74,7 +74,7 @@ int main()
 
     Character player;
     player.load_sprite_sheet();
-    Map game_map("maps/map_00.txt", "maps/map_set/map_00.png");
+    Map game_map("maps/region_00.txt", "maps/map_set/overworld.png");
 
     //Spawn the player at the map's start tile.
     Coordinates start = game_map.get_start_pos();
@@ -125,8 +125,9 @@ int main()
                             const int tile_y = (int)(player.get_y() / (int)TILE) + dy;
 
                             player.set_facing(dir);
+                            const Coordinates target((unsigned int)tile_x, (unsigned int)tile_y);
                             if (tile_x >= 0 && tile_y >= 0 &&
-                                game_map.in_bounds(Coordinates((unsigned int)tile_x, (unsigned int)tile_y))) {
+                                game_map.in_bounds(target) && !game_map.is_solid(target)) {
                                 player.move(dir);
                             }
                             player.update_sprite_pos();
