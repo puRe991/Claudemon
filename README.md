@@ -115,8 +115,8 @@ The `codemon_tests` target exercises the display-independent core logic
 (`Coordinates`, `Tile`, the hand-rolled `Linked_list`) and is wired into CTest.
 
 ### To-do bucket:<br>
-- add a camera / scrolling so areas larger than the 16x16 window are fully visible
-- per-area tile sheets (the region maps currently share the placeholder sheet)
+- ~~add a camera / scrolling~~ (done: the view follows the player and clamps to map edges)
+- per-area tile sheets (the region maps currently share `region/region_tiles.png`)
 - ~~Multiple maps + easy transitions between them~~ (done: see `codemon/region/`)
 - ~~add collision~~ (done: blocking terrain is not walkable)
 - ~~add bounds checking~~ (done: moves are bounds-checked against the active map)

@@ -52,15 +52,41 @@ static bool is_walkable(Tile::tile t) {
     }
 }
 
-// One shared tile sheet stands in for all region areas until per-area art
-// lands. The region maps only depend on tile ids, not on this placeholder.
-static const std::string REGION_SHEET = "maps/map_set/map_00.png";
+// Shared terrain tile sheet for the region: one row of tiles indexed by
+// Tile::tile id (see region/region_tiles.png). Stands in for per-area art.
+static const std::string REGION_SHEET = "region/region_tiles.png";
+
+// Camera viewport, in tiles, and an on-screen zoom. The window shows
+// VIEW_TILES_X x VIEW_TILES_Y tiles of the world at a time and the camera
+// scrolls to keep the player centred; SCALE just makes each tile chunkier on
+// screen. These are smaller than the maps, so the world scrolls underneath.
+static const int VIEW_TILES_X = 11;
+static const int VIEW_TILES_Y = 9;
+static const int SCALE = 2;
+static const int TILE_PX = 32;
+
+// Keep a camera axis inside the map: centre on the target, but never scroll
+// past an edge. If the map is smaller than the view, centre the whole map.
+static float clamp_camera(float center, float half_view, float map_size) {
+    if (map_size <= half_view * 2.0f) {
+        return map_size / 2.0f;
+    }
+    if (center < half_view) {
+        return half_view;
+    }
+    if (center > map_size - half_view) {
+        return map_size - half_view;
+    }
+    return center;
+}
 
 //Welcome to Codemon!
 int main()
 {
-    //Main Screen declaration. Right now its a 16x16 grid of 32 px tiles
-    Window scr(32*16, 32 * 16, "Codemon!");
+    // Main screen: a VIEW_TILES_X x VIEW_TILES_Y window into the world, drawn
+    // at SCALE zoom. The camera (set each frame) scrolls the map beneath it.
+    Window scr(VIEW_TILES_X * TILE_PX * SCALE,
+               VIEW_TILES_Y * TILE_PX * SCALE, "Codemon!");
 
     //Just keep track of all the windows created
     std::list<Window> windows_list;
@@ -169,6 +195,17 @@ int main()
         /*
         Render loop portion
         */
+
+        // Scroll the camera to follow the player, clamped to the map edges.
+        const float view_w = VIEW_TILES_X * TILE_PX;
+        const float view_h = VIEW_TILES_Y * TILE_PX;
+        float cam_x = clamp_camera(player.get_x() + TILE_PX / 2.0f,
+                                   view_w / 2.0f,
+                                   game_map->get_width() * (float)TILE_PX);
+        float cam_y = clamp_camera(player.get_y() + TILE_PX / 2.0f,
+                                   view_h / 2.0f,
+                                   game_map->get_height() * (float)TILE_PX);
+        scr.set_camera(cam_x, cam_y, view_w, view_h);
 
         scr.clear();
         //draw the sprite to the window
