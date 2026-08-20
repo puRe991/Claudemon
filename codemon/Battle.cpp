@@ -5,7 +5,25 @@
 Battle::Battle()
 	: data(nullptr), rng(nullptr), font_ok(false), player(nullptr),
 	  is_trainer(false), party_idx(0), log_pos(0), phase(INACTIVE),
-	  after_msg(INACTIVE), cursor(0), over(false), victory(false) {}
+	  after_msg(INACTIVE), cursor(0), over(false), victory(false),
+	  has_trainer_pic(false), intro_shown(false) {}
+
+// Move type name -> type-icon file stem (pokeemerald names).
+const sf::Texture* Battle::type_icon(const std::string& type) {
+	std::string t = type;
+	for (char& c : t) c = (char)std::tolower((unsigned char)c);
+	if (t == "fighting") t = "fight";
+	auto it = this->type_tex.find(t);
+	if (it != this->type_tex.end()) return &it->second;
+	sf::Texture tex;
+	if (!tex.loadFromFile("assets/types/" + t + ".png")) {
+		this->type_tex[t];                 // cache the miss (empty)
+		return nullptr;
+	}
+	tex.setSmooth(false);
+	this->type_tex[t] = tex;
+	return &this->type_tex[t];
+}
 
 void Battle::configure(BattleData* d, std::mt19937* r) {
 	this->data = d; this->rng = r;
@@ -67,6 +85,12 @@ bool Battle::start_trainer(const std::string& trainer_id, const std::string& nam
 	this->enemy = this->data->make_mon(pty[0].first, pty[0].second);
 	this->over = this->victory = false;
 	this->cursor = 0;
+	// trainer front sprite for the intro
+	std::string pic = this->data->trainer_pic(trainer_id);
+	this->has_trainer_pic = !pic.empty() &&
+		this->trainer_tex.loadFromFile("assets/trainers/" + pic + ".png");
+	this->trainer_tex.setSmooth(false);
+	this->intro_shown = false;
 	load_sprites();
 	this->log.clear();
 	queue(this->enemy_title + " wants to battle!");
@@ -154,6 +178,7 @@ void Battle::input(BtnInput b) {
 			if (this->log_pos >= this->log.size()) {
 				this->log.clear();
 				this->phase = this->after_msg;   // MENU or INACTIVE
+				if (this->phase == MENU) this->intro_shown = true;
 			}
 		}
 		return;
@@ -198,17 +223,25 @@ void Battle::draw(sf::RenderTarget& target) {
 	ground.setPosition(0, size.y * 0.45f);
 	ground.setFillColor(sf::Color(200, 216, 160)); target.draw(ground);
 
-	// enemy (front) top-right + info top-left
-	sf::Sprite es(this->enemy_tex);
-	es.setScale(2.6f, 2.6f);
-	es.setPosition(size.x * 0.62f, size.y * 0.06f);
-	target.draw(es);
-	if (this->font_ok) {
-		sf::Text n(nice(this->enemy.species) + "  Lv" + std::to_string(this->enemy.level),
-		           this->font, 20);
-		n.setPosition(24, 24); n.setFillColor(sf::Color(20, 20, 20)); target.draw(n);
+	// enemy side: trainer sprite during the intro, otherwise the pokemon + HP
+	bool show_trainer = this->is_trainer && this->has_trainer_pic && !this->intro_shown;
+	if (show_trainer) {
+		sf::Sprite ts(this->trainer_tex);
+		ts.setScale(2.8f, 2.8f);
+		ts.setPosition(size.x * 0.60f, size.y * 0.05f);
+		target.draw(ts);
+	} else {
+		sf::Sprite es(this->enemy_tex);
+		es.setScale(2.6f, 2.6f);
+		es.setPosition(size.x * 0.62f, size.y * 0.06f);
+		target.draw(es);
+		if (this->font_ok) {
+			sf::Text n(nice(this->enemy.species) + "  Lv" + std::to_string(this->enemy.level),
+			           this->font, 20);
+			n.setPosition(24, 24); n.setFillColor(sf::Color(20, 20, 20)); target.draw(n);
+		}
+		draw_hp_bar(target, 24, 52, 240, 16, this->enemy.hp, this->enemy.max_hp);
 	}
-	draw_hp_bar(target, 24, 52, 240, 16, this->enemy.hp, this->enemy.max_hp);
 
 	// player (back) bottom-left + info bottom-right
 	sf::Sprite ps(this->player_tex);
@@ -253,6 +286,17 @@ void Battle::draw(sf::RenderTarget& target) {
 			m.setPosition(mx, my);
 			m.setFillColor(sel ? sf::Color(150, 210, 255) : sf::Color::White);
 			target.draw(m);
+			// type badge next to the move
+			const MoveInfo* mi = this->data->move(this->player->moves[i]);
+			if (mi) {
+				const sf::Texture* ti = type_icon(mi->type);
+				if (ti) {
+					sf::Sprite badge(*ti);
+					badge.setScale(1.2f, 1.2f);
+					badge.setPosition(mx + size.x * 0.19f, my + 2);
+					target.draw(badge);
+				}
+			}
 		}
 	}
 	target.setView(saved);

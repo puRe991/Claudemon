@@ -339,6 +339,107 @@ def cmd_battle(src, starters=("TREECKO", "TORCHIC", "MUDKIP", "PIKACHU")):
           f"{nf} front + {nb} back sprites -> {os.path.relpath(out)}")
 
 
+def _flatten_to(src_png, dst_png):
+    """P-mode (or any) PNG -> RGBA, palette index 0 transparent."""
+    im = Image.open(src_png)
+    if im.mode == "P":
+        idx = im.load(); rgba = im.convert("RGBA"); px = rgba.load()
+        w, h = im.size
+        for y in range(h):
+            for x in range(w):
+                if idx[x, y] == 0:
+                    px[x, y] = (0, 0, 0, 0)
+    else:
+        rgba = im.convert("RGBA")
+    os.makedirs(os.path.dirname(dst_png), exist_ok=True)
+    rgba.save(dst_png)
+
+
+def parse_trainer_pics(src):
+    """TRAINER_X -> front-pic file stem (e.g. 'hiker')."""
+    import re
+    txt = open(os.path.join(src, "src/data/trainers.h"),
+               encoding="utf-8", errors="replace").read()
+    out = {}
+    for m in re.finditer(r"\[TRAINER_(\w+)\]\s*=\s*\{(.*?)\n    \}", txt, re.S):
+        pm = re.search(r"\.trainerPic\s*=\s*TRAINER_PIC_(\w+)", m.group(2))
+        if pm:
+            out["TRAINER_" + m.group(1)] = pm.group(1).lower()
+    return out
+
+
+def cmd_extras(src):
+    """Import the remaining pokeemerald graphics: all back sprites, trainer
+    battle sprites, type + item icons, the extra overworld object pics, and a
+    flattened mirror of the other graphics folders."""
+    sp = parse_species_info(src)
+    nb = sum(1 for s in sp if import_pokemon_back(s, src))
+    print(f"extras: {nb} back sprites")
+
+    # trainer battle sprites (front_pics embed their palette)
+    tdir = os.path.join(src, "graphics/trainers/front_pics")
+    outt = os.path.join(ASSETS_DIR, "trainers")
+    nt = 0
+    for f in sorted(glob.glob(os.path.join(tdir, "*.png"))):
+        _flatten_to(f, os.path.join(outt, os.path.basename(f))); nt += 1
+    pics = parse_trainer_pics(src)
+    with open(os.path.join(ASSETS_DIR, "battle", "trainer_pics.tsv"), "w") as fh:
+        for t, pic in sorted(pics.items()):
+            fh.write(f"{t}\t{pic}\n")
+    print(f"extras: {nt} trainer sprites, {len(pics)} trainer->pic entries")
+
+    # type icons
+    ntp = 0
+    for f in sorted(glob.glob(os.path.join(src, "graphics/types/*.png"))):
+        name = os.path.basename(f)
+        if name.startswith("contest"):
+            continue
+        _flatten_to(f, os.path.join(ASSETS_DIR, "types", name)); ntp += 1
+    print(f"extras: {ntp} type icons")
+
+    # item icons
+    ni = 0
+    for f in sorted(glob.glob(os.path.join(src, "graphics/items/icons/*.png"))):
+        _flatten_to(f, os.path.join(ASSETS_DIR, "items", os.path.basename(f))); ni += 1
+    print(f"extras: {ni} item icons")
+
+    # extra overworld object pics
+    no = 0
+    for grp in ("berry_trees", "cushions", "dolls"):
+        gdir = os.path.join(src, "graphics/object_events/pics", grp)
+        for dp, _, fs in os.walk(gdir):
+            for fn in fs:
+                if fn.endswith(".png"):
+                    rel = os.path.relpath(os.path.join(dp, fn), gdir)
+                    key = grp + "_" + rel[:-4].replace(os.sep, "_")
+                    _flatten_to(os.path.join(dp, fn),
+                                os.path.join(OW_DIR, key + ".png")); no += 1
+    print(f"extras: {no} extra overworld pics")
+
+    # flattened mirror of the remaining graphics categories
+    cats = ["field_effects", "door_anims", "map_popup", "text_window", "fonts",
+            "battle_interface", "battle_anims", "pokenav", "pokemon_storage",
+            "decorations", "berries", "slot_machine", "roulette", "contest",
+            "pokedex", "naming_screen", "intro", "rayquaza_scene", "mail",
+            "trade", "bag", "pokemon_jump", "berry_blender", "interface",
+            "battle_transitions", "credits", "party_menu", "summary_screen"]
+    nm = 0
+    gout = os.path.join(ASSETS_DIR, "graphics")
+    for cat in cats:
+        base = os.path.join(src, "graphics", cat)
+        for dp, _, fs in os.walk(base):
+            for fn in fs:
+                if not fn.endswith(".png"):
+                    continue
+                rel = os.path.relpath(os.path.join(dp, fn),
+                                      os.path.join(src, "graphics"))
+                try:
+                    _flatten_to(os.path.join(dp, fn), os.path.join(gout, rel)); nm += 1
+                except Exception:
+                    pass
+    print(f"extras: mirrored {nm} more graphics -> {os.path.relpath(gout)}")
+
+
 def import_pokemon_back(species, src):
     """Colour a species' back sprite (first 64x64 frame) into assets/pokemon/back."""
     name = species.lower()
@@ -1117,7 +1218,7 @@ def cmd_audio(src, cry_limit=100000, songs=("mus_littleroot", "mus_route101", "m
 def main():
     ap = argparse.ArgumentParser(description="Codemon pokeemerald asset importer")
     ap.add_argument("cmd", choices=["all", "tilesets", "overworld", "audio",
-                                    "map", "world", "battle"])
+                                    "map", "world", "battle", "extras"])
     ap.add_argument("--src", default=os.environ.get("POKEEMERALD",
                     ""), help="path to pokeemerald-master checkout")
     ap.add_argument("--layout", default="LittlerootTown_Layout",
@@ -1136,6 +1237,8 @@ def main():
         cmd_map(args.src, args.layout)
     if args.cmd in ("all", "battle"):
         cmd_battle(args.src)
+    if args.cmd in ("all", "extras"):
+        cmd_extras(args.src)
     if args.cmd == "world":
         cmd_world(args.src)
 

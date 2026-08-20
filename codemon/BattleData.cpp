@@ -50,6 +50,11 @@ bool BattleData::load(const std::string& dir) {
 		}
 		trainers[c[0]] = party;
 	}
+	std::ifstream tp(dir + "/trainer_pics.tsv");
+	while (std::getline(tp, line)) {
+		auto c = split(line, '\t');
+		if (c.size() >= 2) trainer_pics[c[0]] = c[1];
+	}
 	loaded = !species.empty();
 	return loaded;
 }
@@ -89,6 +94,11 @@ std::vector<std::pair<std::string, int>>
 BattleData::trainer_party(const std::string& t) const {
 	auto it = trainers.find(t);
 	return it == trainers.end() ? std::vector<std::pair<std::string, int>>() : it->second;
+}
+
+std::string BattleData::trainer_pic(const std::string& t) const {
+	auto it = trainer_pics.find(t);
+	return it == trainer_pics.end() ? std::string() : it->second;
 }
 
 bool BattleData::is_physical(const std::string& type) {

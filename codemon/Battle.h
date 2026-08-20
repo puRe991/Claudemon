@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <map>
 #include <random>
 #include "SFML/Graphics.hpp"
 #include "BattleData.h"
@@ -40,8 +41,12 @@ private:
 	int cursor;
 	bool over, victory;
 
-	sf::Texture enemy_tex, player_tex;
+	sf::Texture enemy_tex, player_tex, trainer_tex;
+	bool has_trainer_pic;
+	bool intro_shown;            // trainer sprite shown until the first menu
+	std::map<std::string, sf::Texture> type_tex;
 
+	const sf::Texture* type_icon(const std::string& type);
 	void load_sprites();
 	void queue(const std::string& line);
 	void show_messages(Phase next);

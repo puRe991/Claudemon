@@ -38,6 +38,7 @@ private:
 	std::unordered_map<std::string, MoveInfo> moves;
 	std::unordered_map<std::string, std::vector<std::pair<int, std::string>>> learn;
 	std::unordered_map<std::string, std::vector<std::pair<std::string, int>>> trainers;
+	std::unordered_map<std::string, std::string> trainer_pics;   // TRAINER_X -> pic
 	bool loaded = false;
 
 public:
@@ -52,6 +53,8 @@ public:
 
 	// Trainer's party, or empty if unknown.
 	std::vector<std::pair<std::string, int>> trainer_party(const std::string& t) const;
+	// Trainer's front-pic file stem (e.g. "hiker"), or "" if unknown.
+	std::string trainer_pic(const std::string& t) const;
 
 	// Type effectiveness multiplier of an attacking type vs a defender's types.
 	static float type_eff(const std::string& atk,
