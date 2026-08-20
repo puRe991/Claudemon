@@ -42,6 +42,14 @@ collision
 1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,0,0,0,0
 1,1,1,1,1,1,1,1,1,0,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0
+warps
+8 5 MauvilleCity_Gym 0
+22 5 MauvilleCity_PokemonCenter_1F 0
+35 5 MauvilleCity_BikeShop 0
+23 14 MauvilleCity_Mart 0
+32 14 MauvilleCity_House1 0
+8 13 MauvilleCity_GameCorner 0
+19 14 MauvilleCity_House2 0
 npcs
 people_boy_3 29 16 S wander
 people_rich_boy 24 10 S wander

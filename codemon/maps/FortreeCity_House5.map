@@ -14,6 +14,9 @@ collision
 0,0,0,1,1,0,0,0
 0,0,0,0,0,0,0,0
 1,0,0,0,0,0,0,1
+warps
+3 5 FortreeCity 7
+4 5 FortreeCity 7
 npcs
 people_pokefan_f 6 4 S static
 people_man_1 6 3 S static

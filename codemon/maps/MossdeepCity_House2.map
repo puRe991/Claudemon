@@ -20,6 +20,9 @@ collision
 0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,1
+warps
+3 8 MossdeepCity 3
+4 8 MossdeepCity 3
 npcs
 people_man_4 6 6 W static
 people_twin 4 4 S static

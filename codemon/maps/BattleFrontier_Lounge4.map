@@ -22,6 +22,8 @@ collision
 0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0
 1,0,0,0,0,0,0,0,1
+warps
+4 9 BattleFrontier_OutsideWest 6
 npcs
 people_woman_3 4 4 N static
 people_cook 6 6 S wander

@@ -20,6 +20,8 @@ collision
 0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,1,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,1,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+6 1 SlateportCity_OceanicMuseum_1F 2
 npcs
 people_scientist_1 13 6 S static
 people_team_aqua_archie 6 1 S static

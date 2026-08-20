@@ -30,5 +30,8 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0
 1,1,1,1,1,0,0,0,1,1,1,1,1
 1,1,1,1,1,0,0,0,1,1,1,1,1
+warps
+6 13 EverGrandeCity_Hall1 1
+6 2 EverGrandeCity_Hall2 0
 npcs
 people_man_1 6 5 S static

@@ -16,5 +16,8 @@ collision
 0,0,0,0,1,1,0,0
 0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0
+warps
+3 6 SootopolisCity 5
+4 6 SootopolisCity 5
 npcs
 people_expert_f 3 3 E static

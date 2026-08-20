@@ -28,6 +28,10 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0
+warps
+9 12 Route119 0
+10 12 Route119 0
+17 1 Route119_WeatherInstitute_2F 0
 npcs
 people_team_aqua_aqua_member_m 15 3 W static
 people_team_aqua_aqua_member_f 10 5 S static

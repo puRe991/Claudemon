@@ -18,6 +18,9 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,1,0,0,0,0,0,0
 1,0,0,0,0,0,0,0,0,0,0,0,1
+warps
+1 7 BattleFrontier_OutsideWest 3
+2 7 BattleFrontier_OutsideWest 3
 npcs
 people_maniac 8 4 E static
 people_maniac 10 4 W static

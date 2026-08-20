@@ -16,6 +16,9 @@ collision
 0,0,0,1,1,0,0,0
 0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0
+warps
+3 6 SootopolisCity 11
+4 6 SootopolisCity 11
 npcs
 people_fisherman 2 4 E static
 people_hiker 5 4 W static

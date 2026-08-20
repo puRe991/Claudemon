@@ -38,6 +38,8 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+7 17 BattleFrontier_OutsideEast 3
 npcs
 people_hiker 7 12 S static
 people_hex_maniac 14 13 W static

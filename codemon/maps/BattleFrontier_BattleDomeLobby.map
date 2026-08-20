@@ -36,6 +36,9 @@ collision
 1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1
+warps
+11 16 BattleFrontier_OutsideWest 1
+12 16 BattleFrontier_OutsideWest 1
 npcs
 people_teala 5 10 S static
 people_man_3 1 11 S wander

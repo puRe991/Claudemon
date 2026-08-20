@@ -78,6 +78,11 @@ collision
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+10 34 JaggedPass 4
+25 34 MagmaHideout_2F_1R 1
+31 3 MagmaHideout_2F_2R 1
+20 22 MagmaHideout_2F_3R 0
 npcs
 people_team_magma_magma_member_m 4 5 E static
 misc_item_ball 3 20 S static

@@ -20,6 +20,10 @@ collision
 0,0,0,0,0,0,1,1,0,0,0
 0,0,0,0,0,0,1,1,0,0,0
 0,0,0,0,0,0,0,0,0,0,0
+warps
+1 8 LittlerootTown 0
+2 8 LittlerootTown 0
+2 2 LittlerootTown_MaysHouse_2F 0
 npcs
 people_mom 8 6 W static
 people_man_1 6 5 S static

@@ -38,6 +38,19 @@ collision
 1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1
 1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+4 16 SSTidalCorridor 0
+5 16 SSTidalCorridor 0
+13 16 SSTidalCorridor 1
+14 16 SSTidalCorridor 1
+22 16 SSTidalCorridor 2
+23 16 SSTidalCorridor 2
+31 16 SSTidalCorridor 3
+32 16 SSTidalCorridor 3
+4 1 SSTidalCorridor 4
+13 1 SSTidalCorridor 5
+22 1 SSTidalCorridor 6
+31 1 SSTidalCorridor 7
 npcs
 people_pokefan_m 4 7 E static
 people_gentleman 34 11 W static

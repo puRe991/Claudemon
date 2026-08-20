@@ -20,6 +20,10 @@ collision
 1,0,0,0,0,0,0,0,0,0,0,1,1,0
 0,0,0,0,0,0,0,0,0,0,0,1,1,0
 1,0,0,0,0,0,0,0,0,0,0,0,0,1
+warps
+7 8 FallarborTown 2
+6 8 FallarborTown 2
+1 6 FallarborTown_PokemonCenter_2F 0
 npcs
 people_nurse 7 2 S static
 people_girl_3 10 6 E static

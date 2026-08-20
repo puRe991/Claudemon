@@ -16,6 +16,9 @@ collision
 0,0,0,1,1,0,0,0
 0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0
+warps
+3 6 SootopolisCity 4
+4 6 SootopolisCity 4
 npcs
 people_black_belt 2 4 E static
 pokemon_kecleon 2 3 S static

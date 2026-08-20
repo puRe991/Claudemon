@@ -38,5 +38,7 @@ collision
 1,1,1,0,0,0,0,0,1,1,1
 1,1,1,1,1,1,1,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,1
+warps
+5 15 MeteorFalls_B1F_1R 3
 npcs
 misc_item_ball 5 3 S static

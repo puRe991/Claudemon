@@ -44,6 +44,9 @@ collision
 1,1,0,1,0,0,1,0,1,1
 1,1,0,0,0,0,0,0,1,1
 1,1,0,0,0,0,0,0,1,1
+warps
+4 20 MauvilleCity 0
+5 20 MauvilleCity 0
 npcs
 people_man_1 5 2 S static
 people_man_5 7 8 S static

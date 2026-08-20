@@ -122,6 +122,20 @@ collision
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+43 31 SootopolisCity_PokemonCenter_1F 0
+17 29 SootopolisCity_Mart 0
+31 32 SootopolisCity_Gym_1F 0
+31 16 CaveOfOrigin_Entrance 0
+9 6 SootopolisCity_House1 0
+45 6 SootopolisCity_House2 0
+9 17 SootopolisCity_House3 0
+44 17 SootopolisCity_House4 0
+9 26 SootopolisCity_House5 0
+53 28 SootopolisCity_House6 0
+8 35 SootopolisCity_House7 0
+48 25 SootopolisCity_LotadAndSeedotHouse 0
+51 36 SootopolisCity_MysteryEventsHouse_1F 0
 npcs
 people_expert_m 31 18 S static
 people_woman_4 47 33 W static

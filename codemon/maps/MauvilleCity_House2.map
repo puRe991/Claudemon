@@ -20,5 +20,8 @@ collision
 0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,1
+warps
+3 8 MauvilleCity 6
+4 8 MauvilleCity 6
 npcs
 people_woman_3 4 5 W static

@@ -226,6 +226,45 @@ collision
 0,0,0,0,0,0,0,0,0
 0,1,0,0,0,0,0,1,0
 0,0,0,0,0,0,0,0,0
+warps
+4 111 PetalburgCity 2
+5 111 PetalburgCity 2
+1 105 PetalburgCity_Gym 3
+7 85 PetalburgCity_Gym 2
+6 85 PetalburgCity_Gym 2
+7 105 PetalburgCity_Gym 6
+1 98 PetalburgCity_Gym 5
+2 98 PetalburgCity_Gym 5
+1 79 PetalburgCity_Gym 10
+7 79 PetalburgCity_Gym 12
+7 46 PetalburgCity_Gym 8
+6 46 PetalburgCity_Gym 8
+1 59 PetalburgCity_Gym 9
+2 59 PetalburgCity_Gym 9
+1 92 PetalburgCity_Gym 16
+7 92 PetalburgCity_Gym 18
+7 59 PetalburgCity_Gym 14
+6 59 PetalburgCity_Gym 14
+1 72 PetalburgCity_Gym 15
+2 72 PetalburgCity_Gym 15
+7 40 PetalburgCity_Gym 24
+1 53 PetalburgCity_Gym 26
+7 53 PetalburgCity_Gym 28
+1 66 PetalburgCity_Gym 30
+1 20 PetalburgCity_Gym 20
+2 20 PetalburgCity_Gym 20
+7 20 PetalburgCity_Gym 21
+6 20 PetalburgCity_Gym 21
+1 33 PetalburgCity_Gym 22
+2 33 PetalburgCity_Gym 22
+7 33 PetalburgCity_Gym 23
+6 33 PetalburgCity_Gym 23
+7 14 PetalburgCity_Gym 34
+1 27 PetalburgCity_Gym 36
+1 7 PetalburgCity_Gym 32
+2 7 PetalburgCity_Gym 32
+7 7 PetalburgCity_Gym 33
+6 7 PetalburgCity_Gym 33
 npcs
 people_man_1 4 2 S static
 people_woman_5 4 94 S static

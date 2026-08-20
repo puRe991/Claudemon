@@ -202,6 +202,13 @@ collision
 1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0
 1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0
+warps
+35 24 NewMauville_Entrance 0
+11 66 Route110_TrickHouseEntrance 0
+15 16 Route110_SeasideCyclingRoadNorthEntrance 0
+18 16 Route110_SeasideCyclingRoadNorthEntrance 2
+16 88 Route110_SeasideCyclingRoadSouthEntrance 0
+19 88 Route110_SeasideCyclingRoadSouthEntrance 2
 npcs
 people_camper 17 90 S static
 people_cycling_triathlete_m 29 79 S static

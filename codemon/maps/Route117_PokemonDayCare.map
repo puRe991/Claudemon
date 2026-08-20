@@ -20,5 +20,8 @@ collision
 1,0,0,0,0,0,0,0,0,0,1,1
 0,0,0,0,0,0,1,0,0,0,0,0
 1,0,0,0,0,0,1,1,1,1,1,1
+warps
+2 8 Route117 0
+3 8 Route117 0
 npcs
 people_old_woman 2 2 S static

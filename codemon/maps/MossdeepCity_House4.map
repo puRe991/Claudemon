@@ -18,6 +18,9 @@ collision
 0,0,0,0,0,0,0,0,1,1
 0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0
+warps
+4 7 MossdeepCity 7
+3 7 MossdeepCity 7
 npcs
 people_woman_2 3 4 W static
 people_ninja_boy 6 6 S wander

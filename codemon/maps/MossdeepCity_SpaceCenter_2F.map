@@ -22,6 +22,8 @@ collision
 0,0,1,1,0,1,1,0,1,1,0,1,1,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+13 1 MossdeepCity_SpaceCenter_1F 2
 npcs
 people_rich_boy 6 2 N static
 people_gentleman 11 8 N static

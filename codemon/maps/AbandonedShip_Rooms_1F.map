@@ -36,6 +36,13 @@ collision
 1,0,0,0,0,0,0,0,1,1,0,1,1,0,0,0,1,1
 1,0,0,0,0,0,0,0,1,1,0,1,1,0,0,0,0,1
 1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1
+warps
+4 16 AbandonedShip_Corridors_1F 4
+5 16 AbandonedShip_Corridors_1F 4
+4 1 AbandonedShip_Corridors_1F 6
+13 16 AbandonedShip_Corridors_1F 5
+13 1 AbandonedShip_Corridors_1F 7
+14 16 AbandonedShip_Corridors_1F 5
 npcs
 people_gentleman 12 5 S wander
 misc_item_ball 4 5 S static

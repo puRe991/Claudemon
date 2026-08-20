@@ -18,5 +18,8 @@ collision
 0,0,0,0,0,1,1,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0
 1,0,0,0,0,0,0,0,0,0,1
+warps
+3 7 LilycoveCity 7
+4 7 LilycoveCity 7
 npcs
 people_expert_m 4 4 S static

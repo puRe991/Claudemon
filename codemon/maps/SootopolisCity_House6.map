@@ -16,5 +16,8 @@ collision
 1,1,0,0,0,0,0,0
 1,1,0,0,0,0,0,0
 0,0,0,0,0,0,0,0
+warps
+3 6 SootopolisCity 9
+4 6 SootopolisCity 9
 npcs
 people_woman_2 4 3 S wander

@@ -18,6 +18,9 @@ collision
 0,0,0,0,0,0,0,0,1,1
 0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0
+warps
+3 7 PetalburgCity 4
+4 7 PetalburgCity 4
 npcs
 people_pokefan_f 2 5 S wander
 people_school_kid_m 7 5 S static

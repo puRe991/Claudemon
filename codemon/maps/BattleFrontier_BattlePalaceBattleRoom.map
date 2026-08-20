@@ -22,6 +22,9 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+0 9 BattleFrontier_BattlePalaceCorridor 2
+1 9 BattleFrontier_BattlePalaceCorridor 2
 npcs
 people_man_1 1 9 N static
 people_man_1 13 1 S static

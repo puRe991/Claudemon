@@ -20,6 +20,9 @@ collision
 0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,1
+warps
+3 8 LilycoveCity 11
+4 8 LilycoveCity 11
 npcs
 people_man_4 1 4 S wander
 people_man_1 7 4 S wander

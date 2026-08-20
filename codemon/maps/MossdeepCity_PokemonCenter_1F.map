@@ -20,6 +20,10 @@ collision
 1,0,0,0,0,0,0,0,0,0,0,1,1,0
 0,0,0,0,0,0,0,0,0,0,0,1,1,0
 1,0,0,0,0,0,0,0,0,0,0,0,0,1
+warps
+7 8 MossdeepCity 2
+6 8 MossdeepCity 2
+1 6 MossdeepCity_PokemonCenter_2F 0
 npcs
 people_nurse 7 2 S static
 people_woman_2 8 4 N static

@@ -122,6 +122,13 @@ collision
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+28 27 Route112_CableCarStation 0
+29 27 Route112_CableCarStation 1
+6 46 JaggedPass 0
+7 46 JaggedPass 1
+11 36 FieryPath 0
+22 10 FieryPath 1
 npcs
 people_team_magma_magma_member_m 26 30 N static
 people_hiker 24 34 W pace_h

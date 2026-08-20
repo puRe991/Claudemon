@@ -20,5 +20,9 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0
+warps
+5 8 LilycoveCity 1
+6 8 LilycoveCity 1
+2 1 LilycoveCity_CoveLilyMotel_2F 0
 npcs
 people_man_1 10 3 N static

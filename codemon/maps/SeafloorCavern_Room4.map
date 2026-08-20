@@ -40,6 +40,11 @@ collision
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+13 1 SeafloorCavern_Room2 1
+4 1 SeafloorCavern_Room5 1
+9 10 SeafloorCavern_Room5 2
+10 15 SeafloorCavern_Entrance 1
 npcs
 people_team_aqua_aqua_member_m 5 8 S static
 people_team_aqua_aqua_member_f 5 12 N static

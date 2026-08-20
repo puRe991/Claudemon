@@ -18,5 +18,9 @@ collision
 0,0,0,0,0,0,0,1,1,0,0
 0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0
+warps
+3 7 SootopolisCity 12
+4 7 SootopolisCity 12
+3 1 SootopolisCity_MysteryEventsHouse_B1F 0
 npcs
 people_old_man 6 4 E static

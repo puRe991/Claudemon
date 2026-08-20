@@ -68,5 +68,9 @@ collision
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0
 0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+warps
+8 29 Route120 0
+8 20 AncientTomb 2
+8 11 AncientTomb 1
 npcs
 people_man_1 8 7 S static

@@ -40,6 +40,31 @@ collision
 0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0
 0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0
+warps
+10 18 LavaridgeTown_Gym_1F 2
+0 17 LavaridgeTown_Gym_1F 6
+8 9 LavaridgeTown_Gym_1F 3
+5 14 LavaridgeTown_Gym_1F 5
+4 18 LavaridgeTown_Gym_1F 4
+5 9 LavaridgeTown_Gym_1F 7
+2 15 LavaridgeTown_Gym_1F 8
+3 14 LavaridgeTown_Gym_1F 9
+1 14 LavaridgeTown_Gym_1F 10
+0 10 LavaridgeTown_Gym_1F 11
+3 10 LavaridgeTown_Gym_1F 12
+0 6 LavaridgeTown_Gym_1F 13
+3 6 LavaridgeTown_Gym_1F 14
+5 6 LavaridgeTown_Gym_1F 15
+2 3 LavaridgeTown_Gym_1F 16
+5 2 LavaridgeTown_Gym_1F 17
+7 2 LavaridgeTown_Gym_1F 18
+8 6 LavaridgeTown_Gym_1F 19
+10 6 LavaridgeTown_Gym_1F 20
+12 3 LavaridgeTown_Gym_1F 22
+4 16 LavaridgeTown_Gym_1F 21
+14 6 LavaridgeTown_Gym_1F 23
+13 17 LavaridgeTown_Gym_1F 24
+12 12 LavaridgeTown_Gym_1F 25
 npcs
 people_man_5 4 18 S static
 people_man_5 3 6 S static

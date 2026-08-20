@@ -28,6 +28,16 @@ collision
 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+4 9 SSTidalRooms 0
+7 9 SSTidalRooms 2
+10 9 SSTidalRooms 4
+13 9 SSTidalRooms 6
+4 3 SSTidalRooms 8
+7 3 SSTidalRooms 9
+10 3 SSTidalRooms 10
+13 3 SSTidalRooms 11
+16 2 SSTidalLowerDeck 0
 npcs
 people_sailor 1 11 N static
 people_sailor 16 7 S wander

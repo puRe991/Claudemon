@@ -28,6 +28,12 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0
 1,1,0,0,1,1,0,0,1,1,0,1,1
 1,1,0,0,1,1,0,0,1,1,0,1,1
+warps
+2 1 MtPyre_1F 4
+10 1 MtPyre_3F 0
+10 12 MtPyre_3F 4
+6 12 MtPyre_3F 5
+11 9 MtPyre_1F 5
 npcs
 people_maniac 3 6 E static
 misc_item_ball 0 10 S static

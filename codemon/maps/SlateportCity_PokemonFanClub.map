@@ -24,6 +24,9 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0
 1,0,0,0,0,0,0,0,0,0,0,0,0,1
+warps
+6 10 SlateportCity 4
+7 10 SlateportCity 4
 npcs
 people_man_1 11 4 S static
 people_twin 1 5 S wander

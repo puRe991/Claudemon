@@ -42,6 +42,14 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 1,0,0,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,0,1
 1,1,1,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,1,1
+warps
+3 7 VerdanturfTown_BattleTentLobby 0
+12 3 VerdanturfTown_Mart 0
+16 3 VerdanturfTown_PokemonCenter_1F 0
+10 14 VerdanturfTown_WandasHouse 0
+8 1 RusturfTunnel 1
+1 14 VerdanturfTown_FriendshipRatersHouse 0
+17 15 VerdanturfTown_House 0
 npcs
 people_man_2 4 17 S wander
 people_twin 9 2 W static

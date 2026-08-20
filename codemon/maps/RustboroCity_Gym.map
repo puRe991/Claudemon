@@ -42,6 +42,9 @@ collision
 0,0,0,0,0,0,0,0,0,0,0
 0,0,1,0,0,0,0,0,1,0,0
 0,0,0,0,0,0,0,0,0,0,0
+warps
+5 19 RustboroCity 0
+6 19 RustboroCity 0
 npcs
 people_man_1 5 2 S static
 people_youngster 5 13 S static

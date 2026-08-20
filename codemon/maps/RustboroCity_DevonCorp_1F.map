@@ -20,6 +20,10 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+5 8 RustboroCity 5
+6 8 RustboroCity 6
+14 1 RustboroCity_DevonCorp_2F 0
 npcs
 people_devon_employee 2 6 S wander
 people_devon_employee 15 5 S wander

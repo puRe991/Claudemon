@@ -14,6 +14,9 @@ collision
 0,0,0,1,1,0,0,0
 0,0,0,0,0,0,0,0
 1,0,0,0,0,0,0,1
+warps
+3 5 FortreeCity 5
+4 5 FortreeCity 5
 npcs
 people_maniac 0 3 E static
 people_school_kid_m 5 4 S wander

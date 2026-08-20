@@ -19,6 +19,15 @@ struct NpcSpawn {
 	MoveKind movement;   // behaviour
 };
 
+// One warp/transition as authored in the map file's `warps` section. Stepping
+// onto (x,y) sends the player to `dest` map, arriving at that map's warp
+// number `dest_warp`.
+struct Warp {
+	int x, y;               // trigger tile on this map
+	std::string dest;       // destination map file basename ("-" if none)
+	int dest_warp;          // warp index within the destination map
+};
+
 /******************************************************************************
 Map - a grid of metatile ids rendered through a Tileset.
 
@@ -45,6 +54,7 @@ private:
 	std::vector<int>  tile_map;  // width*height metatile ids
 	std::vector<char> solid;     // width*height passability (1 = blocked)
 	std::vector<NpcSpawn> npc_spawns;
+	std::vector<Warp> warp_list;
 
 	int index(int x, int y) const;
 
@@ -73,4 +83,9 @@ public:
 
 	// NPCs authored for this map.
 	const std::vector<NpcSpawn>& npcs() const;
+
+	// Warps authored for this map.
+	const std::vector<Warp>& warps() const;
+	const Warp* warp_at(int tile_x, int tile_y) const;   // warp on this tile, or null
+	const Warp* warp_by_index(int idx) const;            // for arrival lookup
 };

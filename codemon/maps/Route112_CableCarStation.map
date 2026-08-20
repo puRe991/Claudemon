@@ -26,6 +26,9 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,1
 0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+6 11 Route112 0
+7 11 Route112 1
 npcs
 people_beauty 6 6 S static
 misc_cable_car 6 3 S static

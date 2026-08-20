@@ -20,6 +20,9 @@ collision
 0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0
+warps
+3 8 Route113 0
+4 8 Route113 0
 npcs
 people_man_1 2 3 S static
 people_ninja_boy 5 4 S wander

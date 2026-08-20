@@ -20,6 +20,11 @@ collision
 1,0,0,0,0,0,0,0,0,0,0,1,1,0
 0,0,0,0,0,0,0,0,0,0,0,1,1,0
 1,0,0,0,0,0,0,0,0,0,0,0,0,1
+warps
+7 8 LavaridgeTown 3
+6 8 LavaridgeTown 3
+1 6 LavaridgeTown_PokemonCenter_2F 0
+2 1 LavaridgeTown 5
 npcs
 people_nurse 7 2 S static
 people_youngster 11 8 N static

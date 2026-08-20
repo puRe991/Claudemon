@@ -18,6 +18,10 @@ collision
 0,1,1,0,0,0,1,1,1,1,1,0,0,1,1,1,1,0
 0,1,1,0,0,0,1,0,0,0,1,0,0,1,1,1,1,0
 0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0
+warps
+16 1 LilycoveCity_DepartmentStore_3F 1
+13 1 LilycoveCity_DepartmentStore_5F 0
+2 1 LilycoveCity_DepartmentStoreElevator 0
 npcs
 people_gentleman 0 2 S wander
 people_woman_2 6 2 S wander

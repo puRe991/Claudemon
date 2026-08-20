@@ -20,6 +20,8 @@ collision
 0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,1,1,0,0
 0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+2 1 RustboroCity_DevonCorp_2F 1
 npcs
 people_gentleman 17 5 W static
 people_man_2 3 5 E static

@@ -26,6 +26,19 @@ collision
 0,0,1,1,1,0,0,1,0,0,1,0,1,1,1,1,0,1
 0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0
+warps
+9 11 AbandonedShip_Deck 2
+8 11 AbandonedShip_Deck 2
+0 11 AbandonedShip_Deck 3
+1 11 AbandonedShip_Deck 3
+11 9 AbandonedShip_Rooms_1F 0
+14 9 AbandonedShip_Rooms_1F 3
+11 3 AbandonedShip_Rooms_1F 2
+14 3 AbandonedShip_Rooms_1F 4
+3 9 AbandonedShip_Rooms2_1F 0
+16 2 AbandonedShip_Corridors_B1F 7
+5 2 AbandonedShip_Corridors_B1F 6
+3 3 AbandonedShip_Rooms2_1F 2
 npcs
 people_youngster 17 7 S wander
 people_tuber_m 5 10 S static

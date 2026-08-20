@@ -16,6 +16,9 @@ collision
 0,0,0,1,1,0,0,0
 0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0
+warps
+3 6 SootopolisCity 7
+4 6 SootopolisCity 7
 npcs
 people_man_1 2 4 E static
 people_woman_4 5 2 N static

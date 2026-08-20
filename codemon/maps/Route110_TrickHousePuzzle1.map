@@ -46,6 +46,10 @@ collision
 0,0,0,0,1,0,0,0,0,1,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+0 21 Route110_TrickHouseEntrance 2
+1 21 Route110_TrickHouseEntrance 2
+13 1 Route110_TrickHouseEnd 0
 npcs
 people_lass 14 20 W static
 people_youngster 14 8 W static

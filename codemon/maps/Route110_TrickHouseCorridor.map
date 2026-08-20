@@ -50,3 +50,8 @@ collision
 0,0,0,1,1,1,1,1,1,1,1,1,1,1,1
 0,0,0,0,0,0,1,1,1,1,1,1,1,1,1
 0,0,0,0,0,0,1,1,1,1,1,1,1,1,1
+warps
+13 3 Route110_TrickHouseEnd 1
+14 3 Route110_TrickHouseEnd 1
+4 23 Route110_TrickHouseEntrance 2
+5 23 Route110_TrickHouseEntrance 2

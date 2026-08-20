@@ -26,6 +26,11 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+14 11 LilycoveCity 4
+15 11 LilycoveCity 4
+9 1 LilycoveCity_ContestHall 0
+21 1 LilycoveCity_ContestHall 1
 npcs
 people_teala 14 2 S static
 people_teala 15 2 S static

@@ -18,6 +18,10 @@ collision
 1,0,1,1,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1
 1,0,1,1,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,1,0,1
 1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1
+warps
+4 1 AbandonedShip_Corridors_B1F 2
+13 1 AbandonedShip_Corridors_B1F 3
+22 1 AbandonedShip_Corridors_B1F 4
 npcs
 people_fat_man 25 6 W static
 misc_item_ball 6 7 S static

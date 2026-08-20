@@ -122,6 +122,18 @@ collision
 0,0,0,1,1,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,1,1,0
 0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,1,1,0
 0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+warps
+19 19 SlateportCity_PokemonCenter_1F 0
+13 26 SlateportCity_Mart 0
+26 38 SlateportCity_SternsShipyard_1F 0
+10 12 SlateportCity_BattleTentLobby 0
+4 26 SlateportCity_PokemonFanClub 0
+30 26 SlateportCity_OceanicMuseum_1F 0
+5 19 SlateportCity_NameRatersHouse 0
+31 26 SlateportCity_OceanicMuseum_1F 1
+28 12 SlateportCity_Harbor 0
+40 7 SlateportCity_Harbor 2
+21 44 SlateportCity_House 0
 npcs
 people_fat_man 21 11 S wander
 people_man_1 34 29 S wander

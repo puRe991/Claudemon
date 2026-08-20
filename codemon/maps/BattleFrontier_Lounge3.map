@@ -22,6 +22,8 @@ collision
 0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0
 1,0,0,0,0,0,0,0,1
+warps
+4 9 BattleFrontier_OutsideEast 9
 npcs
 people_hiker 4 6 N static
 people_fat_man 4 4 S static

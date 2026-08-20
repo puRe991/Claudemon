@@ -20,6 +20,8 @@ collision
 0,0,0,0,1,0,0,0,1,1,1,1,1,1
 0,0,0,0,1,0,0,0,1,1,1,1,1,1
 0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+1 1 RustboroCity_Flat2_2F 1
 npcs
 people_devon_employee 7 3 S wander
 people_woman_1 12 2 S static

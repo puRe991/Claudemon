@@ -18,5 +18,8 @@ collision
 0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0
+warps
+3 7 Route111 2
+4 7 Route111 2
 npcs
 people_expert_f 6 3 W static

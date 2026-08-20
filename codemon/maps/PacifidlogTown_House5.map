@@ -20,6 +20,9 @@ collision
 0,0,0,0,0,0,0,0,0,0
 1,0,0,0,0,0,0,0,0,0
 1,0,0,0,0,0,0,0,0,1
+warps
+4 8 PacifidlogTown 5
+5 8 PacifidlogTown 5
 npcs
 people_expert_m 9 4 E static
 people_gentleman 3 4 E static

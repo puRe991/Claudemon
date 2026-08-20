@@ -22,6 +22,8 @@ collision
 0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0
 1,0,0,0,0,0,0,0,1
+warps
+4 9 BattleFrontier_OutsideEast 5
 npcs
 people_old_man 0 6 E static
 people_boy_3 7 6 S wander

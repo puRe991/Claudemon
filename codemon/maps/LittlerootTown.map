@@ -42,6 +42,10 @@ collision
 0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1
 1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
 1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
+warps
+14 8 LittlerootTown_MaysHouse_1F 1
+5 8 LittlerootTown_BrendansHouse_1F 1
+7 16 LittlerootTown_ProfessorBirchsLab 0
 npcs
 people_twin 16 10 S wander
 people_fat_man 12 13 S wander

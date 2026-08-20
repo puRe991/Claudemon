@@ -28,3 +28,8 @@ collision
 1,1,1,1,0,0,0,1,1,1,1
 1,1,1,1,0,0,0,1,1,1,1
 1,1,1,1,0,0,0,1,1,1,1
+warps
+5 12 EverGrandeCity_PhoebesRoom 1
+5 2 EverGrandeCity_GlaciasRoom 0
+4 12 EverGrandeCity_PhoebesRoom 1
+6 12 EverGrandeCity_PhoebesRoom 1

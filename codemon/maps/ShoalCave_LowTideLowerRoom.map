@@ -30,6 +30,11 @@ collision
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,0,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+7 2 ShoalCave_LowTideInnerRoom 3
+2 6 ShoalCave_LowTideInnerRoom 4
+19 11 ShoalCave_LowTideInnerRoom 5
+28 11 ShoalCave_LowTideIceRoom 0
 npcs
 misc_pushable_boulder 25 3 S static
 people_black_belt 11 4 S wander

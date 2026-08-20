@@ -22,6 +22,9 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 1,1,0,0,0,0,0,0,0,0,0,0,0,1,1
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+6 9 Route109 0
+7 9 Route109 0
 npcs
 people_pokefan_m 6 2 S static
 people_sailor 2 3 S static

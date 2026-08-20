@@ -30,6 +30,11 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+8 13 BattleFrontier_BattlePalaceLobby 2
+9 13 BattleFrontier_BattlePalaceLobby 2
+6 3 BattleFrontier_BattlePalaceBattleRoom 0
+10 3 BattleFrontier_BattlePalaceBattleRoom 0
 npcs
 people_expert_m 8 12 N static
 pokemon_azurill 3 5 S wander

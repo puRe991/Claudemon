@@ -20,6 +20,9 @@ collision
 0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0
 1,0,0,0,0,0,0,0,0,1
+warps
+4 8 PacifidlogTown 2
+5 8 PacifidlogTown 2
 npcs
 people_gentleman 3 5 S static
 pokemon_azurill 8 6 S static

@@ -24,6 +24,9 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0
 0,1,0,1,0,0,0,0,1,0,1,0
 0,0,0,0,0,0,0,0,0,0,0,0
+warps
+5 10 RustboroCity 4
+6 10 RustboroCity 4
 npcs
 people_gameboy_kid 8 6 E static
 people_gameboy_kid 9 6 W static

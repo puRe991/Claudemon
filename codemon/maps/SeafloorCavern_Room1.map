@@ -44,6 +44,10 @@ collision
 0,0,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1
 0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+5 18 SeafloorCavern_Entrance 1
+17 13 SeafloorCavern_Room5 0
+6 2 SeafloorCavern_Room2 0
 npcs
 misc_pushable_boulder 5 11 S static
 misc_pushable_boulder 12 11 S static

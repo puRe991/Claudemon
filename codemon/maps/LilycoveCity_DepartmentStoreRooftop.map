@@ -26,6 +26,8 @@ collision
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+13 3 LilycoveCity_DepartmentStore_5F 2
 npcs
 people_man_2 4 4 N static
 people_man_3 7 5 S wander

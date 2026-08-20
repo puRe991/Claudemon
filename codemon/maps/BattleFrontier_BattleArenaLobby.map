@@ -28,6 +28,8 @@ collision
 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+warps
+7 12 BattleFrontier_OutsideEast 1
 npcs
 people_black_belt 7 7 S static
 people_woman_5 2 10 S wander

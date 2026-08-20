@@ -20,6 +20,9 @@ collision
 0,0,0,0,0,1,0,0,1,1,1,1,1,1
 0,0,0,0,0,1,0,0,1,1,1,1,1,1
 0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+3 1 RustboroCity_Flat2_1F 2
+1 1 RustboroCity_Flat2_3F 0
 npcs
 people_old_man 11 4 E static
 people_ninja_boy 7 3 S wander

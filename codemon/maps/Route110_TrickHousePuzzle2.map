@@ -46,6 +46,10 @@ collision
 0,1,0,1,0,0,0,0,0,1,0,0,1,1,0
 0,0,0,1,1,1,1,1,1,1,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+0 21 Route110_TrickHouseEntrance 2
+1 21 Route110_TrickHouseEntrance 2
+13 1 Route110_TrickHouseEnd 0
 npcs
 people_school_kid_m 13 10 E static
 people_school_kid_m 10 17 S static

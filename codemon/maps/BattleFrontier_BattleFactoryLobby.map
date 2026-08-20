@@ -26,6 +26,9 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0
+warps
+9 11 BattleFrontier_OutsideWest 2
+10 11 BattleFrontier_OutsideWest 2
 npcs
 people_scientist_1 4 7 S static
 people_woman_1 3 11 S wander

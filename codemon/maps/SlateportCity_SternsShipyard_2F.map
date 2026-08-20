@@ -32,6 +32,8 @@ collision
 0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+3 1 SlateportCity_SternsShipyard_1F 2
 npcs
 people_scientist_1 10 7 N static
 people_scientist_1 8 4 E static

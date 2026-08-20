@@ -18,6 +18,9 @@ collision
 0,0,0,0,0,1,1,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0
 1,0,0,0,0,0,0,0,0,0,1
+warps
+3 7 Route111 0
+4 7 Route111 0
 npcs
 people_lass 7 5 W static
 people_man_1 4 5 E static

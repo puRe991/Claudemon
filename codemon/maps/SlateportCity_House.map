@@ -18,6 +18,9 @@ collision
 0,0,0,0,0,1,1,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0
 1,0,0,0,0,0,0,0,0,0,1
+warps
+3 7 SlateportCity 10
+4 7 SlateportCity 10
 npcs
 people_pokefan_m 4 4 E static
 people_girl_3 7 4 W static

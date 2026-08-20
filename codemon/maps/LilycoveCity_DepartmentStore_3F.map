@@ -18,6 +18,10 @@ collision
 0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0
 0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+13 1 LilycoveCity_DepartmentStore_2F 1
+16 1 LilycoveCity_DepartmentStore_4F 0
+2 1 LilycoveCity_DepartmentStoreElevator 0
 npcs
 people_running_triathlete_m 0 5 S wander
 people_pokefan_m 7 7 S wander

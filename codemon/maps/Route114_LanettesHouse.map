@@ -18,5 +18,8 @@ collision
 1,1,1,0,1,0,1,1,0,0,0
 1,1,1,0,0,0,0,0,0,1,1
 1,1,1,0,0,0,0,1,1,1,1
+warps
+5 7 Route114 2
+6 7 Route114 2
 npcs
 people_woman_2 5 4 S static

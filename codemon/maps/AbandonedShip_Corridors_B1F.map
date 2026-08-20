@@ -22,6 +22,15 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0
 1,0,0,0,1,1,1,1,1,1,1,1,1
 0,0,0,0,1,1,1,1,1,1,1,1,1
+warps
+6 4 AbandonedShip_Rooms2_B1F 2
+3 4 AbandonedShip_Rooms2_B1F 0
+5 7 AbandonedShip_Rooms_B1F 0
+8 7 AbandonedShip_Rooms_B1F 1
+11 7 AbandonedShip_Rooms_B1F 2
+11 4 AbandonedShip_Room_B1F 0
+0 2 AbandonedShip_Corridors_1F 10
+8 2 AbandonedShip_Corridors_1F 9
 npcs
 people_tuber_m 2 8 S wander
 people_sailor 9 6 W pace_h

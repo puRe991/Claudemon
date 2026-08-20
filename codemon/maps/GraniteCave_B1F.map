@@ -54,5 +54,13 @@ collision
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+25 13 GraniteCave_1F 1
+4 21 GraniteCave_1F 2
+29 13 GraniteCave_B2F 0
+28 21 GraniteCave_B2F 1
+8 5 GraniteCave_B2F 2
+12 3 GraniteCave_B2F 3
+29 2 GraniteCave_B2F 4
 npcs
 misc_item_ball 15 21 S static

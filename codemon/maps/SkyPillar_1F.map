@@ -30,3 +30,7 @@ collision
 0,0,1,0,0,0,0,0,0,1,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0
 1,0,0,0,0,0,0,0,0,0,0,0,0,1
+warps
+6 13 SkyPillar_Outside 1
+7 13 SkyPillar_Outside 1
+10 1 SkyPillar_2F 0

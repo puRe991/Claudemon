@@ -68,5 +68,9 @@ collision
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0
 0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+warps
+8 29 Route111 1
+8 20 DesertRuins 2
+8 11 DesertRuins 1
 npcs
 people_man_1 8 7 S static

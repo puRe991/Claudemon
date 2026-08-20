@@ -28,6 +28,13 @@ collision
 1,0,0,1,0,0,1,1,1,0,0,0,0
 1,0,0,0,0,0,1,1,1,1,1,1,1
 1,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+10 1 MtPyre_5F 1
+2 5 MtPyre_3F 1
+12 10 MtPyre_5F 3
+12 12 MtPyre_5F 4
+9 10 MtPyre_3F 2
+2 12 MtPyre_3F 3
 npcs
 people_hex_maniac 11 7 S static
 misc_item_ball 3 11 S static

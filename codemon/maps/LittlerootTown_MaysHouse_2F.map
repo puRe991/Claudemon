@@ -18,6 +18,8 @@ collision
 0,0,0,0,0,0,0,1,0
 0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0
+warps
+1 1 LittlerootTown_MaysHouse_1F 2
 npcs
 people_may_walking 1 1 S static
 people_man_1 0 6 S static

@@ -20,6 +20,10 @@ collision
 0,0,0,0,0,1,0,0,1,1,1,1,1,1
 0,0,0,0,0,1,0,0,1,1,1,1,1,1
 0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+2 8 RustboroCity 10
+3 8 RustboroCity 10
+3 1 RustboroCity_Flat2_2F 0
 npcs
 pokemon_skitty 11 4 W static
 people_old_woman 8 4 E static

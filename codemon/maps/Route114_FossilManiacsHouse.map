@@ -18,5 +18,9 @@ collision
 0,1,1,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0
+warps
+4 7 Route114 1
+5 7 Route114 1
+4 1 Route114_FossilManiacsTunnel 0
 npcs
 people_ninja_boy 3 2 S static

@@ -18,6 +18,9 @@ collision
 0,0,0,0,0,1,1,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0
 1,0,0,0,0,0,0,0,0,0,1
+warps
+3 7 Route123 0
+4 7 Route123 0
 npcs
 people_expert_m 4 4 S static
 people_old_woman 7 4 S static

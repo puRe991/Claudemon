@@ -52,6 +52,9 @@ collision
 1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
 1,1,1,1,0,0,0,0,1,1,1,1,1,0,0,0,0,0,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1
+warps
+15 24 FortreeCity 2
+16 24 FortreeCity 2
 npcs
 people_man_1 15 2 S static
 people_man_5 4 14 S static

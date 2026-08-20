@@ -26,6 +26,12 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0
 0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+warps
+9 11 EverGrandeCity 0
+10 11 EverGrandeCity 0
+9 1 EverGrandeCity_Hall5 0
+10 1 EverGrandeCity_Hall5 0
+1 7 EverGrandeCity_PokemonLeague_2F 0
 npcs
 people_nurse 3 2 S static
 people_mart_employee 16 2 S static

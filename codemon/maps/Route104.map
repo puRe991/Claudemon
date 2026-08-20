@@ -162,6 +162,15 @@ collision
 0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1
 0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1
 0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,1,1,1,1,1,1,1,1,1
+warps
+17 50 Route104_MrBrineysHouse 0
+5 18 Route104_PrettyPetalFlowerShop 0
+10 30 PetalburgWoods 0
+11 30 PetalburgWoods 1
+10 38 PetalburgWoods 2
+11 38 PetalburgWoods 3
+32 42 PetalburgWoods 4
+33 42 PetalburgWoods 5
 npcs
 people_bug_catcher 15 60 W static
 people_girl_2 25 49 S wander

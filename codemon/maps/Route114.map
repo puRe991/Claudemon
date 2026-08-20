@@ -162,6 +162,12 @@ collision
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+8 63 MeteorFalls_1F_1R 0
+29 5 Route114_FossilManiacsHouse 0
+27 36 Route114_LanettesHouse 0
+6 46 TerraCave_Entrance 0
+7 4 TerraCave_Entrance 0
 npcs
 people_man_1 31 43 S static
 people_man_1 31 44 S static

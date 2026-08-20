@@ -22,5 +22,7 @@ collision
 0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0
 1,0,0,0,0,0,0,0,1
+warps
+4 9 BattleFrontier_OutsideEast 8
 npcs
 people_beauty 2 4 E static

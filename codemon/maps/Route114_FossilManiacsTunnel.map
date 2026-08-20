@@ -54,5 +54,9 @@ collision
 1,1,0,1,1,1,0,0,1,1,0,1,1
 1,1,0,1,1,0,0,0,0,1,0,1,1
 1,1,0,1,1,0,0,0,0,1,0,1,1
+warps
+6 25 Route114_FossilManiacsHouse 2
+7 25 Route114_FossilManiacsHouse 2
+6 2 DesertUnderpass 0
 npcs
 people_maniac 5 3 N static

@@ -32,5 +32,8 @@ collision
 1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1
 1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+3 12 ShoalCave_LowTideInnerRoom 1
+7 4 ShoalCave_LowTideInnerRoom 2
 npcs
 misc_item_ball 13 12 S static

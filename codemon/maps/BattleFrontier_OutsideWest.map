@@ -146,6 +146,18 @@ collision
 1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,1,0,0,1,1,0,0,1,1,0
 1,1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1
 1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1
+warps
+42 27 BattleFrontier_BattlePikeLobby 0
+19 17 BattleFrontier_BattleDomeLobby 0
+11 38 BattleFrontier_BattleFactoryLobby 0
+45 44 BattleFrontier_Lounge2 0
+51 51 BattleFrontier_Mart 0
+44 5 BattleFrontier_ScottsHouse 0
+53 44 BattleFrontier_Lounge4 0
+5 20 BattleFrontier_Lounge7 0
+26 65 BattleFrontier_ReceptionGate 0
+26 61 BattleFrontier_ReceptionGate 1
+39 55 ArtisanCave_B1F 0
 npcs
 people_boy_2 26 38 S wander
 misc_ss_tidal 20 70 E static

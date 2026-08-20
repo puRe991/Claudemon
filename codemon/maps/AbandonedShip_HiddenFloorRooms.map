@@ -32,6 +32,16 @@ collision
 1,0,0,0,0,0,0,0,0,0,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,1,1,0,0,0,0,0,0,1
 1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1
 1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,1
+warps
+6 14 AbandonedShip_HiddenFloorCorridors 0
+7 14 AbandonedShip_HiddenFloorCorridors 0
+21 14 AbandonedShip_HiddenFloorCorridors 1
+22 14 AbandonedShip_HiddenFloorCorridors 1
+36 14 AbandonedShip_HiddenFloorCorridors 2
+37 14 AbandonedShip_HiddenFloorCorridors 2
+6 1 AbandonedShip_HiddenFloorCorridors 3
+21 1 AbandonedShip_HiddenFloorCorridors 4
+36 1 AbandonedShip_HiddenFloorCorridors 5
 npcs
 misc_item_ball 41 4 S static
 misc_item_ball 16 10 S static

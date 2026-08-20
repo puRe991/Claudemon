@@ -42,6 +42,11 @@ collision
 1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
 1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
 1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
+warps
+5 7 OldaleTown_House1 0
+15 16 OldaleTown_House2 0
+6 16 OldaleTown_PokemonCenter_1F 0
+14 6 OldaleTown_Mart 0
 npcs
 people_girl_3 16 11 W static
 people_mart_employee 13 7 S static

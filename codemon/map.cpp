@@ -60,23 +60,43 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 		parse_int_row(line, this->tile_map);
 	}
 
-	// Optional collision layer, then optional npcs section. Sections are
-	// introduced by a keyword line ("collision" / "npcs") in any order.
+	// Remaining lines hold optional sections ("collision", "warps", "npcs")
+	// in any order. Read them all, then dispatch by keyword so a section stops
+	// cleanly at the next keyword.
 	this->solid.assign((size_t)w * h, 0);
-	while (std::getline(f, line)) {
-		if (line.rfind("collision", 0) == 0) {
+	std::vector<std::string> rest;
+	while (std::getline(f, line)) rest.push_back(line);
+
+	auto is_keyword = [](const std::string& s) {
+		return s.rfind("collision", 0) == 0 || s.rfind("warps", 0) == 0 ||
+		       s.rfind("npcs", 0) == 0;
+	};
+
+	for (size_t i = 0; i < rest.size(); ) {
+		const std::string& head = rest[i];
+		if (head.rfind("collision", 0) == 0) {
 			std::vector<int> flags;
-			for (unsigned int row = 0; row < h && std::getline(f, line); ++row) {
-				parse_int_row(line, flags);
+			++i;
+			for (unsigned int row = 0; row < h && i < rest.size(); ++row, ++i) {
+				parse_int_row(rest[i], flags);
 			}
-			for (size_t i = 0; i < flags.size() && i < this->solid.size(); ++i) {
-				this->solid[i] = flags[i] ? 1 : 0;
+			for (size_t k = 0; k < flags.size() && k < this->solid.size(); ++k) {
+				this->solid[k] = flags[k] ? 1 : 0;
 			}
-		} else if (line.rfind("npcs", 0) == 0) {
-			// each line: "<sheet_key> <x> <y> <S|N|E|W> <static|wander|pace_v|pace_h>"
-			while (std::getline(f, line)) {
-				if (line.empty()) continue;
-				std::stringstream ss(line);
+		} else if (head.rfind("warps", 0) == 0) {
+			// "<x> <y> <dest_map_folder> <dest_warp_id>"
+			for (++i; i < rest.size() && !is_keyword(rest[i]); ++i) {
+				if (rest[i].empty()) continue;
+				std::stringstream ss(rest[i]);
+				Warp wp;
+				if (!(ss >> wp.x >> wp.y >> wp.dest >> wp.dest_warp)) continue;
+				this->warp_list.push_back(wp);
+			}
+		} else if (head.rfind("npcs", 0) == 0) {
+			// "<sheet_key> <x> <y> <S|N|E|W> <static|wander|pace_v|pace_h>"
+			for (++i; i < rest.size() && !is_keyword(rest[i]); ++i) {
+				if (rest[i].empty()) continue;
+				std::stringstream ss(rest[i]);
 				NpcSpawn n;
 				std::string face, move;
 				if (!(ss >> n.sheet >> n.x >> n.y >> face >> move)) continue;
@@ -87,11 +107,26 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 				             (move == "pace_h") ? MOVE_PACE_H : MOVE_STATIC;
 				this->npc_spawns.push_back(n);
 			}
+		} else {
+			++i;
 		}
 	}
 }
 
 const std::vector<NpcSpawn>& Map::npcs() const { return this->npc_spawns; }
+const std::vector<Warp>& Map::warps() const { return this->warp_list; }
+
+const Warp* Map::warp_at(int tile_x, int tile_y) const {
+	for (const Warp& w : this->warp_list) {
+		if (w.x == tile_x && w.y == tile_y) return &w;
+	}
+	return nullptr;
+}
+
+const Warp* Map::warp_by_index(int idx) const {
+	if (idx < 0 || idx >= (int)this->warp_list.size()) return nullptr;
+	return &this->warp_list[idx];
+}
 
 bool Map::ready() const {
 	return this->tileset.is_loaded() &&

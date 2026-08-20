@@ -18,6 +18,10 @@ collision
 0,1,1,0,0,0,0,0,0,0,1,1,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0
 1,1,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+6 7 RustboroCity 1
+7 7 RustboroCity 1
+2 1 RustboroCity_Flat1_2F 0
 npcs
 people_man_3 9 4 E static
 people_woman_5 12 4 W static

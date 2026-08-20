@@ -42,5 +42,8 @@ collision
 1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1
 1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+10 18 Underwater_Route128 0
+10 1 SeafloorCavern_Room1 0
 npcs
 people_team_aqua_aqua_member_m 10 2 N static

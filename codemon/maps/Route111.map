@@ -282,6 +282,12 @@ collision
 1,1,1,1,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1
 0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1
 0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1
+warps
+13 113 Route111_WinstrateFamilysHouse 0
+29 87 DesertRuins 0
+26 18 Route111_OldLadysRestStop 0
+19 58 MirageTower_1F 0
+31 113 TrainerHill_Entrance 0
 npcs
 people_man_1 13 114 S static
 people_pokefan_f 13 113 S static

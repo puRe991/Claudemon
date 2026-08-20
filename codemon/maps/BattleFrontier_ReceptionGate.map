@@ -30,6 +30,9 @@ collision
 0,1,0,0,0,0,0,1,0
 1,1,1,0,0,0,1,1,1
 0,0,0,0,0,0,0,0,0
+warps
+4 13 BattleFrontier_OutsideWest 8
+4 1 BattleFrontier_OutsideWest 9
 npcs
 people_teala 0 11 E static
 people_teala 8 11 W static

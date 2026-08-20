@@ -22,6 +22,9 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0
 1,0,0,0,0,0,0,0,0,0,0,0,1
 1,1,0,0,0,0,0,0,0,0,0,1,1
+warps
+6 9 SlateportCity 3
+7 9 SlateportCity 3
 npcs
 people_scientist_1 6 5 S static
 people_sailor 1 5 S wander

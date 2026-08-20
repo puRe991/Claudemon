@@ -20,6 +20,8 @@ collision
 1,1,1,0,0,0,0,0,0,0,1,1,1,1
 1,1,1,1,0,0,0,0,0,0,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+6 7 Underwater_Route128 0
 npcs
 people_brendan_walking 5 4 S static
 people_brendan_walking 6 4 S static

@@ -18,5 +18,8 @@ collision
 0,0,0,0,0,1,1,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0
 1,0,0,0,0,0,0,0,0,0,1
+warps
+3 7 MossdeepCity 5
+4 7 MossdeepCity 5
 npcs
 people_fisherman 4 4 E static

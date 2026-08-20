@@ -20,5 +20,8 @@ collision
 0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,1
+warps
+3 8 OldaleTown 0
+4 8 OldaleTown 0
 npcs
 people_woman_2 6 4 S wander

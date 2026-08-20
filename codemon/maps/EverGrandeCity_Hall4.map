@@ -70,3 +70,6 @@ collision
 1,1,1,1,0,0,0,1,1,1,1
 1,1,1,1,0,0,0,1,1,1,1
 1,1,1,1,0,0,0,1,1,1,1
+warps
+5 33 EverGrandeCity_DrakesRoom 1
+5 2 EverGrandeCity_ChampionsRoom 0

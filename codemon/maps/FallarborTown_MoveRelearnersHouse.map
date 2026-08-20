@@ -18,5 +18,8 @@ collision
 0,0,0,0,0,1,1,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0
 1,0,0,0,0,0,0,0,0,0,1
+warps
+3 7 FallarborTown 4
+4 7 FallarborTown 4
 npcs
 people_fat_man 4 4 S static

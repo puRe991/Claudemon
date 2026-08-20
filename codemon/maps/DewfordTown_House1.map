@@ -18,6 +18,9 @@ collision
 0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0
+warps
+3 7 DewfordTown 3
+4 7 DewfordTown 3
 npcs
 people_woman_3 6 3 W static
 people_man_1 3 3 E static

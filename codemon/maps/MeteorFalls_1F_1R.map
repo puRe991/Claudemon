@@ -86,6 +86,13 @@ collision
 1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,0,0,1,1,0,1
 1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,0,0,0,0,0,1,1,0,0,0,0,0,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+27 18 Route114 0
+6 39 Route115 0
+10 3 MeteorFalls_1F_2R 0
+5 4 MeteorFalls_B1F_1R 4
+26 28 MeteorFalls_B1F_1R 5
+4 2 MeteorFalls_StevensCave 0
 npcs
 misc_item_ball 2 4 S static
 misc_item_ball 2 14 S static

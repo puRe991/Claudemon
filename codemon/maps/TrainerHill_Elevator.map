@@ -16,5 +16,8 @@ collision
 0,0,0,0,0
 0,0,0,0,0
 0,0,0,0,0
+warps
+1 6 TrainerHill_Roof 1
+2 6 TrainerHill_Roof 1
 npcs
 people_teala 0 6 S static

@@ -30,6 +30,9 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0
+warps
+6 13 LilycoveCity 5
+5 13 LilycoveCity 5
 npcs
 people_lass 3 11 N static
 people_man_4 8 10 W static

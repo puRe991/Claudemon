@@ -20,6 +20,9 @@ collision
 0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0
+warps
+4 8 Route116 1
+5 8 Route116 1
 npcs
 people_pokefan_m 6 5 E static
 people_pokefan_m 3 6 S static

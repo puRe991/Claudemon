@@ -20,6 +20,9 @@ collision
 0,0,0,1,1,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0
+warps
+3 8 SafariZone_Southwest 0
+4 8 SafariZone_Southwest 0
 npcs
 people_youngster 7 4 E static
 people_psychic_m 8 4 W static

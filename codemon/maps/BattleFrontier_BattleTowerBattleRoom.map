@@ -20,6 +20,9 @@ collision
 0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0
 1,0,0,0,0,0,0,0,0,1
+warps
+5 8 BattleFrontier_BattleTowerLobby 2
+6 8 BattleFrontier_BattleTowerLobby 2
 npcs
 people_man_1 5 1 S static
 people_teala 1 7 E static

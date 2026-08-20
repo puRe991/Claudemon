@@ -20,6 +20,9 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0
 1,0,0,0,0,0,0,0,0,0,0,1
+warps
+5 8 RustboroCity 9
+6 8 RustboroCity 9
 npcs
 people_pokefan_f 4 4 S static
 people_little_girl 4 5 N static

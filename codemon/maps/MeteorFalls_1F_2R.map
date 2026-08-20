@@ -66,6 +66,11 @@ collision
 1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+10 29 MeteorFalls_1F_1R 2
+4 14 MeteorFalls_B1F_1R 0
+7 20 MeteorFalls_B1F_1R 1
+21 23 MeteorFalls_B1F_1R 2
 npcs
 people_man_3 13 2 S static
 people_expert_m 6 12 S static

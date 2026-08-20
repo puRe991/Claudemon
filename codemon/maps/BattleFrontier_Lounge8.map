@@ -22,6 +22,8 @@ collision
 0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0
 1,0,0,0,0,0,0,0,1
+warps
+4 9 BattleFrontier_OutsideEast 10
 npcs
 people_ninja_boy 4 5 S wander
 people_man_3 8 7 W static

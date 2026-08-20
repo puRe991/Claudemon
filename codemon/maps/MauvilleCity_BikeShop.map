@@ -20,6 +20,9 @@ collision
 1,1,0,0,0,0,0,0,0,0,1,1
 1,1,0,0,0,0,0,0,0,0,1,1
 1,1,0,0,0,0,0,0,0,0,1,1
+warps
+3 8 MauvilleCity 2
+4 8 MauvilleCity 2
 npcs
 people_man_2 2 5 W static
 people_man_5 7 6 S wander

@@ -359,6 +359,17 @@ def cmd_world(src, limit=None):
     mroot = os.path.join(src, "data", "maps")
     names = sorted(d for d in os.listdir(mroot)
                    if os.path.isdir(os.path.join(mroot, d)))
+
+    # MAP_ id -> folder name, so warps can point at the right .map file.
+    id_to_folder = {}
+    for d in names:
+        p = os.path.join(mroot, d, "map.json")
+        if os.path.isfile(p):
+            try:
+                id_to_folder[json.load(open(p)).get("id")] = d
+            except Exception:
+                pass
+
     done = 0
     for mname in names:
         mj_path = os.path.join(mroot, mname, "map.json")
@@ -422,6 +433,21 @@ def cmd_world(src, limit=None):
                 if hit:
                     sx, sy = hit; break
 
+        # Warps: keep every warp in source order (index == dest_warp_id used by
+        # other maps). dest resolves to a folder name; unknown dests kept as "-".
+        warps = []
+        for wv in mj.get("warp_events", []):
+            try:
+                wx = int(wv["x"]); wy = int(wv["y"])
+            except Exception:
+                continue
+            dest = id_to_folder.get(wv.get("dest_map"), "-")
+            try:
+                dwarp = int(wv.get("dest_warp_id", 0))
+            except Exception:
+                dwarp = 0
+            warps.append((wx, wy, dest, dwarp))
+
         out = os.path.join(maps_dir, mname + ".map")
         lines = [f"tileset {sheet_name}", f"{w} {h}", f"{sx} {sy}"]
         for y in range(h):
@@ -429,13 +455,17 @@ def cmd_world(src, limit=None):
         lines.append("collision")
         for y in range(h):
             lines.append(",".join(str(solid[y * w + x]) for x in range(w)))
+        if warps:
+            lines.append("warps")
+            for (x, y, dest, dw) in warps:
+                lines.append(f"{x} {y} {dest} {dw}")
         if npcs:
             lines.append("npcs")
             for (sheet, x, y, face, move) in npcs:
                 lines.append(f"{sheet} {x} {y} {face} {move}")
         open(out, "w").write("\n".join(lines) + "\n")
         catalog.append({"map": mname, "w": w, "h": h, "tileset": sheet_name,
-                        "npcs": len(npcs), "spawn": [sx, sy]})
+                        "npcs": len(npcs), "warps": len(warps), "spawn": [sx, sy]})
         done += 1
         if limit and done >= limit:
             break
@@ -443,8 +473,9 @@ def cmd_world(src, limit=None):
     with open(os.path.join(maps_dir, "index.json"), "w") as f:
         json.dump({"count": len(catalog), "maps": catalog}, f, indent=1)
     total_npcs = sum(c["npcs"] for c in catalog)
+    total_warps = sum(c.get("warps", 0) for c in catalog)
     print(f"world: {len(catalog)} maps, {len(pair_cache)} tileset sheets, "
-          f"{total_npcs} NPCs -> {os.path.relpath(maps_dir)}")
+          f"{total_npcs} NPCs, {total_warps} warps -> {os.path.relpath(maps_dir)}")
 
 
 # --------------------------------------------------------------------------- #

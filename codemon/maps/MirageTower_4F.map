@@ -22,6 +22,8 @@ collision
 1,1,0,0,0,0,0,0,0,0,0,0,1
 1,1,1,0,0,0,0,0,0,0,1,1,1
 1,0,1,1,1,1,1,1,1,1,1,0,1
+warps
+1 4 MirageTower_3F 1
 npcs
 misc_fossil 5 4 S static
 misc_fossil 7 4 S static

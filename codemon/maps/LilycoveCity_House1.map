@@ -20,6 +20,9 @@ collision
 0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,1
+warps
+3 8 LilycoveCity 8
+4 8 LilycoveCity 8
 npcs
 people_expert_m 4 5 W static
 pokemon_kecleon 4 4 S static

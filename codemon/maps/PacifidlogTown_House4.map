@@ -20,6 +20,9 @@ collision
 0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0
 1,0,0,0,0,0,0,0,0,1
+warps
+4 8 PacifidlogTown 4
+5 8 PacifidlogTown 4
 npcs
 people_woman_2 3 4 S static
 people_little_girl 7 5 S wander

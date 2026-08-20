@@ -24,3 +24,10 @@ collision
 0,0,1,1,1,1,1,1,1,1,1,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+3 8 AbandonedShip_HiddenFloorRooms 0
+6 8 AbandonedShip_HiddenFloorRooms 2
+9 8 AbandonedShip_HiddenFloorRooms 4
+3 3 AbandonedShip_HiddenFloorRooms 6
+6 3 AbandonedShip_HiddenFloorRooms 7
+9 3 AbandonedShip_HiddenFloorRooms 8

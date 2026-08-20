@@ -18,6 +18,9 @@ collision
 0,0,0,0,0,1,1,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0
 1,0,0,0,0,0,0,0,0,0,1
+warps
+3 7 OldaleTown 1
+4 7 OldaleTown 1
 npcs
 people_pokefan_f 4 4 E static
 people_school_kid_m 7 4 W static

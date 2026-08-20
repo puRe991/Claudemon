@@ -20,6 +20,9 @@ collision
 0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,1
+warps
+3 8 VerdanturfTown 6
+4 8 VerdanturfTown 6
 npcs
 people_woman_5 4 5 N static
 people_woman_5 4 4 S static

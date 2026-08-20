@@ -44,3 +44,9 @@ collision
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+13 15 Route108 0
+14 15 Route108 0
+13 9 AbandonedShip_Corridors_1F 1
+8 9 AbandonedShip_Corridors_1F 2
+12 5 AbandonedShip_CaptainsOffice 0

@@ -32,6 +32,11 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1
+warps
+11 14 SlateportCity 8
+12 14 SlateportCity 8
+19 15 SlateportCity 9
+20 15 SlateportCity 9
 npcs
 people_beauty 8 10 S static
 people_sailor 4 12 W static

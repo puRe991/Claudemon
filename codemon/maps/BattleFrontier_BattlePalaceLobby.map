@@ -26,6 +26,10 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+12 11 BattleFrontier_OutsideEast 2
+13 11 BattleFrontier_OutsideEast 2
+5 4 BattleFrontier_BattlePalaceCorridor 0
 npcs
 people_expert_m 5 6 S static
 people_black_belt 11 8 S wander

@@ -20,6 +20,9 @@ collision
 0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,1
+warps
+3 8 PetalburgCity 0
+4 8 PetalburgCity 0
 npcs
 people_girl_1 7 4 S wander
 people_expert_m 4 4 S static

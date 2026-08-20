@@ -80,6 +80,10 @@ collision
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+11 23 MagmaHideout_2F_2R 0
+8 2 MagmaHideout_1F 1
+17 33 MagmaHideout_3F_1R 2
 npcs
 people_team_magma_magma_member_m 18 19 S static
 people_team_magma_magma_member_m 12 14 S static

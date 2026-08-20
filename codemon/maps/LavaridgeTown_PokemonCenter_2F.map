@@ -22,6 +22,10 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0
 1,0,0,0,0,1,1,0,0,1,1,0,0,1
+warps
+1 6 LavaridgeTown_PokemonCenter_1F 2
+5 1 UnionRoom 0
+9 1 TradeCenter 0
 npcs
 people_teala 6 2 S static
 people_teala 2 2 S static

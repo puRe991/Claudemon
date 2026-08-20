@@ -18,6 +18,11 @@ collision
 1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1
 1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1
 1,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1
+warps
+4 7 AbandonedShip_Corridors_B1F 1
+5 7 AbandonedShip_Corridors_B1F 1
+13 7 AbandonedShip_Corridors_B1F 0
+14 7 AbandonedShip_Corridors_B1F 0
 npcs
 people_camper 3 4 S wander
 misc_item_ball 13 3 S static

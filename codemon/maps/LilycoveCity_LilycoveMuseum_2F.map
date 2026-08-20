@@ -28,6 +28,8 @@ collision
 0,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+13 1 LilycoveCity_LilycoveMuseum_1F 2
 npcs
 people_gentleman 10 8 N static
 people_girl_2 19 10 S wander

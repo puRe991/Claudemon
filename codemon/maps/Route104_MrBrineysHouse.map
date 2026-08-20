@@ -20,6 +20,9 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0
+warps
+5 8 Route104 0
+6 8 Route104 0
 npcs
 people_expert_m 5 3 S static
 pokemon_wingull 6 3 S static

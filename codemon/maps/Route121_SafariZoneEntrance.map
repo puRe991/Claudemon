@@ -30,6 +30,11 @@ collision
 1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0
 1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1
+warps
+2 5 SafariZone_South 0
+3 5 SafariZone_South 0
+14 13 Route121 0
+15 13 Route121 0
 npcs
 people_picnicker 17 9 W static
 people_camper 10 2 S static

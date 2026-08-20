@@ -54,6 +54,8 @@ collision
 1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1
 1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1
 1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1
+warps
+11 22 SootopolisCity_Gym_1F 2
 npcs
 people_lass 7 17 E static
 people_beauty 9 19 W static

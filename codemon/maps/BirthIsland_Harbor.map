@@ -28,6 +28,8 @@ collision
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+8 2 BirthIsland_Exterior 0
 npcs
 people_sailor 8 5 N static
 misc_ss_tidal 8 7 E static

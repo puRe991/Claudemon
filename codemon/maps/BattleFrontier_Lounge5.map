@@ -18,6 +18,9 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,1,0,0,0,0,0,0
 1,0,0,0,0,0,0,0,0,0,0,0,1
+warps
+1 7 BattleFrontier_OutsideEast 7
+2 7 BattleFrontier_OutsideEast 7
 npcs
 people_little_girl 12 4 W static
 people_gentleman 0 4 E static

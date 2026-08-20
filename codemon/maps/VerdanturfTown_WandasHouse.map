@@ -18,6 +18,9 @@ collision
 0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+warps
+7 7 VerdanturfTown 3
+8 7 VerdanturfTown 3
 npcs
 people_wally 14 5 S wander
 people_black_belt 5 4 S static

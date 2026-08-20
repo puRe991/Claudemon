@@ -18,3 +18,6 @@ collision
 0,1,1,0,0,0,1,1,0
 0,1,1,1,1,1,1,1,0
 0,1,1,1,1,1,1,1,0
+warps
+5 5 NavelRock_Bottom 0
+3 3 NavelRock_Down10 1

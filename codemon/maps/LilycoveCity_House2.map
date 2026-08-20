@@ -18,5 +18,8 @@ collision
 0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0
+warps
+2 7 LilycoveCity 9
+3 7 LilycoveCity 9
 npcs
 people_fat_man 0 4 S static

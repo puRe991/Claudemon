@@ -36,6 +36,9 @@ collision
 1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
 1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1
 1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1
+warps
+18 12 MirageTower_2F 0
+2 4 MirageTower_4F 0
 npcs
 misc_breakable_rock 3 7 S static
 misc_breakable_rock 4 8 S static

@@ -82,6 +82,21 @@ collision
 0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,0,0,1,1,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+27 6 LilycoveCity_DepartmentStore_1F 0
+37 24 LilycoveCity_CoveLilyMotel_1F 0
+24 14 LilycoveCity_PokemonCenter_1F 0
+11 5 LilycoveCity_LilycoveMuseum_1F 0
+23 24 LilycoveCity_ContestLobby 0
+39 14 LilycoveCity_PokemonTrainerFanClub 1
+70 5 AquaHideout_1F 0
+36 6 LilycoveCity_MoveDeletersHouse 0
+42 6 LilycoveCity_House1 0
+55 15 LilycoveCity_House2 0
+11 22 LilycoveCity_House3 0
+12 14 LilycoveCity_House4 0
+12 32 LilycoveCity_Harbor 0
+12 5 LilycoveCity_LilycoveMuseum_1F 1
 npcs
 people_sailor 32 20 S wander
 people_girl_1 15 18 S wander

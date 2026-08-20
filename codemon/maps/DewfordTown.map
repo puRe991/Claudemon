@@ -42,6 +42,12 @@ collision
 1,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,1
 0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,1,1
 1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,1,0
+warps
+3 3 DewfordTown_Hall 0
+2 10 DewfordTown_PokemonCenter_1F 0
+8 17 DewfordTown_Gym 0
+17 14 DewfordTown_House1 0
+8 8 DewfordTown_House2 0
 npcs
 people_woman_2 7 12 S wander
 people_expert_m 12 9 W static

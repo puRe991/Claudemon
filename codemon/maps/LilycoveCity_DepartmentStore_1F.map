@@ -18,6 +18,11 @@ collision
 1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1
+warps
+8 7 LilycoveCity 0
+9 7 LilycoveCity 0
+16 1 LilycoveCity_DepartmentStore_2F 0
+2 1 LilycoveCity_DepartmentStoreElevator 0
 npcs
 people_beauty 8 2 S static
 people_beauty 10 2 S static

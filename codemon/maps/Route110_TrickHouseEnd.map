@@ -18,5 +18,8 @@ collision
 0,0,0,0,0,1,1,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0
+warps
+10 1 Route110_TrickHousePuzzle1 2
+2 1 Route110_TrickHouseCorridor 0
 npcs
 people_man_1 4 5 E static

@@ -42,6 +42,13 @@ collision
 1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
 1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+12 15 LavaridgeTown_HerbShop 0
+5 15 LavaridgeTown_Gym_1F 0
+15 5 LavaridgeTown_Mart 0
+9 6 LavaridgeTown_PokemonCenter_1F 0
+16 15 LavaridgeTown_House 0
+9 2 LavaridgeTown_PokemonCenter_1F 3
 npcs
 people_expert_f 8 7 S static
 people_expert_m 5 1 S static

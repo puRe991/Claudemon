@@ -20,6 +20,10 @@ collision
 0,0,0,0,0,1,1,1,1,0,0,1,1,1,1,0,0,0,0,0
 0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,0,1,0
 0,0,0,0,0,1,0,0,1,0,0,1,0,0,1,0,0,0,0,0
+warps
+9 8 SlateportCity 5
+10 8 SlateportCity 7
+6 1 SlateportCity_OceanicMuseum_2F 0
 npcs
 people_beauty 7 7 E static
 people_team_aqua_aqua_member_m 18 5 N static

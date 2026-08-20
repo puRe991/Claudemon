@@ -96,6 +96,11 @@ collision
 0,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,0,1,1,0,1,0,1,1
 1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,0,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1
+warps
+17 36 MtChimney_CableCarStation 0
+18 36 MtChimney_CableCarStation 1
+20 41 JaggedPass 2
+21 41 JaggedPass 3
 npcs
 people_team_aqua_archie 24 19 W static
 people_team_magma_maxie 13 6 E static

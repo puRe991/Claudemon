@@ -18,6 +18,9 @@ collision
 0,0,0,0,0,0,0,0,0,0,1
 0,0,0,0,0,0,0,0,0,0,0
 1,1,0,0,0,0,0,0,0,1,1
+warps
+3 7 LavaridgeTown 0
+4 7 LavaridgeTown 0
 npcs
 people_woman_2 3 2 S static
 people_old_man 7 5 S static

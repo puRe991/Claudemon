@@ -46,5 +46,8 @@ collision
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+10 17 BattleFrontier_OutsideEast 13
+6 5 ArtisanCave_B1F 1
 npcs
 misc_item_ball 14 5 S static

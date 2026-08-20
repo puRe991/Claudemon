@@ -78,5 +78,14 @@ collision
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+34 29 ShoalCave_LowTideEntranceRoom 1
+38 15 ShoalCave_LowTideStairsRoom 0
+42 4 ShoalCave_LowTideStairsRoom 1
+19 14 ShoalCave_LowTideLowerRoom 0
+15 19 ShoalCave_LowTideLowerRoom 1
+30 25 ShoalCave_LowTideLowerRoom 2
+14 33 ShoalCave_LowTideEntranceRoom 2
+40 33 ShoalCave_LowTideEntranceRoom 3
 npcs
 misc_item_ball 26 14 S static

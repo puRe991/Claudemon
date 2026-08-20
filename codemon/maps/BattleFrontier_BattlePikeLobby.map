@@ -28,6 +28,10 @@ collision
 0,1,0,0,0,0,0,0,0,1,0
 0,0,0,0,0,0,0,0,0,0,0
 0,0,0,1,0,0,0,1,0,0,0
+warps
+5 12 BattleFrontier_OutsideWest 0
+4 12 BattleFrontier_OutsideWest 0
+6 12 BattleFrontier_OutsideWest 0
 npcs
 people_link_receptionist 5 5 S static
 people_hiker 10 9 N static

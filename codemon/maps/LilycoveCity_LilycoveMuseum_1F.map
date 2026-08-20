@@ -30,6 +30,10 @@ collision
 0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0
 0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0
 0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+9 13 LilycoveCity 3
+10 13 LilycoveCity 13
+16 1 LilycoveCity_LilycoveMuseum_2F 0
 npcs
 people_beauty 5 12 E static
 people_gentleman 16 2 S static

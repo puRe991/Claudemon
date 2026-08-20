@@ -82,6 +82,17 @@ collision
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,1,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,0,1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,1,1,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,1,0,0
+warps
+28 9 MossdeepCity_House1 0
+38 9 MossdeepCity_Gym 0
+28 16 MossdeepCity_PokemonCenter_1F 0
+67 25 MossdeepCity_House2 0
+37 18 MossdeepCity_Mart 0
+49 6 MossdeepCity_House3 0
+19 10 MossdeepCity_StevensHouse 0
+18 16 MossdeepCity_House4 1
+64 15 MossdeepCity_SpaceCenter_1F 0
+36 24 MossdeepCity_GameCorner_1F 0
 npcs
 people_sailor 38 12 S wander
 people_expert_m 50 34 S wander

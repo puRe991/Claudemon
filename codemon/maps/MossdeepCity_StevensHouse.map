@@ -18,6 +18,9 @@ collision
 0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,1
 0,0,0,0,0,0,0,0,0,0,0
+warps
+3 7 MossdeepCity 6
+4 7 MossdeepCity 6
 npcs
 people_steven 9 6 E static
 misc_item_ball 4 3 S static

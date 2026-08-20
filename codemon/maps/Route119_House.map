@@ -20,6 +20,9 @@ collision
 0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,1
+warps
+3 8 Route119 1
+4 8 Route119 1
 npcs
 people_woman_4 7 2 S static
 pokemon_wingull 1 6 S wander

@@ -28,6 +28,8 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
 0,1,1,1,1,1,1,0,1,1,0,1,1,0,0,1,1
 1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1
+warps
+15 2 SSTidalCorridor 8
 npcs
 people_sailor 10 4 S static
 people_sailor 7 4 S static

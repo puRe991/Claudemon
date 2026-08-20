@@ -24,6 +24,10 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 1,0,0,0,0,0,0,0,0,0,0,0,0,0,1
 1,1,0,0,0,0,0,0,0,0,0,0,0,1,1
+warps
+7 10 BattleFrontier_OutsideEast 6
+6 10 BattleFrontier_OutsideEast 6
+8 10 BattleFrontier_OutsideEast 6
 npcs
 people_teala 4 4 W static
 people_rich_boy 0 5 E static

@@ -28,6 +28,13 @@ collision
 0,0,0,0,0,0,0,1,1,0,0,0,0
 0,0,0,1,1,0,0,1,1,0,0,1,1
 0,0,0,1,1,0,0,1,1,0,0,1,1
+warps
+10 1 MtPyre_2F 1
+2 1 MtPyre_4F 1
+9 10 MtPyre_4F 4
+1 12 MtPyre_4F 5
+10 12 MtPyre_2F 2
+6 12 MtPyre_2F 3
 npcs
 people_psychic_m 1 4 S static
 people_lass 11 4 S static

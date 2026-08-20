@@ -62,6 +62,13 @@ collision
 1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
 1,1,0,0,0,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 1,1,0,0,0,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+10 19 PetalburgCity_House1 0
+7 5 PetalburgCity_WallysHouse 0
+15 8 PetalburgCity_Gym 0
+20 16 PetalburgCity_PokemonCenter_1F 0
+20 24 PetalburgCity_House2 0
+25 12 PetalburgCity_Mart 0
 npcs
 people_woman_4 16 18 S wander
 people_wally 15 10 N static

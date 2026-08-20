@@ -122,6 +122,19 @@ collision
 1,1,1,1,1,1,1,1,1,1,0,1,0,0,0,0,0,0,0,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 1,1,1,1,1,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1
+warps
+27 19 RustboroCity_Gym 0
+13 30 RustboroCity_Flat1_1F 0
+16 45 RustboroCity_Mart 0
+16 38 RustboroCity_PokemonCenter_1F 0
+27 34 RustboroCity_PokemonSchool 0
+11 15 RustboroCity_DevonCorp_1F 0
+12 15 RustboroCity_DevonCorp_1F 1
+33 19 RustboroCity_House1 0
+9 38 RustboroCity_CuttersHouse 0
+30 28 RustboroCity_House2 0
+5 51 RustboroCity_Flat2_1F 0
+26 46 RustboroCity_House3 0
 npcs
 people_woman_5 22 34 S wander
 people_fat_man 19 13 S static

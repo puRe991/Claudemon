@@ -54,6 +54,10 @@ collision
 1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1
 1,1,1,1,1,0,1,0,0,0,1,0,1,1,1,1,1
 1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1
+warps
+8 25 SootopolisCity 2
+9 25 SootopolisCity 2
+11 22 SootopolisCity_Gym_B1F 0
 npcs
 people_man_1 8 2 S static
 people_man_2 7 24 S static

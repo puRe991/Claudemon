@@ -22,6 +22,10 @@ collision
 0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0
 0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+7 9 MossdeepCity 8
+8 9 MossdeepCity 8
+13 1 MossdeepCity_SpaceCenter_2F 0
 npcs
 people_scientist_1 7 2 N static
 people_scientist_1 2 2 N static

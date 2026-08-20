@@ -36,6 +36,10 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+9 16 Route111 4
+10 16 Route111 4
+9 1 TrainerHill_1F 0
 npcs
 people_teala 11 6 W static
 people_nurse 4 9 S static

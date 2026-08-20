@@ -28,6 +28,12 @@ collision
 0,0,1,1,1,0,1,0,1,1,1,0,0
 1,0,0,1,0,0,0,0,0,1,0,0,1
 1,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+2 1 MtPyre_6F 0
+10 5 MtPyre_4F 0
+1 10 MtPyre_6F 1
+12 10 MtPyre_4F 2
+12 12 MtPyre_4F 3
 npcs
 people_black_belt 3 7 S static
 misc_item_ball 6 11 S static

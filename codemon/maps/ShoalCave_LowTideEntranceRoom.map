@@ -72,6 +72,11 @@ collision
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+20 30 Route125 0
+19 5 ShoalCave_LowTideInnerRoom 0
+6 2 ShoalCave_LowTideInnerRoom 6
+27 2 ShoalCave_LowTideInnerRoom 7
 npcs
 misc_item_ball 30 3 S static
 people_expert_m 18 15 W static

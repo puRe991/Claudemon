@@ -42,6 +42,12 @@ collision
 0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1
 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
 1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1
+warps
+15 15 FallarborTown_Mart 0
+8 7 FallarborTown_BattleTentLobby 0
+14 7 FallarborTown_PokemonCenter_1F 0
+6 17 FallarborTown_CozmosHouse 0
+1 6 FallarborTown_MoveRelearnersHouse 0
 npcs
 people_girl_1 8 11 S static
 people_expert_m 11 9 S wander
