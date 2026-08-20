@@ -237,6 +237,17 @@ void Battle::draw(sf::RenderTarget& target) {
 	ground.setPosition(0, size.y * 0.45f);
 	ground.setFillColor(sf::Color(200, 216, 160)); target.draw(ground);
 
+	// hit-animation helpers: defender flashes + shakes, attacker lunges forward.
+	float anim = (this->shake_t > 0.f) ? (0.3f - this->shake_t) / 0.3f : -1.f; // 0..1
+	float lunge = anim >= 0.f ? std::sin(anim * 3.14159f) * 22.f : 0.f;
+	bool def_enemy = this->shake_side == 1;   // enemy is the one being hit
+	sf::Uint8 eflash = (def_enemy && this->shake_t > 0.f && ((int)(this->shake_t * 30) % 2)) ? 90 : 255;
+	sf::Uint8 pflash = (!def_enemy && this->shake_t > 0.f && ((int)(this->shake_t * 30) % 2)) ? 90 : 255;
+	float ex = (def_enemy && this->shake_t > 0.f) ? std::sin(this->shake_t * 60.f) * 8.f : 0.f;
+	float ey = (!def_enemy) ? -lunge * 0.6f : 0.f;   // enemy lunges down-left when attacking
+	float pxo = (!def_enemy && this->shake_t > 0.f) ? std::sin(this->shake_t * 60.f) * 8.f : 0.f;
+	float pyo = (def_enemy) ? -lunge * 0.6f : 0.f;   // player lunges up-right when attacking
+
 	// enemy side: trainer sprite during the intro, otherwise the pokemon + HP
 	bool show_trainer = this->is_trainer && this->has_trainer_pic && !this->intro_shown;
 	if (show_trainer) {
@@ -247,8 +258,9 @@ void Battle::draw(sf::RenderTarget& target) {
 	} else {
 		sf::Sprite es(this->enemy_tex);
 		es.setScale(2.6f, 2.6f);
-		float ex = (this->shake_side == 1 && this->shake_t > 0.f) ? std::sin(this->shake_t * 60.f) * 8.f : 0.f;
-		es.setPosition(size.x * 0.62f + ex, size.y * 0.06f);
+		es.setColor(sf::Color(255, 255, 255, eflash));
+		es.setPosition(size.x * 0.62f + ex - (def_enemy ? 0.f : lunge),
+		               size.y * 0.06f + ey);
 		target.draw(es);
 		if (this->font_ok) {
 			sf::Text n(nice(this->enemy.species) + "  Lv" + std::to_string(this->enemy.level),
@@ -261,8 +273,9 @@ void Battle::draw(sf::RenderTarget& target) {
 	// player (back) bottom-left + info bottom-right
 	sf::Sprite ps(this->player_tex);
 	ps.setScale(2.8f, 2.8f);
-	float pxo = (this->shake_side == 2 && this->shake_t > 0.f) ? std::sin(this->shake_t * 60.f) * 8.f : 0.f;
-	ps.setPosition(size.x * 0.10f + pxo, size.y * 0.40f);
+	ps.setColor(sf::Color(255, 255, 255, pflash));
+	ps.setPosition(size.x * 0.10f + pxo + (def_enemy ? lunge : 0.f),
+	               size.y * 0.40f + pyo);
 	target.draw(ps);
 	if (this->font_ok) {
 		sf::Text n(nice(this->player->species) + "  Lv" + std::to_string(this->player->level),
