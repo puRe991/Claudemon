@@ -370,7 +370,7 @@ int main() {
     vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player);
     Menu menu;
     menu.load_font();
-    menu.configure(&gs, &team, &pc_box);
+    menu.configure(&gs, &team, &pc_box, &bdata);
     Minigame games;
     games.load_font();
     games.configure(&gs, &rng);
@@ -378,6 +378,10 @@ int main() {
     gs.give_item("ITEM_POTION", 5);
     gs.give_item("ITEM_POKE_BALL", 10);
     gs.give_item("ITEM_ANTIDOTE", 2);
+    gs.give_item("ITEM_TM19", 1);   // Giga Drain  (teachable in the bag)
+    gs.give_item("ITEM_TM31", 1);   // Brick Break
+    gs.give_item("ITEM_TM40", 1);   // Aerial Ace
+    gs.give_item("ITEM_HM01", 1);   // Cut (reusable HM)
     gs.set_var("COINS", 50);
     // demo hook: grant EXP to the starter to show level-ups / evolution
     if (const char* xe = std::getenv("CODEMON_GRANT_EXP")) {
@@ -517,6 +521,8 @@ int main() {
                     switch (event.key.code) {
                     case sf::Keyboard::W: menu.input(BTN_UP); break;
                     case sf::Keyboard::S: menu.input(BTN_DOWN); break;
+                    case sf::Keyboard::A: menu.input(BTN_LEFT); break;
+                    case sf::Keyboard::D: menu.input(BTN_RIGHT); break;
                     case sf::Keyboard::Space:
                     case sf::Keyboard::Return: menu.input(BTN_CONFIRM); break;
                     case sf::Keyboard::M: menu.close(); break;

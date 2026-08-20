@@ -1,13 +1,31 @@
 #include "Menu.h"
 #include <cctype>
 #include <vector>
+#include <algorithm>
 
 Menu::Menu() : font_ok(false), screen(CLOSED), cursor(0),
-               gs(nullptr), team(nullptr), box(nullptr) {}
+               bag_cursor(0), teach_cursor(0),
+               gs(nullptr), bdata(nullptr), team(nullptr), box(nullptr) {}
 
-void Menu::configure(GameState* g, std::vector<Mon>* t, std::vector<Mon>* b) {
-	this->gs = g; this->team = t; this->box = b;
+void Menu::configure(GameState* g, std::vector<Mon>* t, std::vector<Mon>* b,
+                     BattleData* bd) {
+	this->gs = g; this->team = t; this->box = b; this->bdata = bd;
 }
+
+std::vector<std::pair<std::string, int>> Menu::bag_sorted() const {
+	std::vector<std::pair<std::string, int>> v;
+	if (this->gs)
+		for (const auto& kv : this->gs->bag_items()) v.push_back(kv);
+	std::sort(v.begin(), v.end(),
+	          [](const auto& a, const auto& b) { return a.first < b.first; });
+	return v;
+}
+
+// Is this bag item a TM or HM? (ITEM_TM01 / ITEM_HM03)
+static bool is_machine(const std::string& item) {
+	return item.rfind("ITEM_TM", 0) == 0 || item.rfind("ITEM_HM", 0) == 0;
+}
+static bool is_hm(const std::string& item) { return item.rfind("ITEM_HM", 0) == 0; }
 
 bool Menu::load_font(const std::string& path) {
 	this->font_ok = this->font.loadFromFile(path);
@@ -65,22 +83,74 @@ const sf::Texture* Menu::type_icon(const std::string& type) {
 	return &this->type_tex[t];
 }
 
-void Menu::open() { this->screen = MAIN; this->cursor = 0; }
+void Menu::open() { this->screen = MAIN; this->cursor = 0; this->flash.clear(); }
 void Menu::close() { this->screen = CLOSED; }
+
+// Teach teach_move to team[teach_cursor], consuming the TM (HMs are reusable).
+void Menu::teach_selected() {
+	if (!this->bdata || !this->team || this->team->empty()) return;
+	if (this->teach_cursor < 0 || this->teach_cursor >= (int)this->team->size()) return;
+	Mon& m = (*this->team)[this->teach_cursor];
+	std::string mv_disp = pretty(this->teach_move, "");
+	if (!this->bdata->can_learn_tm(m.species, this->teach_move)) {
+		this->flash = pretty(m.species, "") + " can't learn " + mv_disp + ".";
+		return;
+	}
+	if (std::find(m.moves.begin(), m.moves.end(), this->teach_move) != m.moves.end()) {
+		this->flash = pretty(m.species, "") + " already knows " + mv_disp + ".";
+		return;
+	}
+	if (m.moves.size() < 4) m.moves.push_back(this->teach_move);
+	else m.moves[0] = this->teach_move;   // overwrite the oldest move
+	if (!is_hm(this->teach_item) && this->gs) this->gs->take_item(this->teach_item, 1);
+	this->flash = pretty(m.species, "") + " learned " + mv_disp + "!";
+	this->screen = BAG;
+	auto items = bag_sorted();
+	if (this->bag_cursor >= (int)items.size())
+		this->bag_cursor = std::max(0, (int)items.size() - 1);
+}
 
 void Menu::input(BtnInput b) {
 	if (this->screen == MAIN) {
 		if (b == BTN_UP && this->cursor > 0) this->cursor--;
 		else if (b == BTN_DOWN && this->cursor < 4) this->cursor++;
 		else if (b == BTN_CONFIRM) {
-			if (this->cursor == 0) this->screen = BAG;
+			if (this->cursor == 0) { this->screen = BAG; this->bag_cursor = 0; this->flash.clear(); }
 			else if (this->cursor == 1) this->screen = PARTY;
 			else if (this->cursor == 2) this->screen = PC;
 			else if (this->cursor == 3) this->screen = POKENAV;
 			else this->screen = CLOSED;
 		}
-	} else if (b == BTN_CONFIRM) {
-		this->screen = MAIN;   // back from any sub-screen
+	} else if (this->screen == BAG) {
+		auto items = bag_sorted();
+		if (b == BTN_UP && this->bag_cursor > 0) this->bag_cursor--;
+		else if (b == BTN_DOWN && this->bag_cursor + 1 < (int)items.size()) this->bag_cursor++;
+		else if (b == BTN_LEFT) this->screen = MAIN;
+		else if (b == BTN_CONFIRM) {
+			if (this->bag_cursor < (int)items.size()) {
+				const std::string& item = items[this->bag_cursor].first;
+				if (is_machine(item) && this->bdata) {
+					std::string tm = item.substr(5);            // ITEM_TM09 -> TM09
+					std::string mv = this->bdata->tm_to_move(tm);
+					if (mv.empty()) this->flash = "Nothing happens.";
+					else {
+						this->teach_item = item; this->teach_move = mv;
+						this->teach_cursor = 0; this->flash.clear();
+						this->screen = TEACH;
+					}
+				} else {
+					this->flash = "Can't use " + pretty(item, "ITEM_") + " here.";
+				}
+			}
+		}
+	} else if (this->screen == TEACH) {
+		int n = this->team ? (int)this->team->size() : 0;
+		if (b == BTN_UP && this->teach_cursor > 0) this->teach_cursor--;
+		else if (b == BTN_DOWN && this->teach_cursor + 1 < n) this->teach_cursor++;
+		else if (b == BTN_LEFT) this->screen = BAG;
+		else if (b == BTN_CONFIRM) this->teach_selected();
+	} else if (b == BTN_CONFIRM || b == BTN_LEFT) {
+		this->screen = MAIN;   // back from PARTY / PC / POKENAV
 	}
 }
 
@@ -121,20 +191,59 @@ void Menu::draw(sf::RenderTarget& target) {
 		}
 	} else if (this->screen == BAG) {
 		text("BAG", x, y, 24, sf::Color(150, 210, 255)); y += 44;
-		if (!this->gs || this->gs->bag_items().empty()) {
+		auto items = bag_sorted();
+		if (items.empty()) {
 			text("(empty)", x, y, 20, sf::Color(200, 200, 200));
 		} else {
-			int row = 0;
-			for (const auto& kv : this->gs->bag_items()) {
+			for (int row = 0; row < (int)items.size() && row < 10; ++row) {
+				const auto& kv = items[row];
+				bool sel = row == this->bag_cursor;
 				float ry = y + row * 40;
+				if (sel) {
+					sf::RectangleShape hl(sf::Vector2f(panel.getSize().x - 40, 34));
+					hl.setPosition(x - 6, ry - 6); hl.setFillColor(sf::Color(60, 90, 150, 120));
+					target.draw(hl);
+				}
 				const sf::Texture* ic = item_icon(kv.first);
 				if (ic) { sf::Sprite s(*ic); s.setPosition(x, ry - 4); target.draw(s); }
-				text(pretty(kv.first, "ITEM_"), x + 34, ry, 20, sf::Color::White);
+				bool tm = is_machine(kv.first);
+				std::string label = tm ? kv.first.substr(5)               // ITEM_TM31 -> TM31
+				                       : pretty(kv.first, "ITEM_");
+				text(label, x + 34, ry, 20,
+				     tm ? sf::Color(160, 230, 190) : sf::Color::White);
 				text("x" + std::to_string(kv.second),
 				     panel.getPosition().x + panel.getSize().x - 70, ry, 20, sf::Color::White);
-				if (++row >= 10) break;
 			}
 		}
+		if (!this->flash.empty())
+			text(this->flash, x, panel.getPosition().y + panel.getSize().y - 60, 16,
+			     sf::Color(255, 230, 140));
+	} else if (this->screen == TEACH) {
+		text("TEACH " + pretty(this->teach_move, ""), x, y, 22, sf::Color(150, 210, 255));
+		y += 40;
+		text("Choose a POKeMON:", x, y, 16, sf::Color(200, 200, 200)); y += 30;
+		if (this->team) {
+			for (int row = 0; row < (int)this->team->size() && row < 6; ++row) {
+				const Mon& m = (*this->team)[row];
+				bool sel = row == this->teach_cursor;
+				bool able = this->bdata && this->bdata->can_learn_tm(m.species, this->teach_move);
+				float ry = y + row * 44;
+				if (sel) {
+					sf::RectangleShape hl(sf::Vector2f(panel.getSize().x - 40, 38));
+					hl.setPosition(x - 6, ry - 6); hl.setFillColor(sf::Color(60, 90, 150, 120));
+					target.draw(hl);
+				}
+				const sf::Texture* ic = mon_icon(m.species);
+				if (ic) { sf::Sprite s(*ic); s.setScale(0.55f, 0.55f); s.setPosition(x, ry - 6); target.draw(s); }
+				text(pretty(m.species, "") + "  Lv" + std::to_string(m.level), x + 44, ry, 20,
+				     able ? sf::Color::White : sf::Color(150, 150, 150));
+				text(able ? "ABLE" : "unable", panel.getPosition().x + panel.getSize().x - 90, ry, 16,
+				     able ? sf::Color(120, 220, 120) : sf::Color(180, 120, 120));
+			}
+		}
+		if (!this->flash.empty())
+			text(this->flash, x, panel.getPosition().y + panel.getSize().y - 60, 16,
+			     sf::Color(255, 230, 140));
 	} else if (this->screen == PARTY) {
 		text("POKeMON", x, y, 24, sf::Color(150, 210, 255)); y += 40;
 		if (this->team) {
@@ -193,7 +302,13 @@ void Menu::draw(sf::RenderTarget& target) {
 			}
 		}
 	}
-	if (this->screen != MAIN)
+	if (this->screen == BAG)
+		text("[SPACE] use   [A] back", x, panel.getPosition().y + panel.getSize().y - 34, 16,
+		     sf::Color(180, 180, 180));
+	else if (this->screen == TEACH)
+		text("[SPACE] teach   [A] back", x, panel.getPosition().y + panel.getSize().y - 34, 16,
+		     sf::Color(180, 180, 180));
+	else if (this->screen != MAIN)
 		text("[SPACE] back", x, panel.getPosition().y + panel.getSize().y - 34, 16,
 		     sf::Color(180, 180, 180));
 	target.setView(saved);

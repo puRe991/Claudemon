@@ -28,6 +28,13 @@ public:
 	void clear_flag(const std::string& name) { vars[name] = 0; }
 
 	void give_item(const std::string& item, int amount) { bag[item] += amount; }
+	// Remove up to `amount` of an item; erases the entry when it hits zero.
+	void take_item(const std::string& item, int amount) {
+		auto it = bag.find(item);
+		if (it == bag.end()) return;
+		it->second -= amount;
+		if (it->second <= 0) bag.erase(it);
+	}
 	int item_count(const std::string& item) const {
 		auto it = bag.find(item);
 		return it == bag.end() ? 0 : it->second;
