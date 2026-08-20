@@ -8,6 +8,17 @@
 #include "direction.h"
 #include "Coordinates.h"
 
+// How an NPC behaves once placed on the map (from pokeemerald movement_type).
+enum MoveKind { MOVE_STATIC = 0, MOVE_WANDER = 1, MOVE_PACE_V = 2, MOVE_PACE_H = 3 };
+
+// One NPC as authored in the map file's `npcs` section.
+struct NpcSpawn {
+	std::string sheet;   // overworld sheet path key, e.g. "people_mom"
+	int x, y;            // start tile
+	DIR facing;          // initial facing
+	MoveKind movement;   // behaviour
+};
+
 /******************************************************************************
 Map - a grid of metatile ids rendered through a Tileset.
 
@@ -33,6 +44,7 @@ private:
 
 	std::vector<int>  tile_map;  // width*height metatile ids
 	std::vector<char> solid;     // width*height passability (1 = blocked)
+	std::vector<NpcSpawn> npc_spawns;
 
 	int index(int x, int y) const;
 
@@ -58,4 +70,7 @@ public:
 	int get_tile_size() const;
 	Coordinates get_start_pos() const;
 	bool ready() const;
+
+	// NPCs authored for this map.
+	const std::vector<NpcSpawn>& npcs() const;
 };

@@ -1,0 +1,37 @@
+tileset building__brendans_mays_house
+9 8
+4 4
+520,524,522,551,598,596,592,596,593
+528,532,530,559,2,599,597,600,601
+581,517,519,517,605,615,517,608,609
+516,667,668,668,669,513,640,641,642
+516,675,676,676,677,513,648,649,650
+516,675,676,676,677,513,656,657,658
+516,683,684,684,685,513,513,513,513
+516,513,513,513,513,513,513,513,513
+collision
+1,1,1,1,1,1,1,1,1
+1,0,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,1,0
+0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0
+npcs
+people_may_walking 1 1 S static
+people_man_1 0 6 S static
+people_man_1 1 6 S static
+people_man_1 2 6 S static
+people_man_1 3 6 S static
+people_man_1 4 6 S static
+people_man_1 5 6 S static
+people_man_1 0 7 S static
+people_man_1 1 7 S static
+people_man_1 2 7 S static
+people_man_1 3 7 S static
+people_man_1 4 7 S static
+people_man_1 5 7 S static
+people_mom 1 1 S static
+people_man_1 3 4 S static
+misc_item_ball 5 4 S static

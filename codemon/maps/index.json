@@ -1,0 +1,5362 @@
+{
+ "count": 487,
+ "maps": [
+  {
+   "map": "AbandonedShip_CaptainsOffice",
+   "w": 9,
+   "h": 7,
+   "tileset": "general__facility",
+   "npcs": 2,
+   "spawn": [
+    4,
+    3
+   ]
+  },
+  {
+   "map": "AbandonedShip_Corridors_1F",
+   "w": 18,
+   "h": 12,
+   "tileset": "general__inside_ship",
+   "npcs": 2,
+   "spawn": [
+    9,
+    6
+   ]
+  },
+  {
+   "map": "AbandonedShip_Corridors_B1F",
+   "w": 13,
+   "h": 10,
+   "tileset": "general__inside_ship",
+   "npcs": 2,
+   "spawn": [
+    6,
+    5
+   ]
+  },
+  {
+   "map": "AbandonedShip_Deck",
+   "w": 23,
+   "h": 21,
+   "tileset": "general__facility",
+   "npcs": 0,
+   "spawn": [
+    10,
+    9
+   ]
+  },
+  {
+   "map": "AbandonedShip_HiddenFloorCorridors",
+   "w": 13,
+   "h": 11,
+   "tileset": "general__inside_ship",
+   "npcs": 0,
+   "spawn": [
+    4,
+    3
+   ]
+  },
+  {
+   "map": "AbandonedShip_HiddenFloorRooms",
+   "w": 44,
+   "h": 15,
+   "tileset": "general__inside_ship",
+   "npcs": 4,
+   "spawn": [
+    21,
+    6
+   ]
+  },
+  {
+   "map": "AbandonedShip_Room_B1F",
+   "w": 9,
+   "h": 8,
+   "tileset": "general__inside_ship",
+   "npcs": 1,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "AbandonedShip_Rooms2_1F",
+   "w": 9,
+   "h": 17,
+   "tileset": "general__inside_ship",
+   "npcs": 5,
+   "spawn": [
+    4,
+    8
+   ]
+  },
+  {
+   "map": "AbandonedShip_Rooms2_B1F",
+   "w": 18,
+   "h": 8,
+   "tileset": "general__inside_ship",
+   "npcs": 2,
+   "spawn": [
+    9,
+    4
+   ]
+  },
+  {
+   "map": "AbandonedShip_Rooms_1F",
+   "w": 18,
+   "h": 17,
+   "tileset": "general__inside_ship",
+   "npcs": 4,
+   "spawn": [
+    10,
+    7
+   ]
+  },
+  {
+   "map": "AbandonedShip_Rooms_B1F",
+   "w": 27,
+   "h": 8,
+   "tileset": "general__inside_ship",
+   "npcs": 2,
+   "spawn": [
+    13,
+    4
+   ]
+  },
+  {
+   "map": "AbandonedShip_Underwater1",
+   "w": 8,
+   "h": 8,
+   "tileset": "general__inside_ship",
+   "npcs": 0,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "AbandonedShip_Underwater2",
+   "w": 21,
+   "h": 7,
+   "tileset": "general__inside_ship",
+   "npcs": 0,
+   "spawn": [
+    10,
+    3
+   ]
+  },
+  {
+   "map": "AlteringCave",
+   "w": 32,
+   "h": 24,
+   "tileset": "general__cave",
+   "npcs": 0,
+   "spawn": [
+    16,
+    12
+   ]
+  },
+  {
+   "map": "AncientTomb",
+   "w": 17,
+   "h": 33,
+   "tileset": "general__cave",
+   "npcs": 1,
+   "spawn": [
+    8,
+    16
+   ]
+  },
+  {
+   "map": "AquaHideout_1F",
+   "w": 28,
+   "h": 30,
+   "tileset": "general__facility",
+   "npcs": 3,
+   "spawn": [
+    14,
+    15
+   ]
+  },
+  {
+   "map": "AquaHideout_B1F",
+   "w": 51,
+   "h": 24,
+   "tileset": "general__facility",
+   "npcs": 9,
+   "spawn": [
+    24,
+    11
+   ]
+  },
+  {
+   "map": "AquaHideout_B2F",
+   "w": 34,
+   "h": 24,
+   "tileset": "general__facility",
+   "npcs": 6,
+   "spawn": [
+    17,
+    12
+   ]
+  },
+  {
+   "map": "AquaHideout_UnusedRubyMap1",
+   "w": 28,
+   "h": 30,
+   "tileset": "general__facility",
+   "npcs": 0,
+   "spawn": [
+    14,
+    15
+   ]
+  },
+  {
+   "map": "AquaHideout_UnusedRubyMap2",
+   "w": 62,
+   "h": 24,
+   "tileset": "general__facility",
+   "npcs": 0,
+   "spawn": [
+    31,
+    12
+   ]
+  },
+  {
+   "map": "AquaHideout_UnusedRubyMap3",
+   "w": 34,
+   "h": 24,
+   "tileset": "general__facility",
+   "npcs": 0,
+   "spawn": [
+    17,
+    12
+   ]
+  },
+  {
+   "map": "ArtisanCave_1F",
+   "w": 21,
+   "h": 22,
+   "tileset": "general__cave",
+   "npcs": 1,
+   "spawn": [
+    8,
+    12
+   ]
+  },
+  {
+   "map": "ArtisanCave_B1F",
+   "w": 46,
+   "h": 54,
+   "tileset": "general__cave",
+   "npcs": 1,
+   "spawn": [
+    23,
+    27
+   ]
+  },
+  {
+   "map": "BattleColosseum_2P",
+   "w": 14,
+   "h": 9,
+   "tileset": "building__cable_club",
+   "npcs": 1,
+   "spawn": [
+    7,
+    4
+   ]
+  },
+  {
+   "map": "BattleColosseum_4P",
+   "w": 14,
+   "h": 9,
+   "tileset": "building__cable_club",
+   "npcs": 0,
+   "spawn": [
+    7,
+    4
+   ]
+  },
+  {
+   "map": "BattleFrontier_BattleArenaBattleRoom",
+   "w": 16,
+   "h": 11,
+   "tileset": "building__battle_arena",
+   "npcs": 9,
+   "spawn": [
+    8,
+    5
+   ]
+  },
+  {
+   "map": "BattleFrontier_BattleArenaCorridor",
+   "w": 18,
+   "h": 14,
+   "tileset": "building__battle_arena",
+   "npcs": 1,
+   "spawn": [
+    12,
+    4
+   ]
+  },
+  {
+   "map": "BattleFrontier_BattleArenaLobby",
+   "w": 16,
+   "h": 13,
+   "tileset": "building__battle_arena",
+   "npcs": 5,
+   "spawn": [
+    6,
+    8
+   ]
+  },
+  {
+   "map": "BattleFrontier_BattleDomeBattleRoom",
+   "w": 20,
+   "h": 10,
+   "tileset": "building__battle_dome",
+   "npcs": 15,
+   "spawn": [
+    10,
+    5
+   ]
+  },
+  {
+   "map": "BattleFrontier_BattleDomeCorridor",
+   "w": 48,
+   "h": 7,
+   "tileset": "building__battle_dome",
+   "npcs": 1,
+   "spawn": [
+    24,
+    3
+   ]
+  },
+  {
+   "map": "BattleFrontier_BattleDomeLobby",
+   "w": 23,
+   "h": 17,
+   "tileset": "building__battle_dome",
+   "npcs": 6,
+   "spawn": [
+    10,
+    7
+   ]
+  },
+  {
+   "map": "BattleFrontier_BattleDomePreBattleRoom",
+   "w": 9,
+   "h": 8,
+   "tileset": "building__battle_dome",
+   "npcs": 1,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "BattleFrontier_BattleFactoryBattleRoom",
+   "w": 13,
+   "h": 12,
+   "tileset": "building__battle_factory",
+   "npcs": 8,
+   "spawn": [
+    6,
+    6
+   ]
+  },
+  {
+   "map": "BattleFrontier_BattleFactoryLobby",
+   "w": 19,
+   "h": 12,
+   "tileset": "building__battle_factory",
+   "npcs": 6,
+   "spawn": [
+    9,
+    6
+   ]
+  },
+  {
+   "map": "BattleFrontier_BattleFactoryPreBattleRoom",
+   "w": 17,
+   "h": 14,
+   "tileset": "building__battle_factory",
+   "npcs": 1,
+   "spawn": [
+    8,
+    7
+   ]
+  },
+  {
+   "map": "BattleFrontier_BattlePalaceBattleRoom",
+   "w": 15,
+   "h": 10,
+   "tileset": "general__battle_palace",
+   "npcs": 5,
+   "spawn": [
+    5,
+    7
+   ]
+  },
+  {
+   "map": "BattleFrontier_BattlePalaceCorridor",
+   "w": 17,
+   "h": 14,
+   "tileset": "general__battle_palace",
+   "npcs": 7,
+   "spawn": [
+    8,
+    7
+   ]
+  },
+  {
+   "map": "BattleFrontier_BattlePalaceLobby",
+   "w": 25,
+   "h": 12,
+   "tileset": "building__battle_palace",
+   "npcs": 6,
+   "spawn": [
+    12,
+    6
+   ]
+  },
+  {
+   "map": "BattleFrontier_BattlePikeCorridor",
+   "w": 14,
+   "h": 8,
+   "tileset": "building__battle_pike",
+   "npcs": 1,
+   "spawn": [
+    7,
+    4
+   ]
+  },
+  {
+   "map": "BattleFrontier_BattlePikeLobby",
+   "w": 11,
+   "h": 13,
+   "tileset": "building__battle_pike",
+   "npcs": 4,
+   "spawn": [
+    5,
+    6
+   ]
+  },
+  {
+   "map": "BattleFrontier_BattlePikeRoomFinal",
+   "w": 5,
+   "h": 8,
+   "tileset": "building__battle_pike",
+   "npcs": 1,
+   "spawn": [
+    2,
+    4
+   ]
+  },
+  {
+   "map": "BattleFrontier_BattlePikeRoomNormal",
+   "w": 9,
+   "h": 8,
+   "tileset": "building__battle_pike",
+   "npcs": 2,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "BattleFrontier_BattlePikeRoomWildMons",
+   "w": 9,
+   "h": 20,
+   "tileset": "building__battle_pike",
+   "npcs": 0,
+   "spawn": [
+    3,
+    9
+   ]
+  },
+  {
+   "map": "BattleFrontier_BattlePikeThreePathRoom",
+   "w": 13,
+   "h": 11,
+   "tileset": "building__battle_pike",
+   "npcs": 2,
+   "spawn": [
+    6,
+    5
+   ]
+  },
+  {
+   "map": "BattleFrontier_BattlePyramidFloor",
+   "w": 8,
+   "h": 8,
+   "tileset": "building__battle_pyramid",
+   "npcs": 16,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "BattleFrontier_BattlePyramidLobby",
+   "w": 15,
+   "h": 18,
+   "tileset": "building__battle_pyramid",
+   "npcs": 4,
+   "spawn": [
+    7,
+    9
+   ]
+  },
+  {
+   "map": "BattleFrontier_BattlePyramidTop",
+   "w": 34,
+   "h": 23,
+   "tileset": "building__battle_pyramid",
+   "npcs": 2,
+   "spawn": [
+    17,
+    11
+   ]
+  },
+  {
+   "map": "BattleFrontier_BattleTowerBattleRoom",
+   "w": 10,
+   "h": 9,
+   "tileset": "building__battle_frontier",
+   "npcs": 3,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "BattleFrontier_BattleTowerCorridor",
+   "w": 17,
+   "h": 5,
+   "tileset": "building__battle_frontier",
+   "npcs": 1,
+   "spawn": [
+    8,
+    2
+   ]
+  },
+  {
+   "map": "BattleFrontier_BattleTowerElevator",
+   "w": 5,
+   "h": 7,
+   "tileset": "building__battle_frontier",
+   "npcs": 1,
+   "spawn": [
+    2,
+    3
+   ]
+  },
+  {
+   "map": "BattleFrontier_BattleTowerLobby",
+   "w": 25,
+   "h": 10,
+   "tileset": "building__battle_frontier",
+   "npcs": 9,
+   "spawn": [
+    11,
+    4
+   ]
+  },
+  {
+   "map": "BattleFrontier_BattleTowerMultiBattleRoom",
+   "w": 10,
+   "h": 9,
+   "tileset": "building__battle_frontier",
+   "npcs": 6,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "BattleFrontier_BattleTowerMultiCorridor",
+   "w": 17,
+   "h": 5,
+   "tileset": "building__battle_frontier",
+   "npcs": 4,
+   "spawn": [
+    8,
+    2
+   ]
+  },
+  {
+   "map": "BattleFrontier_BattleTowerMultiPartnerRoom",
+   "w": 21,
+   "h": 15,
+   "tileset": "building__battle_frontier",
+   "npcs": 9,
+   "spawn": [
+    10,
+    7
+   ]
+  },
+  {
+   "map": "BattleFrontier_ExchangeServiceCorner",
+   "w": 15,
+   "h": 11,
+   "tileset": "building__battle_frontier",
+   "npcs": 9,
+   "spawn": [
+    7,
+    5
+   ]
+  },
+  {
+   "map": "BattleFrontier_Lounge1",
+   "w": 9,
+   "h": 10,
+   "tileset": "building__battle_frontier",
+   "npcs": 3,
+   "spawn": [
+    4,
+    5
+   ]
+  },
+  {
+   "map": "BattleFrontier_Lounge2",
+   "w": 13,
+   "h": 8,
+   "tileset": "building__battle_frontier",
+   "npcs": 5,
+   "spawn": [
+    5,
+    3
+   ]
+  },
+  {
+   "map": "BattleFrontier_Lounge3",
+   "w": 9,
+   "h": 10,
+   "tileset": "building__battle_frontier",
+   "npcs": 5,
+   "spawn": [
+    4,
+    5
+   ]
+  },
+  {
+   "map": "BattleFrontier_Lounge4",
+   "w": 9,
+   "h": 10,
+   "tileset": "building__battle_frontier",
+   "npcs": 3,
+   "spawn": [
+    4,
+    5
+   ]
+  },
+  {
+   "map": "BattleFrontier_Lounge5",
+   "w": 13,
+   "h": 8,
+   "tileset": "building__battle_frontier",
+   "npcs": 4,
+   "spawn": [
+    5,
+    3
+   ]
+  },
+  {
+   "map": "BattleFrontier_Lounge6",
+   "w": 9,
+   "h": 10,
+   "tileset": "building__battle_frontier",
+   "npcs": 1,
+   "spawn": [
+    4,
+    5
+   ]
+  },
+  {
+   "map": "BattleFrontier_Lounge7",
+   "w": 9,
+   "h": 10,
+   "tileset": "building__battle_frontier",
+   "npcs": 4,
+   "spawn": [
+    4,
+    5
+   ]
+  },
+  {
+   "map": "BattleFrontier_Lounge8",
+   "w": 9,
+   "h": 10,
+   "tileset": "building__battle_frontier",
+   "npcs": 3,
+   "spawn": [
+    4,
+    5
+   ]
+  },
+  {
+   "map": "BattleFrontier_Lounge9",
+   "w": 9,
+   "h": 10,
+   "tileset": "building__battle_frontier",
+   "npcs": 1,
+   "spawn": [
+    4,
+    5
+   ]
+  },
+  {
+   "map": "BattleFrontier_Mart",
+   "w": 11,
+   "h": 8,
+   "tileset": "building__shop",
+   "npcs": 4,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "BattleFrontier_OutsideEast",
+   "w": 72,
+   "h": 72,
+   "tileset": "general__battle_frontier_outside_east",
+   "npcs": 26,
+   "spawn": [
+    36,
+    36
+   ]
+  },
+  {
+   "map": "BattleFrontier_OutsideWest",
+   "w": 56,
+   "h": 72,
+   "tileset": "general__battle_frontier_outside_west",
+   "npcs": 24,
+   "spawn": [
+    28,
+    36
+   ]
+  },
+  {
+   "map": "BattleFrontier_PokemonCenter_1F",
+   "w": 14,
+   "h": 9,
+   "tileset": "building__pokemon_center",
+   "npcs": 5,
+   "spawn": [
+    7,
+    4
+   ]
+  },
+  {
+   "map": "BattleFrontier_PokemonCenter_2F",
+   "w": 14,
+   "h": 10,
+   "tileset": "building__pokemon_center",
+   "npcs": 4,
+   "spawn": [
+    7,
+    5
+   ]
+  },
+  {
+   "map": "BattleFrontier_RankingHall",
+   "w": 53,
+   "h": 15,
+   "tileset": "building__battle_frontier_ranking_hall",
+   "npcs": 3,
+   "spawn": [
+    26,
+    7
+   ]
+  },
+  {
+   "map": "BattleFrontier_ReceptionGate",
+   "w": 9,
+   "h": 14,
+   "tileset": "general__battle_frontier",
+   "npcs": 5,
+   "spawn": [
+    4,
+    7
+   ]
+  },
+  {
+   "map": "BattleFrontier_ScottsHouse",
+   "w": 6,
+   "h": 8,
+   "tileset": "building__battle_frontier",
+   "npcs": 1,
+   "spawn": [
+    3,
+    4
+   ]
+  },
+  {
+   "map": "BattlePyramidSquare01",
+   "w": 8,
+   "h": 8,
+   "tileset": "building__battle_pyramid",
+   "npcs": 7,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "BattlePyramidSquare02",
+   "w": 8,
+   "h": 8,
+   "tileset": "building__battle_pyramid",
+   "npcs": 7,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "BattlePyramidSquare03",
+   "w": 8,
+   "h": 8,
+   "tileset": "building__battle_pyramid",
+   "npcs": 7,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "BattlePyramidSquare04",
+   "w": 8,
+   "h": 8,
+   "tileset": "building__battle_pyramid",
+   "npcs": 7,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "BattlePyramidSquare05",
+   "w": 8,
+   "h": 8,
+   "tileset": "building__battle_pyramid",
+   "npcs": 7,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "BattlePyramidSquare06",
+   "w": 8,
+   "h": 8,
+   "tileset": "building__battle_pyramid",
+   "npcs": 7,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "BattlePyramidSquare07",
+   "w": 8,
+   "h": 8,
+   "tileset": "building__battle_pyramid",
+   "npcs": 7,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "BattlePyramidSquare08",
+   "w": 8,
+   "h": 8,
+   "tileset": "building__battle_pyramid",
+   "npcs": 7,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "BattlePyramidSquare09",
+   "w": 8,
+   "h": 8,
+   "tileset": "building__battle_pyramid",
+   "npcs": 7,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "BattlePyramidSquare10",
+   "w": 8,
+   "h": 8,
+   "tileset": "building__battle_pyramid",
+   "npcs": 7,
+   "spawn": [
+    3,
+    3
+   ]
+  },
+  {
+   "map": "BattlePyramidSquare11",
+   "w": 8,
+   "h": 8,
+   "tileset": "building__battle_pyramid",
+   "npcs": 7,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "BattlePyramidSquare12",
+   "w": 8,
+   "h": 8,
+   "tileset": "building__battle_pyramid",
+   "npcs": 7,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "BattlePyramidSquare13",
+   "w": 8,
+   "h": 8,
+   "tileset": "building__battle_pyramid",
+   "npcs": 7,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "BattlePyramidSquare14",
+   "w": 8,
+   "h": 8,
+   "tileset": "building__battle_pyramid",
+   "npcs": 7,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "BattlePyramidSquare15",
+   "w": 8,
+   "h": 8,
+   "tileset": "building__battle_pyramid",
+   "npcs": 7,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "BattlePyramidSquare16",
+   "w": 8,
+   "h": 8,
+   "tileset": "building__battle_pyramid",
+   "npcs": 7,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "BirthIsland_Exterior",
+   "w": 30,
+   "h": 30,
+   "tileset": "general__dewford",
+   "npcs": 2,
+   "spawn": [
+    15,
+    15
+   ]
+  },
+  {
+   "map": "BirthIsland_Harbor",
+   "w": 17,
+   "h": 13,
+   "tileset": "general__island_harbor",
+   "npcs": 2,
+   "spawn": [
+    6,
+    4
+   ]
+  },
+  {
+   "map": "CaveOfOrigin_1F",
+   "w": 23,
+   "h": 23,
+   "tileset": "general__cave",
+   "npcs": 0,
+   "spawn": [
+    8,
+    8
+   ]
+  },
+  {
+   "map": "CaveOfOrigin_B1F",
+   "w": 19,
+   "h": 19,
+   "tileset": "general__cave",
+   "npcs": 1,
+   "spawn": [
+    8,
+    8
+   ]
+  },
+  {
+   "map": "CaveOfOrigin_Entrance",
+   "w": 19,
+   "h": 26,
+   "tileset": "general__cave",
+   "npcs": 0,
+   "spawn": [
+    9,
+    13
+   ]
+  },
+  {
+   "map": "CaveOfOrigin_UnusedRubySapphireMap1",
+   "w": 23,
+   "h": 23,
+   "tileset": "general__cave",
+   "npcs": 0,
+   "spawn": [
+    13,
+    9
+   ]
+  },
+  {
+   "map": "CaveOfOrigin_UnusedRubySapphireMap2",
+   "w": 21,
+   "h": 21,
+   "tileset": "general__cave",
+   "npcs": 0,
+   "spawn": [
+    7,
+    7
+   ]
+  },
+  {
+   "map": "CaveOfOrigin_UnusedRubySapphireMap3",
+   "w": 19,
+   "h": 21,
+   "tileset": "general__cave",
+   "npcs": 0,
+   "spawn": [
+    7,
+    12
+   ]
+  },
+  {
+   "map": "ContestHall",
+   "w": 15,
+   "h": 11,
+   "tileset": "general__contest",
+   "npcs": 15,
+   "spawn": [
+    7,
+    5
+   ]
+  },
+  {
+   "map": "ContestHallBeauty",
+   "w": 15,
+   "h": 11,
+   "tileset": "general__contest",
+   "npcs": 0,
+   "spawn": [
+    7,
+    5
+   ]
+  },
+  {
+   "map": "ContestHallCool",
+   "w": 15,
+   "h": 11,
+   "tileset": "general__contest",
+   "npcs": 0,
+   "spawn": [
+    7,
+    5
+   ]
+  },
+  {
+   "map": "ContestHallCute",
+   "w": 15,
+   "h": 11,
+   "tileset": "general__contest",
+   "npcs": 0,
+   "spawn": [
+    7,
+    5
+   ]
+  },
+  {
+   "map": "ContestHallSmart",
+   "w": 15,
+   "h": 11,
+   "tileset": "general__contest",
+   "npcs": 0,
+   "spawn": [
+    7,
+    5
+   ]
+  },
+  {
+   "map": "ContestHallTough",
+   "w": 15,
+   "h": 11,
+   "tileset": "general__contest",
+   "npcs": 0,
+   "spawn": [
+    7,
+    5
+   ]
+  },
+  {
+   "map": "DesertRuins",
+   "w": 17,
+   "h": 33,
+   "tileset": "general__cave",
+   "npcs": 1,
+   "spawn": [
+    8,
+    16
+   ]
+  },
+  {
+   "map": "DesertUnderpass",
+   "w": 139,
+   "h": 23,
+   "tileset": "general__cave",
+   "npcs": 1,
+   "spawn": [
+    68,
+    10
+   ]
+  },
+  {
+   "map": "DewfordTown",
+   "w": 20,
+   "h": 20,
+   "tileset": "general__dewford",
+   "npcs": 5,
+   "spawn": [
+    9,
+    9
+   ]
+  },
+  {
+   "map": "DewfordTown_Gym",
+   "w": 18,
+   "h": 28,
+   "tileset": "building__dewford_gym",
+   "npcs": 8,
+   "spawn": [
+    9,
+    14
+   ]
+  },
+  {
+   "map": "DewfordTown_Hall",
+   "w": 17,
+   "h": 9,
+   "tileset": "building__generic_building",
+   "npcs": 9,
+   "spawn": [
+    8,
+    4
+   ]
+  },
+  {
+   "map": "DewfordTown_House1",
+   "w": 10,
+   "h": 8,
+   "tileset": "building__generic_building",
+   "npcs": 3,
+   "spawn": [
+    6,
+    3
+   ]
+  },
+  {
+   "map": "DewfordTown_House2",
+   "w": 10,
+   "h": 9,
+   "tileset": "building__generic_building",
+   "npcs": 2,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "DewfordTown_PokemonCenter_1F",
+   "w": 14,
+   "h": 9,
+   "tileset": "building__pokemon_center",
+   "npcs": 3,
+   "spawn": [
+    7,
+    4
+   ]
+  },
+  {
+   "map": "DewfordTown_PokemonCenter_2F",
+   "w": 14,
+   "h": 10,
+   "tileset": "building__pokemon_center",
+   "npcs": 4,
+   "spawn": [
+    7,
+    5
+   ]
+  },
+  {
+   "map": "EverGrandeCity",
+   "w": 40,
+   "h": 80,
+   "tileset": "general__ever_grande",
+   "npcs": 0,
+   "spawn": [
+    18,
+    41
+   ]
+  },
+  {
+   "map": "EverGrandeCity_ChampionsRoom",
+   "w": 13,
+   "h": 13,
+   "tileset": "building__elite_four",
+   "npcs": 3,
+   "spawn": [
+    6,
+    6
+   ]
+  },
+  {
+   "map": "EverGrandeCity_DrakesRoom",
+   "w": 13,
+   "h": 14,
+   "tileset": "building__elite_four",
+   "npcs": 1,
+   "spawn": [
+    6,
+    7
+   ]
+  },
+  {
+   "map": "EverGrandeCity_GlaciasRoom",
+   "w": 13,
+   "h": 14,
+   "tileset": "building__elite_four",
+   "npcs": 1,
+   "spawn": [
+    6,
+    7
+   ]
+  },
+  {
+   "map": "EverGrandeCity_Hall1",
+   "w": 11,
+   "h": 13,
+   "tileset": "building__elite_four",
+   "npcs": 0,
+   "spawn": [
+    5,
+    6
+   ]
+  },
+  {
+   "map": "EverGrandeCity_Hall2",
+   "w": 11,
+   "h": 13,
+   "tileset": "building__elite_four",
+   "npcs": 0,
+   "spawn": [
+    5,
+    6
+   ]
+  },
+  {
+   "map": "EverGrandeCity_Hall3",
+   "w": 11,
+   "h": 13,
+   "tileset": "building__elite_four",
+   "npcs": 0,
+   "spawn": [
+    5,
+    6
+   ]
+  },
+  {
+   "map": "EverGrandeCity_Hall4",
+   "w": 11,
+   "h": 34,
+   "tileset": "building__elite_four",
+   "npcs": 0,
+   "spawn": [
+    5,
+    17
+   ]
+  },
+  {
+   "map": "EverGrandeCity_Hall5",
+   "w": 11,
+   "h": 13,
+   "tileset": "building__elite_four",
+   "npcs": 0,
+   "spawn": [
+    5,
+    6
+   ]
+  },
+  {
+   "map": "EverGrandeCity_HallOfFame",
+   "w": 15,
+   "h": 17,
+   "tileset": "building__cable_club",
+   "npcs": 1,
+   "spawn": [
+    7,
+    8
+   ]
+  },
+  {
+   "map": "EverGrandeCity_PhoebesRoom",
+   "w": 13,
+   "h": 14,
+   "tileset": "building__elite_four",
+   "npcs": 1,
+   "spawn": [
+    6,
+    7
+   ]
+  },
+  {
+   "map": "EverGrandeCity_PokemonCenter_1F",
+   "w": 14,
+   "h": 9,
+   "tileset": "building__pokemon_center",
+   "npcs": 4,
+   "spawn": [
+    7,
+    4
+   ]
+  },
+  {
+   "map": "EverGrandeCity_PokemonCenter_2F",
+   "w": 14,
+   "h": 10,
+   "tileset": "building__pokemon_center",
+   "npcs": 4,
+   "spawn": [
+    7,
+    5
+   ]
+  },
+  {
+   "map": "EverGrandeCity_PokemonLeague_1F",
+   "w": 19,
+   "h": 12,
+   "tileset": "building__pokemon_center",
+   "npcs": 4,
+   "spawn": [
+    9,
+    6
+   ]
+  },
+  {
+   "map": "EverGrandeCity_PokemonLeague_2F",
+   "w": 14,
+   "h": 10,
+   "tileset": "building__pokemon_center",
+   "npcs": 4,
+   "spawn": [
+    7,
+    5
+   ]
+  },
+  {
+   "map": "EverGrandeCity_SidneysRoom",
+   "w": 13,
+   "h": 14,
+   "tileset": "building__elite_four",
+   "npcs": 1,
+   "spawn": [
+    6,
+    7
+   ]
+  },
+  {
+   "map": "FallarborTown",
+   "w": 20,
+   "h": 20,
+   "tileset": "general__fallarbor",
+   "npcs": 4,
+   "spawn": [
+    10,
+    10
+   ]
+  },
+  {
+   "map": "FallarborTown_BattleTentBattleRoom",
+   "w": 10,
+   "h": 9,
+   "tileset": "building__battle_tent",
+   "npcs": 3,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "FallarborTown_BattleTentCorridor",
+   "w": 5,
+   "h": 8,
+   "tileset": "building__battle_tent",
+   "npcs": 1,
+   "spawn": [
+    2,
+    4
+   ]
+  },
+  {
+   "map": "FallarborTown_BattleTentLobby",
+   "w": 13,
+   "h": 10,
+   "tileset": "building__battle_tent",
+   "npcs": 5,
+   "spawn": [
+    6,
+    5
+   ]
+  },
+  {
+   "map": "FallarborTown_CozmosHouse",
+   "w": 10,
+   "h": 9,
+   "tileset": "building__generic_building",
+   "npcs": 2,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "FallarborTown_Mart",
+   "w": 11,
+   "h": 8,
+   "tileset": "building__shop",
+   "npcs": 5,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "FallarborTown_MoveRelearnersHouse",
+   "w": 11,
+   "h": 8,
+   "tileset": "building__generic_building",
+   "npcs": 1,
+   "spawn": [
+    4,
+    3
+   ]
+  },
+  {
+   "map": "FallarborTown_PokemonCenter_1F",
+   "w": 14,
+   "h": 9,
+   "tileset": "building__pokemon_center",
+   "npcs": 4,
+   "spawn": [
+    7,
+    4
+   ]
+  },
+  {
+   "map": "FallarborTown_PokemonCenter_2F",
+   "w": 14,
+   "h": 10,
+   "tileset": "building__pokemon_center",
+   "npcs": 4,
+   "spawn": [
+    7,
+    5
+   ]
+  },
+  {
+   "map": "FarawayIsland_Entrance",
+   "w": 34,
+   "h": 46,
+   "tileset": "general__rustboro",
+   "npcs": 2,
+   "spawn": [
+    17,
+    23
+   ]
+  },
+  {
+   "map": "FarawayIsland_Interior",
+   "w": 29,
+   "h": 26,
+   "tileset": "general__fortree",
+   "npcs": 1,
+   "spawn": [
+    14,
+    13
+   ]
+  },
+  {
+   "map": "FieryPath",
+   "w": 35,
+   "h": 38,
+   "tileset": "general__lavaridge",
+   "npcs": 8,
+   "spawn": [
+    18,
+    18
+   ]
+  },
+  {
+   "map": "FortreeCity",
+   "w": 40,
+   "h": 20,
+   "tileset": "general__fortree",
+   "npcs": 7,
+   "spawn": [
+    19,
+    11
+   ]
+  },
+  {
+   "map": "FortreeCity_DecorationShop",
+   "w": 8,
+   "h": 6,
+   "tileset": "building__generic_building",
+   "npcs": 4,
+   "spawn": [
+    5,
+    2
+   ]
+  },
+  {
+   "map": "FortreeCity_Gym",
+   "w": 20,
+   "h": 25,
+   "tileset": "building__fortree_gym",
+   "npcs": 8,
+   "spawn": [
+    9,
+    11
+   ]
+  },
+  {
+   "map": "FortreeCity_House1",
+   "w": 8,
+   "h": 6,
+   "tileset": "building__generic_building",
+   "npcs": 3,
+   "spawn": [
+    5,
+    2
+   ]
+  },
+  {
+   "map": "FortreeCity_House2",
+   "w": 8,
+   "h": 6,
+   "tileset": "building__generic_building",
+   "npcs": 2,
+   "spawn": [
+    5,
+    2
+   ]
+  },
+  {
+   "map": "FortreeCity_House3",
+   "w": 8,
+   "h": 6,
+   "tileset": "building__generic_building",
+   "npcs": 2,
+   "spawn": [
+    5,
+    2
+   ]
+  },
+  {
+   "map": "FortreeCity_House4",
+   "w": 8,
+   "h": 6,
+   "tileset": "building__generic_building",
+   "npcs": 3,
+   "spawn": [
+    5,
+    2
+   ]
+  },
+  {
+   "map": "FortreeCity_House5",
+   "w": 8,
+   "h": 6,
+   "tileset": "building__generic_building",
+   "npcs": 3,
+   "spawn": [
+    5,
+    2
+   ]
+  },
+  {
+   "map": "FortreeCity_Mart",
+   "w": 11,
+   "h": 8,
+   "tileset": "building__shop",
+   "npcs": 4,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "FortreeCity_PokemonCenter_1F",
+   "w": 14,
+   "h": 9,
+   "tileset": "building__pokemon_center",
+   "npcs": 4,
+   "spawn": [
+    7,
+    4
+   ]
+  },
+  {
+   "map": "FortreeCity_PokemonCenter_2F",
+   "w": 14,
+   "h": 10,
+   "tileset": "building__pokemon_center",
+   "npcs": 4,
+   "spawn": [
+    7,
+    5
+   ]
+  },
+  {
+   "map": "GraniteCave_1F",
+   "w": 42,
+   "h": 15,
+   "tileset": "general__cave",
+   "npcs": 2,
+   "spawn": [
+    21,
+    7
+   ]
+  },
+  {
+   "map": "GraniteCave_B1F",
+   "w": 32,
+   "h": 26,
+   "tileset": "general__cave",
+   "npcs": 1,
+   "spawn": [
+    16,
+    13
+   ]
+  },
+  {
+   "map": "GraniteCave_B2F",
+   "w": 32,
+   "h": 26,
+   "tileset": "general__cave",
+   "npcs": 9,
+   "spawn": [
+    15,
+    12
+   ]
+  },
+  {
+   "map": "GraniteCave_StevensRoom",
+   "w": 15,
+   "h": 14,
+   "tileset": "general__cave",
+   "npcs": 1,
+   "spawn": [
+    7,
+    7
+   ]
+  },
+  {
+   "map": "InsideOfTruck",
+   "w": 5,
+   "h": 5,
+   "tileset": "general__inside_of_truck",
+   "npcs": 3,
+   "spawn": [
+    2,
+    2
+   ]
+  },
+  {
+   "map": "IslandCave",
+   "w": 17,
+   "h": 33,
+   "tileset": "general__cave",
+   "npcs": 1,
+   "spawn": [
+    8,
+    16
+   ]
+  },
+  {
+   "map": "JaggedPass",
+   "w": 30,
+   "h": 46,
+   "tileset": "general__lavaridge",
+   "npcs": 7,
+   "spawn": [
+    14,
+    22
+   ]
+  },
+  {
+   "map": "LavaridgeTown",
+   "w": 20,
+   "h": 20,
+   "tileset": "general__lavaridge",
+   "npcs": 9,
+   "spawn": [
+    10,
+    10
+   ]
+  },
+  {
+   "map": "LavaridgeTown_Gym_1F",
+   "w": 17,
+   "h": 19,
+   "tileset": "building__lavaridge_gym",
+   "npcs": 6,
+   "spawn": [
+    8,
+    9
+   ]
+  },
+  {
+   "map": "LavaridgeTown_Gym_B1F",
+   "w": 17,
+   "h": 19,
+   "tileset": "building__lavaridge_gym",
+   "npcs": 4,
+   "spawn": [
+    8,
+    9
+   ]
+  },
+  {
+   "map": "LavaridgeTown_HerbShop",
+   "w": 11,
+   "h": 8,
+   "tileset": "building__shop",
+   "npcs": 3,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "LavaridgeTown_House",
+   "w": 10,
+   "h": 8,
+   "tileset": "building__generic_building",
+   "npcs": 3,
+   "spawn": [
+    6,
+    3
+   ]
+  },
+  {
+   "map": "LavaridgeTown_Mart",
+   "w": 11,
+   "h": 8,
+   "tileset": "building__shop",
+   "npcs": 3,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "LavaridgeTown_PokemonCenter_1F",
+   "w": 14,
+   "h": 9,
+   "tileset": "building__pokemon_center",
+   "npcs": 4,
+   "spawn": [
+    7,
+    4
+   ]
+  },
+  {
+   "map": "LavaridgeTown_PokemonCenter_2F",
+   "w": 14,
+   "h": 10,
+   "tileset": "building__pokemon_center",
+   "npcs": 4,
+   "spawn": [
+    7,
+    5
+   ]
+  },
+  {
+   "map": "LilycoveCity",
+   "w": 80,
+   "h": 40,
+   "tileset": "general__lilycove",
+   "npcs": 22,
+   "spawn": [
+    40,
+    20
+   ]
+  },
+  {
+   "map": "LilycoveCity_ContestHall",
+   "w": 51,
+   "h": 33,
+   "tileset": "building__contest",
+   "npcs": 32,
+   "spawn": [
+    25,
+    16
+   ]
+  },
+  {
+   "map": "LilycoveCity_ContestLobby",
+   "w": 31,
+   "h": 12,
+   "tileset": "building__contest",
+   "npcs": 25,
+   "spawn": [
+    15,
+    6
+   ]
+  },
+  {
+   "map": "LilycoveCity_CoveLilyMotel_1F",
+   "w": 12,
+   "h": 9,
+   "tileset": "building__generic_building",
+   "npcs": 1,
+   "spawn": [
+    6,
+    4
+   ]
+  },
+  {
+   "map": "LilycoveCity_CoveLilyMotel_2F",
+   "w": 12,
+   "h": 9,
+   "tileset": "building__generic_building",
+   "npcs": 7,
+   "spawn": [
+    6,
+    4
+   ]
+  },
+  {
+   "map": "LilycoveCity_DepartmentStoreElevator",
+   "w": 5,
+   "h": 6,
+   "tileset": "building__battle_frontier",
+   "npcs": 1,
+   "spawn": [
+    2,
+    3
+   ]
+  },
+  {
+   "map": "LilycoveCity_DepartmentStoreRooftop",
+   "w": 18,
+   "h": 12,
+   "tileset": "building__shop",
+   "npcs": 4,
+   "spawn": [
+    9,
+    6
+   ]
+  },
+  {
+   "map": "LilycoveCity_DepartmentStore_1F",
+   "w": 18,
+   "h": 8,
+   "tileset": "building__shop",
+   "npcs": 6,
+   "spawn": [
+    9,
+    4
+   ]
+  },
+  {
+   "map": "LilycoveCity_DepartmentStore_2F",
+   "w": 18,
+   "h": 8,
+   "tileset": "building__shop",
+   "npcs": 5,
+   "spawn": [
+    9,
+    4
+   ]
+  },
+  {
+   "map": "LilycoveCity_DepartmentStore_3F",
+   "w": 18,
+   "h": 8,
+   "tileset": "building__shop",
+   "npcs": 5,
+   "spawn": [
+    9,
+    4
+   ]
+  },
+  {
+   "map": "LilycoveCity_DepartmentStore_4F",
+   "w": 18,
+   "h": 8,
+   "tileset": "building__shop",
+   "npcs": 5,
+   "spawn": [
+    9,
+    4
+   ]
+  },
+  {
+   "map": "LilycoveCity_DepartmentStore_5F",
+   "w": 18,
+   "h": 8,
+   "tileset": "building__shop",
+   "npcs": 7,
+   "spawn": [
+    9,
+    4
+   ]
+  },
+  {
+   "map": "LilycoveCity_Harbor",
+   "w": 24,
+   "h": 15,
+   "tileset": "general__facility",
+   "npcs": 5,
+   "spawn": [
+    8,
+    10
+   ]
+  },
+  {
+   "map": "LilycoveCity_House1",
+   "w": 10,
+   "h": 9,
+   "tileset": "building__generic_building",
+   "npcs": 2,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "LilycoveCity_House2",
+   "w": 8,
+   "h": 8,
+   "tileset": "building__generic_building",
+   "npcs": 1,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "LilycoveCity_House3",
+   "w": 11,
+   "h": 8,
+   "tileset": "building__generic_building",
+   "npcs": 6,
+   "spawn": [
+    4,
+    3
+   ]
+  },
+  {
+   "map": "LilycoveCity_House4",
+   "w": 10,
+   "h": 9,
+   "tileset": "building__generic_building",
+   "npcs": 2,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "LilycoveCity_LilycoveMuseum_1F",
+   "w": 21,
+   "h": 14,
+   "tileset": "building__lilycove_museum",
+   "npcs": 10,
+   "spawn": [
+    10,
+    7
+   ]
+  },
+  {
+   "map": "LilycoveCity_LilycoveMuseum_2F",
+   "w": 22,
+   "h": 13,
+   "tileset": "building__lilycove_museum",
+   "npcs": 4,
+   "spawn": [
+    10,
+    7
+   ]
+  },
+  {
+   "map": "LilycoveCity_MoveDeletersHouse",
+   "w": 11,
+   "h": 8,
+   "tileset": "building__generic_building",
+   "npcs": 1,
+   "spawn": [
+    4,
+    3
+   ]
+  },
+  {
+   "map": "LilycoveCity_PokemonCenter_1F",
+   "w": 14,
+   "h": 9,
+   "tileset": "building__pokemon_center",
+   "npcs": 5,
+   "spawn": [
+    7,
+    4
+   ]
+  },
+  {
+   "map": "LilycoveCity_PokemonCenter_2F",
+   "w": 14,
+   "h": 10,
+   "tileset": "building__pokemon_center",
+   "npcs": 4,
+   "spawn": [
+    7,
+    5
+   ]
+  },
+  {
+   "map": "LilycoveCity_PokemonTrainerFanClub",
+   "w": 12,
+   "h": 14,
+   "tileset": "building__generic_building",
+   "npcs": 9,
+   "spawn": [
+    6,
+    7
+   ]
+  },
+  {
+   "map": "LilycoveCity_UnusedMart",
+   "w": 11,
+   "h": 8,
+   "tileset": "building__shop",
+   "npcs": 0,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "LittlerootTown",
+   "w": 20,
+   "h": 20,
+   "tileset": "general__petalburg",
+   "npcs": 8,
+   "spawn": [
+    10,
+    10
+   ]
+  },
+  {
+   "map": "LittlerootTown_BrendansHouse_1F",
+   "w": 11,
+   "h": 9,
+   "tileset": "building__brendans_mays_house",
+   "npcs": 7,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "LittlerootTown_BrendansHouse_2F",
+   "w": 9,
+   "h": 8,
+   "tileset": "building__brendans_mays_house",
+   "npcs": 16,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "LittlerootTown_MaysHouse_1F",
+   "w": 11,
+   "h": 9,
+   "tileset": "building__brendans_mays_house",
+   "npcs": 7,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "LittlerootTown_MaysHouse_2F",
+   "w": 9,
+   "h": 8,
+   "tileset": "building__brendans_mays_house",
+   "npcs": 16,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "LittlerootTown_ProfessorBirchsLab",
+   "w": 13,
+   "h": 13,
+   "tileset": "building__lab",
+   "npcs": 6,
+   "spawn": [
+    6,
+    6
+   ]
+  },
+  {
+   "map": "MagmaHideout_1F",
+   "w": 37,
+   "h": 38,
+   "tileset": "general__lavaridge",
+   "npcs": 6,
+   "spawn": [
+    20,
+    21
+   ]
+  },
+  {
+   "map": "MagmaHideout_2F_1R",
+   "w": 33,
+   "h": 39,
+   "tileset": "general__lavaridge",
+   "npcs": 4,
+   "spawn": [
+    16,
+    19
+   ]
+  },
+  {
+   "map": "MagmaHideout_2F_2R",
+   "w": 49,
+   "h": 28,
+   "tileset": "general__lavaridge",
+   "npcs": 6,
+   "spawn": [
+    25,
+    13
+   ]
+  },
+  {
+   "map": "MagmaHideout_2F_3R",
+   "w": 60,
+   "h": 19,
+   "tileset": "general__lavaridge",
+   "npcs": 0,
+   "spawn": [
+    23,
+    13
+   ]
+  },
+  {
+   "map": "MagmaHideout_3F_1R",
+   "w": 28,
+   "h": 24,
+   "tileset": "general__lavaridge",
+   "npcs": 3,
+   "spawn": [
+    15,
+    11
+   ]
+  },
+  {
+   "map": "MagmaHideout_3F_2R",
+   "w": 24,
+   "h": 17,
+   "tileset": "general__lavaridge",
+   "npcs": 2,
+   "spawn": [
+    10,
+    9
+   ]
+  },
+  {
+   "map": "MagmaHideout_3F_3R",
+   "w": 33,
+   "h": 24,
+   "tileset": "general__lavaridge",
+   "npcs": 1,
+   "spawn": [
+    16,
+    12
+   ]
+  },
+  {
+   "map": "MagmaHideout_4F",
+   "w": 59,
+   "h": 28,
+   "tileset": "general__lavaridge",
+   "npcs": 8,
+   "spawn": [
+    29,
+    14
+   ]
+  },
+  {
+   "map": "MarineCave_End",
+   "w": 27,
+   "h": 30,
+   "tileset": "general__cave",
+   "npcs": 1,
+   "spawn": [
+    14,
+    14
+   ]
+  },
+  {
+   "map": "MarineCave_Entrance",
+   "w": 20,
+   "h": 20,
+   "tileset": "general__cave",
+   "npcs": 0,
+   "spawn": [
+    10,
+    10
+   ]
+  },
+  {
+   "map": "MauvilleCity",
+   "w": 40,
+   "h": 20,
+   "tileset": "general__mauville",
+   "npcs": 11,
+   "spawn": [
+    20,
+    10
+   ]
+  },
+  {
+   "map": "MauvilleCity_BikeShop",
+   "w": 12,
+   "h": 9,
+   "tileset": "general__bike_shop",
+   "npcs": 2,
+   "spawn": [
+    7,
+    3
+   ]
+  },
+  {
+   "map": "MauvilleCity_GameCorner",
+   "w": 22,
+   "h": 11,
+   "tileset": "building__mauville_game_corner",
+   "npcs": 12,
+   "spawn": [
+    11,
+    5
+   ]
+  },
+  {
+   "map": "MauvilleCity_Gym",
+   "w": 10,
+   "h": 21,
+   "tileset": "building__mauville_gym",
+   "npcs": 7,
+   "spawn": [
+    5,
+    10
+   ]
+  },
+  {
+   "map": "MauvilleCity_House1",
+   "w": 11,
+   "h": 8,
+   "tileset": "building__generic_building",
+   "npcs": 1,
+   "spawn": [
+    4,
+    3
+   ]
+  },
+  {
+   "map": "MauvilleCity_House2",
+   "w": 10,
+   "h": 9,
+   "tileset": "building__generic_building",
+   "npcs": 1,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "MauvilleCity_Mart",
+   "w": 11,
+   "h": 8,
+   "tileset": "building__shop",
+   "npcs": 3,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "MauvilleCity_PokemonCenter_1F",
+   "w": 14,
+   "h": 9,
+   "tileset": "building__pokemon_center",
+   "npcs": 5,
+   "spawn": [
+    7,
+    4
+   ]
+  },
+  {
+   "map": "MauvilleCity_PokemonCenter_2F",
+   "w": 14,
+   "h": 10,
+   "tileset": "building__pokemon_center",
+   "npcs": 5,
+   "spawn": [
+    7,
+    5
+   ]
+  },
+  {
+   "map": "MeteorFalls_1F_1R",
+   "w": 30,
+   "h": 42,
+   "tileset": "general__meteor_falls",
+   "npcs": 10,
+   "spawn": [
+    14,
+    20
+   ]
+  },
+  {
+   "map": "MeteorFalls_1F_2R",
+   "w": 30,
+   "h": 32,
+   "tileset": "general__meteor_falls",
+   "npcs": 3,
+   "spawn": [
+    14,
+    16
+   ]
+  },
+  {
+   "map": "MeteorFalls_B1F_1R",
+   "w": 29,
+   "h": 38,
+   "tileset": "general__meteor_falls",
+   "npcs": 0,
+   "spawn": [
+    14,
+    19
+   ]
+  },
+  {
+   "map": "MeteorFalls_B1F_2R",
+   "w": 11,
+   "h": 18,
+   "tileset": "general__meteor_falls",
+   "npcs": 1,
+   "spawn": [
+    5,
+    9
+   ]
+  },
+  {
+   "map": "MeteorFalls_StevensCave",
+   "w": 30,
+   "h": 32,
+   "tileset": "general__meteor_falls",
+   "npcs": 1,
+   "spawn": [
+    16,
+    14
+   ]
+  },
+  {
+   "map": "MirageTower_1F",
+   "w": 21,
+   "h": 17,
+   "tileset": "general__mirage_tower",
+   "npcs": 0,
+   "spawn": [
+    10,
+    8
+   ]
+  },
+  {
+   "map": "MirageTower_2F",
+   "w": 21,
+   "h": 17,
+   "tileset": "general__mirage_tower",
+   "npcs": 0,
+   "spawn": [
+    10,
+    8
+   ]
+  },
+  {
+   "map": "MirageTower_3F",
+   "w": 21,
+   "h": 17,
+   "tileset": "general__mirage_tower",
+   "npcs": 2,
+   "spawn": [
+    10,
+    8
+   ]
+  },
+  {
+   "map": "MirageTower_4F",
+   "w": 13,
+   "h": 10,
+   "tileset": "general__mirage_tower",
+   "npcs": 3,
+   "spawn": [
+    6,
+    5
+   ]
+  },
+  {
+   "map": "MossdeepCity",
+   "w": 80,
+   "h": 40,
+   "tileset": "general__mossdeep",
+   "npcs": 17,
+   "spawn": [
+    40,
+    20
+   ]
+  },
+  {
+   "map": "MossdeepCity_GameCorner_1F",
+   "w": 12,
+   "h": 10,
+   "tileset": "building__mossdeep_game_corner",
+   "npcs": 2,
+   "spawn": [
+    6,
+    5
+   ]
+  },
+  {
+   "map": "MossdeepCity_GameCorner_B1F",
+   "w": 12,
+   "h": 9,
+   "tileset": "building__generic_building",
+   "npcs": 1,
+   "spawn": [
+    6,
+    4
+   ]
+  },
+  {
+   "map": "MossdeepCity_Gym",
+   "w": 26,
+   "h": 36,
+   "tileset": "building__mossdeep_gym",
+   "npcs": 36,
+   "spawn": [
+    9,
+    18
+   ]
+  },
+  {
+   "map": "MossdeepCity_House1",
+   "w": 11,
+   "h": 8,
+   "tileset": "building__generic_building",
+   "npcs": 2,
+   "spawn": [
+    4,
+    3
+   ]
+  },
+  {
+   "map": "MossdeepCity_House2",
+   "w": 10,
+   "h": 9,
+   "tileset": "building__generic_building",
+   "npcs": 3,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "MossdeepCity_House3",
+   "w": 11,
+   "h": 8,
+   "tileset": "building__generic_building",
+   "npcs": 1,
+   "spawn": [
+    4,
+    3
+   ]
+  },
+  {
+   "map": "MossdeepCity_House4",
+   "w": 10,
+   "h": 8,
+   "tileset": "building__generic_building",
+   "npcs": 3,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "MossdeepCity_Mart",
+   "w": 11,
+   "h": 8,
+   "tileset": "building__shop",
+   "npcs": 4,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "MossdeepCity_PokemonCenter_1F",
+   "w": 14,
+   "h": 9,
+   "tileset": "building__pokemon_center",
+   "npcs": 3,
+   "spawn": [
+    7,
+    4
+   ]
+  },
+  {
+   "map": "MossdeepCity_PokemonCenter_2F",
+   "w": 14,
+   "h": 10,
+   "tileset": "building__pokemon_center",
+   "npcs": 5,
+   "spawn": [
+    7,
+    5
+   ]
+  },
+  {
+   "map": "MossdeepCity_SpaceCenter_1F",
+   "w": 16,
+   "h": 10,
+   "tileset": "general__facility",
+   "npcs": 11,
+   "spawn": [
+    8,
+    5
+   ]
+  },
+  {
+   "map": "MossdeepCity_SpaceCenter_2F",
+   "w": 16,
+   "h": 10,
+   "tileset": "general__facility",
+   "npcs": 9,
+   "spawn": [
+    8,
+    5
+   ]
+  },
+  {
+   "map": "MossdeepCity_StevensHouse",
+   "w": 11,
+   "h": 8,
+   "tileset": "building__generic_building",
+   "npcs": 3,
+   "spawn": [
+    4,
+    5
+   ]
+  },
+  {
+   "map": "MtChimney",
+   "w": 40,
+   "h": 47,
+   "tileset": "general__lavaridge",
+   "npcs": 30,
+   "spawn": [
+    20,
+    23
+   ]
+  },
+  {
+   "map": "MtChimney_CableCarStation",
+   "w": 13,
+   "h": 12,
+   "tileset": "general__facility",
+   "npcs": 2,
+   "spawn": [
+    6,
+    6
+   ]
+  },
+  {
+   "map": "MtPyre_1F",
+   "w": 22,
+   "h": 19,
+   "tileset": "general__facility",
+   "npcs": 3,
+   "spawn": [
+    11,
+    8
+   ]
+  },
+  {
+   "map": "MtPyre_2F",
+   "w": 13,
+   "h": 13,
+   "tileset": "general__facility",
+   "npcs": 8,
+   "spawn": [
+    6,
+    6
+   ]
+  },
+  {
+   "map": "MtPyre_3F",
+   "w": 13,
+   "h": 13,
+   "tileset": "general__facility",
+   "npcs": 4,
+   "spawn": [
+    5,
+    5
+   ]
+  },
+  {
+   "map": "MtPyre_4F",
+   "w": 13,
+   "h": 13,
+   "tileset": "general__facility",
+   "npcs": 2,
+   "spawn": [
+    4,
+    8
+   ]
+  },
+  {
+   "map": "MtPyre_5F",
+   "w": 13,
+   "h": 13,
+   "tileset": "general__facility",
+   "npcs": 2,
+   "spawn": [
+    5,
+    7
+   ]
+  },
+  {
+   "map": "MtPyre_6F",
+   "w": 13,
+   "h": 13,
+   "tileset": "general__facility",
+   "npcs": 3,
+   "spawn": [
+    5,
+    5
+   ]
+  },
+  {
+   "map": "MtPyre_Exterior",
+   "w": 38,
+   "h": 51,
+   "tileset": "general__facility",
+   "npcs": 2,
+   "spawn": [
+    17,
+    27
+   ]
+  },
+  {
+   "map": "MtPyre_Summit",
+   "w": 50,
+   "h": 37,
+   "tileset": "general__facility",
+   "npcs": 8,
+   "spawn": [
+    25,
+    18
+   ]
+  },
+  {
+   "map": "NavelRock_B1F",
+   "w": 23,
+   "h": 11,
+   "tileset": "general__navel_rock",
+   "npcs": 0,
+   "spawn": [
+    11,
+    5
+   ]
+  },
+  {
+   "map": "NavelRock_Bottom",
+   "w": 22,
+   "h": 22,
+   "tileset": "general__navel_rock",
+   "npcs": 1,
+   "spawn": [
+    10,
+    12
+   ]
+  },
+  {
+   "map": "NavelRock_Down01",
+   "w": 9,
+   "h": 8,
+   "tileset": "general__navel_rock",
+   "npcs": 0,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "NavelRock_Down02",
+   "w": 9,
+   "h": 8,
+   "tileset": "general__navel_rock",
+   "npcs": 0,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "NavelRock_Down03",
+   "w": 9,
+   "h": 8,
+   "tileset": "general__navel_rock",
+   "npcs": 0,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "NavelRock_Down04",
+   "w": 9,
+   "h": 8,
+   "tileset": "general__navel_rock",
+   "npcs": 0,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "NavelRock_Down05",
+   "w": 9,
+   "h": 8,
+   "tileset": "general__navel_rock",
+   "npcs": 0,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "NavelRock_Down06",
+   "w": 9,
+   "h": 8,
+   "tileset": "general__navel_rock",
+   "npcs": 0,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "NavelRock_Down07",
+   "w": 9,
+   "h": 8,
+   "tileset": "general__navel_rock",
+   "npcs": 0,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "NavelRock_Down08",
+   "w": 9,
+   "h": 8,
+   "tileset": "general__navel_rock",
+   "npcs": 0,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "NavelRock_Down09",
+   "w": 9,
+   "h": 8,
+   "tileset": "general__navel_rock",
+   "npcs": 0,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "NavelRock_Down10",
+   "w": 9,
+   "h": 8,
+   "tileset": "general__navel_rock",
+   "npcs": 0,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "NavelRock_Down11",
+   "w": 9,
+   "h": 8,
+   "tileset": "general__navel_rock",
+   "npcs": 0,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "NavelRock_Entrance",
+   "w": 21,
+   "h": 32,
+   "tileset": "general__navel_rock",
+   "npcs": 0,
+   "spawn": [
+    10,
+    16
+   ]
+  },
+  {
+   "map": "NavelRock_Exterior",
+   "w": 21,
+   "h": 24,
+   "tileset": "general__dewford",
+   "npcs": 0,
+   "spawn": [
+    10,
+    12
+   ]
+  },
+  {
+   "map": "NavelRock_Fork",
+   "w": 27,
+   "h": 86,
+   "tileset": "general__navel_rock",
+   "npcs": 0,
+   "spawn": [
+    13,
+    43
+   ]
+  },
+  {
+   "map": "NavelRock_Harbor",
+   "w": 17,
+   "h": 13,
+   "tileset": "general__island_harbor",
+   "npcs": 2,
+   "spawn": [
+    6,
+    4
+   ]
+  },
+  {
+   "map": "NavelRock_Top",
+   "w": 25,
+   "h": 28,
+   "tileset": "general__navel_rock",
+   "npcs": 1,
+   "spawn": [
+    12,
+    14
+   ]
+  },
+  {
+   "map": "NavelRock_Up1",
+   "w": 9,
+   "h": 8,
+   "tileset": "general__navel_rock",
+   "npcs": 0,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "NavelRock_Up2",
+   "w": 9,
+   "h": 8,
+   "tileset": "general__navel_rock",
+   "npcs": 0,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "NavelRock_Up3",
+   "w": 9,
+   "h": 8,
+   "tileset": "general__navel_rock",
+   "npcs": 0,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "NavelRock_Up4",
+   "w": 9,
+   "h": 8,
+   "tileset": "general__navel_rock",
+   "npcs": 0,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "NewMauville_Entrance",
+   "w": 9,
+   "h": 9,
+   "tileset": "general__facility",
+   "npcs": 0,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "NewMauville_Inside",
+   "w": 41,
+   "h": 41,
+   "tileset": "general__bike_shop",
+   "npcs": 8,
+   "spawn": [
+    19,
+    19
+   ]
+  },
+  {
+   "map": "OldaleTown",
+   "w": 20,
+   "h": 20,
+   "tileset": "general__petalburg",
+   "npcs": 4,
+   "spawn": [
+    10,
+    10
+   ]
+  },
+  {
+   "map": "OldaleTown_House1",
+   "w": 10,
+   "h": 9,
+   "tileset": "building__generic_building",
+   "npcs": 1,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "OldaleTown_House2",
+   "w": 11,
+   "h": 8,
+   "tileset": "building__generic_building",
+   "npcs": 2,
+   "spawn": [
+    4,
+    3
+   ]
+  },
+  {
+   "map": "OldaleTown_Mart",
+   "w": 11,
+   "h": 8,
+   "tileset": "building__shop",
+   "npcs": 3,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "OldaleTown_PokemonCenter_1F",
+   "w": 14,
+   "h": 9,
+   "tileset": "building__pokemon_center",
+   "npcs": 4,
+   "spawn": [
+    7,
+    4
+   ]
+  },
+  {
+   "map": "OldaleTown_PokemonCenter_2F",
+   "w": 14,
+   "h": 10,
+   "tileset": "building__pokemon_center",
+   "npcs": 4,
+   "spawn": [
+    7,
+    5
+   ]
+  },
+  {
+   "map": "PacifidlogTown",
+   "w": 20,
+   "h": 40,
+   "tileset": "general__pacifidlog",
+   "npcs": 3,
+   "spawn": [
+    10,
+    20
+   ]
+  },
+  {
+   "map": "PacifidlogTown_House1",
+   "w": 10,
+   "h": 9,
+   "tileset": "building__generic_building",
+   "npcs": 2,
+   "spawn": [
+    4,
+    3
+   ]
+  },
+  {
+   "map": "PacifidlogTown_House2",
+   "w": 10,
+   "h": 9,
+   "tileset": "building__generic_building",
+   "npcs": 3,
+   "spawn": [
+    4,
+    3
+   ]
+  },
+  {
+   "map": "PacifidlogTown_House3",
+   "w": 10,
+   "h": 9,
+   "tileset": "building__generic_building",
+   "npcs": 2,
+   "spawn": [
+    4,
+    3
+   ]
+  },
+  {
+   "map": "PacifidlogTown_House4",
+   "w": 10,
+   "h": 9,
+   "tileset": "building__generic_building",
+   "npcs": 3,
+   "spawn": [
+    4,
+    3
+   ]
+  },
+  {
+   "map": "PacifidlogTown_House5",
+   "w": 10,
+   "h": 9,
+   "tileset": "building__generic_building",
+   "npcs": 2,
+   "spawn": [
+    4,
+    3
+   ]
+  },
+  {
+   "map": "PacifidlogTown_PokemonCenter_1F",
+   "w": 14,
+   "h": 9,
+   "tileset": "building__pokemon_center",
+   "npcs": 5,
+   "spawn": [
+    7,
+    4
+   ]
+  },
+  {
+   "map": "PacifidlogTown_PokemonCenter_2F",
+   "w": 14,
+   "h": 10,
+   "tileset": "building__pokemon_center",
+   "npcs": 4,
+   "spawn": [
+    7,
+    5
+   ]
+  },
+  {
+   "map": "PetalburgCity",
+   "w": 30,
+   "h": 30,
+   "tileset": "general__petalburg",
+   "npcs": 9,
+   "spawn": [
+    15,
+    15
+   ]
+  },
+  {
+   "map": "PetalburgCity_Gym",
+   "w": 9,
+   "h": 112,
+   "tileset": "building__petalburg_gym",
+   "npcs": 11,
+   "spawn": [
+    4,
+    56
+   ]
+  },
+  {
+   "map": "PetalburgCity_House1",
+   "w": 10,
+   "h": 9,
+   "tileset": "building__generic_building",
+   "npcs": 2,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "PetalburgCity_House2",
+   "w": 10,
+   "h": 8,
+   "tileset": "building__generic_building",
+   "npcs": 2,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "PetalburgCity_Mart",
+   "w": 11,
+   "h": 8,
+   "tileset": "building__shop",
+   "npcs": 4,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "PetalburgCity_PokemonCenter_1F",
+   "w": 14,
+   "h": 9,
+   "tileset": "building__pokemon_center",
+   "npcs": 5,
+   "spawn": [
+    7,
+    4
+   ]
+  },
+  {
+   "map": "PetalburgCity_PokemonCenter_2F",
+   "w": 14,
+   "h": 10,
+   "tileset": "building__pokemon_center",
+   "npcs": 4,
+   "spawn": [
+    7,
+    5
+   ]
+  },
+  {
+   "map": "PetalburgCity_WallysHouse",
+   "w": 11,
+   "h": 8,
+   "tileset": "building__generic_building",
+   "npcs": 2,
+   "spawn": [
+    4,
+    3
+   ]
+  },
+  {
+   "map": "PetalburgWoods",
+   "w": 48,
+   "h": 44,
+   "tileset": "general__rustboro",
+   "npcs": 13,
+   "spawn": [
+    26,
+    20
+   ]
+  },
+  {
+   "map": "RecordCorner",
+   "w": 20,
+   "h": 10,
+   "tileset": "building__cable_club",
+   "npcs": 1,
+   "spawn": [
+    8,
+    3
+   ]
+  },
+  {
+   "map": "Route101",
+   "w": 20,
+   "h": 20,
+   "tileset": "general__petalburg",
+   "npcs": 6,
+   "spawn": [
+    10,
+    10
+   ]
+  },
+  {
+   "map": "Route102",
+   "w": 50,
+   "h": 20,
+   "tileset": "general__petalburg",
+   "npcs": 9,
+   "spawn": [
+    25,
+    10
+   ]
+  },
+  {
+   "map": "Route103",
+   "w": 80,
+   "h": 22,
+   "tileset": "general__petalburg",
+   "npcs": 20,
+   "spawn": [
+    40,
+    11
+   ]
+  },
+  {
+   "map": "Route104",
+   "w": 40,
+   "h": 80,
+   "tileset": "general__rustboro",
+   "npcs": 34,
+   "spawn": [
+    21,
+    41
+   ]
+  },
+  {
+   "map": "Route104_MrBrineysHouse",
+   "w": 12,
+   "h": 9,
+   "tileset": "building__generic_building",
+   "npcs": 2,
+   "spawn": [
+    6,
+    4
+   ]
+  },
+  {
+   "map": "Route104_PrettyPetalFlowerShop",
+   "w": 15,
+   "h": 9,
+   "tileset": "building__pretty_petal_flower_shop",
+   "npcs": 3,
+   "spawn": [
+    7,
+    4
+   ]
+  },
+  {
+   "map": "Route104_PrototypePrettyPetalFlowerShop",
+   "w": 15,
+   "h": 9,
+   "tileset": "building__pretty_petal_flower_shop",
+   "npcs": 0,
+   "spawn": [
+    7,
+    4
+   ]
+  },
+  {
+   "map": "Route105",
+   "w": 40,
+   "h": 80,
+   "tileset": "general__dewford",
+   "npcs": 8,
+   "spawn": [
+    20,
+    40
+   ]
+  },
+  {
+   "map": "Route106",
+   "w": 80,
+   "h": 20,
+   "tileset": "general__dewford",
+   "npcs": 5,
+   "spawn": [
+    40,
+    10
+   ]
+  },
+  {
+   "map": "Route107",
+   "w": 60,
+   "h": 20,
+   "tileset": "general__dewford",
+   "npcs": 7,
+   "spawn": [
+    30,
+    10
+   ]
+  },
+  {
+   "map": "Route108",
+   "w": 60,
+   "h": 20,
+   "tileset": "general__slateport",
+   "npcs": 7,
+   "spawn": [
+    30,
+    10
+   ]
+  },
+  {
+   "map": "Route109",
+   "w": 40,
+   "h": 63,
+   "tileset": "general__slateport",
+   "npcs": 24,
+   "spawn": [
+    20,
+    31
+   ]
+  },
+  {
+   "map": "Route109_SeashoreHouse",
+   "w": 15,
+   "h": 10,
+   "tileset": "building__seashore_house",
+   "npcs": 4,
+   "spawn": [
+    7,
+    5
+   ]
+  },
+  {
+   "map": "Route110",
+   "w": 40,
+   "h": 100,
+   "tileset": "general__mauville",
+   "npcs": 36,
+   "spawn": [
+    19,
+    49
+   ]
+  },
+  {
+   "map": "Route110_SeasideCyclingRoadNorthEntrance",
+   "w": 15,
+   "h": 6,
+   "tileset": "building__shop",
+   "npcs": 1,
+   "spawn": [
+    6,
+    2
+   ]
+  },
+  {
+   "map": "Route110_SeasideCyclingRoadSouthEntrance",
+   "w": 15,
+   "h": 6,
+   "tileset": "building__shop",
+   "npcs": 1,
+   "spawn": [
+    6,
+    2
+   ]
+  },
+  {
+   "map": "Route110_TrickHouseCorridor",
+   "w": 15,
+   "h": 24,
+   "tileset": "building__generic_building",
+   "npcs": 0,
+   "spawn": [
+    5,
+    10
+   ]
+  },
+  {
+   "map": "Route110_TrickHouseEnd",
+   "w": 12,
+   "h": 8,
+   "tileset": "building__generic_building",
+   "npcs": 1,
+   "spawn": [
+    5,
+    3
+   ]
+  },
+  {
+   "map": "Route110_TrickHouseEntrance",
+   "w": 12,
+   "h": 8,
+   "tileset": "building__generic_building",
+   "npcs": 1,
+   "spawn": [
+    7,
+    3
+   ]
+  },
+  {
+   "map": "Route110_TrickHousePuzzle1",
+   "w": 15,
+   "h": 22,
+   "tileset": "building__trick_house_puzzle",
+   "npcs": 15,
+   "spawn": [
+    7,
+    11
+   ]
+  },
+  {
+   "map": "Route110_TrickHousePuzzle2",
+   "w": 15,
+   "h": 22,
+   "tileset": "building__trick_house_puzzle",
+   "npcs": 5,
+   "spawn": [
+    7,
+    11
+   ]
+  },
+  {
+   "map": "Route110_TrickHousePuzzle3",
+   "w": 15,
+   "h": 22,
+   "tileset": "building__trick_house_puzzle",
+   "npcs": 7,
+   "spawn": [
+    7,
+    11
+   ]
+  },
+  {
+   "map": "Route110_TrickHousePuzzle4",
+   "w": 15,
+   "h": 22,
+   "tileset": "building__trick_house_puzzle",
+   "npcs": 14,
+   "spawn": [
+    6,
+    10
+   ]
+  },
+  {
+   "map": "Route110_TrickHousePuzzle5",
+   "w": 15,
+   "h": 22,
+   "tileset": "building__trick_house_puzzle",
+   "npcs": 5,
+   "spawn": [
+    8,
+    10
+   ]
+  },
+  {
+   "map": "Route110_TrickHousePuzzle6",
+   "w": 15,
+   "h": 22,
+   "tileset": "building__trick_house_puzzle",
+   "npcs": 4,
+   "spawn": [
+    7,
+    11
+   ]
+  },
+  {
+   "map": "Route110_TrickHousePuzzle7",
+   "w": 15,
+   "h": 22,
+   "tileset": "building__trick_house_puzzle",
+   "npcs": 9,
+   "spawn": [
+    6,
+    10
+   ]
+  },
+  {
+   "map": "Route110_TrickHousePuzzle8",
+   "w": 15,
+   "h": 22,
+   "tileset": "building__trick_house_puzzle",
+   "npcs": 4,
+   "spawn": [
+    8,
+    11
+   ]
+  },
+  {
+   "map": "Route111",
+   "w": 40,
+   "h": 140,
+   "tileset": "general__mauville",
+   "npcs": 46,
+   "spawn": [
+    21,
+    69
+   ]
+  },
+  {
+   "map": "Route111_OldLadysRestStop",
+   "w": 10,
+   "h": 8,
+   "tileset": "building__generic_building",
+   "npcs": 1,
+   "spawn": [
+    6,
+    3
+   ]
+  },
+  {
+   "map": "Route111_WinstrateFamilysHouse",
+   "w": 11,
+   "h": 8,
+   "tileset": "building__generic_building",
+   "npcs": 4,
+   "spawn": [
+    4,
+    3
+   ]
+  },
+  {
+   "map": "Route112",
+   "w": 40,
+   "h": 60,
+   "tileset": "general__lavaridge",
+   "npcs": 14,
+   "spawn": [
+    19,
+    29
+   ]
+  },
+  {
+   "map": "Route112_CableCarStation",
+   "w": 13,
+   "h": 12,
+   "tileset": "general__facility",
+   "npcs": 2,
+   "spawn": [
+    6,
+    6
+   ]
+  },
+  {
+   "map": "Route113",
+   "w": 100,
+   "h": 20,
+   "tileset": "general__fallarbor",
+   "npcs": 16,
+   "spawn": [
+    50,
+    10
+   ]
+  },
+  {
+   "map": "Route113_GlassWorkshop",
+   "w": 10,
+   "h": 9,
+   "tileset": "building__generic_building",
+   "npcs": 2,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "Route114",
+   "w": 40,
+   "h": 80,
+   "tileset": "general__fallarbor",
+   "npcs": 27,
+   "spawn": [
+    20,
+    40
+   ]
+  },
+  {
+   "map": "Route114_FossilManiacsHouse",
+   "w": 10,
+   "h": 8,
+   "tileset": "building__generic_building",
+   "npcs": 1,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "Route114_FossilManiacsTunnel",
+   "w": 13,
+   "h": 26,
+   "tileset": "general__fallarbor",
+   "npcs": 1,
+   "spawn": [
+    6,
+    13
+   ]
+  },
+  {
+   "map": "Route114_LanettesHouse",
+   "w": 11,
+   "h": 8,
+   "tileset": "building__lab",
+   "npcs": 1,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "Route115",
+   "w": 40,
+   "h": 80,
+   "tileset": "general__fallarbor",
+   "npcs": 23,
+   "spawn": [
+    18,
+    41
+   ]
+  },
+  {
+   "map": "Route116",
+   "w": 100,
+   "h": 20,
+   "tileset": "general__rustboro",
+   "npcs": 28,
+   "spawn": [
+    49,
+    9
+   ]
+  },
+  {
+   "map": "Route116_TunnelersRestHouse",
+   "w": 10,
+   "h": 9,
+   "tileset": "building__generic_building",
+   "npcs": 3,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "Route117",
+   "w": 60,
+   "h": 20,
+   "tileset": "general__mauville",
+   "npcs": 24,
+   "spawn": [
+    30,
+    10
+   ]
+  },
+  {
+   "map": "Route117_PokemonDayCare",
+   "w": 12,
+   "h": 9,
+   "tileset": "building__pokemon_day_care",
+   "npcs": 1,
+   "spawn": [
+    6,
+    4
+   ]
+  },
+  {
+   "map": "Route118",
+   "w": 80,
+   "h": 20,
+   "tileset": "general__mauville",
+   "npcs": 21,
+   "spawn": [
+    40,
+    10
+   ]
+  },
+  {
+   "map": "Route119",
+   "w": 40,
+   "h": 140,
+   "tileset": "general__fortree",
+   "npcs": 43,
+   "spawn": [
+    20,
+    70
+   ]
+  },
+  {
+   "map": "Route119_House",
+   "w": 10,
+   "h": 9,
+   "tileset": "building__generic_building",
+   "npcs": 7,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "Route119_WeatherInstitute_1F",
+   "w": 20,
+   "h": 13,
+   "tileset": "building__lab",
+   "npcs": 5,
+   "spawn": [
+    10,
+    6
+   ]
+  },
+  {
+   "map": "Route119_WeatherInstitute_2F",
+   "w": 20,
+   "h": 11,
+   "tileset": "building__lab",
+   "npcs": 8,
+   "spawn": [
+    10,
+    5
+   ]
+  },
+  {
+   "map": "Route120",
+   "w": 40,
+   "h": 100,
+   "tileset": "general__fortree",
+   "npcs": 44,
+   "spawn": [
+    20,
+    50
+   ]
+  },
+  {
+   "map": "Route121",
+   "w": 80,
+   "h": 20,
+   "tileset": "general__lilycove",
+   "npcs": 29,
+   "spawn": [
+    40,
+    10
+   ]
+  },
+  {
+   "map": "Route121_SafariZoneEntrance",
+   "w": 18,
+   "h": 14,
+   "tileset": "building__shop",
+   "npcs": 3,
+   "spawn": [
+    11,
+    5
+   ]
+  },
+  {
+   "map": "Route122",
+   "w": 40,
+   "h": 40,
+   "tileset": "general__lilycove",
+   "npcs": 0,
+   "spawn": [
+    26,
+    28
+   ]
+  },
+  {
+   "map": "Route123",
+   "w": 140,
+   "h": 20,
+   "tileset": "general__lilycove",
+   "npcs": 43,
+   "spawn": [
+    69,
+    9
+   ]
+  },
+  {
+   "map": "Route123_BerryMastersHouse",
+   "w": 11,
+   "h": 8,
+   "tileset": "building__generic_building",
+   "npcs": 2,
+   "spawn": [
+    4,
+    3
+   ]
+  },
+  {
+   "map": "Route124",
+   "w": 80,
+   "h": 80,
+   "tileset": "general__mossdeep",
+   "npcs": 12,
+   "spawn": [
+    40,
+    40
+   ]
+  },
+  {
+   "map": "Route124_DivingTreasureHuntersHouse",
+   "w": 10,
+   "h": 9,
+   "tileset": "building__generic_building",
+   "npcs": 1,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "Route125",
+   "w": 80,
+   "h": 40,
+   "tileset": "general__mossdeep",
+   "npcs": 10,
+   "spawn": [
+    40,
+    20
+   ]
+  },
+  {
+   "map": "Route126",
+   "w": 80,
+   "h": 80,
+   "tileset": "general__mossdeep",
+   "npcs": 9,
+   "spawn": [
+    38,
+    40
+   ]
+  },
+  {
+   "map": "Route127",
+   "w": 80,
+   "h": 80,
+   "tileset": "general__mossdeep",
+   "npcs": 11,
+   "spawn": [
+    40,
+    40
+   ]
+  },
+  {
+   "map": "Route128",
+   "w": 120,
+   "h": 40,
+   "tileset": "general__mossdeep",
+   "npcs": 10,
+   "spawn": [
+    61,
+    19
+   ]
+  },
+  {
+   "map": "Route129",
+   "w": 80,
+   "h": 40,
+   "tileset": "general__mossdeep",
+   "npcs": 5,
+   "spawn": [
+    40,
+    20
+   ]
+  },
+  {
+   "map": "Route130",
+   "w": 80,
+   "h": 40,
+   "tileset": "general__cave",
+   "npcs": 4,
+   "spawn": [
+    39,
+    19
+   ]
+  },
+  {
+   "map": "Route131",
+   "w": 60,
+   "h": 40,
+   "tileset": "general__pacifidlog",
+   "npcs": 8,
+   "spawn": [
+    30,
+    20
+   ]
+  },
+  {
+   "map": "Route132",
+   "w": 80,
+   "h": 40,
+   "tileset": "general__pacifidlog",
+   "npcs": 10,
+   "spawn": [
+    40,
+    20
+   ]
+  },
+  {
+   "map": "Route133",
+   "w": 80,
+   "h": 40,
+   "tileset": "general__pacifidlog",
+   "npcs": 10,
+   "spawn": [
+    40,
+    20
+   ]
+  },
+  {
+   "map": "Route134",
+   "w": 80,
+   "h": 40,
+   "tileset": "general__pacifidlog",
+   "npcs": 11,
+   "spawn": [
+    40,
+    20
+   ]
+  },
+  {
+   "map": "RustboroCity",
+   "w": 40,
+   "h": 60,
+   "tileset": "general__rustboro",
+   "npcs": 16,
+   "spawn": [
+    20,
+    30
+   ]
+  },
+  {
+   "map": "RustboroCity_CuttersHouse",
+   "w": 11,
+   "h": 9,
+   "tileset": "building__generic_building",
+   "npcs": 2,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "RustboroCity_DevonCorp_1F",
+   "w": 19,
+   "h": 9,
+   "tileset": "building__facility",
+   "npcs": 3,
+   "spawn": [
+    8,
+    3
+   ]
+  },
+  {
+   "map": "RustboroCity_DevonCorp_2F",
+   "w": 19,
+   "h": 9,
+   "tileset": "general__facility",
+   "npcs": 6,
+   "spawn": [
+    9,
+    4
+   ]
+  },
+  {
+   "map": "RustboroCity_DevonCorp_3F",
+   "w": 19,
+   "h": 9,
+   "tileset": "building__facility",
+   "npcs": 3,
+   "spawn": [
+    8,
+    3
+   ]
+  },
+  {
+   "map": "RustboroCity_Flat1_1F",
+   "w": 14,
+   "h": 8,
+   "tileset": "building__generic_building",
+   "npcs": 2,
+   "spawn": [
+    7,
+    4
+   ]
+  },
+  {
+   "map": "RustboroCity_Flat1_2F",
+   "w": 14,
+   "h": 8,
+   "tileset": "building__generic_building",
+   "npcs": 8,
+   "spawn": [
+    7,
+    4
+   ]
+  },
+  {
+   "map": "RustboroCity_Flat2_1F",
+   "w": 14,
+   "h": 9,
+   "tileset": "building__generic_building",
+   "npcs": 2,
+   "spawn": [
+    7,
+    4
+   ]
+  },
+  {
+   "map": "RustboroCity_Flat2_2F",
+   "w": 14,
+   "h": 9,
+   "tileset": "building__generic_building",
+   "npcs": 2,
+   "spawn": [
+    7,
+    4
+   ]
+  },
+  {
+   "map": "RustboroCity_Flat2_3F",
+   "w": 14,
+   "h": 9,
+   "tileset": "building__generic_building",
+   "npcs": 2,
+   "spawn": [
+    7,
+    4
+   ]
+  },
+  {
+   "map": "RustboroCity_Gym",
+   "w": 11,
+   "h": 20,
+   "tileset": "building__rustboro_gym",
+   "npcs": 5,
+   "spawn": [
+    5,
+    10
+   ]
+  },
+  {
+   "map": "RustboroCity_House1",
+   "w": 13,
+   "h": 8,
+   "tileset": "building__generic_building",
+   "npcs": 2,
+   "spawn": [
+    6,
+    4
+   ]
+  },
+  {
+   "map": "RustboroCity_House2",
+   "w": 12,
+   "h": 9,
+   "tileset": "building__generic_building",
+   "npcs": 2,
+   "spawn": [
+    5,
+    3
+   ]
+  },
+  {
+   "map": "RustboroCity_House3",
+   "w": 12,
+   "h": 9,
+   "tileset": "building__generic_building",
+   "npcs": 3,
+   "spawn": [
+    5,
+    3
+   ]
+  },
+  {
+   "map": "RustboroCity_Mart",
+   "w": 11,
+   "h": 8,
+   "tileset": "building__shop",
+   "npcs": 4,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "RustboroCity_PokemonCenter_1F",
+   "w": 14,
+   "h": 9,
+   "tileset": "building__pokemon_center",
+   "npcs": 4,
+   "spawn": [
+    7,
+    4
+   ]
+  },
+  {
+   "map": "RustboroCity_PokemonCenter_2F",
+   "w": 14,
+   "h": 10,
+   "tileset": "building__pokemon_center",
+   "npcs": 4,
+   "spawn": [
+    7,
+    5
+   ]
+  },
+  {
+   "map": "RustboroCity_PokemonSchool",
+   "w": 12,
+   "h": 11,
+   "tileset": "building__pokemon_school",
+   "npcs": 7,
+   "spawn": [
+    6,
+    5
+   ]
+  },
+  {
+   "map": "RusturfTunnel",
+   "w": 36,
+   "h": 24,
+   "tileset": "general__rusturf_tunnel",
+   "npcs": 10,
+   "spawn": [
+    18,
+    15
+   ]
+  },
+  {
+   "map": "SSTidalCorridor",
+   "w": 18,
+   "h": 13,
+   "tileset": "general__inside_ship",
+   "npcs": 5,
+   "spawn": [
+    6,
+    3
+   ]
+  },
+  {
+   "map": "SSTidalLowerDeck",
+   "w": 17,
+   "h": 13,
+   "tileset": "general__inside_ship",
+   "npcs": 2,
+   "spawn": [
+    7,
+    5
+   ]
+  },
+  {
+   "map": "SSTidalRooms",
+   "w": 36,
+   "h": 18,
+   "tileset": "general__inside_ship",
+   "npcs": 8,
+   "spawn": [
+    16,
+    7
+   ]
+  },
+  {
+   "map": "SafariZone_North",
+   "w": 40,
+   "h": 40,
+   "tileset": "general__lilycove",
+   "npcs": 9,
+   "spawn": [
+    20,
+    20
+   ]
+  },
+  {
+   "map": "SafariZone_Northeast",
+   "w": 40,
+   "h": 40,
+   "tileset": "general__lilycove",
+   "npcs": 9,
+   "spawn": [
+    20,
+    20
+   ]
+  },
+  {
+   "map": "SafariZone_Northwest",
+   "w": 40,
+   "h": 40,
+   "tileset": "general__lilycove",
+   "npcs": 2,
+   "spawn": [
+    20,
+    20
+   ]
+  },
+  {
+   "map": "SafariZone_RestHouse",
+   "w": 10,
+   "h": 9,
+   "tileset": "building__generic_building",
+   "npcs": 3,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "SafariZone_South",
+   "w": 40,
+   "h": 40,
+   "tileset": "general__lilycove",
+   "npcs": 6,
+   "spawn": [
+    19,
+    19
+   ]
+  },
+  {
+   "map": "SafariZone_Southeast",
+   "w": 40,
+   "h": 40,
+   "tileset": "general__lilycove",
+   "npcs": 5,
+   "spawn": [
+    19,
+    19
+   ]
+  },
+  {
+   "map": "SafariZone_Southwest",
+   "w": 40,
+   "h": 40,
+   "tileset": "general__lilycove",
+   "npcs": 2,
+   "spawn": [
+    20,
+    20
+   ]
+  },
+  {
+   "map": "ScorchedSlab",
+   "w": 15,
+   "h": 20,
+   "tileset": "general__cave",
+   "npcs": 1,
+   "spawn": [
+    7,
+    10
+   ]
+  },
+  {
+   "map": "SeafloorCavern_Entrance",
+   "w": 20,
+   "h": 20,
+   "tileset": "general__cave",
+   "npcs": 1,
+   "spawn": [
+    10,
+    10
+   ]
+  },
+  {
+   "map": "SeafloorCavern_Room1",
+   "w": 20,
+   "h": 21,
+   "tileset": "general__cave",
+   "npcs": 5,
+   "spawn": [
+    9,
+    11
+   ]
+  },
+  {
+   "map": "SeafloorCavern_Room2",
+   "w": 18,
+   "h": 12,
+   "tileset": "general__cave",
+   "npcs": 8,
+   "spawn": [
+    10,
+    5
+   ]
+  },
+  {
+   "map": "SeafloorCavern_Room3",
+   "w": 16,
+   "h": 17,
+   "tileset": "general__cave",
+   "npcs": 9,
+   "spawn": [
+    7,
+    7
+   ]
+  },
+  {
+   "map": "SeafloorCavern_Room4",
+   "w": 18,
+   "h": 19,
+   "tileset": "general__cave",
+   "npcs": 2,
+   "spawn": [
+    9,
+    10
+   ]
+  },
+  {
+   "map": "SeafloorCavern_Room5",
+   "w": 20,
+   "h": 20,
+   "tileset": "general__cave",
+   "npcs": 6,
+   "spawn": [
+    8,
+    8
+   ]
+  },
+  {
+   "map": "SeafloorCavern_Room6",
+   "w": 24,
+   "h": 23,
+   "tileset": "general__pacifidlog",
+   "npcs": 0,
+   "spawn": [
+    12,
+    11
+   ]
+  },
+  {
+   "map": "SeafloorCavern_Room7",
+   "w": 23,
+   "h": 25,
+   "tileset": "general__pacifidlog",
+   "npcs": 0,
+   "spawn": [
+    11,
+    12
+   ]
+  },
+  {
+   "map": "SeafloorCavern_Room8",
+   "w": 11,
+   "h": 14,
+   "tileset": "general__cave",
+   "npcs": 12,
+   "spawn": [
+    5,
+    7
+   ]
+  },
+  {
+   "map": "SeafloorCavern_Room9",
+   "w": 27,
+   "h": 46,
+   "tileset": "general__cave",
+   "npcs": 7,
+   "spawn": [
+    13,
+    23
+   ]
+  },
+  {
+   "map": "SealedChamber_InnerRoom",
+   "w": 21,
+   "h": 23,
+   "tileset": "general__cave",
+   "npcs": 0,
+   "spawn": [
+    10,
+    11
+   ]
+  },
+  {
+   "map": "SealedChamber_OuterRoom",
+   "w": 21,
+   "h": 23,
+   "tileset": "general__cave",
+   "npcs": 0,
+   "spawn": [
+    9,
+    10
+   ]
+  },
+  {
+   "map": "ShoalCave_HighTideEntranceRoom",
+   "w": 35,
+   "h": 35,
+   "tileset": "general__cave",
+   "npcs": 0,
+   "spawn": [
+    17,
+    17
+   ]
+  },
+  {
+   "map": "ShoalCave_HighTideInnerRoom",
+   "w": 46,
+   "h": 38,
+   "tileset": "general__cave",
+   "npcs": 0,
+   "spawn": [
+    23,
+    19
+   ]
+  },
+  {
+   "map": "ShoalCave_LowTideEntranceRoom",
+   "w": 35,
+   "h": 35,
+   "tileset": "general__cave",
+   "npcs": 2,
+   "spawn": [
+    18,
+    16
+   ]
+  },
+  {
+   "map": "ShoalCave_LowTideIceRoom",
+   "w": 20,
+   "h": 30,
+   "tileset": "general__cave",
+   "npcs": 2,
+   "spawn": [
+    10,
+    15
+   ]
+  },
+  {
+   "map": "ShoalCave_LowTideInnerRoom",
+   "w": 46,
+   "h": 38,
+   "tileset": "general__cave",
+   "npcs": 1,
+   "spawn": [
+    23,
+    19
+   ]
+  },
+  {
+   "map": "ShoalCave_LowTideLowerRoom",
+   "w": 31,
+   "h": 14,
+   "tileset": "general__cave",
+   "npcs": 2,
+   "spawn": [
+    15,
+    6
+   ]
+  },
+  {
+   "map": "ShoalCave_LowTideStairsRoom",
+   "w": 21,
+   "h": 15,
+   "tileset": "general__cave",
+   "npcs": 1,
+   "spawn": [
+    9,
+    6
+   ]
+  },
+  {
+   "map": "SkyPillar_1F",
+   "w": 14,
+   "h": 14,
+   "tileset": "general__pacifidlog",
+   "npcs": 0,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "SkyPillar_2F",
+   "w": 14,
+   "h": 14,
+   "tileset": "general__pacifidlog",
+   "npcs": 0,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "SkyPillar_3F",
+   "w": 14,
+   "h": 14,
+   "tileset": "general__pacifidlog",
+   "npcs": 0,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "SkyPillar_4F",
+   "w": 14,
+   "h": 14,
+   "tileset": "general__pacifidlog",
+   "npcs": 0,
+   "spawn": [
+    4,
+    4
+   ]
+  },
+  {
+   "map": "SkyPillar_5F",
+   "w": 14,
+   "h": 14,
+   "tileset": "general__pacifidlog",
+   "npcs": 0,
+   "spawn": [
+    3,
+    3
+   ]
+  },
+  {
+   "map": "SkyPillar_Entrance",
+   "w": 18,
+   "h": 18,
+   "tileset": "general__cave",
+   "npcs": 0,
+   "spawn": [
+    8,
+    8
+   ]
+  },
+  {
+   "map": "SkyPillar_Outside",
+   "w": 28,
+   "h": 23,
+   "tileset": "general__pacifidlog",
+   "npcs": 1,
+   "spawn": [
+    13,
+    10
+   ]
+  },
+  {
+   "map": "SkyPillar_Top",
+   "w": 27,
+   "h": 24,
+   "tileset": "general__pacifidlog",
+   "npcs": 2,
+   "spawn": [
+    12,
+    11
+   ]
+  },
+  {
+   "map": "SlateportCity",
+   "w": 40,
+   "h": 60,
+   "tileset": "general__slateport",
+   "npcs": 35,
+   "spawn": [
+    20,
+    30
+   ]
+  },
+  {
+   "map": "SlateportCity_BattleTentBattleRoom",
+   "w": 10,
+   "h": 9,
+   "tileset": "building__battle_tent",
+   "npcs": 3,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "SlateportCity_BattleTentCorridor",
+   "w": 5,
+   "h": 8,
+   "tileset": "building__battle_tent",
+   "npcs": 1,
+   "spawn": [
+    2,
+    4
+   ]
+  },
+  {
+   "map": "SlateportCity_BattleTentLobby",
+   "w": 13,
+   "h": 10,
+   "tileset": "building__battle_tent",
+   "npcs": 5,
+   "spawn": [
+    6,
+    5
+   ]
+  },
+  {
+   "map": "SlateportCity_Harbor",
+   "w": 24,
+   "h": 15,
+   "tileset": "general__facility",
+   "npcs": 8,
+   "spawn": [
+    8,
+    10
+   ]
+  },
+  {
+   "map": "SlateportCity_House",
+   "w": 11,
+   "h": 8,
+   "tileset": "building__generic_building",
+   "npcs": 2,
+   "spawn": [
+    4,
+    3
+   ]
+  },
+  {
+   "map": "SlateportCity_Mart",
+   "w": 11,
+   "h": 8,
+   "tileset": "building__shop",
+   "npcs": 3,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "SlateportCity_NameRatersHouse",
+   "w": 10,
+   "h": 8,
+   "tileset": "building__generic_building",
+   "npcs": 1,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "SlateportCity_OceanicMuseum_1F",
+   "w": 20,
+   "h": 9,
+   "tileset": "building__oceanic_museum",
+   "npcs": 14,
+   "spawn": [
+    10,
+    4
+   ]
+  },
+  {
+   "map": "SlateportCity_OceanicMuseum_2F",
+   "w": 20,
+   "h": 9,
+   "tileset": "building__oceanic_museum",
+   "npcs": 7,
+   "spawn": [
+    10,
+    4
+   ]
+  },
+  {
+   "map": "SlateportCity_PokemonCenter_1F",
+   "w": 14,
+   "h": 9,
+   "tileset": "building__pokemon_center",
+   "npcs": 3,
+   "spawn": [
+    7,
+    4
+   ]
+  },
+  {
+   "map": "SlateportCity_PokemonCenter_2F",
+   "w": 14,
+   "h": 10,
+   "tileset": "building__pokemon_center",
+   "npcs": 4,
+   "spawn": [
+    7,
+    5
+   ]
+  },
+  {
+   "map": "SlateportCity_PokemonFanClub",
+   "w": 14,
+   "h": 11,
+   "tileset": "building__pokemon_fan_club",
+   "npcs": 9,
+   "spawn": [
+    7,
+    5
+   ]
+  },
+  {
+   "map": "SlateportCity_SternsShipyard_1F",
+   "w": 21,
+   "h": 15,
+   "tileset": "general__facility",
+   "npcs": 4,
+   "spawn": [
+    10,
+    7
+   ]
+  },
+  {
+   "map": "SlateportCity_SternsShipyard_2F",
+   "w": 17,
+   "h": 15,
+   "tileset": "general__facility",
+   "npcs": 3,
+   "spawn": [
+    7,
+    6
+   ]
+  },
+  {
+   "map": "SootopolisCity",
+   "w": 60,
+   "h": 60,
+   "tileset": "general__sootopolis",
+   "npcs": 18,
+   "spawn": [
+    28,
+    28
+   ]
+  },
+  {
+   "map": "SootopolisCity_Gym_1F",
+   "w": 17,
+   "h": 26,
+   "tileset": "building__sootopolis_gym",
+   "npcs": 2,
+   "spawn": [
+    8,
+    13
+   ]
+  },
+  {
+   "map": "SootopolisCity_Gym_B1F",
+   "w": 17,
+   "h": 26,
+   "tileset": "building__sootopolis_gym",
+   "npcs": 10,
+   "spawn": [
+    8,
+    13
+   ]
+  },
+  {
+   "map": "SootopolisCity_House1",
+   "w": 8,
+   "h": 7,
+   "tileset": "building__generic_building",
+   "npcs": 2,
+   "spawn": [
+    3,
+    2
+   ]
+  },
+  {
+   "map": "SootopolisCity_House2",
+   "w": 8,
+   "h": 7,
+   "tileset": "building__generic_building",
+   "npcs": 1,
+   "spawn": [
+    3,
+    2
+   ]
+  },
+  {
+   "map": "SootopolisCity_House3",
+   "w": 8,
+   "h": 7,
+   "tileset": "building__generic_building",
+   "npcs": 2,
+   "spawn": [
+    4,
+    3
+   ]
+  },
+  {
+   "map": "SootopolisCity_House4",
+   "w": 8,
+   "h": 7,
+   "tileset": "building__generic_building",
+   "npcs": 3,
+   "spawn": [
+    3,
+    2
+   ]
+  },
+  {
+   "map": "SootopolisCity_House5",
+   "w": 8,
+   "h": 7,
+   "tileset": "building__generic_building",
+   "npcs": 2,
+   "spawn": [
+    3,
+    2
+   ]
+  },
+  {
+   "map": "SootopolisCity_House6",
+   "w": 8,
+   "h": 7,
+   "tileset": "building__generic_building",
+   "npcs": 1,
+   "spawn": [
+    4,
+    3
+   ]
+  },
+  {
+   "map": "SootopolisCity_House7",
+   "w": 8,
+   "h": 7,
+   "tileset": "building__generic_building",
+   "npcs": 2,
+   "spawn": [
+    3,
+    2
+   ]
+  },
+  {
+   "map": "SootopolisCity_LotadAndSeedotHouse",
+   "w": 8,
+   "h": 7,
+   "tileset": "building__generic_building",
+   "npcs": 2,
+   "spawn": [
+    3,
+    2
+   ]
+  },
+  {
+   "map": "SootopolisCity_Mart",
+   "w": 11,
+   "h": 8,
+   "tileset": "building__shop",
+   "npcs": 3,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "SootopolisCity_MysteryEventsHouse_1F",
+   "w": 11,
+   "h": 8,
+   "tileset": "building__mystery_events_house",
+   "npcs": 1,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "SootopolisCity_MysteryEventsHouse_B1F",
+   "w": 12,
+   "h": 9,
+   "tileset": "building__mystery_events_house",
+   "npcs": 1,
+   "spawn": [
+    6,
+    4
+   ]
+  },
+  {
+   "map": "SootopolisCity_PokemonCenter_1F",
+   "w": 14,
+   "h": 9,
+   "tileset": "building__pokemon_center",
+   "npcs": 4,
+   "spawn": [
+    7,
+    4
+   ]
+  },
+  {
+   "map": "SootopolisCity_PokemonCenter_2F",
+   "w": 14,
+   "h": 10,
+   "tileset": "building__pokemon_center",
+   "npcs": 4,
+   "spawn": [
+    7,
+    5
+   ]
+  },
+  {
+   "map": "SouthernIsland_Exterior",
+   "w": 33,
+   "h": 30,
+   "tileset": "general__rustboro",
+   "npcs": 2,
+   "spawn": [
+    15,
+    16
+   ]
+  },
+  {
+   "map": "SouthernIsland_Interior",
+   "w": 27,
+   "h": 24,
+   "tileset": "general__rustboro",
+   "npcs": 2,
+   "spawn": [
+    13,
+    12
+   ]
+  },
+  {
+   "map": "TerraCave_End",
+   "w": 27,
+   "h": 30,
+   "tileset": "general__cave",
+   "npcs": 1,
+   "spawn": [
+    11,
+    13
+   ]
+  },
+  {
+   "map": "TerraCave_Entrance",
+   "w": 20,
+   "h": 20,
+   "tileset": "general__cave",
+   "npcs": 0,
+   "spawn": [
+    11,
+    10
+   ]
+  },
+  {
+   "map": "TradeCenter",
+   "w": 12,
+   "h": 9,
+   "tileset": "building__cable_club",
+   "npcs": 1,
+   "spawn": [
+    6,
+    4
+   ]
+  },
+  {
+   "map": "TrainerHill_1F",
+   "w": 16,
+   "h": 21,
+   "tileset": "building__trainer_hill",
+   "npcs": 0,
+   "spawn": [
+    8,
+    10
+   ]
+  },
+  {
+   "map": "TrainerHill_2F",
+   "w": 16,
+   "h": 21,
+   "tileset": "building__trainer_hill",
+   "npcs": 0,
+   "spawn": [
+    8,
+    10
+   ]
+  },
+  {
+   "map": "TrainerHill_3F",
+   "w": 16,
+   "h": 21,
+   "tileset": "building__trainer_hill",
+   "npcs": 0,
+   "spawn": [
+    8,
+    10
+   ]
+  },
+  {
+   "map": "TrainerHill_4F",
+   "w": 16,
+   "h": 21,
+   "tileset": "building__trainer_hill",
+   "npcs": 0,
+   "spawn": [
+    8,
+    10
+   ]
+  },
+  {
+   "map": "TrainerHill_Elevator",
+   "w": 5,
+   "h": 7,
+   "tileset": "building__battle_frontier",
+   "npcs": 1,
+   "spawn": [
+    2,
+    3
+   ]
+  },
+  {
+   "map": "TrainerHill_Entrance",
+   "w": 19,
+   "h": 17,
+   "tileset": "building__trainer_hill",
+   "npcs": 5,
+   "spawn": [
+    9,
+    8
+   ]
+  },
+  {
+   "map": "TrainerHill_Roof",
+   "w": 25,
+   "h": 16,
+   "tileset": "building__trainer_hill",
+   "npcs": 1,
+   "spawn": [
+    12,
+    8
+   ]
+  },
+  {
+   "map": "Underwater_MarineCave",
+   "w": 20,
+   "h": 10,
+   "tileset": "general__underwater",
+   "npcs": 0,
+   "spawn": [
+    9,
+    6
+   ]
+  },
+  {
+   "map": "Underwater_Route105",
+   "w": 40,
+   "h": 80,
+   "tileset": "general__underwater",
+   "npcs": 0,
+   "spawn": [
+    13,
+    33
+   ]
+  },
+  {
+   "map": "Underwater_Route124",
+   "w": 80,
+   "h": 80,
+   "tileset": "general__underwater",
+   "npcs": 0,
+   "spawn": [
+    43,
+    37
+   ]
+  },
+  {
+   "map": "Underwater_Route125",
+   "w": 80,
+   "h": 40,
+   "tileset": "general__underwater",
+   "npcs": 0,
+   "spawn": [
+    50,
+    28
+   ]
+  },
+  {
+   "map": "Underwater_Route126",
+   "w": 80,
+   "h": 80,
+   "tileset": "general__underwater",
+   "npcs": 0,
+   "spawn": [
+    32,
+    32
+   ]
+  },
+  {
+   "map": "Underwater_Route127",
+   "w": 80,
+   "h": 80,
+   "tileset": "general__underwater",
+   "npcs": 0,
+   "spawn": [
+    40,
+    40
+   ]
+  },
+  {
+   "map": "Underwater_Route128",
+   "w": 120,
+   "h": 40,
+   "tileset": "general__underwater",
+   "npcs": 0,
+   "spawn": [
+    55,
+    15
+   ]
+  },
+  {
+   "map": "Underwater_Route129",
+   "w": 80,
+   "h": 40,
+   "tileset": "general__underwater",
+   "npcs": 0,
+   "spawn": [
+    40,
+    20
+   ]
+  },
+  {
+   "map": "Underwater_Route134",
+   "w": 18,
+   "h": 10,
+   "tileset": "general__underwater",
+   "npcs": 0,
+   "spawn": [
+    9,
+    5
+   ]
+  },
+  {
+   "map": "Underwater_SeafloorCavern",
+   "w": 14,
+   "h": 9,
+   "tileset": "general__underwater",
+   "npcs": 4,
+   "spawn": [
+    6,
+    5
+   ]
+  },
+  {
+   "map": "Underwater_SealedChamber",
+   "w": 22,
+   "h": 48,
+   "tileset": "general__underwater",
+   "npcs": 0,
+   "spawn": [
+    11,
+    24
+   ]
+  },
+  {
+   "map": "Underwater_SootopolisCity",
+   "w": 20,
+   "h": 10,
+   "tileset": "general__underwater",
+   "npcs": 0,
+   "spawn": [
+    10,
+    5
+   ]
+  },
+  {
+   "map": "UnionRoom",
+   "w": 15,
+   "h": 12,
+   "tileset": "building__union_room",
+   "npcs": 9,
+   "spawn": [
+    7,
+    6
+   ]
+  },
+  {
+   "map": "VerdanturfTown",
+   "w": 20,
+   "h": 20,
+   "tileset": "general__mauville",
+   "npcs": 4,
+   "spawn": [
+    10,
+    10
+   ]
+  },
+  {
+   "map": "VerdanturfTown_BattleTentBattleRoom",
+   "w": 13,
+   "h": 9,
+   "tileset": "general__battle_tent",
+   "npcs": 3,
+   "spawn": [
+    6,
+    4
+   ]
+  },
+  {
+   "map": "VerdanturfTown_BattleTentCorridor",
+   "w": 5,
+   "h": 8,
+   "tileset": "building__battle_tent",
+   "npcs": 1,
+   "spawn": [
+    2,
+    4
+   ]
+  },
+  {
+   "map": "VerdanturfTown_BattleTentLobby",
+   "w": 13,
+   "h": 10,
+   "tileset": "building__battle_tent",
+   "npcs": 6,
+   "spawn": [
+    6,
+    5
+   ]
+  },
+  {
+   "map": "VerdanturfTown_FriendshipRatersHouse",
+   "w": 11,
+   "h": 8,
+   "tileset": "building__generic_building",
+   "npcs": 2,
+   "spawn": [
+    4,
+    3
+   ]
+  },
+  {
+   "map": "VerdanturfTown_House",
+   "w": 10,
+   "h": 9,
+   "tileset": "building__generic_building",
+   "npcs": 2,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "VerdanturfTown_Mart",
+   "w": 11,
+   "h": 8,
+   "tileset": "building__shop",
+   "npcs": 4,
+   "spawn": [
+    5,
+    4
+   ]
+  },
+  {
+   "map": "VerdanturfTown_PokemonCenter_1F",
+   "w": 14,
+   "h": 9,
+   "tileset": "building__pokemon_center",
+   "npcs": 4,
+   "spawn": [
+    7,
+    4
+   ]
+  },
+  {
+   "map": "VerdanturfTown_PokemonCenter_2F",
+   "w": 14,
+   "h": 10,
+   "tileset": "building__pokemon_center",
+   "npcs": 4,
+   "spawn": [
+    7,
+    5
+   ]
+  },
+  {
+   "map": "VerdanturfTown_WandasHouse",
+   "w": 17,
+   "h": 8,
+   "tileset": "building__generic_building",
+   "npcs": 5,
+   "spawn": [
+    8,
+    4
+   ]
+  },
+  {
+   "map": "VictoryRoad_1F",
+   "w": 46,
+   "h": 45,
+   "tileset": "general__cave",
+   "npcs": 9,
+   "spawn": [
+    23,
+    22
+   ]
+  },
+  {
+   "map": "VictoryRoad_B1F",
+   "w": 46,
+   "h": 31,
+   "tileset": "general__cave",
+   "npcs": 21,
+   "spawn": [
+    23,
+    15
+   ]
+  },
+  {
+   "map": "VictoryRoad_B2F",
+   "w": 46,
+   "h": 31,
+   "tileset": "general__cave",
+   "npcs": 7,
+   "spawn": [
+    22,
+    14
+   ]
+  }
+ ]
+}

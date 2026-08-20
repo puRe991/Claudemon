@@ -1,0 +1,18 @@
+tileset general__inside_of_truck
+5 5
+2 2
+513,514,515,516,517
+521,522,523,524,520
+529,530,531,532,528
+537,538,539,540,536
+545,546,547,548,544
+collision
+1,1,1,1,1
+1,0,0,0,0
+1,0,0,0,0
+1,1,1,0,0
+1,1,1,1,1
+npcs
+misc_moving_box 0 0 S static
+misc_moving_box 0 3 S static
+misc_moving_box 2 3 S static

@@ -60,9 +60,10 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 		parse_int_row(line, this->tile_map);
 	}
 
-	// Optional collision layer.
+	// Optional collision layer, then optional npcs section. Sections are
+	// introduced by a keyword line ("collision" / "npcs") in any order.
 	this->solid.assign((size_t)w * h, 0);
-	if (std::getline(f, line)) {
+	while (std::getline(f, line)) {
 		if (line.rfind("collision", 0) == 0) {
 			std::vector<int> flags;
 			for (unsigned int row = 0; row < h && std::getline(f, line); ++row) {
@@ -71,9 +72,26 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 			for (size_t i = 0; i < flags.size() && i < this->solid.size(); ++i) {
 				this->solid[i] = flags[i] ? 1 : 0;
 			}
+		} else if (line.rfind("npcs", 0) == 0) {
+			// each line: "<sheet_key> <x> <y> <S|N|E|W> <static|wander|pace_v|pace_h>"
+			while (std::getline(f, line)) {
+				if (line.empty()) continue;
+				std::stringstream ss(line);
+				NpcSpawn n;
+				std::string face, move;
+				if (!(ss >> n.sheet >> n.x >> n.y >> face >> move)) continue;
+				n.facing = (face == "N") ? DIR::N : (face == "E") ? DIR::E :
+				           (face == "W") ? DIR::W : DIR::S;
+				n.movement = (move == "wander") ? MOVE_WANDER :
+				             (move == "pace_v") ? MOVE_PACE_V :
+				             (move == "pace_h") ? MOVE_PACE_H : MOVE_STATIC;
+				this->npc_spawns.push_back(n);
+			}
 		}
 	}
 }
+
+const std::vector<NpcSpawn>& Map::npcs() const { return this->npc_spawns; }
 
 bool Map::ready() const {
 	return this->tileset.is_loaded() &&

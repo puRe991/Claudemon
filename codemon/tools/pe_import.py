@@ -294,6 +294,160 @@ def cmd_map(src, layout_name):
 
 
 # --------------------------------------------------------------------------- #
+# world: import EVERY map with its NPCs (object events) + movement
+# --------------------------------------------------------------------------- #
+
+# graphics_id -> overworld sheet key aliases where the pokeemerald name does not
+# match our imported file name. Value is the sheet key (without .png).
+GFX_ALIASES = {
+    "rival_brendan_normal": "people_brendan_walking",
+    "rival_may_normal":     "people_may_walking",
+    "aqua_member_m":        "people_team_aqua_aqua_member_m",
+    "aqua_member_f":        "people_team_aqua_aqua_member_f",
+    "magma_member_m":       "people_team_magma_magma_member_m",
+    "magma_member_f":       "people_team_magma_magma_member_f",
+    "archie":               "people_team_aqua_archie",
+    "maxie":                "people_team_magma_maxie",
+}
+FALLBACK_SHEET = "people_man_1"     # generic NPC when nothing else matches
+
+
+def build_gfx_resolver(ow_index):
+    """graphics_id -> sheet key, using suffix match, aliases, then a fallback."""
+    local = {}
+    for k in ow_index:
+        parts = k.split("_", 1)
+        if len(parts) == 2:
+            local.setdefault(parts[1], k)
+
+    def resolve(gfx):
+        name = gfx.replace("OBJ_EVENT_GFX_", "").lower()
+        if name in local:
+            return local[name]
+        if name in GFX_ALIASES and GFX_ALIASES[name] in ow_index:
+            return GFX_ALIASES[name]
+        # berry trees etc. sometimes need the leaf name only
+        leaf = name.split("_")[-1]
+        if leaf in local:
+            return local[leaf]
+        return FALLBACK_SHEET if FALLBACK_SHEET in ow_index else None
+    return resolve
+
+
+def movement_token(mt):
+    mt = (mt or "").upper()
+    if "WANDER" in mt:                      return "wander", "S"
+    if "UP_AND_DOWN" in mt:                 return "pace_v", "S"
+    if "LEFT_AND_RIGHT" in mt:              return "pace_h", "W"
+    if mt.endswith("FACE_UP"):              return "static", "N"
+    if mt.endswith("FACE_LEFT"):            return "static", "W"
+    if mt.endswith("FACE_RIGHT"):           return "static", "E"
+    return "static", "S"
+
+
+def cmd_world(src, limit=None):
+    layouts = json.load(open(os.path.join(src, "data", "layouts", "layouts.json")))
+    by_id = {l["id"]: l for l in layouts["layouts"]}
+    ow_index = json.load(open(os.path.join(OW_DIR, "index.json")))
+    resolve = build_gfx_resolver(ow_index)
+
+    maps_dir = os.path.normpath(os.path.join(TOOLS_DIR, "..", "maps"))
+    os.makedirs(maps_dir, exist_ok=True)
+    pair_cache = {}    # (prim,sec) -> sheet name
+    catalog = []
+
+    mroot = os.path.join(src, "data", "maps")
+    names = sorted(d for d in os.listdir(mroot)
+                   if os.path.isdir(os.path.join(mroot, d)))
+    done = 0
+    for mname in names:
+        mj_path = os.path.join(mroot, mname, "map.json")
+        if not os.path.isfile(mj_path):
+            continue
+        mj = json.load(open(mj_path))
+        layout = by_id.get(mj.get("layout"))
+        if layout is None or layout["width"] * layout["height"] <= 1:
+            continue
+
+        prim = _tileset_name(layout["primary_tileset"])
+        sec = _tileset_name(layout["secondary_tileset"]) if layout.get("secondary_tileset") else None
+        key = (prim, sec)
+        if key not in pair_cache:
+            sheet_name = prim + ("__" + sec if sec else "")
+            prim_path = os.path.join(src, "data", "tilesets", "primary", prim)
+            sec_path = os.path.join(src, "data", "tilesets", "secondary", sec) if sec else None
+            try:
+                render_pair_sheet(prim_path, sec_path, TS_DIR, sheet_name)
+            except Exception as ex:
+                print("  tileset fail", sheet_name, ex); continue
+            pair_cache[key] = sheet_name
+        sheet_name = pair_cache[key]
+
+        w, h = layout["width"], layout["height"]
+        try:
+            blob = open(os.path.join(src, layout["blockdata_filepath"]), "rb").read()
+            cells = struct.unpack("<%dH" % (w * h), blob[:w * h * 2])
+        except Exception as ex:
+            print("  blockdata fail", mname, ex); continue
+        ids = [c & 0x03FF for c in cells]
+        solid = [1 if ((c >> 10) & 0x03) else 0 for c in cells]
+
+        # NPCs from object events
+        npcs = []
+        for oe in mj.get("object_events", []):
+            try:
+                x = int(oe["x"]); y = int(oe["y"])
+            except Exception:
+                continue
+            if not (0 <= x < w and 0 <= y < h):
+                continue
+            sheet = resolve(oe.get("graphics_id", ""))
+            if not sheet:
+                continue
+            move, face = movement_token(oe.get("movement_type"))
+            npcs.append((sheet, x, y, face, move))
+
+        # spawn: prefer a passable tile near map centre
+        def passable_at(x, y):
+            return 0 <= x < w and 0 <= y < h and solid[y * w + x] == 0
+        sx, sy = w // 2, h // 2
+        if not passable_at(sx, sy):
+            for r in range(1, max(w, h)):
+                hit = None
+                for yy in range(max(0, sy - r), min(h, sy + r + 1)):
+                    for xx in range(max(0, sx - r), min(w, sx + r + 1)):
+                        if passable_at(xx, yy):
+                            hit = (xx, yy); break
+                    if hit: break
+                if hit:
+                    sx, sy = hit; break
+
+        out = os.path.join(maps_dir, mname + ".map")
+        lines = [f"tileset {sheet_name}", f"{w} {h}", f"{sx} {sy}"]
+        for y in range(h):
+            lines.append(",".join(str(ids[y * w + x]) for x in range(w)))
+        lines.append("collision")
+        for y in range(h):
+            lines.append(",".join(str(solid[y * w + x]) for x in range(w)))
+        if npcs:
+            lines.append("npcs")
+            for (sheet, x, y, face, move) in npcs:
+                lines.append(f"{sheet} {x} {y} {face} {move}")
+        open(out, "w").write("\n".join(lines) + "\n")
+        catalog.append({"map": mname, "w": w, "h": h, "tileset": sheet_name,
+                        "npcs": len(npcs), "spawn": [sx, sy]})
+        done += 1
+        if limit and done >= limit:
+            break
+
+    with open(os.path.join(maps_dir, "index.json"), "w") as f:
+        json.dump({"count": len(catalog), "maps": catalog}, f, indent=1)
+    total_npcs = sum(c["npcs"] for c in catalog)
+    print(f"world: {len(catalog)} maps, {len(pair_cache)} tileset sheets, "
+          f"{total_npcs} NPCs -> {os.path.relpath(maps_dir)}")
+
+
+# --------------------------------------------------------------------------- #
 # overworld -> flattened RGBA character / NPC sheets
 # --------------------------------------------------------------------------- #
 def flatten_indexed(src_png, dst_png):
@@ -319,7 +473,7 @@ def cmd_overworld(src):
     root = os.path.join(src, "graphics", "object_events", "pics")
     os.makedirs(OW_DIR, exist_ok=True)
     index = {}
-    groups = ["people", "pokemon", "misc"]
+    groups = ["people", "pokemon", "misc", "berry_trees"]
     for group in groups:
         gdir = os.path.join(root, group)
         if not os.path.isdir(gdir):
@@ -421,7 +575,7 @@ def cmd_audio(src, cry_limit=100000, songs=("mus_littleroot", "mus_route101", "m
 # --------------------------------------------------------------------------- #
 def main():
     ap = argparse.ArgumentParser(description="Codemon pokeemerald asset importer")
-    ap.add_argument("cmd", choices=["all", "tilesets", "overworld", "audio", "map"])
+    ap.add_argument("cmd", choices=["all", "tilesets", "overworld", "audio", "map", "world"])
     ap.add_argument("--src", default=os.environ.get("POKEEMERALD",
                     ""), help="path to pokeemerald-master checkout")
     ap.add_argument("--layout", default="LittlerootTown_Layout",
@@ -438,6 +592,8 @@ def main():
         cmd_audio(args.src)
     if args.cmd == "map":
         cmd_map(args.src, args.layout)
+    if args.cmd == "world":
+        cmd_world(args.src)
 
 
 if __name__ == "__main__":

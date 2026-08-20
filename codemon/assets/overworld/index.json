@@ -1,4 +1,164 @@
 {
+  "berry_trees_aguav": {
+    "file": "berry_trees_aguav.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_aspear": {
+    "file": "berry_trees_aspear.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_cheri": {
+    "file": "berry_trees_cheri.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_chesto": {
+    "file": "berry_trees_chesto.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_cornn": {
+    "file": "berry_trees_cornn.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_dirt_pile": {
+    "file": "berry_trees_dirt_pile.png",
+    "h": 16,
+    "w": 16
+  },
+  "berry_trees_durin": {
+    "file": "berry_trees_durin.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_figy": {
+    "file": "berry_trees_figy.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_grepa": {
+    "file": "berry_trees_grepa.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_hondew": {
+    "file": "berry_trees_hondew.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_iapapa": {
+    "file": "berry_trees_iapapa.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_kelpsy": {
+    "file": "berry_trees_kelpsy.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_lansat": {
+    "file": "berry_trees_lansat.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_leppa": {
+    "file": "berry_trees_leppa.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_liechi": {
+    "file": "berry_trees_liechi.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_lum": {
+    "file": "berry_trees_lum.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_mago": {
+    "file": "berry_trees_mago.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_nomel": {
+    "file": "berry_trees_nomel.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_oran": {
+    "file": "berry_trees_oran.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_pamtre": {
+    "file": "berry_trees_pamtre.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_pecha": {
+    "file": "berry_trees_pecha.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_persim": {
+    "file": "berry_trees_persim.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_pomeg": {
+    "file": "berry_trees_pomeg.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_rabuta": {
+    "file": "berry_trees_rabuta.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_rawst": {
+    "file": "berry_trees_rawst.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_razz": {
+    "file": "berry_trees_razz.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_sitrus": {
+    "file": "berry_trees_sitrus.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_spelon": {
+    "file": "berry_trees_spelon.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_sprout": {
+    "file": "berry_trees_sprout.png",
+    "h": 16,
+    "w": 32
+  },
+  "berry_trees_tamato": {
+    "file": "berry_trees_tamato.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_wepear": {
+    "file": "berry_trees_wepear.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_wiki": {
+    "file": "berry_trees_wiki.png",
+    "h": 32,
+    "w": 96
+  },
   "misc_birchs_bag": {
     "file": "misc_birchs_bag.png",
     "h": 16,
