@@ -116,3 +116,5 @@ end
 trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_4 MagmaHideout_2F_1R_Text_Grunt4Intro MagmaHideout_2F_1R_Text_Grunt4Defeat
 msgbox	I've already lost.Do I really need to keep running around in a circle?
 end
+encounters
+land GEODUDE:27:27,TORKOAL:28:28,GEODUDE:28:28,TORKOAL:30:30,GEODUDE:29:29,GEODUDE:30:30,GEODUDE:30:30,GRAVELER:30:30,GRAVELER:30:30,GRAVELER:31:31,GRAVELER:32:32,GRAVELER:33:33

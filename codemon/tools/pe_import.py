@@ -1129,15 +1129,16 @@ def cmd_world(src, limit=None):
             lines.append("signs")
             for (bx, by, text) in signs:
                 lines.append(f"{bx} {by}\t{text}")
-        # Tall-grass metatile ids that actually occur on this map (for encounters).
+        # Tall-grass metatile ids that actually occur on this map.
         used_grass = sorted(set(ids) & grass_ids)
-        enc = encounters.get(mj.get("id"))
-        land = enc.get("land") if enc else None
-        if used_grass and land:
+        if used_grass:
             lines.append("grass")
             lines.append(",".join(str(g) for g in used_grass))
+        # Encounters are emitted for every map that has them; maps with land
+        # encounters but no tall grass (caves/indoor) trigger on the floor.
+        enc = encounters.get(mj.get("id"))
+        if enc:
             lines.append("encounters")
-            # one line per encounter type: "<type> species:min:max,..."
             for etype in ("land", "water", "fishing", "rock"):
                 slots = enc.get(etype)
                 if slots:

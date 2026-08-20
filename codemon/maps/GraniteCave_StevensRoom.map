@@ -89,3 +89,5 @@ return
 = GraniteCave_StevensRoom_EventScript_BagFull
 msgbox	Oh, your BAG is full… That's too bad, then.
 return
+encounters
+land ZUBAT:7:7,MAKUHITA:8:8,MAKUHITA:7:7,ZUBAT:8:8,MAKUHITA:9:9,ABRA:8:8,MAKUHITA:10:10,MAKUHITA:6:6,ARON:7:7,ARON:8:8,ARON:7:7,ARON:8:8

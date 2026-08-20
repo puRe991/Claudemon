@@ -33,3 +33,6 @@ scriptdefs
 = AbandonedShip_Rooms_B1F_EventScript_FatMan
 msgbox	Urrrrppp…I'm getting queasy just being aboard this ship…It's not even moving, but…
 end
+encounters
+water TENTACOOL:5:35,TENTACOOL:5:35,TENTACOOL:5:35,TENTACOOL:5:35,TENTACRUEL:30:35
+fishing MAGIKARP:5:10,TENTACOOL:5:10,MAGIKARP:10:30,TENTACOOL:10:30,TENTACOOL:10:30,TENTACOOL:25:30,TENTACOOL:30:35,TENTACRUEL:30:35,TENTACRUEL:25:30,TENTACRUEL:20:25

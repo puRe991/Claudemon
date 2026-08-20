@@ -50,3 +50,5 @@ scriptdefs
 trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_10 MagmaHideout_3F_2R_Text_Grunt10Intro MagmaHideout_3F_2R_Text_Grunt10Defeat
 msgbox	You know, losing to you cleared my mind.The next time I see our leader, I'm going to ask him about what we do.
 end
+encounters
+land GEODUDE:27:27,TORKOAL:28:28,GEODUDE:28:28,TORKOAL:30:30,GEODUDE:29:29,GEODUDE:30:30,GEODUDE:30:30,GRAVELER:30:30,GRAVELER:30:30,GRAVELER:31:31,GRAVELER:32:32,GRAVELER:33:33

@@ -198,3 +198,5 @@ applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
 waitmovement 0
 release
 end
+encounters
+land WHISMUR:6:6,WHISMUR:7:7,WHISMUR:6:6,WHISMUR:6:6,WHISMUR:7:7,WHISMUR:7:7,WHISMUR:5:5,WHISMUR:8:8,WHISMUR:5:5,WHISMUR:8:8,WHISMUR:5:5,WHISMUR:8:8

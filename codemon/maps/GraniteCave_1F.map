@@ -59,3 +59,5 @@ end
 msgbox	Teach that hidden move FLASH to a POKéMON and use it.It lights up even the inky darkness of caves.But, to use it, you need the GYM BADGE from DEWFORD's POKéMON GYM.
 release
 end
+encounters
+land ZUBAT:7:7,MAKUHITA:8:8,MAKUHITA:7:7,ZUBAT:8:8,MAKUHITA:9:9,ABRA:8:8,MAKUHITA:10:10,MAKUHITA:6:6,GEODUDE:7:7,GEODUDE:8:8,GEODUDE:6:6,GEODUDE:9:9

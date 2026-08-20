@@ -287,8 +287,8 @@ static void try_encounter(Session* s, Battle& battle, Mon& party,
                           std::mt19937& rng, bool force) {
     if (std::getenv("CODEMON_NO_WILD")) return;    // for scripted trainer demos
     int px = s->player->get_tile_x(), py = s->player->get_tile_y();
-    if (!s->map->is_grass(px, py) || !s->map->has_encounters()) return;
-    if (!force && (rng() % 100) >= 22) return;                 // ~22% per grass step
+    if (!s->map->encounter_here(px, py)) return;
+    if (!force && (rng() % 100) >= 22) return;                 // ~22% per step
     std::string sp; int level;
     if (s->map->roll_encounter(rng, sp, level))                // real species + level
         battle.start_wild(sp, level, &party);

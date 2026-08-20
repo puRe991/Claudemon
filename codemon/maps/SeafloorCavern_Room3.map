@@ -65,3 +65,5 @@ end
 trainerbattle_single TRAINER_SHELLY_SEAFLOOR_CAVERN SeafloorCavern_Room3_Text_ShellyIntro SeafloorCavern_Room3_Text_ShellyDefeat
 msgbox	Ahahahaha! You're so darn strong.It's terribly disappointing that you're not a TEAM AQUA member.You could have enjoyed the fabulous world our BOSS has promised as one of us…
 end
+encounters
+land ZUBAT:30:30,ZUBAT:31:31,ZUBAT:32:32,ZUBAT:33:33,ZUBAT:28:28,ZUBAT:29:29,ZUBAT:34:34,ZUBAT:35:35,GOLBAT:34:34,GOLBAT:35:35,GOLBAT:33:33,GOLBAT:36:36

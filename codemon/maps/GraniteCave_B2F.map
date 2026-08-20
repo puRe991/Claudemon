@@ -70,3 +70,6 @@ misc_breakable_rock 7 12 S static
 misc_breakable_rock 4 22 S static
 misc_breakable_rock 6 22 S static
 misc_breakable_rock 3 21 S static
+encounters
+land ZUBAT:10:10,ARON:11:11,ARON:10:10,ZUBAT:11:11,ARON:12:12,ABRA:10:10,SABLEYE:10:10,SABLEYE:11:11,SABLEYE:12:12,SABLEYE:10:10,SABLEYE:12:12,SABLEYE:10:10
+rock GEODUDE:10:15,NOSEPASS:10:20,GEODUDE:5:10,GEODUDE:15:20,GEODUDE:15:20

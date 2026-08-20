@@ -417,3 +417,6 @@ end
 signs
 15 5	SEASHORE HOUSE“May hot battles rage on hot sands! The place for hot TRAINERS!”
 29 10	TRAINER TIPSPOKéMON at the same level may not always have identical stats.POKéMON raised by TRAINERS are said to grow stronger than wild POKéMON.
+encounters
+water TENTACOOL:5:35,WINGULL:10:30,WINGULL:15:25,PELIPPER:25:30,PELIPPER:25:30
+fishing MAGIKARP:5:10,TENTACOOL:5:10,MAGIKARP:10:30,TENTACOOL:10:30,WAILMER:10:30,WAILMER:25:30,WAILMER:30:35,WAILMER:20:25,WAILMER:35:40,WAILMER:40:45

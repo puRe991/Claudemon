@@ -131,6 +131,9 @@ public:
 
 	// Wild-encounter tall grass.
 	bool is_grass(int tile_x, int tile_y) const;         // is this a grass tile?
+	// Does stepping on (x,y) trigger a wild encounter? (tall grass, or the
+	// floor of a cave/indoor map that has encounters but no grass tiles)
+	bool encounter_here(int tile_x, int tile_y) const;
 	bool has_encounters() const;
 	// Pick a wild pokemon by the land slot weights; fills species + level.
 	bool roll_encounter(std::mt19937& rng, std::string& species, int& level) const;

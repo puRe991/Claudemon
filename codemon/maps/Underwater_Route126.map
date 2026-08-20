@@ -164,3 +164,5 @@ collision
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 warps
 45 65 Underwater_SootopolisCity 0
+encounters
+water CLAMPERL:20:30,CHINCHOU:20:30,CLAMPERL:30:35,RELICANTH:30:35,RELICANTH:30:35

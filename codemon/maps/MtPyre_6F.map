@@ -64,3 +64,5 @@ msgbox	Fufufu… I lost the match, but… I have this little ability…Without 
 register_matchcall TRAINER_VALERIE_1
 release
 end
+encounters
+land SHUPPET:27:27,SHUPPET:28:28,SHUPPET:26:26,SHUPPET:25:25,SHUPPET:29:29,SHUPPET:24:24,SHUPPET:23:23,SHUPPET:22:22,DUSKULL:27:27,DUSKULL:27:27,DUSKULL:25:25,DUSKULL:29:29

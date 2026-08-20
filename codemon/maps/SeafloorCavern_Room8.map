@@ -46,3 +46,5 @@ misc_pushable_boulder 3 4 S static
 misc_pushable_boulder 4 4 S static
 misc_pushable_boulder 6 4 S static
 misc_pushable_boulder 7 4 S static
+encounters
+land ZUBAT:30:30,ZUBAT:31:31,ZUBAT:32:32,ZUBAT:33:33,ZUBAT:28:28,ZUBAT:29:29,ZUBAT:34:34,ZUBAT:35:35,GOLBAT:34:34,GOLBAT:35:35,GOLBAT:33:33,GOLBAT:36:36

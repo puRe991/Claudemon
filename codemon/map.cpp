@@ -243,6 +243,16 @@ bool Map::is_grass(int tile_x, int tile_y) const {
 
 bool Map::has_encounters() const { return !this->land_slots.empty(); }
 
+bool Map::encounter_here(int x, int y) const {
+	if (this->land_slots.empty()) return false;
+	if (is_grass(x, y)) return true;
+	// Cave / indoor encounter map: has land encounters but no tall-grass tiles
+	// -> the whole walkable floor triggers (excluding warp/door tiles).
+	if (this->grass_ids.empty() && passable(x, y) && !warp_at(x, y))
+		return true;
+	return false;
+}
+
 bool Map::roll_encounter(std::mt19937& rng, std::string& species, int& level) const {
 	if (this->land_slots.empty()) return false;
 	// Standard Gen-3 land slot rates (percent) for the 12 slots.

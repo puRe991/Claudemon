@@ -98,3 +98,5 @@ waitmovement 0
 msgbox	STEVEN: Come to think of it, ever since our paths first crossed in GRANITE CAVE in DEWFORD, I had this feeling.I thought that you would eventually become the CHAMPION.My predictions usually come true.And where will you go from here?… … … … … … … … … … … …Fufufu, even I couldn't tell you that.
 release
 end
+encounters
+land GOLBAT:33:33,GOLBAT:35:35,GOLBAT:33:33,SOLROCK:35:35,SOLROCK:33:33,SOLROCK:37:37,GOLBAT:35:35,SOLROCK:39:39,GOLBAT:38:38,GOLBAT:40:40,GOLBAT:38:38,GOLBAT:40:40

@@ -193,3 +193,5 @@ end
 trainerbattle_single TRAINER_EDGAR VictoryRoad_1F_Text_EdgarIntro VictoryRoad_1F_Text_EdgarDefeat
 msgbox	You've made it this far. Keep the momentum going and become the CHAMPION! If anyone can, it's you!
 end
+encounters
+land GOLBAT:40:40,HARIYAMA:40:40,LAIRON:40:40,LOUDRED:40:40,ZUBAT:36:36,MAKUHITA:36:36,GOLBAT:38:38,HARIYAMA:38:38,ARON:36:36,WHISMUR:36:36,ARON:36:36,WHISMUR:36:36

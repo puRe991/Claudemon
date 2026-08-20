@@ -36,3 +36,6 @@ signs
 6 8	PLAYER inserted and turned the KEY.The inserted KEY stuck fast, but the door opened.
 3 4	PLAYER inserted and turned the KEY.The inserted KEY stuck fast, but the door opened.
 9 4	PLAYER inserted and turned the KEY.The inserted KEY stuck fast, but the door opened.
+encounters
+water TENTACOOL:5:35,TENTACOOL:5:35,TENTACOOL:5:35,TENTACOOL:5:35,TENTACRUEL:30:35
+fishing MAGIKARP:5:10,TENTACOOL:5:10,MAGIKARP:10:30,TENTACOOL:10:30,TENTACOOL:10:30,TENTACOOL:25:30,TENTACOOL:30:35,TENTACRUEL:30:35,TENTACRUEL:25:30,TENTACRUEL:20:25
