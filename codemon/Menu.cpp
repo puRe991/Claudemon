@@ -51,17 +51,32 @@ const sf::Texture* Menu::mon_icon(const std::string& species) {
 	return &this->mon_tex[species];
 }
 
+const sf::Texture* Menu::type_icon(const std::string& type) {
+	std::string t = type;
+	for (char& c : t) c = (char)std::tolower((unsigned char)c);
+	if (t == "fighting") t = "fight";
+	auto it = this->type_tex.find(t);
+	if (it != this->type_tex.end())
+		return it->second.getSize().x ? &it->second : nullptr;
+	sf::Texture tex;
+	if (!tex.loadFromFile("assets/types/" + t + ".png")) { this->type_tex[t]; return nullptr; }
+	tex.setSmooth(false);
+	this->type_tex[t] = tex;
+	return &this->type_tex[t];
+}
+
 void Menu::open() { this->screen = MAIN; this->cursor = 0; }
 void Menu::close() { this->screen = CLOSED; }
 
 void Menu::input(BtnInput b) {
 	if (this->screen == MAIN) {
 		if (b == BTN_UP && this->cursor > 0) this->cursor--;
-		else if (b == BTN_DOWN && this->cursor < 3) this->cursor++;
+		else if (b == BTN_DOWN && this->cursor < 4) this->cursor++;
 		else if (b == BTN_CONFIRM) {
 			if (this->cursor == 0) this->screen = BAG;
 			else if (this->cursor == 1) this->screen = PARTY;
 			else if (this->cursor == 2) this->screen = PC;
+			else if (this->cursor == 3) this->screen = POKENAV;
 			else this->screen = CLOSED;
 		}
 	} else if (b == BTN_CONFIRM) {
@@ -98,8 +113,8 @@ void Menu::draw(sf::RenderTarget& target) {
 
 	if (this->screen == MAIN) {
 		text("MENU", x, y, 24, sf::Color(150, 210, 255)); y += 44;
-		const char* opts[] = {"BAG", "POKeMON", "PC BOX", "CLOSE"};
-		for (int i = 0; i < 4; ++i) {
+		const char* opts[] = {"BAG", "POKeMON", "PC BOX", "POKeNAV", "CLOSE"};
+		for (int i = 0; i < 5; ++i) {
 			bool sel = i == this->cursor;
 			text((sel ? "> " : "  ") + std::string(opts[i]), x, y + i * 38, 22,
 			     sel ? sf::Color(150, 210, 255) : sf::Color::White);
@@ -149,6 +164,33 @@ void Menu::draw(sf::RenderTarget& target) {
 			}
 		} else {
 			text("(no POKeMON stored)", x, y, 20, sf::Color(200, 200, 200));
+		}
+	} else if (this->screen == POKENAV) {
+		text("POKeNAV", x, y, 24, sf::Color(150, 210, 255)); y += 36;
+		text("Location:  " + (this->location.empty() ? "---" : this->location),
+		     x, y, 20, sf::Color(230, 230, 160)); y += 26;
+		text("Region: HOENN   Party: " +
+		     std::to_string(this->team ? (int)this->team->size() : 0) + "/6",
+		     x, y, 16, sf::Color(200, 200, 200)); y += 30;
+		text("CONDITION", x, y, 18, sf::Color(150, 210, 255)); y += 26;
+		if (this->team) {
+			int row = 0;
+			for (const Mon& m : *this->team) {
+				float ry = y + row * 58;
+				text(pretty(m.species, "") + " Lv" + std::to_string(m.level), x, ry, 18, sf::Color::White);
+				// type icons
+				float tx2 = x + 200;
+				for (const std::string& tp : {m.t1, m.t2}) {
+					if (tp == m.t2 && m.t2 == m.t1) break;
+					const sf::Texture* ti = type_icon(tp);
+					if (ti) { sf::Sprite s(*ti); s.setPosition(tx2, ry - 2); target.draw(s); tx2 += 44; }
+				}
+				text("HP " + std::to_string(m.max_hp) + "  ATK " + std::to_string(m.atk) +
+				     "  DEF " + std::to_string(m.def), x, ry + 24, 15, sf::Color(210, 210, 210));
+				text("SPA " + std::to_string(m.spa) + "  SPD " + std::to_string(m.spd) +
+				     "  SPE " + std::to_string(m.spe), x, ry + 40, 15, sf::Color(210, 210, 210));
+				if (++row >= 5) break;
+			}
 		}
 	}
 	if (this->screen != MAIN)

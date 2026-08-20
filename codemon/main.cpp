@@ -379,7 +379,9 @@ int main() {
     sf::Font ban_font; ban_font.loadFromFile("assets/fonts/DejaVuSans.ttf");
     auto on_map_change = [&](const std::string& path) {
         banner = pretty_map(path); banner_t = 2.2f; fade = 1.0f;
+        menu.set_location(banner);
     };
+    menu.set_location(banner);
 
     // Map a walk token to a battle button (for scripted battle demos).
     auto token_btn = [](char t) -> BtnInput {
