@@ -34,3 +34,255 @@ dialogs
 1	Buhahaha!You couldn't tell it from looking now, but I used to be one tough TRAINER.I had a reputation as the toughest BEAUTY around, I tell you!… … … … … …What is it now? You don't believe me.I'm not like that blowhard woman over there. I'm actually talented!Let me prove it to you. I can teach your POKéMON special and yet cute moves.But my lessons don't come free. How about paying for the moves I teach with a wee bit of Battle Points?
 2	Ihihihi!I know it's hard to see now, but I used to be one fantastic TRAINER.I had a reputation as the most invincible SWIMMER around, I tell you!… … … … … …What's wrong? You don't believe me.I'm not like that buffoonish woman over there. I'm actually experienced!I can prove it to you. I can teach your POKéMON hard and yet pretty moves.But my lessons don't come free. How about paying for the moves I teach with a wee bit of Battle Points?
 3	When I was just a wee YOUNGSTER, those ladies were strong and beautiful.They were idols among us TRAINERS.Even now, age hasn't dulled their abilities.In fact, their POKéMON moves have grown even more polished.But… For some reason, I can't help but feel this…Time is so cruel…
+objscripts
+0 BattleFrontier_Lounge7_EventScript_Sailor
+1 BattleFrontier_Lounge7_EventScript_LeftMoveTutor
+2 BattleFrontier_Lounge7_EventScript_RightMoveTutor
+3 BattleFrontier_Lounge7_EventScript_Gentleman
+scriptdefs
+= BattleFrontier_Lounge7_EventScript_Gentleman
+msgbox	When I was just a wee YOUNGSTER, those ladies were strong and beautiful.They were idols among us TRAINERS.Even now, age hasn't dulled their abilities.In fact, their POKéMON moves have grown even more polished.But… For some reason, I can't help but feel this…Time is so cruel…
+end
+= BattleFrontier_Lounge7_EventScript_RightMoveTutor
+lock
+faceplayer
+setvar VAR_TEMP_C SCROLL_MULTI_BF_MOVE_TUTOR_2
+goto_if_set FLAG_MET_FRONTIER_SWIMMER_MOVE_TUTOR BattleFrontier_Lounge7_EventScript_AlreadyMetRightTutor
+msgbox	Ihihihi!I know it's hard to see now, but I used to be one fantastic TRAINER.I had a reputation as the most invincible SWIMMER around, I tell you!… … … … … …What's wrong? You don't believe me.I'm not like that buffoonish woman over there. I'm actually experienced!I can prove it to you. I can teach your POKéMON hard and yet pretty moves.But my lessons don't come free. How about paying for the moves I teach with a wee bit of Battle Points?
+setflag FLAG_MET_FRONTIER_SWIMMER_MOVE_TUTOR
+goto BattleFrontier_Lounge7_EventScript_ChooseRightTutorMove
+end
+= BattleFrontier_Lounge7_EventScript_ChooseRightTutorMove
+message BattleFrontier_Lounge7_Text_TeachWhichMove
+waitmessage
+special ShowBattlePointsWindow
+setvar VAR_TEMP_FRONTIER_TUTOR_ID 1
+setvar VAR_0x8004 SCROLL_MULTI_BF_MOVE_TUTOR_2
+setvar VAR_0x8006 0
+special ShowScrollableMultichoice
+copyvar VAR_TEMP_FRONTIER_TUTOR_SELECTION VAR_RESULT
+switch VAR_RESULT
+case 0 BattleFrontier_Lounge7_EventScript_DefenseCurl
+case 1 BattleFrontier_Lounge7_EventScript_Snore
+case 2 BattleFrontier_Lounge7_EventScript_MudSlap
+case 3 BattleFrontier_Lounge7_EventScript_Swift
+case 4 BattleFrontier_Lounge7_EventScript_IcyWind
+case 5 BattleFrontier_Lounge7_EventScript_Endure
+case 6 BattleFrontier_Lounge7_EventScript_PsychUp
+case 7 BattleFrontier_Lounge7_EventScript_IcePunch
+case 8 BattleFrontier_Lounge7_EventScript_ThunderPunch
+case 9 BattleFrontier_Lounge7_EventScript_FirePunch
+case 10 BattleFrontier_Lounge7_EventScript_ExitTutorMoveSelect
+case MULTI_B_PRESSED BattleFrontier_Lounge7_EventScript_ExitTutorMoveSelect
+end
+= BattleFrontier_Lounge7_EventScript_ExitTutorMoveSelect
+special CloseBattleFrontierTutorWindow
+special CloseBattlePointsWindow
+msgbox	What's that? You don't want to…If you want to see how skilled I am, you come see me anytime!
+release
+end
+= BattleFrontier_Lounge7_EventScript_FirePunch
+setvar VAR_0x8008 48
+goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+end
+= BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+copyvar VAR_0x8004 VAR_TEMP_FRONTIER_TUTOR_SELECTION
+copyvar VAR_0x8005 VAR_TEMP_FRONTIER_TUTOR_ID
+special BufferBattleFrontierTutorMoveName
+buffernumberstring STR_VAR_2 VAR_0x8008
+copyvar VAR_0x8004 VAR_TEMP_C
+msgbox	The move , is it? That will be Battle Points, okay?
+goto_if_eq VAR_RESULT NO BattleFrontier_Lounge7_EventScript_ChooseNewMove
+specialvar VAR_TEMP_1 GetFrontierBattlePoints
+goto_if_ge VAR_TEMP_1 VAR_0x8008 BattleFrontier_Lounge7_EventScript_TeachTutorMove
+msgbox	What the… You haven't got enough Battle Points!
+goto BattleFrontier_Lounge7_EventScript_ChooseNewMove
+end
+= BattleFrontier_Lounge7_EventScript_ChooseNewMove
+goto_if_eq VAR_TEMP_FRONTIER_TUTOR_ID 0 BattleFrontier_Lounge7_EventScript_ChooseNewLeftTutorMove
+goto BattleFrontier_Lounge7_EventScript_ChooseNewRightTutorMove
+end
+= BattleFrontier_Lounge7_EventScript_ChooseNewRightTutorMove
+message BattleFrontier_Lounge7_Text_TeachWhichMove
+waitmessage
+setvar VAR_TEMP_FRONTIER_TUTOR_ID 1
+setvar VAR_0x8004 SCROLL_MULTI_BF_MOVE_TUTOR_2
+setvar VAR_0x8006 1
+special ShowScrollableMultichoice
+copyvar VAR_TEMP_FRONTIER_TUTOR_SELECTION VAR_RESULT
+switch VAR_RESULT
+case 0 BattleFrontier_Lounge7_EventScript_DefenseCurl
+case 1 BattleFrontier_Lounge7_EventScript_Snore
+case 2 BattleFrontier_Lounge7_EventScript_MudSlap
+case 3 BattleFrontier_Lounge7_EventScript_Swift
+case 4 BattleFrontier_Lounge7_EventScript_IcyWind
+case 5 BattleFrontier_Lounge7_EventScript_Endure
+case 6 BattleFrontier_Lounge7_EventScript_PsychUp
+case 7 BattleFrontier_Lounge7_EventScript_IcePunch
+case 8 BattleFrontier_Lounge7_EventScript_ThunderPunch
+case 9 BattleFrontier_Lounge7_EventScript_FirePunch
+case 10 BattleFrontier_Lounge7_EventScript_ExitTutorMoveSelect
+case MULTI_B_PRESSED BattleFrontier_Lounge7_EventScript_ExitTutorMoveSelect
+end
+= BattleFrontier_Lounge7_EventScript_ThunderPunch
+setvar VAR_0x8008 48
+goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+end
+= BattleFrontier_Lounge7_EventScript_IcePunch
+setvar VAR_0x8008 48
+goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+end
+= BattleFrontier_Lounge7_EventScript_PsychUp
+setvar VAR_0x8008 48
+goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+end
+= BattleFrontier_Lounge7_EventScript_Endure
+setvar VAR_0x8008 48
+goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+end
+= BattleFrontier_Lounge7_EventScript_IcyWind
+setvar VAR_0x8008 24
+goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+end
+= BattleFrontier_Lounge7_EventScript_Swift
+setvar VAR_0x8008 24
+goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+end
+= BattleFrontier_Lounge7_EventScript_MudSlap
+setvar VAR_0x8008 24
+goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+end
+= BattleFrontier_Lounge7_EventScript_Snore
+setvar VAR_0x8008 24
+goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+end
+= BattleFrontier_Lounge7_EventScript_DefenseCurl
+setvar VAR_0x8008 16
+goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+end
+= BattleFrontier_Lounge7_EventScript_ChooseNewLeftTutorMove
+message BattleFrontier_Lounge7_Text_TeachWhichMove
+waitmessage
+setvar VAR_TEMP_FRONTIER_TUTOR_ID 0
+setvar VAR_0x8004 SCROLL_MULTI_BF_MOVE_TUTOR_1
+setvar VAR_0x8006 1
+special ShowScrollableMultichoice
+copyvar VAR_TEMP_FRONTIER_TUTOR_SELECTION VAR_RESULT
+switch VAR_RESULT
+case 0 BattleFrontier_Lounge7_EventScript_Softboiled
+case 1 BattleFrontier_Lounge7_EventScript_SeismicToss
+case 2 BattleFrontier_Lounge7_EventScript_DreamEater
+case 3 BattleFrontier_Lounge7_EventScript_MegaPunch
+case 4 BattleFrontier_Lounge7_EventScript_MegaKick
+case 5 BattleFrontier_Lounge7_EventScript_BodySlam
+case 6 BattleFrontier_Lounge7_EventScript_RockSlide
+case 7 BattleFrontier_Lounge7_EventScript_Counter
+case 8 BattleFrontier_Lounge7_EventScript_ThunderWave
+case 9 BattleFrontier_Lounge7_EventScript_SwordsDance
+case 10 BattleFrontier_Lounge7_EventScript_ExitTutorMoveSelect
+case MULTI_B_PRESSED BattleFrontier_Lounge7_EventScript_ExitTutorMoveSelect
+end
+= BattleFrontier_Lounge7_EventScript_SwordsDance
+setvar VAR_0x8008 48
+goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+end
+= BattleFrontier_Lounge7_EventScript_ThunderWave
+setvar VAR_0x8008 48
+goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+end
+= BattleFrontier_Lounge7_EventScript_Counter
+setvar VAR_0x8008 48
+goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+end
+= BattleFrontier_Lounge7_EventScript_RockSlide
+setvar VAR_0x8008 48
+goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+end
+= BattleFrontier_Lounge7_EventScript_BodySlam
+setvar VAR_0x8008 48
+goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+end
+= BattleFrontier_Lounge7_EventScript_MegaKick
+setvar VAR_0x8008 48
+goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+end
+= BattleFrontier_Lounge7_EventScript_MegaPunch
+setvar VAR_0x8008 24
+goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+end
+= BattleFrontier_Lounge7_EventScript_DreamEater
+setvar VAR_0x8008 24
+goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+end
+= BattleFrontier_Lounge7_EventScript_SeismicToss
+setvar VAR_0x8008 24
+goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+end
+= BattleFrontier_Lounge7_EventScript_Softboiled
+setvar VAR_0x8008 16
+goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+end
+= BattleFrontier_Lounge7_EventScript_TeachTutorMove
+msgbox	Fine, fine, now pick the POKéMON I should teach the move to.
+special GetBattleFrontierTutorMoveIndex
+fadescreen FADE_TO_BLACK
+special CloseBattlePointsWindow
+special CloseBattleFrontierTutorWindow
+special ChooseMonForMoveTutor
+goto_if_eq VAR_RESULT FALSE BattleFrontier_Lounge7_EventScript_CancelChooseMon
+msgbox	Do you see how skilled I am now? I'll take your Battle Points, thanks!
+copyvar VAR_0x8004 VAR_0x8008
+special TakeFrontierBattlePoints
+release
+end
+= BattleFrontier_Lounge7_EventScript_CancelChooseMon
+msgbox	What's that? You don't want to…If you want to see how skilled I am, you come see me anytime!
+release
+end
+@ VAR_0x8008 is the price
+@ VAR_TEMP_C is the scroll multichoice ID
+@ VAR_TEMP_FRONTIER_TUTOR_SELECTION is the move selection
+@ VAR_TEMP_FRONTIER_TUTOR_ID is which move tutor was spoken to
+= BattleFrontier_Lounge7_EventScript_AlreadyMetRightTutor
+msgbox	Ihihihi!Have you come to learn hard and yet pretty POKéMON moves?
+goto BattleFrontier_Lounge7_EventScript_ChooseRightTutorMove
+end
+= BattleFrontier_Lounge7_EventScript_LeftMoveTutor
+lock
+faceplayer
+setvar VAR_TEMP_C SCROLL_MULTI_BF_MOVE_TUTOR_1
+goto_if_set FLAG_MET_FRONTIER_BEAUTY_MOVE_TUTOR BattleFrontier_Lounge7_EventScript_AlreadyMetLeftTutor
+msgbox	Buhahaha!You couldn't tell it from looking now, but I used to be one tough TRAINER.I had a reputation as the toughest BEAUTY around, I tell you!… … … … … …What is it now? You don't believe me.I'm not like that blowhard woman over there. I'm actually talented!Let me prove it to you. I can teach your POKéMON special and yet cute moves.But my lessons don't come free. How about paying for the moves I teach with a wee bit of Battle Points?
+setflag FLAG_MET_FRONTIER_BEAUTY_MOVE_TUTOR
+goto BattleFrontier_Lounge7_EventScript_ChooseLeftTutorMove
+end
+= BattleFrontier_Lounge7_EventScript_ChooseLeftTutorMove
+message BattleFrontier_Lounge7_Text_TeachWhichMove
+waitmessage
+special ShowBattlePointsWindow
+setvar VAR_TEMP_FRONTIER_TUTOR_ID 0
+setvar VAR_0x8004 SCROLL_MULTI_BF_MOVE_TUTOR_1
+setvar VAR_0x8006 0
+special ShowScrollableMultichoice
+copyvar VAR_TEMP_FRONTIER_TUTOR_SELECTION VAR_RESULT
+switch VAR_RESULT
+case 0 BattleFrontier_Lounge7_EventScript_Softboiled
+case 1 BattleFrontier_Lounge7_EventScript_SeismicToss
+case 2 BattleFrontier_Lounge7_EventScript_DreamEater
+case 3 BattleFrontier_Lounge7_EventScript_MegaPunch
+case 4 BattleFrontier_Lounge7_EventScript_MegaKick
+case 5 BattleFrontier_Lounge7_EventScript_BodySlam
+case 6 BattleFrontier_Lounge7_EventScript_RockSlide
+case 7 BattleFrontier_Lounge7_EventScript_Counter
+case 8 BattleFrontier_Lounge7_EventScript_ThunderWave
+case 9 BattleFrontier_Lounge7_EventScript_SwordsDance
+case 10 BattleFrontier_Lounge7_EventScript_ExitTutorMoveSelect
+case MULTI_B_PRESSED BattleFrontier_Lounge7_EventScript_ExitTutorMoveSelect
+end
+= BattleFrontier_Lounge7_EventScript_AlreadyMetLeftTutor
+msgbox	Buhahaha!Are you back to learn special and yet cute POKéMON moves?
+goto BattleFrontier_Lounge7_EventScript_ChooseLeftTutorMove
+end
+= BattleFrontier_Lounge7_EventScript_Sailor
+msgbox	Those ladies, the way they bad-mouth each other, you probably think that they don't get along.But if that were true, they wouldn't stay out here together, would they?
+end

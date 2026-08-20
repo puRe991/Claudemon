@@ -35,3 +35,86 @@ dialogs
 1	Whenever I'm in SLATEPORT, I enjoy hot battles and ice-cold SODA POP!
 2	If one of my POKéMON knew the move for carrying me across water on its back, I could get rid of this inner tube.
 3	Whew, I'm all thirsty. Maybe I'll have a SODA POP.
+objscripts
+0 Route109_SeashoreHouse_EventScript_Owner
+1 Route109_SeashoreHouse_EventScript_Dwayne
+2 Route109_SeashoreHouse_EventScript_Simon
+3 Route109_SeashoreHouse_EventScript_Johanna
+scriptdefs
+= Route109_SeashoreHouse_EventScript_Johanna
+trainerbattle_single TRAINER_JOHANNA Route109_SeashoreHouse_Text_JohannaIntro Route109_SeashoreHouse_Text_JohannaDefeated Route109_SeashoreHouse_EventScript_CheckTrainersCompletion
+msgbox	Whew, I'm all thirsty. Maybe I'll have a SODA POP.
+end
+= Route109_SeashoreHouse_EventScript_CheckTrainersCompletion
+goto_if_not_defeated TRAINER_DWAYNE Route109_SeashoreHouse_EventScript_TrainersNotCompleted
+goto_if_not_defeated TRAINER_JOHANNA Route109_SeashoreHouse_EventScript_TrainersNotCompleted
+goto_if_not_defeated TRAINER_SIMON Route109_SeashoreHouse_EventScript_TrainersNotCompleted
+setflag FLAG_DEFEATED_SEASHORE_HOUSE
+release
+end
+= Route109_SeashoreHouse_EventScript_TrainersNotCompleted
+release
+end
+= Route109_SeashoreHouse_EventScript_Simon
+trainerbattle_single TRAINER_SIMON Route109_SeashoreHouse_Text_SimonIntro Route109_SeashoreHouse_Text_SimonDefeated Route109_SeashoreHouse_EventScript_CheckTrainersCompletion
+msgbox	If one of my POKéMON knew the move for carrying me across water on its back, I could get rid of this inner tube.
+end
+= Route109_SeashoreHouse_EventScript_Dwayne
+trainerbattle_single TRAINER_DWAYNE Route109_SeashoreHouse_Text_DwayneIntro Route109_SeashoreHouse_Text_DwayneDefeated Route109_SeashoreHouse_EventScript_CheckTrainersCompletion
+msgbox	Whenever I'm in SLATEPORT, I enjoy hot battles and ice-cold SODA POP!
+end
+= Route109_SeashoreHouse_EventScript_Owner
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_6_SODA_POP Route109_SeashoreHouse_EventScript_AlreadyReceivedSodaPop
+goto_if_set FLAG_DEFEATED_SEASHORE_HOUSE Route109_SeashoreHouse_EventScript_DefeatedTrainers
+goto_if_set FLAG_TEMP_2 Route109_SeashoreHouse_EventScript_AlreadyGaveIntroduction
+msgbox	I'm the owner of the SEASHORE HOUSE. But you can call me MR. SEA!What I love above all is to see hot POKéMON battles.Let me see that your heart burns hot!If you can defeat all the TRAINERS here, I'll reward your efforts.
+setflag FLAG_TEMP_2
+release
+end
+= Route109_SeashoreHouse_EventScript_AlreadyGaveIntroduction
+msgbox	Show me some hot matches!I run this SEASHORE HOUSE just for that reason alone!
+release
+end
+= Route109_SeashoreHouse_EventScript_DefeatedTrainers
+msgbox	You're scorching hot! Those battles blazed! I'm more than just satisfied!As thanks for showing me your hot streak, I want you to take these.It's half a dozen bottles of SODA POP!
+giveitem ITEM_SODA_POP 6
+goto_if_eq VAR_RESULT FALSE Route109_SeashoreHouse_EventScript_BagFull
+setflag FLAG_RECEIVED_6_SODA_POP
+release
+end
+= Route109_SeashoreHouse_EventScript_BagFull
+msgbox	Oh, but hey, your BAG's jammed full. I'll hang on to these for you.
+release
+end
+= Route109_SeashoreHouse_EventScript_AlreadyReceivedSodaPop
+showmoneybox 0 0
+msgbox	Want to buy some SODA POP? POKéMON love it!Just ¥300 a bottle! Buy some!
+goto_if_eq VAR_RESULT YES Route109_SeashoreHouse_EventScript_BuySodaPop
+msgbox	No? That's too bad.
+hidemoneybox
+release
+end
+= Route109_SeashoreHouse_EventScript_BuySodaPop
+checkmoney 300
+goto_if_eq VAR_RESULT FALSE Route109_SeashoreHouse_EventScript_NotEnoughMoney
+checkitemspace ITEM_SODA_POP
+goto_if_eq VAR_RESULT FALSE Route109_SeashoreHouse_EventScript_NotEnoughSpace
+msgbox	Here you go!
+removemoney 300
+updatemoneybox
+giveitem ITEM_SODA_POP
+hidemoneybox
+release
+end
+= Route109_SeashoreHouse_EventScript_NotEnoughSpace
+msgbox	gText_TooBadBagIsFull
+hidemoneybox
+release
+end
+= Route109_SeashoreHouse_EventScript_NotEnoughMoney
+msgbox	You don't have the money.
+hidemoneybox
+release
+end

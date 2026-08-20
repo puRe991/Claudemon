@@ -96,6 +96,281 @@ dialogs
 4	You don't know anything! So why are you messing with us?
 5	Heh, it doesn't matter! We bought ourselves some time!The BOSS should have snatched what he was after!
 6	We have a great combination going with us members and our leader.
+objscripts
+0 MtPyre_Summit_EventScript_OldMan
+2 MtPyre_Summit_EventScript_OldLady
+3 MtPyre_Summit_EventScript_Grunt1
+4 MtPyre_Summit_EventScript_Grunt2
+5 MtPyre_Summit_EventScript_Grunt3
+6 MtPyre_Summit_EventScript_Grunt4
+triggers
+22 7 VAR_MT_PYRE_STATE 0 MtPyre_Summit_EventScript_TeamAquaTrigger0
+23 7 VAR_MT_PYRE_STATE 0 MtPyre_Summit_EventScript_TeamAquaTrigger1
+24 7 VAR_MT_PYRE_STATE 0 MtPyre_Summit_EventScript_TeamAquaTrigger2
+22 9 VAR_MT_PYRE_STATE 2 MtPyre_Summit_EventScript_ArchieMaxieTrigger0
+23 9 VAR_MT_PYRE_STATE 2 MtPyre_Summit_EventScript_ArchieMaxieTrigger1
+24 9 VAR_MT_PYRE_STATE 2 MtPyre_Summit_EventScript_ArchieMaxieTrigger2
+movements
+MtPyre_Summit_Movement_ArchieExit	down,down,down,down,down,down,end
+MtPyre_Summit_Movement_ArchieFacePlayer0	left,delay,end
+MtPyre_Summit_Movement_ArchieFacePlayer2	right,delay,end
+MtPyre_Summit_Movement_ArchieWatchMaxie	delay,delay,end
+MtPyre_Summit_Movement_MaxieApproachArchie0	down,right,down,down,delay,end
+MtPyre_Summit_Movement_MaxieApproachArchie1	down,down,down,delay,end
+MtPyre_Summit_Movement_MaxieApproachArchie2	down,down,down,delay,end
+MtPyre_Summit_Movement_MaxieApproachPlayer0	up,up,up,left,end
+MtPyre_Summit_Movement_MaxieApproachPlayer1	up,up,up,delay,end
+MtPyre_Summit_Movement_MaxieApproachPlayer2	up,up,up,delay,end
+MtPyre_Summit_Movement_MaxieExit	down,down,down,down,down,down,end
+MtPyre_Summit_Movement_OldLadyApproachPlayer0	down,down,delay,end
+MtPyre_Summit_Movement_OldLadyApproachPlayer1	down,end
+MtPyre_Summit_Movement_OldLadyApproachPlayer2	down,down,delay,end
+MtPyre_Summit_Movement_PlayerFaceMaxie	delay,delay,delay,end
+MtPyre_Summit_Movement_PlayerFaceMaxie0	delay,delay,delay,end
+MtPyre_Summit_Movement_PlayerWatchArchieMaxieExit0	delay,delay,left,delay,delay,delay,end
+MtPyre_Summit_Movement_PlayerWatchArchieMaxieExit1	delay,delay,right,delay,delay,delay,end
+MtPyre_Summit_Movement_PlayerWatchArchieMaxieExit2	delay,delay,delay,delay,delay,end
+MtPyre_Summit_Movement_PlayerWatchMaxie	delay,delay,end
+scriptdefs
+= MtPyre_Summit_EventScript_ArchieMaxieTrigger2
+lockall
+setvar VAR_0x8008 2
+goto MtPyre_Summit_EventScript_ArchieMaxieReturnOrbs
+end
+= MtPyre_Summit_EventScript_ArchieMaxieReturnOrbs
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+delay 60
+call_if_eq VAR_0x8008 0 MtPyre_Summit_EventScript_ArchieMaxieBeginExit0
+call_if_eq VAR_0x8008 1 MtPyre_Summit_EventScript_ArchieMaxieBeginExit1
+call_if_eq VAR_0x8008 2 MtPyre_Summit_EventScript_ArchieMaxieBeginExit2
+playse SE_PIN
+applymovement LOCALID_MT_PYRE_SUMMIT_MAXIE Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_MT_PYRE_SUMMIT_MAXIE Common_Movement_Delay48
+waitmovement 0
+delay 30
+call_if_eq VAR_0x8008 0 MtPyre_Summit_EventScript_MaxieApproachPlayer0
+call_if_eq VAR_0x8008 1 MtPyre_Summit_EventScript_MaxieApproachPlayer1
+call_if_eq VAR_0x8008 2 MtPyre_Summit_EventScript_MaxieApproachPlayer2
+msgbox	MAXIE: PLAYER…… … … … … … … … … … … …
+closemessage
+call_if_eq VAR_0x8008 0 MtPyre_Summit_EventScript_MaxieApproachArchie0
+call_if_eq VAR_0x8008 1 MtPyre_Summit_EventScript_MaxieApproachArchie1
+call_if_eq VAR_0x8008 2 MtPyre_Summit_EventScript_MaxieApproachArchie2
+delay 30
+applymovement LOCALID_MT_PYRE_SUMMIT_ARCHIE MtPyre_Summit_Movement_ArchieExit
+applymovement LOCALID_MT_PYRE_SUMMIT_MAXIE MtPyre_Summit_Movement_MaxieExit
+waitmovement 0
+removeobject LOCALID_MT_PYRE_SUMMIT_ARCHIE
+removeobject LOCALID_MT_PYRE_SUMMIT_MAXIE
+setvar VAR_MT_PYRE_STATE 3
+releaseall
+end
+= MtPyre_Summit_EventScript_MaxieApproachArchie2
+applymovement LOCALID_PLAYER MtPyre_Summit_Movement_PlayerWatchMaxie
+applymovement LOCALID_MT_PYRE_SUMMIT_MAXIE MtPyre_Summit_Movement_MaxieApproachArchie2
+waitmovement 0
+applymovement LOCALID_MT_PYRE_SUMMIT_ARCHIE Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+return
+= MtPyre_Summit_EventScript_MaxieApproachArchie1
+applymovement LOCALID_PLAYER MtPyre_Summit_Movement_PlayerWatchMaxie
+applymovement LOCALID_MT_PYRE_SUMMIT_MAXIE MtPyre_Summit_Movement_MaxieApproachArchie1
+waitmovement 0
+applymovement LOCALID_MT_PYRE_SUMMIT_ARCHIE Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+return
+= MtPyre_Summit_EventScript_MaxieApproachArchie0
+applymovement LOCALID_PLAYER MtPyre_Summit_Movement_PlayerWatchMaxie
+applymovement LOCALID_MT_PYRE_SUMMIT_MAXIE MtPyre_Summit_Movement_MaxieApproachArchie0
+waitmovement 0
+applymovement LOCALID_MT_PYRE_SUMMIT_ARCHIE Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+return
+= MtPyre_Summit_EventScript_MaxieApproachPlayer2
+applymovement LOCALID_PLAYER MtPyre_Summit_Movement_PlayerFaceMaxie
+applymovement LOCALID_MT_PYRE_SUMMIT_ARCHIE MtPyre_Summit_Movement_ArchieWatchMaxie
+applymovement LOCALID_MT_PYRE_SUMMIT_MAXIE MtPyre_Summit_Movement_MaxieApproachPlayer2
+waitmovement 0
+return
+= MtPyre_Summit_EventScript_MaxieApproachPlayer1
+applymovement LOCALID_PLAYER MtPyre_Summit_Movement_PlayerFaceMaxie
+applymovement LOCALID_MT_PYRE_SUMMIT_ARCHIE MtPyre_Summit_Movement_ArchieWatchMaxie
+applymovement LOCALID_MT_PYRE_SUMMIT_MAXIE MtPyre_Summit_Movement_MaxieApproachPlayer1
+waitmovement 0
+return
+= MtPyre_Summit_EventScript_MaxieApproachPlayer0
+applymovement LOCALID_PLAYER MtPyre_Summit_Movement_PlayerFaceMaxie0
+applymovement LOCALID_MT_PYRE_SUMMIT_ARCHIE MtPyre_Summit_Movement_ArchieWatchMaxie
+applymovement LOCALID_MT_PYRE_SUMMIT_MAXIE MtPyre_Summit_Movement_MaxieApproachPlayer0
+waitmovement 0
+return
+= MtPyre_Summit_EventScript_ArchieMaxieBeginExit2
+applymovement LOCALID_PLAYER MtPyre_Summit_Movement_PlayerWatchArchieMaxieExit2
+applymovement LOCALID_MT_PYRE_SUMMIT_ARCHIE MtPyre_Summit_Movement_ArchieExit
+applymovement LOCALID_MT_PYRE_SUMMIT_MAXIE MtPyre_Summit_Movement_MaxieExit
+waitmovement 0
+return
+= MtPyre_Summit_EventScript_ArchieMaxieBeginExit1
+applymovement LOCALID_PLAYER MtPyre_Summit_Movement_PlayerWatchArchieMaxieExit1
+applymovement LOCALID_MT_PYRE_SUMMIT_ARCHIE MtPyre_Summit_Movement_ArchieExit
+applymovement LOCALID_MT_PYRE_SUMMIT_MAXIE MtPyre_Summit_Movement_MaxieExit
+waitmovement 0
+return
+= MtPyre_Summit_EventScript_ArchieMaxieBeginExit0
+applymovement LOCALID_PLAYER MtPyre_Summit_Movement_PlayerWatchArchieMaxieExit0
+applymovement LOCALID_MT_PYRE_SUMMIT_ARCHIE MtPyre_Summit_Movement_ArchieExit
+applymovement LOCALID_MT_PYRE_SUMMIT_MAXIE MtPyre_Summit_Movement_MaxieExit
+waitmovement 0
+return
+= MtPyre_Summit_EventScript_ArchieMaxieTrigger1
+lockall
+setvar VAR_0x8008 1
+goto MtPyre_Summit_EventScript_ArchieMaxieReturnOrbs
+end
+= MtPyre_Summit_EventScript_ArchieMaxieTrigger0
+lockall
+setvar VAR_0x8008 0
+goto MtPyre_Summit_EventScript_ArchieMaxieReturnOrbs
+end
+= MtPyre_Summit_EventScript_TeamAquaTrigger2
+lockall
+setvar VAR_0x8008 2
+goto MtPyre_Summit_EventScript_TeamAquaExits
+end
+= MtPyre_Summit_EventScript_TeamAquaExits
+playbgm MUS_ENCOUNTER_AQUA FALSE
+applymovement LOCALID_PLAYER Common_Movement_FaceUp
+waitmovement 0
+applymovement LOCALID_MT_PYRE_SUMMIT_ARCHIE Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+delay 50
+call_if_eq VAR_0x8008 0 MtPyre_Summit_EventScript_ArchieFacePlayer0
+call_if_eq VAR_0x8008 1 MtPyre_Summit_EventScript_ArchieFacePlayer1
+call_if_eq VAR_0x8008 2 MtPyre_Summit_EventScript_ArchieFacePlayer2
+msgbox	ARCHIE: TEAM MAGMA's MAXIE got ahead of us, but we also got what we wanted.The RED ORB preserved at MT. PYRE… I, ARCHIE, now have it in my possession!Fufufu… Now we can bring our ultimate objective to fruition!Okay, TEAM! We're pulling out!
+closemessage
+fadescreen FADE_TO_BLACK
+removeobject LOCALID_MT_PYRE_SUMMIT_ARCHIE
+removeobject LOCALID_MT_PYRE_SUMMIT_GRUNT_1
+removeobject LOCALID_MT_PYRE_SUMMIT_GRUNT_2
+removeobject LOCALID_MT_PYRE_SUMMIT_GRUNT_3
+removeobject LOCALID_MT_PYRE_SUMMIT_GRUNT_4
+setflag FLAG_HIDE_MT_PYRE_SUMMIT_ARCHIE
+setflag FLAG_HIDE_MT_PYRE_SUMMIT_TEAM_AQUA
+fadedefaultbgm
+fadescreen FADE_FROM_BLACK
+delay 20
+setvar VAR_MT_PYRE_STATE 1
+call_if_eq VAR_0x8008 0 MtPyre_Summit_EventScript_OldLadyApproachPlayer0
+call_if_eq VAR_0x8008 1 MtPyre_Summit_EventScript_OldLadyApproachPlayer1
+call_if_eq VAR_0x8008 2 MtPyre_Summit_EventScript_OldLadyApproachPlayer2
+msgbox	Oh, no… This cannot happen…Not only the BLUE ORB, but even the RED ORB has been taken…The BLUE ORB and RED ORB must never be separated. They belong together.What are those men trying to do with the two ORBS?… … … … … … … … … … … …Oh, yes. Was it TEAM MAGMA who came and took the BLUE ORB first?Well, in their haste, they left this behind.I couldn't imagine what exactly it could be.I would like you to have it. Perhaps it will be useful in some way.
+giveitem ITEM_MAGMA_EMBLEM
+setflag FLAG_RECEIVED_RED_OR_BLUE_ORB
+setflag FLAG_HIDE_JAGGED_PASS_MAGMA_GUARD
+releaseall
+end
+= MtPyre_Summit_EventScript_OldLadyApproachPlayer2
+applymovement LOCALID_MT_PYRE_SUMMIT_OLD_LADY MtPyre_Summit_Movement_OldLadyApproachPlayer2
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+return
+= MtPyre_Summit_EventScript_OldLadyApproachPlayer1
+applymovement LOCALID_MT_PYRE_SUMMIT_OLD_LADY MtPyre_Summit_Movement_OldLadyApproachPlayer1
+waitmovement 0
+return
+= MtPyre_Summit_EventScript_OldLadyApproachPlayer0
+applymovement LOCALID_MT_PYRE_SUMMIT_OLD_LADY MtPyre_Summit_Movement_OldLadyApproachPlayer0
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+return
+= MtPyre_Summit_EventScript_ArchieFacePlayer2
+applymovement LOCALID_MT_PYRE_SUMMIT_ARCHIE MtPyre_Summit_Movement_ArchieFacePlayer2
+waitmovement 0
+return
+= MtPyre_Summit_EventScript_ArchieFacePlayer1
+return
+= MtPyre_Summit_EventScript_ArchieFacePlayer0
+applymovement LOCALID_MT_PYRE_SUMMIT_ARCHIE MtPyre_Summit_Movement_ArchieFacePlayer0
+waitmovement 0
+return
+@ Archie is already facing player
+= MtPyre_Summit_EventScript_TeamAquaTrigger1
+lockall
+setvar VAR_0x8008 1
+goto MtPyre_Summit_EventScript_TeamAquaExits
+end
+= MtPyre_Summit_EventScript_TeamAquaTrigger0
+lockall
+setvar VAR_0x8008 0
+goto MtPyre_Summit_EventScript_TeamAquaExits
+end
+= MtPyre_Summit_EventScript_Grunt4
+trainerbattle_single TRAINER_GRUNT_MT_PYRE_4 MtPyre_Summit_Text_Grunt4Intro MtPyre_Summit_Text_Grunt4Defeat
+msgbox	We have a great combination going with us members and our leader.
+end
+= MtPyre_Summit_EventScript_Grunt3
+trainerbattle_single TRAINER_GRUNT_MT_PYRE_3 MtPyre_Summit_Text_Grunt3Intro MtPyre_Summit_Text_Grunt3Defeat
+msgbox	Heh, it doesn't matter! We bought ourselves some time!The BOSS should have snatched what he was after!
+end
+= MtPyre_Summit_EventScript_Grunt2
+trainerbattle_single TRAINER_GRUNT_MT_PYRE_2 MtPyre_Summit_Text_Grunt2Intro MtPyre_Summit_Text_Grunt2Defeat
+msgbox	You don't know anything! So why are you messing with us?
+end
+= MtPyre_Summit_EventScript_Grunt1
+trainerbattle_single TRAINER_GRUNT_MT_PYRE_1 MtPyre_Summit_Text_Grunt1Intro MtPyre_Summit_Text_Grunt1Defeat
+msgbox	Yeah, so you are strong… But there're a lot of us!
+end
+= MtPyre_Summit_EventScript_OldLady
+lock
+faceplayer
+goto_if_set FLAG_RETURNED_RED_OR_BLUE_ORB MtPyre_Summit_EventScript_OldLadyAfterOrbsReturned
+call_if_ge VAR_MT_PYRE_STATE 3 MtPyre_Summit_EventScript_OldLadyOrbsReturned
+goto_if_set FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN MtPyre_Summit_EventScript_OldLadyLegendariesAwake
+msgbox	The BLUE ORB and RED ORB taken by those sinister men…They must never be apart… I fear something terrible will happen…
+release
+end
+= MtPyre_Summit_EventScript_OldLadyLegendariesAwake
+msgbox	Oh, my goodness…You say that both GROUDON and KYOGRE have been awakened?It is said that the BLUE ORB and the RED ORB quelled the rage of the two POKéMON…It is also said that the true owner of the ORBS still exists.However, no one knows who, or what exactly, the ORBS belong to.It could be a human, or perhaps a POKéMON, but no one knows.
+release
+end
+= MtPyre_Summit_EventScript_OldLadyOrbsReturned
+msgbox	The two men who took the ORBS came back to return them on their own.Those men… Perhaps they are not so evil after all…
+setflag FLAG_RETURNED_RED_OR_BLUE_ORB
+release
+end
+= MtPyre_Summit_EventScript_OldLadyAfterOrbsReturned
+msgbox	The embodiments of the land, sea, and the sky…That is said to be the identities of the super-ancient POKéMON…In the same way that we humans and POKéMON have life, our world, too, is alive…The super-ancient POKéMON have taught us that…
+release
+end
+= MtPyre_Summit_EventScript_OldMan
+lock
+faceplayer
+goto_if_set FLAG_SOOTOPOLIS_ARCHIE_MAXIE_LEAVE MtPyre_Summit_EventScript_OldManAfterRayquaza
+msgbox	MT. PYRE is where we calm the spirits of POKéMON that have passed on…This is a high place where one can see all of HOENN…The disembodied spirits of POKéMON must find solace here…Is it coincidence that you are here…Will you hear out my tale? A tale long told in the HOENN region?
+call_if_eq VAR_RESULT YES MtPyre_Summit_EventScript_OldManTale
+call_if_eq VAR_RESULT NO MtPyre_Summit_EventScript_DeclineOldManTale
+release
+end
+= MtPyre_Summit_EventScript_DeclineOldManTale
+msgbox	I see… Well, that, too, is fine…
+return
+= MtPyre_Summit_EventScript_OldManTale
+msgbox	It happened long, long ago…The world was wracked by a ferocious clash between the POKéMON of the land and the POKéMON of the sea…The POKéMON of the land raised mountains and created continents…The POKéMON of the sea raised huge waves and carved out oceans…Their fierce duel raged without end.The world was engulfed in massive infernos and vicious storms.The BLUE ORB and the RED ORB brought an end to the calamity.Light poured from the two ORBS and becalmed the enraged adversaries.The pair, made docile, dove deep into the sea where eventually they disappeared…
+return
+= MtPyre_Summit_EventScript_OldManAfterRayquaza
+msgbox	It is my role to pass on the legends of HOENN to future generations.And the crisis that just ended in SOOTOPOLIS rewrote a legend…Have you the time to hear the new legend of HOENN?
+call_if_eq VAR_RESULT YES MtPyre_Summit_EventScript_OldManNewTale
+call_if_eq VAR_RESULT NO MtPyre_Summit_EventScript_DeclineOldManTale
+release
+end
+= MtPyre_Summit_EventScript_OldManNewTale
+msgbox	It happened long, long ago…The world was wracked by a ferocious clash between the POKéMON of the land and the POKéMON of the sea…The POKéMON of the land raised mountains and created continents…The POKéMON of the sea raised huge waves and carved out oceans…Their fierce duel raged without end.The world was engulfed in massive fires and vicious storms.It was then that the POKéMON of the sky descended from a storm.The POKéMON, shining a vivid green, becalmed the two enraged POKéMON.Then, its duty done, the green POKéMON flew off into the wild blue yonder…
+return
 grass
 13
 encounters

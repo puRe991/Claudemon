@@ -34,3 +34,9 @@ people_man_1 1 2 S static
 people_youngster 8 8 N static
 dialogs
 4	Did you know that you can link battle at the COLOSSEUM here?They put up your record on the wall for everyone to see.It's embarrassing if you lose more often than you win…
+objscripts
+4 MauvilleCity_PokemonCenter_2F_EventScript_Youngster
+scriptdefs
+= MauvilleCity_PokemonCenter_2F_EventScript_Youngster
+msgbox	Did you know that you can link battle at the COLOSSEUM here?They put up your record on the wall for everyone to see.It's embarrassing if you lose more often than you win…
+end

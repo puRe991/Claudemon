@@ -92,6 +92,16 @@ misc_breakable_rock 23 6 S static
 misc_breakable_rock 20 7 S static
 misc_breakable_rock 27 7 S static
 misc_item_ball 7 6 S static
+objscripts
+0 SafariZone_North_EventScript_Fisherman
+1 SafariZone_North_EventScript_Man
+scriptdefs
+= SafariZone_North_EventScript_Man
+msgbox	SafariZone_North_Text_Man
+end
+= SafariZone_North_EventScript_Fisherman
+msgbox	SafariZone_North_Text_Fisherman
+end
 grass
 13,454,455
 encounters

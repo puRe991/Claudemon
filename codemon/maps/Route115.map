@@ -192,6 +192,104 @@ misc_item_ball 26 67 S static
 misc_item_ball 12 14 S static
 dialogs
 0	Exploring a cave isn't like walking on a road.You never know when wild POKéMON will appear. It's full of suspense.
+objscripts
+0 Route115_EventScript_Woman
+1 Route115_EventScript_Timothy
+2 Route115_EventScript_Nob
+6 Route115_EventScript_Cyndy
+7 Route115_EventScript_Koichi
+8 Route115_EventScript_Hector
+16 Route115_EventScript_Kyra
+17 Route115_EventScript_Jaiden
+18 Route115_EventScript_Helene
+19 Route115_EventScript_Alix
+20 Route115_EventScript_Marlene
+scriptdefs
+= Route115_EventScript_Marlene
+trainerbattle_single TRAINER_MARLENE Route115_Text_MarleneIntro Route115_Text_MarleneDefeat
+msgbox	Route115_Text_MarlenePostBattle
+end
+= Route115_EventScript_Alix
+trainerbattle_single TRAINER_ALIX Route115_Text_AlixIntro Route115_Text_AlixDefeat
+msgbox	Route115_Text_AlixPostBattle
+end
+= Route115_EventScript_Helene
+trainerbattle_single TRAINER_HELENE Route115_Text_HeleneIntro Route115_Text_HeleneDefeat
+msgbox	Route115_Text_HelenePostBattle
+end
+= Route115_EventScript_Jaiden
+trainerbattle_single TRAINER_JAIDEN Route115_Text_JaidenIntro Route115_Text_JaidenDefeat
+msgbox	Route115_Text_JaidenPostBattle
+end
+= Route115_EventScript_Kyra
+trainerbattle_single TRAINER_KYRA Route115_Text_KyraIntro Route115_Text_KyraDefeat
+msgbox	Route115_Text_KyraPostBattle
+end
+= Route115_EventScript_Hector
+trainerbattle_single TRAINER_HECTOR Route115_Text_HectorIntro Route115_Text_HectorDefeat
+msgbox	Route115_Text_HectorPostBattle
+end
+= Route115_EventScript_Koichi
+trainerbattle_single TRAINER_KOICHI Route115_Text_KoichiIntro Route115_Text_KoichiDefeat
+msgbox	Route115_Text_KoichiPostBattle
+end
+= Route115_EventScript_Cyndy
+trainerbattle_single TRAINER_CYNDY_1 Route115_Text_CyndyIntro Route115_Text_CyndyDefeat Route115_EventScript_RegisterCyndy
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route115_EventScript_RematchCyndy
+msgbox	Route115_Text_CyndyPostBattle
+release
+end
+= Route115_EventScript_RematchCyndy
+trainerbattle_rematch TRAINER_CYNDY_1 Route115_Text_CyndyRematchIntro Route115_Text_CyndyRematchDefeat
+msgbox	Route115_Text_CyndyPostRematch
+end
+= Route115_EventScript_RegisterCyndy
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	Route115_Text_CyndyRegister
+register_matchcall TRAINER_CYNDY_1
+release
+end
+= Route115_EventScript_Nob
+trainerbattle_single TRAINER_NOB_1 Route115_Text_NobIntro Route115_Text_NobDefeat Route115_EventScript_RegisterNob
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route115_EventScript_RematchNob
+msgbox	Route115_Text_NobPostBattle
+release
+end
+= Route115_EventScript_RematchNob
+trainerbattle_rematch TRAINER_NOB_1 Route115_Text_NobRematchIntro Route115_Text_NobRematchDefeat
+msgbox	Route115_Text_NobPostRematch
+end
+= Route115_EventScript_RegisterNob
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	Route115_Text_NobRegister
+register_matchcall TRAINER_NOB_1
+release
+end
+= Route115_EventScript_Timothy
+trainerbattle_single TRAINER_TIMOTHY_1 Route115_Text_TimothyIntro Route115_Text_TimothyDefeat Route115_EventScript_RegisterTimothy
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route115_EventScript_RematchTimothy
+msgbox	Route115_Text_TimothyPostBattle
+release
+end
+= Route115_EventScript_RematchTimothy
+trainerbattle_rematch TRAINER_TIMOTHY_1 Route115_Text_TimothyRematchIntro Route115_Text_TimothyRematchDefeat
+msgbox	Route115_Text_TimothyPostRematch
+end
+= Route115_EventScript_RegisterTimothy
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	Route115_Text_TimothyRegister
+register_matchcall TRAINER_TIMOTHY_1
+release
+end
+= Route115_EventScript_Woman
+msgbox	Exploring a cave isn't like walking on a road.You never know when wild POKéMON will appear. It's full of suspense.
+end
 signs
 16 64	ROUTE 115 RUSTBORO CITY
 25 38	METEOR FALLS FALLARBOR TOWN THROUGH HERE

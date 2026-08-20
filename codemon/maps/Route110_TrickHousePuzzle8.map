@@ -59,3 +59,20 @@ dialogs
 0	You've beaten the POKéMON LEAGUE CHAMPION? That's too much!
 1	Seeing someone like you should please the TRICK MASTER.
 2	It's a miracle that you beat me. You can brag about it.
+objscripts
+0 Route110_TrickHousePuzzle8_EventScript_Vincent
+1 Route110_TrickHousePuzzle8_EventScript_Leroy
+2 Route110_TrickHousePuzzle8_EventScript_Keira
+scriptdefs
+= Route110_TrickHousePuzzle8_EventScript_Keira
+trainerbattle_single TRAINER_KEIRA Route110_TrickHousePuzzle8_Text_KeiraIntro Route110_TrickHousePuzzle8_Text_KeiraDefeat
+msgbox	It's a miracle that you beat me. You can brag about it.
+end
+= Route110_TrickHousePuzzle8_EventScript_Leroy
+trainerbattle_single TRAINER_LEROY Route110_TrickHousePuzzle8_Text_LeroyIntro Route110_TrickHousePuzzle8_Text_LeroyDefeat
+msgbox	Seeing someone like you should please the TRICK MASTER.
+end
+= Route110_TrickHousePuzzle8_EventScript_Vincent
+trainerbattle_single TRAINER_VINCENT Route110_TrickHousePuzzle8_Text_VincentIntro Route110_TrickHousePuzzle8_Text_VincentDefeat
+msgbox	You've beaten the POKéMON LEAGUE CHAMPION? That's too much!
+end

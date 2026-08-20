@@ -59,3 +59,20 @@ dialogs
 0	I'm sure having a good time checking this place out.It's a challenge I've found worth repeating!
 1	Ehehehe… I guess I lost because I was trying to cheat.
 2	You don't seem to be affected at all. Or do you have your poker face on?
+objscripts
+0 Route110_TrickHousePuzzle6_EventScript_Sophia
+1 Route110_TrickHousePuzzle6_EventScript_Benny
+2 Route110_TrickHousePuzzle6_EventScript_Sebastian
+scriptdefs
+= Route110_TrickHousePuzzle6_EventScript_Sebastian
+trainerbattle_single TRAINER_SEBASTIAN Route110_TrickHousePuzzle6_Text_SebastianIntro Route110_TrickHousePuzzle6_Text_SebastianDefeat
+msgbox	You don't seem to be affected at all. Or do you have your poker face on?
+end
+= Route110_TrickHousePuzzle6_EventScript_Benny
+trainerbattle_single TRAINER_BENNY Route110_TrickHousePuzzle6_Text_BennyIntro Route110_TrickHousePuzzle6_Text_BennyDefeat
+msgbox	Ehehehe… I guess I lost because I was trying to cheat.
+end
+= Route110_TrickHousePuzzle6_EventScript_Sophia
+trainerbattle_single TRAINER_SOPHIA Route110_TrickHousePuzzle6_Text_SophiaIntro Route110_TrickHousePuzzle6_Text_SophiaDefeat
+msgbox	I'm sure having a good time checking this place out.It's a challenge I've found worth repeating!
+end

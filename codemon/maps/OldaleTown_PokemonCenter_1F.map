@@ -33,3 +33,33 @@ dialogs
 1	That PC in the corner there is for any POKéMON TRAINER to use.Naturally, that means you're welcome to use it, too.
 2	POKéMON CENTERS are great!You can use their services as much as you like, and it's all for free. You never have to worry!
 3	The POKéMON WIRELESS CLUB on the second floor was built recently.But they say they're still making adjustments.
+objscripts
+0 OldaleTown_PokemonCenter_1F_EventScript_Nurse
+1 OldaleTown_PokemonCenter_1F_EventScript_Gentleman
+2 OldaleTown_PokemonCenter_1F_EventScript_Boy
+3 OldaleTown_PokemonCenter_1F_EventScript_Girl
+scriptdefs
+= OldaleTown_PokemonCenter_1F_EventScript_Girl
+lock
+faceplayer
+goto_if_set FLAG_SYS_POKEDEX_GET OldaleTown_PokemonCenter_1F_EventScript_WirelessClubAvailable
+msgbox	The POKéMON WIRELESS CLUB on the second floor was built recently.But they say they're still making adjustments.
+release
+end
+= OldaleTown_PokemonCenter_1F_EventScript_WirelessClubAvailable
+msgbox	The POKéMON WIRELESS CLUB on the second floor was built recently.I traded POKéMON right away.
+release
+end
+= OldaleTown_PokemonCenter_1F_EventScript_Boy
+msgbox	POKéMON CENTERS are great!You can use their services as much as you like, and it's all for free. You never have to worry!
+end
+= OldaleTown_PokemonCenter_1F_EventScript_Gentleman
+msgbox	That PC in the corner there is for any POKéMON TRAINER to use.Naturally, that means you're welcome to use it, too.
+end
+= OldaleTown_PokemonCenter_1F_EventScript_Nurse
+setvar VAR_0x800B LOCALID_OLDALE_NURSE
+call Common_EventScript_PkmnCenterNurse
+waitmessage
+waitbuttonpress
+release
+end

@@ -35,3 +35,35 @@ dialogs
 2	Okay! Next stop, the BATTLE ARENA! I'd better get the right POKéMON from the PC Storage System.
 3	Giggle… I'm going to go through every challenge with just this baby!
 4	SKITTY: Mya myaaah!
+objscripts
+0 BattleFrontier_PokemonCenter_1F_EventScript_Nurse
+1 BattleFrontier_PokemonCenter_1F_EventScript_SchoolKid
+2 BattleFrontier_PokemonCenter_1F_EventScript_Man
+3 BattleFrontier_PokemonCenter_1F_EventScript_Picnicker
+4 BattleFrontier_PokemonCenter_1F_EventScript_Skitty
+scriptdefs
+= BattleFrontier_PokemonCenter_1F_EventScript_Skitty
+lock
+faceplayer
+waitse
+playmoncry SPECIES_SKITTY CRY_MODE_NORMAL
+msgbox	SKITTY: Mya myaaah!
+waitmoncry
+release
+end
+= BattleFrontier_PokemonCenter_1F_EventScript_Picnicker
+msgbox	Giggle… I'm going to go through every challenge with just this baby!
+end
+= BattleFrontier_PokemonCenter_1F_EventScript_Man
+msgbox	Okay! Next stop, the BATTLE ARENA! I'd better get the right POKéMON from the PC Storage System.
+end
+= BattleFrontier_PokemonCenter_1F_EventScript_SchoolKid
+msgbox	There was someone here using a POKéMON I've never seen before.I never learned about it at TRAINER'S SCHOOL at least.I wonder where you can catch POKéMON like that.
+end
+= BattleFrontier_PokemonCenter_1F_EventScript_Nurse
+setvar VAR_0x800B LOCALID_FRONTIER_NURSE
+call Common_EventScript_PkmnCenterNurse
+waitmessage
+waitbuttonpress
+release
+end

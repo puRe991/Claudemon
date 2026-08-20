@@ -57,3 +57,15 @@ people_team_aqua_aqua_member_m 15 10 S static
 dialogs
 3	I want to get a promotion so I can boss around the GRUNTS…
 4	That submarine we jacked, man, it's brutal as a ride. It's way too tight in there!
+objscripts
+3 SeafloorCavern_Room1_EventScript_Grunt1
+4 SeafloorCavern_Room1_EventScript_Grunt2
+scriptdefs
+= SeafloorCavern_Room1_EventScript_Grunt2
+trainerbattle_single TRAINER_GRUNT_SEAFLOOR_CAVERN_2 SeafloorCavern_Room1_Text_Grunt2Intro SeafloorCavern_Room1_Text_Grunt2Defeat
+msgbox	That submarine we jacked, man, it's brutal as a ride. It's way too tight in there!
+end
+= SeafloorCavern_Room1_EventScript_Grunt1
+trainerbattle_single TRAINER_GRUNT_SEAFLOOR_CAVERN_1 SeafloorCavern_Room1_Text_Grunt1Intro SeafloorCavern_Room1_Text_Grunt1Defeat
+msgbox	I want to get a promotion so I can boss around the GRUNTS…
+end

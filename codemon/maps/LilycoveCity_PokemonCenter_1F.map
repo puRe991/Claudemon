@@ -33,3 +33,29 @@ people_man_1 2 3 S static
 dialogs
 1	I wonder how many kinds of POKéMON there are in the world.It'd be great to cross seas and trade POKéMON with people far away.
 2	I've been hearing about some rotten scoundrels who steal POKéMON and rip off METEORITES.
+objscripts
+0 LilycoveCity_PokemonCenter_1F_EventScript_Nurse
+1 LilycoveCity_PokemonCenter_1F_EventScript_Boy
+2 LilycoveCity_PokemonCenter_1F_EventScript_Maniac
+scriptdefs
+= LilycoveCity_PokemonCenter_1F_EventScript_Maniac
+lock
+faceplayer
+goto_if_set FLAG_BADGE07_GET LilycoveCity_PokemonCenter_1F_EventScript_ManiacBadTeamGone
+msgbox	I've been hearing about some rotten scoundrels who steal POKéMON and rip off METEORITES.
+release
+end
+= LilycoveCity_PokemonCenter_1F_EventScript_ManiacBadTeamGone
+msgbox	Those rotten scoundrels who steal POKéMON and rip off METEORITES…I haven't seen them around recently.
+release
+end
+= LilycoveCity_PokemonCenter_1F_EventScript_Boy
+msgbox	I wonder how many kinds of POKéMON there are in the world.It'd be great to cross seas and trade POKéMON with people far away.
+end
+= LilycoveCity_PokemonCenter_1F_EventScript_Nurse
+setvar VAR_0x800B LOCALID_LILYCOVE_NURSE
+call Common_EventScript_PkmnCenterNurse
+waitmessage
+waitbuttonpress
+release
+end

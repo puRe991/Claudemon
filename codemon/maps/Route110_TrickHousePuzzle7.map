@@ -77,3 +77,85 @@ dialogs
 4	Well, anyway, we both picked a weird place to get acquainted.As one weirdo to another, let's do our best!
 5	Humph! I'm not upset! Not me!
 6	I was hoping to switch places with you when I beat you, but…
+objscripts
+0 Route110_TrickHousePuzzle7_EventScript_Joshua
+1 Route110_TrickHousePuzzle7_EventScript_Alexis
+2 Route110_TrickHousePuzzle7_EventScript_Patricia
+4 Route110_TrickHousePuzzle7_EventScript_Alvaro
+5 Route110_TrickHousePuzzle7_EventScript_Mariela
+6 Route110_TrickHousePuzzle7_EventScript_Everett
+triggers
+8 19 VAR_TEMP_1 0 Route110_TrickHousePuzzle7_EventScript_YellowButton
+0 14 VAR_TEMP_1 0 Route110_TrickHousePuzzle7_EventScript_BlueButton
+6 6 VAR_TEMP_1 0 Route110_TrickHousePuzzle7_EventScript_GreenButton
+9 7 VAR_TEMP_1 0 Route110_TrickHousePuzzle7_EventScript_PurpleButton
+scriptdefs
+= Route110_TrickHousePuzzle7_EventScript_PurpleButton
+playse SE_SWITCH
+waitse
+playse SE_REPEL
+initrotatingtilepuzzle TRUE
+moverotatingtileobjects 3
+waitmovement 0
+turnrotatingtileobjects
+waitmovement 0
+freerotatingtilepuzzle
+end
+@ Unused
+= Route110_TrickHousePuzzle7_EventScript_GreenButton
+playse SE_SWITCH
+waitse
+playse SE_REPEL
+initrotatingtilepuzzle TRUE
+moverotatingtileobjects 2
+waitmovement 0
+turnrotatingtileobjects
+waitmovement 0
+freerotatingtilepuzzle
+end
+= Route110_TrickHousePuzzle7_EventScript_BlueButton
+playse SE_SWITCH
+waitse
+playse SE_REPEL
+initrotatingtilepuzzle TRUE
+moverotatingtileobjects 1
+waitmovement 0
+turnrotatingtileobjects
+waitmovement 0
+freerotatingtilepuzzle
+end
+= Route110_TrickHousePuzzle7_EventScript_YellowButton
+playse SE_SWITCH
+waitse
+playse SE_REPEL
+initrotatingtilepuzzle TRUE
+moverotatingtileobjects 0
+waitmovement 0
+turnrotatingtileobjects
+waitmovement 0
+freerotatingtilepuzzle
+end
+= Route110_TrickHousePuzzle7_EventScript_Everett
+trainerbattle_single TRAINER_EVERETT Route110_TrickHousePuzzle7_Text_EverettIntro Route110_TrickHousePuzzle7_Text_EverettDefeat
+msgbox	I was hoping to switch places with you when I beat you, but…
+end
+= Route110_TrickHousePuzzle7_EventScript_Mariela
+trainerbattle_single TRAINER_MARIELA Route110_TrickHousePuzzle7_Text_MarielaIntro Route110_TrickHousePuzzle7_Text_MarielaDefeat
+msgbox	Humph! I'm not upset! Not me!
+end
+= Route110_TrickHousePuzzle7_EventScript_Alvaro
+trainerbattle_single TRAINER_ALVARO Route110_TrickHousePuzzle7_Text_AlvaroIntro Route110_TrickHousePuzzle7_Text_AlvaroDefeat
+msgbox	Well, anyway, we both picked a weird place to get acquainted.As one weirdo to another, let's do our best!
+end
+= Route110_TrickHousePuzzle7_EventScript_Patricia
+trainerbattle_single TRAINER_PATRICIA Route110_TrickHousePuzzle7_Text_PatriciaIntro Route110_TrickHousePuzzle7_Text_PatriciaDefeat
+msgbox	I've circled the same spot over ten times now… It's ill fortune…
+end
+= Route110_TrickHousePuzzle7_EventScript_Alexis
+trainerbattle_single TRAINER_ALEXIS Route110_TrickHousePuzzle7_Text_AlexisIntro Route110_TrickHousePuzzle7_Text_AlexisDefeat
+msgbox	You're solving all the puzzles in the TRICK HOUSE. That's the feeling I get.
+end
+= Route110_TrickHousePuzzle7_EventScript_Joshua
+trainerbattle_single TRAINER_JOSHUA Route110_TrickHousePuzzle7_Text_JoshuaIntro Route110_TrickHousePuzzle7_Text_JoshuaDefeat
+msgbox	I wish I could appear and disappear as if I were smoke, too.
+end

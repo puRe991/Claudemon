@@ -43,6 +43,96 @@ dialogs
 4	A POKéMON holding a BERRY will heal itself…There are many kinds of items that POKéMON can hold…Boy, it sure is hard taking notes down…
 5	Students who don't study get a little taste of my QUICK CLAW.Whether or not you are a good student will be evident from the way you use this item.
 6	Hello? Didn't we meet before? I think back in PETALBURG CITY.Let me introduce myself. My name's SCOTT.I've been traveling everywhere in search of outstanding TRAINERS.More specifically, I'm looking for POKéMON battle experts.So, what brings you to this SCHOOL? Are you a TRAINER, too?The first thing you should do is to have a POKéMON learn the move CUT.If I remember correctly, someone in this town has CUT.
+objscripts
+0 RustboroCity_PokemonSchool_EventScript_GameboyKid1
+1 RustboroCity_PokemonSchool_EventScript_GameboyKid2
+2 RustboroCity_PokemonSchool_EventScript_RichBoy
+3 RustboroCity_PokemonSchool_EventScript_Lass
+4 RustboroCity_PokemonSchool_EventScript_SchoolKidM
+5 RustboroCity_PokemonSchool_EventScript_Teacher
+6 RustboroCity_PokemonSchool_EventScript_Scott
+movements
+RustboroCity_PokemonSchool_Movement_TeacherCheckOnStudentsEast	right,right,down,down,left,left,delay,delay,delay,delay,down,delay,delay,delay,right,delay,delay,delay,up,right,up,up,left,left,end
+RustboroCity_PokemonSchool_Movement_TeacherCheckOnStudentsWest	left,down,down,right,delay,delay,delay,delay,down,delay,delay,delay,right,delay,delay,delay,up,left,left,up,up,right,end
+scriptdefs
+= RustboroCity_PokemonSchool_EventScript_Scott
+lock
+faceplayer
+goto_if_set FLAG_MET_SCOTT_AFTER_OBTAINING_STONE_BADGE RustboroCity_PokemonSchool_EventScript_ScottWatchStudents
+goto_if_set FLAG_MET_SCOTT_RUSTBORO RustboroCity_PokemonSchool_EventScript_ScottSpokeAlready
+goto_if_set FLAG_BADGE01_GET RustboroCity_PokemonSchool_EventScript_ScottGreetHasBadge
+msgbox	Hello? Didn't we meet before? I think back in PETALBURG CITY.Let me introduce myself. My name's SCOTT.I've been traveling everywhere in search of outstanding TRAINERS.More specifically, I'm looking for POKéMON battle experts.So, what brings you to this SCHOOL? Are you a TRAINER, too?The first thing you should do is to have a POKéMON learn the move CUT.If I remember correctly, someone in this town has CUT.
+addvar VAR_SCOTT_STATE 1
+setflag FLAG_MET_SCOTT_RUSTBORO
+release
+end
+= RustboroCity_PokemonSchool_EventScript_ScottGreetHasBadge
+msgbox	Hello? Didn't we meet before? I think back in PETALBURG CITY.Let me introduce myself. My name's SCOTT.I've been traveling everywhere in search of outstanding TRAINERS.More specifically, I'm looking for POKéMON battle experts.Oh, what's that? It's a STONE BADGE, isn't it?That's pretty impressive, I'd say, for a starting TRAINER like yourself.But, you know, I would've loved to see you in battle.It's hard to tell what you're like as a TRAINER from a LEAGUE BADGE.
+goto RustboroCity_PokemonSchool_EventScript_MetScottAfterBadge
+end
+= RustboroCity_PokemonSchool_EventScript_MetScottAfterBadge
+addvar VAR_SCOTT_STATE 1
+setflag FLAG_MET_SCOTT_AFTER_OBTAINING_STONE_BADGE
+release
+end
+= RustboroCity_PokemonSchool_EventScript_ScottSpokeAlready
+goto_if_set FLAG_BADGE01_GET RustboroCity_PokemonSchool_EventScript_ScottNoticeBadge
+msgbox	SCOTT: Hmm…The talent levels of the students here are unknown. The potential's there.
+release
+end
+= RustboroCity_PokemonSchool_EventScript_ScottNoticeBadge
+msgbox	SCOTT: Oh, what's that?It's a STONE BADGE, isn't it? That's pretty impressive, I'd say.But, you know, I would've loved to see you in battle.It's hard to tell what you're like as a TRAINER from a LEAGUE BADGE.
+goto RustboroCity_PokemonSchool_EventScript_MetScottAfterBadge
+end
+= RustboroCity_PokemonSchool_EventScript_ScottWatchStudents
+msgbox	SCOTT: Hmm…The talent levels of the students here are unknown. The potential's there.
+release
+end
+= RustboroCity_PokemonSchool_EventScript_Teacher
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_QUICK_CLAW RustboroCity_PokemonSchool_EventScript_GaveQuickClaw
+call_if_eq VAR_FACING DIR_EAST RustboroCity_PokemonSchool_EventScript_TeacherCheckOnStudentsEast
+call_if_eq VAR_FACING DIR_WEST RustboroCity_PokemonSchool_EventScript_TeacherCheckOnStudentsWest
+msgbox	Students who don't study get a little taste of my QUICK CLAW.Whether or not you are a good student will be evident from the way you use this item.
+giveitem ITEM_QUICK_CLAW
+goto_if_eq VAR_RESULT 0 Common_EventScript_ShowBagIsFull
+closemessage
+applymovement VAR_LAST_TALKED Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+setflag FLAG_RECEIVED_QUICK_CLAW
+release
+end
+= RustboroCity_PokemonSchool_EventScript_TeacherCheckOnStudentsWest
+applymovement VAR_LAST_TALKED RustboroCity_PokemonSchool_Movement_TeacherCheckOnStudentsWest
+waitmovement 0
+return
+= RustboroCity_PokemonSchool_EventScript_TeacherCheckOnStudentsEast
+applymovement VAR_LAST_TALKED RustboroCity_PokemonSchool_Movement_TeacherCheckOnStudentsEast
+waitmovement 0
+return
+= RustboroCity_PokemonSchool_EventScript_GaveQuickClaw
+msgbox	A POKéMON holding the QUICK CLAW will occasionally speed up and get to move before its opponent.There are many other items that are meant to be held by POKéMON.Just those alone will give you many topics to study!
+closemessage
+applymovement VAR_LAST_TALKED Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+release
+end
+= RustboroCity_PokemonSchool_EventScript_SchoolKidM
+msgbox	A POKéMON holding a BERRY will heal itself…There are many kinds of items that POKéMON can hold…Boy, it sure is hard taking notes down…
+end
+= RustboroCity_PokemonSchool_EventScript_Lass
+msgbox	You know how some POKéMON moves can confuse a POKéMON?A confused POKéMON will sometimes attack itself without meaning to.But once it leaves battle, it will return to normal.
+end
+= RustboroCity_PokemonSchool_EventScript_RichBoy
+msgbox	POKéMON can hold items, but they don't know what to do with man-made items like POTION and ANTIDOTE.
+end
+= RustboroCity_PokemonSchool_EventScript_GameboyKid2
+msgbox	I always wanted a SEEDOT, and I'm finally getting one!
+end
+= RustboroCity_PokemonSchool_EventScript_GameboyKid1
+msgbox	I'm trading POKéMON with my friend right now.
+end
 signs
 5 2	The blackboard lists status changes that may affect POKéMON in battle.
 4 2	The blackboard lists status changes that may affect POKéMON in battle.

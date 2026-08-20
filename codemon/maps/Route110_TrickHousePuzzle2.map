@@ -60,3 +60,73 @@ dialogs
 0	Can I get you to push all the buttons for me?
 1	The TRICK MASTER rigged all the tricks in this house all by himself.
 2	You're strong, aren't you? Maybe even enough to be a GYM LEADER!
+objscripts
+0 Route110_TrickHousePuzzle2_EventScript_Ted
+1 Route110_TrickHousePuzzle2_EventScript_Paul
+2 Route110_TrickHousePuzzle2_EventScript_Georgia
+triggers
+11 12 VAR_TEMP_1 0 Route110_TrickHousePuzzle2_EventScript_Button1
+0 4 VAR_TEMP_2 0 Route110_TrickHousePuzzle2_EventScript_Button2
+14 5 VAR_TEMP_3 0 Route110_TrickHousePuzzle2_EventScript_Button3
+7 11 VAR_TEMP_4 0 Route110_TrickHousePuzzle2_EventScript_Button4
+scriptdefs
+= Route110_TrickHousePuzzle2_EventScript_Button4
+lockall
+setvar VAR_TEMP_4 1
+playse SE_PIN
+call Route110_TrickHousePuzzle2_EventScript_PressButton4
+special DrawWholeMapView
+releaseall
+end
+= Route110_TrickHousePuzzle2_EventScript_PressButton4
+setmetatile 7 11 METATILE_TrickHousePuzzle_Button_Pressed FALSE
+setmetatile 14 12 METATILE_TrickHousePuzzle_Door_Shuttered FALSE
+return
+= Route110_TrickHousePuzzle2_EventScript_Button3
+lockall
+setvar VAR_TEMP_3 1
+playse SE_PIN
+call Route110_TrickHousePuzzle2_EventScript_PressButton3
+special DrawWholeMapView
+releaseall
+end
+= Route110_TrickHousePuzzle2_EventScript_PressButton3
+setmetatile 14 5 METATILE_TrickHousePuzzle_Button_Pressed FALSE
+setmetatile 7 15 METATILE_TrickHousePuzzle_Door_Shuttered FALSE
+return
+= Route110_TrickHousePuzzle2_EventScript_Button2
+lockall
+setvar VAR_TEMP_2 1
+playse SE_PIN
+call Route110_TrickHousePuzzle2_EventScript_PressButton2
+special DrawWholeMapView
+releaseall
+end
+= Route110_TrickHousePuzzle2_EventScript_PressButton2
+setmetatile 0 4 METATILE_TrickHousePuzzle_Button_Pressed FALSE
+setmetatile 5 6 METATILE_TrickHousePuzzle_Door_Shuttered FALSE
+return
+= Route110_TrickHousePuzzle2_EventScript_Button1
+lockall
+setvar VAR_TEMP_1 1
+playse SE_PIN
+call Route110_TrickHousePuzzle2_EventScript_PressButton1
+special DrawWholeMapView
+releaseall
+end
+= Route110_TrickHousePuzzle2_EventScript_PressButton1
+setmetatile 11 12 METATILE_TrickHousePuzzle_Button_Pressed FALSE
+setmetatile 1 13 METATILE_TrickHousePuzzle_Door_Shuttered FALSE
+return
+= Route110_TrickHousePuzzle2_EventScript_Georgia
+trainerbattle_single TRAINER_GEORGIA Route110_TrickHousePuzzle2_Text_GeorgiaIntro Route110_TrickHousePuzzle2_Text_GeorgiaDefeat
+msgbox	You're strong, aren't you? Maybe even enough to be a GYM LEADER!
+end
+= Route110_TrickHousePuzzle2_EventScript_Paul
+trainerbattle_single TRAINER_PAUL Route110_TrickHousePuzzle2_Text_PaulIntro Route110_TrickHousePuzzle2_Text_PaulDefeat
+msgbox	The TRICK MASTER rigged all the tricks in this house all by himself.
+end
+= Route110_TrickHousePuzzle2_EventScript_Ted
+trainerbattle_single TRAINER_TED Route110_TrickHousePuzzle2_Text_TedIntro Route110_TrickHousePuzzle2_Text_TedDefeat
+msgbox	Can I get you to push all the buttons for me?
+end

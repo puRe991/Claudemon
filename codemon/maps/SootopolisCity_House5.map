@@ -25,3 +25,13 @@ people_girl_3 6 3 W static
 dialogs
 0	There appears to be some connection between SOOTOPOLIS and MT. PYRE.My friends and I did some research on it at the lab where I used to work.
 1	My big brother used to study the sea.
+objscripts
+0 SootopolisCity_House5_EventScript_Maniac
+1 SootopolisCity_House5_EventScript_Girl
+scriptdefs
+= SootopolisCity_House5_EventScript_Girl
+msgbox	My big brother used to study the sea.
+end
+= SootopolisCity_House5_EventScript_Maniac
+msgbox	There appears to be some connection between SOOTOPOLIS and MT. PYRE.My friends and I did some research on it at the lab where I used to work.
+end

@@ -36,3 +36,56 @@ npcs
 people_steven 7 8 S static
 dialogs
 0	My name is STEVEN.I'm interested in rare stones, so I travel here and there.Oh? A LETTER for me?
+objscripts
+0 GraniteCave_StevensRoom_EventScript_Steven
+movements
+GraniteCave_StevensRoom_Movement_PlayerTurnTowardExit	delay,delay,delay,delay,end
+GraniteCave_StevensRoom_Movement_StevenExit	up,up,up,up,up,delay,end
+GraniteCave_StevensRoom_Movement_StevenExitSouth	left,up,up,up,right,up,up,delay,end
+scriptdefs
+= GraniteCave_StevensRoom_EventScript_Steven
+lock
+faceplayer
+msgbox	My name is STEVEN.I'm interested in rare stones, so I travel here and there.Oh? A LETTER for me?
+setvar VAR_0x8004 ITEM_LETTER
+call Common_EventScript_PlayerHandedOverTheItem
+setflag FLAG_DELIVERED_STEVEN_LETTER
+msgbox	STEVEN: Okay, thank you.You went through all this trouble to deliver that. I need to thank you.Let me see… I'll give you this TM.It contains my favorite move, STEEL WING.
+giveitem ITEM_TM_STEEL_WING
+call_if_eq VAR_RESULT FALSE GraniteCave_StevensRoom_EventScript_BagFull
+msgbox	STEVEN: Your POKéMON appear quite capable.If you keep training, you could even become the CHAMPION of the POKéMON LEAGUE one day. That's what I think.I know, since we've gotten to know each other, let's register one another in our POKéNAVS.… … … … … …
+closemessage
+delay 30
+playfanfare MUS_REGISTER_MATCH_CALL
+msgbox	Registered STEVEN in the POKéNAV.
+waitfanfare
+closemessage
+delay 30
+setflag FLAG_REGISTERED_STEVEN_POKENAV
+msgbox	Now, I've got to hurry along.
+closemessage
+call_if_eq VAR_FACING DIR_NORTH GraniteCave_StevensRoom_EventScript_StevenExitNorth
+call_if_eq VAR_FACING DIR_SOUTH GraniteCave_StevensRoom_EventScript_StevenExitSouth
+call_if_eq VAR_FACING DIR_WEST GraniteCave_StevensRoom_EventScript_StevenExitWestEast
+call_if_eq VAR_FACING DIR_EAST GraniteCave_StevensRoom_EventScript_StevenExitWestEast
+playse SE_EXIT
+removeobject LOCALID_GRANITE_CAVE_STEVEN
+release
+end
+= GraniteCave_StevensRoom_EventScript_StevenExitWestEast
+applymovement LOCALID_PLAYER GraniteCave_StevensRoom_Movement_PlayerTurnTowardExit
+applymovement LOCALID_GRANITE_CAVE_STEVEN GraniteCave_StevensRoom_Movement_StevenExit
+waitmovement 0
+return
+= GraniteCave_StevensRoom_EventScript_StevenExitSouth
+applymovement LOCALID_PLAYER GraniteCave_StevensRoom_Movement_PlayerTurnTowardExit
+applymovement LOCALID_GRANITE_CAVE_STEVEN GraniteCave_StevensRoom_Movement_StevenExitSouth
+waitmovement 0
+return
+= GraniteCave_StevensRoom_EventScript_StevenExitNorth
+applymovement LOCALID_GRANITE_CAVE_STEVEN GraniteCave_StevensRoom_Movement_StevenExit
+waitmovement 0
+return
+= GraniteCave_StevensRoom_EventScript_BagFull
+msgbox	Oh, your BAG is full… That's too bad, then.
+return

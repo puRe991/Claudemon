@@ -30,6 +30,51 @@ dialogs
 0	MR. STONE: I'm counting on you!
 1	If you visit the SHIPYARD in SLATEPORT, you should go see CAPT. STERN.
 2	MR. STONE: I'm counting on you!
+objscripts
+0 RustboroCity_DevonCorp_3F_EventScript_MrStone
+1 RustboroCity_DevonCorp_3F_EventScript_Employee
+2 RustboroCity_DevonCorp_3F_EventScript_MrStone
+scriptdefs
+= RustboroCity_DevonCorp_3F_EventScript_MrStone
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_EXP_SHARE RustboroCity_DevonCorp_3F_EventScript_MrStoneAfterFavor
+goto_if_set FLAG_DELIVERED_STEVEN_LETTER RustboroCity_DevonCorp_3F_EventScript_GiveExpShare
+msgbox	MR. STONE: I'm counting on you!
+closemessage
+applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= RustboroCity_DevonCorp_3F_EventScript_GiveExpShare
+msgbox	MR. STONE: You delivered my LETTER? Thank you kindly!This is my way of thanking you. It should help you, a TRAINER.
+giveitem ITEM_EXP_SHARE
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_RECEIVED_EXP_SHARE
+msgbox	MR. STONE: A POKéMON holding that EXP. SHARE will be given some of the EXP Points from battle.It will get EXP Points even if it didn't actually battle.I would say EXP. SHARE is quite useful for raising weak POKéMON.
+closemessage
+applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= RustboroCity_DevonCorp_3F_EventScript_MrStoneAfterFavor
+msgbox	MR. STONE: Since my youth, I've immersed myself in work.Consequently, I'm not familiar with trends and that sort of thing.But do young people all want to be TRAINERS in the POKéMON LEAGUE?
+closemessage
+applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= RustboroCity_DevonCorp_3F_EventScript_Employee
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_REPEAT_BALL RustboroCity_DevonCorp_3F_EventScript_EmployeeBalls
+msgbox	If you visit the SHIPYARD in SLATEPORT, you should go see CAPT. STERN.
+release
+end
+= RustboroCity_DevonCorp_3F_EventScript_EmployeeBalls
+msgbox	DEVON's new products, the REPEAT BALL and TIMER BALL, have become hugely popular among TRAINERS.
+release
+end
 signs
 1 5	It's a collection of rare rocks and stones assembled by the PRESIDENT.
 1 7	It's a collection of rare rocks and stones assembled by the PRESIDENT.

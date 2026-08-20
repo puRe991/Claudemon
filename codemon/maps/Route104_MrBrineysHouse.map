@@ -28,3 +28,73 @@ people_expert_m 5 3 S static
 pokemon_wingull 6 3 S static
 dialogs
 1	PEEKO: Pii piihyoro!
+objscripts
+0 Route104_MrBrineysHouse_EventScript_Briney
+1 Route104_MrBrineysHouse_EventScript_Peeko
+scriptdefs
+= Route104_MrBrineysHouse_EventScript_Peeko
+lock
+faceplayer
+waitse
+playmoncry SPECIES_WINGULL CRY_MODE_NORMAL
+msgbox	PEEKO: Pii piihyoro!
+waitmoncry
+release
+end
+= Route104_MrBrineysHouse_EventScript_Briney
+lock
+faceplayer
+call_if_unset FLAG_MR_BRINEY_SAILING_INTRO Route104_MrBrineysHouse_EventScript_SailingIntro
+goto_if_unset FLAG_DELIVERED_STEVEN_LETTER Route104_MrBrineysHouse_EventScript_SailBothDeliveries
+goto_if_unset FLAG_DELIVERED_DEVON_GOODS Route104_MrBrineysHouse_EventScript_SailDeliverPackage
+goto Route104_MrBrineysHouse_EventScript_WhereAreWeBound
+end
+= Route104_MrBrineysHouse_EventScript_WhereAreWeBound
+message Route104_MrBrineysHouse_Text_WhereAreWeBound
+waitmessage
+multichoicedefault 20 8 MULTI_BRINEY_OFF_DEWFORD 1 FALSE
+switch VAR_RESULT
+case 0 Route104_MrBrineysHouse_EventScript_SailToDewford
+case 1 Route104_MrBrineysHouse_EventScript_DeclineSailing
+case MULTI_B_PRESSED Route104_MrBrineysHouse_EventScript_DeclineSailing
+end
+= Route104_MrBrineysHouse_EventScript_DeclineSailing
+msgbox	MR. BRINEY: Is that so? Well, PEEKO owes her life to you.You just go on and tell me whenever you want to set sail!
+release
+end
+= Route104_MrBrineysHouse_EventScript_SailToDewford
+msgbox	MR. BRINEY: DEWFORD it is, then!Anchors aweigh! PEEKO, we're setting sail, my darling!
+call EventScript_BackupMrBrineyLocation
+setvar VAR_BOARD_BRINEY_BOAT_STATE 1
+clearflag FLAG_HIDE_ROUTE_104_MR_BRINEY
+setflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
+setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
+setvar VAR_RUSTBORO_CITY_STATE 8
+setvar VAR_ROUTE104_STATE 2
+setflag FLAG_HIDE_RUSTBORO_CITY_RIVAL
+setflag FLAG_HIDE_ROUTE_104_RIVAL
+warp MAP_ROUTE104 13 51
+waitstate
+releaseall
+end
+= Route104_MrBrineysHouse_EventScript_SailDeliverPackage
+msgbox	MR. BRINEY: Ahoy! I know exactly what you want to say!You're to deliver a package to CAPT. STERN in SLATEPORT.What you need me to do is no problem at all--I'm the man for the job!First, we'll set sail for DEWFORD.
+goto_if_eq VAR_RESULT NO Route104_MrBrineysHouse_EventScript_DeclineDeliverySailing
+goto Route104_MrBrineysHouse_EventScript_SailToDewford
+end
+= Route104_MrBrineysHouse_EventScript_DeclineDeliverySailing
+msgbox	MR. BRINEY: Is that so? Your deliveries can wait?You just go on and tell me whenever you want to set sail!
+release
+end
+= Route104_MrBrineysHouse_EventScript_SailBothDeliveries
+msgbox	MR. BRINEY: Ahoy! I know exactly what you want to say!You're to deliver a LETTER to DEWFORD and a package to SLATEPORT.What you need me to do is no problem at all--I'm the man for the job!First, we'll set sail for DEWFORD.
+goto_if_eq VAR_RESULT NO Route104_MrBrineysHouse_EventScript_DeclineDeliverySailing
+goto Route104_MrBrineysHouse_EventScript_SailToDewford
+end
+= Route104_MrBrineysHouse_EventScript_SailingIntro
+setflag FLAG_MR_BRINEY_SAILING_INTRO
+msgbox	MR. BRINEY: Hold on, lass! Wait up, PEEKO!
+msgbox	Hm? You're PLAYER! You saved my darling PEEKO! We owe so much to you!What's that? You want to sail with me?Hmhm…You have a LETTER bound for DEWFORD and a package for SLATEPORT, then?Quite the busy life you must lead!But, certainly, what you're asking is no problem at all.You've come to the right man! We'll set sail for DEWFORD.
+goto_if_eq VAR_RESULT NO Route104_MrBrineysHouse_EventScript_DeclineDeliverySailing
+goto Route104_MrBrineysHouse_EventScript_SailToDewford
+end

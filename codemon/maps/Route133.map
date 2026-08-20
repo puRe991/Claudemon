@@ -93,3 +93,40 @@ people_man_3 37 15 S static
 people_expert_f 56 11 S static
 people_expert_m 56 15 S static
 misc_item_ball 48 28 S static
+objscripts
+0 Route133_EventScript_Franklin
+1 Route133_EventScript_Linda
+2 Route133_EventScript_Debra
+5 Route133_EventScript_Beck
+6 Route133_EventScript_Warren
+7 Route133_EventScript_Mollie
+8 Route133_EventScript_Conor
+scriptdefs
+= Route133_EventScript_Conor
+trainerbattle_single TRAINER_CONOR Route133_Text_ConorIntro Route133_Text_ConorDefeat
+msgbox	Route133_Text_ConorPostBattle
+end
+= Route133_EventScript_Mollie
+trainerbattle_single TRAINER_MOLLIE Route133_Text_MollieIntro Route133_Text_MollieDefeat
+msgbox	Route133_Text_MolliePostBattle
+end
+= Route133_EventScript_Warren
+trainerbattle_single TRAINER_WARREN Route133_Text_WarrenIntro Route133_Text_WarrenDefeat
+msgbox	Route133_Text_WarrenPostBattle
+end
+= Route133_EventScript_Beck
+trainerbattle_single TRAINER_BECK Route133_Text_BeckIntro Route133_Text_BeckDefeat
+msgbox	Route133_Text_BeckPostBattle
+end
+= Route133_EventScript_Debra
+trainerbattle_single TRAINER_DEBRA Route133_Text_DebraIntro Route133_Text_DebraDefeat
+msgbox	Route133_Text_DebraPostBattle
+end
+= Route133_EventScript_Linda
+trainerbattle_single TRAINER_LINDA Route133_Text_LindaIntro Route133_Text_LindaDefeat
+msgbox	Route133_Text_LindaPostBattle
+end
+= Route133_EventScript_Franklin
+trainerbattle_single TRAINER_FRANKLIN Route133_Text_FranklinIntro Route133_Text_FranklinDefeat
+msgbox	Route133_Text_FranklinPostBattle
+end

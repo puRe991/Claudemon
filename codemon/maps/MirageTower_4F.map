@@ -31,3 +31,57 @@ misc_breakable_rock 6 7 S static
 dialogs
 0	You found the ROOT FOSSIL.If this FOSSIL is taken, the ground around it will likely crumble away…Take the ROOT FOSSIL anyway?
 1	You found the CLAW FOSSIL.If this FOSSIL is taken, the ground around it will likely crumble away…Take the CLAW FOSSIL anyway?
+objscripts
+0 MirageTower_4F_EventScript_RootFossil
+1 MirageTower_4F_EventScript_ClawFossil
+scriptdefs
+= MirageTower_4F_EventScript_ClawFossil
+lock
+faceplayer
+msgbox	You found the CLAW FOSSIL.If this FOSSIL is taken, the ground around it will likely crumble away…Take the CLAW FOSSIL anyway?
+goto_if_eq VAR_RESULT NO MirageTower_4F_EventScript_LeaveClawFossil
+giveitem ITEM_CLAW_FOSSIL
+closemessage
+setflag FLAG_HIDE_MIRAGE_TOWER_CLAW_FOSSIL
+setflag FLAG_HIDE_MIRAGE_TOWER_ROOT_FOSSIL
+removeobject LOCALID_MIRAGE_CLAW_FOSSIL
+delay 30
+setflag FLAG_CHOSE_CLAW_FOSSIL
+goto MirageTower_4F_EventScript_CollapseMirageTower
+end
+= MirageTower_4F_EventScript_CollapseMirageTower
+setvar VAR_0x8004 1   @ vertical pan
+setvar VAR_0x8005 1   @ horizontal pan
+setvar VAR_0x8006 32  @ num shakes
+setvar VAR_0x8007 2   @ shake delay
+special ShakeCamera
+waitstate
+special DoMirageTowerCeilingCrumble
+setvar VAR_MIRAGE_TOWER_STATE 1
+clearflag FLAG_LANDMARK_MIRAGE_TOWER
+warp MAP_ROUTE111 19 59
+waitstate
+release
+end
+= MirageTower_4F_EventScript_LeaveClawFossil
+msgbox	PLAYER left the CLAW FOSSIL alone.
+release
+end
+= MirageTower_4F_EventScript_RootFossil
+lock
+faceplayer
+msgbox	You found the ROOT FOSSIL.If this FOSSIL is taken, the ground around it will likely crumble away…Take the ROOT FOSSIL anyway?
+goto_if_eq VAR_RESULT NO MirageTower_4F_EventScript_LeaveRootFossil
+giveitem ITEM_ROOT_FOSSIL
+closemessage
+setflag FLAG_HIDE_MIRAGE_TOWER_ROOT_FOSSIL
+setflag FLAG_HIDE_MIRAGE_TOWER_CLAW_FOSSIL
+removeobject LOCALID_MIRAGE_ROOT_FOSSIL
+delay 30
+setflag FLAG_CHOSE_ROOT_FOSSIL
+goto MirageTower_4F_EventScript_CollapseMirageTower
+end
+= MirageTower_4F_EventScript_LeaveRootFossil
+msgbox	PLAYER left the ROOT FOSSIL alone.
+release
+end

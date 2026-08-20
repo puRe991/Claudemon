@@ -31,3 +31,21 @@ people_girl_1 3 5 S static
 dialogs
 1	The GYM LEADERS in this town are a formidable duo.Their combination attacks are, like, excellent and wow!
 2	Depending on the special abilities of POKéMON, some moves might change or not work at all.
+objscripts
+0 MossdeepCity_PokemonCenter_1F_EventScript_Nurse
+1 MossdeepCity_PokemonCenter_1F_EventScript_Woman
+2 MossdeepCity_PokemonCenter_1F_EventScript_Girl
+scriptdefs
+= MossdeepCity_PokemonCenter_1F_EventScript_Girl
+msgbox	Depending on the special abilities of POKéMON, some moves might change or not work at all.
+end
+= MossdeepCity_PokemonCenter_1F_EventScript_Woman
+msgbox	The GYM LEADERS in this town are a formidable duo.Their combination attacks are, like, excellent and wow!
+end
+= MossdeepCity_PokemonCenter_1F_EventScript_Nurse
+setvar VAR_0x800B LOCALID_MOSSDEEP_NURSE
+call Common_EventScript_PkmnCenterNurse
+waitmessage
+waitbuttonpress
+release
+end

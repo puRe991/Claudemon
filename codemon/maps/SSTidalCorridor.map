@@ -49,6 +49,77 @@ dialogs
 1	Go visit other cabins. TRAINERS bored of the boat trip will be itching to battle.
 2	MR. BRINEY: Welcome aboard, PLAYER!They made me honorary captain of the S.S. TIDAL!You can call me CAPTAIN BRINEY now!You know, I retired once before, but when I saw this majestic ship…Let me just say, it stirred my sleeping soul as a sailor!
 3	PEEKO: Pihyo pihyohyo…
+objscripts
+0 SSTidalCorridor_EventScript_ExitSailor
+1 SSTidalCorridor_EventScript_Sailor
+2 SSTidalCorridor_EventScript_Briney
+3 SSTidalCorridor_EventScript_Peeko
+scriptdefs
+= SSTidalCorridor_EventScript_Peeko
+lock
+faceplayer
+waitse
+playmoncry SPECIES_WINGULL CRY_MODE_NORMAL
+msgbox	PEEKO: Pihyo pihyohyo…
+waitmoncry
+release
+end
+= SSTidalCorridor_EventScript_Briney
+msgbox	MR. BRINEY: Welcome aboard, PLAYER!They made me honorary captain of the S.S. TIDAL!You can call me CAPTAIN BRINEY now!You know, I retired once before, but when I saw this majestic ship…Let me just say, it stirred my sleeping soul as a sailor!
+end
+= SSTidalCorridor_EventScript_Sailor
+lock
+faceplayer
+goto_if_set FLAG_DEFEATED_SS_TIDAL_TRAINERS SSTidalCorridor_EventScript_EnjoyYourCruise
+call SSTidalCorridor_EventScript_CheckIfTrainersDefeated
+msgbox	Go visit other cabins. TRAINERS bored of the boat trip will be itching to battle.
+release
+end
+= SSTidalCorridor_EventScript_CheckIfTrainersDefeated
+goto_if_not_defeated TRAINER_PHILLIP SSTidalCorridor_EventScript_TrainerNotDefeated
+goto_if_not_defeated TRAINER_LEONARD SSTidalCorridor_EventScript_TrainerNotDefeated
+goto_if_not_defeated TRAINER_COLTON SSTidalCorridor_EventScript_TrainerNotDefeated
+goto_if_not_defeated TRAINER_MICAH SSTidalCorridor_EventScript_TrainerNotDefeated
+goto_if_not_defeated TRAINER_THOMAS SSTidalCorridor_EventScript_TrainerNotDefeated
+goto_if_not_defeated TRAINER_LEA_AND_JED SSTidalCorridor_EventScript_TrainerNotDefeated
+goto_if_not_defeated TRAINER_GARRET SSTidalCorridor_EventScript_TrainerNotDefeated
+goto_if_not_defeated TRAINER_NAOMI SSTidalCorridor_EventScript_TrainerNotDefeated
+setflag FLAG_DEFEATED_SS_TIDAL_TRAINERS
+goto SSTidalCorridor_EventScript_EnjoyYourCruise
+return
+= SSTidalCorridor_EventScript_EnjoyYourCruise
+msgbox	Enjoy your cruise!
+release
+end
+= SSTidalCorridor_EventScript_TrainerNotDefeated
+return
+= SSTidalCorridor_EventScript_ExitSailor
+lock
+faceplayer
+goto_if_eq VAR_SS_TIDAL_STATE SS_TIDAL_LAND_LILYCOVE SSTidalCorridor_EventScript_ExitLilycove
+goto_if_eq VAR_SS_TIDAL_STATE SS_TIDAL_LAND_SLATEPORT SSTidalCorridor_EventScript_ExitSlateport
+msgbox	It'll be some time before we make land, I reckon.You can rest up in your cabin if you'd like. Your cabin's No. 2.The bed in there is soft and plushy. I can attest to how comfy it is!
+release
+end
+= SSTidalCorridor_EventScript_ExitSlateport
+setrespawn HEAL_LOCATION_SLATEPORT_CITY
+msgbox	We've arrived!
+call_if_set FLAG_RECEIVED_TM_SNATCH SSTidalCorridor_EventScript_HideSnatchGiver
+warp MAP_SLATEPORT_CITY_HARBOR 8 11
+waitstate
+release
+end
+= SSTidalCorridor_EventScript_HideSnatchGiver
+setflag FLAG_HIDE_SS_TIDAL_ROOMS_SNATCH_GIVER
+return
+= SSTidalCorridor_EventScript_ExitLilycove
+setrespawn HEAL_LOCATION_LILYCOVE_CITY
+msgbox	We've arrived!
+call_if_set FLAG_RECEIVED_TM_SNATCH SSTidalCorridor_EventScript_HideSnatchGiver
+warp MAP_LILYCOVE_CITY_HARBOR 8 11
+waitstate
+release
+end
 signs
 2 1	The horizon spreads beyond the porthole.
 4 1	The horizon spreads beyond the porthole.

@@ -29,3 +29,156 @@ people_link_receptionist 4 10 E static
 people_link_receptionist 8 5 S static
 dialogs
 1	I beg your pardon, but…Are you perhaps finding it difficult to choose your path?
+objscripts
+0 BattleFrontier_BattlePikeThreePathRoom_EventScript_Attendant
+1 BattleFrontier_BattlePikeThreePathRoom_EventScript_HintGiver
+scriptdefs
+= BattleFrontier_BattlePikeThreePathRoom_EventScript_HintGiver
+pike_gethint
+goto_if_eq VAR_RESULT PIKE_HINT_BRAIN BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveBrainHint
+lock
+faceplayer
+msgbox	I beg your pardon, but…Are you perhaps finding it difficult to choose your path?
+switch VAR_RESULT
+case YES BattleFrontier_BattlePikeThreePathRoom_EventScript_AcceptHint
+case NO BattleFrontier_BattlePikeThreePathRoom_EventScript_DeclineHint
+case MULTI_B_PRESSED BattleFrontier_BattlePikeThreePathRoom_EventScript_DeclineHint
+release
+end
+= BattleFrontier_BattlePikeThreePathRoom_EventScript_DeclineHint
+msgbox	I see… I apologize for my impertinence…
+release
+end
+= BattleFrontier_BattlePikeThreePathRoom_EventScript_AcceptHint
+pike_gethintroomid
+switch VAR_RESULT
+case PIKE_ROOM_LEFT BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveLeftRoomHint
+case PIKE_ROOM_CENTER BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveCenterRoomHint
+case PIKE_ROOM_RIGHT BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveRightRoomHint
+end
+= BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveRightRoomHint
+msgbox	Ah, let me see… There is something about the path on the right…
+goto BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveHint
+= BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveHint
+pike_gethint
+switch VAR_RESULT
+case PIKE_HINT_NOSTALGIA BattleFrontier_BattlePikeThreePathRoom_EventScript_HintNostalgia
+case PIKE_HINT_WHISPERING BattleFrontier_BattlePikeThreePathRoom_EventScript_HintWhispering
+case PIKE_HINT_POKEMON BattleFrontier_BattlePikeThreePathRoom_EventScript_HintPokemon
+case PIKE_HINT_PEOPLE BattleFrontier_BattlePikeThreePathRoom_EventScript_HintPeople
+end
+= BattleFrontier_BattlePikeThreePathRoom_EventScript_HintPeople
+msgbox	Is it… A TRAINER? I sense the presence of people…
+release
+end
+= BattleFrontier_BattlePikeThreePathRoom_EventScript_HintPokemon
+msgbox	It seems to have the distinct aroma of POKéMON wafting around it…
+release
+end
+= BattleFrontier_BattlePikeThreePathRoom_EventScript_HintWhispering
+msgbox	I seem to have heard something… It may have been whispering…
+release
+end
+= BattleFrontier_BattlePikeThreePathRoom_EventScript_HintNostalgia
+msgbox	For some odd reason, I felt a wave of nostalgia coming from it…
+release
+end
+= BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveCenterRoomHint
+msgbox	Ah, let me see… There is something about the path in the center…
+goto BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveHint
+= BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveLeftRoomHint
+msgbox	Ah, let me see… There is something about the path on the left…
+goto BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveHint
+= BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveBrainHint
+lock
+faceplayer
+msgbox	From every path I sense a dreadful presence…
+release
+end
+= BattleFrontier_BattlePikeThreePathRoom_EventScript_Attendant
+frontier_get FRONTIER_DATA_BATTLE_NUM  @ Room number
+switch VAR_RESULT
+case 1 BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom1
+case 3 BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom3
+case 5 BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom5
+case 7 BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom7
+case 9 BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom9
+case 11 BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom11
+case 13 BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom13
+end
+= BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom13
+lock
+faceplayer
+msgbox	You are currently in the 13th room…
+goto BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge
+end
+= BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge
+msgbox	Will you continue with your challenge?
+switch VAR_RESULT
+case NO BattleFrontier_BattlePikeThreePathRoom_EventScript_AskSaveChallenge
+case MULTI_B_PRESSED BattleFrontier_BattlePikeThreePathRoom_EventScript_AskSaveChallenge
+release
+end
+= BattleFrontier_BattlePikeThreePathRoom_EventScript_AskSaveChallenge
+msgbox	Would you like to save your challenge and quit the game for now?
+switch VAR_RESULT
+case YES BattleFrontier_BattlePikeThreePathRoom_EventScript_PauseChallenge
+case NO BattleFrontier_BattlePikeThreePathRoom_EventScript_AskRetireChallenge
+case MULTI_B_PRESSED BattleFrontier_BattlePikeThreePathRoom_EventScript_AskRetireChallenge
+release
+end
+= BattleFrontier_BattlePikeThreePathRoom_EventScript_AskRetireChallenge
+message BattleFrontier_BattlePikeThreePathRoom_Text_RetireFromChallenge
+waitmessage
+multichoicedefault 20 8 MULTI_YESNO 1 FALSE
+switch VAR_RESULT
+case 0 BattleFrontier_BattlePike_EventScript_Retire
+release
+end
+= BattleFrontier_BattlePikeThreePathRoom_EventScript_PauseChallenge
+frontier_saveparty
+message BattleFrontier_BattlePikeThreePathRoom_Text_SavingYourData
+waitmessage
+special LoadPlayerParty
+pike_save CHALLENGE_STATUS_PAUSED
+playse SE_SAVE
+waitse
+fadescreen FADE_TO_BLACK
+frontier_reset
+end
+= BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom11
+lock
+faceplayer
+msgbox	You are currently in the 11th room…
+goto BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge
+end
+= BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom9
+lock
+faceplayer
+msgbox	You are currently in the 9th room…
+goto BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge
+end
+= BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom7
+lock
+faceplayer
+msgbox	You are currently in the 7th room…
+goto BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge
+end
+= BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom5
+lock
+faceplayer
+msgbox	You are currently in the 5th room…
+goto BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge
+end
+= BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom3
+lock
+faceplayer
+msgbox	You are currently in the 3rd room…
+goto BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge
+end
+= BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom1
+lock
+faceplayer
+msgbox	You are currently in the 1st room…
+goto BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge
+end

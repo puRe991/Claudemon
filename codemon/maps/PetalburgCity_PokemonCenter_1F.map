@@ -34,3 +34,45 @@ dialogs
 2	That PC-based POKéMON Storage System…Whoever made it must be some kind of a scientific wizard!
 3	When my POKéMON ate an ORAN BERRY, it regained HP!
 4	There are many types of POKéMON.All types have their strengths and weaknesses against other types.Depending on the types of POKéMON, a battle could be easy or hard.
+objscripts
+0 PetalburgCity_PokemonCenter_1F_EventScript_Nurse
+2 PetalburgCity_PokemonCenter_1F_EventScript_FatMan
+3 PetalburgCity_PokemonCenter_1F_EventScript_Youngster
+4 PetalburgCity_PokemonCenter_1F_EventScript_Woman
+scriptdefs
+= PetalburgCity_PokemonCenter_1F_EventScript_Woman
+lock
+faceplayer
+msgbox	There are many types of POKéMON.All types have their strengths and weaknesses against other types.Depending on the types of POKéMON, a battle could be easy or hard.
+specialvar VAR_RESULT IsStarterInParty
+goto_if_eq VAR_RESULT TRUE PetalburgCity_PokemonCenter_1F_EventScript_SayStarterTypeInfo
+release
+end
+= PetalburgCity_PokemonCenter_1F_EventScript_SayStarterTypeInfo
+call_if_eq VAR_STARTER_MON 0 PetalburgCity_PokemonCenter_1F_EventScript_SayTreeckoType
+call_if_eq VAR_STARTER_MON 1 PetalburgCity_PokemonCenter_1F_EventScript_SayTorchicType
+call_if_eq VAR_STARTER_MON 2 PetalburgCity_PokemonCenter_1F_EventScript_SayMudkipType
+release
+end
+= PetalburgCity_PokemonCenter_1F_EventScript_SayMudkipType
+msgbox	For example, your MUDKIP is a WATER type.It's strong against the FIRE type.But, it's weak against GRASS-type and ELECTRIC-type POKéMON.
+return
+= PetalburgCity_PokemonCenter_1F_EventScript_SayTorchicType
+msgbox	For example, your TORCHIC is a FIRE type.It's strong against the GRASS and BUG types.But, it's weak against WATER-type POKéMON.
+return
+= PetalburgCity_PokemonCenter_1F_EventScript_SayTreeckoType
+msgbox	For example, your TREECKO is a GRASS type.It's strong against the WATER and GROUND types.But, it's weak against FIRE-type POKéMON.
+return
+= PetalburgCity_PokemonCenter_1F_EventScript_Youngster
+msgbox	When my POKéMON ate an ORAN BERRY, it regained HP!
+end
+= PetalburgCity_PokemonCenter_1F_EventScript_FatMan
+msgbox	That PC-based POKéMON Storage System…Whoever made it must be some kind of a scientific wizard!
+end
+= PetalburgCity_PokemonCenter_1F_EventScript_Nurse
+setvar VAR_0x800B LOCALID_PETALBURG_NURSE
+call Common_EventScript_PkmnCenterNurse
+waitmessage
+waitbuttonpress
+release
+end

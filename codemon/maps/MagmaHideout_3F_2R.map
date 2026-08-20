@@ -43,3 +43,10 @@ people_team_magma_magma_member_m 16 3 S static
 misc_item_ball 5 9 S static
 dialogs
 0	You know, losing to you cleared my mind.The next time I see our leader, I'm going to ask him about what we do.
+objscripts
+0 MagmaHideout_3F_2R_EventScript_Grunt10
+scriptdefs
+= MagmaHideout_3F_2R_EventScript_Grunt10
+trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_10 MagmaHideout_3F_2R_Text_Grunt10Intro MagmaHideout_3F_2R_Text_Grunt10Defeat
+msgbox	You know, losing to you cleared my mind.The next time I see our leader, I'm going to ask him about what we do.
+end

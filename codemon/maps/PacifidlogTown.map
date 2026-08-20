@@ -97,5 +97,19 @@ dialogs
 0	The sea between PACIFIDLOG and SLATEPORT has a fast-running tide.If you decide to SURF, you could end up swept away somewhere else.
 1	The SKY PILLAR?…Oh, you must mean that tall, tall tower a little further out.If you asked me, I wouldn't climb it. It's too scary to get up that high.Life at sea level in PACIFIDLOG, that suits me fine.
 2	See, isn't it neat? These houses are on water!I was born here!
+objscripts
+0 PacifidlogTown_EventScript_Girl
+1 PacifidlogTown_EventScript_Fisherman
+2 PacifidlogTown_EventScript_NinjaBoy
+scriptdefs
+= PacifidlogTown_EventScript_NinjaBoy
+msgbox	See, isn't it neat? These houses are on water!I was born here!
+end
+= PacifidlogTown_EventScript_Fisherman
+msgbox	The SKY PILLAR?…Oh, you must mean that tall, tall tower a little further out.If you asked me, I wouldn't climb it. It's too scary to get up that high.Life at sea level in PACIFIDLOG, that suits me fine.
+end
+= PacifidlogTown_EventScript_Girl
+msgbox	The sea between PACIFIDLOG and SLATEPORT has a fast-running tide.If you decide to SURF, you could end up swept away somewhere else.
+end
 signs
 7 16	PACIFIDLOG TOWN“Where the morning sun smiles upon the waters.”

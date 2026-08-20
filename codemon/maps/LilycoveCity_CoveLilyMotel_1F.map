@@ -28,3 +28,63 @@ npcs
 people_man_1 10 3 N static
 dialogs
 0	Hm, so they doubled the guests by using POKéMON as attractions?Hm, well, maybe I should make a cute POKéMON our inn's mascot.I wonder if that will attract more guests to stay with us?
+objscripts
+0 LilycoveCity_CoveLilyMotel_1F_EventScript_MotelOwner
+triggers
+10 2 VAR_TEMP_1 0 LilycoveCity_CoveLilyMotel_1F_EventScript_BlockingTV
+movements
+LilycoveCity_CoveLilyMotel_1F_Movement_OwnerPushPlayer	up,end
+LilycoveCity_CoveLilyMotel_1F_Movement_OwnerReturn	face_down,down,face_up,end
+LilycoveCity_CoveLilyMotel_1F_Movement_PlayerPushFromTV	face_right,delay,left,delay,end
+scriptdefs
+= LilycoveCity_CoveLilyMotel_1F_EventScript_BlockingTV
+lockall
+playse SE_PIN
+applymovement LOCALID_MOTEL_OWNER Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_MOTEL_OWNER Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+msgbox	Hey, down in front! I can't see the TV!
+closemessage
+applymovement LOCALID_PLAYER LilycoveCity_CoveLilyMotel_1F_Movement_PlayerPushFromTV
+applymovement LOCALID_MOTEL_OWNER LilycoveCity_CoveLilyMotel_1F_Movement_OwnerPushPlayer
+waitmovement 0
+applymovement LOCALID_MOTEL_OWNER LilycoveCity_CoveLilyMotel_1F_Movement_OwnerReturn
+waitmovement 0
+release
+end
+= LilycoveCity_CoveLilyMotel_1F_EventScript_MotelOwner
+lockall
+goto_if_set FLAG_SYS_GAME_CLEAR LilycoveCity_CoveLilyMotel_1F_EventScript_GameClear
+goto_if_set FLAG_BADGE07_GET LilycoveCity_CoveLilyMotel_1F_EventScript_AquaHideoutBusted
+msgbox	Hm, so they doubled the guests by using POKéMON as attractions?Hm, well, maybe I should make a cute POKéMON our inn's mascot.I wonder if that will attract more guests to stay with us?
+applymovement LOCALID_MOTEL_OWNER Common_Movement_FacePlayer
+waitmovement 0
+msgbox	Oh, sorry, sorry! I was too involved in watching TV!Since that TEAM AQUA came to town, the tourists have been staying away.
+closemessage
+applymovement LOCALID_MOTEL_OWNER Common_Movement_FaceOriginalDirection
+waitmovement 0
+releaseall
+end
+= LilycoveCity_CoveLilyMotel_1F_EventScript_AquaHideoutBusted
+msgbox	Amazing! You're telling me a POKéMON found someone's lost item?That's something. If we had some smart POKéMON like that…We could recover anything that our guests mislaid…
+applymovement LOCALID_MOTEL_OWNER Common_Movement_FacePlayer
+waitmovement 0
+msgbox	Oh, sorry, sorry! I was too involved in watching TV!I heard that someone busted the TEAM AQUA HIDEOUT.Thanks to that, we just booked a reservation from a big group.It was a company called… Uh… GAME something…
+closemessage
+applymovement LOCALID_MOTEL_OWNER Common_Movement_FaceOriginalDirection
+waitmovement 0
+releaseall
+end
+= LilycoveCity_CoveLilyMotel_1F_EventScript_GameClear
+msgbox	Amazing! A house-sitting POKéMON caught a burglar?That's something. If we had a tough POKéMON as a security guard…We would be able to provide our guests with greater safety.
+applymovement LOCALID_MOTEL_OWNER Common_Movement_FacePlayer
+waitmovement 0
+msgbox	Oh, sorry, sorry! I was too involved in watching TV.Oh, yes. A big group of guests arrived a little while ago.They booked in as GAME FREAK, so I guess they must make games.Uh-oh, I'd better get working on their dinner!
+closemessage
+applymovement LOCALID_MOTEL_OWNER Common_Movement_FaceOriginalDirection
+waitmovement 0
+releaseall
+end

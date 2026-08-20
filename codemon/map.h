@@ -2,6 +2,8 @@
 #include <string>
 #include <vector>
 #include <unordered_set>
+#include <unordered_map>
+#include <map>
 
 #include "Tileset.h"
 #include "Window.h"
@@ -36,6 +38,17 @@ struct Sign {
 	std::string text;
 };
 
+// A coord_event: stepping on (x,y) while var==val runs `label`.
+struct ScriptTrigger {
+	int x, y;
+	std::string var;
+	std::string val;   // symbolic; resolved by the VM
+	std::string label;
+};
+
+// One decoded script instruction: opcode plus string arguments.
+using Instr = std::vector<std::string>;
+
 /******************************************************************************
 Map - a grid of metatile ids rendered through a Tileset.
 
@@ -66,6 +79,11 @@ private:
 	std::vector<Sign> sign_list;
 	std::unordered_set<int> grass_ids;        // metatile ids that are tall grass
 	std::vector<std::string> encounter_list;  // wild species on this map
+
+	std::map<std::string, std::vector<Instr>> script_defs;   // label -> instructions
+	std::map<std::string, std::vector<std::string>> move_defs; // label -> actions
+	std::unordered_map<int, std::string> npc_script_map;      // npc index -> label
+	std::vector<ScriptTrigger> script_triggers;
 
 	int index(int x, int y) const;
 
@@ -107,4 +125,14 @@ public:
 	bool is_grass(int tile_x, int tile_y) const;         // is this a grass tile?
 	bool has_encounters() const;
 	const std::vector<std::string>& encounters() const;  // wild species pool
+
+	// Event scripts.
+	bool has_script(const std::string& label) const;
+	const std::vector<Instr>& script(const std::string& label) const;
+	const std::vector<std::string>& movement(const std::string& label) const;
+	std::string npc_script(int npc_index) const;         // "" if none
+	const ScriptTrigger* trigger_at(int tile_x, int tile_y) const;
+
+	// Runtime metatile edit (setmetatile). Returns false if out of bounds.
+	bool set_metatile(int tile_x, int tile_y, int id, bool impassable);
 };

@@ -87,6 +87,12 @@ warps
 npcs
 people_woman_2 22 9 S static
 misc_item_ball 0 37 S static
+objscripts
+0 SafariZone_Southwest_EventScript_Woman
+scriptdefs
+= SafariZone_Southwest_EventScript_Woman
+msgbox	SafariZone_Southwest_Text_Woman
+end
 grass
 13
 encounters

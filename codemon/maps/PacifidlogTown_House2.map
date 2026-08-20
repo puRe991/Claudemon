@@ -30,3 +30,86 @@ pokemon_azurill 1 7 S static
 dialogs
 1	AZURILL: Rurii.
 2	AZURILL: Rururi!
+objscripts
+0 PacifidlogTown_House2_EventScript_FanClubYoungerBrother
+1 PacifidlogTown_House2_EventScript_HappyAzurill
+2 PacifidlogTown_House2_EventScript_UnhappyAzurill
+scriptdefs
+= PacifidlogTown_House2_EventScript_UnhappyAzurill
+lock
+faceplayer
+waitse
+playmoncry SPECIES_AZURILL CRY_MODE_ENCOUNTER
+msgbox	AZURILL: Rururi!
+waitmoncry
+msgbox	It doesn't appear to like the TRAINER very much.
+release
+end
+= PacifidlogTown_House2_EventScript_HappyAzurill
+lock
+faceplayer
+waitse
+playmoncry SPECIES_AZURILL CRY_MODE_NORMAL
+msgbox	AZURILL: Rurii.
+waitmoncry
+msgbox	It appears to be very friendly with the TRAINER.
+release
+end
+= PacifidlogTown_House2_EventScript_FanClubYoungerBrother
+lock
+faceplayer
+dotimebasedevents
+call PacifidlogTown_House2_EventScript_UpdateFanClubTMFlag
+goto_if_set FLAG_RECEIVED_FANCLUB_TM_THIS_WEEK PacifidlogTown_House2_EventScript_ComeBackInXDays
+call_if_set FLAG_MET_FANCLUB_YOUNGER_BROTHER PacifidlogTown_House2_EventScript_MonAssessment
+call_if_unset FLAG_MET_FANCLUB_YOUNGER_BROTHER PacifidlogTown_House2_EventScript_FirstMonAssessment
+setflag FLAG_MET_FANCLUB_YOUNGER_BROTHER
+specialvar VAR_RESULT GetLeadMonFriendshipScore
+goto_if_ge VAR_RESULT FRIENDSHIP_150_TO_199 PacifidlogTown_House2_EventScript_GiveReturn
+specialvar VAR_RESULT GetLeadMonFriendshipScore
+goto_if_ge VAR_RESULT FRIENDSHIP_50_TO_99 PacifidlogTown_House2_EventScript_PutInEffort
+goto PacifidlogTown_House2_EventScript_GiveFrustration
+end
+= PacifidlogTown_House2_EventScript_GiveFrustration
+msgbox	It has a vicious look to it.A frightening POKéMON like that deserves a TM like this.
+giveitem ITEM_TM_FRUSTRATION
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_RECEIVED_FANCLUB_TM_THIS_WEEK
+special SetPacifidlogTMReceivedDay
+msgbox	If a POKéMON likes you a lot, RETURN's power is enhanced.If it doesn't like you, FRUSTRATION's power goes up.
+release
+end
+= PacifidlogTown_House2_EventScript_PutInEffort
+msgbox	Hmm… It's not bad, but it's also not good.You, as the TRAINER, need to put in some more effort.
+release
+end
+= PacifidlogTown_House2_EventScript_GiveReturn
+msgbox	It clearly likes you very much.A POKéMON that adoring and adorable deserves a TM like this, no?
+giveitem ITEM_TM_RETURN
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_RECEIVED_FANCLUB_TM_THIS_WEEK
+special SetPacifidlogTMReceivedDay
+msgbox	If a POKéMON likes you a lot, RETURN's power is enhanced.If it doesn't like you, FRUSTRATION's power goes up.
+release
+end
+= PacifidlogTown_House2_EventScript_FirstMonAssessment
+msgbox	Er-hem!I am the POKéMON FAN CLUB's most important person, the CHAIRMAN's younger brother.I'm here enjoying my vacation with POKéMON, yes, indeed.
+msgbox	Ah! Your POKéMON…
+return
+= PacifidlogTown_House2_EventScript_MonAssessment
+msgbox	Ah! Your POKéMON…
+return
+= PacifidlogTown_House2_EventScript_ComeBackInXDays
+specialvar VAR_RESULT GetDaysUntilPacifidlogTMAvailable
+buffernumberstring STR_VAR_1 VAR_RESULT
+msgbox	Oh, yes. In about or so days, I should be getting a good TM or two.You should come see me then. I'll give you a TM that's suitable for your POKéMON.
+release
+end
+= PacifidlogTown_House2_EventScript_UpdateFanClubTMFlag
+goto_if_unset FLAG_RECEIVED_FANCLUB_TM_THIS_WEEK Common_EventScript_NopReturn
+specialvar VAR_RESULT GetDaysUntilPacifidlogTMAvailable
+call_if_eq VAR_RESULT 0 PacifidlogTown_House2_EventScript_ClearReceivedFanClubTM
+return
+= PacifidlogTown_House2_EventScript_ClearReceivedFanClubTM
+clearflag FLAG_RECEIVED_FANCLUB_TM_THIS_WEEK
+return

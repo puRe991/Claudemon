@@ -63,3 +63,157 @@ dialogs
 4	POKéMON and rock, it's all about heart, whoa-yeah!
 5	Hey, how's it going, CHAMPION- bound PLAYER?WATTSON, the LEADER of MAUVILLE GYM, uses ELECTRIC-type POKéMON.If you challenge him with WATER-type POKéMON, he'll zap them! Bzzt!And, he's put in switch-controlled doors all over his GYM! Eccentric!Hey, go for it!
 6	MAUVILLE GYM's WATTSON has a shiny forehead. It makes me happy!
+objscripts
+0 MauvilleCity_Gym_EventScript_Wattson
+1 MauvilleCity_Gym_EventScript_Shawn
+2 MauvilleCity_Gym_EventScript_Vivian
+3 MauvilleCity_Gym_EventScript_Ben
+4 MauvilleCity_Gym_EventScript_Kirk
+5 MauvilleCity_Gym_EventScript_GymGuide
+6 MauvilleCity_Gym_EventScript_Angelo
+triggers
+4 12 VAR_TEMP_0 0 MauvilleCity_Gym_EventScript_Switch2
+3 9 VAR_TEMP_0 0 MauvilleCity_Gym_EventScript_Switch3
+0 15 VAR_TEMP_0 0 MauvilleCity_Gym_EventScript_Switch1
+8 9 VAR_TEMP_0 0 MauvilleCity_Gym_EventScript_Switch4
+scriptdefs
+= MauvilleCity_Gym_EventScript_Switch4
+lockall
+goto_if_set FLAG_DEFEATED_MAUVILLE_GYM MauvilleCity_Gym_EventScript_SwitchDoNothing
+goto_if_eq VAR_MAUVILLE_GYM_STATE 4 MauvilleCity_Gym_EventScript_SwitchDoNothing
+setvar VAR_MAUVILLE_GYM_STATE 4
+setvar VAR_0x8004 3
+goto MauvilleCity_Gym_EventScript_PressFloorSwitch
+end
+= MauvilleCity_Gym_EventScript_PressFloorSwitch
+special MauvilleGymSetDefaultBarriers
+special MauvilleGymPressSwitch
+special DrawWholeMapView
+playse SE_UNLOCK
+goto_if_set FLAG_MAUVILLE_GYM_BARRIERS_STATE MauvilleCity_Gym_EventScript_ClearBarriersAltState
+goto_if_unset FLAG_MAUVILLE_GYM_BARRIERS_STATE MauvilleCity_Gym_EventScript_SetBarriersAltState
+releaseall
+end
+= MauvilleCity_Gym_EventScript_SetBarriersAltState
+setflag FLAG_MAUVILLE_GYM_BARRIERS_STATE
+releaseall
+end
+= MauvilleCity_Gym_EventScript_ClearBarriersAltState
+clearflag FLAG_MAUVILLE_GYM_BARRIERS_STATE
+releaseall
+end
+= MauvilleCity_Gym_EventScript_SwitchDoNothing
+releaseall
+end
+= MauvilleCity_Gym_EventScript_Switch1
+lockall
+goto_if_set FLAG_DEFEATED_MAUVILLE_GYM MauvilleCity_Gym_EventScript_SwitchDoNothing
+goto_if_eq VAR_MAUVILLE_GYM_STATE 1 MauvilleCity_Gym_EventScript_SwitchDoNothing
+setvar VAR_MAUVILLE_GYM_STATE 1
+setvar VAR_0x8004 0
+goto MauvilleCity_Gym_EventScript_PressFloorSwitch
+end
+= MauvilleCity_Gym_EventScript_Switch3
+lockall
+goto_if_set FLAG_DEFEATED_MAUVILLE_GYM MauvilleCity_Gym_EventScript_SwitchDoNothing
+goto_if_eq VAR_MAUVILLE_GYM_STATE 3 MauvilleCity_Gym_EventScript_SwitchDoNothing
+setvar VAR_MAUVILLE_GYM_STATE 3
+setvar VAR_0x8004 2
+goto MauvilleCity_Gym_EventScript_PressFloorSwitch
+end
+= MauvilleCity_Gym_EventScript_Switch2
+lockall
+goto_if_set FLAG_DEFEATED_MAUVILLE_GYM MauvilleCity_Gym_EventScript_SwitchDoNothing
+goto_if_eq VAR_MAUVILLE_GYM_STATE 2 MauvilleCity_Gym_EventScript_SwitchDoNothing
+setvar VAR_MAUVILLE_GYM_STATE 2
+setvar VAR_0x8004 1
+goto MauvilleCity_Gym_EventScript_PressFloorSwitch
+end
+= MauvilleCity_Gym_EventScript_Angelo
+trainerbattle_single TRAINER_ANGELO MauvilleCity_Gym_Text_AngeloIntro MauvilleCity_Gym_Text_AngeloDefeat
+msgbox	MAUVILLE GYM's WATTSON has a shiny forehead. It makes me happy!
+end
+= MauvilleCity_Gym_EventScript_GymGuide
+lock
+faceplayer
+goto_if_set FLAG_DEFEATED_MAUVILLE_GYM MauvilleCity_Gym_EventScript_GymGuidePostVictory
+msgbox	Hey, how's it going, CHAMPION- bound PLAYER?WATTSON, the LEADER of MAUVILLE GYM, uses ELECTRIC-type POKéMON.If you challenge him with WATER-type POKéMON, he'll zap them! Bzzt!And, he's put in switch-controlled doors all over his GYM! Eccentric!Hey, go for it!
+release
+end
+= MauvilleCity_Gym_EventScript_GymGuidePostVictory
+msgbox	Whoa, you're electrifying! You've powered the door open!
+release
+end
+= MauvilleCity_Gym_EventScript_Kirk
+trainerbattle_single TRAINER_KIRK MauvilleCity_Gym_Text_KirkIntro MauvilleCity_Gym_Text_KirkDefeat
+msgbox	POKéMON and rock, it's all about heart, whoa-yeah!
+end
+= MauvilleCity_Gym_EventScript_Ben
+trainerbattle_single TRAINER_BEN MauvilleCity_Gym_Text_BenIntro MauvilleCity_Gym_Text_BenDefeat
+msgbox	WATTSON says he likes setting up little traps with switches.
+end
+= MauvilleCity_Gym_EventScript_Vivian
+trainerbattle_single TRAINER_VIVIAN MauvilleCity_Gym_Text_VivianIntro MauvilleCity_Gym_Text_VivianDefeat
+msgbox	I've heard that MAUVILLE was founded by WATTSON.He was a TRAINER long before we became TRAINERS. He must know all sorts of things!
+end
+= MauvilleCity_Gym_EventScript_Shawn
+trainerbattle_single TRAINER_SHAWN MauvilleCity_Gym_Text_ShawnIntro MauvilleCity_Gym_Text_ShawnDefeat
+msgbox	WATTSON, our GYM LEADER, has been around for a long, long time.He was battling even before your daddy was born, that tough coot.
+end
+= MauvilleCity_Gym_EventScript_Wattson
+trainerbattle_single TRAINER_WATTSON_1 MauvilleCity_Gym_Text_WattsonIntro MauvilleCity_Gym_Text_WattsonDefeat MauvilleCity_Gym_EventScript_WattsonDefeated NO_MUSIC
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE MauvilleCity_Gym_EventScript_WattsonRematch
+goto_if_unset FLAG_RECEIVED_TM_SHOCK_WAVE MauvilleCity_Gym_EventScript_GiveShockWave2
+goto_if_eq VAR_NEW_MAUVILLE_STATE 2 MauvilleCity_Gym_EventScript_CompletedNewMauville
+msgbox	I swell with optimism, seeing a promising young TRAINER like you!
+release
+end
+= MauvilleCity_Gym_EventScript_CompletedNewMauville
+msgbox	Wahahahah! Go forth and endeavor, youngster!
+release
+end
+= MauvilleCity_Gym_EventScript_GiveShockWave2
+giveitem ITEM_TM_SHOCK_WAVE
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+msgbox	That TM34 there contains SHOCK WAVE.It's a trustworthy move that never misses! You can count on it!… … … … … …
+setflag FLAG_RECEIVED_TM_SHOCK_WAVE
+release
+end
+= MauvilleCity_Gym_EventScript_WattsonRematch
+trainerbattle_rematch_double TRAINER_WATTSON_1 MauvilleCity_Gym_Text_WattsonPreRematch MauvilleCity_Gym_Text_WattsonRematchDefeat MauvilleCity_Gym_Text_WattsonRematchNeedTwoMons
+msgbox	WATTSON: We'll have to recharge our batteries again.When we're fully charged up, we'll gladly accept your challenge.So, come back again sometime, won't you?
+end
+= MauvilleCity_Gym_EventScript_WattsonDefeated
+message MauvilleCity_Gym_Text_ReceivedDynamoBadge
+waitmessage
+call Common_EventScript_PlayGymBadgeFanfare
+msgbox	With the DYNAMO BADGE, POKéMON can use ROCK SMASH out of battle.And, it will make your POKéMON a little bit faster, too.Hmm… You should take this, too!
+setvar VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE 3
+clearflag FLAG_HIDE_VERDANTURF_TOWN_SCOTT
+setflag FLAG_DEFEATED_MAUVILLE_GYM
+setflag FLAG_BADGE03_GET
+addvar VAR_PETALBURG_GYM_STATE 1
+call_if_eq VAR_PETALBURG_GYM_STATE 6 Common_EventScript_ReadyPetalburgGymForBattle
+setvar VAR_0x8008 3
+call Common_EventScript_SetGymTrainers
+special MauvilleGymDeactivatePuzzle
+special DrawWholeMapView
+playse SE_UNLOCK
+call MauvilleCity_Gym_EventScript_GiveShockWave
+closemessage
+delay 30
+playfanfare MUS_REGISTER_MATCH_CALL
+msgbox	Registered GYM LEADER WATTSON in the POKéNAV.
+waitfanfare
+closemessage
+delay 30
+setflag FLAG_ENABLE_WATTSON_MATCH_CALL
+release
+end
+= MauvilleCity_Gym_EventScript_GiveShockWave
+giveitem ITEM_TM_SHOCK_WAVE
+goto_if_eq VAR_RESULT FALSE Common_EventScript_BagIsFull
+msgbox	That TM34 there contains SHOCK WAVE.It's a trustworthy move that never misses! You can count on it!… … … … … …
+setflag FLAG_RECEIVED_TM_SHOCK_WAVE
+return

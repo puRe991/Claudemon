@@ -25,3 +25,22 @@ people_girl_2 6 4 S wander
 dialogs
 0	You're a POKéMON TRAINER, aren't you?SOOTOPOLIS's JUAN has many fans. Even more than his student WALLACE!Do you have any?
 1	Dedicated fans come over from even outside of HOENN.It was really wild when I went to the TRAINER FAN CLUB in LILYCOVE.
+objscripts
+0 SootopolisCity_House3_EventScript_Woman
+1 SootopolisCity_House3_EventScript_Girl
+scriptdefs
+= SootopolisCity_House3_EventScript_Girl
+msgbox	Dedicated fans come over from even outside of HOENN.It was really wild when I went to the TRAINER FAN CLUB in LILYCOVE.
+end
+= SootopolisCity_House3_EventScript_Woman
+lock
+faceplayer
+msgbox	You're a POKéMON TRAINER, aren't you?SOOTOPOLIS's JUAN has many fans. Even more than his student WALLACE!Do you have any?
+goto_if_eq VAR_RESULT YES SootopolisCity_House3_EventScript_HaveFans
+msgbox	Oh, dear… That's a little lonesome.Try working a little harder to get a fan following.
+release
+end
+= SootopolisCity_House3_EventScript_HaveFans
+msgbox	Oh, then you must be pretty strong.
+release
+end

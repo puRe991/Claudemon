@@ -64,3 +64,73 @@ people_man_2 7 24 S static
 dialogs
 0	The TRAINERS who have gathered all the GYM BADGES of HOENN should make way to the ultimate destination.The POKéMON LEAGUE.Travel to the easternmost reaches of HOENN, to the island EVER GRANDE.There, you shall find the POKéMON LEAGUE.
 1	Yo! How's it going, CHAMPION- bound PLAYER?SOOTOPOLIS's GYM LEADER JUAN is a master of WATER-type POKéMON.And, to get to JUAN, an icy floor will hamper your progress…Listen, I'm sorry, but that's all the advice that I have for you.The rest of the way, you have to go for it yourself!
+objscripts
+0 SootopolisCity_Gym_1F_EventScript_Juan
+1 SootopolisCity_Gym_1F_EventScript_GymGuide
+scriptdefs
+= SootopolisCity_Gym_1F_EventScript_GymGuide
+lock
+faceplayer
+goto_if_set FLAG_DEFEATED_SOOTOPOLIS_GYM SootopolisCity_Gym_1F_EventScript_GymGuidePostVictory
+msgbox	Yo! How's it going, CHAMPION- bound PLAYER?SOOTOPOLIS's GYM LEADER JUAN is a master of WATER-type POKéMON.And, to get to JUAN, an icy floor will hamper your progress…Listen, I'm sorry, but that's all the advice that I have for you.The rest of the way, you have to go for it yourself!
+release
+end
+= SootopolisCity_Gym_1F_EventScript_GymGuidePostVictory
+msgbox	Yow! You've beaten even JUAN, who was supposedly the best in all HOENN!Okay! Check out your TRAINER CARD.If you've gotten all the BADGES, you're set for the POKéMON LEAGUE challenge!
+release
+end
+= SootopolisCity_Gym_1F_EventScript_Juan
+trainerbattle_single TRAINER_JUAN_1 SootopolisCity_Gym_1F_Text_JuanIntro SootopolisCity_Gym_1F_Text_JuanDefeat SootopolisCity_Gym_1F_EventScript_JuanDefeated NO_MUSIC
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE SootopolisCity_Gym_1F_EventScript_JuanRematch
+goto_if_unset FLAG_RECEIVED_TM_WATER_PULSE SootopolisCity_Gym_1F_EventScript_GiveWaterPulse2
+goto_if_unset FLAG_BADGE06_GET SootopolisCity_Gym_1F_EventScript_GoGetFortreeBadge
+msgbox	The TRAINERS who have gathered all the GYM BADGES of HOENN should make way to the ultimate destination.The POKéMON LEAGUE.Travel to the easternmost reaches of HOENN, to the island EVER GRANDE.There, you shall find the POKéMON LEAGUE.
+release
+end
+= SootopolisCity_Gym_1F_EventScript_GoGetFortreeBadge
+msgbox	There remains but one BADGE to obtain in HOENN.If you wish to challenge the POKéMON LEAGUE, you must obtain the last BADGE from the GYM in FORTREE.
+release
+end
+= SootopolisCity_Gym_1F_EventScript_GiveWaterPulse2
+giveitem ITEM_TM_WATER_PULSE
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+msgbox	The TECHNICAL MACHINE I handed you contains WATER PULSE.In use, it will occasionally confuse the target with ultrasonic waves.… … … … … …
+setflag FLAG_RECEIVED_TM_WATER_PULSE
+release
+end
+= SootopolisCity_Gym_1F_EventScript_JuanRematch
+trainerbattle_rematch_double TRAINER_JUAN_1 SootopolisCity_Gym_1F_Text_JuanPreRematch SootopolisCity_Gym_1F_Text_JuanRematchDefeat SootopolisCity_Gym_1F_Text_JuanRematchNeedTwoMons
+msgbox	JUAN: If I told you to become my apprentice, you will refuse, I am sure.I would like to make a gift of my coat to you.But again, you will refuse. I imagine that to be so.And that, my friend, is a certain sign of nobility!
+end
+= SootopolisCity_Gym_1F_EventScript_JuanDefeated
+message SootopolisCity_Gym_1F_Text_ReceivedRainBadge
+waitmessage
+call Common_EventScript_PlayGymBadgeFanfare
+msgbox	Having the RAIN BADGE shall assure you the full obedience of all your POKéMON to your every command.The RAIN BADGE also allows the use of the HM move WATERFALL to scale walls of cascading water.And, so that you never forget the battle we shared, take this…
+setflag FLAG_DEFEATED_SOOTOPOLIS_GYM
+setflag FLAG_BADGE08_GET
+setflag FLAG_HIDE_SOOTOPOLIS_CITY_RESIDENTS
+setflag FLAG_HIDE_SOOTOPOLIS_CITY_STEVEN
+setflag FLAG_HIDE_SOOTOPOLIS_CITY_WALLACE
+setvar VAR_SOOTOPOLIS_CITY_STATE 6
+clearflag FLAG_HIDE_SOOTOPOLIS_CITY_MAN_1
+setvar VAR_0x8008 8
+call Common_EventScript_SetGymTrainers
+call SootopolisCity_Gym_1F_EventScript_GiveWaterPulse
+closemessage
+delay 30
+playfanfare MUS_REGISTER_MATCH_CALL
+msgbox	Registered GYM LEADER JUAN in the POKéNAV.
+waitfanfare
+closemessage
+delay 30
+setflag FLAG_ENABLE_JUAN_MATCH_CALL
+release
+end
+= SootopolisCity_Gym_1F_EventScript_GiveWaterPulse
+giveitem ITEM_TM_WATER_PULSE
+goto_if_eq VAR_RESULT FALSE Common_EventScript_BagIsFull
+msgbox	The TECHNICAL MACHINE I handed you contains WATER PULSE.In use, it will occasionally confuse the target with ultrasonic waves.… … … … … …
+setflag FLAG_RECEIVED_TM_WATER_PULSE
+return

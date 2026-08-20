@@ -72,6 +72,220 @@ misc_item_ball 64 7 S static
 dialogs
 0	If you cross the sea from here, it'll be a shortcut to OLDALE TOWN.Fufufu, that's useful, isn't it?
 9	My POKéMON is staggeringly tired… I should have brought a POTION…
+objscripts
+0 Route103_EventScript_Man
+1 Route103_EventScript_Rival
+2 Route103_EventScript_Daisy
+3 Route103_EventScript_Liv
+4 Route103_EventScript_Amy
+5 Route103_EventScript_Andrew
+9 Route103_EventScript_Boy
+11 Route103_EventScript_Miguel
+15 Route103_EventScript_Rhett
+16 Route103_EventScript_Marcos
+17 Route103_EventScript_Isabelle
+18 Route103_EventScript_Pete
+movements
+Route103_Movement_RivalExit1	down,end
+Route103_Movement_RivalExit2	down,delay,down,down,down,end
+Route103_Movement_RivalExitFacingNorth1	left,down,end
+Route103_Movement_RivalExitFacingNorth2	down,delay,down,down,down,down,end
+Route103_Movement_WatchRivalExitFacingEastOrWest	delay,delay,end
+Route103_Movement_WatchRivalExitFacingNorth	delay,delay,delay,delay,delay,end
+scriptdefs
+= Route103_EventScript_Pete
+trainerbattle_single TRAINER_PETE Route103_Text_PeteIntro Route103_Text_PeteDefeated
+msgbox	Route103_Text_PetePostBattle
+end
+= Route103_EventScript_Isabelle
+trainerbattle_single TRAINER_ISABELLE Route103_Text_IsabelleIntro Route103_Text_IsabelleDefeated
+msgbox	Route103_Text_IsabellePostBattle
+end
+= Route103_EventScript_Marcos
+trainerbattle_single TRAINER_MARCOS Route103_Text_MarcosIntro Route103_Text_MarcosDefeated
+msgbox	Route103_Text_MarcosPostBattle
+end
+= Route103_EventScript_Rhett
+trainerbattle_single TRAINER_RHETT Route103_Text_RhettIntro Route103_Text_RhettDefeated
+msgbox	Route103_Text_RhettPostBattle
+end
+= Route103_EventScript_Miguel
+trainerbattle_single TRAINER_MIGUEL_1 Route103_Text_MiguelIntro Route103_Text_MiguelDefeated Route102_EventScript_MiguelRegisterMatchCallAfterBattle
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route103_EventScript_MiguelRematch
+msgbox	Route103_Text_MiguelPostBattle
+release
+end
+= Route103_EventScript_MiguelRematch
+trainerbattle_rematch TRAINER_MIGUEL_1 Route103_Text_MiguelRematchIntro Route103_Text_MiguelRematchDefeated
+msgbox	Route103_Text_MiguelRematchPostBattle
+end
+= Route102_EventScript_MiguelRegisterMatchCallAfterBattle
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	Route103_Text_MiguelRegister
+register_matchcall TRAINER_MIGUEL_1
+release
+end
+= Route103_EventScript_Boy
+msgbox	My POKéMON is staggeringly tired… I should have brought a POTION…
+end
+= Route103_EventScript_Andrew
+trainerbattle_single TRAINER_ANDREW Route103_Text_AndrewIntro Route103_Text_AndrewDefeated
+msgbox	Route103_Text_AndrewPostBattle
+end
+= Route103_EventScript_Amy
+trainerbattle_double TRAINER_AMY_AND_LIV_1 Route103_Text_AmyIntro Route103_Text_AmyDefeated Route103_Text_AmyNotEnoughPokemon Route102_EventScript_AmyRegisterMatchCallAfterBattle
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route102_EventScript_AmyRematch
+msgbox	Route103_Text_AmyPostBattle
+end
+= Route102_EventScript_AmyRematch
+trainerbattle_rematch_double TRAINER_AMY_AND_LIV_1 Route103_Text_AmyRematchIntro Route103_Text_AmyRematchDefeated Route103_Text_AmyRematchNotEnoughPokemon
+msgbox	Route103_Text_AmyRematchPostBattle
+end
+= Route102_EventScript_AmyRegisterMatchCallAfterBattle
+msgbox	Route103_Text_AmyLivRegister
+register_matchcall TRAINER_AMY_AND_LIV_1
+release
+end
+= Route103_EventScript_Liv
+trainerbattle_double TRAINER_AMY_AND_LIV_1 Route103_Text_LivIntro Route103_Text_LivDefeated Route103_Text_LivNotEnoughPokemon Route102_EventScript_LivRegisterMatchCallAfterBattle
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route102_EventScript_LivRematch
+msgbox	Route103_Text_LivPostBattle
+end
+= Route102_EventScript_LivRematch
+trainerbattle_rematch_double TRAINER_AMY_AND_LIV_1 Route103_Text_LivRematchIntro Route103_Text_LivRematchDefeated Route103_Text_LivRematchNotEnoughPokemon
+msgbox	Route103_Text_LivRematchPostBattle
+end
+= Route102_EventScript_LivRegisterMatchCallAfterBattle
+msgbox	Route103_Text_AmyLivRegister
+register_matchcall TRAINER_AMY_AND_LIV_1
+release
+end
+= Route103_EventScript_Daisy
+trainerbattle_single TRAINER_DAISY Route103_Text_DaisyIntro Route103_Text_DaisyDefeated
+msgbox	Route103_Text_DaisyPostBattle
+end
+= Route103_EventScript_Rival
+lockall
+checkplayergender
+goto_if_eq VAR_RESULT MALE Route103_EventScript_RivalMay
+goto_if_eq VAR_RESULT FEMALE Route103_EventScript_RivalBrendan
+end
+= Route103_EventScript_RivalBrendan
+msgbox	BRENDAN: Okay, so it's this one and that one that live on ROUTE 103…
+closemessage
+playbgm MUS_ENCOUNTER_BRENDAN TRUE
+applymovement LOCALID_ROUTE103_RIVAL Common_Movement_FacePlayer
+waitmovement 0
+applymovement LOCALID_ROUTE103_RIVAL Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_ROUTE103_RIVAL Common_Movement_Delay48
+waitmovement 0
+msgbox	Hey, it's PLAYER!…Oh, yeah, Dad gave you a POKéMON.Since we're here, how about a little battle?I'll teach you what being a TRAINER's about!
+switch VAR_STARTER_MON
+case 0 Route103_EventScript_StartBrendanBattleTreecko
+case 1 Route103_EventScript_StartBrendanBattleTorchic
+case 2 Route103_EventScript_StartBrendanBattleMudkip
+end
+= Route103_EventScript_StartBrendanBattleMudkip
+trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_103_MUDKIP Route103_Text_BrendanDefeated
+goto Route103_EventScript_AfterBrendanBattle
+end
+= Route103_EventScript_AfterBrendanBattle
+msgbox	BRENDAN: I think I get it. I think I know why my dad has his eye out for you now.Look, your POKéMON already likes you, even though you just got it.PLAYER, I get the feeling that you could befriend any POKéMON with ease.We should head back to the LAB.
+goto Route103_EventScript_RivalExit
+end
+= Route103_EventScript_RivalExit
+closemessage
+switch VAR_FACING
+case DIR_SOUTH Route103_EventScript_RivalExitFacingSouth
+case DIR_NORTH Route103_EventScript_RivalExitFacingNorth
+case DIR_WEST Route103_EventScript_RivalExitFacingEastOrWest
+case DIR_EAST Route103_EventScript_RivalExitFacingEastOrWest
+end
+= Route103_EventScript_RivalExitFacingEastOrWest
+applymovement LOCALID_PLAYER Route103_Movement_WatchRivalExitFacingEastOrWest
+applymovement LOCALID_ROUTE103_RIVAL Route103_Movement_RivalExit1
+waitmovement 0
+playse SE_LEDGE
+applymovement LOCALID_ROUTE103_RIVAL Route103_Movement_RivalExit2
+waitmovement 0
+goto Route103_EventScript_RivalEnd
+end
+= Route103_EventScript_RivalEnd
+removeobject LOCALID_ROUTE103_RIVAL
+setvar VAR_BIRCH_LAB_STATE 4
+clearflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_RIVAL
+setflag FLAG_DEFEATED_RIVAL_ROUTE103
+setvar VAR_OLDALE_RIVAL_STATE 1
+clearflag FLAG_HIDE_OLDALE_TOWN_RIVAL
+savebgm MUS_DUMMY
+fadedefaultbgm
+releaseall
+end
+= Route103_EventScript_RivalExitFacingNorth
+applymovement LOCALID_PLAYER Route103_Movement_WatchRivalExitFacingNorth
+applymovement LOCALID_ROUTE103_RIVAL Route103_Movement_RivalExitFacingNorth1
+waitmovement 0
+playse SE_LEDGE
+applymovement LOCALID_ROUTE103_RIVAL Route103_Movement_RivalExitFacingNorth2
+waitmovement 0
+goto Route103_EventScript_RivalEnd
+end
+= Route103_EventScript_RivalExitFacingSouth
+applymovement LOCALID_ROUTE103_RIVAL Route103_Movement_RivalExit1
+waitmovement 0
+playse SE_LEDGE
+applymovement LOCALID_ROUTE103_RIVAL Route103_Movement_RivalExit2
+waitmovement 0
+goto Route103_EventScript_RivalEnd
+end
+= Route103_EventScript_StartBrendanBattleTorchic
+trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_103_TORCHIC Route103_Text_BrendanDefeated
+goto Route103_EventScript_AfterBrendanBattle
+end
+= Route103_EventScript_StartBrendanBattleTreecko
+trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_103_TREECKO Route103_Text_BrendanDefeated
+goto Route103_EventScript_AfterBrendanBattle
+end
+= Route103_EventScript_RivalMay
+msgbox	MAY: Let's see… The POKéMON found on ROUTE 103 include…
+closemessage
+playbgm MUS_ENCOUNTER_MAY TRUE
+applymovement LOCALID_ROUTE103_RIVAL Common_Movement_FacePlayer
+waitmovement 0
+applymovement LOCALID_ROUTE103_RIVAL Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_ROUTE103_RIVAL Common_Movement_Delay48
+waitmovement 0
+msgbox	Oh, hi, PLAYER!…Oh, I see, my dad gave you a POKéMON as a gift.Since we're here, let's have a quick battle!I'll give you a taste of what being a TRAINER is like.
+switch VAR_STARTER_MON
+case 0 Route103_EventScript_StartMayBattleTreecko
+case 1 Route103_EventScript_StartMayBattleTorchic
+case 2 Route103_EventScript_StartMayBattleMudkip
+end
+= Route103_EventScript_StartMayBattleMudkip
+trainerbattle_no_intro TRAINER_MAY_ROUTE_103_MUDKIP Route103_Text_MayDefeated
+goto Route103_EventScript_AfterMayBattle
+end
+= Route103_EventScript_AfterMayBattle
+msgbox	MAY: I think I know why my dad has an eye out for you now.I mean, you just got that POKéMON, but it already likes you.You might be able to befriend any kind of POKéMON easily.Well, it's time to head back to the LAB.
+goto Route103_EventScript_RivalExit
+end
+= Route103_EventScript_StartMayBattleTorchic
+trainerbattle_no_intro TRAINER_MAY_ROUTE_103_TORCHIC Route103_Text_MayDefeated
+goto Route103_EventScript_AfterMayBattle
+end
+= Route103_EventScript_StartMayBattleTreecko
+trainerbattle_no_intro TRAINER_MAY_ROUTE_103_TREECKO Route103_Text_MayDefeated
+goto Route103_EventScript_AfterMayBattle
+end
+= Route103_EventScript_Man
+msgbox	If you cross the sea from here, it'll be a shortcut to OLDALE TOWN.Fufufu, that's useful, isn't it?
+end
 signs
 11 9	ROUTE 103 OLDALE TOWN
 grass

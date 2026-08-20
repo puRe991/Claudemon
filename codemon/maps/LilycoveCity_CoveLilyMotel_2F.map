@@ -37,3 +37,65 @@ dialogs
 4	You never know when and where people will challenge you.That's why I never leave home without my GAME BOY ADVANCE.
 5	The sea breeze tickles my heart. It feels wonderful here!
 6	SCOTT: … … … … … … … … … … Zzz…… … … … … Huh?! Oh, sorry, sorry! I was snoozing!I came to check out this POKéMON CONTEST thing.I have to admit, it does look quite entertaining, but…Consider me a purist--I prefer battles and tough TRAINERS.But that's just me.PLAYER, I hope you'll enjoy everything like the GYMS, CONTESTS, BATTLE TENT, the whole works!
+objscripts
+0 LilycoveCity_CoveLilyMotel_2F_EventScript_GameDesigner
+1 LilycoveCity_CoveLilyMotel_2F_EventScript_GraphicArtist
+2 LilycoveCity_CoveLilyMotel_2F_EventScript_FatMan
+3 LilycoveCity_CoveLilyMotel_2F_EventScript_Programmer
+4 LilycoveCity_CoveLilyMotel_2F_EventScript_GameBoyKid
+5 LilycoveCity_CoveLilyMotel_2F_EventScript_Woman
+6 LilycoveCity_CoveLilyMotel_2F_EventScript_Scott
+scriptdefs
+= LilycoveCity_CoveLilyMotel_2F_EventScript_Scott
+lock
+faceplayer
+goto_if_set FLAG_MET_SCOTT_IN_LILYCOVE LilycoveCity_CoveLilyMotel_2F_EventScript_MetScott
+msgbox	SCOTT: … … … … … … … … … … Zzz…… … … … … Huh?! Oh, sorry, sorry! I was snoozing!I came to check out this POKéMON CONTEST thing.I have to admit, it does look quite entertaining, but…Consider me a purist--I prefer battles and tough TRAINERS.But that's just me.PLAYER, I hope you'll enjoy everything like the GYMS, CONTESTS, BATTLE TENT, the whole works!
+addvar VAR_SCOTT_STATE 1
+setflag FLAG_MET_SCOTT_IN_LILYCOVE
+release
+end
+= LilycoveCity_CoveLilyMotel_2F_EventScript_MetScott
+msgbox	SCOTT: I think it does take strategy to win a CONTEST.Devising CONTEST strategies is one way of becoming a better TRAINER, I'd say.
+release
+end
+= LilycoveCity_CoveLilyMotel_2F_EventScript_Woman
+msgbox	The sea breeze tickles my heart. It feels wonderful here!
+end
+= LilycoveCity_CoveLilyMotel_2F_EventScript_GameBoyKid
+msgbox	You never know when and where people will challenge you.That's why I never leave home without my GAME BOY ADVANCE.
+end
+= LilycoveCity_CoveLilyMotel_2F_EventScript_Programmer
+msgbox	Me? You're talking to me? I'm the PROGRAMMER.I wonder what the SLOTS are like here.
+end
+= LilycoveCity_CoveLilyMotel_2F_EventScript_FatMan
+msgbox	The girl TUBERS, they're cute, hey? To battle against a cute TUBER…Whoop, it's so awesome!And the TWINS! Aren't they cute? A 2-on-2 battle with TWINS…Whoop, it's unbearably fun!
+end
+= LilycoveCity_CoveLilyMotel_2F_EventScript_GraphicArtist
+msgbox	I'm the GRAPHIC ARTIST! Aren't the POKéMON of HOENN interesting?
+end
+= LilycoveCity_CoveLilyMotel_2F_EventScript_GameDesigner
+lock
+faceplayer
+call_if_unset FLAG_TEMP_2 LilycoveCity_CoveLilyMotel_2F_EventScript_ShowMeCompletedDex
+call_if_set FLAG_TEMP_2 LilycoveCity_CoveLilyMotel_2F_EventScript_ShowDiploma
+specialvar VAR_RESULT HasAllHoennMons
+goto_if_eq VAR_RESULT TRUE LilycoveCity_CoveLilyMotel_2F_EventScript_AllHoennMonsFanfare
+release
+end
+= LilycoveCity_CoveLilyMotel_2F_EventScript_AllHoennMonsFanfare
+setflag FLAG_TEMP_2
+playfanfare MUS_OBTAIN_ITEM
+waitfanfare
+goto LilycoveCity_CoveLilyMotel_2F_EventScript_ShowDiploma
+end
+= LilycoveCity_CoveLilyMotel_2F_EventScript_ShowDiploma
+message LilycoveCity_CoveLilyMotel_2F_Text_FilledPokedexGiveYouThis
+waitmessage
+call Common_EventScript_PlayGymBadgeFanfare
+special Special_ShowDiploma
+release
+end
+= LilycoveCity_CoveLilyMotel_2F_EventScript_ShowMeCompletedDex
+msgbox	I'm the GAME DESIGNER.Oh, is that right? You're working on a POKéDEX?It's tough trying to complete it, but don't give up.If you do complete it, please come show me.
+return

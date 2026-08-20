@@ -32,3 +32,39 @@ people_woman_1 2 3 S wander
 dialogs
 1	Everyone in town has taken refuge and won't come out of their homes.Even I would rather not venture outside.
 2	Aren't POKéMON our friends?Why are they going wild this way?
+objscripts
+0 SootopolisCity_PokemonCenter_1F_EventScript_Nurse
+1 SootopolisCity_PokemonCenter_1F_EventScript_Gentleman
+2 SootopolisCity_PokemonCenter_1F_EventScript_Woman
+scriptdefs
+= SootopolisCity_PokemonCenter_1F_EventScript_Woman
+lock
+faceplayer
+goto_if_ge VAR_SKY_PILLAR_STATE 2 SootopolisCity_PokemonCenter_1F_EventScript_WomanNoLegendaries
+goto_if_unset FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN SootopolisCity_PokemonCenter_1F_EventScript_WomanNoLegendaries
+msgbox	Aren't POKéMON our friends?Why are they going wild this way?
+release
+end
+= SootopolisCity_PokemonCenter_1F_EventScript_WomanNoLegendaries
+msgbox	Whenever, wherever, and whatever happens, I will always be friends with POKéMON.Because it's fun to be with POKéMON!
+release
+end
+= SootopolisCity_PokemonCenter_1F_EventScript_Gentleman
+lock
+faceplayer
+goto_if_ge VAR_SKY_PILLAR_STATE 2 SootopolisCity_PokemonCenter_1F_EventScript_GentlemanNoLegendaries
+goto_if_unset FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN SootopolisCity_PokemonCenter_1F_EventScript_GentlemanNoLegendaries
+msgbox	Everyone in town has taken refuge and won't come out of their homes.Even I would rather not venture outside.
+release
+end
+= SootopolisCity_PokemonCenter_1F_EventScript_GentlemanNoLegendaries
+msgbox	WALLACE is rumored to be the toughest TRAINER in the whole HOENN region.This town's GYM is led by the TRAINER who taught WALLACE.But the ELITE FOUR… They're said to be even stronger than WALLACE's mentor.How strong could they be?
+release
+end
+= SootopolisCity_PokemonCenter_1F_EventScript_Nurse
+setvar VAR_0x800B LOCALID_SOOTOPOLIS_NURSE
+call Common_EventScript_PkmnCenterNurse
+waitmessage
+waitbuttonpress
+release
+end

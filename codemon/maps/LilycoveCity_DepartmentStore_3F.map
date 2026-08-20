@@ -32,3 +32,40 @@ dialogs
 0	For quickly toughening up POKéMON, items are the best.PROTEIN boosts ATTACK, and CALCIUM raises SP. ATK.
 1	I want my POKéMON to have more endurance.I'm trying to decide whether to raise DEFENSE with IRON, or SP. DEF with ZINC.
 2	I gave a CARBOS to my POKéMON, and its SPEED went up.
+objscripts
+0 LilycoveCity_DepartmentStore_3F_EventScript_TriathleteM
+1 LilycoveCity_DepartmentStore_3F_EventScript_PokefanM
+2 LilycoveCity_DepartmentStore_3F_EventScript_Woman
+3 LilycoveCity_DepartmentStore_3F_EventScript_ClerkLeft
+4 LilycoveCity_DepartmentStore_3F_EventScript_ClerkRight
+movements
+LilycoveCity_DepartmentStore_3F_Pokemart_StatBoosters	delay
+LilycoveCity_DepartmentStore_3F_Pokemart_Vitamins	delay
+scriptdefs
+= LilycoveCity_DepartmentStore_3F_EventScript_ClerkRight
+lock
+faceplayer
+message gText_HowMayIServeYou
+waitmessage
+pokemart LilycoveCity_DepartmentStore_3F_Pokemart_StatBoosters
+msgbox	gText_PleaseComeAgain
+release
+end
+= LilycoveCity_DepartmentStore_3F_EventScript_ClerkLeft
+lock
+faceplayer
+message gText_HowMayIServeYou
+waitmessage
+pokemart LilycoveCity_DepartmentStore_3F_Pokemart_Vitamins
+msgbox	gText_PleaseComeAgain
+release
+end
+= LilycoveCity_DepartmentStore_3F_EventScript_Woman
+msgbox	I gave a CARBOS to my POKéMON, and its SPEED went up.
+end
+= LilycoveCity_DepartmentStore_3F_EventScript_PokefanM
+msgbox	I want my POKéMON to have more endurance.I'm trying to decide whether to raise DEFENSE with IRON, or SP. DEF with ZINC.
+end
+= LilycoveCity_DepartmentStore_3F_EventScript_TriathleteM
+msgbox	For quickly toughening up POKéMON, items are the best.PROTEIN boosts ATTACK, and CALCIUM raises SP. ATK.
+end

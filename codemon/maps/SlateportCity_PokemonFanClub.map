@@ -44,3 +44,228 @@ dialogs
 5	ZIGZAGOON: Kyuuu…
 6	SKITTY: Fffnyaaaah…
 7	AZUMARILL: Marimari?
+objscripts
+0 SlateportCity_PokemonFanClub_EventScript_Man
+1 SlateportCity_PokemonFanClub_EventScript_Twin
+3 SlateportCity_PokemonFanClub_EventScript_SootheBellWoman
+4 SlateportCity_PokemonFanClub_EventScript_Chairman
+5 SlateportCity_PokemonFanClub_EventScript_Zigzagoon
+6 SlateportCity_PokemonFanClub_EventScript_Skitty
+7 SlateportCity_PokemonFanClub_EventScript_Azumarill
+scriptdefs
+= SlateportCity_PokemonFanClub_EventScript_Azumarill
+lock
+faceplayer
+waitse
+playmoncry SPECIES_AZUMARILL CRY_MODE_NORMAL
+msgbox	AZUMARILL: Marimari?
+waitmoncry
+release
+end
+= SlateportCity_PokemonFanClub_EventScript_Skitty
+lock
+faceplayer
+waitse
+playmoncry SPECIES_SKITTY CRY_MODE_NORMAL
+msgbox	SKITTY: Fffnyaaaah…
+waitmoncry
+release
+end
+= SlateportCity_PokemonFanClub_EventScript_Zigzagoon
+lock
+faceplayer
+waitse
+playmoncry SPECIES_ZIGZAGOON CRY_MODE_NORMAL
+msgbox	ZIGZAGOON: Kyuuu…
+waitmoncry
+release
+end
+= SlateportCity_PokemonFanClub_EventScript_Chairman
+lock
+faceplayer
+goto_if_unset FLAG_ENTERED_CONTEST SlateportCity_PokemonFanClub_EventScript_ChairmanNotEnteredContest
+call_if_unset FLAG_MET_SLATEPORT_FANCLUB_CHAIRMAN SlateportCity_PokemonFanClub_EventScript_MeetChairman
+switch VAR_SLATEPORT_FAN_CLUB_STATE
+case 0 SlateportCity_PokemonFanClub_EventScript_ChairmanFirstAssessment
+case 1 SlateportCity_PokemonFanClub_EventScript_ChairmanTryAssessPokemon
+case 2 SlateportCity_PokemonFanClub_EventScript_NoMoreScarves
+release
+end
+= SlateportCity_PokemonFanClub_EventScript_NoMoreScarves
+msgbox	I'm sorry, but I've nothing else to give you! None at all!After all, you're blessed with the gift of raising POKéMON without resorting to any items!
+release
+end
+= SlateportCity_PokemonFanClub_EventScript_ChairmanTryAssessPokemon
+setvar VAR_TEMP_2 0
+call_if_set FLAG_RECEIVED_YELLOW_SCARF SlateportCity_PokemonFanClub_EventScript_CountReceivedScarf
+call_if_set FLAG_RECEIVED_GREEN_SCARF SlateportCity_PokemonFanClub_EventScript_CountReceivedScarf
+call_if_set FLAG_RECEIVED_PINK_SCARF SlateportCity_PokemonFanClub_EventScript_CountReceivedScarf
+call_if_set FLAG_RECEIVED_BLUE_SCARF SlateportCity_PokemonFanClub_EventScript_CountReceivedScarf
+call_if_set FLAG_RECEIVED_RED_SCARF SlateportCity_PokemonFanClub_EventScript_CountReceivedScarf
+call_if_eq VAR_TEMP_2 CONTEST_CATEGORIES_COUNT SlateportCity_PokemonFanClub_EventScript_ReceivedAllScarves
+goto_if_eq VAR_SLATEPORT_FAN_CLUB_STATE 2 SlateportCity_PokemonFanClub_EventScript_NoMoreScarves
+msgbox	How is your POKéMON growing? Allow me to examine it.
+goto SlateportCity_PokemonFanClub_EventScript_ChairmanAssessLeadMon
+end
+= SlateportCity_PokemonFanClub_EventScript_ChairmanAssessLeadMon
+msgbox	Hm, hm… I see…
+setvar VAR_TEMP_1 0
+call_if_unset FLAG_RECEIVED_YELLOW_SCARF SlateportCity_PokemonFanClub_EventScript_CheckMonTough
+call_if_unset FLAG_RECEIVED_GREEN_SCARF SlateportCity_PokemonFanClub_EventScript_CheckMonSmart
+call_if_unset FLAG_RECEIVED_PINK_SCARF SlateportCity_PokemonFanClub_EventScript_CheckMonCute
+call_if_unset FLAG_RECEIVED_BLUE_SCARF SlateportCity_PokemonFanClub_EventScript_CheckMonBeauty
+call_if_unset FLAG_RECEIVED_RED_SCARF SlateportCity_PokemonFanClub_EventScript_CheckMonCool
+bufferleadmonspeciesname STR_VAR_1
+switch VAR_TEMP_1
+case 0 SlateportCity_PokemonFanClub_EventScript_NoHighConditions
+case 1 SlateportCity_PokemonFanClub_EventScript_GiveRedScarf
+case 2 SlateportCity_PokemonFanClub_EventScript_GiveBlueScarf
+case 3 SlateportCity_PokemonFanClub_EventScript_GivePinkScarf
+case 4 SlateportCity_PokemonFanClub_EventScript_GiveGreenScarf
+case 5 SlateportCity_PokemonFanClub_EventScript_GiveYellowScarf
+release
+end
+= SlateportCity_PokemonFanClub_EventScript_GiveYellowScarf
+checkitemspace ITEM_YELLOW_SCARF
+goto_if_eq VAR_RESULT FALSE SlateportCity_PokemonFanClub_EventScript_NoRoomForScarf
+msgbox	Your , it is growing in a most impressive manner! It is one fine specimen!But! If you were to give it this, it would grow even better! Indeed!
+setflag FLAG_RECEIVED_YELLOW_SCARF
+giveitem ITEM_YELLOW_SCARF
+msgbox	Let a POKéMON hold that YELLOW SCARF.It will bolster your POKéMON's toughness so much more!
+release
+end
+= SlateportCity_PokemonFanClub_EventScript_NoRoomForScarf
+msgbox	Oh, my…Your POKéMON is growing quite well, so you deserve a reward.Unfortunately, you have no space for this in your BAG.
+release
+end
+= SlateportCity_PokemonFanClub_EventScript_GiveGreenScarf
+checkitemspace ITEM_GREEN_SCARF
+goto_if_eq VAR_RESULT FALSE SlateportCity_PokemonFanClub_EventScript_NoRoomForScarf
+msgbox	Your , it is growing in a most impressive manner! It is one fine specimen!But! If you were to give it this, it would grow even better! Indeed!
+setflag FLAG_RECEIVED_GREEN_SCARF
+giveitem ITEM_GREEN_SCARF
+msgbox	Let a POKéMON hold that GREEN SCARF.That will enhance the smartness of POKéMON!
+release
+end
+= SlateportCity_PokemonFanClub_EventScript_GivePinkScarf
+checkitemspace ITEM_PINK_SCARF
+goto_if_eq VAR_RESULT FALSE SlateportCity_PokemonFanClub_EventScript_NoRoomForScarf
+msgbox	Your , it is growing in a most impressive manner! It is one fine specimen!But! If you were to give it this, it would grow even better! Indeed!
+setflag FLAG_RECEIVED_PINK_SCARF
+giveitem ITEM_PINK_SCARF
+msgbox	Let a POKéMON hold that PINK SCARF.It will draw out the cuteness of the POKéMON some more!
+release
+end
+= SlateportCity_PokemonFanClub_EventScript_GiveBlueScarf
+checkitemspace ITEM_BLUE_SCARF
+goto_if_eq VAR_RESULT FALSE SlateportCity_PokemonFanClub_EventScript_NoRoomForScarf
+msgbox	Your , it is growing in a most impressive manner! It is one fine specimen!But! If you were to give it this, it would grow even better! Indeed!
+setflag FLAG_RECEIVED_BLUE_SCARF
+giveitem ITEM_BLUE_SCARF
+msgbox	Let a POKéMON hold that BLUE SCARF.Its beauty will be accentuated much more than now!
+release
+end
+= SlateportCity_PokemonFanClub_EventScript_GiveRedScarf
+checkitemspace ITEM_RED_SCARF
+goto_if_eq VAR_RESULT FALSE SlateportCity_PokemonFanClub_EventScript_NoRoomForScarf
+msgbox	Your , it is growing in a most impressive manner! It is one fine specimen!But! If you were to give it this, it would grow even better! Indeed!
+setflag FLAG_RECEIVED_RED_SCARF
+giveitem ITEM_RED_SCARF
+msgbox	Let a POKéMON hold that RED SCARF.Everyone will recognize the coolness of that POKéMON!
+release
+end
+= SlateportCity_PokemonFanClub_EventScript_NoHighConditions
+msgbox	Hmmm… It's not bad, but it's not good, either…You, the TRAINER, must put more effort into raising this POKéMON!For instance, may I suggest that you give it more S?
+release
+end
+= SlateportCity_PokemonFanClub_EventScript_CheckMonCool
+specialvar VAR_RESULT CheckLeadMonCool
+call_if_eq VAR_RESULT TRUE SlateportCity_PokemonFanClub_EventScript_SetMonCool
+return
+= SlateportCity_PokemonFanClub_EventScript_SetMonCool
+setvar VAR_TEMP_1 1
+return
+= SlateportCity_PokemonFanClub_EventScript_CheckMonBeauty
+specialvar VAR_RESULT CheckLeadMonBeauty
+call_if_eq VAR_RESULT TRUE SlateportCity_PokemonFanClub_EventScript_SetMonBeauty
+return
+= SlateportCity_PokemonFanClub_EventScript_SetMonBeauty
+setvar VAR_TEMP_1 2
+return
+= SlateportCity_PokemonFanClub_EventScript_CheckMonCute
+specialvar VAR_RESULT CheckLeadMonCute
+call_if_eq VAR_RESULT TRUE SlateportCity_PokemonFanClub_EventScript_SetMonCute
+return
+= SlateportCity_PokemonFanClub_EventScript_SetMonCute
+setvar VAR_TEMP_1 3
+return
+= SlateportCity_PokemonFanClub_EventScript_CheckMonSmart
+specialvar VAR_RESULT CheckLeadMonSmart
+call_if_eq VAR_RESULT TRUE SlateportCity_PokemonFanClub_EventScript_SetMonSmart
+return
+= SlateportCity_PokemonFanClub_EventScript_SetMonSmart
+setvar VAR_TEMP_1 4
+return
+= SlateportCity_PokemonFanClub_EventScript_CheckMonTough
+specialvar VAR_RESULT CheckLeadMonTough
+call_if_eq VAR_RESULT TRUE SlateportCity_PokemonFanClub_EventScript_SetMonTough
+return
+= SlateportCity_PokemonFanClub_EventScript_SetMonTough
+setvar VAR_TEMP_1 5
+return
+= SlateportCity_PokemonFanClub_EventScript_ReceivedAllScarves
+setvar VAR_SLATEPORT_FAN_CLUB_STATE 2
+return
+= SlateportCity_PokemonFanClub_EventScript_CountReceivedScarf
+addvar VAR_TEMP_2 1
+return
+= SlateportCity_PokemonFanClub_EventScript_ChairmanFirstAssessment
+setvar VAR_SLATEPORT_FAN_CLUB_STATE 1
+msgbox	Er-hem! I see you've participated in a POKéMON CONTEST!Please! Allow me to examine how you have raised your POKéMON.It delights me no end to see POKéMON raised by other TRAINERS.The happy expressions of POKéMON raised with proper care…The kindly eyes of the TRAINER that nurtured and raised the POKéMON…The very thought fills my heart to overwhelming with joy.Oh! I do beg your pardon! Forgive me for prattling on so!Please! Allow me to examine how much your POKéMON has grown!
+goto SlateportCity_PokemonFanClub_EventScript_ChairmanAssessLeadMon
+end
+= SlateportCity_PokemonFanClub_EventScript_MeetChairman
+msgbox	Er-hem! I am the CHAIRMAN of the POKéMON FAN CLUB!Being the CHAIRMAN, I am naturally the most important!No one can best me when it comes to raising POKéMON. No one!Well, let me tell you about POKéMON CONTESTS.They're events where one can show off POKéMON for the world to see!However, they're held in far-off towns, so I cannot participate often enough.That is why we gather here to show off our POKéMON, and have others show us theirs.
+setflag FLAG_MET_SLATEPORT_FANCLUB_CHAIRMAN
+return
+= SlateportCity_PokemonFanClub_EventScript_ChairmanNotEnteredContest
+goto_if_set FLAG_MET_SLATEPORT_FANCLUB_CHAIRMAN SlateportCity_PokemonFanClub_EventScript_ChairmanEnterContest
+msgbox	Er-hem! I am the CHAIRMAN of the POKéMON FAN CLUB!Being the CHAIRMAN, I am naturally the most important!No one can best me when it comes to raising POKéMON. No one!Well, let me tell you about POKéMON CONTESTS.They're events where one can show off POKéMON for the world to see!However, they're held in far-off towns, so I cannot participate often enough.That is why we gather here to show off our POKéMON, and have others show us theirs.
+setflag FLAG_MET_SLATEPORT_FANCLUB_CHAIRMAN
+release
+end
+= SlateportCity_PokemonFanClub_EventScript_ChairmanEnterContest
+msgbox	The POKéMON of a TRAINER who has entered a POKéMON CONTEST… That, I would like to see.
+release
+end
+= SlateportCity_PokemonFanClub_EventScript_SootheBellWoman
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_SOOTHE_BELL SlateportCity_PokemonFanClub_EventScript_ReceivedSootheBell
+msgbox	I love seeing POKéMON that love their TRAINERS.POKéMON are very sensitive to the feelings of their TRAINERS.If you treat your POKéMON with love and care, they'll love you back.When your POKéMON grow to love you, please come show me.
+specialvar VAR_RESULT GetLeadMonFriendshipScore
+goto_if_ge VAR_RESULT FRIENDSHIP_150_TO_199 SlateportCity_PokemonFanClub_EventScript_GiveSootheBell
+release
+end
+= SlateportCity_PokemonFanClub_EventScript_GiveSootheBell
+playse SE_PIN
+applymovement VAR_LAST_TALKED Common_Movement_ExclamationMark
+waitmovement 0
+applymovement VAR_LAST_TALKED Common_Movement_Delay48
+waitmovement 0
+msgbox	Your POKéMON really adores you.For you, a most compassionate TRAINER, a gift from the FAN CLUB!
+giveitem ITEM_SOOTHE_BELL
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_RECEIVED_SOOTHE_BELL
+release
+end
+= SlateportCity_PokemonFanClub_EventScript_ReceivedSootheBell
+msgbox	POKéMON are very sensitive to the feelings of their TRAINERS.If you treat your POKéMON with love and care, they'll love you back.
+release
+end
+= SlateportCity_PokemonFanClub_EventScript_Twin
+msgbox	Do POKéMON enjoy having items used on them?Mine acted really happy when I gave it some PROTEIN.
+end
+= SlateportCity_PokemonFanClub_EventScript_Man
+msgbox	If you keep letting a POKéMON faint in battle, it'll come to resent it.Soon, it will become less trusting of the TRAINER.In other words, it certainly won't like you very much.
+end

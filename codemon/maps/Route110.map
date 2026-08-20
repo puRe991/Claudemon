@@ -259,6 +259,525 @@ dialogs
 22	I want to get going to SLATEPORT and kick up a ruckus!
 23	This is my first job after joining TEAM AQUA. It's a little scary.
 24	TEAM AQUA's actions should bring smiles to people's faces!
+objscripts
+0 Route110_EventScript_Boy2
+1 Route110_EventScript_CyclingGuy2
+2 Route110_EventScript_OldWoman
+3 Route110_EventScript_CyclingGuy1
+4 Route110_EventScript_OldMan
+5 Route110_EventScript_CyclingGirl1
+6 Route110_EventScript_Boy1
+7 Route110_EventScript_Jasmine
+8 Route110_EventScript_Anthony
+9 Route110_EventScript_Abigail
+10 Route110_EventScript_Benjamin
+11 Route110_EventScript_Edward
+12 Route110_EventScript_Jaclyn
+13 Route110_EventScript_Edwin
+14 Route110_EventScript_Dale
+20 Route110_EventScript_ChallengeGuy
+21 Route110_EventScript_AquaGrunt1
+22 Route110_EventScript_AquaGrunt2
+23 Route110_EventScript_AquaGrunt3
+24 Route110_EventScript_AquaGrunt4
+26 Route110_EventScript_Jacob
+29 Route110_EventScript_Timmy
+30 Route110_EventScript_Isabel
+31 Route110_EventScript_Kaleb
+32 Route110_EventScript_Alyssa
+33 Route110_EventScript_Joseph
+triggers
+28 92 VAR_CYCLING_CHALLENGE_STATE 2 Route110_EventScript_CyclingChallengeEnd
+29 92 VAR_CYCLING_CHALLENGE_STATE 2 Route110_EventScript_CyclingChallengeEnd
+33 56 VAR_ROUTE110_STATE 0 Route110_EventScript_RivalTrigger1
+34 56 VAR_ROUTE110_STATE 0 Route110_EventScript_RivalTrigger2
+35 56 VAR_ROUTE110_STATE 0 Route110_EventScript_RivalTrigger3
+7 85 VAR_REGISTER_BIRCH_STATE 1 Route110_EventScript_BirchScene1
+8 85 VAR_REGISTER_BIRCH_STATE 1 Route110_EventScript_BirchScene2
+9 85 VAR_REGISTER_BIRCH_STATE 1 Route110_EventScript_BirchScene3
+10 85 VAR_REGISTER_BIRCH_STATE 1 Route110_EventScript_BirchScene4
+movements
+Route110_Movement_BirchApproachPlayer1	down,left,left,down,end
+Route110_Movement_BirchApproachPlayer2	down,left,down,end
+Route110_Movement_BirchApproachPlayer3	down,down,end
+Route110_Movement_BirchApproachPlayer4	down,right,down,end
+Route110_Movement_BirchEntrance	down,down,down,end
+Route110_Movement_BirchExit1	up,up,right,up,up,up,end
+Route110_Movement_BirchExit2	up,up,up,up,up,end
+Route110_Movement_BirchExit3	up,up,up,up,up,end
+Route110_Movement_BirchExit4	up,up,up,up,up,end
+Route110_Movement_RivalApproachPlayer1	down,left,delay,end
+Route110_Movement_RivalApproachPlayer2	down,end
+Route110_Movement_RivalApproachPlayer3	down,right,delay,end
+Route110_Movement_RivalExit1	up,up,up,up,up,up,up,end
+Route110_Movement_RivalExit2	up,up,up,up,up,up,up,down,end
+Route110_Movement_RivalExit3	up,up,up,up,up,up,up,end
+scriptdefs
+= Route110_EventScript_BirchScene4
+lockall
+setvar VAR_0x8008 4
+goto Route110_EventScript_BirchScene
+= Route110_EventScript_BirchScene
+addobject LOCALID_ROUTE110_BIRCH
+applymovement LOCALID_ROUTE110_BIRCH Route110_Movement_BirchEntrance
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_ROUTE110_BIRCH Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_ROUTE110_BIRCH Common_Movement_Delay48
+waitmovement 0
+call_if_eq VAR_0x8008 1 Route110_EventScript_BirchApproachPlayer1
+call_if_eq VAR_0x8008 2 Route110_EventScript_BirchApproachPlayer2
+call_if_eq VAR_0x8008 3 Route110_EventScript_BirchApproachPlayer3
+call_if_eq VAR_0x8008 4 Route110_EventScript_BirchApproachPlayer4
+msgbox	PROF. BIRCH: Oh, PLAYER! Imagine seeing you here!And where might my RIVAL be?
+closemessage
+delay 20
+applymovement LOCALID_ROUTE110_BIRCH Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+delay 10
+applymovement LOCALID_ROUTE110_BIRCH Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+delay 20
+applymovement LOCALID_ROUTE110_BIRCH Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+delay 30
+msgbox	Oh, I see! You two are running separately. Well, that's fine.Oh, yes, I heard that your POKéNAV had the MATCH CALL system installed.Well, then, I should register you in my POKéNAV as well.That way, even when we're apart, I can rate your POKéDEX anytime.… … … … … …
+closemessage
+delay 30
+playfanfare MUS_REGISTER_MATCH_CALL
+msgbox	Registered PROF. BIRCH in the POKéNAV.
+waitfanfare
+closemessage
+delay 30
+setflag FLAG_ENABLE_PROF_BIRCH_MATCH_CALL
+msgbox	PROF. BIRCH: PLAYER…Please keep an eye out for my RIVAL. … … … … … …Well, I had better get going. See you again, PLAYER!
+closemessage
+call_if_eq VAR_0x8008 1 Route110_EventScript_BirchExit1
+call_if_eq VAR_0x8008 2 Route110_EventScript_BirchExit2
+call_if_eq VAR_0x8008 3 Route110_EventScript_BirchExit3
+call_if_eq VAR_0x8008 4 Route110_EventScript_BirchExit4
+removeobject LOCALID_ROUTE110_BIRCH
+setvar VAR_REGISTER_BIRCH_STATE 2
+releaseall
+end
+= Route110_EventScript_BirchExit4
+applymovement LOCALID_ROUTE110_BIRCH Route110_Movement_BirchExit4
+waitmovement 0
+return
+= Route110_EventScript_BirchExit3
+applymovement LOCALID_ROUTE110_BIRCH Route110_Movement_BirchExit3
+waitmovement 0
+return
+= Route110_EventScript_BirchExit2
+applymovement LOCALID_ROUTE110_BIRCH Route110_Movement_BirchExit2
+waitmovement 0
+return
+= Route110_EventScript_BirchExit1
+applymovement LOCALID_ROUTE110_BIRCH Route110_Movement_BirchExit1
+waitmovement 0
+return
+= Route110_EventScript_BirchApproachPlayer4
+applymovement LOCALID_ROUTE110_BIRCH Route110_Movement_BirchApproachPlayer4
+waitmovement 0
+return
+= Route110_EventScript_BirchApproachPlayer3
+applymovement LOCALID_ROUTE110_BIRCH Route110_Movement_BirchApproachPlayer3
+waitmovement 0
+return
+= Route110_EventScript_BirchApproachPlayer2
+applymovement LOCALID_ROUTE110_BIRCH Route110_Movement_BirchApproachPlayer2
+waitmovement 0
+return
+= Route110_EventScript_BirchApproachPlayer1
+applymovement LOCALID_ROUTE110_BIRCH Route110_Movement_BirchApproachPlayer1
+waitmovement 0
+return
+= Route110_EventScript_BirchScene3
+lockall
+setvar VAR_0x8008 3
+goto Route110_EventScript_BirchScene
+= Route110_EventScript_BirchScene2
+lockall
+setvar VAR_0x8008 2
+goto Route110_EventScript_BirchScene
+= Route110_EventScript_BirchScene1
+lockall
+setvar VAR_0x8008 1
+goto Route110_EventScript_BirchScene
+= Route110_EventScript_RivalTrigger3
+setvar VAR_0x8008 3
+goto Route110_EventScript_RivalScene
+end
+= Route110_EventScript_RivalScene
+lockall
+checkplayergender
+call_if_eq VAR_RESULT MALE Route110_EventScript_PlayMayMusic
+call_if_eq VAR_RESULT FEMALE Route110_EventScript_PlayBrendanMusic
+applymovement LOCALID_ROUTE110_RIVAL Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+applymovement LOCALID_ROUTE110_RIVAL Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_ROUTE110_RIVAL Common_Movement_Delay48
+waitmovement 0
+delay 30
+call_if_eq VAR_0x8008 1 Route110_EventScript_RivalApproachPlayer1
+call_if_eq VAR_0x8008 2 Route110_EventScript_RivalApproachPlayer2
+call_if_eq VAR_0x8008 3 Route110_EventScript_RivalApproachPlayer3
+checkplayergender
+goto_if_eq VAR_RESULT MALE Route110_EventScript_MayBattle
+goto_if_eq VAR_RESULT FEMALE Route110_EventScript_BrendanBattle
+releaseall
+end
+= Route110_EventScript_BrendanBattle
+msgbox	BRENDAN: Hey, PLAYER. So this is where you were. How's it going?Have you been raising your POKéMON? I'll check for you.
+switch VAR_STARTER_MON
+case 0 Route110_EventScript_BrendanBattleTreecko
+case 1 Route110_EventScript_BrendanBattleTorchic
+case 2 Route110_EventScript_BrendanBattleMudkip
+end
+= Route110_EventScript_BrendanBattleMudkip
+trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_110_MUDKIP Route110_Text_BrendanDefeated
+goto Route110_EventScript_BrendanDefeated
+end
+= Route110_EventScript_BrendanDefeated
+msgbox	BRENDAN: PLAYER, you've trained without me noticing…Good enough! Here, take this.
+call Route110_EventScript_GiveItemfinder
+msgbox	BRENDAN: That's an ITEMFINDER.Use it to root around for items that aren't visible.If it senses something, it emits a sound.Anyway, I'm off to look for new POKéMON.
+goto Route110_EventScript_RivalExit
+end
+= Route110_EventScript_RivalExit
+closemessage
+call_if_eq VAR_0x8008 1 Route110_EventScript_MoveRival1
+call_if_eq VAR_0x8008 2 Route110_EventScript_MoveRival2
+call_if_eq VAR_0x8008 3 Route110_EventScript_MoveRival3
+setobjectmovementtype LOCALID_ROUTE110_RIVAL MOVEMENT_TYPE_FACE_RIGHT
+setobjectmovementtype LOCALID_ROUTE110_RIVAL_ON_BIKE MOVEMENT_TYPE_FACE_RIGHT
+removeobject LOCALID_ROUTE110_RIVAL
+addobject LOCALID_ROUTE110_RIVAL_ON_BIKE
+delay 45
+call_if_eq VAR_0x8008 1 Route110_EventScript_RivalExit1
+call_if_eq VAR_0x8008 2 Route110_EventScript_RivalExit2
+call_if_eq VAR_0x8008 3 Route110_EventScript_RivalExit3
+removeobject LOCALID_ROUTE110_RIVAL_ON_BIKE
+setvar VAR_ROUTE110_STATE 1
+savebgm MUS_DUMMY
+fadedefaultbgm
+releaseall
+end
+= Route110_EventScript_RivalExit3
+applymovement LOCALID_ROUTE110_RIVAL_ON_BIKE Route110_Movement_RivalExit3
+waitmovement 0
+return
+= Route110_EventScript_RivalExit2
+applymovement LOCALID_ROUTE110_RIVAL_ON_BIKE Route110_Movement_RivalExit2
+waitmovement 0
+return
+= Route110_EventScript_RivalExit1
+applymovement LOCALID_ROUTE110_RIVAL_ON_BIKE Route110_Movement_RivalExit1
+waitmovement 0
+return
+= Route110_EventScript_MoveRival3
+setobjectxyperm LOCALID_ROUTE110_RIVAL_ON_BIKE 35 55
+return
+= Route110_EventScript_MoveRival2
+setobjectxyperm LOCALID_ROUTE110_RIVAL_ON_BIKE 34 55
+return
+= Route110_EventScript_MoveRival1
+setobjectxyperm LOCALID_ROUTE110_RIVAL_ON_BIKE 33 55
+return
+= Route110_EventScript_GiveItemfinder
+giveitem ITEM_ITEMFINDER
+return
+= Route110_EventScript_BrendanBattleTorchic
+trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_110_TORCHIC Route110_Text_BrendanDefeated
+goto Route110_EventScript_BrendanDefeated
+end
+= Route110_EventScript_BrendanBattleTreecko
+trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_110_TREECKO Route110_Text_BrendanDefeated
+goto Route110_EventScript_BrendanDefeated
+end
+= Route110_EventScript_MayBattle
+msgbox	MAY: Hi, PLAYER, long time no see!While I was searching for other POKéMON, my POKéMON grew stronger.So… How about a little battle?
+switch VAR_STARTER_MON
+case 0 Route110_EventScript_MayBattleTreecko
+case 1 Route110_EventScript_MayBattleTorchic
+case 2 Route110_EventScript_MayBattleMudkip
+end
+= Route110_EventScript_MayBattleMudkip
+trainerbattle_no_intro TRAINER_MAY_ROUTE_110_MUDKIP Route110_Text_MayDefeated
+goto Route110_EventScript_MayDefeated
+end
+= Route110_EventScript_MayDefeated
+msgbox	MAY: PLAYER, you've been busy training, too, haven't you?I think you deserve a reward! This is from me!
+call Route110_EventScript_GiveItemfinder
+msgbox	MAY: That's an ITEMFINDER.Try it out. If there is an item that's not visible, it emits a sound.Okay, PLAYER, let's meet again!I know it's a little silly coming from me, but I think you should train a lot harder for the next time.
+goto Route110_EventScript_RivalExit
+end
+= Route110_EventScript_MayBattleTorchic
+trainerbattle_no_intro TRAINER_MAY_ROUTE_110_TORCHIC Route110_Text_MayDefeated
+goto Route110_EventScript_MayDefeated
+end
+= Route110_EventScript_MayBattleTreecko
+trainerbattle_no_intro TRAINER_MAY_ROUTE_110_TREECKO Route110_Text_MayDefeated
+goto Route110_EventScript_MayDefeated
+end
+= Route110_EventScript_RivalApproachPlayer3
+applymovement LOCALID_ROUTE110_RIVAL Route110_Movement_RivalApproachPlayer3
+waitmovement 0
+return
+= Route110_EventScript_RivalApproachPlayer2
+applymovement LOCALID_ROUTE110_RIVAL Route110_Movement_RivalApproachPlayer2
+waitmovement 0
+return
+= Route110_EventScript_RivalApproachPlayer1
+applymovement LOCALID_ROUTE110_RIVAL Route110_Movement_RivalApproachPlayer1
+waitmovement 0
+return
+= Route110_EventScript_PlayBrendanMusic
+playbgm MUS_ENCOUNTER_BRENDAN TRUE
+return
+= Route110_EventScript_PlayMayMusic
+playbgm MUS_ENCOUNTER_MAY TRUE
+return
+= Route110_EventScript_RivalTrigger2
+setvar VAR_0x8008 2
+goto Route110_EventScript_RivalScene
+end
+= Route110_EventScript_RivalTrigger1
+setvar VAR_0x8008 1
+goto Route110_EventScript_RivalScene
+end
+= Route110_EventScript_CyclingChallengeEnd
+lockall
+applymovement LOCALID_CHALLENGE_BIKER Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+call Route110_EventScript_CyclingChallengeResults
+releaseall
+end
+= Route110_EventScript_CyclingChallengeResults
+special FinishCyclingRoadChallenge
+msgbox	Number of collisions: … … !Total time: … … !
+switch VAR_RESULT
+case 10 Route110_EventScript_ChallengeReactionBest
+case 9 Route110_EventScript_ChallengeReactionGood
+case 8 Route110_EventScript_ChallengeReactionGood
+case 7 Route110_EventScript_ChallengeReactionGood
+case 6 Route110_EventScript_ChallengeReactionOk
+case 5 Route110_EventScript_ChallengeReactionOk
+case 4 Route110_EventScript_ChallengeReactionOk
+case 3 Route110_EventScript_ChallengeReactionBad
+case 2 Route110_EventScript_ChallengeReactionBad
+case 1 Route110_EventScript_ChallengeReactionBad
+case 0 Route110_EventScript_ChallengeReactionWorst
+end
+= Route110_EventScript_ChallengeReactionWorst
+msgbox	…I am aghast…You're perhaps not cut out for this unfortunate cycling business.You ought to give serious thought to returning that BIKE to RYDEL.
+goto Route110_EventScript_EndChallenge
+end
+= Route110_EventScript_EndChallenge
+setvar VAR_CYCLING_CHALLENGE_STATE 3
+savebgm MUS_DUMMY
+fadedefaultbgm
+return
+= Route110_EventScript_ChallengeReactionBad
+msgbox	My word… Your cycling skills border on terrifying.Most certainly, you need much more practice riding.
+goto Route110_EventScript_EndChallenge
+end
+= Route110_EventScript_ChallengeReactionOk
+msgbox	I would consider you a work in progress.Still, I hope you don't forget the sheer pleasure of cycling.
+goto Route110_EventScript_EndChallenge
+end
+= Route110_EventScript_ChallengeReactionGood
+msgbox	Your technique is remarkable.I suggest you speed up a bit while still avoiding collisions.
+goto Route110_EventScript_EndChallenge
+end
+= Route110_EventScript_ChallengeReactionBest
+msgbox	Bravo! Splendid showing!Your love of cycling comes from deep within your heart. You've shaken me to my very soul!
+goto Route110_EventScript_EndChallenge
+end
+= Route110_EventScript_Joseph
+trainerbattle_single TRAINER_JOSEPH Route110_Text_JosephIntro Route110_Text_JosephDefeated
+msgbox	Route110_Text_JosephPostBattle
+end
+= Route110_EventScript_Alyssa
+trainerbattle_single TRAINER_ALYSSA Route110_Text_AlyssaIntro Route110_Text_AlyssaDefeated
+msgbox	Route110_Text_AlyssaPostBattle
+end
+= Route110_EventScript_Kaleb
+trainerbattle_single TRAINER_KALEB Route110_Text_KalebIntro Route110_Text_KalebDefeated
+msgbox	Route110_Text_KalebPostBattle
+end
+= Route110_EventScript_Isabel
+trainerbattle_single TRAINER_ISABEL_1 Route110_Text_IsabelIntro Route110_Text_IsabelDefeated Route110_EventScript_IsabelRegisterMatchCallAfterBattle
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route110_EventScript_IsabelRematch
+msgbox	Route110_Text_IsabelPostBattle
+release
+end
+= Route110_EventScript_IsabelRematch
+trainerbattle_rematch TRAINER_ISABEL_1 Route110_Text_IsabelRematchIntro Route110_Text_IsabelRematchDefeated
+msgbox	Route110_Text_IsabelRematchPostBattle
+end
+= Route110_EventScript_IsabelRegisterMatchCallAfterBattle
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	Route110_Text_IsabelRegister
+register_matchcall TRAINER_ISABEL_1
+release
+end
+= Route110_EventScript_Timmy
+trainerbattle_single TRAINER_TIMMY Route110_Text_TimmyIntro Route110_Text_TimmyDefeated
+msgbox	Route110_Text_TimmyPostBattle
+end
+= Route110_EventScript_Jacob
+trainerbattle_single TRAINER_JACOB Route110_Text_JacobIntro Route110_Text_JacobDefeated
+msgbox	Route110_Text_JacobPostBattle
+end
+= Route110_EventScript_AquaGrunt4
+lock
+faceplayer
+msgbox	TEAM AQUA's actions should bring smiles to people's faces!
+applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= Route110_EventScript_AquaGrunt3
+lock
+faceplayer
+msgbox	This is my first job after joining TEAM AQUA. It's a little scary.
+applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= Route110_EventScript_AquaGrunt2
+lock
+faceplayer
+msgbox	I want to get going to SLATEPORT and kick up a ruckus!
+applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= Route110_EventScript_AquaGrunt1
+lock
+faceplayer
+msgbox	TEAM AQUA's activities… We can't talk about them yet.
+applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= Route110_EventScript_ChallengeGuy
+lock
+faceplayer
+specialvar VAR_RESULT GetPlayerAvatarBike
+goto_if_eq VAR_RESULT 1 Route110_EventScript_PlayerRidingAcroBike
+goto_if_eq VAR_CYCLING_CHALLENGE_STATE 0 Route110_EventScript_PlayerNotRidingBike
+msgbox	Regardless of the results, I count on seeing more challenges from you. Always aim higher!
+release
+end
+= Route110_EventScript_PlayerNotRidingBike
+msgbox	This is CYCLING ROAD.If you were to ride from MAUVILLE to SLATEPORT on a MACH BIKE, you would be rated for the number of collisions and your total time.
+release
+end
+= Route110_EventScript_PlayerRidingAcroBike
+msgbox	On this CYCLING ROAD, those riding MACH BIKES are rated for their number of collisions and their total times.ACRO BIKES do not qualify for rating. They are easy to turn, so it's not fair.
+release
+end
+= Route110_EventScript_Dale
+trainerbattle_single TRAINER_DALE Route110_Text_DaleIntro Route110_Text_DaleDefeated
+msgbox	Route110_Text_DalePostBattle
+end
+= Route110_EventScript_Edwin
+trainerbattle_single TRAINER_EDWIN_1 Route110_Text_EdwinIntro Route110_Text_EdwinDefeated Route110_EventScript_EdwinRegisterMatchCallAfterBattle
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route110_EventScript_EdwinRematch
+msgbox	Route110_Text_EdwinPostBattle
+release
+end
+= Route110_EventScript_EdwinRematch
+trainerbattle_rematch TRAINER_EDWIN_1 Route110_Text_EdwinRematchIntro Route110_Text_EdwinRematchDefeated
+msgbox	Route110_Text_EdwinRematchPostBattle
+end
+= Route110_EventScript_EdwinRegisterMatchCallAfterBattle
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	Route110_Text_EdwinRegister
+register_matchcall TRAINER_EDWIN_1
+release
+end
+= Route110_EventScript_Jaclyn
+trainerbattle_single TRAINER_JACLYN Route110_Text_JaclynIntro Route110_Text_JaclynDefeated
+msgbox	Route110_Text_JaclynPostBattle
+end
+= Route110_EventScript_Edward
+trainerbattle_single TRAINER_EDWARD Route110_Text_EdwardIntro Route110_Text_EdwardDefeated
+msgbox	Route110_Text_EdwardPostBattle
+end
+= Route110_EventScript_Benjamin
+trainerbattle_single TRAINER_BENJAMIN_1 Route110_Text_BenjaminIntro Route110_Text_BenjaminDefeated Route110_EventScript_BenjaminRegisterMatchCallAfterBattle
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route110_EventScript_BenjaminRematch
+msgbox	Route110_Text_BenjaminPostBattle
+release
+end
+= Route110_EventScript_BenjaminRematch
+trainerbattle_rematch TRAINER_BENJAMIN_1 Route110_Text_BenjaminRematchIntro Route110_Text_BenjaminRematchDefeated
+msgbox	Route110_Text_BenjaminRematchPostBattle
+end
+= Route110_EventScript_BenjaminRegisterMatchCallAfterBattle
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	Route110_Text_BenjaminRegister
+register_matchcall TRAINER_BENJAMIN_1
+release
+end
+= Route110_EventScript_Abigail
+trainerbattle_single TRAINER_ABIGAIL_1 Route110_Text_AbigailIntro Route110_Text_AbigailDefeated Route110_EventScript_AbigailRegisterMatchCallAfterBattle
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route110_EventScript_AbigailRematch
+msgbox	Route110_Text_AbigailPostBattle
+release
+end
+= Route110_EventScript_AbigailRematch
+trainerbattle_rematch TRAINER_ABIGAIL_1 Route110_Text_AbigailRematchIntro Route110_Text_AbigailRematchDefeated
+msgbox	Route110_Text_AbigailRematchPostBattle
+end
+= Route110_EventScript_AbigailRegisterMatchCallAfterBattle
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	Route110_Text_AbigailRegister
+register_matchcall TRAINER_ABIGAIL_1
+release
+end
+= Route110_EventScript_Anthony
+trainerbattle_single TRAINER_ANTHONY Route110_Text_AnthonyIntro Route110_Text_AnthonyDefeated
+msgbox	Route110_Text_AnthonyPostBattle
+end
+= Route110_EventScript_Jasmine
+trainerbattle_single TRAINER_JASMINE Route110_Text_JasmineIntro Route110_Text_JasmineDefeated
+msgbox	Route110_Text_JasminePostBattle
+end
+= Route110_EventScript_Boy1
+msgbox	Wouldn't it be great to ride a BIKE at full speed on CYCLING ROAD?
+end
+= Route110_EventScript_CyclingGirl1
+msgbox	How do you like the way my raven- colored hair streams behind me?I grew my hair out just for that.
+end
+= Route110_EventScript_OldMan
+msgbox	The two roads, one above, one below…A road each for people and POKéMON. Perhaps that is right and fair.
+end
+= Route110_EventScript_CyclingGuy1
+msgbox	Oh, hey, you got that BIKE from RYDEL!Oh, it's glaringly obvious. It says right on your bike…RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,RYDEL, RYDEL, RYDEL, RYDEL, RYDEL… That name's everywhere.You should ride it around all over the place--it's good advertising!
+end
+= Route110_EventScript_OldWoman
+msgbox	I don't have a BIKE, so I'll take a leisurely walk on the low road.
+end
+= Route110_EventScript_CyclingGuy2
+msgbox	Learning techniques will make BIKE riding even more fun.There are some places that you can reach only by using a BIKE technique.
+end
+= Route110_EventScript_Boy2
+msgbox	Which should I choose?Make a beeline for MAUVILLE on CYCLING ROAD, or take the low road and look for POKéMON?
+end
 signs
 15 25	“TEAM AQUA was here!”Someone painted that onto this sign, but then someone else painted over it.“TEAM MAGMA rules!” is what it says now.
 9 51	SEASIDE PARKING

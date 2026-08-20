@@ -167,6 +167,23 @@ warps
 27 48 EverGrandeCity_PokemonCenter_1F 0
 18 41 VictoryRoad_1F 0
 18 27 VictoryRoad_1F 1
+triggers
+17 58 VAR_TEMP_1 0 EverGrandeCity_EventScript_SetVisitedEverGrande
+16 58 VAR_TEMP_1 0 EverGrandeCity_EventScript_SetVisitedEverGrande
+18 58 VAR_TEMP_1 0 EverGrandeCity_EventScript_SetVisitedEverGrande
+19 58 VAR_TEMP_1 0 EverGrandeCity_EventScript_SetVisitedEverGrande
+20 58 VAR_TEMP_1 0 EverGrandeCity_EventScript_SetVisitedEverGrande
+21 58 VAR_TEMP_1 0 EverGrandeCity_EventScript_SetVisitedEverGrande
+22 58 VAR_TEMP_1 0 EverGrandeCity_EventScript_SetVisitedEverGrande
+23 58 VAR_TEMP_1 0 EverGrandeCity_EventScript_SetVisitedEverGrande
+24 58 VAR_TEMP_1 0 EverGrandeCity_EventScript_SetVisitedEverGrande
+25 58 VAR_TEMP_1 0 EverGrandeCity_EventScript_SetVisitedEverGrande
+26 58 VAR_TEMP_1 0 EverGrandeCity_EventScript_SetVisitedEverGrande
+scriptdefs
+= EverGrandeCity_EventScript_SetVisitedEverGrande
+setflag FLAG_VISITED_EVER_GRANDE_CITY
+setvar VAR_TEMP_1 1
+end
 signs
 19 43	ENTERING VICTORY ROAD
 18 52	EVER GRANDE CITY“The paradise of flowers, the sea, and POKéMON.”

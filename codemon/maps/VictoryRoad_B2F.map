@@ -84,3 +84,35 @@ dialogs
 3	Gaze on your collected BADGES and remember the TRAINERS you've faced.
 5	You do have guts! I like that! Keep it going!
 6	I can't help getting all tense knowing that I'm nearing the POKéMON LEAGUE.It's all I can do to feign calm.
+objscripts
+0 VictoryRoad_B2F_EventScript_Vito
+1 VictoryRoad_B2F_EventScript_Owen
+2 VictoryRoad_B2F_EventScript_Caroline
+3 VictoryRoad_B2F_EventScript_Julie
+5 VictoryRoad_B2F_EventScript_Dianne
+6 VictoryRoad_B2F_EventScript_Felix
+scriptdefs
+= VictoryRoad_B2F_EventScript_Felix
+trainerbattle_single TRAINER_FELIX VictoryRoad_B2F_Text_FelixIntro VictoryRoad_B2F_Text_FelixDefeat
+msgbox	I can't help getting all tense knowing that I'm nearing the POKéMON LEAGUE.It's all I can do to feign calm.
+end
+= VictoryRoad_B2F_EventScript_Dianne
+trainerbattle_single TRAINER_DIANNE VictoryRoad_B2F_Text_DianneIntro VictoryRoad_B2F_Text_DianneDefeat
+msgbox	You do have guts! I like that! Keep it going!
+end
+= VictoryRoad_B2F_EventScript_Julie
+trainerbattle_single TRAINER_JULIE VictoryRoad_B2F_Text_JulieIntro VictoryRoad_B2F_Text_JulieDefeat
+msgbox	Gaze on your collected BADGES and remember the TRAINERS you've faced.
+end
+= VictoryRoad_B2F_EventScript_Caroline
+trainerbattle_single TRAINER_CAROLINE VictoryRoad_B2F_Text_CarolineIntro VictoryRoad_B2F_Text_CarolineDefeat
+msgbox	VICTORY ROAD and the POKéMON LEAGUE are long and grueling challenges. Beware of fatigue!
+end
+= VictoryRoad_B2F_EventScript_Owen
+trainerbattle_single TRAINER_OWEN VictoryRoad_B2F_Text_OwenIntro VictoryRoad_B2F_Text_OwenDefeat
+msgbox	The rumors I heard, that tough little kid is from PETALBURG CITY.
+end
+= VictoryRoad_B2F_EventScript_Vito
+trainerbattle_single TRAINER_VITO VictoryRoad_B2F_Text_VitoIntro VictoryRoad_B2F_Text_VitoDefeat
+msgbox	I was better than everyone in my family. I've never lost before…I've lost my confidence… Maybe I'll go home…
+end

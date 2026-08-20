@@ -29,3 +29,90 @@ people_man_5 7 6 S wander
 dialogs
 0	Well, well, what have we here? A most energetic customer!Me? You may call me RYDEL. I'm the owner of this cycle shop.
 1	I'm learning about BIKES while I work here.If you need advice on how to ride your BIKE, there're a couple handbooks in the back.
+objscripts
+0 MauvilleCity_BikeShop_EventScript_Rydel
+1 MauvilleCity_BikeShop_EventScript_Assistant
+scriptdefs
+= MauvilleCity_BikeShop_EventScript_Assistant
+msgbox	I'm learning about BIKES while I work here.If you need advice on how to ride your BIKE, there're a couple handbooks in the back.
+end
+= MauvilleCity_BikeShop_EventScript_Rydel
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_BIKE MauvilleCity_BikeShop_EventScript_AskSwitchBikes
+goto_if_set FLAG_DECLINED_BIKE MauvilleCity_BikeShop_EventScript_SkipGreeting
+msgbox	Well, well, what have we here? A most energetic customer!Me? You may call me RYDEL. I'm the owner of this cycle shop.
+msgbox	RYDEL: Your RUNNING SHOES… They're awfully filthy.Did you come from far away?
+goto_if_eq VAR_RESULT YES MauvilleCity_BikeShop_EventScript_YesFar
+goto_if_eq VAR_RESULT NO MauvilleCity_BikeShop_EventScript_NotFar
+end
+= MauvilleCity_BikeShop_EventScript_NotFar
+setflag FLAG_DECLINED_BIKE
+msgbox	RYDEL: Is that right?Then, I guess you have no need for any of my BIKES.
+release
+end
+= MauvilleCity_BikeShop_EventScript_YesFar
+setflag FLAG_RECEIVED_BIKE
+goto MauvilleCity_BikeShop_EventScript_ChooseBike
+end
+= MauvilleCity_BikeShop_EventScript_ChooseBike
+message MauvilleCity_BikeShop_Text_ExplainBikesChooseWhichOne
+waitmessage
+multichoice 21 8 MULTI_BIKE TRUE
+switch VAR_RESULT
+case 0 MauvilleCity_BikeShop_EventScript_GetMachBike
+case 1 MauvilleCity_BikeShop_EventScript_GetAcroBike
+end
+= MauvilleCity_BikeShop_EventScript_GetAcroBike
+msgbox	PLAYER chose the ACRO BIKE.
+giveitem ITEM_ACRO_BIKE
+goto MauvilleCity_BikeShop_EventScript_ComeBackToSwitchBikes
+end
+= MauvilleCity_BikeShop_EventScript_ComeBackToSwitchBikes
+msgbox	RYDEL: If you get the urge to switch BIKES, just come see me!
+special SwapRegisteredBike
+release
+end
+= MauvilleCity_BikeShop_EventScript_GetMachBike
+msgbox	PLAYER chose the MACH BIKE.
+giveitem ITEM_MACH_BIKE
+goto MauvilleCity_BikeShop_EventScript_ComeBackToSwitchBikes
+end
+= MauvilleCity_BikeShop_EventScript_SkipGreeting
+msgbox	RYDEL: Your RUNNING SHOES… They're awfully filthy.Did you come from far away?
+goto_if_eq VAR_RESULT YES MauvilleCity_BikeShop_EventScript_YesFar
+goto_if_eq VAR_RESULT NO MauvilleCity_BikeShop_EventScript_NotFar
+end
+= MauvilleCity_BikeShop_EventScript_AskSwitchBikes
+msgbox	RYDEL: Oh? Were you thinking about switching BIKES?
+goto_if_eq VAR_RESULT YES MauvilleCity_BikeShop_EventScript_SwitchBikes
+goto_if_eq VAR_RESULT NO MauvilleCity_BikeShop_EventScript_KeepBike
+end
+@ If the player does not have a bike on them Rydel assumes its stored in the PC
+= MauvilleCity_BikeShop_EventScript_KeepBike
+msgbox	RYDEL: Good, good! I'm happy that you like it!
+release
+end
+= MauvilleCity_BikeShop_EventScript_SwitchBikes
+msgbox	RYDEL: Okay, no problem! I'll switch BIKES for you!
+checkitem ITEM_ACRO_BIKE
+goto_if_eq VAR_RESULT TRUE MauvilleCity_BikeShop_EventScript_SwitchAcroForMach
+checkitem ITEM_MACH_BIKE
+goto_if_eq VAR_RESULT TRUE MauvilleCity_BikeShop_EventScript_SwitchMachForAcro
+msgbox	Oh? What happened to that BIKE I gave you?Oh, I get it, you stored it using your PC.Well, take it out of PC storage, and I'll be happy to exchange it!May the wind always be at your back on your adventure!
+release
+end
+= MauvilleCity_BikeShop_EventScript_SwitchMachForAcro
+incrementgamestat GAME_STAT_TRADED_BIKES
+msgbox	PLAYER got the MACH BIKE exchanged for an ACRO BIKE.
+removeitem ITEM_MACH_BIKE
+giveitem ITEM_ACRO_BIKE
+goto MauvilleCity_BikeShop_EventScript_ComeBackToSwitchBikes
+end
+= MauvilleCity_BikeShop_EventScript_SwitchAcroForMach
+incrementgamestat GAME_STAT_TRADED_BIKES
+msgbox	PLAYER got the ACRO BIKE exchanged for a MACH BIKE.
+removeitem ITEM_ACRO_BIKE
+giveitem ITEM_MACH_BIKE
+goto MauvilleCity_BikeShop_EventScript_ComeBackToSwitchBikes
+end

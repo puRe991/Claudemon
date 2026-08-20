@@ -93,3 +93,15 @@ misc_pushable_boulder 6 23 S static
 dialogs
 0	Okay, I'll try to put a little more effort into things from now on…
 2	I won't tell you after all. You'll find out when you get there!It'd be better if you saved surprises to the end, don't you think?
+objscripts
+0 MagmaHideout_1F_EventScript_Grunt1
+2 MagmaHideout_1F_EventScript_Grunt2
+scriptdefs
+= MagmaHideout_1F_EventScript_Grunt2
+trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_2 MagmaHideout_1F_Text_Grunt2Intro MagmaHideout_1F_Text_Grunt2Defeat
+msgbox	I won't tell you after all. You'll find out when you get there!It'd be better if you saved surprises to the end, don't you think?
+end
+= MagmaHideout_1F_EventScript_Grunt1
+trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_1 MagmaHideout_1F_Text_Grunt1Intro MagmaHideout_1F_Text_Grunt1Defeat
+msgbox	Okay, I'll try to put a little more effort into things from now on…
+end

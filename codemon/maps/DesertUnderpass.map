@@ -52,3 +52,24 @@ warps
 10 12 Route114_FossilManiacsTunnel 2
 npcs
 misc_fossil 132 10 S static
+objscripts
+0 DesertUnderpass_EventScript_Fossil
+scriptdefs
+= DesertUnderpass_EventScript_Fossil
+lock
+faceplayer
+goto_if_set FLAG_CHOSE_ROOT_FOSSIL DesertUnderpass_EventScript_GiveClawFossil
+goto_if_set FLAG_CHOSE_CLAW_FOSSIL DesertUnderpass_EventScript_GiveRootFossil
+release
+end
+= DesertUnderpass_EventScript_GiveRootFossil
+giveitem ITEM_ROOT_FOSSIL
+removeobject LOCALID_UNDERPASS_FOSSIL
+release
+end
+@ Unused
+= DesertUnderpass_EventScript_GiveClawFossil
+giveitem ITEM_CLAW_FOSSIL
+removeobject LOCALID_UNDERPASS_FOSSIL
+release
+end

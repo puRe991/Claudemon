@@ -55,3 +55,28 @@ dialogs
 0	All sorts of beings wander the slopes of MT. PYRE…There is no telling what may happen. Take this. It's for your own good.
 1	Did you come to pay your respect to the spirits of departed POKéMON?You must care for your POKéMON a lot.
 2	This is the final resting place of my ZIGZAGOON. I cherished it…
+objscripts
+0 MtPyre_1F_EventScript_CleanseTagWoman
+1 MtPyre_1F_EventScript_PokefanF
+2 MtPyre_1F_EventScript_Man
+scriptdefs
+= MtPyre_1F_EventScript_Man
+msgbox	This is the final resting place of my ZIGZAGOON. I cherished it…
+end
+= MtPyre_1F_EventScript_PokefanF
+msgbox	Did you come to pay your respect to the spirits of departed POKéMON?You must care for your POKéMON a lot.
+end
+= MtPyre_1F_EventScript_CleanseTagWoman
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_CLEANSE_TAG MtPyre_1F_EventScript_ReceivedCleanseTag
+msgbox	All sorts of beings wander the slopes of MT. PYRE…There is no telling what may happen. Take this. It's for your own good.
+giveitem ITEM_CLEANSE_TAG
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_RECEIVED_CLEANSE_TAG
+release
+end
+= MtPyre_1F_EventScript_ReceivedCleanseTag
+msgbox	Have a POKéMON hold that CLEANSE TAG.It will help ward off wild POKéMON.
+release
+end

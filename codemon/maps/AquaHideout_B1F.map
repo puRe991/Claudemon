@@ -91,3 +91,81 @@ dialogs
 1	Humph! This was supposed to happen!My mission was to just hold you up!
 3	If you scurry too much, other TEAM AQUA members might get you.
 8	If you have a cool uniform, you look good even in a loss, don't you think?
+objscripts
+0 AquaHideout_B1F_EventScript_Grunt2
+1 AquaHideout_B1F_EventScript_Grunt3
+3 AquaHideout_B1F_EventScript_Grunt5
+5 AquaHideout_B1F_EventScript_Electrode1
+7 AquaHideout_B1F_EventScript_Electrode2
+8 AquaHideout_B1F_EventScript_Grunt7
+scriptdefs
+= AquaHideout_B1F_EventScript_Grunt7
+trainerbattle_single TRAINER_GRUNT_AQUA_HIDEOUT_7 AquaHideout_B1F_Text_Grunt7Intro AquaHideout_B1F_Text_Grunt7Defeat
+msgbox	If you have a cool uniform, you look good even in a loss, don't you think?
+end
+= AquaHideout_B1F_EventScript_Electrode2
+lock
+faceplayer
+setwildbattle SPECIES_ELECTRODE 30
+waitse
+playmoncry SPECIES_ELECTRODE CRY_MODE_ENCOUNTER
+delay 40
+waitmoncry
+setflag FLAG_SYS_CTRL_OBJ_DELETE
+dowildbattle
+clearflag FLAG_SYS_CTRL_OBJ_DELETE
+specialvar VAR_RESULT GetBattleOutcome
+goto_if_eq VAR_RESULT B_OUTCOME_WON AquaHideout_B1F_EventScript_DefeatedElectrode2
+goto_if_eq VAR_RESULT B_OUTCOME_RAN AquaHideout_B1F_EventScript_DefeatedElectrode2
+goto_if_eq VAR_RESULT B_OUTCOME_PLAYER_TELEPORTED AquaHideout_B1F_EventScript_DefeatedElectrode2
+setflag FLAG_DEFEATED_ELECTRODE_2_AQUA_HIDEOUT
+release
+end
+= AquaHideout_B1F_EventScript_DefeatedElectrode2
+setflag FLAG_DEFEATED_ELECTRODE_2_AQUA_HIDEOUT
+goto Common_EventScript_RemoveStaticPokemon
+end
+= AquaHideout_B1F_EventScript_Electrode1
+lock
+faceplayer
+setwildbattle SPECIES_ELECTRODE 30
+waitse
+playmoncry SPECIES_ELECTRODE CRY_MODE_ENCOUNTER
+delay 40
+waitmoncry
+setflag FLAG_SYS_CTRL_OBJ_DELETE
+dowildbattle
+clearflag FLAG_SYS_CTRL_OBJ_DELETE
+specialvar VAR_RESULT GetBattleOutcome
+goto_if_eq VAR_RESULT B_OUTCOME_WON AquaHideout_B1F_EventScript_DefeatedElectrode1
+goto_if_eq VAR_RESULT B_OUTCOME_RAN AquaHideout_B1F_EventScript_DefeatedElectrode1
+goto_if_eq VAR_RESULT B_OUTCOME_PLAYER_TELEPORTED AquaHideout_B1F_EventScript_DefeatedElectrode1
+setflag FLAG_DEFEATED_ELECTRODE_1_AQUA_HIDEOUT
+release
+end
+= AquaHideout_B1F_EventScript_DefeatedElectrode1
+setflag FLAG_DEFEATED_ELECTRODE_1_AQUA_HIDEOUT
+goto Common_EventScript_RemoveStaticPokemon
+end
+= AquaHideout_B1F_EventScript_Grunt5
+trainerbattle_single TRAINER_GRUNT_AQUA_HIDEOUT_5 AquaHideout_B1F_Text_Grunt5Intro AquaHideout_B1F_Text_Grunt5Defeat
+msgbox	If you scurry too much, other TEAM AQUA members might get you.
+end
+= AquaHideout_B1F_EventScript_Grunt3
+trainerbattle_single TRAINER_GRUNT_AQUA_HIDEOUT_3 AquaHideout_B1F_Text_Grunt3Intro AquaHideout_B1F_Text_Grunt3Defeat AquaHideout_B1F_EventScript_Grunt3Defeated
+msgbox	Humph! This was supposed to happen!My mission was to just hold you up!
+end
+= AquaHideout_B1F_EventScript_Grunt3Defeated
+msgbox	Humph! This was supposed to happen!My mission was to just hold you up!
+release
+end
+= AquaHideout_B1F_EventScript_Grunt2
+trainerbattle_single TRAINER_GRUNT_AQUA_HIDEOUT_2 AquaHideout_B1F_Text_Grunt2Intro AquaHideout_B1F_Text_Grunt2Defeat AquaHideout_B1F_EventScript_Grunt2Defeated
+msgbox	Our HIDEOUT's secret?Well, let's just say… There's a submarine at the far end!But, by now… Kekekeke…
+end
+= AquaHideout_B1F_EventScript_Grunt2Defeated
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	Our HIDEOUT's secret?Well, let's just say… There's a submarine at the far end!But, by now… Kekekeke…
+release
+end

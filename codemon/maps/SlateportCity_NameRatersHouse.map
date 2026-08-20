@@ -25,3 +25,57 @@ npcs
 people_expert_m 7 5 S static
 dialogs
 0	Hi, hi! I'm the NAME RATER! I'm the fortune-teller of names!I shall be pleased to rate your POKéMON's nickname.
+objscripts
+0 SlateportCity_NameRatersHouse_EventScript_NameRater
+scriptdefs
+= SlateportCity_NameRatersHouse_EventScript_NameRater
+lock
+faceplayer
+msgbox	Hi, hi! I'm the NAME RATER! I'm the fortune-teller of names!I shall be pleased to rate your POKéMON's nickname.
+goto_if_eq VAR_RESULT YES SlateportCity_NameRatersHouse_EventScript_ChooseMonToRate
+goto_if_eq VAR_RESULT NO SlateportCity_NameRatersHouse_EventScript_DeclineNameRate
+end
+= SlateportCity_NameRatersHouse_EventScript_DeclineNameRate
+msgbox	I see. Do come visit again.
+release
+end
+= SlateportCity_NameRatersHouse_EventScript_ChooseMonToRate
+msgbox	Which POKéMON's nickname should I critique?
+special ChoosePartyMon
+goto_if_ne VAR_0x8004 PARTY_NOTHING_CHOSEN SlateportCity_NameRatersHouse_EventScript_RateMonNickname
+goto_if_eq VAR_0x8004 PARTY_NOTHING_CHOSEN SlateportCity_NameRatersHouse_EventScript_DeclineNameRate
+end
+= SlateportCity_NameRatersHouse_EventScript_RateMonNickname
+specialvar VAR_RESULT ScriptGetPartyMonSpecies
+goto_if_eq VAR_RESULT SPECIES_EGG SlateportCity_NameRatersHouse_EventScript_CantRateEgg
+special BufferMonNickname
+special IsMonOTIDNotPlayers
+goto_if_eq VAR_RESULT TRUE SlateportCity_NameRatersHouse_EventScript_PlayerNotMonsOT
+specialvar VAR_RESULT MonOTNameNotPlayer
+special BufferMonNickname
+goto_if_eq VAR_RESULT TRUE SlateportCity_NameRatersHouse_EventScript_PlayerNotMonsOT
+msgbox	Hmmm… , is it? That is quite a fine name you bestowed.But! What say you, if I were to suggest a slightly better name?
+goto_if_eq VAR_RESULT YES SlateportCity_NameRatersHouse_EventScript_ChangeNickname
+goto_if_eq VAR_RESULT NO SlateportCity_NameRatersHouse_EventScript_DeclineNameRate
+end
+= SlateportCity_NameRatersHouse_EventScript_ChangeNickname
+msgbox	Ah, good. Then, what shall the new nickname be?
+call Common_EventScript_NameReceivedPartyMon
+specialvar VAR_RESULT TryPutNameRaterShowOnTheAir
+special BufferMonNickname
+goto_if_eq VAR_RESULT TRUE SlateportCity_NameRatersHouse_EventScript_NewNameDifferent
+msgbox	Done! From now on, this POKéMON shall be known as !It looks no different from before, and yet, this is vastly superior!How fortunate for you!
+release
+end
+= SlateportCity_NameRatersHouse_EventScript_NewNameDifferent
+msgbox	Done! From now on, this POKéMON shall be known as !It is a better name than before! How fortunate for you!
+release
+end
+= SlateportCity_NameRatersHouse_EventScript_PlayerNotMonsOT
+msgbox	Hmmm… it is!This is a magnificent nickname! It is impeccably beyond reproach!You'll do well to cherish your now and beyond.
+release
+end
+= SlateportCity_NameRatersHouse_EventScript_CantRateEgg
+msgbox	Now, now. That is merely an EGG!
+release
+end

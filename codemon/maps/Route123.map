@@ -90,6 +90,152 @@ people_youngster 14 12 S static
 misc_item_ball 57 16 S static
 dialogs
 21	I love GRASS-type POKéMON!Do you have any GRASS-type POKéMON?
+objscripts
+7 Route123_EventScript_Wendy
+8 Route123_EventScript_Braxton
+21 Route123_EventScript_GigaDrainGirl
+25 Route123_EventScript_Violet
+26 Route123_EventScript_Yuki
+27 Route123_EventScript_Miu
+28 Route123_EventScript_Cameron
+29 Route123_EventScript_Jacki
+30 Route123_EventScript_Kindra
+33 Route123_EventScript_Jonas
+34 Route123_EventScript_Kayley
+35 Route123_EventScript_Ed
+36 Route123_EventScript_Fernando
+37 Route123_EventScript_Alberto
+38 Route123_EventScript_Frederick
+40 Route123_EventScript_Jazmyn
+41 Route123_EventScript_Davis
+scriptdefs
+= Route123_EventScript_Davis
+trainerbattle_single TRAINER_DAVIS Route123_Text_DavisIntro Route123_Text_DavisDefeat
+msgbox	Route123_Text_DavisPostBattle
+end
+= Route123_EventScript_Jazmyn
+trainerbattle_single TRAINER_JAZMYN Route123_Text_JazmynIntro Route123_Text_JazmynDefeat
+msgbox	Route123_Text_JazmynPostBattle
+end
+= Route123_EventScript_Frederick
+trainerbattle_single TRAINER_FREDRICK Route123_Text_FrederickIntro Route123_Text_FrederickDefeat
+msgbox	Route123_Text_FrederickPostBattle
+end
+= Route123_EventScript_Alberto
+trainerbattle_single TRAINER_ALBERTO Route123_Text_AlbertoIntro Route123_Text_AlbertoDefeat
+msgbox	Route123_Text_AlbertoPostBattle
+end
+= Route123_EventScript_Fernando
+trainerbattle_single TRAINER_FERNANDO_1 Route123_Text_FernandoIntro Route123_Text_FernandoDefeat Route123_EventScript_RegisterFernando
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route123_EventScript_RematchFernando
+msgbox	Route123_Text_FernandoPostBattle
+release
+end
+= Route123_EventScript_RematchFernando
+trainerbattle_rematch TRAINER_FERNANDO_1 Route123_Text_FernandoRematchIntro Route123_Text_FernandoRematchDefeat
+msgbox	Route123_Text_FernandoPostRematch
+end
+= Route123_EventScript_RegisterFernando
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	Route123_Text_FernandoRegister
+register_matchcall TRAINER_FERNANDO_1
+release
+end
+= Route123_EventScript_Ed
+trainerbattle_single TRAINER_ED Route123_Text_EdIntro Route123_Text_EdDefeat
+msgbox	Route123_Text_EdPostBattle
+end
+= Route123_EventScript_Kayley
+trainerbattle_single TRAINER_KAYLEY Route123_Text_KayleyIntro Route123_Text_KayleyDefeat
+msgbox	Route123_Text_KayleyPostBattle
+end
+= Route123_EventScript_Jonas
+trainerbattle_single TRAINER_JONAS Route123_Text_JonasIntro Route123_Text_JonasDefeat
+msgbox	Route123_Text_JonasPostBattle
+end
+= Route123_EventScript_Kindra
+trainerbattle_single TRAINER_KINDRA Route123_Text_KindraIntro Route123_Text_KindraDefeat
+msgbox	Route123_Text_KindraPostBattle
+end
+= Route123_EventScript_Jacki
+trainerbattle_single TRAINER_JACKI_1 Route123_Text_JackiIntro Route123_Text_JackiDefeat Route123_EventScript_RegisterJacki
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route123_EventScript_RematchJacki
+msgbox	Route123_Text_JackiPostBattle
+release
+end
+= Route123_EventScript_RematchJacki
+trainerbattle_rematch TRAINER_JACKI_1 Route123_Text_JackiRematchIntro Route123_Text_JackiRematchDefeat
+msgbox	Route123_Text_JackiPostRematch
+end
+= Route123_EventScript_RegisterJacki
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	Route123_Text_JackiRegister
+register_matchcall TRAINER_JACKI_1
+release
+end
+= Route123_EventScript_Cameron
+trainerbattle_single TRAINER_CAMERON_1 Route123_Text_CameronIntro Route123_Text_CameronDefeat Route123_EventScript_RegisterCameron
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route123_EventScript_RematchCameron
+msgbox	Route123_Text_CameronPostBattle
+release
+end
+= Route123_EventScript_RematchCameron
+trainerbattle_rematch TRAINER_CAMERON_1 Route123_Text_CameronRematchIntro Route123_Text_CameronRematchDefeat
+msgbox	Route123_Text_CameronPostRematch
+end
+= Route123_EventScript_RegisterCameron
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	Route123_Text_CameronRegister
+register_matchcall TRAINER_CAMERON_1
+release
+end
+= Route123_EventScript_Miu
+trainerbattle_double TRAINER_MIU_AND_YUKI Route123_Text_MiuIntro Route123_Text_MiuDefeat Route123_Text_MiuNotEnoughMons
+msgbox	Route123_Text_MiuPostBattle
+end
+= Route123_EventScript_Yuki
+trainerbattle_double TRAINER_MIU_AND_YUKI Route123_Text_YukiIntro Route123_Text_YukiDefeat Route123_Text_YukiNotEnoughMons
+msgbox	Route123_Text_YukiPostBattle
+end
+= Route123_EventScript_Violet
+trainerbattle_single TRAINER_VIOLET Route123_Text_VioletIntro Route123_Text_VioletDefeat
+msgbox	Route123_Text_VioletPostBattle
+end
+= Route123_EventScript_GigaDrainGirl
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_TM_GIGA_DRAIN Route123_EventScript_ReceivedGigaDrain
+msgbox	I love GRASS-type POKéMON!Do you have any GRASS-type POKéMON?
+special IsGrassTypeInParty
+goto_if_eq VAR_RESULT FALSE Route123_EventScript_NoGrassMons
+msgbox	Oh?You like GRASS-type POKéMON, too, don't you?I'm so happy, you can have this! It's a token of our friendship.
+giveitem ITEM_TM_GIGA_DRAIN
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_RECEIVED_TM_GIGA_DRAIN
+msgbox	I check trees with my GRASS-type POKéMON. I'm like a tree doctor.
+release
+end
+= Route123_EventScript_NoGrassMons
+release
+end
+= Route123_EventScript_ReceivedGigaDrain
+msgbox	I check trees with my GRASS-type POKéMON. I'm like a tree doctor.
+release
+end
+= Route123_EventScript_Braxton
+trainerbattle_single TRAINER_BRAXTON Route123_Text_BraxtonIntro Route123_Text_BraxtonDefeat
+msgbox	Route123_Text_BraxtonPostBattle
+end
+= Route123_EventScript_Wendy
+trainerbattle_single TRAINER_WENDY Route123_Text_WendyIntro Route123_Text_WendyDefeat
+msgbox	Route123_Text_WendyPostBattle
+end
 signs
 117 10	MT. PYRE “Forbidden to the faint of heart.”
 10 12	ROUTE 123 ROUTE 118

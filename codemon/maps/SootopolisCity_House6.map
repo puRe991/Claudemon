@@ -23,3 +23,32 @@ npcs
 people_woman_2 4 3 S wander
 dialogs
 0	Hello! You're our first guest in a good while.You've brightened up my day, so I'll give you a big WAILMER DOLL.
+objscripts
+0 SootopolisCity_House6_EventScript_Woman
+scriptdefs
+= SootopolisCity_House6_EventScript_Woman
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_WAILMER_DOLL SootopolisCity_House6_EventScript_ReceivedWailmerDoll
+msgbox	Hello! You're our first guest in a good while.You've brightened up my day, so I'll give you a big WAILMER DOLL.
+call_if_eq VAR_RESULT NO SootopolisCity_House6_EventScript_DeclineWailmerDoll
+msgbox	Take good care of it!
+givedecoration DECOR_WAILMER_DOLL
+goto_if_eq VAR_RESULT FALSE SootopolisCity_House6_EventScript_NoRoomForWailmerDoll
+setflag FLAG_RECEIVED_WAILMER_DOLL
+release
+end
+= SootopolisCity_House6_EventScript_NoRoomForWailmerDoll
+bufferdecorationname STR_VAR_2 DECOR_WAILMER_DOLL
+msgbox	gText_NoRoomLeftForAnother
+msgbox	Oh, you want it, but not right now? Okay, then I'll hold it for you.
+release
+end
+= SootopolisCity_House6_EventScript_DeclineWailmerDoll
+msgbox	Are you sure? You don't want this DOLL?
+release
+end
+= SootopolisCity_House6_EventScript_ReceivedWailmerDoll
+msgbox	I love plush DOLLS!
+release
+end

@@ -32,3 +32,21 @@ people_little_boy 10 6 W static
 dialogs
 1	You can't consider yourself a real TRAINER if you don't have faith in your POKéMON.Only those people who can believe in their battling POKéMON can win through to the very end.
 2	The reason why anyone would visit VERDANTURF…It's the BATTLE TENT. It goes without saying.Or is there somebody here that you came to see?
+objscripts
+0 VerdanturfTown_PokemonCenter_1F_EventScript_Nurse
+1 VerdanturfTown_PokemonCenter_1F_EventScript_Gentleman
+2 VerdanturfTown_PokemonCenter_1F_EventScript_ExpertM
+scriptdefs
+= VerdanturfTown_PokemonCenter_1F_EventScript_ExpertM
+msgbox	The reason why anyone would visit VERDANTURF…It's the BATTLE TENT. It goes without saying.Or is there somebody here that you came to see?
+end
+= VerdanturfTown_PokemonCenter_1F_EventScript_Gentleman
+msgbox	You can't consider yourself a real TRAINER if you don't have faith in your POKéMON.Only those people who can believe in their battling POKéMON can win through to the very end.
+end
+= VerdanturfTown_PokemonCenter_1F_EventScript_Nurse
+setvar VAR_0x800B LOCALID_VERDANTURF_NURSE
+call Common_EventScript_PkmnCenterNurse
+waitmessage
+waitbuttonpress
+release
+end

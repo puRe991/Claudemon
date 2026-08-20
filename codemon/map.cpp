@@ -71,7 +71,9 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 		return s.rfind("collision", 0) == 0 || s.rfind("warps", 0) == 0 ||
 		       s.rfind("npcs", 0) == 0 || s.rfind("dialogs", 0) == 0 ||
 		       s.rfind("signs", 0) == 0 || s.rfind("grass", 0) == 0 ||
-		       s.rfind("encounters", 0) == 0;
+		       s.rfind("encounters", 0) == 0 || s.rfind("objscripts", 0) == 0 ||
+		       s.rfind("triggers", 0) == 0 || s.rfind("movements", 0) == 0 ||
+		       s.rfind("scriptdefs", 0) == 0;
 	};
 
 	for (size_t i = 0; i < rest.size(); ) {
@@ -150,6 +152,54 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 				}
 				++i;
 			}
+		} else if (head.rfind("objscripts", 0) == 0) {
+			for (++i; i < rest.size() && !is_keyword(rest[i]); ++i) {
+				if (rest[i].empty()) continue;
+				std::stringstream ss(rest[i]);
+				int idx; std::string lab;
+				if (ss >> idx >> lab) this->npc_script_map[idx] = lab;
+			}
+		} else if (head.rfind("triggers", 0) == 0) {
+			for (++i; i < rest.size() && !is_keyword(rest[i]); ++i) {
+				if (rest[i].empty()) continue;
+				std::stringstream ss(rest[i]);
+				ScriptTrigger t;
+				if (ss >> t.x >> t.y >> t.var >> t.val >> t.label)
+					this->script_triggers.push_back(t);
+			}
+		} else if (head.rfind("movements", 0) == 0) {
+			for (++i; i < rest.size() && !is_keyword(rest[i]); ++i) {
+				if (rest[i].empty()) continue;
+				size_t tab = rest[i].find('\t');
+				if (tab == std::string::npos) continue;
+				std::string lab = rest[i].substr(0, tab);
+				std::vector<std::string> acts;
+				std::stringstream ss(rest[i].substr(tab + 1));
+				std::string a;
+				while (std::getline(ss, a, ',')) if (!a.empty()) acts.push_back(a);
+				this->move_defs[lab] = acts;
+			}
+		} else if (head.rfind("scriptdefs", 0) == 0) {
+			std::string cur;
+			for (++i; i < rest.size() && !is_keyword(rest[i]); ++i) {
+				const std::string& l = rest[i];
+				if (l.empty()) continue;
+				if (l.rfind("= ", 0) == 0) {
+					cur = l.substr(2);
+					this->script_defs[cur];              // create empty
+				} else if (!cur.empty()) {
+					Instr instr;
+					if (l.rfind("msgbox\t", 0) == 0) {
+						instr.push_back("msgbox");
+						instr.push_back(l.substr(7));    // text (may contain \x1f)
+					} else {
+						std::stringstream ss(l);
+						std::string tok;
+						while (ss >> tok) instr.push_back(tok);
+					}
+					if (!instr.empty()) this->script_defs[cur].push_back(instr);
+				}
+			}
 		} else {
 			++i;
 		}
@@ -186,6 +236,41 @@ bool Map::is_grass(int tile_x, int tile_y) const {
 
 bool Map::has_encounters() const { return !this->encounter_list.empty(); }
 const std::vector<std::string>& Map::encounters() const { return this->encounter_list; }
+
+bool Map::has_script(const std::string& label) const {
+	return this->script_defs.count(label) > 0;
+}
+
+const std::vector<Instr>& Map::script(const std::string& label) const {
+	static const std::vector<Instr> empty;
+	auto it = this->script_defs.find(label);
+	return it == this->script_defs.end() ? empty : it->second;
+}
+
+const std::vector<std::string>& Map::movement(const std::string& label) const {
+	static const std::vector<std::string> empty;
+	auto it = this->move_defs.find(label);
+	return it == this->move_defs.end() ? empty : it->second;
+}
+
+std::string Map::npc_script(int npc_index) const {
+	auto it = this->npc_script_map.find(npc_index);
+	return it == this->npc_script_map.end() ? std::string() : it->second;
+}
+
+const ScriptTrigger* Map::trigger_at(int tile_x, int tile_y) const {
+	for (const ScriptTrigger& t : this->script_triggers) {
+		if (t.x == tile_x && t.y == tile_y) return &t;
+	}
+	return nullptr;
+}
+
+bool Map::set_metatile(int tile_x, int tile_y, int id, bool impassable) {
+	if (!in_bounds(tile_x, tile_y)) return false;
+	this->tile_map[this->index(tile_x, tile_y)] = id;
+	this->solid[this->index(tile_x, tile_y)] = impassable ? 1 : 0;
+	return true;
+}
 
 bool Map::ready() const {
 	return this->tileset.is_loaded() &&

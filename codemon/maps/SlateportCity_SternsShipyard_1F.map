@@ -46,3 +46,62 @@ dialogs
 1	The seasons, the weather, where the moon sits in the sky…These and other conditions make the sea change its expression.That's right! The sea is like a living thing!
 2	I get seasick real easily. So I get to help out here instead.
 3	MR. BRINEY: Ah, PLAYER! It's been too long!Aye, since I met you, this old sea dog's been feeling frisky!So I've decided to help DOCK make a ferry.Aye, after all, a ferry would be able to carry a lot of people.But, you know, that DOCK is really something special.With his knack for technology and my experience, I'm sure that we can build one great ship, aye!
+objscripts
+0 SlateportCity_SternsShipyard_1F_EventScript_Dock
+1 SlateportCity_SternsShipyard_1F_EventScript_Scientist1
+2 SlateportCity_SternsShipyard_1F_EventScript_Scientist2
+3 SlateportCity_SternsShipyard_1F_EventScript_Briney
+scriptdefs
+= SlateportCity_SternsShipyard_1F_EventScript_Briney
+msgbox	MR. BRINEY: Ah, PLAYER! It's been too long!Aye, since I met you, this old sea dog's been feeling frisky!So I've decided to help DOCK make a ferry.Aye, after all, a ferry would be able to carry a lot of people.But, you know, that DOCK is really something special.With his knack for technology and my experience, I'm sure that we can build one great ship, aye!
+end
+= SlateportCity_SternsShipyard_1F_EventScript_Scientist2
+msgbox	I get seasick real easily. So I get to help out here instead.
+end
+= SlateportCity_SternsShipyard_1F_EventScript_Scientist1
+msgbox	The seasons, the weather, where the moon sits in the sky…These and other conditions make the sea change its expression.That's right! The sea is like a living thing!
+end
+= SlateportCity_SternsShipyard_1F_EventScript_Dock
+lockall
+goto_if_set FLAG_SYS_GAME_CLEAR SlateportCity_SternsShipyard_1F_EventScript_FerryReady
+goto_if_set FLAG_BADGE07_GET SlateportCity_SternsShipyard_1F_EventScript_BrineyJoined
+goto_if_set FLAG_DELIVERED_DEVON_GOODS SlateportCity_SternsShipyard_1F_EventScript_NeedVeteran
+goto_if_set FLAG_DOCK_REJECTED_DEVON_GOODS SlateportCity_SternsShipyard_1F_EventScript_GoFindStern
+msgbox	Umm… If this goes here, and that goes over there…Then where does this thing go? And what about that doohickey?Aaargh! I can't make heads or tails of this!
+applymovement LOCALID_DOCK Common_Movement_FacePlayer
+waitmovement 0
+msgbox	Hm? Hi, I'm DOCK.CAPT. STERN commissioned me to design a ferry.Oh! That there… Are they DEVON GOODS?But, hmm… This won't do…CAPT. STERN went off somewhere. He said he had some work to do.Could I get you to go find CAPT. STERN and deliver that to him?
+closemessage
+applymovement LOCALID_DOCK Common_Movement_FaceOriginalDirection
+waitmovement 0
+setflag FLAG_DOCK_REJECTED_DEVON_GOODS
+setflag FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA
+releaseall
+end
+= SlateportCity_SternsShipyard_1F_EventScript_GoFindStern
+applymovement LOCALID_DOCK Common_Movement_FacePlayer
+waitmovement 0
+msgbox	DOCK: Where could CAPT. STERN have gone off to?Could you go find CAPT. STERN and deliver that parcel to him?
+closemessage
+applymovement LOCALID_DOCK Common_Movement_FaceOriginalDirection
+waitmovement 0
+releaseall
+end
+= SlateportCity_SternsShipyard_1F_EventScript_NeedVeteran
+applymovement LOCALID_DOCK Common_Movement_FacePlayer
+waitmovement 0
+msgbox	DOCK: Shipbuilding is an art.A lot of things can't be figured out just by calculating.I really could use advice from a veteran who knows the seas…
+releaseall
+end
+= SlateportCity_SternsShipyard_1F_EventScript_BrineyJoined
+applymovement LOCALID_DOCK Common_Movement_FacePlayer
+waitmovement 0
+msgbox	DOCK: Hi! MR. BRINEY's joined us to lend us his help.Thanks to the veteran sailor, the ferry is steadily coming together.
+releaseall
+end
+= SlateportCity_SternsShipyard_1F_EventScript_FerryReady
+applymovement LOCALID_DOCK Common_Movement_FacePlayer
+waitmovement 0
+msgbox	DOCK: The ferry is finally ready!The new S.S. TIDAL is truly a marvel of technology!But, I get the feeling that we can make something even better.You know, there's never an end to technology's march.
+releaseall
+end

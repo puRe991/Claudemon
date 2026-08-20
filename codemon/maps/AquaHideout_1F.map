@@ -74,3 +74,48 @@ dialogs
 0	What? What? What do you want with TEAM AQUA?Our BOSS isn't here! He's gone off to snatch something important!… … Where did he go?Wahaha! Do you really think I'd tell you something that crucial?
 1	What? What? What do you want with TEAM AQUA?Our BOSS isn't here! He's on his way to MT. PYRE on ROUTE 122!… … Why did he go?Wahaha! Do you really think I'd tell you something that crucial?
 2	I took the loss for the TEAM, but I did my job…
+objscripts
+0 AquaHideout_1F_EventScript_HideoutEntranceGrunt1
+1 AquaHideout_1F_EventScript_HideoutEntranceGrunt2
+2 AquaHideout_1F_EventScript_Grunt1
+scriptdefs
+= AquaHideout_1F_EventScript_Grunt1
+trainerbattle_single TRAINER_GRUNT_AQUA_HIDEOUT_1 AquaHideout_1F_Text_Grunt1Intro AquaHideout_1F_Text_Grunt1Defeat AquaHideout_1F_EventScript_Grunt1Defeated
+msgbox	I took the loss for the TEAM, but I did my job…
+end
+= AquaHideout_1F_EventScript_Grunt1Defeated
+msgbox	I took the loss for the TEAM, but I did my job…
+release
+end
+= AquaHideout_1F_EventScript_HideoutEntranceGrunt2
+lock
+faceplayer
+goto_if_set FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT AquaHideout_1F_EventScript_SlateportHint2
+goto_if_set FLAG_RECEIVED_RED_OR_BLUE_ORB AquaHideout_1F_EventScript_MagmaHideoutHint2
+msgbox	What? What? What do you want with TEAM AQUA?Our BOSS isn't here! He's on his way to MT. PYRE on ROUTE 122!… … Why did he go?Wahaha! Do you really think I'd tell you something that crucial?
+release
+end
+= AquaHideout_1F_EventScript_MagmaHideoutHint2
+msgbox	What? What? Are you a TEAM MAGMA grunt?I hear that TEAM MAGMA is after an awesome POKéMON at MT. CHIMNEY.But what is that POKéMON like?
+release
+end
+= AquaHideout_1F_EventScript_SlateportHint2
+msgbox	What? What? What do you want with TEAM AQUA?Our BOSS isn't here! He's on his way to SLATEPORT CITY!… … Why did he go?Wahaha! Do you really think I'd tell you something that crucial?
+release
+end
+= AquaHideout_1F_EventScript_HideoutEntranceGrunt1
+lock
+faceplayer
+goto_if_set FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT AquaHideout_1F_EventScript_SlateportHint1
+goto_if_set FLAG_RECEIVED_RED_OR_BLUE_ORB AquaHideout_1F_EventScript_MagmaHideoutHint1
+msgbox	What? What? What do you want with TEAM AQUA?Our BOSS isn't here! He's gone off to snatch something important!… … Where did he go?Wahaha! Do you really think I'd tell you something that crucial?
+release
+end
+= AquaHideout_1F_EventScript_MagmaHideoutHint1
+msgbox	What? What? Are you a TEAM MAGMA grunt?I hear that TEAM MAGMA is trying to awaken an awesome POKéMON at their HIDEOUT.But where might their HIDEOUT be?
+release
+end
+= AquaHideout_1F_EventScript_SlateportHint1
+msgbox	What? What? What do you want with TEAM AQUA?Our BOSS isn't here! He's gone off to jack a submarine!… … Where did he go?Wahaha! Do you really think I'd tell you something that crucial?
+release
+end

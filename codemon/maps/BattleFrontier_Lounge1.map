@@ -31,3 +31,55 @@ people_boy_2 5 4 S wander
 dialogs
 1	He said my POKéMON is outstanding! I'm glad I raised it carefully!
 2	He said my POKéMON is outstanding! But I didn't do anything special raising it…
+objscripts
+0 BattleFrontier_Lounge1_EventScript_Breeder
+1 BattleFrontier_Lounge1_EventScript_Boy1
+2 BattleFrontier_Lounge1_EventScript_Boy2
+scriptdefs
+= BattleFrontier_Lounge1_EventScript_Boy2
+msgbox	He said my POKéMON is outstanding! But I didn't do anything special raising it…
+end
+= BattleFrontier_Lounge1_EventScript_Boy1
+msgbox	He said my POKéMON is outstanding! I'm glad I raised it carefully!
+end
+= BattleFrontier_Lounge1_EventScript_Breeder
+lock
+faceplayer
+call_if_unset FLAG_MET_BATTLE_FRONTIER_BREEDER BattleFrontier_Lounge1_EventScript_BreederIntro
+call_if_set FLAG_MET_BATTLE_FRONTIER_BREEDER BattleFrontier_Lounge1_EventScript_AlreadyMetBreeder
+setflag FLAG_MET_BATTLE_FRONTIER_BREEDER
+goto BattleFrontier_Lounge1_EventScript_ChooseMonToShowBreeder
+end
+= BattleFrontier_Lounge1_EventScript_ChooseMonToShowBreeder
+special ChoosePartyMon
+goto_if_ne VAR_0x8004 PARTY_NOTHING_CHOSEN BattleFrontier_Lounge1_EventScript_ShowMonToBreeder
+goto_if_eq VAR_0x8004 PARTY_NOTHING_CHOSEN BattleFrontier_Lounge1_EventScript_CancelMonSelect
+end
+= BattleFrontier_Lounge1_EventScript_CancelMonSelect
+msgbox	What? You have no time for my advice?You should always be eager to learn from the experiences of your elders!
+release
+end
+= BattleFrontier_Lounge1_EventScript_ShowMonToBreeder
+specialvar VAR_RESULT ScriptGetPartyMonSpecies
+goto_if_eq VAR_RESULT SPECIES_EGG BattleFrontier_Lounge1_EventScript_ShowEggToBreeder
+special BufferVarsForIVRater
+goto_if_le VAR_0x8005 90 BattleFrontier_Lounge1_EventScript_AverageTotalIVs       @ Average of 15
+goto_if_le VAR_0x8005 120 BattleFrontier_Lounge1_EventScript_AboveAverageTotalIVs @ Average of 20
+goto_if_le VAR_0x8005 150 BattleFrontier_Lounge1_EventScript_HighTotalIVs         @ Average of 25
+goto_if_ge VAR_0x8005 151 BattleFrontier_Lounge1_EventScript_VeryHighTotalIVs     @ Average of > 25
+end
+= BattleFrontier_Lounge1_EventScript_ShowEggToBreeder
+msgbox	An expert I am, but even I can't tell anything about an unhatched POKéMON!Show me a POKéMON! A POKéMON is what I need to see!
+goto BattleFrontier_Lounge1_EventScript_ChooseMonToShowBreeder
+end
+@ Comment on the highest IV stat
+= BattleFrontier_Lounge1_EventScript_AlreadyMetBreeder
+msgbox	Ah, youngster! Do your POKéMON's abilities intrigue you?Here, here! Let's have a look at your POKéMON!
+return
+@ BufferVarsForIVRater buffers the following values
+@ VAR_0x8005: Sum of the mons IVs
+@ VAR_0x8006: Stat id of highest IV stat
+@ VAR_0x8007: IV of the highest IV stat
+= BattleFrontier_Lounge1_EventScript_BreederIntro
+msgbox	For 70 years I have raised POKéMON! I am the man they revere as the legendary top POKéMON BREEDER!If you ever become as seasoned as me, you'll see the abilities of POKéMON at a glance.You're a TRAINER. Doesn't it interest you to know your own POKéMON's abilities?Here! Let's have a look at your POKéMON!
+return

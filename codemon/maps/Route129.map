@@ -88,3 +88,30 @@ people_swimmer_f 10 14 S static
 people_swimmer_f 13 22 S static
 people_swimmer_m 35 9 S static
 people_swimmer_m 13 27 S static
+objscripts
+0 Route129_EventScript_Chase
+1 Route129_EventScript_Allison
+2 Route129_EventScript_Tisha
+3 Route129_EventScript_Reed
+4 Route129_EventScript_Clarence
+scriptdefs
+= Route129_EventScript_Clarence
+trainerbattle_single TRAINER_CLARENCE Route129_Text_ClarenceIntro Route129_Text_ClarenceDefeat
+msgbox	Route129_Text_ClarencePostBattle
+end
+= Route129_EventScript_Reed
+trainerbattle_single TRAINER_REED Route129_Text_ReedIntro Route129_Text_ReedDefeat
+msgbox	Route129_Text_ReedPostBattle
+end
+= Route129_EventScript_Tisha
+trainerbattle_single TRAINER_TISHA Route129_Text_TishaIntro Route129_Text_TishaDefeat
+msgbox	Route129_Text_TishaPostBattle
+end
+= Route129_EventScript_Allison
+trainerbattle_single TRAINER_ALLISON Route129_Text_AllisonIntro Route129_Text_AllisonDefeat
+msgbox	Route129_Text_AllisonPostBattle
+end
+= Route129_EventScript_Chase
+trainerbattle_single TRAINER_CHASE Route129_Text_ChaseIntro Route129_Text_ChaseDefeat
+msgbox	Route129_Text_ChasePostBattle
+end

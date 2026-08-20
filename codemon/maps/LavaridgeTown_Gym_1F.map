@@ -81,3 +81,113 @@ dialogs
 3	Haaah… Whew…If you spend too much time buried in hot sand, it tuckers you out…
 4	I'm going to be a pretty and strong TRAINER just like FLANNERY.
 5	Hey, how's it going, CHAMPION- bound PLAYER?LAVARIDGE's GYM LEADER FLANNERY uses FIRE-type POKéMON.Her passion for POKéMON burns stronger and hotter than a volcano.Don't get too close to her--you'll burn! Hose her down with water and then go for it!
+objscripts
+0 LavaridgeTown_Gym_1F_EventScript_Flannery
+1 LavaridgeTown_Gym_1F_EventScript_Cole
+2 LavaridgeTown_Gym_1F_EventScript_Gerald
+3 LavaridgeTown_Gym_1F_EventScript_Axle
+4 LavaridgeTown_Gym_1F_EventScript_Danielle
+5 LavaridgeTown_Gym_1F_EventScript_GymGuide
+scriptdefs
+= LavaridgeTown_Gym_1F_EventScript_GymGuide
+lock
+faceplayer
+goto_if_set FLAG_DEFEATED_LAVARIDGE_GYM LavaridgeTown_Gym_1F_EventScript_GymGuidePostVictory
+msgbox	Hey, how's it going, CHAMPION- bound PLAYER?LAVARIDGE's GYM LEADER FLANNERY uses FIRE-type POKéMON.Her passion for POKéMON burns stronger and hotter than a volcano.Don't get too close to her--you'll burn! Hose her down with water and then go for it!
+release
+end
+= LavaridgeTown_Gym_1F_EventScript_GymGuidePostVictory
+msgbox	Yow! That was a scorching-hot battle!
+release
+end
+= LavaridgeTown_Gym_1F_EventScript_Danielle
+trainerbattle TRAINER_BATTLE_CONTINUE_SCRIPT TRAINER_DANIELLE LOCALID_DANIELLE LavaridgeTown_Gym_1F_Text_DanielleIntro LavaridgeTown_Gym_1F_Text_DanielleDefeat LavaridgeTown_Gym_EventScript_CheckTrainerScript
+msgbox	I'm going to be a pretty and strong TRAINER just like FLANNERY.
+end
+= LavaridgeTown_Gym_EventScript_CheckTrainerScript
+call LavaridgeTown_Gym_1F_EventScript_SetTrainerTempVars
+release
+special ShouldTryGetTrainerScript
+goto_if_eq VAR_RESULT 1 EventScript_GotoTrainerScript
+end
+= LavaridgeTown_Gym_1F_EventScript_SetTrainerTempVars
+setvar VAR_TEMP_B 0
+setvar VAR_TEMP_C 0
+setvar VAR_TEMP_D 0
+setvar VAR_TEMP_E 0
+setvar VAR_TEMP_F 0
+goto_if_defeated TRAINER_COLE LavaridgeTown_Gym_1F_EventScript_SetGeraldTempVar
+setvar VAR_TEMP_B 1
+= LavaridgeTown_Gym_1F_EventScript_SetGeraldTempVar
+goto_if_defeated TRAINER_GERALD LavaridgeTown_Gym_1F_EventScript_SetAxleTempVar
+setvar VAR_TEMP_C 1
+= LavaridgeTown_Gym_1F_EventScript_SetAxleTempVar
+goto_if_defeated TRAINER_AXLE LavaridgeTown_Gym_1F_EventScript_SetDanielleTempVar
+setvar VAR_TEMP_D 1
+= LavaridgeTown_Gym_1F_EventScript_SetDanielleTempVar
+goto_if_defeated TRAINER_DANIELLE LavaridgeTown_Gym_1F_EventScript_EndSetTrainerTempVars
+setvar VAR_TEMP_E 1
+= LavaridgeTown_Gym_1F_EventScript_EndSetTrainerTempVars
+return
+= LavaridgeTown_Gym_1F_EventScript_Axle
+trainerbattle TRAINER_BATTLE_CONTINUE_SCRIPT TRAINER_AXLE LOCALID_AXLE LavaridgeTown_Gym_1F_Text_AxleIntro LavaridgeTown_Gym_1F_Text_AxleDefeat LavaridgeTown_Gym_EventScript_CheckTrainerScript
+msgbox	Haaah… Whew…If you spend too much time buried in hot sand, it tuckers you out…
+end
+= LavaridgeTown_Gym_1F_EventScript_Gerald
+trainerbattle TRAINER_BATTLE_CONTINUE_SCRIPT TRAINER_GERALD LOCALID_GERALD LavaridgeTown_Gym_1F_Text_GeraldIntro LavaridgeTown_Gym_1F_Text_GeraldDefeat LavaridgeTown_Gym_EventScript_CheckTrainerScript
+msgbox	The temperature of magma is 392 degrees.Your POKéMON beat me, so they should easily survive in magma.
+end
+= LavaridgeTown_Gym_1F_EventScript_Cole
+trainerbattle TRAINER_BATTLE_CONTINUE_SCRIPT TRAINER_COLE LOCALID_COLE LavaridgeTown_Gym_1F_Text_ColeIntro LavaridgeTown_Gym_1F_Text_ColeDefeat LavaridgeTown_Gym_EventScript_CheckTrainerScript
+msgbox	Being buried in hot sand promotes circulation.It's effective for healing pain in your joints.
+end
+= LavaridgeTown_Gym_1F_EventScript_Flannery
+trainerbattle_single TRAINER_FLANNERY_1 LavaridgeTown_Gym_1F_Text_FlanneryIntro LavaridgeTown_Gym_1F_Text_FlanneryDefeat LavaridgeTown_Gym_1F_EventScript_FlanneryDefeated NO_MUSIC
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE LavaridgeTown_Gym_1F_EventScript_FlanneryRematch
+goto_if_unset FLAG_RECEIVED_TM_OVERHEAT LavaridgeTown_Gym_1F_EventScript_GiveOverheat2
+msgbox	Your power reminds me of someone…Oh! I know! You battle like NORMAN, the GYM LEADER of PETALBURG.
+release
+end
+= LavaridgeTown_Gym_1F_EventScript_GiveOverheat2
+giveitem ITEM_TM_OVERHEAT
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+msgbox	That TM50 contains OVERHEAT.That move inflicts serious damage on the opponent.But it also sharply cuts the SP. ATK of the POKéMON using it. It might not be suitable for longer battles.
+setflag FLAG_RECEIVED_TM_OVERHEAT
+release
+end
+= LavaridgeTown_Gym_1F_EventScript_FlanneryRematch
+trainerbattle_rematch_double TRAINER_FLANNERY_1 LavaridgeTown_Gym_1F_Text_FlanneryPreRematch LavaridgeTown_Gym_1F_Text_FlanneryRematchDefeat LavaridgeTown_Gym_1F_Text_FlanneryRematchNeedTwoMons
+msgbox	FLANNERY: I lost the match, but I'm completely satisfied.It's not often I get to enjoy a battle this heated.Let's have another one like this again sometime!
+end
+= LavaridgeTown_Gym_1F_EventScript_FlanneryDefeated
+message LavaridgeTown_Gym_1F_Text_ReceivedHeatBadge
+waitmessage
+call Common_EventScript_PlayGymBadgeFanfare
+msgbox	If you have a HEAT BADGE, all POKéMON up to Level 50, even those you get in trades from other people, will obey you completely.And, it lets POKéMON use the HM move STRENGTH outside of battle.This is a token of my appreciation. Don't be shy about taking it!
+setflag FLAG_WHITEOUT_TO_LAVARIDGE
+setflag FLAG_DEFEATED_LAVARIDGE_GYM
+setflag FLAG_BADGE04_GET
+addvar VAR_PETALBURG_GYM_STATE 1
+call_if_eq VAR_PETALBURG_GYM_STATE 6 Common_EventScript_ReadyPetalburgGymForBattle
+setvar VAR_0x8008 4
+call Common_EventScript_SetGymTrainers
+setflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLY
+setvar VAR_LAVARIDGE_TOWN_STATE 1
+call LavaridgeTown_Gym_1F_EventScript_GiveOverheat
+closemessage
+delay 30
+playfanfare MUS_REGISTER_MATCH_CALL
+msgbox	Registered GYM LEADER FLANNERY in the POKéNAV.
+waitfanfare
+closemessage
+delay 30
+setflag FLAG_ENABLE_FLANNERY_MATCH_CALL
+release
+end
+= LavaridgeTown_Gym_1F_EventScript_GiveOverheat
+giveitem ITEM_TM_OVERHEAT
+goto_if_eq VAR_RESULT FALSE Common_EventScript_BagIsFull
+msgbox	That TM50 contains OVERHEAT.That move inflicts serious damage on the opponent.But it also sharply cuts the SP. ATK of the POKéMON using it. It might not be suitable for longer battles.
+setflag FLAG_RECEIVED_TM_OVERHEAT
+return

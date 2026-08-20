@@ -76,3 +76,100 @@ dialogs
 3	C-come on, one more match…
 4	…And while you wasted time with me, MAXIE should have awakened GROUDON…
 5	MAXIE: GROUDON…Nothing could awaken you from your sleep bathed in magma…This BLUE ORB is what you sought. Wasn't it?I have brought you the BLUE ORB. Let its shine awaken you!And show me… Show me the full extent of your power!
+objscripts
+1 MagmaHideout_4F_EventScript_Grunt11
+2 MagmaHideout_4F_EventScript_Grunt12
+3 MagmaHideout_4F_EventScript_Grunt13
+4 MagmaHideout_4F_EventScript_Tabitha
+5 MagmaHideout_4F_EventScript_Maxie
+movements
+MagmaHideout_4F_Movement_GroudonApproach	delay,delay,down,delay,delay,delay,down,delay,delay,delay,end
+MagmaHideout_4F_Movement_GroudonExit	delay,delay,end
+MagmaHideout_4F_Movement_MaxieLookAround	face_left,delay,face_right,delay,face_left,delay,face_right,delay,face_up,delay,delay,end
+scriptdefs
+= MagmaHideout_4F_EventScript_Maxie
+lockall
+playbgm MUS_ENCOUNTER_MAGMA FALSE
+msgbox	MAXIE: GROUDON…Nothing could awaken you from your sleep bathed in magma…This BLUE ORB is what you sought. Wasn't it?I have brought you the BLUE ORB. Let its shine awaken you!And show me… Show me the full extent of your power!
+closemessage
+delay 20
+setvar VAR_RESULT 1
+playse SE_M_DETECT
+dofieldeffectsparkle 18 42 0
+waitfieldeffect FLDEFF_SPARKLE
+setvar VAR_RESULT 1
+playfanfare MUS_AWAKEN_LEGEND
+playse SE_ORB
+special DoOrbEffect
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+delay 150
+removeobject LOCALID_MAGMA_HIDEOUT_4F_GROUDON_SLEEPING
+addobject LOCALID_MAGMA_HIDEOUT_4F_GROUDON
+waitstate
+delay 60
+applymovement LOCALID_MAGMA_HIDEOUT_4F_GROUDON MagmaHideout_4F_Movement_GroudonApproach
+waitmovement 0
+special FadeOutOrbEffect
+setvar VAR_0x8004 1  @ vertical pan
+setvar VAR_0x8005 1  @ horizontal pan
+setvar VAR_0x8006 8  @ num shakes
+setvar VAR_0x8007 5  @ shake delay
+special ShakeCamera
+waitstate
+applymovement LOCALID_MAGMA_HIDEOUT_4F_GROUDON MagmaHideout_4F_Movement_GroudonExit
+waitmovement 0
+removeobject LOCALID_MAGMA_HIDEOUT_4F_GROUDON
+delay 4
+setvar VAR_0x8004 2  @ vertical pan
+setvar VAR_0x8005 2  @ horizontal pan
+setvar VAR_0x8006 8  @ num shakes
+setvar VAR_0x8007 5  @ shake delay
+special ShakeCamera
+waitstate
+delay 30
+applymovement LOCALID_MAGMA_HIDEOUT_4F_MAXIE MagmaHideout_4F_Movement_MaxieLookAround
+waitmovement 0
+msgbox	MAXIE: GROUDON! What's wrong?Wasn't the BLUE ORB the key?GROUDON! Where have you gone…
+closemessage
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+delay 30
+applymovement LOCALID_MAGMA_HIDEOUT_4F_MAXIE Common_Movement_FacePlayer
+waitmovement 0
+msgbox	MAXIE: Oh, so it was you?I've seen you poking around uninvited here and there…I get it now! You must have pulled a cheap stunt!
+closemessage
+trainerbattle_no_intro TRAINER_MAXIE_MAGMA_HIDEOUT MagmaHideout_4F_Text_MaxieDefeat
+msgbox	MAXIE: There has to be some reason why GROUDON fled…That's what you're trying to say, aren't you?… … … … … … … … … … … …Humph… You think I didn't know that?With GROUDON gone, there is no longer any need for this blasted volcano.I am going after GROUDON, so this is where we part!
+closemessage
+clearflag FLAG_HIDE_SLATEPORT_CITY_CAPTAIN_STERN
+clearflag FLAG_HIDE_SLATEPORT_CITY_GABBY_AND_TY
+setvar VAR_SLATEPORT_CITY_STATE 1
+setflag FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT
+setvar VAR_SLATEPORT_HARBOR_STATE 1
+fadescreen FADE_TO_BLACK
+removeobject LOCALID_MAGMA_HIDEOUT_4F_MAXIE
+removeobject LOCALID_MAGMA_HIDEOUT_4F_GRUNT_1
+removeobject LOCALID_MAGMA_HIDEOUT_4F_GRUNT_2
+removeobject LOCALID_MAGMA_HIDEOUT_4F_GRUNT_3
+removeobject LOCALID_MAGMA_HIDEOUT_4F_TABITHA
+setflag FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS
+fadescreen FADE_FROM_BLACK
+releaseall
+end
+= MagmaHideout_4F_EventScript_Tabitha
+trainerbattle_single TRAINER_TABITHA_MAGMA_HIDEOUT MagmaHideout_4F_Text_TabithaIntro MagmaHideout_4F_Text_TabithaDefeat
+msgbox	…And while you wasted time with me, MAXIE should have awakened GROUDON…
+end
+= MagmaHideout_4F_EventScript_Grunt13
+trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_13 MagmaHideout_4F_Text_Grunt13Intro MagmaHideout_4F_Text_Grunt13Defeat
+msgbox	C-come on, one more match…
+end
+= MagmaHideout_4F_EventScript_Grunt12
+trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_12 MagmaHideout_4F_Text_Grunt12Intro MagmaHideout_4F_Text_Grunt12Defeat
+msgbox	MAXIE, sir! An intruder is headed your way!
+end
+= MagmaHideout_4F_EventScript_Grunt11
+trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_11 MagmaHideout_4F_Text_Grunt11Intro MagmaHideout_4F_Text_Grunt11Defeat
+msgbox	I wonder if GROUDON even has a tail?
+end

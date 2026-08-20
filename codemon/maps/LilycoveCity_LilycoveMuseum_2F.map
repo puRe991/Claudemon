@@ -40,6 +40,65 @@ dialogs
 1	I've been away awhile, so the new paintings up here surprised me.I wish someone would paint my POKéMON this pretty.
 2	Well… So this is where they show the topical POKéMON paintings.I see, these new paintings are indeed rather amusing.
 3	Wow, is that right? These paintings are of your POKéMON.Isn't that just the ultimate joy for a TRAINER?
+objscripts
+0 LilycoveCity_LilycoveMuseum_2F_EventScript_Curator
+1 LilycoveCity_LilycoveMuseum_2F_EventScript_Girl
+2 LilycoveCity_LilycoveMuseum_2F_EventScript_ExpertM
+3 LilycoveCity_LilycoveMuseum_2F_EventScript_RichBoy
+movements
+LilycoveCity_LilycoveMuseum_2F_Movement_FaceExhibitHall	face_up,delay,end
+scriptdefs
+= LilycoveCity_LilycoveMuseum_2F_EventScript_RichBoy
+msgbox	Wow, is that right? These paintings are of your POKéMON.Isn't that just the ultimate joy for a TRAINER?
+end
+= LilycoveCity_LilycoveMuseum_2F_EventScript_ExpertM
+msgbox	Well… So this is where they show the topical POKéMON paintings.I see, these new paintings are indeed rather amusing.
+end
+= LilycoveCity_LilycoveMuseum_2F_EventScript_Girl
+msgbox	I've been away awhile, so the new paintings up here surprised me.I wish someone would paint my POKéMON this pretty.
+end
+= LilycoveCity_LilycoveMuseum_2F_EventScript_Curator
+lockall
+goto_if_set FLAG_RECEIVED_GLASS_ORNAMENT LilycoveCity_LilycoveMuseum_2F_EventScript_ReceivedGlassOrnament
+specialvar VAR_0x8004 CountPlayerMuseumPaintings
+switch VAR_0x8004
+case 1 LilycoveCity_LilycoveMuseum_2F_EventScript_AddedPainting
+case 2 LilycoveCity_LilycoveMuseum_2F_EventScript_AddedPainting
+case 3 LilycoveCity_LilycoveMuseum_2F_EventScript_AddedPainting
+case 4 LilycoveCity_LilycoveMuseum_2F_EventScript_AddedPainting
+case 5 LilycoveCity_LilycoveMuseum_2F_EventScript_ThankPlayer
+msgbox	I wish to fill this exhibit hall with modern and vibrant paintings of POKéMON.
+end
+= LilycoveCity_LilycoveMuseum_2F_EventScript_ThankPlayer
+applymovement LOCALID_MUSEUM_2F_CURATOR Common_Movement_FacePlayer
+waitmovement 0
+msgbox	Ah! It's you! PLAYER!
+applymovement LOCALID_MUSEUM_2F_CURATOR LilycoveCity_LilycoveMuseum_2F_Movement_FaceExhibitHall
+msgbox	Isn't this marvelous? This collection of paintings!Each one of them flawless! None better than another!These paintings have attracted more guests to our ART MUSEUM.Sincerely, I thank you, PLAYER. This is my dream come true!
+goto LilycoveCity_LilycoveMuseum_2F_EventScript_GiveGlassOrnament
+end
+= LilycoveCity_LilycoveMuseum_2F_EventScript_GiveGlassOrnament
+applymovement LOCALID_MUSEUM_2F_CURATOR Common_Movement_FacePlayer
+msgbox	This is merely a token of my gratitude.
+givedecoration DECOR_GLASS_ORNAMENT
+goto_if_eq VAR_RESULT FALSE LilycoveCity_LilycoveMuseum_2F_EventScript_NoRoomForGlassOrnament
+setflag FLAG_RECEIVED_GLASS_ORNAMENT
+closemessage
+releaseall
+end
+= LilycoveCity_LilycoveMuseum_2F_EventScript_NoRoomForGlassOrnament
+call Common_EventScript_NoRoomForDecor
+msgbox	I will keep this for you until we meet again.
+closemessage
+releaseall
+end
+= LilycoveCity_LilycoveMuseum_2F_EventScript_AddedPainting
+msgbox	Thanks to you, we've added a new painting to our collection!I've heard it depicts your POKéMON. Truly magnificent!Thank you so very, very much!
+end
+= LilycoveCity_LilycoveMuseum_2F_EventScript_ReceivedGlassOrnament
+msgbox	Ah, so good to see you, PLAYER!It's an honor to have you visit us on your busy journeys.Please, relax and do enjoy your visit with us.
+releaseall
+end
 signs
 14 10	It's a picture frame with pink-colored adornments.
 15 10	It's a picture frame with pink-colored adornments.

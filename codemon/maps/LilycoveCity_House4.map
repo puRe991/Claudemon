@@ -29,3 +29,13 @@ people_man_1 7 4 S wander
 dialogs
 0	This planet's biggest mysteries are at the bottom of the sea.Somebody said that, but I don't know…
 1	There's a deep underwater trench between MOSSDEEP and SOOTOPOLIS.That's what someone told me, anyway.
+objscripts
+0 LilycoveCity_House4_EventScript_Man1
+1 LilycoveCity_House4_EventScript_Man2
+scriptdefs
+= LilycoveCity_House4_EventScript_Man2
+msgbox	There's a deep underwater trench between MOSSDEEP and SOOTOPOLIS.That's what someone told me, anyway.
+end
+= LilycoveCity_House4_EventScript_Man1
+msgbox	This planet's biggest mysteries are at the bottom of the sea.Somebody said that, but I don't know…
+end

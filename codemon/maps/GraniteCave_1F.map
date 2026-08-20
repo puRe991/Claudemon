@@ -42,3 +42,20 @@ people_hiker 36 9 S static
 misc_item_ball 17 7 S static
 dialogs
 0	Hey, you. It gets awfully dark ahead. It'll be tough trying to explore.That guy who came by earlier… STEVEN, I think it was.He knew how to use FLASH, so he ought to be all right, but…Well, for us HIKERS, helping out those that we meet is our motto.Here you go, I'll pass this on to you.
+objscripts
+0 GraniteCave_1F_EventScript_Hiker
+scriptdefs
+= GraniteCave_1F_EventScript_Hiker
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_HM_FLASH GraniteCave_1F_EventScript_ReceivedFlash
+msgbox	Hey, you. It gets awfully dark ahead. It'll be tough trying to explore.That guy who came by earlier… STEVEN, I think it was.He knew how to use FLASH, so he ought to be all right, but…Well, for us HIKERS, helping out those that we meet is our motto.Here you go, I'll pass this on to you.
+giveitem ITEM_HM_FLASH
+setflag FLAG_RECEIVED_HM_FLASH
+msgbox	Teach that hidden move FLASH to a POKéMON and use it.It lights up even the inky darkness of caves.But, to use it, you need the GYM BADGE from DEWFORD's POKéMON GYM.
+release
+end
+= GraniteCave_1F_EventScript_ReceivedFlash
+msgbox	Teach that hidden move FLASH to a POKéMON and use it.It lights up even the inky darkness of caves.But, to use it, you need the GYM BADGE from DEWFORD's POKéMON GYM.
+release
+end

@@ -30,3 +30,33 @@ dialogs
 1	Dear, what do you think of this? Wouldn't this make a nice gift?It's…PRO…TE…IN? It sounds delicious, doesn't it?
 2	We came here to chaperon our grandson.But since we're here, we thought we should get some souvenirs.
 3	A lot of the BATTLE FRONTIER's facilities don't allow the use of items during battles.That rule makes things tougher than they already are!
+objscripts
+0 BattleFrontier_Mart_EventScript_Clerk
+1 BattleFrontier_Mart_EventScript_OldWoman
+2 BattleFrontier_Mart_EventScript_OldMan
+3 BattleFrontier_Mart_EventScript_Boy
+movements
+BattleFrontier_Mart_Pokemart	delay
+scriptdefs
+= BattleFrontier_Mart_EventScript_Boy
+msgbox	A lot of the BATTLE FRONTIER's facilities don't allow the use of items during battles.That rule makes things tougher than they already are!
+end
+= BattleFrontier_Mart_EventScript_OldMan
+msgbox	We came here to chaperon our grandson.But since we're here, we thought we should get some souvenirs.
+end
+= BattleFrontier_Mart_EventScript_OldWoman
+lock
+applymovement LOCALID_FRONTIER_MART_OLD_WOMAN Common_Movement_FaceDown
+waitmovement 0
+msgbox	Dear, what do you think of this? Wouldn't this make a nice gift?It's…PRO…TE…IN? It sounds delicious, doesn't it?
+release
+end
+= BattleFrontier_Mart_EventScript_Clerk
+lock
+faceplayer
+message gText_HowMayIServeYou
+waitmessage
+pokemart BattleFrontier_Mart_Pokemart
+msgbox	gText_PleaseComeAgain
+release
+end

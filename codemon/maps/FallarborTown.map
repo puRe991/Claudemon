@@ -58,6 +58,38 @@ dialogs
 1	Something's happening, and I don't like it!I've seen shady characters wandering in and out of PROF. COZMO's home…
 2	Have you already challenged FLANNERY, the LEADER of LAVARIDGE GYM?The girl's grandfather was famous. He was one of the ELITE FOUR in the POKéMON LEAGUE at one point.It wouldn't surprise me to see FLANNERY become a great TRAINER in her own right.
 3	AZURILL: Rooreelooo.
+objscripts
+0 FallarborTown_EventScript_Girl
+1 FallarborTown_EventScript_ExpertM
+2 FallarborTown_EventScript_Gentleman
+3 FallarborTown_EventScript_Azurill
+scriptdefs
+= FallarborTown_EventScript_Azurill
+lock
+faceplayer
+waitse
+playmoncry SPECIES_AZURILL CRY_MODE_NORMAL
+msgbox	AZURILL: Rooreelooo.
+waitmoncry
+release
+end
+= FallarborTown_EventScript_Gentleman
+msgbox	Have you already challenged FLANNERY, the LEADER of LAVARIDGE GYM?The girl's grandfather was famous. He was one of the ELITE FOUR in the POKéMON LEAGUE at one point.It wouldn't surprise me to see FLANNERY become a great TRAINER in her own right.
+end
+= FallarborTown_EventScript_ExpertM
+lock
+faceplayer
+goto_if_set FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY FallarborTown_EventScript_ExpertMNormal
+msgbox	Something's happening, and I don't like it!I've seen shady characters wandering in and out of PROF. COZMO's home…
+release
+end
+= FallarborTown_EventScript_ExpertMNormal
+msgbox	This region's been known for meteors since the olden days.They say METEOR FALLS was gouged out by a falling meteorite long ago.
+release
+end
+= FallarborTown_EventScript_Girl
+msgbox	See! Take a look! This is my precious AZURILL!It's slick and smooth and plushy, too!
+end
 signs
 6 8	BATTLE TENT FALLARBOR SITE “May the Greatest Teams Gather!”
 10 11	FALLARBOR TOWN “A farm community with small gardens.”

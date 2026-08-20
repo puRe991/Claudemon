@@ -39,3 +39,24 @@ dialogs
 4	WINGULL: Pihyoh!
 5	WINGULL: Pihyoh!
 6	WINGULL: Pihyoh!
+objscripts
+0 Route119_House_EventScript_Woman
+1 Route119_House_EventScript_Wingull
+2 Route119_House_EventScript_Wingull
+3 Route119_House_EventScript_Wingull
+4 Route119_House_EventScript_Wingull
+5 Route119_House_EventScript_Wingull
+6 Route119_House_EventScript_Wingull
+scriptdefs
+= Route119_House_EventScript_Wingull
+lock
+faceplayer
+waitse
+playmoncry SPECIES_WINGULL CRY_MODE_NORMAL
+msgbox	WINGULL: Pihyoh!
+waitmoncry
+release
+end
+= Route119_House_EventScript_Woman
+msgbox	I heard about a cave called the CAVE OF ORIGIN.People rumor that the spirits of POKéMON are revived there. Could something like that really happen?
+end

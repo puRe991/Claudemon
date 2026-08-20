@@ -29,3 +29,22 @@ people_gentleman 3 4 E static
 dialogs
 0	I can't see MIRAGE ISLAND today…
 1	MIRAGE ISLAND…It must become visible and invisible depending on the weather conditions that make mirages appear.Or is it really appearing and disappearing?
+objscripts
+0 PacifidlogTown_House5_EventScript_MirageIslandWatcher
+1 PacifidlogTown_House5_EventScript_Gentleman
+scriptdefs
+= PacifidlogTown_House5_EventScript_Gentleman
+msgbox	MIRAGE ISLAND…It must become visible and invisible depending on the weather conditions that make mirages appear.Or is it really appearing and disappearing?
+end
+= PacifidlogTown_House5_EventScript_MirageIslandWatcher
+lock
+faceplayer
+specialvar VAR_RESULT IsMirageIslandPresent
+goto_if_eq VAR_RESULT TRUE PacifidlogTown_House5_EventScript_MirageIslandPresent
+msgbox	I can't see MIRAGE ISLAND today…
+release
+end
+= PacifidlogTown_House5_EventScript_MirageIslandPresent
+msgbox	Oh! Oh my! I can see MIRAGE ISLAND today!
+release
+end

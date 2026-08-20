@@ -71,3 +71,130 @@ dialogs
 6	PEEKO: Pii pihyoh!
 8	They halted development here to protect POKéMON, right? There's a feel-good story!
 9	On the other side of this rock… My boyfriend is there.He… He's not just digging the tunnel to come see me.He works his hands raw and rough for the benefit of everyone.
+objscripts
+0 RusturfTunnel_EventScript_WandasBoyfriend
+5 RusturfTunnel_EventScript_Grunt
+6 RusturfTunnel_EventScript_Peeko
+8 RusturfTunnel_EventScript_Mike
+9 RusturfTunnel_EventScript_Wanda
+triggers
+23 4 TRIGGER_RUN_IMMEDIATELY 0 RusturfTunnel_EventScript_TunnelBlockagePos1
+9 4 VAR_RUSTURF_TUNNEL_STATE 2 RusturfTunnel_EventScript_AquaGruntBackUp
+9 5 VAR_RUSTURF_TUNNEL_STATE 2 RusturfTunnel_EventScript_AquaGruntBackUp
+25 4 TRIGGER_RUN_IMMEDIATELY 0 RusturfTunnel_EventScript_TunnelBlockagePos2
+25 5 TRIGGER_RUN_IMMEDIATELY 0 RusturfTunnel_EventScript_TunnelBlockagePos3
+movements
+RusturfTunnel_Movement_BrineyApproachPeeko1	right,right,right,right,right,right,right,end
+RusturfTunnel_Movement_BrineyApproachPeeko2	delay,right,end
+RusturfTunnel_Movement_BrineyExit	left,left,left,left,left,left,left,left,left,left,left,end
+RusturfTunnel_Movement_GruntAndPeekoBackUp	delay,right,delay,end
+RusturfTunnel_Movement_GruntEscape	left,left,left,left,left,left,left,left,left,end
+RusturfTunnel_Movement_PeekoExit	left,left,left,left,left,left,left,left,left,end
+RusturfTunnel_Movement_PlayerMoveAsideForBriney	down,delay,end
+RusturfTunnel_Movement_PlayerWatchBrineyExit	delay,delay,delay,delay,end
+RusturfTunnel_Movement_PushPlayerAsideForGrunt	face_down,delay,up,delay,delay,end
+scriptdefs
+= RusturfTunnel_EventScript_TunnelBlockagePos3
+setvar VAR_TEMP_1 3
+end
+= RusturfTunnel_EventScript_TunnelBlockagePos2
+setvar VAR_TEMP_1 2
+end
+= RusturfTunnel_EventScript_AquaGruntBackUp
+lockall
+msgbox	What, are you coming? Come and get some, then!
+closemessage
+applymovement LOCALID_RUSTURF_TUNNEL_GRUNT RusturfTunnel_Movement_GruntAndPeekoBackUp
+applymovement LOCALID_RUSTURF_TUNNEL_PEEKO RusturfTunnel_Movement_GruntAndPeekoBackUp
+waitmovement 0
+copyobjectxytoperm LOCALID_RUSTURF_TUNNEL_GRUNT
+copyobjectxytoperm LOCALID_RUSTURF_TUNNEL_PEEKO
+setvar VAR_RUSTURF_TUNNEL_STATE 3
+releaseall
+end
+= RusturfTunnel_EventScript_TunnelBlockagePos1
+setvar VAR_TEMP_1 1
+end
+= RusturfTunnel_EventScript_Wanda
+lock
+faceplayer
+msgbox	On the other side of this rock… My boyfriend is there.He… He's not just digging the tunnel to come see me.He works his hands raw and rough for the benefit of everyone.
+closemessage
+applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= RusturfTunnel_EventScript_Mike
+trainerbattle_single TRAINER_MIKE_2 RusturfTunnel_Text_MikeIntro RusturfTunnel_Text_MikeDefeat
+msgbox	They halted development here to protect POKéMON, right? There's a feel-good story!
+end
+= RusturfTunnel_EventScript_Peeko
+lock
+faceplayer
+waitse
+playmoncry SPECIES_WINGULL CRY_MODE_NORMAL
+msgbox	PEEKO: Pii pihyoh!
+waitmoncry
+release
+end
+= RusturfTunnel_EventScript_Grunt
+lock
+faceplayer
+playbgm MUS_ENCOUNTER_AQUA FALSE
+msgbox	Grah, keelhaul it all!That hostage POKéMON turned out to be worthless!And to think I made a getaway… In this tunnel to nowhere!Hey! You! So you want to battle me?
+trainerbattle_no_intro TRAINER_GRUNT_RUSTURF_TUNNEL RusturfTunnel_Text_GruntDefeat
+msgbox	This is plain not right…The BOSS told me this would be a slick-and-easy job to pull.All I had to do was steal some package from DEVON.Tch! You want it back that badly, take it!
+giveitem ITEM_DEVON_GOODS
+closemessage
+applymovement LOCALID_PLAYER RusturfTunnel_Movement_PushPlayerAsideForGrunt
+applymovement LOCALID_RUSTURF_TUNNEL_GRUNT RusturfTunnel_Movement_GruntEscape
+waitmovement 0
+removeobject LOCALID_RUSTURF_TUNNEL_GRUNT
+delay 50
+addobject LOCALID_RUSTURF_TUNNEL_BRINEY
+applymovement LOCALID_RUSTURF_TUNNEL_BRINEY RusturfTunnel_Movement_BrineyApproachPeeko1
+waitmovement 0
+applymovement LOCALID_PLAYER RusturfTunnel_Movement_PlayerMoveAsideForBriney
+applymovement LOCALID_RUSTURF_TUNNEL_BRINEY RusturfTunnel_Movement_BrineyApproachPeeko2
+waitmovement 0
+msgbox	PEEKO! Am I glad to see you're safe!
+applymovement LOCALID_RUSTURF_TUNNEL_BRINEY Common_Movement_FacePlayer
+waitmovement 0
+message RusturfTunnel_Text_ThankYouLetsGoHomePeeko
+waitmessage
+waitse
+playmoncry SPECIES_WINGULL CRY_MODE_NORMAL
+waitbuttonpress
+waitmoncry
+closemessage
+applymovement LOCALID_PLAYER RusturfTunnel_Movement_PlayerWatchBrineyExit
+applymovement LOCALID_RUSTURF_TUNNEL_BRINEY RusturfTunnel_Movement_BrineyExit
+applymovement LOCALID_RUSTURF_TUNNEL_PEEKO RusturfTunnel_Movement_PeekoExit
+waitmovement 0
+removeobject LOCALID_RUSTURF_TUNNEL_BRINEY
+removeobject LOCALID_RUSTURF_TUNNEL_PEEKO
+clearflag FLAG_DEVON_GOODS_STOLEN
+setflag FLAG_RECOVERED_DEVON_GOODS
+setvar VAR_RUSTBORO_CITY_STATE 4
+setvar VAR_BRINEY_HOUSE_STATE 1
+setflag FLAG_HIDE_ROUTE_116_MR_BRINEY
+release
+end
+= RusturfTunnel_EventScript_WandasBoyfriend
+lock
+faceplayer
+goto_if_set FLAG_TEMP_1 RusturfTunnel_EventScript_AlreadySpokenTo
+setflag FLAG_TEMP_1
+msgbox	… …Why can't they keep digging? Is the bedrock too hard?My beloved awaits me in VERDANTURF TOWN just beyond here…If RUSTBORO and VERDANTURF were joined by this tunnel, I could visit her every day…But this… What am I to do?
+closemessage
+applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= RusturfTunnel_EventScript_AlreadySpokenTo
+msgbox	To get from RUSTBORO to VERDANTURF, you need to go to DEWFORD, then pass through SLATEPORT and MAUVILLE…
+closemessage
+applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end

@@ -51,3 +51,49 @@ dialogs
 1	KIRA: Where could the treasures be?I've already decided what I'm buying when we find the treasures!
 3	In a cabin somewhere on board, I saw something sparkle.
 4	Walking around barefoot in this ship is kind of gross.
+objscripts
+0 AbandonedShip_Rooms2_1F_EventScript_Dan
+1 AbandonedShip_Rooms2_1F_EventScript_Kira
+3 AbandonedShip_Rooms2_1F_EventScript_Garrison
+4 AbandonedShip_Rooms2_1F_EventScript_Jani
+scriptdefs
+= AbandonedShip_Rooms2_1F_EventScript_Jani
+trainerbattle_single TRAINER_JANI AbandonedShip_Rooms2_1F_Text_JaniIntro AbandonedShip_Rooms2_1F_Text_JaniDefeat
+msgbox	Walking around barefoot in this ship is kind of gross.
+end
+= AbandonedShip_Rooms2_1F_EventScript_Garrison
+trainerbattle_single TRAINER_GARRISON AbandonedShip_Rooms2_1F_Text_GarrisonIntro AbandonedShip_Rooms2_1F_Text_GarrisonDefeat
+msgbox	In a cabin somewhere on board, I saw something sparkle.
+end
+= AbandonedShip_Rooms2_1F_EventScript_Kira
+trainerbattle_double TRAINER_KIRA_AND_DAN_1 AbandonedShip_Rooms2_1F_Text_KiraIntro AbandonedShip_Rooms2_1F_Text_KiraDefeat AbandonedShip_Rooms2_1F_Text_KiraNotEnoughMons AbandonedShip_Rooms2_1F_EventScript_RegisterKira
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE AbandonedShip_Rooms2_1F_EventScript_KiraRematch
+msgbox	KIRA: Where could the treasures be?I've already decided what I'm buying when we find the treasures!
+release
+end
+= AbandonedShip_Rooms2_1F_EventScript_KiraRematch
+trainerbattle_rematch_double TRAINER_KIRA_AND_DAN_1 AbandonedShip_Rooms2_1F_Text_KiraRematchIntro AbandonedShip_Rooms2_1F_Text_KiraRematchDefeat AbandonedShip_Rooms2_1F_Text_KiraRematchNotEnoughMons
+msgbox	KIRA: We're not leaving until we raise our POKéMON some more and we find the treasures here!
+end
+= AbandonedShip_Rooms2_1F_EventScript_RegisterKira
+msgbox	KIRA: Oh, you make me so angry! I'm going to register you for that!
+register_matchcall TRAINER_KIRA_AND_DAN_1
+release
+end
+= AbandonedShip_Rooms2_1F_EventScript_Dan
+trainerbattle_double TRAINER_KIRA_AND_DAN_1 AbandonedShip_Rooms2_1F_Text_DanIntro AbandonedShip_Rooms2_1F_Text_DanDefeat AbandonedShip_Rooms2_1F_Text_DanNotEnoughMons AbandonedShip_Rooms2_1F_EventScript_RegisterDan
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE AbandonedShip_Rooms2_1F_EventScript_DanRematch
+msgbox	DAN: We can't find any treasures… I wonder if someone got them already?
+release
+end
+= AbandonedShip_Rooms2_1F_EventScript_DanRematch
+trainerbattle_rematch_double TRAINER_KIRA_AND_DAN_1 AbandonedShip_Rooms2_1F_Text_DanRematchIntro AbandonedShip_Rooms2_1F_Text_DanRematchDefeat AbandonedShip_Rooms2_1F_Text_DanRematchNotEnoughMons
+msgbox	DAN: We can't find any treasures, we lose at POKéMON…I want to go home… But if I say that, she gets all angry with me…
+end
+= AbandonedShip_Rooms2_1F_EventScript_RegisterDan
+msgbox	KIRA: Oh, you make me so angry! I'm going to register you for that!
+register_matchcall TRAINER_KIRA_AND_DAN_1
+release
+end

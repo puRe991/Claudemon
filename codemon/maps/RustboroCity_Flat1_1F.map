@@ -28,3 +28,13 @@ people_woman_5 12 4 W static
 dialogs
 0	Every POKéMON has a special ability that it can use.
 1	POKéMON are such strange creatures.
+objscripts
+0 RustboroCity_Flat1_1F_EventScript_Man
+1 RustboroCity_Flat1_1F_EventScript_Woman
+scriptdefs
+= RustboroCity_Flat1_1F_EventScript_Woman
+msgbox	POKéMON are such strange creatures.
+end
+= RustboroCity_Flat1_1F_EventScript_Man
+msgbox	Every POKéMON has a special ability that it can use.
+end

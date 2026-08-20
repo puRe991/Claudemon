@@ -42,5 +42,27 @@ dialogs
 1	Arrgh! I blew my chance! I was one room away from the goal!In this place, you'd better watch out for poison, freezing, and so on.
 2	I've completed the challenge 10 times now, but I've never had to battle a TRAINER once.
 3	Listen! Listen!Don't you think that the special abilities of POKéMON will be useful here?
+objscripts
+0 BattleFrontier_BattlePikeLobby_EventScript_Attendant
+1 BattleFrontier_BattlePikeLobby_EventScript_Hiker
+2 BattleFrontier_BattlePikeLobby_EventScript_Twin
+3 BattleFrontier_BattlePikeLobby_EventScript_Beauty
+scriptdefs
+= BattleFrontier_BattlePikeLobby_EventScript_Beauty
+msgbox	Listen! Listen!Don't you think that the special abilities of POKéMON will be useful here?
+end
+= BattleFrontier_BattlePikeLobby_EventScript_Twin
+msgbox	I've completed the challenge 10 times now, but I've never had to battle a TRAINER once.
+end
+= BattleFrontier_BattlePikeLobby_EventScript_Hiker
+msgbox	Arrgh! I blew my chance! I was one room away from the goal!In this place, you'd better watch out for poison, freezing, and so on.
+end
+= BattleFrontier_BattlePikeLobby_EventScript_Attendant
+lock
+faceplayer
+setvar VAR_FRONTIER_FACILITY FRONTIER_FACILITY_PIKE
+setvar VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES
+special SavePlayerParty
+msgbox	Where the luck of TRAINERS is put to the test…Welcome to the BATTLE PIKE…I am your guide to the BATTLE PIKE…
 signs
 1 3	The Battle Choice's rules are listed.

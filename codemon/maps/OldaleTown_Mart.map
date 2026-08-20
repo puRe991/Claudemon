@@ -28,3 +28,40 @@ people_boy_1 9 4 S wander
 dialogs
 1	The clerk says they're all sold out. I can't buy any POKé BALLS.
 2	If a POKéMON gets hurt and loses its HP and faints, it won't be able to battle.To prevent your POKéMON from fainting, restore its HP with a POTION.
+objscripts
+0 OldaleTown_Mart_EventScript_Clerk
+1 OldaleTown_Mart_EventScript_Woman
+2 OldaleTown_Mart_EventScript_Boy
+movements
+OldaleTown_Mart_Pokemart_Basic	delay
+OldaleTown_Mart_Pokemart_Expanded	delay
+scriptdefs
+= OldaleTown_Mart_EventScript_Boy
+msgbox	If a POKéMON gets hurt and loses its HP and faints, it won't be able to battle.To prevent your POKéMON from fainting, restore its HP with a POTION.
+end
+= OldaleTown_Mart_EventScript_Woman
+lock
+faceplayer
+goto_if_set FLAG_ADVENTURE_STARTED OldaleTown_Mart_EventScript_PokeBallsInStock
+msgbox	The clerk says they're all sold out. I can't buy any POKé BALLS.
+release
+end
+= OldaleTown_Mart_EventScript_PokeBallsInStock
+msgbox	I'm going to buy a bunch of POKé BALLS and catch a bunch of POKéMON!
+release
+end
+= OldaleTown_Mart_EventScript_Clerk
+lock
+faceplayer
+message gText_HowMayIServeYou
+waitmessage
+goto_if_set FLAG_ADVENTURE_STARTED OldaleTown_Mart_ExpandedItems
+pokemart OldaleTown_Mart_Pokemart_Basic
+msgbox	gText_PleaseComeAgain
+release
+end
+= OldaleTown_Mart_ExpandedItems
+pokemart OldaleTown_Mart_Pokemart_Expanded
+msgbox	gText_PleaseComeAgain
+release
+end

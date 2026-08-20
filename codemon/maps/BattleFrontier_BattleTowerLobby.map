@@ -43,5 +43,99 @@ dialogs
 6	Where the talents of TRAINERS are put to the test!Welcome to the BATTLE TOWER!I am your guide to the DOUBLE BATTLE ROOMS.
 7	Where the talents of TRAINERS are put to the test!Welcome to the BATTLE TOWER!I am your guide to the MULTI BATTLE ROOMS.
 8	Where the talents of TRAINERS are put to the test!Welcome to the BATTLE TOWER!I am your guide to the LINK MULTI BATTLE ROOMS.
+objscripts
+0 BattleFrontier_BattleTowerLobby_EventScript_SinglesAttendant
+1 BattleFrontier_BattleTowerLobby_EventScript_FeelingsMan
+2 BattleFrontier_BattleTowerLobby_EventScript_Woman
+3 BattleFrontier_BattleTowerLobby_EventScript_Boy
+6 BattleFrontier_BattleTowerLobby_EventScript_DoublesAttendant
+7 BattleFrontier_BattleTowerLobby_EventScript_MultisAttendant
+8 BattleFrontier_BattleTowerLobby_EventScript_LinkMultisAttendant
+scriptdefs
+= BattleFrontier_BattleTowerLobby_EventScript_LinkMultisAttendant
+lock
+faceplayer
+setvar VAR_FRONTIER_FACILITY FRONTIER_FACILITY_TOWER
+special SavePlayerParty
+msgbox	Where the talents of TRAINERS are put to the test!Welcome to the BATTLE TOWER!I am your guide to the LINK MULTI BATTLE ROOMS.
+= BattleFrontier_BattleTowerLobby_EventScript_MultisAttendant
+lock
+faceplayer
+setvar VAR_FRONTIER_FACILITY FRONTIER_FACILITY_TOWER
+clearflag FLAG_CHOSEN_MULTI_BATTLE_NPC_PARTNER
+special SavePlayerParty
+msgbox	Where the talents of TRAINERS are put to the test!Welcome to the BATTLE TOWER!I am your guide to the MULTI BATTLE ROOMS.
+= BattleFrontier_BattleTowerLobby_EventScript_DoublesAttendant
+lock
+faceplayer
+setvar VAR_FRONTIER_FACILITY FRONTIER_FACILITY_TOWER
+special SavePlayerParty
+msgbox	Where the talents of TRAINERS are put to the test!Welcome to the BATTLE TOWER!I am your guide to the DOUBLE BATTLE ROOMS.
+= BattleFrontier_BattleTowerLobby_EventScript_Boy
+msgbox	Once you've entered the BATTLE TOWER, you can't leave until you either lose or you beat seven TRAINERS in a row.You'd best be certain that you're up to the challenge.
+end
+= BattleFrontier_BattleTowerLobby_EventScript_Woman
+msgbox	The number of matches you win in a row is recorded.I'd better not get beaten in an embarrassing way!
+end
+= BattleFrontier_BattleTowerLobby_EventScript_FeelingsMan
+lock
+faceplayer
+message BattleFrontier_BattleTowerLobby_Text_DescribeFeelingsAboutBattleTower
+waitmessage
+multichoice 16 4 MULTI_BATTLE_TOWER_FEELINGS FALSE
+switch VAR_RESULT
+case 0 BattleFrontier_BattleTowerLobby_EventScript_FeelingsBattleNow
+case 1 BattleFrontier_BattleTowerLobby_EventScript_FeelingsIWon
+case 2 BattleFrontier_BattleTowerLobby_EventScript_FeelingsILost
+case 3 BattleFrontier_BattleTowerLobby_EventScript_FeelingsWontTell
+case MULTI_B_PRESSED BattleFrontier_BattleTowerLobby_EventScript_FeelingsWontTell
+release
+end
+= BattleFrontier_BattleTowerLobby_EventScript_FeelingsWontTell
+msgbox	Oh, so you don't think much about it? You're one cool customer.
+release
+end
+= BattleFrontier_BattleTowerLobby_EventScript_FeelingsILost
+msgbox	Can I hear about your feelings when you have lost a match?
+setvar VAR_0x8004 EASY_CHAT_TYPE_BATTLE_LOST
+call Common_ShowEasyChatScreen
+lock
+faceplayer
+goto BattleFrontier_BattleTowerLobby_EventScript_CheckFeelings
+end
+= BattleFrontier_BattleTowerLobby_EventScript_CheckFeelings
+goto_if_eq VAR_RESULT 0 BattleFrontier_BattleTowerLobby_EventScript_CanceledEasyChat
+goto_if_eq VAR_RESULT 1 BattleFrontier_BattleTowerLobby_EventScript_SubmittedFeelings
+end
+= BattleFrontier_BattleTowerLobby_EventScript_SubmittedFeelings
+msgbox	Okay, so that's how you feel? That's quite original.Thanks!
+release
+end
+= BattleFrontier_BattleTowerLobby_EventScript_CanceledEasyChat
+msgbox	Hunh? You changed your mind? I guess you're fickle.
+release
+end
+= BattleFrontier_BattleTowerLobby_EventScript_FeelingsIWon
+msgbox	What do you feel when you've won a match?
+setvar VAR_0x8004 EASY_CHAT_TYPE_BATTLE_WON
+call Common_ShowEasyChatScreen
+lock
+faceplayer
+goto BattleFrontier_BattleTowerLobby_EventScript_CheckFeelings
+end
+= BattleFrontier_BattleTowerLobby_EventScript_FeelingsBattleNow
+msgbox	Okay, what are your feelings when you're about to begin a match?
+setvar VAR_0x8004 EASY_CHAT_TYPE_BATTLE_START
+call Common_ShowEasyChatScreen
+lock
+faceplayer
+goto BattleFrontier_BattleTowerLobby_EventScript_CheckFeelings
+end
+= BattleFrontier_BattleTowerLobby_EventScript_SinglesAttendant
+lock
+faceplayer
+setvar VAR_FRONTIER_FACILITY FRONTIER_FACILITY_TOWER
+special SavePlayerParty
+msgbox	Where the talents of TRAINERS are put to the test!Welcome to the BATTLE TOWER!I am your guide to the SINGLE BATTLE ROOMS.
 signs
 2 1	The BATTLE TOWER rules are listed.

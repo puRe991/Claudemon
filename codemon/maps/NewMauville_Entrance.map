@@ -23,3 +23,30 @@ collision
 warps
 4 6 Route110 0
 4 1 NewMauville_Inside 0
+triggers
+4 2 VAR_NEW_MAUVILLE_STATE 0 NewMauville_Entrance_EventScript_Door
+scriptdefs
+= NewMauville_Entrance_EventScript_Door
+lockall
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+msgbox	The door is locked.
+checkitem ITEM_BASEMENT_KEY
+goto_if_eq VAR_RESULT FALSE NewMauville_Entrance_EventScript_DontOpenDoor
+msgbox	Use the BASEMENT KEY?
+goto_if_eq VAR_RESULT NO NewMauville_Entrance_EventScript_DontOpenDoor
+msgbox	PLAYER used the BASEMENT KEY.The door opened!
+setmetatile 3 0 METATILE_Facility_NewMauvilleDoor_Open_Tile0 FALSE
+setmetatile 4 0 METATILE_Facility_NewMauvilleDoor_Open_Tile1 FALSE
+setmetatile 5 0 METATILE_Facility_NewMauvilleDoor_Open_Tile2 FALSE
+setmetatile 3 1 METATILE_Facility_NewMauvilleDoor_Open_Tile3 TRUE
+setmetatile 4 1 METATILE_Facility_NewMauvilleDoor_Open_Tile4 FALSE
+setmetatile 5 1 METATILE_Facility_NewMauvilleDoor_Open_Tile5 TRUE
+special DrawWholeMapView
+playse SE_BANG
+setvar VAR_NEW_MAUVILLE_STATE 1
+releaseall
+end
+= NewMauville_Entrance_EventScript_DontOpenDoor
+releaseall
+end

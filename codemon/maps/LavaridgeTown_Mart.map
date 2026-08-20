@@ -28,3 +28,25 @@ people_old_woman 9 5 E static
 dialogs
 1	Use X SPEED to add to a POKéMON's SPEED in battle.That will help it get in the first strike--a decided advantage!
 2	On MT. CHIMNEY's peak, there's a local specialty that you can buy only there.Give it to a POKéMON--it will be elated.
+objscripts
+0 LavaridgeTown_Mart_EventScript_Clerk
+1 LavaridgeTown_Mart_EventScript_ExpertM
+2 LavaridgeTown_Mart_EventScript_OldWoman
+movements
+LavaridgeTown_Mart_Pokemart	delay
+scriptdefs
+= LavaridgeTown_Mart_EventScript_OldWoman
+msgbox	On MT. CHIMNEY's peak, there's a local specialty that you can buy only there.Give it to a POKéMON--it will be elated.
+end
+= LavaridgeTown_Mart_EventScript_ExpertM
+msgbox	Use X SPEED to add to a POKéMON's SPEED in battle.That will help it get in the first strike--a decided advantage!
+end
+= LavaridgeTown_Mart_EventScript_Clerk
+lock
+faceplayer
+message gText_HowMayIServeYou
+waitmessage
+pokemart LavaridgeTown_Mart_Pokemart
+msgbox	gText_PleaseComeAgain
+release
+end

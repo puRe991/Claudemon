@@ -28,3 +28,19 @@ people_ninja_boy 8 4 S wander
 dialogs
 0	My wife's warming an EGG in the hot springs. This is what she told me.She left two POKéMON with the DAY CARE. And they discovered that EGG!
 1	ZIGZAGOON: Pshoo!
+objscripts
+0 LavaridgeTown_House_EventScript_OldMan
+1 LavaridgeTown_House_EventScript_Zigzagoon
+scriptdefs
+= LavaridgeTown_House_EventScript_Zigzagoon
+lock
+faceplayer
+waitse
+playmoncry SPECIES_ZIGZAGOON CRY_MODE_NORMAL
+msgbox	ZIGZAGOON: Pshoo!
+waitmoncry
+release
+end
+= LavaridgeTown_House_EventScript_OldMan
+msgbox	My wife's warming an EGG in the hot springs. This is what she told me.She left two POKéMON with the DAY CARE. And they discovered that EGG!
+end

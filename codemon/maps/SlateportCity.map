@@ -201,6 +201,575 @@ dialogs
 31	Grumble…I should've brought my Game Boy Advance so I wouldn't get bored in line…Grumble…
 32	When this operation's over, I'll take you to a hot spring spa!That's what our leader said. I can't wait!
 33	If a wild POKéMON gets hurt, it heals itself by chewing on BERRIES.Did you know that?Somebody saw that and got the idea of making medicine from BERRIES.Did you know that?To turn BERRIES into medicine, they must be crushed into powder.Did you know that?You seem to have an interest in BERRIES!I've got something good for someone like you.
+objscripts
+0 SlateportCity_EventScript_FatMan
+1 SlateportCity_EventScript_Man1
+2 SlateportCity_EventScript_RichBoy
+3 SlateportCity_EventScript_Woman1
+4 SlateportCity_EventScript_AquaGrunt1
+5 SlateportCity_EventScript_Cook
+6 SlateportCity_EventScript_OldWoman
+7 SlateportCity_EventScript_Girl
+8 SlateportCity_EventScript_Ty
+9 SlateportCity_EventScript_Gabby
+10 SlateportCity_EventScript_CaptStern
+11 SlateportCity_EventScript_Sailor1
+12 SlateportCity_EventScript_Sailor2
+13 SlateportCity_EventScript_PokefanF
+14 SlateportCity_EventScript_Man2
+15 SlateportCity_EventScript_Maniac
+16 SlateportCity_EventScript_Woman2
+17 SlateportCity_EventScript_AquaGrunt2
+18 SlateportCity_EventScript_AquaGrunt3
+19 SlateportCity_EventScript_DecorClerk
+20 SlateportCity_EventScript_DollClerk
+21 SlateportCity_EventScript_Man3
+22 SlateportCity_EventScript_EffortRibbonWoman
+23 SlateportCity_EventScript_PowerTMClerk
+24 SlateportCity_EventScript_EnergyGuru
+25 SlateportCity_EventScript_AquaGrunt4
+26 SlateportCity_EventScript_AquaGrunt5
+27 SlateportCity_EventScript_AquaGrunt6
+28 SlateportCity_EventScript_AquaGrunt7
+29 SlateportCity_EventScript_AquaGrunt8
+30 SlateportCity_EventScript_AquaGrunt9
+31 SlateportCity_EventScript_AquaGrunt10
+32 SlateportCity_EventScript_AquaGrunt11
+33 SlateportCity_EventScript_BerryPowderClerk
+triggers
+10 13 VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE 2 SlateportCity_EventScript_ScottBattleTentScene
+movements
+SlateportCity_Movement_DelayAquaGrunt	delay,delay,end
+SlateportCity_Movement_GabbyExit	delay,left,left,down,left,left,left,left,left,left,left,left,end
+SlateportCity_Movement_ManConcern	delay,delay,delay,delay,delay,delay,delay,end
+SlateportCity_Movement_OldWomanConcern	delay,delay,delay,delay,delay,delay,delay,end
+SlateportCity_Movement_PlayerEnterHarbor	delay,delay,delay,right,up,end
+SlateportCity_Movement_PlayerFaceStern	delay,delay,delay,delay,delay,delay,delay,delay,end
+SlateportCity_Movement_PlayerWatchScottExit	delay,delay,end
+SlateportCity_Movement_PushPlayerDown	delay,down,delay,end
+SlateportCity_Movement_ScottExitAfterBattleTent	right,right,right,right,right,right,right,right,end
+SlateportCity_Movement_ScottExitBattleTent	delay,down,end
+SlateportCity_Movement_SternEnterHarbor	right,up,up,delay,end
+SlateportCity_Movement_SternWatchGabbyAndTyExit	delay,delay,delay,delay,delay,down,left,end
+SlateportCity_Movement_TyExit	down,left,left,left,down,left,left,left,left,left,left,left,left,end
+SlateportCity_PokemartDecor	delay
+SlateportCity_PokemartDecor_Dolls	delay
+SlateportCity_Pokemart_EnergyGuru	delay
+SlateportCity_Pokemart_PowerTMs	delay,delay
+scriptdefs
+= SlateportCity_EventScript_ScottBattleTentScene
+lockall
+applymovement LOCALID_PLAYER Common_Movement_FaceUp
+waitmovement 0
+opendoor 10 12
+waitdooranim
+addobject LOCALID_SLATEPORT_SCOTT
+applymovement LOCALID_PLAYER SlateportCity_Movement_PushPlayerDown
+applymovement LOCALID_SLATEPORT_SCOTT SlateportCity_Movement_ScottExitBattleTent
+waitmovement 0
+closedoor 10 12
+waitdooranim
+msgbox	SCOTT: Oh, hey! If it isn't PLAYER!PLAYER, let me guess--you're going to take the BATTLE TENT challenge?Yeah! That's a good idea! That's a really great idea!After all, a tough TRAINER is the perfect fit for the BATTLE TENT!Give it your best effort!
+closemessage
+applymovement LOCALID_PLAYER SlateportCity_Movement_PlayerWatchScottExit
+applymovement LOCALID_SLATEPORT_SCOTT SlateportCity_Movement_ScottExitAfterBattleTent
+waitmovement 0
+removeobject LOCALID_SLATEPORT_SCOTT
+addvar VAR_SCOTT_STATE 1
+setvar VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE 3
+releaseall
+end
+= SlateportCity_EventScript_BerryPowderClerk
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_POWDER_JAR SlateportCity_EventScript_ReceivedPowderJar
+msgbox	If a wild POKéMON gets hurt, it heals itself by chewing on BERRIES.Did you know that?Somebody saw that and got the idea of making medicine from BERRIES.Did you know that?To turn BERRIES into medicine, they must be crushed into powder.Did you know that?You seem to have an interest in BERRIES!I've got something good for someone like you.
+giveitem ITEM_POWDER_JAR
+setflag FLAG_RECEIVED_POWDER_JAR
+msgbox	I recently had machines installed at POKéMON CENTERS for crushing BERRIES.The BERRY CRUSH machines are at the DIRECT CORNER upstairs.Did you know?Could you make BERRY POWDER for me using those machines?I can make you all sorts of medicine if you bring me lots of BERRY POWDER.
+release
+end
+= SlateportCity_EventScript_ReceivedPowderJar
+setvar VAR_0x8004 1
+specialvar VAR_RESULT HasEnoughBerryPowder
+goto_if_eq VAR_RESULT FALSE SlateportCity_EventScript_ExplainBerryPowder
+msgbox	Have you brought me some BERRY POWDER?
+special DisplayBerryPowderVendorMenu
+goto SlateportCity_EventScript_ChooseBerryPowderItem
+end
+= SlateportCity_EventScript_ChooseBerryPowderItem
+message SlateportCity_Text_ExchangeWhatWithIt
+waitmessage
+setvar VAR_0x8004 SCROLL_MULTI_BERRY_POWDER_VENDOR
+special ShowScrollableMultichoice
+switch VAR_RESULT
+case 0 SlateportCity_EventScript_EnergyPowder
+case 1 SlateportCity_EventScript_EnergyRoot
+case 2 SlateportCity_EventScript_HealPowder
+case 3 SlateportCity_EventScript_RevivalHerb
+case 4 SlateportCity_EventScript_Protein
+case 5 SlateportCity_EventScript_Iron
+case 6 SlateportCity_EventScript_Carbos
+case 7 SlateportCity_EventScript_Calcium
+case 8 SlateportCity_EventScript_Zinc
+case 9 SlateportCity_EventScript_HPUp
+case 10 SlateportCity_EventScript_PPUp
+case 11 SlateportCity_EventScript_CancelPowderItemSelect
+case MULTI_B_PRESSED SlateportCity_EventScript_CancelPowderItemSelect
+end
+= SlateportCity_EventScript_CancelPowderItemSelect
+msgbox	Come back if you'd like to trade your BERRY POWDER for some medicine.I'm always running a bazaar here.Did you know?
+special RemoveBerryPowderVendorMenu
+release
+end
+= SlateportCity_EventScript_PPUp
+bufferitemname STR_VAR_1 ITEM_PP_UP
+setvar VAR_0x8008 ITEM_PP_UP
+setvar VAR_0x8009 3000
+goto SlateportCity_EventScript_TryBuyBerryPowderItem
+end
+= SlateportCity_EventScript_TryBuyBerryPowderItem
+msgbox	Okay, you want to exchange your BERRY POWDER for one ?
+goto_if_eq VAR_RESULT NO SlateportCity_EventScript_ChooseBerryPowderItem
+copyvar VAR_0x8004 VAR_0x8009
+specialvar VAR_RESULT HasEnoughBerryPowder
+goto_if_eq VAR_RESULT FALSE SlateportCity_EventScript_NotEnoughBerryPowder
+giveitem VAR_0x8008
+goto_if_eq VAR_RESULT FALSE SlateportCity_EventScript_NoRoomForBerryPowderItem
+copyvar VAR_0x8004 VAR_0x8009
+special TakeBerryPowder
+special PrintPlayerBerryPowderAmount
+msgbox	This is fine BERRY POWDER. It will make excellent medicine.Would you like to trade more of your BERRY POWDER for something else?
+goto_if_eq VAR_RESULT YES SlateportCity_EventScript_ChooseBerryPowderItem
+msgbox	Okay! When you get some more BERRY POWDER, bring it to me, please!
+special RemoveBerryPowderVendorMenu
+release
+end
+= SlateportCity_EventScript_NoRoomForBerryPowderItem
+msgbox	gText_TheBagIsFull
+special RemoveBerryPowderVendorMenu
+release
+end
+= SlateportCity_EventScript_NotEnoughBerryPowder
+msgbox	Oh, dear. You don't have enough BERRY POWDER.
+goto SlateportCity_EventScript_ChooseBerryPowderItem
+end
+= SlateportCity_EventScript_HPUp
+bufferitemname STR_VAR_1 ITEM_HP_UP
+setvar VAR_0x8008 ITEM_HP_UP
+setvar VAR_0x8009 1000
+goto SlateportCity_EventScript_TryBuyBerryPowderItem
+end
+= SlateportCity_EventScript_Zinc
+bufferitemname STR_VAR_1 ITEM_ZINC
+setvar VAR_0x8008 ITEM_ZINC
+setvar VAR_0x8009 1000
+goto SlateportCity_EventScript_TryBuyBerryPowderItem
+end
+= SlateportCity_EventScript_Calcium
+bufferitemname STR_VAR_1 ITEM_CALCIUM
+setvar VAR_0x8008 ITEM_CALCIUM
+setvar VAR_0x8009 1000
+goto SlateportCity_EventScript_TryBuyBerryPowderItem
+end
+= SlateportCity_EventScript_Carbos
+bufferitemname STR_VAR_1 ITEM_CARBOS
+setvar VAR_0x8008 ITEM_CARBOS
+setvar VAR_0x8009 1000
+goto SlateportCity_EventScript_TryBuyBerryPowderItem
+end
+= SlateportCity_EventScript_Iron
+bufferitemname STR_VAR_1 ITEM_IRON
+setvar VAR_0x8008 ITEM_IRON
+setvar VAR_0x8009 1000
+goto SlateportCity_EventScript_TryBuyBerryPowderItem
+end
+= SlateportCity_EventScript_Protein
+bufferitemname STR_VAR_1 ITEM_PROTEIN
+setvar VAR_0x8008 ITEM_PROTEIN
+setvar VAR_0x8009 1000
+goto SlateportCity_EventScript_TryBuyBerryPowderItem
+end
+= SlateportCity_EventScript_RevivalHerb
+bufferitemname STR_VAR_1 ITEM_REVIVAL_HERB
+setvar VAR_0x8008 ITEM_REVIVAL_HERB
+setvar VAR_0x8009 300
+goto SlateportCity_EventScript_TryBuyBerryPowderItem
+end
+= SlateportCity_EventScript_HealPowder
+bufferitemname STR_VAR_1 ITEM_HEAL_POWDER
+setvar VAR_0x8008 ITEM_HEAL_POWDER
+setvar VAR_0x8009 50
+goto SlateportCity_EventScript_TryBuyBerryPowderItem
+end
+= SlateportCity_EventScript_EnergyRoot
+bufferitemname STR_VAR_1 ITEM_ENERGY_ROOT
+setvar VAR_0x8008 ITEM_ENERGY_ROOT
+setvar VAR_0x8009 80
+goto SlateportCity_EventScript_TryBuyBerryPowderItem
+end
+= SlateportCity_EventScript_EnergyPowder
+bufferitemname STR_VAR_1 ITEM_ENERGY_POWDER
+setvar VAR_0x8008 ITEM_ENERGY_POWDER
+setvar VAR_0x8009 50
+goto SlateportCity_EventScript_TryBuyBerryPowderItem
+end
+= SlateportCity_EventScript_ExplainBerryPowder
+msgbox	I recently had machines installed at POKéMON CENTERS for crushing BERRIES.The BERRY CRUSH machines are at the DIRECT CORNER upstairs.Did you know?Could you make BERRY POWDER for me using those machines?I can make you all sorts of medicine if you bring me lots of BERRY POWDER.
+release
+end
+= SlateportCity_EventScript_AquaGrunt11
+lock
+faceplayer
+msgbox	When this operation's over, I'll take you to a hot spring spa!That's what our leader said. I can't wait!
+closemessage
+applymovement LOCALID_SLATEPORT_GRUNT_11 Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= SlateportCity_EventScript_AquaGrunt10
+msgbox	Grumble…I should've brought my Game Boy Advance so I wouldn't get bored in line…Grumble…
+end
+= SlateportCity_EventScript_AquaGrunt9
+lock
+faceplayer
+playse SE_PIN
+applymovement LOCALID_SLATEPORT_GRUNT_9 Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_SLATEPORT_GRUNT_9 Common_Movement_Delay48
+waitmovement 0
+msgbox	What? What do you want?
+closemessage
+applymovement LOCALID_SLATEPORT_GRUNT_9 Common_Movement_FaceOriginalDirection
+waitmovement 0
+applymovement LOCALID_SLATEPORT_GRUNT_9 SlateportCity_Movement_DelayAquaGrunt
+waitmovement 0
+applymovement LOCALID_SLATEPORT_GRUNT_9 Common_Movement_FacePlayer
+waitmovement 0
+msgbox	You want to read this sign? I'll read it for you!
+closemessage
+applymovement LOCALID_SLATEPORT_GRUNT_9 Common_Movement_FaceOriginalDirection
+waitmovement 0
+applymovement LOCALID_SLATEPORT_GRUNT_9 SlateportCity_Movement_DelayAquaGrunt
+waitmovement 0
+msgbox	Let's see…Um… I think it says something like “the life in the sea is endless.”Yup, I'm pretty sure that's what it says.
+closemessage
+applymovement LOCALID_SLATEPORT_GRUNT_9 Common_Movement_FacePlayer
+waitmovement 0
+applymovement LOCALID_SLATEPORT_GRUNT_9 SlateportCity_Movement_DelayAquaGrunt
+waitmovement 0
+applymovement LOCALID_SLATEPORT_GRUNT_9 Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= SlateportCity_EventScript_AquaGrunt8
+lock
+faceplayer
+msgbox	Why are we even lining up and paying? We should just march in!
+closemessage
+applymovement LOCALID_SLATEPORT_GRUNT_8 Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= SlateportCity_EventScript_AquaGrunt7
+lock
+faceplayer
+msgbox	A long line, huh?It reminds me of the times I lined up to buy smash-hit games…
+closemessage
+applymovement LOCALID_SLATEPORT_GRUNT_7 Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= SlateportCity_EventScript_AquaGrunt6
+lock
+faceplayer
+msgbox	Hey, you there! Don't butt in!
+closemessage
+applymovement LOCALID_SLATEPORT_GRUNT_6 Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= SlateportCity_EventScript_AquaGrunt5
+lock
+faceplayer
+msgbox	If there's something we need in the MUSEUM, we should take it all!
+closemessage
+applymovement LOCALID_SLATEPORT_GRUNT_5 Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= SlateportCity_EventScript_AquaGrunt4
+lock
+faceplayer
+msgbox	What's the new scheme, I wonder?Our BOSS is scary when he's mad, so I'd better not screw things up…
+closemessage
+applymovement LOCALID_SLATEPORT_GRUNT_4 Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= SlateportCity_EventScript_EnergyGuru
+lock
+faceplayer
+message SlateportCity_Text_EnergyGuruSellWhatYouNeed
+waitmessage
+pokemart SlateportCity_Pokemart_EnergyGuru
+msgbox	gText_PleaseComeAgain
+release
+end
+= SlateportCity_EventScript_PowerTMClerk
+lock
+faceplayer
+message gText_HowMayIServeYou
+waitmessage
+pokemart SlateportCity_Pokemart_PowerTMs
+msgbox	gText_PleaseComeAgain
+release
+end
+= SlateportCity_EventScript_EffortRibbonWoman
+lock
+faceplayer
+bufferleadmonspeciesname STR_VAR_1
+msgbox	Oh? Your …
+specialvar VAR_RESULT LeadMonHasEffortRibbon
+call_if_eq VAR_RESULT TRUE SlateportCity_EventScript_MonHasEffortRibbon
+specialvar VAR_RESULT Special_AreLeadMonEVsMaxedOut
+call_if_eq VAR_RESULT FALSE SlateportCity_EventScript_MonEVsNotMaxed
+msgbox	Went for it stupendously!As its reward, please give it this EFFORT RIBBON.
+playfanfare MUS_OBTAIN_ITEM
+message SlateportCity_Text_ReceivedEffortRibbon
+waitfanfare
+msgbox	PLAYER put the EFFORT RIBBON on .
+special GiveLeadMonEffortRibbon
+release
+end
+= SlateportCity_EventScript_MonEVsNotMaxed
+msgbox	You have to go for it a little harder.If you do, I'll give your POKéMON something nice.
+release
+end
+= SlateportCity_EventScript_MonHasEffortRibbon
+msgbox	Oh! Your , that EFFORT RIBBON looks good on it!
+release
+end
+= SlateportCity_EventScript_Man3
+msgbox	The light of the lighthouse reaches dozens of miles away.I wonder if it doesn't startle POKéMON in the sea.
+end
+= SlateportCity_EventScript_DollClerk
+lock
+faceplayer
+message gText_HowMayIServeYou
+waitmessage
+pokemartdecoration SlateportCity_PokemartDecor_Dolls
+msgbox	gText_PleaseComeAgain
+release
+end
+= SlateportCity_EventScript_DecorClerk
+lock
+faceplayer
+goto_if_unset FLAG_RECEIVED_SECRET_POWER SlateportCity_EventScript_ComeBackWithSecretPower
+message gText_HowMayIServeYou
+waitmessage
+pokemartdecoration SlateportCity_PokemartDecor
+msgbox	gText_PleaseComeAgain
+release
+end
+= SlateportCity_EventScript_ComeBackWithSecretPower
+msgbox	gText_ComeBackWithSecretPower
+release
+end
+= SlateportCity_EventScript_AquaGrunt3
+lock
+faceplayer
+msgbox	Our BOSS is brilliant.What would he want to do with a MUSEUM now?
+closemessage
+applymovement LOCALID_SLATEPORT_GRUNT_3 Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= SlateportCity_EventScript_AquaGrunt2
+lock
+faceplayer
+msgbox	TEAM AQUA has a policy of assembling and dispersing at the operation site.
+closemessage
+applymovement LOCALID_SLATEPORT_GRUNT_2 Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= SlateportCity_EventScript_Woman2
+msgbox	Any POKéMON you get in a trade, you can't change its nickname.The original TRAINER's love for that POKéMON is in the nickname.
+end
+= SlateportCity_EventScript_Maniac
+lock
+faceplayer
+call_if_eq VAR_SLATEPORT_CITY_STATE 1 SlateportCity_EventScript_ManiacSternInterview
+msgbox	If you want to change your POKéMON's nickname, you'll have to get the NAME RATER to help you.
+release
+end
+@ Unclear if the text here was meant to be different but its not
+= SlateportCity_EventScript_ManiacSternInterview
+msgbox	If you want to change your POKéMON's nickname, you'll have to get the NAME RATER to help you.
+release
+end
+= SlateportCity_EventScript_Man2
+msgbox	Recently, a BATTLE TENT was built in SLATEPORT.GYMS are fun, but the BATTLE TENT's awesome in its own way.You should go find tough POKéMON for the BATTLE TENT!
+end
+= SlateportCity_EventScript_PokefanF
+msgbox	Whenever I visit here, I get carried away and buy too much.
+end
+= SlateportCity_EventScript_Sailor2
+msgbox	Do you know what they do with old ships that become too creaky to sail?They sink them in the sea so they become habitats for POKéMON.
+end
+= SlateportCity_EventScript_Sailor1
+msgbox	The sea is just so vast…Could the sea have been made by the tears shed by POKéMON?
+end
+= SlateportCity_EventScript_CaptStern
+lockall
+msgbox	CAPT. STERN: Yes, indeed. We intend to move ahead with our exploration.
+msgbox	GABBY: That's wonderful, CAPT. STERN! Thank you for taking the time from your busy schedule to talk to us.We hope we can interview you again with news of more discoveries!
+closemessage
+applymovement LOCALID_SLATEPORT_GABBY Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+delay 10
+applymovement LOCALID_SLATEPORT_TY Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+delay 25
+applymovement LOCALID_SLATEPORT_CAPT_STERN SlateportCity_Movement_SternWatchGabbyAndTyExit
+applymovement LOCALID_PLAYER SlateportCity_Movement_PlayerFaceStern
+applymovement LOCALID_SLATEPORT_GABBY SlateportCity_Movement_GabbyExit
+applymovement LOCALID_SLATEPORT_TY SlateportCity_Movement_TyExit
+waitmovement 0
+removeobject LOCALID_SLATEPORT_GABBY
+removeobject LOCALID_SLATEPORT_TY
+msgbox	CAPT. STERN: Whew…That was my first time to be filmed for TV. That was nerve-wracking.
+applymovement LOCALID_SLATEPORT_CAPT_STERN Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+msgbox	Oh! PLAYER! You're looking great!We made a huge discovery on our last seafloor exploration.We found an underwater cavern on ROUTE 128.We think it's the habitat of a POKéMON that's said to have been long extinct.
+playbgm MUS_ENCOUNTER_AQUA FALSE
+msgbox	Fufufu… CAPT. STERN, I presume.We of TEAM AQUA will assume control of your submarine!Your objections are meaningless! We expect your total cooperation!Fufufu… Just watch and learn what TEAM AQUA has planned!
+applymovement LOCALID_SLATEPORT_COOK Common_Movement_WalkInPlaceFasterLeft
+applymovement LOCALID_SLATEPORT_FAT_MAN Common_Movement_WalkInPlaceFasterLeft
+applymovement LOCALID_SLATEPORT_OLD_WOMAN SlateportCity_Movement_OldWomanConcern
+applymovement LOCALID_SLATEPORT_RICH_BOY Common_Movement_QuestionMark
+applymovement LOCALID_SLATEPORT_MAN_1 SlateportCity_Movement_ManConcern
+waitmovement 0
+applymovement LOCALID_SLATEPORT_CAPT_STERN Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+msgbox	CAPT. STERN: What was that all about?It sounded like someone using a megaphone…Where did it come from?
+playse SE_PIN
+applymovement LOCALID_SLATEPORT_CAPT_STERN Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_SLATEPORT_CAPT_STERN Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_SLATEPORT_CAPT_STERN Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+msgbox	It's from the HARBOR!The submarine! They're trying to take it!
+msgbox	PLAYER! Please, come with me!
+closemessage
+applymovement LOCALID_SLATEPORT_CAPT_STERN SlateportCity_Movement_SternEnterHarbor
+applymovement LOCALID_PLAYER SlateportCity_Movement_PlayerEnterHarbor
+waitmovement 0
+removeobject LOCALID_SLATEPORT_CAPT_STERN
+clearflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_CAPTAIN_STERN
+clearflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_SUBMARINE_SHADOW
+clearflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_AQUA_GRUNT
+clearflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_ARCHIE
+setvar VAR_SLATEPORT_CITY_STATE 2
+warp MAP_SLATEPORT_CITY_HARBOR 11 14
+waitstate
+releaseall
+end
+= SlateportCity_EventScript_Gabby
+msgbox	GABBY: I see, I see. You've had a most invaluable experience…
+end
+= SlateportCity_EventScript_Ty
+msgbox	TY: Okay, CAPT. STERN, a big smile for the camera!
+end
+= SlateportCity_EventScript_Girl
+lock
+faceplayer
+call_if_eq VAR_SLATEPORT_CITY_STATE 1 SlateportCity_EventScript_GirlSternInterview
+goto_if_set FLAG_RECEIVED_SECRET_POWER SlateportCity_EventScript_GirlSecretBase
+msgbox	Shopping where you can breathe the scent of the ocean…SLATEPORT is such a wonderful place!
+release
+end
+= SlateportCity_EventScript_GirlSecretBase
+msgbox	If you put DOLLS or CUSHIONS on the floor, they'll get dirty.I'm going to buy some BRICKS so my DOLLS and CUSHIONS won't get dirty when I leave them out.
+release
+end
+= SlateportCity_EventScript_GirlSternInterview
+msgbox	That lady interviewer is so cool and pretty.When I grow up, I'm going to be an international journalist!
+release
+end
+= SlateportCity_EventScript_OldWoman
+lock
+faceplayer
+call_if_eq VAR_SLATEPORT_CITY_STATE 1 SlateportCity_EventScript_OldWomanSternInterview
+msgbox	Where the water is clean, the fruits of bountiful harvest gather.And where people gather, a market soon starts.That is how a town is born and grows.
+release
+end
+= SlateportCity_EventScript_OldWomanSternInterview
+msgbox	I was hoping that it was a famous star so I could get an autograph.But who's that being interviewed? Isn't that CAPT. STERN?
+release
+end
+= SlateportCity_EventScript_Cook
+lock
+faceplayer
+call_if_eq VAR_SLATEPORT_CITY_STATE 1 SlateportCity_EventScript_CookSternInterview
+msgbox	Ooh, look at this!The seaweed you can get around these parts is fresh and full of life.Why, it looks like it can even rear up and attack!
+release
+end
+= SlateportCity_EventScript_CookSternInterview
+msgbox	What's going on here?Did the good CAPTAIN come back with a big fish from the ocean floor?
+release
+end
+= SlateportCity_EventScript_AquaGrunt1
+lock
+faceplayer
+msgbox	Hey, there! Quit pushing! This is the line, can't you see?
+closemessage
+applymovement LOCALID_SLATEPORT_GRUNT_1 Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= SlateportCity_EventScript_Woman1
+lock
+faceplayer
+goto_if_set FLAG_DOCK_REJECTED_DEVON_GOODS SlateportCity_EventScript_Woman1AquaGone
+msgbox	What is that over there? That long line…
+release
+end
+= SlateportCity_EventScript_Woman1AquaGone
+msgbox	When I was a child, I visited the MUSEUM often.I used to dream about the mysteries of the sea after seeing the exhibits.
+release
+end
+= SlateportCity_EventScript_RichBoy
+lock
+faceplayer
+call_if_eq VAR_SLATEPORT_CITY_STATE 1 SlateportCity_EventScript_RichBoySternInterview
+msgbox	Wroooar! I'm going to compete in the BATTLE TENT, too!But before that, I need to catch some POKéMON!
+release
+end
+= SlateportCity_EventScript_RichBoySternInterview
+msgbox	CAPT. STERN says they discovered something at the bottom of the sea.I wonder what it is? What could it be?
+release
+end
+= SlateportCity_EventScript_Man1
+lock
+faceplayer
+call_if_eq VAR_SLATEPORT_CITY_STATE 1 SlateportCity_EventScript_Man1SternInterview
+msgbox	STERN, the fellow who built the MUSEUM, also happens to be the leader of an undersea exploration team.So, everyone calls him CAPT. STERN.
+release
+end
+= SlateportCity_EventScript_Man1SternInterview
+msgbox	A TV interview! Here! The CAPTAIN's a celebrity!
+release
+end
+= SlateportCity_EventScript_FatMan
+goto_if_eq VAR_SLATEPORT_CITY_STATE 1 SlateportCity_EventScript_FatManSternInterview
+msgbox	Whew… I'm just bushed…I hiked over from MAUVILLE CITY. But, boy, this city's huge.If I'd known this, I would've ridden my BIKE here.
+end
+= SlateportCity_EventScript_FatManSternInterview
+msgbox	Hey! Are you watching? Am I on TV?
+end
 signs
 8 19	NAME RATER'S HOUSE “POKéMON nicknames rated.”
 24 12	SLATEPORT HARBOR“The ferry S.S. TIDAL is under construction in the SHIPYARD.“Service is scheduled to begin shortly.”

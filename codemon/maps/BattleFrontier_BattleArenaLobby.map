@@ -42,5 +42,31 @@ dialogs
 2	I won in judging!Landing hits consistently on the opponent's POKéMON worked!
 3	Our match was declared a draw.When we ran out of time, both my POKéMON and the opponent's had about the same amount of HP left.
 4	I lost on the REFEREE's decision…I don't think it was a good idea to only use defensive moves and not attack…
+objscripts
+0 BattleFrontier_BattleArenaLobby_EventScript_Attendant
+1 BattleFrontier_BattleArenaLobby_EventScript_Woman
+2 BattleFrontier_BattleArenaLobby_EventScript_Man
+3 BattleFrontier_BattleArenaLobby_EventScript_Camper
+4 BattleFrontier_BattleArenaLobby_EventScript_Youngster
+scriptdefs
+= BattleFrontier_BattleArenaLobby_EventScript_Youngster
+msgbox	I lost on the REFEREE's decision…I don't think it was a good idea to only use defensive moves and not attack…
+end
+= BattleFrontier_BattleArenaLobby_EventScript_Camper
+msgbox	Our match was declared a draw.When we ran out of time, both my POKéMON and the opponent's had about the same amount of HP left.
+end
+= BattleFrontier_BattleArenaLobby_EventScript_Man
+msgbox	I won in judging!Landing hits consistently on the opponent's POKéMON worked!
+end
+= BattleFrontier_BattleArenaLobby_EventScript_Woman
+msgbox	In the BATTLE ARENA, the order of POKéMON is totally important.For example, if your first POKéMON has certain type disadvantages, try making your second POKéMON one with moves that are super effective against the first one.I think that will be a good way of making an effective team.
+end
+= BattleFrontier_BattleArenaLobby_EventScript_Attendant
+lock
+faceplayer
+setvar VAR_FRONTIER_FACILITY FRONTIER_FACILITY_ARENA
+setvar VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES
+special SavePlayerParty
+msgbox	Where the battling spirit of TRAINERS is put to the test!I welcome you to the BATTLE ARENA!I am your guide to the Set KO Tourney!
 signs
 1 7	The Set KO Tourney's rules are listed.

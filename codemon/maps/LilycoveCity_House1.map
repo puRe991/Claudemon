@@ -29,3 +29,19 @@ pokemon_kecleon 4 4 S static
 dialogs
 0	POKéMON are partners to people. They aren't our tools.Unfortunately, there are some people who fail to understand that…
 1	KECLEON: Ruroro?
+objscripts
+0 LilycoveCity_House1_EventScript_ExpertM
+1 LilycoveCity_House1_EventScript_Kecleon
+scriptdefs
+= LilycoveCity_House1_EventScript_Kecleon
+lock
+faceplayer
+waitse
+playmoncry SPECIES_KECLEON CRY_MODE_NORMAL
+msgbox	KECLEON: Ruroro?
+waitmoncry
+release
+end
+= LilycoveCity_House1_EventScript_ExpertM
+msgbox	POKéMON are partners to people. They aren't our tools.Unfortunately, there are some people who fail to understand that…
+end

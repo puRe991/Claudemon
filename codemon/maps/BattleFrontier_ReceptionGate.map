@@ -44,3 +44,156 @@ dialogs
 1	I'm your guide to the various facilities here in the BATTLE FRONTIER.
 2	I'm your guide to the basic rules that are common to all the challenges offered by the facilities in the BATTLE FRONTIER.
 4	I'm your guide to the FRONTIER PASS.
+objscripts
+0 BattleFrontier_ReceptionGate_EventScript_Greeter
+1 BattleFrontier_ReceptionGate_EventScript_FacilityGuide
+2 BattleFrontier_ReceptionGate_EventScript_RulesGuide
+4 BattleFrontier_ReceptionGate_EventScript_FrontierPassGuide
+scriptdefs
+= BattleFrontier_ReceptionGate_EventScript_FrontierPassGuide
+lock
+faceplayer
+msgbox	I'm your guide to the FRONTIER PASS.
+goto BattleFrontier_ReceptionGate_EventScript_ChooseFrontierPassInfoToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_ChooseFrontierPassInfoToLearnAbout
+message BattleFrontier_ReceptionGate_Text_LearnAboutWhich1
+waitmessage
+multichoice 16 4 MULTI_FRONTIER_PASS_INFO FALSE
+switch VAR_RESULT
+case 0 BattleFrontier_ReceptionGate_EventScript_Symbols
+case 1 BattleFrontier_ReceptionGate_EventScript_RecordBattle
+case 2 BattleFrontier_ReceptionGate_EventScript_BattlePoints
+case 3 BattleFrontier_ReceptionGate_EventScript_ExitFrontierPassGuide
+case MULTI_B_PRESSED BattleFrontier_ReceptionGate_EventScript_ExitFrontierPassGuide
+end
+= BattleFrontier_ReceptionGate_EventScript_ExitFrontierPassGuide
+msgbox	We hope you enjoy all that the BATTLE FRONTIER has to offer!
+release
+end
+= BattleFrontier_ReceptionGate_EventScript_BattlePoints
+msgbox	Battle Points are rewards given to TRAINERS who battled outstandingly at the BATTLE FRONTIER.You may trade in your Battle Points for prizes at the EXCHANGE SERVICE CORNER.
+goto BattleFrontier_ReceptionGate_EventScript_ChooseFrontierPassInfoToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_RecordBattle
+msgbox	It is possible to record one battle on your FRONTIER PASS.You may record a battle you had with a friend or friends.Or you may record a battle conducted at the BATTLE FRONTIER excluding matches at the BATTLE PIKE or the BATTLE PYRAMID.You may choose to record your match at the end of a battle.
+goto BattleFrontier_ReceptionGate_EventScript_ChooseFrontierPassInfoToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_Symbols
+msgbox	There are seven facilities at the BATTLE FRONTIER.TRAINERS who gain recognition for their abilities may be rewarded with symbols from each of the facilities.To earn a symbol, TRAINERS may need to defeat other TRAINERS in a row, and may need to win events repeatedly.It's certainly not easy to win symbols. I wish you the best of luck!
+goto BattleFrontier_ReceptionGate_EventScript_ChooseFrontierPassInfoToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_RulesGuide
+lock
+faceplayer
+msgbox	I'm your guide to the basic rules that are common to all the challenges offered by the facilities in the BATTLE FRONTIER.
+goto BattleFrontier_ReceptionGate_EventScript_ChooseRuleToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_ChooseRuleToLearnAbout
+message BattleFrontier_ReceptionGate_Text_LearnAboutWhat
+waitmessage
+multichoice 15 0 MULTI_FRONTIER_RULES FALSE
+switch VAR_RESULT
+case 0 BattleFrontier_ReceptionGate_EventScript_LevelMode
+case 1 BattleFrontier_ReceptionGate_EventScript_Level50
+case 2 BattleFrontier_ReceptionGate_EventScript_OpenLevel
+case 3 BattleFrontier_ReceptionGate_EventScript_MonEntry
+case 4 BattleFrontier_ReceptionGate_EventScript_HoldItems
+case 5 BattleFrontier_ReceptionGate_EventScript_ExitRulesGuide
+case MULTI_B_PRESSED BattleFrontier_ReceptionGate_EventScript_ExitRulesGuide
+end
+= BattleFrontier_ReceptionGate_EventScript_ExitRulesGuide
+msgbox	We hope you enjoy all that the BATTLE FRONTIER has to offer!
+release
+end
+= BattleFrontier_ReceptionGate_EventScript_HoldItems
+msgbox	When entering a challenge at a BATTLE FRONTIER facility, POKéMON may not be holding the same kind of item.Please make sure that all POKéMON entering a challenge are holding different items.
+goto BattleFrontier_ReceptionGate_EventScript_ChooseRuleToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_MonEntry
+msgbox	Virtually any kind of POKéMON may take on the challenges at all facilities.EGGS and certain kinds of POKéMON, however, are not permitted.The numbers of POKéMON required for challenges will depend on the facility.At all facilities, however, two or more of the same kind of POKéMON are not permitted.
+goto BattleFrontier_ReceptionGate_EventScript_ChooseRuleToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_OpenLevel
+msgbox	The Open Level course places no limit on the levels of POKéMON entering challenges.The levels of your opponents will be adjusted to match the levels of your POKéMON.However, no TRAINER you face will have any POKéMON below Level 60.
+goto BattleFrontier_ReceptionGate_EventScript_ChooseRuleToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_Level50
+msgbox	The Level 50 course is open to POKéMON up to and including Level 50.Please keep in mind, however, that no TRAINER you face will have any POKéMON below Level 50.This course is the entry level for battles at the BATTLE FRONTIER.To begin, we hope you will challenge this course.
+goto BattleFrontier_ReceptionGate_EventScript_ChooseRuleToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_LevelMode
+msgbox	All the challenges at the BATTLE FRONTIER's facilities come in two courses--Level 50 and Open Level.
+goto BattleFrontier_ReceptionGate_EventScript_ChooseRuleToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_FacilityGuide
+lock
+faceplayer
+msgbox	I'm your guide to the various facilities here in the BATTLE FRONTIER.
+goto BattleFrontier_ReceptionGate_EventScript_ChooseFacilityToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_ChooseFacilityToLearnAbout
+message BattleFrontier_ReceptionGate_Text_LearnAboutWhich2
+waitmessage
+setvar VAR_0x8004 SCROLL_MULTI_BF_RECEPTIONIST
+special ShowScrollableMultichoice
+switch VAR_RESULT
+case 0 BattleFrontier_ReceptionGate_EventScript_BattleTower
+case 1 BattleFrontier_ReceptionGate_EventScript_BattleDome
+case 2 BattleFrontier_ReceptionGate_EventScript_BattlePalace
+case 3 BattleFrontier_ReceptionGate_EventScript_BattleArena
+case 4 BattleFrontier_ReceptionGate_EventScript_BattleFactory
+case 5 BattleFrontier_ReceptionGate_EventScript_BattlePike
+case 6 BattleFrontier_ReceptionGate_EventScript_BattlePyramid
+case 7 BattleFrontier_ReceptionGate_EventScript_RankingHall
+case 8 BattleFrontier_ReceptionGate_EventScript_ExchangeCorner
+case 9 BattleFrontier_ReceptionGate_EventScript_ExitFacilityGuide
+case MULTI_B_PRESSED BattleFrontier_ReceptionGate_EventScript_ExitFacilityGuide
+end
+= BattleFrontier_ReceptionGate_EventScript_ExitFacilityGuide
+msgbox	We hope you enjoy all that the BATTLE FRONTIER has to offer!
+release
+end
+= BattleFrontier_ReceptionGate_EventScript_ExchangeCorner
+msgbox	The EXCHANGE SERVICE CORNER is near the BATTLE TOWER.The Battle Points you have earned in the BATTLE FRONTIER may be exchanged for fabulous prizes there.
+goto BattleFrontier_ReceptionGate_EventScript_ChooseFacilityToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_RankingHall
+msgbox	The RANKING HALL is located near the BATTLE TOWER.There, you may see the most fantastic records left by the TRAINERS that took on the many challenges of the BATTLE FRONTIER.
+goto BattleFrontier_ReceptionGate_EventScript_ChooseFacilityToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_BattlePyramid
+msgbox	The BATTLE PYRAMID is the enormous pyramid.An event called the Battle Quest is conducted there.
+goto BattleFrontier_ReceptionGate_EventScript_ChooseFacilityToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_BattlePike
+msgbox	The BATTLE PIKE is the building shaped like a POKéMON at the center-left of the BATTLE FRONTIER.An event called the Battle Choice is conducted there.
+goto BattleFrontier_ReceptionGate_EventScript_ChooseFacilityToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_BattleFactory
+msgbox	The BATTLE FACTORY is the large building that is the closest to us.An event called the Battle Swap is conducted there.The Battle Swap event is offered in two courses for SINGLE and DOUBLE BATTLES.
+goto BattleFrontier_ReceptionGate_EventScript_ChooseFacilityToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_BattleArena
+msgbox	The BATTLE ARENA is the dojo-like building at the center-right of the BATTLE FRONTIER.An event called the Set KO Tourney takes place at the BATTLE ARENA.
+goto BattleFrontier_ReceptionGate_EventScript_ChooseFacilityToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_BattlePalace
+msgbox	The BATTLE PALACE is the red building on the right of the BATTLE FRONTIER.There are two kinds of BATTLE HALLS for SINGLE and DOUBLE BATTLES.
+goto BattleFrontier_ReceptionGate_EventScript_ChooseFacilityToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_BattleDome
+msgbox	The BATTLE DOME is the large building shaped like a huge egg.Events named Battle Tourneys are held in this facility.The Battle Tourneys are offered in two courses--for SINGLE and DOUBLE BATTLES.
+goto BattleFrontier_ReceptionGate_EventScript_ChooseFacilityToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_BattleTower
+msgbox	It is the gigantic tower considered to be the BATTLE FRONTIER's symbol.There are four kinds of BATTLE ROOMS in the tower for SINGLE, DOUBLE, MULTI, and LINK MULTI BATTLES.
+goto BattleFrontier_ReceptionGate_EventScript_ChooseFacilityToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_Greeter
+lock
+faceplayer
+msgbox	The front lines of POKéMON battling! Welcome to the BATTLE FRONTIER!
+msgbox	We hope you enjoy all that the BATTLE FRONTIER has to offer!
+release
+end

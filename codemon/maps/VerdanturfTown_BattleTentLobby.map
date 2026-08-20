@@ -38,3 +38,86 @@ dialogs
 3	If it doesn't like a certain move, a POKéMON will be reluctant to use it.It doesn't matter how strong it is, either.For example, a POKéMON with a GENTLE nature probably won't enjoy hurting its opponents.If it can't seem to live up to its potential, it's probably failing at using a disliked move against its will.
 4	SCOTT: Hey there, PLAYER! I thought I might see you here.A BATTLE TENT's a place where you can meet tough TRAINERS.It doesn't matter what the rules are, or how battles are waged, either.PLAYER, I expect you to do the best you can!
 5	My big sister is gentle usually. But when she gets angry, she's really, really scary!I bet a gentle POKéMON will be scary if it gets angry!
+objscripts
+0 VerdanturfTown_BattleTentLobby_EventScript_Attendant
+1 VerdanturfTown_BattleTentLobby_EventScript_AttractGiver
+2 VerdanturfTown_BattleTentLobby_EventScript_Boy1
+3 VerdanturfTown_BattleTentLobby_EventScript_Boy2
+4 VerdanturfTown_BattleTentLobby_EventScript_Scott
+5 VerdanturfTown_BattleTentLobby_EventScript_LittleBoy
+scriptdefs
+= VerdanturfTown_BattleTentLobby_EventScript_LittleBoy
+lock
+msgbox	My big sister is gentle usually. But when she gets angry, she's really, really scary!I bet a gentle POKéMON will be scary if it gets angry!
+release
+end
+= VerdanturfTown_BattleTentLobby_EventScript_Scott
+lock
+faceplayer
+goto_if_set FLAG_MET_SCOTT_IN_VERDANTURF VerdanturfTown_BattleTentLobby_EventScript_ScottAlreadySpokenTo
+msgbox	SCOTT: Hey there, PLAYER! I thought I might see you here.A BATTLE TENT's a place where you can meet tough TRAINERS.It doesn't matter what the rules are, or how battles are waged, either.PLAYER, I expect you to do the best you can!
+addvar VAR_SCOTT_STATE 1
+setflag FLAG_MET_SCOTT_IN_VERDANTURF
+release
+end
+= VerdanturfTown_BattleTentLobby_EventScript_ScottAlreadySpokenTo
+msgbox	SCOTT: I visit here regularly in hopes of seeing tough TRAINERS in action in whatever the situation.
+release
+end
+= VerdanturfTown_BattleTentLobby_EventScript_Boy2
+lock
+msgbox	If it doesn't like a certain move, a POKéMON will be reluctant to use it.It doesn't matter how strong it is, either.For example, a POKéMON with a GENTLE nature probably won't enjoy hurting its opponents.If it can't seem to live up to its potential, it's probably failing at using a disliked move against its will.
+release
+end
+= VerdanturfTown_BattleTentLobby_EventScript_Boy1
+msgbox	What kind of moves have you taught your POKéMON?I think you would give yourself an advantage if they knew how to heal or protect themselves.
+end
+= VerdanturfTown_BattleTentLobby_EventScript_AttractGiver
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_TM_ATTRACT VerdanturfTown_BattleTentLobby_EventScript_ReceivedAttract
+msgbox	My feelings toward my POKéMON… The attraction runs deep…Oh, hi, you didn't see that, did you? Well, it doesn't matter.How would you like this TM for your POKéMON?
+giveitem ITEM_TM_ATTRACT
+goto_if_eq VAR_RESULT 0 Common_EventScript_ShowBagIsFull
+setflag FLAG_RECEIVED_TM_ATTRACT
+msgbox	My feelings toward my POKéMON… I'm sure the attraction is mutual!They battle exactly the way I want them to!
+release
+end
+= VerdanturfTown_BattleTentLobby_EventScript_ReceivedAttract
+msgbox	My feelings toward my POKéMON… I'm sure the attraction is mutual!They battle exactly the way I want them to!
+release
+end
+= VerdanturfTown_BattleTentLobby_EventScript_Attendant
+lock
+faceplayer
+verdanturftent_getprize
+goto_if_ne VAR_RESULT ITEM_NONE VerdanturfTown_BattleTentLobby_EventScript_PrizeWaiting
+special SavePlayerParty
+msgbox	VerdanturfTown_BattleTentLobby_Text_WelcomeToBattleTent
+= VerdanturfTown_BattleTentLobby_EventScript_PrizeWaiting
+lockall
+msgbox	VerdanturfTown_BattleTentLobby_Text_AchievedThreeWinStreak
+goto VerdanturfTown_BattleTentLobby_EventScript_GivePrize
+end
+= VerdanturfTown_BattleTentLobby_EventScript_GivePrize
+msgbox	VerdanturfTown_BattleTentLobby_Text_PresentYouWithPrize
+verdanturftent_giveprize
+switch VAR_RESULT
+case FALSE VerdanturfTown_BattleTentLobby_EventScript_NoRoomForPrize
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
+message BattleFrontier_BattleDomeLobby_Text_ReceivedPrize  @ Odd that it used Dome's copy instead of Palace's
+waitmessage
+playfanfare MUS_OBTAIN_ITEM
+waitfanfare
+msgbox	VerdanturfTown_BattleTentLobby_Text_ReturnFortified
+closemessage
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+releaseall
+end
+= VerdanturfTown_BattleTentLobby_EventScript_NoRoomForPrize
+msgbox	BattleFrontier_BattlePalaceLobby_Text_NoSpaceForPrize
+waitmessage
+closemessage
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+releaseall
+end

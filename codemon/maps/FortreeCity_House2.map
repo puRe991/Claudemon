@@ -22,3 +22,42 @@ people_expert_f 2 3 S wander
 people_expert_m 6 3 W static
 dialogs
 0	Let this old woman see if your hidden power has awoken…I hold a coin in my hand.Now, tell me, have I palmed it in the right hand? Or in the left?
+objscripts
+0 FortreeCity_House2_EventScript_HiddenPowerGiver
+scriptdefs
+= FortreeCity_House2_EventScript_HiddenPowerGiver
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_TM_HIDDEN_POWER FortreeCity_House2_EventScript_ExplainHiddenPower
+call_if_unset FLAG_MET_HIDDEN_POWER_GIVER FortreeCity_House2_EventScript_Greeting
+msgbox	Let this old woman see if your hidden power has awoken…I hold a coin in my hand.Now, tell me, have I palmed it in the right hand? Or in the left?
+multichoice 21 8 MULTI_RIGHTLEFT TRUE
+switch VAR_RESULT
+case 1 FortreeCity_House2_EventScript_WrongGuess
+msgbox	Oh! Yes, correct!We shall try again.In which hand have I palmed the coin? The right or left?
+multichoice 21 8 MULTI_RIGHTLEFT TRUE
+switch VAR_RESULT
+case 1 FortreeCity_House2_EventScript_WrongGuess
+msgbox	Oh! Yes, correct!We shall try again.In which hand have I palmed the coin? The right or left?
+multichoice 21 8 MULTI_RIGHTLEFT TRUE
+switch VAR_RESULT
+case 0 FortreeCity_House2_EventScript_WrongGuess
+msgbox	Oh! Splendid! Your hidden power has awoken!Here, take this and awaken the hidden power of your POKéMON.
+giveitem ITEM_TM_HIDDEN_POWER
+goto_if_eq VAR_RESULT 0 Common_EventScript_ShowBagIsFull
+setflag FLAG_RECEIVED_TM_HIDDEN_POWER
+msgbox	HIDDEN POWER is a move that changes with the POKéMON.
+release
+end
+= FortreeCity_House2_EventScript_WrongGuess
+msgbox	No, too bad. You guessed wrong.
+release
+end
+= FortreeCity_House2_EventScript_Greeting
+msgbox	People… POKéMON…Their hidden powers are aroused by living in natural environments…
+setflag FLAG_MET_HIDDEN_POWER_GIVER
+return
+= FortreeCity_House2_EventScript_ExplainHiddenPower
+msgbox	HIDDEN POWER is a move that changes with the POKéMON.
+release
+end

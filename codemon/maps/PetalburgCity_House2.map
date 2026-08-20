@@ -27,3 +27,13 @@ people_school_kid_m 7 5 S static
 dialogs
 0	NORMAN became our town's new GYM LEADER.I think he called his family over from somewhere far away.
 1	I battled NORMAN once, but, whew, he was way too strong.How would I put it?I just got the feeling that he lives for POKéMON.
+objscripts
+0 PetalburgCity_House2_EventScript_Woman
+1 PetalburgCity_House2_EventScript_SchoolKid
+scriptdefs
+= PetalburgCity_House2_EventScript_SchoolKid
+msgbox	I battled NORMAN once, but, whew, he was way too strong.How would I put it?I just got the feeling that he lives for POKéMON.
+end
+= PetalburgCity_House2_EventScript_Woman
+msgbox	NORMAN became our town's new GYM LEADER.I think he called his family over from somewhere far away.
+end

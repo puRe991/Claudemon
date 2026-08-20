@@ -31,3 +31,90 @@ people_man_1 7 5 W static
 dialogs
 1	Oh, my, my! Are you traveling alone? But you're so young! Good for you!I'm sure my kids could learn a thing or two from you!Me? I'm a master of S.If I get serious just a little, why, I can concoct great S.Would you like to learn from me, a master of S?
 5	When my wife gave birth to quadruplets, you bet I was shocked.But, now, seeing them play together, it makes me happy.
+objscripts
+0 LilycoveCity_House3_EventScript_GameBoyKid4
+1 LilycoveCity_House3_EventScript_PokefanF
+2 LilycoveCity_House3_EventScript_GameBoyKid2
+3 LilycoveCity_House3_EventScript_GameBoyKid3
+4 LilycoveCity_House3_EventScript_GameBoyKid1
+5 LilycoveCity_House3_EventScript_Man
+scriptdefs
+= LilycoveCity_House3_EventScript_Man
+lock
+faceplayer
+msgbox	When my wife gave birth to quadruplets, you bet I was shocked.But, now, seeing them play together, it makes me happy.
+closemessage
+applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= LilycoveCity_House3_EventScript_GameBoyKid1
+lock
+faceplayer
+switch VAR_TEMP_1
+case 0 LilycoveCity_House3_EventScript_WereDoingMultiBattle
+case 1 LilycoveCity_House3_EventScript_WereMixingRecords
+case 2 LilycoveCity_House3_EventScript_WereBlendingBerries
+case 3 LilycoveCity_House3_EventScript_WereDoingContest
+end
+= LilycoveCity_House3_EventScript_WereDoingContest
+msgbox	I want to brag about how tough my POKéMON is, so we're going to enter a CONTEST together.
+release
+end
+= LilycoveCity_House3_EventScript_WereBlendingBerries
+msgbox	We're going to make super S with a BERRY BLENDER!
+release
+end
+= LilycoveCity_House3_EventScript_WereMixingRecords
+msgbox	We like mixing stuff at the RECORD CORNER.But what gets mixed up?
+release
+end
+= LilycoveCity_House3_EventScript_WereDoingMultiBattle
+msgbox	We're having MULTI BATTLES, but I know I'm going to win.
+release
+end
+= LilycoveCity_House3_EventScript_GameBoyKid3
+lock
+faceplayer
+switch VAR_TEMP_1
+case 0 LilycoveCity_House3_EventScript_WereDoingMultiBattle
+case 1 LilycoveCity_House3_EventScript_WereMixingRecords
+case 2 LilycoveCity_House3_EventScript_WereBlendingBerries
+case 3 LilycoveCity_House3_EventScript_WereDoingContest
+end
+= LilycoveCity_House3_EventScript_GameBoyKid2
+lock
+faceplayer
+switch VAR_TEMP_1
+case 0 LilycoveCity_House3_EventScript_WereDoingMultiBattle
+case 1 LilycoveCity_House3_EventScript_WereMixingRecords
+case 2 LilycoveCity_House3_EventScript_WereBlendingBerries
+case 3 LilycoveCity_House3_EventScript_WereDoingContest
+end
+= LilycoveCity_House3_EventScript_PokefanF
+lock
+faceplayer
+msgbox	Oh, my, my! Are you traveling alone? But you're so young! Good for you!I'm sure my kids could learn a thing or two from you!Me? I'm a master of S.If I get serious just a little, why, I can concoct great S.Would you like to learn from me, a master of S?
+goto_if_eq VAR_RESULT NO LilycoveCity_House3_EventScript_DeclinePokeblockLearn
+msgbox	Oh, good! You're a smart soul! This is a bit long, so listen up!Are you ready?If you look at S, you should see that they are rated on how they feel.The lower the feel rating, the better it is. Don't forget this!A good has a low feel rating and a high level.A POKéMON can eat more good S than ordinary ones, too.And this is important.If you want to make smooth S, use different kinds of BERRIES.Don't be stingy--the kinds of BERRIES affect the smoothness of S.And another thing.The more people blending BERRIES, the smoother the S.That's why you should talk to other people and make S together.That's about all you need to know to make good S.If everyone had POKéMON they love, smooth S, and a loving family, the world would be a happier place.Don't give up, dear!
+closemessage
+applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= LilycoveCity_House3_EventScript_DeclinePokeblockLearn
+msgbox	Oh? Are you sure?You shouldn't always try to do everything by yourself, dear!
+closemessage
+applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= LilycoveCity_House3_EventScript_GameBoyKid4
+lock
+faceplayer
+switch VAR_TEMP_1
+case 0 LilycoveCity_House3_EventScript_WereDoingMultiBattle
+case 1 LilycoveCity_House3_EventScript_WereMixingRecords
+case 2 LilycoveCity_House3_EventScript_WereBlendingBerries
+case 3 LilycoveCity_House3_EventScript_WereDoingContest
+end

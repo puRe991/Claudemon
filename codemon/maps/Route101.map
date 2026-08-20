@@ -53,6 +53,121 @@ dialogs
 0	If POKéMON get tired, take them to a POKéMON CENTER.There's a POKéMON CENTER in OLDALE TOWN right close by.
 2	PROF. BIRCH: Whew…I was in the tall grass studying wild POKéMON when I was jumped.You saved me. Thanks a lot!Oh?Hi, you're PLAYER!This is not the place to chat, so come by my POKéMON LAB later, okay?
 5	Wild POKéMON will jump out at you in tall grass.If you want to catch POKéMON, you have to go into the tall grass and search.
+objscripts
+0 Route101_EventScript_Youngster
+2 Route101_EventScript_BirchsBag
+5 Route101_EventScript_Boy
+triggers
+10 19 VAR_ROUTE101_STATE 1 Route101_EventScript_StartBirchRescue
+11 19 VAR_ROUTE101_STATE 1 Route101_EventScript_StartBirchRescue
+10 18 VAR_ROUTE101_STATE 2 Route101_EventScript_PreventExitSouth
+11 18 VAR_ROUTE101_STATE 2 Route101_EventScript_PreventExitSouth
+6 16 VAR_ROUTE101_STATE 2 Route101_EventScript_PreventExitWest
+6 15 VAR_ROUTE101_STATE 2 Route101_EventScript_PreventExitWest
+6 17 VAR_ROUTE101_STATE 2 Route101_EventScript_PreventExitWest
+6 18 VAR_ROUTE101_STATE 2 Route101_EventScript_PreventExitWest
+7 13 VAR_ROUTE101_STATE 2 Route101_EventScript_PreventExitNorth
+movements
+Route101_Movement_BirchApproachPlayer	right,end
+Route101_Movement_BirchFaceZigzagoon	delay,delay,delay,delay,end
+Route101_Movement_BirchRunAway1	right,right,right,right,up,up,end
+Route101_Movement_BirchRunInCircles	up,up,right,right,right,down,down,left,left,left,up,up,right,right,right,down,down,left,left,left,up,up,right,right,right,down,down,left,left,left,end
+Route101_Movement_EnterScene	up,up,up,up,delay,end
+Route101_Movement_PreventExitNorth	down,end
+Route101_Movement_PreventExitSouth	up,end
+Route101_Movement_PreventExitWest	right,end
+Route101_Movement_ZigzagoonChase1	up,right,right,right,right,up,end
+Route101_Movement_ZigzagoonChaseInCircles	up,up,up,right,right,right,down,down,left,left,left,up,up,right,right,right,down,down,left,left,left,up,up,right,right,right,down,down,left,left,end
+Route101_Movement_ZigzagoonFaceBirch	delay,delay,delay,delay,end
+scriptdefs
+= Route101_EventScript_PreventExitNorth
+lockall
+msgbox	Wh-Where are you going?! Don't leave me like this!
+closemessage
+applymovement LOCALID_PLAYER Route101_Movement_PreventExitNorth
+waitmovement 0
+releaseall
+end
+= Route101_EventScript_PreventExitWest
+lockall
+msgbox	Wh-Where are you going?! Don't leave me like this!
+closemessage
+applymovement LOCALID_PLAYER Route101_Movement_PreventExitWest
+waitmovement 0
+releaseall
+end
+= Route101_EventScript_PreventExitSouth
+lockall
+msgbox	Wh-Where are you going?! Don't leave me like this!
+closemessage
+applymovement LOCALID_PLAYER Route101_Movement_PreventExitSouth
+waitmovement 0
+releaseall
+end
+= Route101_EventScript_StartBirchRescue
+lockall
+playbgm MUS_HELP TRUE
+msgbox	H-help me!
+closemessage
+setobjectxy LOCALID_ROUTE101_BIRCH 0 15
+setobjectxy LOCALID_ROUTE101_ZIGZAGOON 0 16
+applymovement LOCALID_PLAYER Route101_Movement_EnterScene
+applymovement LOCALID_ROUTE101_BIRCH Route101_Movement_BirchRunAway1
+applymovement LOCALID_ROUTE101_ZIGZAGOON Route101_Movement_ZigzagoonChase1
+waitmovement 0
+applymovement LOCALID_ROUTE101_ZIGZAGOON Route101_Movement_ZigzagoonChaseInCircles
+applymovement LOCALID_ROUTE101_BIRCH Route101_Movement_BirchRunInCircles
+waitmovement 0
+applymovement LOCALID_ROUTE101_BIRCH Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+applymovement LOCALID_ROUTE101_ZIGZAGOON Route101_Movement_ZigzagoonFaceBirch
+applymovement LOCALID_ROUTE101_BIRCH Route101_Movement_BirchFaceZigzagoon
+waitmovement 0
+msgbox	Hello! You over there! Please! Help!In my BAG! There's a POKé BALL!
+closemessage
+setvar VAR_ROUTE101_STATE 2
+releaseall
+end
+= Route101_EventScript_Boy
+msgbox	Wild POKéMON will jump out at you in tall grass.If you want to catch POKéMON, you have to go into the tall grass and search.
+end
+= Route101_EventScript_BirchsBag
+lock
+faceplayer
+setflag FLAG_SYS_POKEMON_GET
+setflag FLAG_RESCUED_BIRCH
+fadescreen FADE_TO_BLACK
+removeobject LOCALID_ROUTE101_ZIGZAGOON
+setobjectxy LOCALID_PLAYER 6 13
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+special ChooseStarter
+applymovement LOCALID_ROUTE101_BIRCH Route101_Movement_BirchApproachPlayer
+waitmovement 0
+msgbox	PROF. BIRCH: Whew…I was in the tall grass studying wild POKéMON when I was jumped.You saved me. Thanks a lot!Oh?Hi, you're PLAYER!This is not the place to chat, so come by my POKéMON LAB later, okay?
+special HealPlayerParty
+setflag FLAG_HIDE_ROUTE_101_BIRCH_ZIGZAGOON_BATTLE
+clearflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_BIRCH
+setflag FLAG_HIDE_ROUTE_101_BIRCH_STARTERS_BAG
+setvar VAR_BIRCH_LAB_STATE 2
+setvar VAR_ROUTE101_STATE 3
+clearflag FLAG_HIDE_MAP_NAME_POPUP
+checkplayergender
+call_if_eq VAR_RESULT MALE Route101_EventScript_HideMayInBedroom
+call_if_eq VAR_RESULT FEMALE Route101_EventScript_HideBrendanInBedroom
+warp MAP_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB 6 5
+waitstate
+release
+end
+= Route101_EventScript_HideBrendanInBedroom
+setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_BEDROOM
+return
+= Route101_EventScript_HideMayInBedroom
+setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_BEDROOM
+return
+= Route101_EventScript_Youngster
+msgbox	If POKéMON get tired, take them to a POKéMON CENTER.There's a POKéMON CENTER in OLDALE TOWN right close by.
+end
 signs
 5 9	ROUTE 101 OLDALE TOWN
 grass

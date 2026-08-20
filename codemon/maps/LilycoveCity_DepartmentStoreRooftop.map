@@ -36,3 +36,34 @@ people_woman_3 15 5 S static
 dialogs
 0	Don't they have set dates for their clear-out sales?I watch TV, but they never show any commercials.
 1	Ohh… I'm bone-dry thirsty!
+objscripts
+0 LilycoveCity_DepartmentStoreRooftop_EventScript_Man
+1 LilycoveCity_DepartmentStoreRooftop_EventScript_ThirstyMan
+2 LilycoveCity_DepartmentStoreRooftop_EventScript_SaleWoman
+movements
+LilycoveCity_DepartmentStoreRooftop_PokemartDecor_ClearOutSale	delay,delay
+scriptdefs
+= LilycoveCity_DepartmentStoreRooftop_EventScript_SaleWoman
+lock
+faceplayer
+message gText_HowMayIServeYou
+waitmessage
+pokemartdecoration LilycoveCity_DepartmentStoreRooftop_PokemartDecor_ClearOutSale
+msgbox	gText_PleaseComeAgain
+release
+end
+= LilycoveCity_DepartmentStoreRooftop_EventScript_ThirstyMan
+msgbox	Ohh… I'm bone-dry thirsty!
+end
+= LilycoveCity_DepartmentStoreRooftop_EventScript_Man
+lock
+faceplayer
+getpokenewsactive POKENEWS_LILYCOVE
+call_if_eq VAR_RESULT TRUE LilycoveCity_DepartmentStoreRooftop_EventScript_ManClearOutSale
+msgbox	Don't they have set dates for their clear-out sales?I watch TV, but they never show any commercials.
+release
+end
+= LilycoveCity_DepartmentStoreRooftop_EventScript_ManClearOutSale
+msgbox	Yes! I've been waiting a long time for this clear-out sale.They have items that you can only get here. I'm going to load up, that I am!
+release
+end

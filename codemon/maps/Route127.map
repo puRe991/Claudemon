@@ -174,3 +174,59 @@ people_man_5 15 23 W static
 people_black_belt 63 63 S static
 people_woman_5 12 23 E static
 misc_item_ball 13 20 S static
+objscripts
+0 Route127_EventScript_Camden
+1 Route127_EventScript_Donny
+4 Route127_EventScript_Jonah
+5 Route127_EventScript_Roger
+6 Route127_EventScript_Henry
+7 Route127_EventScript_Aidan
+8 Route127_EventScript_Koji
+9 Route127_EventScript_Athena
+scriptdefs
+= Route127_EventScript_Athena
+trainerbattle_single TRAINER_ATHENA Route127_Text_AthenaIntro Route127_Text_AthenaDefeat
+msgbox	Route127_Text_AthenaPostBattle
+end
+= Route127_EventScript_Koji
+trainerbattle_single TRAINER_KOJI_1 Route127_Text_KojiIntro Route127_Text_KojiDefeat Route127_EventScript_RegisterKoji
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route127_EventScript_RematchKoji
+msgbox	Route127_Text_KojiPostBattle
+release
+end
+= Route127_EventScript_RematchKoji
+trainerbattle_rematch TRAINER_KOJI_1 Route127_Text_KojiRematchIntro Route127_Text_KojiRematchDefeat
+msgbox	Route127_Text_KojiPostRematch
+end
+= Route127_EventScript_RegisterKoji
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	Route127_Text_KojiRegister
+register_matchcall TRAINER_KOJI_1
+release
+end
+= Route127_EventScript_Aidan
+trainerbattle_single TRAINER_AIDAN Route127_Text_AidanIntro Route127_Text_AidanDefeat
+msgbox	Route127_Text_AidanPostBattle
+end
+= Route127_EventScript_Henry
+trainerbattle_single TRAINER_HENRY Route127_Text_HenryIntro Route127_Text_HenryDefeat
+msgbox	Route127_Text_HenryPostBattle
+end
+= Route127_EventScript_Roger
+trainerbattle_single TRAINER_ROGER Route127_Text_RogerIntro Route127_Text_RogerDefeat
+msgbox	Route127_Text_RogerPostBattle
+end
+= Route127_EventScript_Jonah
+trainerbattle_single TRAINER_JONAH Route127_Text_JonahIntro Route127_Text_JonahDefeat
+msgbox	Route127_Text_JonahPostBattle
+end
+= Route127_EventScript_Donny
+trainerbattle_single TRAINER_DONNY Route127_Text_DonnyIntro Route127_Text_DonnyDefeat
+msgbox	Route127_Text_DonnyPostBattle
+end
+= Route127_EventScript_Camden
+trainerbattle_single TRAINER_CAMDEN Route127_Text_CamdenIntro Route127_Text_CamdenDefeat
+msgbox	Route127_Text_CamdenPostBattle
+end

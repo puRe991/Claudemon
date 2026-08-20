@@ -25,3 +25,63 @@ npcs
 people_expert_m 4 4 S static
 dialogs
 0	Uh… Oh, yes, I'm the MOVE DELETER.I can make POKéMON forget their moves.Would you like me to do that?
+objscripts
+0 LilycoveCity_MoveDeletersHouse_EventScript_MoveDeleter
+scriptdefs
+= LilycoveCity_MoveDeletersHouse_EventScript_MoveDeleter
+lockall
+applymovement LOCALID_MOVE_DELETER Common_Movement_FacePlayer
+waitmovement 0
+msgbox	Uh… Oh, yes, I'm the MOVE DELETER.I can make POKéMON forget their moves.Would you like me to do that?
+switch VAR_RESULT
+case YES LilycoveCity_MoveDeletersHouse_EventScript_ChooseMonAndMoveToForget
+case NO LilycoveCity_MoveDeletersHouse_EventScript_ComeAgain
+releaseall
+end
+= LilycoveCity_MoveDeletersHouse_EventScript_ComeAgain
+msgbox	Come again if there are moves that need to be forgotten.
+releaseall
+end
+= LilycoveCity_MoveDeletersHouse_EventScript_ChooseMonAndMoveToForget
+msgbox	Which POKéMON should forget a move?
+special ChoosePartyMon
+goto_if_eq VAR_0x8004 PARTY_NOTHING_CHOSEN LilycoveCity_MoveDeletersHouse_EventScript_ComeAgain
+special IsSelectedMonEgg
+goto_if_eq VAR_RESULT TRUE LilycoveCity_MoveDeletersHouse_EventScript_EggCantForgetMoves
+special GetNumMovesSelectedMonHas
+goto_if_eq VAR_RESULT 1 LilycoveCity_MoveDeletersHouse_EventScript_MonOnlyKnowsOneMove
+msgbox	Which move should be forgotten?
+fadescreen FADE_TO_BLACK
+special MoveDeleterChooseMoveToForget
+fadescreen FADE_FROM_BLACK
+goto_if_eq VAR_0x8005 MAX_MON_MOVES LilycoveCity_MoveDeletersHouse_EventScript_ChooseMonAndMoveToForget
+special BufferMoveDeleterNicknameAndMove
+msgbox	Hm! 's ? That move should be forgotten?
+switch VAR_RESULT
+case YES LilycoveCity_MoveDeletersHouse_EventScript_TryForgetMove
+case NO LilycoveCity_MoveDeletersHouse_EventScript_ComeAgain
+releaseall
+end
+= LilycoveCity_MoveDeletersHouse_EventScript_TryForgetMove
+special IsLastMonThatKnowsSurf
+goto_if_eq VAR_RESULT TRUE LilycoveCity_MoveDeletersHouse_EventScript_LastMonWithSurf
+special MoveDeleterForgetMove
+playfanfare MUS_MOVE_DELETED
+waitfanfare
+msgbox	It worked to perfection!has forgotten completely.
+releaseall
+end
+= LilycoveCity_MoveDeletersHouse_EventScript_LastMonWithSurf
+special BufferMoveDeleterNicknameAndMove
+msgbox	Hm!Your doesn't seem willing to forget SURF.
+releaseall
+end
+= LilycoveCity_MoveDeletersHouse_EventScript_MonOnlyKnowsOneMove
+special BufferMoveDeleterNicknameAndMove
+msgbox	knows only one move so it can't be forgotten…
+releaseall
+end
+= LilycoveCity_MoveDeletersHouse_EventScript_EggCantForgetMoves
+msgbox	What? No EGG should know any moves.
+releaseall
+end

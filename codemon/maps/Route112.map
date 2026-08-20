@@ -148,6 +148,94 @@ dialogs
 0	Hey, man, is our leader really going to awaken that thing?
 5	Hey, man, is our leader really going to awaken that thing?
 10	Eh, I'd like to get to MAUVILLE, but if I went down these ledges, it'd be no easy matter to get back to LAVARIDGE.
+objscripts
+0 Route112_EventScript_MagmaGrunts
+1 Route112_EventScript_Brice
+2 Route112_EventScript_Larry
+3 Route112_EventScript_Carol
+4 Route112_EventScript_Trent
+5 Route112_EventScript_MagmaGrunts
+10 Route112_EventScript_Hiker
+12 Route112_EventScript_Bryant
+13 Route112_EventScript_Shayla
+scriptdefs
+= Route112_EventScript_Shayla
+trainerbattle_single TRAINER_SHAYLA Route112_Text_ShaylaIntro Route112_Text_ShaylaDefeat
+msgbox	Route112_Text_ShaylaPostBattle
+end
+= Route112_EventScript_Bryant
+trainerbattle_single TRAINER_BRYANT Route112_Text_BryantIntro Route112_Text_BryantDefeat
+msgbox	Route112_Text_BryantPostBattle
+end
+= Route112_EventScript_Hiker
+msgbox	Eh, I'd like to get to MAUVILLE, but if I went down these ledges, it'd be no easy matter to get back to LAVARIDGE.
+end
+= Route112_EventScript_MagmaGrunts
+lockall
+delay 40
+applymovement LOCALID_ROUTE112_GRUNT_1 Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+delay 20
+msgbox	Hey, man, is our leader really going to awaken that thing?
+closemessage
+applymovement LOCALID_ROUTE112_GRUNT_1 Common_Movement_FaceOriginalDirection
+waitmovement 0
+delay 40
+applymovement LOCALID_ROUTE112_GRUNT_2 Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+delay 20
+msgbox	Sounds like it, yeah. But I heard we need a METEORITE to do it.
+closemessage
+applymovement LOCALID_ROUTE112_GRUNT_2 Common_Movement_FaceOriginalDirection
+waitmovement 0
+delay 40
+applymovement LOCALID_ROUTE112_GRUNT_1 Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+delay 20
+msgbox	Oh, I get it now. That's why the rest of the crew went out to FALLARBOR.
+closemessage
+applymovement LOCALID_ROUTE112_GRUNT_1 Common_Movement_FaceOriginalDirection
+waitmovement 0
+delay 40
+applymovement LOCALID_ROUTE112_GRUNT_2 Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+delay 20
+msgbox	You got it. And until they come back, we're not to let anyone pass, right.
+closemessage
+applymovement LOCALID_ROUTE112_GRUNT_2 Common_Movement_FaceOriginalDirection
+waitmovement 0
+releaseall
+end
+= Route112_EventScript_Trent
+trainerbattle_single TRAINER_TRENT_1 Route112_Text_TrentIntro Route112_Text_TrentDefeat Route112_EventScript_RegisterTrent
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route112_EventScript_RematchTrent
+msgbox	Route112_Text_TrentPostBattle
+release
+end
+= Route112_EventScript_RematchTrent
+trainerbattle_rematch TRAINER_TRENT_1 Route112_Text_TrentRematchIntro Route112_Text_TrentRematchDefeat
+msgbox	Route112_Text_TrentRematchPostBattle
+end
+= Route112_EventScript_RegisterTrent
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	Route112_Text_TrentRegister
+register_matchcall TRAINER_TRENT_1
+release
+end
+= Route112_EventScript_Carol
+trainerbattle_single TRAINER_CAROL Route112_Text_CarolIntro Route112_Text_CarolDefeat
+msgbox	Route112_Text_CarolPostBattle
+end
+= Route112_EventScript_Larry
+trainerbattle_single TRAINER_LARRY Route112_Text_LarryIntro Route112_Text_LarryDefeat
+msgbox	Route112_Text_LarryPostBattle
+end
+= Route112_EventScript_Brice
+trainerbattle_single TRAINER_BRICE Route112_Text_BriceIntro Route112_Text_BriceDefeat
+msgbox	Route112_Text_BricePostBattle
+end
 signs
 19 44	MT. CHIMNEY“For LAVARIDGE TOWN or the summit, please take the CABLE CAR.”
 22 37	MT. CHIMNEY CABLE CAR “A short walk way!”

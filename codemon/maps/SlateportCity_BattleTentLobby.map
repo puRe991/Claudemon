@@ -36,3 +36,61 @@ dialogs
 2	I don't really like BUG POKéMON, but maybe I'll try using some for a change of pace.Who knows, I might even get to like them!
 3	You can battle all you want here even if you don't have any tough POKéMON.
 4	Wouldn't it be nice if they had more of a selection?
+objscripts
+0 SlateportCity_BattleTentLobby_EventScript_Attendant
+1 SlateportCity_BattleTentLobby_EventScript_TormentGiver
+2 SlateportCity_BattleTentLobby_EventScript_Man
+3 SlateportCity_BattleTentLobby_EventScript_Girl
+4 SlateportCity_BattleTentLobby_EventScript_Woman
+scriptdefs
+= SlateportCity_BattleTentLobby_EventScript_Woman
+msgbox	Wouldn't it be nice if they had more of a selection?
+end
+= SlateportCity_BattleTentLobby_EventScript_Girl
+msgbox	You can battle all you want here even if you don't have any tough POKéMON.
+end
+= SlateportCity_BattleTentLobby_EventScript_Man
+msgbox	I don't really like BUG POKéMON, but maybe I'll try using some for a change of pace.Who knows, I might even get to like them!
+end
+= SlateportCity_BattleTentLobby_EventScript_TormentGiver
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_TM_TORMENT SlateportCity_BattleTentLobby_EventScript_ReceivedTorment
+msgbox	So, like, I couldn't find myself any POKéMON that were, like, for me.So, I figured, like, hey, I should file a complaint to the guy there?And he wouldn't hear me out, like, hey! So, like, total bummer, man!Hey, like, you! Zip it, you know? Just, you know, take this!
+giveitem ITEM_TM_TORMENT
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_RECEIVED_TM_TORMENT
+msgbox	That's, like, TM41, you know? Hey, it's TORMENT, you hearing me?Like, it won't let the other guy use the same move twice in a row, see?Hey, now, you listen here, like, I'm not laying a torment on you!
+release
+end
+= SlateportCity_BattleTentLobby_EventScript_ReceivedTorment
+msgbox	That's, like, TM41, you know? Hey, it's TORMENT, you hearing me?Like, it won't let the other guy use the same move twice in a row, see?Hey, now, you listen here, like, I'm not laying a torment on you!
+release
+end
+= SlateportCity_BattleTentLobby_EventScript_Attendant
+lock
+faceplayer
+slateporttent_getprize
+goto_if_ne VAR_RESULT ITEM_NONE SlateportCity_BattleTentLobby_EventScript_GivePrize
+special SavePlayerParty
+msgbox	SlateportCity_BattleTentLobby_Text_WelcomeToBattleTent
+= SlateportCity_BattleTentLobby_EventScript_GivePrize
+msgbox	SlateportCity_BattleTentLobby_Text_AwardYouThisPrize
+slateporttent_giveprize
+switch VAR_RESULT
+case FALSE SlateportCity_BattleTentLobby_EventScript_NoRoomForPrize
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
+message BattleFrontier_BattleTowerLobby_Text_ReceivedPrize  @ Odd that it uses Tower's instead of Factory's or its own
+waitmessage
+playfanfare MUS_OBTAIN_ITEM
+waitfanfare
+goto SlateportCity_BattleTentLobby_EventScript_EndGivePrize
+= SlateportCity_BattleTentLobby_EventScript_EndGivePrize
+msgbox	SlateportCity_BattleTentLobby_Text_LookForwardToNextVisit
+closemessage
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+releaseall
+end
+= SlateportCity_BattleTentLobby_EventScript_NoRoomForPrize
+msgbox	SlateportCity_BattleTentLobby_Text_NoRoomInBagMakeRoom
+goto SlateportCity_BattleTentLobby_EventScript_EndGivePrize

@@ -62,3 +62,37 @@ npcs
 people_maniac 5 3 N static
 dialogs
 0	I'm the FOSSIL MANIAC… I'm a nice guy who loves FOSSILS…Do you want a FOSSIL?But the FOSSILS around these parts all belong to me… None for you…If you can't bear to go without a FOSSIL, look in a desert where there are boulders and sand that may hide FOSSILS…
+objscripts
+0 Route114_FossilManiacsTunnel_EventScript_FossilManiac
+triggers
+5 4 VAR_FOSSIL_MANIAC_STATE 1 Route114_FossilManiacsTunnel_EventScript_ManiacMentionCaveIn
+6 4 VAR_FOSSIL_MANIAC_STATE 1 Route114_FossilManiacsTunnel_EventScript_ManiacMentionCaveIn
+scriptdefs
+= Route114_FossilManiacsTunnel_EventScript_ManiacMentionCaveIn
+lockall
+applymovement LOCALID_FOSSIL_MANIAC Common_Movement_WalkInPlaceFasterUp
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+msgbox	Oh… It's not safe that way…I was digging away, you see… When the whole wall collapsed…I think there's a giant cavern underneath now…But I've left it alone because I don't think there are any FOSSILS there…
+setvar VAR_FOSSIL_MANIAC_STATE 2
+releaseall
+end
+= Route114_FossilManiacsTunnel_EventScript_FossilManiac
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_REVIVED_FOSSIL_MON Route114_FossilManiacsTunnel_EventScript_PlayerRevivedFossil
+checkitem ITEM_ROOT_FOSSIL
+goto_if_eq VAR_RESULT TRUE Route114_FossilManiacsTunnel_EventScript_PlayerHasFossil
+checkitem ITEM_CLAW_FOSSIL
+goto_if_eq VAR_RESULT TRUE Route114_FossilManiacsTunnel_EventScript_PlayerHasFossil
+msgbox	I'm the FOSSIL MANIAC… I'm a nice guy who loves FOSSILS…Do you want a FOSSIL?But the FOSSILS around these parts all belong to me… None for you…If you can't bear to go without a FOSSIL, look in a desert where there are boulders and sand that may hide FOSSILS…
+release
+end
+= Route114_FossilManiacsTunnel_EventScript_PlayerHasFossil
+msgbox	You found a FOSSIL, didn't you? That's so nice… It's so dreamy…What are you going to do with that FOSSIL?From what I've heard, DEVON is doing research on reviving POKéMON from FOSSILS…I love my FOSSILS, so I would never do anything like that…
+release
+end
+= Route114_FossilManiacsTunnel_EventScript_PlayerRevivedFossil
+msgbox	FOSSILS are so… Wonderful… It's so dreamy…
+release
+end

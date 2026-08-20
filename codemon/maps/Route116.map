@@ -82,6 +82,246 @@ dialogs
 18	Oh! It's you!You're that person who not only helped me in PETALBURG WOODS, but also got back my stolen package and then even graciously delivered it to SLATEPORT!CAPT. STERN informed us that the package arrived, too!I thank you very, very much!Why, if I were a rain cloud, I would shower you with gratitude and hail you as a hero!For you, the most wonderful TRAINER, I bear good news!Recently, our company developed a new kind of POKé BALL.As a token of our appreciation, this is our gift to our wonderful TRAINER!
 20	Nnn… Roar!I want to dig that tunnel!
 21	I dropped my glasses… Can you help me find them?
+objscripts
+2 Route116_EventScript_Joey
+5 Route116_EventScript_Jose
+10 Route116_EventScript_Briney
+12 Route116_EventScript_Clark
+15 Route116_EventScript_Janice
+16 Route116_EventScript_Karen
+17 Route116_EventScript_Jerry
+18 Route116_EventScript_DevonEmployee
+20 Route116_EventScript_WandasBoyfriend
+21 Route116_EventScript_GlassesMan
+22 Route116_EventScript_Sarah
+23 Route116_EventScript_Dawson
+26 Route116_EventScript_Johnson
+27 Route116_EventScript_Devan
+triggers
+47 9 VAR_ROUTE116_STATE 1 Route116_EventScript_BrineyTrigger
+movements
+Route116_Movement_DevonEmployeeExit	left,left,left,left,left,left,left,left,end
+Route116_Movement_DevonEmployeeExitEast	down,left,left,left,left,left,left,left,left,left,end
+Route116_Movement_GlassesManExit	left,left,left,left,left,left,left,left,left,end
+Route116_Movement_GlassesManExitEast	up,left,left,left,left,left,left,left,left,left,end
+scriptdefs
+= Route116_EventScript_BrineyTrigger
+lockall
+applymovement LOCALID_ROUTE116_BRINEY Common_Movement_WalkInPlaceFasterRight
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+msgbox	Ohhh, what am I to do?We were on our walk, PEEKO and I, when we were jumped by an odd thug…The scoundrel made off with my darling PEEKO!Wrrrooooooaaaar! PEEKO!
+setvar VAR_ROUTE116_STATE 2
+releaseall
+end
+= Route116_EventScript_Devan
+trainerbattle_single TRAINER_DEVAN Route116_Text_DevanIntro Route116_Text_DevanDefeat
+msgbox	Route116_Text_DevanPostBattle
+end
+= Route116_EventScript_Johnson
+trainerbattle_single TRAINER_JOHNSON Route116_Text_JohnsonIntro Route116_Text_JohnsonDefeat
+msgbox	Route116_Text_JohnsonPostBattle
+end
+= Route116_EventScript_Dawson
+trainerbattle_single TRAINER_DAWSON Route116_Text_DawsonIntro Route116_Text_DawsonDefeat
+msgbox	Route116_Text_DawsonPostBattle
+end
+= Route116_EventScript_Sarah
+trainerbattle_single TRAINER_SARAH Route116_Text_SarahIntro Route116_Text_SarahDefeat
+msgbox	Route116_Text_SarahPostBattle
+end
+= Route116_EventScript_GlassesMan
+lock
+faceplayer
+checkitem ITEM_BLACK_GLASSES
+goto_if_eq VAR_RESULT TRUE Route116_EventScript_PlayerHasGlasses
+specialvar VAR_RESULT FoundBlackGlasses
+goto_if_eq VAR_RESULT TRUE Route116_EventScript_FoundGlassesNotOnPlayer
+msgbox	I dropped my glasses… Can you help me find them?
+release
+end
+= Route116_EventScript_FoundGlassesNotOnPlayer
+msgbox	Hmm… I can't find my glasses anywhere… Maybe they're not around here…
+closemessage
+goto Route116_EventScript_GlassesManExit
+end
+= Route116_EventScript_GlassesManExit
+delay 20
+call_if_eq VAR_FACING DIR_NORTH Route116_EventScript_GlassesManExitNormal
+call_if_eq VAR_FACING DIR_SOUTH Route116_EventScript_GlassesManExitNormal
+call_if_eq VAR_FACING DIR_WEST Route116_EventScript_GlassesManExitNormal
+call_if_eq VAR_FACING DIR_EAST Route116_EventScript_GlassesManExitEast
+removeobject VAR_LAST_TALKED
+release
+end
+= Route116_EventScript_GlassesManExitEast
+applymovement VAR_LAST_TALKED Route116_Movement_GlassesManExitEast
+waitmovement 0
+return
+= Route116_EventScript_GlassesManExitNormal
+applymovement VAR_LAST_TALKED Route116_Movement_GlassesManExit
+waitmovement 0
+return
+= Route116_EventScript_PlayerHasGlasses
+msgbox	I dropped my glasses… Can you help me find them?
+msgbox	Those glasses! May I see them for a second?
+specialvar VAR_RESULT FoundBlackGlasses
+goto_if_eq VAR_RESULT TRUE Route116_EventScript_FoundGlassesOnPlayer
+msgbox	Hmm… These are BLACKGLASSES. They're not what I'm looking for…
+release
+end
+= Route116_EventScript_FoundGlassesOnPlayer
+msgbox	Hmm… These are BLACKGLASSES. They're not what I'm looking for…Maybe my glasses aren't around here…
+closemessage
+goto Route116_EventScript_GlassesManExit
+end
+= Route116_EventScript_WandasBoyfriend
+lock
+faceplayer
+goto_if_set FLAG_RECOVERED_DEVON_GOODS Route116_EventScript_BoyfriendGruntLeftTunnel
+goto_if_set FLAG_DEVON_GOODS_STOLEN Route116_EventScript_BoyfriendGruntInTunnel
+msgbox	Nnn… Roar!I want to dig that tunnel!
+release
+end
+= Route116_EventScript_BoyfriendGruntInTunnel
+msgbox	Nnn… Roar! What's going on?I was digging the tunnel without any tools when some goon ordered me out!That tunnel's filled with POKéMON that react badly to loud noises. They could cause an uproar.That's why we stopped using heavy equipment for tunneling…I'm worried that the goon will do something stupid and startle the POKéMON into an uproar.
+release
+end
+= Route116_EventScript_BoyfriendGruntLeftTunnel
+msgbox	Nnn… Roar!That goofy goon hightailed it out of the tunnel! I can go back to digging!
+release
+end
+= Route116_EventScript_DevonEmployee
+lock
+faceplayer
+goto_if_set FLAG_MET_DEVON_EMPLOYEE Route116_EventScript_TryGiveRepeatBallAgain
+msgbox	Oh! It's you!You're that person who not only helped me in PETALBURG WOODS, but also got back my stolen package and then even graciously delivered it to SLATEPORT!CAPT. STERN informed us that the package arrived, too!I thank you very, very much!Why, if I were a rain cloud, I would shower you with gratitude and hail you as a hero!For you, the most wonderful TRAINER, I bear good news!Recently, our company developed a new kind of POKé BALL.As a token of our appreciation, this is our gift to our wonderful TRAINER!
+goto Route116_EventScript_GiveRepeatBall
+end
+= Route116_EventScript_GiveRepeatBall
+setflag FLAG_MET_DEVON_EMPLOYEE
+giveitem ITEM_REPEAT_BALL
+goto_if_eq VAR_RESULT FALSE Route116_EventScript_NoRoomForRepeatBall
+msgbox	Our new POKé BALL will be available at the POKéMON MART in RUSTBORO.Please do try it out! Thank you and bye-bye!
+closemessage
+call_if_eq VAR_FACING DIR_NORTH Route116_EventScript_DevonEmployeeExit
+call_if_eq VAR_FACING DIR_SOUTH Route116_EventScript_DevonEmployeeExit
+call_if_eq VAR_FACING DIR_WEST Route116_EventScript_DevonEmployeeExit
+call_if_eq VAR_FACING DIR_EAST Route116_EventScript_DevonEmployeeExitEast
+removeobject VAR_LAST_TALKED
+clearflag FLAG_HIDE_RUSTBORO_CITY_DEVON_CORP_3F_EMPLOYEE
+setflag FLAG_RECEIVED_REPEAT_BALL
+release
+end
+= Route116_EventScript_DevonEmployeeExitEast
+applymovement VAR_LAST_TALKED Route116_Movement_DevonEmployeeExitEast
+waitmovement 0
+return
+= Route116_EventScript_DevonEmployeeExit
+applymovement VAR_LAST_TALKED Route116_Movement_DevonEmployeeExit
+waitmovement 0
+return
+= Route116_EventScript_NoRoomForRepeatBall
+msgbox	Your BAG is jam-packed. I can't give you this REPEAT BALL.
+release
+end
+= Route116_EventScript_TryGiveRepeatBallAgain
+msgbox	As a token of our appreciation for your delivering our package, I have a gift of a new kind of POKé BALL for our most wonderful TRAINER!
+goto Route116_EventScript_GiveRepeatBall
+end
+= Route116_EventScript_Jerry
+trainerbattle_single TRAINER_JERRY_1 Route116_Text_JerryIntro Route116_Text_JerryDefeat Route116_EventScript_TryRegisterJerryAfterBattle
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route116_EventScript_RematchJerry
+setvar VAR_0x8004 TRAINER_JERRY_1
+specialvar VAR_RESULT IsTrainerRegistered
+goto_if_eq VAR_RESULT FALSE Route116_EventScript_TryRegisterJerry
+msgbox	Route116_Text_JerryPostBattle
+release
+end
+= Route116_EventScript_TryRegisterJerry
+goto_if_set FLAG_HAS_MATCH_CALL Route116_EventScript_RegisterJerry
+msgbox	Route116_Text_JerryPostBattle
+release
+end
+= Route116_EventScript_RegisterJerry
+msgbox	Route116_Text_JerryRegister1
+register_matchcall TRAINER_JERRY_1
+release
+end
+= Route116_EventScript_RematchJerry
+trainerbattle_rematch TRAINER_JERRY_1 Route116_Text_JerryRematchIntro Route116_Text_JerryRematchDefeat
+msgbox	Route116_Text_JerryPostRematch
+end
+= Route116_EventScript_TryRegisterJerryAfterBattle
+goto_if_set FLAG_HAS_MATCH_CALL Route116_EventScript_RegisterJerryAfterBattle
+release
+end
+= Route116_EventScript_RegisterJerryAfterBattle
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	Route116_Text_JerryRegister2
+register_matchcall TRAINER_JERRY_1
+release
+end
+= Route116_EventScript_Karen
+trainerbattle_single TRAINER_KAREN_1 Route116_Text_KarenIntro Route116_Text_KarenDefeat Route116_EventScript_TryRegisterKarenAfterBattle
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route116_EventScript_RematchKaren
+setvar VAR_0x8004 TRAINER_KAREN_1
+specialvar VAR_RESULT IsTrainerRegistered
+goto_if_eq VAR_RESULT FALSE Route116_EventScript_TryRegisterKaren
+msgbox	Route116_Text_KarenPostBattle
+release
+end
+= Route116_EventScript_TryRegisterKaren
+goto_if_set FLAG_HAS_MATCH_CALL Route116_EventScript_RegisterKaren
+msgbox	Route116_Text_KarenPostBattle
+release
+end
+= Route116_EventScript_RegisterKaren
+msgbox	Route116_Text_KarenRegister1
+register_matchcall TRAINER_KAREN_1
+release
+end
+= Route116_EventScript_RematchKaren
+trainerbattle_rematch TRAINER_KAREN_1 Route116_Text_KarenRematchIntro Route116_Text_KarenRematchDefeat
+msgbox	Route116_Text_KarenPostRematch
+end
+= Route116_EventScript_TryRegisterKarenAfterBattle
+goto_if_set FLAG_HAS_MATCH_CALL Route116_EventScript_RegisterKarenAfterBattle
+release
+end
+= Route116_EventScript_RegisterKarenAfterBattle
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	Route116_Text_KarenRegister2
+register_matchcall TRAINER_KAREN_1
+release
+end
+= Route116_EventScript_Janice
+trainerbattle_single TRAINER_JANICE Route116_Text_JaniceIntro Route116_Text_JaniceDefeat
+msgbox	Route116_Text_JanicePostBattle
+end
+= Route116_EventScript_Clark
+trainerbattle_single TRAINER_CLARK Route116_Text_ClarkIntro Route116_Text_ClarkDefeat
+msgbox	Route116_Text_ClarkPostBattle
+end
+= Route116_EventScript_Briney
+lock
+faceplayer
+msgbox	Ohhh, what am I to do?We were on our walk, PEEKO and I, when we were jumped by an odd thug…The scoundrel made off with my darling PEEKO!Wrrrooooooaaaar! PEEKO!
+setvar VAR_ROUTE116_STATE 2
+release
+end
+= Route116_EventScript_Jose
+trainerbattle_single TRAINER_JOSE Route116_Text_JoseIntro Route116_Text_JoseDefeat
+msgbox	Route116_Text_JosePostBattle
+end
+= Route116_EventScript_Joey
+trainerbattle_single TRAINER_JOEY Route116_Text_JoeyIntro Route116_Text_JoeyDefeat
+msgbox	Route116_Text_JoeyPostBattle
+end
 signs
 5 10	ROUTE 116 RUSTBORO CITY
 48 9	RUSTURF TUNNEL “Linking RUSTBORO and VERDANTURF“The tunnel project has been canceled.”

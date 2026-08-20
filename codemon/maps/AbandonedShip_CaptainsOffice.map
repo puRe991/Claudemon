@@ -24,3 +24,24 @@ people_scientist_1 3 4 S static
 misc_item_ball 0 6 S static
 dialogs
 0	I'm investigating this ship on behalf of CAPT. STERN.He also asked me to find a SCANNER, but I haven't had any success…
+objscripts
+0 AbandonedShip_CaptainsOffice_EventScript_CaptSternAide
+scriptdefs
+= AbandonedShip_CaptainsOffice_EventScript_CaptSternAide
+lock
+faceplayer
+goto_if_set FLAG_EXCHANGED_SCANNER AbandonedShip_CaptainsOffice_EventScript_ThisIsSSCactus
+checkitem ITEM_SCANNER
+goto_if_eq VAR_RESULT TRUE AbandonedShip_CaptainsOffice_EventScript_CanYouDeliverScanner
+goto_if_set FLAG_ITEM_ABANDONED_SHIP_HIDDEN_FLOOR_ROOM_2_SCANNER AbandonedShip_CaptainsOffice_EventScript_ThisIsSSCactus
+msgbox	I'm investigating this ship on behalf of CAPT. STERN.He also asked me to find a SCANNER, but I haven't had any success…
+release
+end
+= AbandonedShip_CaptainsOffice_EventScript_ThisIsSSCactus
+msgbox	This ship is called S.S. CACTUS. It seems to be from an earlier era.
+release
+end
+= AbandonedShip_CaptainsOffice_EventScript_CanYouDeliverScanner
+msgbox	Oh! That's a SCANNER!Listen, can I get you to deliver that to CAPT. STERN?I want to investigate this ship a little more.
+release
+end

@@ -52,3 +52,33 @@ dialogs
 0	Ships of this sort are rare, so I'm taking a look around.Hmhm… There appear to be other cabins…
 2	The man next door…He says he's just sightseeing, but I don't know about that.
 3	I'm in trouble with my mom, so I ran. Keep it a secret where I am!
+objscripts
+0 AbandonedShip_Rooms_1F_EventScript_Gentleman
+2 AbandonedShip_Rooms_1F_EventScript_Thalia
+3 AbandonedShip_Rooms_1F_EventScript_Demetrius
+scriptdefs
+= AbandonedShip_Rooms_1F_EventScript_Demetrius
+trainerbattle_single TRAINER_DEMETRIUS AbandonedShip_Rooms_1F_Text_DemetriusIntro AbandonedShip_Rooms_1F_Text_DemetriusDefeat
+msgbox	I'm in trouble with my mom, so I ran. Keep it a secret where I am!
+end
+= AbandonedShip_Rooms_1F_EventScript_Thalia
+trainerbattle_single TRAINER_THALIA_1 AbandonedShip_Rooms_1F_Text_ThaliaIntro AbandonedShip_Rooms_1F_Text_ThaliaDefeat AbandonedShip_Rooms_1F_EventScript_RegisterThalia
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE AbandonedShip_Rooms_1F_EventScript_ThaliaRematch
+msgbox	The man next door…He says he's just sightseeing, but I don't know about that.
+release
+end
+= AbandonedShip_Rooms_1F_EventScript_ThaliaRematch
+trainerbattle_rematch TRAINER_THALIA_1 AbandonedShip_Rooms_1F_Text_ThaliaRematchIntro AbandonedShip_Rooms_1F_Text_ThaliaRematchDefeat
+msgbox	I'm sure that man's up to something! He just acts so suspiciously!
+end
+= AbandonedShip_Rooms_1F_EventScript_RegisterThalia
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	You're such a tough TRAINER! Let me register you as a memento!
+register_matchcall TRAINER_THALIA_1
+release
+end
+= AbandonedShip_Rooms_1F_EventScript_Gentleman
+msgbox	Ships of this sort are rare, so I'm taking a look around.Hmhm… There appear to be other cabins…
+end

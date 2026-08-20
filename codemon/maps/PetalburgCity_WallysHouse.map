@@ -27,3 +27,40 @@ people_woman_4 7 5 W static
 dialogs
 0	You're… Ah, you must be PLAYER, right?Thank you for playing with WALLY a little while ago.He's been frail and sickly ever since he was a baby.We've sent him to stay with my relatives in VERDANTURF TOWN for a while.The air is a lot cleaner there than it is here.What's that? Where's WALLY? He's already left, our WALLY.I wonder where he could have gotten by now?
 1	WALLY was really happy when he told us that he caught a POKéMON.It's been ages since I've seen him smile like that.
+objscripts
+0 PetalburgCity_WallysHouse_EventScript_WallysDad
+1 PetalburgCity_WallysHouse_EventScript_WallysMom
+scriptdefs
+= PetalburgCity_WallysHouse_EventScript_WallysMom
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_HM_SURF PetalburgCity_WallysHouse_EventScript_ReceivedHMSurf
+msgbox	WALLY was really happy when he told us that he caught a POKéMON.It's been ages since I've seen him smile like that.
+release
+end
+= PetalburgCity_WallysHouse_EventScript_ReceivedHMSurf
+msgbox	I want you to keep this a secret from my husband…But our WALLY left VERDANTURF TOWN without telling anyone.You know, WALLY is frail, but he's surprisingly strong-willed.I'm sure that he'll come back safe and sound one day!
+release
+end
+= PetalburgCity_WallysHouse_EventScript_WallysDad
+lock
+faceplayer
+goto_if_set FLAG_DEFEATED_WALLY_VICTORY_ROAD PetalburgCity_WallysHouse_EventScript_DefeatedWallyInVictoryRoad
+goto_if_set FLAG_RECEIVED_HM_SURF PetalburgCity_WallysHouse_EventScript_ReceievedHMSurf
+goto_if_set FLAG_THANKED_FOR_PLAYING_WITH_WALLY PetalburgCity_WallysHouse_EventScript_PlayedWithWally
+msgbox	You're… Ah, you must be PLAYER, right?Thank you for playing with WALLY a little while ago.He's been frail and sickly ever since he was a baby.We've sent him to stay with my relatives in VERDANTURF TOWN for a while.The air is a lot cleaner there than it is here.What's that? Where's WALLY? He's already left, our WALLY.I wonder where he could have gotten by now?
+setflag FLAG_THANKED_FOR_PLAYING_WITH_WALLY
+release
+end
+= PetalburgCity_WallysHouse_EventScript_PlayedWithWally
+msgbox	I wonder how our WALLY is doing?
+release
+end
+= PetalburgCity_WallysHouse_EventScript_ReceievedHMSurf
+msgbox	WALLY's coming home soon. I'm looking forward to that.
+release
+end
+= PetalburgCity_WallysHouse_EventScript_DefeatedWallyInVictoryRoad
+msgbox	Oh? You met WALLY in EVER GRANDE CITY?Oh, PLAYER, don't be silly.He may have gotten healthy, but he can't go somewhere far away like that all by himself.
+release
+end

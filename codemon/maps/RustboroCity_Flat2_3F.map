@@ -28,3 +28,13 @@ people_woman_1 12 2 S static
 dialogs
 0	DEVON's PRESIDENT likes to collect rare stones.
 1	I think the PRESIDENT's son also collects rare stones.
+objscripts
+0 RustboroCity_Flat2_3F_EventScript_DevonEmployee
+1 RustboroCity_Flat2_3F_EventScript_Woman
+scriptdefs
+= RustboroCity_Flat2_3F_EventScript_Woman
+msgbox	I think the PRESIDENT's son also collects rare stones.
+end
+= RustboroCity_Flat2_3F_EventScript_DevonEmployee
+msgbox	DEVON's PRESIDENT likes to collect rare stones.
+end

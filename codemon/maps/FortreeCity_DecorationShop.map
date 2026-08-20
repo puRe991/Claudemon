@@ -25,3 +25,36 @@ people_mart_employee 6 2 S static
 dialogs
 0	Merchandise you buy here is sent to your own PC.That's fantastic! I wish they could also deliver me home like that.
 1	I'm buying a pretty desk and I'm putting my cute DOLLS on it.If I don't, when I decorate my SECRET BASE, my DOLLS will get dirty or poked with splinters.
+objscripts
+0 FortreeCity_DecorationShop_EventScript_PokefanM
+1 FortreeCity_DecorationShop_EventScript_Girl
+2 FortreeCity_DecorationShop_EventScript_ClerkDesks
+3 FortreeCity_DecorationShop_EventScript_ClerkChairs
+movements
+FortreeCity_DecorationShop_PokemartDecor_Chairs	delay
+FortreeCity_DecorationShop_PokemartDecor_Desks	delay
+scriptdefs
+= FortreeCity_DecorationShop_EventScript_ClerkChairs
+lock
+faceplayer
+message gText_HowMayIServeYou
+waitmessage
+pokemartdecoration FortreeCity_DecorationShop_PokemartDecor_Chairs
+msgbox	gText_PleaseComeAgain
+release
+end
+= FortreeCity_DecorationShop_EventScript_ClerkDesks
+lock
+faceplayer
+message gText_HowMayIServeYou
+waitmessage
+pokemartdecoration FortreeCity_DecorationShop_PokemartDecor_Desks
+msgbox	gText_PleaseComeAgain
+release
+end
+= FortreeCity_DecorationShop_EventScript_Girl
+msgbox	I'm buying a pretty desk and I'm putting my cute DOLLS on it.If I don't, when I decorate my SECRET BASE, my DOLLS will get dirty or poked with splinters.
+end
+= FortreeCity_DecorationShop_EventScript_PokefanM
+msgbox	Merchandise you buy here is sent to your own PC.That's fantastic! I wish they could also deliver me home like that.
+end

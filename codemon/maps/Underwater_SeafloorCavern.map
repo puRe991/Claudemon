@@ -32,3 +32,12 @@ dialogs
 1	“SUBMARINE EXPLORER 1” is painted on the hull.This is the submarine TEAM AQUA stole in SLATEPORT!TEAM AQUA must have gone ashore here.
 2	“SUBMARINE EXPLORER 1” is painted on the hull.This is the submarine TEAM AQUA stole in SLATEPORT!TEAM AQUA must have gone ashore here.
 3	“SUBMARINE EXPLORER 1” is painted on the hull.This is the submarine TEAM AQUA stole in SLATEPORT!TEAM AQUA must have gone ashore here.
+objscripts
+0 Underwater_SeafloorCavern_EventScript_CheckStolenSub
+1 Underwater_SeafloorCavern_EventScript_CheckStolenSub
+2 Underwater_SeafloorCavern_EventScript_CheckStolenSub
+3 Underwater_SeafloorCavern_EventScript_CheckStolenSub
+scriptdefs
+= Underwater_SeafloorCavern_EventScript_CheckStolenSub
+msgbox	“SUBMARINE EXPLORER 1” is painted on the hull.This is the submarine TEAM AQUA stole in SLATEPORT!TEAM AQUA must have gone ashore here.
+end

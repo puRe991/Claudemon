@@ -73,3 +73,25 @@ dialogs
 1	You just happened to win this time, but that doesn't matter.TEAM MAGMA's goal is about to be reached!
 3	Don't you get lonely for the sea being in a place like this?
 4	We dug up something beyond belief! And, we got the BLUE ORB!All that's left is for our leader to… Fufufu… Fwahahaha!
+objscripts
+0 MagmaHideout_2F_2R_EventScript_Grunt8
+1 MagmaHideout_2F_2R_EventScript_Grunt7
+3 MagmaHideout_2F_2R_EventScript_Grunt6
+4 MagmaHideout_2F_2R_EventScript_Grunt15
+scriptdefs
+= MagmaHideout_2F_2R_EventScript_Grunt15
+trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_15 MagmaHideout_2F_2R_Text_Grunt15Intro MagmaHideout_2F_2R_Text_Grunt15Defeat
+msgbox	We dug up something beyond belief! And, we got the BLUE ORB!All that's left is for our leader to… Fufufu… Fwahahaha!
+end
+= MagmaHideout_2F_2R_EventScript_Grunt6
+trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_6 MagmaHideout_2F_2R_Text_Grunt6Intro MagmaHideout_2F_2R_Text_Grunt6Defeat
+msgbox	Don't you get lonely for the sea being in a place like this?
+end
+= MagmaHideout_2F_2R_EventScript_Grunt7
+trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_7 MagmaHideout_2F_2R_Text_Grunt7Intro MagmaHideout_2F_2R_Text_Grunt7Defeat
+msgbox	You just happened to win this time, but that doesn't matter.TEAM MAGMA's goal is about to be reached!
+end
+= MagmaHideout_2F_2R_EventScript_Grunt8
+trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_8 MagmaHideout_2F_2R_Text_Grunt8Intro MagmaHideout_2F_2R_Text_Grunt8Defeat
+msgbox	I'm getting this feeling that our plan is going to end in failure…
+end

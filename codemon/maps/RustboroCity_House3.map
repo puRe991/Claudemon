@@ -31,3 +31,24 @@ dialogs
 0	For my own POKéMON, I give them perfectly suited nicknames!It's my expression of, uh… originality, yes, that's it!
 1	But giving the name PEKACHU to a PIKACHU? It seems pointless.I suppose it is good to use a name that's easy to understand, but…
 2	PEKACHU: Peka!
+objscripts
+0 RustboroCity_House3_EventScript_OldMan
+1 RustboroCity_House3_EventScript_OldWoman
+2 RustboroCity_House3_EventScript_Pekachu
+scriptdefs
+= RustboroCity_House3_EventScript_Pekachu
+lock
+faceplayer
+waitse
+playmoncry SPECIES_PIKACHU CRY_MODE_NORMAL
+msgbox	PEKACHU: Peka!
+waitmoncry
+release
+end
+= RustboroCity_House3_EventScript_OldWoman
+msgbox	But giving the name PEKACHU to a PIKACHU? It seems pointless.I suppose it is good to use a name that's easy to understand, but…
+end
+@ Misspelling on purpose see nickname
+= RustboroCity_House3_EventScript_OldMan
+msgbox	For my own POKéMON, I give them perfectly suited nicknames!It's my expression of, uh… originality, yes, that's it!
+end

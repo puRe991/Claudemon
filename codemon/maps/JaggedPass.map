@@ -115,6 +115,119 @@ dialogs
 4	Wah! What are you doing here?What am I doing in a place like this?What business is it of yours?
 5	What is that odd rock protrusion a little up the hill from here?
 6	My bicycle bounced around so much, my rear end's sore…
+objscripts
+0 JaggedPass_EventScript_Eric
+1 JaggedPass_EventScript_Ethan
+3 JaggedPass_EventScript_Diana
+4 JaggedPass_EventScript_MagmaHideoutGuard
+5 JaggedPass_EventScript_Autumn
+6 JaggedPass_EventScript_Julio
+triggers
+21 15 VAR_JAGGED_PASS_STATE 1 JaggedPass_EventScript_OpenMagmaHideout
+22 20 VAR_JAGGED_PASS_STATE 1 JaggedPass_EventScript_OpenMagmaHideout
+21 20 VAR_JAGGED_PASS_STATE 1 JaggedPass_EventScript_OpenMagmaHideout
+14 15 VAR_JAGGED_PASS_STATE 1 JaggedPass_EventScript_OpenMagmaHideout
+13 15 VAR_JAGGED_PASS_STATE 1 JaggedPass_EventScript_OpenMagmaHideout
+scriptdefs
+= JaggedPass_EventScript_OpenMagmaHideout
+lockall
+setvar VAR_0x8004 1  @ vertical pan
+setvar VAR_0x8005 1  @ horizontal pan
+setvar VAR_0x8006 8  @ num shakes
+setvar VAR_0x8007 5  @ shake delay
+special ShakeCamera
+waitstate
+msgbox	Oh! This boulder is shaking in response to the MAGMA EMBLEM!
+closemessage
+setvar VAR_0x8004 1   @ vertical pan
+setvar VAR_0x8005 1   @ horizontal pan
+setvar VAR_0x8006 16  @ num shakes
+setvar VAR_0x8007 3   @ shake delay
+special ShakeCamera
+waitstate
+playse SE_EFFECTIVE
+setmetatile 16 17 METATILE_Lavaridge_CaveEntrance_Top TRUE
+setmetatile 16 18 METATILE_Lavaridge_CaveEntrance_Bottom FALSE
+special DrawWholeMapView
+delay 30
+setvar VAR_JAGGED_PASS_STATE 2
+waitse
+releaseall
+end
+= JaggedPass_EventScript_Julio
+trainerbattle_single TRAINER_JULIO JaggedPass_Text_JulioIntro JaggedPass_Text_JulioDefeat
+msgbox	My bicycle bounced around so much, my rear end's sore…
+end
+= JaggedPass_EventScript_Autumn
+trainerbattle_single TRAINER_AUTUMN JaggedPass_Text_AutumnIntro JaggedPass_Text_AutumnDefeat
+msgbox	What is that odd rock protrusion a little up the hill from here?
+end
+= JaggedPass_EventScript_MagmaHideoutGuard
+lockall
+goto_if_set FLAG_BEAT_MAGMA_GRUNT_JAGGED_PASS JaggedPass_EventScript_GuardDefeated
+waitse
+playse SE_PIN
+applymovement LOCALID_MAGMA_HIDEOUT_GUARD Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_MAGMA_HIDEOUT_GUARD Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_MAGMA_HIDEOUT_GUARD Common_Movement_FacePlayer
+waitmovement 0
+msgbox	Wah! What are you doing here?What am I doing in a place like this?What business is it of yours?
+closemessage
+trainerbattle_no_intro TRAINER_GRUNT_JAGGED_PASS JaggedPass_Text_GruntDefeat
+setflag FLAG_BEAT_MAGMA_GRUNT_JAGGED_PASS
+applymovement LOCALID_MAGMA_HIDEOUT_GUARD Common_Movement_FaceOriginalDirection
+waitmovement 0
+releaseall
+end
+= JaggedPass_EventScript_GuardDefeated
+applymovement LOCALID_MAGMA_HIDEOUT_GUARD Common_Movement_FacePlayer
+waitmovement 0
+msgbox	Okay, oh-kay! I admit it--you're strong!Don't worry about me. Go wherever you want!
+closemessage
+applymovement LOCALID_MAGMA_HIDEOUT_GUARD Common_Movement_FaceOriginalDirection
+waitmovement 0
+releaseall
+end
+= JaggedPass_EventScript_Diana
+trainerbattle_single TRAINER_DIANA_1 JaggedPass_Text_DianaIntro JaggedPass_Text_DianaDefeat JaggedPass_EventScript_RegisterDiana
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE JaggedPass_EventScript_DianaRematch
+msgbox	Did you know?Some people cleverly ride their bicycles up this horribly bumpy pass.
+release
+end
+= JaggedPass_EventScript_DianaRematch
+trainerbattle_rematch TRAINER_DIANA_1 JaggedPass_Text_DianaRematchIntro JaggedPass_Text_DianaRematchDefeat
+msgbox	I'll forget about losing and just enjoy this bumpy hike.
+end
+= JaggedPass_EventScript_RegisterDiana
+special PlayerFaceTrainerAfterBattle
+msgbox	Will you ever be back in this area? If you do return, I'd like a rematch.
+register_matchcall TRAINER_DIANA_1
+release
+end
+= JaggedPass_EventScript_Ethan
+trainerbattle_single TRAINER_ETHAN_1 JaggedPass_Text_EthanIntro JaggedPass_Text_EthanDefeat JaggedPass_EventScript_RegisterEthan
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE JaggedPass_EventScript_EthanRematch
+msgbox	If I had an ACRO BIKE, I'd be able to jump ledges.
+release
+end
+= JaggedPass_EventScript_EthanRematch
+trainerbattle_rematch TRAINER_ETHAN_1 JaggedPass_Text_EthanRematchIntro JaggedPass_Text_EthanRematchDefeat
+msgbox	I should get an ACRO BIKE from RYDEL in MAUVILLE CITY…
+end
+= JaggedPass_EventScript_RegisterEthan
+special PlayerFaceTrainerAfterBattle
+msgbox	When I get more used to this bumpiness, I'll be sure to win!Can you register me in your POKéNAV?
+register_matchcall TRAINER_ETHAN_1
+release
+end
+= JaggedPass_EventScript_Eric
+trainerbattle_single TRAINER_ERIC JaggedPass_Text_EricIntro JaggedPass_Text_EricDefeat
+msgbox	Yes, I did lose at POKéMON…But, when it comes to the love of the mountains, I have you beat!
+end
 grass
 518
 encounters

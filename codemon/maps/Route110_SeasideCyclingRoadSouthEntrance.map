@@ -23,3 +23,38 @@ npcs
 people_mart_employee 7 2 S static
 dialogs
 0	On CYCLING ROAD, you can go all out and cycle as fast as you'd like.It feels great to go that fast, but try not to crash into anyone!
+objscripts
+0 Route110_SeasideCyclingRoadSouthEntrance_EventScript_Clerk
+triggers
+7 4 VAR_TEMP_1 0 Route110_SeasideCyclingRoadSouthEntrance_EventScript_BikeCheck
+5 4 VAR_TEMP_1 1 Route110_SeasideCyclingRoadSouthEntrance_EventScript_ClearCyclingRoad
+movements
+Route110_SeasideCyclingRoadSouthEntrance_Movement_PushPlayerBackFromCounter	left,end
+scriptdefs
+= Route110_SeasideCyclingRoadSouthEntrance_EventScript_ClearCyclingRoad
+lockall
+clearflag FLAG_SYS_CYCLING_ROAD
+setvar VAR_TEMP_1 0
+releaseall
+end
+= Route110_SeasideCyclingRoadSouthEntrance_EventScript_BikeCheck
+lockall
+specialvar VAR_RESULT GetPlayerAvatarBike
+goto_if_eq VAR_RESULT 0 Route110_SeasideCyclingRoadSouthEntrance_EventScript_NoBike
+setflag FLAG_SYS_CYCLING_ROAD
+setvar VAR_TEMP_1 1
+releaseall
+end
+= Route110_SeasideCyclingRoadSouthEntrance_EventScript_NoBike
+msgbox	Sorry, you can't walk on CYCLING ROAD. It's too dangerous.Please come back with a BIKE.
+closemessage
+applymovement LOCALID_PLAYER Route110_SeasideCyclingRoadSouthEntrance_Movement_PushPlayerBackFromCounter
+waitmovement 0
+releaseall
+end
+= Route110_SeasideCyclingRoadSouthEntrance_EventScript_Clerk
+lock
+faceplayer
+msgbox	On CYCLING ROAD, you can go all out and cycle as fast as you'd like.It feels great to go that fast, but try not to crash into anyone!
+release
+end

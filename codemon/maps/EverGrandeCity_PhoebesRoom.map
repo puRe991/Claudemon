@@ -37,3 +37,25 @@ npcs
 people_man_1 6 5 S static
 dialogs
 0	Ahahaha!I'm PHOEBE of the ELITE FOUR. I did my training on MT. PYRE.While I trained, I gained the ability to commune with GHOST-type POKéMON.Yes, the bond I developed with POKéMON is extremely tight.So, come on, just try and see if you can even inflict damage on my POKéMON!
+objscripts
+0 EverGrandeCity_PhoebesRoom_EventScript_Phoebe
+scriptdefs
+= EverGrandeCity_PhoebesRoom_EventScript_Phoebe
+lock
+faceplayer
+goto_if_set FLAG_DEFEATED_ELITE_4_PHOEBE EverGrandeCity_PhoebesRoom_EventScript_PostBattleSpeech
+playbgm MUS_ENCOUNTER_ELITE_FOUR FALSE
+msgbox	Ahahaha!I'm PHOEBE of the ELITE FOUR. I did my training on MT. PYRE.While I trained, I gained the ability to commune with GHOST-type POKéMON.Yes, the bond I developed with POKéMON is extremely tight.So, come on, just try and see if you can even inflict damage on my POKéMON!
+trainerbattle_no_intro TRAINER_PHOEBE EverGrandeCity_PhoebesRoom_Text_Defeat
+goto EverGrandeCity_PhoebesRoom_EventScript_Defeated
+end
+= EverGrandeCity_PhoebesRoom_EventScript_Defeated
+setflag FLAG_DEFEATED_ELITE_4_PHOEBE
+call PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles
+msgbox	There's a definite bond between you and your POKéMON, too.I didn't recognize it, so it's only natural that I lost.Yup, I'd like to see how far your bond will carry you.Go ahead, move on to the next room.
+release
+end
+= EverGrandeCity_PhoebesRoom_EventScript_PostBattleSpeech
+msgbox	There's a definite bond between you and your POKéMON, too.I didn't recognize it, so it's only natural that I lost.Yup, I'd like to see how far your bond will carry you.Go ahead, move on to the next room.
+release
+end

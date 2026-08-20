@@ -45,3 +45,14 @@ people_tuber_m 5 10 S static
 dialogs
 0	Isn't it fun here? I get excited just being here!
 1	It's not easy throwing POKé BALLS while hanging on to an inner tube!
+objscripts
+0 AbandonedShip_Corridors_1F_EventScript_Youngster
+1 AbandonedShip_Corridors_1F_EventScript_Charlie
+scriptdefs
+= AbandonedShip_Corridors_1F_EventScript_Charlie
+trainerbattle_single TRAINER_CHARLIE AbandonedShip_Corridors_1F_Text_CharlieIntro AbandonedShip_Corridors_1F_Text_CharlieDefeat
+msgbox	It's not easy throwing POKé BALLS while hanging on to an inner tube!
+end
+= AbandonedShip_Corridors_1F_EventScript_Youngster
+msgbox	Isn't it fun here? I get excited just being here!
+end

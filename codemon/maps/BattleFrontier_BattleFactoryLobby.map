@@ -41,5 +41,49 @@ dialogs
 2	I swapped for a weak POKéMON… I thought it was a good kind to have…They wiped the floor with us…
 3	Things haven't been going my way at all.You need to check your opponent's POKéMON during battle to see if they're any good.
 4	You know how the staff here give you a few hints about your next opponent?Well, I'm a full-grown man, but I have trouble figuring out their hints.
+objscripts
+0 BattleFrontier_BattleFactoryLobby_EventScript_SinglesAttendant
+1 BattleFrontier_BattleFactoryLobby_EventScript_Woman
+2 BattleFrontier_BattleFactoryLobby_EventScript_Camper
+3 BattleFrontier_BattleFactoryLobby_EventScript_Picnicker
+4 BattleFrontier_BattleFactoryLobby_EventScript_FatMan
+5 BattleFrontier_BattleFactoryLobby_EventScript_DoublesAttendant
+scriptdefs
+= BattleFrontier_BattleFactoryLobby_EventScript_DoublesAttendant
+setvar VAR_FRONTIER_FACILITY FRONTIER_FACILITY_FACTORY
+setvar VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_DOUBLES
+goto BattleFrontier_BattleFactoryLobby_EventScript_Attendant
+end
+= BattleFrontier_BattleFactoryLobby_EventScript_Attendant
+special SavePlayerParty
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES BattleFrontier_BattleFactoryLobby_EventScript_WelcomeForSingleBattle
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_DOUBLES BattleFrontier_BattleFactoryLobby_EventScript_WelcomeForDoubleBattle
+= BattleFrontier_BattleFactoryLobby_EventScript_WelcomeForDoubleBattle
+msgbox	Where the intelligence of TRAINERS is put to the test!Welcome to the BATTLE FACTORY!I am your guide to the Battle Swap Double Tournament.
+return
+= BattleFrontier_BattleFactoryLobby_EventScript_WelcomeForSingleBattle
+msgbox	Where the intelligence of TRAINERS is put to the test!Welcome to the BATTLE FACTORY!I am your guide to the Battle Swap Single Tournament.
+return
+= BattleFrontier_BattleFactoryLobby_EventScript_FatMan
+msgbox	You know how the staff here give you a few hints about your next opponent?Well, I'm a full-grown man, but I have trouble figuring out their hints.
+end
+= BattleFrontier_BattleFactoryLobby_EventScript_Picnicker
+lock
+msgbox	Things haven't been going my way at all.You need to check your opponent's POKéMON during battle to see if they're any good.
+release
+end
+= BattleFrontier_BattleFactoryLobby_EventScript_Camper
+msgbox	I swapped for a weak POKéMON… I thought it was a good kind to have…They wiped the floor with us…
+end
+= BattleFrontier_BattleFactoryLobby_EventScript_Woman
+msgbox	Hi! You, there!Are you thinking that the events here are easy since you don't need to have a raised team of POKéMON?I wouldn't be too sure about winning that easily.If you don't have thorough knowledge about POKéMON and their moves, it will be tough to keep winning.
+end
+= BattleFrontier_BattleFactoryLobby_EventScript_SinglesAttendant
+lock
+faceplayer
+setvar VAR_FRONTIER_FACILITY FRONTIER_FACILITY_FACTORY
+setvar VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES
+goto BattleFrontier_BattleFactoryLobby_EventScript_Attendant
+end
 signs
 9 4	The Battle Swap rules are listed.

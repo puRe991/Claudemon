@@ -27,3 +27,24 @@ people_woman_2 7 4 W static
 dialogs
 0	Hmm! Your …
 1	My husband can tell what kind of S a POKéMON likes at a glance.
+objscripts
+0 MossdeepCity_House1_EventScript_BlackBelt
+1 MossdeepCity_House1_EventScript_Woman
+scriptdefs
+= MossdeepCity_House1_EventScript_Woman
+msgbox	My husband can tell what kind of S a POKéMON likes at a glance.
+end
+= MossdeepCity_House1_EventScript_BlackBelt
+lock
+faceplayer
+bufferleadmonspeciesname STR_VAR_1
+msgbox	Hmm! Your …
+specialvar VAR_RESULT GetPokeblockNameByMonNature
+goto_if_eq VAR_RESULT 0 MossdeepCity_House1_EventScript_NeutralNature
+msgbox	It likes S, doesn't it?No, I'm positive of it! It definitely likes S!
+release
+end
+= MossdeepCity_House1_EventScript_NeutralNature
+msgbox	It doesn't appear to like or dislike any S.
+release
+end

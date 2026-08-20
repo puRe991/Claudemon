@@ -34,3 +34,9 @@ people_man_1 1 2 S static
 people_woman_5 11 7 S wander
 dialogs
 4	If I win a whole lot of link battles and show everyone how good I am, I might get a fan following!
+objscripts
+4 MossdeepCity_PokemonCenter_2F_EventScript_Woman5
+scriptdefs
+= MossdeepCity_PokemonCenter_2F_EventScript_Woman5
+msgbox	If I win a whole lot of link battles and show everyone how good I am, I might get a fan following!
+end

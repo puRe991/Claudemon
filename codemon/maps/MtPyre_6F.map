@@ -38,3 +38,29 @@ people_psychic_m 10 3 S static
 dialogs
 0	Perhaps the power is from the spirits of POKéMON in fitful sleep here…
 2	I had this feeling that a lost TRAINER would be panicked and easy to beat.It's dirty and I won't try it again…
+objscripts
+0 MtPyre_6F_EventScript_Valerie
+2 MtPyre_6F_EventScript_Cedric
+scriptdefs
+= MtPyre_6F_EventScript_Cedric
+trainerbattle_single TRAINER_CEDRIC MtPyre_6F_Text_CedricIntro MtPyre_6F_Text_CedricDefeat
+msgbox	I had this feeling that a lost TRAINER would be panicked and easy to beat.It's dirty and I won't try it again…
+end
+= MtPyre_6F_EventScript_Valerie
+trainerbattle_single TRAINER_VALERIE_1 MtPyre_6F_Text_ValerieIntro MtPyre_6F_Text_ValerieDefeat MtPyre_6F_EventScript_RegisterValerie
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE MtPyre_6F_EventScript_RematchValerie
+msgbox	Perhaps the power is from the spirits of POKéMON in fitful sleep here…
+release
+end
+= MtPyre_6F_EventScript_RematchValerie
+trainerbattle_rematch TRAINER_VALERIE_1 MtPyre_6F_Text_ValerieRematchIntro MtPyre_6F_Text_ValerieRematchDefeat
+msgbox	The POKéMON at rest here… Sometimes, they play…
+end
+= MtPyre_6F_EventScript_RegisterValerie
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	Fufufu… I lost the match, but… I have this little ability…Without ever laying my hands on your POKéNAV… Hiyah!
+register_matchcall TRAINER_VALERIE_1
+release
+end

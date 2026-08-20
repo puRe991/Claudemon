@@ -341,6 +341,377 @@ dialogs
 33	I challenged the WINSTRATE family, but four matches in a row is tough going… They destroyed me.
 42	There should be a tower made of sand around here somewhere.But for some reason, it can be seen sometimes, and sometimes not.That's why I call it the MIRAGE TOWER.
 45	Oh, no!My uncle in MAUVILLE told me to take ROCK SMASH with me if I was going to ROUTE 111!My uncle? He lives across from the bike shop in MAUVILLE.
+objscripts
+0 Route111_EventScript_Victor
+4 Route111_EventScript_Heidi
+7 Route111_EventScript_Man1
+8 Route111_EventScript_Drew
+9 Route111_EventScript_Dusty
+10 Route111_EventScript_Beau
+11 Route111_EventScript_Becky
+16 Route111_EventScript_Girl
+27 Route111_EventScript_Irene
+28 Route111_EventScript_Travis
+29 Route111_EventScript_Daisuke
+30 Route111_EventScript_Brooke
+31 Route111_EventScript_Wilton
+33 Route111_EventScript_Man2
+34 Route111_EventScript_Tyron
+35 Route111_EventScript_Celina
+36 Route111_EventScript_Bianca
+37 Route111_EventScript_Hayden
+38 Route111_EventScript_Bryan
+39 Route111_EventScript_Celia
+40 Route111_EventScript_Branden
+42 Route111_EventScript_Hiker
+45 Route111_EventScript_RockSmashTipFatMan
+triggers
+12 62 TRIGGER_RUN_IMMEDIATELY 0 Route111_EventScript_SandstormTrigger
+11 61 VAR_TEMP_3 0 Route111_EventScript_ViciousSandstormTriggerDown
+12 61 VAR_TEMP_3 0 Route111_EventScript_ViciousSandstormTriggerDown
+13 61 VAR_TEMP_3 0 Route111_EventScript_ViciousSandstormTriggerDown
+7 63 TRIGGER_RUN_IMMEDIATELY 0 Route111_EventScript_SunTrigger
+12 44 VAR_TEMP_3 0 Route111_EventScript_ViciousSandstormTriggerLeft
+13 43 VAR_TEMP_3 0 Route111_EventScript_ViciousSandstormTriggerLeft
+14 42 VAR_TEMP_3 0 Route111_EventScript_ViciousSandstormTriggerLeft
+16 40 VAR_TEMP_3 0 Route111_EventScript_ViciousSandstormTriggerLeft
+14 61 VAR_TEMP_3 0 Route111_EventScript_ViciousSandstormTriggerDown
+18 32 TRIGGER_RUN_IMMEDIATELY 0 Route111_EventScript_SunTrigger
+17 31 TRIGGER_RUN_IMMEDIATELY 0 Route111_EventScript_SunTrigger
+9 37 TRIGGER_RUN_IMMEDIATELY 0 Route111_EventScript_SunTrigger
+10 36 TRIGGER_RUN_IMMEDIATELY 0 Route111_EventScript_SunTrigger
+17 39 VAR_TEMP_3 0 Route111_EventScript_ViciousSandstormTriggerLeft
+18 38 VAR_TEMP_3 0 Route111_EventScript_ViciousSandstormTriggerLeft
+8 64 TRIGGER_RUN_IMMEDIATELY 0 Route111_EventScript_SunTrigger
+9 65 TRIGGER_RUN_IMMEDIATELY 0 Route111_EventScript_SunTrigger
+10 65 TRIGGER_RUN_IMMEDIATELY 0 Route111_EventScript_SunTrigger
+11 66 TRIGGER_RUN_IMMEDIATELY 0 Route111_EventScript_SunTrigger
+12 67 TRIGGER_RUN_IMMEDIATELY 0 Route111_EventScript_SunTrigger
+13 68 TRIGGER_RUN_IMMEDIATELY 0 Route111_EventScript_SunTrigger
+14 69 TRIGGER_RUN_IMMEDIATELY 0 Route111_EventScript_SunTrigger
+10 61 TRIGGER_RUN_IMMEDIATELY 0 Route111_EventScript_SandstormTrigger
+11 62 TRIGGER_RUN_IMMEDIATELY 0 Route111_EventScript_SandstormTrigger
+13 62 TRIGGER_RUN_IMMEDIATELY 0 Route111_EventScript_SandstormTrigger
+14 62 TRIGGER_RUN_IMMEDIATELY 0 Route111_EventScript_SandstormTrigger
+17 38 TRIGGER_RUN_IMMEDIATELY 0 Route111_EventScript_SandstormTrigger
+16 39 TRIGGER_RUN_IMMEDIATELY 0 Route111_EventScript_SandstormTrigger
+15 40 TRIGGER_RUN_IMMEDIATELY 0 Route111_EventScript_SandstormTrigger
+14 41 TRIGGER_RUN_IMMEDIATELY 0 Route111_EventScript_SandstormTrigger
+13 42 TRIGGER_RUN_IMMEDIATELY 0 Route111_EventScript_SandstormTrigger
+12 43 TRIGGER_RUN_IMMEDIATELY 0 Route111_EventScript_SandstormTrigger
+11 44 TRIGGER_RUN_IMMEDIATELY 0 Route111_EventScript_SandstormTrigger
+movements
+Route111_Movement_PushDownFromRoute	down,end
+Route111_Movement_PushLeftFromRoute	left,end
+Route111_Movement_PushRightFromRoute	right,end
+Route111_Movement_PushUpFromRoute	up,end
+Route111_Movement_WaitForNextWinstrate	delay,delay,delay,end
+Route111_Movement_WinstrateEnterHouse	delay,up,end
+Route111_Movement_WinstrateExitHouse	down,end
+scriptdefs
+= Route111_EventScript_SandstormTrigger
+setweather WEATHER_SANDSTORM
+fadenewbgm MUS_DESERT
+doweather
+end
+= Route111_EventScript_SunTrigger
+setweather WEATHER_SUNNY
+fadenewbgm MUS_ROUTE110
+doweather
+setvar VAR_TEMP_3 0
+end
+= Route111_EventScript_ViciousSandstormTriggerLeft
+lockall
+setvar VAR_0x8004 2
+goto Route111_EventScript_ViciousSandstormTrigger
+end
+@ Unused
+= Route111_EventScript_ViciousSandstormTrigger
+checkitem ITEM_GO_GOGGLES
+goto_if_eq VAR_RESULT FALSE Route111_EventScript_PreventRouteAccess
+setvar VAR_TEMP_3 1
+releaseall
+end
+= Route111_EventScript_PreventRouteAccess
+msgbox	gText_SandstormIsVicious
+closemessage
+call_if_eq VAR_0x8004 0 Route111_EventScript_PushUpFromRoute
+call_if_eq VAR_0x8004 1 Route111_EventScript_PushDownFromRoute
+call_if_eq VAR_0x8004 2 Route111_EventScript_PushLeftFromRoute
+call_if_eq VAR_0x8004 3 Route111_EventScript_PushRightFromRoute
+releaseall
+end
+= Route111_EventScript_PushRightFromRoute
+applymovement LOCALID_PLAYER Route111_Movement_PushRightFromRoute
+waitmovement 0
+return
+= Route111_EventScript_PushLeftFromRoute
+applymovement LOCALID_PLAYER Route111_Movement_PushLeftFromRoute
+waitmovement 0
+return
+= Route111_EventScript_PushDownFromRoute
+applymovement LOCALID_PLAYER Route111_Movement_PushDownFromRoute
+waitmovement 0
+return
+= Route111_EventScript_PushUpFromRoute
+applymovement LOCALID_PLAYER Route111_Movement_PushUpFromRoute
+waitmovement 0
+return
+= Route111_EventScript_ViciousSandstormTriggerDown
+lockall
+setvar VAR_0x8004 1
+goto Route111_EventScript_ViciousSandstormTrigger
+end
+= Route111_EventScript_RockSmashTipFatMan
+lockall
+applymovement LOCALID_ROUTE111_ROCK_SMASH_MAN Common_Movement_FacePlayer
+waitmovement 0
+msgbox	Oh, no!My uncle in MAUVILLE told me to take ROCK SMASH with me if I was going to ROUTE 111!My uncle? He lives across from the bike shop in MAUVILLE.
+closemessage
+applymovement LOCALID_ROUTE111_ROCK_SMASH_MAN Common_Movement_FaceOriginalDirection
+waitmovement 0
+releaseall
+end
+= Route111_EventScript_Hiker
+lock
+faceplayer
+goto_if_eq VAR_MIRAGE_TOWER_STATE 3 Route111_EventScript_HikerMirageTowerGone
+goto_if_eq VAR_MIRAGE_TOWER_STATE 2 Route111_EventScript_HikerMirageTowerDisintegrated
+goto_if_set FLAG_MIRAGE_TOWER_VISIBLE Route111_EventScript_HikerMirageTowerVisible
+msgbox	There should be a tower made of sand around here somewhere.But for some reason, it can be seen sometimes, and sometimes not.That's why I call it the MIRAGE TOWER.
+release
+end
+= Route111_EventScript_HikerMirageTowerVisible
+msgbox	I see it! The tower of sand!The sand tower they called a mirage is clearly visible!But it looks so fragile… It could crumble away anytime…I want to go inside it, but I can't get my courage up for it…
+release
+end
+= Route111_EventScript_HikerMirageTowerDisintegrated
+msgbox	Whoa… That was shocking.Sand rained down in chunks all of a sudden.What was it like inside? Were there sandy ghosts and such?
+release
+end
+= Route111_EventScript_HikerMirageTowerGone
+msgbox	Since I spoke to you, the tower of sand hasn't been seen.Perhaps it really was the MIRAGE TOWER…
+release
+end
+= Route111_EventScript_Branden
+trainerbattle_single TRAINER_BRANDEN Route111_Text_BrandenIntro Route111_Text_BrandenDefeat
+msgbox	Route111_Text_BrandenPostBattle
+end
+= Route111_EventScript_Celia
+trainerbattle_single TRAINER_CELIA Route111_Text_CeliaIntro Route111_Text_CeliaDefeat
+msgbox	Route111_Text_CeliaPostBattle
+end
+= Route111_EventScript_Bryan
+trainerbattle_single TRAINER_BRYAN Route111_Text_BryanIntro Route111_Text_BryanDefeat
+msgbox	Route111_Text_BryanPostBattle
+end
+= Route111_EventScript_Hayden
+trainerbattle_single TRAINER_HAYDEN Route111_Text_HaydenIntro Route111_Text_HaydenDefeat
+msgbox	Route111_Text_HaydenPostBattle
+end
+= Route111_EventScript_Bianca
+trainerbattle_single TRAINER_BIANCA Route111_Text_BiancaIntro Route111_Text_BiancaDefeat
+msgbox	Route111_Text_BiancaPostBattle
+end
+= Route111_EventScript_Celina
+trainerbattle_single TRAINER_CELINA Route111_Text_CelinaIntro Route111_Text_CelinaDefeat
+msgbox	Route111_Text_CelinaPostBattle
+end
+= Route111_EventScript_Tyron
+trainerbattle_single TRAINER_TYRON Route111_Text_TyronIntro Route111_Text_TyronDefeat
+msgbox	Route111_Text_TyronPostBattle
+end
+= Route111_EventScript_Man2
+msgbox	I challenged the WINSTRATE family, but four matches in a row is tough going… They destroyed me.
+end
+= Route111_EventScript_Wilton
+trainerbattle_single TRAINER_WILTON_1 Route111_Text_WiltonIntro Route111_Text_WiltonDefeat Route111_EventScript_RegisterWilton
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route111_EventScript_RematchWilton
+msgbox	Route111_Text_WiltonPostBattle
+release
+end
+= Route111_EventScript_RematchWilton
+trainerbattle_rematch TRAINER_WILTON_1 Route111_Text_WiltonRematchIntro Route111_Text_WiltonRematchDefeat
+msgbox	Route111_Text_WiltonPostRematch
+end
+= Route111_EventScript_RegisterWilton
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	Route111_Text_WiltonRegister
+register_matchcall TRAINER_WILTON_1
+release
+end
+= Route111_EventScript_Brooke
+trainerbattle_single TRAINER_BROOKE_1 Route111_Text_BrookeIntro Route111_Text_BrookeDefeat Route111_EventScript_RegisterBrooke
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route111_EventScript_RematchBrooke
+msgbox	Route111_Text_BrookePostBattle
+release
+end
+= Route111_EventScript_RematchBrooke
+trainerbattle_rematch TRAINER_BROOKE_1 Route111_Text_BrookeRematchIntro Route111_Text_BrookeRematchDefeat
+msgbox	Route111_Text_BrookePostRematch
+end
+= Route111_EventScript_RegisterBrooke
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	Route111_Text_BrookeRegister
+register_matchcall TRAINER_BROOKE_1
+release
+end
+= Route111_EventScript_Daisuke
+trainerbattle_single TRAINER_DAISUKE Route111_Text_DaisukeIntro Route111_Text_DaisukeDefeat
+msgbox	Route111_Text_DaisukePostBattle
+end
+= Route111_EventScript_Travis
+trainerbattle_single TRAINER_TRAVIS Route111_Text_TravisIntro Route111_Text_TravisDefeat
+msgbox	Route111_Text_TravisPostBattle
+end
+= Route111_EventScript_Irene
+trainerbattle_single TRAINER_IRENE Route111_Text_IreneIntro Route111_Text_IreneDefeat
+msgbox	Route111_Text_IrenePostBattle
+end
+= Route111_EventScript_Girl
+lock
+faceplayer
+dotimebasedevents
+goto_if_set FLAG_DAILY_ROUTE_111_RECEIVED_BERRY Route111_EventScript_ReceivedBerry
+msgbox	Route111_Text_WateredPlantsEveryDayTakeBerry
+giveitem ITEM_RAZZ_BERRY
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_DAILY_ROUTE_111_RECEIVED_BERRY
+special GetPlayerBigGuyGirlString
+msgbox	Route111_Text_GoingToTryToMakeDifferentColorBerries
+release
+end
+= Route111_EventScript_ReceivedBerry
+msgbox	Route111_Text_WhatColorBerriesToLookForToday
+release
+end
+@ Unused
+= Route111_EventScript_Becky
+trainerbattle_single TRAINER_BECKY Route111_Text_BeckyIntro Route111_Text_BeckyDefeat
+msgbox	Route111_Text_BeckyPostBattle
+end
+= Route111_EventScript_Beau
+trainerbattle_single TRAINER_BEAU Route111_Text_BeauIntro Route111_Text_BeauDefeat
+msgbox	Route111_Text_BeauPostBattle
+end
+= Route111_EventScript_Dusty
+trainerbattle_single TRAINER_DUSTY_1 Route111_Text_DustyIntro Route111_Text_DustyDefeat Route111_EventScript_RegisterDusty
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route111_EventScript_RematchDusty
+msgbox	Route111_Text_DustyPostBattle
+release
+end
+= Route111_EventScript_RematchDusty
+trainerbattle_rematch TRAINER_DUSTY_1 Route111_Text_DustyRematchIntro Route111_Text_DustyRematchDefeat
+msgbox	Route111_Text_DustyPostRematch
+end
+= Route111_EventScript_RegisterDusty
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	Route111_Text_DustyRegister
+register_matchcall TRAINER_DUSTY_1
+release
+end
+= Route111_EventScript_Drew
+trainerbattle_single TRAINER_DREW Route111_Text_DrewIntro Route111_Text_DrewDefeat
+msgbox	Route111_Text_DrewPostBattle
+end
+= Route111_EventScript_Man1
+msgbox	If you don't raise your POKéMON some more, it could be tough to keep winning up through the ranks.I've heard the POKéMON LEAGUE's ELITE FOUR are far stronger than any GYM LEADER.
+end
+= Route111_EventScript_Heidi
+trainerbattle_single TRAINER_HEIDI Route111_Text_HeidiIntro Route111_Text_HeidiDefeat
+msgbox	Route111_Text_HeidiPostBattle
+end
+= Route111_EventScript_Victor
+lock
+faceplayer
+setflag FLAG_LANDMARK_WINSTRATE_FAMILY
+msgbox	Hello! I take it you're a traveler.How's this? What do you say to taking on our family of four in a series of POKéMON battles?
+goto_if_eq VAR_RESULT YES Route111_EventScript_BattleWinstrates
+msgbox	Is that so? Drop in, if you change your mind!
+release
+end
+= Route111_EventScript_BattleWinstrates
+msgbox	That's the spirit! I like you!
+trainerbattle_no_intro TRAINER_VICTOR Route111_Text_VictorDefeat
+applymovement LOCALID_ROUTE111_VICTOR Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+call Route111_EventScript_OpenWinstrateDoor
+msgbox	Hey, all! I've found a pretty strong TRAINER!
+closemessage
+applymovement LOCALID_ROUTE111_VICTOR Route111_Movement_WinstrateEnterHouse
+waitmovement 0
+removeobject LOCALID_ROUTE111_VICTOR
+call Route111_EventScript_CloseWinstrateDoor
+applymovement LOCALID_PLAYER Route111_Movement_WaitForNextWinstrate
+waitmovement 0
+call Route111_EventScript_OpenWinstrateDoor
+addobject LOCALID_ROUTE111_VICTORIA
+applymovement LOCALID_ROUTE111_VICTORIA Route111_Movement_WinstrateExitHouse
+waitmovement 0
+call Route111_EventScript_CloseWinstrateDoor
+msgbox	Oh, my goodness! Aren't you young?You must be quite the TRAINER to beat my husband, though.It's my turn to battle now!
+trainerbattle_no_intro TRAINER_VICTORIA Route111_Text_VictoriaDefeat
+applymovement LOCALID_ROUTE111_VICTORIA Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+call Route111_EventScript_OpenWinstrateDoor
+msgbox	There's a strong TRAINER here! This one's really strong!
+closemessage
+applymovement LOCALID_ROUTE111_VICTORIA Route111_Movement_WinstrateEnterHouse
+waitmovement 0
+removeobject LOCALID_ROUTE111_VICTORIA
+call Route111_EventScript_CloseWinstrateDoor
+applymovement LOCALID_PLAYER Route111_Movement_WaitForNextWinstrate
+waitmovement 0
+call Route111_EventScript_OpenWinstrateDoor
+addobject LOCALID_ROUTE111_VIVI
+applymovement LOCALID_ROUTE111_VIVI Route111_Movement_WinstrateExitHouse
+waitmovement 0
+call Route111_EventScript_CloseWinstrateDoor
+msgbox	You're stronger than Mommy? Wow!But I'm strong, too! Really! Honestly!
+trainerbattle_no_intro TRAINER_VIVI Route111_Text_ViviDefeat
+applymovement LOCALID_ROUTE111_VIVI Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+call Route111_EventScript_OpenWinstrateDoor
+msgbox	This stinks……Snivel… Grandma!
+closemessage
+applymovement LOCALID_ROUTE111_VIVI Route111_Movement_WinstrateEnterHouse
+waitmovement 0
+removeobject LOCALID_ROUTE111_VIVI
+call Route111_EventScript_CloseWinstrateDoor
+applymovement LOCALID_PLAYER Route111_Movement_WaitForNextWinstrate
+waitmovement 0
+call Route111_EventScript_OpenWinstrateDoor
+addobject LOCALID_ROUTE111_VICKY
+applymovement LOCALID_ROUTE111_VICKY Route111_Movement_WinstrateExitHouse
+waitmovement 0
+call Route111_EventScript_CloseWinstrateDoor
+msgbox	How dare you make my granddaughter cry!For that, I'm going to smack you! Prepare to lose!
+trainerbattle_no_intro TRAINER_VICKY Route111_Text_VickyDefeat
+msgbox	If you're not in any hurry, visit with us awhile.
+closemessage
+applymovement LOCALID_ROUTE111_VICKY Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+call Route111_EventScript_OpenWinstrateDoor
+applymovement LOCALID_ROUTE111_VICKY Route111_Movement_WinstrateEnterHouse
+waitmovement 0
+removeobject LOCALID_ROUTE111_VICKY
+call Route111_EventScript_CloseWinstrateDoor
+release
+end
+= Route111_EventScript_CloseWinstrateDoor
+closedoor 13 113
+waitdooranim
+return
+= Route111_EventScript_OpenWinstrateDoor
+opendoor 13 113
+waitdooranim
+return
 signs
 16 114	“Our family's hearts beat as one!” THE WINSTRATE'S HOUSE
 24 126	ROUTE 111 MAUVILLE CITY

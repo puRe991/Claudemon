@@ -25,3 +25,52 @@ npcs
 people_fat_man 4 4 S static
 dialogs
 0	I'm the MOVE TUTOR.I know all the moves that POKéMON learn--every one of them--and I can teach POKéMON those moves.I can teach a move to a POKéMON of yours if you'd like.I'll do it for a HEART SCALE. I'm collecting those now.
+objscripts
+0 FallarborTown_MoveRelearnersHouse_EventScript_MoveRelearner
+scriptdefs
+= FallarborTown_MoveRelearnersHouse_EventScript_MoveRelearner
+lockall
+applymovement LOCALID_MOVE_RELEARNER Common_Movement_FacePlayer
+waitmovement 0
+goto_if_set FLAG_TEMP_1 FallarborTown_MoveRelearnersHouse_EventScript_AskTeachMove
+msgbox	I'm the MOVE TUTOR.I know all the moves that POKéMON learn--every one of them--and I can teach POKéMON those moves.I can teach a move to a POKéMON of yours if you'd like.I'll do it for a HEART SCALE. I'm collecting those now.
+setflag FLAG_TEMP_1
+goto FallarborTown_MoveRelearnersHouse_EventScript_AskTeachMove
+end
+= FallarborTown_MoveRelearnersHouse_EventScript_AskTeachMove
+checkitem ITEM_HEART_SCALE
+goto_if_eq VAR_RESULT FALSE FallarborTown_MoveRelearnersHouse_EventScript_ComeBackWithHeartScale
+msgbox	Oh! That's it! That's an honest to goodness HEART SCALE!Let me guess, you want me to teach a move?
+switch VAR_RESULT
+case NO FallarborTown_MoveRelearnersHouse_EventScript_ComeBackWithHeartScale
+goto FallarborTown_MoveRelearnersHouse_EventScript_ChooseMon
+end
+= FallarborTown_MoveRelearnersHouse_EventScript_ChooseMon
+msgbox	Which POKéMON needs tutoring?
+special ChooseMonForMoveRelearner
+goto_if_eq VAR_0x8004 PARTY_NOTHING_CHOSEN FallarborTown_MoveRelearnersHouse_EventScript_ComeBackWithHeartScale
+special IsSelectedMonEgg
+goto_if_eq VAR_RESULT TRUE FallarborTown_MoveRelearnersHouse_EventScript_CantTeachEgg
+goto_if_eq VAR_0x8005 0 FallarborTown_MoveRelearnersHouse_EventScript_NoMoveToTeachMon
+goto FallarborTown_MoveRelearnersHouse_EventScript_ChooseMove
+end
+= FallarborTown_MoveRelearnersHouse_EventScript_ChooseMove
+msgbox	Which move should I teach?
+special TeachMoveRelearnerMove
+goto_if_eq VAR_0x8004 0 FallarborTown_MoveRelearnersHouse_EventScript_ChooseMon
+msgbox	PLAYER handed over one HEART SCALE in exchange.
+removeitem ITEM_HEART_SCALE
+goto FallarborTown_MoveRelearnersHouse_EventScript_ComeBackWithHeartScale
+end
+= FallarborTown_MoveRelearnersHouse_EventScript_ComeBackWithHeartScale
+msgbox	If your POKéMON need to learn a move, come back with a HEART SCALE.
+releaseall
+end
+= FallarborTown_MoveRelearnersHouse_EventScript_NoMoveToTeachMon
+msgbox	Sorry…It doesn't appear as if I have any move I can teach that POKéMON.
+goto FallarborTown_MoveRelearnersHouse_EventScript_ChooseMon
+end
+= FallarborTown_MoveRelearnersHouse_EventScript_CantTeachEgg
+msgbox	Hunh? There isn't a single move that I can teach an EGG.
+goto FallarborTown_MoveRelearnersHouse_EventScript_ChooseMon
+end

@@ -59,6 +59,413 @@ dialogs
 0	Um, um, um!If you go outside and go in the grass, wild POKéMON will jump out!
 1	If you use a PC, you can store items and POKéMON.The power of science is staggering!
 2	PROF. BIRCH spends days in his LAB studying, then he'll suddenly go out in the wild to do more research…When does PROF. BIRCH spend time at home?
+objscripts
+0 LittlerootTown_EventScript_Twin
+1 LittlerootTown_EventScript_FatMan
+2 LittlerootTown_EventScript_Boy
+3 LittlerootTown_EventScript_Mom
+triggers
+10 1 VAR_LITTLEROOT_TOWN_STATE 0 LittlerootTown_EventScript_NeedPokemonTriggerLeft
+11 1 VAR_LITTLEROOT_TOWN_STATE 0 LittlerootTown_EventScript_NeedPokemonTriggerRight
+11 1 VAR_LITTLEROOT_TOWN_STATE 1 LittlerootTown_EventScript_GoSaveBirchTrigger
+8 9 VAR_LITTLEROOT_TOWN_STATE 3 LittlerootTown_EventScript_GiveRunningShoesTrigger4
+9 9 VAR_LITTLEROOT_TOWN_STATE 3 LittlerootTown_EventScript_GiveRunningShoesTrigger5
+10 9 VAR_LITTLEROOT_TOWN_STATE 3 LittlerootTown_EventScript_GiveRunningShoesTrigger2
+11 9 VAR_LITTLEROOT_TOWN_STATE 3 LittlerootTown_EventScript_GiveRunningShoesTrigger3
+10 2 VAR_LITTLEROOT_TOWN_STATE 3 LittlerootTown_EventScript_GiveRunningShoesTrigger0
+11 2 VAR_LITTLEROOT_TOWN_STATE 3 LittlerootTown_EventScript_GiveRunningShoesTrigger1
+movements
+LittlerootTown_Movement_MomApproachPlayer0	up,up,up,up,up,up,end
+LittlerootTown_Movement_MomApproachPlayer1	up,up,up,up,up,up,end
+LittlerootTown_Movement_MomApproachPlayerFemale2	left,left,left,end
+LittlerootTown_Movement_MomApproachPlayerFemale3	left,left,end
+LittlerootTown_Movement_MomApproachPlayerFemale4	left,left,left,left,left,end
+LittlerootTown_Movement_MomApproachPlayerFemale5	left,left,left,left,end
+LittlerootTown_Movement_MomApproachPlayerMale2	right,right,right,right,end
+LittlerootTown_Movement_MomApproachPlayerMale3	right,right,right,right,right,end
+LittlerootTown_Movement_MomApproachPlayerMale4	right,right,end
+LittlerootTown_Movement_MomApproachPlayerMale5	right,right,right,end
+LittlerootTown_Movement_MomExitThroughDoor	up,end
+LittlerootTown_Movement_MomReturnHome0	down,down,down,down,down,end
+LittlerootTown_Movement_MomReturnHome1	down,down,down,down,down,end
+LittlerootTown_Movement_MomReturnHomeFemale2	right,right,right,delay,end
+LittlerootTown_Movement_MomReturnHomeFemale3	right,right,delay,end
+LittlerootTown_Movement_MomReturnHomeFemale4	right,right,right,right,right,delay,end
+LittlerootTown_Movement_MomReturnHomeFemale5	right,right,right,right,delay,end
+LittlerootTown_Movement_MomReturnHomeMale2	left,left,left,left,delay,end
+LittlerootTown_Movement_MomReturnHomeMale3	left,left,left,left,left,delay,end
+LittlerootTown_Movement_MomReturnHomeMale4	left,left,delay,end
+LittlerootTown_Movement_MomReturnHomeMale5	left,left,left,delay,end
+LittlerootTown_Movement_PushPlayerBackFromRoute	delay,down,delay,end
+LittlerootTown_Movement_TwinApproachPlayerLeft	face_right,delay,delay,delay,delay,right,right,right,right,up,up,left,face_down,end
+LittlerootTown_Movement_TwinApproachPlayerRight	face_right,delay,delay,delay,delay,right,right,right,up,up,right,face_down,end
+LittlerootTown_Movement_TwinPushPlayerFromRoute	down,end
+LittlerootTown_Movement_TwinReturnLeft	right,down,down,left,left,left,left,up,delay,end
+LittlerootTown_Movement_TwinReturnRight	left,down,left,left,left,delay,end
+scriptdefs
+= LittlerootTown_EventScript_GiveRunningShoesTrigger1
+lockall
+setvar VAR_0x8008 1
+setobjectxy LOCALID_LITTLEROOT_MOM 11 9
+goto LittlerootTown_EventScript_GiveRunningShoesTrigger
+end
+= LittlerootTown_EventScript_GiveRunningShoesTrigger
+checkplayergender
+call_if_eq VAR_RESULT MALE LittlerootTown_EventScript_MomNoticePlayerMale
+call_if_eq VAR_RESULT FEMALE LittlerootTown_EventScript_MomNoticePlayerFemale
+checkplayergender
+call_if_eq VAR_RESULT MALE LittlerootTown_EventScript_SetHomeDoorCoordsMale
+call_if_eq VAR_RESULT FEMALE LittlerootTown_EventScript_SetHomeDoorCoordsFemale
+msgbox	MOM: Wait, PLAYER!
+closemessage
+checkplayergender
+call_if_eq VAR_RESULT MALE LittlerootTown_EventScript_MomApproachPlayerMale
+call_if_eq VAR_RESULT FEMALE LittlerootTown_EventScript_MomApproachPlayerFemale
+call LittlerootTown_EventScript_GiveRunningShoes
+checkplayergender
+call_if_eq VAR_RESULT MALE LittlerootTown_EventScript_MomReturnHomeMale
+call_if_eq VAR_RESULT FEMALE LittlerootTown_EventScript_MomReturnHomeFemale
+goto LittlerootTown_EventScript_SetReceivedRunningShoes
+end
+= LittlerootTown_EventScript_SetReceivedRunningShoes
+removeobject LOCALID_LITTLEROOT_MOM
+setflag FLAG_SYS_B_DASH
+setvar VAR_LITTLEROOT_TOWN_STATE 4
+release
+end
+= LittlerootTown_EventScript_MomReturnHomeFemale
+call_if_eq VAR_0x8008 0 LittlerootTown_EventScript_MomReturnHome0
+call_if_eq VAR_0x8008 1 LittlerootTown_EventScript_MomReturnHome1
+call_if_eq VAR_0x8008 2 LittlerootTown_EventScript_MomReturnHomeFemale2
+call_if_eq VAR_0x8008 3 LittlerootTown_EventScript_MomReturnHomeFemale3
+call_if_eq VAR_0x8008 4 LittlerootTown_EventScript_MomReturnHomeFemale4
+call_if_eq VAR_0x8008 5 LittlerootTown_EventScript_MomReturnHomeFemale5
+return
+= LittlerootTown_EventScript_MomReturnHomeFemale5
+applymovement LOCALID_LITTLEROOT_MOM LittlerootTown_Movement_MomReturnHomeFemale5
+waitmovement 0
+opendoor VAR_0x8009 VAR_0x800A
+waitdooranim
+applymovement LOCALID_LITTLEROOT_MOM LittlerootTown_Movement_MomExitThroughDoor
+waitmovement 0
+hideobjectat LOCALID_LITTLEROOT_MOM MAP_LITTLEROOT_TOWN
+closedoor VAR_0x8009 VAR_0x800A
+waitdooranim
+return
+= LittlerootTown_EventScript_MomReturnHomeFemale4
+applymovement LOCALID_LITTLEROOT_MOM LittlerootTown_Movement_MomReturnHomeFemale4
+waitmovement 0
+opendoor VAR_0x8009 VAR_0x800A
+waitdooranim
+applymovement LOCALID_LITTLEROOT_MOM LittlerootTown_Movement_MomExitThroughDoor
+waitmovement 0
+hideobjectat LOCALID_LITTLEROOT_MOM MAP_LITTLEROOT_TOWN
+closedoor VAR_0x8009 VAR_0x800A
+waitdooranim
+return
+= LittlerootTown_EventScript_MomReturnHomeFemale3
+applymovement LOCALID_LITTLEROOT_MOM LittlerootTown_Movement_MomReturnHomeFemale3
+waitmovement 0
+opendoor VAR_0x8009 VAR_0x800A
+waitdooranim
+applymovement LOCALID_LITTLEROOT_MOM LittlerootTown_Movement_MomExitThroughDoor
+waitmovement 0
+hideobjectat LOCALID_LITTLEROOT_MOM MAP_LITTLEROOT_TOWN
+closedoor VAR_0x8009 VAR_0x800A
+waitdooranim
+return
+= LittlerootTown_EventScript_MomReturnHomeFemale2
+applymovement LOCALID_LITTLEROOT_MOM LittlerootTown_Movement_MomReturnHomeFemale2
+waitmovement 0
+opendoor VAR_0x8009 VAR_0x800A
+waitdooranim
+applymovement LOCALID_LITTLEROOT_MOM LittlerootTown_Movement_MomExitThroughDoor
+waitmovement 0
+hideobjectat LOCALID_LITTLEROOT_MOM MAP_LITTLEROOT_TOWN
+closedoor VAR_0x8009 VAR_0x800A
+waitdooranim
+return
+= LittlerootTown_EventScript_MomReturnHome1
+applymovement LOCALID_LITTLEROOT_MOM LittlerootTown_Movement_MomReturnHome1
+waitmovement 0
+return
+= LittlerootTown_EventScript_MomReturnHome0
+applymovement LOCALID_LITTLEROOT_MOM LittlerootTown_Movement_MomReturnHome0
+waitmovement 0
+return
+= LittlerootTown_EventScript_MomReturnHomeMale
+call_if_eq VAR_0x8008 0 LittlerootTown_EventScript_MomReturnHome0
+call_if_eq VAR_0x8008 1 LittlerootTown_EventScript_MomReturnHome1
+call_if_eq VAR_0x8008 2 LittlerootTown_EventScript_MomReturnHomeMale2
+call_if_eq VAR_0x8008 3 LittlerootTown_EventScript_MomReturnHomeMale3
+call_if_eq VAR_0x8008 4 LittlerootTown_EventScript_MomReturnHomeMale4
+call_if_eq VAR_0x8008 5 LittlerootTown_EventScript_MomReturnHomeMale5
+return
+= LittlerootTown_EventScript_MomReturnHomeMale5
+applymovement LOCALID_LITTLEROOT_MOM LittlerootTown_Movement_MomReturnHomeMale5
+waitmovement 0
+opendoor VAR_0x8009 VAR_0x800A
+waitdooranim
+applymovement LOCALID_LITTLEROOT_MOM LittlerootTown_Movement_MomExitThroughDoor
+waitmovement 0
+hideobjectat LOCALID_LITTLEROOT_MOM MAP_LITTLEROOT_TOWN
+closedoor VAR_0x8009 VAR_0x800A
+waitdooranim
+return
+= LittlerootTown_EventScript_MomReturnHomeMale4
+applymovement LOCALID_LITTLEROOT_MOM LittlerootTown_Movement_MomReturnHomeMale4
+waitmovement 0
+opendoor VAR_0x8009 VAR_0x800A
+waitdooranim
+applymovement LOCALID_LITTLEROOT_MOM LittlerootTown_Movement_MomExitThroughDoor
+waitmovement 0
+hideobjectat LOCALID_LITTLEROOT_MOM MAP_LITTLEROOT_TOWN
+closedoor VAR_0x8009 VAR_0x800A
+waitdooranim
+return
+= LittlerootTown_EventScript_MomReturnHomeMale3
+applymovement LOCALID_LITTLEROOT_MOM LittlerootTown_Movement_MomReturnHomeMale3
+waitmovement 0
+opendoor VAR_0x8009 VAR_0x800A
+waitdooranim
+applymovement LOCALID_LITTLEROOT_MOM LittlerootTown_Movement_MomExitThroughDoor
+waitmovement 0
+hideobjectat LOCALID_LITTLEROOT_MOM MAP_LITTLEROOT_TOWN
+closedoor VAR_0x8009 VAR_0x800A
+waitdooranim
+return
+= LittlerootTown_EventScript_MomReturnHomeMale2
+applymovement LOCALID_LITTLEROOT_MOM LittlerootTown_Movement_MomReturnHomeMale2
+waitmovement 0
+opendoor VAR_0x8009 VAR_0x800A
+waitdooranim
+applymovement LOCALID_LITTLEROOT_MOM LittlerootTown_Movement_MomExitThroughDoor
+waitmovement 0
+hideobjectat LOCALID_LITTLEROOT_MOM MAP_LITTLEROOT_TOWN
+closedoor VAR_0x8009 VAR_0x800A
+waitdooranim
+return
+= LittlerootTown_EventScript_GiveRunningShoes
+msgbox	MOM: PLAYER! PLAYER! Did you introduce yourself to PROF. BIRCH?Oh! What an adorable POKéMON! You got it from PROF. BIRCH. How nice!You're your father's child, all right. You look good together with POKéMON!Here, honey! If you're going out on an adventure, wear these RUNNING SHOES.They'll put a zip in your step!
+playfanfare MUS_OBTAIN_ITEM
+message LittlerootTown_Text_SwitchShoesWithRunningShoes
+waitfanfare
+setflag FLAG_RECEIVED_RUNNING_SHOES
+msgbox	MOM: PLAYER, those shoes came with instructions.“Press the B Button while wearing these RUNNING SHOES to run extra-fast!“Slip on these RUNNING SHOES and race in the great outdoors!”
+msgbox	… … … … … … … … … … … … … … … …To think that you have your very own POKéMON now… Your father will be overjoyed.…But please be careful. If anything happens, you can come home.Go on, go get them, honey!
+closemessage
+delay 30
+return
+= LittlerootTown_EventScript_MomApproachPlayerFemale
+call_if_eq VAR_0x8008 0 LittlerootTown_EventScript_MomApproachPlayer0
+call_if_eq VAR_0x8008 1 LittlerootTown_EventScript_MomApproachPlayer1
+call_if_eq VAR_0x8008 2 LittlerootTown_EventScript_MomApproachPlayerFemale2
+call_if_eq VAR_0x8008 3 LittlerootTown_EventScript_MomApproachPlayerFemale3
+call_if_eq VAR_0x8008 4 LittlerootTown_EventScript_MomApproachPlayerFemale4
+call_if_eq VAR_0x8008 5 LittlerootTown_EventScript_MomApproachPlayerFemale5
+return
+= LittlerootTown_EventScript_MomApproachPlayerFemale5
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+applymovement LOCALID_LITTLEROOT_MOM LittlerootTown_Movement_MomApproachPlayerFemale5
+waitmovement 0
+return
+= LittlerootTown_EventScript_MomApproachPlayerFemale4
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+applymovement LOCALID_LITTLEROOT_MOM LittlerootTown_Movement_MomApproachPlayerFemale4
+waitmovement 0
+return
+= LittlerootTown_EventScript_MomApproachPlayerFemale3
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+applymovement LOCALID_LITTLEROOT_MOM LittlerootTown_Movement_MomApproachPlayerFemale3
+waitmovement 0
+return
+= LittlerootTown_EventScript_MomApproachPlayerFemale2
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+applymovement LOCALID_LITTLEROOT_MOM LittlerootTown_Movement_MomApproachPlayerFemale2
+waitmovement 0
+return
+= LittlerootTown_EventScript_MomApproachPlayer1
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+applymovement LOCALID_LITTLEROOT_MOM LittlerootTown_Movement_MomApproachPlayer1
+waitmovement 0
+return
+= LittlerootTown_EventScript_MomApproachPlayer0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+applymovement LOCALID_LITTLEROOT_MOM LittlerootTown_Movement_MomApproachPlayer0
+waitmovement 0
+return
+= LittlerootTown_EventScript_MomApproachPlayerMale
+call_if_eq VAR_0x8008 0 LittlerootTown_EventScript_MomApproachPlayer0
+call_if_eq VAR_0x8008 1 LittlerootTown_EventScript_MomApproachPlayer1
+call_if_eq VAR_0x8008 2 LittlerootTown_EventScript_MomApproachPlayerMale2
+call_if_eq VAR_0x8008 3 LittlerootTown_EventScript_MomApproachPlayerMale3
+call_if_eq VAR_0x8008 4 LittlerootTown_EventScript_MomApproachPlayerMale4
+call_if_eq VAR_0x8008 5 LittlerootTown_EventScript_MomApproachPlayerMale5
+return
+= LittlerootTown_EventScript_MomApproachPlayerMale5
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+applymovement LOCALID_LITTLEROOT_MOM LittlerootTown_Movement_MomApproachPlayerMale5
+waitmovement 0
+return
+= LittlerootTown_EventScript_MomApproachPlayerMale4
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+applymovement LOCALID_LITTLEROOT_MOM LittlerootTown_Movement_MomApproachPlayerMale4
+waitmovement 0
+return
+= LittlerootTown_EventScript_MomApproachPlayerMale3
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+applymovement LOCALID_LITTLEROOT_MOM LittlerootTown_Movement_MomApproachPlayerMale3
+waitmovement 0
+return
+= LittlerootTown_EventScript_MomApproachPlayerMale2
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+applymovement LOCALID_LITTLEROOT_MOM LittlerootTown_Movement_MomApproachPlayerMale2
+waitmovement 0
+return
+= LittlerootTown_EventScript_SetHomeDoorCoordsFemale
+setvar VAR_0x8009 14
+setvar VAR_0x800A 8
+return
+= LittlerootTown_EventScript_SetHomeDoorCoordsMale
+setvar VAR_0x8009 5
+setvar VAR_0x800A 8
+return
+= LittlerootTown_EventScript_MomNoticePlayerFemale
+applymovement LOCALID_LITTLEROOT_MOM Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+return
+= LittlerootTown_EventScript_MomNoticePlayerMale
+applymovement LOCALID_LITTLEROOT_MOM Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+return
+= LittlerootTown_EventScript_GiveRunningShoesTrigger0
+lockall
+setvar VAR_0x8008 0
+setobjectxy LOCALID_LITTLEROOT_MOM 10 9
+goto LittlerootTown_EventScript_GiveRunningShoesTrigger
+end
+= LittlerootTown_EventScript_GiveRunningShoesTrigger3
+lockall
+setvar VAR_0x8008 3
+goto LittlerootTown_EventScript_GiveRunningShoesTrigger
+end
+= LittlerootTown_EventScript_GiveRunningShoesTrigger2
+lockall
+setvar VAR_0x8008 2
+goto LittlerootTown_EventScript_GiveRunningShoesTrigger
+end
+= LittlerootTown_EventScript_GiveRunningShoesTrigger5
+lockall
+setvar VAR_0x8008 5
+goto LittlerootTown_EventScript_GiveRunningShoesTrigger
+end
+= LittlerootTown_EventScript_GiveRunningShoesTrigger4
+lockall
+setvar VAR_0x8008 4
+goto LittlerootTown_EventScript_GiveRunningShoesTrigger
+end
+= LittlerootTown_EventScript_GoSaveBirchTrigger
+lockall
+applymovement LOCALID_LITTLEROOT_TWIN Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+special GetPlayerBigGuyGirlString
+msgbox	Um, hi!There are scary POKéMON outside! I can hear their cries!I want to go see what's going on, but I don't have any POKéMON…Can you go see what's happening for me?
+closemessage
+applymovement LOCALID_LITTLEROOT_TWIN Common_Movement_FaceOriginalDirection
+waitmovement 0
+setvar VAR_LITTLEROOT_TOWN_STATE 2
+releaseall
+end
+= LittlerootTown_EventScript_NeedPokemonTriggerRight
+lockall
+applymovement LOCALID_LITTLEROOT_TWIN LittlerootTown_Movement_TwinApproachPlayerRight
+waitmovement 0
+call LittlerootTown_EventScript_DangerousWithoutPokemon
+applymovement LOCALID_LITTLEROOT_TWIN LittlerootTown_Movement_TwinReturnRight
+waitmovement 0
+releaseall
+end
+= LittlerootTown_EventScript_DangerousWithoutPokemon
+msgbox	Um, um, um!If you go outside and go in the grass, wild POKéMON will jump out!
+closemessage
+applymovement LOCALID_LITTLEROOT_TWIN LittlerootTown_Movement_TwinPushPlayerFromRoute
+applymovement LOCALID_PLAYER LittlerootTown_Movement_PushPlayerBackFromRoute
+waitmovement 0
+msgbox	It's dangerous if you don't have your own POKéMON.
+closemessage
+return
+= LittlerootTown_EventScript_NeedPokemonTriggerLeft
+lockall
+applymovement LOCALID_LITTLEROOT_TWIN LittlerootTown_Movement_TwinApproachPlayerLeft
+waitmovement 0
+call LittlerootTown_EventScript_DangerousWithoutPokemon
+applymovement LOCALID_LITTLEROOT_TWIN LittlerootTown_Movement_TwinReturnLeft
+waitmovement 0
+releaseall
+end
+= LittlerootTown_EventScript_Mom
+lock
+faceplayer
+checkplayergender
+call_if_eq VAR_RESULT MALE LittlerootTown_EventScript_SetHomeDoorCoordsMale
+call_if_eq VAR_RESULT FEMALE LittlerootTown_EventScript_SetHomeDoorCoordsFemale
+call LittlerootTown_EventScript_GiveRunningShoes
+applymovement LOCALID_LITTLEROOT_MOM Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+opendoor VAR_0x8009 VAR_0x800A
+waitdooranim
+applymovement LOCALID_LITTLEROOT_MOM LittlerootTown_Movement_MomExitThroughDoor
+waitmovement 0
+hideobjectat LOCALID_LITTLEROOT_MOM MAP_LITTLEROOT_TOWN
+closedoor VAR_0x8009 VAR_0x800A
+waitdooranim
+goto LittlerootTown_EventScript_SetReceivedRunningShoes
+end
+= LittlerootTown_EventScript_Boy
+msgbox	PROF. BIRCH spends days in his LAB studying, then he'll suddenly go out in the wild to do more research…When does PROF. BIRCH spend time at home?
+end
+= LittlerootTown_EventScript_FatMan
+msgbox	If you use a PC, you can store items and POKéMON.The power of science is staggering!
+end
+= LittlerootTown_EventScript_Twin
+lock
+faceplayer
+goto_if_set FLAG_ADVENTURE_STARTED LittlerootTown_EventScript_GoodLuck
+goto_if_set FLAG_RESCUED_BIRCH LittlerootTown_EventScript_YouSavedBirch
+goto_if_ne VAR_LITTLEROOT_TOWN_STATE 0 LittlerootTown_EventScript_GoSaveBirch
+msgbox	Um, um, um!If you go outside and go in the grass, wild POKéMON will jump out!
+release
+end
+= LittlerootTown_EventScript_GoSaveBirch
+special GetPlayerBigGuyGirlString
+msgbox	Um, hi!There are scary POKéMON outside! I can hear their cries!I want to go see what's going on, but I don't have any POKéMON…Can you go see what's happening for me?
+closemessage
+applymovement LOCALID_LITTLEROOT_TWIN Common_Movement_FaceOriginalDirection
+waitmovement 0
+setvar VAR_LITTLEROOT_TOWN_STATE 2
+release
+end
+= LittlerootTown_EventScript_YouSavedBirch
+special GetPlayerBigGuyGirlString
+msgbox	You saved PROF. BIRCH! I'm so glad!
+release
+end
+= LittlerootTown_EventScript_GoodLuck
+msgbox	Are you going to catch POKéMON? Good luck!
+release
+end
 signs
 15 13	LITTLEROOT TOWN “A town that can't be shaded any hue.”
 6 17	PROF. BIRCH'S POKéMON LAB

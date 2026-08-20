@@ -27,3 +27,17 @@ npcs
 people_youngster 7 4 E static
 people_psychic_m 8 4 W static
 people_fat_man 2 5 E static
+objscripts
+0 SafariZone_RestHouse_EventScript_Youngster
+1 SafariZone_RestHouse_EventScript_PsychicM
+2 SafariZone_RestHouse_EventScript_FatMan
+scriptdefs
+= SafariZone_RestHouse_EventScript_FatMan
+msgbox	SafariZone_RestHouse_Text_FatMan
+end
+= SafariZone_RestHouse_EventScript_PsychicM
+msgbox	SafariZone_RestHouse_Text_PsychicM
+end
+= SafariZone_RestHouse_EventScript_Youngster
+msgbox	SafariZone_RestHouse_Text_Youngster
+end

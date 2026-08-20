@@ -7,6 +7,8 @@
 #include "Audio.h"
 #include "DialogBox.h"
 #include "BattleScene.h"
+#include "GameState.h"
+#include "ScriptVM.h"
 
 #include <algorithm>
 #include <cctype>
@@ -195,17 +197,23 @@ static Session* player_step(Session* s, DIR dir, Audio* audio) {
 
 // Talk to whatever the player is facing. If a dialog is already open, this
 // advances/closes it. Returns true if something happened.
-static bool interact(Session* s, DialogBox& box, Audio* audio) {
+static bool interact(Session* s, DialogBox& box, Audio* audio, ScriptVM& vm) {
     if (box.is_active()) { box.advance(); return true; }   // next page / dismiss
     int tx, ty;
     s->player->target_tile(s->player->get_facing(), tx, ty);
     // 1) an NPC on the faced tile
-    for (Agent& ag : s->agents) {
+    for (size_t i = 0; i < s->agents.size(); ++i) {
+        Agent& ag = s->agents[i];
         if (ag.ch->get_tile_x() == tx && ag.ch->get_tile_y() == ty) {
             ag.ch->face(opposite(s->player->get_facing()));   // turn to the player
-            std::string line = ag.dialog.empty() ? "..." : ag.dialog;
-            box.open(speaker_name(ag.sheet), line);
             if (audio) audio->play_select();
+            std::string label = s->map->npc_script((int)i);
+            if (!label.empty() && s->map->has_script(label)) {
+                vm.start(label, ag.ch);                        // run its event script
+            } else {
+                box.open(speaker_name(ag.sheet),
+                         ag.dialog.empty() ? "..." : ag.dialog);
+            }
             return true;
         }
     }
@@ -217,6 +225,18 @@ static bool interact(Session* s, DialogBox& box, Audio* audio) {
         return true;
     }
     return false;
+}
+
+// After a real step, run a coord_event trigger if the player is on one and its
+// variable condition matches.
+static void check_trigger(Session* s, ScriptVM& vm, GameState& gs) {
+    if (vm.running()) return;
+    const ScriptTrigger* t = s->map->trigger_at(s->player->get_tile_x(),
+                                                s->player->get_tile_y());
+    if (!t || !s->map->has_script(t->label)) return;
+    int want = (!t->val.empty() && (std::isdigit((unsigned char)t->val[0])))
+                   ? std::atoi(t->val.c_str()) : gs.get_var(t->val);
+    if (gs.get_var(t->var) == want) vm.start(t->label, nullptr);
 }
 
 // After a real step, maybe start a wild encounter if standing in tall grass.
@@ -290,6 +310,9 @@ int main() {
     DialogBox box;
     box.load_font();
     BattleScene battle;
+    GameState gs;
+    ScriptVM vm;
+    vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player);
     bool force_enc = std::getenv("CODEMON_FORCE_ENCOUNTER") != nullptr;
 
     // --- headless screenshot / animation mode ------------------------------
@@ -302,16 +325,24 @@ int main() {
             for (int i = 0; i < frames; ++i) {
                 if (i > 0) {
                     char tok = ((size_t)(i - 1) < walk.size()) ? walk[i - 1] : 0;
-                    if (tok == 'T') {
-                        interact(sess, box, nullptr);
+                    if (vm.running()) {
+                        if (tok == 'T') vm.on_key();
+                        vm.update(0.13f);
+                    } else if (tok == 'T') {
+                        interact(sess, box, nullptr, vm);
                     } else if (!box.is_active()) {
                         if (tok) {
                             int pbx = sess->player->get_tile_x();
                             int pby = sess->player->get_tile_y();
+                            Session* before = sess;
                             sess = player_step(sess, char_to_dir(tok), nullptr);
-                            if (sess->player->get_tile_x() != pbx ||
-                                sess->player->get_tile_y() != pby)
+                            if (sess != before)
+                                vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player);
+                            else if (sess->player->get_tile_x() != pbx ||
+                                     sess->player->get_tile_y() != pby) {
                                 try_encounter(sess, battle, box, rng, force_enc);
+                                check_trigger(sess, vm, gs);
+                            }
                         }
                         if (walk.empty()) tick_npcs(sess, rng);
                     }
@@ -333,6 +364,7 @@ int main() {
 
     // --- interactive game --------------------------------------------------
     Audio audio; audio.load("assets");
+    vm.configure(sess->map, &gs, &box, &battle, &audio, sess->player);
     Window scr(win_w, win_h, "Codemon!");
 
     sf::Clock clock; float npc_accum = 0.f;
@@ -343,27 +375,36 @@ int main() {
             else if (event.type == sf::Event::KeyPressed) {
                 if (event.key.code == sf::Keyboard::Space ||
                     event.key.code == sf::Keyboard::Return) {
-                    interact(sess, box, &audio);            // talk / advance / dismiss
-                    if (battle.is_active() && !box.is_active())
-                        battle.end();                       // dismissing ends the encounter
-                } else if (!box.is_active()) {
+                    if (vm.running()) {
+                        vm.on_key();                        // advance a script message
+                    } else {
+                        interact(sess, box, &audio, vm);    // talk / advance / dismiss
+                        if (battle.is_active() && !box.is_active())
+                            battle.end();                   // dismissing ends the encounter
+                    }
+                } else if (!box.is_active() && !vm.running()) {
                     DIR dir = convert_key_event(event);
                     if (dir != DIR::NONE) {
                         int pbx = sess->player->get_tile_x();
                         int pby = sess->player->get_tile_y();
                         Session* before = sess;
                         sess = player_step(sess, dir, &audio);
-                        if (sess == before &&
-                            (sess->player->get_tile_x() != pbx ||
-                             sess->player->get_tile_y() != pby))
+                        if (sess != before) {
+                            vm.configure(sess->map, &gs, &box, &battle, &audio, sess->player);
+                        } else if (sess->player->get_tile_x() != pbx ||
+                                   sess->player->get_tile_y() != pby) {
                             try_encounter(sess, battle, box, rng, false);
+                            check_trigger(sess, vm, gs);
+                        }
                     }
                 }
             }
         }
-        // NPCs and the world freeze while a dialog/battle is open.
-        npc_accum += clock.restart().asSeconds();
-        if (!box.is_active() && !battle.is_active()) {
+        float dt = clock.restart().asSeconds();
+        if (vm.running()) vm.update(dt);
+        // NPCs freeze while a dialog/battle/script is running.
+        npc_accum += dt;
+        if (!box.is_active() && !battle.is_active() && !vm.running()) {
             while (npc_accum >= NPC_TICK) { tick_npcs(sess, rng); npc_accum -= NPC_TICK; }
         } else {
             npc_accum = 0.f;

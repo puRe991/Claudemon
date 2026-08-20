@@ -27,3 +27,13 @@ people_school_kid_m 7 4 W static
 dialogs
 0	When POKéMON battle, they eventually level up and become stronger.
 1	If the POKéMON with you become stronger, you'll be able to go farther away from here.
+objscripts
+0 OldaleTown_House2_EventScript_Woman
+1 OldaleTown_House2_EventScript_Man
+scriptdefs
+= OldaleTown_House2_EventScript_Man
+msgbox	If the POKéMON with you become stronger, you'll be able to go farther away from here.
+end
+= OldaleTown_House2_EventScript_Woman
+msgbox	When POKéMON battle, they eventually level up and become stronger.
+end

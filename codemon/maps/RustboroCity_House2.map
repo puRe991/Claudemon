@@ -29,3 +29,13 @@ people_little_girl 4 5 N static
 dialogs
 0	The TRAINER'S SCHOOL is excellent.If you study there, you could even become a GYM LEADER.
 1	ROXANNE, the GYM LEADER, really knows a lot about POKéMON.She's really strong, too!
+objscripts
+0 RustboroCity_House2_EventScript_PokefanF
+1 RustboroCity_House2_EventScript_LittleGirl
+scriptdefs
+= RustboroCity_House2_EventScript_LittleGirl
+msgbox	ROXANNE, the GYM LEADER, really knows a lot about POKéMON.She's really strong, too!
+end
+= RustboroCity_House2_EventScript_PokefanF
+msgbox	The TRAINER'S SCHOOL is excellent.If you study there, you could even become a GYM LEADER.
+end

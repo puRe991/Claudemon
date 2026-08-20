@@ -67,6 +67,70 @@ dialogs
 4	If people put POKéMON in hot springs, it might be seriously strange.Why, it might be an electric bath, or a bubble bath, or even a lava bath…
 5	They're claiming that these hot springs are good for calming nervous tension, relieving aching muscles, solving romantic problems, and attracting money…
 8	I have here an EGG.I'd hoped to hatch it by covering it in hot sand by the hot springs. But that doesn't seem to be enough…I've heard it would be best if it were kept together with POKéMON and carried about.You are a TRAINER, yes? And your POKéMON radiate vitality.So, what say you? Will you take this EGG to hatch?
+objscripts
+0 LavaridgeTown_EventScript_ExpertF
+1 LavaridgeTown_EventScript_ExpertM
+2 LavaridgeTown_EventScript_OldMan
+3 LavaridgeTown_EventScript_Twin
+4 LavaridgeTown_EventScript_HotSpringsOldWoman1
+5 LavaridgeTown_EventScript_HotSpringsOldWoman2
+8 LavaridgeTown_EventScript_EggWoman
+triggers
+6 3 TRIGGER_RUN_IMMEDIATELY 0 LavaridgeTown_EventScript_HotSpringsTrigger
+scriptdefs
+= LavaridgeTown_EventScript_HotSpringsTrigger
+specialvar VAR_RESULT GetPlayerFacingDirection
+goto_if_eq VAR_RESULT DIR_SOUTH LavaridgeTown_EventScript_EnteredHotSprings
+end
+= LavaridgeTown_EventScript_EnteredHotSprings
+incrementgamestat GAME_STAT_ENTERED_HOT_SPRINGS
+end
+= LavaridgeTown_EventScript_EggWoman
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_LAVARIDGE_EGG LavaridgeTown_EventScript_ReceivedEgg
+msgbox	I have here an EGG.I'd hoped to hatch it by covering it in hot sand by the hot springs. But that doesn't seem to be enough…I've heard it would be best if it were kept together with POKéMON and carried about.You are a TRAINER, yes? And your POKéMON radiate vitality.So, what say you? Will you take this EGG to hatch?
+goto_if_eq VAR_RESULT NO LavaridgeTown_EventScript_DeclineEgg
+getpartysize
+goto_if_eq VAR_RESULT PARTY_SIZE LavaridgeTown_EventScript_NoRoomForEgg
+msgbox	Good! I hope you'll walk plenty with this here EGG!
+setflag FLAG_RECEIVED_LAVARIDGE_EGG
+playfanfare MUS_OBTAIN_ITEM
+message LavaridgeTown_Text_ReceivedTheEgg
+waitfanfare
+giveegg SPECIES_WYNAUT
+release
+end
+= LavaridgeTown_EventScript_NoRoomForEgg
+msgbox	Oh? You've too many POKéMON. There's no room for this EGG…
+release
+end
+= LavaridgeTown_EventScript_DeclineEgg
+msgbox	As you wish, then…If you have a change of heart about hatching this EGG, I will be here.
+release
+end
+= LavaridgeTown_EventScript_ReceivedEgg
+msgbox	Every so often, an EGG will be found at the POKéMON DAY CARE.Or at least that's how the rumor goes.
+release
+end
+= LavaridgeTown_EventScript_HotSpringsOldWoman2
+msgbox	They're claiming that these hot springs are good for calming nervous tension, relieving aching muscles, solving romantic problems, and attracting money…
+end
+= LavaridgeTown_EventScript_HotSpringsOldWoman1
+msgbox	If people put POKéMON in hot springs, it might be seriously strange.Why, it might be an electric bath, or a bubble bath, or even a lava bath…
+end
+= LavaridgeTown_EventScript_Twin
+msgbox	I bathe in the hot springs every day.I want to become a beautiful and strong GYM LEADER like FLANNERY.
+end
+= LavaridgeTown_EventScript_OldMan
+msgbox	Being buried in this hot sand is… Sigh…So warm and heavenly…Eh? Gyaah! Ouch!A POKéMON nipped my backside!
+end
+= LavaridgeTown_EventScript_ExpertM
+msgbox	We draw as much hot water as we need, and yet the hot springs never run dry.Isn't it magical?These hot springs appear near active volcanoes. Veins of water under the ground are heated by magma to well up as hot springs.
+end
+= LavaridgeTown_EventScript_ExpertF
+msgbox	Oh, you like hot springs, do you?That's surprising for one as young as you.
+end
 signs
 14 16	POKéMON HERB SHOP “Bitter taste--better cure!”
 7 15	LAVARIDGE TOWN POKéMON GYM LEADER: FLANNERY “One with a fiery passion that burns!”

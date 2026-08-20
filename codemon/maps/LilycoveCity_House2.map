@@ -25,3 +25,21 @@ npcs
 people_fat_man 0 4 S static
 dialogs
 0	Huh? What? What's that?I'm not near awake yet… You can have this…
+objscripts
+0 LilycoveCity_House2_EventScript_FatMan
+scriptdefs
+= LilycoveCity_House2_EventScript_FatMan
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_TM_REST LilycoveCity_House2_EventScript_ReceivedRest
+msgbox	Huh? What? What's that?I'm not near awake yet… You can have this…
+giveitem ITEM_TM_REST
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_RECEIVED_TM_REST
+msgbox	Yawn…Sleep is essential for good health… Sleep and regain health…
+release
+end
+= LilycoveCity_House2_EventScript_ReceivedRest
+msgbox	Yawn…Sleep is essential for good health… Sleep and regain health…
+release
+end

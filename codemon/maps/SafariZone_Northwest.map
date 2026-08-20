@@ -85,6 +85,12 @@ collision
 npcs
 people_man_1 8 8 S static
 misc_item_ball 33 7 S static
+objscripts
+0 SafariZone_Northwest_EventScript_Man
+scriptdefs
+= SafariZone_Northwest_EventScript_Man
+msgbox	SafariZone_Northwest_Text_Man
+end
 grass
 13,454,455
 encounters

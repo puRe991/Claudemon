@@ -36,3 +36,74 @@ dialogs
 4	It's a POKéMON plush DOLL!
 6	It's a POKéMON plush DOLL!
 7	It's a POKéMON plush DOLL!
+objscripts
+0 RustboroCity_Flat1_2F_EventScript_WaldasMom
+2 RustboroCity_Flat1_2F_EventScript_PokeDoll
+3 RustboroCity_Flat1_2F_EventScript_PokeDoll
+4 RustboroCity_Flat1_2F_EventScript_PokeDoll
+5 RustboroCity_Flat1_2F_EventScript_WaldasDad
+6 RustboroCity_Flat1_2F_EventScript_PokeDoll
+7 RustboroCity_Flat1_2F_EventScript_PokeDoll
+scriptdefs
+= RustboroCity_Flat1_2F_EventScript_PokeDoll
+msgbox	It's a POKéMON plush DOLL!
+end
+= RustboroCity_Flat1_2F_EventScript_WaldasDad
+lock
+faceplayer
+specialvar VAR_RESULT TryBufferWaldaPhrase
+goto_if_eq VAR_RESULT FALSE RustboroCity_Flat1_2F_EventScript_WaldasDadFirstPhrase
+goto_if_eq VAR_RESULT TRUE RustboroCity_Flat1_2F_EventScript_WaldasDadNewPhrase
+= RustboroCity_Flat1_2F_EventScript_WaldasDadNewPhrase
+msgbox	I've been saying “” to amuse her lately.Do you know of a better word or a phrase that might work?
+goto_if_eq VAR_RESULT NO RustboroCity_Flat1_2F_EventScript_DeclineGivePhrase
+msgbox	Oh, that's wonderful. So, let's hear it, your suggestion.
+goto RustboroCity_Flat1_2F_EventScript_GivePhrase
+= RustboroCity_Flat1_2F_EventScript_GivePhrase
+special DoWaldaNamingScreen
+goto_if_eq VAR_0x8004 1 RustboroCity_Flat1_2F_EventScript_CancelGivePhrase
+goto_if_eq VAR_0x8004 2 RustboroCity_Flat1_2F_EventScript_CancelGiveFirstPhrase
+specialvar VAR_RESULT TryGetWallpaperWithWaldaPhrase
+goto_if_eq VAR_RESULT TRUE RustboroCity_Flat1_2F_EventScript_WaldaLikesPhrase
+goto_if_eq VAR_RESULT FALSE RustboroCity_Flat1_2F_EventScript_WaldaDoesntLikePhrase
+end
+= RustboroCity_Flat1_2F_EventScript_WaldaDoesntLikePhrase
+msgbox	Ah, I see. Well, let's give it a try, shall we?
+call RustboroCity_Flat1_2F_EventScript_WaldasDadFaceWalda
+msgbox	. .Hmmm… She's not smiling at all. Maybe WALDA is one serious child…
+release
+end
+= RustboroCity_Flat1_2F_EventScript_WaldasDadFaceWalda
+turnobject LOCALID_WALDAS_DAD DIR_EAST
+return
+= RustboroCity_Flat1_2F_EventScript_WaldaLikesPhrase
+msgbox	Ah, I see. Well, let's give it a try, shall we?
+call RustboroCity_Flat1_2F_EventScript_WaldasDadFaceWalda
+msgbox	. .Oh, yes! She's laughing! Oh, I am as delighted as she!
+applymovement LOCALID_WALDAS_DAD Common_Movement_FacePlayer
+waitmovement 0
+msgbox	Thank you!Thanks to you, my darling WALDA laughed for me!Actually, I may not look all that special, but I'm one of DEVON CORPORATION's top researchers.So, how about I do something in return for you?I know, I'll add some new wallpaper patterns for the BOXES in the PC POKéMON Storage System.In the wallpaper pattern menu, select “FRIENDS.”That will give you access to the new wallpaper patterns.
+release
+end
+= RustboroCity_Flat1_2F_EventScript_CancelGiveFirstPhrase
+msgbox	Oh, so you don't know any good words. I'd better think for myself, then.Hmm… How about “”? Let's see if that will work.
+call RustboroCity_Flat1_2F_EventScript_WaldasDadFaceWalda
+msgbox	. .Hmmm… She's not smiling at all. Maybe WALDA is one serious child…
+release
+end
+= RustboroCity_Flat1_2F_EventScript_CancelGivePhrase
+msgbox	Oh, so you don't know any good words. I guess I'll try to amuse her with the saying I used before.Anyways, if you have a good suggestion, don't hesitate in telling me, okay?
+release
+end
+= RustboroCity_Flat1_2F_EventScript_DeclineGivePhrase
+msgbox	Oh, is that right?Well, if you come up with a good suggestion, I'm all ears.
+release
+end
+= RustboroCity_Flat1_2F_EventScript_WaldasDadFirstPhrase
+msgbox	Oh, hello! Welcome to the PEPPER household.I have a question for you. Have you ever baby-sat?You see, I'm a new father, so raising a child is all new to me.And I have a problem. My daughter WALDA doesn't laugh enough.I think she'd laugh for me if I told her something funny.Do you know of a funny word or phrase you can tell me?
+goto_if_eq VAR_RESULT NO RustboroCity_Flat1_2F_EventScript_DeclineGivePhrase
+msgbox	Oh, that's wonderful. So, let's hear it, your suggestion.
+goto RustboroCity_Flat1_2F_EventScript_GivePhrase
+= RustboroCity_Flat1_2F_EventScript_WaldasMom
+msgbox	Oh, it's so hard every day…What's hard? You need to ask?It's trying to figure out what to make for meals every day.It really isn't easy coming up with meals every day.
+end

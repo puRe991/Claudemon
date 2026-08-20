@@ -60,6 +60,44 @@ dialogs
 1	My papa told me.He says this tunnel is full of timid POKéMON.They get all scared of loud noise and make a big uproar.So they had to stop the big tunnel project.But there's one man. He's trying to dig the tunnel by himself!
 2	Did you see the cave next to the POKéMON MART?There's a guy in there who's trying to bust up boulders so he can bust out through to the other side.It'd be great if we could go through… It'll make it easy to visit RUSTBORO.
 3	My POKéMON and I, we've been riding a hot winning streak.So I decided to make my BATTLE TENT debut in this town.
+objscripts
+0 VerdanturfTown_EventScript_Man
+1 VerdanturfTown_EventScript_Twin
+2 VerdanturfTown_EventScript_Boy
+3 VerdanturfTown_EventScript_Camper
+scriptdefs
+= VerdanturfTown_EventScript_Camper
+msgbox	My POKéMON and I, we've been riding a hot winning streak.So I decided to make my BATTLE TENT debut in this town.
+end
+= VerdanturfTown_EventScript_Boy
+lock
+faceplayer
+goto_if_set FLAG_RUSTURF_TUNNEL_OPENED VerdanturfTown_EventScript_BoyTunnelOpen
+msgbox	Did you see the cave next to the POKéMON MART?There's a guy in there who's trying to bust up boulders so he can bust out through to the other side.It'd be great if we could go through… It'll make it easy to visit RUSTBORO.
+release
+end
+= VerdanturfTown_EventScript_BoyTunnelOpen
+msgbox	That cave next to the POKéMON MART is now a tunnel to the other side.It's great--it's easy to go shop for new DEVON products in RUSTBORO now.
+release
+end
+= VerdanturfTown_EventScript_Twin
+lock
+faceplayer
+goto_if_set FLAG_RUSTURF_TUNNEL_OPENED VerdanturfTown_EventScript_TwinTunnelOpen
+msgbox	My papa told me.He says this tunnel is full of timid POKéMON.They get all scared of loud noise and make a big uproar.So they had to stop the big tunnel project.But there's one man. He's trying to dig the tunnel by himself!
+applymovement LOCALID_VERDANTURF_TWIN Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= VerdanturfTown_EventScript_TwinTunnelOpen
+msgbox	There was a man who dug a tunnel for a lady he loved.I don't really get it, but hey!
+applymovement LOCALID_VERDANTURF_TWIN Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= VerdanturfTown_EventScript_Man
+msgbox	The way the winds blow, volcanic ash is never blown in this direction.The air is clean and delicious here. Living here should do wonders for even frail and sickly people.
+end
 signs
 14 6	VERDANTURF TOWN“The windswept highlands with the sweet fragrance of grass.”
 7 14	WANDA'S HOUSE

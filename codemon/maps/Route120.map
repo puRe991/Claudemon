@@ -253,6 +253,253 @@ misc_item_ball 24 33 S static
 dialogs
 29	Something unseeable is in the way.
 30	STEVEN: Hm? PLAYER, hi. It's been a while.There's something here that you can't see, right?Now, if I were to use this device on the invisible obstacle…No, no. Rather than describing it, I should just show you. That would be more fun.PLAYER, are your POKéMON ready for battle?
+objscripts
+10 Route120_EventScript_Colin
+11 Route120_EventScript_Robert
+12 Route120_EventScript_Lorenzo
+13 Route120_EventScript_Jenna
+14 Route120_EventScript_Jeffrey
+22 Route120_EventScript_BerryBeauty
+23 Route120_EventScript_Jennifer
+24 Route120_EventScript_Chip
+25 Route120_EventScript_Clarissa
+26 Route120_EventScript_Angelica
+29 Route120_EventScript_BridgeKecleon
+30 Route120_EventScript_Steven
+33 Route120_EventScript_Keigo
+34 Route120_EventScript_Riley
+41 Route120_EventScript_Callie
+42 Route120_EventScript_Leonel
+movements
+Route120_Movement_ApproachKecleonWest	down,left,end
+scriptdefs
+= Route120_EventScript_Leonel
+trainerbattle_single TRAINER_LEONEL Route120_Text_LeonelIntro Route120_Text_LeonelDefeat
+msgbox	Route120_Text_LeonelPostBattle
+end
+= Route120_EventScript_Callie
+trainerbattle_single TRAINER_CALLIE Route120_Text_CallieIntro Route120_Text_CallieDefeat
+msgbox	Route120_Text_CalliePostBattle
+end
+= Route120_EventScript_Riley
+trainerbattle_single TRAINER_RILEY Route120_Text_RileyIntro Route120_Text_RileyDefeat
+msgbox	Route120_Text_RileyPostBattle
+end
+= Route120_EventScript_Keigo
+trainerbattle_single TRAINER_KEIGO Route120_Text_KeigoIntro Route120_Text_KeigoDefeat
+msgbox	Route120_Text_KeigoPostBattle
+end
+= Route120_EventScript_Steven
+lock
+faceplayer
+goto_if_set FLAG_NOT_READY_FOR_BATTLE_ROUTE_120 Route120_EventScript_StevenAskReadyForBattle
+msgbox	STEVEN: Hm? PLAYER, hi. It's been a while.There's something here that you can't see, right?Now, if I were to use this device on the invisible obstacle…No, no. Rather than describing it, I should just show you. That would be more fun.PLAYER, are your POKéMON ready for battle?
+goto_if_eq VAR_RESULT NO Route120_EventScript_StevenNotReady
+goto Route120_EventScript_StevenBattleKecleon
+end
+= Route120_EventScript_StevenBattleKecleon
+msgbox	STEVEN: PLAYER, show me your true power as a TRAINER!
+closemessage
+call_if_eq VAR_FACING DIR_NORTH Route120_EventScript_PlayerApproachKecleonNorth
+call_if_eq VAR_FACING DIR_WEST Route120_EventScript_PlayerApproachKecleonWest
+applymovement LOCALID_ROUTE120_STEVEN Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+delay 20
+msgbox	STEVEN used the DEVON SCOPE.An invisible POKéMON became completely visible!The startled POKéMON attacked!
+closemessage
+applymovement LOCALID_BRIDGE_KECLEON Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+applymovement LOCALID_BRIDGE_KECLEON Movement_KecleonAppears
+waitmovement 0
+waitse
+playmoncry SPECIES_KECLEON CRY_MODE_ENCOUNTER
+delay 40
+waitmoncry
+setwildbattle SPECIES_KECLEON 30
+setvar VAR_0x8009 0
+setflag FLAG_SYS_CTRL_OBJ_DELETE
+dowildbattle
+clearflag FLAG_SYS_CTRL_OBJ_DELETE
+specialvar VAR_RESULT GetBattleOutcome
+goto_if_eq VAR_RESULT B_OUTCOME_WON Route120_EventScript_RemoveBridgeKecleonPostBattle
+goto_if_eq VAR_RESULT B_OUTCOME_RAN Route120_EventScript_RemoveBridgeKecleonPostBattle
+goto_if_eq VAR_RESULT B_OUTCOME_PLAYER_TELEPORTED Route120_EventScript_RemoveBridgeKecleonPostBattle
+goto Route120_EventScript_StevenGiveDeconScope
+end
+= Route120_EventScript_StevenGiveDeconScope
+applymovement LOCALID_ROUTE120_STEVEN Common_Movement_WalkInPlaceFasterDown
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+msgbox	STEVEN: I see… Your battle style is intriguing.Your POKéMON have obviously grown since I first met you in DEWFORD.I'd like you to have this DEVON SCOPE.Who knows, there may be other concealed POKéMON.
+giveitem ITEM_DEVON_SCOPE
+setflag FLAG_RECEIVED_DEVON_SCOPE
+msgbox	STEVEN: PLAYER.I enjoy seeing POKéMON and TRAINERS who strive together.I think you're doing great.Well, let's meet again somewhere.
+closemessage
+applymovement LOCALID_ROUTE120_STEVEN Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+delay 50
+setfieldeffectargument 0 1
+dofieldeffect FLDEFF_NPCFLY_OUT
+delay 15
+removeobject LOCALID_ROUTE120_STEVEN
+waitfieldeffect FLDEFF_NPCFLY_OUT
+setmetatile 13 15 METATILE_Fortree_WoodBridge1_Top FALSE
+setmetatile 12 16 METATILE_Fortree_WoodBridge1_Bottom FALSE
+setmetatile 12 17 METATILE_General_ReflectiveWater FALSE
+setmetatile 13 17 METATILE_General_ReflectiveWater FALSE
+special DrawWholeMapView
+release
+end
+= Route120_EventScript_RemoveBridgeKecleonPostBattle
+fadescreenswapbuffers FADE_TO_BLACK
+removeobject LOCALID_BRIDGE_KECLEON
+removeobject LOCALID_BRIDGE_KECLEON_SHADOW
+fadescreenswapbuffers FADE_FROM_BLACK
+goto Route120_EventScript_StevenGiveDeconScope
+end
+= Route120_EventScript_PlayerApproachKecleonWest
+applymovement LOCALID_PLAYER Route120_Movement_ApproachKecleonWest
+waitmovement 0
+return
+= Route120_EventScript_PlayerApproachKecleonNorth
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+return
+= Route120_EventScript_StevenNotReady
+msgbox	STEVEN: No?I'll wait here, so you can get ready.
+setflag FLAG_NOT_READY_FOR_BATTLE_ROUTE_120
+release
+end
+= Route120_EventScript_StevenAskReadyForBattle
+msgbox	STEVEN: PLAYER, are your POKéMON ready for battle?
+goto_if_eq VAR_RESULT NO Route120_EventScript_StevenNotReady
+goto Route120_EventScript_StevenBattleKecleon
+end
+= Route120_EventScript_BridgeKecleon
+msgbox	Something unseeable is in the way.
+end
+= Route120_EventScript_Angelica
+trainerbattle_single TRAINER_ANGELICA Route120_Text_AngelicaIntro Route120_Text_AngelicaDefeat
+msgbox	Route120_Text_AngelicaPostBattle
+end
+= Route120_EventScript_Clarissa
+trainerbattle_single TRAINER_CLARISSA Route120_Text_ClarissaIntro Route120_Text_ClarissaDefeat
+msgbox	Route120_Text_ClarissaPostBattle
+end
+= Route120_EventScript_Chip
+trainerbattle_single TRAINER_CHIP Route120_Text_ChipIntro Route120_Text_ChipDefeat
+msgbox	Route120_Text_ChipPostBattle
+end
+= Route120_EventScript_Jennifer
+trainerbattle_single TRAINER_JENNIFER Route120_Text_JenniferIntro Route120_Text_JenniferDefeat
+msgbox	Route120_Text_JenniferPostBattle
+end
+= Route120_EventScript_BerryBeauty
+lock
+faceplayer
+dotimebasedevents
+goto_if_set FLAG_DAILY_ROUTE_120_RECEIVED_BERRY Route120_EventScript_ReceivedBerry
+msgbox	Route120_Text_BerriesExpressionOfLoveIsntIt
+call_if_eq VAR_RESULT YES Route120_EventScript_BerryLove
+call_if_eq VAR_RESULT NO Route120_EventScript_BerryNotLove
+specialvar VAR_RESULT GetPlayerTrainerIdOnesDigit
+switch VAR_RESULT
+case 0 Route120_EventScript_GiveFigyBerry
+case 5 Route120_EventScript_GiveFigyBerry
+case 1 Route120_EventScript_GiveWikiBerry
+case 6 Route120_EventScript_GiveWikiBerry
+case 2 Route120_EventScript_GiveMagoBerry
+case 7 Route120_EventScript_GiveMagoBerry
+case 3 Route120_EventScript_GiveAguavBerry
+case 8 Route120_EventScript_GiveAguavBerry
+case 4 Route120_EventScript_GiveIapapaBerry
+case 9 Route120_EventScript_GiveIapapaBerry
+end
+= Route120_EventScript_GiveIapapaBerry
+setvar VAR_0x8004 ITEM_IAPAPA_BERRY
+goto Route120_EventScript_GiveBerry
+end
+= Route120_EventScript_GiveBerry
+giveitem VAR_0x8004
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_DAILY_ROUTE_120_RECEIVED_BERRY
+msgbox	Route120_Text_BerryIsRareRaiseItWithCare
+release
+end
+= Route120_EventScript_GiveAguavBerry
+setvar VAR_0x8004 ITEM_AGUAV_BERRY
+goto Route120_EventScript_GiveBerry
+end
+= Route120_EventScript_GiveMagoBerry
+setvar VAR_0x8004 ITEM_MAGO_BERRY
+goto Route120_EventScript_GiveBerry
+end
+= Route120_EventScript_GiveWikiBerry
+setvar VAR_0x8004 ITEM_WIKI_BERRY
+goto Route120_EventScript_GiveBerry
+end
+= Route120_EventScript_GiveFigyBerry
+setvar VAR_0x8004 ITEM_FIGY_BERRY
+goto Route120_EventScript_GiveBerry
+end
+= Route120_EventScript_BerryNotLove
+msgbox	Route120_Text_MakeYourOwnImpressions
+return
+= Route120_EventScript_BerryLove
+msgbox	Route120_Text_YesYouUnderstand
+return
+= Route120_EventScript_ReceivedBerry
+msgbox	Route120_Text_IllGetMoreBerriesFromBerryMaster
+release
+end
+= Route120_EventScript_Jeffrey
+trainerbattle_single TRAINER_JEFFREY_1 Route120_Text_JeffreyIntro Route120_Text_JeffreyDefeat Route120_EventScript_RegisterJeffrey
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route120_EventScript_RematchJeffrey
+msgbox	Route120_Text_JeffreyPostBattle
+release
+end
+= Route120_EventScript_RematchJeffrey
+trainerbattle_rematch TRAINER_JEFFREY_1 Route120_Text_JeffreyRematchIntro Route120_Text_JeffreyRematchDefeat
+msgbox	Route120_Text_JeffreyPostRematch
+end
+= Route120_EventScript_RegisterJeffrey
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	Route120_Text_JeffreyRegister
+register_matchcall TRAINER_JEFFREY_1
+release
+end
+= Route120_EventScript_Jenna
+trainerbattle_single TRAINER_JENNA Route120_Text_JennaIntro Route120_Text_JennaDefeat
+msgbox	Route120_Text_JennaPostBattle
+end
+= Route120_EventScript_Lorenzo
+trainerbattle_single TRAINER_LORENZO Route120_Text_LorenzoIntro Route120_Text_LorenzoDefeat
+msgbox	Route120_Text_LorenzoPostBattle
+end
+= Route120_EventScript_Robert
+trainerbattle_single TRAINER_ROBERT_1 Route120_Text_RobertIntro Route120_Text_RobertDefeat Route120_EventScript_RegisterRobert
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route120_EventScript_RematchRobert
+msgbox	Route120_Text_RobertPostBattle
+release
+end
+= Route120_EventScript_RematchRobert
+trainerbattle_rematch TRAINER_ROBERT_1 Route120_Text_RobertRematchIntro Route120_Text_RobertRematchDefeat
+msgbox	Route120_Text_RobertPostRematch
+end
+= Route120_EventScript_RegisterRobert
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	Route120_Text_RobertRegister
+register_matchcall TRAINER_ROBERT_1
+release
+end
+= Route120_EventScript_Colin
+trainerbattle_single TRAINER_COLIN Route120_Text_ColinIntro Route120_Text_ColinDefeat
+msgbox	Route120_Text_ColinPostBattle
+end
 signs
 27 3	ROUTE 120 FORTREE CITY
 38 88	ROUTE 121 ROUTE 120

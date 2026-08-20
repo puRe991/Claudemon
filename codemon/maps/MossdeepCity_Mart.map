@@ -30,3 +30,29 @@ dialogs
 1	REVIVE is fantastic!Give it to a fainted POKéMON, and the POKéMON will arise.But be careful, REVIVE doesn't restore the used-up PP of moves.
 2	MAX REPEL keeps all weak POKéMON away.Out of all the REPEL sprays, it lasts the longest.
 3	The NET and DIVE BALLS are rare POKé BALLS that are only made in MOSSDEEP.A NET BALL is effective against BUG-type and WATER-type POKéMON.A DIVE BALL works best on POKéMON at the bottom of the sea.
+objscripts
+0 MossdeepCity_Mart_EventScript_Clerk
+1 MossdeepCity_Mart_EventScript_Woman
+2 MossdeepCity_Mart_EventScript_Boy
+3 MossdeepCity_Mart_EventScript_Sailor
+movements
+MossdeepCity_Mart_Pokemart	delay
+scriptdefs
+= MossdeepCity_Mart_EventScript_Sailor
+msgbox	The NET and DIVE BALLS are rare POKé BALLS that are only made in MOSSDEEP.A NET BALL is effective against BUG-type and WATER-type POKéMON.A DIVE BALL works best on POKéMON at the bottom of the sea.
+end
+= MossdeepCity_Mart_EventScript_Boy
+msgbox	MAX REPEL keeps all weak POKéMON away.Out of all the REPEL sprays, it lasts the longest.
+end
+= MossdeepCity_Mart_EventScript_Woman
+msgbox	REVIVE is fantastic!Give it to a fainted POKéMON, and the POKéMON will arise.But be careful, REVIVE doesn't restore the used-up PP of moves.
+end
+= MossdeepCity_Mart_EventScript_Clerk
+lock
+faceplayer
+message gText_HowMayIServeYou
+waitmessage
+pokemart MossdeepCity_Mart_Pokemart
+msgbox	gText_PleaseComeAgain
+release
+end

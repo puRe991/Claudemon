@@ -51,3 +51,38 @@ dialogs
 5	LUKE: Well, we lost but that's okay! I'm right here by your side. We'll make it through this dare!
 6	I get freaked out every time I see anything move…I shouldn't have come here to train…
 7	Our family has been TRAINERS here since my great-grandmother's time…It is my duty to protect this mountain…
+objscripts
+0 MtPyre_2F_EventScript_Mark
+2 MtPyre_2F_EventScript_Woman
+3 MtPyre_2F_EventScript_PokefanM
+4 MtPyre_2F_EventScript_Dez
+5 MtPyre_2F_EventScript_Luke
+6 MtPyre_2F_EventScript_Zander
+7 MtPyre_2F_EventScript_Leah
+scriptdefs
+= MtPyre_2F_EventScript_Leah
+trainerbattle_single TRAINER_LEAH MtPyre_2F_Text_LeahIntro MtPyre_2F_Text_LeahDefeat
+msgbox	Our family has been TRAINERS here since my great-grandmother's time…It is my duty to protect this mountain…
+end
+= MtPyre_2F_EventScript_Zander
+trainerbattle_single TRAINER_ZANDER MtPyre_2F_Text_ZanderIntro MtPyre_2F_Text_ZanderDefeat
+msgbox	I get freaked out every time I see anything move…I shouldn't have come here to train…
+end
+= MtPyre_2F_EventScript_Luke
+trainerbattle_double TRAINER_DEZ_AND_LUKE MtPyre_2F_Text_LukeIntro MtPyre_2F_Text_LukeDefeat MtPyre_2F_Text_LukeNotEnoughMons
+msgbox	LUKE: Well, we lost but that's okay! I'm right here by your side. We'll make it through this dare!
+end
+= MtPyre_2F_EventScript_Dez
+trainerbattle_double TRAINER_DEZ_AND_LUKE MtPyre_2F_Text_DezIntro MtPyre_2F_Text_DezDefeat MtPyre_2F_Text_DezNotEnoughMons
+msgbox	DEZ: We're lovey-dovey, so we don't care if we lose!
+end
+= MtPyre_2F_EventScript_PokefanM
+msgbox	Ooch, ouch… There are holes in the ground here and there.I didn't notice and took a tumble from the floor above.
+end
+= MtPyre_2F_EventScript_Woman
+msgbox	Memories of my darling SKITTY… My eyes overflow thinking about it.
+end
+= MtPyre_2F_EventScript_Mark
+trainerbattle_single TRAINER_MARK MtPyre_2F_Text_MarkIntro MtPyre_2F_Text_MarkDefeat
+msgbox	People don't come here often, so I thought there'd be rare POKéMON.
+end

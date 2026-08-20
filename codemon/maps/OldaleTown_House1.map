@@ -27,3 +27,9 @@ npcs
 people_woman_2 6 4 S wander
 dialogs
 0	When a POKéMON battle starts, the one at the left of the list goes out first.So, when you get more POKéMON in your party, try switching around the order of your POKéMON.It could give you an advantage.
+objscripts
+0 OldaleTown_House1_EventScript_Woman
+scriptdefs
+= OldaleTown_House1_EventScript_Woman
+msgbox	When a POKéMON battle starts, the one at the left of the list goes out first.So, when you get more POKéMON in your party, try switching around the order of your POKéMON.It could give you an advantage.
+end

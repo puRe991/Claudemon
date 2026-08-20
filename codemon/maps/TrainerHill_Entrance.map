@@ -50,3 +50,132 @@ dialogs
 0	I hope you give it your best.
 3	Do you see the Time Board over there?My friends and I are trying to see who can reach the top in the least time.
 4	Who knows what sort of TRAINERS and POKéMON combos are ahead?All I know is that I'll knock aside anyone that stands in my way!
+objscripts
+0 TrainerHill_Entrance_EventScript_Attendant
+1 TrainerHill_Entrance_EventScript_Nurse
+2 TrainerHill_Entrance_EventScript_Clerk
+3 TrainerHill_Entrance_EventScript_Girl
+4 TrainerHill_Entrance_EventScript_Man
+triggers
+9 6 VAR_TRAINER_HILL_IS_ACTIVE 0 TrainerHill_Entrance_EventScript_EntryTrigger
+movements
+TrainerHill_Entrance_Movement_PlayerFaceAttendant	face_right,end
+TrainerHill_Entrance_Movement_PushPlayerBackFromCounter	down,end
+TrainerHill_Entrance_Pokemart_Basic	delay
+TrainerHill_Entrance_Pokemart_Expanded	delay
+scriptdefs
+= TrainerHill_Entrance_EventScript_EntryTrigger
+lockall
+applymovement LOCALID_PLAYER TrainerHill_Entrance_Movement_PlayerFaceAttendant
+goto_if_unset FLAG_SYS_GAME_CLEAR TrainerHill_Entrance_EventScript_Closed
+msgbox	Welcome!This is the TRAINER HILL where you may enjoy tag battles with many TRAINERS!
+trainerhill_getsaved
+call_if_eq VAR_RESULT FALSE TrainerHill_Entrance_EventScript_SaveGame
+trainerhill_allfloorsused
+goto_if_eq VAR_RESULT TRUE TrainerHill_Entrance_EventScript_AllFloorsUsed
+msgbox	Let's see… The TRAINERS here now are…Up to floor no. .
+goto TrainerHill_Entrance_EventScript_AskChallengeTrainers
+= TrainerHill_Entrance_EventScript_AskChallengeTrainers
+message TrainerHill_Entrance_Text_LikeToChallengeTrainers
+waitmessage
+multichoice 15 6 MULTI_YESNOINFO FALSE
+switch VAR_RESULT
+case 0 TrainerHill_Entrance_EventScript_ChooseChallenge
+case 1 TrainerHill_Entrance_EventScript_CancelEntry
+case 2 TrainerHill_Entrance_EventScript_Info
+case MULTI_B_PRESSED TrainerHill_Entrance_EventScript_CancelEntry
+end
+= TrainerHill_Entrance_EventScript_CancelEntry
+setvar VAR_TEMP_5 0
+msgbox	Please do visit us again!
+closemessage
+applymovement LOCALID_PLAYER TrainerHill_Entrance_Movement_PushPlayerBackFromCounter
+waitmovement 0
+releaseall
+end
+= TrainerHill_Entrance_EventScript_Info
+msgbox	Here at the TRAINER HILL, we conduct an event called the Time Attack.It is a race that measures how long you take to reach our owner on the rooftop from this counter.The fastest times are posted on the Time Board--try competing with your friends.In TRAINER battles along the way, neither Exp. Points nor money will be awarded.
+goto TrainerHill_Entrance_EventScript_AskChallengeTrainers
+end
+= TrainerHill_Entrance_EventScript_ChooseChallenge
+multichoice 13 2 MULTI_TAG_MATCH_TYPE FALSE
+switch VAR_RESULT
+case 4 TrainerHill_Entrance_EventScript_CancelEntry
+case MULTI_B_PRESSED TrainerHill_Entrance_EventScript_CancelEntry
+trainerhill_setmode VAR_RESULT
+setvar VAR_TRAINER_HILL_IS_ACTIVE 1
+setvar VAR_TEMP_5 0
+special HealPlayerParty
+msgbox	I will time your progress. Best of luck!On your marks…Get set…Go!
+trainerhill_start
+releaseall
+end
+= TrainerHill_Entrance_EventScript_AllFloorsUsed
+msgbox	Let's see… The TRAINERS here now are…There appear to be TRAINERS gathered in every room.
+= TrainerHill_Entrance_EventScript_SaveGame
+msgbox	Is this your first visit here?Before you enter, please save your game.
+trainerhill_setsaved
+setvar VAR_TEMP_5 1
+call Common_EventScript_SaveGame
+goto_if_eq VAR_RESULT FALSE TrainerHill_Entrance_EventScript_SaveFailed
+trainerhill_setsaved
+return
+= TrainerHill_Entrance_EventScript_SaveFailed
+trainerhill_clearsaved
+goto TrainerHill_Entrance_EventScript_CancelEntry
+end
+= TrainerHill_Entrance_EventScript_Closed
+msgbox	This is the TRAINER HILL where you may enjoy tag battles with many TRAINERS.Unfortunately, we're still getting things ready. Please come back later!
+closemessage
+applymovement LOCALID_PLAYER TrainerHill_Entrance_Movement_PushPlayerBackFromCounter
+waitmovement 0
+releaseall
+end
+= TrainerHill_Entrance_EventScript_Man
+goto_if_unset FLAG_SYS_GAME_CLEAR TrainerHill_Entrance_EventScript_ManTrainerHillClosed
+msgbox	Who knows what sort of TRAINERS and POKéMON combos are ahead?All I know is that I'll knock aside anyone that stands in my way!
+end
+= TrainerHill_Entrance_EventScript_ManTrainerHillClosed
+msgbox	I heard tough TRAINERS come to this TRAINER HILL from all over.I can't wait to test the waters!I'll knock aside anyone that stands in my way!
+end
+= TrainerHill_Entrance_EventScript_Girl
+goto_if_unset FLAG_SYS_GAME_CLEAR TrainerHill_Entrance_EventScript_GirlTrainerHillClosed
+msgbox	Do you see the Time Board over there?My friends and I are trying to see who can reach the top in the least time.
+end
+= TrainerHill_Entrance_EventScript_GirlTrainerHillClosed
+msgbox	Do you know when they're opening this place up?I'm waiting here to be the first challenger ever!
+end
+= TrainerHill_Entrance_EventScript_Clerk
+lock
+faceplayer
+message gText_HowMayIServeYou
+waitmessage
+goto_if_set FLAG_SYS_GAME_CLEAR TrainerHill_Entrance_EventScript_ExpandedPokemart
+pokemart TrainerHill_Entrance_Pokemart_Basic
+msgbox	gText_PleaseComeAgain
+release
+end
+= TrainerHill_Entrance_EventScript_ExpandedPokemart
+pokemart TrainerHill_Entrance_Pokemart_Expanded
+msgbox	gText_PleaseComeAgain
+release
+end
+= TrainerHill_Entrance_EventScript_Nurse
+setvar VAR_0x800B LOCALID_TRAINER_HILL_NURSE
+call Common_EventScript_PkmnCenterNurse
+waitmessage
+waitbuttonpress
+release
+end
+= TrainerHill_Entrance_EventScript_Attendant
+lock
+faceplayer
+trainerhill_inchallenge
+goto_if_eq VAR_RESULT FALSE TrainerHill_Entrance_EventScript_ThanksForPlaying
+msgbox	I hope you give it your best.
+goto TrainerHill_Entrance_EventScript_AttendantEnd
+= TrainerHill_Entrance_EventScript_AttendantEnd
+release
+end
+= TrainerHill_Entrance_EventScript_ThanksForPlaying
+msgbox	Thank you for playing!

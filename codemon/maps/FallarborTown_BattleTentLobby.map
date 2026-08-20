@@ -36,3 +36,66 @@ dialogs
 2	Fufufufufu.I'm going to make everyone think I'm just a kid and let them play down.Then, I'll shock them and grab the title!
 3	You know how BATTLE TENTS offer different events in different towns?My favorite is definitely the BATTLE TENT in FALLARBOR TOWN.I think it's fantastic how TRAINERS try to win with all their faith in their POKéMON.
 4	SCOTT: Hi, PLAYER! So you came out to this BATTLE TENT!The people in these parts tend to be easygoing and laid-back.But, you see, what I'm looking for are people with…How should I say this?Someone bursting with the desire and the drive to win.If there were a TRAINER like that, I'd immediately…Whoops! Never mind! Keep working at it!
+objscripts
+0 FallarborTown_BattleTentLobby_EventScript_Attendant
+1 FallarborTown_BattleTentLobby_EventScript_Hiker
+2 FallarborTown_BattleTentLobby_EventScript_LittleBoy
+3 FallarborTown_BattleTentLobby_EventScript_Lass
+4 FallarborTown_BattleTentLobby_EventScript_Scott
+scriptdefs
+= FallarborTown_BattleTentLobby_EventScript_Scott
+lock
+faceplayer
+goto_if_set FLAG_MET_SCOTT_IN_FALLARBOR FallarborTown_BattleTentLobby_EventScript_ScottAlreadySpokenTo
+msgbox	SCOTT: Hi, PLAYER! So you came out to this BATTLE TENT!The people in these parts tend to be easygoing and laid-back.But, you see, what I'm looking for are people with…How should I say this?Someone bursting with the desire and the drive to win.If there were a TRAINER like that, I'd immediately…Whoops! Never mind! Keep working at it!
+addvar VAR_SCOTT_STATE 1
+setflag FLAG_MET_SCOTT_IN_FALLARBOR
+release
+end
+= FallarborTown_BattleTentLobby_EventScript_ScottAlreadySpokenTo
+msgbox	SCOTT: Instead of wasting your time with the likes of me, why not make a challenge?
+release
+end
+= FallarborTown_BattleTentLobby_EventScript_Lass
+msgbox	You know how BATTLE TENTS offer different events in different towns?My favorite is definitely the BATTLE TENT in FALLARBOR TOWN.I think it's fantastic how TRAINERS try to win with all their faith in their POKéMON.
+end
+= FallarborTown_BattleTentLobby_EventScript_LittleBoy
+msgbox	Fufufufufu.I'm going to make everyone think I'm just a kid and let them play down.Then, I'll shock them and grab the title!
+end
+= FallarborTown_BattleTentLobby_EventScript_Hiker
+msgbox	I heard something about some tent, so I came to camp out.I didn't know that tents these days are so luxurious!Since I'm here, I may as well try my hand at battling!
+end
+= FallarborTown_BattleTentLobby_EventScript_Attendant
+lock
+faceplayer
+fallarbortent_getprize
+goto_if_ne VAR_RESULT ITEM_NONE FallarborTown_BattleTentLobby_EventScript_PrizeWaiting
+special SavePlayerParty
+msgbox	FallarborTown_BattleTentLobby_Text_WelcomeToBattleTent
+= FallarborTown_BattleTentLobby_EventScript_PrizeWaiting
+lockall
+msgbox	FallarborTown_BattleTentLobby_Text_BeatThreeTrainers
+goto FallarborTown_BattleTentLobby_EventScript_GivePrize
+end
+= FallarborTown_BattleTentLobby_EventScript_GivePrize
+msgbox	FallarborTown_BattleTentLobby_Text_PresentYouWithPrize
+fallarbortent_giveprize
+switch VAR_RESULT
+case FALSE FallarborTown_BattleTentLobby_EventScript_NoRoomForPrize
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
+message FallarborTown_BattleTentLobby_Text_ReceivedPrize
+waitmessage
+playfanfare MUS_OBTAIN_ITEM
+waitfanfare
+msgbox	FallarborTown_BattleTentLobby_Text_AwaitAnotherChallenge2
+closemessage
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+releaseall
+end
+= FallarborTown_BattleTentLobby_EventScript_NoRoomForPrize
+msgbox	FallarborTown_BattleTentLobby_Text_BagFullReturnForPrize
+waitmessage
+closemessage
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+releaseall
+end

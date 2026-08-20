@@ -41,3 +41,13 @@ people_scientist_1 0 9 N static
 dialogs
 1	Designing a large ship is more like making a big building than putting together a transportation vehicle.
 2	Don't you think it's strange that a ship made of heavy iron floats?It floats because of a principle called buoyancy.
+objscripts
+1 SlateportCity_SternsShipyard_2F_EventScript_Scientist1
+2 SlateportCity_SternsShipyard_2F_EventScript_Scientist2
+scriptdefs
+= SlateportCity_SternsShipyard_2F_EventScript_Scientist2
+msgbox	Don't you think it's strange that a ship made of heavy iron floats?It floats because of a principle called buoyancy.
+end
+= SlateportCity_SternsShipyard_2F_EventScript_Scientist1
+msgbox	Designing a large ship is more like making a big building than putting together a transportation vehicle.
+end

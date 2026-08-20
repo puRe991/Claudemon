@@ -70,3 +70,20 @@ dialogs
 0	I never get tired of hacking and slashing!
 1	I lost my way, I lost a battle, and I'm now even more lost… I can't get out…
 2	You're strong! Just who are you?
+objscripts
+0 Route110_TrickHousePuzzle1_EventScript_Sally
+1 Route110_TrickHousePuzzle1_EventScript_Eddie
+2 Route110_TrickHousePuzzle1_EventScript_Robin
+scriptdefs
+= Route110_TrickHousePuzzle1_EventScript_Robin
+trainerbattle_single TRAINER_ROBIN Route110_TrickHousePuzzle1_Text_RobinIntro Route110_TrickHousePuzzle1_Text_RobinDefeat
+msgbox	You're strong! Just who are you?
+end
+= Route110_TrickHousePuzzle1_EventScript_Eddie
+trainerbattle_single TRAINER_EDDIE Route110_TrickHousePuzzle1_Text_EddieIntro Route110_TrickHousePuzzle1_Text_EddieDefeat
+msgbox	I lost my way, I lost a battle, and I'm now even more lost… I can't get out…
+end
+= Route110_TrickHousePuzzle1_EventScript_Sally
+trainerbattle_single TRAINER_SALLY Route110_TrickHousePuzzle1_Text_SallyIntro Route110_TrickHousePuzzle1_Text_SallyDefeat
+msgbox	I never get tired of hacking and slashing!
+end

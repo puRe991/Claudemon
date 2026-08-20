@@ -69,3 +69,20 @@ dialogs
 0	Wouldn't you agree? You would go anywhere if TRAINERS were there.
 1	Has anyone made it to the end?
 2	It's not good enough to be brawny… You have to use your head. Be brainy!
+objscripts
+0 Route110_TrickHousePuzzle4_EventScript_Cora
+1 Route110_TrickHousePuzzle4_EventScript_Paula
+2 Route110_TrickHousePuzzle4_EventScript_Yuji
+scriptdefs
+= Route110_TrickHousePuzzle4_EventScript_Yuji
+trainerbattle_single TRAINER_YUJI Route110_TrickHousePuzzle4_Text_YujiIntro Route110_TrickHousePuzzle4_Text_YujiDefeat
+msgbox	It's not good enough to be brawny… You have to use your head. Be brainy!
+end
+= Route110_TrickHousePuzzle4_EventScript_Paula
+trainerbattle_single TRAINER_PAULA Route110_TrickHousePuzzle4_Text_PaulaIntro Route110_TrickHousePuzzle4_Text_PaulaDefeat
+msgbox	Has anyone made it to the end?
+end
+= Route110_TrickHousePuzzle4_EventScript_Cora
+trainerbattle_single TRAINER_CORA Route110_TrickHousePuzzle4_Text_CoraIntro Route110_TrickHousePuzzle4_Text_CoraDefeat
+msgbox	Wouldn't you agree? You would go anywhere if TRAINERS were there.
+end

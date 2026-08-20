@@ -23,3 +23,66 @@ people_man_1 4 4 S static
 people_man_1 3 4 S static
 dialogs
 1	… … … … … … … … … … … …
+objscripts
+0 BattleFrontier_BattlePikeRoomNormal_EventScript_NPC
+1 BattleFrontier_BattlePikeRoomNormal_EventScript_StatusMon
+movements
+BattleFrontier_BattlePikeRoomNormal_Movement_HealNPCExit	up,delay,up,end
+BattleFrontier_BattlePikeRoomNormal_Movement_MonFaceRight	face_right,end
+scriptdefs
+= BattleFrontier_BattlePikeRoomNormal_EventScript_StatusMon
+lock
+faceplayer
+msgbox	… … … … … … … … … … … …
+closemessage
+release
+applymovement LOCALID_PIKE_ROOM_NPC_2 BattleFrontier_BattlePikeRoomNormal_Movement_MonFaceRight
+waitmovement 0
+end
+= BattleFrontier_BattlePikeRoomNormal_EventScript_NPC
+pike_getroomtype
+switch VAR_RESULT
+case PIKE_ROOM_NPC BattleFrontier_BattlePikeRoomNormal_EventScript_NormalNPC
+case PIKE_ROOM_STATUS BattleFrontier_BattlePikeRoomNormal_EventScript_StatusNPC
+case PIKE_ROOM_HEAL_PART BattleFrontier_BattlePikeRoomNormal_EventScript_HealNPC
+= BattleFrontier_BattlePikeRoomNormal_EventScript_HealNPC
+pike_healonetwomons
+call_if_eq VAR_RESULT 2 BattleFrontier_BattlePikeRoomNormal_EventScript_WillRestoreTwoMons
+call_if_eq VAR_RESULT 1 BattleFrontier_BattlePikeRoomNormal_EventScript_WillRestoreOneMon
+playfanfare MUS_HEAL
+waitfanfare
+msgbox	The best of luck to you. Farewell.
+closemessage
+release
+applymovement LOCALID_PIKE_ROOM_NPC_1 BattleFrontier_BattlePikeRoomNormal_Movement_HealNPCExit
+waitmovement 0
+end
+= BattleFrontier_BattlePikeRoomNormal_EventScript_WillRestoreOneMon
+lock
+faceplayer
+msgbox	Ah, you're a lucky one. I'm in somewhat-good spirits now.I will restore one of your POKéMON to full health.
+closemessage
+return
+= BattleFrontier_BattlePikeRoomNormal_EventScript_WillRestoreTwoMons
+lock
+faceplayer
+msgbox	Ah, you're a lucky one! I'm in good spirits now.I will restore two of your POKéMON to full health!
+closemessage
+return
+@ Dusclops or Kirlia
+= BattleFrontier_BattlePikeRoomNormal_EventScript_StatusNPC
+lock
+faceplayer
+msgbox	I do apologize for what happened… I do hope your POKéMON are fine.
+closemessage
+release
+end
+= BattleFrontier_BattlePikeRoomNormal_EventScript_NormalNPC
+lock
+faceplayer
+pike_getnpcmsg
+msgbox	gStringVar4
+waitmessage
+closemessage
+release
+end

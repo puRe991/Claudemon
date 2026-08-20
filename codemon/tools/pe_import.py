@@ -434,15 +434,13 @@ def _clean_dialog(raw):
     return PAGE_SEP.join(pages)
 
 
-def parse_map_dialogs(map_dir):
-    """Return {script_label: dialog_text} for a map's scripts.inc."""
+def parse_map_texts(map_dir):
+    """Return {text_label: cleaned text} from a map's scripts.inc."""
     import re
     inc = os.path.join(map_dir, "scripts.inc")
     if not os.path.isfile(inc):
         return {}
     lines = open(inc, encoding="utf-8", errors="replace").read().splitlines()
-
-    # text label -> joined .string text
     texts = {}
     i = 0
     while i < len(lines):
@@ -460,6 +458,17 @@ def parse_map_dialogs(map_dir):
             i = j
         else:
             i += 1
+    return texts
+
+
+def parse_map_dialogs(map_dir):
+    """Return {script_label: dialog_text} for a map's scripts.inc."""
+    import re
+    inc = os.path.join(map_dir, "scripts.inc")
+    if not os.path.isfile(inc):
+        return {}
+    lines = open(inc, encoding="utf-8", errors="replace").read().splitlines()
+    texts = parse_map_texts(map_dir)
 
     # script label -> first msgbox text label
     scripts = {}
@@ -475,6 +484,114 @@ def parse_map_dialogs(map_dir):
                 scripts[cur] = mm.group(1)
     # resolve script -> text
     return {sl: texts[tl] for sl, tl in scripts.items() if tl in texts}
+
+
+# --------------------------------------------------------------------------- #
+# full event-script extraction (for the in-engine ScriptVM)
+# --------------------------------------------------------------------------- #
+import re as _re
+
+# Movement macro -> compact engine action. Unknowns become "delay" (a no-op
+# pause) so a template still runs to completion.
+_MOVE_MAP = {
+    "walk_up": "up", "walk_down": "down", "walk_left": "left", "walk_right": "right",
+    "walk_fast_up": "up", "walk_fast_down": "down",
+    "walk_fast_left": "left", "walk_fast_right": "right",
+    "walk_slow_up": "up", "walk_slow_down": "down",
+    "walk_slow_left": "left", "walk_slow_right": "right",
+    "jump_up": "up", "jump_down": "down", "jump_left": "left", "jump_right": "right",
+    "jump_2_up": "up", "jump_2_down": "down", "jump_2_left": "left", "jump_2_right": "right",
+    "face_up": "face_up", "face_down": "face_down",
+    "face_left": "face_left", "face_right": "face_right",
+    "step_end": "end",
+}
+
+
+def _move_action(tok):
+    tok = tok.strip()
+    if tok in _MOVE_MAP:
+        return _MOVE_MAP[tok]
+    if tok.startswith("delay") or tok.startswith("walk_in_place"):
+        return "delay"
+    if tok.startswith("face"):
+        return "face_down"
+    return "delay"
+
+
+def parse_map_scripts(map_dir, texts):
+    """Parse scripts.inc into executable scripts + movement templates.
+
+    Returns (scripts, movements):
+      scripts[label]   = list of instructions; each instruction is a list of
+                         string tokens (opcode first). msgbox text is resolved
+                         inline as ["msgbox", <text>].
+      movements[label] = list of compact actions (up/down/left/right/face_*/...)
+    """
+    inc = os.path.join(map_dir, "scripts.inc")
+    if not os.path.isfile(inc):
+        return {}, {}
+    lines = open(inc, encoding="utf-8", errors="replace").read().splitlines()
+
+    scripts, movements = {}, {}
+    i, n = 0, len(lines)
+    while i < n:
+        ln = lines[i]
+        m_scr = _re.match(r"^(\w+)::", ln)
+        m_dat = _re.match(r"^(\w+):\s*$", ln)
+        if m_scr:
+            label = m_scr.group(1)
+            body = []
+            i += 1
+            while i < n and not _re.match(r"^\w+:", lines[i]):
+                s = lines[i].strip()
+                i += 1
+                if not s or s.startswith("."):
+                    continue
+                # "op arg1, arg2" -> [op, arg1, arg2]
+                parts = s.split(None, 1)
+                op = parts[0]
+                args = [a.strip() for a in parts[1].split(",")] if len(parts) > 1 else []
+                if op == "msgbox" and args and args[0] in texts:
+                    body.append(["msgbox", texts[args[0]]])
+                else:
+                    body.append([op] + args)
+            scripts[label] = body
+        elif m_dat:
+            label = m_dat.group(1)
+            # movement template? (body of bare movement tokens, no .string)
+            j = i + 1
+            if j < n and ".string" not in lines[j] and lines[j].strip():
+                acts = []
+                while j < n and not _re.match(r"^\w+:", lines[j]):
+                    t = lines[j].strip(); j += 1
+                    if not t or t.startswith("."):
+                        continue
+                    a = _move_action(t)
+                    acts.append(a)
+                    if a == "end":
+                        break
+                if acts:
+                    movements[label] = acts
+            i += 1
+        else:
+            i += 1
+    return scripts, movements
+
+
+def reachable_scripts(entry_labels, scripts):
+    """BFS the scripts reachable from entry labels via label-valued args."""
+    keep = {}
+    stack = [l for l in entry_labels if l in scripts]
+    while stack:
+        lab = stack.pop()
+        if lab in keep:
+            continue
+        keep[lab] = scripts[lab]
+        for instr in scripts[lab]:
+            for a in instr[1:]:
+                if a in scripts and a not in keep:
+                    stack.append(a)
+    return keep
 
 
 def movement_token(mt):
@@ -551,8 +668,11 @@ def cmd_world(src, limit=None):
         ids = [c & 0x03FF for c in cells]
         solid = [1 if ((c >> 10) & 0x03) else 0 for c in cells]
 
-        # NPCs from object events, with dialog resolved from scripts.inc
-        dialogs = parse_map_dialogs(os.path.join(mroot, mname))
+        # NPCs from object events, with dialog + full script from scripts.inc
+        mapdir = os.path.join(mroot, mname)
+        dialogs = parse_map_dialogs(mapdir)
+        texts = parse_map_texts(mapdir)
+        all_scripts, all_moves = parse_map_scripts(mapdir, texts)
         npcs = []
         for oe in mj.get("object_events", []):
             try:
@@ -565,8 +685,9 @@ def cmd_world(src, limit=None):
             if not sheet:
                 continue
             move, face = movement_token(oe.get("movement_type"))
-            dlg = dialogs.get(oe.get("script", ""), "")
-            npcs.append((sheet, x, y, face, move, dlg))
+            scr = oe.get("script", "") or ""
+            dlg = dialogs.get(scr, "")
+            npcs.append((sheet, x, y, face, move, dlg, scr))
 
         # Signs (readable bg_events) share the same script->text resolution.
         signs = []
@@ -626,14 +747,60 @@ def cmd_world(src, limit=None):
                 lines.append(f"{x} {y} {dest} {dw}")
         if npcs:
             lines.append("npcs")
-            for (sheet, x, y, face, move, dlg) in npcs:
-                lines.append(f"{sheet} {x} {y} {face} {move}")
+            for n in npcs:
+                lines.append(f"{n[0]} {n[1]} {n[2]} {n[3]} {n[4]}")
             # dialog lines are tab-separated (text has spaces): "<index>\t<text>"
             dlg_lines = [(i, n[5]) for i, n in enumerate(npcs) if n[5]]
             if dlg_lines:
                 lines.append("dialogs")
                 for (i, text) in dlg_lines:
                     lines.append(f"{i}\t{text}")
+
+        # --- full event scripts (for the ScriptVM) -------------------------
+        coord_triggers = []
+        for ce in mj.get("coord_events", []):
+            if ce.get("type") != "trigger" or not ce.get("script"):
+                continue
+            try:
+                cx = int(ce["x"]); cy = int(ce["y"])
+            except Exception:
+                continue
+            coord_triggers.append((cx, cy, ce.get("var", "0"),
+                                   ce.get("var_value", "0"), ce["script"]))
+
+        entry = [n[6] for n in npcs if n[6] in all_scripts]
+        entry += [t[4] for t in coord_triggers if t[4] in all_scripts]
+        keep = reachable_scripts(entry, all_scripts)
+        used_moves = set()
+        for body in keep.values():
+            for instr in body:
+                for a in instr[1:]:
+                    if a in all_moves:
+                        used_moves.add(a)
+
+        obj_scr = [(i, n[6]) for i, n in enumerate(npcs) if n[6] in keep]
+        if obj_scr:
+            lines.append("objscripts")
+            for (i, lab) in obj_scr:
+                lines.append(f"{i} {lab}")
+        trig = [t for t in coord_triggers if t[4] in keep]
+        if trig:
+            lines.append("triggers")
+            for (cx, cy, var, val, lab) in trig:
+                lines.append(f"{cx} {cy} {var} {val} {lab}")
+        if used_moves:
+            lines.append("movements")
+            for lab in sorted(used_moves):
+                lines.append(f"{lab}\t{','.join(all_moves[lab])}")
+        if keep:
+            lines.append("scriptdefs")
+            for lab, body in keep.items():
+                lines.append("= " + lab)
+                for instr in body:
+                    if instr[0] == "msgbox" and len(instr) >= 2:
+                        lines.append("msgbox\t" + instr[1])
+                    else:
+                        lines.append(" ".join(instr))
         if signs:
             lines.append("signs")
             for (bx, by, text) in signs:
@@ -651,7 +818,8 @@ def cmd_world(src, limit=None):
         catalog.append({"map": mname, "w": w, "h": h, "tileset": sheet_name,
                         "npcs": len(npcs), "warps": len(warps),
                         "dialogs": sum(1 for n in npcs if n[5]),
-                        "signs": len(signs), "spawn": [sx, sy]})
+                        "signs": len(signs), "scripts": len(keep),
+                        "triggers": len(trig), "spawn": [sx, sy]})
         done += 1
         if limit and done >= limit:
             break
@@ -663,11 +831,14 @@ def cmd_world(src, limit=None):
     total_signs = sum(c.get("signs", 0) for c in catalog)
     total_dlg = sum(c.get("dialogs", 0) for c in catalog)
 
+    total_scripts = sum(c.get("scripts", 0) for c in catalog)
+    total_trig = sum(c.get("triggers", 0) for c in catalog)
     # Colour the front sprites of every wild species that can be encountered.
     imported = sum(1 for sp in sorted(used_species) if import_pokemon_front(sp, src))
     print(f"world: {len(catalog)} maps, {len(pair_cache)} tileset sheets, "
           f"{total_npcs} NPCs, {total_warps} warps, {total_dlg} dialogs, "
-          f"{total_signs} signs, {imported} wild sprites -> {os.path.relpath(maps_dir)}")
+          f"{total_signs} signs, {imported} wild sprites, "
+          f"{total_scripts} scripts, {total_trig} triggers -> {os.path.relpath(maps_dir)}")
 
 
 # --------------------------------------------------------------------------- #

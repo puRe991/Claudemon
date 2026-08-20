@@ -55,6 +55,108 @@ dialogs
 7	I aim to see many great paintings here and learn from them.I have this dream of one day having my artwork exhibited here.
 8	The ART MUSEUM has become a favorite tourist destination.It's great for LILYCOVE… No, great for the HOENN region!This is what I've heard--a lone TRAINER procured all the paintings upstairs.
 9	Lately, the CURATOR has been unusually cheerful.I bet something good happened for him. Definitely.
+objscripts
+0 LilycoveCity_LilycoveMuseum_1F_EventScript_Greeter
+1 LilycoveCity_LilycoveMuseum_1F_EventScript_Curator
+2 LilycoveCity_LilycoveMuseum_1F_EventScript_SchoolKidM
+3 LilycoveCity_LilycoveMuseum_1F_EventScript_Artist1
+4 LilycoveCity_LilycoveMuseum_1F_EventScript_NinjaBoy
+5 LilycoveCity_LilycoveMuseum_1F_EventScript_Woman1
+6 LilycoveCity_LilycoveMuseum_1F_EventScript_Woman2
+7 LilycoveCity_LilycoveMuseum_1F_EventScript_Artist2
+8 LilycoveCity_LilycoveMuseum_1F_EventScript_FatMan
+9 LilycoveCity_LilycoveMuseum_1F_EventScript_PsychicM
+movements
+LilycoveCity_LilycoveMuseum_1F_Movement_CuratorEnterStairs	up,end
+LilycoveCity_LilycoveMuseum_1F_Movement_FollowCuratorEast	right,up,end
+LilycoveCity_LilycoveMuseum_1F_Movement_FollowCuratorNorth	up,up,end
+LilycoveCity_LilycoveMuseum_1F_Movement_FollowCuratorWest	left,up,end
+scriptdefs
+= LilycoveCity_LilycoveMuseum_1F_EventScript_PsychicM
+msgbox	Lately, the CURATOR has been unusually cheerful.I bet something good happened for him. Definitely.
+end
+= LilycoveCity_LilycoveMuseum_1F_EventScript_FatMan
+msgbox	The ART MUSEUM has become a favorite tourist destination.It's great for LILYCOVE… No, great for the HOENN region!This is what I've heard--a lone TRAINER procured all the paintings upstairs.
+end
+= LilycoveCity_LilycoveMuseum_1F_EventScript_Artist2
+lock
+faceplayer
+msgbox	I aim to see many great paintings here and learn from them.I have this dream of one day having my artwork exhibited here.
+closemessage
+applymovement LOCALID_MUSEUM_1F_ARTIST_2 Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= LilycoveCity_LilycoveMuseum_1F_EventScript_Woman2
+msgbox	I'd heard that this ART MUSEUM got in some new paintings.So, naturally I hurried over.Are the new paintings up on the second floor?
+end
+= LilycoveCity_LilycoveMuseum_1F_EventScript_Woman1
+msgbox	This POKéMON is adorable! Just like our little boy!
+end
+= LilycoveCity_LilycoveMuseum_1F_EventScript_NinjaBoy
+msgbox	This lady is pretty! She's like Mommy!
+end
+= LilycoveCity_LilycoveMuseum_1F_EventScript_Artist1
+msgbox	This ART MUSEUM… Well, you could see many fantastic paintings.And the CURATOR is a wonderful person.Among artists like myself, this MUSEUM is an inspiration.
+end
+= LilycoveCity_LilycoveMuseum_1F_EventScript_SchoolKidM
+msgbox	Battling with POKéMON is fun, I'll grant you that.But one mustn't forget our love for the fine arts.
+end
+= LilycoveCity_LilycoveMuseum_1F_EventScript_Curator
+lockall
+applymovement LOCALID_MUSEUM_1F_CURATOR Common_Movement_FacePlayer
+message LilycoveCity_LilycoveMuseum_1F_Text_ImCuratorHaveYouViewedOurPaintings
+waitmessage
+multichoice 20 8 MULTI_VIEWED_PAINTINGS TRUE
+goto_if_eq VAR_RESULT 0 LilycoveCity_LilycoveMuseum_1F_EventScript_SawPaintings
+goto_if_eq VAR_RESULT 1 LilycoveCity_LilycoveMuseum_1F_EventScript_NotYet
+end
+= LilycoveCity_LilycoveMuseum_1F_EventScript_NotYet
+msgbox	Ah, then let me not disturb you. Please, do take your time.
+end
+= LilycoveCity_LilycoveMuseum_1F_EventScript_SawPaintings
+msgbox	Oh? I do believe that you seem to be a POKéMON TRAINER.Have you an interest in paintings, too?
+goto_if_eq VAR_RESULT NO LilycoveCity_LilycoveMuseum_1F_EventScript_NotInterested
+goto_if_eq VAR_RESULT YES LilycoveCity_LilycoveMuseum_1F_EventScript_InterestedInPaintings
+end
+= LilycoveCity_LilycoveMuseum_1F_EventScript_InterestedInPaintings
+msgbox	Ah, excellent! You do like paintings!Then, may I ask you to come with me?
+applymovement LOCALID_MUSEUM_1F_CURATOR LilycoveCity_LilycoveMuseum_1F_Movement_CuratorEnterStairs
+waitmovement 0
+removeobject LOCALID_MUSEUM_1F_CURATOR
+switch VAR_FACING
+case DIR_NORTH LilycoveCity_LilycoveMuseum_1F_EventScript_FollowCuratorNorth
+case DIR_WEST LilycoveCity_LilycoveMuseum_1F_EventScript_FollowCuratorWest
+case DIR_EAST LilycoveCity_LilycoveMuseum_1F_EventScript_FollowCuratorEast
+end
+= LilycoveCity_LilycoveMuseum_1F_EventScript_FollowCuratorEast
+lockall
+applymovement LOCALID_PLAYER LilycoveCity_LilycoveMuseum_1F_Movement_FollowCuratorEast
+waitmovement 0
+warp MAP_LILYCOVE_CITY_LILYCOVE_MUSEUM_2F 11 8
+waitstate
+end
+= LilycoveCity_LilycoveMuseum_1F_EventScript_FollowCuratorWest
+lockall
+applymovement LOCALID_PLAYER LilycoveCity_LilycoveMuseum_1F_Movement_FollowCuratorWest
+waitmovement 0
+warp MAP_LILYCOVE_CITY_LILYCOVE_MUSEUM_2F 11 8
+waitstate
+end
+= LilycoveCity_LilycoveMuseum_1F_EventScript_FollowCuratorNorth
+lockall
+applymovement LOCALID_PLAYER LilycoveCity_LilycoveMuseum_1F_Movement_FollowCuratorNorth
+waitmovement 0
+warp MAP_LILYCOVE_CITY_LILYCOVE_MUSEUM_2F 11 8
+waitstate
+end
+= LilycoveCity_LilycoveMuseum_1F_EventScript_NotInterested
+msgbox	I see…I'm honored that you would visit us in spite of that.
+releaseall
+end
+= LilycoveCity_LilycoveMuseum_1F_EventScript_Greeter
+msgbox	Welcome to LILYCOVE MUSEUM.Please take the time to enjoy our collection of fantastic artwork featuring POKéMON.
+end
 signs
 1 1	It's an odd landscape with bizarre and fantastic scenery.
 2 1	It's an odd landscape with bizarre and fantastic scenery.

@@ -30,3 +30,29 @@ dialogs
 1	SUPER REPEL lasts a long time, and it gets the job done.It's much better than an ordinary REPEL.
 2	I always stock up on more items than I'm sure I'll need.You never know what might happen. Better to be safe than sorry!
 3	A RARE CANDY makes a POKéMON grow immediately by one level.
+objscripts
+0 FortreeCity_Mart_EventScript_Clerk
+1 FortreeCity_Mart_EventScript_Woman
+2 FortreeCity_Mart_EventScript_Girl
+3 FortreeCity_Mart_EventScript_Boy
+movements
+FortreeCity_Mart_Pokemart	delay
+scriptdefs
+= FortreeCity_Mart_EventScript_Boy
+msgbox	A RARE CANDY makes a POKéMON grow immediately by one level.
+end
+= FortreeCity_Mart_EventScript_Girl
+msgbox	I always stock up on more items than I'm sure I'll need.You never know what might happen. Better to be safe than sorry!
+end
+= FortreeCity_Mart_EventScript_Woman
+msgbox	SUPER REPEL lasts a long time, and it gets the job done.It's much better than an ordinary REPEL.
+end
+= FortreeCity_Mart_EventScript_Clerk
+lock
+faceplayer
+message gText_HowMayIServeYou
+waitmessage
+pokemart FortreeCity_Mart_Pokemart
+msgbox	gText_PleaseComeAgain
+release
+end

@@ -100,3 +100,39 @@ warps
 npcs
 people_sailor 13 39 N static
 misc_ss_tidal 13 41 E static
+objscripts
+0 FarawayIsland_Entrance_EventScript_Sailor
+triggers
+9 18 TRIGGER_RUN_IMMEDIATELY 0 FarawayIsland_Entrance_EventScript_SetCloudsWeather
+10 20 TRIGGER_RUN_IMMEDIATELY 0 FarawayIsland_Entrance_EventScript_ClearWeather
+22 9 TRIGGER_RUN_IMMEDIATELY 0 FarawayIsland_Entrance_EventScript_SetCloudsWeather
+scriptdefs
+= FarawayIsland_Entrance_EventScript_SetCloudsWeather
+setweather WEATHER_SUNNY_CLOUDS
+doweather
+end
+= FarawayIsland_Entrance_EventScript_ClearWeather
+setweather WEATHER_NONE
+doweather
+end
+= FarawayIsland_Entrance_EventScript_Sailor
+lock
+faceplayer
+msgbox	FarawayIsland_Entrance_Text_SailorReturn
+goto_if_eq VAR_RESULT NO FarawayIsland_Entrance_EventScript_AsYouLike
+msgbox	EventTicket_Text_SailHome
+closemessage
+applymovement VAR_LAST_TALKED Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+delay 30
+hideobjectat LOCALID_FARAWAY_ISLAND_SAILOR MAP_FARAWAY_ISLAND_ENTRANCE
+setvar VAR_0x8004 LOCALID_FARAWAY_ISLAND_SS_TIDAL
+call Common_EventScript_FerryDepartIsland
+warp MAP_LILYCOVE_CITY_HARBOR 8 11
+waitstate
+release
+end
+= FarawayIsland_Entrance_EventScript_AsYouLike
+msgbox	EventTicket_Text_AsYouLike
+release
+end

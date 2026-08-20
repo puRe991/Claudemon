@@ -41,5 +41,194 @@ dialogs
 4	Across the sea…Is “” even more popular?
 5	I collect official “” licensed merchandise.I have official “” DOLLS…Official “” brand clothing…And officially licensed “” picture books.Heheh, I own! I'm not sharing anything with you!
 8	For me, SLUDGE BOMB is at the peak of popularity. It's the one.Hunh? You're telling me that you don't know about SLUDGE BOMB?That's outright pitiful. I'll give you one.
+objscripts
+0 DewfordTown_Hall_EventScript_Girl
+1 DewfordTown_Hall_EventScript_Woman
+2 DewfordTown_Hall_EventScript_Man
+3 DewfordTown_Hall_EventScript_ExpertM
+4 DewfordTown_Hall_EventScript_Twin
+5 DewfordTown_Hall_EventScript_LittleBoy
+6 DewfordTown_Hall_EventScript_SchoolKidM
+7 DewfordTown_Hall_EventScript_PsychicM
+8 DewfordTown_Hall_EventScript_SludgeBombMan
+movements
+DewfordTown_Hall_Movement_PsychicWalkInPlaceLeft	delay,end
+DewfordTown_Hall_Movement_SchoolKidWalkInPlaceRight	delay,end
+scriptdefs
+= DewfordTown_Hall_EventScript_SludgeBombMan
+lock
+faceplayer
+call Common_EventScript_BufferTrendyPhrase
+goto_if_set FLAG_RECEIVED_TM_SLUDGE_BOMB DewfordTown_Hall_EventScript_ReceivedSludgeBomb
+msgbox	For me, SLUDGE BOMB is at the peak of popularity. It's the one.Hunh? You're telling me that you don't know about SLUDGE BOMB?That's outright pitiful. I'll give you one.
+giveitem ITEM_TM_SLUDGE_BOMB
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_RECEIVED_TM_SLUDGE_BOMB
+release
+end
+= DewfordTown_Hall_EventScript_ReceivedSludgeBomb
+msgbox	I love SLUDGE BOMB.But POKéMON with the move “” are in, too.
+release
+end
+= DewfordTown_Hall_EventScript_PsychicM
+lockall
+setvar VAR_0x8008 1
+goto DewfordTown_Hall_EventScript_DoTrendDebate
+end
+= DewfordTown_Hall_EventScript_DoTrendDebate
+call Common_EventScript_BufferTrendyPhrase
+special GetDewfordHallPaintingNameIndex
+switch VAR_RESULT
+case 0 DewfordTown_Hall_EventScript_TrendDebate1
+case 1 DewfordTown_Hall_EventScript_TrendDebate1
+case 2 DewfordTown_Hall_EventScript_TrendDebate2
+case 3 DewfordTown_Hall_EventScript_TrendDebate2
+case 4 DewfordTown_Hall_EventScript_TrendDebate3
+case 5 DewfordTown_Hall_EventScript_TrendDebate3
+case 6 DewfordTown_Hall_EventScript_TrendDebate4
+case 7 DewfordTown_Hall_EventScript_TrendDebate5
+end
+= DewfordTown_Hall_EventScript_TrendDebate5
+call DewfordTown_Hall_EventScript_DebateReact1
+msgbox	If you and me team up as a combo, we'll be invincible when it comes to all things “”!
+call DewfordTown_Hall_EventScript_DebateReact2
+msgbox	Spot on, my friend!We shall be the “” DUO!Isn't that a ripe image? Hahahah!
+releaseall
+end
+= DewfordTown_Hall_EventScript_DebateReact2
+applymovement LOCALID_DEWFORD_HALL_SCHOOL_KID_M DewfordTown_Hall_Movement_SchoolKidWalkInPlaceRight
+waitmovement 0
+goto_if_eq VAR_0x8008 0 DewfordTown_Hall_EventScript_PlayerReactNorthSouth
+goto_if_eq VAR_0x8008 1 DewfordTown_Hall_EventScript_PlayerReactEast
+end
+= DewfordTown_Hall_EventScript_PlayerReactEast
+goto_if_eq VAR_FACING DIR_WEST DewfordTown_Hall_EventScript_DontMovePlayer1
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+return
+= DewfordTown_Hall_EventScript_DontMovePlayer1
+return
+= DewfordTown_Hall_EventScript_PlayerReactNorthSouth
+call_if_eq VAR_FACING DIR_NORTH DewfordTown_Hall_EventScript_PlayerWalkInPlaceUp
+call_if_eq VAR_FACING DIR_SOUTH DewfordTown_Hall_EventScript_PlayerWalkInPlaceDown
+return
+= DewfordTown_Hall_EventScript_PlayerWalkInPlaceDown
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+return
+= DewfordTown_Hall_EventScript_PlayerWalkInPlaceUp
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+return
+= DewfordTown_Hall_EventScript_DebateReact1
+applymovement LOCALID_DEWFORD_HALL_PSYCHIC_M DewfordTown_Hall_Movement_PsychicWalkInPlaceLeft
+waitmovement 0
+goto_if_eq VAR_0x8008 0 DewfordTown_Hall_EventScript_PlayerReactWest
+goto_if_eq VAR_0x8008 1 DewfordTown_Hall_EventScript_DontMovePlayer2
+end
+= DewfordTown_Hall_EventScript_DontMovePlayer2
+return
+= DewfordTown_Hall_EventScript_PlayerReactWest
+goto_if_eq VAR_FACING DIR_EAST DewfordTown_Hall_EventScript_DontMovePlayer1
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+return
+= DewfordTown_Hall_EventScript_TrendDebate4
+call DewfordTown_Hall_EventScript_DebateReact1
+msgbox	I was thinking, though…Wouldn't you agree that “” has grown from being something trendy to being a part of our daily lives?
+call DewfordTown_Hall_EventScript_DebateReact2
+msgbox	Beg pardon? That much, what?However, it's true that “” weighs heavily on your mind, whether you're awake or asleep.Absolutely, you're the “” PROFESSOR, old sport!
+releaseall
+end
+= DewfordTown_Hall_EventScript_TrendDebate3
+call DewfordTown_Hall_EventScript_DebateReact1
+msgbox	Anyway, as I was saying earlier, we should get together and organize a “” party on the island.
+call DewfordTown_Hall_EventScript_DebateReact2
+msgbox	Oh, a smashing good idea!It will settle once and for all who is the best at “.” Brilliant, indeed!Starting today, our lives will revolve around “”!
+releaseall
+end
+= DewfordTown_Hall_EventScript_TrendDebate2
+call DewfordTown_Hall_EventScript_DebateReact1
+msgbox	Hey, listen, I composed a theme song for “.”“” is really popular right now.Okay, listen! … …Oh! !Wonderful !
+call DewfordTown_Hall_EventScript_DebateReact2
+msgbox	… …I dare say, chap, it would pay for you to work on your singing before you trifle yourself with “.”
+releaseall
+end
+= DewfordTown_Hall_EventScript_TrendDebate1
+call DewfordTown_Hall_EventScript_DebateReact1
+msgbox	I saw “”! Cool, huh?It's, like, the coolest thing going!It was awesome! It was the real thing, oh yeah!
+call DewfordTown_Hall_EventScript_DebateReact2
+msgbox	Oh, no, no, no.That alleged “” you claim to have seen--it's not.The authentic article is much… How should I say it? Sharper, yet more mellow!Ah, no matter. It's astonishing!
+releaseall
+end
+= DewfordTown_Hall_EventScript_SchoolKidM
+lockall
+setvar VAR_0x8008 0
+goto DewfordTown_Hall_EventScript_DoTrendDebate
+end
+= DewfordTown_Hall_EventScript_LittleBoy
+lock
+faceplayer
+call Common_EventScript_BufferTrendyPhrase
+msgbox	I collect official “” licensed merchandise.I have official “” DOLLS…Official “” brand clothing…And officially licensed “” picture books.Heheh, I own! I'm not sharing anything with you!
+release
+end
+= DewfordTown_Hall_EventScript_Twin
+lock
+faceplayer
+call Common_EventScript_BufferTrendyPhrase
+msgbox	Across the sea…Is “” even more popular?
+closemessage
+applymovement LOCALID_DEWFORD_HALL_TWIN Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+release
+end
+= DewfordTown_Hall_EventScript_ExpertM
+lock
+faceplayer
+call Common_EventScript_BufferTrendyPhrase
+msgbox	This whole business about “”… Isn't there a TV show on it?
+closemessage
+applymovement LOCALID_DEWFORD_HALL_EXPERT_M Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+release
+end
+= DewfordTown_Hall_EventScript_Man
+lock
+faceplayer
+call Common_EventScript_BufferTrendyPhrase
+special BufferDeepLinkPhrase
+msgbox	I'm studying up on the hip and trendy “” now.Is it true that there's a deep link between “” and “”?
+goto_if_eq VAR_RESULT YES DewfordTown_Hall_EventScript_ConfirmTrendLink
+goto_if_eq VAR_RESULT NO DewfordTown_Hall_EventScript_RejectTrendLink
+end
+= DewfordTown_Hall_EventScript_RejectTrendLink
+msgbox	What?! Is that so?!It's not easy for an older fellow like me to keep up with trends!
+release
+end
+= DewfordTown_Hall_EventScript_ConfirmTrendLink
+msgbox	Oh! So, my hunch was right!I'm one step closer to being hip and happening, yowza!
+release
+end
+= DewfordTown_Hall_EventScript_Woman
+lock
+faceplayer
+call Common_EventScript_BufferTrendyPhrase
+msgbox	I'm teaching my POKéMON about “,” but it's not going well.It's a bit too much, I think.
+release
+end
+= DewfordTown_Hall_EventScript_Girl
+lock
+faceplayer
+call Common_EventScript_BufferTrendyPhrase
+special IsTrendyPhraseBoring
+goto_if_eq VAR_RESULT TRUE DewfordTown_Hall_EventScript_GirlBoredOfTrend
+msgbox	What's in vogue? Why, it has to be “”!I can't imagine what life would be like without “”!
+release
+end
+= DewfordTown_Hall_EventScript_GirlBoredOfTrend
+msgbox	What's in vogue? Why, it has to be “”!But I'm getting kind of bored with it.I should look for the next big thing.
+release
+end
 signs
 0 1	IDENTIFYING GOOD “” & BAD “”…THE LINK BETWEEN “” AND POKéMON…USEFUL “”…It's neatly jammed with books about “.”

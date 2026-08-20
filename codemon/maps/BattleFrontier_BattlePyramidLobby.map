@@ -50,5 +50,151 @@ dialogs
 1	Welcome…I shall be pleased to tell you what misfortunes await in the PYRAMID…
 2	Did you know?If you run fast, TRAINERS may notice and come after you for a battle.So, if you want to avoid TRAINERS, don't catch their eyes, but sneak cautiously and quietly past them.
 3	Awaaaaaaarrrrgh!I had a whole lot of items, but I lost them all when I lost!Awaaaaaaarrrrgh!
+objscripts
+0 BattleFrontier_BattlePyramidLobby_EventScript_Attendant
+1 BattleFrontier_BattlePyramidLobby_EventScript_HintGiver
+2 BattleFrontier_BattlePyramidLobby_EventScript_Woman
+3 BattleFrontier_BattlePyramidLobby_EventScript_FatMan
+scriptdefs
+= BattleFrontier_BattlePyramidLobby_EventScript_FatMan
+msgbox	Awaaaaaaarrrrgh!I had a whole lot of items, but I lost them all when I lost!Awaaaaaaarrrrgh!
+end
+= BattleFrontier_BattlePyramidLobby_EventScript_Woman
+msgbox	Did you know?If you run fast, TRAINERS may notice and come after you for a battle.So, if you want to avoid TRAINERS, don't catch their eyes, but sneak cautiously and quietly past them.
+end
+= BattleFrontier_BattlePyramidLobby_EventScript_HintGiver
+lockall
+applymovement LOCALID_PYRAMID_LOBBY_HINT_GIVER Common_Movement_FacePlayer
+waitmovement 0
+msgbox	Welcome…I shall be pleased to tell you what misfortunes await in the PYRAMID…
+call BattleFrontier_BattlePyramidLobby_EventScript_GiveHint
+msgbox	Whether you believe my fortunes or not, the choice is yours…The future can be changed anytime… I wish you safe passage…
+releaseall
+end
+= BattleFrontier_BattlePyramidLobby_EventScript_GiveHint
+multichoice 17 6 MULTI_LEVEL_MODE FALSE
+switch VAR_RESULT
+case FRONTIER_LVL_50 BattleFrontier_BattlePyramidLobby_EventScript_GiveHintLv50
+case FRONTIER_LVL_OPEN BattleFrontier_BattlePyramidLobby_EventScript_GiveHintLvOpen
+case FRONTIER_LVL_TENT BattleFrontier_BattlePyramidLobby_EventScript_NoHint
+case MULTI_B_PRESSED BattleFrontier_BattlePyramidLobby_EventScript_NoHint
+return
+@ Shouldnt occur
+= BattleFrontier_BattlePyramidLobby_EventScript_NoHint
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_GiveHintLvOpen
+msgbox	… … … … … … … … … … … …… … … … … … Aah!
+pyramid_get PYRAMID_DATA_WIN_STREAK_ACTIVE_OPEN
+goto_if_ne VAR_RESULT FALSE BattleFrontier_BattlePyramidLobby_EventScript_GiveHintGetLvOpenStreak
+setvar VAR_RESULT 0
+goto BattleFrontier_BattlePyramidLobby_EventScript_DoHintComment
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_DoHintComment
+copyvar VAR_0x8004 VAR_RESULT
+special GetBattlePyramidHint
+switch VAR_RESULT
+case 0 BattleFrontier_BattlePyramidLobby_EventScript_HintParalysis
+case 1 BattleFrontier_BattlePyramidLobby_EventScript_HintPoison
+case 2 BattleFrontier_BattlePyramidLobby_EventScript_HintBurn
+case 3 BattleFrontier_BattlePyramidLobby_EventScript_HintPPWaste
+case 4 BattleFrontier_BattlePyramidLobby_EventScript_HintLevitate
+case 5 BattleFrontier_BattlePyramidLobby_EventScript_HintTrapAbility
+case 6 BattleFrontier_BattlePyramidLobby_EventScript_HintIce
+case 7 BattleFrontier_BattlePyramidLobby_EventScript_HintExplosion
+case 8 BattleFrontier_BattlePyramidLobby_EventScript_HintPsychic
+case 9 BattleFrontier_BattlePyramidLobby_EventScript_HintRock
+case 10 BattleFrontier_BattlePyramidLobby_EventScript_HintFighting
+case 11 BattleFrontier_BattlePyramidLobby_EventScript_HintWeather
+case 12 BattleFrontier_BattlePyramidLobby_EventScript_HintBug
+case 13 BattleFrontier_BattlePyramidLobby_EventScript_HintDark
+case 14 BattleFrontier_BattlePyramidLobby_EventScript_HintWater
+case 15 BattleFrontier_BattlePyramidLobby_EventScript_HintGhost
+case 16 BattleFrontier_BattlePyramidLobby_EventScript_HintSteel
+case 17 BattleFrontier_BattlePyramidLobby_EventScript_HintFlyingDragon
+case 18 BattleFrontier_BattlePyramidLobby_EventScript_HintStoneEvolve
+case 19 BattleFrontier_BattlePyramidLobby_EventScript_HintNormal
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintNormal
+msgbox	I see NORMAL-type POKéMON……And, I see your POKéMON suffering from enormously powerful moves…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintStoneEvolve
+msgbox	I see those that have evolved from the power of stones…I also sense fire, water, and electricity……And, I see your POKéMON suffering from those three powers…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintFlyingDragon
+msgbox	I see flying POKéMON……And, I see your POKéMON suffering from enormously powerful moves…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintSteel
+msgbox	I see STEEL-type POKéMON……And, I see your POKéMON suffering from enormously powerful moves…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintGhost
+msgbox	I see GHOST-type POKéMON……And, I see your POKéMON suffering from GHOST-type moves…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintWater
+msgbox	I see WATER-type POKéMON……And, I see your POKéMON suffering from WATER-type moves…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintDark
+msgbox	I see DARK-type POKéMON……And, I see your POKéMON suffering from DARK-type moves…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintBug
+msgbox	I see BUG-type POKéMON……And, I see your POKéMON suffering from different kinds of attacks…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintWeather
+msgbox	RAIN DANCE… SUNNY DAY… SANDSTORM… HAIL…I see POKéMON that become stronger with the weather……And, I see your POKéMON confounded by different types of moves…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintFighting
+msgbox	I see FIGHTING-type POKéMON……And, I see your POKéMON pummeled by FIGHTING moves…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintRock
+msgbox	I see ROCK-type POKéMON……And, I see your POKéMON suffering from ROCK moves…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintPsychic
+msgbox	I see PSYCHIC-type POKéMON……And, I see your POKéMON in torment from PSYCHIC moves…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintExplosion
+msgbox	I see a flurry of moves that imperil the user……And, I see your POKéMON falling to them…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintIce
+msgbox	I see ICE-type POKéMON……And, I see your POKéMON fighting the freezing effects of ice…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintTrapAbility
+msgbox	I sense terrific energy rising from the ground below……And, I see your POKéMON unable to escape the power's clutches…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintLevitate
+msgbox	I see POKéMON loftily airborne……And, I see your POKéMON frustrated by powerless GROUND-type moves…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintPPWaste
+msgbox	I sense the tremendous pressure of unrequited anger…It is a curse……And, I see your POKéMON drained of Power Points and having no recourse but to use STRUGGLE…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintBurn
+msgbox	I see bright red flames……And, I see your POKéMON suffering from burns…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintPoison
+msgbox	I see poison……And, I see your POKéMON suffering from the effects of poison…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintParalysis
+msgbox	I see a shower of sparks……And in it, I see your POKéMON struggling with paralysis…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_GiveHintGetLvOpenStreak
+pyramid_get PYRAMID_DATA_WIN_STREAK_OPEN
+goto BattleFrontier_BattlePyramidLobby_EventScript_DoHintComment
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_GiveHintLv50
+msgbox	… … … … … … … … … … … …… … … … … … Aah!
+pyramid_get PYRAMID_DATA_WIN_STREAK_ACTIVE_50
+goto_if_ne VAR_RESULT FALSE BattleFrontier_BattlePyramidLobby_EventScript_GiveHintGetLv50Streak
+setvar VAR_RESULT 0
+goto BattleFrontier_BattlePyramidLobby_EventScript_DoHintComment
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_GiveHintGetLv50Streak
+pyramid_get PYRAMID_DATA_WIN_STREAK_50
+goto BattleFrontier_BattlePyramidLobby_EventScript_DoHintComment
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_Attendant
+lock
+faceplayer
+setvar VAR_FRONTIER_FACILITY FRONTIER_FACILITY_PYRAMID
+setvar VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES
+special SavePlayerParty
+msgbox	Where the courage of TRAINERS is put to the test!Welcome to the BATTLE PYRAMID!I am your guide to the Battle Quest.
 signs
 1 12	The Battle Quest rules are listed.

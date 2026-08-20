@@ -29,3 +29,24 @@ people_lass 9 2 S wander
 dialogs
 0	That determined expression… That limber way you move… And your well-trained POKéMON…You're obviously a skilled TRAINER!No, wait, don't say a word. I can tell just by looking at you.I'm sure that you can put this HIDDEN MACHINE to good use.No need to be modest or shy. Go on, take it!
 1	When they were expanding the city of RUSTBORO, my dad helped out.He made his POKéMON use CUT to clear the land of trees.
+objscripts
+0 RustboroCity_CuttersHouse_EventScript_Cutter
+1 RustboroCity_CuttersHouse_EventScript_Lass
+scriptdefs
+= RustboroCity_CuttersHouse_EventScript_Lass
+msgbox	When they were expanding the city of RUSTBORO, my dad helped out.He made his POKéMON use CUT to clear the land of trees.
+end
+= RustboroCity_CuttersHouse_EventScript_Cutter
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_HM_CUT RustboroCity_CuttersHouse_EventScript_ExplainCut
+msgbox	That determined expression… That limber way you move… And your well-trained POKéMON…You're obviously a skilled TRAINER!No, wait, don't say a word. I can tell just by looking at you.I'm sure that you can put this HIDDEN MACHINE to good use.No need to be modest or shy. Go on, take it!
+giveitem ITEM_HM_CUT
+setflag FLAG_RECEIVED_HM_CUT
+msgbox	That HIDDEN MACHINE, or HM for short, is CUT.An HM move is one that can be used by POKéMON outside of battle.Any POKéMON that's learned CUT can chop down thin trees if the TRAINER has earned the STONE BADGE.And, unlike a TM, an HM can be used more than once.
+release
+end
+= RustboroCity_CuttersHouse_EventScript_ExplainCut
+msgbox	That HIDDEN MACHINE, or HM for short, is CUT.An HM move is one that can be used by POKéMON outside of battle.Any POKéMON that's learned CUT can chop down thin trees if the TRAINER has earned the STONE BADGE.And, unlike a TM, an HM can be used more than once.
+release
+end

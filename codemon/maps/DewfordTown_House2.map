@@ -29,3 +29,28 @@ people_boy_2 2 3 S static
 dialogs
 0	Gorge your eyes on this!It's a SILK SCARF. It's right at the cutting edge of fashion, yeah!Oh, I can see your eyes twinkling! You appreciate my dazzling style!Oh, you're a delight! Here you go. I want you to have it!
 1	Wow, you bothered to cross the sea to visit DEWFORD?Did you maybe come here because you heard about BRAWLY?He's so cool… Everyone idolizes him.
+objscripts
+0 DewfordTown_House2_EventScript_Man
+1 DewfordTown_House2_EventScript_Boy
+scriptdefs
+= DewfordTown_House2_EventScript_Boy
+msgbox	Wow, you bothered to cross the sea to visit DEWFORD?Did you maybe come here because you heard about BRAWLY?He's so cool… Everyone idolizes him.
+end
+= DewfordTown_House2_EventScript_Man
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_SILK_SCARF DewfordTown_House2_EventScript_ExplainSilkScarf
+msgbox	Gorge your eyes on this!It's a SILK SCARF. It's right at the cutting edge of fashion, yeah!Oh, I can see your eyes twinkling! You appreciate my dazzling style!Oh, you're a delight! Here you go. I want you to have it!
+giveitem ITEM_SILK_SCARF
+goto_if_eq VAR_RESULT FALSE DewfordTown_House2_EventScript_NoRoomForScarf
+setflag FLAG_RECEIVED_SILK_SCARF
+release
+end
+= DewfordTown_House2_EventScript_NoRoomForScarf
+msgbox	Oh, you don't have room?Now, listen tight, this SCARF is a must- have! Why, I would sell all my items in order to get it!
+release
+end
+= DewfordTown_House2_EventScript_ExplainSilkScarf
+msgbox	The SILK SCARF raises the power of NORMAL-type moves.It's a marvelous SCARF that will go with almost all POKéMON!
+release
+end

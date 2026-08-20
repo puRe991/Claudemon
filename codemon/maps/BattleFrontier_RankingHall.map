@@ -43,6 +43,29 @@ dialogs
 0	This is the RANKING HALL.This is where we recognize the immortal TRAINERS who left great records in BATTLE FRONTIER events.
 1	Hi, is your name on this list?
 2	Hmm… My name's not up there…Well, it's only natural since I haven't taken any challenges yet.
+objscripts
+0 BattleFrontier_RankingHall_EventScript_Attendant
+1 BattleFrontier_RankingHall_EventScript_NinjaBoy
+2 BattleFrontier_RankingHall_EventScript_Boy
+scriptdefs
+= BattleFrontier_RankingHall_EventScript_Boy
+msgbox	Hmm… My name's not up there…Well, it's only natural since I haven't taken any challenges yet.
+end
+= BattleFrontier_RankingHall_EventScript_NinjaBoy
+lock
+faceplayer
+msgbox	Hi, is your name on this list?
+goto_if_eq VAR_RESULT YES BattleFrontier_RankingHall_EventScript_NinjaBoyNameOnList
+msgbox	Oh, is that right?If you saw your friend's name up here, I bet it would make you work harder!
+release
+end
+= BattleFrontier_RankingHall_EventScript_NinjaBoyNameOnList
+msgbox	Wow, that's super! I'll have to try harder, too!
+release
+end
+= BattleFrontier_RankingHall_EventScript_Attendant
+msgbox	This is the RANKING HALL.This is where we recognize the immortal TRAINERS who left great records in BATTLE FRONTIER events.
+end
 signs
 16 8	BATTLE DOME, BATTLE PIKE, and BATTLE FACTORY Records
 36 8	BATTLE PALACE, BATTLE ARENA, and BATTLE PYRAMID Records

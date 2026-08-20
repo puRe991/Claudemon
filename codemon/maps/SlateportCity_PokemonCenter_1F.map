@@ -31,3 +31,21 @@ people_woman_5 10 7 E static
 dialogs
 1	Want a tip for battling?I'd say it's raising different kinds of POKéMON in a balanced manner.It's no good to make just one POKéMON strong.If it has a type disadvantage, it might not stand a chance.
 2	I trade POKéMON with my friends.If a traded POKéMON is holding an item, it makes me twice as happy!
+objscripts
+0 SlateportCity_PokemonCenter_1F_EventScript_Nurse
+1 SlateportCity_PokemonCenter_1F_EventScript_Sailor
+2 SlateportCity_PokemonCenter_1F_EventScript_Woman
+scriptdefs
+= SlateportCity_PokemonCenter_1F_EventScript_Woman
+msgbox	I trade POKéMON with my friends.If a traded POKéMON is holding an item, it makes me twice as happy!
+end
+= SlateportCity_PokemonCenter_1F_EventScript_Sailor
+msgbox	Want a tip for battling?I'd say it's raising different kinds of POKéMON in a balanced manner.It's no good to make just one POKéMON strong.If it has a type disadvantage, it might not stand a chance.
+end
+= SlateportCity_PokemonCenter_1F_EventScript_Nurse
+setvar VAR_0x800B LOCALID_SLATEPORT_NURSE
+call Common_EventScript_PkmnCenterNurse
+waitmessage
+waitbuttonpress
+release
+end

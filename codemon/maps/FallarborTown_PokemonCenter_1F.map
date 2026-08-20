@@ -33,3 +33,50 @@ dialogs
 1	I wonder what POKéMON looked like long, long ago?Maybe the FOSSIL MANIAC at the edge of town will know.
 2	In the fields of FALLARBOR, we plant seedlings of hardy trees that thrive even in volcanic ash.
 3	Oh, hello. You are?Okay, your name's PLAYER. I can see that you're a TRAINER.So that means you use the POKéMON Storage System I developed.How I arrived at that conclusion is a simple deductive process.You spoke to me because you wanted to access something on this PC.Oh, I'm sorry. I'm LANETTE.Honestly, I'm glad to meet you--it's great you're using the Storage System.If you could, please visit me at home. My house is on ROUTE 114.
+objscripts
+0 FallarborTown_PokemonCenter_1F_EventScript_Nurse
+1 FallarborTown_PokemonCenter_1F_EventScript_Girl
+2 FallarborTown_PokemonCenter_1F_EventScript_ExpertM
+3 FallarborTown_PokemonCenter_1F_EventScript_Lanette
+movements
+FallarborTown_PokemonCenter_1F_Movement_LanetteExitNorth	right,down,down,left,left,left,left,down,down,down,down,delay,end
+FallarborTown_PokemonCenter_1F_Movement_LanetteExitWest	down,down,left,left,left,down,down,down,down,delay,end
+scriptdefs
+= FallarborTown_PokemonCenter_1F_EventScript_Lanette
+lock
+faceplayer
+msgbox	Oh, hello. You are?Okay, your name's PLAYER. I can see that you're a TRAINER.So that means you use the POKéMON Storage System I developed.How I arrived at that conclusion is a simple deductive process.You spoke to me because you wanted to access something on this PC.Oh, I'm sorry. I'm LANETTE.Honestly, I'm glad to meet you--it's great you're using the Storage System.If you could, please visit me at home. My house is on ROUTE 114.
+closemessage
+switch VAR_FACING
+case DIR_NORTH FallarborTown_PokemonCenter_1F_EventScript_LanetteExitNorth
+case DIR_WEST FallarborTown_PokemonCenter_1F_EventScript_LanetteExitWest
+end
+= FallarborTown_PokemonCenter_1F_EventScript_LanetteExitWest
+applymovement LOCALID_FALLARBOR_LANETTE FallarborTown_PokemonCenter_1F_Movement_LanetteExitWest
+waitmovement 0
+goto FallarborTown_PokemonCenter_1F_EventScript_LanetteExited
+end
+= FallarborTown_PokemonCenter_1F_EventScript_LanetteExited
+playse SE_SLIDING_DOOR
+removeobject LOCALID_FALLARBOR_LANETTE
+clearflag FLAG_HIDE_LANETTES_HOUSE_LANETTE
+release
+end
+= FallarborTown_PokemonCenter_1F_EventScript_LanetteExitNorth
+applymovement LOCALID_FALLARBOR_LANETTE FallarborTown_PokemonCenter_1F_Movement_LanetteExitNorth
+waitmovement 0
+goto FallarborTown_PokemonCenter_1F_EventScript_LanetteExited
+end
+= FallarborTown_PokemonCenter_1F_EventScript_ExpertM
+msgbox	In the fields of FALLARBOR, we plant seedlings of hardy trees that thrive even in volcanic ash.
+end
+= FallarborTown_PokemonCenter_1F_EventScript_Girl
+msgbox	I wonder what POKéMON looked like long, long ago?Maybe the FOSSIL MANIAC at the edge of town will know.
+end
+= FallarborTown_PokemonCenter_1F_EventScript_Nurse
+setvar VAR_0x800B LOCALID_FALLARBOR_NURSE
+call Common_EventScript_PkmnCenterNurse
+waitmessage
+waitbuttonpress
+release
+end

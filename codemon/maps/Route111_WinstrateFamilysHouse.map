@@ -31,3 +31,57 @@ dialogs
 1	You're the first TRAINER I've seen who deploys POKéMON so masterfully.But, I should tell you--my son is stronger than you.He even took the POKéMON LEAGUE challenge, I'll have you know.
 2	We use this MACHO BRACE to more effectively strengthen our POKéMON in training.Since you've beaten all of us here, I don't know if you need it, but we would like you to have our MACHO BRACE.
 3	There's no question that you're strong.But if you were to battle my grandson, you'd end up crying in frustration.He's much stronger than any TRAINER our family knows.He must be challenging the POKéMON LEAGUE CHAMPION by now.Knowing my grandson, he could be the CHAMPION already!
+objscripts
+0 Route111_WinstrateFamilysHouse_EventScript_Vivi
+1 Route111_WinstrateFamilysHouse_EventScript_Victor
+2 Route111_WinstrateFamilysHouse_EventScript_Victoria
+3 Route111_WinstrateFamilysHouse_EventScript_Vicky
+scriptdefs
+= Route111_WinstrateFamilysHouse_EventScript_Vicky
+lock
+faceplayer
+setvar VAR_0x8008 LOCALID_WINSTRATE_HOUSE_VICKY
+goto_if_set FLAG_TEMP_4 Route111_WinstrateFamilysHouse_EventScript_AlreadySpokenTo
+msgbox	There's no question that you're strong.But if you were to battle my grandson, you'd end up crying in frustration.He's much stronger than any TRAINER our family knows.He must be challenging the POKéMON LEAGUE CHAMPION by now.Knowing my grandson, he could be the CHAMPION already!
+setflag FLAG_TEMP_4
+goto Route111_WinstrateFamilysHouse_EventScript_FaceOriginalDirection
+end
+= Route111_WinstrateFamilysHouse_EventScript_FaceOriginalDirection
+closemessage
+applymovement VAR_0x8008 Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= Route111_WinstrateFamilysHouse_EventScript_AlreadySpokenTo
+msgbox	My grandson must be challenging the POKéMON LEAGUE CHAMPION by now.Knowing my grandson, he could be the CHAMPION already!
+goto Route111_WinstrateFamilysHouse_EventScript_FaceOriginalDirection
+end
+= Route111_WinstrateFamilysHouse_EventScript_Victoria
+lock
+faceplayer
+setvar VAR_0x8008 LOCALID_WINSTRATE_HOUSE_VICTORIA
+goto_if_set FLAG_RECEIVED_MACHO_BRACE Route111_WinstrateFamilysHouse_EventScript_ReceivedMachoBrace
+msgbox	We use this MACHO BRACE to more effectively strengthen our POKéMON in training.Since you've beaten all of us here, I don't know if you need it, but we would like you to have our MACHO BRACE.
+giveitem ITEM_MACHO_BRACE
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_RECEIVED_MACHO_BRACE
+goto Route111_WinstrateFamilysHouse_EventScript_FaceOriginalDirection
+end
+= Route111_WinstrateFamilysHouse_EventScript_ReceivedMachoBrace
+msgbox	When it comes to POKéMON battles, we tend to be pretty passionate.
+goto Route111_WinstrateFamilysHouse_EventScript_FaceOriginalDirection
+end
+= Route111_WinstrateFamilysHouse_EventScript_Victor
+lock
+faceplayer
+setvar VAR_0x8008 LOCALID_WINSTRATE_HOUSE_VICTOR
+msgbox	You're the first TRAINER I've seen who deploys POKéMON so masterfully.But, I should tell you--my son is stronger than you.He even took the POKéMON LEAGUE challenge, I'll have you know.
+goto Route111_WinstrateFamilysHouse_EventScript_FaceOriginalDirection
+end
+= Route111_WinstrateFamilysHouse_EventScript_Vivi
+lock
+faceplayer
+setvar VAR_0x8008 LOCALID_WINSTRATE_HOUSE_VIVI
+msgbox	Mommy is stronger than Daddy.I'm stronger than Mommy.And Grandma's stronger than me!But my big brother is even stronger than Grandma.
+goto Route111_WinstrateFamilysHouse_EventScript_FaceOriginalDirection
+end

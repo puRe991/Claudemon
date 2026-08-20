@@ -30,3 +30,19 @@ people_old_woman 8 4 E static
 dialogs
 0	SKITTY: Gyaaaah!
 1	DEVON CORPORATION's workers live in this building.
+objscripts
+0 RustboroCity_Flat2_1F_EventScript_Skitty
+1 RustboroCity_Flat2_1F_EventScript_OldWoman
+scriptdefs
+= RustboroCity_Flat2_1F_EventScript_OldWoman
+msgbox	DEVON CORPORATION's workers live in this building.
+end
+= RustboroCity_Flat2_1F_EventScript_Skitty
+lock
+faceplayer
+waitse
+playmoncry SPECIES_SKITTY CRY_MODE_NORMAL
+msgbox	SKITTY: Gyaaaah!
+waitmoncry
+release
+end

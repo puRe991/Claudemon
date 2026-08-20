@@ -49,3 +49,50 @@ npcs
 people_team_aqua_aqua_member_m 10 2 N static
 dialogs
 0	Hey! I remember your face!If you're here, it must mean that you're about to mess with us again!A punk like you, do you really think you can take on TEAM AQUA?I'd say you're too early by about a trillion years!You're a perfect fit for the likes of TEAM MAGMA!Speaking of TEAM MAGMA, I hear they were spotted near MOSSDEEP.That bunch of goons, they sure don't look good near the sea!
+objscripts
+0 SeafloorCavern_Entrance_EventScript_Grunt
+scriptdefs
+= SeafloorCavern_Entrance_EventScript_Grunt
+lockall
+goto_if_eq VAR_HAS_TALKED_TO_SEAFLOOR_CAVERN_ENTRANCE_GRUNT 1 SeafloorCavern_Entrance_EventScript_GruntSpeechShort
+waitse
+playse SE_PIN
+applymovement LOCALID_SEAFLOOR_CAVERN_ENTRANCE_GRUNT Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_SEAFLOOR_CAVERN_ENTRANCE_GRUNT Common_Movement_Delay48
+waitmovement 0
+delay 20
+call_if_eq VAR_FACING DIR_WEST SeafloorCavern_Entrance_EventScript_GruntFacePlayerWest
+call_if_eq VAR_FACING DIR_EAST SeafloorCavern_Entrance_EventScript_GruntFacePlayerEast
+call_if_eq VAR_FACING DIR_NORTH SeafloorCavern_Entrance_EventScript_GruntFacePlayerNorth
+delay 30
+setvar VAR_HAS_TALKED_TO_SEAFLOOR_CAVERN_ENTRANCE_GRUNT 1
+copyobjectxytoperm LOCALID_SEAFLOOR_CAVERN_ENTRANCE_GRUNT
+msgbox	Hey! I remember your face!If you're here, it must mean that you're about to mess with us again!A punk like you, do you really think you can take on TEAM AQUA?I'd say you're too early by about a trillion years!You're a perfect fit for the likes of TEAM MAGMA!Speaking of TEAM MAGMA, I hear they were spotted near MOSSDEEP.That bunch of goons, they sure don't look good near the sea!
+closemessage
+applymovement LOCALID_SEAFLOOR_CAVERN_ENTRANCE_GRUNT Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+releaseall
+end
+= SeafloorCavern_Entrance_EventScript_GruntFacePlayerNorth
+applymovement LOCALID_SEAFLOOR_CAVERN_ENTRANCE_GRUNT Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+return
+= SeafloorCavern_Entrance_EventScript_GruntFacePlayerEast
+applymovement LOCALID_SEAFLOOR_CAVERN_ENTRANCE_GRUNT Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+return
+= SeafloorCavern_Entrance_EventScript_GruntFacePlayerWest
+applymovement LOCALID_SEAFLOOR_CAVERN_ENTRANCE_GRUNT Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+return
+= SeafloorCavern_Entrance_EventScript_GruntSpeechShort
+call_if_eq VAR_FACING DIR_WEST SeafloorCavern_Entrance_EventScript_GruntFacePlayerWest
+call_if_eq VAR_FACING DIR_EAST SeafloorCavern_Entrance_EventScript_GruntFacePlayerEast
+call_if_eq VAR_FACING DIR_NORTH SeafloorCavern_Entrance_EventScript_GruntFacePlayerNorth
+msgbox	A punk like you, do you really think you can take on TEAM AQUA?I'd say you're too early by about a trillion years!You're a perfect fit for the likes of TEAM MAGMA!Speaking of TEAM MAGMA, I hear they were spotted near MOSSDEEP.That bunch of goons, they sure don't look good near the sea!
+closemessage
+applymovement LOCALID_SEAFLOOR_CAVERN_ENTRANCE_GRUNT Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+releaseall
+end

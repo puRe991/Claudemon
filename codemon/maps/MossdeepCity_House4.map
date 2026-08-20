@@ -29,3 +29,41 @@ dialogs
 0	My little brother says he likes to go find people's SECRET BASES.
 1	Was it you who made a SECRET BASE near ?
 2	SKITTY: Miyaan?
+objscripts
+0 MossdeepCity_House4_EventScript_Woman
+1 MossdeepCity_House4_EventScript_NinjaBoy
+2 MossdeepCity_House4_EventScript_Skitty
+scriptdefs
+= MossdeepCity_House4_EventScript_Skitty
+lock
+faceplayer
+waitse
+playmoncry SPECIES_SKITTY CRY_MODE_NORMAL
+msgbox	SKITTY: Miyaan?
+waitmoncry
+release
+end
+= MossdeepCity_House4_EventScript_NinjaBoy
+lock
+faceplayer
+special CheckPlayerHasSecretBase
+goto_if_eq VAR_RESULT FALSE MossdeepCity_House4_EventScript_NoSecretBase
+special GetSecretBaseNearbyMapName
+msgbox	Was it you who made a SECRET BASE near ?
+release
+end
+= MossdeepCity_House4_EventScript_NoSecretBase
+msgbox	You should make a SECRET BASE somewhere. I'll go find it!
+release
+end
+= MossdeepCity_House4_EventScript_Woman
+lock
+faceplayer
+goto_if_set FLAG_SYS_GAME_CLEAR MossdeepCity_House4_EventScript_CanBattleAtSecretBases
+msgbox	My little brother says he likes to go find people's SECRET BASES.
+release
+end
+= MossdeepCity_House4_EventScript_CanBattleAtSecretBases
+msgbox	My little brother says he likes to visit people's SECRET BASES and have POKéMON battles.
+release
+end

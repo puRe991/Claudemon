@@ -21,3 +21,8 @@ warps
 2 6 TrainerHill_Roof 1
 npcs
 people_teala 0 6 S static
+objscripts
+0 TrainerHill_Elevator_EventScript_Attendant
+scriptdefs
+= TrainerHill_Elevator_EventScript_Attendant
+end

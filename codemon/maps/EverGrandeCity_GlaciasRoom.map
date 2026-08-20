@@ -37,3 +37,25 @@ npcs
 people_man_1 6 5 S static
 dialogs
 0	Welcome, my name is GLACIA of the ELITE FOUR.I've traveled from afar to HOENN so that I may hone my ice skills.But all I have seen are challenges by weak TRAINERS and their POKéMON.What about you?It would please me to no end if I could go all out against you!
+objscripts
+0 EverGrandeCity_GlaciasRoom_EventScript_Glacia
+scriptdefs
+= EverGrandeCity_GlaciasRoom_EventScript_Glacia
+lock
+faceplayer
+goto_if_set FLAG_DEFEATED_ELITE_4_GLACIA EverGrandeCity_GlaciasRoom_EventScript_PostBattleSpeech
+playbgm MUS_ENCOUNTER_ELITE_FOUR FALSE
+msgbox	Welcome, my name is GLACIA of the ELITE FOUR.I've traveled from afar to HOENN so that I may hone my ice skills.But all I have seen are challenges by weak TRAINERS and their POKéMON.What about you?It would please me to no end if I could go all out against you!
+trainerbattle_no_intro TRAINER_GLACIA EverGrandeCity_GlaciasRoom_Text_Defeat
+goto EverGrandeCity_GlaciasRoom_EventScript_Defeated
+end
+= EverGrandeCity_GlaciasRoom_EventScript_Defeated
+setflag FLAG_DEFEATED_ELITE_4_GLACIA
+call PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles
+msgbox	Advance to the next room.And there, confirm the truly fearsome side of the POKéMON LEAGUE.
+release
+end
+= EverGrandeCity_GlaciasRoom_EventScript_PostBattleSpeech
+msgbox	Advance to the next room.And there, confirm the truly fearsome side of the POKéMON LEAGUE.
+release
+end

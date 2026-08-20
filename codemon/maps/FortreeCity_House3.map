@@ -23,3 +23,13 @@ people_school_kid_m 5 4 S wander
 dialogs
 0	While speaking about POKéDEXES, I remembered something.I met this TRAINER, STEVEN, when I was searching for rare stones.Hoo, boy, he had some amazing POKéMON with him.They weren't just rare, they were trained to terrifying extremes!He might even be stronger than the GYM LEADER in this town…
 1	What's that thing you have there?… … … … … …Oh, it's called a POKéDEX? It's really awesome!
+objscripts
+0 FortreeCity_House3_EventScript_Maniac
+1 FortreeCity_House3_EventScript_SchoolKidM
+scriptdefs
+= FortreeCity_House3_EventScript_SchoolKidM
+msgbox	What's that thing you have there?… … … … … …Oh, it's called a POKéDEX? It's really awesome!
+end
+= FortreeCity_House3_EventScript_Maniac
+msgbox	While speaking about POKéDEXES, I remembered something.I met this TRAINER, STEVEN, when I was searching for rare stones.Hoo, boy, he had some amazing POKéMON with him.They weren't just rare, they were trained to terrifying extremes!He might even be stronger than the GYM LEADER in this town…
+end

@@ -53,3 +53,8 @@ warps
 14 5 SkyPillar_1F 0
 npcs
 people_wallace 13 7 S static
+objscripts
+0 SkyPillar_Outside_EventScript_Wallace
+scriptdefs
+= SkyPillar_Outside_EventScript_Wallace
+end

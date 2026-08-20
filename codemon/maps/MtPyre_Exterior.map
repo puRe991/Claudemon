@@ -111,6 +111,21 @@ warps
 npcs
 misc_item_ball 27 15 S static
 misc_item_ball 19 40 S static
+triggers
+24 21 TRIGGER_RUN_IMMEDIATELY 0 MtPyre_Exterior_EventScript_FogTrigger
+25 21 TRIGGER_RUN_IMMEDIATELY 0 MtPyre_Exterior_EventScript_FogTrigger
+22 27 TRIGGER_RUN_IMMEDIATELY 0 MtPyre_Exterior_EventScript_SunTrigger
+23 28 TRIGGER_RUN_IMMEDIATELY 0 MtPyre_Exterior_EventScript_SunTrigger
+26 21 TRIGGER_RUN_IMMEDIATELY 0 MtPyre_Exterior_EventScript_FogTrigger
+scriptdefs
+= MtPyre_Exterior_EventScript_FogTrigger
+setweather WEATHER_FOG_HORIZONTAL
+doweather
+end
+= MtPyre_Exterior_EventScript_SunTrigger
+setweather WEATHER_SUNNY
+doweather
+end
 grass
 13
 encounters

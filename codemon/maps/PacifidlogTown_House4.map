@@ -31,3 +31,29 @@ dialogs
 0	People were saying they saw a POKéMON flying high above HOENN.Is it flying around all the time? Doesn't it need to rest somewhere?
 1	A sky POKéMON! A sky POKéMON!
 2	Where did you come from?
+objscripts
+0 PacifidlogTown_House4_EventScript_Woman
+1 PacifidlogTown_House4_EventScript_LittleGirl
+2 PacifidlogTown_House4_EventScript_Boy
+scriptdefs
+= PacifidlogTown_House4_EventScript_Boy
+lock
+faceplayer
+msgbox	Where did you come from?
+goto_if_eq VAR_RESULT YES PacifidlogTown_House4_EventScript_Yes
+goto_if_eq VAR_RESULT NO PacifidlogTown_House4_EventScript_No
+end
+= PacifidlogTown_House4_EventScript_No
+msgbox	No? That doesn't make any sense. You have to come from somewhere.Oh! Wait! You're not going to say you were born at the bottom of the sea?
+release
+end
+= PacifidlogTown_House4_EventScript_Yes
+msgbox	Yes? YES TOWN?I've never heard of a place like that.
+release
+end
+= PacifidlogTown_House4_EventScript_LittleGirl
+msgbox	A sky POKéMON! A sky POKéMON!
+end
+= PacifidlogTown_House4_EventScript_Woman
+msgbox	People were saying they saw a POKéMON flying high above HOENN.Is it flying around all the time? Doesn't it need to rest somewhere?
+end

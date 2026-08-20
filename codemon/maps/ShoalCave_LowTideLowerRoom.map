@@ -40,3 +40,20 @@ misc_pushable_boulder 25 3 S static
 people_black_belt 11 4 S wander
 dialogs
 1	The penetrating cold around these parts is an impediment to training.But with focus, one can overcome!With this FOCUS BAND, buckle down and withstand the cold!
+objscripts
+1 ShoalCave_LowTideLowerRoom_EventScript_BlackBelt
+scriptdefs
+= ShoalCave_LowTideLowerRoom_EventScript_BlackBelt
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_FOCUS_BAND ShoalCave_LowTideLowerRoom_EventScript_ReceivedFocusBand
+msgbox	The penetrating cold around these parts is an impediment to training.But with focus, one can overcome!With this FOCUS BAND, buckle down and withstand the cold!
+giveitem ITEM_FOCUS_BAND
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_RECEIVED_FOCUS_BAND
+release
+end
+= ShoalCave_LowTideLowerRoom_EventScript_ReceivedFocusBand
+msgbox	Everything starts with focus!
+release
+end

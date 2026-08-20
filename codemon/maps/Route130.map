@@ -87,3 +87,20 @@ people_swimmer_m 70 21 S static
 people_swimmer_f 7 21 S static
 people_man_1 52 9 S static
 people_swimmer_m 7 30 S pace_v
+objscripts
+0 Route130_EventScript_Rodney
+1 Route130_EventScript_Katie
+3 Route130_EventScript_Santiago
+scriptdefs
+= Route130_EventScript_Santiago
+trainerbattle_single TRAINER_SANTIAGO Route130_Text_SantiagoIntro Route130_Text_SantiagoDefeat
+msgbox	Route130_Text_SantiagoPostBattle
+end
+= Route130_EventScript_Katie
+trainerbattle_single TRAINER_KATIE Route130_Text_KatieIntro Route130_Text_KatieDefeat
+msgbox	Route130_Text_KatiePostBattle
+end
+= Route130_EventScript_Rodney
+trainerbattle_single TRAINER_RODNEY Route130_Text_RodneyIntro Route130_Text_RodneyDefeat
+msgbox	Route130_Text_RodneyPostBattle
+end

@@ -28,3 +28,25 @@ people_man_3 5 5 E static
 dialogs
 1	There are items that temporarily elevate the stats of POKéMON.The ones I know you use in battle are X ATTACK and X DEFEND…I do believe that there are others like them.
 2	Use a certain move, or use an item instead…The TRAINER's decisions determine how battles turn out, I think.
+objscripts
+0 MauvilleCity_Mart_EventScript_Clerk
+1 MauvilleCity_Mart_EventScript_ExpertM
+2 MauvilleCity_Mart_EventScript_Man
+movements
+MauvilleCity_Mart_Pokemart	delay
+scriptdefs
+= MauvilleCity_Mart_EventScript_Man
+msgbox	Use a certain move, or use an item instead…The TRAINER's decisions determine how battles turn out, I think.
+end
+= MauvilleCity_Mart_EventScript_ExpertM
+msgbox	There are items that temporarily elevate the stats of POKéMON.The ones I know you use in battle are X ATTACK and X DEFEND…I do believe that there are others like them.
+end
+= MauvilleCity_Mart_EventScript_Clerk
+lock
+faceplayer
+message gText_HowMayIServeYou
+waitmessage
+pokemart MauvilleCity_Mart_Pokemart
+msgbox	gText_PleaseComeAgain
+release
+end

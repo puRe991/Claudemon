@@ -51,5 +51,51 @@ dialogs
 2	When a TRAINER chains tournament wins at the BATTLE DOME, he or she gains a reputation as a star.Tough TRAINERS are drawn by that reputation to the BATTLE DOME.A true superstar is a TRAINER who can keep winning tournaments.
 3	I ran into one of the tournament favorites in the very first round.Of course I got trashed…
 4	Did you see it? The last Battle Tournament?The winner, , was seriously tough.You should check out the results on the monitor beside the PC.
+objscripts
+0 BattleFrontier_BattleDomeLobby_EventScript_SinglesAttendant
+1 BattleFrontier_BattleDomeLobby_EventScript_Man
+2 BattleFrontier_BattleDomeLobby_EventScript_Lass
+3 BattleFrontier_BattleDomeLobby_EventScript_FatMan
+4 BattleFrontier_BattleDomeLobby_EventScript_Maniac
+5 BattleFrontier_BattleDomeLobby_EventScript_DoublesAttendant
+scriptdefs
+= BattleFrontier_BattleDomeLobby_EventScript_DoublesAttendant
+lock
+faceplayer
+setvar VAR_FRONTIER_FACILITY FRONTIER_FACILITY_DOME
+setvar VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_DOUBLES
+goto BattleFrontier_BattleDomeLobby_EventScript_AttendantWelcome
+end
+= BattleFrontier_BattleDomeLobby_EventScript_AttendantWelcome
+special SavePlayerParty
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES BattleFrontier_BattleDomeLobby_EventScript_WelcomeSingles
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_DOUBLES BattleFrontier_BattleDomeLobby_EventScript_WelcomeDoubles
+= BattleFrontier_BattleDomeLobby_EventScript_WelcomeDoubles
+msgbox	Where the strategies of TRAINERS are put to the test!Welcome to the BATTLE DOME!I am your guide to the DOUBLE BATTLE Tournament.
+return
+= BattleFrontier_BattleDomeLobby_EventScript_WelcomeSingles
+msgbox	Where the strategies of TRAINERS are put to the test!Welcome to the BATTLE DOME!I am your guide to the SINGLE BATTLE Tournament.
+return
+= BattleFrontier_BattleDomeLobby_EventScript_Maniac
+dome_getwinnersname
+msgbox	Did you see it? The last Battle Tournament?The winner, , was seriously tough.You should check out the results on the monitor beside the PC.
+end
+= BattleFrontier_BattleDomeLobby_EventScript_FatMan
+msgbox	I ran into one of the tournament favorites in the very first round.Of course I got trashed…
+end
+= BattleFrontier_BattleDomeLobby_EventScript_Lass
+msgbox	When a TRAINER chains tournament wins at the BATTLE DOME, he or she gains a reputation as a star.Tough TRAINERS are drawn by that reputation to the BATTLE DOME.A true superstar is a TRAINER who can keep winning tournaments.
+end
+= BattleFrontier_BattleDomeLobby_EventScript_Man
+msgbox	I would've won if I'd kept this POKéMON held in reserve.You need to check your opponent's POKéMON carefully before choosing your battling POKéMON.
+end
+@ A few OutsideWest event scripts are inserted here instead two of which are unused
+= BattleFrontier_BattleDomeLobby_EventScript_SinglesAttendant
+lock
+faceplayer
+setvar VAR_FRONTIER_FACILITY FRONTIER_FACILITY_DOME
+setvar VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES
+goto BattleFrontier_BattleDomeLobby_EventScript_AttendantWelcome
+end
 signs
 15 10	The Battle Tournament rules are listed.

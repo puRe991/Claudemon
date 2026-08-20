@@ -44,3 +44,34 @@ dialogs
 0	My psychic powers have surely grown several times, but…
 1	This means my training is still not enough…I've got to keep working toward the summit…Go, me!
 3	POKéMON no longer of this world. POKéMON that are with you now.And the POKéMON that you will meet in the future…They are all to be equally cherished. Please remember that.
+objscripts
+0 MtPyre_3F_EventScript_William
+1 MtPyre_3F_EventScript_Kayla
+3 MtPyre_3F_EventScript_Gabrielle
+scriptdefs
+= MtPyre_3F_EventScript_Gabrielle
+trainerbattle_single TRAINER_GABRIELLE_1 MtPyre_3F_Text_GabrielleIntro MtPyre_3F_Text_GabrielleDefeat MtPyre_3F_EventScript_RegisterGabrielle
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE MtPyre_3F_EventScript_RematchGabrielle
+msgbox	POKéMON no longer of this world. POKéMON that are with you now.And the POKéMON that you will meet in the future…They are all to be equally cherished. Please remember that.
+release
+end
+= MtPyre_3F_EventScript_RematchGabrielle
+trainerbattle_rematch TRAINER_GABRIELLE_1 MtPyre_3F_Text_GabrielleRematchIntro MtPyre_3F_Text_GabrielleRematchDefeat
+msgbox	POKéMON no longer of this world. POKéMON that are with you now.And the POKéMON that you will meet in the future…They are all to be equally cherished. I see that you've remembered that.
+end
+= MtPyre_3F_EventScript_RegisterGabrielle
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	I would like to see your POKéMON when they grow up some more…Please, I need to see your POKéNAV.
+register_matchcall TRAINER_GABRIELLE_1
+release
+end
+= MtPyre_3F_EventScript_Kayla
+trainerbattle_single TRAINER_KAYLA MtPyre_3F_Text_KaylaIntro MtPyre_3F_Text_KaylaDefeat
+msgbox	This means my training is still not enough…I've got to keep working toward the summit…Go, me!
+end
+= MtPyre_3F_EventScript_William
+trainerbattle_single TRAINER_WILLIAM MtPyre_3F_Text_WilliamIntro MtPyre_3F_Text_WilliamDefeat
+msgbox	My psychic powers have surely grown several times, but…
+end

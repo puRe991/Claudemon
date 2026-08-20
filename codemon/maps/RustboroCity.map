@@ -165,6 +165,638 @@ dialogs
 10	Oh? Who might you be? You're a new face around these parts.Have you just transferred into the POKéMON TRAINER'S SCHOOL?
 12	A POKéMON you get in a trade from someone grows fast.But if you don't have certain GYM BADGES, it may not obey you…
 15	Did you know this?You can have a 2-on-2 battle even if you're not with another TRAINER.If you catch the eyes of two TRAINERS when you have two or more POKéMON, they'll both challenge you.Don't you think it'd be cool if you could beat two TRAINERS by yourself?
+objscripts
+0 RustboroCity_EventScript_Woman
+1 RustboroCity_EventScript_FatMan
+2 RustboroCity_EventScript_NinjaBoy
+3 RustboroCity_EventScript_Twin
+4 RustboroCity_EventScript_Boy2
+5 RustboroCity_EventScript_Man1
+6 RustboroCity_EventScript_LittleBoy
+7 RustboroCity_EventScript_LittleGirl
+8 RustboroCity_EventScript_DevonEmployee1
+10 RustboroCity_EventScript_DevonEmployee2
+12 RustboroCity_EventScript_Man2
+13 RustboroCity_EventScript_Rival
+15 RustboroCity_EventScript_Boy1
+triggers
+23 20 VAR_RUSTBORO_CITY_STATE 1 RustboroCity_EventScript_StolenGoodsTrigger0
+23 21 VAR_RUSTBORO_CITY_STATE 1 RustboroCity_EventScript_StolenGoodsTrigger1
+23 22 VAR_RUSTBORO_CITY_STATE 1 RustboroCity_EventScript_StolenGoodsTrigger2
+23 23 VAR_RUSTBORO_CITY_STATE 1 RustboroCity_EventScript_StolenGoodsTrigger3
+23 24 VAR_RUSTBORO_CITY_STATE 1 RustboroCity_EventScript_StolenGoodsTrigger4
+30 9 VAR_RUSTBORO_CITY_STATE 2 RustboroCity_EventScript_HelpGetGoodsTrigger0
+29 10 VAR_RUSTBORO_CITY_STATE 2 RustboroCity_EventScript_HelpGetGoodsTrigger1
+30 11 VAR_RUSTBORO_CITY_STATE 2 RustboroCity_EventScript_HelpGetGoodsTrigger2
+30 12 VAR_RUSTBORO_CITY_STATE 2 RustboroCity_EventScript_HelpGetGoodsTrigger3
+30 9 VAR_RUSTBORO_CITY_STATE 4 RustboroCity_EventScript_ReturnGoodsTrigger0
+31 10 VAR_RUSTBORO_CITY_STATE 4 RustboroCity_EventScript_ReturnGoodsTrigger1
+30 11 VAR_RUSTBORO_CITY_STATE 4 RustboroCity_EventScript_ReturnGoodsTrigger2
+30 12 VAR_RUSTBORO_CITY_STATE 4 RustboroCity_EventScript_ReturnGoodsTrigger3
+12 53 VAR_RUSTBORO_CITY_STATE 7 RustboroCity_EventScript_RivalTrigger0
+13 53 VAR_RUSTBORO_CITY_STATE 7 RustboroCity_EventScript_RivalTrigger1
+14 53 VAR_RUSTBORO_CITY_STATE 7 RustboroCity_EventScript_RivalTrigger2
+15 53 VAR_RUSTBORO_CITY_STATE 7 RustboroCity_EventScript_RivalTrigger3
+16 53 VAR_RUSTBORO_CITY_STATE 7 RustboroCity_EventScript_RivalTrigger4
+17 53 VAR_RUSTBORO_CITY_STATE 7 RustboroCity_EventScript_RivalTrigger5
+18 53 VAR_RUSTBORO_CITY_STATE 7 RustboroCity_EventScript_RivalTrigger6
+19 53 VAR_RUSTBORO_CITY_STATE 7 RustboroCity_EventScript_RivalTrigger7
+movements
+RustboroCity_Movement_EmployeeApproachPlayerDown	down,end
+RustboroCity_Movement_EmployeeChaseGrunt1	right,right,right,right,right,right,delay,end
+RustboroCity_Movement_EmployeeChaseGrunt2	up,up,up,up,up,up,up,end
+RustboroCity_Movement_GruntEscape	delay,delay,right,right,right,right,right,up,up,up,up,up,up,up,up,up,end
+RustboroCity_Movement_RivalApproachPlayer0	down,left,left,left,left,down,end
+RustboroCity_Movement_RivalApproachPlayer1	down,left,left,left,down,end
+RustboroCity_Movement_RivalApproachPlayer2	down,left,left,down,end
+RustboroCity_Movement_RivalApproachPlayer3	down,left,down,end
+RustboroCity_Movement_RivalApproachPlayer4	down,down,end
+RustboroCity_Movement_RivalApproachPlayer5	down,right,down,end
+RustboroCity_Movement_RivalApproachPlayer6	down,right,right,down,end
+RustboroCity_Movement_RivalApproachPlayer7	down,right,right,right,down,end
+scriptdefs
+= RustboroCity_EventScript_RivalTrigger7
+lockall
+call RustboroCity_EventScript_PlayRivalMusic
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_RUSTBORO_RIVAL RustboroCity_Movement_RivalApproachPlayer7
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+goto RustboroCity_EventScript_RivalEncounter
+= RustboroCity_EventScript_RivalEncounter
+checkplayergender
+goto_if_eq VAR_RESULT MALE RustboroCity_EventScript_MayEncounter
+goto_if_eq VAR_RESULT FEMALE RustboroCity_EventScript_BrendanEncounter
+end
+= RustboroCity_EventScript_BrendanEncounter
+goto_if_set FLAG_DEFEATED_RIVAL_RUSTBORO RustboroCity_EventScript_BrendanBrineyHint
+goto_if_set FLAG_MET_RIVAL_RUSTBORO RustboroCity_EventScript_BrendanAskToBattle
+setflag FLAG_MET_RIVAL_RUSTBORO
+msgbox	BRENDAN: Oh, hey, PLAYER!You had a MATCH CALL feature put on your POKéNAV! Cool!Let's register each other so we can get in touch anytime!… … … … … …
+closemessage
+delay 30
+playfanfare MUS_REGISTER_MATCH_CALL
+msgbox	Registered BRENDAN in the POKéNAV.
+waitfanfare
+closemessage
+delay 30
+setflag FLAG_ENABLE_RIVAL_MATCH_CALL
+setvar VAR_RUSTBORO_CITY_STATE 8
+setvar VAR_ROUTE104_STATE 2
+msgbox	BRENDAN: By the way, PLAYER, I walked by MR. BRINEY in PETALBURG WOODS.I bet he was on his way home to his cottage by the sea.PLAYER, how's your POKéDEX? Have you filled in any pages yet?Mine rules.Want to have a battle to test how far you've progressed?
+goto_if_eq VAR_RESULT YES RustboroCity_EventScript_BattleBrendan
+msgbox	BRENDAN: What's the matter? Don't have any confidence in your POKéMON?
+call RustboroCity_EventScript_RestoreBgm
+releaseall
+end
+= RustboroCity_EventScript_RestoreBgm
+savebgm MUS_DUMMY
+fadedefaultbgm
+return
+= RustboroCity_EventScript_BattleBrendan
+msgbox	BRENDAN: I know you just became a TRAINER, but I won't go easy!
+switch VAR_STARTER_MON
+case 0 RustboroCity_EventScript_BattleBrendanTreecko
+case 1 RustboroCity_EventScript_BattleBrendanTorchic
+case 2 RustboroCity_EventScript_BattleBrendanMudkip
+end
+= RustboroCity_EventScript_BattleBrendanMudkip
+trainerbattle_no_intro TRAINER_BRENDAN_RUSTBORO_MUDKIP RustboroCity_Text_BrendanDefeat
+setflag FLAG_DEFEATED_RIVAL_RUSTBORO
+goto RustboroCity_EventScript_BrendanBrineyHint
+end
+= RustboroCity_EventScript_BrendanBrineyHint
+msgbox	BRENDAN: By the way, you know MR. BRINEY? The guy I just passed?I bet you didn't know this, since you just moved here, PLAYER, but MR. BRINEY was once a great sailor.
+call_if_eq VAR_0x8008 0 RustboroCity_EventScript_RestoreBgm
+releaseall
+end
+= RustboroCity_EventScript_BattleBrendanTorchic
+trainerbattle_no_intro TRAINER_BRENDAN_RUSTBORO_TORCHIC RustboroCity_Text_BrendanDefeat
+setflag FLAG_DEFEATED_RIVAL_RUSTBORO
+goto RustboroCity_EventScript_BrendanBrineyHint
+end
+= RustboroCity_EventScript_BattleBrendanTreecko
+trainerbattle_no_intro TRAINER_BRENDAN_RUSTBORO_TREECKO RustboroCity_Text_BrendanDefeat
+setflag FLAG_DEFEATED_RIVAL_RUSTBORO
+goto RustboroCity_EventScript_BrendanBrineyHint
+end
+= RustboroCity_EventScript_BrendanAskToBattle
+msgbox	BRENDAN: What's up? Want to have a battle with me?
+goto_if_eq VAR_RESULT YES RustboroCity_EventScript_BattleBrendan
+msgbox	BRENDAN: What's the matter? Don't have any confidence in your POKéMON?
+releaseall
+end
+= RustboroCity_EventScript_MayEncounter
+goto_if_set FLAG_DEFEATED_RIVAL_RUSTBORO RustboroCity_EventScript_MayBrineyHint
+goto_if_set FLAG_MET_RIVAL_RUSTBORO RustboroCity_EventScript_MayAskToBattle
+setflag FLAG_MET_RIVAL_RUSTBORO
+msgbox	MAY: Oh, hi, PLAYER!You had a MATCH CALL feature put on your POKéNAV!Let's register each other so we can contact one another anytime!… … … … … …
+closemessage
+delay 30
+playfanfare MUS_REGISTER_MATCH_CALL
+msgbox	Registered MAY in the POKéNAV.
+waitfanfare
+closemessage
+delay 30
+setflag FLAG_ENABLE_RIVAL_MATCH_CALL
+setvar VAR_RUSTBORO_CITY_STATE 8
+setvar VAR_ROUTE104_STATE 2
+setvar VAR_0x8008 0
+msgbox	MAY: Oh, by the way, I passed MR. BRINEY in PETALBURG WOODS.I guess he's on his way home to his cottage by the sea.How's your POKéDEX coming along, PLAYER? Mine's looking pretty decent!So… How about a little battle?
+goto_if_eq VAR_RESULT YES RustboroCity_EventScript_BattleMay
+msgbox	MAY: Oh, what's the matter?Haven't you caught or raised your POKéMON very much?That's not very good for a TRAINER!
+call RustboroCity_EventScript_RestoreBgm
+releaseall
+end
+= RustboroCity_EventScript_BattleMay
+msgbox	MAY: You just became a TRAINER, PLAYER. I'm not going to lose!
+switch VAR_STARTER_MON
+case 0 RustboroCity_EventScript_BattleMayTreecko
+case 1 RustboroCity_EventScript_BattleMayTorchic
+case 2 RustboroCity_EventScript_BattleMayMudkip
+end
+= RustboroCity_EventScript_BattleMayMudkip
+trainerbattle_no_intro TRAINER_MAY_RUSTBORO_MUDKIP RustboroCity_Text_MayDefeat
+setflag FLAG_DEFEATED_RIVAL_RUSTBORO
+goto RustboroCity_EventScript_MayBrineyHint
+end
+= RustboroCity_EventScript_MayBrineyHint
+msgbox	MAY: Oh, by the way, MR. BRINEY, who I just passed…PLAYER, you just moved here so you might not know this, but MR. BRINEY was once a revered seafarer.
+call_if_eq VAR_0x8008 0 RustboroCity_EventScript_RestoreBgm
+releaseall
+end
+= RustboroCity_EventScript_BattleMayTorchic
+trainerbattle_no_intro TRAINER_MAY_RUSTBORO_TORCHIC RustboroCity_Text_MayDefeat
+setflag FLAG_DEFEATED_RIVAL_RUSTBORO
+goto RustboroCity_EventScript_MayBrineyHint
+end
+= RustboroCity_EventScript_BattleMayTreecko
+trainerbattle_no_intro TRAINER_MAY_RUSTBORO_TREECKO RustboroCity_Text_MayDefeat
+setflag FLAG_DEFEATED_RIVAL_RUSTBORO
+goto RustboroCity_EventScript_MayBrineyHint
+end
+= RustboroCity_EventScript_MayAskToBattle
+setvar VAR_0x8008 1
+msgbox	MAY: So, what do you think? How about a little battle here?
+goto_if_eq VAR_RESULT YES RustboroCity_EventScript_BattleMay
+msgbox	MAY: Oh, what's the matter?Haven't you caught or raised your POKéMON very much?That's not very good for a TRAINER!
+releaseall
+end
+= RustboroCity_EventScript_PlayRivalMusic
+checkplayergender
+goto_if_eq VAR_RESULT MALE RustboroCity_EventScript_PlayMayMusic
+goto_if_eq VAR_RESULT FEMALE RustboroCity_EventScript_PlayBrendanMusic
+return
+= RustboroCity_EventScript_PlayBrendanMusic
+playbgm MUS_ENCOUNTER_BRENDAN TRUE
+return
+= RustboroCity_EventScript_PlayMayMusic
+playbgm MUS_ENCOUNTER_MAY TRUE
+return
+= RustboroCity_EventScript_RivalTrigger6
+lockall
+call RustboroCity_EventScript_PlayRivalMusic
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_RUSTBORO_RIVAL RustboroCity_Movement_RivalApproachPlayer6
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+goto RustboroCity_EventScript_RivalEncounter
+= RustboroCity_EventScript_RivalTrigger5
+lockall
+call RustboroCity_EventScript_PlayRivalMusic
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_RUSTBORO_RIVAL RustboroCity_Movement_RivalApproachPlayer5
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+goto RustboroCity_EventScript_RivalEncounter
+= RustboroCity_EventScript_RivalTrigger4
+lockall
+call RustboroCity_EventScript_PlayRivalMusic
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_RUSTBORO_RIVAL RustboroCity_Movement_RivalApproachPlayer4
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+goto RustboroCity_EventScript_RivalEncounter
+= RustboroCity_EventScript_RivalTrigger3
+lockall
+call RustboroCity_EventScript_PlayRivalMusic
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_RUSTBORO_RIVAL RustboroCity_Movement_RivalApproachPlayer3
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+goto RustboroCity_EventScript_RivalEncounter
+= RustboroCity_EventScript_RivalTrigger2
+lockall
+call RustboroCity_EventScript_PlayRivalMusic
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_RUSTBORO_RIVAL RustboroCity_Movement_RivalApproachPlayer2
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+goto RustboroCity_EventScript_RivalEncounter
+= RustboroCity_EventScript_RivalTrigger1
+lockall
+call RustboroCity_EventScript_PlayRivalMusic
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_RUSTBORO_RIVAL RustboroCity_Movement_RivalApproachPlayer1
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+goto RustboroCity_EventScript_RivalEncounter
+= RustboroCity_EventScript_RivalTrigger0
+lockall
+call RustboroCity_EventScript_PlayRivalMusic
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_RUSTBORO_RIVAL RustboroCity_Movement_RivalApproachPlayer0
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+goto RustboroCity_EventScript_RivalEncounter
+= RustboroCity_EventScript_ReturnGoodsTrigger3
+lockall
+setvar VAR_TEMP_1 3
+goto RustboroCity_EventScript_ReturnGoods
+end
+= RustboroCity_EventScript_ReturnGoods
+call_if_eq VAR_TEMP_1 0 RustboroCity_EventScript_EmployeeFacePlayerUp2
+call_if_eq VAR_TEMP_1 1 RustboroCity_EventScript_EmployeeFacePlayerLeft2
+call_if_eq VAR_TEMP_1 2 RustboroCity_EventScript_EmployeeFacePlayerDown2
+call_if_eq VAR_TEMP_1 3 RustboroCity_EventScript_EmployeeApproachPlayerDown2
+call_if_eq VAR_TEMP_1 4 RustboroCity_EventScript_EmployeeFacePlayerRight
+msgbox	Oh! How did it go? The DEVON GOODS?You did! You got them back!You really are a great TRAINER!I know! As my thanks, I'll give you another GREAT BALL!
+giveitem ITEM_GREAT_BALL
+call_if_eq VAR_RESULT FALSE RustboroCity_EventScript_BagFull
+msgbox	Excuse me, please! Please come with me!
+closemessage
+setflag FLAG_RETURNED_DEVON_GOODS
+setflag FLAG_HIDE_RUSTBORO_CITY_DEVON_EMPLOYEE_1
+setvar VAR_RUSTBORO_CITY_STATE 5
+delay 30
+warp MAP_RUSTBORO_CITY_DEVON_CORP_3F 2 2
+waitstate
+releaseall
+end
+= RustboroCity_EventScript_BagFull
+msgbox	You're loaded with items. I can't give you this GREAT BALL.
+return
+= RustboroCity_EventScript_EmployeeFacePlayerRight
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_Delay48
+waitmovement 0
+return
+= RustboroCity_EventScript_EmployeeApproachPlayerDown2
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE RustboroCity_Movement_EmployeeApproachPlayerDown
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+return
+= RustboroCity_EventScript_EmployeeFacePlayerDown2
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+return
+= RustboroCity_EventScript_EmployeeFacePlayerLeft2
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_FaceLeft
+waitmovement 0
+return
+= RustboroCity_EventScript_EmployeeFacePlayerUp2
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+return
+= RustboroCity_EventScript_ReturnGoodsTrigger2
+lockall
+setvar VAR_TEMP_1 2
+goto RustboroCity_EventScript_ReturnGoods
+end
+= RustboroCity_EventScript_ReturnGoodsTrigger1
+lockall
+setvar VAR_TEMP_1 1
+goto RustboroCity_EventScript_ReturnGoods
+end
+= RustboroCity_EventScript_ReturnGoodsTrigger0
+lockall
+setvar VAR_TEMP_1 0
+goto RustboroCity_EventScript_ReturnGoods
+end
+= RustboroCity_EventScript_HelpGetGoodsTrigger3
+lockall
+setvar VAR_TEMP_1 3
+goto RustboroCity_EventScript_EmployeeAskToGetGoods
+end
+= RustboroCity_EventScript_EmployeeAskToGetGoods
+call_if_eq VAR_TEMP_1 0 RustboroCity_EventScript_EmployeeFacePlayerUp1
+call_if_eq VAR_TEMP_1 1 RustboroCity_EventScript_EmployeeFacePlayerLeft1
+call_if_eq VAR_TEMP_1 2 RustboroCity_EventScript_EmployeeFacePlayerDown1
+call_if_eq VAR_TEMP_1 3 RustboroCity_EventScript_EmployeeApproachPlayerDown1
+setflag FLAG_INTERACTED_WITH_DEVON_EMPLOYEE_GOODS_STOLEN
+setvar VAR_RUSTBORO_CITY_STATE 3
+copyobjectxytoperm LOCALID_RUSTBORO_DEVON_EMPLOYEE
+msgbox	Oh, it's you!You're that fantastic TRAINER who helped me in PETALBURG WOODS!Help me! I was robbed by TEAM AQUA! I have to get the DEVON GOODS back!If I don't… I'm going to be in serious trouble.
+releaseall
+end
+@ The below movement scripts are either partially or fully duplicated by the movement scripts when the player returns the goods
+= RustboroCity_EventScript_EmployeeApproachPlayerDown1
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE RustboroCity_Movement_EmployeeApproachPlayerDown
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+return
+= RustboroCity_EventScript_EmployeeFacePlayerDown1
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+return
+= RustboroCity_EventScript_EmployeeFacePlayerLeft1
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_FaceRight
+waitmovement 0
+return
+= RustboroCity_EventScript_EmployeeFacePlayerUp1
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+return
+= RustboroCity_EventScript_HelpGetGoodsTrigger2
+lockall
+setvar VAR_TEMP_1 2
+goto RustboroCity_EventScript_EmployeeAskToGetGoods
+end
+= RustboroCity_EventScript_HelpGetGoodsTrigger1
+lockall
+setvar VAR_TEMP_1 1
+goto RustboroCity_EventScript_EmployeeAskToGetGoods
+end
+= RustboroCity_EventScript_HelpGetGoodsTrigger0
+lockall
+setvar VAR_TEMP_1 0
+goto RustboroCity_EventScript_EmployeeAskToGetGoods
+end
+= RustboroCity_EventScript_StolenGoodsTrigger4
+lockall
+setobjectxyperm LOCALID_RUSTBORO_DEVON_EMPLOYEE 14 21
+setobjectmovementtype LOCALID_RUSTBORO_DEVON_EMPLOYEE MOVEMENT_TYPE_FACE_RIGHT
+setvar VAR_0x8004 4
+goto RustboroCity_EventScript_StolenGoodsScene
+end
+= RustboroCity_EventScript_StolenGoodsScene
+msgbox	Get out! Out of the way!
+closemessage
+playbgm MUS_ENCOUNTER_AQUA FALSE
+addobject LOCALID_RUSTBORO_GRUNT
+addobject LOCALID_RUSTBORO_DEVON_EMPLOYEE
+applymovement LOCALID_RUSTBORO_GRUNT RustboroCity_Movement_GruntEscape
+waitmovement 0
+removeobject LOCALID_RUSTBORO_GRUNT
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE RustboroCity_Movement_EmployeeChaseGrunt1
+waitmovement 0
+msgbox	Wait! Pleeeaaase!Don't take my GOODS!
+closemessage
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE RustboroCity_Movement_EmployeeChaseGrunt2
+waitmovement 0
+fadedefaultbgm
+removeobject LOCALID_RUSTBORO_DEVON_EMPLOYEE
+setobjectxyperm LOCALID_RUSTBORO_DEVON_EMPLOYEE 30 10
+clearflag FLAG_HIDE_RUSTBORO_CITY_DEVON_EMPLOYEE_1
+setflag FLAG_DEVON_GOODS_STOLEN
+setvar VAR_RUSTBORO_CITY_STATE 2
+setvar VAR_RUSTURF_TUNNEL_STATE 2
+setvar VAR_ROUTE116_STATE 1
+clearflag FLAG_HIDE_ROUTE_116_MR_BRINEY
+clearflag FLAG_HIDE_RUSTURF_TUNNEL_PEEKO
+clearflag FLAG_HIDE_RUSTURF_TUNNEL_AQUA_GRUNT
+setflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
+setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
+releaseall
+end
+@ Unused
+= RustboroCity_EventScript_StolenGoodsTrigger3
+lockall
+setobjectxyperm LOCALID_RUSTBORO_DEVON_EMPLOYEE 14 21
+setobjectmovementtype LOCALID_RUSTBORO_DEVON_EMPLOYEE MOVEMENT_TYPE_FACE_RIGHT
+setvar VAR_0x8004 3
+goto RustboroCity_EventScript_StolenGoodsScene
+end
+= RustboroCity_EventScript_StolenGoodsTrigger2
+lockall
+setobjectxyperm LOCALID_RUSTBORO_DEVON_EMPLOYEE 14 21
+setobjectmovementtype LOCALID_RUSTBORO_DEVON_EMPLOYEE MOVEMENT_TYPE_FACE_RIGHT
+setvar VAR_0x8004 2
+goto RustboroCity_EventScript_StolenGoodsScene
+end
+= RustboroCity_EventScript_StolenGoodsTrigger1
+lockall
+setobjectxyperm LOCALID_RUSTBORO_DEVON_EMPLOYEE 14 21
+setobjectmovementtype LOCALID_RUSTBORO_DEVON_EMPLOYEE MOVEMENT_TYPE_FACE_RIGHT
+setvar VAR_0x8004 1
+goto RustboroCity_EventScript_StolenGoodsScene
+end
+= RustboroCity_EventScript_StolenGoodsTrigger0
+lockall
+setobjectxyperm LOCALID_RUSTBORO_DEVON_EMPLOYEE 14 21
+setobjectmovementtype LOCALID_RUSTBORO_DEVON_EMPLOYEE MOVEMENT_TYPE_FACE_RIGHT
+setvar VAR_0x8004 0
+goto RustboroCity_EventScript_StolenGoodsScene
+end
+= RustboroCity_EventScript_Boy1
+msgbox	Did you know this?You can have a 2-on-2 battle even if you're not with another TRAINER.If you catch the eyes of two TRAINERS when you have two or more POKéMON, they'll both challenge you.Don't you think it'd be cool if you could beat two TRAINERS by yourself?
+end
+= RustboroCity_EventScript_Rival
+lockall
+call_if_unset FLAG_MET_RIVAL_RUSTBORO RustboroCity_EventScript_PlayRivalMusic
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_FacePlayer
+waitmovement 0
+goto RustboroCity_EventScript_RivalEncounter
+= RustboroCity_EventScript_Man2
+lock
+faceplayer
+msgbox	A POKéMON you get in a trade from someone grows fast.But if you don't have certain GYM BADGES, it may not obey you…
+release
+end
+= RustboroCity_EventScript_DevonEmployee2
+lock
+faceplayer
+msgbox	Oh? Who might you be? You're a new face around these parts.Have you just transferred into the POKéMON TRAINER'S SCHOOL?
+release
+end
+= RustboroCity_EventScript_DevonEmployee1
+lock
+faceplayer
+goto_if_set FLAG_RECOVERED_DEVON_GOODS RustboroCity_EventScript_ReturnGoodsSpokeToEmployee
+msgbox	That shady character, I think he took off towards the tunnel over there.
+release
+end
+= RustboroCity_EventScript_ReturnGoodsSpokeToEmployee
+waitse
+setvar VAR_TEMP_1 4
+goto RustboroCity_EventScript_ReturnGoods
+end
+= RustboroCity_EventScript_LittleGirl
+lock
+faceplayer
+msgbox	A POKéMON changes shape? If one did that, I would be shocked!
+applymovement LOCALID_RUSTBORO_LITTLE_GIRL Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= RustboroCity_EventScript_LittleBoy
+lock
+faceplayer
+msgbox	If a POKéMON gains experience in battles, it can sometimes change in the way it looks.
+applymovement LOCALID_RUSTBORO_LITTLE_BOY Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= RustboroCity_EventScript_Man1
+lock
+faceplayer
+goto_if_set FLAG_BADGE01_GET RustboroCity_EventScript_Man1HaveBadge
+msgbox	Have you taken the POKéMON GYM challenge?When you get that shiny GYM BADGE in hand, I guess TRAINERS begin to realize what is required of them.
+release
+end
+= RustboroCity_EventScript_Man1HaveBadge
+msgbox	Hey, that's RUSTBORO's GYM BADGE!Out of all the POKéMON GYM BADGES, RUSTBORO's is the coolest, I'd say.
+release
+end
+= RustboroCity_EventScript_Boy2
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_POKENAV RustboroCity_EventScript_Boy2BrineyLeftTunnel
+msgbox	The old sailor MR. BRINEY lives in a cottage by the sea.He goes for walks in the tunnel every so often.
+release
+end
+= RustboroCity_EventScript_Boy2BrineyLeftTunnel
+msgbox	The old sailor MR. BRINEY lives in a cottage by the sea.He said he was going shopping in SLATEPORT for his pet, PEEKO.That old sea dog, he must really love that PEEKO.
+release
+end
+= RustboroCity_EventScript_Twin
+msgbox	Wow, you have POKéMON with you, too.When I get bigger, I'm going to go places with POKéMON, too.
+end
+= RustboroCity_EventScript_NinjaBoy
+msgbox	POKéMON TRAINER'S SCHOOL!If I go to this school, will I be able to catch rare POKéMON easily?
+end
+= RustboroCity_EventScript_FatMan
+lock
+faceplayer
+goto_if_set FLAG_DEVON_GOODS_STOLEN RustboroCity_EventScript_FatManSawGrunt
+msgbox	The DEVON CORPORATION… We all just shorten it to DEVON.That company makes all sorts of convenient products.
+release
+end
+= RustboroCity_EventScript_FatManSawGrunt
+msgbox	Hm? A sneaky-looking man?Come to think of it, yes, a shady- looking guy went around the corner.
+release
+end
+= RustboroCity_EventScript_Woman
+msgbox	I challenged the GYM LEADER, but…It's not going to be easy winning with my FIRE-type POKéMON…FIRE-type POKéMON don't match up well against ROCK-type POKéMON…
+end
 signs
 23 19	RUSTBORO CITY POKéMON GYM LEADER: ROXANNE“The ROCK-loving honors student!”
 25 35	POKéMON TRAINER'S SCHOOL“We'll teach you anything about POKéMON!”

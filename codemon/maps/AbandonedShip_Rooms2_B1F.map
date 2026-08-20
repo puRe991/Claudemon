@@ -28,3 +28,9 @@ people_camper 3 4 S wander
 misc_item_ball 13 3 S static
 dialogs
 0	This is a perfect place to go exploring! It's exciting here!I bet there're amazing treasures on board.
+objscripts
+0 AbandonedShip_Rooms2_B1F_EventScript_Camper
+scriptdefs
+= AbandonedShip_Rooms2_B1F_EventScript_Camper
+msgbox	This is a perfect place to go exploring! It's exciting here!I bet there're amazing treasures on board.
+end

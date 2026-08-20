@@ -61,3 +61,15 @@ misc_item_ball 9 16 S static
 dialogs
 0	Do you think it's odd that we're wearing hoods in this magma-filled volcano?
 1	Listen to me. TEAM MAGMA is right!Don't listen to TEAM AQUA. Don't believe their lies!
+objscripts
+0 MagmaHideout_3F_1R_EventScript_Grunt9
+1 MagmaHideout_3F_1R_EventScript_Grunt16
+scriptdefs
+= MagmaHideout_3F_1R_EventScript_Grunt16
+trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_16 MagmaHideout_3F_1R_Text_Grunt16Intro MagmaHideout_3F_1R_Text_Grunt16Defeat
+msgbox	Listen to me. TEAM MAGMA is right!Don't listen to TEAM AQUA. Don't believe their lies!
+end
+= MagmaHideout_3F_1R_EventScript_Grunt9
+trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_9 MagmaHideout_3F_1R_Text_Grunt9Intro MagmaHideout_3F_1R_Text_Grunt9Defeat
+msgbox	Do you think it's odd that we're wearing hoods in this magma-filled volcano?
+end

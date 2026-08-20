@@ -171,6 +171,411 @@ dialogs
 15	MAXIE: G… GROUDON… Please! Stop what you're doing!I know the extent of your power now!If you keep going, all HOENN, not just SOOTOPOLIS, will be utterly ruined!
 16	ARCHIE: KYOGRE! What's wrong?! Look over here! It's the RED ORB! Calm down! KYOGRE!… … … … … … … … … … … …It's no good! It's not responding at all!
 17	WALLACE: PLAYER…The leaders of TEAM MAGMA and AQUA, I don't think they meant harm.It wouldn't hurt to hear what they have to say for themselves.
+objscripts
+0 SootopolisCity_EventScript_CaveOfOriginExpert
+1 SootopolisCity_EventScript_Woman2
+2 SootopolisCity_EventScript_Kiri
+3 SootopolisCity_EventScript_NinjaBoy
+4 SootopolisCity_EventScript_Boy1
+5 SootopolisCity_EventScript_Man
+6 SootopolisCity_EventScript_Steven
+7 SootopolisCity_EventScript_Woman1
+11 SootopolisCity_EventScript_Maniac
+12 SootopolisCity_EventScript_Girl
+13 SootopolisCity_EventScript_BlackBelt
+14 SootopolisCity_EventScript_Boy2
+15 SootopolisCity_EventScript_Maxie
+16 SootopolisCity_EventScript_Archie
+17 SootopolisCity_EventScript_Wallace
+movements
+SootopolisCity_Movement_ExpertMoveAside	left,delay,end
+SootopolisCity_Movement_PlayerArriveCaveEntrance	delay,delay,delay,delay,right,right,up,up,up,delay,end
+SootopolisCity_Movement_PlayerEnterCaveOfOrigin	up,up,end
+SootopolisCity_Movement_PlayerStartWalkToCaveOfOriginNorth	up,up,up,up,right,up,up,up,up,up,up,up,up,up,up,up,left,up,up,up,up,left,left,left,left,up,up,up,up,up,up,up,up,up,up,end
+SootopolisCity_Movement_PlayerStartWalkToCaveOfOriginWest	left,up,up,up,right,up,up,up,up,up,up,up,up,up,up,up,left,up,up,up,up,left,left,left,left,up,up,up,up,up,up,up,up,up,up,end
+SootopolisCity_Movement_PlayerWalkToCaveOfOrigin	up,up,up,right,right,right,right,down,down,right,right,right,right,right,up,right,right,right,right,down,down,down,right,right,right,right,right,down,down,down,down,left,left,left,left,left,left,left,left,down,down,down,down,down,down,down,down,right,right,right,end
+SootopolisCity_Movement_StevenArriveCaveEntrance	down,down,left,delay,right,up,up,up,right,delay,end
+SootopolisCity_Movement_StevenStartWalkToCaveOfOrigin	up,up,up,right,up,up,up,up,up,up,up,up,up,up,up,left,up,up,up,up,left,left,left,left,up,up,up,up,up,up,up,up,up,up,up,delay,end
+SootopolisCity_Movement_StevenWalkToCaveOfOrigin	up,up,right,right,right,right,down,down,right,right,right,right,right,up,right,right,right,right,down,down,down,right,right,right,right,right,down,down,down,down,left,left,left,left,left,left,left,left,down,down,down,down,down,down,down,down,right,right,right,right,delay,delay,delay,delay,right,up,up,end
+SootopolisCity_Movement_WallaceMoveFromGym	right,delay,end
+SootopolisCity_Movement_WallaceMoveFromGymWest	left,delay,end
+scriptdefs
+= SootopolisCity_EventScript_Wallace
+lock
+faceplayer
+goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 4 SootopolisCity_EventScript_GoToSkyPillar
+goto_if_set FLAG_RECEIVED_HM_WATERFALL SootopolisCity_EventScript_GoToGym
+goto_if_set FLAG_SOOTOPOLIS_ARCHIE_MAXIE_LEAVE SootopolisCity_EventScript_GiveWaterfall
+msgbox	WALLACE: PLAYER…The leaders of TEAM MAGMA and AQUA, I don't think they meant harm.It wouldn't hurt to hear what they have to say for themselves.
+release
+end
+= SootopolisCity_EventScript_GiveWaterfall
+msgbox	WALLACE: PLAYER… My eyes didn't deceive me.Thanks to your help, SOOTOPOLIS… No, all of HOENN was saved.On behalf of the people, I thank you.This is a gift from me. Please accept it.
+giveitem ITEM_HM_WATERFALL
+setflag FLAG_RECEIVED_HM_WATERFALL
+msgbox	That HIDDEN MACHINE contains WATERFALL.If you have the RAIN BADGE, a POKéMON that has learned that HM move can force its way up waterfalls.And where does one get the RAIN BADGE? You know, don't you?That's right! You have to beat the SOOTOPOLIS GYM LEADER.When you're all set to go, step through that door.
+closemessage
+call_if_eq VAR_FACING DIR_NORTH SootopolisCity_EventScript_WallaceMoveFromGym
+call_if_eq VAR_FACING DIR_EAST SootopolisCity_EventScript_WallaceMoveFromGym
+call_if_eq VAR_FACING DIR_WEST SootopolisCity_EventScript_WallaceMoveFromGymWest
+release
+end
+= SootopolisCity_EventScript_WallaceMoveFromGymWest
+applymovement LOCALID_SOOTOPOLIS_WALLACE SootopolisCity_Movement_WallaceMoveFromGymWest
+waitmovement 0
+copyobjectxytoperm LOCALID_SOOTOPOLIS_WALLACE
+setvar VAR_SOOTOPOLIS_WALLACE_STATE 2
+return
+= SootopolisCity_EventScript_WallaceMoveFromGym
+applymovement LOCALID_SOOTOPOLIS_WALLACE SootopolisCity_Movement_WallaceMoveFromGym
+waitmovement 0
+copyobjectxytoperm LOCALID_SOOTOPOLIS_WALLACE
+setvar VAR_SOOTOPOLIS_WALLACE_STATE 1
+return
+= SootopolisCity_EventScript_GoToGym
+msgbox	WALLACE: I'm sure that you will be dazzled by my mentor's breathtakingly elegant battle style.
+release
+end
+= SootopolisCity_EventScript_GoToSkyPillar
+msgbox	WALLACE: Oh? PLAYER?Haven't you scaled the SKY PILLAR yet?I'm sure that you can make it to the top of the SKY PILLAR…
+release
+end
+= SootopolisCity_EventScript_Archie
+lockall
+goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 5 SootopolisCity_EventScript_ArchieRayquaza
+msgbox	ARCHIE: KYOGRE! What's wrong?! Look over here! It's the RED ORB! Calm down! KYOGRE!… … … … … … … … … … … …It's no good! It's not responding at all!
+closemessage
+releaseall
+end
+= SootopolisCity_EventScript_ArchieRayquaza
+msgbox	ARCHIE: KYOGRE and GROUDON both flew off to who knows where.The weather in HOENN has returned to its normal state…Haha… Hahaha…Maybe what we were trying to do was something small, even meaningless, to POKéMON…
+setflag FLAG_MET_ARCHIE_SOOTOPOLIS
+goto_if_set FLAG_MET_MAXIE_SOOTOPOLIS SootopolisCity_EventScript_MaxieArchieLeave
+releaseall
+end
+= SootopolisCity_EventScript_MaxieArchieLeave
+setflag FLAG_HIDE_SOOTOPOLIS_CITY_MAXIE
+setflag FLAG_HIDE_SOOTOPOLIS_CITY_ARCHIE
+setflag FLAG_SOOTOPOLIS_ARCHIE_MAXIE_LEAVE
+clearflag FLAG_HIDE_MT_PYRE_SUMMIT_MAXIE
+clearflag FLAG_HIDE_MT_PYRE_SUMMIT_ARCHIE
+setvar VAR_MT_PYRE_STATE 2
+warpsilent MAP_SOOTOPOLIS_CITY 31 34
+waitstate
+releaseall
+end
+@ Unused
+= SootopolisCity_EventScript_Maxie
+lockall
+goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 5 SootopolisCity_EventScript_MaxieRayquaza
+msgbox	MAXIE: G… GROUDON… Please! Stop what you're doing!I know the extent of your power now!If you keep going, all HOENN, not just SOOTOPOLIS, will be utterly ruined!
+closemessage
+releaseall
+end
+= SootopolisCity_EventScript_MaxieRayquaza
+msgbox	MAXIE: So the super-ancient POKéMON weren't only GROUDON and KYOGRE…After all our fruitless scheming and frantic efforts, that one POKéMON's simple action puts everything right again as if nothing had happened…Fu… Fuhahaha…
+setflag FLAG_MET_MAXIE_SOOTOPOLIS
+goto_if_set FLAG_MET_ARCHIE_SOOTOPOLIS SootopolisCity_EventScript_MaxieArchieLeave
+releaseall
+end
+= SootopolisCity_EventScript_Boy2
+lockall
+applymovement LOCALID_SOOTOPOLIS_BOY_2 Common_Movement_FacePlayer
+waitmovement 0
+goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 5 SootopolisCity_EventScript_Boy2Rayquaza
+msgbox	I just get this sense somehow that the two POKéMON aren't angry.I think… They probably can't control their own power…
+closemessage
+applymovement LOCALID_SOOTOPOLIS_BOY_2 Common_Movement_FaceOriginalDirection
+waitmovement 0
+releaseall
+end
+= SootopolisCity_EventScript_Boy2Rayquaza
+msgbox	That flying POKéMON came down from the sky and stopped the rampaging POKéMON…
+closemessage
+releaseall
+end
+= SootopolisCity_EventScript_BlackBelt
+lockall
+goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 5 SootopolisCity_EventScript_BlackBeltRayquaza
+msgbox	Go for it, red POKéMON! Don't back off, blue POKéMON!
+closemessage
+applymovement LOCALID_SOOTOPOLIS_BLACK_BELT Common_Movement_FacePlayer
+waitmovement 0
+msgbox	… … … … … …Hi, do you know the names of those POKéMON fighting over there?
+closemessage
+applymovement LOCALID_SOOTOPOLIS_BLACK_BELT Common_Movement_FaceOriginalDirection
+waitmovement 0
+releaseall
+end
+= SootopolisCity_EventScript_BlackBeltRayquaza
+applymovement LOCALID_SOOTOPOLIS_BLACK_BELT Common_Movement_FacePlayer
+waitmovement 0
+msgbox	I was wondering which one would win, the red one or the blue one, but, oh no, it's the green one that settles things!Talk about a huge turn of events!
+releaseall
+end
+= SootopolisCity_EventScript_Girl
+lockall
+applymovement LOCALID_SOOTOPOLIS_GIRL Common_Movement_FacePlayer
+waitmovement 0
+goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 5 SootopolisCity_EventScript_GirlRayquaza
+msgbox	Oh, no! SOOTOPOLIS CITY will get wrecked!
+closemessage
+applymovement LOCALID_SOOTOPOLIS_GIRL Common_Movement_FaceOriginalDirection
+waitmovement 0
+releaseall
+end
+= SootopolisCity_EventScript_GirlRayquaza
+msgbox	SOOTOPOLIS CITY didn't get wrecked!
+closemessage
+releaseall
+end
+= SootopolisCity_EventScript_Maniac
+lockall
+applymovement LOCALID_SOOTOPOLIS_MANIAC Common_Movement_FacePlayer
+waitmovement 0
+goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 5 SootopolisCity_EventScript_ManiacRayquaza
+msgbox	There's an ancient legend that claims the land and sea were shaped by a colossal battle between POKéMON.Well, I'm seeing that happen with my very own eyes!Whoa! I never expected to be witness to something this huge!
+closemessage
+applymovement LOCALID_SOOTOPOLIS_MANIAC Common_Movement_FaceOriginalDirection
+waitmovement 0
+releaseall
+end
+= SootopolisCity_EventScript_ManiacRayquaza
+msgbox	There's an ancient legend that claims the land and sea were shaped by a colossal battle between POKéMON.Well, I saw that happen with my very own eyes!Whoa! I never expected to be witness to something this huge!
+releaseall
+end
+= SootopolisCity_EventScript_Woman1
+lock
+faceplayer
+goto_if_ge VAR_SOOTOPOLIS_CITY_STATE 6 SootopolisCity_EventScript_Woman1PostLegendaries
+goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 5 SootopolisCity_EventScript_Woman1Rayquaza
+goto_if_ge VAR_SOOTOPOLIS_CITY_STATE 2 SootopolisCity_EventScript_Woman1Legendaries
+msgbox	SOOTOPOLIS sprang up as a town in the crater of a volcano.If you look up at the sky, the lip of the crater is also visible. So, all you see is the sky in a circle.But that's what makes the sky above SOOTOPOLIS the most beautiful.
+release
+end
+= SootopolisCity_EventScript_Woman1Legendaries
+msgbox	When two POKéMON that gigantic are fighting that savagely, there's not much that we can do.
+closemessage
+applymovement LOCALID_SOOTOPOLIS_WOMAN_1 Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= SootopolisCity_EventScript_Woman1Rayquaza
+msgbox	When that third POKéMON flew down, I feared the worst.
+release
+end
+= SootopolisCity_EventScript_Woman1PostLegendaries
+msgbox	A circle of a night sky framed by the crater of a volcano…And in that ring, stars flicker and blink as if they were alive… It's my favorite scenery.
+release
+end
+= SootopolisCity_EventScript_Steven
+lockall
+applymovement LOCALID_SOOTOPOLIS_STEVEN Common_Movement_FacePlayer
+waitmovement 0
+call_if_unset FLAG_STEVEN_GUIDES_TO_CAVE_OF_ORIGIN SootopolisCity_EventScript_StevenLeadPlayerCaveOfOrigin
+goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 2 SootopolisCity_EventScript_StevenHelpWallace
+goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 3 SootopolisCity_EventScript_StevenHelpedWallace
+goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 4 SootopolisCity_EventScript_StevenHelpedWallace
+goto_if_set FLAG_SOOTOPOLIS_ARCHIE_MAXIE_LEAVE SootopolisCity_EventScript_StevenMaxieArchieLeft
+msgbox	STEVEN: So that's RAYQUAZA…It's incredible how the two rampaging POKéMON would flee from it in fear…
+releaseall
+end
+= SootopolisCity_EventScript_StevenMaxieArchieLeft
+msgbox	STEVEN: It looks like both MAXIE and ARCHIE have gone away somewhere.Perhaps they've gone to MT. PYRE to return those ORBS…
+releaseall
+end
+= SootopolisCity_EventScript_StevenHelpedWallace
+msgbox	STEVEN: The SKY PILLAR…I've never been there. I wonder where it could be?
+releaseall
+end
+= SootopolisCity_EventScript_StevenHelpWallace
+msgbox	STEVEN: I think you have what's needed to help him…
+releaseall
+end
+= SootopolisCity_EventScript_StevenLeadPlayerCaveOfOrigin
+msgbox	STEVEN: Those POKéMON fighting… GROUDON… And KYOGRE…The two super-ancient POKéMON were awakened from a long sleep…And now they are smashing each other with their uncontrollable energy……PLAYER.You being here now I'll take to mean that you're prepared to become involved in this crisis.Well, then, there's someone that I'd like you to meet.Come with me, please.
+closemessage
+call_if_eq VAR_FACING DIR_WEST SootopolisCity_EventScript_StartWalkToCaveOfOriginWest
+call_if_eq VAR_FACING DIR_NORTH SootopolisCity_EventScript_StartWalkToCaveOfOriginNorth
+msgbox	STEVEN: Listen, PLAYER.Does seeing GROUDON and KYOGRE make you think POKéMON are to be feared?But that's not true. POKéMON are really more……Why am I asking you this? You already know.
+closemessage
+applymovement LOCALID_SOOTOPOLIS_STEVEN SootopolisCity_Movement_StevenWalkToCaveOfOrigin
+applymovement LOCALID_PLAYER SootopolisCity_Movement_PlayerWalkToCaveOfOrigin
+waitmovement 0
+delay 120
+applymovement LOCALID_SOOTOPOLIS_EXPERT SootopolisCity_Movement_ExpertMoveAside
+waitmovement 0
+applymovement LOCALID_SOOTOPOLIS_STEVEN SootopolisCity_Movement_StevenArriveCaveEntrance
+applymovement LOCALID_PLAYER SootopolisCity_Movement_PlayerArriveCaveEntrance
+waitmovement 0
+msgbox	STEVEN: Okay, here we are!Inside here you'll find someone named WALLACE.I think you have what's needed to help him…
+closemessage
+setflag FLAG_STEVEN_GUIDES_TO_CAVE_OF_ORIGIN
+applymovement LOCALID_PLAYER SootopolisCity_Movement_PlayerEnterCaveOfOrigin
+waitmovement 0
+warp MAP_CAVE_OF_ORIGIN_ENTRANCE 9 20
+waitstate
+end
+= SootopolisCity_EventScript_StartWalkToCaveOfOriginNorth
+applymovement LOCALID_SOOTOPOLIS_STEVEN SootopolisCity_Movement_StevenStartWalkToCaveOfOrigin
+applymovement LOCALID_PLAYER SootopolisCity_Movement_PlayerStartWalkToCaveOfOriginNorth
+waitmovement 0
+return
+= SootopolisCity_EventScript_StartWalkToCaveOfOriginWest
+applymovement LOCALID_SOOTOPOLIS_STEVEN SootopolisCity_Movement_StevenStartWalkToCaveOfOrigin
+applymovement LOCALID_PLAYER SootopolisCity_Movement_PlayerStartWalkToCaveOfOriginWest
+waitmovement 0
+return
+= SootopolisCity_EventScript_Man
+lock
+faceplayer
+goto_if_ge VAR_SOOTOPOLIS_CITY_STATE 6 SootopolisCity_EventScript_ManPostLegendaries
+msgbox	Hm! You've come all the way to SOOTOPOLIS? You're no ordinary tourist.But I suppose that doesn't make you an extraordinary tourist, either.
+release
+end
+= SootopolisCity_EventScript_ManPostLegendaries
+msgbox	The city has regained its calm…
+release
+end
+= SootopolisCity_EventScript_Boy1
+lockall
+applymovement LOCALID_SOOTOPOLIS_BOY_1 Common_Movement_FacePlayer
+waitmovement 0
+goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 5 SootopolisCity_EventScript_Boy1Rayquaza
+goto_if_set FLAG_SYS_GAME_CLEAR SootopolisCity_EventScript_Boy1GameClear
+goto_if_ge VAR_SOOTOPOLIS_CITY_STATE 6 SootopolisCity_EventScript_Boy1Normal
+goto_if_le VAR_SOOTOPOLIS_CITY_STATE 1 SootopolisCity_EventScript_Boy1Normal
+msgbox	These giant POKéMON suddenly appeared in the middle of the city!And, I've never seen them before!Why are they smashing into each other like that?Why can't they be friends, those POKéMON?
+closemessage
+applymovement LOCALID_SOOTOPOLIS_BOY_1 Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= SootopolisCity_EventScript_Boy1Normal
+msgbox	Diving in the sea. Climbing up and down stairs all the time…If you live in this town, you end up getting physically fit.
+release
+end
+= SootopolisCity_EventScript_Boy1GameClear
+msgbox	GROUDON and KYOGRE… Where did they go?Will they cause droughts or downpours somewhere else?
+release
+end
+= SootopolisCity_EventScript_Boy1Rayquaza
+msgbox	What? What? What? What is that green POKéMON?!
+release
+end
+= SootopolisCity_EventScript_NinjaBoy
+lockall
+applymovement LOCALID_SOOTOPOLIS_NINJA_BOY Common_Movement_FacePlayer
+waitmovement 0
+goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 5 SootopolisCity_EventScript_NinjaBoyRayquaza
+goto_if_ge VAR_SOOTOPOLIS_CITY_STATE 6 SootopolisCity_EventScript_NinjaBoyNormal
+goto_if_le VAR_SOOTOPOLIS_CITY_STATE 1 SootopolisCity_EventScript_NinjaBoyNormal
+msgbox	Wow! This is wicked!
+closemessage
+applymovement LOCALID_SOOTOPOLIS_NINJA_BOY Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= SootopolisCity_EventScript_NinjaBoyNormal
+msgbox	I… I've never been out of this city.I wonder what the world is like on the other side of this round sky?
+release
+end
+= SootopolisCity_EventScript_NinjaBoyRayquaza
+msgbox	Wow! That was wicked!
+release
+end
+= SootopolisCity_EventScript_Kiri
+lock
+faceplayer
+goto_if_le VAR_SOOTOPOLIS_CITY_STATE 1 SootopolisCity_EventScript_KiriGiveBerry
+goto_if_ge VAR_SOOTOPOLIS_CITY_STATE 6 SootopolisCity_EventScript_KiriGiveBerry
+goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 5 SootopolisCity_EventScript_KiriRayquaza
+msgbox	A big POKéMON is fighting with another big POKéMON!Please, someone make them stop!
+closemessage
+applymovement LOCALID_KIRI Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= SootopolisCity_EventScript_KiriRayquaza
+msgbox	A pretty POKéMON came down from the sky…
+closemessage
+release
+end
+@ Gives 2 berries daily. First ranges from FIRST_KIRI_BERRY to LAST_KIRI_BERRY second is always Figy or Iapapa
+= SootopolisCity_EventScript_KiriGiveBerry
+dotimebasedevents
+special GetPlayerBigGuyGirlString
+goto_if_set FLAG_DAILY_SOOTOPOLIS_RECEIVED_BERRY SootopolisCity_EventScript_KiriReceivedBerry
+msgbox	SootopolisCity_Text_NameIsKiriHaveOneOfThese
+random NUM_KIRI_BERRIES
+addvar VAR_RESULT NUM_KIRI_BERRIES_SKIPPED
+addvar VAR_RESULT FIRST_BERRY_INDEX
+giveitem VAR_RESULT
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_DAILY_SOOTOPOLIS_RECEIVED_BERRY
+msgbox	SootopolisCity_Text_GiveYouThisBerryToo
+random 2
+goto_if_eq VAR_RESULT 0 SootopolisCity_EventScript_GiveFigyBerry
+goto_if_eq VAR_RESULT 1 SootopolisCity_EventScript_GiveIapapaBerry
+end
+= SootopolisCity_EventScript_GiveIapapaBerry
+giveitem ITEM_IAPAPA_BERRY
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+msgbox	SootopolisCity_Text_WhatKindOfWishInYourName
+release
+end
+= SootopolisCity_EventScript_GiveFigyBerry
+giveitem ITEM_FIGY_BERRY
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+msgbox	SootopolisCity_Text_WhatKindOfWishInYourName
+release
+end
+= SootopolisCity_EventScript_KiriReceivedBerry
+msgbox	SootopolisCity_Text_LikeSeasonBornIn
+goto_if_eq VAR_RESULT YES SootopolisCity_EventScript_KiriLikeSeasonBornIn
+msgbox	SootopolisCity_Text_OhDoesntMatter
+release
+end
+= SootopolisCity_EventScript_KiriLikeSeasonBornIn
+msgbox	SootopolisCity_Text_ThenILoveAutumn
+release
+end
+= SootopolisCity_EventScript_Woman2
+lockall
+applymovement LOCALID_SOOTOPOLIS_WOMAN_2 Common_Movement_FacePlayer
+waitmovement 0
+goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 5 SootopolisCity_EventScript_Woman2Rayquaza
+msgbox	The weather was clear this morning, but…All of a sudden, dark clouds brewed up, rain started falling in sheets, and there was thunder and lightning, too.The weather just went completely wild!Is all of this because of those POKéMON?
+closemessage
+applymovement LOCALID_SOOTOPOLIS_WOMAN_2 Common_Movement_FaceOriginalDirection
+waitmovement 0
+releaseall
+end
+= SootopolisCity_EventScript_Woman2Rayquaza
+msgbox	Oh?It was you who brought that flying POKéMON here?Well, aren't you amazing!
+releaseall
+end
+= SootopolisCity_EventScript_CaveOfOriginExpert
+lock
+faceplayer
+goto_if_ge VAR_SOOTOPOLIS_CITY_STATE 6 SootopolisCity_EventScript_ExpertPostLegendaries
+goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 5 SootopolisCity_EventScript_ExpertLegendaries
+goto_if_ge VAR_SOOTOPOLIS_CITY_STATE 2 SootopolisCity_EventScript_ExpertLeadToCave
+msgbox	Who might you be?This is the CAVE OF ORIGIN.The spirits of POKéMON, becalmed at MT. PYRE, are said to be revived here.Please leave.
+release
+end
+= SootopolisCity_EventScript_ExpertLeadToCave
+msgbox	A person with a strong will and superior talent…A TRAINER who has knowledge and experience of many kinds of POKéMON…If such a person were to appear, I was instructed by WALLACE to lead that TRAINER to this CAVE.
+release
+end
+= SootopolisCity_EventScript_ExpertLegendaries
+msgbox	Oh, my…The clash between the two awakened POKéMON was quelled by the awakening of a third POKéMON…
+release
+end
+= SootopolisCity_EventScript_ExpertPostLegendaries
+msgbox	This is the CAVE OF ORIGIN…With the passing of the crisis, the cave, too, shall sleep…
+release
+end
 signs
 33 34	SOOTOPOLIS CITY POKéMON GYM LEADER: JUAN“The GYM LEADER with the beauty of pure water!”
 41 37	SOOTOPOLIS CITY“The mystical city where history slumbers.”

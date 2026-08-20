@@ -73,3 +73,95 @@ dialogs
 5	Yo, how's it going, CHAMPION- bound PLAYER?FORTREE GYM LEADER WINONA is a master of FLYING-type POKéMON.She's waiting at the back of this GYM, behind the rotating doors.She's waiting for new challengers who are trying to take wing!Okay, go for it!
 6	You'd better watch it! Don't get distracted staring at WINONA or you'll go crashing down in a heap!
 7	Sure, you beat me all right. But you'd better watch it! Our LEADER WINONA's POKéMON are all business.
+objscripts
+0 FortreeCity_Gym_EventScript_Winona
+1 FortreeCity_Gym_EventScript_Jared
+2 FortreeCity_Gym_EventScript_Flint
+3 FortreeCity_Gym_EventScript_Ashley
+4 FortreeCity_Gym_EventScript_Edwardo
+5 FortreeCity_Gym_EventScript_GymGuide
+6 FortreeCity_Gym_EventScript_Humberto
+7 FortreeCity_Gym_EventScript_Darius
+scriptdefs
+= FortreeCity_Gym_EventScript_Darius
+trainerbattle_single TRAINER_DARIUS FortreeCity_Gym_Text_DariusIntro FortreeCity_Gym_Text_DariusDefeat
+msgbox	Sure, you beat me all right. But you'd better watch it! Our LEADER WINONA's POKéMON are all business.
+end
+= FortreeCity_Gym_EventScript_Humberto
+trainerbattle_single TRAINER_HUMBERTO FortreeCity_Gym_Text_HumbertoIntro FortreeCity_Gym_Text_HumbertoDefeat
+msgbox	You'd better watch it! Don't get distracted staring at WINONA or you'll go crashing down in a heap!
+end
+= FortreeCity_Gym_EventScript_GymGuide
+lock
+faceplayer
+goto_if_set FLAG_DEFEATED_FORTREE_GYM FortreeCity_Gym_EventScript_GymGuidePostVictory
+msgbox	Yo, how's it going, CHAMPION- bound PLAYER?FORTREE GYM LEADER WINONA is a master of FLYING-type POKéMON.She's waiting at the back of this GYM, behind the rotating doors.She's waiting for new challengers who are trying to take wing!Okay, go for it!
+release
+end
+= FortreeCity_Gym_EventScript_GymGuidePostVictory
+msgbox	You did it! You've achieved liftoff!
+release
+end
+= FortreeCity_Gym_EventScript_Edwardo
+trainerbattle_single TRAINER_EDWARDO FortreeCity_Gym_Text_EdwardoIntro FortreeCity_Gym_Text_EdwardoDefeat
+msgbox	The world is huge, and there are countless tough TRAINERS.I'm going to keep training and make myself even stronger.
+end
+= FortreeCity_Gym_EventScript_Ashley
+trainerbattle_single TRAINER_ASHLEY FortreeCity_Gym_Text_AshleyIntro FortreeCity_Gym_Text_AshleyDefeat
+msgbox	Thanks to WINONA, the people of FORTREE can live without fear.
+end
+= FortreeCity_Gym_EventScript_Flint
+trainerbattle_single TRAINER_FLINT FortreeCity_Gym_Text_FlintIntro FortreeCity_Gym_Text_FlintDefeat
+msgbox	WINONA is cute and she's strong. She's the ultimate LEADER!Blush…
+end
+= FortreeCity_Gym_EventScript_Jared
+trainerbattle_single TRAINER_JARED FortreeCity_Gym_Text_JaredIntro FortreeCity_Gym_Text_JaredDefeat
+msgbox	A TRAINER has to be smart to keep up with unexpected turns of events.Do you have the smarts to get to our LEADER?
+end
+= FortreeCity_Gym_EventScript_Winona
+trainerbattle_single TRAINER_WINONA_1 FortreeCity_Gym_Text_WinonaIntro FortreeCity_Gym_Text_WinonaDefeat FortreeCity_Gym_EventScript_WinonaDefeated NO_MUSIC
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE FortreeCity_Gym_EventScript_WinonaRematch
+goto_if_unset FLAG_RECEIVED_TM_AERIAL_ACE FortreeCity_Gym_EventScript_GiveAerialAce2
+msgbox	Though I fell to you, I will remain devoted to BIRD POKéMON.
+release
+end
+= FortreeCity_Gym_EventScript_GiveAerialAce2
+giveitem ITEM_TM_AERIAL_ACE
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+msgbox	TM40 contains AERIAL ACE.Its speed… No POKéMON should be able to avoid it.… … … … … …
+setflag FLAG_RECEIVED_TM_AERIAL_ACE
+release
+end
+= FortreeCity_Gym_EventScript_WinonaRematch
+trainerbattle_rematch_double TRAINER_WINONA_1 FortreeCity_Gym_Text_WinonaPreRematch FortreeCity_Gym_Text_WinonaRematchDefeat FortreeCity_Gym_Text_WinonaRematchNeedTwoMons
+msgbox	WINONA: Even though I have lost, the wings of my heart remain unbroken.I can rise and soar again and yet again.I am convinced of it!
+end
+= FortreeCity_Gym_EventScript_WinonaDefeated
+message FortreeCity_Gym_Text_ReceivedFeatherBadge
+waitmessage
+call Common_EventScript_PlayGymBadgeFanfare
+msgbox	With the FEATHER BADGE, all POKéMON up to LV 70, even those received through trades, will obey your every command.You will also be able to use the HM move FLY outside of battle.And this… This is a gift from me.
+setflag FLAG_DEFEATED_FORTREE_GYM
+setflag FLAG_BADGE06_GET
+setvar VAR_0x8008 6
+call Common_EventScript_SetGymTrainers
+call FortreeCity_Gym_EventScript_GiveAerialAce
+closemessage
+delay 30
+playfanfare MUS_REGISTER_MATCH_CALL
+msgbox	Registered GYM LEADER WINONA in the POKéNAV.
+waitfanfare
+closemessage
+delay 30
+setflag FLAG_ENABLE_WINONA_MATCH_CALL
+setvar VAR_SCOTT_FORTREE_CALL_STEP_COUNTER 0
+setflag FLAG_SCOTT_CALL_FORTREE_GYM
+release
+end
+= FortreeCity_Gym_EventScript_GiveAerialAce
+giveitem ITEM_TM_AERIAL_ACE
+goto_if_eq VAR_RESULT FALSE Common_EventScript_BagIsFull
+msgbox	TM40 contains AERIAL ACE.Its speed… No POKéMON should be able to avoid it.… … … … … …
+setflag FLAG_RECEIVED_TM_AERIAL_ACE
+return

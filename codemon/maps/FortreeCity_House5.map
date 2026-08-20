@@ -25,3 +25,23 @@ dialogs
 0	The tree houses of FORTREE are great!I think it's the number one town for living together with POKéMON.
 1	ZIGZAGOON: Bufuu!
 2	POKéMON and people have adapted to nature for survival.There's no need to make nature conform to the way we want to live.
+objscripts
+0 FortreeCity_House5_EventScript_PokefanF
+1 FortreeCity_House5_EventScript_Zigzagoon
+2 FortreeCity_House5_EventScript_Man
+scriptdefs
+= FortreeCity_House5_EventScript_Man
+msgbox	POKéMON and people have adapted to nature for survival.There's no need to make nature conform to the way we want to live.
+end
+= FortreeCity_House5_EventScript_Zigzagoon
+lock
+faceplayer
+waitse
+playmoncry SPECIES_ZIGZAGOON CRY_MODE_NORMAL
+msgbox	ZIGZAGOON: Bufuu!
+waitmoncry
+release
+end
+= FortreeCity_House5_EventScript_PokefanF
+msgbox	The tree houses of FORTREE are great!I think it's the number one town for living together with POKéMON.
+end

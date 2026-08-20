@@ -25,3 +25,57 @@ dialogs
 0	By being together with POKéMON, people make more and more friends.And that brings the world closer together. I think it's wonderful!
 1	There! Go, BIRD POKéMON!
 2	WINGULL: Pihyoh!
+objscripts
+0 FortreeCity_House4_EventScript_Woman
+1 FortreeCity_House4_EventScript_Boy
+2 FortreeCity_House4_EventScript_Wingull
+movements
+FortreeCity_House4_Movement_WingullExit	down,down,right,delay,delay,end
+scriptdefs
+= FortreeCity_House4_EventScript_Wingull
+lock
+faceplayer
+waitse
+playmoncry SPECIES_WINGULL CRY_MODE_NORMAL
+msgbox	WINGULL: Pihyoh!
+waitmoncry
+release
+end
+= FortreeCity_House4_EventScript_Boy
+lockall
+goto_if_set FLAG_RECEIVED_MENTAL_HERB FortreeCity_House4_EventScript_ReceivedMentalHerb
+goto_if_set FLAG_WINGULL_DELIVERED_MAIL FortreeCity_House4_EventScript_WingullReturned
+goto_if_set FLAG_WINGULL_SENT_ON_ERRAND FortreeCity_House4_EventScript_WingullOnErrand
+msgbox	There! Go, BIRD POKéMON!
+closemessage
+setflag FLAG_WINGULL_SENT_ON_ERRAND
+clearflag FLAG_HIDE_MOSSDEEP_CITY_HOUSE_2_WINGULL
+applymovement LOCALID_FORTREE_HOUSE_WINGULL FortreeCity_House4_Movement_WingullExit
+waitmovement 0
+removeobject LOCALID_FORTREE_HOUSE_WINGULL
+releaseall
+end
+= FortreeCity_House4_EventScript_WingullOnErrand
+applymovement VAR_LAST_TALKED Common_Movement_FacePlayer
+waitmovement 0
+msgbox	Heheh, I asked my WINGULL to run an errand for me.
+releaseall
+end
+= FortreeCity_House4_EventScript_WingullReturned
+applymovement VAR_LAST_TALKED Common_Movement_FacePlayer
+waitmovement 0
+msgbox	Good! Welcome back, WINGULL!Huh? What is this? What is it holding?A MENTAL HERB? It must have picked it up somewhere.But I'm not a TRAINER, so you can have it.
+giveitem ITEM_MENTAL_HERB
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_RECEIVED_MENTAL_HERB
+releaseall
+end
+= FortreeCity_House4_EventScript_ReceivedMentalHerb
+applymovement VAR_LAST_TALKED Common_Movement_FacePlayer
+waitmovement 0
+msgbox	Thanks to my WINGULL, I have friends who live far away.
+releaseall
+end
+= FortreeCity_House4_EventScript_Woman
+msgbox	By being together with POKéMON, people make more and more friends.And that brings the world closer together. I think it's wonderful!
+end

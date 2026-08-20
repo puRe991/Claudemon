@@ -68,6 +68,71 @@ dialogs
 4	The CITY consists of homes built on trees.Perhaps because of that lifestyle, everyone is healthy and lively.Why, even myself--I feel as if I've grown thirty years younger.
 5	There are POKéMON that evolve when you trade them! That's what I heard.
 6	Something unseeable is in the way.
+objscripts
+0 FortreeCity_EventScript_Man
+1 FortreeCity_EventScript_Girl
+2 FortreeCity_EventScript_Woman
+3 FortreeCity_EventScript_Boy
+4 FortreeCity_EventScript_OldMan
+5 FortreeCity_EventScript_GameboyKid
+6 FortreeCity_EventScript_Kecleon
+movements
+FortreeCity_Movement_KecleonFlee	right,end
+scriptdefs
+= FortreeCity_EventScript_Kecleon
+lock
+faceplayer
+checkitem ITEM_DEVON_SCOPE
+goto_if_eq VAR_RESULT TRUE FortreeCity_EventScript_AskUseDevonScope
+msgbox	Something unseeable is in the way.
+release
+end
+= FortreeCity_EventScript_AskUseDevonScope
+msgbox	Something unseeable is in the way.Want to use the DEVON SCOPE?
+goto_if_eq VAR_RESULT YES FortreeCity_EventScript_UseDevonScope
+release
+end
+= FortreeCity_EventScript_UseDevonScope
+msgbox	PLAYER used the DEVON SCOPE.An invisible POKéMON became completely visible!The startled POKéMON fled!
+closemessage
+applymovement VAR_LAST_TALKED Movement_KecleonAppears
+waitmovement 0
+waitse
+playmoncry SPECIES_KECLEON CRY_MODE_ENCOUNTER
+delay 40
+waitmoncry
+applymovement VAR_LAST_TALKED FortreeCity_Movement_KecleonFlee
+waitmovement 0
+removeobject VAR_LAST_TALKED
+setflag FLAG_KECLEON_FLED_FORTREE
+release
+end
+= FortreeCity_EventScript_GameboyKid
+msgbox	There are POKéMON that evolve when you trade them! That's what I heard.
+end
+= FortreeCity_EventScript_OldMan
+msgbox	The CITY consists of homes built on trees.Perhaps because of that lifestyle, everyone is healthy and lively.Why, even myself--I feel as if I've grown thirty years younger.
+end
+= FortreeCity_EventScript_Boy
+msgbox	Living on top of trees is okay.But sometimes BUG POKéMON come in through windows. It can be really startling.
+end
+= FortreeCity_EventScript_Woman
+lock
+faceplayer
+goto_if_set FLAG_KECLEON_FLED_FORTREE FortreeCity_EventScript_WomanGymAccessible
+msgbox	I want to go to the POKéMON GYM, but something's blocking the way.After all the bother I went through training on ROUTE 120…
+release
+end
+= FortreeCity_EventScript_WomanGymAccessible
+msgbox	I've got my pride-and-joy POKéMON with me. This time, I'll beat WINONA.
+release
+end
+= FortreeCity_EventScript_Girl
+msgbox	The ground absorbs rainwater, and trees grow by drinking that water…Our FORTREE CITY exists because there's both water and soil.
+end
+= FortreeCity_EventScript_Man
+msgbox	No one believes me, but I saw this gigantic POKéMON in the sky.It seemed to squirm as it flew toward ROUTE 131.By the way… Sniff… Um… You, uh…smell singed.Were you at a volcano or something?
+end
 signs
 6 9	FORTREE CITY “The treetop city that frolics with nature.”
 26 10	FORTREE CITY POKéMON GYM LEADER: WINONA“The bird user taking flight into the world.”

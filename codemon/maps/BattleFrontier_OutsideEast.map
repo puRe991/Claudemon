@@ -214,6 +214,142 @@ dialogs
 23	Excuse me, young one. Have you good eyesight?There is an odd tree past here, and to my tired eyes it seems to wiggle.
 24	The BATTLE FRONTIER isn't exclusively for tough TRAINERS.Many people with special abilities have been invited, it seems.That man SCOTT…He may have built this place to serve a bigger objective…
 25	I… I saw it!There was a sticky sort of a POKéMON with a long tail up ahead!It was hiding under a boulder, and it kept staring at me!
+objscripts
+0 BattleFrontier_OutsideEast_EventScript_NinjaBoy
+1 BattleFrontier_OutsideEast_EventScript_Man1
+2 BattleFrontier_OutsideEast_EventScript_Hiker
+3 BattleFrontier_OutsideEast_EventScript_HexManiac
+4 BattleFrontier_OutsideEast_EventScript_BlackBelt1
+5 BattleFrontier_OutsideEast_EventScript_Cook
+6 BattleFrontier_OutsideEast_EventScript_ExpertF
+7 BattleFrontier_OutsideEast_EventScript_TriathleteM
+8 BattleFrontier_OutsideEast_EventScript_RichBoy
+9 BattleFrontier_OutsideEast_EventScript_TriathleteF
+10 BattleFrontier_OutsideEast_EventScript_Twin
+11 BattleFrontier_OutsideEast_EventScript_Man2
+12 BattleFrontier_OutsideEast_EventScript_Zigzagoon
+13 BattleFrontier_OutsideEast_EventScript_Sudowoodo
+14 BattleFrontier_OutsideEast_EventScript_Maniac1
+15 BattleFrontier_OutsideEast_EventScript_Girl
+16 BattleFrontier_OutsideEast_EventScript_PsychicM
+17 BattleFrontier_OutsideEast_EventScript_Man3
+18 BattleFrontier_OutsideEast_EventScript_Woman1
+19 BattleFrontier_OutsideEast_EventScript_Woman2
+20 BattleFrontier_OutsideEast_EventScript_BlackBelt2
+21 BattleFrontier_OutsideEast_EventScript_Maniac2
+22 BattleFrontier_OutsideEast_EventScript_Woman3
+23 BattleFrontier_OutsideEast_EventScript_OldWoman
+24 BattleFrontier_OutsideEast_EventScript_Gentleman
+25 BattleFrontier_OutsideEast_EventScript_Camper
+movements
+BattleFrontier_OutsideEast_Movement_SudowoodoShake	face_right,delay,face_down,delay,face_left,delay,face_down,delay,face_right,delay,face_down,delay,face_left,delay,face_down,end
+scriptdefs
+= BattleFrontier_OutsideEast_EventScript_Camper
+msgbox	I… I saw it!There was a sticky sort of a POKéMON with a long tail up ahead!It was hiding under a boulder, and it kept staring at me!
+end
+= BattleFrontier_OutsideEast_EventScript_Gentleman
+msgbox	The BATTLE FRONTIER isn't exclusively for tough TRAINERS.Many people with special abilities have been invited, it seems.That man SCOTT…He may have built this place to serve a bigger objective…
+end
+= BattleFrontier_OutsideEast_EventScript_OldWoman
+lock
+faceplayer
+goto_if_set FLAG_DEFEATED_SUDOWOODO BattleFrontier_OutsideEast_EventScript_OldWomanSudowoodoGone
+msgbox	Excuse me, young one. Have you good eyesight?There is an odd tree past here, and to my tired eyes it seems to wiggle.
+release
+end
+= BattleFrontier_OutsideEast_EventScript_OldWomanSudowoodoGone
+msgbox	Excuse me, young one. Have you a good memory?I have this feeling there once was an odd tree past here.
+release
+end
+= BattleFrontier_OutsideEast_EventScript_Woman3
+lock
+msgbox	Ooh, darling, you are so wonderful!Ooh, I just can't wait anymore!Let's go to a MULTI BATTLE ROOM right this instant!If we get together in the BATTLE SALON, the power of our love will overcome everyone we meet.Why, before us, darling, everything will topple like dominoes!
+release
+end
+= BattleFrontier_OutsideEast_EventScript_Maniac2
+lock
+msgbox	With you by my side, I can do anything.
+release
+end
+= BattleFrontier_OutsideEast_EventScript_BlackBelt2
+msgbox	Oh, yeah, okay! So this is the RANKING HALL!I'd like to go down in history as a super champ and have my name recorded here for posterity.
+end
+= BattleFrontier_OutsideEast_EventScript_Woman2
+msgbox	Yes! I've finally got enough Battle Points!I guess I'll trade for another giant plush DOLL!
+end
+= BattleFrontier_OutsideEast_EventScript_Woman1
+msgbox	This guy ran into a horribly tough TRAINER while he was on the BATTLE TOWER challenge.Now look at him…You need to be cautious if you ever decide to go to the BATTLE TOWER.
+end
+= BattleFrontier_OutsideEast_EventScript_Man3
+msgbox	Man! Oh man! I've never lost once before!But I got wiped out with no saving grace at all!And then I'm told I don't have any talent?! Man!
+end
+= BattleFrontier_OutsideEast_EventScript_PsychicM
+msgbox	Do you know it? The legend of the BATTLE PYRAMID?When there comes a confident TRAINER reaching for the golden pinnacle, there shall appear a man among men.Don't know that legend? Well, of course not! I just made it up!What's it supposed to mean? That, my friend, I can't say!
+end
+= BattleFrontier_OutsideEast_EventScript_Girl
+msgbox	I sometimes see this really important- looking old man going in there.He has these really awesome POKéMON. He seems really nice, though.
+end
+= BattleFrontier_OutsideEast_EventScript_Maniac1
+msgbox	It wasn't easy getting here, but I'd heard about this knockout pretty girl at the BATTLE ARENA.Instead of her, do you know what I found?A whole teeming mob of sweaty, stinky, and primitive martial artists!
+end
+= BattleFrontier_OutsideEast_EventScript_Sudowoodo
+lock
+faceplayer
+waitse
+playse SE_SUDOWOODO_SHAKE
+applymovement LOCALID_FRONTIER_SUDOWOODO BattleFrontier_OutsideEast_Movement_SudowoodoShake
+waitmovement 0
+release
+end
+= BattleFrontier_OutsideEast_EventScript_Zigzagoon
+lock
+faceplayer
+waitse
+playmoncry SPECIES_ZIGZAGOON CRY_MODE_NORMAL
+msgbox	ZIGZAGOON looks vacant…
+waitmoncry
+release
+end
+= BattleFrontier_OutsideEast_EventScript_Man2
+lock
+msgbox	Go on, my baby sweetie! Go rack up some wins for Daddy!You're just like your mother, so you'll be dominating!
+release
+end
+= BattleFrontier_OutsideEast_EventScript_Twin
+msgbox	I'm better than my daddy at POKéMON.
+end
+= BattleFrontier_OutsideEast_EventScript_TriathleteF
+msgbox	I'm fast on my BIKE, and that goes for the way I battle, too.I win matches in the blink of an eye!
+end
+= BattleFrontier_OutsideEast_EventScript_RichBoy
+msgbox	People call me a busybody, but I can't help it.Your hat's on crooked! Oh, no, trash on the ground! Oops, it's almost dinnertime!I don't know if I can stand to just watch at the BATTLE PALACE…
+end
+= BattleFrontier_OutsideEast_EventScript_TriathleteM
+msgbox	Did SCOTT bring you here, too? What is it with that guy?It sounds like he really does know how to spot talented TRAINERS, but…I've never seen him battling in person ever.
+end
+= BattleFrontier_OutsideEast_EventScript_ExpertF
+msgbox	I may not look that impressive now, but I once beat a GYM LEADER.Who knows, maybe I should give it another shot at glory.
+end
+= BattleFrontier_OutsideEast_EventScript_Cook
+lock
+msgbox	ZIGG! I believe in you, little buddy!I'll make my little ZIGG any favorite tasty treats you like if you win!
+release
+end
+= BattleFrontier_OutsideEast_EventScript_BlackBelt1
+msgbox	I didn't sleep for a week, but then I put together the ultimate team!I can't see myself losing, no joke. We're storming the BATTLE ARENA!
+end
+= BattleFrontier_OutsideEast_EventScript_HexManiac
+msgbox	I thrive in darkness… Yes… What is worthy of me? None other than the BATTLE PYRAMID…What say you to wandering in darkness and in utter and total desperation?
+end
+= BattleFrontier_OutsideEast_EventScript_Hiker
+msgbox	The BATTLE PYRAMID's too harsh! I just can't make it to the top!Since I'm out of options, maybe I can climb the outside…
+end
+= BattleFrontier_OutsideEast_EventScript_Man1
+msgbox	My grand ambition is to conquer both the BATTLE FRONTIER and the POKéMON LEAGUE.And if my dream comes true…I… I'm going to ask MIMI next door if she will be friends with me!
+end
+= BattleFrontier_OutsideEast_EventScript_NinjaBoy
+msgbox	Wow! It's huge!The BATTLE TOWER feels special. It's different from the others.
+end
 signs
 13 17	This is the BATTLE TOWER! Keep the win streak as the toughest TRAINER!
 43 56	This is the BATTLE PALACE! Keep your eyes on POKéMON battles!

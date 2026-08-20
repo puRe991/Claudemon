@@ -51,3 +51,15 @@ people_team_aqua_aqua_member_f 5 12 N static
 dialogs
 0	I can't find the way out!I'm not afraid. Don't get me wrong!
 1	My partner forgot the map in that submarine!How's that for being useless?
+objscripts
+0 SeafloorCavern_Room4_EventScript_Grunt3
+1 SeafloorCavern_Room4_EventScript_Grunt4
+scriptdefs
+= SeafloorCavern_Room4_EventScript_Grunt4
+trainerbattle_single TRAINER_GRUNT_SEAFLOOR_CAVERN_4 SeafloorCavern_Room4_Text_Grunt4Intro SeafloorCavern_Room4_Text_Grunt4Defeat
+msgbox	My partner forgot the map in that submarine!How's that for being useless?
+end
+= SeafloorCavern_Room4_EventScript_Grunt3
+trainerbattle_single TRAINER_GRUNT_SEAFLOOR_CAVERN_3 SeafloorCavern_Room4_Text_Grunt3Intro SeafloorCavern_Room4_Text_Grunt3Defeat
+msgbox	I can't find the way out!I'm not afraid. Don't get me wrong!
+end

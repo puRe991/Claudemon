@@ -31,3 +31,40 @@ dialogs
 0	My little sister exchanges MAIL with her boyfriend in FORTREE.I don't envy her one bit at all.
 1	Even though I can't see my friend in FORTREE, my POKéMON carries MAIL back and forth for us.I'm not lonesome, even though we're apart.
 2	WINGULL: Pihyoh!
+objscripts
+0 MossdeepCity_House2_EventScript_Man
+1 MossdeepCity_House2_EventScript_Twin
+2 MossdeepCity_House2_EventScript_Wingull
+movements
+MossdeepCity_House2_Movement_WingullExitEast	down,down,down,delay,end
+MossdeepCity_House2_Movement_WingullExitNorth	right,down,down,left,down,delay,end
+scriptdefs
+= MossdeepCity_House2_EventScript_Wingull
+lock
+faceplayer
+waitse
+playmoncry SPECIES_WINGULL CRY_MODE_NORMAL
+msgbox	WINGULL: Pihyoh!
+waitmoncry
+closemessage
+setflag FLAG_WINGULL_DELIVERED_MAIL
+clearflag FLAG_HIDE_FORTREE_CITY_HOUSE_4_WINGULL
+call_if_eq VAR_FACING DIR_NORTH MossdeepCity_House2_EventScript_WingullExitNorth
+call_if_eq VAR_FACING DIR_WEST MossdeepCity_House2_EventScript_WingullExitWest
+removeobject LOCALID_MOSSDEEP_HOUSE_WINGULL
+release
+end
+= MossdeepCity_House2_EventScript_WingullExitWest
+applymovement LOCALID_MOSSDEEP_HOUSE_WINGULL MossdeepCity_House2_Movement_WingullExitEast
+waitmovement 0
+return
+= MossdeepCity_House2_EventScript_WingullExitNorth
+applymovement LOCALID_MOSSDEEP_HOUSE_WINGULL MossdeepCity_House2_Movement_WingullExitNorth
+waitmovement 0
+return
+= MossdeepCity_House2_EventScript_Twin
+msgbox	Even though I can't see my friend in FORTREE, my POKéMON carries MAIL back and forth for us.I'm not lonesome, even though we're apart.
+end
+= MossdeepCity_House2_EventScript_Man
+msgbox	My little sister exchanges MAIL with her boyfriend in FORTREE.I don't envy her one bit at all.
+end

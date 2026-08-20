@@ -34,3 +34,33 @@ people_beauty 6 6 S static
 misc_cable_car 6 3 S static
 dialogs
 0	The CABLE CAR is ready to go up. Would you like to be on it?
+objscripts
+0 Route112_CableCarStation_EventScript_Attendant
+movements
+Route112_CableCarStation_Movement_BoardCableCar	up,up,up,delay,end
+Route112_CableCarStation_Movement_LeadPlayerToCableCar	up,up,right,delay,end
+scriptdefs
+= Route112_CableCarStation_EventScript_Attendant
+lock
+faceplayer
+msgbox	The CABLE CAR is ready to go up. Would you like to be on it?
+goto_if_eq VAR_RESULT YES Route112_CableCarStation_EventScript_RideCableCar
+goto_if_eq VAR_RESULT NO Route112_CableCarStation_EventScript_DeclineRide
+end
+= Route112_CableCarStation_EventScript_DeclineRide
+msgbox	Please ride with us another time.
+release
+end
+= Route112_CableCarStation_EventScript_RideCableCar
+msgbox	Please step this way.
+closemessage
+applymovement LOCALID_ROUTE112_CABLE_CAR_ATTENDANT Route112_CableCarStation_Movement_LeadPlayerToCableCar
+applymovement LOCALID_PLAYER Route112_CableCarStation_Movement_BoardCableCar
+waitmovement 0
+setvar VAR_0x8004 FALSE  @ Going up
+setvar VAR_CABLE_CAR_STATION_STATE 1
+incrementgamestat GAME_STAT_RODE_CABLE_CAR
+special CableCarWarp
+special CableCar
+release
+end
