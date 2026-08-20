@@ -4,11 +4,16 @@
 #include <algorithm>
 
 Battle::Battle()
-	: data(nullptr), rng(nullptr), font_ok(false), player(nullptr),
+	: data(nullptr), rng(nullptr), gs(nullptr), team(nullptr), box(nullptr),
+	  action_cursor(0), font_ok(false), player(nullptr),
 	  is_trainer(false), party_idx(0), log_pos(0), phase(INACTIVE),
 	  after_msg(INACTIVE), cursor(0), over(false), victory(false),
 	  has_trainer_pic(false), intro_shown(false),
 	  shake_t(0.f), shake_side(0), prev_ehp(0), prev_php(0) {}
+
+void Battle::set_capture(GameState* g, std::vector<Mon>* t, std::vector<Mon>* b) {
+	this->gs = g; this->team = t; this->box = b;
+}
 
 void Battle::tick(float dt) {
 	if (this->phase == INACTIVE) return;
@@ -82,7 +87,7 @@ bool Battle::start_wild(const std::string& species, int level, Mon* pm) {
 	this->log.clear();
 	queue("A wild " + nice(species) + " appeared!");
 	queue("Go! " + nice(this->player->species) + "!");
-	show_messages(MENU);
+	show_messages(ACTION);
 	return true;
 }
 
@@ -110,7 +115,7 @@ bool Battle::start_trainer(const std::string& trainer_id, const std::string& nam
 	queue(this->enemy_title + " wants to battle!");
 	queue(this->enemy_title + " sent out " + nice(this->enemy.species) + "!");
 	queue("Go! " + nice(this->player->species) + "!");
-	show_messages(MENU);
+	show_messages(ACTION);
 	return true;
 }
 
@@ -173,7 +178,7 @@ void Battle::resolve_turn(const std::string& player_move) {
 	if (this->enemy.fainted()) {
 		if (this->is_trainer && this->party_idx + 1 < this->party.size()) {
 			send_next_enemy();
-			show_messages(MENU);
+			show_messages(ACTION);
 			return;
 		}
 		queue(this->is_trainer ? ("You defeated " + this->enemy_title + "!")
@@ -182,7 +187,7 @@ void Battle::resolve_turn(const std::string& player_move) {
 		show_messages(INACTIVE);
 		return;
 	}
-	show_messages(MENU);
+	show_messages(ACTION);
 }
 
 void Battle::input(BtnInput b) {
@@ -192,22 +197,82 @@ void Battle::input(BtnInput b) {
 			if (this->log_pos >= this->log.size()) {
 				this->log.clear();
 				this->phase = this->after_msg;   // MENU or INACTIVE
-				if (this->phase == MENU) this->intro_shown = true;
+				if (this->phase == ACTION) this->intro_shown = true;
 			}
 		}
 		return;
 	}
-	if (this->phase == MENU) {
+	if (this->phase == ACTION) {
+		// FIGHT / BALL / RUN
+		if (b == BTN_UP && this->action_cursor > 0) this->action_cursor--;
+		else if (b == BTN_DOWN && this->action_cursor < 2) this->action_cursor++;
+		else if (b == BTN_CONFIRM) {
+			if (this->action_cursor == 0) { this->cursor = 0; this->phase = MOVE; }
+			else if (this->action_cursor == 1) throw_ball();
+			else flee();
+		}
+		return;
+	}
+	if (this->phase == MOVE) {
 		int n = (int)this->player->moves.size();
 		if (n <= 0) return;
 		if (b == BTN_LEFT  && (this->cursor % 2) == 1) this->cursor--;
 		else if (b == BTN_RIGHT && (this->cursor % 2) == 0 && this->cursor + 1 < n) this->cursor++;
 		else if (b == BTN_UP   && this->cursor >= 2) this->cursor -= 2;
 		else if (b == BTN_DOWN && this->cursor + 2 < n) this->cursor += 2;
-		else if (b == BTN_CONFIRM) {
-			resolve_turn(this->player->moves[this->cursor]);
-		}
+		else if (b == BTN_CONFIRM) resolve_turn(this->player->moves[this->cursor]);
 	}
+}
+
+void Battle::enemy_turn_after() {
+	std::string em = ai_move();
+	do_move(this->enemy, *this->player, em, nice(this->enemy.species));
+	if (this->player->fainted()) {
+		queue(nice(this->player->species) + " fainted!");
+		queue("You lost the battle...");
+		this->over = true; this->victory = false;
+		show_messages(INACTIVE);
+	} else {
+		show_messages(ACTION);
+	}
+}
+
+void Battle::throw_ball() {
+	if (this->is_trainer) {
+		this->log.clear(); queue("You can't catch a TRAINER's POKeMON!");
+		show_messages(ACTION); return;
+	}
+	if (!this->gs || this->gs->item_count("ITEM_POKE_BALL") <= 0) {
+		this->log.clear(); queue("You have no POKe BALLS left!");
+		show_messages(ACTION); return;
+	}
+	this->gs->give_item("ITEM_POKE_BALL", -1);
+	this->log.clear();
+	queue("You threw a POKe BALL!");
+	float ratio = this->enemy.max_hp > 0 ? 1.f - (float)this->enemy.hp / this->enemy.max_hp : 0.f;
+	int chance = 35 + (int)(ratio * 55.f);        // 35%..90%, better when weakened
+	if ((int)((*this->rng)() % 100) < chance) {
+		queue("Gotcha! " + nice(this->enemy.species) + " was caught!");
+		Mon caught = this->data->make_mon(this->enemy.species, this->enemy.level);
+		if (this->team && this->team->size() < 6) this->team->push_back(caught);
+		else if (this->box) { this->box->push_back(caught);
+			queue(nice(this->enemy.species) + " was sent to the PC."); }
+		this->over = true; this->victory = true;
+		show_messages(INACTIVE);
+	} else {
+		queue(nice(this->enemy.species) + " broke free!");
+		enemy_turn_after();
+	}
+}
+
+void Battle::flee() {
+	if (this->is_trainer) {
+		this->log.clear(); queue("No! There's no running from a TRAINER battle!");
+		show_messages(ACTION); return;
+	}
+	this->log.clear(); queue("Got away safely!");
+	this->over = true; this->victory = false;
+	show_messages(INACTIVE);
 }
 
 // ------------------------------------------------------------------ drawing --
@@ -304,8 +369,27 @@ void Battle::draw(sf::RenderTarget& target) {
 		std::string line = this->log_pos < this->log.size() ? this->log[this->log_pos] : "";
 		sf::Text t(sf::String::fromUtf8(line.begin(), line.end()), this->font, 22);
 		t.setPosition(tx, ty + 30); t.setFillColor(sf::Color::White); target.draw(t);
-	} else if (this->phase == MENU) {
+	} else if (this->phase == ACTION) {
 		sf::Text q("What will " + nice(this->player->species) + " do?", this->font, 20);
+		q.setPosition(tx, ty); q.setFillColor(sf::Color::White); target.draw(q);
+		const char* acts[] = {"FIGHT", "BALL", "RUN"};
+		for (int i = 0; i < 3; ++i) {
+			bool sel = i == this->action_cursor;
+			bool dis = (i != 0) && this->is_trainer;   // no catching/running trainers
+			sf::Text a((sel ? "> " : "  ") + std::string(acts[i]), this->font, 22);
+			a.setPosition(size.x * 0.46f, ty + i * 34);
+			a.setFillColor(dis ? sf::Color(120, 120, 120)
+			              : sel ? sf::Color(150, 210, 255) : sf::Color::White);
+			target.draw(a);
+		}
+		if (this->gs) {
+			sf::Text bc("BALLS x" + std::to_string(this->gs->item_count("ITEM_POKE_BALL")),
+			            this->font, 16);
+			bc.setPosition(size.x * 0.72f, ty + 34);
+			bc.setFillColor(sf::Color(200, 200, 200)); target.draw(bc);
+		}
+	} else if (this->phase == MOVE) {
+		sf::Text q("Choose a move:", this->font, 20);
 		q.setPosition(tx, ty); q.setFillColor(sf::Color::White); target.draw(q);
 		for (size_t i = 0; i < this->player->moves.size(); ++i) {
 			float mx = size.x * 0.42f + (i % 2) * (size.x * 0.27f);

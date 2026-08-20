@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <map>
+#include <vector>
 #include "SFML/Graphics.hpp"
 #include "GameState.h"
 #include "BattleData.h"   // Mon
@@ -13,20 +14,22 @@ Menu - the overworld start menu with a Bag (item icons + counts) and a Pokemon
 class Menu
 {
 private:
-	enum Screen { CLOSED, MAIN, BAG, PARTY };
+	enum Screen { CLOSED, MAIN, BAG, PARTY, PC };
 	sf::Font font; bool font_ok;
 	Screen screen;
 	int cursor;
 	GameState* gs;
-	Mon* party;
+	std::vector<Mon>* team;
+	std::vector<Mon>* box;
 	std::map<std::string, sf::Texture> item_tex;
-	sf::Texture mon_tex; bool mon_loaded;
+	std::map<std::string, sf::Texture> mon_tex;
 
 	const sf::Texture* item_icon(const std::string& item);
+	const sf::Texture* mon_icon(const std::string& species);
 
 public:
 	Menu();
-	void configure(GameState* g, Mon* p);
+	void configure(GameState* g, std::vector<Mon>* team, std::vector<Mon>* box);
 	bool load_font(const std::string& path = "assets/fonts/DejaVuSans.ttf");
 
 	bool active() const { return screen != CLOSED; }

@@ -354,15 +354,19 @@ int main() {
     GameState gs;
     BattleData bdata;
     bdata.load("assets/battle");
-    Mon party = bdata.make_mon("TREECKO", 8);     // the player's starter
+    std::vector<Mon> team;                          // the player's party
+    team.reserve(6);                                // keep &team[0] stable
+    team.push_back(bdata.make_mon("TREECKO", 8));   // starter
+    std::vector<Mon> pc_box;                         // PC storage
     Battle battle;
     battle.configure(&bdata, &rng);
+    battle.set_capture(&gs, &team, &pc_box);
     ScriptVM vm;
-    vm.set_battle_data(&bdata, &party);
+    vm.set_battle_data(&bdata, &team[0]);
     vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player);
     Menu menu;
     menu.load_font();
-    menu.configure(&gs, &party);
+    menu.configure(&gs, &team, &pc_box);
     // a few starting items so the bag is not empty
     gs.give_item("ITEM_POTION", 5);
     gs.give_item("ITEM_POKE_BALL", 10);
@@ -417,7 +421,7 @@ int main() {
                                 on_map_change(sess->path);
                             } else if (sess->player->get_tile_x() != pbx ||
                                        sess->player->get_tile_y() != pby) {
-                                try_encounter(sess, battle, party, rng, force_enc);
+                                try_encounter(sess, battle, team[0], rng, force_enc);
                                 check_trigger(sess, vm, gs);
                             }
                         }
@@ -500,7 +504,7 @@ int main() {
                             on_map_change(sess->path);
                         } else if (sess->player->get_tile_x() != pbx ||
                                    sess->player->get_tile_y() != pby) {
-                            try_encounter(sess, battle, party, rng, false);
+                            try_encounter(sess, battle, team[0], rng, false);
                             check_trigger(sess, vm, gs);
                         }
                     }

@@ -5,6 +5,7 @@
 #include <random>
 #include "SFML/Graphics.hpp"
 #include "BattleData.h"
+#include "GameState.h"
 
 /******************************************************************************
 Battle - a turn-based pokemon battle for wild encounters and trainer fights.
@@ -21,10 +22,14 @@ enum BtnInput { BTN_UP, BTN_DOWN, BTN_LEFT, BTN_RIGHT, BTN_CONFIRM };
 class Battle
 {
 private:
-	enum Phase { INACTIVE, MSG, MENU };
+	enum Phase { INACTIVE, MSG, ACTION, MOVE };
 
 	BattleData* data;
 	std::mt19937* rng;
+	GameState* gs;
+	std::vector<Mon>* team;
+	std::vector<Mon>* box;
+	int action_cursor;
 	sf::Font font; bool font_ok;
 
 	Mon* player;                 // owned by caller; mutated here
@@ -54,12 +59,17 @@ private:
 	void do_move(Mon& atk, Mon& def, const std::string& mv,
 	             const std::string& atk_name);
 	void resolve_turn(const std::string& player_move);
+	void throw_ball();
+	void flee();
+	void enemy_turn_after();     // enemy attacks once, then back to ACTION / end
 	void send_next_enemy();
 	static std::string nice(const std::string& id);   // POKEMON_NAME -> Pokemon Name
 
 public:
 	Battle();
 	void configure(BattleData* d, std::mt19937* r);
+	// where caught pokemon go, and the bag for Poke Balls
+	void set_capture(GameState* g, std::vector<Mon>* team, std::vector<Mon>* box);
 
 	bool start_wild(const std::string& species, int level, Mon* player_mon);
 	bool start_trainer(const std::string& trainer_id, const std::string& name,
