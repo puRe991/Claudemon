@@ -60,6 +60,7 @@ set(ENGINE_SOURCES
     "${SRC_DIR}/Battle.cpp"
     "${SRC_DIR}/ScriptVM.cpp"
     "${SRC_DIR}/Menu.cpp"
+    "${SRC_DIR}/Minigame.cpp"
     "${SRC_DIR}/data_structures.cpp")
 
 add_library(monsta_engine STATIC ${ENGINE_SOURCES})

@@ -11,6 +11,7 @@
 #include "GameState.h"
 #include "ScriptVM.h"
 #include "Menu.h"
+#include "Minigame.h"
 
 #include <algorithm>
 #include <cctype>
@@ -329,7 +330,7 @@ static std::vector<char> parse_walk(const char* env) {
     if (!env) return out;
     std::stringstream ss(env); std::string t;
     while (std::getline(ss, t, ',')) {
-        if (t.size() == 1 && std::string("NSEWTM").find(t[0]) != std::string::npos)
+        if (t.size() == 1 && std::string("NSEWTMG").find(t[0]) != std::string::npos)
             out.push_back(t[0]);
     }
     return out;
@@ -367,10 +368,14 @@ int main() {
     Menu menu;
     menu.load_font();
     menu.configure(&gs, &team, &pc_box);
+    Minigame games;
+    games.load_font();
+    games.configure(&gs, &rng);
     // a few starting items so the bag is not empty
     gs.give_item("ITEM_POTION", 5);
     gs.give_item("ITEM_POKE_BALL", 10);
     gs.give_item("ITEM_ANTIDOTE", 2);
+    gs.set_var("COINS", 50);
     bool force_enc = std::getenv("CODEMON_FORCE_ENCOUNTER") != nullptr;
 
     // map-name banner + warp fade-in state
@@ -402,6 +407,10 @@ int main() {
                     char tok = ((size_t)(i - 1) < walk.size()) ? walk[i - 1] : 0;
                     if (battle.active()) {
                         if (tok) battle.input(token_btn(tok));
+                    } else if (games.active()) {
+                        if (tok) games.input(token_btn(tok));
+                    } else if (tok == 'G') {
+                        games.open();
                     } else if (menu.active()) {
                         if (tok == 'M') menu.close();
                         else if (tok) menu.input(token_btn(tok));
@@ -430,11 +439,13 @@ int main() {
                         if (walk.empty()) tick_npcs(sess, rng);
                     }
                     battle.tick(0.13f);
+                    games.tick(0.13f);
                     if (banner_t > 0.f) banner_t -= 0.13f;
                     if (fade > 0.f) fade -= 0.13f * 1.6f;
                 }
                 rt.clear(sf::Color(40, 72, 56));
                 if (battle.active()) battle.draw(rt);
+                else if (games.active()) games.draw(rt);
                 else {
                     draw_scene(rt, sess); box.draw(rt);
                     draw_banner(rt, ban_font, banner, banner_t);
@@ -478,6 +489,19 @@ int main() {
                     case sf::Keyboard::Return: battle.input(BTN_CONFIRM); break;
                     default: break;
                     }
+                } else if (games.active()) {
+                    switch (event.key.code) {
+                    case sf::Keyboard::W: games.input(BTN_UP); break;
+                    case sf::Keyboard::S: games.input(BTN_DOWN); break;
+                    case sf::Keyboard::A: games.input(BTN_LEFT); break;
+                    case sf::Keyboard::D: games.input(BTN_RIGHT); break;
+                    case sf::Keyboard::Space:
+                    case sf::Keyboard::Return: games.input(BTN_CONFIRM); break;
+                    default: break;
+                    }
+                } else if (event.key.code == sf::Keyboard::G &&
+                           !box.is_active() && !vm.running() && !menu.active()) {
+                    games.open();
                 } else if (menu.active()) {
                     switch (event.key.code) {
                     case sf::Keyboard::W: menu.input(BTN_UP); break;
@@ -516,11 +540,13 @@ int main() {
         float dt = clock.restart().asSeconds();
         if (vm.running()) vm.update(dt);
         battle.tick(dt);
+        games.tick(dt);
         if (banner_t > 0.f) banner_t -= dt;
         if (fade > 0.f) fade -= dt * 1.6f;
-        // NPCs freeze while a dialog/battle/script/menu is running.
+        // NPCs freeze while a dialog/battle/script/menu/minigame is running.
         npc_accum += dt;
-        if (!box.is_active() && !battle.active() && !vm.running() && !menu.active()) {
+        if (!box.is_active() && !battle.active() && !vm.running() &&
+            !menu.active() && !games.active()) {
             while (npc_accum >= NPC_TICK) { tick_npcs(sess, rng); npc_accum -= NPC_TICK; }
         } else {
             npc_accum = 0.f;
@@ -528,6 +554,7 @@ int main() {
 
         scr.clear();
         if (battle.active()) { battle.draw(*scr.get_window()); }
+        else if (games.active()) { games.draw(*scr.get_window()); }
         else {
             draw_scene(*scr.get_window(), sess);
             box.draw(*scr.get_window());
