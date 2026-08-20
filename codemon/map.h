@@ -1,76 +1,61 @@
 #pragma once
 #include <string>
-#include <fstream>
+#include <vector>
 
-#include "Tile.h"
+#include "Tileset.h"
 #include "Window.h"
 #include "SFML/Graphics.hpp"
 #include "direction.h"
-#include "character.h"
 #include "Coordinates.h"
 
+/******************************************************************************
+Map - a grid of metatile ids rendered through a Tileset.
 
+Map file format (text), e.g. maps/route.map:
 
+    tileset general        # metatile sheet: assets/tilesets/general.png
+    20 15                  # width height (in metatiles)
+    3 6                    # player start tile (x y)
+    <height rows of width comma-separated metatile ids>
+    collision              # optional marker
+    <height rows of width comma-separated 0/1 passability flags>
+
+Rendering samples 16x16 metatiles from the coloured tileset sheet, so the map
+looks exactly like the source pokeemerald tiles with no runtime palette work.
+*****************************************************************************/
 class Map
 {
 private:
-	//Tilesize definitions
-	Coordinates tile_dimensions;
+	Tileset tileset;             // coloured metatile sheet
+	int tile_px;                 // metatile edge length (px), from the tileset
+	Coordinates dimensions;      // width, height in tiles
+	Coordinates start_pos;       // player spawn tile
 
-	//How big the map is in x, y
-	Coordinates dimensions;
-	//Where the player character spawns when loaded
-	Coordinates start_pos;
+	std::vector<int>  tile_map;  // width*height metatile ids
+	std::vector<char> solid;     // width*height passability (1 = blocked)
 
-	//Tilesheet for the map
-	sf::Texture map_sheet;
-
-	//Path to map file that can read path
-	std::string map_path;
-	std::string sheet_path;
-	//2d array of tile pointers
-	Tile* tile_map;
-
-	//Put a tile into the map, tile holds its own pos but 
-	//the new tile is also indexed by its pos.
-	void add_tile(Tile *new_tile);
-
-	void set_tile_size();
-	int get_tile_width();
-	int get_tile_height();
+	int index(int x, int y) const;
 
 public:
-	//get a pointer to the map
-	Tile* get_map();
-	//Load a given map from its bin map and a tilesheet
-	Map(std::string map_path, std::string sheet_path);
-	//Into a given window render this map
-	void render_map(Window *active_window);
-	//Will a character and a direction result in a valid move on this map
-	bool in_bounds(Character *moving_char, DIR move_dir);
-	//Is this coordinate within this map
-	bool in_bounds(Coordinates proposed_coord);
+	// Load a map file; tileset_dir is where the coloured sheets live.
+	Map(const std::string& map_path,
+	    const std::string& tileset_dir = "assets/tilesets");
 
-	/* Dimensionality setters */
-	void set_width(unsigned int width);
-	void set_height(unsigned int height);
-	void set_dimensions(Coordinates start);
+	// Render every metatile into the window.
+	void render_map(Window* active_window);
+	// Render every metatile into any SFML target (window or off-screen texture).
+	void render_to(sf::RenderTarget& target);
 
-	/* Dimensionality Getters*/
-	unsigned int get_width();
-	unsigned int get_height();
-	void set_start_pos(Coordinates start);
+	// Is (tile_x, tile_y) inside the map?
+	bool in_bounds(int tile_x, int tile_y) const;
+	bool in_bounds(Coordinates proposed_coord) const;
 
-	/* Initializer for the the size, in two dimensions, of each tile in the map. 
-	its the size of a generic tile for this map in pixels.*/
-	void set_tile_size(unsigned int tile_width, unsigned int tile_height);
-	void set_tile_size(Coordinates tile_dimensionality);
+	// Can a character stand on (tile_x, tile_y)? (in bounds AND not blocked)
+	bool passable(int tile_x, int tile_y) const;
 
-
-	//Get dimensions as a tuple
-	Coordinates *get_dimensions();
-
-	//Get player start position
-	Coordinates get_start_pos();
-
+	unsigned int get_width() const;
+	unsigned int get_height() const;
+	int get_tile_size() const;
+	Coordinates get_start_pos() const;
+	bool ready() const;
 };

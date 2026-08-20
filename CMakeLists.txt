@@ -37,7 +37,7 @@ if(WIN32 AND NOT DEFINED SFML_DIR AND NOT DEFINED ENV{SFML_DIR})
     set(SFML_DIR "${CMAKE_CURRENT_SOURCE_DIR}/codemon/SFML/lib/cmake/SFML")
 endif()
 
-set(SFML_COMPONENTS graphics window system)
+set(SFML_COMPONENTS graphics window system audio)
 if(WIN32)
     # sfml-main provides the WinMain -> main shim used by the VS project.
     list(APPEND SFML_COMPONENTS main)
@@ -50,14 +50,16 @@ set(SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/codemon")
 set(ENGINE_SOURCES
     "${SRC_DIR}/Coordinates.cpp"
     "${SRC_DIR}/Tile.cpp"
+    "${SRC_DIR}/Tileset.cpp"
     "${SRC_DIR}/Window.cpp"
     "${SRC_DIR}/character.cpp"
     "${SRC_DIR}/map.cpp"
+    "${SRC_DIR}/Audio.cpp"
     "${SRC_DIR}/data_structures.cpp")
 
 add_library(monsta_engine STATIC ${ENGINE_SOURCES})
 target_include_directories(monsta_engine PUBLIC "${SRC_DIR}")
-target_link_libraries(monsta_engine PUBLIC sfml-graphics sfml-window sfml-system)
+target_link_libraries(monsta_engine PUBLIC sfml-graphics sfml-window sfml-system sfml-audio)
 
 # --- Game executable --------------------------------------------------------
 add_executable(codemon "${SRC_DIR}/main.cpp")

@@ -1,0 +1,7 @@
+{
+  "name": "building",
+  "metatile_size": 16,
+  "cols": 16,
+  "count": 8,
+  "sheet": "building.png"
+}

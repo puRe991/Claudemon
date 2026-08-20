@@ -1,72 +1,65 @@
 #pragma once
-#include "character.h"
+#include "SFML/Graphics.hpp"
 #include "direction.h"
 #include "Coordinates.h"
-
+#include <string>
 
 /******************************************************************************
-Character class - does whatever a character does. 
-Seriously though its pretty boiler plate. 
-Everything operaters through setters and getters.
+Character - a tile-positioned actor drawn from a pokeemerald overworld sheet.
 
-1/1/2023
+The imported walking sheets (assets/overworld/*.png) are a single row of nine
+16x32 frames:
+    0 face S   1 face N   2 face W
+    3,4 walk S   5,6 walk N   7,8 walk W
+East reuses the West frames mirrored horizontally. The sprite is 32px tall but
+occupies one 16px tile, so it is drawn shifted up by (frame_h - tile) px, giving
+the classic overworld "feet on the tile" look.
 
+The same class is used for the player and for NPCs (construct at a tile and
+give it a sheet).
 *****************************************************************************/
 class Character
 {
 private:
-	//Helper function that gets a pointer to the spirte sheet.
-	sf::Texture* get_sprite_sheet();
-
-	//Position in the current map. None if not on a map.
-	Coordinates pos;
-	//Sprite sheet.
 	sf::Texture sprite_sheet;
-	//current walk animation sprite.
-	sf::Sprite current_sprite;
+	sf::Sprite  current_sprite;
 
-	//Which part of the walk cycle this character is at.
-	unsigned char walk_anim_index;
-	
-	//What direction of is this character facing.
+	Coordinates tile;          // position in map tiles
 	DIR facing;
+	int anim_phase;            // 0 = idle, 1 = step A, 2 = step B
+	bool step_toggle;          // alternates the two walk frames
 
-	//Sprite dimensions
-	unsigned int sprite_width;
-	unsigned int sprite_height;
-	
+	int frame_w, frame_h;      // 16, 32
+	bool loaded;
+
+	int frame_for(DIR dir, int phase) const;
+
 public:
-	/*Constructors*/
 	Character();
-	Character(int x, int y);
+	Character(int tile_x, int tile_y);
 
-	/*coordinate element getters*/
-	int get_x();
-	int get_y();
+	bool load_sprite_sheet(const std::string& path =
+	                       "assets/overworld/people_brendan_walking.png");
 
-	/*coordinate element setters*/
-	void set_x(int new_x);
-	void set_y(int new_y);
+	/* Tile position */
+	Coordinates get_tile() const;
+	int get_tile_x() const;
+	int get_tile_y() const;
+	void set_tile(int x, int y);
 
-	/*Coordinate element modifier functions*/
-	//Change x or y values by the given ammount.
-	void move_x(int new_x);
-	void move_y(int new_y);
+	// Where this character would end up after a step in `dir` (signed).
+	void target_tile(DIR dir, int& out_x, int& out_y) const;
 
-	/*move character in given direction*/
-	void move(DIR move_dir);
-
-	//Returns this character's coordinates after a 
-	//succesful move in a direction
-	Coordinates move_cord(DIR move_dir);
-
-	//Get this characters current position
-	Coordinates get_pos();
-
-	/*Sprite accounting functions*/
-	sf::Sprite* get_current_sprite();
-	bool load_sprite_sheet();
-	void update_sprite_pos();
+	/* Facing / animation */
+	DIR get_facing() const;
 	void set_facing(DIR dir);
-};
+	void face(DIR dir);            // just turn, no move
+	void step(DIR dir);            // turn, advance one tile, toggle walk frame
+	void set_idle();
 
+	/* Rendering */
+	sf::Sprite* get_current_sprite();
+	// Recompute the source rectangle and on-screen position; tile_px is the
+	// map's metatile size (16).
+	void update_sprite(int tile_px);
+};

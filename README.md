@@ -62,6 +62,33 @@ git clone --recurse-submodules <repo-url>
 git submodule update --init --depth 1 sprites
 ```
 
+## World assets from pokeemerald
+
+The overworld is built from **pokeemerald** assets, imported into engine-ready
+form by `codemon/tools/pe_import.py` (see `codemon/tools/README.md`). That
+script is the SFML-friendly replacement for the pokeemerald GBA build tools:
+
+* **Tilesets** → fully coloured 16×16 metatile sheets in
+  `codemon/assets/tilesets/` (palettes + metatile layers are resolved at import
+  time, so the engine just samples the sheet — no runtime palette work). Loaded
+  by the new `Tileset` class and rendered by `Map`.
+* **Characters / NPCs** → every overworld walking sheet in
+  `codemon/assets/overworld/` (16×32, 9-frame layout). The player and NPCs use
+  the same `Character` class; east reuses the west frames mirrored.
+* **Audio** → Pokémon cries plus generated step/bump/select blips in
+  `codemon/assets/sfx/`, played through the new `Audio` class. MIDI music is
+  converted to OGG when a synth is installed (SFML can't play MIDI directly).
+
+Re-run or extend the import with:
+
+```sh
+pip install Pillow
+python3 codemon/tools/pe_import.py all --src /path/to/pokeemerald-master
+```
+
+Licensing note: the imported graphics/audio remain Nintendo/Game Freak property
+and are for non-commercial fan use only — see `codemon/assets/CREDITS.md`.
+
 ## Building & Running
 
 The project builds with CMake and needs a system install of **SFML 2.5+**.
@@ -102,8 +129,10 @@ The `codemon_tests` target exercises the display-independent core logic
 (`Coordinates`, `Tile`, the hand-rolled `Linked_list`) and is wired into CTest.
 
 ### To-do bucket:<br>
-- add collision
-- add bounds checking
-- add music
-- Redo assest importation: Make it a little bit more flexible. Had to use some hardcoding that I am unsatisfied with. Should ideally use macros to leverage preprocessor. This would ideally allow us to navigate to the target assets at compile time.
+- ~~add collision~~ — done: per-tile collision layer in the map format, checked on move
+- ~~add bounds checking~~ — done: `Map::in_bounds` / `Map::passable`
+- ~~add music~~ — audio system in place (SFX + cries); MIDI→OGG music is a synth away
+- Redo asset importation: now handled by `tools/pe_import.py` (data-driven, no
+  compile-time hardcoding). Next: render secondary tilesets against their primary.
 - Add a testing suite for the low level data structures. I regret rolling my own but at this point adding the testing suite is the only way to nail everything down.
+- NPC behaviour (movement/interaction), map-to-map transitions, a battle system.

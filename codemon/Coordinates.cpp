@@ -26,12 +26,12 @@ Coordinates::Coordinates(unsigned int x, unsigned int y)
 }
 
 //Coordinate getters and setters
-unsigned int Coordinates::get_x()
+unsigned int Coordinates::get_x() const
 {
     return this->x;
 }
 
-unsigned int Coordinates::get_y()
+unsigned int Coordinates::get_y() const
 {
     return this->y;
 }
