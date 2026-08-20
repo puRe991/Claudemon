@@ -10,6 +10,7 @@
 #include "BattleData.h"
 #include "GameState.h"
 #include "ScriptVM.h"
+#include "Menu.h"
 
 #include <algorithm>
 #include <cctype>
@@ -25,6 +26,44 @@ static const float NPC_TICK = 0.45f;
 // Fixed camera viewport in tiles (so the window size is independent of the map).
 static const int VIEW_TW = 16, VIEW_TH = 12;
 static const char* PLAYER_SHEET = "assets/overworld/people_brendan_walking.png";
+
+// "maps/LittlerootTown.map" -> "Littleroot Town", "Route102" -> "Route 102".
+static std::string pretty_map(const std::string& path) {
+    size_t slash = path.find_last_of('/');
+    std::string s = (slash == std::string::npos) ? path : path.substr(slash + 1);
+    size_t dot = s.rfind(".map");
+    if (dot != std::string::npos) s = s.substr(0, dot);
+    std::string out;
+    for (size_t i = 0; i < s.size(); ++i) {
+        char c = s[i];
+        if (c == '_') { out += ' '; continue; }
+        bool up = std::isupper((unsigned char)c), dg = std::isdigit((unsigned char)c);
+        if (i > 0 && (up || (dg && !std::isdigit((unsigned char)s[i - 1]))) &&
+            out.size() && out.back() != ' ')
+            out += ' ';
+        out += c;
+    }
+    return out;
+}
+
+// Draw a map-name banner at the top; alpha fades with `t` (seconds remaining).
+static void draw_banner(sf::RenderTarget& target, const sf::Font& font,
+                        const std::string& name, float t) {
+    if (t <= 0.f || name.empty()) return;
+    sf::View saved = target.getView();
+    target.setView(target.getDefaultView());
+    sf::Vector2f size = target.getView().getSize();
+    sf::Uint8 a = (sf::Uint8)(std::min(1.f, t) * 235);
+    sf::RectangleShape box(sf::Vector2f(280, 46));
+    box.setPosition(18, 14);
+    box.setFillColor(sf::Color(20, 28, 48, a));
+    box.setOutlineColor(sf::Color(245, 245, 245, a)); box.setOutlineThickness(2.f);
+    target.draw(box);
+    sf::Text txt(sf::String::fromUtf8(name.begin(), name.end()), font, 22);
+    txt.setPosition(32, 24); txt.setFillColor(sf::Color(255, 255, 255, a));
+    target.draw(txt);
+    target.setView(saved);
+}
 
 static DIR convert_key_event(const sf::Event& e) {
     switch (e.key.code) {
@@ -72,6 +111,7 @@ static DIR opposite(DIR d) {
 
 // Everything tied to the currently-loaded map.
 struct Session {
+    std::string path;
     Map* map = nullptr;
     Character* player = nullptr;
     std::vector<Agent> agents;
@@ -100,6 +140,7 @@ static void free_session(Session* s) {
 // own start position.
 static Session* load_session(const std::string& path, int arr_x, int arr_y) {
     Session* s = new Session();
+    s->path = path;
     s->map = new Map(path);
     int px = (arr_x >= 0) ? arr_x : (int)s->map->get_start_pos().get_x();
     int py = (arr_y >= 0) ? arr_y : (int)s->map->get_start_pos().get_y();
@@ -288,7 +329,7 @@ static std::vector<char> parse_walk(const char* env) {
     if (!env) return out;
     std::stringstream ss(env); std::string t;
     while (std::getline(ss, t, ',')) {
-        if (t.size() == 1 && std::string("NSEWT").find(t[0]) != std::string::npos)
+        if (t.size() == 1 && std::string("NSEWTM").find(t[0]) != std::string::npos)
             out.push_back(t[0]);
     }
     return out;
@@ -319,7 +360,22 @@ int main() {
     ScriptVM vm;
     vm.set_battle_data(&bdata, &party);
     vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player);
+    Menu menu;
+    menu.load_font();
+    menu.configure(&gs, &party);
+    // a few starting items so the bag is not empty
+    gs.give_item("ITEM_POTION", 5);
+    gs.give_item("ITEM_POKE_BALL", 10);
+    gs.give_item("ITEM_ANTIDOTE", 2);
     bool force_enc = std::getenv("CODEMON_FORCE_ENCOUNTER") != nullptr;
+
+    // map-name banner + warp fade-in state
+    std::string banner = pretty_map(map_env ? map_env : "maps/LittlerootTown.map");
+    float banner_t = 2.2f, fade = 1.0f;
+    sf::Font ban_font; ban_font.loadFromFile("assets/fonts/DejaVuSans.ttf");
+    auto on_map_change = [&](const std::string& path) {
+        banner = pretty_map(path); banner_t = 2.2f; fade = 1.0f;
+    };
 
     // Map a walk token to a battle button (for scripted battle demos).
     auto token_btn = [](char t) -> BtnInput {
@@ -340,6 +396,11 @@ int main() {
                     char tok = ((size_t)(i - 1) < walk.size()) ? walk[i - 1] : 0;
                     if (battle.active()) {
                         if (tok) battle.input(token_btn(tok));
+                    } else if (menu.active()) {
+                        if (tok == 'M') menu.close();
+                        else if (tok) menu.input(token_btn(tok));
+                    } else if (tok == 'M') {
+                        menu.open();
                     } else if (vm.running()) {
                         if (tok == 'T') vm.on_key();
                         vm.update(0.13f);
@@ -351,20 +412,34 @@ int main() {
                             int pby = sess->player->get_tile_y();
                             Session* before = sess;
                             sess = player_step(sess, char_to_dir(tok), nullptr);
-                            if (sess != before)
+                            if (sess != before) {
                                 vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player);
-                            else if (sess->player->get_tile_x() != pbx ||
-                                     sess->player->get_tile_y() != pby) {
+                                on_map_change(sess->path);
+                            } else if (sess->player->get_tile_x() != pbx ||
+                                       sess->player->get_tile_y() != pby) {
                                 try_encounter(sess, battle, party, rng, force_enc);
                                 check_trigger(sess, vm, gs);
                             }
                         }
                         if (walk.empty()) tick_npcs(sess, rng);
                     }
+                    battle.tick(0.13f);
+                    if (banner_t > 0.f) banner_t -= 0.13f;
+                    if (fade > 0.f) fade -= 0.13f * 1.6f;
                 }
                 rt.clear(sf::Color(40, 72, 56));
                 if (battle.active()) battle.draw(rt);
-                else { draw_scene(rt, sess); box.draw(rt); }
+                else {
+                    draw_scene(rt, sess); box.draw(rt);
+                    draw_banner(rt, ban_font, banner, banner_t);
+                    menu.draw(rt);
+                    if (fade > 0.f) {
+                        rt.setView(rt.getDefaultView());
+                        sf::RectangleShape f(rt.getView().getSize());
+                        f.setFillColor(sf::Color(0, 0, 0, (sf::Uint8)(std::min(1.f, fade) * 255)));
+                        rt.draw(f);
+                    }
+                }
                 rt.display();
                 char name[512];
                 if (frames == 1) std::snprintf(name, sizeof(name), "%s", shot);
@@ -397,6 +472,18 @@ int main() {
                     case sf::Keyboard::Return: battle.input(BTN_CONFIRM); break;
                     default: break;
                     }
+                } else if (menu.active()) {
+                    switch (event.key.code) {
+                    case sf::Keyboard::W: menu.input(BTN_UP); break;
+                    case sf::Keyboard::S: menu.input(BTN_DOWN); break;
+                    case sf::Keyboard::Space:
+                    case sf::Keyboard::Return: menu.input(BTN_CONFIRM); break;
+                    case sf::Keyboard::M: menu.close(); break;
+                    default: break;
+                    }
+                } else if (event.key.code == sf::Keyboard::M &&
+                           !box.is_active() && !vm.running()) {
+                    menu.open();
                 } else if (event.key.code == sf::Keyboard::Space ||
                            event.key.code == sf::Keyboard::Return) {
                     if (vm.running()) vm.on_key();           // advance a script message
@@ -410,6 +497,7 @@ int main() {
                         sess = player_step(sess, dir, &audio);
                         if (sess != before) {
                             vm.configure(sess->map, &gs, &box, &battle, &audio, sess->player);
+                            on_map_change(sess->path);
                         } else if (sess->player->get_tile_x() != pbx ||
                                    sess->player->get_tile_y() != pby) {
                             try_encounter(sess, battle, party, rng, false);
@@ -421,9 +509,12 @@ int main() {
         }
         float dt = clock.restart().asSeconds();
         if (vm.running()) vm.update(dt);
-        // NPCs freeze while a dialog/battle/script is running.
+        battle.tick(dt);
+        if (banner_t > 0.f) banner_t -= dt;
+        if (fade > 0.f) fade -= dt * 1.6f;
+        // NPCs freeze while a dialog/battle/script/menu is running.
         npc_accum += dt;
-        if (!box.is_active() && !battle.active() && !vm.running()) {
+        if (!box.is_active() && !battle.active() && !vm.running() && !menu.active()) {
             while (npc_accum >= NPC_TICK) { tick_npcs(sess, rng); npc_accum -= NPC_TICK; }
         } else {
             npc_accum = 0.f;
@@ -431,7 +522,20 @@ int main() {
 
         scr.clear();
         if (battle.active()) { battle.draw(*scr.get_window()); }
-        else { draw_scene(*scr.get_window(), sess); box.draw(*scr.get_window()); }
+        else {
+            draw_scene(*scr.get_window(), sess);
+            box.draw(*scr.get_window());
+            draw_banner(*scr.get_window(), ban_font, banner, banner_t);
+            menu.draw(*scr.get_window());
+            if (fade > 0.f) {
+                sf::View sv = scr.get_window()->getView();
+                scr.get_window()->setView(scr.get_window()->getDefaultView());
+                sf::RectangleShape f(scr.get_window()->getView().getSize());
+                f.setFillColor(sf::Color(0, 0, 0, (sf::Uint8)(std::min(1.f, fade) * 255)));
+                scr.get_window()->draw(f);
+                scr.get_window()->setView(sv);
+            }
+        }
         scr.display();
         sf::sleep(sf::milliseconds(16));
     }

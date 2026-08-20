@@ -32,4 +32,5 @@ public:
 		auto it = bag.find(item);
 		return it == bag.end() ? 0 : it->second;
 	}
+	const std::unordered_map<std::string, int>& bag_items() const { return bag; }
 };

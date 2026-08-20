@@ -1,4 +1,5 @@
 #include "Battle.h"
+#include <cmath>
 #include <cctype>
 #include <algorithm>
 
@@ -6,7 +7,18 @@ Battle::Battle()
 	: data(nullptr), rng(nullptr), font_ok(false), player(nullptr),
 	  is_trainer(false), party_idx(0), log_pos(0), phase(INACTIVE),
 	  after_msg(INACTIVE), cursor(0), over(false), victory(false),
-	  has_trainer_pic(false), intro_shown(false) {}
+	  has_trainer_pic(false), intro_shown(false),
+	  shake_t(0.f), shake_side(0), prev_ehp(0), prev_php(0) {}
+
+void Battle::tick(float dt) {
+	if (this->phase == INACTIVE) return;
+	// start a shake on whichever side just lost HP
+	if (this->enemy.hp < this->prev_ehp) { this->shake_t = 0.3f; this->shake_side = 1; }
+	else if (this->player && this->player->hp < this->prev_php) { this->shake_t = 0.3f; this->shake_side = 2; }
+	this->prev_ehp = this->enemy.hp;
+	this->prev_php = this->player ? this->player->hp : 0;
+	if (this->shake_t > 0.f) this->shake_t -= dt;
+}
 
 // Move type name -> type-icon file stem (pokeemerald names).
 const sf::Texture* Battle::type_icon(const std::string& type) {
@@ -66,6 +78,7 @@ bool Battle::start_wild(const std::string& species, int level, Mon* pm) {
 	this->over = this->victory = false;
 	this->cursor = 0;
 	load_sprites();
+	this->prev_ehp = this->enemy.hp; this->prev_php = this->player->hp; this->shake_t = 0.f;
 	this->log.clear();
 	queue("A wild " + nice(species) + " appeared!");
 	queue("Go! " + nice(this->player->species) + "!");
@@ -92,6 +105,7 @@ bool Battle::start_trainer(const std::string& trainer_id, const std::string& nam
 	this->trainer_tex.setSmooth(false);
 	this->intro_shown = false;
 	load_sprites();
+	this->prev_ehp = this->enemy.hp; this->prev_php = this->player->hp; this->shake_t = 0.f;
 	this->log.clear();
 	queue(this->enemy_title + " wants to battle!");
 	queue(this->enemy_title + " sent out " + nice(this->enemy.species) + "!");
@@ -233,7 +247,8 @@ void Battle::draw(sf::RenderTarget& target) {
 	} else {
 		sf::Sprite es(this->enemy_tex);
 		es.setScale(2.6f, 2.6f);
-		es.setPosition(size.x * 0.62f, size.y * 0.06f);
+		float ex = (this->shake_side == 1 && this->shake_t > 0.f) ? std::sin(this->shake_t * 60.f) * 8.f : 0.f;
+		es.setPosition(size.x * 0.62f + ex, size.y * 0.06f);
 		target.draw(es);
 		if (this->font_ok) {
 			sf::Text n(nice(this->enemy.species) + "  Lv" + std::to_string(this->enemy.level),
@@ -246,7 +261,8 @@ void Battle::draw(sf::RenderTarget& target) {
 	// player (back) bottom-left + info bottom-right
 	sf::Sprite ps(this->player_tex);
 	ps.setScale(2.8f, 2.8f);
-	ps.setPosition(size.x * 0.10f, size.y * 0.40f);
+	float pxo = (this->shake_side == 2 && this->shake_t > 0.f) ? std::sin(this->shake_t * 60.f) * 8.f : 0.f;
+	ps.setPosition(size.x * 0.10f + pxo, size.y * 0.40f);
 	target.draw(ps);
 	if (this->font_ok) {
 		sf::Text n(nice(this->player->species) + "  Lv" + std::to_string(this->player->level),

@@ -69,5 +69,9 @@ public:
 	bool won() const { return victory; }
 
 	void input(BtnInput b);
+	void tick(float dt);          // drives the hit shake animation
 	void draw(sf::RenderTarget& target);
+
+private:
+	float shake_t; int shake_side; int prev_ehp, prev_php;
 };
