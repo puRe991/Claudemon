@@ -34,3 +34,6 @@ warps
 npcs
 people_tuber_m 2 8 S wander
 people_sailor 9 6 W pace_h
+dialogs
+0	Yay! It's a ship!
+1	The ship's bottom has sunk into the depths. If a POKéMON knew how to go underwater, we might make some progress…

@@ -334,6 +334,63 @@ def build_gfx_resolver(ow_index):
     return resolve
 
 
+def _clean_dialog(raw):
+    """Turn joined .string content into a single plain line."""
+    import re
+    s = raw
+    for code in ("\\n", "\\l", "\\p"):
+        s = s.replace(code, " ")
+    s = s.replace('\\"', '"')
+    s = s.replace("{PLAYER}", "PLAYER").replace("{RIVAL}", "RIVAL")
+    s = re.sub(r"\{[^}]*\}", "", s)     # drop remaining control codes
+    s = s.replace("$", " ")
+    s = re.sub(r"\s+", " ", s).strip()
+    return s[:180]
+
+
+def parse_map_dialogs(map_dir):
+    """Return {script_label: dialog_text} for a map's scripts.inc."""
+    import re
+    inc = os.path.join(map_dir, "scripts.inc")
+    if not os.path.isfile(inc):
+        return {}
+    lines = open(inc, encoding="utf-8", errors="replace").read().splitlines()
+
+    # text label -> joined .string text
+    texts = {}
+    i = 0
+    while i < len(lines):
+        m = re.match(r"^(\w+):\s*$", lines[i])
+        if m and (i + 1 < len(lines)) and ".string" in lines[i + 1]:
+            label = m.group(1)
+            parts = []
+            j = i + 1
+            while j < len(lines) and ".string" in lines[j]:
+                sm = re.search(r'\.string\s+"(.*)"', lines[j])
+                if sm:
+                    parts.append(sm.group(1))
+                j += 1
+            texts[label] = _clean_dialog(" ".join(parts))
+            i = j
+        else:
+            i += 1
+
+    # script label -> first msgbox text label
+    scripts = {}
+    cur = None
+    for ln in lines:
+        sm = re.match(r"^(\w+)::", ln)
+        if sm:
+            cur = sm.group(1)
+            continue
+        if cur and cur not in scripts:
+            mm = re.search(r"\bmsgbox\s+(\w+)", ln)
+            if mm:
+                scripts[cur] = mm.group(1)
+    # resolve script -> text
+    return {sl: texts[tl] for sl, tl in scripts.items() if tl in texts}
+
+
 def movement_token(mt):
     mt = (mt or "").upper()
     if "WANDER" in mt:                      return "wander", "S"
@@ -403,7 +460,8 @@ def cmd_world(src, limit=None):
         ids = [c & 0x03FF for c in cells]
         solid = [1 if ((c >> 10) & 0x03) else 0 for c in cells]
 
-        # NPCs from object events
+        # NPCs from object events, with dialog resolved from scripts.inc
+        dialogs = parse_map_dialogs(os.path.join(mroot, mname))
         npcs = []
         for oe in mj.get("object_events", []):
             try:
@@ -416,7 +474,8 @@ def cmd_world(src, limit=None):
             if not sheet:
                 continue
             move, face = movement_token(oe.get("movement_type"))
-            npcs.append((sheet, x, y, face, move))
+            dlg = dialogs.get(oe.get("script", ""), "")
+            npcs.append((sheet, x, y, face, move, dlg))
 
         # spawn: prefer a passable tile near map centre
         def passable_at(x, y):
@@ -461,11 +520,18 @@ def cmd_world(src, limit=None):
                 lines.append(f"{x} {y} {dest} {dw}")
         if npcs:
             lines.append("npcs")
-            for (sheet, x, y, face, move) in npcs:
+            for (sheet, x, y, face, move, dlg) in npcs:
                 lines.append(f"{sheet} {x} {y} {face} {move}")
+            # dialog lines are tab-separated (text has spaces): "<index>\t<text>"
+            dlg_lines = [(i, n[5]) for i, n in enumerate(npcs) if n[5]]
+            if dlg_lines:
+                lines.append("dialogs")
+                for (i, text) in dlg_lines:
+                    lines.append(f"{i}\t{text}")
         open(out, "w").write("\n".join(lines) + "\n")
         catalog.append({"map": mname, "w": w, "h": h, "tileset": sheet_name,
-                        "npcs": len(npcs), "warps": len(warps), "spawn": [sx, sy]})
+                        "npcs": len(npcs), "warps": len(warps),
+                        "dialogs": sum(1 for n in npcs if n[5]), "spawn": [sx, sy]})
         done += 1
         if limit and done >= limit:
             break

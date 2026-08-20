@@ -26,3 +26,7 @@ npcs
 people_gentleman 17 5 W static
 people_man_2 3 5 E static
 people_gentleman 15 5 S static
+dialogs
+0	MR. STONE: I'm counting on you!
+1	If you visit the SHIPYARD in SLATEPORT, you should go see CAPT. STERN.
+2	MR. STONE: I'm counting on you!

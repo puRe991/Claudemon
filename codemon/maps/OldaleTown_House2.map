@@ -24,3 +24,6 @@ warps
 npcs
 people_pokefan_f 4 4 E static
 people_school_kid_m 7 4 W static
+dialogs
+0	When POKéMON battle, they eventually level up and become stronger.
+1	If the POKéMON with you become stronger, you'll be able to go farther away from here.

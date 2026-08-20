@@ -28,3 +28,7 @@ people_pokefan_m 7 7 S wander
 people_woman_5 13 5 S wander
 people_woman_3 8 2 S static
 people_woman_3 10 2 S static
+dialogs
+0	For quickly toughening up POKéMON, items are the best. PROTEIN boosts ATTACK, and CALCIUM raises SP. ATK.
+1	I want my POKéMON to have more endurance. I'm trying to decide whether to raise DEFENSE with IRON, or SP. DEF with ZINC.
+2	I gave a CARBOS to my POKéMON, and its SPEED went up.

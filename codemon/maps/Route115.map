@@ -190,3 +190,5 @@ people_lass 10 7 E static
 people_lass 28 62 W static
 misc_item_ball 26 67 S static
 misc_item_ball 12 14 S static
+dialogs
+0	Exploring a cave isn't like walking on a road. You never know when wild POKéMON will appear. It's full of suspense.

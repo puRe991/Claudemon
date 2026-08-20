@@ -27,3 +27,7 @@ npcs
 people_woman_2 3 4 S static
 people_little_girl 7 5 S wander
 people_boy_1 7 4 S wander
+dialogs
+0	People were saying they saw a POKéMON flying high above HOENN. Is it flying around all the time? Doesn't it need to rest somewhere?
+1	A sky POKéMON! A sky POKéMON!
+2	Where did you come from?

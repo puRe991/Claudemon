@@ -35,3 +35,11 @@ people_lass 10 8 N static
 people_school_kid_m 3 6 S static
 people_gentleman 5 3 S static
 people_scott 0 10 N static
+dialogs
+0	I'm trading POKéMON with my friend right now.
+1	I always wanted a SEEDOT, and I'm finally getting one!
+2	POKéMON can hold items, but they don't know what to do with man-made items like POTION and ANTIDOTE.
+3	You know how some POKéMON moves can confuse a POKéMON? A confused POKéMON will sometimes attack itself without meaning to. But once it leaves battle, it will return to normal.
+4	A POKéMON holding a BERRY will heal itself… There are many kinds of items that POKéMON can hold… Boy, it sure is hard taking notes down…
+5	Students who don't study get a little taste of my QUICK CLAW. Whether or not you are a good student will be evident from the way you use this item.
+6	Hello? Didn't we meet before? I think back in PETALBURG CITY. Let me introduce myself. My name's SCOTT. I've been traveling everywhere in search of outstanding TRAINERS. More speci

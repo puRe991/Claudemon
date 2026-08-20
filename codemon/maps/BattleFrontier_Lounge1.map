@@ -28,3 +28,6 @@ npcs
 people_old_man 0 6 E static
 people_boy_3 7 6 S wander
 people_boy_2 5 4 S wander
+dialogs
+1	He said my POKéMON is outstanding! I'm glad I raised it carefully!
+2	He said my POKéMON is outstanding! But I didn't do anything special raising it…

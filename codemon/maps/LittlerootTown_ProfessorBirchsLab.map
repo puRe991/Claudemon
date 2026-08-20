@@ -38,3 +38,8 @@ people_man_1 7 4 S static
 misc_item_ball 6 8 S static
 misc_item_ball 6 8 S static
 misc_item_ball 6 8 S static
+dialogs
+0	Hunh? PROF. BIRCH? The PROF's away on fieldwork. Ergo, he isn't here. Oh, let me explain what fieldwork is. It is to study things in the natural environment, like fields and mounta
+3	PROF. BIRCH: The FIRE POKéMON CYNDAQUIL caught your eye! You're as sharp as ever! So the CYNDAQUIL is your choice?
+4	PROF. BIRCH: The WATER POKéMON TOTODILE is your choice! You know how to pick a good one. So, you'll take the TOTODILE?
+5	PROF. BIRCH: The GRASS POKéMON CHIKORITA is your choice! You sure know what you're doing. So, you'll take the CHIKORITA?

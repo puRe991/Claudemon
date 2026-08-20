@@ -30,3 +30,9 @@ people_pokefan_f 14 5 S wander
 people_little_girl 4 4 S wander
 people_pokefan_m 3 6 S static
 pokemon_azumarill 2 6 S static
+dialogs
+0	Welcome to LILYCOVE DEPARTMENT STORE.
+2	Whenever I come to the DEPARTMENT STORE, I always end up buying all sorts of things because it's so fun.
+3	Today, my mom is going to buy me some nice furniture.
+4	I'm buying something for my AZUMARILL as a reward for winning a CONTEST.
+5	AZUMARILL: Maririroo!

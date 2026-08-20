@@ -46,3 +46,8 @@ people_woman_4 6 13 S static
 misc_item_ball 4 4 S static
 people_hiker 3 2 E static
 people_tuber_f 7 2 W static
+dialogs
+0	DAN: We can't find any treasures… I wonder if someone got them already?
+1	KIRA: Where could the treasures be? I've already decided what I'm buying when we find the treasures!
+3	In a cabin somewhere on board, I saw something sparkle.
+4	Walking around barefoot in this ship is kind of gross.

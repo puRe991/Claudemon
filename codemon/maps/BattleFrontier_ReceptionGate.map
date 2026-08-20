@@ -39,3 +39,8 @@ people_teala 8 11 W static
 people_man_2 8 4 W static
 people_scott 4 5 S static
 people_man_2 0 4 E static
+dialogs
+0	The front lines of POKéMON battling! Welcome to the BATTLE FRONTIER!
+1	I'm your guide to the various facilities here in the BATTLE FRONTIER.
+2	I'm your guide to the basic rules that are common to all the challenges offered by the facilities in the BATTLE FRONTIER.
+4	I'm your guide to the FRONTIER PASS.

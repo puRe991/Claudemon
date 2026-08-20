@@ -55,3 +55,7 @@ people_man_3 1 10 N static
 people_man_3 4 2 E static
 people_woman_5 8 17 W static
 misc_item_ball 2 2 S static
+dialogs
+0	You've beaten the POKéMON LEAGUE CHAMPION? That's too much!
+1	Seeing someone like you should please the TRICK MASTER.
+2	It's a miracle that you beat me. You can brag about it.

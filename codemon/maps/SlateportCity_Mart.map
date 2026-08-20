@@ -25,3 +25,6 @@ npcs
 people_mart_employee 1 3 E static
 people_black_belt 4 2 N static
 people_man_3 5 5 S static
+dialogs
+1	The MARKET does have some interesting merchandise. But there are some items you can only get at a POKéMON MART.
+2	A GREAT BALL is better than a POKé BALL at catching POKéMON. With this, I should be able to get that elusive POKéMON…

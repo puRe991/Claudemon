@@ -36,3 +36,9 @@ people_woman_5 2 10 S wander
 people_man_5 14 11 W static
 people_camper 14 12 W static
 people_youngster 14 10 W static
+dialogs
+0	Where the battling spirit of TRAINERS is put to the test! I welcome you to the BATTLE ARENA! I am your guide to the Set KO Tourney!
+1	In the BATTLE ARENA, the order of POKéMON is totally important. For example, if your first POKéMON has certain type disadvantages, try making your second POKéMON one with moves tha
+2	I won in judging! Landing hits consistently on the opponent's POKéMON worked!
+3	Our match was declared a draw. When we ran out of time, both my POKéMON and the opponent's had about the same amount of HP left.
+4	I lost on the REFEREE's decision… I don't think it was a good idea to only use defensive moves and not attack…

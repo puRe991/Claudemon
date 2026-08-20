@@ -49,3 +49,7 @@ misc_birchs_bag 7 14 S static
 people_man_1 10 13 S static
 people_prof_birch 5 11 S static
 people_boy_2 2 13 S wander
+dialogs
+0	If POKéMON get tired, take them to a POKéMON CENTER. There's a POKéMON CENTER in OLDALE TOWN right close by.
+2	PROF. BIRCH: Whew… I was in the tall grass studying wild POKéMON when I was jumped. You saved me. Thanks a lot! Oh? Hi, you're PLAYER! This is not the place to chat, so come by my 
+5	Wild POKéMON will jump out at you in tall grass. If you want to catch POKéMON, you have to go into the tall grass and search.

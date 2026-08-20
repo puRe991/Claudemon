@@ -93,3 +93,7 @@ npcs
 people_girl_1 10 23 W static
 people_fisherman 11 14 E static
 people_ninja_boy 9 16 S static
+dialogs
+0	The sea between PACIFIDLOG and SLATEPORT has a fast-running tide. If you decide to SURF, you could end up swept away somewhere else.
+1	The SKY PILLAR? …Oh, you must mean that tall, tall tower a little further out. If you asked me, I wouldn't climb it. It's too scary to get up that high. Life at sea level in PACIFI
+2	See, isn't it neat? These houses are on water! I was born here!

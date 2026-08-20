@@ -55,3 +55,7 @@ people_picnicker 7 9 E static
 people_man_5 11 10 E static
 people_camper 4 5 N static
 misc_item_ball 11 21 S static
+dialogs
+0	I'm sure having a good time checking this place out. It's a challenge I've found worth repeating!
+1	Ehehehe… I guess I lost because I was trying to cheat.
+2	You don't seem to be affected at all. Or do you have your poker face on?

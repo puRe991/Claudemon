@@ -25,3 +25,7 @@ npcs
 people_steven 9 6 E static
 misc_item_ball 4 3 S static
 people_ninja_boy 6 4 S static
+dialogs
+0	STEVEN: Apparently, there's an underwater cavern between MOSSDEEP and SOOTOPOLIS. You know, the one that CAPT. STERN found in his submarine.
+1	PLAYER checked the POKé BALL. It contained the POKéMON BELDUM. Take the POKé BALL?
+2	It's a letter. … … … … … … To PLAYER… I've decided to do a little soul- searching and train on the road. I don't plan to return home for some time. I have a favor to ask of you. I 

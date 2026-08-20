@@ -5,8 +5,10 @@
 #include "Window.h"
 #include "direction.h"
 #include "Audio.h"
+#include "DialogBox.h"
 
 #include <algorithm>
+#include <cctype>
 #include <cstdio>
 #include <cstdlib>
 #include <random>
@@ -35,7 +37,34 @@ struct Agent {
     MoveKind kind;
     DIR pace_dir;
     int home_x, home_y;
+    std::string sheet;    // for deriving a speaker name
+    std::string dialog;
 };
+
+// "people_old_man" / "people_brendan_walking" -> "Old Man" / "Brendan"
+static std::string speaker_name(const std::string& sheet) {
+    std::string s = sheet;
+    size_t us = s.find('_');
+    if (us != std::string::npos) s = s.substr(us + 1);          // drop group
+    const std::string suffix = "_walking";
+    if (s.size() > suffix.size() && s.compare(s.size() - suffix.size(),
+        suffix.size(), suffix) == 0)
+        s = s.substr(0, s.size() - suffix.size());
+    std::string out;
+    bool cap = true;
+    for (char c : s) {
+        if (c == '_') { out += ' '; cap = true; }
+        else if (cap) { out += (char)std::toupper((unsigned char)c); cap = false; }
+        else out += c;
+    }
+    return out;
+}
+
+static DIR opposite(DIR d) {
+    switch (d) { case DIR::N: return DIR::S; case DIR::S: return DIR::N;
+                 case DIR::E: return DIR::W; case DIR::W: return DIR::E;
+                 default: return DIR::S; }
+}
 
 // Everything tied to the currently-loaded map.
 struct Session {
@@ -84,6 +113,7 @@ static Session* load_session(const std::string& path, int arr_x, int arr_y) {
         Agent ag; ag.ch = ch; ag.kind = sp.movement;
         ag.home_x = sp.x; ag.home_y = sp.y;
         ag.pace_dir = (sp.movement == MOVE_PACE_H) ? DIR::E : DIR::N;
+        ag.sheet = sp.sheet; ag.dialog = sp.dialog;
         s->agents.push_back(ag);
         s->npc_chars.push_back(ch);
     }
@@ -162,6 +192,24 @@ static Session* player_step(Session* s, DIR dir, Audio* audio) {
     return s;
 }
 
+// Talk to whatever the player is facing. If a dialog is already open, this
+// advances/closes it. Returns true if something happened.
+static bool interact(Session* s, DialogBox& box, Audio* audio) {
+    if (box.is_active()) { box.close(); return true; }
+    int tx, ty;
+    s->player->target_tile(s->player->get_facing(), tx, ty);
+    for (Agent& ag : s->agents) {
+        if (ag.ch->get_tile_x() == tx && ag.ch->get_tile_y() == ty) {
+            ag.ch->face(opposite(s->player->get_facing()));   // turn to the player
+            std::string line = ag.dialog.empty() ? "..." : ag.dialog;
+            box.open(speaker_name(ag.sheet), line);
+            if (audio) audio->play_select();
+            return true;
+        }
+    }
+    return false;
+}
+
 // A camera that follows the player, clamped to the map bounds.
 static sf::View camera_for(Session* s) {
     int tp = s->map->get_tile_size();
@@ -191,18 +239,22 @@ static void draw_scene(sf::RenderTarget& target, Session* s) {
     }
 }
 
-// Parse "N,N,W,E" into a direction list (for scripted demo walks).
-static std::vector<DIR> parse_walk(const char* env) {
-    std::vector<DIR> out;
+// Parse "N,N,W,T" into action tokens (N/S/E/W move, T talk) for demo walks.
+static std::vector<char> parse_walk(const char* env) {
+    std::vector<char> out;
     if (!env) return out;
     std::stringstream ss(env); std::string t;
     while (std::getline(ss, t, ',')) {
-        if (t == "N") out.push_back(DIR::N);
-        else if (t == "S") out.push_back(DIR::S);
-        else if (t == "E") out.push_back(DIR::E);
-        else if (t == "W") out.push_back(DIR::W);
+        if (t.size() == 1 && std::string("NSEWT").find(t[0]) != std::string::npos)
+            out.push_back(t[0]);
     }
     return out;
+}
+
+static DIR char_to_dir(char c) {
+    switch (c) { case 'N': return DIR::N; case 'S': return DIR::S;
+                 case 'E': return DIR::E; case 'W': return DIR::W;
+                 default: return DIR::NONE; }
 }
 
 int main() {
@@ -213,21 +265,31 @@ int main() {
     const unsigned win_w = VIEW_TW * sess->map->get_tile_size() * SCALE;
     const unsigned win_h = VIEW_TH * sess->map->get_tile_size() * SCALE;
 
+    DialogBox box;
+    box.load_font();
+
     // --- headless screenshot / animation mode ------------------------------
     if (const char* shot = std::getenv("CODEMON_SCREENSHOT")) {
         int frames = 1;
         if (const char* fe = std::getenv("CODEMON_FRAMES")) frames = std::max(1, atoi(fe));
-        std::vector<DIR> walk = parse_walk(std::getenv("CODEMON_WALK"));
+        std::vector<char> walk = parse_walk(std::getenv("CODEMON_WALK"));
         sf::RenderTexture rt;
         if (rt.create(win_w, win_h)) {
             for (int i = 0; i < frames; ++i) {
                 if (i > 0) {
-                    if ((size_t)(i - 1) < walk.size())
-                        sess = player_step(sess, walk[i - 1], nullptr);
-                    tick_npcs(sess, rng);
+                    char tok = ((size_t)(i - 1) < walk.size()) ? walk[i - 1] : 0;
+                    if (tok == 'T') {
+                        interact(sess, box, nullptr);
+                    } else if (!box.is_active()) {
+                        if (tok) sess = player_step(sess, char_to_dir(tok), nullptr);
+                        // With a scripted walk we keep NPCs still so approaches
+                        // are deterministic; otherwise they wander.
+                        if (walk.empty()) tick_npcs(sess, rng);
+                    }
                 }
                 rt.clear(sf::Color(40, 72, 56));
                 draw_scene(rt, sess);
+                box.draw(rt);
                 rt.display();
                 char name[512];
                 if (frames == 1) std::snprintf(name, sizeof(name), "%s", shot);
@@ -249,15 +311,26 @@ int main() {
         while (scr.get_event(&event)) {
             if (event.type == sf::Event::Closed) scr.close();
             else if (event.type == sf::Event::KeyPressed) {
-                DIR dir = convert_key_event(event);
-                if (dir != DIR::NONE) sess = player_step(sess, dir, &audio);
+                if (event.key.code == sf::Keyboard::Space ||
+                    event.key.code == sf::Keyboard::Return) {
+                    interact(sess, box, &audio);            // talk / advance
+                } else if (!box.is_active()) {
+                    DIR dir = convert_key_event(event);
+                    if (dir != DIR::NONE) sess = player_step(sess, dir, &audio);
+                }
             }
         }
+        // NPCs and the world freeze while a dialog is open.
         npc_accum += clock.restart().asSeconds();
-        while (npc_accum >= NPC_TICK) { tick_npcs(sess, rng); npc_accum -= NPC_TICK; }
+        if (!box.is_active()) {
+            while (npc_accum >= NPC_TICK) { tick_npcs(sess, rng); npc_accum -= NPC_TICK; }
+        } else {
+            npc_accum = 0.f;
+        }
 
         scr.clear();
         draw_scene(*scr.get_window(), sess);
+        box.draw(*scr.get_window());
         scr.display();
         sf::sleep(sf::milliseconds(16));
     }

@@ -28,3 +28,7 @@ people_pokefan_f 0 5 S wander
 people_sailor 13 5 S wander
 people_woman_3 10 6 N static
 people_woman_3 7 6 N static
+dialogs
+0	Learn to use items properly. That's basic, really.
+1	My husband is waiting at home. What would make a good gift for him?
+2	I'm leaving on a long journey soon. I need to stock up on items.

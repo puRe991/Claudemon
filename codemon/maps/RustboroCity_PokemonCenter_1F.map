@@ -29,3 +29,7 @@ people_nurse 7 2 S static
 people_man_1 11 2 W static
 people_boy_1 3 4 S wander
 people_girl_3 10 6 E static
+dialogs
+1	My POKéMON has a NAIVE nature, and my friend's has a JOLLY nature. It's fascinating how POKéMON have personalities!
+2	Just like people, there are male and female POKéMON. But no one seems to have any idea how they're different.
+3	The man next door gave me an HM! I used it to teach my POKéMON how to CUT down skinny trees.

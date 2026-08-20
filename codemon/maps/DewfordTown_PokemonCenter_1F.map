@@ -28,3 +28,6 @@ npcs
 people_nurse 7 2 S static
 people_pokefan_f 10 6 E static
 people_man_3 5 5 S wander
+dialogs
+1	There's a stone cavern at the edge of town. I've heard you can find rare stones there.
+2	Even if a POKéMON faints and can't battle, it can still use a move learned from a HIDDEN MACHINE (HM).

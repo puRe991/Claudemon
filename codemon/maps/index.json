@@ -8,6 +8,7 @@
    "tileset": "general__facility",
    "npcs": 2,
    "warps": 2,
+   "dialogs": 1,
    "spawn": [
     4,
     3
@@ -20,6 +21,7 @@
    "tileset": "general__inside_ship",
    "npcs": 2,
    "warps": 12,
+   "dialogs": 2,
    "spawn": [
     9,
     6
@@ -32,6 +34,7 @@
    "tileset": "general__inside_ship",
    "npcs": 2,
    "warps": 8,
+   "dialogs": 2,
    "spawn": [
     6,
     5
@@ -44,6 +47,7 @@
    "tileset": "general__facility",
    "npcs": 0,
    "warps": 5,
+   "dialogs": 0,
    "spawn": [
     10,
     9
@@ -56,6 +60,7 @@
    "tileset": "general__inside_ship",
    "npcs": 0,
    "warps": 6,
+   "dialogs": 0,
    "spawn": [
     4,
     3
@@ -68,6 +73,7 @@
    "tileset": "general__inside_ship",
    "npcs": 4,
    "warps": 9,
+   "dialogs": 0,
    "spawn": [
     21,
     6
@@ -80,6 +86,7 @@
    "tileset": "general__inside_ship",
    "npcs": 1,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     4,
     4
@@ -92,6 +99,7 @@
    "tileset": "general__inside_ship",
    "npcs": 5,
    "warps": 3,
+   "dialogs": 4,
    "spawn": [
     4,
     8
@@ -104,6 +112,7 @@
    "tileset": "general__inside_ship",
    "npcs": 2,
    "warps": 4,
+   "dialogs": 1,
    "spawn": [
     9,
     4
@@ -116,6 +125,7 @@
    "tileset": "general__inside_ship",
    "npcs": 4,
    "warps": 6,
+   "dialogs": 3,
    "spawn": [
     10,
     7
@@ -128,6 +138,7 @@
    "tileset": "general__inside_ship",
    "npcs": 2,
    "warps": 3,
+   "dialogs": 1,
    "spawn": [
     13,
     4
@@ -140,6 +151,7 @@
    "tileset": "general__inside_ship",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     4,
     4
@@ -152,6 +164,7 @@
    "tileset": "general__inside_ship",
    "npcs": 0,
    "warps": 1,
+   "dialogs": 0,
    "spawn": [
     10,
     3
@@ -164,6 +177,7 @@
    "tileset": "general__cave",
    "npcs": 0,
    "warps": 1,
+   "dialogs": 0,
    "spawn": [
     16,
     12
@@ -176,6 +190,7 @@
    "tileset": "general__cave",
    "npcs": 1,
    "warps": 3,
+   "dialogs": 0,
    "spawn": [
     8,
     16
@@ -188,6 +203,7 @@
    "tileset": "general__facility",
    "npcs": 3,
    "warps": 3,
+   "dialogs": 3,
    "spawn": [
     14,
     15
@@ -200,6 +216,7 @@
    "tileset": "general__facility",
    "npcs": 9,
    "warps": 25,
+   "dialogs": 4,
    "spawn": [
     24,
     11
@@ -212,6 +229,7 @@
    "tileset": "general__facility",
    "npcs": 6,
    "warps": 10,
+   "dialogs": 4,
    "spawn": [
     17,
     12
@@ -224,6 +242,7 @@
    "tileset": "general__facility",
    "npcs": 0,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     14,
     15
@@ -236,6 +255,7 @@
    "tileset": "general__facility",
    "npcs": 0,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     31,
     12
@@ -248,6 +268,7 @@
    "tileset": "general__facility",
    "npcs": 0,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     17,
     12
@@ -260,6 +281,7 @@
    "tileset": "general__cave",
    "npcs": 1,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     8,
     12
@@ -272,6 +294,7 @@
    "tileset": "general__cave",
    "npcs": 1,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     23,
     27
@@ -284,6 +307,7 @@
    "tileset": "building__cable_club",
    "npcs": 1,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     7,
     4
@@ -296,6 +320,7 @@
    "tileset": "building__cable_club",
    "npcs": 0,
    "warps": 4,
+   "dialogs": 0,
    "spawn": [
     7,
     4
@@ -308,6 +333,7 @@
    "tileset": "building__battle_arena",
    "npcs": 9,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     8,
     5
@@ -320,6 +346,7 @@
    "tileset": "building__battle_arena",
    "npcs": 1,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     12,
     4
@@ -332,6 +359,7 @@
    "tileset": "building__battle_arena",
    "npcs": 5,
    "warps": 1,
+   "dialogs": 5,
    "spawn": [
     6,
     8
@@ -344,6 +372,7 @@
    "tileset": "building__battle_dome",
    "npcs": 15,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     10,
     5
@@ -356,6 +385,7 @@
    "tileset": "building__battle_dome",
    "npcs": 1,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     24,
     3
@@ -368,6 +398,7 @@
    "tileset": "building__battle_dome",
    "npcs": 6,
    "warps": 2,
+   "dialogs": 4,
    "spawn": [
     10,
     7
@@ -380,6 +411,7 @@
    "tileset": "building__battle_dome",
    "npcs": 1,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     4,
     4
@@ -392,6 +424,7 @@
    "tileset": "building__battle_factory",
    "npcs": 8,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     6,
     6
@@ -404,6 +437,7 @@
    "tileset": "building__battle_factory",
    "npcs": 6,
    "warps": 2,
+   "dialogs": 4,
    "spawn": [
     9,
     6
@@ -416,6 +450,7 @@
    "tileset": "building__battle_factory",
    "npcs": 1,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     8,
     7
@@ -428,6 +463,7 @@
    "tileset": "general__battle_palace",
    "npcs": 5,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     5,
     7
@@ -440,6 +476,7 @@
    "tileset": "general__battle_palace",
    "npcs": 7,
    "warps": 4,
+   "dialogs": 0,
    "spawn": [
     8,
     7
@@ -452,6 +489,7 @@
    "tileset": "building__battle_palace",
    "npcs": 6,
    "warps": 3,
+   "dialogs": 4,
    "spawn": [
     12,
     6
@@ -464,6 +502,7 @@
    "tileset": "building__battle_pike",
    "npcs": 1,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     7,
     4
@@ -476,6 +515,7 @@
    "tileset": "building__battle_pike",
    "npcs": 4,
    "warps": 3,
+   "dialogs": 4,
    "spawn": [
     5,
     6
@@ -488,6 +528,7 @@
    "tileset": "building__battle_pike",
    "npcs": 1,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     2,
     4
@@ -500,6 +541,7 @@
    "tileset": "building__battle_pike",
    "npcs": 2,
    "warps": 0,
+   "dialogs": 1,
    "spawn": [
     4,
     4
@@ -512,6 +554,7 @@
    "tileset": "building__battle_pike",
    "npcs": 0,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     3,
     9
@@ -524,6 +567,7 @@
    "tileset": "building__battle_pike",
    "npcs": 2,
    "warps": 0,
+   "dialogs": 1,
    "spawn": [
     6,
     5
@@ -536,6 +580,7 @@
    "tileset": "building__battle_pyramid",
    "npcs": 16,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     4,
     4
@@ -548,6 +593,7 @@
    "tileset": "building__battle_pyramid",
    "npcs": 4,
    "warps": 1,
+   "dialogs": 4,
    "spawn": [
     7,
     9
@@ -560,6 +606,7 @@
    "tileset": "building__battle_pyramid",
    "npcs": 2,
    "warps": 0,
+   "dialogs": 1,
    "spawn": [
     17,
     11
@@ -572,6 +619,7 @@
    "tileset": "building__battle_frontier",
    "npcs": 3,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     5,
     4
@@ -584,6 +632,7 @@
    "tileset": "building__battle_frontier",
    "npcs": 1,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     8,
     2
@@ -596,6 +645,7 @@
    "tileset": "building__battle_frontier",
    "npcs": 1,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     2,
     3
@@ -608,6 +658,7 @@
    "tileset": "building__battle_frontier",
    "npcs": 9,
    "warps": 3,
+   "dialogs": 6,
    "spawn": [
     11,
     4
@@ -620,6 +671,7 @@
    "tileset": "building__battle_frontier",
    "npcs": 6,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     5,
     4
@@ -632,6 +684,7 @@
    "tileset": "building__battle_frontier",
    "npcs": 4,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     8,
     2
@@ -644,6 +697,7 @@
    "tileset": "building__battle_frontier",
    "npcs": 9,
    "warps": 0,
+   "dialogs": 1,
    "spawn": [
     10,
     7
@@ -656,6 +710,7 @@
    "tileset": "building__battle_frontier",
    "npcs": 9,
    "warps": 3,
+   "dialogs": 5,
    "spawn": [
     7,
     5
@@ -668,6 +723,7 @@
    "tileset": "building__battle_frontier",
    "npcs": 3,
    "warps": 1,
+   "dialogs": 2,
    "spawn": [
     4,
     5
@@ -680,6 +736,7 @@
    "tileset": "building__battle_frontier",
    "npcs": 5,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     5,
     3
@@ -692,6 +749,7 @@
    "tileset": "building__battle_frontier",
    "npcs": 5,
    "warps": 1,
+   "dialogs": 0,
    "spawn": [
     4,
     5
@@ -704,6 +762,7 @@
    "tileset": "building__battle_frontier",
    "npcs": 3,
    "warps": 1,
+   "dialogs": 3,
    "spawn": [
     4,
     5
@@ -716,6 +775,7 @@
    "tileset": "building__battle_frontier",
    "npcs": 4,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     5,
     3
@@ -728,6 +788,7 @@
    "tileset": "building__battle_frontier",
    "npcs": 1,
    "warps": 1,
+   "dialogs": 1,
    "spawn": [
     4,
     5
@@ -740,6 +801,7 @@
    "tileset": "building__battle_frontier",
    "npcs": 4,
    "warps": 1,
+   "dialogs": 4,
    "spawn": [
     4,
     5
@@ -752,6 +814,7 @@
    "tileset": "building__battle_frontier",
    "npcs": 3,
    "warps": 1,
+   "dialogs": 3,
    "spawn": [
     4,
     5
@@ -764,6 +827,7 @@
    "tileset": "building__battle_frontier",
    "npcs": 1,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     4,
     5
@@ -776,6 +840,7 @@
    "tileset": "building__shop",
    "npcs": 4,
    "warps": 2,
+   "dialogs": 3,
    "spawn": [
     5,
     4
@@ -788,6 +853,7 @@
    "tileset": "general__battle_frontier_outside_east",
    "npcs": 26,
    "warps": 14,
+   "dialogs": 25,
    "spawn": [
     36,
     36
@@ -800,6 +866,7 @@
    "tileset": "general__battle_frontier_outside_west",
    "npcs": 24,
    "warps": 11,
+   "dialogs": 18,
    "spawn": [
     28,
     36
@@ -812,6 +879,7 @@
    "tileset": "building__pokemon_center",
    "npcs": 5,
    "warps": 3,
+   "dialogs": 4,
    "spawn": [
     7,
     4
@@ -824,6 +892,7 @@
    "tileset": "building__pokemon_center",
    "npcs": 4,
    "warps": 3,
+   "dialogs": 0,
    "spawn": [
     7,
     5
@@ -836,6 +905,7 @@
    "tileset": "building__battle_frontier_ranking_hall",
    "npcs": 3,
    "warps": 2,
+   "dialogs": 3,
    "spawn": [
     26,
     7
@@ -848,6 +918,7 @@
    "tileset": "general__battle_frontier",
    "npcs": 5,
    "warps": 2,
+   "dialogs": 4,
    "spawn": [
     4,
     7
@@ -860,6 +931,7 @@
    "tileset": "building__battle_frontier",
    "npcs": 1,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     3,
     4
@@ -872,6 +944,7 @@
    "tileset": "building__battle_pyramid",
    "npcs": 7,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     4,
     4
@@ -884,6 +957,7 @@
    "tileset": "building__battle_pyramid",
    "npcs": 7,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     4,
     4
@@ -896,6 +970,7 @@
    "tileset": "building__battle_pyramid",
    "npcs": 7,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     4,
     4
@@ -908,6 +983,7 @@
    "tileset": "building__battle_pyramid",
    "npcs": 7,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     4,
     4
@@ -920,6 +996,7 @@
    "tileset": "building__battle_pyramid",
    "npcs": 7,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     4,
     4
@@ -932,6 +1009,7 @@
    "tileset": "building__battle_pyramid",
    "npcs": 7,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     4,
     4
@@ -944,6 +1022,7 @@
    "tileset": "building__battle_pyramid",
    "npcs": 7,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     4,
     4
@@ -956,6 +1035,7 @@
    "tileset": "building__battle_pyramid",
    "npcs": 7,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     4,
     4
@@ -968,6 +1048,7 @@
    "tileset": "building__battle_pyramid",
    "npcs": 7,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     4,
     4
@@ -980,6 +1061,7 @@
    "tileset": "building__battle_pyramid",
    "npcs": 7,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     3,
     3
@@ -992,6 +1074,7 @@
    "tileset": "building__battle_pyramid",
    "npcs": 7,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     4,
     4
@@ -1004,6 +1087,7 @@
    "tileset": "building__battle_pyramid",
    "npcs": 7,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     4,
     4
@@ -1016,6 +1100,7 @@
    "tileset": "building__battle_pyramid",
    "npcs": 7,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     4,
     4
@@ -1028,6 +1113,7 @@
    "tileset": "building__battle_pyramid",
    "npcs": 7,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     4,
     4
@@ -1040,6 +1126,7 @@
    "tileset": "building__battle_pyramid",
    "npcs": 7,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     4,
     4
@@ -1052,6 +1139,7 @@
    "tileset": "building__battle_pyramid",
    "npcs": 7,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     4,
     4
@@ -1064,6 +1152,7 @@
    "tileset": "general__dewford",
    "npcs": 2,
    "warps": 1,
+   "dialogs": 0,
    "spawn": [
     15,
     15
@@ -1076,6 +1165,7 @@
    "tileset": "general__island_harbor",
    "npcs": 2,
    "warps": 1,
+   "dialogs": 0,
    "spawn": [
     6,
     4
@@ -1088,6 +1178,7 @@
    "tileset": "general__cave",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     8,
     8
@@ -1100,6 +1191,7 @@
    "tileset": "general__cave",
    "npcs": 1,
    "warps": 1,
+   "dialogs": 1,
    "spawn": [
     8,
     8
@@ -1112,6 +1204,7 @@
    "tileset": "general__cave",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     9,
     13
@@ -1124,6 +1217,7 @@
    "tileset": "general__cave",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     13,
     9
@@ -1136,6 +1230,7 @@
    "tileset": "general__cave",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     7,
     7
@@ -1148,6 +1243,7 @@
    "tileset": "general__cave",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     7,
     12
@@ -1160,6 +1256,7 @@
    "tileset": "general__contest",
    "npcs": 15,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     7,
     5
@@ -1172,6 +1269,7 @@
    "tileset": "general__contest",
    "npcs": 0,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     7,
     5
@@ -1184,6 +1282,7 @@
    "tileset": "general__contest",
    "npcs": 0,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     7,
     5
@@ -1196,6 +1295,7 @@
    "tileset": "general__contest",
    "npcs": 0,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     7,
     5
@@ -1208,6 +1308,7 @@
    "tileset": "general__contest",
    "npcs": 0,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     7,
     5
@@ -1220,6 +1321,7 @@
    "tileset": "general__contest",
    "npcs": 0,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     7,
     5
@@ -1232,6 +1334,7 @@
    "tileset": "general__cave",
    "npcs": 1,
    "warps": 3,
+   "dialogs": 0,
    "spawn": [
     8,
     16
@@ -1244,6 +1347,7 @@
    "tileset": "general__cave",
    "npcs": 1,
    "warps": 1,
+   "dialogs": 0,
    "spawn": [
     68,
     10
@@ -1256,6 +1360,7 @@
    "tileset": "general__dewford",
    "npcs": 5,
    "warps": 5,
+   "dialogs": 3,
    "spawn": [
     9,
     9
@@ -1268,6 +1373,7 @@
    "tileset": "building__dewford_gym",
    "npcs": 8,
    "warps": 2,
+   "dialogs": 8,
    "spawn": [
     9,
     14
@@ -1280,6 +1386,7 @@
    "tileset": "building__generic_building",
    "npcs": 9,
    "warps": 2,
+   "dialogs": 7,
    "spawn": [
     8,
     4
@@ -1292,6 +1399,7 @@
    "tileset": "building__generic_building",
    "npcs": 3,
    "warps": 2,
+   "dialogs": 3,
    "spawn": [
     6,
     3
@@ -1304,6 +1412,7 @@
    "tileset": "building__generic_building",
    "npcs": 2,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     5,
     4
@@ -1316,6 +1425,7 @@
    "tileset": "building__pokemon_center",
    "npcs": 3,
    "warps": 3,
+   "dialogs": 2,
    "spawn": [
     7,
     4
@@ -1328,6 +1438,7 @@
    "tileset": "building__pokemon_center",
    "npcs": 4,
    "warps": 3,
+   "dialogs": 0,
    "spawn": [
     7,
     5
@@ -1340,6 +1451,7 @@
    "tileset": "general__ever_grande",
    "npcs": 0,
    "warps": 4,
+   "dialogs": 0,
    "spawn": [
     18,
     41
@@ -1352,6 +1464,7 @@
    "tileset": "building__elite_four",
    "npcs": 3,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     6,
     6
@@ -1364,6 +1477,7 @@
    "tileset": "building__elite_four",
    "npcs": 1,
    "warps": 2,
+   "dialogs": 1,
    "spawn": [
     6,
     7
@@ -1376,6 +1490,7 @@
    "tileset": "building__elite_four",
    "npcs": 1,
    "warps": 2,
+   "dialogs": 1,
    "spawn": [
     6,
     7
@@ -1388,6 +1503,7 @@
    "tileset": "building__elite_four",
    "npcs": 0,
    "warps": 4,
+   "dialogs": 0,
    "spawn": [
     5,
     6
@@ -1400,6 +1516,7 @@
    "tileset": "building__elite_four",
    "npcs": 0,
    "warps": 4,
+   "dialogs": 0,
    "spawn": [
     5,
     6
@@ -1412,6 +1529,7 @@
    "tileset": "building__elite_four",
    "npcs": 0,
    "warps": 4,
+   "dialogs": 0,
    "spawn": [
     5,
     6
@@ -1424,6 +1542,7 @@
    "tileset": "building__elite_four",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     5,
     17
@@ -1436,6 +1555,7 @@
    "tileset": "building__elite_four",
    "npcs": 0,
    "warps": 4,
+   "dialogs": 0,
    "spawn": [
     5,
     6
@@ -1448,6 +1568,7 @@
    "tileset": "building__cable_club",
    "npcs": 1,
    "warps": 1,
+   "dialogs": 0,
    "spawn": [
     7,
     8
@@ -1460,6 +1581,7 @@
    "tileset": "building__elite_four",
    "npcs": 1,
    "warps": 2,
+   "dialogs": 1,
    "spawn": [
     6,
     7
@@ -1472,6 +1594,7 @@
    "tileset": "building__pokemon_center",
    "npcs": 4,
    "warps": 3,
+   "dialogs": 3,
    "spawn": [
     7,
     4
@@ -1484,6 +1607,7 @@
    "tileset": "building__pokemon_center",
    "npcs": 4,
    "warps": 3,
+   "dialogs": 0,
    "spawn": [
     7,
     5
@@ -1496,6 +1620,7 @@
    "tileset": "building__pokemon_center",
    "npcs": 4,
    "warps": 5,
+   "dialogs": 0,
    "spawn": [
     9,
     6
@@ -1508,6 +1633,7 @@
    "tileset": "building__pokemon_center",
    "npcs": 4,
    "warps": 3,
+   "dialogs": 0,
    "spawn": [
     7,
     5
@@ -1520,6 +1646,7 @@
    "tileset": "building__elite_four",
    "npcs": 1,
    "warps": 2,
+   "dialogs": 1,
    "spawn": [
     6,
     7
@@ -1532,6 +1659,7 @@
    "tileset": "general__fallarbor",
    "npcs": 4,
    "warps": 5,
+   "dialogs": 4,
    "spawn": [
     10,
     10
@@ -1544,6 +1672,7 @@
    "tileset": "building__battle_tent",
    "npcs": 3,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     5,
     4
@@ -1556,6 +1685,7 @@
    "tileset": "building__battle_tent",
    "npcs": 1,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     2,
     4
@@ -1568,6 +1698,7 @@
    "tileset": "building__battle_tent",
    "npcs": 5,
    "warps": 2,
+   "dialogs": 4,
    "spawn": [
     6,
     5
@@ -1580,6 +1711,7 @@
    "tileset": "building__generic_building",
    "npcs": 2,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     5,
     4
@@ -1592,6 +1724,7 @@
    "tileset": "building__shop",
    "npcs": 5,
    "warps": 2,
+   "dialogs": 3,
    "spawn": [
     5,
     4
@@ -1604,6 +1737,7 @@
    "tileset": "building__generic_building",
    "npcs": 1,
    "warps": 2,
+   "dialogs": 1,
    "spawn": [
     4,
     3
@@ -1616,6 +1750,7 @@
    "tileset": "building__pokemon_center",
    "npcs": 4,
    "warps": 3,
+   "dialogs": 3,
    "spawn": [
     7,
     4
@@ -1628,6 +1763,7 @@
    "tileset": "building__pokemon_center",
    "npcs": 4,
    "warps": 3,
+   "dialogs": 0,
    "spawn": [
     7,
     5
@@ -1640,6 +1776,7 @@
    "tileset": "general__rustboro",
    "npcs": 2,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     17,
     23
@@ -1652,6 +1789,7 @@
    "tileset": "general__fortree",
    "npcs": 1,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     14,
     13
@@ -1664,6 +1802,7 @@
    "tileset": "general__lavaridge",
    "npcs": 8,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     18,
     18
@@ -1676,6 +1815,7 @@
    "tileset": "general__fortree",
    "npcs": 7,
    "warps": 9,
+   "dialogs": 7,
    "spawn": [
     19,
     11
@@ -1688,6 +1828,7 @@
    "tileset": "building__generic_building",
    "npcs": 4,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     5,
     2
@@ -1700,6 +1841,7 @@
    "tileset": "building__fortree_gym",
    "npcs": 8,
    "warps": 2,
+   "dialogs": 8,
    "spawn": [
     9,
     11
@@ -1712,6 +1854,7 @@
    "tileset": "building__generic_building",
    "npcs": 3,
    "warps": 2,
+   "dialogs": 3,
    "spawn": [
     5,
     2
@@ -1724,6 +1867,7 @@
    "tileset": "building__generic_building",
    "npcs": 2,
    "warps": 2,
+   "dialogs": 1,
    "spawn": [
     5,
     2
@@ -1736,6 +1880,7 @@
    "tileset": "building__generic_building",
    "npcs": 2,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     5,
     2
@@ -1748,6 +1893,7 @@
    "tileset": "building__generic_building",
    "npcs": 3,
    "warps": 2,
+   "dialogs": 3,
    "spawn": [
     5,
     2
@@ -1760,6 +1906,7 @@
    "tileset": "building__generic_building",
    "npcs": 3,
    "warps": 2,
+   "dialogs": 3,
    "spawn": [
     5,
     2
@@ -1772,6 +1919,7 @@
    "tileset": "building__shop",
    "npcs": 4,
    "warps": 2,
+   "dialogs": 3,
    "spawn": [
     5,
     4
@@ -1784,6 +1932,7 @@
    "tileset": "building__pokemon_center",
    "npcs": 4,
    "warps": 3,
+   "dialogs": 3,
    "spawn": [
     7,
     4
@@ -1796,6 +1945,7 @@
    "tileset": "building__pokemon_center",
    "npcs": 4,
    "warps": 3,
+   "dialogs": 0,
    "spawn": [
     7,
     5
@@ -1808,6 +1958,7 @@
    "tileset": "general__cave",
    "npcs": 2,
    "warps": 4,
+   "dialogs": 1,
    "spawn": [
     21,
     7
@@ -1820,6 +1971,7 @@
    "tileset": "general__cave",
    "npcs": 1,
    "warps": 7,
+   "dialogs": 0,
    "spawn": [
     16,
     13
@@ -1832,6 +1984,7 @@
    "tileset": "general__cave",
    "npcs": 9,
    "warps": 5,
+   "dialogs": 0,
    "spawn": [
     15,
     12
@@ -1844,6 +1997,7 @@
    "tileset": "general__cave",
    "npcs": 1,
    "warps": 1,
+   "dialogs": 1,
    "spawn": [
     7,
     7
@@ -1856,6 +2010,7 @@
    "tileset": "general__inside_of_truck",
    "npcs": 3,
    "warps": 3,
+   "dialogs": 3,
    "spawn": [
     2,
     2
@@ -1868,6 +2023,7 @@
    "tileset": "general__cave",
    "npcs": 1,
    "warps": 3,
+   "dialogs": 0,
    "spawn": [
     8,
     16
@@ -1880,6 +2036,7 @@
    "tileset": "general__lavaridge",
    "npcs": 7,
    "warps": 5,
+   "dialogs": 6,
    "spawn": [
     14,
     22
@@ -1892,6 +2049,7 @@
    "tileset": "general__lavaridge",
    "npcs": 9,
    "warps": 6,
+   "dialogs": 7,
    "spawn": [
     10,
     10
@@ -1904,6 +2062,7 @@
    "tileset": "building__lavaridge_gym",
    "npcs": 6,
    "warps": 26,
+   "dialogs": 6,
    "spawn": [
     8,
     9
@@ -1916,6 +2075,7 @@
    "tileset": "building__lavaridge_gym",
    "npcs": 4,
    "warps": 24,
+   "dialogs": 0,
    "spawn": [
     8,
     9
@@ -1928,6 +2088,7 @@
    "tileset": "building__shop",
    "npcs": 3,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     5,
     4
@@ -1940,6 +2101,7 @@
    "tileset": "building__generic_building",
    "npcs": 3,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     6,
     3
@@ -1952,6 +2114,7 @@
    "tileset": "building__shop",
    "npcs": 3,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     5,
     4
@@ -1964,6 +2127,7 @@
    "tileset": "building__pokemon_center",
    "npcs": 4,
    "warps": 4,
+   "dialogs": 3,
    "spawn": [
     7,
     4
@@ -1976,6 +2140,7 @@
    "tileset": "building__pokemon_center",
    "npcs": 4,
    "warps": 3,
+   "dialogs": 0,
    "spawn": [
     7,
     5
@@ -1988,6 +2153,7 @@
    "tileset": "general__lilycove",
    "npcs": 22,
    "warps": 14,
+   "dialogs": 19,
    "spawn": [
     40,
     20
@@ -2000,6 +2166,7 @@
    "tileset": "building__contest",
    "npcs": 32,
    "warps": 4,
+   "dialogs": 32,
    "spawn": [
     25,
     16
@@ -2012,6 +2179,7 @@
    "tileset": "building__contest",
    "npcs": 25,
    "warps": 4,
+   "dialogs": 7,
    "spawn": [
     15,
     6
@@ -2024,6 +2192,7 @@
    "tileset": "building__generic_building",
    "npcs": 1,
    "warps": 3,
+   "dialogs": 1,
    "spawn": [
     6,
     4
@@ -2036,6 +2205,7 @@
    "tileset": "building__generic_building",
    "npcs": 7,
    "warps": 1,
+   "dialogs": 6,
    "spawn": [
     6,
     4
@@ -2048,6 +2218,7 @@
    "tileset": "building__battle_frontier",
    "npcs": 1,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     2,
     3
@@ -2060,6 +2231,7 @@
    "tileset": "building__shop",
    "npcs": 4,
    "warps": 1,
+   "dialogs": 2,
    "spawn": [
     9,
     6
@@ -2072,6 +2244,7 @@
    "tileset": "building__shop",
    "npcs": 6,
    "warps": 4,
+   "dialogs": 5,
    "spawn": [
     9,
     4
@@ -2084,6 +2257,7 @@
    "tileset": "building__shop",
    "npcs": 5,
    "warps": 3,
+   "dialogs": 3,
    "spawn": [
     9,
     4
@@ -2096,6 +2270,7 @@
    "tileset": "building__shop",
    "npcs": 5,
    "warps": 3,
+   "dialogs": 3,
    "spawn": [
     9,
     4
@@ -2108,6 +2283,7 @@
    "tileset": "building__shop",
    "npcs": 5,
    "warps": 3,
+   "dialogs": 3,
    "spawn": [
     9,
     4
@@ -2120,6 +2296,7 @@
    "tileset": "building__shop",
    "npcs": 7,
    "warps": 3,
+   "dialogs": 2,
    "spawn": [
     9,
     4
@@ -2132,6 +2309,7 @@
    "tileset": "general__facility",
    "npcs": 5,
    "warps": 2,
+   "dialogs": 1,
    "spawn": [
     8,
     10
@@ -2144,6 +2322,7 @@
    "tileset": "building__generic_building",
    "npcs": 2,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     5,
     4
@@ -2156,6 +2335,7 @@
    "tileset": "building__generic_building",
    "npcs": 1,
    "warps": 2,
+   "dialogs": 1,
    "spawn": [
     4,
     4
@@ -2168,6 +2348,7 @@
    "tileset": "building__generic_building",
    "npcs": 6,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     4,
     3
@@ -2180,6 +2361,7 @@
    "tileset": "building__generic_building",
    "npcs": 2,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     5,
     4
@@ -2192,6 +2374,7 @@
    "tileset": "building__lilycove_museum",
    "npcs": 10,
    "warps": 3,
+   "dialogs": 9,
    "spawn": [
     10,
     7
@@ -2204,6 +2387,7 @@
    "tileset": "building__lilycove_museum",
    "npcs": 4,
    "warps": 1,
+   "dialogs": 4,
    "spawn": [
     10,
     7
@@ -2216,6 +2400,7 @@
    "tileset": "building__generic_building",
    "npcs": 1,
    "warps": 2,
+   "dialogs": 1,
    "spawn": [
     4,
     3
@@ -2228,6 +2413,7 @@
    "tileset": "building__pokemon_center",
    "npcs": 5,
    "warps": 3,
+   "dialogs": 2,
    "spawn": [
     7,
     4
@@ -2240,6 +2426,7 @@
    "tileset": "building__pokemon_center",
    "npcs": 4,
    "warps": 3,
+   "dialogs": 0,
    "spawn": [
     7,
     5
@@ -2252,6 +2439,7 @@
    "tileset": "building__generic_building",
    "npcs": 9,
    "warps": 2,
+   "dialogs": 8,
    "spawn": [
     6,
     7
@@ -2264,6 +2452,7 @@
    "tileset": "building__shop",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     5,
     4
@@ -2276,6 +2465,7 @@
    "tileset": "general__petalburg",
    "npcs": 8,
    "warps": 3,
+   "dialogs": 3,
    "spawn": [
     10,
     10
@@ -2288,6 +2478,7 @@
    "tileset": "building__brendans_mays_house",
    "npcs": 7,
    "warps": 3,
+   "dialogs": 0,
    "spawn": [
     5,
     4
@@ -2300,6 +2491,7 @@
    "tileset": "building__brendans_mays_house",
    "npcs": 16,
    "warps": 1,
+   "dialogs": 0,
    "spawn": [
     4,
     4
@@ -2312,6 +2504,7 @@
    "tileset": "building__brendans_mays_house",
    "npcs": 7,
    "warps": 3,
+   "dialogs": 2,
    "spawn": [
     5,
     4
@@ -2324,6 +2517,7 @@
    "tileset": "building__brendans_mays_house",
    "npcs": 16,
    "warps": 1,
+   "dialogs": 1,
    "spawn": [
     4,
     4
@@ -2336,6 +2530,7 @@
    "tileset": "building__lab",
    "npcs": 6,
    "warps": 2,
+   "dialogs": 4,
    "spawn": [
     6,
     6
@@ -2348,6 +2543,7 @@
    "tileset": "general__lavaridge",
    "npcs": 6,
    "warps": 4,
+   "dialogs": 2,
    "spawn": [
     20,
     21
@@ -2360,6 +2556,7 @@
    "tileset": "general__lavaridge",
    "npcs": 4,
    "warps": 3,
+   "dialogs": 4,
    "spawn": [
     16,
     19
@@ -2372,6 +2569,7 @@
    "tileset": "general__lavaridge",
    "npcs": 6,
    "warps": 2,
+   "dialogs": 4,
    "spawn": [
     25,
     13
@@ -2384,6 +2582,7 @@
    "tileset": "general__lavaridge",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     23,
     13
@@ -2396,6 +2595,7 @@
    "tileset": "general__lavaridge",
    "npcs": 3,
    "warps": 3,
+   "dialogs": 2,
    "spawn": [
     15,
     11
@@ -2408,6 +2608,7 @@
    "tileset": "general__lavaridge",
    "npcs": 2,
    "warps": 1,
+   "dialogs": 1,
    "spawn": [
     10,
     9
@@ -2420,6 +2621,7 @@
    "tileset": "general__lavaridge",
    "npcs": 1,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     16,
     12
@@ -2432,6 +2634,7 @@
    "tileset": "general__lavaridge",
    "npcs": 8,
    "warps": 2,
+   "dialogs": 5,
    "spawn": [
     29,
     14
@@ -2444,6 +2647,7 @@
    "tileset": "general__cave",
    "npcs": 1,
    "warps": 1,
+   "dialogs": 0,
    "spawn": [
     14,
     14
@@ -2456,6 +2660,7 @@
    "tileset": "general__cave",
    "npcs": 0,
    "warps": 1,
+   "dialogs": 0,
    "spawn": [
     10,
     10
@@ -2468,6 +2673,7 @@
    "tileset": "general__mauville",
    "npcs": 11,
    "warps": 7,
+   "dialogs": 8,
    "spawn": [
     20,
     10
@@ -2480,6 +2686,7 @@
    "tileset": "general__bike_shop",
    "npcs": 2,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     7,
     3
@@ -2492,6 +2699,7 @@
    "tileset": "building__mauville_game_corner",
    "npcs": 12,
    "warps": 2,
+   "dialogs": 12,
    "spawn": [
     11,
     5
@@ -2504,6 +2712,7 @@
    "tileset": "building__mauville_gym",
    "npcs": 7,
    "warps": 2,
+   "dialogs": 7,
    "spawn": [
     5,
     10
@@ -2516,6 +2725,7 @@
    "tileset": "building__generic_building",
    "npcs": 1,
    "warps": 2,
+   "dialogs": 1,
    "spawn": [
     4,
     3
@@ -2528,6 +2738,7 @@
    "tileset": "building__generic_building",
    "npcs": 1,
    "warps": 2,
+   "dialogs": 1,
    "spawn": [
     5,
     4
@@ -2540,6 +2751,7 @@
    "tileset": "building__shop",
    "npcs": 3,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     5,
     4
@@ -2552,6 +2764,7 @@
    "tileset": "building__pokemon_center",
    "npcs": 5,
    "warps": 3,
+   "dialogs": 3,
    "spawn": [
     7,
     4
@@ -2564,6 +2777,7 @@
    "tileset": "building__pokemon_center",
    "npcs": 5,
    "warps": 3,
+   "dialogs": 1,
    "spawn": [
     7,
     5
@@ -2576,6 +2790,7 @@
    "tileset": "general__meteor_falls",
    "npcs": 10,
    "warps": 6,
+   "dialogs": 1,
    "spawn": [
     14,
     20
@@ -2588,6 +2803,7 @@
    "tileset": "general__meteor_falls",
    "npcs": 3,
    "warps": 4,
+   "dialogs": 3,
    "spawn": [
     14,
     16
@@ -2600,6 +2816,7 @@
    "tileset": "general__meteor_falls",
    "npcs": 0,
    "warps": 6,
+   "dialogs": 0,
    "spawn": [
     14,
     19
@@ -2612,6 +2829,7 @@
    "tileset": "general__meteor_falls",
    "npcs": 1,
    "warps": 1,
+   "dialogs": 0,
    "spawn": [
     5,
     9
@@ -2624,6 +2842,7 @@
    "tileset": "general__meteor_falls",
    "npcs": 1,
    "warps": 1,
+   "dialogs": 1,
    "spawn": [
     16,
     14
@@ -2636,6 +2855,7 @@
    "tileset": "general__mirage_tower",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     10,
     8
@@ -2648,6 +2868,7 @@
    "tileset": "general__mirage_tower",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     10,
     8
@@ -2660,6 +2881,7 @@
    "tileset": "general__mirage_tower",
    "npcs": 2,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     10,
     8
@@ -2672,6 +2894,7 @@
    "tileset": "general__mirage_tower",
    "npcs": 3,
    "warps": 1,
+   "dialogs": 2,
    "spawn": [
     6,
     5
@@ -2684,6 +2907,7 @@
    "tileset": "general__mossdeep",
    "npcs": 17,
    "warps": 10,
+   "dialogs": 10,
    "spawn": [
     40,
     20
@@ -2696,6 +2920,7 @@
    "tileset": "building__mossdeep_game_corner",
    "npcs": 2,
    "warps": 3,
+   "dialogs": 0,
    "spawn": [
     6,
     5
@@ -2708,6 +2933,7 @@
    "tileset": "building__generic_building",
    "npcs": 1,
    "warps": 1,
+   "dialogs": 0,
    "spawn": [
     6,
     4
@@ -2720,6 +2946,7 @@
    "tileset": "building__mossdeep_gym",
    "npcs": 36,
    "warps": 14,
+   "dialogs": 15,
    "spawn": [
     9,
     18
@@ -2732,6 +2959,7 @@
    "tileset": "building__generic_building",
    "npcs": 2,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     4,
     3
@@ -2744,6 +2972,7 @@
    "tileset": "building__generic_building",
    "npcs": 3,
    "warps": 2,
+   "dialogs": 3,
    "spawn": [
     5,
     4
@@ -2756,6 +2985,7 @@
    "tileset": "building__generic_building",
    "npcs": 1,
    "warps": 2,
+   "dialogs": 1,
    "spawn": [
     4,
     3
@@ -2768,6 +2998,7 @@
    "tileset": "building__generic_building",
    "npcs": 3,
    "warps": 2,
+   "dialogs": 3,
    "spawn": [
     5,
     4
@@ -2780,6 +3011,7 @@
    "tileset": "building__shop",
    "npcs": 4,
    "warps": 2,
+   "dialogs": 3,
    "spawn": [
     5,
     4
@@ -2792,6 +3024,7 @@
    "tileset": "building__pokemon_center",
    "npcs": 3,
    "warps": 3,
+   "dialogs": 2,
    "spawn": [
     7,
     4
@@ -2804,6 +3037,7 @@
    "tileset": "building__pokemon_center",
    "npcs": 5,
    "warps": 3,
+   "dialogs": 1,
    "spawn": [
     7,
     5
@@ -2816,6 +3050,7 @@
    "tileset": "general__facility",
    "npcs": 11,
    "warps": 3,
+   "dialogs": 8,
    "spawn": [
     8,
     5
@@ -2828,6 +3063,7 @@
    "tileset": "general__facility",
    "npcs": 9,
    "warps": 1,
+   "dialogs": 6,
    "spawn": [
     8,
     5
@@ -2840,6 +3076,7 @@
    "tileset": "building__generic_building",
    "npcs": 3,
    "warps": 2,
+   "dialogs": 3,
    "spawn": [
     4,
     5
@@ -2852,6 +3089,7 @@
    "tileset": "general__lavaridge",
    "npcs": 30,
    "warps": 4,
+   "dialogs": 29,
    "spawn": [
     20,
     23
@@ -2864,6 +3102,7 @@
    "tileset": "general__facility",
    "npcs": 2,
    "warps": 2,
+   "dialogs": 1,
    "spawn": [
     6,
     6
@@ -2876,6 +3115,7 @@
    "tileset": "general__facility",
    "npcs": 3,
    "warps": 6,
+   "dialogs": 3,
    "spawn": [
     11,
     8
@@ -2888,6 +3128,7 @@
    "tileset": "general__facility",
    "npcs": 8,
    "warps": 5,
+   "dialogs": 7,
    "spawn": [
     6,
     6
@@ -2900,6 +3141,7 @@
    "tileset": "general__facility",
    "npcs": 4,
    "warps": 6,
+   "dialogs": 3,
    "spawn": [
     5,
     5
@@ -2912,6 +3154,7 @@
    "tileset": "general__facility",
    "npcs": 2,
    "warps": 6,
+   "dialogs": 0,
    "spawn": [
     4,
     8
@@ -2924,6 +3167,7 @@
    "tileset": "general__facility",
    "npcs": 2,
    "warps": 5,
+   "dialogs": 0,
    "spawn": [
     5,
     7
@@ -2936,6 +3180,7 @@
    "tileset": "general__facility",
    "npcs": 3,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     5,
     5
@@ -2948,6 +3193,7 @@
    "tileset": "general__facility",
    "npcs": 2,
    "warps": 3,
+   "dialogs": 0,
    "spawn": [
     17,
     27
@@ -2960,6 +3206,7 @@
    "tileset": "general__facility",
    "npcs": 8,
    "warps": 3,
+   "dialogs": 6,
    "spawn": [
     25,
     18
@@ -2972,6 +3219,7 @@
    "tileset": "general__navel_rock",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     11,
     5
@@ -2984,6 +3232,7 @@
    "tileset": "general__navel_rock",
    "npcs": 1,
    "warps": 1,
+   "dialogs": 0,
    "spawn": [
     10,
     12
@@ -2996,6 +3245,7 @@
    "tileset": "general__navel_rock",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     4,
     4
@@ -3008,6 +3258,7 @@
    "tileset": "general__navel_rock",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     4,
     4
@@ -3020,6 +3271,7 @@
    "tileset": "general__navel_rock",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     4,
     4
@@ -3032,6 +3284,7 @@
    "tileset": "general__navel_rock",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     4,
     4
@@ -3044,6 +3297,7 @@
    "tileset": "general__navel_rock",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     4,
     4
@@ -3056,6 +3310,7 @@
    "tileset": "general__navel_rock",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     4,
     4
@@ -3068,6 +3323,7 @@
    "tileset": "general__navel_rock",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     4,
     4
@@ -3080,6 +3336,7 @@
    "tileset": "general__navel_rock",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     4,
     4
@@ -3092,6 +3349,7 @@
    "tileset": "general__navel_rock",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     4,
     4
@@ -3104,6 +3362,7 @@
    "tileset": "general__navel_rock",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     4,
     4
@@ -3116,6 +3375,7 @@
    "tileset": "general__navel_rock",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     4,
     4
@@ -3128,6 +3388,7 @@
    "tileset": "general__navel_rock",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     10,
     16
@@ -3140,6 +3401,7 @@
    "tileset": "general__dewford",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     10,
     12
@@ -3152,6 +3414,7 @@
    "tileset": "general__navel_rock",
    "npcs": 0,
    "warps": 3,
+   "dialogs": 0,
    "spawn": [
     13,
     43
@@ -3164,6 +3427,7 @@
    "tileset": "general__island_harbor",
    "npcs": 2,
    "warps": 1,
+   "dialogs": 0,
    "spawn": [
     6,
     4
@@ -3176,6 +3440,7 @@
    "tileset": "general__navel_rock",
    "npcs": 1,
    "warps": 1,
+   "dialogs": 0,
    "spawn": [
     12,
     14
@@ -3188,6 +3453,7 @@
    "tileset": "general__navel_rock",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     4,
     4
@@ -3200,6 +3466,7 @@
    "tileset": "general__navel_rock",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     4,
     4
@@ -3212,6 +3479,7 @@
    "tileset": "general__navel_rock",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     4,
     4
@@ -3224,6 +3492,7 @@
    "tileset": "general__navel_rock",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     4,
     4
@@ -3236,6 +3505,7 @@
    "tileset": "general__facility",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     4,
     4
@@ -3248,6 +3518,7 @@
    "tileset": "general__bike_shop",
    "npcs": 8,
    "warps": 1,
+   "dialogs": 0,
    "spawn": [
     19,
     19
@@ -3260,6 +3531,7 @@
    "tileset": "general__petalburg",
    "npcs": 4,
    "warps": 4,
+   "dialogs": 3,
    "spawn": [
     10,
     10
@@ -3272,6 +3544,7 @@
    "tileset": "building__generic_building",
    "npcs": 1,
    "warps": 2,
+   "dialogs": 1,
    "spawn": [
     5,
     4
@@ -3284,6 +3557,7 @@
    "tileset": "building__generic_building",
    "npcs": 2,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     4,
     3
@@ -3296,6 +3570,7 @@
    "tileset": "building__shop",
    "npcs": 3,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     5,
     4
@@ -3308,6 +3583,7 @@
    "tileset": "building__pokemon_center",
    "npcs": 4,
    "warps": 3,
+   "dialogs": 3,
    "spawn": [
     7,
     4
@@ -3320,6 +3596,7 @@
    "tileset": "building__pokemon_center",
    "npcs": 4,
    "warps": 3,
+   "dialogs": 0,
    "spawn": [
     7,
     5
@@ -3332,6 +3609,7 @@
    "tileset": "general__pacifidlog",
    "npcs": 3,
    "warps": 6,
+   "dialogs": 3,
    "spawn": [
     10,
     20
@@ -3344,6 +3622,7 @@
    "tileset": "building__generic_building",
    "npcs": 2,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     4,
     3
@@ -3356,6 +3635,7 @@
    "tileset": "building__generic_building",
    "npcs": 3,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     4,
     3
@@ -3368,6 +3648,7 @@
    "tileset": "building__generic_building",
    "npcs": 2,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     4,
     3
@@ -3380,6 +3661,7 @@
    "tileset": "building__generic_building",
    "npcs": 3,
    "warps": 2,
+   "dialogs": 3,
    "spawn": [
     4,
     3
@@ -3392,6 +3674,7 @@
    "tileset": "building__generic_building",
    "npcs": 2,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     4,
     3
@@ -3404,6 +3687,7 @@
    "tileset": "building__pokemon_center",
    "npcs": 5,
    "warps": 3,
+   "dialogs": 3,
    "spawn": [
     7,
     4
@@ -3416,6 +3700,7 @@
    "tileset": "building__pokemon_center",
    "npcs": 4,
    "warps": 3,
+   "dialogs": 0,
    "spawn": [
     7,
     5
@@ -3428,6 +3713,7 @@
    "tileset": "general__petalburg",
    "npcs": 9,
    "warps": 6,
+   "dialogs": 4,
    "spawn": [
     15,
     15
@@ -3440,6 +3726,7 @@
    "tileset": "building__petalburg_gym",
    "npcs": 11,
    "warps": 38,
+   "dialogs": 9,
    "spawn": [
     4,
     56
@@ -3452,6 +3739,7 @@
    "tileset": "building__generic_building",
    "npcs": 2,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     5,
     4
@@ -3464,6 +3752,7 @@
    "tileset": "building__generic_building",
    "npcs": 2,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     5,
     4
@@ -3476,6 +3765,7 @@
    "tileset": "building__shop",
    "npcs": 4,
    "warps": 2,
+   "dialogs": 3,
    "spawn": [
     5,
     4
@@ -3488,6 +3778,7 @@
    "tileset": "building__pokemon_center",
    "npcs": 5,
    "warps": 3,
+   "dialogs": 3,
    "spawn": [
     7,
     4
@@ -3500,6 +3791,7 @@
    "tileset": "building__pokemon_center",
    "npcs": 4,
    "warps": 3,
+   "dialogs": 0,
    "spawn": [
     7,
     5
@@ -3512,6 +3804,7 @@
    "tileset": "building__generic_building",
    "npcs": 2,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     4,
     3
@@ -3524,6 +3817,7 @@
    "tileset": "general__rustboro",
    "npcs": 13,
    "warps": 6,
+   "dialogs": 5,
    "spawn": [
     26,
     20
@@ -3536,6 +3830,7 @@
    "tileset": "building__cable_club",
    "npcs": 1,
    "warps": 4,
+   "dialogs": 0,
    "spawn": [
     8,
     3
@@ -3548,6 +3843,7 @@
    "tileset": "general__petalburg",
    "npcs": 6,
    "warps": 0,
+   "dialogs": 3,
    "spawn": [
     10,
     10
@@ -3560,6 +3856,7 @@
    "tileset": "general__petalburg",
    "npcs": 9,
    "warps": 0,
+   "dialogs": 2,
    "spawn": [
     25,
     10
@@ -3572,6 +3869,7 @@
    "tileset": "general__petalburg",
    "npcs": 20,
    "warps": 1,
+   "dialogs": 2,
    "spawn": [
     40,
     11
@@ -3584,6 +3882,7 @@
    "tileset": "general__rustboro",
    "npcs": 34,
    "warps": 8,
+   "dialogs": 7,
    "spawn": [
     21,
     41
@@ -3596,6 +3895,7 @@
    "tileset": "building__generic_building",
    "npcs": 2,
    "warps": 2,
+   "dialogs": 1,
    "spawn": [
     6,
     4
@@ -3608,6 +3908,7 @@
    "tileset": "building__pretty_petal_flower_shop",
    "npcs": 3,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     7,
     4
@@ -3620,6 +3921,7 @@
    "tileset": "building__pretty_petal_flower_shop",
    "npcs": 0,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     7,
     4
@@ -3632,6 +3934,7 @@
    "tileset": "general__dewford",
    "npcs": 8,
    "warps": 1,
+   "dialogs": 0,
    "spawn": [
     20,
     40
@@ -3644,6 +3947,7 @@
    "tileset": "general__dewford",
    "npcs": 5,
    "warps": 1,
+   "dialogs": 0,
    "spawn": [
     40,
     10
@@ -3656,6 +3960,7 @@
    "tileset": "general__dewford",
    "npcs": 7,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     30,
     10
@@ -3668,6 +3973,7 @@
    "tileset": "general__slateport",
    "npcs": 7,
    "warps": 1,
+   "dialogs": 0,
    "spawn": [
     30,
     10
@@ -3680,6 +3986,7 @@
    "tileset": "general__slateport",
    "npcs": 24,
    "warps": 1,
+   "dialogs": 6,
    "spawn": [
     20,
     31
@@ -3692,6 +3999,7 @@
    "tileset": "building__seashore_house",
    "npcs": 4,
    "warps": 2,
+   "dialogs": 4,
    "spawn": [
     7,
     5
@@ -3704,6 +4012,7 @@
    "tileset": "general__mauville",
    "npcs": 36,
    "warps": 6,
+   "dialogs": 12,
    "spawn": [
     19,
     49
@@ -3716,6 +4025,7 @@
    "tileset": "building__shop",
    "npcs": 1,
    "warps": 4,
+   "dialogs": 1,
    "spawn": [
     6,
     2
@@ -3728,6 +4038,7 @@
    "tileset": "building__shop",
    "npcs": 1,
    "warps": 4,
+   "dialogs": 1,
    "spawn": [
     6,
     2
@@ -3740,6 +4051,7 @@
    "tileset": "building__generic_building",
    "npcs": 0,
    "warps": 4,
+   "dialogs": 0,
    "spawn": [
     5,
     10
@@ -3752,6 +4064,7 @@
    "tileset": "building__generic_building",
    "npcs": 1,
    "warps": 2,
+   "dialogs": 1,
    "spawn": [
     5,
     3
@@ -3764,6 +4077,7 @@
    "tileset": "building__generic_building",
    "npcs": 1,
    "warps": 3,
+   "dialogs": 0,
    "spawn": [
     7,
     3
@@ -3776,6 +4090,7 @@
    "tileset": "building__trick_house_puzzle",
    "npcs": 15,
    "warps": 3,
+   "dialogs": 3,
    "spawn": [
     7,
     11
@@ -3788,6 +4103,7 @@
    "tileset": "building__trick_house_puzzle",
    "npcs": 5,
    "warps": 3,
+   "dialogs": 3,
    "spawn": [
     7,
     11
@@ -3800,6 +4116,7 @@
    "tileset": "building__trick_house_puzzle",
    "npcs": 7,
    "warps": 3,
+   "dialogs": 3,
    "spawn": [
     7,
     11
@@ -3812,6 +4129,7 @@
    "tileset": "building__trick_house_puzzle",
    "npcs": 14,
    "warps": 3,
+   "dialogs": 3,
    "spawn": [
     6,
     10
@@ -3824,6 +4142,7 @@
    "tileset": "building__trick_house_puzzle",
    "npcs": 5,
    "warps": 3,
+   "dialogs": 0,
    "spawn": [
     8,
     10
@@ -3836,6 +4155,7 @@
    "tileset": "building__trick_house_puzzle",
    "npcs": 4,
    "warps": 3,
+   "dialogs": 3,
    "spawn": [
     7,
     11
@@ -3848,6 +4168,7 @@
    "tileset": "building__trick_house_puzzle",
    "npcs": 9,
    "warps": 13,
+   "dialogs": 6,
    "spawn": [
     6,
     10
@@ -3860,6 +4181,7 @@
    "tileset": "building__trick_house_puzzle",
    "npcs": 4,
    "warps": 3,
+   "dialogs": 3,
    "spawn": [
     8,
     11
@@ -3872,6 +4194,7 @@
    "tileset": "general__mauville",
    "npcs": 46,
    "warps": 5,
+   "dialogs": 5,
    "spawn": [
     21,
     69
@@ -3884,6 +4207,7 @@
    "tileset": "building__generic_building",
    "npcs": 1,
    "warps": 2,
+   "dialogs": 1,
    "spawn": [
     6,
     3
@@ -3896,6 +4220,7 @@
    "tileset": "building__generic_building",
    "npcs": 4,
    "warps": 2,
+   "dialogs": 4,
    "spawn": [
     4,
     3
@@ -3908,6 +4233,7 @@
    "tileset": "general__lavaridge",
    "npcs": 14,
    "warps": 6,
+   "dialogs": 3,
    "spawn": [
     19,
     29
@@ -3920,6 +4246,7 @@
    "tileset": "general__facility",
    "npcs": 2,
    "warps": 2,
+   "dialogs": 1,
    "spawn": [
     6,
     6
@@ -3932,6 +4259,7 @@
    "tileset": "general__fallarbor",
    "npcs": 16,
    "warps": 3,
+   "dialogs": 2,
    "spawn": [
     50,
     10
@@ -3944,6 +4272,7 @@
    "tileset": "building__generic_building",
    "npcs": 2,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     5,
     4
@@ -3956,6 +4285,7 @@
    "tileset": "general__fallarbor",
    "npcs": 27,
    "warps": 5,
+   "dialogs": 2,
    "spawn": [
     20,
     40
@@ -3968,6 +4298,7 @@
    "tileset": "building__generic_building",
    "npcs": 1,
    "warps": 3,
+   "dialogs": 1,
    "spawn": [
     5,
     4
@@ -3980,6 +4311,7 @@
    "tileset": "general__fallarbor",
    "npcs": 1,
    "warps": 3,
+   "dialogs": 1,
    "spawn": [
     6,
     13
@@ -3992,6 +4324,7 @@
    "tileset": "building__lab",
    "npcs": 1,
    "warps": 2,
+   "dialogs": 1,
    "spawn": [
     5,
     4
@@ -4004,6 +4337,7 @@
    "tileset": "general__fallarbor",
    "npcs": 23,
    "warps": 3,
+   "dialogs": 1,
    "spawn": [
     18,
     41
@@ -4016,6 +4350,7 @@
    "tileset": "general__rustboro",
    "npcs": 28,
    "warps": 5,
+   "dialogs": 4,
    "spawn": [
     49,
     9
@@ -4028,6 +4363,7 @@
    "tileset": "building__generic_building",
    "npcs": 3,
    "warps": 2,
+   "dialogs": 3,
    "spawn": [
     5,
     4
@@ -4040,6 +4376,7 @@
    "tileset": "general__mauville",
    "npcs": 24,
    "warps": 1,
+   "dialogs": 3,
    "spawn": [
     30,
     10
@@ -4052,6 +4389,7 @@
    "tileset": "building__pokemon_day_care",
    "npcs": 1,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     6,
     4
@@ -4064,6 +4402,7 @@
    "tileset": "general__mauville",
    "npcs": 21,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     40,
     10
@@ -4076,6 +4415,7 @@
    "tileset": "general__fortree",
    "npcs": 43,
    "warps": 2,
+   "dialogs": 5,
    "spawn": [
     20,
     70
@@ -4088,6 +4428,7 @@
    "tileset": "building__generic_building",
    "npcs": 7,
    "warps": 2,
+   "dialogs": 7,
    "spawn": [
     5,
     4
@@ -4100,6 +4441,7 @@
    "tileset": "building__lab",
    "npcs": 5,
    "warps": 3,
+   "dialogs": 5,
    "spawn": [
     10,
     6
@@ -4112,6 +4454,7 @@
    "tileset": "building__lab",
    "npcs": 8,
    "warps": 1,
+   "dialogs": 4,
    "spawn": [
     10,
     5
@@ -4124,6 +4467,7 @@
    "tileset": "general__fortree",
    "npcs": 44,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     20,
     50
@@ -4136,6 +4480,7 @@
    "tileset": "general__lilycove",
    "npcs": 29,
    "warps": 1,
+   "dialogs": 1,
    "spawn": [
     40,
     10
@@ -4148,6 +4493,7 @@
    "tileset": "building__shop",
    "npcs": 3,
    "warps": 4,
+   "dialogs": 0,
    "spawn": [
     11,
     5
@@ -4160,6 +4506,7 @@
    "tileset": "general__lilycove",
    "npcs": 0,
    "warps": 1,
+   "dialogs": 0,
    "spawn": [
     26,
     28
@@ -4172,6 +4519,7 @@
    "tileset": "general__lilycove",
    "npcs": 43,
    "warps": 1,
+   "dialogs": 1,
    "spawn": [
     69,
     9
@@ -4184,6 +4532,7 @@
    "tileset": "building__generic_building",
    "npcs": 2,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     4,
     3
@@ -4196,6 +4545,7 @@
    "tileset": "general__mossdeep",
    "npcs": 12,
    "warps": 1,
+   "dialogs": 0,
    "spawn": [
     40,
     40
@@ -4208,6 +4558,7 @@
    "tileset": "building__generic_building",
    "npcs": 1,
    "warps": 2,
+   "dialogs": 1,
    "spawn": [
     5,
     4
@@ -4220,6 +4571,7 @@
    "tileset": "general__mossdeep",
    "npcs": 10,
    "warps": 1,
+   "dialogs": 0,
    "spawn": [
     40,
     20
@@ -4232,6 +4584,7 @@
    "tileset": "general__mossdeep",
    "npcs": 9,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     38,
     40
@@ -4244,6 +4597,7 @@
    "tileset": "general__mossdeep",
    "npcs": 11,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     40,
     40
@@ -4256,6 +4610,7 @@
    "tileset": "general__mossdeep",
    "npcs": 10,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     61,
     19
@@ -4268,6 +4623,7 @@
    "tileset": "general__mossdeep",
    "npcs": 5,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     40,
     20
@@ -4280,6 +4636,7 @@
    "tileset": "general__cave",
    "npcs": 4,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     39,
     19
@@ -4292,6 +4649,7 @@
    "tileset": "general__pacifidlog",
    "npcs": 8,
    "warps": 1,
+   "dialogs": 0,
    "spawn": [
     30,
     20
@@ -4304,6 +4662,7 @@
    "tileset": "general__pacifidlog",
    "npcs": 10,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     40,
     20
@@ -4316,6 +4675,7 @@
    "tileset": "general__pacifidlog",
    "npcs": 10,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     40,
     20
@@ -4328,6 +4688,7 @@
    "tileset": "general__pacifidlog",
    "npcs": 11,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     40,
     20
@@ -4340,6 +4701,7 @@
    "tileset": "general__rustboro",
    "npcs": 16,
    "warps": 12,
+   "dialogs": 12,
    "spawn": [
     20,
     30
@@ -4352,6 +4714,7 @@
    "tileset": "building__generic_building",
    "npcs": 2,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     5,
     4
@@ -4364,6 +4727,7 @@
    "tileset": "building__facility",
    "npcs": 3,
    "warps": 3,
+   "dialogs": 3,
    "spawn": [
     8,
     3
@@ -4376,6 +4740,7 @@
    "tileset": "general__facility",
    "npcs": 6,
    "warps": 2,
+   "dialogs": 6,
    "spawn": [
     9,
     4
@@ -4388,6 +4753,7 @@
    "tileset": "building__facility",
    "npcs": 3,
    "warps": 1,
+   "dialogs": 3,
    "spawn": [
     8,
     3
@@ -4400,6 +4766,7 @@
    "tileset": "building__generic_building",
    "npcs": 2,
    "warps": 3,
+   "dialogs": 2,
    "spawn": [
     7,
     4
@@ -4412,6 +4779,7 @@
    "tileset": "building__generic_building",
    "npcs": 8,
    "warps": 1,
+   "dialogs": 6,
    "spawn": [
     7,
     4
@@ -4424,6 +4792,7 @@
    "tileset": "building__generic_building",
    "npcs": 2,
    "warps": 3,
+   "dialogs": 2,
    "spawn": [
     7,
     4
@@ -4436,6 +4805,7 @@
    "tileset": "building__generic_building",
    "npcs": 2,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     7,
     4
@@ -4448,6 +4818,7 @@
    "tileset": "building__generic_building",
    "npcs": 2,
    "warps": 1,
+   "dialogs": 2,
    "spawn": [
     7,
     4
@@ -4460,6 +4831,7 @@
    "tileset": "building__rustboro_gym",
    "npcs": 5,
    "warps": 2,
+   "dialogs": 5,
    "spawn": [
     5,
     10
@@ -4472,6 +4844,7 @@
    "tileset": "building__generic_building",
    "npcs": 2,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     6,
     4
@@ -4484,6 +4857,7 @@
    "tileset": "building__generic_building",
    "npcs": 2,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     5,
     3
@@ -4496,6 +4870,7 @@
    "tileset": "building__generic_building",
    "npcs": 3,
    "warps": 2,
+   "dialogs": 3,
    "spawn": [
     5,
     3
@@ -4508,6 +4883,7 @@
    "tileset": "building__shop",
    "npcs": 4,
    "warps": 2,
+   "dialogs": 3,
    "spawn": [
     5,
     4
@@ -4520,6 +4896,7 @@
    "tileset": "building__pokemon_center",
    "npcs": 4,
    "warps": 3,
+   "dialogs": 3,
    "spawn": [
     7,
     4
@@ -4532,6 +4909,7 @@
    "tileset": "building__pokemon_center",
    "npcs": 4,
    "warps": 3,
+   "dialogs": 0,
    "spawn": [
     7,
     5
@@ -4544,6 +4922,7 @@
    "tileset": "building__pokemon_school",
    "npcs": 7,
    "warps": 2,
+   "dialogs": 7,
    "spawn": [
     6,
     5
@@ -4556,6 +4935,7 @@
    "tileset": "general__rusturf_tunnel",
    "npcs": 10,
    "warps": 3,
+   "dialogs": 5,
    "spawn": [
     18,
     15
@@ -4568,6 +4948,7 @@
    "tileset": "general__inside_ship",
    "npcs": 5,
    "warps": 9,
+   "dialogs": 4,
    "spawn": [
     6,
     3
@@ -4580,6 +4961,7 @@
    "tileset": "general__inside_ship",
    "npcs": 2,
    "warps": 1,
+   "dialogs": 2,
    "spawn": [
     7,
     5
@@ -4592,6 +4974,7 @@
    "tileset": "general__inside_ship",
    "npcs": 8,
    "warps": 12,
+   "dialogs": 8,
    "spawn": [
     16,
     7
@@ -4604,6 +4987,7 @@
    "tileset": "general__lilycove",
    "npcs": 9,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     20,
     20
@@ -4616,6 +5000,7 @@
    "tileset": "general__lilycove",
    "npcs": 9,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     20,
     20
@@ -4628,6 +5013,7 @@
    "tileset": "general__lilycove",
    "npcs": 2,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     20,
     20
@@ -4640,6 +5026,7 @@
    "tileset": "building__generic_building",
    "npcs": 3,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     5,
     4
@@ -4652,6 +5039,7 @@
    "tileset": "general__lilycove",
    "npcs": 6,
    "warps": 1,
+   "dialogs": 0,
    "spawn": [
     19,
     19
@@ -4664,6 +5052,7 @@
    "tileset": "general__lilycove",
    "npcs": 5,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     19,
     19
@@ -4676,6 +5065,7 @@
    "tileset": "general__lilycove",
    "npcs": 2,
    "warps": 1,
+   "dialogs": 0,
    "spawn": [
     20,
     20
@@ -4688,6 +5078,7 @@
    "tileset": "general__cave",
    "npcs": 1,
    "warps": 1,
+   "dialogs": 0,
    "spawn": [
     7,
     10
@@ -4700,6 +5091,7 @@
    "tileset": "general__cave",
    "npcs": 1,
    "warps": 2,
+   "dialogs": 1,
    "spawn": [
     10,
     10
@@ -4712,6 +5104,7 @@
    "tileset": "general__cave",
    "npcs": 5,
    "warps": 3,
+   "dialogs": 2,
    "spawn": [
     9,
     11
@@ -4724,6 +5117,7 @@
    "tileset": "general__cave",
    "npcs": 8,
    "warps": 4,
+   "dialogs": 0,
    "spawn": [
     10,
     5
@@ -4736,6 +5130,7 @@
    "tileset": "general__cave",
    "npcs": 9,
    "warps": 3,
+   "dialogs": 2,
    "spawn": [
     7,
     7
@@ -4748,6 +5143,7 @@
    "tileset": "general__cave",
    "npcs": 2,
    "warps": 4,
+   "dialogs": 2,
    "spawn": [
     9,
     10
@@ -4760,6 +5156,7 @@
    "tileset": "general__cave",
    "npcs": 6,
    "warps": 3,
+   "dialogs": 0,
    "spawn": [
     8,
     8
@@ -4772,6 +5169,7 @@
    "tileset": "general__pacifidlog",
    "npcs": 0,
    "warps": 3,
+   "dialogs": 0,
    "spawn": [
     12,
     11
@@ -4784,6 +5182,7 @@
    "tileset": "general__pacifidlog",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     11,
     12
@@ -4796,6 +5195,7 @@
    "tileset": "general__cave",
    "npcs": 12,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     5,
     7
@@ -4808,6 +5208,7 @@
    "tileset": "general__cave",
    "npcs": 7,
    "warps": 1,
+   "dialogs": 0,
    "spawn": [
     13,
     23
@@ -4820,6 +5221,7 @@
    "tileset": "general__cave",
    "npcs": 0,
    "warps": 1,
+   "dialogs": 0,
    "spawn": [
     10,
     11
@@ -4832,6 +5234,7 @@
    "tileset": "general__cave",
    "npcs": 0,
    "warps": 1,
+   "dialogs": 0,
    "spawn": [
     9,
     10
@@ -4844,6 +5247,7 @@
    "tileset": "general__cave",
    "npcs": 0,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     17,
     17
@@ -4856,6 +5260,7 @@
    "tileset": "general__cave",
    "npcs": 0,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     23,
     19
@@ -4868,6 +5273,7 @@
    "tileset": "general__cave",
    "npcs": 2,
    "warps": 4,
+   "dialogs": 0,
    "spawn": [
     18,
     16
@@ -4880,6 +5286,7 @@
    "tileset": "general__cave",
    "npcs": 2,
    "warps": 1,
+   "dialogs": 0,
    "spawn": [
     10,
     15
@@ -4892,6 +5299,7 @@
    "tileset": "general__cave",
    "npcs": 1,
    "warps": 8,
+   "dialogs": 0,
    "spawn": [
     23,
     19
@@ -4904,6 +5312,7 @@
    "tileset": "general__cave",
    "npcs": 2,
    "warps": 4,
+   "dialogs": 1,
    "spawn": [
     15,
     6
@@ -4916,6 +5325,7 @@
    "tileset": "general__cave",
    "npcs": 1,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     9,
     6
@@ -4928,6 +5338,7 @@
    "tileset": "general__pacifidlog",
    "npcs": 0,
    "warps": 3,
+   "dialogs": 0,
    "spawn": [
     5,
     4
@@ -4940,6 +5351,7 @@
    "tileset": "general__pacifidlog",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     4,
     4
@@ -4952,6 +5364,7 @@
    "tileset": "general__pacifidlog",
    "npcs": 0,
    "warps": 3,
+   "dialogs": 0,
    "spawn": [
     4,
     4
@@ -4964,6 +5377,7 @@
    "tileset": "general__pacifidlog",
    "npcs": 0,
    "warps": 3,
+   "dialogs": 0,
    "spawn": [
     4,
     4
@@ -4976,6 +5390,7 @@
    "tileset": "general__pacifidlog",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     3,
     3
@@ -4988,6 +5403,7 @@
    "tileset": "general__cave",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     8,
     8
@@ -5000,6 +5416,7 @@
    "tileset": "general__pacifidlog",
    "npcs": 1,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     13,
     10
@@ -5012,6 +5429,7 @@
    "tileset": "general__pacifidlog",
    "npcs": 2,
    "warps": 1,
+   "dialogs": 0,
    "spawn": [
     12,
     11
@@ -5024,6 +5442,7 @@
    "tileset": "general__slateport",
    "npcs": 35,
    "warps": 11,
+   "dialogs": 30,
    "spawn": [
     20,
     30
@@ -5036,6 +5455,7 @@
    "tileset": "building__battle_tent",
    "npcs": 3,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     5,
     4
@@ -5048,6 +5468,7 @@
    "tileset": "building__battle_tent",
    "npcs": 1,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     2,
     4
@@ -5060,6 +5481,7 @@
    "tileset": "building__battle_tent",
    "npcs": 5,
    "warps": 2,
+   "dialogs": 4,
    "spawn": [
     6,
     5
@@ -5072,6 +5494,7 @@
    "tileset": "general__facility",
    "npcs": 8,
    "warps": 4,
+   "dialogs": 4,
    "spawn": [
     8,
     10
@@ -5084,6 +5507,7 @@
    "tileset": "building__generic_building",
    "npcs": 2,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     4,
     3
@@ -5096,6 +5520,7 @@
    "tileset": "building__shop",
    "npcs": 3,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     5,
     4
@@ -5108,6 +5533,7 @@
    "tileset": "building__generic_building",
    "npcs": 1,
    "warps": 2,
+   "dialogs": 1,
    "spawn": [
     5,
     4
@@ -5120,6 +5546,7 @@
    "tileset": "building__oceanic_museum",
    "npcs": 14,
    "warps": 3,
+   "dialogs": 13,
    "spawn": [
     10,
     4
@@ -5132,6 +5559,7 @@
    "tileset": "building__oceanic_museum",
    "npcs": 7,
    "warps": 1,
+   "dialogs": 4,
    "spawn": [
     10,
     4
@@ -5144,6 +5572,7 @@
    "tileset": "building__pokemon_center",
    "npcs": 3,
    "warps": 3,
+   "dialogs": 2,
    "spawn": [
     7,
     4
@@ -5156,6 +5585,7 @@
    "tileset": "building__pokemon_center",
    "npcs": 4,
    "warps": 3,
+   "dialogs": 0,
    "spawn": [
     7,
     5
@@ -5168,6 +5598,7 @@
    "tileset": "building__pokemon_fan_club",
    "npcs": 9,
    "warps": 2,
+   "dialogs": 6,
    "spawn": [
     7,
     5
@@ -5180,6 +5611,7 @@
    "tileset": "general__facility",
    "npcs": 4,
    "warps": 3,
+   "dialogs": 4,
    "spawn": [
     10,
     7
@@ -5192,6 +5624,7 @@
    "tileset": "general__facility",
    "npcs": 3,
    "warps": 1,
+   "dialogs": 2,
    "spawn": [
     7,
     6
@@ -5204,6 +5637,7 @@
    "tileset": "general__sootopolis",
    "npcs": 18,
    "warps": 13,
+   "dialogs": 15,
    "spawn": [
     28,
     28
@@ -5216,6 +5650,7 @@
    "tileset": "building__sootopolis_gym",
    "npcs": 2,
    "warps": 3,
+   "dialogs": 2,
    "spawn": [
     8,
     13
@@ -5228,6 +5663,7 @@
    "tileset": "building__sootopolis_gym",
    "npcs": 10,
    "warps": 1,
+   "dialogs": 10,
    "spawn": [
     8,
     13
@@ -5240,6 +5676,7 @@
    "tileset": "building__generic_building",
    "npcs": 2,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     3,
     2
@@ -5252,6 +5689,7 @@
    "tileset": "building__generic_building",
    "npcs": 1,
    "warps": 2,
+   "dialogs": 1,
    "spawn": [
     3,
     2
@@ -5264,6 +5702,7 @@
    "tileset": "building__generic_building",
    "npcs": 2,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     4,
     3
@@ -5276,6 +5715,7 @@
    "tileset": "building__generic_building",
    "npcs": 3,
    "warps": 2,
+   "dialogs": 3,
    "spawn": [
     3,
     2
@@ -5288,6 +5728,7 @@
    "tileset": "building__generic_building",
    "npcs": 2,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     3,
     2
@@ -5300,6 +5741,7 @@
    "tileset": "building__generic_building",
    "npcs": 1,
    "warps": 2,
+   "dialogs": 1,
    "spawn": [
     4,
     3
@@ -5312,6 +5754,7 @@
    "tileset": "building__generic_building",
    "npcs": 2,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     3,
     2
@@ -5324,6 +5767,7 @@
    "tileset": "building__generic_building",
    "npcs": 2,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     3,
     2
@@ -5336,6 +5780,7 @@
    "tileset": "building__shop",
    "npcs": 3,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     5,
     4
@@ -5348,6 +5793,7 @@
    "tileset": "building__mystery_events_house",
    "npcs": 1,
    "warps": 3,
+   "dialogs": 1,
    "spawn": [
     5,
     4
@@ -5360,6 +5806,7 @@
    "tileset": "building__mystery_events_house",
    "npcs": 1,
    "warps": 1,
+   "dialogs": 0,
    "spawn": [
     6,
     4
@@ -5372,6 +5819,7 @@
    "tileset": "building__pokemon_center",
    "npcs": 4,
    "warps": 3,
+   "dialogs": 2,
    "spawn": [
     7,
     4
@@ -5384,6 +5832,7 @@
    "tileset": "building__pokemon_center",
    "npcs": 4,
    "warps": 3,
+   "dialogs": 0,
    "spawn": [
     7,
     5
@@ -5396,6 +5845,7 @@
    "tileset": "general__rustboro",
    "npcs": 2,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     15,
     16
@@ -5408,6 +5858,7 @@
    "tileset": "general__rustboro",
    "npcs": 2,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     13,
     12
@@ -5420,6 +5871,7 @@
    "tileset": "general__cave",
    "npcs": 1,
    "warps": 1,
+   "dialogs": 0,
    "spawn": [
     11,
     13
@@ -5432,6 +5884,7 @@
    "tileset": "general__cave",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     11,
     10
@@ -5444,6 +5897,7 @@
    "tileset": "building__cable_club",
    "npcs": 1,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     6,
     4
@@ -5456,6 +5910,7 @@
    "tileset": "building__trainer_hill",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     8,
     10
@@ -5468,6 +5923,7 @@
    "tileset": "building__trainer_hill",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     8,
     10
@@ -5480,6 +5936,7 @@
    "tileset": "building__trainer_hill",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     8,
     10
@@ -5492,6 +5949,7 @@
    "tileset": "building__trainer_hill",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     8,
     10
@@ -5504,6 +5962,7 @@
    "tileset": "building__battle_frontier",
    "npcs": 1,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     2,
     3
@@ -5516,6 +5975,7 @@
    "tileset": "building__trainer_hill",
    "npcs": 5,
    "warps": 3,
+   "dialogs": 3,
    "spawn": [
     9,
     8
@@ -5528,6 +5988,7 @@
    "tileset": "building__trainer_hill",
    "npcs": 1,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     12,
     8
@@ -5540,6 +6001,7 @@
    "tileset": "general__underwater",
    "npcs": 0,
    "warps": 1,
+   "dialogs": 0,
    "spawn": [
     9,
     6
@@ -5552,6 +6014,7 @@
    "tileset": "general__underwater",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     13,
     33
@@ -5564,6 +6027,7 @@
    "tileset": "general__underwater",
    "npcs": 0,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     43,
     37
@@ -5576,6 +6040,7 @@
    "tileset": "general__underwater",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     50,
     28
@@ -5588,6 +6053,7 @@
    "tileset": "general__underwater",
    "npcs": 0,
    "warps": 1,
+   "dialogs": 0,
    "spawn": [
     32,
     32
@@ -5600,6 +6066,7 @@
    "tileset": "general__underwater",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     40,
     40
@@ -5612,6 +6079,7 @@
    "tileset": "general__underwater",
    "npcs": 0,
    "warps": 1,
+   "dialogs": 0,
    "spawn": [
     55,
     15
@@ -5624,6 +6092,7 @@
    "tileset": "general__underwater",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     40,
     20
@@ -5636,6 +6105,7 @@
    "tileset": "general__underwater",
    "npcs": 0,
    "warps": 1,
+   "dialogs": 0,
    "spawn": [
     9,
     5
@@ -5648,6 +6118,7 @@
    "tileset": "general__underwater",
    "npcs": 4,
    "warps": 1,
+   "dialogs": 4,
    "spawn": [
     6,
     5
@@ -5660,6 +6131,7 @@
    "tileset": "general__underwater",
    "npcs": 0,
    "warps": 1,
+   "dialogs": 0,
    "spawn": [
     11,
     24
@@ -5672,6 +6144,7 @@
    "tileset": "general__underwater",
    "npcs": 0,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     10,
     5
@@ -5684,6 +6157,7 @@
    "tileset": "building__union_room",
    "npcs": 9,
    "warps": 2,
+   "dialogs": 0,
    "spawn": [
     7,
     6
@@ -5696,6 +6170,7 @@
    "tileset": "general__mauville",
    "npcs": 4,
    "warps": 7,
+   "dialogs": 4,
    "spawn": [
     10,
     10
@@ -5708,6 +6183,7 @@
    "tileset": "general__battle_tent",
    "npcs": 3,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     6,
     4
@@ -5720,6 +6196,7 @@
    "tileset": "building__battle_tent",
    "npcs": 1,
    "warps": 0,
+   "dialogs": 0,
    "spawn": [
     2,
     4
@@ -5732,6 +6209,7 @@
    "tileset": "building__battle_tent",
    "npcs": 6,
    "warps": 2,
+   "dialogs": 5,
    "spawn": [
     6,
     5
@@ -5744,6 +6222,7 @@
    "tileset": "building__generic_building",
    "npcs": 2,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     4,
     3
@@ -5756,6 +6235,7 @@
    "tileset": "building__generic_building",
    "npcs": 2,
    "warps": 2,
+   "dialogs": 2,
    "spawn": [
     5,
     4
@@ -5768,6 +6248,7 @@
    "tileset": "building__shop",
    "npcs": 4,
    "warps": 2,
+   "dialogs": 3,
    "spawn": [
     5,
     4
@@ -5780,6 +6261,7 @@
    "tileset": "building__pokemon_center",
    "npcs": 4,
    "warps": 3,
+   "dialogs": 2,
    "spawn": [
     7,
     4
@@ -5792,6 +6274,7 @@
    "tileset": "building__pokemon_center",
    "npcs": 4,
    "warps": 3,
+   "dialogs": 0,
    "spawn": [
     7,
     5
@@ -5804,6 +6287,7 @@
    "tileset": "building__generic_building",
    "npcs": 5,
    "warps": 2,
+   "dialogs": 5,
    "spawn": [
     8,
     4
@@ -5816,6 +6300,7 @@
    "tileset": "general__cave",
    "npcs": 9,
    "warps": 5,
+   "dialogs": 7,
    "spawn": [
     23,
     22
@@ -5828,6 +6313,7 @@
    "tileset": "general__cave",
    "npcs": 21,
    "warps": 7,
+   "dialogs": 5,
    "spawn": [
     23,
     15
@@ -5840,6 +6326,7 @@
    "tileset": "general__cave",
    "npcs": 7,
    "warps": 4,
+   "dialogs": 6,
    "spawn": [
     22,
     14

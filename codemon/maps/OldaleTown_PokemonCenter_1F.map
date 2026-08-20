@@ -29,3 +29,7 @@ people_nurse 7 2 S static
 people_gentleman 4 4 S static
 people_boy_1 10 6 E static
 people_girl_3 3 7 E static
+dialogs
+1	That PC in the corner there is for any POKéMON TRAINER to use. Naturally, that means you're welcome to use it, too.
+2	POKéMON CENTERS are great! You can use their services as much as you like, and it's all for free. You never have to worry!
+3	The POKéMON WIRELESS CLUB on the second floor was built recently. But they say they're still making adjustments.

@@ -335,3 +335,9 @@ people_hiker 14 56 S static
 misc_fossil 20 53 S static
 people_man_1 19 53 S static
 people_fat_man 19 101 N static
+dialogs
+0	Hello! I take it you're a traveler. How's this? What do you say to taking on our family of four in a series of POKéMON battles?
+7	If you don't raise your POKéMON some more, it could be tough to keep winning up through the ranks. I've heard the POKéMON LEAGUE's ELITE FOUR are far stronger than any GYM LEADER.
+33	I challenged the WINSTRATE family, but four matches in a row is tough going… They destroyed me.
+42	There should be a tower made of sand around here somewhere. But for some reason, it can be seen sometimes, and sometimes not. That's why I call it the MIRAGE TOWER.
+45	Oh, no! My uncle in MAUVILLE told me to take ROCK SMASH with me if I was going to ROUTE 111! My uncle? He lives across from the bike shop in MAUVILLE.

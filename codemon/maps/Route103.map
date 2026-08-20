@@ -69,3 +69,6 @@ people_man_5 67 9 N static
 people_swimmer_f 36 6 S static
 people_swimmer_m 36 13 S pace_v
 misc_item_ball 64 7 S static
+dialogs
+0	If you cross the sea from here, it'll be a shortcut to OLDALE TOWN. Fufufu, that's useful, isn't it?
+9	My POKéMON is staggeringly tired… I should have brought a POTION…

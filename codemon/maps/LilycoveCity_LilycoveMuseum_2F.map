@@ -35,3 +35,8 @@ people_gentleman 10 8 N static
 people_girl_2 19 10 S wander
 people_expert_m 7 3 S wander
 people_rich_boy 14 6 S wander
+dialogs
+0	I wish to fill this exhibit hall with modern and vibrant paintings of POKéMON.
+1	I've been away awhile, so the new paintings up here surprised me. I wish someone would paint my POKéMON this pretty.
+2	Well… So this is where they show the topical POKéMON paintings. I see, these new paintings are indeed rather amusing.
+3	Wow, is that right? These paintings are of your POKéMON. Isn't that just the ultimate joy for a TRAINER?

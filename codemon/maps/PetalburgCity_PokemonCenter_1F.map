@@ -30,3 +30,7 @@ people_man_4 11 2 S static
 people_fat_man 2 3 S static
 people_youngster 9 6 S wander
 people_woman_5 5 4 S static
+dialogs
+2	That PC-based POKéMON Storage System… Whoever made it must be some kind of a scientific wizard!
+3	When my POKéMON ate an ORAN BERRY, it regained HP!
+4	There are many types of POKéMON. All types have their strengths and weaknesses against other types. Depending on the types of POKéMON, a battle could be easy or hard.

@@ -29,3 +29,6 @@ people_nurse 7 2 S static
 people_gentleman 4 5 S wander
 people_expert_m 12 2 N static
 people_little_boy 10 6 W static
+dialogs
+1	You can't consider yourself a real TRAINER if you don't have faith in your POKéMON. Only those people who can believe in their battling POKéMON can win through to the very end.
+2	The reason why anyone would visit VERDANTURF… It's the BATTLE TENT. It goes without saying. Or is there somebody here that you came to see?

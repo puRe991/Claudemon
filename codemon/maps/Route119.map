@@ -329,3 +329,9 @@ people_man_5 32 15 W static
 misc_item_ball 19 5 S static
 misc_item_ball 24 42 S static
 people_scott 28 25 S static
+dialogs
+22	We're standing lookout here. Hey, you! Stay away from the WEATHER INSTITUTE. It's not safe.
+23	Lookout duty is surprisingly boring. Hey, you! Please don't go near the WEATHER INSTITUTE.
+25	I thought you FLY by catching a whole flock of BIRD POKéMON, and then hanging on to them somehow. But it turns out there's an HM move called FLY! I wish I'd known about that a long
+30	Tch… It's a no-go… The tall grass snares BIKE tires. There's no way you can cycle here.
+32	Can your POKéMON use its SECRET POWER on a big pile of grass and make a SECRET BASE?

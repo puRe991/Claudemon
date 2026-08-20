@@ -65,3 +65,7 @@ misc_pushable_boulder 9 3 S static
 misc_pushable_boulder 10 12 S static
 misc_pushable_boulder 14 2 S static
 misc_pushable_boulder 10 15 S static
+dialogs
+0	Wouldn't you agree? You would go anywhere if TRAINERS were there.
+1	Has anyone made it to the end?
+2	It's not good enough to be brawny… You have to use your head. Be brainy!

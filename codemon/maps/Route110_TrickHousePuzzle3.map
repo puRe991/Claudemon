@@ -58,3 +58,7 @@ misc_item_ball 1 2 S static
 misc_item_ball 4 2 S static
 misc_breakable_rock 1 20 S static
 misc_breakable_rock 2 21 S static
+dialogs
+0	It's full of doors here! It's too small and dark in here! Help!
+1	I know I'm weak! And, I have no sense of direction!
+2	I don't get it. How many traps are in this house? You may be the one to solve that.

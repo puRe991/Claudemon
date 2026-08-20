@@ -25,3 +25,7 @@ npcs
 people_woman_2 3 4 W static
 people_ninja_boy 6 6 S wander
 pokemon_skitty 2 4 S static
+dialogs
+0	My little brother says he likes to go find people's SECRET BASES.
+1	Was it you who made a SECRET BASE near ?
+2	SKITTY: Miyaan?

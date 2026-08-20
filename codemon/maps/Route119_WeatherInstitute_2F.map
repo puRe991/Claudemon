@@ -35,3 +35,8 @@ people_scientist_1 18 6 S static
 people_man_4 1 7 E static
 people_team_aqua_aqua_member_m 16 6 W static
 people_team_aqua_aqua_member_f 19 6 W static
+dialogs
+0	If the POKéMON they made here can control the weather freely, then we of TEAM AQUA definitely need it!
+1	You don't have any idea what we of TEAM AQUA are working towards! You stay out of our way!
+2	It's bad enough to have TEAM MAGMA blunder about, but now there's you! What makes you want to sniff around in our business, anyway?
+7	Humph, so what? What we want… What we really want isn't here… Ihihihihi…

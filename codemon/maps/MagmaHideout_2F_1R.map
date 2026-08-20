@@ -89,3 +89,8 @@ people_team_magma_magma_member_m 18 19 S static
 people_team_magma_magma_member_m 12 14 S static
 people_team_magma_magma_member_f 8 8 E static
 people_team_magma_magma_member_m 21 11 N static
+dialogs
+0	I've already lost. Do I really need to keep running around in a circle?
+1	Actually, I'm no expert at battling…
+2	If you suffer from chills, you should join TEAM MAGMA.
+3	Maybe it would've been better if I did just let you go unchallenged…

@@ -41,3 +41,8 @@ people_man_1 5 5 S static
 people_scientist_1 10 7 N static
 people_scientist_1 18 8 S wander
 people_expert_m 12 11 S wander
+dialogs
+0	Umm… If this goes here, and that goes over there… Then where does this thing go? And what about that doohickey? Aaargh! I can't make heads or tails of this!
+1	The seasons, the weather, where the moon sits in the sky… These and other conditions make the sea change its expression. That's right! The sea is like a living thing!
+2	I get seasick real easily. So I get to help out here instead.
+3	MR. BRINEY: Ah, PLAYER! It's been too long! Aye, since I met you, this old sea dog's been feeling frisky! So I've decided to help DOCK make a ferry. Aye, after all, a ferry would b

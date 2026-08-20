@@ -45,3 +45,8 @@ people_hiker 7 12 S static
 people_hex_maniac 14 13 W static
 people_woman_3 2 15 S wander
 people_fat_man 12 16 S wander
+dialogs
+0	Where the courage of TRAINERS is put to the test! Welcome to the BATTLE PYRAMID! I am your guide to the Battle Quest.
+1	Welcome… I shall be pleased to tell you what misfortunes await in the PYRAMID…
+2	Did you know? If you run fast, TRAINERS may notice and come after you for a battle. So, if you want to avoid TRAINERS, don't catch their eyes, but sneak cautiously and quietly past
+3	Awaaaaaaarrrrgh! I had a whole lot of items, but I lost them all when I lost! Awaaaaaaarrrrgh!

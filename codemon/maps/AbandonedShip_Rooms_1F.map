@@ -48,3 +48,7 @@ people_gentleman 12 5 S wander
 misc_item_ball 4 5 S static
 people_beauty 10 11 S static
 people_youngster 10 16 S static
+dialogs
+0	Ships of this sort are rare, so I'm taking a look around. Hmhm… There appear to be other cabins…
+2	The man next door… He says he's just sightseeing, but I don't know about that.
+3	I'm in trouble with my mom, so I ran. Keep it a secret where I am!

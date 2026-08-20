@@ -30,3 +30,7 @@ people_nurse 7 2 S static
 people_youngster 11 8 N static
 people_woman_3 10 6 W static
 people_gentleman 1 3 E static
+dialogs
+1	It's sort of magical how just sitting in a hot-spring pool can invigorate. I wish I could let my POKéMON soak, too.
+2	I think POKéMON get closer to their TRAINERS if they spend time together. The longer the better. That's what I think.
+3	Hohoho! Hey, kid, you can reach the hot springs from here. If POKéMON are getting rest, so too should their TRAINERS.

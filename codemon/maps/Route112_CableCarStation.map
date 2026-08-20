@@ -32,3 +32,5 @@ warps
 npcs
 people_beauty 6 6 S static
 misc_cable_car 6 3 S static
+dialogs
+0	The CABLE CAR is ready to go up. Would you like to be on it?

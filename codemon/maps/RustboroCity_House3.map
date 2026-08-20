@@ -27,3 +27,7 @@ npcs
 people_old_man 4 5 E static
 people_old_woman 7 5 W static
 pokemon_pikachu 4 4 S static
+dialogs
+0	For my own POKéMON, I give them perfectly suited nicknames! It's my expression of, uh… originality, yes, that's it!
+1	But giving the name PEKACHU to a PIKACHU? It seems pointless. I suppose it is good to use a name that's easy to understand, but…
+2	PEKACHU: Peka!

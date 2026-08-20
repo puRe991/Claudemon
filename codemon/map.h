@@ -17,6 +17,7 @@ struct NpcSpawn {
 	int x, y;            // start tile
 	DIR facing;          // initial facing
 	MoveKind movement;   // behaviour
+	std::string dialog;  // line shown on interaction (may be empty)
 };
 
 // One warp/transition as authored in the map file's `warps` section. Stepping

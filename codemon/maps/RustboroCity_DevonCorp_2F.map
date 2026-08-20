@@ -30,3 +30,10 @@ people_scientist_1 2 6 S static
 people_scientist_1 10 5 N static
 people_scientist_1 14 8 N static
 people_scientist_1 14 5 N static
+dialogs
+0	We're developing a device for talking with POKéMON. But we haven't had much success…
+1	I'm developing new kinds of POKé BALLS… But I haven't made much headway…
+2	I made the POKéNAV! As an engineer, I feel blessed to have made something so great!
+3	I'm trying to develop a device that visually reproduces the dreams of POKéMON… But it's not going well.
+4	I've been trying to develop a device that resurrects POKéMON from fossils… And, it's working!
+5	I'm trying to develop a new feature for the POKéNAV… But it's not going well.

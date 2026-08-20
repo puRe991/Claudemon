@@ -25,3 +25,6 @@ warps
 npcs
 people_devon_employee 7 3 S wander
 people_woman_1 12 2 S static
+dialogs
+0	DEVON's PRESIDENT likes to collect rare stones.
+1	I think the PRESIDENT's son also collects rare stones.

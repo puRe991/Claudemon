@@ -16,6 +16,13 @@ The generated blips `assets/sfx/step.wav`, `bump.wav` and `select.wav` are
 synthesized from scratch by `tools/pe_import.py` and carry no third-party
 rights.
 
+NPC dialog lines under the maps' `dialogs` sections are extracted from
+pokeemerald's scripts and are likewise Nintendo / Game Freak text.
+
+The UI font `assets/fonts/DejaVuSans.ttf` is DejaVu Sans, released under the
+permissive DejaVu Fonts License (a Bitstream Vera / free license); it is
+redistributable and usable commercially.
+
 ## How these files were produced
 
 Everything here is generated from a `pokeemerald-master` checkout by

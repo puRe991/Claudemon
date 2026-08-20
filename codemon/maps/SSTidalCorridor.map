@@ -44,3 +44,8 @@ people_sailor 16 7 S wander
 people_expert_m 9 2 S static
 pokemon_wingull 7 2 S static
 people_scott 9 10 W static
+dialogs
+0	It'll be some time before we make land, I reckon. You can rest up in your cabin if you'd like. Your cabin's No. 2. The bed in there is soft and plushy. I can attest to how comfy it
+1	Go visit other cabins. TRAINERS bored of the boat trip will be itching to battle.
+2	MR. BRINEY: Welcome aboard, PLAYER! They made me honorary captain of the S.S. TIDAL! You can call me CAPTAIN BRINEY now! You know, I retired once before, but when I saw this majest
+3	PEEKO: Pihyo pihyohyo…

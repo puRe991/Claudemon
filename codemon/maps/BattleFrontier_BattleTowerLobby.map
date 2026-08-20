@@ -36,3 +36,10 @@ people_man_1 1 5 S static
 people_teala 10 5 S static
 people_teala 14 5 S static
 people_teala 18 5 S static
+dialogs
+0	Where the talents of TRAINERS are put to the test! Welcome to the BATTLE TOWER! I am your guide to the SINGLE BATTLE ROOMS.
+2	The number of matches you win in a row is recorded. I'd better not get beaten in an embarrassing way!
+3	Once you've entered the BATTLE TOWER, you can't leave until you either lose or you beat seven TRAINERS in a row. You'd best be certain that you're up to the challenge.
+6	Where the talents of TRAINERS are put to the test! Welcome to the BATTLE TOWER! I am your guide to the DOUBLE BATTLE ROOMS.
+7	Where the talents of TRAINERS are put to the test! Welcome to the BATTLE TOWER! I am your guide to the MULTI BATTLE ROOMS.
+8	Where the talents of TRAINERS are put to the test! Welcome to the BATTLE TOWER! I am your guide to the LINK MULTI BATTLE ROOMS.

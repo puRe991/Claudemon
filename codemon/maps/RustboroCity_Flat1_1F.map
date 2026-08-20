@@ -25,3 +25,6 @@ warps
 npcs
 people_man_3 9 4 E static
 people_woman_5 12 4 W static
+dialogs
+0	Every POKéMON has a special ability that it can use.
+1	POKéMON are such strange creatures.

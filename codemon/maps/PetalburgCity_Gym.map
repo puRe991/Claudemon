@@ -277,3 +277,13 @@ people_man_3 4 29 S static
 people_man_2 3 109 S static
 people_wally 4 111 N static
 people_pokefan_m 1 7 N static
+dialogs
+0	DAD: Hm? Well, if it isn't PLAYER! So you're all finished moving in? I'm surprised that you managed to get here by yourself. Oh, I see. You're with your POKéMON. Hm… Then I guess y
+1	There are some even stronger TRAINERS waiting for you. The left is the DEFENSE ROOM, and the right is the RECOVERY ROOM. Your POKéMON's ATTACK power will be on trial either way.
+2	Go on to the next room where a new challenge awaits you. At the left is the CONFUSION ROOM. The right door leads to the DEFENSE ROOM.
+3	The next room is the STRENGTH ROOM. Can you withstand brute force?
+4	I think you've taught me a valuable lesson here. Now, go on! The left door goes to the STRENGTH ROOM. The right door opens to the ONE-HIT KO ROOM. Both of them have TRAINERS who ar
+5	I should have expected no less from our LEADER's kid. No, wait! A TRAINER's abilities are earned only through effort. I lost because my own efforts weren't enough. Go on! The ONE-H
+6	The way you use your POKéMON… It's like your father's style. Go on through! The GYM LEADER, your father, is waiting!
+7	Your father really is strong. He's a TRAINER worth my respect. And, I sense the same glow coming from you as your father. I hope that you'll stage a terrific battle with your fathe
+8	Hey, how's it going, CHAMPION- bound PLAYER? The doors in this GYM open when you beat the awaiting TRAINERS. Whoops! The doors in this room are already open, so don't attack me! Th

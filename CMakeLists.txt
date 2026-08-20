@@ -55,6 +55,7 @@ set(ENGINE_SOURCES
     "${SRC_DIR}/character.cpp"
     "${SRC_DIR}/map.cpp"
     "${SRC_DIR}/Audio.cpp"
+    "${SRC_DIR}/DialogBox.cpp"
     "${SRC_DIR}/data_structures.cpp")
 
 add_library(monsta_engine STATIC ${ENGINE_SOURCES})

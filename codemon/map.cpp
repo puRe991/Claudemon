@@ -69,7 +69,7 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 
 	auto is_keyword = [](const std::string& s) {
 		return s.rfind("collision", 0) == 0 || s.rfind("warps", 0) == 0 ||
-		       s.rfind("npcs", 0) == 0;
+		       s.rfind("npcs", 0) == 0 || s.rfind("dialogs", 0) == 0;
 	};
 
 	for (size_t i = 0; i < rest.size(); ) {
@@ -106,6 +106,17 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 				             (move == "pace_v") ? MOVE_PACE_V :
 				             (move == "pace_h") ? MOVE_PACE_H : MOVE_STATIC;
 				this->npc_spawns.push_back(n);
+			}
+		} else if (head.rfind("dialogs", 0) == 0) {
+			// "<npc_index>\t<text>"
+			for (++i; i < rest.size() && !is_keyword(rest[i]); ++i) {
+				if (rest[i].empty()) continue;
+				size_t tab = rest[i].find('\t');
+				if (tab == std::string::npos) continue;
+				int idx = std::stoi(rest[i].substr(0, tab));
+				std::string text = rest[i].substr(tab + 1);
+				if (idx >= 0 && idx < (int)this->npc_spawns.size())
+					this->npc_spawns[idx].dialog = text;
 			}
 		} else {
 			++i;

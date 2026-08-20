@@ -27,3 +27,5 @@ collision
 npcs
 people_link_receptionist 4 10 E static
 people_link_receptionist 8 5 S static
+dialogs
+1	I beg your pardon, but… Are you perhaps finding it difficult to choose your path?

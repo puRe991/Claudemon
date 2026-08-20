@@ -86,3 +86,8 @@ misc_item_ball 16 9 S static
 misc_item_ball 15 10 S static
 misc_item_ball 16 10 S static
 people_team_aqua_aqua_member_f 28 21 N static
+dialogs
+0	Our HIDEOUT's secret? Well, let's just say… There's a submarine at the far end! But, by now… Kekekeke…
+1	Humph! This was supposed to happen! My mission was to just hold you up!
+3	If you scurry too much, other TEAM AQUA members might get you.
+8	If you have a cool uniform, you look good even in a loss, don't you think?

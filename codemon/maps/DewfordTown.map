@@ -54,3 +54,7 @@ people_expert_m 12 9 W static
 people_fisherman 12 14 S wander
 misc_mr_brineys_boat 12 8 S static
 people_boy_1 1 6 S static
+dialogs
+0	DEWFORD is a tiny island community. If something gets trendy here, everyone picks up on it right away.
+2	This is a renowned fishing spot. Are you getting the itch to fish?
+4	I like what's hip, happening, and trendy. I'm always checking it out. Listen, have you heard about this new “”? That's right! Of course you know! I mean, sheesh, “”… It's the hotte

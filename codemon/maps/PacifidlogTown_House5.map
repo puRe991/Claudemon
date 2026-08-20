@@ -26,3 +26,6 @@ warps
 npcs
 people_expert_m 9 4 E static
 people_gentleman 3 4 E static
+dialogs
+0	I can't see MIRAGE ISLAND today…
+1	MIRAGE ISLAND… It must become visible and invisible depending on the weather conditions that make mirages appear. Or is it really appearing and disappearing?

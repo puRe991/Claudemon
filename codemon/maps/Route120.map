@@ -250,3 +250,6 @@ pokemon_kecleon 19 48 S static
 people_girl_3 19 32 N static
 people_man_3 14 34 E static
 misc_item_ball 24 33 S static
+dialogs
+29	Something unseeable is in the way.
+30	STEVEN: Hm? PLAYER, hi. It's been a while. There's something here that you can't see, right? Now, if I were to use this device on the invisible obstacle… No, no. Rather than descri

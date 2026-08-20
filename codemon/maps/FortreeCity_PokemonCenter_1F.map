@@ -29,3 +29,7 @@ people_nurse 7 2 S static
 people_gentleman 4 7 S static
 people_man_3 8 5 S static
 people_boy_3 2 3 S static
+dialogs
+1	Listen, kid, are you working on a POKéDEX? Hmm… Go to the SAFARI ZONE. That's my suggestion.
+2	Have you done anything at the RECORD CORNER? It's pretty neat. It mixes and matches the records of TRAINERS. I don't know quite how it works, but it's cool. It's exciting, even!
+3	Oh, wow, you have a POKéNAV! And it's just like mine! Do you know about POKéNAV's MATCH CALL system? Access it, and you can chat with registered TRAINERS anytime. It also shows you

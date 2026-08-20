@@ -30,3 +30,7 @@ people_man_1 2 3 W static
 people_woman_1 8 6 S static
 people_woman_5 11 4 S wander
 people_youngster 2 8 S static
+dialogs
+2	That man over there, he says weird things! He's funny in a weird way. I doubt I'll forget about him!
+3	When I accessed the RECORD CORNER, the data for what's hot in DEWFORD got updated. Now that bit of data is the same as my friend's!
+4	A RECORD CORNER opened upstairs in the POKéMON CENTER. I don't know what it's about, but it sounds fun. I'll go check it out!

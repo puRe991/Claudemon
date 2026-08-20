@@ -144,3 +144,7 @@ people_hiker 8 50 S static
 misc_item_ball 14 43 S static
 people_man_5 31 7 S static
 people_woman_2 31 11 S static
+dialogs
+0	Hey, man, is our leader really going to awaken that thing?
+5	Hey, man, is our leader really going to awaken that thing?
+10	Eh, I'd like to get to MAUVILLE, but if I went down these ledges, it'd be no easy matter to get back to LAVARIDGE.

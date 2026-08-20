@@ -111,3 +111,9 @@ people_bug_catcher 4 14 S static
 people_boy_3 30 34 S wander
 misc_item_ball 4 26 S static
 people_girl_2 33 5 S static
+dialogs
+7	Yo, there! Your POKéMON doing okay? If your POKéMON are weak and you want to avoid battles, you should stay out of tall grass.
+8	I caught a bunch of POKéMON. Now I'm out of POKé BALLS.
+9	If you have a big BUG POKéMON, people respect you for it.
+10	Sometimes, there are things on the ground even if you can't see them. That's why I always check where I'm walking.
+12	Oh, neat! That's the BADGE from RUSTBORO GYM! You must be a TRAINER. You should try using this item.

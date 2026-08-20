@@ -66,3 +66,7 @@ misc_cuttable_tree 0 6 S static
 misc_item_ball 9 4 S static
 misc_cuttable_tree 4 8 S static
 misc_cuttable_tree 2 12 S static
+dialogs
+0	I never get tired of hacking and slashing!
+1	I lost my way, I lost a battle, and I'm now even more lost… I can't get out…
+2	You're strong! Just who are you?

@@ -147,6 +147,7 @@
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Tileset.cpp" />
     <ClCompile Include="Audio.cpp" />
+    <ClCompile Include="DialogBox.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="character.h" />
@@ -156,6 +157,7 @@
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Tileset.h" />
     <ClInclude Include="Audio.h" />
+    <ClInclude Include="DialogBox.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

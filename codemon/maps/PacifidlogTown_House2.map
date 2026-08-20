@@ -27,3 +27,6 @@ npcs
 people_gentleman 3 5 S static
 pokemon_azurill 8 6 S static
 pokemon_azurill 1 7 S static
+dialogs
+1	AZURILL: Rurii.
+2	AZURILL: Rururi!

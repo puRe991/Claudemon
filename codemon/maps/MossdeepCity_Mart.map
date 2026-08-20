@@ -26,3 +26,7 @@ people_mart_employee 1 3 E static
 people_woman_5 1 5 N static
 people_boy_2 8 3 S wander
 people_sailor 5 3 S wander
+dialogs
+1	REVIVE is fantastic! Give it to a fainted POKéMON, and the POKéMON will arise. But be careful, REVIVE doesn't restore the used-up PP of moves.
+2	MAX REPEL keeps all weak POKéMON away. Out of all the REPEL sprays, it lasts the longest.
+3	The NET and DIVE BALLS are rare POKé BALLS that are only made in MOSSDEEP. A NET BALL is effective against BUG-type and WATER-type POKéMON. A DIVE BALL works best on POKéMON at the

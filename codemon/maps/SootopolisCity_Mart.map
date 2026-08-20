@@ -25,3 +25,6 @@ npcs
 people_mart_employee 1 3 E static
 people_fat_man 5 5 E static
 people_gentleman 9 5 E static
+dialogs
+1	What… What is happening? I really want to know, but it's too scary to go outside.
+2	This weather… Did something awaken?
