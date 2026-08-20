@@ -39,7 +39,23 @@ misc_item_ball 6 8 S static
 misc_item_ball 6 8 S static
 misc_item_ball 6 8 S static
 dialogs
-0	Hunh? PROF. BIRCH? The PROF's away on fieldwork. Ergo, he isn't here. Oh, let me explain what fieldwork is. It is to study things in the natural environment, like fields and mounta
-3	PROF. BIRCH: The FIRE POKéMON CYNDAQUIL caught your eye! You're as sharp as ever! So the CYNDAQUIL is your choice?
-4	PROF. BIRCH: The WATER POKéMON TOTODILE is your choice! You know how to pick a good one. So, you'll take the TOTODILE?
-5	PROF. BIRCH: The GRASS POKéMON CHIKORITA is your choice! You sure know what you're doing. So, you'll take the CHIKORITA?
+0	Hunh? PROF. BIRCH?The PROF's away on fieldwork. Ergo, he isn't here.Oh, let me explain what fieldwork is.It is to study things in the natural environment, like fields and mountains, instead of a laboratory.The PROF isn't one for doing desk work. He's the type of person who would rather go outside and experience things than read about them here.
+3	PROF. BIRCH: The FIRE POKéMON CYNDAQUIL caught your eye!You're as sharp as ever!So the CYNDAQUIL is your choice?
+4	PROF. BIRCH: The WATER POKéMON TOTODILE is your choice!You know how to pick a good one.So, you'll take the TOTODILE?
+5	PROF. BIRCH: The GRASS POKéMON CHIKORITA is your choice!You sure know what you're doing.So, you'll take the CHIKORITA?
+signs
+10 7	It's a serious-looking machine. The PROF must use this for research.
+11 7	It's a serious-looking machine. The PROF must use this for research.
+7 1	It's a book that's too hard to read.
+8 1	It's a book that's too hard to read.
+1 1	It's crammed with books on POKéMON.
+0 7	It's crammed with books on POKéMON.
+1 7	It's crammed with books on POKéMON.
+2 7	It's crammed with books on POKéMON.
+3 7	It's crammed with books on POKéMON.
+4 1	It's a PC used for research. Better not mess around with it.
+3 1	It's a PC used for research. Better not mess around with it.
+1 10	It's a PC used for research. Better not mess around with it.
+1 9	It's a PC used for research. Better not mess around with it.
+11 10	It's a PC used for research. Better not mess around with it.
+11 9	It's a PC used for research. Better not mess around with it.

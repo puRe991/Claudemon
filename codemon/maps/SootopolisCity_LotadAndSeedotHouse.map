@@ -23,5 +23,8 @@ npcs
 people_fisherman 2 4 E static
 people_hiker 5 4 W static
 dialogs
-0	Do you know the POKéMON LOTAD? It's rarely seen in SOOTOPOLIS. I love, I mean love, big LOTAD! My big brother says that SEEDOT is bigger. But that's wrong! Everyone knows that LOTA
-1	Do you know the POKéMON SEEDOT? It's hardly ever seen in SOOTOPOLIS. Anyway, I love big SEEDOT. The bigger the better. But my younger brother, he says that LOTAD is bigger. That's 
+0	Do you know the POKéMON LOTAD? It's rarely seen in SOOTOPOLIS.I love, I mean love, big LOTAD!My big brother says that SEEDOT is bigger.But that's wrong! Everyone knows that LOTAD is a lot bigger.Hunh? Do you have a LOTAD? P-p-please show me!
+1	Do you know the POKéMON SEEDOT? It's hardly ever seen in SOOTOPOLIS.Anyway, I love big SEEDOT. The bigger the better.But my younger brother, he says that LOTAD is bigger.That's silly. SEEDOT has to be bigger than that!Huh? Do you have a SEEDOT with you? P-p-please, show me!
+signs
+5 1	The biggest SEEDOT in history! 's -inch giant!A SEEDOT bigger than a LOTAD always wanted!
+2 1	The biggest LOTAD in history! 's -inch colossus!A LOTAD bigger than a SEEDOT always wanted!

@@ -57,4 +57,8 @@ people_boy_1 1 6 S static
 dialogs
 0	DEWFORD is a tiny island community. If something gets trendy here, everyone picks up on it right away.
 2	This is a renowned fishing spot. Are you getting the itch to fish?
-4	I like what's hip, happening, and trendy. I'm always checking it out. Listen, have you heard about this new “”? That's right! Of course you know! I mean, sheesh, “”… It's the hotte
+4	I like what's hip, happening, and trendy. I'm always checking it out.Listen, have you heard about this new “”?That's right! Of course you know!I mean, sheesh, “”… It's the hottest thing in cool!Wherever you're from, “” is the biggest happening thing, right?
+signs
+10 10	DEWFORD TOWN “A tiny island in the blue sea.”
+11 16	DEWFORD TOWN POKéMON GYM LEADER: BRAWLY “A big wave in fighting!”
+2 4	DEWFORD HALL “Everyone's information exchange!”

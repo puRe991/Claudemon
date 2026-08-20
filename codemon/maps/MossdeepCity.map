@@ -112,13 +112,18 @@ people_black_belt 19 25 S static
 people_scott 61 29 S static
 people_black_belt 31 29 S static
 dialogs
-0	I heard from a SAILOR buddy that TEAM AQUA set up shop in LILYCOVE. I also heard that someone came along and wiped the floor with them! But MOSSDEEP here's been targeted by that TE
-1	All life needs the sea to live, even though it makes its home on the land. Life, having run its course, becomes soil and returns to the land. And the sea is always connected to the
-2	The island's SPACE CENTER has been launching huge rockets. There's been some kind of an uproar over a letter they received recently.
-3	Around MOSSDEEP, you can see wild WAILMER. It's called, uh… What was it now… WAI, WAI, WAI… WAILMER watching!
-4	Wouldn't it be nice? If the whole world was covered in plants and flowers like this island?
-6	A voyage on a ship is fine. But crossing the sea with POKéMON using SURF… Now that's an exhilarating trip! Wouldn't you agree, youngster?
-7	This rock has a special meaning to the people at the SPACE CENTER. They put it here as their wish for their rockets to fly safely. When you make a wish, what do you use? Do you wis
-8	I got this from STEVEN, but I don't know what it's good for. I think it's called KING'S ROCK. Do you want it?
-15	SCOTT: PLAYER, feeling good? I'm doing great! I'd heard MOSSDEEP's GYM LEADER is pretty strong, so I decided to come take a look-see for myself. But there's something wrong about t
-16	Ahh… It feels great letting the waves wash over my feet… Speaking of the waves, you know that island city SOOTOPOLIS? I think the GYM there had a new LEADER come in. People tell me
+0	I heard from a SAILOR buddy that TEAM AQUA set up shop in LILYCOVE.I also heard that someone came along and wiped the floor with them!But MOSSDEEP here's been targeted by that TEAM MAGMA.If you want to know what they're up to, go visit the SPACE CENTER.
+1	All life needs the sea to live, even though it makes its home on the land.Life, having run its course, becomes soil and returns to the land.And the sea is always connected to the land.Yes, like the very shoreline here.
+2	The island's SPACE CENTER has been launching huge rockets.There's been some kind of an uproar over a letter they received recently.
+3	Around MOSSDEEP, you can see wild WAILMER.It's called, uh… What was it now…WAI, WAI, WAI…WAILMER watching!
+4	Wouldn't it be nice?If the whole world was covered in plants and flowers like this island?
+6	A voyage on a ship is fine.But crossing the sea with POKéMON using SURF…Now that's an exhilarating trip! Wouldn't you agree, youngster?
+7	This rock has a special meaning to the people at the SPACE CENTER.They put it here as their wish for their rockets to fly safely.When you make a wish, what do you use? Do you wish upon a star?I use a wish tag to make it happen. That's what I do.
+8	I got this from STEVEN, but I don't know what it's good for.I think it's called KING'S ROCK. Do you want it?
+15	SCOTT: PLAYER, feeling good? I'm doing great!I'd heard MOSSDEEP's GYM LEADER is pretty strong, so I decided to come take a look-see for myself.But there's something wrong about this town.People are going on about a warning letter and the SPACE CENTER…I don't think it concerns me in any way, though.
+16	Ahh… It feels great letting the waves wash over my feet…Speaking of the waves, you know that island city SOOTOPOLIS?I think the GYM there had a new LEADER come in.People tell me the new LEADER once mentored WALLACE.
+signs
+25 16	MOSSDEEP CITY “Our slogan: Cherish POKéMON!”
+34 9	MOSSDEEP CITY POKéMON GYM LEADERS: LIZA & TATE“The mystic combination!”
+66 16	MOSSDEEP SPACE CENTER “The closest place to space.”
+57 21	It's a white rock.

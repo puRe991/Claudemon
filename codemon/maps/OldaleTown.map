@@ -54,5 +54,7 @@ people_maniac 8 9 E static
 people_man_1 11 19 N static
 dialogs
 0	I want to take a rest, so I'm saving my progress.
-1	Hi! I work at a POKéMON MART. Can I get you to come with me?
-2	I just discovered the footprints of a rare POKéMON! Wait until I finish sketching them, okay?
+1	Hi! I work at a POKéMON MART.Can I get you to come with me?
+2	I just discovered the footprints of a rare POKéMON!Wait until I finish sketching them, okay?
+signs
+11 9	OLDALE TOWN “Where things start off scarce.”

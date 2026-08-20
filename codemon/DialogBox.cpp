@@ -1,7 +1,7 @@
 #include "DialogBox.h"
 #include <sstream>
 
-DialogBox::DialogBox() : font_ok(false), active(false) {}
+DialogBox::DialogBox() : font_ok(false), active(false), page(0) {}
 
 bool DialogBox::load_font(const std::string& path) {
 	this->font_ok = this->font.loadFromFile(path);
@@ -10,8 +10,25 @@ bool DialogBox::load_font(const std::string& path) {
 
 void DialogBox::open(const std::string& who, const std::string& line) {
 	this->speaker = who;
-	this->text = line;
+	this->pages.clear();
+	// split `line` on U+001F into pages
+	const char sep = '\x1f';
+	size_t start = 0;
+	while (true) {
+		size_t pos = line.find(sep, start);
+		this->pages.push_back(line.substr(start, pos - start));
+		if (pos == std::string::npos) break;
+		start = pos + 1;
+	}
+	if (this->pages.empty()) this->pages.push_back("");
+	this->page = 0;
 	this->active = true;
+}
+
+void DialogBox::advance() {
+	if (!this->active) return;
+	if (this->page + 1 < this->pages.size()) this->page++;
+	else this->active = false;
 }
 
 void DialogBox::close() { this->active = false; }
@@ -71,13 +88,15 @@ void DialogBox::draw(sf::RenderTarget& target) {
 		ty += 28.f;
 	}
 
-	std::string wrapped = this->wrap(this->text, (unsigned)(size.x - 2 * margin - 32), cs);
+	const std::string& cur = this->pages[this->page];
+	std::string wrapped = this->wrap(cur, (unsigned)(size.x - 2 * margin - 32), cs);
 	sf::Text body(sf::String::fromUtf8(wrapped.begin(), wrapped.end()), this->font, cs);
 	body.setFillColor(sf::Color::White);
 	body.setPosition(tx, ty);
 	target.draw(body);
 
-	sf::Text hint(">", this->font, 20);
+	// bottom-right marker: more pages to come, or end of dialog
+	sf::Text hint(this->page + 1 < this->pages.size() ? "v" : "x", this->font, 20);
 	hint.setFillColor(sf::Color(200, 200, 200));
 	hint.setPosition(box.getPosition().x + box.getSize().x - 28.f,
 	                 box.getPosition().y + box_h - 30.f);

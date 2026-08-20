@@ -195,9 +195,10 @@ static Session* player_step(Session* s, DIR dir, Audio* audio) {
 // Talk to whatever the player is facing. If a dialog is already open, this
 // advances/closes it. Returns true if something happened.
 static bool interact(Session* s, DialogBox& box, Audio* audio) {
-    if (box.is_active()) { box.close(); return true; }
+    if (box.is_active()) { box.advance(); return true; }   // next page / dismiss
     int tx, ty;
     s->player->target_tile(s->player->get_facing(), tx, ty);
+    // 1) an NPC on the faced tile
     for (Agent& ag : s->agents) {
         if (ag.ch->get_tile_x() == tx && ag.ch->get_tile_y() == ty) {
             ag.ch->face(opposite(s->player->get_facing()));   // turn to the player
@@ -206,6 +207,13 @@ static bool interact(Session* s, DialogBox& box, Audio* audio) {
             if (audio) audio->play_select();
             return true;
         }
+    }
+    // 2) a readable sign on the faced tile
+    const Sign* sg = s->map->sign_at(tx, ty);
+    if (sg) {
+        box.open("", sg->text);
+        if (audio) audio->play_select();
+        return true;
     }
     return false;
 }

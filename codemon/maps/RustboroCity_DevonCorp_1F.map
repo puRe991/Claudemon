@@ -29,6 +29,9 @@ people_devon_employee 2 6 S wander
 people_devon_employee 15 5 S wander
 people_woman_3 5 3 S static
 dialogs
-0	Hey, those RUNNING SHOES! They're one of our products! It makes me happy when I see someone using something we made.
+0	Hey, those RUNNING SHOES! They're one of our products!It makes me happy when I see someone using something we made.
 1	I'm sorry, only authorized people are allowed to enter here.
-2	Hello and welcome to the DEVON CORPORATION. We're proud producers of items and medicine that enhance your life.
+2	Hello and welcome to the DEVON CORPORATION.We're proud producers of items and medicine that enhance your life.
+signs
+3 2	Prototypes and test products fill the glass display case.There's a panel with a description…“In addition to industrial products, DEVON now markets sundries and pharmaceuticals for better lifestyles.“Recently, DEVON has begun marketing tools for POKéMON TRAINERS, including POKé BALLS and POKéNAV systems.”
+8 2	Samples of rocks and metal are displayed in the glass case.There's a panel with some writing on it…“DEVON CORPORATION got its start as a producer of stones from quarries.“The company also produced iron from filings in the sand.“From that humble start as a producer of raw materials, DEVON developed.“DEVON is now a manufacturer of a wide range of industrial products.”

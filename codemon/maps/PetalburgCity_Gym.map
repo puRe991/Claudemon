@@ -278,12 +278,25 @@ people_man_2 3 109 S static
 people_wally 4 111 N static
 people_pokefan_m 1 7 N static
 dialogs
-0	DAD: Hm? Well, if it isn't PLAYER! So you're all finished moving in? I'm surprised that you managed to get here by yourself. Oh, I see. You're with your POKéMON. Hm… Then I guess y
-1	There are some even stronger TRAINERS waiting for you. The left is the DEFENSE ROOM, and the right is the RECOVERY ROOM. Your POKéMON's ATTACK power will be on trial either way.
-2	Go on to the next room where a new challenge awaits you. At the left is the CONFUSION ROOM. The right door leads to the DEFENSE ROOM.
+0	DAD: Hm?Well, if it isn't PLAYER! So you're all finished moving in?I'm surprised that you managed to get here by yourself.Oh, I see. You're with your POKéMON.Hm… Then I guess you're going to become a TRAINER like me, PLAYER.That's great news! I'll be looking forward to it!
+1	There are some even stronger TRAINERS waiting for you.The left is the DEFENSE ROOM, and the right is the RECOVERY ROOM.Your POKéMON's ATTACK power will be on trial either way.
+2	Go on to the next room where a new challenge awaits you.At the left is the CONFUSION ROOM.The right door leads to the DEFENSE ROOM.
 3	The next room is the STRENGTH ROOM. Can you withstand brute force?
-4	I think you've taught me a valuable lesson here. Now, go on! The left door goes to the STRENGTH ROOM. The right door opens to the ONE-HIT KO ROOM. Both of them have TRAINERS who ar
-5	I should have expected no less from our LEADER's kid. No, wait! A TRAINER's abilities are earned only through effort. I lost because my own efforts weren't enough. Go on! The ONE-H
-6	The way you use your POKéMON… It's like your father's style. Go on through! The GYM LEADER, your father, is waiting!
-7	Your father really is strong. He's a TRAINER worth my respect. And, I sense the same glow coming from you as your father. I hope that you'll stage a terrific battle with your fathe
-8	Hey, how's it going, CHAMPION- bound PLAYER? The doors in this GYM open when you beat the awaiting TRAINERS. Whoops! The doors in this room are already open, so don't attack me! Th
+4	I think you've taught me a valuable lesson here.Now, go on! The left door goes to the STRENGTH ROOM.The right door opens to the ONE-HIT KO ROOM.Both of them have TRAINERS who are skilled at offense.
+5	I should have expected no less from our LEADER's kid.No, wait! A TRAINER's abilities are earned only through effort.I lost because my own efforts weren't enough.Go on! The ONE-HIT KO ROOM is next.
+6	The way you use your POKéMON… It's like your father's style.Go on through! The GYM LEADER, your father, is waiting!
+7	Your father really is strong. He's a TRAINER worth my respect.And, I sense the same glow coming from you as your father.I hope that you'll stage a terrific battle with your father!
+8	Hey, how's it going, CHAMPION- bound PLAYER?The doors in this GYM open when you beat the awaiting TRAINERS.Whoops! The doors in this room are already open, so don't attack me!The TRAINERS of PETALBURG GYM use all kinds of items.The door at the left leads to the SPEED ROOM.The door at the right leads to the ACCURACY ROOM.The room's name will be on the door, so choose carefully.Once you've chosen the door… Well, hey, go for it!
+signs
+1 105	“SPEED ROOM,” the sign says.Do you want to go through?
+7 105	“ACCURACY ROOM,” the sign says.Do you want to go through?
+1 79	“CONFUSION ROOM,” the sign says.Do you want to go through?
+7 79	“DEFENSE ROOM,” the sign says.Do you want to go through?
+1 92	“DEFENSE ROOM,” the sign says.Do you want to go through?
+7 92	“RECOVERY ROOM,” the sign says.Do you want to go through?
+7 40	“STRENGTH ROOM,” the sign says.Do you want to go through?
+1 53	“STRENGTH ROOM,” the sign says.Do you want to go through?
+7 53	“ONE-HIT KO ROOM,” the sign says.Do you want to go through?
+1 66	“ONE-HIT KO ROOM,” the sign says.Do you want to go through?
+7 14	“GYM LEADER'S ROOM“See for yourself what POKéMON await you!” the sign says.Do you want to go through?
+1 27	“GYM LEADER'S ROOM“See for yourself what POKéMON await you!” the sign says.Do you want to go through?

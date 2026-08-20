@@ -56,6 +56,9 @@ misc_truck 11 10 E static
 people_man_1 13 10 N static
 people_prof_birch 14 10 N static
 dialogs
-0	Um, um, um! If you go outside and go in the grass, wild POKéMON will jump out!
-1	If you use a PC, you can store items and POKéMON. The power of science is staggering!
-2	PROF. BIRCH spends days in his LAB studying, then he'll suddenly go out in the wild to do more research… When does PROF. BIRCH spend time at home?
+0	Um, um, um!If you go outside and go in the grass, wild POKéMON will jump out!
+1	If you use a PC, you can store items and POKéMON.The power of science is staggering!
+2	PROF. BIRCH spends days in his LAB studying, then he'll suddenly go out in the wild to do more research…When does PROF. BIRCH spend time at home?
+signs
+15 13	LITTLEROOT TOWN “A town that can't be shaded any hue.”
+6 17	PROF. BIRCH'S POKéMON LAB

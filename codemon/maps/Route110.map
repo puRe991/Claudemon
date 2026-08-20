@@ -247,15 +247,27 @@ people_man_5 36 40 S static
 misc_item_ball 6 38 S static
 people_prof_birch 9 79 S static
 dialogs
-0	Which should I choose? Make a beeline for MAUVILLE on CYCLING ROAD, or take the low road and look for POKéMON?
-1	Learning techniques will make BIKE riding even more fun. There are some places that you can reach only by using a BIKE technique.
+0	Which should I choose?Make a beeline for MAUVILLE on CYCLING ROAD, or take the low road and look for POKéMON?
+1	Learning techniques will make BIKE riding even more fun.There are some places that you can reach only by using a BIKE technique.
 2	I don't have a BIKE, so I'll take a leisurely walk on the low road.
-3	Oh, hey, you got that BIKE from RYDEL! Oh, it's glaringly obvious. It says right on your bike… RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, R
-4	The two roads, one above, one below… A road each for people and POKéMON. Perhaps that is right and fair.
-5	How do you like the way my raven- colored hair streams behind me? I grew my hair out just for that.
+3	Oh, hey, you got that BIKE from RYDEL!Oh, it's glaringly obvious. It says right on your bike…RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,RYDEL, RYDEL, RYDEL, RYDEL, RYDEL… That name's everywhere.You should ride it around all over the place--it's good advertising!
+4	The two roads, one above, one below…A road each for people and POKéMON. Perhaps that is right and fair.
+5	How do you like the way my raven- colored hair streams behind me?I grew my hair out just for that.
 6	Wouldn't it be great to ride a BIKE at full speed on CYCLING ROAD?
 20	Regardless of the results, I count on seeing more challenges from you. Always aim higher!
 21	TEAM AQUA's activities… We can't talk about them yet.
 22	I want to get going to SLATEPORT and kick up a ruckus!
 23	This is my first job after joining TEAM AQUA. It's a little scary.
 24	TEAM AQUA's actions should bring smiles to people's faces!
+signs
+15 25	“TEAM AQUA was here!”Someone painted that onto this sign, but then someone else painted over it.“TEAM MAGMA rules!” is what it says now.
+9 51	SEASIDE PARKING
+14 88	SEASIDE CYCLING ROAD
+20 94	ROUTE 110 SLATEPORT CITY
+7 79	ROUTE 110 ROUTE 103
+3 17	ROUTE 110 MAUVILLE CITY
+33 39	TRAINER TIPSThe foe can be made helpless by paralyzing it or causing it to sleep.It is an important technique for POKéMON battles.
+37 70	TRAINER TIPSThe items in the BAG can be reorganized by pressing SELECT.
+8 67	“Three steps and two steps to reach the wondrous TRICK HOUSE.”
+32 93	THE BEST RECORD TO DATE…No. of collisions:Elapsed time:
+13 16	SEASIDE CYCLING ROAD

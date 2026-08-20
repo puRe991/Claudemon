@@ -27,6 +27,6 @@ people_woman_2 9 3 N static
 people_girl_3 8 5 S wander
 people_boy_2 5 6 E static
 dialogs
-1	SUPER REPEL lasts a long time, and it gets the job done. It's much better than an ordinary REPEL.
-2	I always stock up on more items than I'm sure I'll need. You never know what might happen. Better to be safe than sorry!
+1	SUPER REPEL lasts a long time, and it gets the job done.It's much better than an ordinary REPEL.
+2	I always stock up on more items than I'm sure I'll need.You never know what might happen. Better to be safe than sorry!
 3	A RARE CANDY makes a POKéMON grow immediately by one level.

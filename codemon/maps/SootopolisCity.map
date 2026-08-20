@@ -156,18 +156,21 @@ people_team_magma_maxie 29 33 S static
 people_team_aqua_archie 31 33 S static
 people_wallace 31 18 S static
 dialogs
-0	Who might you be? This is the CAVE OF ORIGIN. The spirits of POKéMON, becalmed at MT. PYRE, are said to be revived here. Please leave.
-1	The weather was clear this morning, but… All of a sudden, dark clouds brewed up, rain started falling in sheets, and there was thunder and lightning, too. The weather just went com
-2	A big POKéMON is fighting with another big POKéMON! Please, someone make them stop!
+0	Who might you be?This is the CAVE OF ORIGIN.The spirits of POKéMON, becalmed at MT. PYRE, are said to be revived here.Please leave.
+1	The weather was clear this morning, but…All of a sudden, dark clouds brewed up, rain started falling in sheets, and there was thunder and lightning, too.The weather just went completely wild!Is all of this because of those POKéMON?
+2	A big POKéMON is fighting with another big POKéMON!Please, someone make them stop!
 3	Wow! This is wicked!
-4	These giant POKéMON suddenly appeared in the middle of the city! And, I've never seen them before! Why are they smashing into each other like that? Why can't they be friends, those
-5	Hm! You've come all the way to SOOTOPOLIS? You're no ordinary tourist. But I suppose that doesn't make you an extraordinary tourist, either.
-6	STEVEN: So that's RAYQUAZA… It's incredible how the two rampaging POKéMON would flee from it in fear…
-7	SOOTOPOLIS sprang up as a town in the crater of a volcano. If you look up at the sky, the lip of the crater is also visible. So, all you see is the sky in a circle. But that's what
-11	There's an ancient legend that claims the land and sea were shaped by a colossal battle between POKéMON. Well, I'm seeing that happen with my very own eyes! Whoa! I never expected 
+4	These giant POKéMON suddenly appeared in the middle of the city!And, I've never seen them before!Why are they smashing into each other like that?Why can't they be friends, those POKéMON?
+5	Hm! You've come all the way to SOOTOPOLIS? You're no ordinary tourist.But I suppose that doesn't make you an extraordinary tourist, either.
+6	STEVEN: So that's RAYQUAZA…It's incredible how the two rampaging POKéMON would flee from it in fear…
+7	SOOTOPOLIS sprang up as a town in the crater of a volcano.If you look up at the sky, the lip of the crater is also visible. So, all you see is the sky in a circle.But that's what makes the sky above SOOTOPOLIS the most beautiful.
+11	There's an ancient legend that claims the land and sea were shaped by a colossal battle between POKéMON.Well, I'm seeing that happen with my very own eyes!Whoa! I never expected to be witness to something this huge!
 12	Oh, no! SOOTOPOLIS CITY will get wrecked!
 13	Go for it, red POKéMON! Don't back off, blue POKéMON!
-14	I just get this sense somehow that the two POKéMON aren't angry. I think… They probably can't control their own power…
-15	MAXIE: G… GROUDON… Please! Stop what you're doing! I know the extent of your power now! If you keep going, all HOENN, not just SOOTOPOLIS, will be utterly ruined!
-16	ARCHIE: KYOGRE! What's wrong?! Look over here! It's the RED ORB! Calm down! KYOGRE! … … … … … … … … … … … … It's no good! It's not responding at all!
-17	WALLACE: PLAYER… The leaders of TEAM MAGMA and AQUA, I don't think they meant harm. It wouldn't hurt to hear what they have to say for themselves.
+14	I just get this sense somehow that the two POKéMON aren't angry.I think… They probably can't control their own power…
+15	MAXIE: G… GROUDON… Please! Stop what you're doing!I know the extent of your power now!If you keep going, all HOENN, not just SOOTOPOLIS, will be utterly ruined!
+16	ARCHIE: KYOGRE! What's wrong?! Look over here! It's the RED ORB! Calm down! KYOGRE!… … … … … … … … … … … …It's no good! It's not responding at all!
+17	WALLACE: PLAYER…The leaders of TEAM MAGMA and AQUA, I don't think they meant harm.It wouldn't hurt to hear what they have to say for themselves.
+signs
+33 34	SOOTOPOLIS CITY POKéMON GYM LEADER: JUAN“The GYM LEADER with the beauty of pure water!”
+41 37	SOOTOPOLIS CITY“The mystical city where history slumbers.”

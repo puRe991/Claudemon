@@ -69,7 +69,8 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 
 	auto is_keyword = [](const std::string& s) {
 		return s.rfind("collision", 0) == 0 || s.rfind("warps", 0) == 0 ||
-		       s.rfind("npcs", 0) == 0 || s.rfind("dialogs", 0) == 0;
+		       s.rfind("npcs", 0) == 0 || s.rfind("dialogs", 0) == 0 ||
+		       s.rfind("signs", 0) == 0;
 	};
 
 	for (size_t i = 0; i < rest.size(); ) {
@@ -118,6 +119,18 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 				if (idx >= 0 && idx < (int)this->npc_spawns.size())
 					this->npc_spawns[idx].dialog = text;
 			}
+		} else if (head.rfind("signs", 0) == 0) {
+			// "<x> <y>\t<text>"
+			for (++i; i < rest.size() && !is_keyword(rest[i]); ++i) {
+				if (rest[i].empty()) continue;
+				size_t tab = rest[i].find('\t');
+				if (tab == std::string::npos) continue;
+				std::stringstream ss(rest[i].substr(0, tab));
+				Sign sg;
+				if (!(ss >> sg.x >> sg.y)) continue;
+				sg.text = rest[i].substr(tab + 1);
+				this->sign_list.push_back(sg);
+			}
 		} else {
 			++i;
 		}
@@ -137,6 +150,13 @@ const Warp* Map::warp_at(int tile_x, int tile_y) const {
 const Warp* Map::warp_by_index(int idx) const {
 	if (idx < 0 || idx >= (int)this->warp_list.size()) return nullptr;
 	return &this->warp_list[idx];
+}
+
+const Sign* Map::sign_at(int tile_x, int tile_y) const {
+	for (const Sign& s : this->sign_list) {
+		if (s.x == tile_x && s.y == tile_y) return &s;
+	}
+	return nullptr;
 }
 
 bool Map::ready() const {

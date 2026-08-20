@@ -40,6 +40,9 @@ people_teala 24 13 S static
 people_ninja_boy 4 10 S wander
 people_boy_3 44 11 S wander
 dialogs
-0	This is the RANKING HALL. This is where we recognize the immortal TRAINERS who left great records in BATTLE FRONTIER events.
+0	This is the RANKING HALL.This is where we recognize the immortal TRAINERS who left great records in BATTLE FRONTIER events.
 1	Hi, is your name on this list?
-2	Hmm… My name's not up there… Well, it's only natural since I haven't taken any challenges yet.
+2	Hmm… My name's not up there…Well, it's only natural since I haven't taken any challenges yet.
+signs
+16 8	BATTLE DOME, BATTLE PIKE, and BATTLE FACTORY Records
+36 8	BATTLE PALACE, BATTLE ARENA, and BATTLE PYRAMID Records

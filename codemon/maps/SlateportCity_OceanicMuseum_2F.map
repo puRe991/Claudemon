@@ -31,7 +31,29 @@ people_old_man 12 7 E static
 people_pokefan_f 9 6 S static
 people_ninja_boy 1 3 E static
 dialogs
-0	Yes? If you're looking for STERN, that would be me. Ah! Those must be the parts I ordered from MR. STONE of DEVON. Thank you! That's great! We can prepare for our expedition now.
-4	I saw a model of a ship here. It reminded me of the ABANDONED SHIP near DEWFORD TOWN…
+0	Yes? If you're looking for STERN, that would be me.Ah! Those must be the parts I ordered from MR. STONE of DEVON.Thank you! That's great! We can prepare for our expedition now.
+4	I saw a model of a ship here.It reminded me of the ABANDONED SHIP near DEWFORD TOWN…
 5	Don't you dare run around inside the MUSEUM!
 6	Wow, the submarine's awesome! I want to go for a ride!
+signs
+18 4	“WATER QUALITY SAMPLE 1,” the label says.The sea is all connected, but the water seems to differ by region.
+18 7	“WATER QUALITY SAMPLE 2,” the label says.Does the saltiness of seawater differ by region, too?
+4 3	“SUBMERSIBLE POD“A replica of a compact, unmanned pod for seafloor exploration.”
+4 4	“SUBMERSIBLE POD“A replica of a compact, unmanned pod for seafloor exploration.”
+3 3	“SUBMARINE EXPLORER 1“A replica of the high-performance ocean floor exploration submarine.”
+2 3	“SUBMARINE EXPLORER 1“A replica of the high-performance ocean floor exploration submarine.”
+3 4	“SUBMARINE EXPLORER 1“A replica of the high-performance ocean floor exploration submarine.”
+3 6	“THE FERRY S.S. TIDAL“A scale replica of the ship under construction at STERN'S SHIPYARD.”
+4 6	“THE FERRY S.S. TIDAL“A scale replica of the ship under construction at STERN'S SHIPYARD.”
+13 7	“S.S. ANNE“A replica of the luxury liner that circles the globe.”
+14 7	“S.S. ANNE“A replica of the luxury liner that circles the globe.”
+18 1	It's a display on the flow of seawater.“Toward the surface, seawater flows as currents driven by the winds.”
+19 1	It's a display on the flow of seawater.“Toward the surface, seawater flows as currents driven by the winds.”
+15 1	It's a display on the flow of seawater.“Near the bottom of the sea, water flows due to differences in such factors as temperature and salinity.”
+16 1	It's a display on the flow of seawater.“Near the bottom of the sea, water flows due to differences in such factors as temperature and salinity.”
+8 1	“MODEL OF HOENN REGION”It's a miniature diorama of the HOENN region.Where is LITTLEROOT TOWN on this?
+9 1	“MODEL OF HOENN REGION”It's a miniature diorama of the HOENN region.Where is LITTLEROOT TOWN on this?
+12 1	A rubber ball is expanding and shrinking.“In the sea, the weight of water itself exerts pressure.“In shallow water, the pressure is not very heavy.“However, in extremely deep water, the pressure can reach even tens of thousands of tons on a small area.”
+13 1	A rubber ball is expanding and shrinking.“In the sea, the weight of water itself exerts pressure.“In shallow water, the pressure is not very heavy.“However, in extremely deep water, the pressure can reach even tens of thousands of tons on a small area.”
+3 7	“THE FERRY S.S. TIDAL“A scale replica of the ship under construction at STERN'S SHIPYARD.”
+4 7	“THE FERRY S.S. TIDAL“A scale replica of the ship under construction at STERN'S SHIPYARD.”

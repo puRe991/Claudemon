@@ -64,5 +64,10 @@ people_camper 71 4 N static
 people_picnicker 7 6 S static
 people_man_5 7 13 S pace_v
 dialogs
-0	It's fun walking through the volcano's ashes on the ground and grass. You can see where you walked--it's really neat!
-1	Wahahaha! Today's technology is a wondrous thing! Take this volcanic ash here. It can be fashioned into glass.
+0	It's fun walking through the volcano's ashes on the ground and grass.You can see where you walked--it's really neat!
+1	Wahahaha! Today's technology is a wondrous thing!Take this volcanic ash here. It can be fashioned into glass.
+signs
+85 6	ROUTE 113 ROUTE 111
+12 9	ROUTE 113 FALLARBOR TOWN
+58 4	TRAINER TIPSYou may register one of the KEY ITEMS in your BAG as SELECT.Simply press SELECT to use the registered item conveniently.
+31 5	GLASS WORKSHOP “Turning Volcanic Ash into Glass Items”

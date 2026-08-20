@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <vector>
 #include "SFML/Graphics.hpp"
 
 /******************************************************************************
@@ -17,7 +18,8 @@ private:
 	bool font_ok;
 	bool active;
 	std::string speaker;
-	std::string text;
+	std::vector<std::string> pages;   // one entry per dialog page
+	size_t page;
 
 	std::string wrap(const std::string& s, unsigned int px_width,
 	                 unsigned int char_size) const;
@@ -26,7 +28,10 @@ public:
 	DialogBox();
 	bool load_font(const std::string& path = "assets/fonts/DejaVuSans.ttf");
 
+	// `line` may contain U+001F separators to split it into pages.
 	void open(const std::string& who, const std::string& line);
+	// Advance to the next page; closes the box after the last one.
+	void advance();
 	void close();
 	bool is_active() const;
 

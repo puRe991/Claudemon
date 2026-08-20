@@ -207,10 +207,16 @@ people_boy_2 5 26 S static
 people_fisherman 15 59 W static
 people_man_1 17 50 S static
 dialogs
-0	The sea, huh? I wonder what it's like at the bottom of the sea?
-1	That seaside cottage is where MR. BRINEY lives. He was once a mighty sailor who never feared the sea, however stormy.
-3	If you're going to throw a POKé BALL, weaken the wild POKéMON first. It will be easier to catch if it's been poisoned, burned, or lulled to sleep.
-4	You're a thief if you try to steal someone else's POKéMON. You should throw POKé BALLS only at wild POKéMON.
-5	Oh, no, I'm not a TRAINER. But that's right, if TRAINERS lock eyes, it's a challenge to battle. If you don't want to battle, stay out of their sight.
-21	This FLOWER SHOP started selling saplings recently. It made me so happy, I went overboard shopping. I don't need this WHITE HERB anymore. Would you take it, please?
-31	I like filling my mouth with seeds, then spitting them out fast! You can have this, so you try it out! Use it on a POKéMON, and it will learn a move for firing seeds rapidly.
+0	The sea, huh?I wonder what it's like at the bottom of the sea?
+1	That seaside cottage is where MR. BRINEY lives.He was once a mighty sailor who never feared the sea, however stormy.
+3	If you're going to throw a POKé BALL, weaken the wild POKéMON first.It will be easier to catch if it's been poisoned, burned, or lulled to sleep.
+4	You're a thief if you try to steal someone else's POKéMON.You should throw POKé BALLS only at wild POKéMON.
+5	Oh, no, I'm not a TRAINER.But that's right, if TRAINERS lock eyes, it's a challenge to battle.If you don't want to battle, stay out of their sight.
+21	This FLOWER SHOP started selling saplings recently.It made me so happy, I went overboard shopping.I don't need this WHITE HERB anymore. Would you take it, please?
+31	I like filling my mouth with seeds, then spitting them out fast!You can have this, so you try it out!Use it on a POKéMON, and it will learn a move for firing seeds rapidly.
+signs
+20 50	MR. BRINEY'S COTTAGE
+27 66	ROUTE 1O4 PETALBURG CITY
+23 5	ROUTE 1O4 RUSTBORO CITY
+7 20	PRETTY PETAL FLOWER SHOP
+17 23	TRAINER TIPSIn the HOENN region there are pairs of TRAINERS who challenge others for 2-on-2 POKéMON battles called DOUBLE BATTLES.In a DOUBLE BATTLE, the TRAINER must send out two POKéMON, the one at the left of the list and the top one. Watch how POKéMON are lined up.

@@ -54,7 +54,11 @@ people_expert_m 11 9 S wander
 people_gentleman 11 15 S wander
 pokemon_azurill 8 12 S static
 dialogs
-0	See! Take a look! This is my precious AZURILL! It's slick and smooth and plushy, too!
-1	Something's happening, and I don't like it! I've seen shady characters wandering in and out of PROF. COZMO's home…
-2	Have you already challenged FLANNERY, the LEADER of LAVARIDGE GYM? The girl's grandfather was famous. He was one of the ELITE FOUR in the POKéMON LEAGUE at one point. It wouldn't s
+0	See! Take a look! This is my precious AZURILL!It's slick and smooth and plushy, too!
+1	Something's happening, and I don't like it!I've seen shady characters wandering in and out of PROF. COZMO's home…
+2	Have you already challenged FLANNERY, the LEADER of LAVARIDGE GYM?The girl's grandfather was famous. He was one of the ELITE FOUR in the POKéMON LEAGUE at one point.It wouldn't surprise me to see FLANNERY become a great TRAINER in her own right.
 3	AZURILL: Rooreelooo.
+signs
+6 8	BATTLE TENT FALLARBOR SITE “May the Greatest Teams Gather!”
+10 11	FALLARBOR TOWN “A farm community with small gardens.”
+3 7	MOVE TUTOR'S HOUSE “New moves taught to POKéMON.”

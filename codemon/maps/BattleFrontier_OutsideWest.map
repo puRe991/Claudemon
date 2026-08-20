@@ -186,19 +186,23 @@ people_pokefan_f 4 26 S static
 dialogs
 0	I'm the best out of all my friends. But here… I've been useless!
 2	Hello, are you here for the ferry? May I see your TICKET?
-3	Ah, so this here is the BATTLE DOME? I won't let GENTLEMEN beat me! But where is the entrance?
-4	It's not as if just anyone can come here, you know? Only those TRAINERS who've been recognized as tough are brought here. That's why many TRAINERS don't even know about the BATTLE 
-5	I've finally arrived at the BATTLE FRONTIER! I'm sure to grab attention with my looks and ability!
-6	Munch, munch… It looks like this square's filled with tough people. Munch, munch…
-7	Oh? You're off to challenge the BATTLE DOME? I'll wish you the best of luck. Let us both win our way up and meet in challenges.
-10	There used to be nothing here not all that long ago. But, now look at this place! Amazing! I'll bring my mother out to see this.
-12	Let's play rock, paper, scissors! One, two, three! … … … … … …
-13	That's the BATTLE FACTORY. You can rent strong POKéMON there. But it makes me wonder. Who's raising those rental POKéMON?
+3	Ah, so this here is the BATTLE DOME? I won't let GENTLEMEN beat me!But where is the entrance?
+4	It's not as if just anyone can come here, you know?Only those TRAINERS who've been recognized as tough are brought here.That's why many TRAINERS don't even know about the BATTLE FRONTIER.
+5	I've finally arrived at the BATTLE FRONTIER!I'm sure to grab attention with my looks and ability!
+6	Munch, munch…It looks like this square's filled with tough people.Munch, munch…
+7	Oh? You're off to challenge the BATTLE DOME?I'll wish you the best of luck. Let us both win our way up and meet in challenges.
+10	There used to be nothing here not all that long ago.But, now look at this place! Amazing! I'll bring my mother out to see this.
+12	Let's play rock, paper, scissors! One, two, three!… … … … … …
+13	That's the BATTLE FACTORY. You can rent strong POKéMON there.But it makes me wonder. Who's raising those rental POKéMON?
 14	Today, I'm going to keep battling, no matter what, until I get a Symbol.
-16	I believe I'm the only person here who, for some unknown reason, would choose fishing over battling. Huh? You can't catch anything here? That's disappointing…
-18	Crunch, munch… A while back, I met this older girl at the BATTLE PIKE. She had these eyes that were scary in a real ornery way. Crunch, munch… She got all furious: “Will you quit e
-19	Huh? Will you listen to yourself? That's nothing! Why, the last time I cheered for him, our eyes met and sparks flew!
-20	Whaaaaaat?! Pfft! That only happened because I happened to be sitting next to you! The DOME ACE only looked our way because my cheering was so loud!
-21	Oh, shush! Keep that racket down! You fair-weather fans should stick to cheering for some GYM LEADER! The DOME ACE is mine! The only idol for me!
-22	Those people squabbling over there… It's hard to believe, but they once were TRAINERS, and good ones, too. They used to be incredibly tough, and they were famous, too. But they wer
-23	I heard a rumor that someone saw a POKéMON with an unusually long tail somewhere in the BATTLE FRONTIER. It must be adorable. I'm sure of it… Oh, challenges can wait. I feel driven
+16	I believe I'm the only person here who, for some unknown reason, would choose fishing over battling.Huh? You can't catch anything here? That's disappointing…
+18	Crunch, munch…A while back, I met this older girl at the BATTLE PIKE.She had these eyes that were scary in a real ornery way.Crunch, munch…She got all furious: “Will you quit eating!” Then she whaled on me.It was a hair-raising kind of scary experience, sure enough.Crunch, munch…
+19	Huh? Will you listen to yourself? That's nothing!Why, the last time I cheered for him, our eyes met and sparks flew!
+20	Whaaaaaat?! Pfft!That only happened because I happened to be sitting next to you!The DOME ACE only looked our way because my cheering was so loud!
+21	Oh, shush! Keep that racket down!You fair-weather fans should stick to cheering for some GYM LEADER!The DOME ACE is mine! The only idol for me!
+22	Those people squabbling over there…It's hard to believe, but they once were TRAINERS, and good ones, too.They used to be incredibly tough, and they were famous, too.But they were obliterated by this certain TRAINER at a tournament.They were so thoroughly whipped, they became smitten by the TRAINER.Now they're just fans of the TRAINER. They go cheer for their idol at the BATTLE DOME every day now.
+23	I heard a rumor that someone saw a POKéMON with an unusually long tail somewhere in the BATTLE FRONTIER.It must be adorable. I'm sure of it…Oh, challenges can wait. I feel driven to find the delightful creature!
+signs
+15 18	This is the BATTLE DOME! Your path to the invincible superstar!
+45 30	This is the BATTLE PIKE! Choose one of three paths!
+16 43	This is the BATTLE FACTORY! Seek out the toughest POKéMON!

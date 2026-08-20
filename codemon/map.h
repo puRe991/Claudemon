@@ -29,6 +29,12 @@ struct Warp {
 	int dest_warp;          // warp index within the destination map
 };
 
+// A readable sign (bg_event). `text` may contain U+001F page separators.
+struct Sign {
+	int x, y;
+	std::string text;
+};
+
 /******************************************************************************
 Map - a grid of metatile ids rendered through a Tileset.
 
@@ -56,6 +62,7 @@ private:
 	std::vector<char> solid;     // width*height passability (1 = blocked)
 	std::vector<NpcSpawn> npc_spawns;
 	std::vector<Warp> warp_list;
+	std::vector<Sign> sign_list;
 
 	int index(int x, int y) const;
 
@@ -89,4 +96,7 @@ public:
 	const std::vector<Warp>& warps() const;
 	const Warp* warp_at(int tile_x, int tile_y) const;   // warp on this tile, or null
 	const Warp* warp_by_index(int idx) const;            // for arrival lookup
+
+	// Signs authored for this map.
+	const Sign* sign_at(int tile_x, int tile_y) const;   // sign on this tile, or null
 };

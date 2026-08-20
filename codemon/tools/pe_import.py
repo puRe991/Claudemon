@@ -334,18 +334,27 @@ def build_gfx_resolver(ow_index):
     return resolve
 
 
+# Pages within one dialog are separated by \p in pokeemerald; we keep them as
+# separate pages joined by U+001F so the engine can show one box per page.
+PAGE_SEP = "\x1f"
+
+
 def _clean_dialog(raw):
-    """Turn joined .string content into a single plain line."""
+    """Turn joined .string content into pages (joined by PAGE_SEP)."""
     import re
-    s = raw
-    for code in ("\\n", "\\l", "\\p"):
-        s = s.replace(code, " ")
-    s = s.replace('\\"', '"')
-    s = s.replace("{PLAYER}", "PLAYER").replace("{RIVAL}", "RIVAL")
-    s = re.sub(r"\{[^}]*\}", "", s)     # drop remaining control codes
-    s = s.replace("$", " ")
-    s = re.sub(r"\s+", " ", s).strip()
-    return s[:180]
+    pages = []
+    for pg in raw.split("\\p"):
+        s = pg
+        for code in ("\\n", "\\l"):
+            s = s.replace(code, " ")
+        s = s.replace('\\"', '"')
+        s = s.replace("{PLAYER}", "PLAYER").replace("{RIVAL}", "RIVAL")
+        s = re.sub(r"\{[^}]*\}", "", s)     # drop remaining control codes
+        s = s.replace("$", " ")
+        s = re.sub(r"\s+", " ", s).strip()
+        if s:
+            pages.append(s[:180])
+    return PAGE_SEP.join(pages)
 
 
 def parse_map_dialogs(map_dir):
@@ -477,6 +486,21 @@ def cmd_world(src, limit=None):
             dlg = dialogs.get(oe.get("script", ""), "")
             npcs.append((sheet, x, y, face, move, dlg))
 
+        # Signs (readable bg_events) share the same script->text resolution.
+        signs = []
+        for bg in mj.get("bg_events", []):
+            if bg.get("type") != "sign" or not bg.get("script"):
+                continue
+            text = dialogs.get(bg["script"], "")
+            if not text:
+                continue
+            try:
+                bx = int(bg["x"]); by = int(bg["y"])
+            except Exception:
+                continue
+            if 0 <= bx < w and 0 <= by < h:
+                signs.append((bx, by, text))
+
         # spawn: prefer a passable tile near map centre
         def passable_at(x, y):
             return 0 <= x < w and 0 <= y < h and solid[y * w + x] == 0
@@ -528,10 +552,15 @@ def cmd_world(src, limit=None):
                 lines.append("dialogs")
                 for (i, text) in dlg_lines:
                     lines.append(f"{i}\t{text}")
+        if signs:
+            lines.append("signs")
+            for (bx, by, text) in signs:
+                lines.append(f"{bx} {by}\t{text}")
         open(out, "w").write("\n".join(lines) + "\n")
         catalog.append({"map": mname, "w": w, "h": h, "tileset": sheet_name,
                         "npcs": len(npcs), "warps": len(warps),
-                        "dialogs": sum(1 for n in npcs if n[5]), "spawn": [sx, sy]})
+                        "dialogs": sum(1 for n in npcs if n[5]),
+                        "signs": len(signs), "spawn": [sx, sy]})
         done += 1
         if limit and done >= limit:
             break
@@ -540,8 +569,11 @@ def cmd_world(src, limit=None):
         json.dump({"count": len(catalog), "maps": catalog}, f, indent=1)
     total_npcs = sum(c["npcs"] for c in catalog)
     total_warps = sum(c.get("warps", 0) for c in catalog)
+    total_signs = sum(c.get("signs", 0) for c in catalog)
+    total_dlg = sum(c.get("dialogs", 0) for c in catalog)
     print(f"world: {len(catalog)} maps, {len(pair_cache)} tileset sheets, "
-          f"{total_npcs} NPCs, {total_warps} warps -> {os.path.relpath(maps_dir)}")
+          f"{total_npcs} NPCs, {total_warps} warps, {total_dlg} dialogs, "
+          f"{total_signs} signs -> {os.path.relpath(maps_dir)}")
 
 
 # --------------------------------------------------------------------------- #

@@ -37,7 +37,9 @@ people_picnicker 13 11 E static
 people_fat_man 6 10 S static
 people_scientist_1 14 7 S static
 dialogs
-1	Hi! You, there! Are you thinking that the events here are easy since you don't need to have a raised team of POKéMON? I wouldn't be too sure about winning that easily. If you don't
-2	I swapped for a weak POKéMON… I thought it was a good kind to have… They wiped the floor with us…
-3	Things haven't been going my way at all. You need to check your opponent's POKéMON during battle to see if they're any good.
-4	You know how the staff here give you a few hints about your next opponent? Well, I'm a full-grown man, but I have trouble figuring out their hints.
+1	Hi! You, there!Are you thinking that the events here are easy since you don't need to have a raised team of POKéMON?I wouldn't be too sure about winning that easily.If you don't have thorough knowledge about POKéMON and their moves, it will be tough to keep winning.
+2	I swapped for a weak POKéMON… I thought it was a good kind to have…They wiped the floor with us…
+3	Things haven't been going my way at all.You need to check your opponent's POKéMON during battle to see if they're any good.
+4	You know how the staff here give you a few hints about your next opponent?Well, I'm a full-grown man, but I have trouble figuring out their hints.
+signs
+9 4	The Battle Swap rules are listed.

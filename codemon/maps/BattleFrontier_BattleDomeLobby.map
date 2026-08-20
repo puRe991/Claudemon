@@ -47,7 +47,9 @@ people_fat_man 18 14 S wander
 people_maniac 8 14 S wander
 people_teala 17 10 S static
 dialogs
-1	I would've won if I'd kept this POKéMON held in reserve. You need to check your opponent's POKéMON carefully before choosing your battling POKéMON.
-2	When a TRAINER chains tournament wins at the BATTLE DOME, he or she gains a reputation as a star. Tough TRAINERS are drawn by that reputation to the BATTLE DOME. A true superstar i
-3	I ran into one of the tournament favorites in the very first round. Of course I got trashed…
-4	Did you see it? The last Battle Tournament? The winner, , was seriously tough. You should check out the results on the monitor beside the PC.
+1	I would've won if I'd kept this POKéMON held in reserve.You need to check your opponent's POKéMON carefully before choosing your battling POKéMON.
+2	When a TRAINER chains tournament wins at the BATTLE DOME, he or she gains a reputation as a star.Tough TRAINERS are drawn by that reputation to the BATTLE DOME.A true superstar is a TRAINER who can keep winning tournaments.
+3	I ran into one of the tournament favorites in the very first round.Of course I got trashed…
+4	Did you see it? The last Battle Tournament?The winner, , was seriously tough.You should check out the results on the monitor beside the PC.
+signs
+15 10	The Battle Tournament rules are listed.

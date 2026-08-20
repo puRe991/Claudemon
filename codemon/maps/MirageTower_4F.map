@@ -29,5 +29,5 @@ misc_fossil 5 4 S static
 misc_fossil 7 4 S static
 misc_breakable_rock 6 7 S static
 dialogs
-0	You found the ROOT FOSSIL. If this FOSSIL is taken, the ground around it will likely crumble away… Take the ROOT FOSSIL anyway?
-1	You found the CLAW FOSSIL. If this FOSSIL is taken, the ground around it will likely crumble away… Take the CLAW FOSSIL anyway?
+0	You found the ROOT FOSSIL.If this FOSSIL is taken, the ground around it will likely crumble away…Take the ROOT FOSSIL anyway?
+1	You found the CLAW FOSSIL.If this FOSSIL is taken, the ground around it will likely crumble away…Take the CLAW FOSSIL anyway?

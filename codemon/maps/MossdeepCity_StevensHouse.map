@@ -26,6 +26,11 @@ people_steven 9 6 E static
 misc_item_ball 4 3 S static
 people_ninja_boy 6 4 S static
 dialogs
-0	STEVEN: Apparently, there's an underwater cavern between MOSSDEEP and SOOTOPOLIS. You know, the one that CAPT. STERN found in his submarine.
-1	PLAYER checked the POKé BALL. It contained the POKéMON BELDUM. Take the POKé BALL?
-2	It's a letter. … … … … … … To PLAYER… I've decided to do a little soul- searching and train on the road. I don't plan to return home for some time. I have a favor to ask of you. I 
+0	STEVEN: Apparently, there's an underwater cavern between MOSSDEEP and SOOTOPOLIS.You know, the one that CAPT. STERN found in his submarine.
+1	PLAYER checked the POKé BALL.It contained the POKéMON BELDUM.Take the POKé BALL?
+2	It's a letter.… … … … … …To PLAYER…I've decided to do a little soul- searching and train on the road.I don't plan to return home for some time.I have a favor to ask of you.I want you to take the POKé BALL on the desk.Inside it is a BELDUM, my favorite POKéMON.I'm counting on you.May our paths cross someday.STEVEN STONE
+signs
+0 1	It's a collection of rare rocks and stones assembled by STEVEN.
+1 1	It's a collection of rare rocks and stones assembled by STEVEN.
+10 4	It's a collection of rare rocks and stones assembled by STEVEN.
+10 6	It's a collection of rare rocks and stones assembled by STEVEN.

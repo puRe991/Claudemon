@@ -78,7 +78,13 @@ misc_cuttable_tree 30 5 S static
 people_youngster 36 13 S static
 people_hiker 42 13 W static
 dialogs
-10	Ohhh, what am I to do? We were on our walk, PEEKO and I, when we were jumped by an odd thug… The scoundrel made off with my darling PEEKO! Wrrrooooooaaaar! PEEKO!
-18	Oh! It's you! You're that person who not only helped me in PETALBURG WOODS, but also got back my stolen package and then even graciously delivered it to SLATEPORT! CAPT. STERN info
-20	Nnn… Roar! I want to dig that tunnel!
+10	Ohhh, what am I to do?We were on our walk, PEEKO and I, when we were jumped by an odd thug…The scoundrel made off with my darling PEEKO!Wrrrooooooaaaar! PEEKO!
+18	Oh! It's you!You're that person who not only helped me in PETALBURG WOODS, but also got back my stolen package and then even graciously delivered it to SLATEPORT!CAPT. STERN informed us that the package arrived, too!I thank you very, very much!Why, if I were a rain cloud, I would shower you with gratitude and hail you as a hero!For you, the most wonderful TRAINER, I bear good news!Recently, our company developed a new kind of POKé BALL.As a token of our appreciation, this is our gift to our wonderful TRAINER!
+20	Nnn… Roar!I want to dig that tunnel!
 21	I dropped my glasses… Can you help me find them?
+signs
+5 10	ROUTE 116 RUSTBORO CITY
+48 9	RUSTURF TUNNEL “Linking RUSTBORO and VERDANTURF“The tunnel project has been canceled.”
+40 9	TUNNELER'S REST HOUSE
+16 12	TRAINER TIPSIf you want to stop a POKéMON from evolving, press the B Button while it is trying to evolve. The startled POKéMON will stop.This is called an evolution cancel.
+29 10	TRAINER TIPSYour BAG has several POCKETS.Items you obtain are automatically placed in the appropriate POCKETS.No TRAINER can afford to be without a BAG of their own.

@@ -80,7 +80,11 @@ misc_item_ball 3 28 S static
 people_boy_2 12 15 S static
 people_scott 13 12 S static
 dialogs
-0	Where has our WALLY gone? We have to leave for VERDANTURF TOWN very soon…
-2	My face is reflected in the water. It's a shining grin full of hope… Or it could be a look of somber silence struggling with fear… What do you see reflected in your face?
-3	Let's say you have six POKéMON. If you catch another one… It is automatically sent to a STORAGE BOX over a PC connection.
-7	Hiya! Are you maybe… A rookie TRAINER? Do you know what POKéMON TRAINERS do when they reach a new town? They first check what kind of GYM is in the town.
+0	Where has our WALLY gone?We have to leave for VERDANTURF TOWN very soon…
+2	My face is reflected in the water.It's a shining grin full of hope…Or it could be a look of somber silence struggling with fear…What do you see reflected in your face?
+3	Let's say you have six POKéMON. If you catch another one…It is automatically sent to a STORAGE BOX over a PC connection.
+7	Hiya! Are you maybe… A rookie TRAINER?Do you know what POKéMON TRAINERS do when they reach a new town?They first check what kind of GYM is in the town.
+signs
+17 10	PETALBURG CITY POKéMON GYM LEADER: NORMAN “A man in pursuit of power!”
+17 16	PETALBURG CITY “Where people mingle with nature.”
+8 9	WALLY'S HOUSE

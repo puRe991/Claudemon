@@ -112,8 +112,11 @@ people_boy_3 30 34 S wander
 misc_item_ball 4 26 S static
 people_girl_2 33 5 S static
 dialogs
-7	Yo, there! Your POKéMON doing okay? If your POKéMON are weak and you want to avoid battles, you should stay out of tall grass.
+7	Yo, there! Your POKéMON doing okay?If your POKéMON are weak and you want to avoid battles, you should stay out of tall grass.
 8	I caught a bunch of POKéMON. Now I'm out of POKé BALLS.
 9	If you have a big BUG POKéMON, people respect you for it.
-10	Sometimes, there are things on the ground even if you can't see them. That's why I always check where I'm walking.
-12	Oh, neat! That's the BADGE from RUSTBORO GYM! You must be a TRAINER. You should try using this item.
+10	Sometimes, there are things on the ground even if you can't see them.That's why I always check where I'm walking.
+12	Oh, neat! That's the BADGE from RUSTBORO GYM!You must be a TRAINER. You should try using this item.
+signs
+14 32	TRAINER TIPSAny POKéMON that appears even once in a battle is awarded EXP Points.To raise a weak POKéMON, put it at the left of the team list.As soon as a battle starts, switch it out. It will earn EXP Points without being exposed to any harm.
+11 8	TRAINER TIPSIn addition to Hit Points (HP), POKéMON have Power Points (PP) that are used to make moves during battle.If a POKéMON runs out of PP, it must be taken to a POKéMON CENTER.
