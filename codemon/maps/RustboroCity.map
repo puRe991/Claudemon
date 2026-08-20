@@ -1,6 +1,6 @@
 tileset general__rustboro
 40 60
-20 30
+16 39
 336,337,368,368,368,368,368,368,368,368,378,468,469,476,477,476,477,468,471,1,1,1,1,1,476,477,476,477,476,477,476,477,476,477,476,477,476,477,468,469
 344,345,368,368,368,336,337,368,368,368,378,476,477,468,469,468,469,476,477,1,1,1,1,1,468,469,468,469,468,469,468,469,468,469,468,469,468,469,476,477
 368,368,368,368,368,344,345,368,368,368,378,468,469,476,477,476,477,468,469,1,1,1,1,1,476,477,476,477,476,477,476,477,476,477,476,477,476,477,468,469
@@ -149,7 +149,6 @@ people_team_aqua_aqua_member_m 13 21 E static
 people_devon_employee 13 34 S wander
 misc_item_ball 36 51 S static
 people_man_4 19 27 S static
-people_man_1 16 50 S static
 people_scientist_1 11 15 S static
 people_boy_1 31 36 S static
 dialogs
@@ -164,7 +163,7 @@ dialogs
 8	That shady character, I think he took off towards the tunnel over there.
 10	Oh? Who might you be? You're a new face around these parts.Have you just transferred into the POKéMON TRAINER'S SCHOOL?
 12	A POKéMON you get in a trade from someone grows fast.But if you don't have certain GYM BADGES, it may not obey you…
-15	Did you know this?You can have a 2-on-2 battle even if you're not with another TRAINER.If you catch the eyes of two TRAINERS when you have two or more POKéMON, they'll both challenge you.Don't you think it'd be cool if you could beat two TRAINERS by yourself?
+14	Did you know this?You can have a 2-on-2 battle even if you're not with another TRAINER.If you catch the eyes of two TRAINERS when you have two or more POKéMON, they'll both challenge you.Don't you think it'd be cool if you could beat two TRAINERS by yourself?
 objscripts
 0 RustboroCity_EventScript_Woman
 1 RustboroCity_EventScript_FatMan
@@ -177,8 +176,7 @@ objscripts
 8 RustboroCity_EventScript_DevonEmployee1
 10 RustboroCity_EventScript_DevonEmployee2
 12 RustboroCity_EventScript_Man2
-13 RustboroCity_EventScript_Rival
-15 RustboroCity_EventScript_Boy1
+14 RustboroCity_EventScript_Boy1
 triggers
 23 20 VAR_RUSTBORO_CITY_STATE 1 RustboroCity_EventScript_StolenGoodsTrigger0
 23 21 VAR_RUSTBORO_CITY_STATE 1 RustboroCity_EventScript_StolenGoodsTrigger1
@@ -709,12 +707,6 @@ end
 = RustboroCity_EventScript_Boy1
 msgbox	Did you know this?You can have a 2-on-2 battle even if you're not with another TRAINER.If you catch the eyes of two TRAINERS when you have two or more POKéMON, they'll both challenge you.Don't you think it'd be cool if you could beat two TRAINERS by yourself?
 end
-= RustboroCity_EventScript_Rival
-lockall
-call_if_unset FLAG_MET_RIVAL_RUSTBORO RustboroCity_EventScript_PlayRivalMusic
-applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_FacePlayer
-waitmovement 0
-goto RustboroCity_EventScript_RivalEncounter
 = RustboroCity_EventScript_Man2
 lock
 faceplayer

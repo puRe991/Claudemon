@@ -205,7 +205,6 @@ misc_cuttable_tree 35 22 S static
 misc_item_ball 5 8 S static
 people_boy_2 5 26 S static
 people_fisherman 15 59 W static
-people_man_1 17 50 S static
 dialogs
 0	The sea, huh?I wonder what it's like at the bottom of the sea?
 1	That seaside cottage is where MR. BRINEY lives.He was once a mighty sailor who never feared the sea, however stormy.
@@ -231,7 +230,6 @@ objscripts
 27 Route104_EventScript_Billy
 31 Route104_EventScript_Boy2
 32 Route104_EventScript_Darian
-33 Route104_EventScript_Rival
 triggers
 17 51 VAR_ROUTE104_STATE 1 Route104_EventScript_RivalTrigger
 movements
@@ -394,12 +392,6 @@ goto_if_eq VAR_RESULT YES Route104_EventScript_BattleMay
 msgbox	MAY: Oh, what's the matter?Haven't you caught or raised your POKéMON very much?That's not very good for a TRAINER!
 releaseall
 end
-= Route104_EventScript_Rival
-lockall
-setvar VAR_0x8008 1
-applymovement LOCALID_ROUTE104_RIVAL Common_Movement_FacePlayer
-waitmovement 0
-goto Route104_EventScript_RivalEncounter
 = Route104_EventScript_Darian
 trainerbattle_single TRAINER_DARIAN Route104_Text_DarianIntro Route104_Text_DarianDefeat
 msgbox	Route104_Text_DarianPostBattle

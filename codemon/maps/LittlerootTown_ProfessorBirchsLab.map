@@ -34,24 +34,20 @@ warps
 npcs
 people_scientist_1 9 8 S wander
 people_prof_birch 6 4 S static
-people_man_1 7 4 S static
 misc_item_ball 6 8 S static
 misc_item_ball 6 8 S static
 misc_item_ball 6 8 S static
 dialogs
 0	Hunh? PROF. BIRCH?The PROF's away on fieldwork. Ergo, he isn't here.Oh, let me explain what fieldwork is.It is to study things in the natural environment, like fields and mountains, instead of a laboratory.The PROF isn't one for doing desk work. He's the type of person who would rather go outside and experience things than read about them here.
-3	PROF. BIRCH: The FIRE POKéMON CYNDAQUIL caught your eye!You're as sharp as ever!So the CYNDAQUIL is your choice?
-4	PROF. BIRCH: The WATER POKéMON TOTODILE is your choice!You know how to pick a good one.So, you'll take the TOTODILE?
-5	PROF. BIRCH: The GRASS POKéMON CHIKORITA is your choice!You sure know what you're doing.So, you'll take the CHIKORITA?
+2	PROF. BIRCH: The FIRE POKéMON CYNDAQUIL caught your eye!You're as sharp as ever!So the CYNDAQUIL is your choice?
+3	PROF. BIRCH: The WATER POKéMON TOTODILE is your choice!You know how to pick a good one.So, you'll take the TOTODILE?
+4	PROF. BIRCH: The GRASS POKéMON CHIKORITA is your choice!You sure know what you're doing.So, you'll take the CHIKORITA?
 objscripts
 0 LittlerootTown_ProfessorBirchsLab_EventScript_Aide
 1 LittlerootTown_ProfessorBirchsLab_EventScript_Birch
-2 LittlerootTown_ProfessorBirchsLab_EventScript_Rival
-3 LittlerootTown_ProfessorBirchsLab_EventScript_Cyndaquil
-4 LittlerootTown_ProfessorBirchsLab_EventScript_Totodile
-5 LittlerootTown_ProfessorBirchsLab_EventScript_Chikorita
-movements
-LittlerootTown_ProfessorBirchsLab_EventScript_BrendanPreferCollectingSlowly	delay,delay
+2 LittlerootTown_ProfessorBirchsLab_EventScript_Cyndaquil
+3 LittlerootTown_ProfessorBirchsLab_EventScript_Totodile
+4 LittlerootTown_ProfessorBirchsLab_EventScript_Chikorita
 scriptdefs
 = LittlerootTown_ProfessorBirchsLab_EventScript_Chikorita
 release
@@ -206,56 +202,6 @@ call Common_EventScript_GetGiftMonPartySlot
 call Common_EventScript_NameReceivedPartyMon
 goto LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedCyndaquil
 end
-= LittlerootTown_ProfessorBirchsLab_EventScript_Rival
-lock
-faceplayer
-goto_if_eq VAR_DEX_UPGRADE_JOHTO_STARTER_STATE 5 LittlerootTown_ProfessorBirchsLab_EventScript_RivalFuturePlans
-goto_if_ge VAR_DEX_UPGRADE_JOHTO_STARTER_STATE 6 LittlerootTown_ProfessorBirchsLab_EventScript_RivalHaveYouGoneToBattleFrontier
-goto_if_ge VAR_DEX_UPGRADE_JOHTO_STARTER_STATE 2 LittlerootTown_ProfessorBirchsLab_EventScript_RivalTakeBreakFromFieldwork
-checkplayergender
-call_if_eq VAR_RESULT MALE LittlerootTown_ProfessorBirchsLab_EventScript_MayWhereShouldIGoNext
-call_if_eq VAR_RESULT FEMALE LittlerootTown_ProfessorBirchsLab_EventScript_BrendanWhereShouldIGoNext
-release
-end
-= LittlerootTown_ProfessorBirchsLab_EventScript_BrendanWhereShouldIGoNext
-msgbox	BRENDAN: Where should I look for POKéMON next…
-return
-= LittlerootTown_ProfessorBirchsLab_EventScript_MayWhereShouldIGoNext
-msgbox	MAY: I wonder where I should go look for POKéMON next?
-return
-= LittlerootTown_ProfessorBirchsLab_EventScript_RivalTakeBreakFromFieldwork
-checkplayergender
-call_if_eq VAR_RESULT MALE LittlerootTown_ProfessorBirchsLab_EventScript_MayTakeBreakFromFieldwork
-call_if_eq VAR_RESULT FEMALE LittlerootTown_ProfessorBirchsLab_EventScript_BrendanTakeBreakFromFieldwork
-release
-end
-= LittlerootTown_ProfessorBirchsLab_EventScript_BrendanTakeBreakFromFieldwork
-msgbox	BRENDAN: For the time being, I'm taking a break from fieldwork.I'll be helping out the PROF here for a while.
-return
-= LittlerootTown_ProfessorBirchsLab_EventScript_MayTakeBreakFromFieldwork
-msgbox	MAY: I think I'll take a short break from fieldwork.I think I'll help the PROF here for a while.
-return
-= LittlerootTown_ProfessorBirchsLab_EventScript_RivalHaveYouGoneToBattleFrontier
-checkplayergender
-call_if_eq VAR_RESULT MALE LittlerootTown_ProfessorBirchsLab_EventScript_MayHaveYouGoneToBattleFrontier
-call_if_eq VAR_RESULT FEMALE LittlerootTown_ProfessorBirchsLab_EventScript_BrendanHaveYouGoneToBattleFrontier
-release
-end
-= LittlerootTown_ProfessorBirchsLab_EventScript_BrendanHaveYouGoneToBattleFrontier
-msgbox	BRENDAN: Hey, PLAYER! Have you gone out to that place, the BATTLE FRONTIER?
-return
-= LittlerootTown_ProfessorBirchsLab_EventScript_MayHaveYouGoneToBattleFrontier
-msgbox	MAY: Oh, hi, PLAYER! Have you gone to that place, the BATTLE FRONTIER?
-return
-= LittlerootTown_ProfessorBirchsLab_EventScript_RivalFuturePlans
-checkplayergender
-call_if_eq VAR_RESULT MALE LittlerootTown_ProfessorBirchsLab_EventScript_MayWhatNextImStayingHere
-call_if_eq VAR_RESULT FEMALE LittlerootTown_ProfessorBirchsLab_EventScript_BrendanPreferCollectingSlowly
-release
-end
-= LittlerootTown_ProfessorBirchsLab_EventScript_MayWhatNextImStayingHere
-msgbox	MAY: PLAYER, after this… What are you going to do?Are you going to keep battling and sharpening your skills?Or are you going to try filling the NATIONAL POKéDEX?I'm staying here to help the PROF.
-return
 = LittlerootTown_ProfessorBirchsLab_EventScript_Birch
 lock
 faceplayer

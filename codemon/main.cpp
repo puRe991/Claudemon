@@ -343,7 +343,11 @@ static DIR char_to_dir(char c) {
 
 int main() {
     const char* map_env = std::getenv("CODEMON_MAP");
-    Session* sess = load_session(map_env ? map_env : "maps/LittlerootTown.map", -1, -1);
+    // Story start: the player wakes up in their bedroom on Brendan's House 2F
+    // (heal location HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F, tile 4,2),
+    // then walks downstairs and out into Littleroot Town.
+    const char* start_map = map_env ? map_env : "maps/LittlerootTown_BrendansHouse_2F.map";
+    Session* sess = load_session(start_map, -1, -1);
     std::mt19937 rng(1234);
 
     const unsigned win_w = VIEW_TW * sess->map->get_tile_size() * SCALE;
@@ -386,7 +390,7 @@ int main() {
     bool force_enc = std::getenv("CODEMON_FORCE_ENCOUNTER") != nullptr;
 
     // map-name banner + warp fade-in state
-    std::string banner = pretty_map(map_env ? map_env : "maps/LittlerootTown.map");
+    std::string banner = pretty_map(start_map);
     float banner_t = 2.2f, fade = 1.0f;
     sf::Font ban_font; ban_font.loadFromFile("assets/fonts/DejaVuSans.ttf");
     auto on_map_change = [&](const std::string& path) {

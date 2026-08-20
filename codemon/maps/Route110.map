@@ -237,8 +237,6 @@ people_team_aqua_aqua_member_m 9 83 N static
 people_team_aqua_aqua_member_m 10 83 N static
 people_team_aqua_aqua_member_m 8 82 S static
 people_cycling_triathlete_m 21 78 S static
-people_man_1 34 54 W pace_h
-people_man_1 34 54 S static
 people_youngster 33 69 W pace_h
 people_pokefan_f 10 76 W static
 people_pokefan_m 7 76 E static
@@ -281,11 +279,11 @@ objscripts
 23 Route110_EventScript_AquaGrunt3
 24 Route110_EventScript_AquaGrunt4
 26 Route110_EventScript_Jacob
-29 Route110_EventScript_Timmy
-30 Route110_EventScript_Isabel
-31 Route110_EventScript_Kaleb
-32 Route110_EventScript_Alyssa
-33 Route110_EventScript_Joseph
+27 Route110_EventScript_Timmy
+28 Route110_EventScript_Isabel
+29 Route110_EventScript_Kaleb
+30 Route110_EventScript_Alyssa
+31 Route110_EventScript_Joseph
 triggers
 28 92 VAR_CYCLING_CHALLENGE_STATE 2 Route110_EventScript_CyclingChallengeEnd
 29 92 VAR_CYCLING_CHALLENGE_STATE 2 Route110_EventScript_CyclingChallengeEnd

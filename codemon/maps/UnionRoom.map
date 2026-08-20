@@ -31,81 +31,9 @@ warps
 8 11 - 0
 npcs
 people_nurse 3 2 S static
-people_man_1 1 8 S wander
-people_man_1 7 8 S wander
-people_man_1 1 4 S wander
-people_man_1 7 4 S wander
-people_man_1 13 4 S wander
-people_man_1 10 6 S wander
-people_man_1 13 8 S wander
-people_man_1 4 6 S wander
 objscripts
 0 UnionRoom_EventScript_Attendant
-1 UnionRoom_EventScript_Player4
-2 UnionRoom_EventScript_Player8
-3 UnionRoom_EventScript_Player7
-4 UnionRoom_EventScript_Player6
-5 UnionRoom_EventScript_Player5
-6 UnionRoom_EventScript_Player3
-7 UnionRoom_EventScript_Player2
-8 UnionRoom_EventScript_Player1
 scriptdefs
-= UnionRoom_EventScript_Player1
-lock
-faceplayer
-setvar VAR_RESULT UR_INTERACT_PLAYER_1
-waitstate
-release
-end
-= UnionRoom_EventScript_Player2
-lock
-faceplayer
-setvar VAR_RESULT UR_INTERACT_PLAYER_2
-waitstate
-release
-end
-= UnionRoom_EventScript_Player3
-lock
-faceplayer
-setvar VAR_RESULT UR_INTERACT_PLAYER_3
-waitstate
-release
-end
-= UnionRoom_EventScript_Player5
-lock
-faceplayer
-setvar VAR_RESULT UR_INTERACT_PLAYER_5
-waitstate
-release
-end
-= UnionRoom_EventScript_Player6
-lock
-faceplayer
-setvar VAR_RESULT UR_INTERACT_PLAYER_6
-waitstate
-release
-end
-= UnionRoom_EventScript_Player7
-lock
-faceplayer
-setvar VAR_RESULT UR_INTERACT_PLAYER_7
-waitstate
-release
-end
-= UnionRoom_EventScript_Player8
-lock
-faceplayer
-setvar VAR_RESULT UR_INTERACT_PLAYER_8
-waitstate
-release
-end
-= UnionRoom_EventScript_Player4
-lock
-faceplayer
-setvar VAR_RESULT UR_INTERACT_PLAYER_4
-waitstate
-release
-end
 = UnionRoom_EventScript_Attendant
 lock
 faceplayer

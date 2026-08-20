@@ -301,7 +301,6 @@ people_ninja_boy 28 14 S static
 people_ninja_boy 19 49 S static
 people_man_5 10 50 E static
 people_man_5 8 63 S static
-people_man_1 25 32 N static
 misc_item_ball 12 121 S static
 misc_item_ball 4 96 S static
 misc_item_ball 29 53 S static
@@ -310,7 +309,6 @@ misc_item_ball 8 18 S static
 misc_item_ball 33 117 S static
 people_team_aqua_aqua_member_m 13 33 E static
 people_team_aqua_aqua_member_m 13 34 E static
-people_man_1 17 33 N static
 people_boy_3 31 109 S static
 people_man_1 8 23 S static
 people_man_1 9 23 S static
@@ -330,11 +328,11 @@ misc_item_ball 19 5 S static
 misc_item_ball 24 42 S static
 people_scott 28 25 S static
 dialogs
-22	We're standing lookout here.Hey, you! Stay away from the WEATHER INSTITUTE. It's not safe.
-23	Lookout duty is surprisingly boring.Hey, you! Please don't go near the WEATHER INSTITUTE.
-25	I thought you FLY by catching a whole flock of BIRD POKéMON, and then hanging on to them somehow.But it turns out there's an HM move called FLY!I wish I'd known about that a long time ago…
-30	Tch… It's a no-go…The tall grass snares BIKE tires. There's no way you can cycle here.
-32	Can your POKéMON use its SECRET POWER on a big pile of grass and make a SECRET BASE?
+21	We're standing lookout here.Hey, you! Stay away from the WEATHER INSTITUTE. It's not safe.
+22	Lookout duty is surprisingly boring.Hey, you! Please don't go near the WEATHER INSTITUTE.
+23	I thought you FLY by catching a whole flock of BIRD POKéMON, and then hanging on to them somehow.But it turns out there's an HM move called FLY!I wish I'd known about that a long time ago…
+28	Tch… It's a no-go…The tall grass snares BIKE tires. There's no way you can cycle here.
+30	Can your POKéMON use its SECRET POWER on a big pile of grass and make a SECRET BASE?
 objscripts
 3 Route119_EventScript_Greg
 4 Route119_EventScript_Taylor
@@ -348,16 +346,16 @@ objscripts
 12 Route119_EventScript_Takashi
 13 Route119_EventScript_Hugh
 14 Route119_EventScript_Phil
-22 Route119_EventScript_BridgeAquaGrunt1
-23 Route119_EventScript_BridgeAquaGrunt2
-25 Route119_EventScript_Boy1
-30 Route119_EventScript_CyclingTriathleteM
-32 Route119_EventScript_Boy2
-33 Route119_EventScript_Hideo
-36 Route119_EventScript_Chris
-37 Route119_EventScript_Rachel
-38 Route119_EventScript_Dayton
-39 Route119_EventScript_Fabian
+21 Route119_EventScript_BridgeAquaGrunt1
+22 Route119_EventScript_BridgeAquaGrunt2
+23 Route119_EventScript_Boy1
+28 Route119_EventScript_CyclingTriathleteM
+30 Route119_EventScript_Boy2
+31 Route119_EventScript_Hideo
+34 Route119_EventScript_Chris
+35 Route119_EventScript_Rachel
+36 Route119_EventScript_Dayton
+37 Route119_EventScript_Fabian
 triggers
 25 31 VAR_ROUTE119_STATE 0 Route119_EventScript_RivalTrigger1
 26 31 VAR_ROUTE119_STATE 0 Route119_EventScript_RivalTrigger2

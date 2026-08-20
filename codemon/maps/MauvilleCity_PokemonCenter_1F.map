@@ -26,19 +26,18 @@ warps
 1 6 MauvilleCity_PokemonCenter_2F 0
 npcs
 people_nurse 7 2 S static
-people_man_1 2 3 W static
 people_woman_1 8 6 S static
 people_woman_5 11 4 S wander
 people_youngster 2 8 S static
 dialogs
-2	That man over there, he says weird things!He's funny in a weird way. I doubt I'll forget about him!
-3	When I accessed the RECORD CORNER, the data for what's hot in DEWFORD got updated.Now that bit of data is the same as my friend's!
-4	A RECORD CORNER opened upstairs in the POKéMON CENTER.I don't know what it's about, but it sounds fun. I'll go check it out!
+1	That man over there, he says weird things!He's funny in a weird way. I doubt I'll forget about him!
+2	When I accessed the RECORD CORNER, the data for what's hot in DEWFORD got updated.Now that bit of data is the same as my friend's!
+3	A RECORD CORNER opened upstairs in the POKéMON CENTER.I don't know what it's about, but it sounds fun. I'll go check it out!
 objscripts
 0 MauvilleCity_PokemonCenter_1F_EventScript_Nurse
-2 MauvilleCity_PokemonCenter_1F_EventScript_Woman1
-3 MauvilleCity_PokemonCenter_1F_EventScript_Woman2
-4 MauvilleCity_PokemonCenter_1F_EventScript_Youngster
+1 MauvilleCity_PokemonCenter_1F_EventScript_Woman1
+2 MauvilleCity_PokemonCenter_1F_EventScript_Woman2
+3 MauvilleCity_PokemonCenter_1F_EventScript_Youngster
 scriptdefs
 = MauvilleCity_PokemonCenter_1F_EventScript_Youngster
 msgbox	A RECORD CORNER opened upstairs in the POKéMON CENTER.I don't know what it's about, but it sounds fun. I'll go check it out!

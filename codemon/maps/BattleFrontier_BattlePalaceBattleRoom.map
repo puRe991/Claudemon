@@ -26,8 +26,6 @@ warps
 0 9 BattleFrontier_BattlePalaceCorridor 2
 1 9 BattleFrontier_BattlePalaceCorridor 2
 npcs
-people_man_1 1 9 N static
-people_man_1 13 1 S static
 people_expert_m 1 4 E static
 pokemon_dusclops 13 1 S static
 pokemon_azurill 13 1 S static

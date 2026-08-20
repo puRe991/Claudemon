@@ -27,16 +27,5 @@ collision
 npcs
 people_woman_3 6 4 S static
 people_contest_judge 7 4 S static
-people_man_1 4 7 N static
-people_man_1 6 7 N static
-people_man_1 8 7 N static
-people_man_1 2 6 E static
-people_man_1 4 2 S static
-people_man_1 5 2 S static
-people_man_1 9 2 S static
-people_man_1 10 2 S static
-people_man_1 12 5 W static
-people_man_1 2 5 E static
 misc_item_ball 7 5 S static
-people_man_1 10 7 N static
 people_artist 12 6 W static

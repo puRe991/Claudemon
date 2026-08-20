@@ -1,6 +1,6 @@
 tileset general__lilycove
 80 40
-40 20
+24 15
 112,115,468,469,484,485,484,487,1,650,651,651,651,651,652,486,485,484,485,476,477,476,477,768,749,750,769,763,769,749,750,770,476,477,468,469,117,117,117,400,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,429,411,358,115,123,137,113,113,117,117,380,414,414,414,414,439
 112,115,486,498,463,104,211,2,2,608,609,610,610,610,634,2,2,212,106,468,469,468,469,768,769,769,769,769,769,769,769,770,468,469,476,477,117,117,117,400,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,429,430,411,414,358,123,137,115,113,113,117,117,380,414,414,414,414,439
 112,115,1,468,469,112,1,520,611,616,617,618,632,617,633,611,519,1,114,476,477,476,477,768,749,750,769,763,769,749,750,770,476,477,468,469,212,212,212,488,489,2,2,2,2,488,489,488,489,578,368,368,368,368,368,368,368,368,368,368,429,430,411,414,414,414,366,137,115,115,113,113,117,117,380,414,414,414,414,439
@@ -114,7 +114,6 @@ people_team_aqua_aqua_member_m 46 12 W static
 people_team_aqua_aqua_member_m 45 12 E static
 people_team_aqua_aqua_member_m 38 9 W static
 people_gentleman 50 7 S wander
-people_man_1 27 7 S static
 people_school_kid_m 16 23 E static
 people_woman_3 41 25 W static
 people_man_2 40 25 E static
@@ -135,11 +134,11 @@ dialogs
 12	Fufufu…We moved more loot into our secret HIDEOUT today…Wh-who are you?! I was just talking to myself!
 13	I'm just a GRUNT, so I don't know what the BOSS is thinking…But being on TEAM AQUA, I know I'll get the chance to do big things!Wh-who are you?! I was just talking to myself!
 14	Hey, you!Don't go near the cave in the cove!Why? You don't need a reason why! I'm an adult, so you just listen to me!
-17	Do you know about the machine BERRY BLENDER?
-18	On our honeymoon, we vowed to see as many rare POKéMON as we can.So we were delighted to see a rare POKéMON as soon as we arrived.I mean, we are totally happy!
-19	We just arrived here on our honeymoon vacation.We happened to see a DRAGON-type POKéMON flying way up in the sky.Do cool POKéMON like that live in the HOENN region?
-20	I heard there's a tower somewhere out on the sea routes.It's called the SKY PILLAR, I hear.
-21	I saw this tall tower somewhere around ROUTE 131.Could that possibly be…?
+16	Do you know about the machine BERRY BLENDER?
+17	On our honeymoon, we vowed to see as many rare POKéMON as we can.So we were delighted to see a rare POKéMON as soon as we arrived.I mean, we are totally happy!
+18	We just arrived here on our honeymoon vacation.We happened to see a DRAGON-type POKéMON flying way up in the sky.Do cool POKéMON like that live in the HOENN region?
+19	I heard there's a tower somewhere out on the sea routes.It's called the SKY PILLAR, I hear.
+20	I saw this tall tower somewhere around ROUTE 131.Could that possibly be…?
 objscripts
 0 LilycoveCity_EventScript_Sailor2
 1 LilycoveCity_EventScript_Girl
@@ -156,12 +155,11 @@ objscripts
 13 LilycoveCity_EventScript_AquaGrunt2
 14 LilycoveCity_EventScript_AquaGrunt3
 15 LilycoveCity_EventScript_BerryGentleman
-16 LilycoveCity_EventScript_Rival
-17 LilycoveCity_EventScript_SchoolKidM
-18 LilycoveCity_EventScript_Woman1
-19 LilycoveCity_EventScript_Man1
-20 LilycoveCity_EventScript_Sailor1
-21 LilycoveCity_EventScript_FatMan
+16 LilycoveCity_EventScript_SchoolKidM
+17 LilycoveCity_EventScript_Woman1
+18 LilycoveCity_EventScript_Man1
+19 LilycoveCity_EventScript_Sailor1
+20 LilycoveCity_EventScript_FatMan
 scriptdefs
 = LilycoveCity_EventScript_FatMan
 msgbox	I saw this tall tower somewhere around ROUTE 131.Could that possibly be…?
@@ -192,146 +190,6 @@ msgbox	It's used for making a kind of candy called a .If you give a good to a P
 return
 = LilycoveCity_EventScript_KnowAboutBerryBlender
 msgbox	People have to work together to get it to spin faster.The faster you can make it spin, the better S you can get, I've heard.
-return
-= LilycoveCity_EventScript_Rival
-lock
-faceplayer
-checkplayergender
-goto_if_eq VAR_RESULT MALE LilycoveCity_EventScript_May
-goto_if_eq VAR_RESULT FEMALE LilycoveCity_EventScript_Brendan
-end
-= LilycoveCity_EventScript_Brendan
-playbgm MUS_ENCOUNTER_BRENDAN TRUE
-call_if_set FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE LilycoveCity_EventScript_BrendanAskToBattleAgain
-call_if_unset FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE LilycoveCity_EventScript_BrendanAskToBattle
-goto_if_eq VAR_RESULT NO LilycoveCity_EventScript_DeclineBrendanBattle
-msgbox	BRENDAN: Aww, but you know I'm not going to lose to no PLAYER.
-switch VAR_STARTER_MON
-case 0 LilycoveCity_EventScript_BattleBrendanTreecko
-case 1 LilycoveCity_EventScript_BattleBrendanTorchic
-case 2 LilycoveCity_EventScript_BattleBrendanMudkip
-end
-= LilycoveCity_EventScript_BattleBrendanMudkip
-trainerbattle_no_intro TRAINER_BRENDAN_LILYCOVE_MUDKIP LilycoveCity_Text_BrendanDefeat
-goto LilycoveCity_EventScript_DefeatedBrendan
-end
-= LilycoveCity_EventScript_DefeatedBrendan
-msgbox	BRENDAN: I… I plan on going home to LITTLEROOT.You know I'm helping out my dad on his POKéDEX. It's coming together pretty decently, so I should go show him.
-setvar VAR_RESULT FALSE
-call_if_set FLAG_BADGE06_GET LilycoveCity_EventScript_CheckFinalBadge
-call_if_eq VAR_RESULT FALSE LilycoveCity_EventScript_BrendanCollectBadges
-call_if_eq VAR_RESULT TRUE LilycoveCity_EventScript_BrendanPokemonLeague
-clearflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_BEDROOM
-clearflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F_SWABLU_DOLL
-goto LilycoveCity_EventScript_RivalFlyAway
-end
-= LilycoveCity_EventScript_RivalFlyAway
-closemessage
-applymovement VAR_LAST_TALKED Common_Movement_WalkInPlaceFasterDown
-waitmovement 0
-delay 50
-setfieldeffectargument 0 1
-dofieldeffect FLDEFF_NPCFLY_OUT
-delay 15
-removeobject VAR_LAST_TALKED
-waitfieldeffect FLDEFF_NPCFLY_OUT
-savebgm MUS_DUMMY
-fadedefaultbgm
-setflag FLAG_MET_RIVAL_LILYCOVE
-release
-end
-= LilycoveCity_EventScript_BrendanPokemonLeague
-goto_if_set FLAG_SYS_GAME_CLEAR LilycoveCity_EventScript_BrendanBattleFrontier
-msgbox	PLAYER, what are you going to do?Since you're that strong, are you taking the POKéMON LEAGUE challenge?Heh, even me--if I trained my POKéMON a bit more, I should be stronger than you, PLAYER.Well, anyway, hang in there!
-return
-= LilycoveCity_EventScript_BrendanBattleFrontier
-msgbox	PLAYER, what are you going to do?Are you taking the BATTLE FRONTIER challenge?Or, are you going to complete your POKéDEX?Since you're that strong, you should consider the BATTLE FRONTIER.Heh, if I train my POKéMON a bit more, I'll get stronger than you, PLAYER.Maybe I should go to the BATTLE FRONTIER.Well, anyway, hang in there!
-return
-= LilycoveCity_EventScript_BrendanCollectBadges
-msgbox	PLAYER, what are you going to do?Collect all the GYM BADGES and take the POKéMON LEAGUE challenge?Maybe I'll do that, too…Well, anyway, hang in there!
-return
-= LilycoveCity_EventScript_CheckFinalBadge
-goto_if_set FLAG_BADGE08_GET LilycoveCity_EventScript_HasFinalBadge
-return
-= LilycoveCity_EventScript_HasFinalBadge
-setvar VAR_RESULT TRUE
-return
-= LilycoveCity_EventScript_BattleBrendanTorchic
-trainerbattle_no_intro TRAINER_BRENDAN_LILYCOVE_TORCHIC LilycoveCity_Text_BrendanDefeat
-goto LilycoveCity_EventScript_DefeatedBrendan
-end
-= LilycoveCity_EventScript_BattleBrendanTreecko
-trainerbattle_no_intro TRAINER_BRENDAN_LILYCOVE_TREECKO LilycoveCity_Text_BrendanDefeat
-goto LilycoveCity_EventScript_DefeatedBrendan
-end
-= LilycoveCity_EventScript_DeclineBrendanBattle
-setflag FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE
-msgbox	BRENDAN: Oh, what's the matter? Don't have the confidence?
-savebgm MUS_DUMMY
-fadedefaultbgm
-release
-end
-= LilycoveCity_EventScript_BrendanAskToBattle
-msgbox	BRENDAN: Oh, hey, it's PLAYER.I'm running an errand for my dad. No, I'm not buying any DOLLS.Anyways, it's been a while.Want to have a battle to see who's been raising POKéMON better?
-return
-= LilycoveCity_EventScript_BrendanAskToBattleAgain
-msgbox	BRENDAN: Want to battle to see who's been raising POKéMON better?
-return
-= LilycoveCity_EventScript_May
-playbgm MUS_ENCOUNTER_MAY TRUE
-call_if_set FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE LilycoveCity_EventScript_MayAskToBattleAgain
-call_if_unset FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE LilycoveCity_EventScript_MayAskToBattle
-goto_if_eq VAR_RESULT NO LilycoveCity_EventScript_DeclineMayBattle
-msgbox	MAY: The POKéMON I raised won't be beaten by your POKéMON, PLAYER!
-switch VAR_STARTER_MON
-case 0 LilycoveCity_EventScript_BattleMayTreecko
-case 1 LilycoveCity_EventScript_BattleMayTorchic
-case 2 LilycoveCity_EventScript_BattleMayMudkip
-end
-= LilycoveCity_EventScript_BattleMayMudkip
-trainerbattle_no_intro TRAINER_MAY_LILYCOVE_MUDKIP LilycoveCity_Text_MayDefeat
-goto LilycoveCity_EventScript_DefeatedMay
-end
-= LilycoveCity_EventScript_DefeatedMay
-msgbox	MAY: I'm thinking of going back to LITTLEROOT soon.I've caught a decent group of POKéMON, and my POKéDEX is coming along, so I'm going home to show my dad.
-setvar VAR_RESULT FALSE
-call_if_set FLAG_BADGE06_GET LilycoveCity_EventScript_CheckFinalBadge
-call_if_eq VAR_RESULT FALSE LilycoveCity_EventScript_MayCollectBadges
-call_if_eq VAR_RESULT TRUE LilycoveCity_EventScript_MayPokemonLeague
-clearflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_BEDROOM
-clearflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_2F_PICHU_DOLL
-goto LilycoveCity_EventScript_RivalFlyAway
-end
-= LilycoveCity_EventScript_MayPokemonLeague
-goto_if_set FLAG_SYS_GAME_CLEAR LilycoveCity_EventScript_MayBattleFrontier
-msgbox	PLAYER, what are you going to do?Are you taking the POKéMON LEAGUE challenge?Or, are you going to complete your POKéDEX?I might've lost to you in battling, but I'll finish my POKéDEX before you!See you!
-return
-= LilycoveCity_EventScript_MayBattleFrontier
-msgbox	PLAYER, what are you going to do?Are you taking the BATTLE FRONTIER challenge?Or, are you going to complete your POKéDEX?I might've lost to you in battling, but I'll finish my POKéDEX before you!See you!
-return
-= LilycoveCity_EventScript_MayCollectBadges
-msgbox	PLAYER, what are you going to do?Collect all the GYM BADGES and take the POKéMON LEAGUE challenge?Well, while you're collecting BADGES, PLAYER, I'm going to work on my POKéDEX. I'll complete it before you!See you!
-return
-= LilycoveCity_EventScript_BattleMayTorchic
-trainerbattle_no_intro TRAINER_MAY_LILYCOVE_TORCHIC LilycoveCity_Text_MayDefeat
-goto LilycoveCity_EventScript_DefeatedMay
-end
-= LilycoveCity_EventScript_BattleMayTreecko
-trainerbattle_no_intro TRAINER_MAY_LILYCOVE_TREECKO LilycoveCity_Text_MayDefeat
-goto LilycoveCity_EventScript_DefeatedMay
-end
-= LilycoveCity_EventScript_DeclineMayBattle
-setflag FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE
-msgbox	MAY: Oh, why? PLAYER, haven't you been raising your POKéMON?That's not a very good showing as a TRAINER…
-savebgm MUS_DUMMY
-fadedefaultbgm
-release
-end
-= LilycoveCity_EventScript_MayAskToBattle
-msgbox	MAY: Oh, hey? PLAYER, are you shopping, too?I bought a whole bunch of DOLLS and POSTERS.Of course, I've also caught a lot of POKéMON, and I'm raising them properly, too.Actually, I'm more worried if you're raising POKéMON properly, PLAYER.I'll battle with you, so you can show me your POKéMON, PLAYER.
-return
-= LilycoveCity_EventScript_MayAskToBattleAgain
-msgbox	MAY: Come on, battle with me, so I can check out your POKéMON!
 return
 = LilycoveCity_EventScript_BerryGentleman
 lock

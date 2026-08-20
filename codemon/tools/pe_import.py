@@ -957,6 +957,20 @@ def cmd_world(src, limit=None):
             except Exception:
                 pass
 
+    # Story-accurate spawns: a map's heal location is where the player wakes /
+    # respawns (MAP_ id -> (x, y)). Used in preference to a geometric guess.
+    heal_by_mapid = {}
+    for hp in (os.path.join(src, "src", "data", "heal_locations.json"),
+               os.path.join(src, "data", "heal_locations.json")):
+        if os.path.isfile(hp):
+            try:
+                for hl in json.load(open(hp)).get("heal_locations", []):
+                    if "map" in hl and "x" in hl and "y" in hl:
+                        heal_by_mapid[hl["map"]] = (int(hl["x"]), int(hl["y"]))
+            except Exception:
+                pass
+            break
+
     done = 0
     for mname in names:
         mj_path = os.path.join(mroot, mname, "map.json")
@@ -1005,7 +1019,13 @@ def cmd_world(src, limit=None):
                 continue
             if not (0 <= x < w and 0 <= y < h):
                 continue
-            sheet = resolve(oe.get("graphics_id", ""))
+            gid = oe.get("graphics_id", "")
+            # OBJ_EVENT_GFX_VAR_* are decoration placeholders: player-placed
+            # furniture, hidden until decorated. They are never real NPCs, so
+            # skip them (otherwise every bedroom fills with generic sprites).
+            if "OBJ_EVENT_GFX_VAR_" in gid:
+                continue
+            sheet = resolve(gid)
             if not sheet:
                 continue
             move, face = movement_token(oe.get("movement_type"))
@@ -1028,10 +1048,15 @@ def cmd_world(src, limit=None):
             if 0 <= bx < w and 0 <= by < h:
                 signs.append((bx, by, text))
 
-        # spawn: prefer a passable tile near map centre
+        # spawn: use the story heal location for this map when it has one
+        # (that's where the player wakes / respawns); else a passable centre tile.
         def passable_at(x, y):
             return 0 <= x < w and 0 <= y < h and solid[y * w + x] == 0
-        sx, sy = w // 2, h // 2
+        heal = heal_by_mapid.get(mj.get("id"))
+        if heal and passable_at(*heal):
+            sx, sy = heal
+        else:
+            sx, sy = w // 2, h // 2
         if not passable_at(sx, sy):
             for r in range(1, max(w, h)):
                 hit = None

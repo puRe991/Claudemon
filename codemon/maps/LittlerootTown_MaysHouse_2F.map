@@ -1,6 +1,6 @@
 tileset building__brendans_mays_house
 9 8
-4 4
+4 2
 520,524,522,551,598,596,592,596,593
 528,532,530,559,2,599,597,600,601
 581,517,519,517,605,615,517,608,609
@@ -22,26 +22,14 @@ warps
 1 1 LittlerootTown_MaysHouse_1F 2
 npcs
 people_may_walking 1 1 S static
-people_man_1 0 6 S static
-people_man_1 1 6 S static
-people_man_1 2 6 S static
-people_man_1 3 6 S static
-people_man_1 4 6 S static
-people_man_1 5 6 S static
-people_man_1 0 7 S static
-people_man_1 1 7 S static
-people_man_1 2 7 S static
-people_man_1 3 7 S static
-people_man_1 4 7 S static
-people_man_1 5 7 S static
 people_mom 1 1 S static
 people_man_1 3 4 S static
 misc_item_ball 5 4 S static
 dialogs
-15	It's RIVAL's POKé BALL!Better leave it right where it is.
+3	It's RIVAL's POKé BALL!Better leave it right where it is.
 objscripts
 0 RivalsHouse_2F_EventScript_Rival
-15 LittlerootTown_MaysHouse_2F_EventScript_RivalsPokeBall
+3 LittlerootTown_MaysHouse_2F_EventScript_RivalsPokeBall
 movements
 LittlerootTown_MaysHouse_2F_Movement_MayApproachPlayerEast	right,right,down,delay,end
 LittlerootTown_MaysHouse_2F_Movement_MayApproachPlayerNorth	right,right,down,down,right,end
