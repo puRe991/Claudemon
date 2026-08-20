@@ -88,7 +88,7 @@ def read_tile_indices(tiles_png):
 
 
 def blit_tile(dst, dst_x, dst_y, tiles_px, tiles_w, tile_id, palette, xflip, yflip,
-              transparent_zero):
+              transparent_zero, tiles_h=None):
     """Draw one 8x8 hardware tile into dst (RGBA) at (dst_x,dst_y)."""
     tiles_per_row = tiles_w // TILE
     tx = (tile_id % tiles_per_row) * TILE
@@ -97,6 +97,8 @@ def blit_tile(dst, dst_x, dst_y, tiles_px, tiles_w, tile_id, palette, xflip, yfl
         sy = ty + (TILE - 1 - y if yflip else y)
         for x in range(TILE):
             sx = tx + (TILE - 1 - x if xflip else x)
+            if sx >= tiles_w or (tiles_h is not None and sy >= tiles_h):
+                continue   # tile id past the end of this sheet: leave clear
             idx = tiles_px[sx, sy]
             if transparent_zero and idx == 0:
                 continue
@@ -158,6 +160,137 @@ def cmd_tilesets(src):
     with open(os.path.join(out, "index.json"), "w") as f:
         json.dump({"tilesets": metas}, f, indent=2)
     print(f"tilesets: wrote {len(metas)} sheet(s) to {os.path.relpath(out)}")
+
+
+# --------------------------------------------------------------------------- #
+# real pokeemerald maps: combined primary+secondary tileset + map.bin layout
+# --------------------------------------------------------------------------- #
+NUM_TILES_PRIMARY     = 512   # tile ids < this come from the primary tiles.png
+NUM_METATILES_PRIMARY = 512   # metatile ids >= this are secondary
+NUM_PALS_PRIMARY      = 6     # palettes 0-5 primary, 6-15 secondary
+
+
+def _tileset_raw(path):
+    im = Image.open(os.path.join(path, "tiles.png"))
+    im = im.convert("P") if im.mode != "P" else im
+    return {"px": im.load(), "w": im.size[0], "h": im.size[1],
+            "pals": load_tileset_palettes(path),
+            "mt": open(os.path.join(path, "metatiles.bin"), "rb").read()}
+
+
+def _tileset_name(gname):
+    # "gTileset_General" -> "general"
+    import re
+    s = gname.replace("gTileset_", "")
+    return re.sub(r"(?<!^)(?=[A-Z])", "_", s).lower()
+
+
+def render_pair_sheet(primary_path, secondary_path, out_dir, name):
+    """Render a combined metatile sheet: primary metatiles 0..N then secondary."""
+    prim = _tileset_raw(primary_path)
+    sec = _tileset_raw(secondary_path) if secondary_path else None
+
+    # merged palette table: 0-5 primary, 6-15 from secondary when present
+    pals = {i: prim["pals"].get(i, [(0, 0, 0)] * 16) for i in range(16)}
+    if sec:
+        for i in range(NUM_PALS_PRIMARY, 16):
+            if i in sec["pals"]:
+                pals[i] = sec["pals"][i]
+
+    prim_count = len(prim["mt"]) // 16
+    sec_count = len(sec["mt"]) // 16 if sec else 0
+    total = (NUM_METATILES_PRIMARY + sec_count) if sec else prim_count
+
+    rows = (total + SHEET_COLS - 1) // SHEET_COLS
+    sheet = Image.new("RGBA", (SHEET_COLS * METATILE_SIZE, rows * METATILE_SIZE), (0, 0, 0, 0))
+    quad = [(0, 0), (TILE, 0), (0, TILE), (TILE, TILE)]
+
+    def metatile_entries(mid):
+        if mid < prim_count:
+            return prim["mt"], mid
+        if sec and mid >= NUM_METATILES_PRIMARY and (mid - NUM_METATILES_PRIMARY) < sec_count:
+            return sec["mt"], mid - NUM_METATILES_PRIMARY
+        return None, None
+
+    for mid in range(total):
+        src_mt, local = metatile_entries(mid)
+        if src_mt is None:
+            continue
+        entries = struct.unpack_from("<8H", src_mt, local * 16)
+        mx = (mid % SHEET_COLS) * METATILE_SIZE
+        my = (mid // SHEET_COLS) * METATILE_SIZE
+        for layer, is_top in ((0, False), (4, True)):
+            for q in range(4):
+                e = entries[layer + q]
+                tile_id = e & 0x03FF
+                xflip = bool(e & 0x0400)
+                yflip = bool(e & 0x0800)
+                pal_id = (e >> 12) & 0x0F
+                # tile pixels come from primary or secondary sheet by id range
+                if tile_id < NUM_TILES_PRIMARY or not sec:
+                    tpx, tw, th, local_tile = prim["px"], prim["w"], prim["h"], tile_id
+                else:
+                    tpx, tw, th, local_tile = sec["px"], sec["w"], sec["h"], tile_id - NUM_TILES_PRIMARY
+                blit_tile(sheet, mx + quad[q][0], my + quad[q][1],
+                          tpx, tw, local_tile, pals[pal_id], xflip, yflip,
+                          transparent_zero=is_top, tiles_h=th)
+
+    os.makedirs(out_dir, exist_ok=True)
+    out_png = os.path.join(out_dir, name + ".png")
+    sheet.save(out_png)
+    return total
+
+
+def cmd_map(src, layout_name):
+    layouts = json.load(open(os.path.join(src, "data", "layouts", "layouts.json")))
+    layout = next((l for l in layouts["layouts"] if l["name"] == layout_name), None)
+    if layout is None:
+        sys.exit("map: unknown layout " + layout_name)
+
+    prim = _tileset_name(layout["primary_tileset"])
+    sec = _tileset_name(layout["secondary_tileset"]) if layout.get("secondary_tileset") else None
+    prim_path = os.path.join(src, "data", "tilesets", "primary", prim)
+    sec_path = os.path.join(src, "data", "tilesets", "secondary", sec) if sec else None
+
+    sheet_name = prim + ("__" + sec if sec else "")
+    total = render_pair_sheet(prim_path, sec_path, TS_DIR, sheet_name)
+    print(f"  combined tileset {sheet_name}: {total} metatiles")
+
+    w, h = layout["width"], layout["height"]
+    blob = open(os.path.join(src, layout["blockdata_filepath"]), "rb").read()
+    cells = struct.unpack("<%dH" % (w * h), blob[:w * h * 2])
+    ids = [c & 0x03FF for c in cells]
+    # collision bits (10-11): non-zero => blocked
+    solid = [1 if ((c >> 10) & 0x03) else 0 for c in cells]
+
+    # spawn: first passable tile scanning from the map centre outward
+    def passable_at(x, y):
+        return 0 <= x < w and 0 <= y < h and solid[y * w + x] == 0
+    sx, sy = w // 2, h // 2
+    if not passable_at(sx, sy):
+        for r in range(1, max(w, h)):
+            found = False
+            for yy in range(max(0, sy - r), min(h, sy + r + 1)):
+                for xx in range(max(0, sx - r), min(w, sx + r + 1)):
+                    if passable_at(xx, yy):
+                        sx, sy, found = xx, yy, True
+                        break
+                if found: break
+            if found: break
+
+    maps_dir = os.path.join(TOOLS_DIR, "..", "maps")
+    os.makedirs(maps_dir, exist_ok=True)
+    # friendly file name: LittlerootTown_Layout -> littleroot_town
+    short = _tileset_name(layout_name.replace("_Layout", ""))
+    out_map = os.path.join(maps_dir, short + ".map")
+    lines = [f"tileset {sheet_name}", f"{w} {h}", f"{sx} {sy}"]
+    for y in range(h):
+        lines.append(",".join(str(ids[y * w + x]) for x in range(w)))
+    lines.append("collision")
+    for y in range(h):
+        lines.append(",".join(str(solid[y * w + x]) for x in range(w)))
+    open(out_map, "w").write("\n".join(lines) + "\n")
+    print(f"map: {layout_name} ({w}x{h}) -> {os.path.relpath(out_map)}  spawn ({sx},{sy})")
 
 
 # --------------------------------------------------------------------------- #
@@ -288,9 +421,11 @@ def cmd_audio(src, cry_limit=100000, songs=("mus_littleroot", "mus_route101", "m
 # --------------------------------------------------------------------------- #
 def main():
     ap = argparse.ArgumentParser(description="Codemon pokeemerald asset importer")
-    ap.add_argument("cmd", choices=["all", "tilesets", "overworld", "audio"])
+    ap.add_argument("cmd", choices=["all", "tilesets", "overworld", "audio", "map"])
     ap.add_argument("--src", default=os.environ.get("POKEEMERALD",
                     ""), help="path to pokeemerald-master checkout")
+    ap.add_argument("--layout", default="LittlerootTown_Layout",
+                    help="layout name for the 'map' command (e.g. Route101_Layout)")
     args = ap.parse_args()
     if not args.src or not os.path.isdir(args.src):
         sys.exit("error: --src must point to a pokeemerald-master checkout "
@@ -301,6 +436,8 @@ def main():
         cmd_overworld(args.src)
     if args.cmd in ("all", "audio"):
         cmd_audio(args.src)
+    if args.cmd == "map":
+        cmd_map(args.src, args.layout)
 
 
 if __name__ == "__main__":

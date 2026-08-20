@@ -28,7 +28,23 @@ pip install Pillow
 python3 tools/pe_import.py all --src /path/to/pokeemerald-master
 ```
 
-Sub-commands: `tilesets`, `overworld`, `audio`, or `all`.
+Sub-commands: `tilesets`, `overworld`, `audio`, `all`, or `map`.
+
+### Importing a real pokeemerald map
+
+```sh
+python3 tools/pe_import.py map --src /path/to/pokeemerald-master \
+        --layout LittlerootTown_Layout
+```
+
+This reads the layout's `map.bin` (the metatile grid + collision bits) and its
+primary+secondary tileset pair, renders a **combined** coloured metatile sheet
+(`assets/tilesets/<primary>__<secondary>.png`, primary metatiles 0-511 then the
+secondary ones from 512) and writes a ready-to-play map (e.g.
+`maps/littleroot_town.map`) with a collision layer derived from the map data.
+Any `*_Layout` in `data/layouts/layouts.json` works; the two tilesets are
+resolved automatically. The game loads `maps/littleroot_town.map` by default
+(override with the `CODEMON_MAP` env var).
 
 ### Outputs
 

@@ -54,7 +54,10 @@ static void draw_scene(sf::RenderTarget& target, Map& map,
 
 int main() {
     // --- world / assets ----------------------------------------------------
-    Map game_map("maps/route.map");
+    // Real imported pokeemerald map (see tools/pe_import.py `map`). Override
+    // with the CODEMON_MAP env var, e.g. maps/route.map for the demo route.
+    const char* map_env = std::getenv("CODEMON_MAP");
+    Map game_map(map_env ? map_env : "maps/littleroot_town.map");
     const int tile_px = game_map.get_tile_size();
     const unsigned world_w = game_map.get_width()  * tile_px;
     const unsigned world_h = game_map.get_height() * tile_px;
@@ -65,17 +68,23 @@ int main() {
     player.load_sprite_sheet("assets/overworld/people_brendan_walking.png");
     player.face(DIR::S);
 
-    // A handful of NPCs placed around the route, each from an imported sheet.
+    // A handful of NPCs, each from an imported sheet. Candidate tiles are only
+    // used when they are passable on the current map (so NPCs never spawn
+    // inside a building or on water) and not on the player's spawn tile.
     std::vector<Character*> npcs;
     struct NpcDef { const char* sheet; int x, y; DIR facing; };
     const NpcDef defs[] = {
-        {"assets/overworld/people_lass.png",       10,  9, DIR::W},
-        {"assets/overworld/people_fisherman.png",  15,  9, DIR::S},
-        {"assets/overworld/people_boy_1.png",       5,  9, DIR::E},
-        {"assets/overworld/people_beauty.png",      8,  2, DIR::S},
-        {"assets/overworld/people_black_belt.png",  2, 12, DIR::N},
+        {"assets/overworld/people_lass.png",       12, 11, DIR::W},
+        {"assets/overworld/people_fisherman.png",   2, 10, DIR::E},
+        {"assets/overworld/people_boy_1.png",      16,  9, DIR::W},
+        {"assets/overworld/people_beauty.png",     13, 13, DIR::S},
+        {"assets/overworld/people_black_belt.png",  6, 17, DIR::N},
+        {"assets/overworld/people_youngster.png",  10,  3, DIR::S},
     };
     for (const NpcDef& d : defs) {
+        if (!game_map.passable(d.x, d.y)) continue;
+        if (d.x == (int)game_map.get_start_pos().get_x() &&
+            d.y == (int)game_map.get_start_pos().get_y()) continue;
         Character* npc = new Character(d.x, d.y);
         if (npc->load_sprite_sheet(d.sheet)) {
             npc->face(d.facing);
@@ -88,10 +97,6 @@ int main() {
     std::vector<Character*> actors;
     for (Character* n : npcs) actors.push_back(n);
     actors.push_back(&player);
-
-    // Audio (silent-safe if the SFX are missing).
-    Audio audio;
-    audio.load("assets");
 
     // --- headless screenshot mode -----------------------------------------
     // If CODEMON_SCREENSHOT is set, render one frame off-screen and exit. This
@@ -111,6 +116,10 @@ int main() {
     }
 
     // --- interactive game --------------------------------------------------
+    // Audio (silent-safe if the SFX are missing or there is no audio device).
+    Audio audio;
+    audio.load("assets");
+
     Window scr(world_w * SCALE, world_h * SCALE, "Codemon!");
     scr.get_window()->setView(
         sf::View(sf::FloatRect(0.f, 0.f, (float)world_w, (float)world_h)));
