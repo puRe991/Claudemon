@@ -5,7 +5,8 @@
 #include "map.h"
 #include "character.h"
 #include "DialogBox.h"
-#include "BattleScene.h"
+#include "Battle.h"
+#include "BattleData.h"
 #include "GameState.h"
 #include "Audio.h"
 
@@ -32,7 +33,10 @@ public:
 	ScriptVM();
 
 	void configure(Map* map, GameState* state, DialogBox* box,
-	               BattleScene* battle, Audio* audio, Character* player);
+	               Battle* battle, Audio* audio, Character* player);
+
+	// Battle hooks for trainerbattle (set once at startup).
+	void set_battle_data(BattleData* bd, Mon* party) { this->bdata = bd; this->party = party; }
 
 	// Begin running `label`; owner is the interacted NPC (for LOCALID + face).
 	void start(const std::string& label, Character* owner);
@@ -43,10 +47,11 @@ public:
 	void update(float dt);           // advance timers / movement
 
 private:
-	enum State { IDLE, RUN, WAIT_MSG, WAIT_MOVE };
+	enum State { IDLE, RUN, WAIT_MSG, WAIT_MOVE, WAIT_BATTLE };
 
-	Map* map; GameState* state; DialogBox* box; BattleScene* battle;
+	Map* map; GameState* state; DialogBox* box; Battle* battle;
 	Audio* audio; Character* player; Character* owner;
+	BattleData* bdata; Mon* party;
 
 	State st;
 	std::string cur;                 // current script label

@@ -3,10 +3,10 @@
 
 ScriptVM::ScriptVM()
 	: map(nullptr), state(nullptr), box(nullptr), battle(nullptr),
-	  audio(nullptr), player(nullptr), owner(nullptr),
+	  audio(nullptr), player(nullptr), owner(nullptr), bdata(nullptr), party(nullptr),
 	  st(IDLE), ip(0), switch_value(0), move_timer(0.f) {}
 
-void ScriptVM::configure(Map* m, GameState* s, DialogBox* b, BattleScene* bt,
+void ScriptVM::configure(Map* m, GameState* s, DialogBox* b, Battle* bt,
                          Audio* a, Character* p) {
 	this->map = m; this->state = s; this->box = b; this->battle = bt;
 	this->audio = a; this->player = p;
@@ -25,6 +25,18 @@ static std::string item_name(const std::string& item) {
 		else out += (char)std::tolower((unsigned char)c);
 	}
 	return out;
+}
+
+static std::string name_from_trainer(const std::string& tid) {
+	std::string s = tid;
+	if (s.rfind("TRAINER_", 0) == 0) s = s.substr(8);
+	std::string out; bool cap = true;
+	for (char c : s) {
+		if (c == '_') { out += ' '; cap = true; }
+		else if (cap) { out += (char)std::toupper((unsigned char)c); cap = false; }
+		else out += (char)std::tolower((unsigned char)c);
+	}
+	return out.empty() ? "TRAINER" : out;
 }
 
 // pokeemerald DIR_* codes; our facing enum is S=0,W=1,E=2,N=3.
@@ -183,15 +195,35 @@ void ScriptVM::pump() {
 			this->map->set_metatile(value_of(arg(0)), value_of(arg(1)),
 			                        value_of(arg(2)), solid);
 		} else if (op == "trainerbattle_single" || op == "trainerbattle") {
+			// trainerbattle_single TRAINER_X, intro, lose; trainerbattle TYPE, TRAINER_X, ...
+			std::string tid;
+			for (size_t k = 0; k < argc; ++k)
+				if (arg(k).rfind("TRAINER_", 0) == 0) { tid = arg(k); break; }
+			if (this->battle && this->bdata && this->party &&
+			    this->battle->start_trainer(tid, name_from_trainer(tid), this->party)) {
+				this->st = WAIT_BATTLE;
+				return;
+			}
 			this->box->open(std::string(), "A TRAINER wants to battle!");
 			this->st = WAIT_MSG;
 			return;
 		} else if (op == "checkplayergender") {
 			this->state->set_var("VAR_RESULT", 0);   // treat player as male
+		} else if (op == "special" || op == "special2") {
+			// special <Func> ; special2 <var> <Func>. Implement the few that
+			// have a clear overworld effect; the rest are safely ignored.
+			const std::string& fn = (op == "special2" && argc >= 2) ? arg(1) : arg(0);
+			if (fn == "HealPlayerParty" && this->party) {
+				this->party->hp = this->party->max_hp;
+			} else if (fn == "GetPlayerXY") {
+				this->state->set_var("VAR_0x8004", this->player->get_tile_x());
+				this->state->set_var("VAR_0x8005", this->player->get_tile_y());
+			}
+			// unknown specials: no-op (cannot run arbitrary GBA C)
 		} else if (op == "end") {
 			finish(); return;
 		}
-		// everything else (lock, release, special, playbgm, ...) is a no-op
+		// everything else (lock, release, playbgm, ...) is a no-op
 	}
 }
 
@@ -199,13 +231,21 @@ void ScriptVM::on_key() {
 	if (this->st != WAIT_MSG) return;
 	if (this->box->is_active()) { this->box->advance(); }
 	if (!this->box->is_active()) {           // message fully dismissed
-		if (this->battle && this->battle->is_active()) return;   // handled elsewhere
+		if (this->battle && this->battle->active()) return;   // handled elsewhere
 		this->st = RUN;
 		this->pump();
 	}
 }
 
 void ScriptVM::update(float dt) {
+	if (this->st == WAIT_BATTLE) {
+		if (!this->battle || !this->battle->active()) {
+			// battle finished (won or lost); continue the script
+			this->st = RUN;
+			this->pump();
+		}
+		return;
+	}
 	if (this->st != WAIT_MOVE) return;
 	this->move_timer += dt;
 	const float STEP = 0.12f;

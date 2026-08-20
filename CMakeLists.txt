@@ -56,7 +56,8 @@ set(ENGINE_SOURCES
     "${SRC_DIR}/map.cpp"
     "${SRC_DIR}/Audio.cpp"
     "${SRC_DIR}/DialogBox.cpp"
-    "${SRC_DIR}/BattleScene.cpp"
+    "${SRC_DIR}/BattleData.cpp"
+    "${SRC_DIR}/Battle.cpp"
     "${SRC_DIR}/ScriptVM.cpp"
     "${SRC_DIR}/data_structures.cpp")
 

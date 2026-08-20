@@ -218,6 +218,153 @@ def load_encounters(src):
     return out
 
 
+# --------------------------------------------------------------------------- #
+# battle data: species base stats, moves, learnsets, trainer parties
+# --------------------------------------------------------------------------- #
+def _strip_species(s):
+    return s.replace("SPECIES_", "")
+
+
+def parse_species_info(src):
+    """[SPECIES_X] -> (hp,atk,def,spa,spd,spe,type1,type2)."""
+    import re
+    txt = open(os.path.join(src, "src/data/pokemon/species_info.h"),
+               encoding="utf-8", errors="replace").read()
+    out = {}
+    for m in re.finditer(r"\[SPECIES_(\w+)\]\s*=\s*\{(.*?)\n    \}", txt, re.S):
+        name, body = m.group(1), m.group(2)
+        def g(field, d="0"):
+            mm = re.search(r"\.%s\s*=\s*([0-9]+)" % field, body)
+            return int(mm.group(1)) if mm else int(d)
+        tm = re.search(r"\.types\s*=\s*\{\s*TYPE_(\w+)\s*,\s*TYPE_(\w+)", body)
+        t1, t2 = (tm.group(1), tm.group(2)) if tm else ("NORMAL", "NORMAL")
+        if name in ("NONE",):
+            continue
+        out[name] = (g("baseHP"), g("baseAttack"), g("baseDefense"),
+                     g("baseSpAttack"), g("baseSpDefense"), g("baseSpeed"), t1, t2)
+    return out
+
+
+def parse_moves(src):
+    """[MOVE_X] -> (power, type, accuracy)."""
+    import re
+    txt = open(os.path.join(src, "src/data/battle_moves.h"),
+               encoding="utf-8", errors="replace").read()
+    out = {}
+    for m in re.finditer(r"\[MOVE_(\w+)\]\s*=\s*\{(.*?)\n    \}", txt, re.S):
+        name, body = m.group(1), m.group(2)
+        pw = re.search(r"\.power\s*=\s*([0-9]+)", body)
+        ty = re.search(r"\.type\s*=\s*TYPE_(\w+)", body)
+        ac = re.search(r"\.accuracy\s*=\s*([0-9]+)", body)
+        if name == "NONE":
+            continue
+        out[name] = (int(pw.group(1)) if pw else 0,
+                     ty.group(1) if ty else "NORMAL",
+                     int(ac.group(1)) if ac else 100)
+    return out
+
+
+def parse_learnsets(src):
+    """SPECIES_X -> ordered [(level, MOVE_NAME)] from the level-up learnsets."""
+    import re
+    base = os.path.join(src, "src/data/pokemon")
+    learn = open(os.path.join(base, "level_up_learnsets.h"),
+                 encoding="utf-8", errors="replace").read()
+    ptrs = open(os.path.join(base, "level_up_learnset_pointers.h"),
+                encoding="utf-8", errors="replace").read()
+    # learnset array name -> moves
+    arrays = {}
+    for m in re.finditer(r"static const u16 (\w+)\[\]\s*=\s*\{(.*?)\};", learn, re.S):
+        moves = [(int(a), b) for a, b in
+                 re.findall(r"LEVEL_UP_MOVE\(\s*(\d+),\s*MOVE_(\w+)\)", m.group(2))]
+        arrays[m.group(1)] = moves
+    out = {}
+    for m in re.finditer(r"\[SPECIES_(\w+)\]\s*=\s*(\w+)", ptrs):
+        if m.group(1) != "NONE" and m.group(2) in arrays:
+            out[m.group(1)] = arrays[m.group(2)]
+    return out
+
+
+def parse_trainers(src):
+    """TRAINER_X -> [(SPECIES, level), ...] via trainers.h + trainer_parties.h."""
+    import re
+    parties = {}
+    ptxt = open(os.path.join(src, "src/data/trainer_parties.h"),
+                encoding="utf-8", errors="replace").read()
+    for m in re.finditer(r"(\w+)\[\]\s*=\s*\{(.*?)\n\};", ptxt, re.S):
+        mons = []
+        for mon in re.finditer(r"\.lvl\s*=\s*(\d+),\s*\.species\s*=\s*SPECIES_(\w+)",
+                               m.group(2)):
+            mons.append((mon.group(2), int(mon.group(1))))
+        if mons:
+            parties[m.group(1)] = mons
+    trainers = {}
+    ttxt = open(os.path.join(src, "src/data/trainers.h"),
+                encoding="utf-8", errors="replace").read()
+    for m in re.finditer(r"\[TRAINER_(\w+)\]\s*=\s*\{(.*?)\n    \}", ttxt, re.S):
+        pm = re.search(r"\.party\s*=.*?(\w*[Pp]arty\w+|sParty_\w+)", m.group(2))
+        if not pm:
+            pm = re.search(r"TRAINER_PARTY\((\w+)\)", m.group(2))
+        if pm and pm.group(1) in parties:
+            trainers["TRAINER_" + m.group(1)] = parties[pm.group(1)]
+    return trainers
+
+
+def cmd_battle(src, starters=("TREECKO", "TORCHIC", "MUDKIP", "PIKACHU")):
+    out = os.path.join(ASSETS_DIR, "battle")
+    os.makedirs(out, exist_ok=True)
+    species = parse_species_info(src)
+    moves = parse_moves(src)
+    learn = parse_learnsets(src)
+    trainers = parse_trainers(src)
+
+    with open(os.path.join(out, "species.tsv"), "w") as f:
+        for name, s in sorted(species.items()):
+            f.write("\t".join([name] + [str(v) for v in s]) + "\n")
+    with open(os.path.join(out, "moves.tsv"), "w") as f:
+        for name, (p, t, a) in sorted(moves.items()):
+            f.write(f"{name}\t{p}\t{t}\t{a}\n")
+    with open(os.path.join(out, "learnsets.tsv"), "w") as f:
+        for name, ms in sorted(learn.items()):
+            f.write(name + "\t" + ",".join(f"{lv}:{mv}" for lv, mv in ms) + "\n")
+    with open(os.path.join(out, "trainers.tsv"), "w") as f:
+        for name, party in sorted(trainers.items()):
+            f.write(name + "\t" + ",".join(f"{sp}:{lv}" for sp, lv in party) + "\n")
+
+    # sprites: front for every species, back for the starters (player side)
+    nf = sum(1 for sp in species if import_pokemon_front(sp, src))
+    nb = sum(1 for sp in starters if import_pokemon_back(sp, src))
+    print(f"battle: {len(species)} species, {len(moves)} moves, "
+          f"{len(learn)} learnsets, {len(trainers)} trainers; "
+          f"{nf} front + {nb} back sprites -> {os.path.relpath(out)}")
+
+
+def import_pokemon_back(species, src):
+    """Colour a species' back sprite (first 64x64 frame) into assets/pokemon/back."""
+    name = species.lower()
+    base = os.path.join(src, "graphics", "pokemon", name)
+    png = os.path.join(base, "back.png")
+    pal = os.path.join(base, "normal.pal")
+    if not (os.path.isfile(png) and os.path.isfile(pal)):
+        return False
+    im = Image.open(png)
+    im = im.convert("P") if im.mode != "P" else im
+    palette = load_jasc_pal(pal)
+    frame = im.crop((0, 0, 64, 64)); idx = frame.load()
+    out = Image.new("RGBA", (64, 64), (0, 0, 0, 0)); op = out.load()
+    for y in range(64):
+        for x in range(64):
+            i = idx[x, y]
+            if i == 0:
+                continue
+            r, g, b = palette[i & 0x0F]
+            op[x, y] = (r, g, b, 255)
+    d = os.path.join(ASSETS_DIR, "pokemon", "back")
+    os.makedirs(d, exist_ok=True)
+    out.save(os.path.join(d, species + ".png"))
+    return True
+
+
 def import_pokemon_front(species, src):
     """Colour a species' front sprite (first 64x64 frame) into assets/pokemon."""
     name = species.lower()
@@ -969,7 +1116,8 @@ def cmd_audio(src, cry_limit=100000, songs=("mus_littleroot", "mus_route101", "m
 # --------------------------------------------------------------------------- #
 def main():
     ap = argparse.ArgumentParser(description="Codemon pokeemerald asset importer")
-    ap.add_argument("cmd", choices=["all", "tilesets", "overworld", "audio", "map", "world"])
+    ap.add_argument("cmd", choices=["all", "tilesets", "overworld", "audio",
+                                    "map", "world", "battle"])
     ap.add_argument("--src", default=os.environ.get("POKEEMERALD",
                     ""), help="path to pokeemerald-master checkout")
     ap.add_argument("--layout", default="LittlerootTown_Layout",
@@ -986,6 +1134,8 @@ def main():
         cmd_audio(args.src)
     if args.cmd == "map":
         cmd_map(args.src, args.layout)
+    if args.cmd in ("all", "battle"):
+        cmd_battle(args.src)
     if args.cmd == "world":
         cmd_world(args.src)
 

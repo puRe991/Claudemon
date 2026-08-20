@@ -6,7 +6,8 @@
 #include "direction.h"
 #include "Audio.h"
 #include "DialogBox.h"
-#include "BattleScene.h"
+#include "Battle.h"
+#include "BattleData.h"
 #include "GameState.h"
 #include "ScriptVM.h"
 
@@ -240,16 +241,16 @@ static void check_trigger(Session* s, ScriptVM& vm, GameState& gs) {
 }
 
 // After a real step, maybe start a wild encounter if standing in tall grass.
-static void try_encounter(Session* s, BattleScene& battle, DialogBox& box,
+static void try_encounter(Session* s, Battle& battle, Mon& party,
                           std::mt19937& rng, bool force) {
+    if (std::getenv("CODEMON_NO_WILD")) return;    // for scripted trainer demos
     int px = s->player->get_tile_x(), py = s->player->get_tile_y();
     if (!s->map->is_grass(px, py) || !s->map->has_encounters()) return;
     if (!force && (rng() % 100) >= 22) return;                 // ~22% per grass step
     const std::vector<std::string>& pool = s->map->encounters();
     std::string sp = pool[rng() % pool.size()];
-    if (battle.start(sp)) {
-        box.open("", "A wild " + sp + " appeared!");
-    }
+    int level = 3 + (int)(rng() % 4);                          // wild level 3..6
+    battle.start_wild(sp, level, &party);
 }
 
 // A camera that follows the player, clamped to the map bounds.
@@ -309,11 +310,23 @@ int main() {
 
     DialogBox box;
     box.load_font();
-    BattleScene battle;
     GameState gs;
+    BattleData bdata;
+    bdata.load("assets/battle");
+    Mon party = bdata.make_mon("TREECKO", 8);     // the player's starter
+    Battle battle;
+    battle.configure(&bdata, &rng);
     ScriptVM vm;
+    vm.set_battle_data(&bdata, &party);
     vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player);
     bool force_enc = std::getenv("CODEMON_FORCE_ENCOUNTER") != nullptr;
+
+    // Map a walk token to a battle button (for scripted battle demos).
+    auto token_btn = [](char t) -> BtnInput {
+        switch (t) { case 'N': return BTN_UP; case 'S': return BTN_DOWN;
+                     case 'W': return BTN_LEFT; case 'E': return BTN_RIGHT;
+                     default: return BTN_CONFIRM; }
+    };
 
     // --- headless screenshot / animation mode ------------------------------
     if (const char* shot = std::getenv("CODEMON_SCREENSHOT")) {
@@ -325,7 +338,9 @@ int main() {
             for (int i = 0; i < frames; ++i) {
                 if (i > 0) {
                     char tok = ((size_t)(i - 1) < walk.size()) ? walk[i - 1] : 0;
-                    if (vm.running()) {
+                    if (battle.active()) {
+                        if (tok) battle.input(token_btn(tok));
+                    } else if (vm.running()) {
                         if (tok == 'T') vm.on_key();
                         vm.update(0.13f);
                     } else if (tok == 'T') {
@@ -340,7 +355,7 @@ int main() {
                                 vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player);
                             else if (sess->player->get_tile_x() != pbx ||
                                      sess->player->get_tile_y() != pby) {
-                                try_encounter(sess, battle, box, rng, force_enc);
+                                try_encounter(sess, battle, party, rng, force_enc);
                                 check_trigger(sess, vm, gs);
                             }
                         }
@@ -348,9 +363,8 @@ int main() {
                     }
                 }
                 rt.clear(sf::Color(40, 72, 56));
-                if (battle.is_active()) battle.draw(rt);
-                else draw_scene(rt, sess);
-                box.draw(rt);
+                if (battle.active()) battle.draw(rt);
+                else { draw_scene(rt, sess); box.draw(rt); }
                 rt.display();
                 char name[512];
                 if (frames == 1) std::snprintf(name, sizeof(name), "%s", shot);
@@ -373,15 +387,20 @@ int main() {
         while (scr.get_event(&event)) {
             if (event.type == sf::Event::Closed) scr.close();
             else if (event.type == sf::Event::KeyPressed) {
-                if (event.key.code == sf::Keyboard::Space ||
-                    event.key.code == sf::Keyboard::Return) {
-                    if (vm.running()) {
-                        vm.on_key();                        // advance a script message
-                    } else {
-                        interact(sess, box, &audio, vm);    // talk / advance / dismiss
-                        if (battle.is_active() && !box.is_active())
-                            battle.end();                   // dismissing ends the encounter
+                if (battle.active()) {
+                    switch (event.key.code) {
+                    case sf::Keyboard::W: battle.input(BTN_UP); break;
+                    case sf::Keyboard::S: battle.input(BTN_DOWN); break;
+                    case sf::Keyboard::A: battle.input(BTN_LEFT); break;
+                    case sf::Keyboard::D: battle.input(BTN_RIGHT); break;
+                    case sf::Keyboard::Space:
+                    case sf::Keyboard::Return: battle.input(BTN_CONFIRM); break;
+                    default: break;
                     }
+                } else if (event.key.code == sf::Keyboard::Space ||
+                           event.key.code == sf::Keyboard::Return) {
+                    if (vm.running()) vm.on_key();           // advance a script message
+                    else interact(sess, box, &audio, vm);    // talk / advance / dismiss
                 } else if (!box.is_active() && !vm.running()) {
                     DIR dir = convert_key_event(event);
                     if (dir != DIR::NONE) {
@@ -393,7 +412,7 @@ int main() {
                             vm.configure(sess->map, &gs, &box, &battle, &audio, sess->player);
                         } else if (sess->player->get_tile_x() != pbx ||
                                    sess->player->get_tile_y() != pby) {
-                            try_encounter(sess, battle, box, rng, false);
+                            try_encounter(sess, battle, party, rng, false);
                             check_trigger(sess, vm, gs);
                         }
                     }
@@ -404,16 +423,15 @@ int main() {
         if (vm.running()) vm.update(dt);
         // NPCs freeze while a dialog/battle/script is running.
         npc_accum += dt;
-        if (!box.is_active() && !battle.is_active() && !vm.running()) {
+        if (!box.is_active() && !battle.active() && !vm.running()) {
             while (npc_accum >= NPC_TICK) { tick_npcs(sess, rng); npc_accum -= NPC_TICK; }
         } else {
             npc_accum = 0.f;
         }
 
         scr.clear();
-        if (battle.is_active()) battle.draw(*scr.get_window());
-        else draw_scene(*scr.get_window(), sess);
-        box.draw(*scr.get_window());
+        if (battle.active()) { battle.draw(*scr.get_window()); }
+        else { draw_scene(*scr.get_window(), sess); box.draw(*scr.get_window()); }
         scr.display();
         sf::sleep(sf::milliseconds(16));
     }
