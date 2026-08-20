@@ -2,6 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include <algorithm>
+#include <cctype>
 
 static std::vector<std::string> split(const std::string& s, char d) {
 	std::vector<std::string> out; std::stringstream ss(s); std::string t;
@@ -20,6 +21,7 @@ bool BattleData::load(const std::string& dir) {
 		s.hp = std::stoi(c[1]); s.atk = std::stoi(c[2]); s.def = std::stoi(c[3]);
 		s.spa = std::stoi(c[4]); s.spd = std::stoi(c[5]); s.spe = std::stoi(c[6]);
 		s.t1 = c[7]; s.t2 = c[8];
+		if (c.size() >= 11) { s.growth = c[9]; s.exp_yield = std::stoi(c[10]); }
 		species[c[0]] = s;
 	}
 	std::ifstream mv(dir + "/moves.tsv");
@@ -55,6 +57,28 @@ bool BattleData::load(const std::string& dir) {
 		auto c = split(line, '\t');
 		if (c.size() >= 2) trainer_pics[c[0]] = c[1];
 	}
+	std::ifstream ev(dir + "/evolutions.tsv");
+	while (std::getline(ev, line)) {
+		auto c = split(line, '\t');
+		if (c.size() < 2) continue;
+		std::vector<Evolution> lst;
+		for (auto& e : split(c[1], ',')) {
+			auto p = split(e, ':');
+			if (p.size() == 3) lst.push_back(Evolution{p[0], p[1], p[2]});
+		}
+		evos[c[0]] = lst;
+	}
+	std::ifstream tl(dir + "/tm_learnsets.tsv");
+	while (std::getline(tl, line)) {
+		auto c = split(line, '\t');
+		if (c.size() < 2) continue;
+		for (auto& mv : split(c[1], ',')) tm_learn[c[0]][mv] = true;
+	}
+	std::ifstream tmf(dir + "/tm_moves.tsv");
+	while (std::getline(tmf, line)) {
+		auto c = split(line, '\t');
+		if (c.size() >= 2) tm_move[c[0]] = c[1];
+	}
 	loaded = !species.empty();
 	return loaded;
 }
@@ -74,6 +98,7 @@ Mon BattleData::make_mon(const std::string& name, int level) const {
 	mon.atk = stat(s.atk); mon.def = stat(s.def);
 	mon.spa = stat(s.spa); mon.spd = stat(s.spd); mon.spe = stat(s.spe);
 	mon.t1 = s.t1; mon.t2 = s.t2;
+	mon.exp = exp_for_level(s.growth, mon.level);
 
 	// natural moveset: the last (up to) 4 moves learned by this level
 	auto li = learn.find(name);
@@ -174,4 +199,108 @@ int BattleData::damage(const Mon& atk, const Mon& def,
 	float roll = 0.85f + (rng() % 16) / 100.0f;      // 0.85 .. 1.00
 	int dmg = (int)(base * stab * eff * roll);
 	return std::max(eff > 0.f ? 1 : 0, dmg);
+}
+
+// --------------------------------------------------------------- progression --
+long BattleData::exp_for_level(const std::string& g, int n) {
+	if (n <= 1) return 0;
+	double L = n;
+	if (g == "FAST")          return (long)(0.8 * L*L*L);
+	if (g == "SLOW")          return (long)(1.25 * L*L*L);
+	if (g == "MEDIUM_SLOW")   return (long)(1.2*L*L*L - 15*L*L + 100*L - 140);
+	if (g == "ERRATIC") {
+		if (n < 50)  return (long)(L*L*L * (100 - L) / 50);
+		if (n < 68)  return (long)(L*L*L * (150 - L) / 100);
+		if (n < 98)  return (long)(L*L*L * ((1911 - 10*n)/3) / 500);
+		return (long)(L*L*L * (160 - L) / 100);
+	}
+	if (g == "FLUCTUATING") {
+		if (n < 15)  return (long)(L*L*L * ((L+1)/3 + 24) / 50);
+		if (n < 36)  return (long)(L*L*L * (L + 14) / 50);
+		return (long)(L*L*L * (L/2 + 32) / 50);
+	}
+	return (long)(L*L*L);                     // MEDIUM_FAST
+}
+
+int BattleData::exp_yield(const std::string& s) const {
+	auto it = species.find(s);
+	return it == species.end() ? 50 : it->second.exp_yield;
+}
+
+void BattleData::recompute_stats(Mon& mon, bool keep_ratio) const {
+	auto it = species.find(mon.species);
+	if (it == species.end()) return;
+	const SpeciesInfo& s = it->second;
+	auto stat = [&](int base) { return (2 * base * mon.level) / 100 + 5; };
+	int new_max = (2 * s.hp * mon.level) / 100 + mon.level + 10;
+	if (keep_ratio) {
+		float r = mon.max_hp > 0 ? (float)mon.hp / mon.max_hp : 1.f;
+		mon.hp = std::max(1, (int)(new_max * r));
+	} else {
+		mon.hp += (new_max - mon.max_hp);      // level-up: gain the delta
+	}
+	mon.max_hp = new_max;
+	mon.atk = stat(s.atk); mon.def = stat(s.def);
+	mon.spa = stat(s.spa); mon.spd = stat(s.spd); mon.spe = stat(s.spe);
+	mon.t1 = s.t1; mon.t2 = s.t2;
+}
+
+static std::string disp(const std::string& id) {
+	std::string o; bool cap = true;
+	for (char c : id) { if (c == '_') { o += ' '; cap = true; }
+		else if (cap) { o += (char)toupper((unsigned char)c); cap = false; }
+		else o += (char)tolower((unsigned char)c); }
+	return o;
+}
+
+void BattleData::grant_exp(Mon& mon, long gained, std::vector<std::string>& msgs) const {
+	if (mon.fainted() || gained <= 0) return;
+	auto sp = species.find(mon.species);
+	std::string growth = sp == species.end() ? "MEDIUM_FAST" : sp->second.growth;
+	mon.exp += gained;
+	msgs.push_back(disp(mon.species) + " gained " + std::to_string(gained) + " EXP!");
+	while (mon.level < 100 && mon.exp >= exp_for_level(growth, mon.level + 1)) {
+		mon.level++;
+		recompute_stats(mon, false);
+		msgs.push_back(disp(mon.species) + " grew to Lv. " + std::to_string(mon.level) + "!");
+		// learn any move taught at this level
+		auto li = learn.find(mon.species);
+		if (li != learn.end()) {
+			for (auto& lv : li->second) if (lv.first == mon.level) {
+				if (mon.moves.size() < 4) {
+					mon.moves.push_back(lv.second);
+					msgs.push_back(disp(mon.species) + " learned " + disp(lv.second) + "!");
+				} else {
+					msgs.push_back(disp(mon.species) + " learned " + disp(lv.second) +
+					               " (forgot " + disp(mon.moves[0]) + ")");
+					mon.moves[0] = lv.second;
+				}
+			}
+		}
+		// level-up evolution
+		auto ei = evos.find(mon.species);
+		if (ei != evos.end()) {
+			for (const Evolution& e : ei->second) {
+				if (e.method.rfind("LEVEL", 0) == 0 &&
+				    mon.level >= std::atoi(e.param.c_str())) {
+					std::string from = disp(mon.species);
+					mon.species = e.target;
+					recompute_stats(mon, true);
+					msgs.push_back(from + " evolved into " + disp(mon.species) + "!");
+					break;
+				}
+			}
+		}
+	}
+}
+
+std::string BattleData::tm_to_move(const std::string& tm) const {
+	auto it = tm_move.find(tm);
+	return it == tm_move.end() ? std::string() : it->second;
+}
+
+bool BattleData::can_learn_tm(const std::string& sp, const std::string& mv) const {
+	auto it = tm_learn.find(sp);
+	if (it == tm_learn.end()) return false;
+	return it->second.count(mv) > 0;
 }

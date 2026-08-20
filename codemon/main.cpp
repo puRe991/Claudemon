@@ -375,6 +375,14 @@ int main() {
     gs.give_item("ITEM_POKE_BALL", 10);
     gs.give_item("ITEM_ANTIDOTE", 2);
     gs.set_var("COINS", 50);
+    // demo hook: grant EXP to the starter to show level-ups / evolution
+    if (const char* xe = std::getenv("CODEMON_GRANT_EXP")) {
+        std::vector<std::string> xm;
+        bdata.grant_exp(team[0], atol(xe), xm);
+        std::string joined;
+        for (size_t i = 0; i < xm.size(); ++i) { if (i) joined += '\x1f'; joined += xm[i]; }
+        if (!joined.empty()) box.open("", joined);
+    }
     bool force_enc = std::getenv("CODEMON_FORCE_ENCOUNTER") != nullptr;
 
     // map-name banner + warp fade-in state

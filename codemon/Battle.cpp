@@ -176,6 +176,12 @@ void Battle::resolve_turn(const std::string& player_move) {
 		return;
 	}
 	if (this->enemy.fainted()) {
+		// award experience to the player's pokemon
+		long gain = (long)this->data->exp_yield(this->enemy.species) *
+		            this->enemy.level / 7;
+		std::vector<std::string> xm;
+		this->data->grant_exp(*this->player, gain, xm);
+		for (const std::string& m : xm) queue(m);
 		if (this->is_trainer && this->party_idx + 1 < this->party.size()) {
 			send_next_enemy();
 			show_messages(ACTION);
