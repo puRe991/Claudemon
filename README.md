@@ -49,6 +49,19 @@ import pipeline is data-driven, and every feature has been checked with
 headless rendering (`CODEMON_SCREENSHOT=...`) against what pokeemerald
 actually does for that map/species/trainer.
 
+## Screenshots
+
+<table>
+<tr>
+<td><img src="docs/screenshots/spawn_bedroom.png" width="380" alt="Story-accurate spawn in the player's bedroom"><br><sub>Story-accurate spawn: Brendan's House 2F</sub></td>
+<td><img src="docs/screenshots/overworld_littleroot.png" width="380" alt="Littleroot Town overworld"><br><sub>Littleroot Town, imported 1:1 from pokeemerald</sub></td>
+</tr>
+<tr>
+<td><img src="docs/screenshots/battle_wurmple.png" width="380" alt="Wild battle against a Wurmple on Route 102"><br><sub>Wild encounter on Route 102, matching the source encounter table</sub></td>
+<td><img src="docs/screenshots/tm_teach.png" width="380" alt="Teaching Giga Drain to Treecko from the bag"><br><sub>Teaching a TM from the bag, gated by the real learnset</sub></td>
+</tr>
+</table>
+
 ## Backstory
 
 #### This part is 95% ok to skip — it's mostly rambling about why I started this
