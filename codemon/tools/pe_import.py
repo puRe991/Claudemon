@@ -168,6 +168,83 @@ def cmd_tilesets(src):
 NUM_TILES_PRIMARY     = 512   # tile ids < this come from the primary tiles.png
 NUM_METATILES_PRIMARY = 512   # metatile ids >= this are secondary
 NUM_PALS_PRIMARY      = 6     # palettes 0-5 primary, 6-15 secondary
+MB_TALL_GRASS         = 2     # metatile behavior for encounter grass
+
+
+def _tileset_behaviors(ts_path):
+    """metatile_attributes.bin -> list of behavior bytes (attr & 0xFF)."""
+    p = os.path.join(ts_path, "metatile_attributes.bin")
+    if not os.path.isfile(p):
+        return []
+    blob = open(p, "rb").read()
+    return [v & 0xFF for v in struct.unpack("<%dH" % (len(blob) // 2), blob)]
+
+
+def combined_grass_ids(prim_path, sec_path):
+    """Set of combined-sheet metatile ids that are tall (encounter) grass."""
+    grass = set()
+    for i, b in enumerate(_tileset_behaviors(prim_path)):
+        if b == MB_TALL_GRASS:
+            grass.add(i)
+    if sec_path:
+        for i, b in enumerate(_tileset_behaviors(sec_path)):
+            if b == MB_TALL_GRASS:
+                grass.add(NUM_METATILES_PRIMARY + i)
+    return grass
+
+
+def load_encounters(src):
+    """MAP_ id -> ordered distinct land-encounter species names (no SPECIES_)."""
+    p = os.path.join(src, "src", "data", "wild_encounters.json")
+    out = {}
+    if not os.path.isfile(p):
+        return out
+    data = json.load(open(p))
+    for grp in data.get("wild_encounter_groups", []):
+        if not grp.get("for_maps", True):
+            continue
+        for enc in grp.get("encounters", []):
+            mp = enc.get("map")
+            land = enc.get("land_mons")
+            if not mp or not land:
+                continue
+            seen = []
+            for m in land.get("mons", []):
+                sp = m.get("species", "").replace("SPECIES_", "")
+                if sp and sp not in seen:
+                    seen.append(sp)
+            if seen:
+                out[mp] = seen
+    return out
+
+
+def import_pokemon_front(species, src):
+    """Colour a species' front sprite (first 64x64 frame) into assets/pokemon."""
+    name = species.lower()
+    base = os.path.join(src, "graphics", "pokemon", name)
+    png = os.path.join(base, "front.png")
+    pal = os.path.join(base, "normal.pal")
+    if not (os.path.isfile(png) and os.path.isfile(pal)):
+        return False
+    im = Image.open(png)
+    if im.mode != "P":
+        im = im.convert("P")
+    palette = load_jasc_pal(pal)
+    frame = im.crop((0, 0, 64, 64))
+    idx = frame.load()
+    out = Image.new("RGBA", (64, 64), (0, 0, 0, 0))
+    op = out.load()
+    for y in range(64):
+        for x in range(64):
+            i = idx[x, y]
+            if i == 0:
+                continue                      # transparent backdrop
+            r, g, b = palette[i & 0x0F]
+            op[x, y] = (r, g, b, 255)
+    dst_dir = os.path.join(ASSETS_DIR, "pokemon")
+    os.makedirs(dst_dir, exist_ok=True)
+    out.save(os.path.join(dst_dir, species + ".png"))
+    return True
 
 
 def _tileset_raw(path):
@@ -420,7 +497,10 @@ def cmd_world(src, limit=None):
     maps_dir = os.path.normpath(os.path.join(TOOLS_DIR, "..", "maps"))
     os.makedirs(maps_dir, exist_ok=True)
     pair_cache = {}    # (prim,sec) -> sheet name
+    grass_cache = {}   # (prim,sec) -> set of grass metatile ids
     catalog = []
+    encounters = load_encounters(src)
+    used_species = set()
 
     mroot = os.path.join(src, "data", "maps")
     names = sorted(d for d in os.listdir(mroot)
@@ -458,7 +538,9 @@ def cmd_world(src, limit=None):
             except Exception as ex:
                 print("  tileset fail", sheet_name, ex); continue
             pair_cache[key] = sheet_name
+            grass_cache[key] = combined_grass_ids(prim_path, sec_path)
         sheet_name = pair_cache[key]
+        grass_ids = grass_cache.get(key, set())
 
         w, h = layout["width"], layout["height"]
         try:
@@ -556,6 +638,15 @@ def cmd_world(src, limit=None):
             lines.append("signs")
             for (bx, by, text) in signs:
                 lines.append(f"{bx} {by}\t{text}")
+        # Tall-grass metatile ids that actually occur on this map (for encounters).
+        used_grass = sorted(set(ids) & grass_ids)
+        map_species = encounters.get(mj.get("id"), [])
+        if used_grass and map_species:
+            lines.append("grass")
+            lines.append(",".join(str(g) for g in used_grass))
+            lines.append("encounters")
+            lines.append(",".join(map_species))
+            used_species.update(map_species)
         open(out, "w").write("\n".join(lines) + "\n")
         catalog.append({"map": mname, "w": w, "h": h, "tileset": sheet_name,
                         "npcs": len(npcs), "warps": len(warps),
@@ -571,9 +662,12 @@ def cmd_world(src, limit=None):
     total_warps = sum(c.get("warps", 0) for c in catalog)
     total_signs = sum(c.get("signs", 0) for c in catalog)
     total_dlg = sum(c.get("dialogs", 0) for c in catalog)
+
+    # Colour the front sprites of every wild species that can be encountered.
+    imported = sum(1 for sp in sorted(used_species) if import_pokemon_front(sp, src))
     print(f"world: {len(catalog)} maps, {len(pair_cache)} tileset sheets, "
           f"{total_npcs} NPCs, {total_warps} warps, {total_dlg} dialogs, "
-          f"{total_signs} signs -> {os.path.relpath(maps_dir)}")
+          f"{total_signs} signs, {imported} wild sprites -> {os.path.relpath(maps_dir)}")
 
 
 # --------------------------------------------------------------------------- #

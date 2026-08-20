@@ -87,3 +87,7 @@ warps
 npcs
 people_woman_2 22 9 S static
 misc_item_ball 0 37 S static
+grass
+13
+encounters
+ODDISH,GIRAFARIG,NATU,DODUO,GLOOM,WOBBUFFET,PIKACHU

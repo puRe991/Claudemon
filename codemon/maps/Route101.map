@@ -55,3 +55,7 @@ dialogs
 5	Wild POKéMON will jump out at you in tall grass.If you want to catch POKéMON, you have to go into the tall grass and search.
 signs
 5 9	ROUTE 101 OLDALE TOWN
+grass
+13,454,455
+encounters
+WURMPLE,POOCHYENA,ZIGZAGOON

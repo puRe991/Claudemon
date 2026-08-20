@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <unordered_set>
 
 #include "Tileset.h"
 #include "Window.h"
@@ -63,6 +64,8 @@ private:
 	std::vector<NpcSpawn> npc_spawns;
 	std::vector<Warp> warp_list;
 	std::vector<Sign> sign_list;
+	std::unordered_set<int> grass_ids;        // metatile ids that are tall grass
+	std::vector<std::string> encounter_list;  // wild species on this map
 
 	int index(int x, int y) const;
 
@@ -99,4 +102,9 @@ public:
 
 	// Signs authored for this map.
 	const Sign* sign_at(int tile_x, int tile_y) const;   // sign on this tile, or null
+
+	// Wild-encounter tall grass.
+	bool is_grass(int tile_x, int tile_y) const;         // is this a grass tile?
+	bool has_encounters() const;
+	const std::vector<std::string>& encounters() const;  // wild species pool
 };

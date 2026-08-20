@@ -6,6 +6,7 @@
 #include "direction.h"
 #include "Audio.h"
 #include "DialogBox.h"
+#include "BattleScene.h"
 
 #include <algorithm>
 #include <cctype>
@@ -218,6 +219,19 @@ static bool interact(Session* s, DialogBox& box, Audio* audio) {
     return false;
 }
 
+// After a real step, maybe start a wild encounter if standing in tall grass.
+static void try_encounter(Session* s, BattleScene& battle, DialogBox& box,
+                          std::mt19937& rng, bool force) {
+    int px = s->player->get_tile_x(), py = s->player->get_tile_y();
+    if (!s->map->is_grass(px, py) || !s->map->has_encounters()) return;
+    if (!force && (rng() % 100) >= 22) return;                 // ~22% per grass step
+    const std::vector<std::string>& pool = s->map->encounters();
+    std::string sp = pool[rng() % pool.size()];
+    if (battle.start(sp)) {
+        box.open("", "A wild " + sp + " appeared!");
+    }
+}
+
 // A camera that follows the player, clamped to the map bounds.
 static sf::View camera_for(Session* s) {
     int tp = s->map->get_tile_size();
@@ -275,6 +289,8 @@ int main() {
 
     DialogBox box;
     box.load_font();
+    BattleScene battle;
+    bool force_enc = std::getenv("CODEMON_FORCE_ENCOUNTER") != nullptr;
 
     // --- headless screenshot / animation mode ------------------------------
     if (const char* shot = std::getenv("CODEMON_SCREENSHOT")) {
@@ -289,14 +305,20 @@ int main() {
                     if (tok == 'T') {
                         interact(sess, box, nullptr);
                     } else if (!box.is_active()) {
-                        if (tok) sess = player_step(sess, char_to_dir(tok), nullptr);
-                        // With a scripted walk we keep NPCs still so approaches
-                        // are deterministic; otherwise they wander.
+                        if (tok) {
+                            int pbx = sess->player->get_tile_x();
+                            int pby = sess->player->get_tile_y();
+                            sess = player_step(sess, char_to_dir(tok), nullptr);
+                            if (sess->player->get_tile_x() != pbx ||
+                                sess->player->get_tile_y() != pby)
+                                try_encounter(sess, battle, box, rng, force_enc);
+                        }
                         if (walk.empty()) tick_npcs(sess, rng);
                     }
                 }
                 rt.clear(sf::Color(40, 72, 56));
-                draw_scene(rt, sess);
+                if (battle.is_active()) battle.draw(rt);
+                else draw_scene(rt, sess);
                 box.draw(rt);
                 rt.display();
                 char name[512];
@@ -321,23 +343,35 @@ int main() {
             else if (event.type == sf::Event::KeyPressed) {
                 if (event.key.code == sf::Keyboard::Space ||
                     event.key.code == sf::Keyboard::Return) {
-                    interact(sess, box, &audio);            // talk / advance
+                    interact(sess, box, &audio);            // talk / advance / dismiss
+                    if (battle.is_active() && !box.is_active())
+                        battle.end();                       // dismissing ends the encounter
                 } else if (!box.is_active()) {
                     DIR dir = convert_key_event(event);
-                    if (dir != DIR::NONE) sess = player_step(sess, dir, &audio);
+                    if (dir != DIR::NONE) {
+                        int pbx = sess->player->get_tile_x();
+                        int pby = sess->player->get_tile_y();
+                        Session* before = sess;
+                        sess = player_step(sess, dir, &audio);
+                        if (sess == before &&
+                            (sess->player->get_tile_x() != pbx ||
+                             sess->player->get_tile_y() != pby))
+                            try_encounter(sess, battle, box, rng, false);
+                    }
                 }
             }
         }
-        // NPCs and the world freeze while a dialog is open.
+        // NPCs and the world freeze while a dialog/battle is open.
         npc_accum += clock.restart().asSeconds();
-        if (!box.is_active()) {
+        if (!box.is_active() && !battle.is_active()) {
             while (npc_accum >= NPC_TICK) { tick_npcs(sess, rng); npc_accum -= NPC_TICK; }
         } else {
             npc_accum = 0.f;
         }
 
         scr.clear();
-        draw_scene(*scr.get_window(), sess);
+        if (battle.is_active()) battle.draw(*scr.get_window());
+        else draw_scene(*scr.get_window(), sess);
         box.draw(*scr.get_window());
         scr.display();
         sf::sleep(sf::milliseconds(16));

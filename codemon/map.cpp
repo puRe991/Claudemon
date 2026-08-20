@@ -70,7 +70,8 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 	auto is_keyword = [](const std::string& s) {
 		return s.rfind("collision", 0) == 0 || s.rfind("warps", 0) == 0 ||
 		       s.rfind("npcs", 0) == 0 || s.rfind("dialogs", 0) == 0 ||
-		       s.rfind("signs", 0) == 0;
+		       s.rfind("signs", 0) == 0 || s.rfind("grass", 0) == 0 ||
+		       s.rfind("encounters", 0) == 0;
 	};
 
 	for (size_t i = 0; i < rest.size(); ) {
@@ -131,6 +132,24 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 				sg.text = rest[i].substr(tab + 1);
 				this->sign_list.push_back(sg);
 			}
+		} else if (head.rfind("grass", 0) == 0) {
+			// single line of comma-separated grass metatile ids
+			if (++i < rest.size()) {
+				std::vector<int> g;
+				parse_int_row(rest[i], g);
+				for (int id : g) this->grass_ids.insert(id);
+				++i;
+			}
+		} else if (head.rfind("encounters", 0) == 0) {
+			// single line of comma-separated species names
+			if (++i < rest.size()) {
+				std::stringstream ss(rest[i]);
+				std::string sp;
+				while (std::getline(ss, sp, ',')) {
+					if (!sp.empty()) this->encounter_list.push_back(sp);
+				}
+				++i;
+			}
 		} else {
 			++i;
 		}
@@ -158,6 +177,15 @@ const Sign* Map::sign_at(int tile_x, int tile_y) const {
 	}
 	return nullptr;
 }
+
+bool Map::is_grass(int tile_x, int tile_y) const {
+	if (!in_bounds(tile_x, tile_y) || this->grass_ids.empty()) return false;
+	int id = this->tile_map[this->index(tile_x, tile_y)];
+	return this->grass_ids.count(id) > 0;
+}
+
+bool Map::has_encounters() const { return !this->encounter_list.empty(); }
+const std::vector<std::string>& Map::encounters() const { return this->encounter_list; }
 
 bool Map::ready() const {
 	return this->tileset.is_loaded() &&

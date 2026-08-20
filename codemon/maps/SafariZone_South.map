@@ -91,3 +91,7 @@ people_man_4 16 6 S static
 people_youngster 15 31 S wander
 people_camper 36 16 W static
 people_camper 36 17 W static
+grass
+13,454,455
+encounters
+ODDISH,GIRAFARIG,NATU,DODUO,GLOOM,WOBBUFFET,PIKACHU

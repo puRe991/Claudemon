@@ -111,3 +111,7 @@ warps
 npcs
 misc_item_ball 27 15 S static
 misc_item_ball 19 40 S static
+grass
+13
+encounters
+SHUPPET,VULPIX,WINGULL

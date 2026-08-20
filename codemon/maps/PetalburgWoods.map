@@ -120,3 +120,7 @@ dialogs
 signs
 14 32	TRAINER TIPSAny POKéMON that appears even once in a battle is awarded EXP Points.To raise a weak POKéMON, put it at the left of the team list.As soon as a battle starts, switch it out. It will earn EXP Points without being exposed to any harm.
 11 8	TRAINER TIPSIn addition to Hit Points (HP), POKéMON have Power Points (PP) that are used to make moves during battle.If a POKéMON runs out of PP, it must be taken to a POKéMON CENTER.
+grass
+13,454,455
+encounters
+POOCHYENA,WURMPLE,SHROOMISH,SILCOON,CASCOON,TAILLOW,SLAKOTH

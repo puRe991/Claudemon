@@ -92,3 +92,7 @@ misc_breakable_rock 23 6 S static
 misc_breakable_rock 20 7 S static
 misc_breakable_rock 27 7 S static
 misc_item_ball 7 6 S static
+grass
+13,454,455
+encounters
+PHANPY,ODDISH,NATU,GLOOM,XATU,HERACROSS

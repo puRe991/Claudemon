@@ -88,3 +88,7 @@ people_fat_man 20 30 S wander
 people_little_girl 8 26 S wander
 misc_item_ball 31 15 S static
 people_camper 12 16 W static
+grass
+13,454,455
+encounters
+SUNKERN,MAREEP,AIPOM,SPINARAK,HOOTHOOT,SNUBBULL,STANTLER,GLIGAR

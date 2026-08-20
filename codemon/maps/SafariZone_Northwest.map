@@ -85,3 +85,7 @@ collision
 npcs
 people_man_1 8 8 S static
 misc_item_ball 33 7 S static
+grass
+13,454,455
+encounters
+RHYHORN,ODDISH,DODUO,GLOOM,DODRIO,PINSIR
