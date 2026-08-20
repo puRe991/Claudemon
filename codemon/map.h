@@ -4,6 +4,7 @@
 #include <unordered_set>
 #include <unordered_map>
 #include <map>
+#include <random>
 
 #include "Tileset.h"
 #include "Window.h"
@@ -49,6 +50,13 @@ struct ScriptTrigger {
 // One decoded script instruction: opcode plus string arguments.
 using Instr = std::vector<std::string>;
 
+// One wild-encounter slot: a species and its level range (pokeemerald slot
+// order encodes the encounter rate).
+struct EncSlot {
+	std::string species;
+	int min_level, max_level;
+};
+
 /******************************************************************************
 Map - a grid of metatile ids rendered through a Tileset.
 
@@ -78,7 +86,7 @@ private:
 	std::vector<Warp> warp_list;
 	std::vector<Sign> sign_list;
 	std::unordered_set<int> grass_ids;        // metatile ids that are tall grass
-	std::vector<std::string> encounter_list;  // wild species on this map
+	std::vector<EncSlot> land_slots;          // land wild-encounter table
 
 	std::map<std::string, std::vector<Instr>> script_defs;   // label -> instructions
 	std::map<std::string, std::vector<std::string>> move_defs; // label -> actions
@@ -124,7 +132,8 @@ public:
 	// Wild-encounter tall grass.
 	bool is_grass(int tile_x, int tile_y) const;         // is this a grass tile?
 	bool has_encounters() const;
-	const std::vector<std::string>& encounters() const;  // wild species pool
+	// Pick a wild pokemon by the land slot weights; fills species + level.
+	bool roll_encounter(std::mt19937& rng, std::string& species, int& level) const;
 
 	// Event scripts.
 	bool has_script(const std::string& label) const;

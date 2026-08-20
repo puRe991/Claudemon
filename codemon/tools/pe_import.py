@@ -194,27 +194,35 @@ def combined_grass_ids(prim_path, sec_path):
 
 
 def load_encounters(src):
-    """MAP_ id -> ordered distinct land-encounter species names (no SPECIES_)."""
+    """MAP_ id -> {"land"/"water"/"fishing"/"rock": [(species, min, max), ...]}.
+
+    Slots are kept in pokeemerald order (their position encodes the encounter
+    rate), so the engine can weight them faithfully.
+    """
     p = os.path.join(src, "src", "data", "wild_encounters.json")
     out = {}
     if not os.path.isfile(p):
         return out
     data = json.load(open(p))
+    fields = [("land_mons", "land"), ("water_mons", "water"),
+              ("fishing_mons", "fishing"), ("rock_smash_mons", "rock")]
     for grp in data.get("wild_encounter_groups", []):
         if not grp.get("for_maps", True):
             continue
         for enc in grp.get("encounters", []):
             mp = enc.get("map")
-            land = enc.get("land_mons")
-            if not mp or not land:
+            if not mp:
                 continue
-            seen = []
-            for m in land.get("mons", []):
-                sp = m.get("species", "").replace("SPECIES_", "")
-                if sp and sp not in seen:
-                    seen.append(sp)
-            if seen:
-                out[mp] = seen
+            d = {}
+            for key, name in fields:
+                block = enc.get(key)
+                if block and block.get("mons"):
+                    slots = [(m["species"].replace("SPECIES_", ""),
+                              int(m["min_level"]), int(m["max_level"]))
+                             for m in block["mons"]]
+                    d[name] = slots
+            if d:
+                out[mp] = d
     return out
 
 
@@ -1055,13 +1063,19 @@ def cmd_world(src, limit=None):
                 lines.append(f"{bx} {by}\t{text}")
         # Tall-grass metatile ids that actually occur on this map (for encounters).
         used_grass = sorted(set(ids) & grass_ids)
-        map_species = encounters.get(mj.get("id"), [])
-        if used_grass and map_species:
+        enc = encounters.get(mj.get("id"))
+        land = enc.get("land") if enc else None
+        if used_grass and land:
             lines.append("grass")
             lines.append(",".join(str(g) for g in used_grass))
             lines.append("encounters")
-            lines.append(",".join(map_species))
-            used_species.update(map_species)
+            # one line per encounter type: "<type> species:min:max,..."
+            for etype in ("land", "water", "fishing", "rock"):
+                slots = enc.get(etype)
+                if slots:
+                    lines.append(etype + " " +
+                                 ",".join(f"{s}:{mn}:{mx}" for s, mn, mx in slots))
+                    used_species.update(s for s, _, _ in slots)
         open(out, "w").write("\n".join(lines) + "\n")
         catalog.append({"map": mname, "w": w, "h": h, "tileset": sheet_name,
                         "npcs": len(npcs), "warps": len(warps),

@@ -143,14 +143,21 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 				++i;
 			}
 		} else if (head.rfind("encounters", 0) == 0) {
-			// single line of comma-separated species names
-			if (++i < rest.size()) {
-				std::stringstream ss(rest[i]);
-				std::string sp;
-				while (std::getline(ss, sp, ',')) {
-					if (!sp.empty()) this->encounter_list.push_back(sp);
+			// lines like "land SP:min:max,SP:min:max,...". Only land triggers
+			// in tall grass; other types are parsed but ignored for now.
+			for (++i; i < rest.size() && !is_keyword(rest[i]); ++i) {
+				if (rest[i].rfind("land ", 0) != 0) continue;
+				std::stringstream ss(rest[i].substr(5));
+				std::string entry;
+				while (std::getline(ss, entry, ',')) {
+					size_t a = entry.find(':'), b = entry.rfind(':');
+					if (a == std::string::npos || b == a) continue;
+					EncSlot s;
+					s.species = entry.substr(0, a);
+					s.min_level = std::stoi(entry.substr(a + 1, b - a - 1));
+					s.max_level = std::stoi(entry.substr(b + 1));
+					this->land_slots.push_back(s);
 				}
-				++i;
 			}
 		} else if (head.rfind("objscripts", 0) == 0) {
 			for (++i; i < rest.size() && !is_keyword(rest[i]); ++i) {
@@ -234,8 +241,30 @@ bool Map::is_grass(int tile_x, int tile_y) const {
 	return this->grass_ids.count(id) > 0;
 }
 
-bool Map::has_encounters() const { return !this->encounter_list.empty(); }
-const std::vector<std::string>& Map::encounters() const { return this->encounter_list; }
+bool Map::has_encounters() const { return !this->land_slots.empty(); }
+
+bool Map::roll_encounter(std::mt19937& rng, std::string& species, int& level) const {
+	if (this->land_slots.empty()) return false;
+	// Standard Gen-3 land slot rates (percent) for the 12 slots.
+	static const int RATE[12] = {20, 20, 10, 10, 10, 10, 5, 5, 5, 4, 1, 1};
+	int n = (int)this->land_slots.size();
+	int total = 0;
+	for (int i = 0; i < n && i < 12; ++i) total += RATE[i];
+	if (total <= 0) total = n;
+	int r = (int)(rng() % total);
+	int idx = 0;
+	for (int i = 0; i < n; ++i) {
+		int w = (i < 12) ? RATE[i] : 1;
+		if (r < w) { idx = i; break; }
+		r -= w;
+	}
+	const EncSlot& s = this->land_slots[idx];
+	int lo = s.min_level, hi = s.max_level;
+	if (hi < lo) hi = lo;
+	level = lo + (int)(rng() % (hi - lo + 1));
+	species = s.species;
+	return true;
+}
 
 bool Map::has_script(const std::string& label) const {
 	return this->script_defs.count(label) > 0;

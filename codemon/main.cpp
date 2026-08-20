@@ -289,10 +289,9 @@ static void try_encounter(Session* s, Battle& battle, Mon& party,
     int px = s->player->get_tile_x(), py = s->player->get_tile_y();
     if (!s->map->is_grass(px, py) || !s->map->has_encounters()) return;
     if (!force && (rng() % 100) >= 22) return;                 // ~22% per grass step
-    const std::vector<std::string>& pool = s->map->encounters();
-    std::string sp = pool[rng() % pool.size()];
-    int level = 3 + (int)(rng() % 4);                          // wild level 3..6
-    battle.start_wild(sp, level, &party);
+    std::string sp; int level;
+    if (s->map->roll_encounter(rng, sp, level))                // real species + level
+        battle.start_wild(sp, level, &party);
 }
 
 // A camera that follows the player, clamped to the map bounds.
