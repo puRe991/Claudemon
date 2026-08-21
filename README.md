@@ -262,6 +262,9 @@ has been verified either by an automated test or by headless screenshot
   Pokéball/monitor animation
 * Overworld minigames: Slot Machine, Roulette, Berry Blender, Pokémon Jump
   (real gameplay, not stubs), with an in-game coin currency
+* Save/load: a SPEICHERN entry in the main menu writes the whole run (map,
+  position, flags/vars, bag, money, party, PC box) to `savegame.dat`;
+  starting the game resumes from it automatically
 * Audio: step/bump/select SFX play natively; cries and MIDI→OGG music exist
   and work when called, but nothing in the game currently calls them yet
   (see below)
@@ -289,7 +292,6 @@ has been verified either by an automated test or by headless screenshot
 
 ### ❌ Not implemented yet
 
-* Save/load (no persistence at all — every run starts fresh)
 * Switching Pokémon mid-battle, or continuing a battle on a healthy party
   member after the active one faints
 * Using bag items (Potions, status healers, Poké Balls, berries) outside the
@@ -339,7 +341,7 @@ screenshot), not just written and assumed correct.
 - [ ] Ball-type-aware, catch-rate-aware capture formula
 
 **Core loop**
-- [ ] Save/load system
+- [x] Save/load system
 - [ ] Usable bag items outside TM/HM teaching (Potions, status healers,
       berries, Poké Balls)
 - [ ] `specialvar` opcode (`GetBattleOutcome`, rematch checks, Pokérus, ...)
