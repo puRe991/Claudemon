@@ -4,7 +4,7 @@
 #include <algorithm>
 
 Menu::Menu() : font_ok(false), screen(CLOSED), cursor(0),
-               bag_cursor(0), teach_cursor(0),
+               bag_cursor(0), teach_cursor(0), use_cursor(0),
                gs(nullptr), bdata(nullptr), team(nullptr), box(nullptr),
                cursor_ok(false) {}
 
@@ -27,6 +27,22 @@ static bool is_machine(const std::string& item) {
 	return item.rfind("ITEM_TM", 0) == 0 || item.rfind("ITEM_HM", 0) == 0;
 }
 static bool is_hm(const std::string& item) { return item.rfind("ITEM_HM", 0) == 0; }
+
+// HP restored by a healing item; 0 means a full heal. -1 = not a healing item.
+static int heal_amount(const std::string& item) {
+	static const std::map<std::string, int> tbl = {
+		{"ITEM_POTION", 20}, {"ITEM_SUPER_POTION", 50}, {"ITEM_HYPER_POTION", 200},
+		{"ITEM_MAX_POTION", 0}, {"ITEM_FULL_RESTORE", 0},
+		{"ITEM_FRESH_WATER", 50}, {"ITEM_SODA_POP", 60}, {"ITEM_LEMONADE", 80},
+		{"ITEM_MOOMOO_MILK", 100}, {"ITEM_BERRY_JUICE", 20},
+		{"ITEM_ORAN_BERRY", 10}, {"ITEM_SITRUS_BERRY", 30},
+	};
+	auto it = tbl.find(item);
+	return it == tbl.end() ? -1 : it->second;
+}
+static bool is_revive_item(const std::string& item) {
+	return item == "ITEM_REVIVE" || item == "ITEM_MAX_REVIVE" || item == "ITEM_REVIVAL_HERB";
+}
 
 bool Menu::load_font(const std::string& path) {
 	this->font_ok = this->font.loadFromFile(path);
@@ -114,6 +130,29 @@ void Menu::teach_selected() {
 		this->bag_cursor = std::max(0, (int)items.size() - 1);
 }
 
+// Apply use_item to team[use_cursor]: heals HP, or revives a fainted mon.
+void Menu::use_selected() {
+	if (!this->team || this->use_cursor < 0 || this->use_cursor >= (int)this->team->size()) return;
+	Mon& m = (*this->team)[this->use_cursor];
+	std::string name = pretty(m.species, "");
+	bool revive = is_revive_item(this->use_item);
+	if (revive) {
+		if (!m.fainted()) { this->flash = name + " ist nicht kampfunfähig."; return; }
+		m.hp = (this->use_item == "ITEM_MAX_REVIVE") ? m.max_hp : std::max(1, m.max_hp / 2);
+	} else {
+		if (m.fainted()) { this->flash = name + " ist kampfunfähig."; return; }
+		if (m.hp >= m.max_hp) { this->flash = name + " hat bereits volle KP."; return; }
+		int amt = heal_amount(this->use_item);
+		m.hp = (amt <= 0) ? m.max_hp : std::min(m.max_hp, m.hp + amt);
+	}
+	if (this->gs) this->gs->take_item(this->use_item, 1);
+	this->flash = name + " wurde behandelt!";
+	this->screen = BAG;
+	auto items = bag_sorted();
+	if (this->bag_cursor >= (int)items.size())
+		this->bag_cursor = std::max(0, (int)items.size() - 1);
+}
+
 void Menu::input(BtnInput b) {
 	if (this->screen == MAIN) {
 		if (b == BTN_UP && this->cursor > 0) this->cursor--;
@@ -143,6 +182,9 @@ void Menu::input(BtnInput b) {
 						this->teach_cursor = 0; this->flash.clear();
 						this->screen = TEACH;
 					}
+				} else if (heal_amount(item) >= 0 || is_revive_item(item)) {
+					this->use_item = item; this->use_cursor = 0; this->flash.clear();
+					this->screen = USE_ITEM;
 				} else {
 					this->flash = pretty(item, "ITEM_") + " kann hier nicht benutzt werden.";
 				}
@@ -154,6 +196,12 @@ void Menu::input(BtnInput b) {
 		else if (b == BTN_DOWN && this->teach_cursor + 1 < n) this->teach_cursor++;
 		else if (b == BTN_LEFT) this->screen = BAG;
 		else if (b == BTN_CONFIRM) this->teach_selected();
+	} else if (this->screen == USE_ITEM) {
+		int n = this->team ? (int)this->team->size() : 0;
+		if (b == BTN_UP && this->use_cursor > 0) this->use_cursor--;
+		else if (b == BTN_DOWN && this->use_cursor + 1 < n) this->use_cursor++;
+		else if (b == BTN_LEFT) { this->screen = BAG; this->flash.clear(); }
+		else if (b == BTN_CONFIRM) this->use_selected();
 	} else if (b == BTN_CONFIRM || b == BTN_LEFT) {
 		this->screen = MAIN;   // back from PARTY / PC / POKENAV
 	}
@@ -264,6 +312,30 @@ void Menu::draw(sf::RenderTarget& target) {
 		if (!this->flash.empty())
 			text(this->flash, x, panel.getPosition().y + panel.getSize().y - 60, 16,
 			     sf::Color(190, 90, 20));
+	} else if (this->screen == USE_ITEM) {
+		bool revive = is_revive_item(this->use_item);
+		text(pretty(this->use_item, "ITEM_") + " benutzen", x, y, 22, head_col);
+		y += 40;
+		text("Wähle ein POKéMON:", x, y, 16, muted_col); y += 30;
+		if (this->team) {
+			for (int row = 0; row < (int)this->team->size() && row < 6; ++row) {
+				const Mon& m = (*this->team)[row];
+				bool sel = row == this->use_cursor;
+				bool able = revive ? m.fainted() : (!m.fainted() && m.hp < m.max_hp);
+				float ry = y + row * 44;
+				if (sel) cursor_at(x, ry);
+				const sf::Texture* ic = mon_icon(m.species);
+				if (ic) { sf::Sprite s(*ic); s.setScale(0.55f, 0.55f); s.setPosition(x, ry - 6); target.draw(s); }
+				text(pretty(m.species, "") + "  Lv" + std::to_string(m.level), x + 44, ry, 20,
+				     able ? body_col : sf::Color(170, 170, 170));
+				text(std::to_string(m.hp) + "/" + std::to_string(m.max_hp),
+				     panel.getPosition().x + panel.getSize().x - 110, ry, 16,
+				     able ? sf::Color(30, 150, 60) : sf::Color(190, 90, 90));
+			}
+		}
+		if (!this->flash.empty())
+			text(this->flash, x, panel.getPosition().y + panel.getSize().y - 60, 16,
+			     sf::Color(190, 90, 20));
 	} else if (this->screen == PARTY) {
 		text("POKéMON", x, y, 24, head_col); y += 40;
 		if (this->team) {
@@ -343,6 +415,8 @@ void Menu::draw(sf::RenderTarget& target) {
 		text("[SPACE] benutzen   [A] zurück", x, panel.getPosition().y + panel.getSize().y - 34, 16, muted_col);
 	else if (this->screen == TEACH)
 		text("[SPACE] lehren   [A] zurück", x, panel.getPosition().y + panel.getSize().y - 34, 16, muted_col);
+	else if (this->screen == USE_ITEM)
+		text("[SPACE] benutzen   [A] zurück", x, panel.getPosition().y + panel.getSize().y - 34, 16, muted_col);
 	else if (this->screen != MAIN)
 		text("[SPACE] zurück", x, panel.getPosition().y + panel.getSize().y - 34, 16, muted_col);
 	target.setView(saved);

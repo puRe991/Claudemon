@@ -15,7 +15,7 @@ Menu - the overworld start menu with a Bag (item icons + counts) and a Pokemon
 class Menu
 {
 private:
-	enum Screen { CLOSED, MAIN, BAG, PARTY, PC, POKENAV, TEACH };
+	enum Screen { CLOSED, MAIN, BAG, PARTY, PC, POKENAV, TEACH, USE_ITEM };
 	sf::Font font; bool font_ok;
 	Screen screen;
 	int cursor;
@@ -23,6 +23,8 @@ private:
 	int teach_cursor;       // selected party member when teaching a TM/HM
 	std::string teach_item; // ITEM_TMxx / ITEM_HMxx being taught
 	std::string teach_move; // the move that TM/HM teaches
+	int use_cursor;         // selected party member for a healing/revive item
+	std::string use_item;   // ITEM_POTION / ITEM_REVIVE / ... pending use
 	std::string flash;      // transient status line (e.g. "X learned MOVE!")
 	GameState* gs;
 	BattleData* bdata;
@@ -34,6 +36,8 @@ private:
 	std::vector<std::pair<std::string, int>> bag_sorted() const;
 	// Teach the pending TM/HM move to the selected party member.
 	void teach_selected();
+	// Apply the pending healing/revive item to the selected party member.
+	void use_selected();
 	std::map<std::string, sf::Texture> item_tex;
 	std::map<std::string, sf::Texture> mon_tex;
 	std::map<std::string, sf::Texture> type_tex;
