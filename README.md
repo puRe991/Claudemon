@@ -261,6 +261,10 @@ has been verified either by an automated test or by headless screenshot
   Rayquaza, Kyogre/Groudon, Kecleon, the New Mauville Voltorb swarm) via
   `setwildbattle`/`dowildbattle`, with a real WON/LOST/RAN/CAUGHT battle
   outcome scripts can branch on (`specialvar VAR_RESULT GetBattleOutcome`)
+* Mossdeep Gym's rotating-tile floor puzzle (and Trick House Puzzle #7's
+  identical mechanic): pressing a switch actually shifts and re-faces every
+  character standing on that color's arrow tiles, ported from pokeemerald's
+  real metatile-driven algorithm
 * EXP gain, all 6 species growth curves, level-up stat recalculation,
   level-up movesets (411 learnsets), **level-up evolution** (172 paths)
 * TM/HM teaching from the bag, gated by real per-species learnsets (372
@@ -314,7 +318,6 @@ has been verified either by an automated test or by headless screenshot
 ### ❌ Not implemented yet
 
 * Gift/fossil Pokémon (`givemon`: Johto starters, Beldum, Castform, fossils)
-* Mossdeep Gym's rotating-tile puzzle
 * HM field moves (Cut/Surf/Fly/Strength/Flash/Rock Smash/Waterfall/Dive) —
   water is currently just impassable terrain
 * Running/bike, day-night cycle, overworld weather, fishing, berry growing
@@ -361,7 +364,7 @@ screenshot), not just written and assumed correct.
       the rest honestly default to 0/false (see above)
 - [x] Scripted legendary/static encounters (`setwildbattle`/`dowildbattle`)
 - [ ] Gift/fossil Pokémon (`givemon`)
-- [ ] Mossdeep Gym rotating-tile puzzle
+- [x] Mossdeep Gym rotating-tile puzzle (also covers Trick House Puzzle #7)
 - [ ] Comparison `goto_if_ge/gt/lt/le`, `multichoice`, `checkitem`/
       `removeitem` result vars, NPC add/hide/move opcodes, door animations
 
