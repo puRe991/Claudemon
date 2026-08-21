@@ -45,6 +45,7 @@ const sf::Texture* Battle::type_icon(const std::string& type) {
 void Battle::configure(BattleData* d, std::mt19937* r) {
 	this->data = d; this->rng = r;
 	this->font_ok = this->font.loadFromFile("assets/fonts/DejaVuSans.ttf");
+	this->frame.load();
 }
 
 std::string Battle::nice(const std::string& id) {
@@ -361,49 +362,63 @@ void Battle::draw(sf::RenderTarget& target) {
 	draw_hp_bar(target, size.x - 264, size.y * 0.44f + 28, 240, 16,
 	            this->player->hp, this->player->max_hp);
 
-	// bottom panel
+	// bottom panel (pokeemerald's own textbox frame)
 	const float bh = 150.f, bm = 14.f;
-	sf::RectangleShape box(sf::Vector2f(size.x - 2 * bm, bh));
-	box.setPosition(bm, size.y - bh - bm);
-	box.setFillColor(sf::Color(20, 28, 48, 240));
-	box.setOutlineColor(sf::Color::White); box.setOutlineThickness(3.f);
-	target.draw(box);
+	if (this->frame.ready()) {
+		this->frame.draw(target, bm, size.y - bh - bm, size.x - 2 * bm, bh, 3.f);
+	} else {
+		sf::RectangleShape box(sf::Vector2f(size.x - 2 * bm, bh));
+		box.setPosition(bm, size.y - bh - bm);
+		box.setFillColor(sf::Color(20, 28, 48, 240));
+		box.setOutlineColor(sf::Color::White); box.setOutlineThickness(3.f);
+		target.draw(box);
+	}
 	if (!this->font_ok) { target.setView(saved); return; }
+
+	const sf::Color body_col = this->frame.ready() ? sf::Color(40, 40, 56) : sf::Color::White;
+	const sf::Color head_col = this->frame.ready() ? sf::Color(24, 72, 160) : sf::Color(150, 210, 255);
+	const sf::Color dis_col = this->frame.ready() ? sf::Color(170, 170, 170) : sf::Color(120, 120, 120);
+	const sf::Color muted_col = this->frame.ready() ? sf::Color(100, 100, 112) : sf::Color(200, 200, 200);
+	auto cursor_at = [&](float px, float py) {
+		sf::Text a(">", this->font, 22); a.setPosition(px - 18, py);
+		a.setFillColor(head_col); target.draw(a);
+	};
 
 	float tx = bm + 18, ty = size.y - bh - bm + 16;
 	if (this->phase == MSG) {
 		std::string line = this->log_pos < this->log.size() ? this->log[this->log_pos] : "";
 		sf::Text t(sf::String::fromUtf8(line.begin(), line.end()), this->font, 22);
-		t.setPosition(tx, ty + 30); t.setFillColor(sf::Color::White); target.draw(t);
+		t.setPosition(tx, ty + 30); t.setFillColor(body_col); target.draw(t);
 	} else if (this->phase == ACTION) {
 		sf::Text q("What will " + nice(this->player->species) + " do?", this->font, 20);
-		q.setPosition(tx, ty); q.setFillColor(sf::Color::White); target.draw(q);
+		q.setPosition(tx, ty); q.setFillColor(body_col); target.draw(q);
 		const char* acts[] = {"FIGHT", "BALL", "RUN"};
 		for (int i = 0; i < 3; ++i) {
 			bool sel = i == this->action_cursor;
 			bool dis = (i != 0) && this->is_trainer;   // no catching/running trainers
-			sf::Text a((sel ? "> " : "  ") + std::string(acts[i]), this->font, 22);
+			if (sel) cursor_at(size.x * 0.46f, ty + i * 34);
+			sf::Text a(acts[i], this->font, 22);
 			a.setPosition(size.x * 0.46f, ty + i * 34);
-			a.setFillColor(dis ? sf::Color(120, 120, 120)
-			              : sel ? sf::Color(150, 210, 255) : sf::Color::White);
+			a.setFillColor(dis ? dis_col : sel ? head_col : body_col);
 			target.draw(a);
 		}
 		if (this->gs) {
 			sf::Text bc("BALLS x" + std::to_string(this->gs->item_count("ITEM_POKE_BALL")),
 			            this->font, 16);
 			bc.setPosition(size.x * 0.72f, ty + 34);
-			bc.setFillColor(sf::Color(200, 200, 200)); target.draw(bc);
+			bc.setFillColor(muted_col); target.draw(bc);
 		}
 	} else if (this->phase == MOVE) {
 		sf::Text q("Choose a move:", this->font, 20);
-		q.setPosition(tx, ty); q.setFillColor(sf::Color::White); target.draw(q);
+		q.setPosition(tx, ty); q.setFillColor(body_col); target.draw(q);
 		for (size_t i = 0; i < this->player->moves.size(); ++i) {
 			float mx = size.x * 0.42f + (i % 2) * (size.x * 0.27f);
 			float my = ty + 34 + (i / 2) * 40;
 			bool sel = (int)i == this->cursor;
-			sf::Text m((sel ? "> " : "  ") + nice(this->player->moves[i]), this->font, 20);
+			if (sel) cursor_at(mx, my);
+			sf::Text m(nice(this->player->moves[i]), this->font, 20);
 			m.setPosition(mx, my);
-			m.setFillColor(sel ? sf::Color(150, 210, 255) : sf::Color::White);
+			m.setFillColor(sel ? head_col : body_col);
 			target.draw(m);
 			// type badge next to the move
 			const MoveInfo* mi = this->data->move(this->player->moves[i]);

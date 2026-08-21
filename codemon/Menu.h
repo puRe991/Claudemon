@@ -6,6 +6,7 @@
 #include "GameState.h"
 #include "BattleData.h"   // Mon
 #include "Battle.h"       // BtnInput
+#include "UiFrame.h"
 
 /******************************************************************************
 Menu - the overworld start menu with a Bag (item icons + counts) and a Pokemon
@@ -40,6 +41,8 @@ private:
 	const sf::Texture* item_icon(const std::string& item);
 	const sf::Texture* mon_icon(const std::string& species);
 	const sf::Texture* type_icon(const std::string& type);
+	UiFrame frame;
+	sf::Texture cursor_tex; bool cursor_ok;
 
 public:
 	Menu();

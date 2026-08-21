@@ -5,6 +5,7 @@ DialogBox::DialogBox() : font_ok(false), active(false), page(0) {}
 
 bool DialogBox::load_font(const std::string& path) {
 	this->font_ok = this->font.loadFromFile(path);
+	this->frame.load();
 	return this->font_ok;
 }
 
@@ -67,21 +68,30 @@ void DialogBox::draw(sf::RenderTarget& target) {
 	const float margin = 14.f;
 	const float box_h = 150.f;
 	const unsigned cs = 22;
+	const float box_x = margin, box_y = size.y - box_h - margin;
+	const float box_w = size.x - 2 * margin;
 
-	sf::RectangleShape box(sf::Vector2f(size.x - 2 * margin, box_h));
-	box.setPosition(margin, size.y - box_h - margin);
-	box.setFillColor(sf::Color(20, 28, 48, 235));
-	box.setOutlineColor(sf::Color(245, 245, 245));
-	box.setOutlineThickness(3.f);
-	target.draw(box);
+	// pokeemerald's own textbox frame (assets/graphics/text_window/1.png);
+	// falls back to a flat panel if it failed to load.
+	if (this->frame.ready()) {
+		this->frame.draw(target, box_x, box_y, box_w, box_h, 3.f);
+	} else {
+		sf::RectangleShape box(sf::Vector2f(box_w, box_h));
+		box.setPosition(box_x, box_y);
+		box.setFillColor(sf::Color(20, 28, 48, 235));
+		box.setOutlineColor(sf::Color(245, 245, 245));
+		box.setOutlineThickness(3.f);
+		target.draw(box);
+	}
 
-	float tx = box.getPosition().x + 16.f;
-	float ty = box.getPosition().y + 12.f;
+	float tx = box_x + 20.f;
+	float ty = box_y + 14.f;
+	const sf::Color text_col = this->frame.ready() ? sf::Color(40, 40, 56) : sf::Color::White;
 
 	if (!this->speaker.empty()) {
 		sf::Text name(sf::String::fromUtf8(this->speaker.begin(), this->speaker.end()),
 		              this->font, 18);
-		name.setFillColor(sf::Color(150, 210, 255));
+		name.setFillColor(this->frame.ready() ? sf::Color(40, 90, 190) : sf::Color(150, 210, 255));
 		name.setStyle(sf::Text::Bold);
 		name.setPosition(tx, ty);
 		target.draw(name);
@@ -89,17 +99,16 @@ void DialogBox::draw(sf::RenderTarget& target) {
 	}
 
 	const std::string& cur = this->pages[this->page];
-	std::string wrapped = this->wrap(cur, (unsigned)(size.x - 2 * margin - 32), cs);
+	std::string wrapped = this->wrap(cur, (unsigned)(box_w - 40.f), cs);
 	sf::Text body(sf::String::fromUtf8(wrapped.begin(), wrapped.end()), this->font, cs);
-	body.setFillColor(sf::Color::White);
+	body.setFillColor(text_col);
 	body.setPosition(tx, ty);
 	target.draw(body);
 
 	// bottom-right marker: more pages to come, or end of dialog
 	sf::Text hint(this->page + 1 < this->pages.size() ? "v" : "x", this->font, 20);
-	hint.setFillColor(sf::Color(200, 200, 200));
-	hint.setPosition(box.getPosition().x + box.getSize().x - 28.f,
-	                 box.getPosition().y + box_h - 30.f);
+	hint.setFillColor(text_col);
+	hint.setPosition(box_x + box_w - 30.f, box_y + box_h - 32.f);
 	target.draw(hint);
 
 	target.setView(saved);

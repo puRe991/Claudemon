@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include "SFML/Graphics.hpp"
+#include "UiFrame.h"
 
 /******************************************************************************
 DialogBox - a bottom text box for NPC dialog.
@@ -23,6 +24,7 @@ private:
 
 	std::string wrap(const std::string& s, unsigned int px_width,
 	                 unsigned int char_size) const;
+	UiFrame frame;
 
 public:
 	DialogBox();

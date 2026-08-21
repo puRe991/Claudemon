@@ -6,6 +6,7 @@
 #include "SFML/Graphics.hpp"
 #include "BattleData.h"
 #include "GameState.h"
+#include "UiFrame.h"
 
 /******************************************************************************
 Battle - a turn-based pokemon battle for wild encounters and trainer fights.
@@ -31,6 +32,7 @@ private:
 	std::vector<Mon>* box;
 	int action_cursor;
 	sf::Font font; bool font_ok;
+	UiFrame frame;
 
 	Mon* player;                 // owned by caller; mutated here
 	Mon enemy;

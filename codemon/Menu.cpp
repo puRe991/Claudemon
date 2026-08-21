@@ -5,7 +5,8 @@
 
 Menu::Menu() : font_ok(false), screen(CLOSED), cursor(0),
                bag_cursor(0), teach_cursor(0),
-               gs(nullptr), bdata(nullptr), team(nullptr), box(nullptr) {}
+               gs(nullptr), bdata(nullptr), team(nullptr), box(nullptr),
+               cursor_ok(false) {}
 
 void Menu::configure(GameState* g, std::vector<Mon>* t, std::vector<Mon>* b,
                      BattleData* bd) {
@@ -29,6 +30,9 @@ static bool is_hm(const std::string& item) { return item.rfind("ITEM_HM", 0) == 
 
 bool Menu::load_font(const std::string& path) {
 	this->font_ok = this->font.loadFromFile(path);
+	this->frame.load();
+	this->cursor_ok = this->cursor_tex.loadFromFile("assets/graphics/interface/arrow_cursor.png");
+	this->cursor_tex.setSmooth(false);
 	return this->font_ok;
 }
 
@@ -160,21 +164,38 @@ void Menu::draw(sf::RenderTarget& target) {
 	target.setView(target.getDefaultView());
 	sf::Vector2f size = target.getView().getSize();
 
-	sf::RectangleShape panel(sf::Vector2f(size.x * 0.55f, size.y - 40));
-	panel.setPosition(size.x * 0.45f - 20, 20);
-	panel.setFillColor(sf::Color(20, 28, 48, 240));
-	panel.setOutlineColor(sf::Color::White); panel.setOutlineThickness(3.f);
-	target.draw(panel);
-	float x = panel.getPosition().x + 20, y = panel.getPosition().y + 18;
+	// heading / body / muted text tuned for the frame's light interior
+	const sf::Color head_col(24, 72, 160), body_col(40, 40, 56), muted_col(100, 100, 112);
+
+	sf::FloatRect panel_rect(size.x * 0.45f - 20, 20, size.x * 0.55f, size.y - 40);
+	if (this->frame.ready()) {
+		this->frame.draw(target, panel_rect.left, panel_rect.top,
+		                 panel_rect.width, panel_rect.height, 3.f);
+	} else {
+		sf::RectangleShape panel(sf::Vector2f(panel_rect.width, panel_rect.height));
+		panel.setPosition(panel_rect.left, panel_rect.top);
+		panel.setFillColor(sf::Color(20, 28, 48, 240));
+		panel.setOutlineColor(sf::Color::White); panel.setOutlineThickness(3.f);
+		target.draw(panel);
+	}
+	sf::RectangleShape panel(sf::Vector2f(panel_rect.width, panel_rect.height));
+	panel.setPosition(panel_rect.left, panel_rect.top);
+	float x = panel.getPosition().x + 24, y = panel.getPosition().y + 20;
 
 	auto text = [&](const std::string& s, float px, float py, unsigned cs, sf::Color col) {
 		sf::Text t(sf::String::fromUtf8(s.begin(), s.end()), this->font, cs);
 		t.setPosition(px, py); t.setFillColor(col); target.draw(t);
 	};
+	auto cursor_at = [&](float px, float py) {
+		if (!this->cursor_ok) { text(">", px - 16, py, 20, head_col); return; }
+		sf::Sprite s(this->cursor_tex);
+		s.setPosition(px - 20, py + 2);
+		target.draw(s);
+	};
 	auto hp_bar = [&](float bx, float by, int hp, int mx) {
 		float w = 150, r = mx > 0 ? (float)hp / mx : 0.f;
 		sf::RectangleShape bg(sf::Vector2f(w, 12)); bg.setPosition(bx, by);
-		bg.setFillColor(sf::Color(60, 60, 60)); target.draw(bg);
+		bg.setFillColor(sf::Color(190, 190, 190)); target.draw(bg);
 		sf::RectangleShape fg(sf::Vector2f(w * r, 12)); fg.setPosition(bx, by);
 		fg.setFillColor(r > 0.5f ? sf::Color(80, 200, 80)
 		               : r > 0.2f ? sf::Color(230, 200, 60) : sf::Color(220, 70, 70));
@@ -182,85 +203,77 @@ void Menu::draw(sf::RenderTarget& target) {
 	};
 
 	if (this->screen == MAIN) {
-		text("MENU", x, y, 24, sf::Color(150, 210, 255)); y += 44;
+		text("MENU", x, y, 24, head_col); y += 44;
 		const char* opts[] = {"BAG", "POKeMON", "PC BOX", "POKeNAV", "CLOSE"};
 		for (int i = 0; i < 5; ++i) {
 			bool sel = i == this->cursor;
-			text((sel ? "> " : "  ") + std::string(opts[i]), x, y + i * 38, 22,
-			     sel ? sf::Color(150, 210, 255) : sf::Color::White);
+			if (sel) cursor_at(x, y + i * 38);
+			text(opts[i], x, y + i * 38, 22, sel ? head_col : body_col);
 		}
 	} else if (this->screen == BAG) {
-		text("BAG", x, y, 24, sf::Color(150, 210, 255)); y += 44;
+		text("BAG", x, y, 24, head_col); y += 44;
 		auto items = bag_sorted();
 		if (items.empty()) {
-			text("(empty)", x, y, 20, sf::Color(200, 200, 200));
+			text("(empty)", x, y, 20, muted_col);
 		} else {
 			for (int row = 0; row < (int)items.size() && row < 10; ++row) {
 				const auto& kv = items[row];
 				bool sel = row == this->bag_cursor;
 				float ry = y + row * 40;
-				if (sel) {
-					sf::RectangleShape hl(sf::Vector2f(panel.getSize().x - 40, 34));
-					hl.setPosition(x - 6, ry - 6); hl.setFillColor(sf::Color(60, 90, 150, 120));
-					target.draw(hl);
-				}
+				if (sel) cursor_at(x, ry);
 				const sf::Texture* ic = item_icon(kv.first);
 				if (ic) { sf::Sprite s(*ic); s.setPosition(x, ry - 4); target.draw(s); }
 				bool tm = is_machine(kv.first);
 				std::string label = tm ? kv.first.substr(5)               // ITEM_TM31 -> TM31
 				                       : pretty(kv.first, "ITEM_");
 				text(label, x + 34, ry, 20,
-				     tm ? sf::Color(160, 230, 190) : sf::Color::White);
+				     tm ? sf::Color(20, 130, 90) : body_col);
 				text("x" + std::to_string(kv.second),
-				     panel.getPosition().x + panel.getSize().x - 70, ry, 20, sf::Color::White);
+				     panel.getPosition().x + panel.getSize().x - 70, ry, 20, body_col);
 			}
 		}
 		if (!this->flash.empty())
 			text(this->flash, x, panel.getPosition().y + panel.getSize().y - 60, 16,
-			     sf::Color(255, 230, 140));
+			     sf::Color(190, 90, 20));
 	} else if (this->screen == TEACH) {
-		text("TEACH " + pretty(this->teach_move, ""), x, y, 22, sf::Color(150, 210, 255));
+		text("TEACH " + pretty(this->teach_move, ""), x, y, 22, head_col);
 		y += 40;
-		text("Choose a POKeMON:", x, y, 16, sf::Color(200, 200, 200)); y += 30;
+		text("Choose a POKeMON:", x, y, 16, muted_col); y += 30;
 		if (this->team) {
 			for (int row = 0; row < (int)this->team->size() && row < 6; ++row) {
 				const Mon& m = (*this->team)[row];
 				bool sel = row == this->teach_cursor;
 				bool able = this->bdata && this->bdata->can_learn_tm(m.species, this->teach_move);
 				float ry = y + row * 44;
-				if (sel) {
-					sf::RectangleShape hl(sf::Vector2f(panel.getSize().x - 40, 38));
-					hl.setPosition(x - 6, ry - 6); hl.setFillColor(sf::Color(60, 90, 150, 120));
-					target.draw(hl);
-				}
+				if (sel) cursor_at(x, ry);
 				const sf::Texture* ic = mon_icon(m.species);
 				if (ic) { sf::Sprite s(*ic); s.setScale(0.55f, 0.55f); s.setPosition(x, ry - 6); target.draw(s); }
 				text(pretty(m.species, "") + "  Lv" + std::to_string(m.level), x + 44, ry, 20,
-				     able ? sf::Color::White : sf::Color(150, 150, 150));
+				     able ? body_col : sf::Color(170, 170, 170));
 				text(able ? "ABLE" : "unable", panel.getPosition().x + panel.getSize().x - 90, ry, 16,
-				     able ? sf::Color(120, 220, 120) : sf::Color(180, 120, 120));
+				     able ? sf::Color(30, 150, 60) : sf::Color(190, 90, 90));
 			}
 		}
 		if (!this->flash.empty())
 			text(this->flash, x, panel.getPosition().y + panel.getSize().y - 60, 16,
-			     sf::Color(255, 230, 140));
+			     sf::Color(190, 90, 20));
 	} else if (this->screen == PARTY) {
-		text("POKeMON", x, y, 24, sf::Color(150, 210, 255)); y += 40;
+		text("POKeMON", x, y, 24, head_col); y += 40;
 		if (this->team) {
 			int row = 0;
 			for (const Mon& m : *this->team) {
 				float ry = y + row * 72;
 				const sf::Texture* ic = mon_icon(m.species);
 				if (ic) { sf::Sprite s(*ic); s.setScale(0.9f, 0.9f); s.setPosition(x, ry); target.draw(s); }
-				text(pretty(m.species, "") + "  Lv" + std::to_string(m.level), x + 66, ry + 6, 20, sf::Color::White);
+				text(pretty(m.species, "") + "  Lv" + std::to_string(m.level), x + 66, ry + 6, 20, body_col);
 				hp_bar(x + 66, ry + 34, m.hp, m.max_hp);
-				text(std::to_string(m.hp) + "/" + std::to_string(m.max_hp), x + 226, ry + 32, 16, sf::Color::White);
+				text(std::to_string(m.hp) + "/" + std::to_string(m.max_hp), x + 226, ry + 32, 16, body_col);
 				if (++row >= 6) break;
 			}
 		}
 	} else if (this->screen == PC) {
-		text("PC BOX", x, y, 24, sf::Color(150, 210, 255)); y += 40;
-		text("Stored: " + std::to_string(this->box ? (int)this->box->size() : 0), x, y, 18, sf::Color(200, 200, 200));
+		text("PC BOX", x, y, 24, head_col); y += 40;
+		text("Stored: " + std::to_string(this->box ? (int)this->box->size() : 0), x, y, 18, muted_col);
 		y += 30;
 		if (this->box && !this->box->empty()) {
 			int row = 0;
@@ -268,19 +281,19 @@ void Menu::draw(sf::RenderTarget& target) {
 				float ry = y + row * 40;
 				const sf::Texture* ic = mon_icon(m.species);
 				if (ic) { sf::Sprite s(*ic); s.setScale(0.55f, 0.55f); s.setPosition(x, ry - 6); target.draw(s); }
-				text(pretty(m.species, "") + "  Lv" + std::to_string(m.level), x + 44, ry, 20, sf::Color::White);
+				text(pretty(m.species, "") + "  Lv" + std::to_string(m.level), x + 44, ry, 20, body_col);
 				if (++row >= 10) break;
 			}
 		} else {
-			text("(no POKeMON stored)", x, y, 20, sf::Color(200, 200, 200));
+			text("(no POKeMON stored)", x, y, 20, muted_col);
 		}
 	} else if (this->screen == POKENAV) {
-		text("POKeNAV", x, y, 24, sf::Color(150, 210, 255)); y += 36;
+		text("POKeNAV", x, y, 24, head_col); y += 36;
 		text("Location:  " + (this->location.empty() ? "---" : this->location),
-		     x, y, 20, sf::Color(230, 230, 160)); y += 26;
+		     x, y, 20, sf::Color(150, 110, 20)); y += 26;
 		text("Region: HOENN   Party: " +
 		     std::to_string(this->team ? (int)this->team->size() : 0) + "/6",
-		     x, y, 16, sf::Color(200, 200, 200)); y += 26;
+		     x, y, 16, muted_col); y += 26;
 		{
 			static const char* names[8] = {"STONE", "KNUCKLE", "DYNAMO", "HEAT",
 			                               "BALANCE", "FEATHER", "MIND", "RAIN"};
@@ -291,20 +304,19 @@ void Menu::draw(sf::RenderTarget& target) {
 					"FLAG_BADGE0" + std::to_string(i + 1) + "_GET");
 				if (have) ++got;
 				text(names[i], bx, y, 12,
-				     have ? sf::Color(250, 210, 90) : sf::Color(90, 90, 90));
+				     have ? sf::Color(190, 140, 10) : sf::Color(170, 170, 170));
 				bx += 62;
 			}
 			text("Badges " + std::to_string(got) + "/8",
-			     panel.getPosition().x + panel.getSize().x - 90, y, 14,
-			     sf::Color(200, 200, 200));
+			     panel.getPosition().x + panel.getSize().x - 90, y, 14, muted_col);
 			y += 24;
 		}
-		text("CONDITION", x, y, 18, sf::Color(150, 210, 255)); y += 26;
+		text("CONDITION", x, y, 18, head_col); y += 26;
 		if (this->team) {
 			int row = 0;
 			for (const Mon& m : *this->team) {
 				float ry = y + row * 58;
-				text(pretty(m.species, "") + " Lv" + std::to_string(m.level), x, ry, 18, sf::Color::White);
+				text(pretty(m.species, "") + " Lv" + std::to_string(m.level), x, ry, 18, body_col);
 				// type icons
 				float tx2 = x + 200;
 				for (const std::string& tp : {m.t1, m.t2}) {
@@ -313,21 +325,18 @@ void Menu::draw(sf::RenderTarget& target) {
 					if (ti) { sf::Sprite s(*ti); s.setPosition(tx2, ry - 2); target.draw(s); tx2 += 44; }
 				}
 				text("HP " + std::to_string(m.max_hp) + "  ATK " + std::to_string(m.atk) +
-				     "  DEF " + std::to_string(m.def), x, ry + 24, 15, sf::Color(210, 210, 210));
+				     "  DEF " + std::to_string(m.def), x, ry + 24, 15, muted_col);
 				text("SPA " + std::to_string(m.spa) + "  SPD " + std::to_string(m.spd) +
-				     "  SPE " + std::to_string(m.spe), x, ry + 40, 15, sf::Color(210, 210, 210));
+				     "  SPE " + std::to_string(m.spe), x, ry + 40, 15, muted_col);
 				if (++row >= 4) break;
 			}
 		}
 	}
 	if (this->screen == BAG)
-		text("[SPACE] use   [A] back", x, panel.getPosition().y + panel.getSize().y - 34, 16,
-		     sf::Color(180, 180, 180));
+		text("[SPACE] use   [A] back", x, panel.getPosition().y + panel.getSize().y - 34, 16, muted_col);
 	else if (this->screen == TEACH)
-		text("[SPACE] teach   [A] back", x, panel.getPosition().y + panel.getSize().y - 34, 16,
-		     sf::Color(180, 180, 180));
+		text("[SPACE] teach   [A] back", x, panel.getPosition().y + panel.getSize().y - 34, 16, muted_col);
 	else if (this->screen != MAIN)
-		text("[SPACE] back", x, panel.getPosition().y + panel.getSize().y - 34, 16,
-		     sf::Color(180, 180, 180));
+		text("[SPACE] back", x, panel.getPosition().y + panel.getSize().y - 34, 16, muted_col);
 	target.setView(saved);
 }
