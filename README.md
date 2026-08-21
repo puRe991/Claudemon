@@ -229,20 +229,150 @@ level-ups/evolution in one shot).
 `codemon_tests` exercises the display-independent core logic (`Coordinates`,
 `Tile`, the hand-rolled `Linked_list`) and is wired into CTest.
 
-## Status / to-do bucket
+## Project status
 
-* ~~Add collision~~ — done: per-tile collision layer, checked on move
-* ~~Add bounds checking~~ — done: `Map::in_bounds` / `Map::passable`
-* ~~Add music~~ — done: SFX + cries play natively; MIDI→OGG music conversion
-  needs a synth on the machine running the importer
-* ~~Redo asset importation~~ — done: fully data-driven via
-  `tools/pe_import.py`, no compile-time hardcoding
-* ~~NPC behaviour, map transitions, a battle system~~ — done: scripted NPCs,
-  warp fades, full trainer/wild battle system with capture
-* ~~RPG progression (EXP, levels, evolution, movesets)~~ — done, from real
-  source data
-* ~~TM/HM teaching~~ — done, gated by real per-species learnsets
-* Contests, the Dodrio/Mining minigames, and a few other large Emerald
-  subsystems are intentionally not implemented — out of scope for now rather
-  than silently faked.
-* A map editor / procedural generator — not started.
+A snapshot of what's real right now versus what's still missing, based on a
+full audit of the engine (`codemon/*.cpp/.h`), the ScriptVM opcode dispatch
+cross-checked against every opcode actually used across all 489 imported
+maps, and the importer. This is not aspirational — everything marked done
+has been verified either by an automated test or by headless screenshot
+(`CODEMON_SCREENSHOT=...`) against what pokeemerald actually does.
+
+### ✅ What works
+
+* Map rendering, collision, warps/transitions, signs, coordinate triggers,
+  NPC placement & movement types (static/wander/pace), load triggers
+* Cooperative script VM (`ScriptVM`) running pokeemerald's real event
+  scripts: dialog (multi-page), flags/vars, `goto`/`call` + `eq`/`ne`/`set`/
+  `unset` conditionals, `switch`/`case`, movement scripts, `giveitem`/
+  `finditem`, `setmetatile`
+* Turn-based battles: 385 species (real stats/types/growth curve), 354
+  moves (power/type/accuracy parsed), 17-type effectiveness chart, STAB,
+  physical/special split, wild encounters (real per-map tables + Gen-3 slot
+  weighting), 854 trainer battles with real parties, trainer rematches
+* Capture mechanic (approximate probability, Poké Ball only — see below)
+* EXP gain, all 6 species growth curves, level-up stat recalculation,
+  level-up movesets (411 learnsets), **level-up evolution** (172 paths)
+* TM/HM teaching from the bag, gated by real per-species learnsets (372
+  entries); TMs consumed on use, HMs reusable
+* Shops (`pokemart`) and Ja/Nein prompts via the VM block-and-resume pattern
+* Story-accurate start (Brendan's House 2F, canonical heal-location tile)
+* UI: start menu (Bag/Party/PC Box/PokéNav), map-name banner, HP bars,
+  item/type/species icons, Pokémon Center heal (whole team) + its glowing-
+  Pokéball/monitor animation
+* Overworld minigames: Slot Machine, Roulette, Berry Blender, Pokémon Jump
+  (real gameplay, not stubs), with an in-game coin currency
+* Audio: step/bump/select SFX play natively; cries and MIDI→OGG music exist
+  and work when called, but nothing in the game currently calls them yet
+  (see below)
+* `codemon_tests` / CTest for the display-independent core data structures
+
+### ⚠️ Partial / simplified
+
+* **Battle system** is a simplified 1v1 damage calculator: no status
+  conditions (paralysis/burn/poison/sleep/freeze/confusion), no critical
+  hits, no accuracy/evasion rolls, no move priority, no stat-stage changes
+  from status moves (Growl etc. do nothing but print text), no weather, no
+  abilities, no held items, no IV/EV/natures, no PP/Struggle, no doubles, no
+  EXP Share
+* **Catch mechanic** is a flat approximate formula, independent of species
+  catch rate or ball type (only `ITEM_POKE_BALL` exists functionally)
+* **Evolution**: level-up only; stone/trade/friendship evolutions are
+  imported into data but never triggered in-game
+* **Audio**: the `Audio` class is fully functional, but nothing calls
+  `play_cry`/`play_music` yet, and `ScriptVM` never calls its `Audio*` for
+  `playbgm`/`playse`/`playmoncry` — so the game is currently silent beyond a
+  few UI blips
+* **Text interpolation** (`bufferstring` family): the importer bakes static
+  values into dialog at import time, but genuinely dynamic values (e.g.
+  Birch's Pokédex-seen/caught rating) render with the number missing
+
+### ❌ Not implemented yet
+
+* Save/load (no persistence at all — every run starts fresh)
+* Switching Pokémon mid-battle, or continuing a battle on a healthy party
+  member after the active one faints
+* Using bag items (Potions, status healers, Poké Balls, berries) outside the
+  TM/HM-teaching flow
+* `specialvar` opcode (breaks `GetBattleOutcome`, rematch checks, Pokérus,
+  breeding-state checks and more — 361 uses across the maps)
+* Scripted legendary/static encounters (`setwildbattle`/`dowildbattle`:
+  Rayquaza, the Regis, Kyogre/Groudon, Kecleon, the Voltorb swarm)
+* Gift/fossil Pokémon (`givemon`: Johto starters, Beldum, Castform, fossils)
+* Mossdeep Gym's rotating-tile puzzle
+* HM field moves (Cut/Surf/Fly/Strength/Flash/Rock Smash/Waterfall/Dive) —
+  water is currently just impassable terrain
+* Running/bike, day-night cycle, overworld weather, fishing, berry growing
+* Pokédex screen (no seen/caught tracking), party summary/stats screen,
+  player naming/gender selection, options/settings screen
+* Multiple PC boxes (currently one unlimited list), item storage in the PC
+* Trading, breeding/eggs, contests, secret bases, Battle Frontier
+* Comparison `goto_if_ge/gt/lt/le` opcodes, `multichoice` prompts,
+  `checkitem`/`removeitem` result vars, NPC add/hide/move opcodes, door-open
+  animations — all currently silent no-ops where scripts use them
+* A map editor / procedural map generator
+
+## To-do checklist
+
+Everything checked off below has been verified working (test or headless
+screenshot), not just written and assumed correct.
+
+**Foundations**
+- [x] Collision (per-tile layer, checked on move)
+- [x] Bounds checking (`Map::in_bounds` / `Map::passable`)
+- [x] Asset importer fully data-driven (`tools/pe_import.py`), no
+      compile-time hardcoding
+- [x] NPC behaviour, map transitions, warp fades
+- [x] Unit-testing harness wired into CTest
+
+**Battle & progression**
+- [x] Turn-based battle system (trainers + wild, capture)
+- [x] RPG progression (EXP, levels, level-up evolution, level-up movesets)
+- [x] TM/HM teaching gated by real learnsets
+- [ ] Status conditions (paralysis/burn/poison/sleep/freeze/confusion)
+- [ ] Critical hits, accuracy/evasion, move priority
+- [ ] Stat-stage changes from status moves
+- [ ] Weather, abilities, held items, IV/EV/natures, PP/Struggle
+- [ ] Double battles, EXP Share
+- [ ] Switching Pokémon mid-battle / surviving a faint with a healthy party
+- [ ] Stone/trade/friendship evolution triggers
+- [ ] Ball-type-aware, catch-rate-aware capture formula
+
+**Core loop**
+- [ ] Save/load system
+- [ ] Usable bag items outside TM/HM teaching (Potions, status healers,
+      berries, Poké Balls)
+- [ ] `specialvar` opcode (`GetBattleOutcome`, rematch checks, Pokérus, ...)
+- [ ] Scripted legendary/static encounters (`setwildbattle`/`dowildbattle`)
+- [ ] Gift/fossil Pokémon (`givemon`)
+- [ ] Mossdeep Gym rotating-tile puzzle
+- [ ] Comparison `goto_if_ge/gt/lt/le`, `multichoice`, `checkitem`/
+      `removeitem` result vars, NPC add/hide/move opcodes, door animations
+
+**Audio**
+- [x] Step/bump/select SFX
+- [x] `Audio` class supports cries + MIDI→OGG music (functional but unused)
+- [ ] Wire cries into send-out/level-up, music into `ScriptVM`'s `playbgm`/
+      `playse`/`playmoncry` opcodes and per-map track selection
+
+**Overworld features**
+- [x] Overworld minigames (slots/roulette/blender/jump) with coin currency
+- [ ] HM field moves (Cut/Surf/Fly/Strength/Flash/Rock Smash/Waterfall/Dive)
+- [ ] Running/bike
+- [ ] Day-night cycle, overworld weather
+- [ ] Fishing, berry growing
+
+**UI**
+- [x] Start menu: Bag, Party, PC Box, PokéNav
+- [x] Pokémon Center full-team heal + animation
+- [ ] Pokédex screen (seen/caught tracking)
+- [ ] Party member summary/stats screen
+- [ ] Player naming / gender selection
+- [ ] Options/settings screen
+- [ ] Multiple PC boxes, item storage in the PC
+
+**Out of scope for now (not silently faked, just not attempted)**
+- [ ] Trading, breeding/eggs
+- [ ] Contests, secret bases
+- [ ] Battle Frontier
+- [ ] Map editor / procedural map generator
