@@ -27,6 +27,11 @@ public:
 	void set_flag(const std::string& name) { vars[name] = 1; }
 	void clear_flag(const std::string& name) { vars[name] = 0; }
 
+	// Poke Dollars. pokeemerald starts a new save with 3000; scripts read/
+	// write it only through native code (AddMoney/RemoveMoney specials),
+	// never a plain VAR_*, so it gets its own home instead of living in `vars`.
+	int money = 3000;
+
 	void give_item(const std::string& item, int amount) { bag[item] += amount; }
 	// Remove up to `amount` of an item; erases the entry when it hits zero.
 	void take_item(const std::string& item, int amount) {

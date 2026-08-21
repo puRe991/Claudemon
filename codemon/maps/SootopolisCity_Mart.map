@@ -32,8 +32,8 @@ objscripts
 0 SootopolisCity_Mart_EventScript_Clerk
 1 SootopolisCity_Mart_EventScript_FatMan
 2 SootopolisCity_Mart_EventScript_Gentleman
-movements
-SootopolisCity_Mart_Pokemart	delay
+shops
+SootopolisCity_Mart_Pokemart	ITEM_ULTRA_BALL,ITEM_HYPER_POTION,ITEM_MAX_POTION,ITEM_FULL_HEAL,ITEM_REVIVE,ITEM_MAX_REPEL,ITEM_X_ATTACK,ITEM_X_DEFEND,ITEM_SHADOW_MAIL
 scriptdefs
 = SootopolisCity_Mart_EventScript_Gentleman
 lock

@@ -35,9 +35,9 @@ objscripts
 1 RustboroCity_Mart_EventScript_Boy
 2 RustboroCity_Mart_EventScript_PokefanF
 3 RustboroCity_Mart_EventScript_BugCatcher
-movements
-RustboroCity_Mart_Pokemart_Basic	delay
-RustboroCity_Mart_Pokemart_Expanded	delay
+shops
+RustboroCity_Mart_Pokemart_Basic	ITEM_POKE_BALL,ITEM_POTION,ITEM_SUPER_POTION,ITEM_ANTIDOTE,ITEM_PARALYZE_HEAL,ITEM_ESCAPE_ROPE,ITEM_REPEL,ITEM_X_SPEED,ITEM_X_ATTACK,ITEM_X_DEFEND
+RustboroCity_Mart_Pokemart_Expanded	ITEM_POKE_BALL,ITEM_TIMER_BALL,ITEM_REPEAT_BALL,ITEM_POTION,ITEM_SUPER_POTION,ITEM_ANTIDOTE,ITEM_PARALYZE_HEAL,ITEM_ESCAPE_ROPE,ITEM_REPEL,ITEM_X_SPEED,ITEM_X_ATTACK,ITEM_X_DEFEND
 scriptdefs
 = RustboroCity_Mart_EventScript_BugCatcher
 msgbox	I'm getting an ESCAPE ROPE just in case I get lost in a cave.I just need to use it to get back to the entrance.

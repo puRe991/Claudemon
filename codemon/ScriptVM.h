@@ -68,8 +68,16 @@ public:
 	bool wants_yesno() const { return this->st == WAIT_YESNO; }
 	void resolve_yesno(bool yes);
 
+	// `pokemart <label>`: same story again -- the VM can't drive a
+	// scrolling buy screen itself, so the game loop shows a real shop
+	// using shop_items() (the map's item list for this label) and calls
+	// close_shop() once the player leaves.
+	bool wants_shop() const { return this->st == WAIT_SHOP; }
+	const std::vector<std::string>* shop_items() const;
+	void close_shop();
+
 private:
-	enum State { IDLE, RUN, WAIT_MSG, WAIT_MOVE, WAIT_BATTLE, WAIT_STARTER, WAIT_YESNO };
+	enum State { IDLE, RUN, WAIT_MSG, WAIT_MOVE, WAIT_BATTLE, WAIT_STARTER, WAIT_YESNO, WAIT_SHOP };
 
 	Map* map; GameState* state; DialogBox* box; Battle* battle;
 	Audio* audio; Character* player; Character* owner;
@@ -89,6 +97,7 @@ private:
 	bool pending_warp = false;
 	std::string warp_dest; int warp_x = -1, warp_y = -1;
 	bool pending_yesno = false;   // set by pump() until the msgbox closes
+	std::string pending_shop_label;
 
 	int value_of(const std::string& s) const;   // resolve a symbol/number
 	Character* resolve(const std::string& localid) const;

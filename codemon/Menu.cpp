@@ -212,6 +212,10 @@ void Menu::draw(sf::RenderTarget& target) {
 		}
 	} else if (this->screen == BAG) {
 		text("BEUTEL", x, y, 24, head_col); y += 44;
+		if (this->gs) {
+			text("Geld: " + std::to_string(this->gs->money) + " P", x, y, 18, muted_col);
+			y += 30;
+		}
 		auto items = bag_sorted();
 		if (items.empty()) {
 			text("(leer)", x, y, 20, muted_col);

@@ -35,8 +35,8 @@ objscripts
 1 VerdanturfTown_Mart_EventScript_Boy
 2 VerdanturfTown_Mart_EventScript_ExpertF
 3 VerdanturfTown_Mart_EventScript_Lass
-movements
-VerdanturfTown_Mart_Pokemart	delay
+shops
+VerdanturfTown_Mart_Pokemart	ITEM_GREAT_BALL,ITEM_NEST_BALL,ITEM_SUPER_POTION,ITEM_ANTIDOTE,ITEM_PARALYZE_HEAL,ITEM_AWAKENING,ITEM_BURN_HEAL,ITEM_ICE_HEAL,ITEM_REPEL,ITEM_X_SPECIAL,ITEM_FLUFFY_TAIL
 scriptdefs
 = VerdanturfTown_Mart_EventScript_Lass
 msgbox	The NEST BALL works better on weakened POKéMON.VERDANTURF is the only place you can buy it.

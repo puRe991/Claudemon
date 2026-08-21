@@ -74,6 +74,7 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 		       s.rfind("counters", 0) == 0 ||
 		       s.rfind("encounters", 0) == 0 || s.rfind("objscripts", 0) == 0 ||
 		       s.rfind("triggers", 0) == 0 || s.rfind("movements", 0) == 0 ||
+		       s.rfind("shops", 0) == 0 ||
 		       s.rfind("onload", 0) == 0 || s.rfind("scriptdefs", 0) == 0;
 	};
 
@@ -204,6 +205,18 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 				while (std::getline(ss, a, ',')) if (!a.empty()) acts.push_back(a);
 				this->move_defs[lab] = acts;
 			}
+		} else if (head.rfind("shops", 0) == 0) {
+			for (++i; i < rest.size() && !is_keyword(rest[i]); ++i) {
+				if (rest[i].empty()) continue;
+				size_t tab = rest[i].find('\t');
+				if (tab == std::string::npos) continue;
+				std::string lab = rest[i].substr(0, tab);
+				std::vector<std::string> items;
+				std::stringstream ss(rest[i].substr(tab + 1));
+				std::string it;
+				while (std::getline(ss, it, ',')) if (!it.empty()) items.push_back(it);
+				this->shop_defs[lab] = items;
+			}
 		} else if (head.rfind("scriptdefs", 0) == 0) {
 			std::string cur;
 			for (++i; i < rest.size() && !is_keyword(rest[i]); ++i) {
@@ -317,6 +330,11 @@ const std::vector<std::string>& Map::movement(const std::string& label) const {
 	static const std::vector<std::string> empty;
 	auto it = this->move_defs.find(label);
 	return it == this->move_defs.end() ? empty : it->second;
+}
+
+const std::vector<std::string>* Map::shop(const std::string& label) const {
+	auto it = this->shop_defs.find(label);
+	return it == this->shop_defs.end() ? nullptr : &it->second;
 }
 
 std::string Map::npc_script(int npc_index) const {

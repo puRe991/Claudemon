@@ -32,9 +32,9 @@ objscripts
 0 OldaleTown_Mart_EventScript_Clerk
 1 OldaleTown_Mart_EventScript_Woman
 2 OldaleTown_Mart_EventScript_Boy
-movements
-OldaleTown_Mart_Pokemart_Basic	delay
-OldaleTown_Mart_Pokemart_Expanded	delay
+shops
+OldaleTown_Mart_Pokemart_Basic	ITEM_POTION,ITEM_ANTIDOTE,ITEM_PARALYZE_HEAL,ITEM_AWAKENING
+OldaleTown_Mart_Pokemart_Expanded	ITEM_POKE_BALL,ITEM_POTION,ITEM_ANTIDOTE,ITEM_PARALYZE_HEAL,ITEM_AWAKENING
 scriptdefs
 = OldaleTown_Mart_EventScript_Boy
 msgbox	If a POKéMON gets hurt and loses its HP and faints, it won't be able to battle.To prevent your POKéMON from fainting, restore its HP with a POTION.

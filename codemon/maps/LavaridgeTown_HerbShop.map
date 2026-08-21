@@ -32,8 +32,8 @@ objscripts
 0 LavaridgeTown_HerbShop_EventScript_Clerk
 1 LavaridgeTown_HerbShop_EventScript_OldMan
 2 LavaridgeTown_HerbShop_EventScript_ExpertM
-movements
-LavaridgeTown_HerbShop_Pokemart	delay
+shops
+LavaridgeTown_HerbShop_Pokemart	ITEM_ENERGY_POWDER,ITEM_ENERGY_ROOT,ITEM_HEAL_POWDER,ITEM_REVIVAL_HERB
 scriptdefs
 = LavaridgeTown_HerbShop_EventScript_ExpertM
 msgbox	Herbal medicine works impressively well. But your POKéMON will dislike you for it. It must be horribly bitter!

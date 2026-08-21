@@ -32,8 +32,8 @@ objscripts
 0 SlateportCity_Mart_EventScript_Clerk
 1 SlateportCity_Mart_EventScript_BlackBelt
 2 SlateportCity_Mart_EventScript_Man
-movements
-SlateportCity_Mart_Pokemart	delay
+shops
+SlateportCity_Mart_Pokemart	ITEM_POKE_BALL,ITEM_GREAT_BALL,ITEM_POTION,ITEM_SUPER_POTION,ITEM_ANTIDOTE,ITEM_PARALYZE_HEAL,ITEM_ESCAPE_ROPE,ITEM_REPEL,ITEM_HARBOR_MAIL
 scriptdefs
 = SlateportCity_Mart_EventScript_Man
 msgbox	A GREAT BALL is better than a POKé BALL at catching POKéMON.With this, I should be able to get that elusive POKéMON…

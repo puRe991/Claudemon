@@ -426,12 +426,18 @@ def cmd_battle(src, starters=("TREECKO", "TORCHIC", "MUDKIP", "PIKACHU")):
     with open(os.path.join(out, "trainers.tsv"), "w") as f:
         for name, party in sorted(trainers.items()):
             f.write(name + "\t" + ",".join(f"{sp}:{lv}" for sp, lv in party) + "\n")
+    prices = parse_item_prices(src)
+    with open(os.path.join(ASSETS_DIR, "items", "prices.tsv"), "w") as f:
+        for name, price in sorted(prices.items()):
+            if price > 0:
+                f.write(f"{name}\t{price}\n")
 
     # sprites: front for every species, back for the starters (player side)
     nf = sum(1 for sp in species if import_pokemon_front(sp, src))
     nb = sum(1 for sp in starters if import_pokemon_back(sp, src))
     print(f"battle: {len(species)} species, {len(moves)} moves, "
-          f"{len(learn)} learnsets, {len(trainers)} trainers; "
+          f"{len(learn)} learnsets, {len(trainers)} trainers, "
+          f"{sum(1 for p in prices.values() if p > 0)} priced items; "
           f"{nf} front + {nb} back sprites -> {os.path.relpath(out)}")
 
 
@@ -449,6 +455,22 @@ def _flatten_to(src_png, dst_png):
         rgba = im.convert("RGBA")
     os.makedirs(os.path.dirname(dst_png), exist_ok=True)
     rgba.save(dst_png)
+
+
+def parse_item_prices(src):
+    """ITEM_X -> mart price (Poke Dollars), from src/data/items.h's gItems[]
+    table. Price 0 covers both genuinely free/unsellable items (key items,
+    HMs) and ones a shop never actually lists, so the mart UI only ever
+    offers items with a positive price."""
+    import re
+    txt = open(os.path.join(src, "src/data/items.h"),
+               encoding="utf-8", errors="replace").read()
+    out = {}
+    for m in re.finditer(r"\[(ITEM_\w+)\]\s*=\s*\{(.*?)\n    \}", txt, re.S):
+        pm = re.search(r"\.price\s*=\s*(\d+)", m.group(2))
+        if pm:
+            out[m.group(1)] = int(pm.group(1))
+    return out
 
 
 def parse_trainer_pics(src):
@@ -942,7 +964,7 @@ def parse_map_scripts(map_dir, texts):
     See _parse_script_lines for the return shape."""
     inc = os.path.join(map_dir, "scripts.inc")
     if not os.path.isfile(inc):
-        return {}, {}
+        return {}, {}, {}
     lines = open(inc, encoding="utf-8", errors="replace").read().splitlines()
     return _parse_script_lines(lines, texts)
 
@@ -954,22 +976,23 @@ def parse_shared_script_file(path, texts):
     rather than in that map's own scripts.inc, so these need to be in the
     pool too or the reference silently resolves to nothing."""
     if not os.path.isfile(path):
-        return {}, {}
+        return {}, {}, {}
     lines = open(path, encoding="utf-8", errors="replace").read().splitlines()
     return _parse_script_lines(lines, texts)
 
 
 def _parse_script_lines(lines, texts):
     """Parse scripts.inc-formatted lines into executable scripts + movement
-    templates.
+    templates + pokemart item lists.
 
-    Returns (scripts, movements):
+    Returns (scripts, movements, shops):
       scripts[label]   = list of instructions; each instruction is a list of
                          string tokens (opcode first). msgbox text is resolved
                          inline as ["msgbox", <text>].
       movements[label] = list of compact actions (up/down/left/right/face_*/...)
+      shops[label]     = list of ITEM_* ids a `pokemart <label>` sells
     """
-    scripts, movements = {}, {}
+    scripts, movements, shops = {}, {}, {}
     i, n = 0, len(lines)
     while i < n:
         ln = lines[i]
@@ -1010,8 +1033,24 @@ def _parse_script_lines(lines, texts):
             scripts[label] = body
         elif m_dat:
             label = m_dat.group(1)
-            # movement template? (body of bare movement tokens, no .string)
             j = i + 1
+            # pokemart item list? ("<Label>: .2byte ITEM_X ... pokemartlistend",
+            # referenced by a `pokemart <Label>` instruction). Distinct from a
+            # movement template, which is bare direction/delay tokens.
+            if j < n and _re.match(r"^\s*\.2byte\s+ITEM_", lines[j]):
+                items = []
+                while j < n and "pokemartlistend" not in lines[j]:
+                    im = _re.search(r"\.2byte\s+(ITEM_\w+)", lines[j])
+                    if im:
+                        items.append(im.group(1))
+                    j += 1
+                if j < n:
+                    j += 1   # consume the pokemartlistend line itself
+                if items:
+                    shops[label] = items
+                i = j
+                continue
+            # movement template? (body of bare movement tokens, no .string)
             if j < n and ".string" not in lines[j] and lines[j].strip():
                 acts = []
                 while j < n and not _re.match(r"^\w+:", lines[j]):
@@ -1045,7 +1084,7 @@ def _parse_script_lines(lines, texts):
         if body and body[-1][0] not in TERMINATORS and idx + 1 < len(order):
             body.append(["goto", order[idx + 1]])
 
-    return scripts, movements
+    return scripts, movements, shops
 
 
 def parse_item_ball_scripts(src):
@@ -1194,7 +1233,7 @@ def cmd_world(src, limit=None):
     # the PC, Nurse Joy, move tutors etc. are defined once here and pointed
     # to by object events across many maps -- without these, that object
     # event's script label resolves to nothing and interacting does nothing.
-    shared_scripts, shared_moves = {}, {}
+    shared_scripts, shared_moves, shared_shops = {}, {}, {}
     sdir = os.path.join(src, "data", "scripts")
     if os.path.isdir(sdir):
         for fn in sorted(os.listdir(sdir)):
@@ -1203,12 +1242,14 @@ def cmd_world(src, limit=None):
             # `finditem` bodies don't shadow the flag-gated versions.
             if not fn.endswith(".inc") or fn == "item_ball_scripts.inc":
                 continue
-            s, m = parse_shared_script_file(os.path.join(sdir, fn), global_texts)
+            s, m, sh = parse_shared_script_file(os.path.join(sdir, fn), global_texts)
             shared_scripts.update(s)
             shared_moves.update(m)
+            shared_shops.update(sh)
 
     done = 0
     item_total = 0
+    shop_total = 0
     for mname in names:
         mj_path = os.path.join(mroot, mname, "map.json")
         if not os.path.isfile(mj_path):
@@ -1254,13 +1295,15 @@ def cmd_world(src, limit=None):
         # so start from the global pool and layer this map's own on top.
         texts = dict(global_texts)
         texts.update(parse_map_texts(mapdir))
-        all_scripts, all_moves = parse_map_scripts(mapdir, texts)
+        all_scripts, all_moves, all_shops = parse_map_scripts(mapdir, texts)
         # Local (per-map) definitions win on a name clash; shared ones fill
         # in anything the map doesn't define itself.
         for lab, body in shared_scripts.items():
             all_scripts.setdefault(lab, body)
         for lab, acts in shared_moves.items():
             all_moves.setdefault(lab, acts)
+        for lab, its in shared_shops.items():
+            all_shops.setdefault(lab, its)
 
         # Item balls: synthesize a pickup script for any ball whose script
         # isn't already defined locally (almost all of them -- the real
@@ -1446,11 +1489,14 @@ def cmd_world(src, limit=None):
         entry += [t[2] for t in load_triggers]
         keep = reachable_scripts(entry, all_scripts)
         used_moves = set()
+        used_shops = set()
         for body in keep.values():
             for instr in body:
                 for a in instr[1:]:
                     if a in all_moves:
                         used_moves.add(a)
+                    if a in all_shops:
+                        used_shops.add(a)
 
         obj_scr = [(i, n[6]) for i, n in enumerate(npcs) if n[6] in keep]
         if obj_scr:
@@ -1471,6 +1517,11 @@ def cmd_world(src, limit=None):
             lines.append("movements")
             for lab in sorted(used_moves):
                 lines.append(f"{lab}\t{','.join(all_moves[lab])}")
+        if used_shops:
+            lines.append("shops")
+            for lab in sorted(used_shops):
+                lines.append(f"{lab}\t{','.join(all_shops[lab])}")
+            shop_total += len(used_shops)
         if keep:
             lines.append("scriptdefs")
             for lab, body in keep.items():
@@ -1539,7 +1590,8 @@ def cmd_world(src, limit=None):
           f"{total_npcs} NPCs, {total_warps} warps, {total_dlg} dialogs, "
           f"{total_signs} signs, {imported} wild sprites, "
           f"{total_scripts} scripts, {total_trig} triggers, "
-          f"{item_total} item pickups, {len(new_game_flags)} new-game hide-flags "
+          f"{item_total} item pickups, {shop_total} shops, "
+          f"{len(new_game_flags)} new-game hide-flags "
           f"-> {os.path.relpath(maps_dir)}")
 
 

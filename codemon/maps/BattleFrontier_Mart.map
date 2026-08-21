@@ -36,8 +36,9 @@ objscripts
 2 BattleFrontier_Mart_EventScript_OldMan
 3 BattleFrontier_Mart_EventScript_Boy
 movements
-BattleFrontier_Mart_Pokemart	delay
 Common_Movement_FaceDown	face_down,end
+shops
+BattleFrontier_Mart_Pokemart	ITEM_ULTRA_BALL,ITEM_HYPER_POTION,ITEM_MAX_POTION,ITEM_FULL_RESTORE,ITEM_FULL_HEAL,ITEM_REVIVE,ITEM_MAX_REPEL,ITEM_PROTEIN,ITEM_CALCIUM,ITEM_IRON,ITEM_ZINC,ITEM_CARBOS,ITEM_HP_UP
 scriptdefs
 = BattleFrontier_Mart_EventScript_Boy
 msgbox	A lot of the BATTLE FRONTIER's facilities don't allow the use of items during battles.That rule makes things tougher than they already are!

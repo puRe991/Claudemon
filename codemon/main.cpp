@@ -21,6 +21,7 @@
 #include <random>
 #include <sstream>
 #include <string>
+#include <unordered_map>
 #include <vector>
 
 static const int SCALE = 3;
@@ -501,6 +502,155 @@ struct YesNoPrompt {
     }
 };
 
+// "ITEM_POKE_BALL" -> "Poke Ball"
+static std::string item_display_name(const std::string& item) {
+    std::string s = item;
+    if (s.rfind("ITEM_", 0) == 0) s = s.substr(5);
+    std::string out; bool cap = true;
+    for (char c : s) {
+        if (c == '_') { out += ' '; cap = true; }
+        else if (cap) { out += (char)std::toupper((unsigned char)c); cap = false; }
+        else out += (char)std::tolower((unsigned char)c);
+    }
+    return out;
+}
+
+// `pokemart <label>` (the mart buy screen): the VM can't drive a scrolling
+// item list + quantity stepper itself (same reason as StarterSelect and
+// YesNoPrompt above), so this shows a real shop UI built from the map's
+// item list (ScriptVM::shop_items()) and GameState's money/bag, then calls
+// ScriptVM::close_shop() once the player leaves.
+struct Shop {
+    enum Stage { LIST, QTY, MSG };
+    Stage stage = LIST;
+    bool open_ = false, done_ = false;
+    std::vector<std::string> items;
+    int cursor = 0, qty = 1;
+    GameState* gs = nullptr;
+    const std::unordered_map<std::string, int>* prices = nullptr;
+    sf::Font font; bool font_ok = false;
+    std::string flash;   // transient feedback ("Gekauft!" / "Nicht genug Geld!")
+
+    bool load() { return font_ok = font.loadFromFile("assets/fonts/DejaVuSans.ttf"); }
+    void configure(GameState* g, const std::unordered_map<std::string, int>* p) {
+        this->gs = g; this->prices = p;
+    }
+    bool active() const { return open_; }
+    bool done() const { return done_; }
+    void ack() { done_ = false; }
+
+    void open(const std::vector<std::string>& list) {
+        items = list; cursor = 0; qty = 1; stage = LIST;
+        open_ = true; done_ = false; flash.clear();
+    }
+
+    int price_of(const std::string& item) const {
+        if (!prices) return 0;
+        auto it = prices->find(item);
+        return it == prices->end() ? 0 : it->second;
+    }
+
+    void input(BtnInput b) {
+        if (stage == MSG) {
+            if (b == BTN_CONFIRM) stage = LIST;
+            return;
+        }
+        int n = (int)items.size();   // row `n` is the trailing "Verlassen"
+        if (stage == LIST) {
+            if (b == BTN_UP && cursor > 0) cursor--;
+            else if (b == BTN_DOWN && cursor < n) cursor++;
+            else if (b == BTN_CONFIRM) {
+                if (cursor == n) { open_ = false; done_ = true; return; }
+                int price = price_of(items[cursor]);
+                if (price <= 0 || !gs || gs->money < price) {
+                    flash = "Nicht genug Geld!"; stage = MSG; return;
+                }
+                qty = 1; stage = QTY;
+            }
+        } else if (stage == QTY) {
+            int price = price_of(items[cursor]);
+            int max_afford = price > 0 && gs ? gs->money / price : 1;
+            int cap = std::min(99, std::max(1, max_afford));
+            if (b == BTN_UP && qty < cap) qty++;
+            else if (b == BTN_DOWN && qty > 1) qty--;
+            else if (b == BTN_LEFT) stage = LIST;
+            else if (b == BTN_CONFIRM && gs) {
+                gs->money -= price * qty;
+                gs->give_item(items[cursor], qty);
+                flash = "Gekauft: " + item_display_name(items[cursor]) +
+                        " x" + std::to_string(qty) + "!";
+                stage = MSG;
+            }
+        }
+    }
+
+    void draw(sf::RenderTarget& target) {
+        if (!open_ || !font_ok) return;
+        sf::View saved = target.getView();
+        target.setView(target.getDefaultView());
+        sf::Vector2f size = target.getView().getSize();
+        sf::RectangleShape bg(size);
+        bg.setFillColor(sf::Color(20, 28, 48, 250));
+        target.draw(bg);
+
+        sf::Text money_t("Geld: " + std::to_string(gs ? gs->money : 0) + " P", font, 18);
+        money_t.setPosition(20, 16);
+        money_t.setFillColor(sf::Color(255, 220, 120));
+        target.draw(money_t);
+
+        if (stage == MSG) {
+            sf::Text t(sf::String::fromUtf8(flash.begin(), flash.end()), font, 20);
+            t.setPosition(size.x * 0.5f - 140, size.y * 0.5f - 10);
+            t.setFillColor(sf::Color::White);
+            target.draw(t);
+            sf::Text hint("[SPACE] weiter", font, 14);
+            hint.setPosition(size.x * 0.5f - 60, size.y * 0.5f + 30);
+            hint.setFillColor(sf::Color(180, 180, 180));
+            target.draw(hint);
+            target.setView(saved);
+            return;
+        }
+
+        float y0 = 60.f;
+        for (size_t i = 0; i < items.size(); ++i) {
+            bool sel = (int)i == cursor;
+            std::string line = item_display_name(items[i]) + "  " +
+                                std::to_string(price_of(items[i])) + " P";
+            sf::Text t((sel ? "> " : "  ") + line, font, 18);
+            t.setPosition(30, y0 + i * 26);
+            t.setFillColor(sel ? sf::Color(150, 210, 255) : sf::Color::White);
+            target.draw(t);
+        }
+        {
+            bool sel = cursor == (int)items.size();
+            std::string s = std::string(sel ? "> " : "  ") + "Verlassen";
+            sf::Text t(sf::String::fromUtf8(s.begin(), s.end()), font, 18);
+            t.setPosition(30, y0 + items.size() * 26 + 10);
+            t.setFillColor(sel ? sf::Color(150, 210, 255) : sf::Color::White);
+            target.draw(t);
+        }
+
+        if (stage == QTY) {
+            std::string s = "Anzahl: " + std::to_string(qty) + "  (" +
+                             std::to_string(price_of(items[cursor]) * qty) + " P)";
+            sf::Text t(sf::String::fromUtf8(s.begin(), s.end()), font, 18);
+            t.setPosition(size.x * 0.5f - 60, size.y - 60);
+            t.setFillColor(sf::Color(150, 210, 255));
+            target.draw(t);
+            sf::Text hint("[W/S] Anzahl  [A] zurueck  [SPACE] kaufen", font, 14);
+            hint.setPosition(size.x * 0.5f - 150, size.y - 30);
+            hint.setFillColor(sf::Color(180, 180, 180));
+            target.draw(hint);
+        } else {
+            sf::Text hint("[W/S] waehlen  [SPACE] auswaehlen", font, 14);
+            hint.setPosition(30, size.y - 30);
+            hint.setFillColor(sf::Color(180, 180, 180));
+            target.draw(hint);
+        }
+        target.setView(saved);
+    }
+};
+
 int main() {
     const char* map_env = std::getenv("CODEMON_MAP");
     // Story start: the player wakes up in their bedroom on Brendan's House 2F
@@ -551,6 +701,19 @@ int main() {
     if (std::getenv("CODEMON_CHOOSE_STARTER")) starter.open();
     YesNoPrompt yesno;
     yesno.load();
+    std::unordered_map<std::string, int> item_prices;
+    {
+        std::ifstream pf("assets/items/prices.tsv");
+        std::string ln;
+        while (std::getline(pf, ln)) {
+            size_t tab = ln.find('\t');
+            if (tab == std::string::npos) continue;
+            item_prices[ln.substr(0, tab)] = std::atoi(ln.c_str() + tab + 1);
+        }
+    }
+    Shop shop;
+    shop.load();
+    shop.configure(&gs, &item_prices);
     // a few starting items so the bag is not empty
     gs.give_item("ITEM_POTION", 5);
     gs.give_item("ITEM_POKE_BALL", 10);
@@ -618,6 +781,8 @@ int main() {
                         if (tok) starter.input(token_btn(tok));
                     } else if (yesno.active()) {
                         if (tok) yesno.input(token_btn(tok));
+                    } else if (shop.active()) {
+                        if (tok) shop.input(token_btn(tok));
                     } else if (battle.active()) {
                         if (tok) battle.input(token_btn(tok));
                     } else if (games.active()) {
@@ -669,6 +834,14 @@ int main() {
                     } else if (!yesno.active() && vm.wants_yesno()) {
                         yesno.open();
                     }
+                    if (shop.done()) {
+                        vm.close_shop();
+                        shop.ack();
+                    } else if (!shop.active() && vm.wants_shop()) {
+                        const std::vector<std::string>* sitems = vm.shop_items();
+                        if (sitems && !sitems->empty()) shop.open(*sitems);
+                        else vm.close_shop();
+                    }
                     do_pending_warp(nullptr);
                     battle.tick(0.13f);
                     games.tick(0.13f);
@@ -677,6 +850,7 @@ int main() {
                 }
                 rt.clear(sf::Color(40, 72, 56));
                 if (starter.active()) starter.draw(rt);
+                else if (shop.active()) shop.draw(rt);
                 else if (battle.active()) battle.draw(rt);
                 else if (games.active()) games.draw(rt);
                 else {
@@ -728,6 +902,15 @@ int main() {
                     case sf::Keyboard::S: yesno.input(BTN_DOWN); break;
                     case sf::Keyboard::Space:
                     case sf::Keyboard::Return: yesno.input(BTN_CONFIRM); break;
+                    default: break;
+                    }
+                } else if (shop.active()) {
+                    switch (event.key.code) {
+                    case sf::Keyboard::W: shop.input(BTN_UP); break;
+                    case sf::Keyboard::S: shop.input(BTN_DOWN); break;
+                    case sf::Keyboard::A: shop.input(BTN_LEFT); break;
+                    case sf::Keyboard::Space:
+                    case sf::Keyboard::Return: shop.input(BTN_CONFIRM); break;
                     default: break;
                     }
                 } else if (battle.active()) {
@@ -804,6 +987,14 @@ int main() {
         } else if (!yesno.active() && vm.wants_yesno()) {
             yesno.open();
         }
+        if (shop.done()) {
+            vm.close_shop();
+            shop.ack();
+        } else if (!shop.active() && vm.wants_shop()) {
+            const std::vector<std::string>* sitems = vm.shop_items();
+            if (sitems && !sitems->empty()) shop.open(*sitems);
+            else vm.close_shop();
+        }
         do_pending_warp(&audio);
         float dt = clock.restart().asSeconds();
         if (vm.running()) vm.update(dt);
@@ -822,6 +1013,7 @@ int main() {
 
         scr.clear();
         if (starter.active()) { starter.draw(*scr.get_window()); }
+        else if (shop.active()) { shop.draw(*scr.get_window()); }
         else if (battle.active()) { battle.draw(*scr.get_window()); }
         else if (games.active()) { games.draw(*scr.get_window()); }
         else {

@@ -290,6 +290,10 @@ void ScriptVM::pump() {
 			this->warp_y = (argc >= 3) ? value_of(arg(2)) : -1;
 			this->pending_warp = true;
 			finish(); return;
+		} else if (op == "pokemart" && argc >= 1) {
+			this->pending_shop_label = arg(0);
+			this->st = WAIT_SHOP;
+			return;
 		} else if (op == "end") {
 			finish(); return;
 		}
@@ -315,6 +319,16 @@ void ScriptVM::on_key() {
 void ScriptVM::resolve_yesno(bool yes) {
 	if (this->st != WAIT_YESNO) return;
 	if (this->state) this->state->set_var("VAR_RESULT", yes ? 1 : 0);
+	this->st = RUN;
+	this->pump();
+}
+
+const std::vector<std::string>* ScriptVM::shop_items() const {
+	return this->map ? this->map->shop(this->pending_shop_label) : nullptr;
+}
+
+void ScriptVM::close_shop() {
+	if (this->st != WAIT_SHOP) return;
 	this->st = RUN;
 	this->pump();
 }

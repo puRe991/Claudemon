@@ -35,9 +35,9 @@ objscripts
 1 PetalburgCity_Mart_EventScript_Man
 2 PetalburgCity_Mart_EventScript_Boy
 3 PetalburgCity_Mart_EventScript_Woman
-movements
-PetalburgCity_Mart_Pokemart_Basic	delay
-PetalburgCity_Mart_Pokemart_Expanded	delay
+shops
+PetalburgCity_Mart_Pokemart_Basic	ITEM_POKE_BALL,ITEM_POTION,ITEM_ANTIDOTE,ITEM_PARALYZE_HEAL,ITEM_AWAKENING,ITEM_ESCAPE_ROPE,ITEM_REPEL,ITEM_X_SPEED,ITEM_X_ATTACK,ITEM_X_DEFEND,ITEM_ORANGE_MAIL
+PetalburgCity_Mart_Pokemart_Expanded	ITEM_POKE_BALL,ITEM_GREAT_BALL,ITEM_POTION,ITEM_SUPER_POTION,ITEM_ANTIDOTE,ITEM_PARALYZE_HEAL,ITEM_AWAKENING,ITEM_ESCAPE_ROPE,ITEM_REPEL,ITEM_X_SPEED,ITEM_X_ATTACK,ITEM_X_DEFEND,ITEM_ORANGE_MAIL
 scriptdefs
 = PetalburgCity_Mart_EventScript_Woman
 msgbox	Even if a POKéMON is weak now, it will grow stronger.The most important thing is love! Love for your POKéMON!

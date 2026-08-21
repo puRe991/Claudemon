@@ -32,8 +32,8 @@ objscripts
 0 MauvilleCity_Mart_EventScript_Clerk
 1 MauvilleCity_Mart_EventScript_ExpertM
 2 MauvilleCity_Mart_EventScript_Man
-movements
-MauvilleCity_Mart_Pokemart	delay
+shops
+MauvilleCity_Mart_Pokemart	ITEM_POKE_BALL,ITEM_GREAT_BALL,ITEM_SUPER_POTION,ITEM_ANTIDOTE,ITEM_PARALYZE_HEAL,ITEM_AWAKENING,ITEM_X_SPEED,ITEM_X_ATTACK,ITEM_X_DEFEND,ITEM_GUARD_SPEC,ITEM_DIRE_HIT,ITEM_X_ACCURACY
 scriptdefs
 = MauvilleCity_Mart_EventScript_Man
 msgbox	Use a certain move, or use an item instead…The TRAINER's decisions determine how battles turn out, I think.

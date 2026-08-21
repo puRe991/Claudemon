@@ -269,8 +269,9 @@ SlateportCity_Movement_SternWatchGabbyAndTyExit	delay,delay,delay,delay,delay,do
 SlateportCity_Movement_TyExit	down,left,left,left,down,left,left,left,left,left,left,left,left,end
 SlateportCity_PokemartDecor	delay
 SlateportCity_PokemartDecor_Dolls	delay
-SlateportCity_Pokemart_EnergyGuru	delay
-SlateportCity_Pokemart_PowerTMs	delay,delay
+shops
+SlateportCity_Pokemart_EnergyGuru	ITEM_PROTEIN,ITEM_IRON,ITEM_CARBOS,ITEM_ZINC,ITEM_CALCIUM,ITEM_HP_UP
+SlateportCity_Pokemart_PowerTMs	ITEM_TM_HIDDEN_POWER,ITEM_TM_SECRET_POWER
 scriptdefs
 = SlateportCity_EventScript_ScottScene
 lockall

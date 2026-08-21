@@ -35,8 +35,8 @@ objscripts
 1 MossdeepCity_Mart_EventScript_Woman
 2 MossdeepCity_Mart_EventScript_Boy
 3 MossdeepCity_Mart_EventScript_Sailor
-movements
-MossdeepCity_Mart_Pokemart	delay
+shops
+MossdeepCity_Mart_Pokemart	ITEM_ULTRA_BALL,ITEM_NET_BALL,ITEM_DIVE_BALL,ITEM_HYPER_POTION,ITEM_FULL_HEAL,ITEM_REVIVE,ITEM_MAX_REPEL,ITEM_X_ATTACK,ITEM_X_DEFEND
 scriptdefs
 = MossdeepCity_Mart_EventScript_Sailor
 msgbox	The NET and DIVE BALLS are rare POKé BALLS that are only made in MOSSDEEP.A NET BALL is effective against BUG-type and WATER-type POKéMON.A DIVE BALL works best on POKéMON at the bottom of the sea.

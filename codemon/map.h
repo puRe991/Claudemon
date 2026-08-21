@@ -101,6 +101,7 @@ private:
 
 	std::map<std::string, std::vector<Instr>> script_defs;   // label -> instructions
 	std::map<std::string, std::vector<std::string>> move_defs; // label -> actions
+	std::map<std::string, std::vector<std::string>> shop_defs; // label -> ITEM_* ids
 	std::unordered_map<int, std::string> npc_script_map;      // npc index -> label
 	std::vector<ScriptTrigger> script_triggers;
 	std::vector<LoadTrigger> load_triggers;
@@ -158,6 +159,8 @@ public:
 	bool has_script(const std::string& label) const;
 	const std::vector<Instr>& script(const std::string& label) const;
 	const std::vector<std::string>& movement(const std::string& label) const;
+	// `pokemart <label>`'s item list, or null if the label isn't a shop.
+	const std::vector<std::string>* shop(const std::string& label) const;
 	std::string npc_script(int npc_index) const;         // "" if none
 	const ScriptTrigger* trigger_at(int tile_x, int tile_y) const;
 	const std::vector<LoadTrigger>& on_load_triggers() const { return this->load_triggers; }

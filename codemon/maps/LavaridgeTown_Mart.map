@@ -32,8 +32,8 @@ objscripts
 0 LavaridgeTown_Mart_EventScript_Clerk
 1 LavaridgeTown_Mart_EventScript_ExpertM
 2 LavaridgeTown_Mart_EventScript_OldWoman
-movements
-LavaridgeTown_Mart_Pokemart	delay
+shops
+LavaridgeTown_Mart_Pokemart	ITEM_GREAT_BALL,ITEM_SUPER_POTION,ITEM_ANTIDOTE,ITEM_PARALYZE_HEAL,ITEM_AWAKENING,ITEM_BURN_HEAL,ITEM_REVIVE,ITEM_SUPER_REPEL,ITEM_X_SPEED
 scriptdefs
 = LavaridgeTown_Mart_EventScript_OldWoman
 msgbox	On MT. CHIMNEY's peak, there's a local specialty that you can buy only there.Give it to a POKéMON--it will be elated.
