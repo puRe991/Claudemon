@@ -260,6 +260,17 @@ void ScriptVM::pump() {
 			} else if (fn == "ChooseStarter") {
 				this->st = WAIT_STARTER;
 				return;
+			} else if (fn == "ScriptMenu_CreateStartMenuForPokenavTutorial") {
+				// Rustboro's "here's how to use the PokeNav" tutorial opens
+				// the real START menu and waits for the player to pick
+				// POKeNAV, looping (via switch VAR_RESULT) on any other
+				// choice. We can't drive that real menu from here, and
+				// VAR_RESULT's default (0) is one of the looping cases, so
+				// left alone this hangs the one-time tutorial forever and
+				// with it VAR_RUSTBORO_CITY_STATE (blocking the Devon Corp
+				// Pokenav hand-off and, later, the Rustboro rival battle).
+				// Answer as if the player had picked POKeNAV immediately.
+				this->state->set_var("VAR_RESULT", 3);
 			}
 			// unknown specials: no-op (cannot run arbitrary GBA C)
 		} else if ((op == "warp" || op == "warpdoor" || op == "warphole" ||
