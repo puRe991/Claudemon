@@ -23,7 +23,7 @@ enum BtnInput { BTN_UP, BTN_DOWN, BTN_LEFT, BTN_RIGHT, BTN_CONFIRM };
 class Battle
 {
 private:
-	enum Phase { INACTIVE, MSG, ACTION, MOVE };
+	enum Phase { INACTIVE, MSG, ACTION, MOVE, SWITCH };
 
 	BattleData* data;
 	std::mt19937* rng;
@@ -35,11 +35,21 @@ private:
 	UiFrame frame;
 
 	Mon* player;                 // owned by caller; mutated here
+	size_t active_idx;            // player's index into *team
 	Mon enemy;
 	bool is_trainer;
 	std::string enemy_title;     // "" for wild, trainer display name otherwise
 	std::vector<std::pair<std::string, int>> party;   // remaining trainer mons
 	size_t party_idx;
+
+	int switch_cursor;            // selected row in the SWITCH party list
+	bool forced_switch;           // true when the active mon just fainted (no cancel)
+	bool has_healthy_reserve() const;
+	// Common "active mon just fainted" handling: force a switch if the team
+	// has another healthy member, else end the battle in a loss.
+	void handle_player_faint();
+	void open_switch();           // POKéMON chosen from the action menu
+	void do_switch(int idx);      // send out team[idx]
 
 	std::vector<std::string> log;
 	size_t log_pos;

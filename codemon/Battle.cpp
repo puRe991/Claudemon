@@ -5,8 +5,9 @@
 
 Battle::Battle()
 	: data(nullptr), rng(nullptr), gs(nullptr), team(nullptr), box(nullptr),
-	  action_cursor(0), font_ok(false), player(nullptr),
-	  is_trainer(false), party_idx(0), log_pos(0), phase(INACTIVE),
+	  action_cursor(0), font_ok(false), player(nullptr), active_idx(0),
+	  is_trainer(false), party_idx(0), switch_cursor(0), forced_switch(false),
+	  log_pos(0), phase(INACTIVE),
 	  after_msg(INACTIVE), cursor(0), over(false), victory(false),
 	  has_trainer_pic(false), intro_shown(false),
 	  shake_t(0.f), shake_side(0), prev_ehp(0), prev_php(0) {}
@@ -77,6 +78,8 @@ void Battle::show_messages(Phase next) {
 bool Battle::start_wild(const std::string& species, int level, Mon* pm) {
 	if (!this->data || !this->data->has_species(species)) return false;
 	this->player = pm;
+	this->active_idx = 0;
+	this->forced_switch = false;
 	this->is_trainer = false;
 	this->enemy_title.clear();
 	this->party.clear(); this->party_idx = 0;
@@ -98,6 +101,8 @@ bool Battle::start_trainer(const std::string& trainer_id, const std::string& nam
 	auto pty = this->data->trainer_party(trainer_id);
 	if (pty.empty()) pty.push_back({"POOCHYENA", 12});   // fallback opponent
 	this->player = pm;
+	this->active_idx = 0;
+	this->forced_switch = false;
 	this->is_trainer = true;
 	this->enemy_title = name.empty() ? "TRAINER" : name;
 	this->party = pty; this->party_idx = 0;
@@ -170,10 +175,7 @@ void Battle::resolve_turn(const std::string& player_move) {
 
 	// outcome
 	if (this->player->fainted()) {
-		queue(nice(this->player->species) + " wurde besiegt!");
-		queue("Du hast den Kampf verloren ...");
-		this->over = true; this->victory = false;
-		show_messages(INACTIVE);
+		handle_player_faint();
 		return;
 	}
 	if (this->enemy.fainted()) {
@@ -210,12 +212,13 @@ void Battle::input(BtnInput b) {
 		return;
 	}
 	if (this->phase == ACTION) {
-		// FIGHT / BALL / RUN
+		// FIGHT / POKEMON / BALL / RUN
 		if (b == BTN_UP && this->action_cursor > 0) this->action_cursor--;
-		else if (b == BTN_DOWN && this->action_cursor < 2) this->action_cursor++;
+		else if (b == BTN_DOWN && this->action_cursor < 3) this->action_cursor++;
 		else if (b == BTN_CONFIRM) {
 			if (this->action_cursor == 0) { this->cursor = 0; this->phase = MOVE; }
-			else if (this->action_cursor == 1) throw_ball();
+			else if (this->action_cursor == 1) open_switch();
+			else if (this->action_cursor == 2) throw_ball();
 			else flee();
 		}
 		return;
@@ -228,20 +231,82 @@ void Battle::input(BtnInput b) {
 		else if (b == BTN_UP   && this->cursor >= 2) this->cursor -= 2;
 		else if (b == BTN_DOWN && this->cursor + 2 < n) this->cursor += 2;
 		else if (b == BTN_CONFIRM) resolve_turn(this->player->moves[this->cursor]);
+		return;
 	}
+	if (this->phase == SWITCH) {
+		int n = this->team ? (int)this->team->size() : 0;
+		if (b == BTN_UP && this->switch_cursor > 0) this->switch_cursor--;
+		else if (b == BTN_DOWN && this->switch_cursor + 1 < n) this->switch_cursor++;
+		else if (b == BTN_LEFT && !this->forced_switch) this->phase = ACTION;
+		else if (b == BTN_CONFIRM) do_switch(this->switch_cursor);
+	}
+}
+
+bool Battle::has_healthy_reserve() const {
+	if (!this->team) return false;
+	for (const Mon& m : *this->team) if (!m.fainted()) return true;
+	return false;
+}
+
+void Battle::handle_player_faint() {
+	queue(nice(this->player->species) + " wurde besiegt!");
+	if (has_healthy_reserve()) {
+		this->forced_switch = true;
+		this->switch_cursor = 0;
+		if (this->team)
+			for (size_t i = 0; i < this->team->size(); ++i)
+				if (!(*this->team)[i].fainted()) { this->switch_cursor = (int)i; break; }
+		show_messages(SWITCH);
+	} else {
+		queue("Du hast den Kampf verloren ...");
+		this->over = true; this->victory = false;
+		show_messages(INACTIVE);
+	}
+}
+
+void Battle::open_switch() {
+	this->switch_cursor = 0;
+	if (this->team)
+		for (size_t i = 0; i < this->team->size(); ++i)
+			if (i != this->active_idx) { this->switch_cursor = (int)i; break; }
+	this->forced_switch = false;
+	this->phase = SWITCH;
+}
+
+void Battle::do_switch(int idx) {
+	if (!this->team || idx < 0 || idx >= (int)this->team->size()) return;
+	if ((size_t)idx == this->active_idx) return;   // already out
+	Mon& chosen = (*this->team)[idx];
+	if (chosen.fainted()) {
+		this->log.clear();
+		queue(nice(chosen.species) + " kann nicht kämpfen!");
+		show_messages(SWITCH);
+		return;
+	}
+	bool was_forced = this->forced_switch;
+	this->active_idx = (size_t)idx;
+	this->player = &chosen;
+	load_sprites();
+	this->prev_php = this->player->hp; this->shake_t = 0.f;
+	this->log.clear();
+	queue("Los, " + nice(this->player->species) + "!");
+	if (was_forced) {
+		// the old mon's faint already used up this turn.
+		show_messages(ACTION);
+		return;
+	}
+	// a voluntary switch spends the turn -- the opponent gets a free hit.
+	std::string em = ai_move();
+	do_move(this->enemy, *this->player, em, nice(this->enemy.species));
+	if (this->player->fainted()) handle_player_faint();
+	else show_messages(ACTION);
 }
 
 void Battle::enemy_turn_after() {
 	std::string em = ai_move();
 	do_move(this->enemy, *this->player, em, nice(this->enemy.species));
-	if (this->player->fainted()) {
-		queue(nice(this->player->species) + " wurde besiegt!");
-		queue("Du hast den Kampf verloren ...");
-		this->over = true; this->victory = false;
-		show_messages(INACTIVE);
-	} else {
-		show_messages(ACTION);
-	}
+	if (this->player->fainted()) handle_player_faint();
+	else show_messages(ACTION);
 }
 
 void Battle::throw_ball() {
@@ -392,12 +457,12 @@ void Battle::draw(sf::RenderTarget& target) {
 	} else if (this->phase == ACTION) {
 		sf::Text q("Was soll " + nice(this->player->species) + " tun?", this->font, 20);
 		q.setPosition(tx, ty); q.setFillColor(body_col); target.draw(q);
-		const char* acts[] = {"KAMPF", "BALL", "FLUCHT"};
-		for (int i = 0; i < 3; ++i) {
+		static const std::string acts[] = {"KAMPF", "POKéMON", "BALL", "FLUCHT"};
+		for (int i = 0; i < 4; ++i) {
 			bool sel = i == this->action_cursor;
-			bool dis = (i != 0) && this->is_trainer;   // no catching/running trainers
+			bool dis = (i == 2 || i == 3) && this->is_trainer;   // no catching/running trainers
 			if (sel) cursor_at(size.x * 0.46f, ty + i * 34);
-			sf::Text a(acts[i], this->font, 22);
+			sf::Text a(sf::String::fromUtf8(acts[i].begin(), acts[i].end()), this->font, 22);
 			a.setPosition(size.x * 0.46f, ty + i * 34);
 			a.setFillColor(dis ? dis_col : sel ? head_col : body_col);
 			target.draw(a);
@@ -431,6 +496,27 @@ void Battle::draw(sf::RenderTarget& target) {
 					badge.setPosition(mx + size.x * 0.19f, my + 2);
 					target.draw(badge);
 				}
+			}
+		}
+	} else if (this->phase == SWITCH) {
+		std::string qs = this->forced_switch ? "Wer soll als nächstes kämpfen?"
+		                                     : "POKéMON wählen:";
+		sf::Text q(sf::String::fromUtf8(qs.begin(), qs.end()), this->font, 18);
+		q.setPosition(tx, ty - 4); q.setFillColor(body_col); target.draw(q);
+		if (this->team) {
+			int n = std::min((int)this->team->size(), 6);
+			for (int i = 0; i < n; ++i) {
+				const Mon& m = (*this->team)[i];
+				bool sel = i == this->switch_cursor;
+				bool cur = (size_t)i == this->active_idx;
+				float ry = ty + 22 + i * 18;
+				if (sel) cursor_at(tx + 14, ry);
+				sf::Color col = m.fainted() ? dis_col : cur ? muted_col : body_col;
+				std::string label = nice(m.species) + " Lv" + std::to_string(m.level) +
+				                     (cur ? " (im Kampf)" : m.fainted() ? " (K.O.)" : "");
+				sf::Text t(sf::String::fromUtf8(label.begin(), label.end()), this->font, 14);
+				t.setPosition(tx + 28, ry); t.setFillColor(col); target.draw(t);
+				draw_hp_bar(target, size.x * 0.62f, ry + 1, 130, 10, m.hp, m.max_hp);
 			}
 		}
 	}
