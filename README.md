@@ -258,6 +258,8 @@ has been verified either by an automated test or by headless screenshot
   level-up movesets (411 learnsets), **level-up evolution** (172 paths)
 * TM/HM teaching from the bag, gated by real per-species learnsets (372
   entries); TMs consumed on use, HMs reusable
+* Using healing/revive bag items (Potion family, soft drinks, berries,
+  Revive/Max Revive) on a chosen party member, with real Gen-3 heal amounts
 * Shops (`pokemart`) and Ja/Nein prompts via the VM block-and-resume pattern
 * Story-accurate start (Brendan's House 2F, canonical heal-location tile)
 * UI: start menu (Bag/Party/PC Box/PokéNav), map-name banner, HP bars,
@@ -293,11 +295,13 @@ has been verified either by an automated test or by headless screenshot
 * **Text interpolation** (`bufferstring` family): the importer bakes static
   values into dialog at import time, but genuinely dynamic values (e.g.
   Birch's Pokédex-seen/caught rating) render with the number missing
+* **Status-curing bag items** (Antidote, Paralyze Heal, Full Heal, ...) are
+  still not usable — there are no status conditions in the battle system yet
+  for them to cure (see above), so faking a cure would be dishonest; they'll
+  become real once status conditions exist
 
 ### ❌ Not implemented yet
 
-* Using bag items (Potions, status healers, Poké Balls, berries) outside the
-  TM/HM-teaching flow
 * `specialvar` opcode (breaks `GetBattleOutcome`, rematch checks, Pokérus,
   breeding-state checks and more — 361 uses across the maps)
 * Scripted legendary/static encounters (`setwildbattle`/`dowildbattle`:
@@ -344,8 +348,8 @@ screenshot), not just written and assumed correct.
 
 **Core loop**
 - [x] Save/load system
-- [ ] Usable bag items outside TM/HM teaching (Potions, status healers,
-      berries, Poké Balls)
+- [x] Usable healing/revive bag items (Potions, berries, Revive) outside
+      TM/HM teaching — status healers still can't act, see above
 - [ ] `specialvar` opcode (`GetBattleOutcome`, rematch checks, Pokérus, ...)
 - [ ] Scripted legendary/static encounters (`setwildbattle`/`dowildbattle`)
 - [ ] Gift/fossil Pokémon (`givemon`)
