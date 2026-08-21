@@ -167,4 +167,9 @@ public:
 
 	// Runtime metatile edit (setmetatile). Returns false if out of bounds.
 	bool set_metatile(int tile_x, int tile_y, int id, bool impassable);
+	// Raw metatile id at (tile_x, tile_y), or -1 if out of bounds. Same
+	// numbering as pokeemerald's own metatile ids (imported verbatim), so
+	// engine code can recognize specific metatiles (e.g. the Mossdeep Gym
+	// rotating-tile puzzle's colored arrow tiles) the way the original does.
+	int metatile_at(int tile_x, int tile_y) const;
 };

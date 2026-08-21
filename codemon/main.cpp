@@ -824,7 +824,7 @@ int main() {
     battle.set_capture(&gs, &team, &pc_box);
     ScriptVM vm;
     vm.set_battle_data(&bdata, &team);
-    vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player);
+    vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player, &sess->actors);
     run_load_triggers(sess->map, gs, vm);
     if (const char* ts = std::getenv("CODEMON_TEST_SCRIPT")) vm.start(ts, sess->player);
     Menu menu;
@@ -895,7 +895,7 @@ int main() {
         if (!ns->map->ready()) { free_session(ns); return; }
         free_session(sess);
         sess = ns;
-        vm.configure(sess->map, &gs, &box, &battle, aud, sess->player);
+        vm.configure(sess->map, &gs, &box, &battle, aud, sess->player, &sess->actors);
         run_load_triggers(sess->map, gs, vm);
         on_map_change(sess->path);
     };
@@ -947,7 +947,7 @@ int main() {
                             Session* before = sess;
                             sess = player_step(sess, char_to_dir(tok), nullptr, &gs);
                             if (sess != before) {
-                                vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player);
+                                vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player, &sess->actors);
     run_load_triggers(sess->map, gs, vm);
                                 on_map_change(sess->path);
                             } else if (sess->player->get_tile_x() != pbx ||
@@ -1027,7 +1027,7 @@ int main() {
 
     // --- interactive game --------------------------------------------------
     Audio audio; audio.load("assets");
-    vm.configure(sess->map, &gs, &box, &battle, &audio, sess->player);
+    vm.configure(sess->map, &gs, &box, &battle, &audio, sess->player, &sess->actors);
     run_load_triggers(sess->map, gs, vm);
     Window scr(win_w, win_h, "Codemon!");
 
@@ -1111,7 +1111,7 @@ int main() {
                         Session* before = sess;
                         sess = player_step(sess, dir, &audio, &gs);
                         if (sess != before) {
-                            vm.configure(sess->map, &gs, &box, &battle, &audio, sess->player);
+                            vm.configure(sess->map, &gs, &box, &battle, &audio, sess->player, &sess->actors);
     run_load_triggers(sess->map, gs, vm);
                             on_map_change(sess->path);
                         } else if (sess->player->get_tile_x() != pbx ||

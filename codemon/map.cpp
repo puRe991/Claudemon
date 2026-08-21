@@ -356,6 +356,11 @@ bool Map::set_metatile(int tile_x, int tile_y, int id, bool impassable) {
 	return true;
 }
 
+int Map::metatile_at(int tile_x, int tile_y) const {
+	if (!in_bounds(tile_x, tile_y)) return -1;
+	return this->tile_map[this->index(tile_x, tile_y)];
+}
+
 bool Map::ready() const {
 	return this->tileset.is_loaded() &&
 	       this->tile_map.size() == (size_t)this->dimensions.get_x() * this->dimensions.get_y() &&

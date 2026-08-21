@@ -32,8 +32,12 @@ class ScriptVM
 public:
 	ScriptVM();
 
-	void configure(Map* map, GameState* state, DialogBox* box,
-	               Battle* battle, Audio* audio, Character* player);
+	// `actors` is every Character on the current map (player + NPCs), for
+	// opcodes that need to find/move objects by world position rather than
+	// LOCALID (the Mossdeep Gym rotating-tile puzzle).
+	void configure(Map* map, GameState* state, DialogBox* box, Battle* battle,
+	               Audio* audio, Character* player,
+	               std::vector<Character*>* actors = nullptr);
 
 	// Battle hooks for trainerbattle (set once at startup). `team` is the
 	// player's whole party (not just the lead mon) so `special
@@ -96,6 +100,15 @@ private:
 	Map* map; GameState* state; DialogBox* box; Battle* battle;
 	Audio* audio; Character* player; Character* owner;
 	BattleData* bdata; std::vector<Mon>* team;
+	std::vector<Character*>* actors = nullptr;
+
+	// Mossdeep Gym's (and Trick House Puzzle #7's) rotating-tile puzzle:
+	// `moverotatingtileobjects` records which characters actually shifted
+	// (queuing their movement), so the following `turnrotatingtileobjects`
+	// knows which ones to re-face. `rot_trick_house` picks which of the two
+	// real puzzles' base tile id to check, set by `initrotatingtilepuzzle`.
+	std::vector<Character*> rot_objects;
+	bool rot_trick_house = false;
 
 	State st;
 	std::string cur;                 // current script label

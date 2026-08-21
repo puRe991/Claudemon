@@ -7,9 +7,9 @@ ScriptVM::ScriptVM()
 	  st(IDLE), ip(0), switch_value(0), move_timer(0.f) {}
 
 void ScriptVM::configure(Map* m, GameState* s, DialogBox* b, Battle* bt,
-                         Audio* a, Character* p) {
+                         Audio* a, Character* p, std::vector<Character*>* act) {
 	this->map = m; this->state = s; this->box = b; this->battle = bt;
-	this->audio = a; this->player = p;
+	this->audio = a; this->player = p; this->actors = act;
 }
 
 bool ScriptVM::running() const { return this->st != IDLE; }
@@ -259,6 +259,59 @@ void ScriptVM::pump() {
 			bool solid = (argc >= 4) ? value_of(arg(3)) != 0 : false;
 			this->map->set_metatile(value_of(arg(0)), value_of(arg(1)),
 			                        value_of(arg(2)), solid);
+		} else if (op == "initrotatingtilepuzzle") {
+			this->rot_objects.clear();
+			this->rot_trick_house = argc >= 1 && value_of(arg(0)) != 0;
+		} else if (op == "freerotatingtilepuzzle") {
+			this->rot_objects.clear();
+		} else if (op == "moverotatingtileobjects" && argc >= 1) {
+			// Mossdeep Gym's rotating floor (and Trick House Puzzle #7's
+			// identical mechanic): pokeemerald's own puzzle logic
+			// (src/rotating_tile_puzzle.c) is entirely metatile-id-driven --
+			// any character standing on one of the 4 colored arrow tiles for
+			// this switch's puzzle number gets shifted one step the way its
+			// arrow points, no per-map layout data needed. Both base tile
+			// ids verified directly against the imported .map files (Mossdeep
+			// 592-631, Trick House 664-703; 8 per color row: +0 right, +1
+			// down, +2 left, +3 up).
+			static const int PUZZLE_TILE_BASE = 592;         // METATILE_MossdeepGym_YellowArrow_Right
+			static const int TRICKHOUSE_TILE_BASE = 664;     // METATILE_TrickHousePuzzle_Arrow_YellowOnWhite_Right
+			static const char* SHIFT[4] = {"right", "down", "left", "up"};
+			int base = (this->rot_trick_house ? TRICKHOUSE_TILE_BASE : PUZZLE_TILE_BASE)
+			           + value_of(arg(0)) * 8;
+			this->rot_objects.clear();
+			if (this->actors && this->map) {
+				for (Character* ch : *this->actors) {
+					if (!ch) continue;
+					int mt = this->map->metatile_at(ch->get_tile_x(), ch->get_tile_y());
+					if (mt < base || mt >= base + 4) continue;
+					MoveQ q; q.ch = ch; q.actions.push_back(SHIFT[mt - base]);
+					this->queues.push_back(q);
+					this->rot_objects.push_back(ch);
+				}
+			}
+		} else if (op == "turnrotatingtileobjects") {
+			// The puzzle only ever rotates counter-clockwise (pokeemerald's
+			// own comment: "can only move 1 step at a time" and always CCW),
+			// so any character that just shifted turns 90 degrees CCW; by
+			// now they've already stepped (Character::step sets facing to
+			// the walked direction), so this reads as East->Up, South->
+			// Right, West->Down, North->Left -- exactly TurnRotatingTile-
+			// Objects' ROTATE_COUNTERCLOCKWISE table.
+			for (Character* ch : this->rot_objects) {
+				if (!ch) continue;
+				const char* act = nullptr;
+				switch (ch->get_facing()) {
+					case DIR::E: act = "face_up"; break;
+					case DIR::S: act = "face_right"; break;
+					case DIR::W: act = "face_down"; break;
+					case DIR::N: act = "face_left"; break;
+					default: break;
+				}
+				if (!act) continue;
+				MoveQ q; q.ch = ch; q.actions.push_back(act);
+				this->queues.push_back(q);
+			}
 		} else if (op.rfind("trainerbattle", 0) == 0) {
 			// trainerbattle_single TRAINER_X, intro, lose[, winScript, flags...]
 			// trainerbattle TYPE, TRAINER_X, ... -- the optional winScript label
