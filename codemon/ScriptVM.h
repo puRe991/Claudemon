@@ -80,8 +80,18 @@ public:
 	const std::vector<std::string>* shop_items() const;
 	void close_shop();
 
+	// `dofieldeffect FLDEFF_POKECENTER_HEAL`: the nurse's glowing-Pokeball
+	// animation. The VM times it out on its own (see update()); this just
+	// lets the game loop know to draw the animation (HealFx in main.cpp)
+	// while it runs, sized to the party (one ball per mon).
+	bool wants_heal_fx() const { return this->st == WAIT_HEALFX; }
+	// Shared with HealFx in main.cpp so the animation and the VM's own
+	// block-then-resume timer run for the same length of time.
+	static constexpr float HEALFX_DURATION = 1.5f;
+
 private:
-	enum State { IDLE, RUN, WAIT_MSG, WAIT_MOVE, WAIT_BATTLE, WAIT_STARTER, WAIT_YESNO, WAIT_SHOP };
+	enum State { IDLE, RUN, WAIT_MSG, WAIT_MOVE, WAIT_BATTLE, WAIT_STARTER, WAIT_YESNO,
+	              WAIT_SHOP, WAIT_HEALFX };
 
 	Map* map; GameState* state; DialogBox* box; Battle* battle;
 	Audio* audio; Character* player; Character* owner;
@@ -96,6 +106,7 @@ private:
 	struct MoveQ { Character* ch; std::deque<std::string> actions; };
 	std::vector<MoveQ> queues;
 	float move_timer;
+	float healfx_timer = 0.f;
 	std::string pending_win_script;  // trainerbattle's post-victory script label, if any
 
 	bool pending_warp = false;

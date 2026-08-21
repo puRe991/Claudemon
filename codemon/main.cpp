@@ -349,7 +349,61 @@ static sf::View camera_for(Session* s) {
     return v;
 }
 
-static void draw_scene(sf::RenderTarget& target, Session* s) {
+// The Pokemon Center nurse's healing animation (pokeemerald's
+// FLDEFF_POKECENTER_HEAL, src/field_effect.c CreateGlowingPokeballsEffect +
+// CreatePokecenterMonitorSprite): one small Poke Ball per party member
+// glows in front of the counter while the healing machine's screen blinks.
+// ScriptVM blocks on `dofieldeffect FLDEFF_POKECENTER_HEAL` and times itself
+// out (ScriptVM::HEALFX_DURATION); this just needs to look busy for exactly
+// that long, drawn in world space so it stays put next to the player like
+// any other actor.
+struct HealFx {
+    bool active_ = false;
+    float t = 0.f;
+    int n_balls = 1;
+    sf::Texture ball_tex, mon0_tex, mon1_tex;
+    bool ok = false;
+
+    void load() {
+        ok = ball_tex.loadFromFile("assets/graphics/field_effects/pics/pokeball_glow.png");
+        ok = mon0_tex.loadFromFile("assets/graphics/field_effects/pics/pokecenter_monitor/0.png") && ok;
+        ok = mon1_tex.loadFromFile("assets/graphics/field_effects/pics/pokecenter_monitor/1.png") && ok;
+        ball_tex.setSmooth(false); mon0_tex.setSmooth(false); mon1_tex.setSmooth(false);
+    }
+    void start(int party_size) {
+        active_ = true; t = 0.f;
+        n_balls = std::max(1, std::min(6, party_size));
+    }
+    bool active() const { return active_; }
+    void tick(float dt) {
+        if (!active_) return;
+        t += dt;
+        if (t >= ScriptVM::HEALFX_DURATION) active_ = false;
+    }
+
+    // Centered above the world pixel position (wx,wy) -- call while the
+    // target's view is still the world camera (i.e. from inside draw_scene).
+    void draw(sf::RenderTarget& target, float wx, float wy) const {
+        if (!active_ || !ok) return;
+        const float scale = 2.5f;
+        bool bright = std::fmod(t, 0.3f) < 0.15f;
+        float bw = 8.f * scale;
+        float total = n_balls * bw;
+        for (int i = 0; i < n_balls; ++i) {
+            sf::Sprite s(ball_tex);
+            s.setScale(scale, scale);
+            s.setColor(bright ? sf::Color::White : sf::Color(255, 255, 255, 110));
+            s.setPosition(wx - total / 2.f + i * bw, wy - 30.f);
+            target.draw(s);
+        }
+        sf::Sprite ms(bright ? mon1_tex : mon0_tex);
+        ms.setScale(scale, scale);
+        ms.setPosition(wx - 30.f, wy - 54.f);
+        target.draw(ms);
+    }
+};
+
+static void draw_scene(sf::RenderTarget& target, Session* s, const HealFx* healfx = nullptr) {
     target.setView(camera_for(s));
     s->map->render_to(target);
     std::sort(s->actors.begin(), s->actors.end(),
@@ -357,6 +411,12 @@ static void draw_scene(sf::RenderTarget& target, Session* s) {
     for (Character* a : s->actors) {
         a->update_sprite(s->map->get_tile_size());
         target.draw(*a->get_current_sprite());
+    }
+    if (healfx && healfx->active() && s->player) {
+        int tp = s->map->get_tile_size();
+        float wx = s->player->get_tile_x() * tp + tp * 0.5f;
+        float wy = s->player->get_tile_y() * tp + tp * 0.5f;
+        healfx->draw(target, wx, wy);
     }
 }
 
@@ -777,6 +837,8 @@ int main() {
     Shop shop;
     shop.load();
     shop.configure(&gs, &item_prices);
+    HealFx healfx;
+    healfx.load();
     // a few starting items so the bag is not empty
     gs.give_item("ITEM_POTION", 5);
     gs.give_item("ITEM_POKE_BALL", 10);
@@ -905,6 +967,8 @@ int main() {
                         if (sitems && !sitems->empty()) shop.open(*sitems);
                         else vm.close_shop();
                     }
+                    if (!healfx.active() && vm.wants_heal_fx()) healfx.start((int)team.size());
+                    healfx.tick(0.13f);
                     do_pending_warp(nullptr);
                     battle.tick(0.13f);
                     games.tick(0.13f);
@@ -917,7 +981,7 @@ int main() {
                 else if (battle.active()) battle.draw(rt);
                 else if (games.active()) games.draw(rt);
                 else {
-                    draw_scene(rt, sess); box.draw(rt);
+                    draw_scene(rt, sess, &healfx); box.draw(rt);
                     draw_banner(rt, ban_font, banner, banner_t);
                     menu.draw(rt);
                     if (yesno.active()) yesno.draw(rt);
@@ -1058,8 +1122,10 @@ int main() {
             if (sitems && !sitems->empty()) shop.open(*sitems);
             else vm.close_shop();
         }
+        if (!healfx.active() && vm.wants_heal_fx()) healfx.start((int)team.size());
         do_pending_warp(&audio);
         float dt = clock.restart().asSeconds();
+        healfx.tick(dt);
         if (vm.running()) vm.update(dt);
         battle.tick(dt);
         games.tick(dt);
@@ -1080,7 +1146,7 @@ int main() {
         else if (battle.active()) { battle.draw(*scr.get_window()); }
         else if (games.active()) { games.draw(*scr.get_window()); }
         else {
-            draw_scene(*scr.get_window(), sess);
+            draw_scene(*scr.get_window(), sess, &healfx);
             box.draw(*scr.get_window());
             draw_banner(*scr.get_window(), ban_font, banner, banner_t);
             menu.draw(*scr.get_window());

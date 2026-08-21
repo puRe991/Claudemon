@@ -295,6 +295,13 @@ void ScriptVM::pump() {
 			this->pending_shop_label = arg(0);
 			this->st = WAIT_SHOP;
 			return;
+		} else if (op == "dofieldeffect" && argc >= 1 && arg(0) == "FLDEFF_POKECENTER_HEAL") {
+			// Real duration is however long CreateGlowingPokeballsEffect's
+			// place -> flash -> chime sequence takes; HEALFX_DURATION below
+			// mirrors that timing for the game loop's HealFx animation.
+			this->healfx_timer = 0.f;
+			this->st = WAIT_HEALFX;
+			return;
 		} else if (op == "end") {
 			finish(); return;
 		}
@@ -346,6 +353,11 @@ void ScriptVM::update(float dt) {
 			if (won && !ws.empty()) jump(ws);
 			this->pump();
 		}
+		return;
+	}
+	if (this->st == WAIT_HEALFX) {
+		this->healfx_timer += dt;
+		if (this->healfx_timer >= HEALFX_DURATION) { this->st = RUN; this->pump(); }
 		return;
 	}
 	if (this->st != WAIT_MOVE) return;
