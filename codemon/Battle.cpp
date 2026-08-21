@@ -9,6 +9,7 @@ Battle::Battle()
 	  is_trainer(false), party_idx(0), switch_cursor(0), forced_switch(false),
 	  log_pos(0), phase(INACTIVE),
 	  after_msg(INACTIVE), cursor(0), over(false), victory(false),
+	  last_outcome(OUTCOME_NONE),
 	  has_trainer_pic(false), intro_shown(false),
 	  shake_t(0.f), shake_side(0), prev_ehp(0), prev_php(0) {}
 
@@ -85,6 +86,7 @@ bool Battle::start_wild(const std::string& species, int level, Mon* pm) {
 	this->party.clear(); this->party_idx = 0;
 	this->enemy = this->data->make_mon(species, level);
 	this->over = this->victory = false;
+	this->last_outcome = OUTCOME_NONE;
 	this->cursor = 0;
 	load_sprites();
 	this->prev_ehp = this->enemy.hp; this->prev_php = this->player->hp; this->shake_t = 0.f;
@@ -108,6 +110,7 @@ bool Battle::start_trainer(const std::string& trainer_id, const std::string& nam
 	this->party = pty; this->party_idx = 0;
 	this->enemy = this->data->make_mon(pty[0].first, pty[0].second);
 	this->over = this->victory = false;
+	this->last_outcome = OUTCOME_NONE;
 	this->cursor = 0;
 	// trainer front sprite for the intro
 	std::string pic = this->data->trainer_pic(trainer_id);
@@ -193,6 +196,7 @@ void Battle::resolve_turn(const std::string& player_move) {
 		queue(this->is_trainer ? ("Du hast " + this->enemy_title + " besiegt!")
 		                       : "Das wilde POKéMON wurde besiegt!");
 		this->over = true; this->victory = true;
+		this->last_outcome = OUTCOME_WON;
 		show_messages(INACTIVE);
 		return;
 	}
@@ -260,6 +264,7 @@ void Battle::handle_player_faint() {
 	} else {
 		queue("Du hast den Kampf verloren ...");
 		this->over = true; this->victory = false;
+		this->last_outcome = OUTCOME_LOST;
 		show_messages(INACTIVE);
 	}
 }
@@ -330,6 +335,7 @@ void Battle::throw_ball() {
 		else if (this->box) { this->box->push_back(caught);
 			queue(nice(this->enemy.species) + " wurde zur PC-BOX geschickt."); }
 		this->over = true; this->victory = true;
+		this->last_outcome = OUTCOME_CAUGHT;
 		show_messages(INACTIVE);
 	} else {
 		queue(nice(this->enemy.species) + " hat sich befreit!");
@@ -344,6 +350,7 @@ void Battle::flee() {
 	}
 	this->log.clear(); queue("Erfolgreich entkommen!");
 	this->over = true; this->victory = false;
+	this->last_outcome = OUTCOME_RAN;
 	show_messages(INACTIVE);
 }
 

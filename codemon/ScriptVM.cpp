@@ -58,6 +58,18 @@ int ScriptVM::value_of(const std::string& s) const {
 	if (s == "DIR_WEST")  return 3;
 	if (s == "DIR_EAST")  return 4;
 	if (s == "VAR_FACING") return facing_to_dircode(this->player->get_facing());
+	// pokeemerald's B_OUTCOME_* (include/battle.h), read back via
+	// `specialvar VAR_RESULT GetBattleOutcome` after a battle.
+	if (s == "B_OUTCOME_WON") return 1;
+	if (s == "B_OUTCOME_LOST") return 2;
+	if (s == "B_OUTCOME_DREW") return 3;
+	if (s == "B_OUTCOME_RAN") return 4;
+	if (s == "B_OUTCOME_PLAYER_TELEPORTED") return 5;
+	if (s == "B_OUTCOME_MON_FLED") return 6;
+	if (s == "B_OUTCOME_CAUGHT") return 7;
+	if (s == "B_OUTCOME_NO_SAFARI_BALLS") return 8;
+	if (s == "B_OUTCOME_FORFEITED") return 9;
+	if (s == "B_OUTCOME_MON_TELEPORTED") return 10;
 	if ((s[0] == '-' && s.size() > 1 && std::isdigit((unsigned char)s[1])) ||
 	    std::isdigit((unsigned char)s[0]))
 		return std::atoi(s.c_str());
@@ -107,6 +119,21 @@ void ScriptVM::resolve_starter(const std::string& species) {
 	}
 	this->st = RUN;
 	this->pump();
+}
+
+bool ScriptVM::start_pending_wild_battle() {
+	if (this->pending_wild_species.empty() || !this->battle || !this->bdata ||
+	    !this->team || this->team->empty()) {
+		this->pending_wild_species.clear();
+		return false;
+	}
+	this->pending_win_script.clear();   // wild battles never run a trainerbattle win-script
+	bool started = this->battle->start_wild(this->pending_wild_species,
+	                                        this->pending_wild_level, &(*this->team)[0]);
+	this->pending_wild_species.clear();
+	if (!started) return false;
+	this->st = WAIT_BATTLE;
+	return true;
 }
 
 void ScriptVM::apply_move_action(Character* ch, const std::string& act) {
@@ -253,6 +280,19 @@ void ScriptVM::pump() {
 			this->box->open(std::string(), "Ein TRAINER möchte kämpfen!");
 			this->st = WAIT_MSG;
 			return;
+		} else if (op == "setwildbattle" && argc >= 2) {
+			// Scripted wild battles (legendaries, Kecleon, the New Mauville
+			// Voltorb swarm): the species/level is set here, then a
+			// following `dowildbattle` (or a legendary-specific `special`,
+			// see below) actually starts it. BattleData's species table
+			// keys are bare names (no SPECIES_ prefix), same as everywhere
+			// else species show up in the imported scripts/encounter tables.
+			std::string sp = arg(0);
+			if (sp.rfind("SPECIES_", 0) == 0) sp = sp.substr(8);
+			this->pending_wild_species = sp;
+			this->pending_wild_level = value_of(arg(1));
+		} else if (op == "dowildbattle") {
+			if (start_pending_wild_battle()) return;
 		} else if (op == "checkplayergender") {
 			this->state->set_var("VAR_RESULT", 0);   // treat player as male
 		} else if (op == "special" || op == "special2") {
@@ -267,6 +307,11 @@ void ScriptVM::pump() {
 			} else if (fn == "ChooseStarter") {
 				this->st = WAIT_STARTER;
 				return;
+			} else if (fn == "StartRegiBattle" || fn == "BattleSetup_StartLegendaryBattle") {
+				// The Regis/Rayquaza/Kyogre/Groudon scripts call one of these
+				// (with special fanfare in the real game) instead of a plain
+				// `dowildbattle` to start the `setwildbattle`d encounter.
+				if (start_pending_wild_battle()) return;
 			} else if (fn == "ScriptMenu_CreateStartMenuForPokenavTutorial") {
 				// Rustboro's "here's how to use the PokeNav" tutorial opens
 				// the real START menu and waits for the player to pick
@@ -280,6 +325,34 @@ void ScriptVM::pump() {
 				this->state->set_var("VAR_RESULT", 3);
 			}
 			// unknown specials: no-op (cannot run arbitrary GBA C)
+		} else if (op == "specialvar" && argc >= 2) {
+			// specialvar VAR, Func: stores a native function's return value.
+			// Implement the ones with a clear, honest answer given what this
+			// engine actually models; everything else (contests, trading,
+			// breeding, the fan club, Trainer Hill, ...) defaults to 0/false
+			// since those systems don't exist here, so any script gated on
+			// them takes the "not available" branch instead of a fake one.
+			const std::string& var = arg(0);
+			const std::string& fn = arg(1);
+			int result = 0;
+			if (fn == "GetBattleOutcome" && this->battle) {
+				switch (this->battle->outcome()) {
+					case Battle::OUTCOME_WON:    result = 1; break;
+					case Battle::OUTCOME_LOST:   result = 2; break;
+					case Battle::OUTCOME_RAN:    result = 4; break;
+					case Battle::OUTCOME_CAUGHT: result = 7; break;
+					default: result = 2; break;
+				}
+			} else if (fn == "PlayerHasBerries" && this->state) {
+				for (const auto& kv : this->state->bag_items())
+					if (kv.second > 0 && kv.first.find("BERRY") != std::string::npos) { result = 1; break; }
+			} else if (fn == "PlayerNotAtTrainerHillEntrance") {
+				result = 1;   // Trainer Hill doesn't exist here, so never "at" it
+			}
+			// ShouldTryRematchBattle, ShouldShowBoxWasFullMessage (our PC box
+			// is a single unlimited list), GetPCBoxToSendMon (always box 0),
+			// IsPokerusInParty, CountPlayerTrainerStars, and the rest: 0.
+			this->state->set_var(var, result);
 		} else if ((op == "warp" || op == "warpdoor" || op == "warphole" ||
 		            op == "warpsilent" || op == "warpspinenter" ||
 		            op == "warpteleport" || op == "warpmossdeepgym" ||

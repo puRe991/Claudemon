@@ -221,8 +221,11 @@ xvfb-run -a ./build/codemon
 Key env vars: `CODEMON_MAP` (start map), `CODEMON_WALK` (a comma-separated
 token script: `N/S/E/W` move, `T` talk/advance dialog, `M` toggle menu, `G`
 toggle minigames), `CODEMON_FRAMES`, `CODEMON_FORCE_ENCOUNTER` /
-`CODEMON_NO_WILD`, and `CODEMON_GRANT_EXP` (grant the starter EXP, to see
-level-ups/evolution in one shot).
+`CODEMON_NO_WILD`, `CODEMON_GRANT_EXP` (grant the starter EXP, to see
+level-ups/evolution in one shot), `CODEMON_NO_SAVE` (ignore an existing
+`savegame.dat` and start fresh), and `CODEMON_TEST_SCRIPT` (run a script by
+its label immediately at startup — handy for exercising a specific event
+script, e.g. a legendary encounter, without navigating to it in-world).
 
 ## Testing
 

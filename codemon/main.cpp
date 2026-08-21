@@ -826,6 +826,7 @@ int main() {
     vm.set_battle_data(&bdata, &team);
     vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player);
     run_load_triggers(sess->map, gs, vm);
+    if (const char* ts = std::getenv("CODEMON_TEST_SCRIPT")) vm.start(ts, sess->player);
     Menu menu;
     menu.load_font();
     menu.configure(&gs, &team, &pc_box, &bdata);

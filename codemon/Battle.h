@@ -22,6 +22,12 @@ enum BtnInput { BTN_UP, BTN_DOWN, BTN_LEFT, BTN_RIGHT, BTN_CONFIRM };
 
 class Battle
 {
+public:
+	// Matches pokeemerald's B_OUTCOME_* constants closely enough for
+	// ScriptVM's `specialvar VAR, GetBattleOutcome` to report a real result.
+	enum Outcome { OUTCOME_NONE = 0, OUTCOME_WON = 1, OUTCOME_LOST = 2,
+	               OUTCOME_RAN = 4, OUTCOME_CAUGHT = 7 };
+
 private:
 	enum Phase { INACTIVE, MSG, ACTION, MOVE, SWITCH };
 
@@ -57,6 +63,7 @@ private:
 	Phase after_msg;             // where to go once the log is exhausted (MENU/INACTIVE)
 	int cursor;
 	bool over, victory;
+	Outcome last_outcome;
 
 	sf::Texture enemy_tex, player_tex, trainer_tex;
 	bool has_trainer_pic;
@@ -89,6 +96,7 @@ public:
 
 	bool active() const { return phase != INACTIVE; }
 	bool won() const { return victory; }
+	Outcome outcome() const { return last_outcome; }
 
 	void input(BtnInput b);
 	void tick(float dt);          // drives the hit shake animation

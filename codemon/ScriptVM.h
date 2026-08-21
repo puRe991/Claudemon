@@ -114,6 +114,13 @@ private:
 	bool pending_yesno = false;   // set by pump() until the msgbox closes
 	std::string pending_shop_label;
 
+	// `setwildbattle SPECIES, LEVEL`: pokeemerald stashes the species/level
+	// for a following `dowildbattle` (or the legendary-specific specials
+	// that start one the same way) rather than passing them inline.
+	std::string pending_wild_species;
+	int pending_wild_level = 5;
+	bool start_pending_wild_battle();   // true if a battle actually started
+
 	int value_of(const std::string& s) const;   // resolve a symbol/number
 	Character* resolve(const std::string& localid) const;
 	void jump(const std::string& label);
