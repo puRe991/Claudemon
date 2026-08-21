@@ -120,9 +120,9 @@ end
 = FarawayIsland_Entrance_EventScript_Sailor
 lock
 faceplayer
-msgbox	FarawayIsland_Entrance_Text_SailorReturn
+msgboxyesno	CAPT. BRINEY can be so maddeningly fickle…Do you want to return to LILYCOVE?
 goto_if_eq VAR_RESULT NO FarawayIsland_Entrance_EventScript_AsYouLike
-msgbox	EventTicket_Text_SailHome
+msgbox	Aye, right, then! Sail home we will!
 closemessage
 applymovement VAR_LAST_TALKED Common_Movement_WalkInPlaceFasterDown
 waitmovement 0
@@ -135,6 +135,6 @@ waitstate
 release
 end
 = FarawayIsland_Entrance_EventScript_AsYouLike
-msgbox	EventTicket_Text_AsYouLike
+msgbox	Aye, right, as you like, then.
 release
 end

@@ -94,7 +94,7 @@ msgbox	Oh, so you don't know any good words. I guess I'll try to amuse her with 
 release
 end
 = RustboroCity_Flat1_2F_EventScript_WaldasDadNewPhrase
-msgbox	I've been saying “” to amuse her lately.Do you know of a better word or a phrase that might work?
+msgboxyesno	I've been saying “” to amuse her lately.Do you know of a better word or a phrase that might work?
 goto_if_eq VAR_RESULT NO RustboroCity_Flat1_2F_EventScript_DeclineGivePhrase
 msgbox	Oh, that's wonderful. So, let's hear it, your suggestion.
 goto RustboroCity_Flat1_2F_EventScript_GivePhrase
@@ -103,7 +103,7 @@ msgbox	Oh, is that right?Well, if you come up with a good suggestion, I'm all e
 release
 end
 = RustboroCity_Flat1_2F_EventScript_WaldasDadFirstPhrase
-msgbox	Oh, hello! Welcome to the PEPPER household.I have a question for you. Have you ever baby-sat?You see, I'm a new father, so raising a child is all new to me.And I have a problem. My daughter WALDA doesn't laugh enough.I think she'd laugh for me if I told her something funny.Do you know of a funny word or phrase you can tell me?
+msgboxyesno	Oh, hello! Welcome to the PEPPER household.I have a question for you. Have you ever baby-sat?You see, I'm a new father, so raising a child is all new to me.And I have a problem. My daughter WALDA doesn't laugh enough.I think she'd laugh for me if I told her something funny.Do you know of a funny word or phrase you can tell me?
 goto_if_eq VAR_RESULT NO RustboroCity_Flat1_2F_EventScript_DeclineGivePhrase
 msgbox	Oh, that's wonderful. So, let's hear it, your suggestion.
 goto RustboroCity_Flat1_2F_EventScript_GivePhrase

@@ -80,7 +80,7 @@ setflag FLAG_RECEIVED_HM_DIVE
 end
 = MossdeepCity_StevensHouse_EventScript_BeldumPokeball
 lockall
-msgbox	PLAYER checked the POKé BALL.It contained the POKéMON BELDUM.Take the POKé BALL?
+msgboxyesno	PLAYER checked the POKé BALL.It contained the POKéMON BELDUM.Take the POKé BALL?
 goto_if_eq VAR_RESULT NO MossdeepCity_StevensHouse_EventScript_LeaveBeldum
 goto MossdeepCity_StevensHouse_EventScript_GiveBeldum
 end
@@ -92,12 +92,12 @@ goto_if_eq VAR_RESULT MON_GIVEN_TO_PC MossdeepCity_StevensHouse_EventScript_Send
 goto Common_EventScript_NoMoreRoomForPokemon
 end
 = Common_EventScript_NoMoreRoomForPokemon
-msgbox	gText_NoMoreRoomForPokemon
+msgbox	There's no more room for POKéMON!The POKéMON BOXES are full and can't accept any more!
 release
 end
 = MossdeepCity_StevensHouse_EventScript_SendBeldumPC
 call MossdeepCity_StevensHouse_EventScript_ReceivedBeldumFanfare
-msgbox	gText_NicknameThisPokemon
+msgboxyesno	Do you want to give a nickname to this ?
 goto_if_eq VAR_RESULT NO MossdeepCity_StevensHouse_EventScript_BeldumTransferredToPC
 call Common_EventScript_NameReceivedBoxMon
 goto MossdeepCity_StevensHouse_EventScript_BeldumTransferredToPC
@@ -120,22 +120,22 @@ return
 = EventScript_TransferredLanettesPC
 specialvar VAR_RESULT ShouldShowBoxWasFullMessage
 goto_if_eq VAR_RESULT TRUE EventScript_LanettesPCBoxFull
-msgbox	gText_PkmnTransferredLanettesPC
+msgbox	was transferred to LANETTE'S PC.It was placed in BOX “.”
 return
 = EventScript_LanettesPCBoxFull
 specialvar VAR_RESULT GetPCBoxToSendMon
 bufferboxname STR_VAR_3 VAR_RESULT
-msgbox	gText_PkmnTransferredLanettesPCBoxFull
+msgbox	BOX “” on LANETTE'S PC was full.was transferred to BOX “.”
 return
 = EventScript_TransferredSomeonesPC
 specialvar VAR_RESULT ShouldShowBoxWasFullMessage
 goto_if_eq VAR_RESULT TRUE EventScript_SomeonesPCBoxFull
-msgbox	gText_PkmnTransferredSomeonesPC
+msgbox	was transferred to SOMEONE'S PC.It was placed in BOX “.”
 return
 = EventScript_SomeonesPCBoxFull
 specialvar VAR_RESULT GetPCBoxToSendMon
 bufferboxname STR_VAR_3 VAR_RESULT
-msgbox	gText_PkmnTransferredSomeonesPCBoxFull
+msgbox	BOX “” on SOMEONE'S PC was full.was transferred to BOX “.”
 return
 = Common_EventScript_NameReceivedBoxMon
 fadescreen FADE_TO_BLACK
@@ -147,14 +147,14 @@ return
 bufferspeciesname STR_VAR_2 SPECIES_BELDUM
 removeobject LOCALID_STEVENS_HOUSE_BALL
 playfanfare MUS_OBTAIN_ITEM
-message MossdeepCity_StevensHouse_Text_ObtainedBeldum
+msgbox	PLAYER obtained a BELDUM.
 waitmessage
 waitfanfare
 bufferspeciesname STR_VAR_1 SPECIES_BELDUM
 return
 = MossdeepCity_StevensHouse_EventScript_SendBeldumParty
 call MossdeepCity_StevensHouse_EventScript_ReceivedBeldumFanfare
-msgbox	gText_NicknameThisPokemon
+msgboxyesno	Do you want to give a nickname to this ?
 goto_if_eq VAR_RESULT NO MossdeepCity_StevensHouse_EventScript_ReceivedBeldum
 call Common_EventScript_GetGiftMonPartySlot
 call Common_EventScript_NameReceivedPartyMon

@@ -107,7 +107,7 @@ end
 = LilycoveCity_LilycoveMuseum_1F_EventScript_Curator
 lockall
 applymovement LOCALID_MUSEUM_1F_CURATOR Common_Movement_FacePlayer
-message LilycoveCity_LilycoveMuseum_1F_Text_ImCuratorHaveYouViewedOurPaintings
+msgbox	I'm the CURATOR of this MUSEUM of fine arts.It's heartening to see someone so young as you in our MUSEUM.Have you viewed our collection of paintings already?
 waitmessage
 multichoice 20 8 MULTI_VIEWED_PAINTINGS TRUE
 goto_if_eq VAR_RESULT 0 LilycoveCity_LilycoveMuseum_1F_EventScript_SawPaintings
@@ -117,7 +117,7 @@ end
 msgbox	Ah, then let me not disturb you. Please, do take your time.
 end
 = LilycoveCity_LilycoveMuseum_1F_EventScript_SawPaintings
-msgbox	Oh? I do believe that you seem to be a POKéMON TRAINER.Have you an interest in paintings, too?
+msgboxyesno	Oh? I do believe that you seem to be a POKéMON TRAINER.Have you an interest in paintings, too?
 goto_if_eq VAR_RESULT NO LilycoveCity_LilycoveMuseum_1F_EventScript_NotInterested
 goto_if_eq VAR_RESULT YES LilycoveCity_LilycoveMuseum_1F_EventScript_InterestedInPaintings
 end
@@ -176,3 +176,5 @@ signs
 18 9	It's a huge stone tablet inscribed with POKéMON and dense text in the small characters of an ancient, unreadable language.
 18 11	It's a big POKé BALL carved from a black stone.It was apparently used in festivals in the olden days.
 16 9	It's a huge stone tablet inscribed with POKéMON and dense text in the small characters of an ancient, unreadable language.
+counters
+516,528,568,569,576,577,595

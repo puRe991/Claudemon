@@ -51,6 +51,8 @@ int ScriptVM::value_of(const std::string& s) const {
 	if (s == "FALSE" || s == "NULL") return 0;
 	if (s == "MALE") return 0;
 	if (s == "FEMALE") return 1;
+	if (s == "YES") return 1;
+	if (s == "NO") return 0;
 	if (s == "DIR_SOUTH") return 1;
 	if (s == "DIR_NORTH") return 2;
 	if (s == "DIR_WEST")  return 3;
@@ -134,7 +136,11 @@ void ScriptVM::pump() {
 		};
 		this->ip++;
 
-		if (op == "msgbox" && argc >= 1) {
+		if ((op == "msgbox" || op == "msgboxyesno") && argc >= 1) {
+			// "msgboxyesno" (see pe_import.py) is pokeemerald's
+			// MSGBOX_YESNO: once the text is dismissed, the player picks
+			// yes/no and the choice lands in VAR_RESULT.
+			this->pending_yesno = (op == "msgboxyesno");
 			this->box->open(this->owner ? std::string() : std::string(), in[1]);
 			this->st = WAIT_MSG;
 			return;
@@ -296,9 +302,21 @@ void ScriptVM::on_key() {
 	if (this->box->is_active()) { this->box->advance(); }
 	if (!this->box->is_active()) {           // message fully dismissed
 		if (this->battle && this->battle->active()) return;   // handled elsewhere
+		if (this->pending_yesno) {
+			this->pending_yesno = false;
+			this->st = WAIT_YESNO;           // game loop shows the Ja/Nein choice
+			return;
+		}
 		this->st = RUN;
 		this->pump();
 	}
+}
+
+void ScriptVM::resolve_yesno(bool yes) {
+	if (this->st != WAIT_YESNO) return;
+	if (this->state) this->state->set_var("VAR_RESULT", yes ? 1 : 0);
+	this->st = RUN;
+	this->pump();
 }
 
 void ScriptVM::update(float dt) {

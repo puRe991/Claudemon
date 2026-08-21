@@ -90,7 +90,7 @@ release
 end
 = Route109_SeashoreHouse_EventScript_AlreadyReceivedSodaPop
 showmoneybox 0 0
-msgbox	Want to buy some SODA POP? POKéMON love it!Just ¥300 a bottle! Buy some!
+msgboxyesno	Want to buy some SODA POP? POKéMON love it!Just ¥300 a bottle! Buy some!
 goto_if_eq VAR_RESULT YES Route109_SeashoreHouse_EventScript_BuySodaPop
 msgbox	No? That's too bad.
 hidemoneybox
@@ -109,7 +109,7 @@ hidemoneybox
 release
 end
 = Route109_SeashoreHouse_EventScript_NotEnoughSpace
-msgbox	gText_TooBadBagIsFull
+msgbox	Too bad! The BAG is full…
 hidemoneybox
 release
 end

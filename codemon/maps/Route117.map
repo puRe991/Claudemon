@@ -108,15 +108,15 @@ end
 end
 = Route117_EventScript_Melina
 trainerbattle_single TRAINER_MELINA Route117_Text_MelinaIntro Route117_Text_MelinaDefeat
-msgbox	Route117_Text_MelinaPostBattle
+msgbox	It feels wonderful to go for a jog while looking at flowers.
 end
 = Route117_EventScript_Aisha
 trainerbattle_single TRAINER_AISHA Route117_Text_AishaIntro Route117_Text_AishaDefeat
-msgbox	Route117_Text_AishaPostBattle
+msgbox	I think that if you worry about losing, you're more likely to lose.
 end
 = Route117_EventScript_Brandi
 trainerbattle_single TRAINER_BRANDI Route117_Text_BrandiIntro Route117_Text_BrandiDefeat
-msgbox	Route117_Text_BrandiPostBattle
+msgbox	PSYCHIC POKéMON are complex. You should try catching some.
 end
 = Route117_EventScript_Girl
 msgbox	I left my POKéMON at the DAY CARE.When I got it back, it had a new move that I didn't teach it. I was really, really surprised.
@@ -125,15 +125,15 @@ end
 trainerbattle_double TRAINER_ANNA_AND_MEG_1 Route117_Text_AnnaIntro Route117_Text_AnnaDefeat Route117_Text_AnnaNotEnoughMons Route117_EventScript_RegisterAnna
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route117_EventScript_RematchAnna
-msgbox	Route117_Text_AnnaPostBattle
+msgbox	ANNA: Your POKéMON have some good combinations.I'd say you're second only to us!
 release
 end
 = Route117_EventScript_RematchAnna
 trainerbattle_rematch_double TRAINER_ANNA_AND_MEG_1 Route117_Text_AnnaRematchIntro Route117_Text_AnnaRematchDefeat Route117_Text_AnnaRematchNotEnoughMons
-msgbox	Route117_Text_AnnaPostRematch
+msgbox	ANNA: Your POKéMON have some good combinations.I'd say you're second only to us!
 end
 = Route117_EventScript_RegisterAnna
-msgbox	Route117_Text_AnnaAndMegRegister
+msgbox	ANNA: We can't take this lying down! You will come back, won't you?
 register_matchcall TRAINER_ANNA_AND_MEG_1
 release
 end
@@ -141,37 +141,37 @@ end
 trainerbattle_double TRAINER_ANNA_AND_MEG_1 Route117_Text_MegIntro Route117_Text_MegDefeat Route117_Text_MegNotEnoughMons Route117_EventScript_RegisterMeg
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route117_EventScript_RematchMeg
-msgbox	Route117_Text_MegPostBattle
+msgbox	MEG: I dragged ANNA down… If I didn't, she would have won!
 release
 end
 = Route117_EventScript_RematchMeg
 trainerbattle_rematch_double TRAINER_ANNA_AND_MEG_1 Route117_Text_MegRematchIntro Route117_Text_MegRematchDefeat Route117_Text_MegRematchNotEnoughMons
-msgbox	Route117_Text_MegPostRematch
+msgbox	MEG: I battled together with my senior partner, but we lost…That's so discouraging…
 end
 = Route117_EventScript_RegisterMeg
-msgbox	Route117_Text_AnnaAndMegRegister
+msgbox	ANNA: We can't take this lying down! You will come back, won't you?
 register_matchcall TRAINER_ANNA_AND_MEG_1
 release
 end
 = Route117_EventScript_Derek
 trainerbattle_single TRAINER_DEREK Route117_Text_DerekIntro Route117_Text_DerekDefeat
-msgbox	Route117_Text_DerekPostBattle
+msgbox	All I did was follow my heart, and now they call me a BUG MANIAC…Still, I am an expert on BUG POKéMON, so it's only natural that they call me a BUG MANIAC.
 end
 = Route117_EventScript_Maria
 trainerbattle_single TRAINER_MARIA_1 Route117_Text_MariaIntro Route117_Text_MariaDefeat Route117_EventScript_RegisterMaria
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route117_EventScript_RematchMaria
-msgbox	Route117_Text_MariaPostBattle
+msgbox	Training is meaningful only if you keep it up regularly.Okay! I'll resume my training! Tomorrow!
 release
 end
 = Route117_EventScript_RematchMaria
 trainerbattle_rematch TRAINER_MARIA_1 Route117_Text_MariaRematchIntro Route117_Text_MariaRematchDefeat
-msgbox	Route117_Text_MariaPostRematch
+msgbox	I'll resume training tomorrow. Let's battle again sometime!
 end
 = Route117_EventScript_RegisterMaria
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Route117_Text_MariaRegister
+msgbox	You appear to be training properly… If you'd like, I'll battle you later!
 register_matchcall TRAINER_MARIA_1
 release
 end
@@ -252,24 +252,24 @@ special ObjectEventInteractionPickBerryTree
 goto_if_eq VAR_0x8004 0 BerryTree_EventScript_BerryPocketFull
 special IncrementDailyPickedBerries
 special ObjectEventInteractionRemoveBerryTree
-message BerryTree_Text_PickedTheBerry
+msgbox	BerryTree_Text_PickedTheBerry
 playfanfare MUS_OBTAIN_BERRY
 waitmessage
 waitfanfare
 waitbuttonpress
-message BerryTree_Text_PutAwayBerry
+msgbox	BerryTree_Text_PutAwayBerry
 waitmessage
 waitbuttonpress
 release
 end
 = BerryTree_EventScript_BerryPocketFull
-message BerryTree_Text_BerryPocketFull
+msgbox	BerryTree_Text_BerryPocketFull
 waitmessage
 waitbuttonpress
 release
 end
 = BerryTree_EventScript_CancelPickingBerry
-message BerryTree_Text_BerryLeftUnpicked
+msgbox	BerryTree_Text_BerryLeftUnpicked
 waitmessage
 waitbuttonpress
 release
@@ -278,7 +278,7 @@ end
 call BerryTree_EventScript_GetCareAdverb
 lockall
 special ObjectEventInteractionGetBerryName
-message BerryTree_Text_BerryGrowthStage4
+msgbox	BerryTree_Text_BerryGrowthStage4
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
@@ -311,11 +311,11 @@ releaseall
 end
 = BerryTree_EventScript_WaterBerry
 special ObjectEventInteractionGetBerryName
-message BerryTree_Text_WateredTheBerry
+msgbox	BerryTree_Text_WateredTheBerry
 waitmessage
 special ObjectEventInteractionWaterBerryTree
 special DoWateringBerryTreeAnim
-message BerryTree_Text_PlantIsDelighted
+msgbox	BerryTree_Text_PlantIsDelighted
 waitmessage
 waitbuttonpress
 releaseall
@@ -323,21 +323,21 @@ end
 = BerryTree_EventScript_CheckBerryStage3
 lockall
 special ObjectEventInteractionGetBerryName
-message BerryTree_Text_BerryGrowthStage3
+msgbox	BerryTree_Text_BerryGrowthStage3
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
 = BerryTree_EventScript_CheckBerryStage2
 lockall
 special ObjectEventInteractionGetBerryName
-message BerryTree_Text_BerryGrowthStage2
+msgbox	BerryTree_Text_BerryGrowthStage2
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
 = BerryTree_EventScript_CheckBerryStage1
 lockall
 special ObjectEventInteractionGetBerryCountString
-message BerryTree_Text_BerryGrowthStage1
+msgbox	BerryTree_Text_BerryGrowthStage1
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
@@ -346,7 +346,7 @@ lock
 faceplayer
 specialvar VAR_RESULT PlayerHasBerries
 goto_if_eq VAR_RESULT TRUE BerryTree_EventScript_WantToPlant
-message BerryTree_Text_ItsSoftLoamySoil
+msgbox	BerryTree_Text_ItsSoftLoamySoil
 waitmessage
 waitbuttonpress
 release
@@ -372,13 +372,13 @@ special ObjectEventInteractionPlantBerryTree
 incrementgamestat GAME_STAT_PLANTED_BERRIES
 special IncrementDailyPlantedBerries
 special ObjectEventInteractionGetBerryCountString
-message BerryTree_Text_PlantedOneBerry
+msgbox	BerryTree_Text_PlantedOneBerry
 waitmessage
 waitbuttonpress
 return
 = BerryTree_EventScript_Sparkling
 lockall
-message BerryTree_Text_ExclamationPoint
+msgbox	BerryTree_Text_ExclamationPoint
 waitmessage
 waitbuttonpress
 releaseall
@@ -387,17 +387,17 @@ end
 trainerbattle_single TRAINER_ISAAC_1 Route117_Text_IsaacIntro Route117_Text_IsaacDefeat Route117_EventScript_RegisterIsaac
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route117_EventScript_RematchIsaac
-msgbox	Route117_Text_IsaacPostBattle
+msgbox	POKéMON isn't all about power.Polishing a unique aspect of one's character is another way of enjoying POKéMON.
 release
 end
 = Route117_EventScript_RematchIsaac
 trainerbattle_rematch TRAINER_ISAAC_1 Route117_Text_IsaacRematchIntro Route117_Text_IsaacRematchDefeat
-msgbox	Route117_Text_IsaacPostRematch
+msgbox	Your POKéMON are growing good! You should enter them in CONTESTS.
 end
 = Route117_EventScript_RegisterIsaac
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Route117_Text_IsaacRegister
+msgbox	I'm going to redouble my training. Would you come look in on us?
 register_matchcall TRAINER_ISAAC_1
 release
 end
@@ -405,17 +405,17 @@ end
 trainerbattle_single TRAINER_LYDIA_1 Route117_Text_LydiaIntro Route117_Text_LydiaDefeat Route117_EventScript_RegisterLydia
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route117_EventScript_RematchLydia
-msgbox	Route117_Text_LydiaPostBattle
+msgbox	Try raising POKéMON with more attention to their character traits.
 release
 end
 = Route117_EventScript_RematchLydia
 trainerbattle_rematch TRAINER_LYDIA_1 Route117_Text_LydiaRematchIntro Route117_Text_LydiaRematchDefeat
-msgbox	Route117_Text_LydiaPostRematch
+msgbox	POKéMON seem to like different kinds of S, depending on their nature.
 end
 = Route117_EventScript_RegisterLydia
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Route117_Text_LydiaRegister
+msgbox	I'm glad I met a superb TRAINER in you. I hope to see you again.
 register_matchcall TRAINER_LYDIA_1
 release
 end
@@ -423,17 +423,17 @@ end
 trainerbattle_single TRAINER_DYLAN_1 Route117_Text_DylanIntro Route117_Text_DylanDefeat Route117_EventScript_RegisterDylan
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route117_EventScript_RematchDylan
-msgbox	Route117_Text_DylanPostBattle
+msgbox	I may have blown it…I might have dropped to last during that battle…
 release
 end
 = Route117_EventScript_RematchDylan
 trainerbattle_rematch TRAINER_DYLAN_1 Route117_Text_DylanRematchIntro Route117_Text_DylanRematchDefeat
-msgbox	Route117_Text_DylanPostRematch
+msgbox	I was tops in swimming and cycling, but I'm not quite that confident with POKéMON yet.
 end
 = Route117_EventScript_RegisterDylan
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Route117_Text_DylanRegister
+msgbox	POKéMON have to be strong, too? I'd like you to train me!
 register_matchcall TRAINER_DYLAN_1
 release
 end
@@ -492,7 +492,7 @@ msgbox	Route117_Text_YouHaveNoRoomForIt
 release
 end
 = Route117_EventScript_DaycareReceiveEgg
-message Route117_Text_ReceivedEgg
+msgbox	Route117_Text_ReceivedEgg
 playfanfare MUS_LEVEL_UP
 waitfanfare
 waitbuttonpress

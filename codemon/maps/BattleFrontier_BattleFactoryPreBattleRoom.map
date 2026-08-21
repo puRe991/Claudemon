@@ -233,7 +233,7 @@ case 2 BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskRetireChallenge
 case MULTI_B_PRESSED BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskReadyForOpponent
 goto BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskRecordBattle
 = BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskRecordBattle
-message BattleFrontier_BattleFactoryPreBattleRoom_Text_RecordLatestBattle
+msgbox	Would you like to record your latest battle on your FRONTIER PASS?
 waitmessage
 multichoicedefault 20 8 MULTI_YESNO 1 FALSE
 switch VAR_RESULT
@@ -245,7 +245,7 @@ goto BattleFrontier_BattleFactoryPreBattleRoom_EventScript_RecordBattle
 call BattleFrontier_EventScript_SaveBattle
 goto BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskReadyForOpponent
 = BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskRetireChallenge
-message BattleFrontier_BattleFactoryPreBattleRoom_Text_RetireFromChallenge
+msgbox	Would you like to retire from your Battle Swap challenge?
 waitmessage
 multichoicedefault 20 8 MULTI_YESNO 1 FALSE
 switch VAR_RESULT
@@ -261,7 +261,7 @@ factory_getopponentstyle
 setorcopyvar VAR_0x8006 VAR_RESULT
 call BattleFrontier_BattleFactoryPreBattleRoom_EventScript_CommentOnOpponentType
 call BattleFrontier_BattleFactoryPreBattleRoom_EventScript_CommentOnOpponentStyle
-msgbox	Before starting the battle, would you like to swap a POKéMON?
+msgboxyesno	Before starting the battle, would you like to swap a POKéMON?
 switch VAR_RESULT
 case NO BattleFrontier_BattleFactoryPreBattleRoom_EventScript_EnterBattleRoom
 case YES BattleFrontier_BattleFactoryPreBattleRoom_EventScript_SwapMons
@@ -276,14 +276,14 @@ factory_setswapped
 msgbox	Thank you! Your POKéMON swap is complete.
 goto BattleFrontier_BattleFactoryPreBattleRoom_EventScript_EnterBattleRoom
 = BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskPauseChallenge
-msgbox	Would you like to save and quit the game?
+msgboxyesno	Would you like to save and quit the game?
 switch VAR_RESULT
 case NO BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskReadyForOpponent
 case YES BattleFrontier_BattleFactoryPreBattleRoom_EventScript_PauseChallenge
 case MULTI_B_PRESSED BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskReadyForOpponent
 goto BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskRetireChallenge
 = BattleFrontier_BattleFactoryPreBattleRoom_EventScript_PauseChallenge
-message BattleFrontier_BattleFactoryPreBattleRoom_Text_SavingDataPleaseWait
+msgbox	I am saving your data. Please wait.
 waitmessage
 factory_save CHALLENGE_STATUS_PAUSED
 playse SE_SAVE
@@ -292,31 +292,31 @@ fadescreen FADE_TO_BLACK
 frontier_reset
 end
 = BattleFrontier_BattleFactoryPreBattleRoom_EventScript_ReadyFor7thOpponent
-message BattleFrontier_BattleFactoryPreBattleRoom_Text_ReadyFor7thOpponent
+msgbox	Finally, the 7th match is next! Are you ready?
 waitmessage
 return
 = BattleFrontier_BattleFactoryPreBattleRoom_EventScript_ReadyFor6thOpponent
-message BattleFrontier_BattleFactoryPreBattleRoom_Text_ReadyFor6thOpponent
+msgbox	The 6th match is next! Are you ready?
 waitmessage
 return
 = BattleFrontier_BattleFactoryPreBattleRoom_EventScript_ReadyFor5thOpponent
-message BattleFrontier_BattleFactoryPreBattleRoom_Text_ReadyFor5thOpponent
+msgbox	The 5th match is next! Are you ready?
 waitmessage
 return
 = BattleFrontier_BattleFactoryPreBattleRoom_EventScript_ReadyFor4thOpponent
-message BattleFrontier_BattleFactoryPreBattleRoom_Text_ReadyFor4thOpponent
+msgbox	The 4th match is next! Are you ready?
 waitmessage
 return
 = BattleFrontier_BattleFactoryPreBattleRoom_EventScript_ReadyFor3rdOpponent
-message BattleFrontier_BattleFactoryPreBattleRoom_Text_ReadyFor3rdOpponent
+msgbox	The 3rd match is next! Are you ready?
 waitmessage
 return
 = BattleFrontier_BattleFactoryPreBattleRoom_EventScript_ReadyFor2ndOpponent
-message BattleFrontier_BattleFactoryPreBattleRoom_Text_ReadyFor2ndOpponent
+msgbox	The 2nd match is next! Are you ready?
 waitmessage
 return
 = BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskReadyForHead
-message BattleFrontier_BattleFactoryPreBattleRoom_Text_PreparedToFaceHead
+msgbox	The FACTORY HEAD is demanding you. Are you prepared to face him?
 waitmessage
 call BattleFrontier_EventScript_GetCantRecordBattle
 goto_if_eq VAR_RESULT TRUE BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskReadyForHeadNoRecord
@@ -338,7 +338,7 @@ case MULTI_B_PRESSED BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskRe
 goto BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskSwapBeforeHead
 = BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskSwapBeforeHead
 msgbox	I'm terribly sorry, but I can't tell you anything about the FACTORY HEAD.
-msgbox	Before starting the battle, would you like to swap a POKéMON?
+msgboxyesno	Before starting the battle, would you like to swap a POKéMON?
 switch VAR_RESULT
 case NO BattleFrontier_BattleFactoryPreBattleRoom_EventScript_EnterBattleRoom
 case YES BattleFrontier_BattleFactoryPreBattleRoom_EventScript_SwapMons

@@ -42,7 +42,7 @@ faceplayer
 goto_if_set FLAG_RECEIVED_BIKE MauvilleCity_BikeShop_EventScript_AskSwitchBikes
 goto_if_set FLAG_DECLINED_BIKE MauvilleCity_BikeShop_EventScript_SkipGreeting
 msgbox	Well, well, what have we here? A most energetic customer!Me? You may call me RYDEL. I'm the owner of this cycle shop.
-msgbox	RYDEL: Your RUNNING SHOES… They're awfully filthy.Did you come from far away?
+msgboxyesno	RYDEL: Your RUNNING SHOES… They're awfully filthy.Did you come from far away?
 goto_if_eq VAR_RESULT YES MauvilleCity_BikeShop_EventScript_YesFar
 goto_if_eq VAR_RESULT NO MauvilleCity_BikeShop_EventScript_NotFar
 end
@@ -56,7 +56,7 @@ setflag FLAG_RECEIVED_BIKE
 goto MauvilleCity_BikeShop_EventScript_ChooseBike
 end
 = MauvilleCity_BikeShop_EventScript_ChooseBike
-message MauvilleCity_BikeShop_Text_ExplainBikesChooseWhichOne
+msgbox	RYDEL: Hm, hm… … … … …You're saying that you came all this way from LITTLEROOT?My goodness! That's ridiculously far!If you had one of my BIKES, you could go anywhere easily while feeling the gentle caress of the wind!I'll tell you what! I'll give you a BIKE!Oh, wait a second!I forgot to tell you that there are two kinds of BIKES!They are the MACH BIKE and the ACRO BIKE!The MACH BIKE is for cyclists who want to feel the wind with their bodies!And an ACRO BIKE is for those who prefer technical rides!I'm a real sweetheart, so you can have whichever one you like!Which one will you choose?
 waitmessage
 multichoice 21 8 MULTI_BIKE TRUE
 switch VAR_RESULT
@@ -79,12 +79,12 @@ giveitem ITEM_MACH_BIKE
 goto MauvilleCity_BikeShop_EventScript_ComeBackToSwitchBikes
 end
 = MauvilleCity_BikeShop_EventScript_SkipGreeting
-msgbox	RYDEL: Your RUNNING SHOES… They're awfully filthy.Did you come from far away?
+msgboxyesno	RYDEL: Your RUNNING SHOES… They're awfully filthy.Did you come from far away?
 goto_if_eq VAR_RESULT YES MauvilleCity_BikeShop_EventScript_YesFar
 goto_if_eq VAR_RESULT NO MauvilleCity_BikeShop_EventScript_NotFar
 end
 = MauvilleCity_BikeShop_EventScript_AskSwitchBikes
-msgbox	RYDEL: Oh? Were you thinking about switching BIKES?
+msgboxyesno	RYDEL: Oh? Were you thinking about switching BIKES?
 goto_if_eq VAR_RESULT YES MauvilleCity_BikeShop_EventScript_SwitchBikes
 goto_if_eq VAR_RESULT NO MauvilleCity_BikeShop_EventScript_KeepBike
 end
@@ -117,3 +117,5 @@ end
 msgbox	RYDEL: Good, good! I'm happy that you like it!
 release
 end
+counters
+540,541,542

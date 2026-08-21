@@ -48,11 +48,11 @@ scriptdefs
 lock
 faceplayer
 goto_if_set FLAG_MOVE_TUTOR_TAUGHT_FURY_CUTTER MoveTutor_EventScript_FuryCutterTaught
-msgbox	MoveTutor_Text_FuryCutterTeach
+msgboxyesno	There's a move that gets stronger when you keep using it in a row.It's a BUG-type move, and it is wickedly cool.It's called FURY CUTTER. Want me to teach it to a POKéMON?
 goto_if_eq VAR_RESULT NO MoveTutor_EventScript_FuryCutterDeclined
 call MoveTutor_EventScript_CanOnlyBeLearnedOnce
 goto_if_eq VAR_RESULT NO MoveTutor_EventScript_FuryCutterDeclined
-msgbox	MoveTutor_Text_FuryCutterWhichMon
+msgbox	Yay! Show me which POKéMON I should teach.
 setvar VAR_0x8005 TUTOR_MOVE_FURY_CUTTER
 call MoveTutor_EventScript_OpenPartyMenu
 goto_if_eq VAR_RESULT 0 MoveTutor_EventScript_FuryCutterDeclined
@@ -60,11 +60,11 @@ setflag FLAG_MOVE_TUTOR_TAUGHT_FURY_CUTTER
 goto MoveTutor_EventScript_FuryCutterTaught
 end
 = MoveTutor_EventScript_FuryCutterTaught
-msgbox	MoveTutor_Text_FuryCutterTaught
+msgbox	I get a thrill watching to see if the move keeps hitting in succession!
 release
 end
 = MoveTutor_EventScript_FuryCutterDeclined
-msgbox	MoveTutor_Text_FuryCutterDeclined
+msgbox	We're not on the same wavelength.
 release
 end
 = MoveTutor_EventScript_OpenPartyMenu
@@ -73,7 +73,7 @@ lock
 faceplayer
 return
 = MoveTutor_EventScript_CanOnlyBeLearnedOnce
-msgbox	MoveTutor_Text_ThisMoveCanOnlyBeLearnedOnce
+msgboxyesno	This move can be learned only once. Is that okay?
 return
 = VerdanturfTown_PokemonCenter_1F_EventScript_ExpertM
 msgbox	The reason why anyone would visit VERDANTURF…It's the BATTLE TENT. It goes without saying.Or is there somebody here that you came to see?
@@ -94,12 +94,12 @@ faceplayer
 setvar VAR_0x8004 0
 specialvar VAR_RESULT CountPlayerTrainerStars
 goto_if_eq VAR_RESULT 4 EventScript_PkmnCenterNurse_GoldCard
-msgbox	gText_WouldYouLikeToRestYourPkmn
+msgboxyesno	Hello, and welcome to the POKéMON CENTER.We restore your tired POKéMON to full health.Would you like to rest your POKéMON?
 goto_if_eq VAR_RESULT YES EventScript_PkmnCenterNurse_HealPkmn
 goto_if_eq VAR_RESULT NO EventScript_PkmnCenterNurse_Goodbye
 end
 = EventScript_PkmnCenterNurse_Goodbye
-message gText_WeHopeToSeeYouAgain
+msgbox	We hope to see you again!
 return
 @ VAR_0x8004 is 1 when player has Gold Card; jumps are identical
 goto EventScript_PkmnCenterNurse_HealPkmn
@@ -124,28 +124,28 @@ end
 goto EventScript_PkmnCenterNurse_ReturnPkmn
 = EventScript_PkmnCenterNurse_ReturnPkmn
 goto_if_eq VAR_0x8004 1 EventScript_PkmnCenterNurse_ReturnPkmn2
-message gText_RestoredPkmnToFullHealth
+msgbox	Thank you for waiting.We've restored your POKéMON to full health.
 waitmessage
 applymovement VAR_0x800B Movement_PkmnCenterNurse_Bow
 waitmovement 0
-message gText_WeHopeToSeeYouAgain
+msgbox	We hope to see you again!
 return
 = EventScript_PkmnCenterNurse_ReturnPkmn2
-message gText_ThankYouForWaiting
+msgbox	Thank you for waiting.
 waitmessage
 applymovement VAR_0x800B Movement_PkmnCenterNurse_Bow
 waitmovement 0
-message gText_WeHopeToSeeYouAgain2
+msgbox	We hope to see you again!
 return
 = EventScript_PkmnCenterNurse_PlayerWaitingInUnionRoom
 goto_if_set FLAG_NURSE_UNION_ROOM_REMINDER EventScript_PkmnCenterNurse_ReturnPkmn
-msgbox	gText_RestoredPkmnToFullHealth
+msgbox	Thank you for waiting.We've restored your POKéMON to full health.
 setflag FLAG_NURSE_UNION_ROOM_REMINDER
-message CableClub_Text_PlayerIsWaiting
+msgbox	It appears as if is playing right now. Go for it!
 waitmessage
 applymovement VAR_0x800B Movement_PkmnCenterNurse_Bow
 waitmovement 0
-message gText_WeHopeToSeeYouAgain
+msgbox	We hope to see you again!
 return
 = EventScript_PkmnCenterNurse_CheckPokerus
 specialvar VAR_RESULT IsPokerusInParty
@@ -153,7 +153,7 @@ goto_if_eq VAR_RESULT TRUE EventScript_PkmnCenterNurse_ExplainPokerus
 goto_if_eq VAR_RESULT FALSE EventScript_PkmnCenterNurse_CheckTrainerHillAndUnionRoom
 end
 = EventScript_PkmnCenterNurse_ExplainPokerus
-message gText_PokerusExplanation
+msgbox	gText_PokerusExplanation
 setflag FLAG_POKERUS_EXPLAINED
 return
 = EventScript_PkmnCenterNurse_TakeAndHealPkmn
@@ -166,30 +166,32 @@ waitmovement 0
 special HealPlayerParty
 return
 = EventScript_PkmnCenterNurse_IllTakeYourPkmn2
-message gText_IllTakeYourPkmn2
+msgbox	Okay, I'll take your POKéMON for a few seconds.
 return
 = EventScript_PkmnCenterNurse_IllTakeYourPkmn
-message gText_IllTakeYourPkmn
+msgbox	Okay, I'll take your POKéMON for a few seconds.
 return
 = EventScript_PkmnCenterNurse_GoldCard
 goto_if_set FLAG_NURSE_MENTIONS_GOLD_CARD EventScript_PkmnCenterNurse_AskForUsual
 setflag FLAG_NURSE_MENTIONS_GOLD_CARD
-msgbox	gText_WelcomeCutShort
+msgbox	Hello, and welcome to the POKéMON CENTER.We restore your tired POKéMON to full health.Would you like to…
 playse SE_PIN
 applymovement VAR_0x800B Common_Movement_ExclamationMark
 waitmovement 0
 applymovement VAR_0x800B Common_Movement_Delay48
 waitmovement 0
-msgbox	gText_NoticesGoldCard
+msgboxyesno	Th-that card… Could it be… The GOLD CARD?!Oh, the gold color is brilliant! The four stars seem to sparkle!I've seen several TRAINERS with a SILVER CARD before, but, PLAYER, you're the first TRAINER I've ever seen with a GOLD CARD!Okay, PLAYER, please allow me the honor of resting your POKéMON!
 goto_if_eq VAR_RESULT YES EventScript_PkmnCenterNurse_GoldCardHealPkmn
-message gText_WeHopeToSeeYouAgain2
+msgbox	We hope to see you again!
 return
 = EventScript_PkmnCenterNurse_GoldCardHealPkmn
 setvar VAR_0x8004 1
 goto EventScript_PkmnCenterNurse_HealPkmn
 end
 = EventScript_PkmnCenterNurse_AskForUsual
-msgbox	gText_YouWantTheUsual
+msgboxyesno	I'm delighted to see you, PLAYER! You want the usual, am I right?
 goto_if_eq VAR_RESULT YES EventScript_PkmnCenterNurse_GoldCardHealPkmn
-message gText_WeHopeToSeeYouAgain2
+msgbox	We hope to see you again!
 return
+counters
+517

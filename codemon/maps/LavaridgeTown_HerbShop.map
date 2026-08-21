@@ -55,9 +55,11 @@ end
 = LavaridgeTown_HerbShop_EventScript_Clerk
 lock
 faceplayer
-message LavaridgeTown_HerbShop_Text_WelcomeToHerbShop
+msgbox	Welcome to the HERB SHOP, home of effective and inexpensive medicine!
 waitmessage
 pokemart LavaridgeTown_HerbShop_Pokemart
-msgbox	gText_PleaseComeAgain
+msgbox	Please come again!
 release
 end
+counters
+674,677

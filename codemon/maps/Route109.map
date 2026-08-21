@@ -247,7 +247,7 @@ end
 end
 = Route109_EventScript_Elijah
 trainerbattle_single TRAINER_ELIJAH Route109_Text_ElijahIntro Route109_Text_ElijahDefeated
-msgbox	Route109_Text_ElijahPostBattle
+msgbox	For a guy as macho as me, a port is the perfect setting!I guess I'll head for SLATEPORT.
 end
 = Route109_EventScript_ItemPotion
 goto_if_set FLAG_ITEM_ROUTE_109_POTION Route109_EventScript_ItemPotion_Taken
@@ -258,11 +258,11 @@ end
 end
 = Route109_EventScript_Chandler
 trainerbattle_single TRAINER_CHANDLER Route109_Text_ChandlerIntro Route109_Text_ChandlerDefeated
-msgbox	Route109_Text_ChandlerPostBattle
+msgbox	After I showed you my round inner tube, too…
 end
 = Route109_EventScript_Hailey
 trainerbattle_single TRAINER_HAILEY Route109_Text_HaileyIntro Route109_Text_HaileyDefeated
-msgbox	Route109_Text_HaileyPostBattle
+msgbox	When I learn how to swim, I think my POKéMON will become tougher.
 end
 = Route109_EventScript_Zigzagoon
 lock
@@ -278,11 +278,11 @@ msgbox	The water around these parts is clean.But, I get my ZIGZAGOON to pick up
 end
 = Route109_EventScript_Paul
 trainerbattle_double TRAINER_MEL_AND_PAUL Route109_Text_PaulIntro Route109_Text_PaulDefeated Route109_Text_PaulNotEnoughPokemon
-msgbox	Route109_Text_PaulPostBattle
+msgbox	PAUL: Well, don't tell anyone that we're here. This is just our private world of two!
 end
 = Route109_EventScript_Mel
 trainerbattle_double TRAINER_MEL_AND_PAUL Route109_Text_MelIntro Route109_Text_MelDefeated Route109_Text_MelNotEnoughPokemon
-msgbox	Route109_Text_MelPostBattle
+msgbox	MEL: Um, PAUL, are you angry with me? Please don't be angry.
 end
 = Route109_EventScript_Woman
 msgbox	Little kids can dart around so quickly…You don't dare take your eyes off them for an instant. It's very taxing.Mine are with my POKéMON, so they should be okay, but…
@@ -318,15 +318,15 @@ release
 end
 = Route109_EventScript_Carter
 trainerbattle_single TRAINER_CARTER Route109_Text_CarterIntro Route109_Text_CarterDefeated
-msgbox	Route109_Text_CarterPostBattle
+msgbox	This dude thinks you're a big one. No, you're a big-one-to-be!
 end
 = Route109_EventScript_Austina
 trainerbattle_single TRAINER_AUSTINA Route109_Text_AustinaIntro Route109_Text_AustinaDefeated
-msgbox	Route109_Text_AustinaPostBattle
+msgbox	My inner tube is a fashion item. I can't be seen without it.
 end
 = Route109_EventScript_Gwen
 trainerbattle_single TRAINER_GWEN Route109_Text_GwenIntro Route109_Text_GwenDefeated
-msgbox	Route109_Text_GwenPostBattle
+msgbox	How did you get to be so strong?
 end
 = Route109_EventScript_ItemPPUp
 goto_if_set FLAG_ITEM_ROUTE_109_PP_UP Route109_EventScript_ItemPPUp_Taken
@@ -342,17 +342,17 @@ end
 trainerbattle_single TRAINER_LOLA_1 Route109_Text_LolaIntro Route109_Text_LolaDefeated Route109_EventScript_LolaRegisterMatchCallAfterBattle
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route109_EventScript_LolaRematch
-msgbox	Route109_Text_LolaPostBattle
+msgbox	If you look at the beach from the sky, it looks like a big flower garden!
 release
 end
 = Route109_EventScript_LolaRematch
 trainerbattle_rematch TRAINER_LOLA_1 Route109_Text_LolaRematchIntro Route109_Text_LolaRematchDefeated
-msgbox	Route109_Text_LolaRematchPostBattle
+msgbox	If I have an inner tube, me and my POKéMON's cuteness goes way up!
 end
 = Route109_EventScript_LolaRegisterMatchCallAfterBattle
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Route109_Text_LolaRegister
+msgbox	Me? I'm here every day!
 register_matchcall TRAINER_LOLA_1
 release
 end
@@ -360,35 +360,35 @@ end
 trainerbattle_single TRAINER_RICKY_1 Route109_Text_RickyIntro Route109_Text_RickyDefeated Route109_EventScript_RickyRegisterMatchCallAfterBattle
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route109_EventScript_RickyRematch
-msgbox	Route109_Text_RickyPostBattle
+msgbox	I'm getting famished… My inner tube looks like a giant doughnut…
 release
 end
 = Route109_EventScript_RickyRematch
 trainerbattle_rematch TRAINER_RICKY_1 Route109_Text_RickyRematchIntro Route109_Text_RickyRematchDefeated
-msgbox	Route109_Text_RickyRematchPostBattle
+msgbox	When you eat on a beach, everything seems to taste a little better.
 end
 = Route109_EventScript_RickyRegisterMatchCallAfterBattle
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Route109_Text_RickyRegister
+msgbox	Will you have another match with me when I'm not all thirsty?
 register_matchcall TRAINER_RICKY_1
 release
 end
 = Route109_EventScript_Edmond
 trainerbattle_single TRAINER_EDMOND Route109_Text_EdmondIntro Route109_Text_EdmondDefeated
-msgbox	Route109_Text_EdmondPostBattle
+msgbox	I'm usually stronger than this! I'm just seasick as a dog!I'm a SAILOR, but…
 end
 = Route109_EventScript_Huey
 trainerbattle_single TRAINER_HUEY Route109_Text_HueyIntro Route109_Text_HueyDefeated
-msgbox	Route109_Text_HueyPostBattle
+msgbox	In the best port was the best TRAINER…
 end
 = Route109_EventScript_Alice
 trainerbattle_single TRAINER_ALICE Route109_Text_AliceIntro Route109_Text_AliceDefeated
-msgbox	Route109_Text_AlicePostBattle
+msgbox	Cheeks are the most prone to burning!
 end
 = Route109_EventScript_David
 trainerbattle_single TRAINER_DAVID Route109_Text_DavidIntro Route109_Text_DavidDefeated
-msgbox	Route109_Text_DavidPostBattle
+msgbox	Hiyah!My sculpted abs have nothing to do with POKéMON battles!
 end
 = Route109_EventScript_MrBriney
 lock
@@ -397,7 +397,7 @@ goto_if_unset FLAG_DELIVERED_DEVON_GOODS Route109_EventScript_HaveNotDeliveredDe
 goto Route109_EventScript_DeliveredDevonGoods
 end
 = Route109_EventScript_DeliveredDevonGoods
-message Route109_Text_BrineyWhereAreWeBound
+msgbox	MR. BRINEY: Ahoy! For you, I'll go out to sea anytime!Now, my friend, where are we bound?
 waitmessage
 multichoicedefault 21 8 MULTI_BRINEY_OFF_DEWFORD 1 FALSE
 switch VAR_RESULT
@@ -452,7 +452,7 @@ waitmovement 0
 clearflag FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN
 setflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
 hideobjectat LOCALID_ROUTE109_BOAT MAP_ROUTE109
-msgbox	DewfordTown_Text_BrineyLandedInDewford
+msgbox	MR. BRINEY: Ahoy! We've hit land in DEWFORD!You just go on and tell me whenever you want to set sail again!
 closemessage
 copyvar VAR_BRINEY_LOCATION VAR_0x8008
 resetobjectsubpriority LOCALID_PLAYER MAP_ROUTE109
@@ -471,8 +471,8 @@ waitmovement 0
 goto Route109_EventScript_DoSailToDewford
 end
 = Route109_EventScript_HaveNotDeliveredDevonGood
-message Route109_Text_BrineySailToDewfordQuestion
 msgbox	MR. BRINEY: I thought you're supposed to deliver the DEVON GOODS.Would you like to sail back to DEWFORD, then?
+msgboxyesno	MR. BRINEY: I thought you're supposed to deliver the DEVON GOODS.Would you like to sail back to DEWFORD, then?
 goto_if_eq VAR_RESULT NO Route109_EventScript_StayHere
 goto Route109_EventScript_SailToDewford
 end

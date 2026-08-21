@@ -159,7 +159,7 @@ trainerbattle_rematch_double TRAINER_JUAN_1 SootopolisCity_Gym_1F_Text_JuanPreRe
 msgbox	JUAN: If I told you to become my apprentice, you will refuse, I am sure.I would like to make a gift of my coat to you.But again, you will refuse. I imagine that to be so.And that, my friend, is a certain sign of nobility!
 end
 = SootopolisCity_Gym_1F_EventScript_JuanDefeated
-message SootopolisCity_Gym_1F_Text_ReceivedRainBadge
+msgbox	PLAYER received the RAIN BADGE from JUAN.
 waitmessage
 call Common_EventScript_PlayGymBadgeFanfare
 msgbox	Having the RAIN BADGE shall assure you the full obedience of all your POKéMON to your every command.The RAIN BADGE also allows the use of the HM move WATERFALL to scale walls of cascading water.And, so that you never forget the battle we shared, take this…

@@ -174,12 +174,12 @@ special LoadWallyZigzagoon
 applymovement LOCALID_PETALBURG_WALLY PetalburgCity_Movement_WallyTutorialWally
 applymovement LOCALID_PLAYER PetalburgCity_Movement_WallyTutorialPlayer
 waitmovement 0
-msgbox	Route102_Text_WatchMeCatchPokemon
+msgbox	WALLY: PLAYER… POKéMON hide in tall grass like this, don't they?Please watch me and see if I can catch one properly.…Whoa!
 special StartWallyTutorialBattle
-msgbox	Route102_Text_WallyIDidIt
+msgbox	WALLY: I did it… It's my… My POKéMON!
 applymovement LOCALID_PETALBURG_WALLY Common_Movement_WalkInPlaceFasterLeft MAP_PETALBURG_CITY
 waitmovement LOCALID_PETALBURG_WALLY MAP_PETALBURG_CITY
-msgbox	Route102_Text_LetsGoBack
+msgbox	PLAYER, thank you! Let's go back to the GYM!
 closemessage
 clearflag FLAG_HIDE_MAP_NAME_POPUP
 setvar VAR_PETALBURG_CITY_STATE 3

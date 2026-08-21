@@ -74,11 +74,11 @@ special LoadPlayerParty
 pyramid_clearhelditems
 special HealPlayerParty
 lockall
-message BattleFrontier_BattlePyramidLobby_Text_DisappointingHereIsBag
+msgbox	How disappointing for you…Here is the BAG we've been holding for you.PLAYER got the BAG back.
 waitmessage
 playse SE_EXP_MAX
 waitse
-message BattleFrontier_BattlePyramidLobby_Text_RecordResultsWait
+msgbox	I must record your results. Please wait.
 waitmessage
 pyramid_set PYRAMID_DATA_WIN_STREAK_ACTIVE FALSE
 pyramid_save 0
@@ -103,14 +103,14 @@ frontier_checkairshow
 special LoadPlayerParty
 pyramid_clearhelditems
 special HealPlayerParty
-message BattleFrontier_BattlePyramidLobby_Text_UsedBattleBagWillBeKept
+msgbox	The BATTLE BAG you used will be kept in readiness for your next challenge.PLAYER turned the BATTLE BAG over for the BAG's return.
 waitmessage
 playse SE_EXP_MAX
 waitse
 msgbox	Young explorer! In commendation of your courage, we give you these Battle Point(s)!
 frontier_givepoints
-msgbox	BattleFrontier_Text_ObtainedXBattlePoints
-message BattleFrontier_BattlePyramidLobby_Text_RecordResultsWait
+msgbox	PLAYER obtained Battle Point(s).
+msgbox	I must record your results. Please wait.
 waitmessage
 pyramid_setprize
 pyramid_save 0
@@ -126,7 +126,7 @@ msgbox	Ah, a slight problem.At least one POKéMON is holding an item.I'm sorry
 setflag FLAG_STORING_ITEMS_IN_PYRAMID_BAG
 special TryStoreHeldItemsInPyramidBag
 goto_if_eq VAR_RESULT 0 BattleFrontier_BattlePyramidLobby_EventScript_HeldItemsStoredInPyramidBag
-message BattleFrontier_BattlePyramidLobby_Text_BagCannotHoldPickItemsToKeep
+msgbox	The BATTLE BAG cannot hold all your items, I'm sorry to say.Please pick the items you'll keep in the BATTLE BAG, and with your POKéMON.
 waitmessage
 goto BattleFrontier_BattlePyramidLobby_EventScript_PickItemsToKeep
 end
@@ -144,19 +144,19 @@ goto_if_eq VAR_RESULT TRUE BattleFrontier_BattlePyramidLobby_EventScript_PartySt
 return
 = BattleFrontier_BattlePyramidLobby_EventScript_PartyStillHasHeldItems
 msgbox	At least one POKéMON is still holding an item.
-message BattleFrontier_BattlePyramidLobby_Text_PickItemsToKeep
+msgbox	Please pick the items you'll keep in the BATTLE BAG, and with your POKéMON.
 waitmessage
 goto BattleFrontier_BattlePyramidLobby_EventScript_PickItemsToKeep
 end
 = BattleFrontier_BattlePyramidLobby_EventScript_PickItemsFromParty
 special BattlePyramidChooseMonHeldItems
-message BattleFrontier_BattlePyramidLobby_Text_PickItemsToKeep
+msgbox	Please pick the items you'll keep in the BATTLE BAG, and with your POKéMON.
 waitmessage
 goto BattleFrontier_BattlePyramidLobby_EventScript_PickItemsToKeep
 end
 = BattleFrontier_BattlePyramidLobby_EventScript_PickItemsFromBag
 special ChooseItemsToTossFromPyramidBag
-message BattleFrontier_BattlePyramidLobby_Text_PickItemsToKeep
+msgbox	Please pick the items you'll keep in the BATTLE BAG, and with your POKéMON.
 waitmessage
 goto BattleFrontier_BattlePyramidLobby_EventScript_PickItemsToKeep
 end
@@ -193,7 +193,7 @@ goto_if_eq VAR_RESULT 0 BattleFrontier_BattlePyramidLobby_EventScript_ReceiveNew
 msgbox	In exchange, please take this BATTLE BAG, the one you used previously.
 goto BattleFrontier_BattlePyramidLobby_EventScript_ReceiveBattleBag
 = BattleFrontier_BattlePyramidLobby_EventScript_ReceiveBattleBag
-message BattleFrontier_BattlePyramidLobby_Text_ExchangedBagForBattleBag
+msgbox	PLAYER exchanged the BAG for the BATTLE BAG.
 waitmessage
 playse SE_EXP_MAX
 waitse
@@ -209,7 +209,7 @@ msgbox	In exchange, please take this BATTLE BAG.
 goto BattleFrontier_BattlePyramidLobby_EventScript_ReceiveBattleBag
 = BattleFrontier_BattlePyramidLobby_EventScript_QuitWithoutSaving
 lockall
-message BattleFrontier_BattlePyramidLobby_Text_DidntSaveBeforeQuittingTakeBag
+msgbox	A major problem, explorer!You did not save before ending your challenge the last time.Consequently, your challenge has been disqualified, I'm sorry to say.Here is the BAG we've been holding for you.PLAYER got the BAG back.
 waitmessage
 playse SE_EXP_MAX
 waitse
@@ -366,7 +366,7 @@ special SavePlayerParty
 msgbox	Where the courage of TRAINERS is put to the test!Welcome to the BATTLE PYRAMID!I am your guide to the Battle Quest.
 goto BattleFrontier_BattlePyramidLobby_EventScript_AskTakeChallenge
 = BattleFrontier_BattlePyramidLobby_EventScript_AskTakeChallenge
-message BattleFrontier_BattlePyramidLobby_Text_EmbarkOnChallenge
+msgbox	Have you the courage to embark on the Battle Quest challenge?
 waitmessage
 multichoice 17 6 MULTI_CHALLENGEINFO FALSE
 switch VAR_RESULT
@@ -376,7 +376,7 @@ case 2 BattleFrontier_BattlePyramidLobby_EventScript_CancelChallenge
 case MULTI_B_PRESSED BattleFrontier_BattlePyramidLobby_EventScript_CancelChallenge
 goto BattleFrontier_BattlePyramidLobby_EventScript_TryEnterChallenge
 = BattleFrontier_BattlePyramidLobby_EventScript_TryEnterChallenge
-message BattleFrontier_BattlePyramidLobby_Text_WhichLevelMode
+msgbox	The PYRAMID offers two courses, Level 50 and Open Level. Which will you enter?
 waitmessage
 multichoice 17 6 MULTI_LEVEL_MODE FALSE
 switch VAR_RESULT
@@ -392,7 +392,7 @@ copyvar VAR_0x8004 VAR_RESULT
 setvar VAR_0x8005 FRONTIER_PARTY_SIZE
 special ChoosePartyForBattleFrontier
 goto_if_eq VAR_RESULT 0 BattleFrontier_BattlePyramidLobby_EventScript_LoadPartyAndCancelChallenge
-msgbox	Before you enter the BATTLE PYRAMID, the game must be saved. Is that okay?
+msgboxyesno	Before you enter the BATTLE PYRAMID, the game must be saved. Is that okay?
 switch VAR_RESULT
 case NO BattleFrontier_BattlePyramidLobby_EventScript_LoadPartyAndCancelChallenge
 case YES BattleFrontier_BattlePyramidLobby_EventScript_SaveBeforeChallenge

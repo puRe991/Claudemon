@@ -73,12 +73,12 @@ goto_if_eq VAR_RESULT MON_GIVEN_TO_PC Route119_WeatherInstitute_2F_EventScript_R
 goto Common_EventScript_NoMoreRoomForPokemon
 end
 = Common_EventScript_NoMoreRoomForPokemon
-msgbox	gText_NoMoreRoomForPokemon
+msgbox	There's no more room for POKéMON!The POKéMON BOXES are full and can't accept any more!
 release
 end
 = Route119_WeatherInstitute_2F_EventScript_ReceiveCastformPC
 call Route119_WeatherInstitute_2F_EventScript_ReceivedCastformFanfare
-msgbox	gText_NicknameThisPokemon
+msgboxyesno	Do you want to give a nickname to this ?
 goto_if_eq VAR_RESULT NO Route119_WeatherInstitute_2F_EventScript_SendCastformToPC
 call Common_EventScript_NameReceivedBoxMon
 goto Route119_WeatherInstitute_2F_EventScript_SendCastformToPC
@@ -101,22 +101,22 @@ return
 = EventScript_TransferredLanettesPC
 specialvar VAR_RESULT ShouldShowBoxWasFullMessage
 goto_if_eq VAR_RESULT TRUE EventScript_LanettesPCBoxFull
-msgbox	gText_PkmnTransferredLanettesPC
+msgbox	was transferred to LANETTE'S PC.It was placed in BOX “.”
 return
 = EventScript_LanettesPCBoxFull
 specialvar VAR_RESULT GetPCBoxToSendMon
 bufferboxname STR_VAR_3 VAR_RESULT
-msgbox	gText_PkmnTransferredLanettesPCBoxFull
+msgbox	BOX “” on LANETTE'S PC was full.was transferred to BOX “.”
 return
 = EventScript_TransferredSomeonesPC
 specialvar VAR_RESULT ShouldShowBoxWasFullMessage
 goto_if_eq VAR_RESULT TRUE EventScript_SomeonesPCBoxFull
-msgbox	gText_PkmnTransferredSomeonesPC
+msgbox	was transferred to SOMEONE'S PC.It was placed in BOX “.”
 return
 = EventScript_SomeonesPCBoxFull
 specialvar VAR_RESULT GetPCBoxToSendMon
 bufferboxname STR_VAR_3 VAR_RESULT
-msgbox	gText_PkmnTransferredSomeonesPCBoxFull
+msgbox	BOX “” on SOMEONE'S PC was full.was transferred to BOX “.”
 return
 = Common_EventScript_NameReceivedBoxMon
 fadescreen FADE_TO_BLACK
@@ -126,14 +126,14 @@ faceplayer
 return
 = Route119_WeatherInstitute_2F_EventScript_ReceivedCastformFanfare
 playfanfare MUS_OBTAIN_ITEM
-message Route119_WeatherInstitute_2F_Text_PlayerReceivedCastform
+msgbox	PLAYER received CASTFORM!
 waitmessage
 waitfanfare
 bufferspeciesname STR_VAR_1 SPECIES_CASTFORM
 return
 = Route119_WeatherInstitute_2F_EventScript_ReceiveCastformParty
 call Route119_WeatherInstitute_2F_EventScript_ReceivedCastformFanfare
-msgbox	gText_NicknameThisPokemon
+msgboxyesno	Do you want to give a nickname to this ?
 goto_if_eq VAR_RESULT NO Route119_WeatherInstitute_2F_EventScript_ExplainCastform
 call Common_EventScript_GetGiftMonPartySlot
 call Common_EventScript_NameReceivedPartyMon

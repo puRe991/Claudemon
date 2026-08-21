@@ -268,7 +268,7 @@ end
 = BattleFrontier_OutsideWest_EventScript_Fisherman2
 lock
 faceplayer
-message BattleFrontier_OutsideWest_Text_GotSeasickOnWayHere
+msgbox	I wanted to take a challenge as soon as I arrived here.But on the way, I got seasick… Urrrrp…
 waitmessage
 applymovement LOCALID_FRONTIER_FISHERMAN_2 Common_Movement_FaceAwayPlayer
 waitmovement 0
@@ -322,7 +322,7 @@ end
 = BattleFrontier_OutsideWest_EventScript_Girl
 lock
 faceplayer
-message BattleFrontier_OutsideWest_Text_ScaredOfPikeBecauseSeviper
+msgbox	I'm scared of going into the BATTLE PIKE because of SEVIPER…B-but I came all the way here, so I will try to conquer everything! …Shudder…
 waitmessage
 call_if_eq VAR_FACING DIR_NORTH BattleFrontier_OutsideWest_EventScript_GirlShudderNorth
 call_if_eq VAR_FACING DIR_SOUTH BattleFrontier_OutsideWest_EventScript_GirlShudderSouth
@@ -393,7 +393,7 @@ faceplayer
 msgbox	Hello, are you here for the ferry? May I see your TICKET?
 checkitem ITEM_SS_TICKET
 goto_if_eq VAR_RESULT FALSE BattleFrontier_OutsideWest_EventScript_NoSSTicket
-message BattleFrontier_OutsideWest_Text_WhereWouldYouLikeToGo
+msgbox	PLAYER flashed the TICKET.Perfect! That's all you need!And where would you like to go?
 waitmessage
 goto BattleFrontier_OutsideWest_EventScript_ChooseFerryDestination
 end
@@ -410,7 +410,7 @@ msgbox	Please sail with us another time!
 release
 end
 = BattleFrontier_OutsideWest_EventScript_FerryToLilycove
-msgbox	LILYCOVE CITY it is, then!
+msgboxyesno	LILYCOVE CITY it is, then!
 goto_if_eq VAR_RESULT NO BattleFrontier_OutsideWest_EventScript_ChooseNewFerryDestination
 msgbox	Please board the ferry and wait for departure.
 call BattleFrontier_OutsideWest_EventScript_BoardFerry
@@ -428,12 +428,12 @@ setvar VAR_0x8004 LOCALID_FRONTIER_SS_TIDAL
 call Common_EventScript_FerryDepartIsland
 return
 = BattleFrontier_OutsideWest_EventScript_ChooseNewFerryDestination
-message BattleFrontier_OutsideWest_Text_ThenWhereWouldYouLikeToGo
+msgbox	Then, where would you like to go?
 waitmessage
 goto BattleFrontier_OutsideWest_EventScript_ChooseFerryDestination
 end
 = BattleFrontier_OutsideWest_EventScript_FerryToSlateport
-msgbox	SLATEPORT CITY it is, then!
+msgboxyesno	SLATEPORT CITY it is, then!
 goto_if_eq VAR_RESULT NO BattleFrontier_OutsideWest_EventScript_ChooseNewFerryDestination
 msgbox	Please board the ferry and wait for departure.
 call BattleFrontier_OutsideWest_EventScript_BoardFerry

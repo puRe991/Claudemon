@@ -80,7 +80,7 @@ end
 msgbox	The front lines of POKéMON battling! Welcome to the BATTLE FRONTIER!
 msgbox	For a first-time visitor, we issue the FRONTIER PASS.It's for use at all the facilities in the BATTLE FRONTIER.Here you are!
 playfanfare MUS_OBTAIN_ITEM
-message BattleFrontier_ReceptionGate_Text_ObtainedFrontierPass
+msgbox	PLAYER obtained the FRONTIER PASS.
 waitfanfare
 waitmessage
 msgbox	PLAYER placed the TRAINER CARD in the FRONTIER PASS.
@@ -118,7 +118,7 @@ msgbox	I'm your guide to the FRONTIER PASS.
 goto BattleFrontier_ReceptionGate_EventScript_ChooseFrontierPassInfoToLearnAbout
 end
 = BattleFrontier_ReceptionGate_EventScript_ChooseFrontierPassInfoToLearnAbout
-message BattleFrontier_ReceptionGate_Text_LearnAboutWhich1
+msgbox	Which would you like to learn about?
 waitmessage
 multichoice 16 4 MULTI_FRONTIER_PASS_INFO FALSE
 switch VAR_RESULT
@@ -151,7 +151,7 @@ msgbox	I'm your guide to the basic rules that are common to all the challenges o
 goto BattleFrontier_ReceptionGate_EventScript_ChooseRuleToLearnAbout
 end
 = BattleFrontier_ReceptionGate_EventScript_ChooseRuleToLearnAbout
-message BattleFrontier_ReceptionGate_Text_LearnAboutWhat
+msgbox	What would you like to learn about?
 waitmessage
 multichoice 15 0 MULTI_FRONTIER_RULES FALSE
 switch VAR_RESULT
@@ -194,7 +194,7 @@ msgbox	I'm your guide to the various facilities here in the BATTLE FRONTIER.
 goto BattleFrontier_ReceptionGate_EventScript_ChooseFacilityToLearnAbout
 end
 = BattleFrontier_ReceptionGate_EventScript_ChooseFacilityToLearnAbout
-message BattleFrontier_ReceptionGate_Text_LearnAboutWhich2
+msgbox	Which would you like to learn about?
 waitmessage
 setvar VAR_0x8004 SCROLL_MULTI_BF_RECEPTIONIST
 special ShowScrollableMultichoice
@@ -258,3 +258,5 @@ msgbox	The front lines of POKéMON battling! Welcome to the BATTLE FRONTIER!
 msgbox	We hope you enjoy all that the BATTLE FRONTIER has to offer!
 release
 end
+counters
+857,858,873,874

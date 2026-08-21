@@ -56,7 +56,7 @@ SlateportCity_BattleTentLobby_Movement_PlayerWalkToDoor	up,up,up,end
 scriptdefs
 = SlateportCity_BattleTentLobby_EventScript_LostChallenge
 lockall
-message SlateportCity_BattleTentLobby_Text_ReturnRentalMonsSaveResults
+msgbox	Thank you for participating!I will return your POKéMON in exchange for our rental POKéMON.I must also save your event results. Please wait.
 waitmessage
 frontier_set FRONTIER_DATA_LVL_MODE FRONTIER_LVL_50
 slateporttent_save 0
@@ -64,14 +64,14 @@ playse SE_SAVE
 waitse
 goto SlateportCity_BattleTentLobby_EventScript_EndGivePrize
 = SlateportCity_BattleTentLobby_EventScript_EndGivePrize
-msgbox	SlateportCity_BattleTentLobby_Text_LookForwardToNextVisit
+msgbox	We look forward to your next visit.
 closemessage
 setvar VAR_TEMP_CHALLENGE_STATUS 255
 releaseall
 end
 = SlateportCity_BattleTentLobby_EventScript_WonChallenge
 lockall
-message SlateportCity_BattleTentLobby_Text_WonThreeMatchesReturnMons
+msgbox	Congratulations! You've won three straight matches!I will return your POKéMON in exchange for our rental POKéMON.I must also save your event results. Please wait.
 waitmessage
 slateporttent_setrandomprize
 frontier_set FRONTIER_DATA_LVL_MODE FRONTIER_LVL_50
@@ -80,22 +80,22 @@ playse SE_SAVE
 waitse
 goto SlateportCity_BattleTentLobby_EventScript_GivePrize
 = SlateportCity_BattleTentLobby_EventScript_GivePrize
-msgbox	SlateportCity_BattleTentLobby_Text_AwardYouThisPrize
+msgbox	In recognition of your 3-win streak, we award you this prize.
 slateporttent_giveprize
 switch VAR_RESULT
 case FALSE SlateportCity_BattleTentLobby_EventScript_NoRoomForPrize
 frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
-message BattleFrontier_BattleTowerLobby_Text_ReceivedPrize  @ Odd that it uses Tower's instead of Factory's or its own
+msgbox	BattleFrontier_BattleTowerLobby_Text_ReceivedPrize  @ Odd that it uses Tower's instead of Factory's or its own
 waitmessage
 playfanfare MUS_OBTAIN_ITEM
 waitfanfare
 goto SlateportCity_BattleTentLobby_EventScript_EndGivePrize
 = SlateportCity_BattleTentLobby_EventScript_NoRoomForPrize
-msgbox	SlateportCity_BattleTentLobby_Text_NoRoomInBagMakeRoom
+msgbox	Oh? You seem to have no room for this.Please make room in your BAG and let me know.
 goto SlateportCity_BattleTentLobby_EventScript_EndGivePrize
 = SlateportCity_BattleTentLobby_EventScript_ResumeChallenge
 lockall
-message SlateportCity_BattleTentLobby_Text_BeenWaitingForYou
+msgbox	We've been waiting for you!Before we resume your challenge, I must save the game.
 waitmessage
 slateporttent_save CHALLENGE_STATUS_SAVING
 playse SE_SAVE
@@ -105,7 +105,7 @@ setvar VAR_TEMP_CHALLENGE_STATUS 255
 setvar VAR_0x8006 2
 goto SlateportCity_BattleTentLobby_EventScript_EnterChallenge
 = SlateportCity_BattleTentLobby_EventScript_EnterChallenge
-msgbox	SlateportCity_BattleTentLobby_Text_StepThisWay
+msgbox	Please step this way.
 closemessage
 call SlateportCity_BattleTentLobby_EventScript_WalkToDoor
 warp SlateportCity_BattleTentCorridor 2 7
@@ -126,7 +126,7 @@ waitdooranim
 return
 = SlateportCity_BattleTentLobby_EventScript_QuitWithoutSaving
 lockall
-msgbox	SlateportCity_BattleTentLobby_Text_DidntSaveBeforeQuitting
+msgbox	I'm sorry to say this, but you didn't save before you quit playing last time.As a result, you have been disqualified from your challenge.
 closemessage
 frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
 setvar VAR_TEMP_CHALLENGE_STATUS 255
@@ -166,10 +166,10 @@ faceplayer
 slateporttent_getprize
 goto_if_ne VAR_RESULT ITEM_NONE SlateportCity_BattleTentLobby_EventScript_GivePrize
 special SavePlayerParty
-msgbox	SlateportCity_BattleTentLobby_Text_WelcomeToBattleTent
+msgbox	Welcome to the BATTLE TENT SLATEPORT SITE!I am your guide to the Battle Swap Tournament.
 goto SlateportCity_BattleTentLobby_EventScript_AskEnterChallenge
 = SlateportCity_BattleTentLobby_EventScript_AskEnterChallenge
-message SlateportCity_BattleTentLobby_Text_TakeChallenge
+msgbox	Would you like to take the Battle Swap challenge?
 waitmessage
 multichoice 17 6 MULTI_CHALLENGEINFO FALSE
 switch VAR_RESULT
@@ -182,7 +182,7 @@ goto SlateportCity_BattleTentLobby_EventScript_TryEnterChallenge
 setvar VAR_FRONTIER_FACILITY FRONTIER_FACILITY_FACTORY
 setvar VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES
 frontier_set FRONTIER_DATA_LVL_MODE FRONTIER_LVL_TENT
-msgbox	SlateportCity_BattleTentLobby_Text_SaveBeforeChallenge
+msgboxyesno	Before you begin your challenge, I need to save data. Is that okay?
 switch VAR_RESULT
 case NO SlateportCity_BattleTentLobby_EventScript_LoadPartyCancelChallenge
 case YES SlateportCity_BattleTentLobby_EventScript_SaveBeforeChallenge
@@ -205,7 +205,7 @@ goto SlateportCity_BattleTentLobby_EventScript_EnterChallenge
 frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
 goto SlateportCity_BattleTentLobby_EventScript_CancelChallenge
 = SlateportCity_BattleTentLobby_EventScript_CancelChallenge
-msgbox	SlateportCity_BattleTentLobby_Text_LookForwardToNextVisit
+msgbox	We look forward to your next visit.
 release
 end
 @ Unused
@@ -224,5 +224,5 @@ return
 special LoadPlayerParty
 goto SlateportCity_BattleTentLobby_EventScript_CancelChallenge
 = SlateportCity_BattleTentLobby_EventScript_ExplainChallenge
-msgbox	SlateportCity_BattleTentLobby_Text_ExplainSlateportTent
+msgbox	Here at the SLATEPORT BATTLE TENT, we hold Battle Swap events using rental POKéMON.First, you will be loaned three POKéMON specifically for this event.Using the supplied rental POKéMON, you must conduct a SINGLE BATTLE.If you win, you are permitted to trade one of your rental POKéMON.Repeat this cycle of battling and trading--if you win three times in a row, you will earn a fine prize.If you want to interrupt your challenge, please save the game.If you don't save before interrupting, you will be disqualified.
 goto SlateportCity_BattleTentLobby_EventScript_AskEnterChallenge

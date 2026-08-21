@@ -69,7 +69,7 @@ removeobject LOCALID_VERDANTURF_TENT_BATTLE_OPPONENT
 applymovement LOCALID_VERDANTURF_TENT_BATTLE_ATTENDANT Common_Movement_WalkInPlaceFasterDown
 applymovement LOCALID_VERDANTURF_TENT_BATTLE_PLAYER Common_Movement_WalkInPlaceFasterUp
 waitmovement 0
-msgbox	BattleFrontier_BattlePalaceBattleRoom_Text_LetMeRestoreYourMons
+msgbox	Excellent… Let me restore your POKéMON.
 special LoadPlayerParty
 special SavePlayerParty
 frontier_setpartyorder FRONTIER_PARTY_SIZE
@@ -88,14 +88,14 @@ case 1 VerdanturfTown_BattleTentBattleRoom_EventScript_AskPauseChallenge
 case 2 VerdanturfTown_BattleTentBattleRoom_EventScript_AskRetireChallenge
 goto VerdanturfTown_BattleTentBattleRoom_EventScript_AskPauseChallenge
 = VerdanturfTown_BattleTentBattleRoom_EventScript_AskPauseChallenge
-msgbox	BattleFrontier_BattlePalaceBattleRoom_Text_SaveAndQuitGame
+msgboxyesno	Would you like to save and quit the game?
 switch VAR_RESULT
 case NO VerdanturfTown_BattleTentBattleRoom_EventScript_AskContinueChallenge
 case YES VerdanturfTown_BattleTentBattleRoom_EventScript_PauseChallenge
 case MULTI_B_PRESSED VerdanturfTown_BattleTentBattleRoom_EventScript_AskContinueChallenge
 goto VerdanturfTown_BattleTentBattleRoom_EventScript_AskRetireChallenge
 = VerdanturfTown_BattleTentBattleRoom_EventScript_AskRetireChallenge
-message BattleFrontier_BattlePalaceBattleRoom_Text_WishToQuitChallenge
+msgbox	Do you wish to quit your challenge?
 waitmessage
 multichoicedefault 20 8 MULTI_YESNO 1 FALSE
 switch VAR_RESULT
@@ -110,7 +110,7 @@ waitmovement 0
 closemessage
 goto VerdanturfTown_BattleTentBattleRoom_EventScript_NextOpponentEnter
 = VerdanturfTown_BattleTentBattleRoom_EventScript_PauseChallenge
-message BattleFrontier_BattlePalaceBattleRoom_Text_SavingData
+msgbox	Saving the data. Have patience…
 waitmessage
 verdanturftent_save CHALLENGE_STATUS_PAUSED
 playse SE_SAVE
@@ -119,11 +119,11 @@ fadescreen FADE_TO_BLACK
 frontier_reset
 end
 = VerdanturfTown_BattleTentBattleRoom_EventScript_ReadyFor3rdOpponent
-message BattleFrontier_BattlePalaceBattleRoom_Text_PreparedFor3rdOpponent
+msgbox	The 3rd opponent is next. Are you prepared?
 waitmessage
 return
 = VerdanturfTown_BattleTentBattleRoom_EventScript_ReadyFor2ndOpponent
-message BattleFrontier_BattlePalaceBattleRoom_Text_PreparedFor2ndOpponent
+msgbox	The 2nd opponent is next. Are you prepared?
 waitmessage
 return
 = VerdanturfTown_BattleTentBattleRoom_EventScript_WarpToLobbyWon

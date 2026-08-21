@@ -330,7 +330,7 @@ closemessage
 return
 = LittlerootTown_MaysHouse_1F_EventScript_GoUpstairsToSetClock
 lockall
-msgbox	PlayersHouse_1F_Text_GoSetTheClock
+msgbox	MOM: PLAYER.Go set the clock in your room, honey.
 closemessage
 applymovement LOCALID_PLAYER LittlerootTown_MaysHouse_1F_Movement_PushTowardStairs
 applymovement LOCALID_PLAYERS_HOUSE_1F_MOM LittlerootTown_MaysHouse_1F_Movement_PushTowardStairs

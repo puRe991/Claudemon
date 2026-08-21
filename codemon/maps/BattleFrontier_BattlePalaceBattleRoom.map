@@ -85,7 +85,7 @@ case 2 BattleFrontier_BattlePalaceBattleRoom_EventScript_AskRetireChallenge
 case MULTI_B_PRESSED BattleFrontier_BattlePalaceBattleRoom_EventScript_AskReadyForOpponent
 goto BattleFrontier_BattlePalaceBattleRoom_EventScript_AskRecordBattle
 = BattleFrontier_BattlePalaceBattleRoom_EventScript_AskRecordBattle
-message BattleFrontier_BattlePalaceBattleRoom_Text_RecordLastMatch
+msgbox	Do you wish to record your latest match on your FRONTIER PASS?
 waitmessage
 multichoicedefault 20 8 MULTI_YESNO 1 FALSE
 switch VAR_RESULT
@@ -97,7 +97,7 @@ goto BattleFrontier_BattlePalaceBattleRoom_EventScript_RecordBattle
 call BattleFrontier_EventScript_SaveBattle
 goto BattleFrontier_BattlePalaceBattleRoom_EventScript_AskReadyForOpponent
 = BattleFrontier_BattlePalaceBattleRoom_EventScript_AskRetireChallenge
-message BattleFrontier_BattlePalaceBattleRoom_Text_WishToQuitChallenge
+msgbox	Do you wish to quit your challenge?
 waitmessage
 multichoicedefault 20 8 MULTI_YESNO 1 FALSE
 switch VAR_RESULT
@@ -172,14 +172,14 @@ special HealPlayerParty
 frontier_resetsketch
 return
 = BattleFrontier_BattlePalaceBattleRoom_EventScript_AskPauseChallenge
-msgbox	Would you like to save and quit the game?
+msgboxyesno	Would you like to save and quit the game?
 switch VAR_RESULT
 case NO BattleFrontier_BattlePalaceBattleRoom_EventScript_AskReadyForOpponent
 case YES BattleFrontier_BattlePalaceBattleRoom_EventScript_PauseChallenge
 case MULTI_B_PRESSED BattleFrontier_BattlePalaceBattleRoom_EventScript_AskReadyForOpponent
 goto BattleFrontier_BattlePalaceBattleRoom_EventScript_AskRetireChallenge
 = BattleFrontier_BattlePalaceBattleRoom_EventScript_PauseChallenge
-message BattleFrontier_BattlePalaceBattleRoom_Text_SavingData
+msgbox	Saving the data. Have patience…
 waitmessage
 palace_save CHALLENGE_STATUS_PAUSED
 playse SE_SAVE
@@ -188,27 +188,27 @@ fadescreen FADE_TO_BLACK
 frontier_reset
 end
 = BattleFrontier_BattlePalaceBattleRoom_EventScript_ReadyFor7thOpponent
-message BattleFrontier_BattlePalaceBattleRoom_Text_PreparedFor7thOpponent
+msgbox	The 7th opponent is next. Are you prepared?
 waitmessage
 return
 = BattleFrontier_BattlePalaceBattleRoom_EventScript_ReadyFor6thOpponent
-message BattleFrontier_BattlePalaceBattleRoom_Text_PreparedFor6thOpponent
+msgbox	The 6th opponent is next. Are you prepared?
 waitmessage
 return
 = BattleFrontier_BattlePalaceBattleRoom_EventScript_ReadyFor5thOpponent
-message BattleFrontier_BattlePalaceBattleRoom_Text_PreparedFor5thOpponent
+msgbox	The 5th opponent is next. Are you prepared?
 waitmessage
 return
 = BattleFrontier_BattlePalaceBattleRoom_EventScript_ReadyFor4thOpponent
-message BattleFrontier_BattlePalaceBattleRoom_Text_PreparedFor4thOpponent
+msgbox	The 4th opponent is next. Are you prepared?
 waitmessage
 return
 = BattleFrontier_BattlePalaceBattleRoom_EventScript_ReadyFor3rdOpponent
-message BattleFrontier_BattlePalaceBattleRoom_Text_PreparedFor3rdOpponent
+msgbox	The 3rd opponent is next. Are you prepared?
 waitmessage
 return
 = BattleFrontier_BattlePalaceBattleRoom_EventScript_ReadyFor2ndOpponent
-message BattleFrontier_BattlePalaceBattleRoom_Text_PreparedFor2ndOpponent
+msgbox	The 2nd opponent is next. Are you prepared?
 waitmessage
 return
 = BattleFrontier_BattlePalaceBattleRoom_EventScript_MavenUpNext
@@ -217,7 +217,7 @@ msgbox	And now…By winning consistently, you have earned the privilege of chal
 setvar VAR_TEMP_2 1
 goto BattleFrontier_BattlePalaceBattleRoom_EventScript_AskReadyForMaven
 = BattleFrontier_BattlePalaceBattleRoom_EventScript_AskReadyForMaven
-message BattleFrontier_BattlePalaceBattleRoom_Text_ReadyForPalaceMaven
+msgbox	I shall send for the PALACE MAVEN. Are you ready?
 waitmessage
 call BattleFrontier_EventScript_GetCantRecordBattle
 goto_if_eq VAR_RESULT TRUE BattleFrontier_BattlePalaceBattleRoom_EventScript_AskReadyForMavenNoRecord
@@ -275,7 +275,7 @@ applymovement LOCALID_PALACE_BATTLE_PLAYER BattleFrontier_BattlePalaceBattleRoom
 applymovement LOCALID_PALACE_BATTLE_ATTENDANT BattleFrontier_BattlePalaceBattleRoom_Movement_FaceDown
 msgbox	My, my, if only you could maintain that facade of distinguished authority…Here! Let's see your FRONTIER PASS!
 playfanfare MUS_OBTAIN_SYMBOL
-message BattleFrontier_BattlePalaceBattleRoom_Text_ReceivedSpiritsSymbol
+msgbox	The Spirits Symbol was embossed on the FRONTIER PASS!
 waitmessage
 waitfanfare
 frontier_givesymbol
@@ -300,7 +300,7 @@ applymovement LOCALID_PALACE_BATTLE_PLAYER BattleFrontier_BattlePalaceBattleRoom
 applymovement LOCALID_PALACE_BATTLE_ATTENDANT BattleFrontier_BattlePalaceBattleRoom_Movement_FaceDown
 msgbox	My, my, if only you could maintain a certain level of decorum…Gaaah, here! Hurry with that FRONTIER PASS, you!
 playfanfare MUS_OBTAIN_SYMBOL
-message BattleFrontier_BattlePalaceBattleRoom_Text_SpiritsSymbolTookGoldenShine
+msgbox	The Spirits Symbol took on a golden shine!
 waitmessage
 waitfanfare
 frontier_givesymbol

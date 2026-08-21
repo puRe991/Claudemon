@@ -826,7 +826,7 @@
    "warps": 0,
    "dialogs": 0,
    "signs": 0,
-   "scripts": 40,
+   "scripts": 39,
    "triggers": 0,
    "spawn": [
     5,
@@ -858,7 +858,7 @@
    "warps": 0,
    "dialogs": 1,
    "signs": 0,
-   "scripts": 12,
+   "scripts": 11,
    "triggers": 0,
    "spawn": [
     10,
@@ -904,9 +904,9 @@
    "tileset": "building__battle_frontier",
    "npcs": 5,
    "warps": 2,
-   "dialogs": 0,
+   "dialogs": 5,
    "signs": 0,
-   "scripts": 28,
+   "scripts": 19,
    "triggers": 0,
    "spawn": [
     5,
@@ -920,9 +920,9 @@
    "tileset": "building__battle_frontier",
    "npcs": 5,
    "warps": 1,
-   "dialogs": 0,
+   "dialogs": 5,
    "signs": 0,
-   "scripts": 44,
+   "scripts": 27,
    "triggers": 0,
    "spawn": [
     4,
@@ -952,9 +952,9 @@
    "tileset": "building__battle_frontier",
    "npcs": 4,
    "warps": 2,
-   "dialogs": 0,
+   "dialogs": 4,
    "signs": 0,
-   "scripts": 12,
+   "scripts": 6,
    "triggers": 0,
    "spawn": [
     5,

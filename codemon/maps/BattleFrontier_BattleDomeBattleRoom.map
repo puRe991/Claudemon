@@ -221,17 +221,17 @@ turnvobject 31 DIR_SOUTH
 delay 20
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_TuckerWonDraw
-message BattleFrontier_BattleDomeBattleRoom_Text_RefereesDecidedWinnerTucker
+msgbox	The REFEREES have reached a decision!The winner is… Oh, my goodness! The winner is our very own DOME ACE! It's TUCKER!Congratulations! And thank you! Let's hear it for the DOME ACE, TUCKER!
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_OpponentWonDraw
 frontier_gettrainername STR_VAR_1
-message BattleFrontier_BattleDomeBattleRoom_Text_RefereesDecidedWinnerTrainer
+msgbox	The REFEREES have reached a decision!The winner is… Oh, my goodness! The winner is ! Congratulations!
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_OpponentWon
 frontier_gettrainername STR_VAR_2
-message BattleFrontier_BattleDomeBattleRoom_Text_TrainerIsWinner
+msgbox	is the winner! Congratulations!
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_DefeatedOpponent
@@ -320,7 +320,7 @@ playse SE_M_ENCORE2
 call BattleFrontier_BattleDomeBattleRoom_EventScript_AudienceLookAround
 waitse
 waitmovement 0
-message BattleFrontier_BattleDomeBattleRoom_Text_SpectatorTuckerChant
+msgbox	Spectators: TUCKER! TUCKER! TUCKER! TUCKER! TUCKER!
 waitmessage
 playse SE_M_ENCORE2
 call BattleFrontier_BattleDomeBattleRoom_EventScript_AudienceLookAround
@@ -350,7 +350,7 @@ applymovement LOCALID_DOME_OPPONENT BattleFrontier_BattleDomeBattleRoom_Movement
 waitmovement 0
 msgbox	TUCKER: Rules are rules! Let me see your FRONTIER PASS.
 playfanfare MUS_OBTAIN_SYMBOL
-message BattleFrontier_BattleDomeBattleRoom_Text_ReceivedTacticsSymbol
+msgbox	The Tactics Symbol was embossed on the FRONTIER PASS!
 waitmessage
 waitfanfare
 frontier_givesymbol
@@ -389,7 +389,7 @@ applymovement LOCALID_DOME_OPPONENT BattleFrontier_BattleDomeBattleRoom_Movement
 waitmovement 0
 msgbox	TUCKER: You're genuinely fantastic!Never before! I haven't ever lost in the times I've had to unleash my power.Yes, quite fantastic! Your FRONTIER PASS, please?
 playfanfare MUS_OBTAIN_SYMBOL
-message BattleFrontier_BattleDomeBattleRoom_Text_TacticsSymbolTookGoldenShine
+msgbox	The Tactics Symbol took on a golden shine!
 waitmessage
 waitfanfare
 frontier_givesymbol
@@ -433,19 +433,19 @@ case DOME_SEMIFINAL BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlay
 case DOME_FINAL BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerChampionFinal
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerChampionFinal
-message BattleFrontier_BattleDomeBattleRoom_Text_CurrentChampAimingToRetainTitle
+msgbox	The current champion aiming to retain the title!
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerChampionSemifinal
-message BattleFrontier_BattleDomeBattleRoom_Text_DoBattlesExistSolelyForTrainer
+msgbox	Do battles exist solely for this TRAINER?
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerChampionRound2
-message BattleFrontier_BattleDomeBattleRoom_Text_CanAnyoneHopeToBeatTrainer
+msgbox	Can anyone hope to beat this TRAINER?
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerChampionRound1
-message BattleFrontier_BattleDomeBattleRoom_Text_TheInvincibleChampion
+msgbox	The invincible champion!
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_GetRoundNum
@@ -466,19 +466,19 @@ case DOME_SEMIFINAL BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlay
 case DOME_FINAL BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerBrokenStreakFinal
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerBrokenStreakFinal
-message BattleFrontier_BattleDomeBattleRoom_Text_WillFormerChampRegainGlory
+msgbox	Will the former champ regain lost glory?
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerBrokenStreakSemifinal
-message BattleFrontier_BattleDomeBattleRoom_Text_WillDoExpectedAdvanceToFinals
+msgbox	Will this TRAINER do as expected and advance to the finals?
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerBrokenStreakRound2
-message BattleFrontier_BattleDomeBattleRoom_Text_FormerToughnessReturned
+msgbox	The former toughness has returned!
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerBrokenStreakRound1
-message BattleFrontier_BattleDomeBattleRoom_Text_FormerChampHasReturned
+msgbox	The former champion has returned!
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerNeverWon
@@ -490,19 +490,19 @@ case DOME_SEMIFINAL BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlay
 case DOME_FINAL BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerNeverWonFinal
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerNeverWonFinal
-message BattleFrontier_BattleDomeBattleRoom_Text_WillLongHeldDreamComeTrue
+msgbox	Will the long-held dream of a championship finally come true?
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerNeverWonSemifinal
-message BattleFrontier_BattleDomeBattleRoom_Text_WinHereAdvancesToFinal
+msgbox	A win here means this TRAINER advances to the final!
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerNeverWonRound2
-message BattleFrontier_BattleDomeBattleRoom_Text_OnFireForChampionship
+msgbox	The TRAINER is on fire for the first championship try!
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerNeverWonRound1
-message BattleFrontier_BattleDomeBattleRoom_Text_CanLossBeAvenged
+msgbox	Can the loss of the last match be avenged?
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerFirstAttempt
@@ -514,19 +514,19 @@ case DOME_SEMIFINAL BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlay
 case DOME_FINAL BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerFirstAttemptFinal
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerFirstAttemptFinal
-message BattleFrontier_BattleDomeBattleRoom_Text_CanAchieveChampionFirstTry
+msgbox	Can the feat of a championship on the first try be achieved?
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerFirstAttemptSemifinal
-message BattleFrontier_BattleDomeBattleRoom_Text_WillTheyRaceToChampionship
+msgbox	Will this TRAINER race to the championship?
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerFirstAttemptRound2
-message BattleFrontier_BattleDomeBattleRoom_Text_RisingStar
+msgbox	The rising star!
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerFirstAttemptRound1
-message BattleFrontier_BattleDomeBattleRoom_Text_BrightNewHope
+msgbox	The bright new hope!
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_TryDoAudienceMemberWalkToSeat

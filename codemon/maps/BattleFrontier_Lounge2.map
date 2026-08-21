@@ -27,6 +27,12 @@ people_maniac 10 4 W static 0
 people_maniac 10 3 W static 0
 people_running_triathlete_f 4 6 S wander 0
 people_maniac 10 5 W static 0
+dialogs
+0	Howdy! When it comes to news about the BATTLE FRONTIER, I'm no. 1.You can think of me as the FRONTIER MANIAC.Just checking, but you are a TRAINER, isn't that right?I'll happily share the hottest news I gathered about the BATTLE FRONTIER.
+1	What amazing news-gathering power! My mentor's like none other!
+2	What amazing powers of observation! My mentor's like none other!
+3	…What is this place? It's scaring me…
+4	What amazing power of persuasion! My mentor's like none other!
 objscripts
 0 BattleFrontier_Lounge2_EventScript_FrontierManiac
 1 BattleFrontier_Lounge2_EventScript_Maniac1
@@ -36,32 +42,28 @@ objscripts
 scriptdefs
 = BattleFrontier_Lounge2_EventScript_Maniac3
 lock
-msgbox	BattleFrontier_Lounge2_Text_AmazingPowerOfPersuasion
+msgbox	What amazing power of persuasion! My mentor's like none other!
 release
 end
-= BattleFrontier_Lounge2_Text_AmazingPowerOfPersuasion
 = BattleFrontier_Lounge2_EventScript_TriathleteF
-msgbox	BattleFrontier_Lounge2_Text_ThisPlaceIsScaringMe
+msgbox	…What is this place? It's scaring me…
 end
-= BattleFrontier_Lounge2_Text_ThisPlaceIsScaringMe
 = BattleFrontier_Lounge2_EventScript_Maniac2
 lock
-msgbox	BattleFrontier_Lounge2_Text_AmazingPowersOfObservation
+msgbox	What amazing powers of observation! My mentor's like none other!
 release
 end
-= BattleFrontier_Lounge2_Text_AmazingPowersOfObservation
 = BattleFrontier_Lounge2_EventScript_Maniac1
 lock
-msgbox	BattleFrontier_Lounge2_Text_NewsGatheringPower
+msgbox	What amazing news-gathering power! My mentor's like none other!
 release
 end
-= BattleFrontier_Lounge2_Text_NewsGatheringPower
 = BattleFrontier_Lounge2_EventScript_FrontierManiac
 lock
 faceplayer
 goto_if_set FLAG_MET_BATTLE_FRONTIER_MANIAC BattleFrontier_Lounge2_EventScript_AlreadyMetManiac
 setflag FLAG_MET_BATTLE_FRONTIER_MANIAC
-msgbox	BattleFrontier_Lounge2_Text_FrontierManiacIntro
+msgbox	Howdy! When it comes to news about the BATTLE FRONTIER, I'm no. 1.You can think of me as the FRONTIER MANIAC.Just checking, but you are a TRAINER, isn't that right?I'll happily share the hottest news I gathered about the BATTLE FRONTIER.
 goto BattleFrontier_Lounge2_EventScript_GiveAdvice
 end
 = BattleFrontier_Lounge2_EventScript_GiveAdvice
@@ -85,13 +87,11 @@ waitbuttonpress
 release
 end
 = BattleFrontier_Lounge2_EventScript_FacilityNews
-msgbox	BattleFrontier_Lounge2_Text_FacilityIsHottest
+msgbox	Let's see now…It sounds like the is the hottest place going.
 return
-= BattleFrontier_Lounge2_Text_FacilityIsHottest
 = BattleFrontier_Lounge2_EventScript_BattleTowerNews
-msgbox	BattleFrontier_Lounge2_Text_BattleTowerIsHottest
+msgbox	Let's see now…It sounds like BATTLE TOWER is the hottest.
 return
-= BattleFrontier_Lounge2_Text_BattleTowerIsHottest
 = BattleFrontier_Lounge2_EventScript_BufferBattlePyramid
 bufferstdstring STR_VAR_1 STDSTRING_BATTLE_PYRAMID
 return
@@ -122,12 +122,7 @@ return
 = BattleFrontier_Lounge2_EventScript_BufferSingle
 bufferstdstring STR_VAR_1 STDSTRING_SINGLE
 return
-= BattleFrontier_Lounge2_Text_FrontierManiacIntro
 = BattleFrontier_Lounge2_EventScript_AlreadyMetManiac
-msgbox	BattleFrontier_Lounge2_Text_SwingByForTheLatestWord
+msgbox	Howdy! Did you swing by to grill me about the latest word? Oh, all right!
 goto BattleFrontier_Lounge2_EventScript_GiveAdvice
 end
-= BattleFrontier_Lounge2_Text_SwingByForTheLatestWord
-@ Unused
-goto BattleFrontier_Lounge2_Text_MyInformationsBeenUsefulRight
-= BattleFrontier_Lounge2_Text_MyInformationsBeenUsefulRight

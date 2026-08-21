@@ -94,7 +94,7 @@ case 2 BattleFrontier_BattleArenaBattleRoom_EventScript_AskRetireChallenge
 case MULTI_B_PRESSED BattleFrontier_BattleArenaBattleRoom_EventScript_AskReadyForOpponent
 goto BattleFrontier_BattleArenaBattleRoom_EventScript_AskRecordBattle
 = BattleFrontier_BattleArenaBattleRoom_EventScript_AskRecordBattle
-message BattleFrontier_BattleArenaBattleRoom_Text_RecordLastBattle
+msgbox	Would you like to record your last battle on your FRONTIER PASS?
 waitmessage
 multichoicedefault 20 8 MULTI_YESNO 1 FALSE
 switch VAR_RESULT
@@ -106,7 +106,7 @@ goto BattleFrontier_BattleArenaBattleRoom_EventScript_RecordBattle
 call BattleFrontier_EventScript_SaveBattle
 goto BattleFrontier_BattleArenaBattleRoom_EventScript_AskReadyForOpponent
 = BattleFrontier_BattleArenaBattleRoom_EventScript_AskRetireChallenge
-message BattleFrontier_BattleArenaBattleRoom_Text_RetireFromChallenge
+msgbox	Would you like to retire from your Set KO Tourney challenge?
 waitmessage
 multichoicedefault 20 8 MULTI_YESNO 1 FALSE
 switch VAR_RESULT
@@ -129,7 +129,7 @@ warp BattleFrontier_BattleArenaLobby 7 8
 waitstate
 goto BattleFrontier_BattleArenaBattleRoom_EventScript_ReadyFor2ndOpponent
 = BattleFrontier_BattleArenaBattleRoom_EventScript_ReadyFor2ndOpponent
-message BattleFrontier_BattleArenaBattleRoom_Text_ReadyFor2ndOpponent
+msgbox	Next up, your second opponent! Are you ready to move on?
 waitmessage
 return
 = BattleFrontier_BattleArenaBattleRoom_EventScript_AnnounceTrainers
@@ -235,14 +235,14 @@ special HealPlayerParty
 frontier_resetsketch
 return
 = BattleFrontier_BattleArenaBattleRoom_EventScript_AskPauseChallenge
-msgbox	Would you like to save the game and shut down now?
+msgboxyesno	Would you like to save the game and shut down now?
 switch VAR_RESULT
 case NO BattleFrontier_BattleArenaBattleRoom_EventScript_AskReadyForOpponent
 case YES BattleFrontier_BattleArenaBattleRoom_EventScript_PauseChallenge
 case MULTI_B_PRESSED BattleFrontier_BattleArenaBattleRoom_EventScript_AskReadyForOpponent
 goto BattleFrontier_BattleArenaBattleRoom_EventScript_AskRetireChallenge
 = BattleFrontier_BattleArenaBattleRoom_EventScript_PauseChallenge
-message BattleFrontier_BattleArenaBattleRoom_Text_SavingPleaseWait
+msgbox	I am saving your game data. Please wait.
 waitmessage
 arena_save CHALLENGE_STATUS_PAUSED
 playse SE_SAVE
@@ -251,23 +251,23 @@ fadescreen FADE_TO_BLACK
 frontier_reset
 end
 = BattleFrontier_BattleArenaBattleRoom_EventScript_ReadyFor7thOpponent
-message BattleFrontier_BattleArenaBattleRoom_Text_ReadyFor7thOpponent
+msgbox	Next up, your seventh opponent! Are you ready to move on?
 waitmessage
 return
 = BattleFrontier_BattleArenaBattleRoom_EventScript_ReadyFor6thOpponent
-message BattleFrontier_BattleArenaBattleRoom_Text_ReadyFor6thOpponent
+msgbox	Next up, your sixth opponent! Are you ready to move on?
 waitmessage
 return
 = BattleFrontier_BattleArenaBattleRoom_EventScript_ReadyFor5thOpponent
-message BattleFrontier_BattleArenaBattleRoom_Text_ReadyFor5thOpponent
+msgbox	Next up, your fifth opponent! Are you ready to move on?
 waitmessage
 return
 = BattleFrontier_BattleArenaBattleRoom_EventScript_ReadyFor4thOpponent
-message BattleFrontier_BattleArenaBattleRoom_Text_ReadyFor4thOpponent
+msgbox	Next up, your fourth opponent! Are you ready to move on?
 waitmessage
 return
 = BattleFrontier_BattleArenaBattleRoom_EventScript_ReadyFor3rdOpponent
-message BattleFrontier_BattleArenaBattleRoom_Text_ReadyFor3rdOpponent
+msgbox	Next up, your third opponent! Are you ready to move on?
 waitmessage
 return
 = BattleFrontier_BattleArenaBattleRoom_EventScript_TycoonUpNext
@@ -276,7 +276,7 @@ msgbox	My dear challenger!Your skill level is truly astounding!We now would li
 setvar VAR_TEMP_2 1
 goto BattleFrontier_BattleArenaBattleRoom_EventScript_AskReadyForTycoon
 = BattleFrontier_BattleArenaBattleRoom_EventScript_AskReadyForTycoon
-message BattleFrontier_BattleArenaBattleRoom_Text_PreparedForTycoon
+msgbox	A battle with the ARENA TYCOON! Are you prepared?
 waitmessage
 call BattleFrontier_EventScript_GetCantRecordBattle
 goto_if_eq VAR_RESULT TRUE BattleFrontier_BattleArenaBattleRoom_EventScript_AskReadyForTycoonNoRecord
@@ -350,7 +350,7 @@ applymovement LOCALID_ARENA_BATTLE_OPPONENT BattleFrontier_BattleArenaBattleRoom
 waitmovement 0
 msgbox	GRETA: Ow, wait a second! You are tough after all!I like you! Let's see your FRONTIER PASS.
 playfanfare MUS_OBTAIN_SYMBOL
-message BattleFrontier_BattleArenaBattleRoom_Text_ReceivedGutsSymbol
+msgbox	The Guts Symbol was embossed on the FRONTIER PASS!
 waitmessage
 waitfanfare
 frontier_givesymbol
@@ -373,7 +373,7 @@ applymovement LOCALID_ARENA_BATTLE_OPPONENT BattleFrontier_BattleArenaBattleRoom
 waitmovement 0
 msgbox	GRETA: Gaaah! Blown away! Let's see your FRONTIER PASS!
 playfanfare MUS_OBTAIN_SYMBOL
-message BattleFrontier_BattleArenaBattleRoom_Text_GutsSymbolTookGoldenShine
+msgbox	The Guts Symbol took on a golden shine!
 waitmessage
 waitfanfare
 frontier_givesymbol

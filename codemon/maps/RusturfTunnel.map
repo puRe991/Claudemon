@@ -309,7 +309,7 @@ waitmovement 0
 msgbox	PEEKO! Am I glad to see you're safe!
 applymovement LOCALID_RUSTURF_TUNNEL_BRINEY Common_Movement_FacePlayer
 waitmovement 0
-message RusturfTunnel_Text_ThankYouLetsGoHomePeeko
+msgbox	PEEKO owes her life to you!They call me MR. BRINEY. And, you are?… … … … … … … … … … … … … … … …Ah, so you are PLAYER! I sincerely thank you!Now, if there's anything that troubles you, don't hesitate to tell me!You can usually find me in my cottage by the sea near PETALBURG WOODS.Come, PEEKO, we should make our way home.PEEKO: Pihyoh!
 waitmessage
 waitse
 playmoncry SPECIES_WINGULL CRY_MODE_NORMAL

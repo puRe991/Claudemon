@@ -130,7 +130,7 @@ closemessage
 applymovement LOCALID_FACTORY_BATTLE_PLAYER BattleFrontier_BattleFactoryBattleRoom_Movement_PlayerApproachNoland
 waitmovement 0
 playfanfare MUS_OBTAIN_SYMBOL
-message BattleFrontier_BattleFactoryBattleRoom_Text_ReceivedKnowledgeSymbol
+msgbox	The Knowledge Symbol was embossed on the FRONTIER PASS!
 waitmessage
 waitfanfare
 frontier_givesymbol
@@ -171,7 +171,7 @@ waitmessage
 applymovement LOCALID_FACTORY_BATTLE_PLAYER BattleFrontier_BattleFactoryBattleRoom_Movement_PlayerApproachNoland
 waitmovement 0
 playfanfare MUS_OBTAIN_SYMBOL
-message BattleFrontier_BattleFactoryBattleRoom_Text_KnowledgeSymbolTookGoldenShine
+msgbox	The Knowledge Symbol took on a golden shine!
 waitmessage
 waitfanfare
 frontier_givesymbol

@@ -93,12 +93,12 @@ end
 = MossdeepCity_GameCorner_1F_EventScript_OldMan2
 lock
 faceplayer
-message MossdeepCity_GameCorner_1F_Text_WelcomeCanYouWait
+msgbox	Hi, welcome! Are you here to play games using Wireless Communication?Can you wait just a little bit?
 waitmessage
 specialvar VAR_RESULT IsWirelessAdapterConnected
 goto_if_eq VAR_RESULT FALSE MossdeepCity_GameCorner_1F_EventScript_AdapterNotConnected
 delay 60
-message MossdeepCity_GameCorner_1F_Text_PlayWhichGame
+msgbox	All right, which game did you want to play?
 waitmessage
 multichoice 0 0 MULTI_WIRELESS_MINIGAME FALSE
 switch VAR_RESULT
@@ -109,7 +109,7 @@ case MULTI_B_PRESSED MossdeepCity_GameCorner_1F_EventScript_AbortMinigame
 end
 = MossdeepCity_GameCorner_1F_EventScript_AbortMinigame
 special CloseLink
-msgbox	MossdeepCity_GameCorner_1F_Text_ComeAgain
+msgbox	All right, come again!
 release
 end
 @ Unused
@@ -122,7 +122,7 @@ end
 setvar VAR_0x8005 1
 special IsDodrioInParty
 goto_if_eq VAR_RESULT FALSE MossdeepCity_GameCorner_1F_EventScript_DontHaveRequiredMon
-msgbox	MossdeepCity_GameCorner_1F_Text_EnterWhichPokemon
+msgbox	Which POKéMON would you like to enter?
 fadescreen FADE_TO_BLACK
 setvar VAR_0x8005 1
 special ChooseMonForWirelessMinigame
@@ -133,7 +133,7 @@ setvar VAR_0x8004 LINK_GROUP_BERRY_PICKING
 goto MossdeepCity_GameCorner_1F_EventScript_ChooseLinkLeader
 end
 = MossdeepCity_GameCorner_1F_EventScript_ChooseLinkLeader
-message CableClub_Text_ChooseGroupLeader
+msgbox	Please decide which of you will become the GROUP LEADER.The other players must then choose “JOIN GROUP.”
 waitmessage
 multichoice 16 6 MULTI_LINK_LEADER FALSE
 switch VAR_RESULT
@@ -189,23 +189,23 @@ return
 special SaveGame
 return
 = MossdeepCity_GameCorner_1F_EventScript_DontHaveRequiredMon
-msgbox	MossdeepCity_GameCorner_1F_Text_ExplainRequiredMon
+msgboxyesno	It doesn't look like you have any POKéMON that you can enter…Would you like me to explain what kinds of POKéMON can enter?
 goto_if_eq VAR_RESULT NO MossdeepCity_GameCorner_1F_EventScript_AbortMinigame
 call_if_eq VAR_0x8005 0 MossdeepCity_GameCorner_1F_EventScript_ExplainPokemonJumpRequirements
 call_if_eq VAR_0x8005 1 MossdeepCity_GameCorner_1F_EventScript_ExplainDodrioBerryPickingRequirements
 goto MossdeepCity_GameCorner_1F_EventScript_AbortMinigame
 end
 = MossdeepCity_GameCorner_1F_EventScript_ExplainDodrioBerryPickingRequirements
-msgbox	MossdeepCity_GameCorner_1F_Text_OnlyDodrioAllowed
+msgbox	DODRIO BERRY-PICKING is a game that only DODRIO may enter.
 return
 = MossdeepCity_GameCorner_1F_EventScript_ExplainPokemonJumpRequirements
-msgbox	MossdeepCity_GameCorner_1F_Text_ShortJumpingPokemonAllowed
+msgbox	“POKéMON JUMP” is open to POKéMON around 28 inches or less.What you can't enter are those POKéMON that can't jump.You know, like POKéMON that only swim, burrow, or fly.That's all you need to know.
 return
 = MossdeepCity_GameCorner_1F_EventScript_PlayPokemonJump
 setvar VAR_0x8005 0
 special IsPokemonJumpSpeciesInParty
 goto_if_eq VAR_RESULT FALSE MossdeepCity_GameCorner_1F_EventScript_DontHaveRequiredMon
-msgbox	MossdeepCity_GameCorner_1F_Text_EnterWhichPokemon
+msgbox	Which POKéMON would you like to enter?
 fadescreen FADE_TO_BLACK
 setvar VAR_0x8005 0
 special ChooseMonForWirelessMinigame
@@ -217,13 +217,13 @@ goto MossdeepCity_GameCorner_1F_EventScript_ChooseLinkLeader
 end
 = MossdeepCity_GameCorner_1F_EventScript_AdapterNotConnected
 delay 60
-msgbox	MossdeepCity_GameCorner_1F_Text_AdapterNotConnected
+msgbox	The Wireless Adapter isn't connected. Come back when it's hooked up!
 release
 end
 = MossdeepCity_GameCorner_1F_EventScript_InfoMan2
 lock
 faceplayer
-message MossdeepCity_GameCorner_1F_Text_DescribeWhichGame
+msgbox	I can explain game rules to you, if you'd like.Which game should I describe?
 waitmessage
 multichoice 0 0 MULTI_WIRELESS_MINIGAME FALSE
 switch VAR_RESULT
@@ -233,16 +233,18 @@ case 2 MossdeepCity_GameCorner_1F_EventScript_MinigameInfoExit
 case MULTI_B_PRESSED MossdeepCity_GameCorner_1F_EventScript_MinigameInfoExit
 end
 = MossdeepCity_GameCorner_1F_EventScript_MinigameInfoExit
-msgbox	MossdeepCity_GameCorner_1F_Text_TalkToOldManToPlay
+msgbox	If you want to play a game, please tell the old man beside me.
 release
 end
 = MossdeepCity_GameCorner_1F_EventScript_DodrioBerryPickingInfo
-msgbox	MossdeepCity_GameCorner_1F_Text_DodrioBerryPickingInfo
+msgbox	“DODRIO BERRY-PICKING”Command DODRIO's three heads to catch falling BERRIES.Press right, up, or left on the Control Pad to move the heads.To play this game, you must have a DODRIO.
 release
 end
 = MossdeepCity_GameCorner_1F_EventScript_PokemonJumpInfo
-msgbox	MossdeepCity_GameCorner_1F_Text_PokemonJumpInfo
+msgbox	“POKéMON JUMP”Make your POKéMON skip the VINE WHIP rope with the A Button.Only mini POKéMON around 28 inches or less may participate.POKéMON that only swim, burrow, or fly are not good at jumping.As a result, those POKéMON may not participate.Good things happen if everyone jumps in time.
 release
 end
 signs
 3 0	The door appears to be locked.
+counters
+547,548,549,550

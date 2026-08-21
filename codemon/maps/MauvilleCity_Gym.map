@@ -185,7 +185,7 @@ trainerbattle_rematch_double TRAINER_WATTSON_1 MauvilleCity_Gym_Text_WattsonPreR
 msgbox	WATTSON: We'll have to recharge our batteries again.When we're fully charged up, we'll gladly accept your challenge.So, come back again sometime, won't you?
 end
 = MauvilleCity_Gym_EventScript_WattsonDefeated
-message MauvilleCity_Gym_Text_ReceivedDynamoBadge
+msgbox	PLAYER received the DYNAMO BADGE from WATTSON.
 waitmessage
 call Common_EventScript_PlayGymBadgeFanfare
 msgbox	With the DYNAMO BADGE, POKéMON can use ROCK SMASH out of battle.And, it will make your POKéMON a little bit faster, too.Hmm… You should take this, too!

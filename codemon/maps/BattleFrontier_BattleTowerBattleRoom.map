@@ -83,7 +83,7 @@ case 2 BattleFrontier_BattleTowerBattleRoom_EventScript_AskRetireChallenge
 case MULTI_B_PRESSED BattleFrontier_BattleTowerBattleRoom_EventScript_AskReadyForOpponent
 goto BattleFrontier_BattleTowerBattleRoom_EventScript_AskRecordBattle
 = BattleFrontier_BattleTowerBattleRoom_EventScript_AskRecordBattle
-message BattleFrontier_BattleTowerBattleRoom_Text_RecordYourBattle
+msgbox	Record your battle on your FRONTIER PASS?
 waitmessage
 multichoicedefault 20 8 MULTI_YESNO 1 FALSE
 switch VAR_RESULT
@@ -95,7 +95,7 @@ goto BattleFrontier_BattleTowerBattleRoom_EventScript_RecordBattle
 call BattleFrontier_EventScript_SaveBattle
 goto BattleFrontier_BattleTowerBattleRoom_EventScript_AskReadyForOpponent
 = BattleFrontier_BattleTowerBattleRoom_EventScript_AskRetireChallenge
-message BattleFrontier_BattleTowerBattleRoom_Text_CancelYourChallenge
+msgbox	Would you like to cancel your BATTLE ROOM challenge?
 waitmessage
 multichoicedefault 20 8 MULTI_YESNO 1 FALSE
 switch VAR_RESULT
@@ -216,14 +216,14 @@ setflag FLAG_CANCEL_BATTLE_ROOM_CHALLENGE
 goto BattleFrontier_BattleTower_EventScript_WarpToLobbyLost
 end
 = BattleFrontier_BattleTowerBattleRoom_EventScript_AskPauseChallenge
-msgbox	Would you like to save and quit the game?
+msgboxyesno	Would you like to save and quit the game?
 switch VAR_RESULT
 case NO BattleFrontier_BattleTowerBattleRoom_EventScript_AskReadyForOpponent
 case YES BattleFrontier_BattleTowerBattleRoom_EventScript_PauseChallenge
 case MULTI_B_PRESSED BattleFrontier_BattleTowerBattleRoom_EventScript_AskReadyForOpponent
 goto BattleFrontier_BattleTowerBattleRoom_EventScript_AskRetireChallenge
 = BattleFrontier_BattleTowerBattleRoom_EventScript_PauseChallenge
-message BattleFrontier_BattleTowerBattleRoom_Text_SavingPleaseWait
+msgbox	Saving your battle data. Please wait.
 waitmessage
 tower_save CHALLENGE_STATUS_PAUSED
 playse SE_SAVE
@@ -242,27 +242,27 @@ case 5 BattleFrontier_BattleTowerBattleRoom_EventScript_ReadyFor6thOpponent
 case 6 BattleFrontier_BattleTowerBattleRoom_EventScript_ReadyFor7thOpponent
 goto BattleFrontier_BattleTowerBattleRoom_EventScript_ReadyFor2ndOpponent
 = BattleFrontier_BattleTowerBattleRoom_EventScript_ReadyFor2ndOpponent
-message BattleFrontier_BattleTowerBattleRoom_Text_ReadyFor2ndOpponent
+msgbox	You will be facing opponent no. 2. Are you ready?
 waitmessage
 return
 = BattleFrontier_BattleTowerBattleRoom_EventScript_ReadyFor7thOpponent
-message BattleFrontier_BattleTowerBattleRoom_Text_ReadyFor7thOpponent
+msgbox	You will be facing opponent no. 7. Are you ready?
 waitmessage
 return
 = BattleFrontier_BattleTowerBattleRoom_EventScript_ReadyFor6thOpponent
-message BattleFrontier_BattleTowerBattleRoom_Text_ReadyFor6thOpponent
+msgbox	You will be facing opponent no. 6. Are you ready?
 waitmessage
 return
 = BattleFrontier_BattleTowerBattleRoom_EventScript_ReadyFor5thOpponent
-message BattleFrontier_BattleTowerBattleRoom_Text_ReadyFor5thOpponent
+msgbox	You will be facing opponent no. 5. Are you ready?
 waitmessage
 return
 = BattleFrontier_BattleTowerBattleRoom_EventScript_ReadyFor4thOpponent
-message BattleFrontier_BattleTowerBattleRoom_Text_ReadyFor4thOpponent
+msgbox	You will be facing opponent no. 4. Are you ready?
 waitmessage
 return
 = BattleFrontier_BattleTowerBattleRoom_EventScript_ReadyFor3rdOpponent
-message BattleFrontier_BattleTowerBattleRoom_Text_ReadyFor3rdOpponent
+msgbox	You will be facing opponent no. 3. Are you ready?
 waitmessage
 return
 = BattleFrontier_BattleTowerBattleRoom_EventScript_MaidenUpNext
@@ -271,7 +271,7 @@ msgbox	Excuse me, but…Our leader, the SALON MAIDEN, is on her way here in hop
 setvar VAR_TEMP_2 1
 goto BattleFrontier_BattleTowerBattleRoom_EventScript_AskReadyForMaiden
 = BattleFrontier_BattleTowerBattleRoom_EventScript_AskReadyForMaiden
-message BattleFrontier_BattleTowerBattleRoom_Text_ReadyForSalonMaiden
+msgbox	You will be facing the SALON MAIDEN. Are you prepared?
 waitmessage
 call BattleFrontier_EventScript_GetCantRecordBattle
 goto_if_eq VAR_RESULT TRUE BattleFrontier_BattleTowerBattleRoom_EventScript_AskReadyForMaidenNoRecord
@@ -321,7 +321,7 @@ frontier_getsymbols
 goto_if_ne VAR_RESULT 0 BattleFrontier_BattleTowerBattleRoom_EventScript_WarpToLobbyWon
 msgbox	ANABEL: Fufufu, nicely done…Your FRONTIER PASS, please… Your talent shall be recognized.
 playfanfare MUS_OBTAIN_SYMBOL
-message BattleFrontier_BattleTowerBattleRoom_Text_ReceivedAbilitySymbol
+msgbox	The Ability Symbol was embossed on the FRONTIER PASS!
 waitmessage
 waitfanfare
 frontier_givesymbol
@@ -338,7 +338,7 @@ frontier_getsymbols
 goto_if_eq VAR_RESULT 2 BattleFrontier_BattleTowerBattleRoom_EventScript_WarpToLobbyWon
 msgbox	ANABEL: Fufu, congratulations… Your FRONTIER PASS, please…
 playfanfare MUS_OBTAIN_SYMBOL
-message BattleFrontier_BattleTowerBattleRoom_Text_AbilitySymbolTookGoldenShine
+msgbox	The Ability Symbol took on a golden shine!
 waitmessage
 waitfanfare
 frontier_givesymbol

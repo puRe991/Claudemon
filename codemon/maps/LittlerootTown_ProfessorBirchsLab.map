@@ -106,7 +106,7 @@ applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
 waitmovement 0
 msgbox	PROF. BIRCH: Okay, all done!
 playfanfare MUS_OBTAIN_ITEM
-message LittlerootTown_ProfessorBirchsLab_Text_PokedexUpgradedToNational
+msgbox	PLAYER's POKéDEX was upgraded to the NATIONAL Mode!
 waitmessage
 waitfanfare
 setflag FLAG_SYS_NATIONAL_DEX
@@ -175,7 +175,7 @@ msgbox	Oh? Your BAG's full.
 return
 = LittlerootTown_ProfessorBirchsLab_EventScript_ReceivePokedex
 playfanfare MUS_OBTAIN_ITEM
-message LittlerootTown_ProfessorBirchsLab_Text_ReceivedPokedex
+msgbox	PLAYER received the POKéDEX!
 waitfanfare
 setflag FLAG_SYS_POKEDEX_GET
 special SetUnlockedPokedexFlags
@@ -185,21 +185,21 @@ return
 = LittlerootTown_ProfessorBirchsLab_EventScript_GiveStarterEvent
 lockall
 bufferleadmonspeciesname STR_VAR_1
-message LittlerootTown_ProfessorBirchsLab_Text_LikeYouToHavePokemon
+msgbox	PROF. BIRCH: So, PLAYER.I've heard so much about you from your father.I've heard that you don't have your own POKéMON yet.But the way you battled earlier, you pulled it off with aplomb!I guess you have your father's blood in your veins after all!Oh, yes. As thanks for rescuing me, I'd like you to have the POKéMON you used earlier.PLAYER received the !
 waitmessage
 playfanfare MUS_OBTAIN_ITEM
 waitfanfare
-msgbox	PROF. BIRCH: While you're at it, why not give a nickname to that ?
+msgboxyesno	PROF. BIRCH: While you're at it, why not give a nickname to that ?
 goto_if_eq VAR_RESULT YES LittlerootTown_ProfessorBirchsLab_EventScript_NicknameStarter
 goto_if_eq VAR_RESULT NO LittlerootTown_ProfessorBirchsLab_EventScript_GoSeeRival
 end
 = LittlerootTown_ProfessorBirchsLab_EventScript_GoSeeRival
-msgbox	PROF. BIRCH: If you work at POKéMON and gain experience, I think you'll make an extremely good TRAINER.My kid, RIVAL, is also studying POKéMON while helping me out.PLAYER, don't you think it might be a good idea to go see RIVAL?
+msgboxyesno	PROF. BIRCH: If you work at POKéMON and gain experience, I think you'll make an extremely good TRAINER.My kid, RIVAL, is also studying POKéMON while helping me out.PLAYER, don't you think it might be a good idea to go see RIVAL?
 goto_if_eq VAR_RESULT YES LittlerootTown_ProfessorBirchsLab_EventScript_AgreeToSeeRival
 goto_if_eq VAR_RESULT NO LittlerootTown_ProfessorBirchsLab_EventScript_DeclineSeeingRival
 end
 = LittlerootTown_ProfessorBirchsLab_EventScript_DeclineSeeingRival
-msgbox	PROF. BIRCH: Oh, don't be that way. You should go meet my kid.
+msgboxyesno	PROF. BIRCH: Oh, don't be that way. You should go meet my kid.
 goto_if_eq VAR_RESULT YES LittlerootTown_ProfessorBirchsLab_EventScript_AgreeToSeeRival
 goto_if_eq VAR_RESULT NO LittlerootTown_ProfessorBirchsLab_EventScript_DeclineSeeingRival
 end
@@ -220,7 +220,7 @@ goto_if_ge VAR_DEX_UPGRADE_JOHTO_STARTER_STATE 6 LittlerootTown_ProfessorBirchsL
 applymovement LOCALID_BIRCHS_LAB_BIRCH Common_Movement_WalkInPlaceFasterRight
 waitmovement 0
 showmonpic SPECIES_CHIKORITA 10 3
-msgbox	PROF. BIRCH: The GRASS POKéMON CHIKORITA is your choice!You sure know what you're doing.So, you'll take the CHIKORITA?
+msgboxyesno	PROF. BIRCH: The GRASS POKéMON CHIKORITA is your choice!You sure know what you're doing.So, you'll take the CHIKORITA?
 goto_if_eq VAR_RESULT NO LittlerootTown_ProfessorBirchsLab_EventScript_TakeYourTime
 goto LittlerootTown_ProfessorBirchsLab_EventScript_GiveChikorita
 end
@@ -234,13 +234,13 @@ hidemonpic
 goto Common_EventScript_NoMoreRoomForPokemon
 end
 = Common_EventScript_NoMoreRoomForPokemon
-msgbox	gText_NoMoreRoomForPokemon
+msgbox	There's no more room for POKéMON!The POKéMON BOXES are full and can't accept any more!
 release
 end
 = LittlerootTown_ProfessorBirchsLab_EventScript_SendChikoritaToPC
 call LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedJohtoStarter
 removeobject LOCALID_BIRCHS_LAB_CHIKORITA_BALL
-msgbox	gText_NicknameThisPokemon
+msgboxyesno	Do you want to give a nickname to this ?
 goto_if_eq VAR_RESULT NO LittlerootTown_ProfessorBirchsLab_EventScript_ChikoritaTransferredToPC
 call Common_EventScript_NameReceivedBoxMon
 goto LittlerootTown_ProfessorBirchsLab_EventScript_ChikoritaTransferredToPC
@@ -264,22 +264,22 @@ return
 = EventScript_TransferredLanettesPC
 specialvar VAR_RESULT ShouldShowBoxWasFullMessage
 goto_if_eq VAR_RESULT TRUE EventScript_LanettesPCBoxFull
-msgbox	gText_PkmnTransferredLanettesPC
+msgbox	was transferred to LANETTE'S PC.It was placed in BOX “.”
 return
 = EventScript_LanettesPCBoxFull
 specialvar VAR_RESULT GetPCBoxToSendMon
 bufferboxname STR_VAR_3 VAR_RESULT
-msgbox	gText_PkmnTransferredLanettesPCBoxFull
+msgbox	BOX “” on LANETTE'S PC was full.was transferred to BOX “.”
 return
 = EventScript_TransferredSomeonesPC
 specialvar VAR_RESULT ShouldShowBoxWasFullMessage
 goto_if_eq VAR_RESULT TRUE EventScript_SomeonesPCBoxFull
-msgbox	gText_PkmnTransferredSomeonesPC
+msgbox	was transferred to SOMEONE'S PC.It was placed in BOX “.”
 return
 = EventScript_SomeonesPCBoxFull
 specialvar VAR_RESULT GetPCBoxToSendMon
 bufferboxname STR_VAR_3 VAR_RESULT
-msgbox	gText_PkmnTransferredSomeonesPCBoxFull
+msgbox	BOX “” on SOMEONE'S PC was full.was transferred to BOX “.”
 return
 = Common_EventScript_NameReceivedBoxMon
 fadescreen FADE_TO_BLACK
@@ -289,14 +289,14 @@ faceplayer
 return
 = LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedJohtoStarter
 playfanfare MUS_OBTAIN_ITEM
-message LittlerootTown_ProfessorBirchsLab_Text_ReceivedJohtoStarter
+msgbox	PLAYER received the from PROF. BIRCH!
 waitmessage
 waitfanfare
 return
 = LittlerootTown_ProfessorBirchsLab_EventScript_SendChikoritaToParty
 call LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedJohtoStarter
 removeobject LOCALID_BIRCHS_LAB_CHIKORITA_BALL
-msgbox	gText_NicknameThisPokemon
+msgboxyesno	Do you want to give a nickname to this ?
 goto_if_eq VAR_RESULT NO LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedChikorita
 call Common_EventScript_GetGiftMonPartySlot
 call Common_EventScript_NameReceivedPartyMon
@@ -322,7 +322,7 @@ goto_if_ge VAR_DEX_UPGRADE_JOHTO_STARTER_STATE 6 LittlerootTown_ProfessorBirchsL
 applymovement LOCALID_BIRCHS_LAB_BIRCH Common_Movement_WalkInPlaceFasterRight
 waitmovement 0
 showmonpic SPECIES_TOTODILE 10 3
-msgbox	PROF. BIRCH: The WATER POKéMON TOTODILE is your choice!You know how to pick a good one.So, you'll take the TOTODILE?
+msgboxyesno	PROF. BIRCH: The WATER POKéMON TOTODILE is your choice!You know how to pick a good one.So, you'll take the TOTODILE?
 goto_if_eq VAR_RESULT NO LittlerootTown_ProfessorBirchsLab_EventScript_TakeYourTime
 goto LittlerootTown_ProfessorBirchsLab_EventScript_GiveTotodile
 end
@@ -338,7 +338,7 @@ end
 = LittlerootTown_ProfessorBirchsLab_EventScript_SendTotodileToPC
 call LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedJohtoStarter
 removeobject LOCALID_BIRCHS_LAB_TOTODILE_BALL
-msgbox	gText_NicknameThisPokemon
+msgboxyesno	Do you want to give a nickname to this ?
 goto_if_eq VAR_RESULT NO LittlerootTown_ProfessorBirchsLab_EventScript_TotodileTransferredToPC
 call Common_EventScript_NameReceivedBoxMon
 goto LittlerootTown_ProfessorBirchsLab_EventScript_TotodileTransferredToPC
@@ -356,7 +356,7 @@ end
 = LittlerootTown_ProfessorBirchsLab_EventScript_SendTotodileToParty
 call LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedJohtoStarter
 removeobject LOCALID_BIRCHS_LAB_TOTODILE_BALL
-msgbox	gText_NicknameThisPokemon
+msgboxyesno	Do you want to give a nickname to this ?
 goto_if_eq VAR_RESULT NO LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedTotodile
 call Common_EventScript_GetGiftMonPartySlot
 call Common_EventScript_NameReceivedPartyMon
@@ -368,7 +368,7 @@ goto_if_ge VAR_DEX_UPGRADE_JOHTO_STARTER_STATE 6 LittlerootTown_ProfessorBirchsL
 applymovement LOCALID_BIRCHS_LAB_BIRCH Common_Movement_WalkInPlaceFasterRight
 waitmovement 0
 showmonpic SPECIES_CYNDAQUIL 10 3
-msgbox	PROF. BIRCH: The FIRE POKéMON CYNDAQUIL caught your eye!You're as sharp as ever!So the CYNDAQUIL is your choice?
+msgboxyesno	PROF. BIRCH: The FIRE POKéMON CYNDAQUIL caught your eye!You're as sharp as ever!So the CYNDAQUIL is your choice?
 goto_if_eq VAR_RESULT NO LittlerootTown_ProfessorBirchsLab_EventScript_TakeYourTime
 goto LittlerootTown_ProfessorBirchsLab_EventScript_GiveCyndaquil
 end
@@ -384,7 +384,7 @@ end
 = LittlerootTown_ProfessorBirchsLab_EventScript_SendCyndaquilToPC
 call LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedJohtoStarter
 removeobject LOCALID_BIRCHS_LAB_CYNDAQUIL_BALL
-msgbox	gText_NicknameThisPokemon
+msgboxyesno	Do you want to give a nickname to this ?
 goto_if_eq VAR_RESULT NO LittlerootTown_ProfessorBirchsLab_EventScript_CyndaquilTransferredToPC
 call Common_EventScript_NameReceivedBoxMon
 goto LittlerootTown_ProfessorBirchsLab_EventScript_CyndaquilTransferredToPC
@@ -402,7 +402,7 @@ end
 = LittlerootTown_ProfessorBirchsLab_EventScript_SendCyndaquilToParty
 call LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedJohtoStarter
 removeobject LOCALID_BIRCHS_LAB_CYNDAQUIL_BALL
-msgbox	gText_NicknameThisPokemon
+msgboxyesno	Do you want to give a nickname to this ?
 goto_if_eq VAR_RESULT NO LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedCyndaquil
 call Common_EventScript_GetGiftMonPartySlot
 call Common_EventScript_NameReceivedPartyMon
@@ -486,7 +486,7 @@ goto_if_unset FLAG_HAS_MATCH_CALL ProfBirch_EventScript_AskRatePokedex
 goto_if_unset FLAG_ENABLE_PROF_BIRCH_MATCH_CALL EventScript_RegisterProfBirch
 goto ProfBirch_EventScript_AskRatePokedex
 = ProfBirch_EventScript_AskRatePokedex
-msgbox	gBirchDexRatingText_AreYouCurious
+msgboxyesno	PROF. BIRCH: Ah, PLAYER!Are you curious about how your POKéDEX is coming along?
 goto_if_eq VAR_RESULT NO ProfBirch_EventScript_DeclineRating
 call ProfBirch_EventScript_RatePokedex
 release
@@ -499,7 +499,7 @@ copyvar VAR_0x8009 VAR_0x8006
 copyvar VAR_0x800A VAR_RESULT
 buffernumberstring STR_VAR_1 VAR_0x8008  @ Num Hoenn seen
 buffernumberstring STR_VAR_2 VAR_0x8009  @ Num Hoenn caught
-msgbox	gBirchDexRatingText_SoYouveSeenAndCaught
+msgbox	Hmhm…So, you've seen POKéMON, and you've caught POKéMON…
 call ProfBirch_EventScript_ShowRatingMessage
 goto_if_eq VAR_0x800A 0 Common_EventScript_NopReturn  @ National dex not enabled
 setvar VAR_0x8004 1
@@ -508,7 +508,7 @@ copyvar VAR_0x8008 VAR_0x8005
 copyvar VAR_0x8009 VAR_0x8006
 buffernumberstring STR_VAR_1 VAR_0x8008  @ Num National seen
 buffernumberstring STR_VAR_2 VAR_0x8009  @ Num National caught
-msgbox	gBirchDexRatingText_OnANationwideBasis
+msgbox	Hmhm… On a nationwide basis…You've seen POKéMON, and you've caught POKéMON…
 return
 = ProfBirch_EventScript_ShowRatingMessage
 copyvar VAR_0x8004 VAR_0x8009
@@ -517,15 +517,15 @@ waitmessage
 waitbuttonpress
 return
 = ProfBirch_EventScript_DeclineRating
-msgbox	gBirchDexRatingText_Cancel
+msgbox	Hm? Oh, you haven't caught enough POKéMON to make it worthwhile.
 release
 end
 = EventScript_RegisterProfBirch
-msgbox	MatchCall_Text_BirchRegisterCall
+msgbox	PROF. BIRCH: Oh, PLAYER! I've already heard about you!It seems your POKéNAV's been upgraded with MATCH CALL.Well, I should register, too!That way, I'd be able to examine your POKéDEX even while you're out in the field.… … … … … …
 closemessage
 delay 30
 playfanfare MUS_REGISTER_MATCH_CALL
-msgbox	MatchCall_Text_RegisteredBirch
+msgbox	Registered PROF. BIRCH in the POKéNAV.
 waitfanfare
 closemessage
 delay 30

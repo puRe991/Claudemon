@@ -128,12 +128,12 @@ msgbox	Congratulations!I did a painting of your POKéMON to commemorate its vic
 lockall
 fadescreen FADE_TO_BLACK
 showcontestpainting CONTEST_WINNER_ARTIST
-msgbox	What do you think? I'm confident in what I've done, but do you like it?A work of this caliber, it wouldn't look out of place in an art museum.Huh? An art museum really is looking for paintings?Do you think I should take this there?
+msgboxyesno	What do you think? I'm confident in what I've done, but do you like it?A work of this caliber, it wouldn't look out of place in an art museum.Huh? An art museum really is looking for paintings?Do you think I should take this there?
 goto_if_eq VAR_RESULT YES LilycoveCity_ContestLobby_EventScript_TakePaintingToMuseumLink
 goto_if_eq VAR_RESULT NO LilycoveCity_ContestLobby_EventScript_ConfirmDontTakePaintingLink
 end
 = LilycoveCity_ContestLobby_EventScript_ConfirmDontTakePaintingLink
-msgbox	Oh… Then, I guess I'll just take this home with me…But, you know, I would like to take this to the art museum… Okay?
+msgboxyesno	Oh… Then, I guess I'll just take this home with me…But, you know, I would like to take this to the art museum… Okay?
 goto_if_eq VAR_RESULT YES LilycoveCity_ContestLobby_EventScript_TakePaintingToMuseumLink
 msgbox	Oh, fine, that's the way it is. I will hang this in my own house.I'll just have to try harder next time. Well, be seeing you.
 closemessage
@@ -239,13 +239,13 @@ lockall
 fadescreen FADE_TO_BLACK
 showcontestpainting CONTEST_WINNER_ARTIST
 lockall
-msgbox	What do you think? I'm confident in what I've done, but do you like it?A work of this caliber, it wouldn't look out of place in an art museum.Huh? An art museum really is looking for paintings?Do you think I should take this there?
+msgboxyesno	What do you think? I'm confident in what I've done, but do you like it?A work of this caliber, it wouldn't look out of place in an art museum.Huh? An art museum really is looking for paintings?Do you think I should take this there?
 goto_if_eq VAR_RESULT YES LilycoveCity_ContestLobby_EventScript_TakePaintingToMuseum
 goto_if_eq VAR_RESULT NO LilycoveCity_ContestLobby_EventScript_ConfirmDontTakePainting
 releaseall
 end
 = LilycoveCity_ContestLobby_EventScript_ConfirmDontTakePainting
-msgbox	Oh… Then, I guess I'll just take this home with me…But, you know, I would like to take this to the art museum… Okay?
+msgboxyesno	Oh… Then, I guess I'll just take this home with me…But, you know, I would like to take this to the art museum… Okay?
 goto_if_eq VAR_RESULT YES LilycoveCity_ContestLobby_EventScript_TakePaintingToMuseum
 msgbox	Oh, fine, that's the way it is. I will hang this in my own house.I'll just have to try harder next time. Well, be seeing you.
 closemessage
@@ -301,7 +301,7 @@ end
 = LilycoveCity_ContestLobby_EventScript_BlendMaster
 lock
 faceplayer
-msgbox	BerryBlender_Text_BlendWithTheBlendMaster
+msgbox	BLEND MASTER: Indeed I am! The BLEND MASTER am I!Blend with me, and you shall witness the mastery I bring to blending!
 goto LilycoveCity_ContestLobby_EventScript_FaceOriginalDirection
 end
 = LilycoveCity_ContestLobby_EventScript_FaceOriginalDirection
@@ -312,35 +312,35 @@ release
 end
 = LilycoveCity_ContestLobby_EventScript_BlendMasterOnlooker1
 lock
-msgbox	BerryBlender_Text_WhoaAwesome
+msgbox	Whoa! Awesome!
 release
 end
 = LilycoveCity_ContestLobby_EventScript_BlendMasterOnlooker6
 lock
 faceplayer
-msgbox	BerryBlender_Text_MasterWorksOnSkillsInMountains
+msgbox	The BLEND MASTER's supposed to work on his skills deep in the mountains.Sometimes, he comes to LILYCOVE to blend BERRIES all day long.
 goto LilycoveCity_ContestLobby_EventScript_FaceOriginalDirection
 end
 = LilycoveCity_ContestLobby_EventScript_BlendMasterOnlooker5
 lock
 faceplayer
-msgbox	BerryBlender_Text_QualitiesOfBlendMaster
+msgbox	Eyes that track the arrow with machinelike intensity…A hand that taps the A Button with clockwork-like precision…Possessing these qualities makes the BLEND MASTER truly great.
 goto LilycoveCity_ContestLobby_EventScript_FaceOriginalDirection
 end
 = LilycoveCity_ContestLobby_EventScript_BlendMasterOnlooker4
 lock
 faceplayer
-msgbox	BerryBlender_Text_MadeAmazingPokeblocksWithMaster
+msgbox	When I blended with the MASTER, we made amazing S!
 goto LilycoveCity_ContestLobby_EventScript_FaceOriginalDirection
 end
 = LilycoveCity_ContestLobby_EventScript_BlendMasterOnlooker3
 lock
-msgbox	BerryBlender_Text_WhatAnExpert
+msgbox	What an expert!
 release
 end
 = LilycoveCity_ContestLobby_EventScript_BlendMasterOnlooker2
 lock
-msgbox	BerryBlender_Text_WickedlyFast
+msgbox	Wickedly fast!
 release
 end
 = LilycoveCity_ContestLobby_EventScript_Blender3Girl
@@ -376,16 +376,16 @@ setvar VAR_0x8005 TVSHOW_BRAVO_TRAINER_POKEMON_PROFILE
 special InterviewBefore
 goto_if_eq VAR_RESULT TRUE LilycoveCity_ContestLobby_EventScript_AlreadyInterviewed
 copyvar VAR_0x8009 VAR_0x8006
-msgbox	LilycoveCity_ContestLobby_Text_InterviewRequest
+msgboxyesno	Oh, hello! You were in a POKéMON CONTEST, weren't you? It's easy to tell from your POKéMON.I'm a reporter. I'm working on a story on POKéMON CONTESTS.If I may, would you be willing to answer a few questions?
 goto_if_eq VAR_RESULT YES LilycoveCity_ContestLobby_EventScript_AcceptInterview
 goto_if_eq VAR_RESULT NO LilycoveCity_ContestLobby_EventScript_DeclineInterview
 end
 = LilycoveCity_ContestLobby_EventScript_DeclineInterview
-msgbox	LilycoveCity_ContestLobby_Text_PleaseDoShareStoryWithMe
+msgbox	Oh, too bad…Well, if you come across a good story, please do share it with me.
 release
 end
 = LilycoveCity_ContestLobby_EventScript_AcceptInterview
-msgbox	LilycoveCity_ContestLobby_Text_DescribeContest
+msgbox	Oh, you will? Thank you.Briefly, how would you describe the CONTEST you just entered?
 setvar VAR_0x8004 EASY_CHAT_TYPE_CONTEST_INTERVIEW
 copyvar VAR_0x8005 VAR_0x8009
 setvar VAR_0x8006 0
@@ -398,7 +398,7 @@ end
 = LilycoveCity_ContestLobby_EventScript_SubmitResponse
 setvar VAR_0x8004 24
 special SetContestCategoryStringVarForInterview
-msgbox	LilycoveCity_ContestLobby_Text_WhatImageWhenYouHearX
+msgbox	Ah, I see. That's a very edifying comment.You get a good feel for what the CONTEST was like.I've got one last question.When you hear the word “,” what image do you get?
 setvar VAR_0x8004 EASY_CHAT_TYPE_CONTEST_INTERVIEW
 copyvar VAR_0x8005 VAR_0x8009
 setvar VAR_0x8006 1
@@ -406,7 +406,7 @@ call Common_ShowEasyChatScreen
 lock
 faceplayer
 goto_if_eq VAR_RESULT 0 LilycoveCity_ContestLobby_EventScript_DeclineInterview
-msgbox	LilycoveCity_ContestLobby_Text_ThatsAllForInterview
+msgbox	I see!So that's how you imagine the concept of “” to be.Thank you! You've given me some good ideas.I think I can write a good story on POKéMON CONTESTS now.Maybe, just maybe, this story will even make it to television. I hope you'll look forward to it!
 setflag FLAG_TEMP_2
 setvar VAR_0x8005 TVSHOW_BRAVO_TRAINER_POKEMON_PROFILE
 goto Interview_EventScript_EndInterview
@@ -423,16 +423,16 @@ setvar VAR_0x8005 TVSHOW_FAN_CLUB_LETTER
 special InterviewBefore
 goto_if_eq VAR_RESULT TRUE SlateportCity_PokemonFanClub_EventScript_AlreadyInterviewed2
 copyvar VAR_0x8009 VAR_0x8006
-msgbox	SlateportCity_PokemonFanClub_Text_InterviewRequest
+msgboxyesno	Hi, you seem to be very close to your .Do you know what? I'm a TV reporter.I travel around interviewing people about POKéMON.I'm wondering if you'd be willing to tell me a little about your ?
 goto_if_eq VAR_RESULT YES SlateportCity_PokemonFanClub_EventScript_AcceptInterview2
 goto_if_eq VAR_RESULT NO SlateportCity_PokemonFanClub_EventScript_DeclineInterview2
 end
 = SlateportCity_PokemonFanClub_EventScript_DeclineInterview2
-msgbox	SlateportCity_PokemonFanClub_Text_HereIfYouGetUrgeToTellMe
+msgbox	Oh, okay…Well, if you get the urge to tell me about POKéMON, I'll be here!
 release
 end
 = SlateportCity_PokemonFanClub_EventScript_AcceptInterview2
-msgbox	SlateportCity_PokemonFanClub_Text_TellMeAnythingAboutYourMon
+msgbox	Wow, thank you!Okay, then, please tell me anything you'd like about your .
 setvar VAR_0x8004 EASY_CHAT_TYPE_INTERVIEW
 copyvar VAR_0x8005 VAR_0x8009
 setvar VAR_0x8006 EASY_CHAT_PERSON_REPORTER_FEMALE
@@ -443,16 +443,16 @@ goto_if_eq VAR_RESULT 1 SlateportCity_PokemonFanClub_EventScript_SubmitResponse2
 goto_if_eq VAR_RESULT 0 SlateportCity_PokemonFanClub_EventScript_DeclineInterview2
 end
 = SlateportCity_PokemonFanClub_EventScript_SubmitResponse2
-msgbox	SlateportCity_PokemonFanClub_Text_ThatsAllForInterview2
+msgbox	Wow… That's an interesting account.You really are tight with , aren't you?I get the feeling that your account will make a great TV story.I promise that I'll turn this into an entertaining show. Keep your eyes out for it.Okay, that's all. Bye-bye!
 setvar VAR_0x8005 TVSHOW_FAN_CLUB_LETTER
 goto Interview_EventScript_EndInterview
 end
 = SlateportCity_PokemonFanClub_EventScript_AlreadyInterviewed2
-msgbox	SlateportCity_PokemonFanClub_Text_EnjoyDoingInterviews
+msgbox	I enjoy this job--you get to learn about POKéMON by doing interviews.
 release
 end
 = LilycoveCity_ContestLobby_EventScript_AlreadyInterviewed
-msgbox	LilycoveCity_ContestLobby_Text_LookingForwardToNextContest
+msgbox	I'll be looking forward to your next POKéMON CONTEST.
 release
 end
 = LilycoveCity_ContestLobby_EventScript_Artist
@@ -475,7 +475,7 @@ msgbox	LilycoveCity_ContestLobby_Text_LinkContestReception
 goto LilycoveCity_ContestLobby_EventScript_AskEnterLinkContest
 end
 = LilycoveCity_ContestLobby_EventScript_AskEnterLinkContest
-message LilycoveCity_ContestLobby_Text_EnterContest3
+msgbox	LilycoveCity_ContestLobby_Text_EnterContest3
 waitmessage
 multichoice 0 0 MULTI_ENTERINFO FALSE
 switch VAR_RESULT
@@ -490,7 +490,7 @@ msgbox	LilycoveCity_ContestLobby_Text_ParticipateAnotherTime
 release
 end
 = LilycoveCity_ContestLobby_EventScript_LinkContestInfo
-message LilycoveCity_ContestLobby_Text_WhichTopic2
+msgbox	LilycoveCity_ContestLobby_Text_WhichTopic2
 waitmessage
 multichoice 0 0 MULTI_LINK_CONTEST_INFO FALSE
 switch VAR_RESULT
@@ -517,7 +517,7 @@ msgbox	LilycoveCity_ContestLobby_Text_ProgressWillBeSaved
 goto_if_eq VAR_RESULT NO LilycoveCity_ContestLobby_EventScript_CancelLinkContest
 call Common_EventScript_SaveGame
 goto_if_eq VAR_RESULT FALSE LilycoveCity_ContestLobby_EventScript_CancelLinkContest
-message LilycoveCity_ContestLobby_Text_WhichContestMode
+msgbox	LilycoveCity_ContestLobby_Text_WhichContestMode
 waitmessage
 specialvar VAR_TEMP_D IsWirelessAdapterConnected
 multichoice 0 0 MULTI_LINK_CONTEST_MODE FALSE
@@ -640,7 +640,7 @@ call_if_unset FLAG_RECEIVED_POKEBLOCK_CASE LilycoveCity_ContestLobby_EventScript
 goto LilycoveCity_ContestLobby_EventScript_AskEnterContest
 end
 = LilycoveCity_ContestLobby_EventScript_AskEnterContest
-message LilycoveCity_ContestLobby_Text_EnterContest1
+msgbox	LilycoveCity_ContestLobby_Text_EnterContest1
 waitmessage
 multichoice 0 0 MULTI_ENTERINFO FALSE
 switch VAR_RESULT
@@ -654,7 +654,7 @@ msgbox	LilycoveCity_ContestLobby_Text_ParticipateAnotherTime
 release
 end
 = LilycoveCity_ContestLobby_EventScript_ContestInfo
-message LilycoveCity_ContestLobby_Text_WhichTopic1
+msgbox	LilycoveCity_ContestLobby_Text_WhichTopic1
 waitmessage
 multichoice 0 0 MULTI_CONTEST_INFO FALSE
 switch VAR_RESULT
@@ -677,7 +677,7 @@ msgbox	LilycoveCity_ContestLobby_Text_ExplainContests
 goto LilycoveCity_ContestLobby_EventScript_ContestInfo
 end
 = LilycoveCity_ContestLobby_EventScript_ChooseContestRank
-message LilycoveCity_ContestLobby_Text_EnterWhichRank
+msgbox	LilycoveCity_ContestLobby_Text_EnterWhichRank
 waitmessage
 multichoice 0 0 MULTI_CONTEST_RANK FALSE
 switch VAR_RESULT
@@ -696,7 +696,7 @@ end
 @ So rather than list the cases they just copy VAR_RESULT for a valid selection into VAR_CONTEST_CATEGORY
 goto LilycoveCity_ContestLobby_EventScript_ChooseContestType
 = LilycoveCity_ContestLobby_EventScript_ChooseContestType
-message LilycoveCity_ContestLobby_Text_EnterWhichContest1
+msgbox	LilycoveCity_ContestLobby_Text_EnterWhichContest1
 waitmessage
 multichoice 0 0 MULTI_CONTEST_TYPE FALSE
 switch VAR_RESULT
@@ -791,3 +791,5 @@ call Common_EventScript_BagIsFull
 msgbox	LilycoveCity_ContestLobby_Text_ComeBackForPrizeLater
 release
 end
+counters
+678,694,720,729,735

@@ -48,11 +48,11 @@ scriptdefs
 lock
 faceplayer
 goto_if_set FLAG_MOVE_TUTOR_TAUGHT_SUBSTITUTE MoveTutor_EventScript_SubstituteTaught
-msgbox	MoveTutor_Text_SubstituteTeach
+msgboxyesno	When I see the wide world from up here on the roof…I think about how nice it would be if there were more than just one me so I could enjoy all sorts of lives.Of course it's not possible. Giggle…I know! Would you be interested in having a POKéMON learn SUBSTITUTE?
 goto_if_eq VAR_RESULT NO MoveTutor_EventScript_SubstituteDeclined
 call MoveTutor_EventScript_CanOnlyBeLearnedOnce
 goto_if_eq VAR_RESULT NO MoveTutor_EventScript_SubstituteDeclined
-msgbox	MoveTutor_Text_SubstituteWhichMon
+msgbox	Giggle… Which POKéMON do you want me to teach SUBSTITUTE?
 setvar VAR_0x8005 TUTOR_MOVE_SUBSTITUTE
 call MoveTutor_EventScript_OpenPartyMenu
 goto_if_eq VAR_RESULT 0 MoveTutor_EventScript_SubstituteDeclined
@@ -60,11 +60,11 @@ setflag FLAG_MOVE_TUTOR_TAUGHT_SUBSTITUTE
 goto MoveTutor_EventScript_SubstituteTaught
 end
 = MoveTutor_EventScript_SubstituteTaught
-msgbox	MoveTutor_Text_SubstituteTaught
+msgbox	We human beings should enjoy our own lives to the utmost!I hope you'll get that way, too!
 release
 end
 = MoveTutor_EventScript_SubstituteDeclined
-msgbox	MoveTutor_Text_SubstituteDeclined
+msgbox	Oh, no?A POKéMON can make a copy of itself using it, you know.
 release
 end
 = MoveTutor_EventScript_OpenPartyMenu
@@ -73,15 +73,15 @@ lock
 faceplayer
 return
 = MoveTutor_EventScript_CanOnlyBeLearnedOnce
-msgbox	MoveTutor_Text_ThisMoveCanOnlyBeLearnedOnce
+msgboxyesno	This move can be learned only once. Is that okay?
 return
 = LilycoveCity_DepartmentStoreRooftop_EventScript_SaleWoman
 lock
 faceplayer
-message gText_HowMayIServeYou
+msgbox	Welcome!How may I serve you?
 waitmessage
 pokemartdecoration LilycoveCity_DepartmentStoreRooftop_PokemartDecor_ClearOutSale
-msgbox	gText_PleaseComeAgain
+msgbox	Please come again!
 release
 end
 = LilycoveCity_DepartmentStoreRooftop_EventScript_ThirstyMan

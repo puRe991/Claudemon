@@ -147,7 +147,7 @@ goto_if_unset FLAG_HAS_MATCH_CALL ProfBirch_EventScript_AskRatePokedex
 goto_if_unset FLAG_ENABLE_PROF_BIRCH_MATCH_CALL EventScript_RegisterProfBirch
 goto ProfBirch_EventScript_AskRatePokedex
 = ProfBirch_EventScript_AskRatePokedex
-msgbox	gBirchDexRatingText_AreYouCurious
+msgboxyesno	PROF. BIRCH: Ah, PLAYER!Are you curious about how your POKéDEX is coming along?
 goto_if_eq VAR_RESULT NO ProfBirch_EventScript_DeclineRating
 call ProfBirch_EventScript_RatePokedex
 release
@@ -160,7 +160,7 @@ copyvar VAR_0x8009 VAR_0x8006
 copyvar VAR_0x800A VAR_RESULT
 buffernumberstring STR_VAR_1 VAR_0x8008  @ Num Hoenn seen
 buffernumberstring STR_VAR_2 VAR_0x8009  @ Num Hoenn caught
-msgbox	gBirchDexRatingText_SoYouveSeenAndCaught
+msgbox	Hmhm…So, you've seen POKéMON, and you've caught POKéMON…
 call ProfBirch_EventScript_ShowRatingMessage
 goto_if_eq VAR_0x800A 0 Common_EventScript_NopReturn  @ National dex not enabled
 setvar VAR_0x8004 1
@@ -169,7 +169,7 @@ copyvar VAR_0x8008 VAR_0x8005
 copyvar VAR_0x8009 VAR_0x8006
 buffernumberstring STR_VAR_1 VAR_0x8008  @ Num National seen
 buffernumberstring STR_VAR_2 VAR_0x8009  @ Num National caught
-msgbox	gBirchDexRatingText_OnANationwideBasis
+msgbox	Hmhm… On a nationwide basis…You've seen POKéMON, and you've caught POKéMON…
 return
 = ProfBirch_EventScript_ShowRatingMessage
 copyvar VAR_0x8004 VAR_0x8009
@@ -178,7 +178,7 @@ waitmessage
 waitbuttonpress
 return
 = ProfBirch_EventScript_DeclineRating
-msgbox	gBirchDexRatingText_Cancel
+msgbox	Hm? Oh, you haven't caught enough POKéMON to make it worthwhile.
 release
 end
 = Route101_EventScript_BirchsBag

@@ -90,7 +90,7 @@ goto SlateportCity_OceanicMuseum_1F_EventScript_PayEntranceFee
 end
 = SlateportCity_OceanicMuseum_1F_EventScript_PayEntranceFee
 showmoneybox 0 0
-msgbox	Welcome to the OCEANIC MUSEUM.The entrance fee is ¥50. Would you like to enter?
+msgboxyesno	Welcome to the OCEANIC MUSEUM.The entrance fee is ¥50. Would you like to enter?
 goto_if_eq VAR_RESULT YES SlateportCity_OceanicMuseum_1F_EventScript_CheckMoneyForFee
 closemessage
 hidemoneybox
@@ -139,16 +139,16 @@ goto_if_eq VAR_RESULT TRUE SlateportCity_OceanicMuseum_1F_EventScript_AlreadyInt
 copyvar VAR_0x8009 VAR_0x8006
 goto_if_set FLAG_OCEANIC_MUSEUM_MET_REPORTER SlateportCity_OceanicMuseum_1F_EventScript_RequestInterviewShort
 setflag FLAG_OCEANIC_MUSEUM_MET_REPORTER
-msgbox	SlateportCity_OceanicMuseum_1F_Text_InterviewRequest
+msgboxyesno	Oh? Do you perhaps like POKéMON?I'm on assignment with the TV network.I'm gathering stories on POKéMON and TRAINERS that occurred recently.If you don't mind, could you tell me something about yourself?
 goto_if_eq VAR_RESULT YES SlateportCity_OceanicMuseum_1F_EventScript_AcceptInterview
 goto_if_eq VAR_RESULT NO SlateportCity_OceanicMuseum_1F_EventScript_DeclineInterview
 end
 = SlateportCity_OceanicMuseum_1F_EventScript_DeclineInterview
-msgbox	SlateportCity_OceanicMuseum_1F_Text_LetMeKnowIfYouHaveStory
+msgbox	Oh, I see…Well, if you do have an interesting story to tell, please let me know.
 release
 end
 = SlateportCity_OceanicMuseum_1F_EventScript_AcceptInterview
-msgbox	SlateportCity_OceanicMuseum_1F_Text_TellMeExperienceInvolvingPokemon
+msgbox	Oh, you will? Thank you!Then, please, tell me anything of interest that you experienced recently involving POKéMON.
 setvar VAR_0x8004 EASY_CHAT_TYPE_INTERVIEW
 copyvar VAR_0x8005 VAR_0x8009
 setvar VAR_0x8006 EASY_CHAT_PERSON_REPORTER_MALE
@@ -159,7 +159,7 @@ goto_if_eq VAR_RESULT 1 SlateportCity_OceanicMuseum_1F_EventScript_SubmitRespons
 goto_if_eq VAR_RESULT 0 SlateportCity_OceanicMuseum_1F_EventScript_DeclineInterview
 end
 = SlateportCity_OceanicMuseum_1F_EventScript_SubmitResponse
-msgbox	SlateportCity_OceanicMuseum_1F_Text_ThatsAllForInterview
+msgbox	Oh, what an uplifting story!I'll be sure to get your story told on television.It should be aired sometime, I think, so please look forward to it.
 setvar VAR_0x8005 TVSHOW_RECENT_HAPPENINGS
 goto Interview_EventScript_EndInterview
 end
@@ -175,16 +175,16 @@ setvar VAR_0x8005 TVSHOW_FAN_CLUB_LETTER
 special InterviewBefore
 goto_if_eq VAR_RESULT TRUE SlateportCity_PokemonFanClub_EventScript_AlreadyInterviewed2
 copyvar VAR_0x8009 VAR_0x8006
-msgbox	SlateportCity_PokemonFanClub_Text_InterviewRequest
+msgboxyesno	Hi, you seem to be very close to your .Do you know what? I'm a TV reporter.I travel around interviewing people about POKéMON.I'm wondering if you'd be willing to tell me a little about your ?
 goto_if_eq VAR_RESULT YES SlateportCity_PokemonFanClub_EventScript_AcceptInterview2
 goto_if_eq VAR_RESULT NO SlateportCity_PokemonFanClub_EventScript_DeclineInterview2
 end
 = SlateportCity_PokemonFanClub_EventScript_DeclineInterview2
-msgbox	SlateportCity_PokemonFanClub_Text_HereIfYouGetUrgeToTellMe
+msgbox	Oh, okay…Well, if you get the urge to tell me about POKéMON, I'll be here!
 release
 end
 = SlateportCity_PokemonFanClub_EventScript_AcceptInterview2
-msgbox	SlateportCity_PokemonFanClub_Text_TellMeAnythingAboutYourMon
+msgbox	Wow, thank you!Okay, then, please tell me anything you'd like about your .
 setvar VAR_0x8004 EASY_CHAT_TYPE_INTERVIEW
 copyvar VAR_0x8005 VAR_0x8009
 setvar VAR_0x8006 EASY_CHAT_PERSON_REPORTER_FEMALE
@@ -195,21 +195,21 @@ goto_if_eq VAR_RESULT 1 SlateportCity_PokemonFanClub_EventScript_SubmitResponse2
 goto_if_eq VAR_RESULT 0 SlateportCity_PokemonFanClub_EventScript_DeclineInterview2
 end
 = SlateportCity_PokemonFanClub_EventScript_SubmitResponse2
-msgbox	SlateportCity_PokemonFanClub_Text_ThatsAllForInterview2
+msgbox	Wow… That's an interesting account.You really are tight with , aren't you?I get the feeling that your account will make a great TV story.I promise that I'll turn this into an entertaining show. Keep your eyes out for it.Okay, that's all. Bye-bye!
 setvar VAR_0x8005 TVSHOW_FAN_CLUB_LETTER
 goto Interview_EventScript_EndInterview
 end
 = SlateportCity_PokemonFanClub_EventScript_AlreadyInterviewed2
-msgbox	SlateportCity_PokemonFanClub_Text_EnjoyDoingInterviews
+msgbox	I enjoy this job--you get to learn about POKéMON by doing interviews.
 release
 end
 = SlateportCity_OceanicMuseum_1F_EventScript_RequestInterviewShort
-msgbox	SlateportCity_OceanicMuseum_1F_Text_InterviewRequestShort
+msgboxyesno	I'm gathering stories on POKéMON and TRAINERS that occurred recently.If you don't mind, could you tell me something about yourself?
 goto_if_eq VAR_RESULT YES SlateportCity_OceanicMuseum_1F_EventScript_AcceptInterview
 goto_if_eq VAR_RESULT NO SlateportCity_OceanicMuseum_1F_EventScript_DeclineInterview
 end
 = SlateportCity_OceanicMuseum_1F_EventScript_AlreadyInterviewed
-msgbox	SlateportCity_OceanicMuseum_1F_Text_BetterWriteUpStory
+msgbox	Hmmm… I've got a good story for a TV program.I'd better write it up in a hurry!
 release
 end
 = SlateportCity_OceanicMuseum_1F_EventScript_FamiliarGrunt
@@ -306,3 +306,5 @@ signs
 3 1	It's a fossil with wavy ridges on it.“Soil on the ocean floor gets scoured by the tide.“The flowing seawater marks the soil with small ridges and valleys.“If this soil becomes fossilized, it is called a ripple mark.”
 16 1	A strange machine is rotating under a glass dome.Maybe it's for measuring the depth of something…
 17 1	A strange machine is rotating under a glass dome.Maybe it's for measuring the depth of something…
+counters
+563,574,584,585

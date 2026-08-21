@@ -187,11 +187,11 @@ end
 end
 = Route123_EventScript_Davis
 trainerbattle_single TRAINER_DAVIS Route123_Text_DavisIntro Route123_Text_DavisDefeat
-msgbox	Route123_Text_DavisPostBattle
+msgbox	Don't tell my brother I lost. You have to keep it a secret!
 end
 = Route123_EventScript_Jazmyn
 trainerbattle_single TRAINER_JAZMYN Route123_Text_JazmynIntro Route123_Text_JazmynDefeat
-msgbox	Route123_Text_JazmynPostBattle
+msgbox	They say that you can't judge a person by their appearance.But often, their looks don't lie…
 end
 = Route123_EventScript_ItemPPUp
 goto_if_set FLAG_ITEM_ROUTE_123_PP_UP Route123_EventScript_ItemPPUp_Taken
@@ -202,41 +202,41 @@ end
 end
 = Route123_EventScript_Frederick
 trainerbattle_single TRAINER_FREDRICK Route123_Text_FrederickIntro Route123_Text_FrederickDefeat
-msgbox	Route123_Text_FrederickPostBattle
+msgbox	Contribute to your allowance? Wasn't the prize money enough?
 end
 = Route123_EventScript_Alberto
 trainerbattle_single TRAINER_ALBERTO Route123_Text_AlbertoIntro Route123_Text_AlbertoDefeat
-msgbox	Route123_Text_AlbertoPostBattle
+msgbox	I gather BIRD POKéMON feathers that scatter during battles.I'm going to make a hat with BIRD POKéMON feathers.
 end
 = Route123_EventScript_Fernando
 trainerbattle_single TRAINER_FERNANDO_1 Route123_Text_FernandoIntro Route123_Text_FernandoDefeat Route123_EventScript_RegisterFernando
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route123_EventScript_RematchFernando
-msgbox	Route123_Text_FernandoPostBattle
+msgbox	You're rock steady. I'd like to write a tune about you.
 release
 end
 = Route123_EventScript_RematchFernando
 trainerbattle_rematch TRAINER_FERNANDO_1 Route123_Text_FernandoRematchIntro Route123_Text_FernandoRematchDefeat
-msgbox	Route123_Text_FernandoPostRematch
+msgbox	I thought you'd be so enthralled by my tune, you'd lose.
 end
 = Route123_EventScript_RegisterFernando
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Route123_Text_FernandoRegister
+msgbox	The next time, lend your ears to the full tune, will you?
 register_matchcall TRAINER_FERNANDO_1
 release
 end
 = Route123_EventScript_Ed
 trainerbattle_single TRAINER_ED Route123_Text_EdIntro Route123_Text_EdDefeat
-msgbox	Route123_Text_EdPostBattle
+msgbox	Hehe, I'm swiping your battling ideas! I think they'll make me better.
 end
 = Route123_EventScript_Kayley
 trainerbattle_single TRAINER_KAYLEY Route123_Text_KayleyIntro Route123_Text_KayleyDefeat
-msgbox	Route123_Text_KayleyPostBattle
+msgbox	Using accessories effectively is the secret behind fashion appeal.
 end
 = Route123_EventScript_Jonas
 trainerbattle_single TRAINER_JONAS Route123_Text_JonasIntro Route123_Text_JonasDefeat
-msgbox	Route123_Text_JonasPostBattle
+msgbox	I'm going to ambush a weaker-looking TRAINER next time.
 end
 = Route123_EventScript_ItemElixir
 goto_if_set FLAG_ITEM_ROUTE_123_ELIXIR Route123_EventScript_ItemElixir_Taken
@@ -254,23 +254,23 @@ end
 end
 = Route123_EventScript_Kindra
 trainerbattle_single TRAINER_KINDRA Route123_Text_KindraIntro Route123_Text_KindraDefeat
-msgbox	Route123_Text_KindraPostBattle
+msgbox	MT. PYRE… Where the spirits of POKéMON sleep…It must overflow with a power that soothes spirits…
 end
 = Route123_EventScript_Jacki
 trainerbattle_single TRAINER_JACKI_1 Route123_Text_JackiIntro Route123_Text_JackiDefeat Route123_EventScript_RegisterJacki
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route123_EventScript_RematchJacki
-msgbox	Route123_Text_JackiPostBattle
+msgbox	We all have psychic powers. We've just forgotten how to use them.
 release
 end
 = Route123_EventScript_RematchJacki
 trainerbattle_rematch TRAINER_JACKI_1 Route123_Text_JackiRematchIntro Route123_Text_JackiRematchDefeat
-msgbox	Route123_Text_JackiPostRematch
+msgbox	Your power with POKéMON… That could be a psychic power, too.
 end
 = Route123_EventScript_RegisterJacki
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Route123_Text_JackiRegister
+msgbox	I would like to face you again. Is that okay with you?
 register_matchcall TRAINER_JACKI_1
 release
 end
@@ -278,31 +278,31 @@ end
 trainerbattle_single TRAINER_CAMERON_1 Route123_Text_CameronIntro Route123_Text_CameronDefeat Route123_EventScript_RegisterCameron
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route123_EventScript_RematchCameron
-msgbox	Route123_Text_CameronPostBattle
+msgbox	Being a psychic is about willpower. I thought I wouldn't lose to you…
 release
 end
 = Route123_EventScript_RematchCameron
 trainerbattle_rematch TRAINER_CAMERON_1 Route123_Text_CameronRematchIntro Route123_Text_CameronRematchDefeat
-msgbox	Route123_Text_CameronPostRematch
+msgbox	I should train at MT. PYRE… I'll never beat you this way…
 end
 = Route123_EventScript_RegisterCameron
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Route123_Text_CameronRegister
+msgbox	I sense it! You and I shall battle again! I can't tell if I'll win, though…Let's see your POKéNAV.
 register_matchcall TRAINER_CAMERON_1
 release
 end
 = Route123_EventScript_Miu
 trainerbattle_double TRAINER_MIU_AND_YUKI Route123_Text_MiuIntro Route123_Text_MiuDefeat Route123_Text_MiuNotEnoughMons
-msgbox	Route123_Text_MiuPostBattle
+msgbox	MIU: TRAINER, your POKéMON are strong because you are friends.
 end
 = Route123_EventScript_Yuki
 trainerbattle_double TRAINER_MIU_AND_YUKI Route123_Text_YukiIntro Route123_Text_YukiDefeat Route123_Text_YukiNotEnoughMons
-msgbox	Route123_Text_YukiPostBattle
+msgbox	YUKI: Why are you so strong? We've never lost before.
 end
 = Route123_EventScript_Violet
 trainerbattle_single TRAINER_VIOLET Route123_Text_VioletIntro Route123_Text_VioletDefeat
-msgbox	Route123_Text_VioletPostBattle
+msgbox	The BERRY MASTER's garden is filled with uplifting fragrances.
 end
 = BerryTreeScript
 special ObjectEventInteractionGetBerryTreeData
@@ -329,24 +329,24 @@ special ObjectEventInteractionPickBerryTree
 goto_if_eq VAR_0x8004 0 BerryTree_EventScript_BerryPocketFull
 special IncrementDailyPickedBerries
 special ObjectEventInteractionRemoveBerryTree
-message BerryTree_Text_PickedTheBerry
+msgbox	BerryTree_Text_PickedTheBerry
 playfanfare MUS_OBTAIN_BERRY
 waitmessage
 waitfanfare
 waitbuttonpress
-message BerryTree_Text_PutAwayBerry
+msgbox	BerryTree_Text_PutAwayBerry
 waitmessage
 waitbuttonpress
 release
 end
 = BerryTree_EventScript_BerryPocketFull
-message BerryTree_Text_BerryPocketFull
+msgbox	BerryTree_Text_BerryPocketFull
 waitmessage
 waitbuttonpress
 release
 end
 = BerryTree_EventScript_CancelPickingBerry
-message BerryTree_Text_BerryLeftUnpicked
+msgbox	BerryTree_Text_BerryLeftUnpicked
 waitmessage
 waitbuttonpress
 release
@@ -355,7 +355,7 @@ end
 call BerryTree_EventScript_GetCareAdverb
 lockall
 special ObjectEventInteractionGetBerryName
-message BerryTree_Text_BerryGrowthStage4
+msgbox	BerryTree_Text_BerryGrowthStage4
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
@@ -388,11 +388,11 @@ releaseall
 end
 = BerryTree_EventScript_WaterBerry
 special ObjectEventInteractionGetBerryName
-message BerryTree_Text_WateredTheBerry
+msgbox	BerryTree_Text_WateredTheBerry
 waitmessage
 special ObjectEventInteractionWaterBerryTree
 special DoWateringBerryTreeAnim
-message BerryTree_Text_PlantIsDelighted
+msgbox	BerryTree_Text_PlantIsDelighted
 waitmessage
 waitbuttonpress
 releaseall
@@ -400,21 +400,21 @@ end
 = BerryTree_EventScript_CheckBerryStage3
 lockall
 special ObjectEventInteractionGetBerryName
-message BerryTree_Text_BerryGrowthStage3
+msgbox	BerryTree_Text_BerryGrowthStage3
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
 = BerryTree_EventScript_CheckBerryStage2
 lockall
 special ObjectEventInteractionGetBerryName
-message BerryTree_Text_BerryGrowthStage2
+msgbox	BerryTree_Text_BerryGrowthStage2
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
 = BerryTree_EventScript_CheckBerryStage1
 lockall
 special ObjectEventInteractionGetBerryCountString
-message BerryTree_Text_BerryGrowthStage1
+msgbox	BerryTree_Text_BerryGrowthStage1
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
@@ -423,7 +423,7 @@ lock
 faceplayer
 specialvar VAR_RESULT PlayerHasBerries
 goto_if_eq VAR_RESULT TRUE BerryTree_EventScript_WantToPlant
-message BerryTree_Text_ItsSoftLoamySoil
+msgbox	BerryTree_Text_ItsSoftLoamySoil
 waitmessage
 waitbuttonpress
 release
@@ -449,13 +449,13 @@ special ObjectEventInteractionPlantBerryTree
 incrementgamestat GAME_STAT_PLANTED_BERRIES
 special IncrementDailyPlantedBerries
 special ObjectEventInteractionGetBerryCountString
-message BerryTree_Text_PlantedOneBerry
+msgbox	BerryTree_Text_PlantedOneBerry
 waitmessage
 waitbuttonpress
 return
 = BerryTree_EventScript_Sparkling
 lockall
-message BerryTree_Text_ExclamationPoint
+msgbox	BerryTree_Text_ExclamationPoint
 waitmessage
 waitbuttonpress
 releaseall
@@ -528,11 +528,11 @@ releaseall
 end
 = Route123_EventScript_Braxton
 trainerbattle_single TRAINER_BRAXTON Route123_Text_BraxtonIntro Route123_Text_BraxtonDefeat
-msgbox	Route123_Text_BraxtonPostBattle
+msgbox	You did your BADGES proud in that match!
 end
 = Route123_EventScript_Wendy
 trainerbattle_single TRAINER_WENDY Route123_Text_WendyIntro Route123_Text_WendyDefeat
-msgbox	Route123_Text_WendyPostBattle
+msgbox	To best even me… Your strength is marvelous!
 end
 signs
 117 10	MT. PYRE “Forbidden to the faint of heart.”

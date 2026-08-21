@@ -62,7 +62,7 @@ BattleFrontier_BattlePalaceLobby_Movement_WalkToDoor	up,end
 scriptdefs
 = BattleFrontier_BattlePalaceLobby_EventScript_LostChallenge
 lockall
-message BattleFrontier_BattlePalaceLobby_Text_ResultsWillBeRecorded
+msgbox	I feel privileged for having seen your POKéMON's exploits.The results will be recorded. I must ask you to briefly wait.
 waitmessage
 palace_set PALACE_DATA_WIN_STREAK_ACTIVE FALSE
 call BattleFrontier_BattlePalaceLobby_EventScript_SaveAfterChallenge
@@ -80,7 +80,7 @@ playse SE_SAVE
 waitse
 call BattleFrontier_EventScript_GetCantRecordBattle
 goto_if_eq VAR_RESULT TRUE BattleFrontier_BattlePalaceLobby_EventScript_EndSaveAfterChallenge
-message BattleFrontier_BattlePalaceLobby_Text_LikeToRecordMatch
+msgbox	Would you like to record your latest BATTLE PALACE match on your FRONTIER PASS?
 waitmessage
 multichoicedefault 20 8 MULTI_YESNO 1 FALSE
 switch VAR_RESULT
@@ -102,8 +102,8 @@ goto BattleFrontier_BattlePalaceLobby_EventScript_GiveBattlePoints
 = BattleFrontier_BattlePalaceLobby_EventScript_GiveBattlePoints
 msgbox	In honor of the bond you share with your POKéMON, we present you with these Battle Point(s).
 frontier_givepoints
-msgbox	BattleFrontier_Text_ObtainedXBattlePoints
-message BattleFrontier_BattlePalaceLobby_Text_FeatWillBeRecorded
+msgbox	PLAYER obtained Battle Point(s).
+msgbox	Your feat will be recorded. I must ask you to briefly wait.
 waitmessage
 call BattleFrontier_BattlePalaceLobby_EventScript_SaveAfterChallenge
 msgbox	When you have fortified your heart and POKéMON, you must return.
@@ -117,7 +117,7 @@ goto BattleFrontier_BattlePalaceLobby_EventScript_GiveBattlePoints
 = BattleFrontier_BattlePalaceLobby_EventScript_ResumeChallenge
 lockall
 msgbox	We have been waiting for you…
-message BattleFrontier_BattlePalaceLobby_Text_MustSaveBeforeChallenge
+msgbox	I must save before I show you to the BATTLE HALL. Is that okay?
 waitmessage
 palace_save CHALLENGE_STATUS_SAVING
 playse SE_SAVE
@@ -208,7 +208,7 @@ case 2 BattleFrontier_BattlePalaceLobby_EventScript_CancelChallenge
 case MULTI_B_PRESSED BattleFrontier_BattlePalaceLobby_EventScript_CancelChallenge
 goto BattleFrontier_BattlePalaceLobby_EventScript_TryEnterChallenge
 = BattleFrontier_BattlePalaceLobby_EventScript_TryEnterChallenge
-message BattleFrontier_BattlePalaceLobby_Text_WhichChallenge
+msgbox	There are two BATTLE HALLS, Level 50 and Open Level. Which is your choice of a challenge?
 waitmessage
 multichoice 17 6 MULTI_LEVEL_MODE FALSE
 switch VAR_RESULT
@@ -224,7 +224,7 @@ copyvar VAR_0x8004 VAR_RESULT
 setvar VAR_0x8005 FRONTIER_PARTY_SIZE
 special ChoosePartyForBattleFrontier
 goto_if_eq VAR_RESULT 0 BattleFrontier_BattlePalaceLobby_EventScript_LoadPartyAndCancelChallenge
-msgbox	I must save before I show you to the BATTLE HALL. Is that okay?
+msgboxyesno	I must save before I show you to the BATTLE HALL. Is that okay?
 switch VAR_RESULT
 case NO BattleFrontier_BattlePalaceLobby_EventScript_LoadPartyAndCancelChallenge
 case YES BattleFrontier_BattlePalaceLobby_EventScript_SaveBeforeChallenge
@@ -278,10 +278,10 @@ goto BattleFrontier_BattlePalaceLobby_EventScript_AskTakeChallenge
 msgbox	In the BATTLE PALACE, there are several auditoriums for DOUBLE BATTLES that are named DOUBLE BATTLE HALLS.The DOUBLE BATTLES are conducted in the usual way, except with one crucial rule that must be obeyed.TRAINERS are permitted only to switch their POKéMON in and out.TRAINERS are otherwise forbidden to command their POKéMON.The POKéMON are to behave according to their nature and battle on their own.You must put your trust in your POKéMON and watch over them.If you achieve the honor of beating seven TRAINERS in succession, we will present you with Battle Points.If you want to interrupt your challenge, please save the game.If you don't save before interrupting, you will be disqualified.
 goto BattleFrontier_BattlePalaceLobby_EventScript_AskTakeChallenge
 = BattleFrontier_BattlePalaceLobby_EventScript_AskTakeDoubleBattleChallenge
-message BattleFrontier_BattlePalaceLobby_Text_TakeDoubleBattleChallenge
+msgbox	Do you wish to take the DOUBLE BATTLE HALL challenge?
 return
 = BattleFrontier_BattlePalaceLobby_EventScript_AskTakeSingleBattleChallenge
-message BattleFrontier_BattlePalaceLobby_Text_TakeSingleBattleChallenge
+msgbox	Do you wish to take the SINGLE BATTLE HALL challenge?
 return
 = BattleFrontier_BattlePalaceLobby_EventScript_WelcomeForDoubleBattle
 msgbox	Where the hearts of TRAINERS are put to the test.I welcome you to the BATTLE PALACE.I accept challenges to the DOUBLE BATTLE HALLS.

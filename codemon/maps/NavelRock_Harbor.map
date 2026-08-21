@@ -41,9 +41,9 @@ scriptdefs
 = NavelRock_Harbor_EventScript_Sailor
 lock
 faceplayer
-msgbox	NavelRock_Harbor_Text_SailorReturn
+msgboxyesno	Did… Did you hear that? That low growling from deep in there.Are you sure it's safe? Do you think we should leave?
 goto_if_eq VAR_RESULT NO NavelRock_Harbor_EventScript_AsYouLike
-msgbox	EventTicket_Text_SailHome
+msgbox	Aye, right, then! Sail home we will!
 closemessage
 applymovement VAR_LAST_TALKED Common_Movement_WalkInPlaceFasterDown
 waitmovement 0
@@ -56,6 +56,8 @@ waitstate
 release
 end
 = NavelRock_Harbor_EventScript_AsYouLike
-msgbox	EventTicket_Text_AsYouLike
+msgbox	Aye, right, as you like, then.
 release
 end
+counters
+933

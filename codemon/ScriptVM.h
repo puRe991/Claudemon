@@ -61,8 +61,15 @@ public:
 	}
 	void clear_pending_warp() { this->pending_warp = false; }
 
+	// `msgbox ..., MSGBOX_YESNO` (heal at the Pokemon Center, buy/sell
+	// confirmations, ...): same story as ChooseStarter -- the VM can't
+	// drive a cursor-driven choice itself, so the game loop shows a real
+	// Ja/Nein prompt and calls resolve_yesno() with the pick.
+	bool wants_yesno() const { return this->st == WAIT_YESNO; }
+	void resolve_yesno(bool yes);
+
 private:
-	enum State { IDLE, RUN, WAIT_MSG, WAIT_MOVE, WAIT_BATTLE, WAIT_STARTER };
+	enum State { IDLE, RUN, WAIT_MSG, WAIT_MOVE, WAIT_BATTLE, WAIT_STARTER, WAIT_YESNO };
 
 	Map* map; GameState* state; DialogBox* box; Battle* battle;
 	Audio* audio; Character* player; Character* owner;
@@ -81,6 +88,7 @@ private:
 
 	bool pending_warp = false;
 	std::string warp_dest; int warp_x = -1, warp_y = -1;
+	bool pending_yesno = false;   // set by pump() until the msgbox closes
 
 	int value_of(const std::string& s) const;   // resolve a symbol/number
 	Character* resolve(const std::string& localid) const;

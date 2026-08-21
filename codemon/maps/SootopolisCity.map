@@ -814,14 +814,14 @@ goto SootopolisCity_EventScript_KiriGiveBerry
 dotimebasedevents
 special GetPlayerBigGuyGirlString
 goto_if_set FLAG_DAILY_SOOTOPOLIS_RECEIVED_BERRY SootopolisCity_EventScript_KiriReceivedBerry
-msgbox	SootopolisCity_Text_NameIsKiriHaveOneOfThese
+msgbox	Hi, what's your name?… … … … … … … … … Okay. That's nice!My name is KIRI.My mommy and daddy named me that so I would grow healthy and warmhearted. That's what they wished.You can have one of these.
 random NUM_KIRI_BERRIES
 addvar VAR_RESULT NUM_KIRI_BERRIES_SKIPPED
 addvar VAR_RESULT FIRST_BERRY_INDEX
 giveitem VAR_RESULT
 goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
 setflag FLAG_DAILY_SOOTOPOLIS_RECEIVED_BERRY
-msgbox	SootopolisCity_Text_GiveYouThisBerryToo
+msgbox	KIRI will give you this BERRY, too! I really like it lots!
 random 2
 goto_if_eq VAR_RESULT 0 SootopolisCity_EventScript_GiveFigyBerry
 goto_if_eq VAR_RESULT 1 SootopolisCity_EventScript_GiveIapapaBerry
@@ -829,23 +829,23 @@ end
 = SootopolisCity_EventScript_GiveIapapaBerry
 giveitem ITEM_IAPAPA_BERRY
 goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
-msgbox	SootopolisCity_Text_WhatKindOfWishInYourName
+msgbox	I wonder what kind of wish is included in your name.
 release
 end
 = SootopolisCity_EventScript_GiveFigyBerry
 giveitem ITEM_FIGY_BERRY
 goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
-msgbox	SootopolisCity_Text_WhatKindOfWishInYourName
+msgbox	I wonder what kind of wish is included in your name.
 release
 end
 = SootopolisCity_EventScript_KiriReceivedBerry
-msgbox	SootopolisCity_Text_LikeSeasonBornIn
+msgboxyesno	Spring, summer, autumn, and winter.If you're born in springtime, do you like the spring, and if you're born in the summer, do you like the summer?
 goto_if_eq VAR_RESULT YES SootopolisCity_EventScript_KiriLikeSeasonBornIn
-msgbox	SootopolisCity_Text_OhDoesntMatter
+msgbox	Oh… It doesn't matter…There's so much that I want to know…
 release
 end
 = SootopolisCity_EventScript_KiriLikeSeasonBornIn
-msgbox	SootopolisCity_Text_ThenILoveAutumn
+msgbox	Then KIRI was born in the autumn, so I love the autumn!Which season do you like?
 release
 end
 = SootopolisCity_EventScript_Woman2

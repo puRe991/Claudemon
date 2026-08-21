@@ -282,7 +282,7 @@ end
 lock
 faceplayer
 showmoneybox 0 0
-msgbox	LAVA COOKIES are MT. CHIMNEY's local specialty.Try one. It's just ¥200.
+msgboxyesno	LAVA COOKIES are MT. CHIMNEY's local specialty.Try one. It's just ¥200.
 goto_if_eq VAR_RESULT NO MtChimney_EventScript_DeclineLavaCookie
 checkmoney 200
 goto_if_eq VAR_RESULT FALSE MtChimney_EventScript_NotEnoughMoney
@@ -295,7 +295,7 @@ hidemoneybox
 release
 end
 = MtChimney_EventScript_BagIsFull
-msgbox	gText_TooBadBagIsFull
+msgbox	Too bad! The BAG is full…
 hidemoneybox
 release
 end

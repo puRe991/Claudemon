@@ -58,21 +58,21 @@ VerdanturfTown_BattleTentLobby_Movement_WalkToDoor	up,up,up,end
 scriptdefs
 = VerdanturfTown_BattleTentLobby_EventScript_LostChallenge
 lockall
-message VerdanturfTown_BattleTentLobby_Text_ResultsWillBeRecorded
+msgbox	I feel privileged for having seen your POKéMON's exploits.The results will be recorded. I must ask you to briefly wait.
 waitmessage
 frontier_set FRONTIER_DATA_LVL_MODE FRONTIER_LVL_50
 verdanturftent_save 0
 playse SE_SAVE
 waitse
-msgbox	VerdanturfTown_BattleTentLobby_Text_ReturnFortified
+msgbox	When you have fortified your heart and POKéMON, you must return.
 closemessage
 setvar VAR_TEMP_CHALLENGE_STATUS 255
 releaseall
 end
 = VerdanturfTown_BattleTentLobby_EventScript_WonChallenge
 lockall
-msgbox	VerdanturfTown_BattleTentLobby_Text_AchievedThreeWinStreak
-message VerdanturfTown_BattleTentLobby_Text_FeatWillBeRecorded
+msgbox	To achieve a 3-win streak…The bonds that bind your heart with your POKéMON seem firm and true.
+msgbox	Your feat will be recorded. I must ask you to briefly wait.
 waitmessage
 verdanturftent_setrandomprize
 frontier_set FRONTIER_DATA_LVL_MODE FRONTIER_LVL_50
@@ -81,22 +81,22 @@ playse SE_SAVE
 waitse
 goto VerdanturfTown_BattleTentLobby_EventScript_GivePrize
 = VerdanturfTown_BattleTentLobby_EventScript_GivePrize
-msgbox	VerdanturfTown_BattleTentLobby_Text_PresentYouWithPrize
+msgbox	For the feat of your 3-win streak, we present you with this prize.
 verdanturftent_giveprize
 switch VAR_RESULT
 case FALSE VerdanturfTown_BattleTentLobby_EventScript_NoRoomForPrize
 frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
-message BattleFrontier_BattleDomeLobby_Text_ReceivedPrize  @ Odd that it used Dome's copy instead of Palace's
+msgbox	BattleFrontier_BattleDomeLobby_Text_ReceivedPrize  @ Odd that it used Dome's copy instead of Palace's
 waitmessage
 playfanfare MUS_OBTAIN_ITEM
 waitfanfare
-msgbox	VerdanturfTown_BattleTentLobby_Text_ReturnFortified
+msgbox	When you have fortified your heart and POKéMON, you must return.
 closemessage
 setvar VAR_TEMP_CHALLENGE_STATUS 255
 releaseall
 end
 = VerdanturfTown_BattleTentLobby_EventScript_NoRoomForPrize
-msgbox	BattleFrontier_BattlePalaceLobby_Text_NoSpaceForPrize
+msgbox	You seem to have no space for our prize.You should return when you have organized your BAG.
 waitmessage
 closemessage
 setvar VAR_TEMP_CHALLENGE_STATUS 255
@@ -104,8 +104,8 @@ releaseall
 end
 = VerdanturfTown_BattleTentLobby_EventScript_ResumeChallenge
 lockall
-msgbox	BattleFrontier_BattlePalaceLobby_Text_WeHaveBeenWaiting
-message BattleFrontier_BattlePalaceLobby_Text_MustSaveBeforeChallenge
+msgbox	We have been waiting for you…
+msgbox	I must save before I show you to the BATTLE HALL. Is that okay?
 waitmessage
 verdanturftent_save CHALLENGE_STATUS_SAVING
 playse SE_SAVE
@@ -116,7 +116,7 @@ goto VerdanturfTown_BattleTentLobby_EventScript_EnterChallenge
 = VerdanturfTown_BattleTentLobby_EventScript_EnterChallenge
 special SavePlayerParty
 frontier_setpartyorder FRONTIER_PARTY_SIZE
-msgbox	VerdanturfTown_BattleTentLobby_Text_NowFollowMe
+msgbox	Good. Now, follow me.
 closemessage
 call VerdanturfTown_BattleTentLobby_EventScript_WalkToDoor
 warp VerdanturfTown_BattleTentCorridor 2 7
@@ -137,7 +137,7 @@ waitdooranim
 return
 = VerdanturfTown_BattleTentLobby_EventScript_QuitWithoutSaving
 lockall
-msgbox	BattleFrontier_BattlePalaceLobby_Text_FailedToSaveBeforeEndingChallenge
+msgbox	Sigh…You failed to save before you ended your challenge the last time.As a result, your challenge has been disqualified. It is most unfortunate.
 closemessage
 frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
 setvar VAR_TEMP_CHALLENGE_STATUS 255
@@ -194,10 +194,10 @@ faceplayer
 verdanturftent_getprize
 goto_if_ne VAR_RESULT ITEM_NONE VerdanturfTown_BattleTentLobby_EventScript_PrizeWaiting
 special SavePlayerParty
-msgbox	VerdanturfTown_BattleTentLobby_Text_WelcomeToBattleTent
+msgbox	I welcome you to the BATTLE TENT VERDANTURF SITE!Here, the TRAINER's trust toward POKéMON is tested.
 goto VerdanturfTown_BattleTentLobby_EventScript_AskEnterChallenge
 = VerdanturfTown_BattleTentLobby_EventScript_AskEnterChallenge
-message VerdanturfTown_BattleTentLobby_Text_TakeChallenge
+msgbox	Do you wish to take the VERDANTURF BATTLE TENT challenge?
 waitmessage
 multichoice 17 6 MULTI_CHALLENGEINFO FALSE
 switch VAR_RESULT
@@ -213,13 +213,13 @@ setvar VAR_RESULT 2
 frontier_checkineligible
 goto_if_eq VAR_0x8004 TRUE VerdanturfTown_BattleTentLobby_EventScript_NotEnoughValidMons
 frontier_set FRONTIER_DATA_LVL_MODE FRONTIER_LVL_TENT
-msgbox	VerdanturfTown_BattleTentLobby_Text_SelectThreeMons
+msgbox	Good. Now, you must select your three POKéMON.
 fadescreen FADE_TO_BLACK
 setvar VAR_0x8004 1
 setvar VAR_0x8005 FRONTIER_PARTY_SIZE
 special ChoosePartyForBattleFrontier
 goto_if_eq VAR_RESULT 0 VerdanturfTown_BattleTentLobby_EventScript_LoadPartyCancelChallenge
-msgbox	VerdanturfTown_BattleTentLobby_Text_SaveBeforeChallenge
+msgboxyesno	I must save before I show you to the BATTLE TENT. Is that okay?
 switch VAR_RESULT
 case NO VerdanturfTown_BattleTentLobby_EventScript_LoadPartyCancelChallenge
 case YES VerdanturfTown_BattleTentLobby_EventScript_SaveBeforeChallenge
@@ -242,7 +242,7 @@ goto VerdanturfTown_BattleTentLobby_EventScript_EnterChallenge
 frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
 goto VerdanturfTown_BattleTentLobby_EventScript_CancelChallenge
 = VerdanturfTown_BattleTentLobby_EventScript_CancelChallenge
-msgbox	VerdanturfTown_BattleTentLobby_Text_ReturnFortified
+msgbox	When you have fortified your heart and POKéMON, you must return.
 goto VerdanturfTown_BattleTentLobby_EventScript_EndCancelChallenge
 = VerdanturfTown_BattleTentLobby_EventScript_EndCancelChallenge
 release
@@ -259,16 +259,16 @@ case FRONTIER_LVL_50 VerdanturfTown_BattleTentLobby_EventScript_NotEnoughValidMo
 case FRONTIER_LVL_OPEN VerdanturfTown_BattleTentLobby_EventScript_NotEnoughValidMonsLvOpen
 goto VerdanturfTown_BattleTentLobby_EventScript_NotEnoughValidMonsLv50
 = VerdanturfTown_BattleTentLobby_EventScript_NotEnoughValidMonsLv50
-msgbox	VerdanturfTown_BattleTentLobby_Text_NotEnoughValidMonsLv50
+msgbox	Sigh…You do not have the three POKéMON required for the challenge.To enter, you must provide three different kinds of POKéMON.They also must not be holding the same kinds of items.EGGS ineligible.Come back when you have made your preparations.
 goto VerdanturfTown_BattleTentLobby_EventScript_EndCancelChallenge
 = VerdanturfTown_BattleTentLobby_EventScript_NotEnoughValidMonsLvOpen
-msgbox	VerdanturfTown_BattleTentLobby_Text_NotEnoughValidMonsLvOpen
+msgbox	Sigh…You do not have the three POKéMON required for the challenge.To enter, you must provide three different kinds of POKéMON.They also must not be holding the same kinds of items.EGGS ineligible.Come back when you have made your preparations.
 goto VerdanturfTown_BattleTentLobby_EventScript_EndCancelChallenge
 = VerdanturfTown_BattleTentLobby_EventScript_ExplainChallenge
-msgbox	VerdanturfTown_BattleTentLobby_Text_ExplainVerdanturfTent
+msgbox	In the VERDANTURF BATTLE TENT, there is one crucial rule that must be obeyed.TRAINERS are permitted only to switch their POKéMON in and out.TRAINERS are otherwise forbidden to command their POKéMON.The POKéMON are to behave according to their nature and battle on their own.You must put your trust in your POKéMON and watch over them.If you achieve the honor of beating three TRAINERS in succession, we will present you with a prize.If you want to interrupt your challenge, please save the game.If you don't save before interrupting, you will be disqualified.
 goto VerdanturfTown_BattleTentLobby_EventScript_AskEnterChallenge
 = VerdanturfTown_BattleTentLobby_EventScript_PrizeWaiting
 lockall
-msgbox	VerdanturfTown_BattleTentLobby_Text_AchievedThreeWinStreak
+msgbox	To achieve a 3-win streak…The bonds that bind your heart with your POKéMON seem firm and true.
 goto VerdanturfTown_BattleTentLobby_EventScript_GivePrize
 end

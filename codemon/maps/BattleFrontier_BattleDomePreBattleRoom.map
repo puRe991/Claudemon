@@ -66,7 +66,7 @@ case 4 BattleFrontier_BattleDomePreBattleRoom_EventScript_AskRetireChallenge
 case MULTI_B_PRESSED BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound
 goto BattleFrontier_BattleDomePreBattleRoom_EventScript_AskRecordBattle
 = BattleFrontier_BattleDomePreBattleRoom_EventScript_AskRecordBattle
-message BattleFrontier_BattleDomePreBattleRoom_Text_RecordLastMatch
+msgbox	Should I record your last match on your FRONTIER PASS?
 waitmessage
 multichoicedefault 20 8 MULTI_YESNO 1 FALSE
 switch VAR_RESULT
@@ -78,7 +78,7 @@ goto BattleFrontier_BattleDomePreBattleRoom_EventScript_RecordBattle
 call BattleFrontier_EventScript_SaveBattle
 goto BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound
 = BattleFrontier_BattleDomePreBattleRoom_EventScript_AskRetireChallenge
-message BattleFrontier_BattleDomePreBattleRoom_Text_RetireYourChallenge
+msgbox	Would you like to retire from your Battle Tournament challenge?
 waitmessage
 multichoicedefault 20 8 MULTI_YESNO 1 FALSE
 switch VAR_RESULT
@@ -90,14 +90,14 @@ goto BattleFrontier_BattleDomePreBattleRoom_EventScript_RetireChallenge
 dome_resolvewinners DOME_PLAYER_RETIRED
 goto BattleFrontier_BattleDomeBattleRoom_EventScript_WarpToLobbyLost
 = BattleFrontier_BattleDomePreBattleRoom_EventScript_AskPauseChallenge
-msgbox	Would you like to save and quit the game?
+msgboxyesno	Would you like to save and quit the game?
 switch VAR_RESULT
 case NO BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound
 case YES BattleFrontier_BattleDomePreBattleRoom_EventScript_PauseChallenge
 case MULTI_B_PRESSED BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound
 goto BattleFrontier_BattleDomePreBattleRoom_EventScript_AskRetireChallenge
 = BattleFrontier_BattleDomePreBattleRoom_EventScript_PauseChallenge
-message BattleFrontier_BattleDomePreBattleRoom_Text_SavingDataPleaseWait
+msgbox	I am saving your data. Please wait.
 waitmessage
 dome_save CHALLENGE_STATUS_PAUSED
 playse SE_SAVE
@@ -106,7 +106,7 @@ fadescreen FADE_TO_BLACK
 frontier_reset
 end
 = BattleFrontier_BattleDomePreBattleRoom_EventScript_ContinueChallenge
-message BattleFrontier_BattleDomePreBattleRoom_Text_ChooseTwoMons
+msgbox	Please choose the two POKéMON that are to appear in battle.
 waitmessage
 waitbuttonpress
 fadescreen FADE_TO_BLACK
@@ -182,7 +182,7 @@ case FRONTIER_BRAIN_SILVER BattleFrontier_BattleDomePreBattleRoom_EventScript_Re
 case FRONTIER_BRAIN_GOLD BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerGold
 case FRONTIER_BRAIN_STREAK BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerSilver
 case FRONTIER_BRAIN_STREAK_LONG BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerGold
-message BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForFinals
+msgbox	Your final match is next. Are you ready?
 return
 = BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerGold
 goto_if_set FLAG_TEMP_1 BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerGoldShort
@@ -201,13 +201,13 @@ return
 msgbox	Your final battle against TUCKER is next. Are you ready?
 return
 = BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForSemifinals
-message BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForSemifinals
+msgbox	Your semifinal match is next. Are you ready?
 return
 = BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForRound2
-message BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForRound2
+msgbox	Your 2nd-round match is next. Are you ready?
 return
 = BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForRound1
-message BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForRound1
+msgbox	Your 1st-round match is next. Are you ready?
 return
 = BattleFrontier_BattleDomePreBattleRoom_EventScript_ReturnFromBattle
 setvar VAR_TEMP_0 1

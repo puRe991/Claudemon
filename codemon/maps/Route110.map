@@ -655,41 +655,41 @@ end
 end
 = Route110_EventScript_Joseph
 trainerbattle_single TRAINER_JOSEPH Route110_Text_JosephIntro Route110_Text_JosephDefeated
-msgbox	Route110_Text_JosephPostBattle
+msgbox	This isn't going to bring me down! Losing has made me a better man!
 end
 = Route110_EventScript_Alyssa
 trainerbattle_single TRAINER_ALYSSA Route110_Text_AlyssaIntro Route110_Text_AlyssaDefeated
-msgbox	Route110_Text_AlyssaPostBattle
+msgbox	Falling… Losing… This is so humiliating for me!
 end
 = Route110_EventScript_Kaleb
 trainerbattle_single TRAINER_KALEB Route110_Text_KalebIntro Route110_Text_KalebDefeated
-msgbox	Route110_Text_KalebPostBattle
+msgbox	Okay, okay, you've done the best you could, my pretties.
 end
 = Route110_EventScript_Isabel
 trainerbattle_single TRAINER_ISABEL_1 Route110_Text_IsabelIntro Route110_Text_IsabelDefeated Route110_EventScript_IsabelRegisterMatchCallAfterBattle
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route110_EventScript_IsabelRematch
-msgbox	Route110_Text_IsabelPostBattle
+msgbox	Rather than battling, perhaps I should show off my POKéMON at the FAN CLUB.
 release
 end
 = Route110_EventScript_IsabelRematch
 trainerbattle_rematch TRAINER_ISABEL_1 Route110_Text_IsabelRematchIntro Route110_Text_IsabelRematchDefeated
-msgbox	Route110_Text_IsabelRematchPostBattle
+msgbox	I don't think that I could ever stop from showing off my POKéMON.But I like to battle, too!
 end
 = Route110_EventScript_IsabelRegisterMatchCallAfterBattle
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Route110_Text_IsabelRegister
+msgbox	That wasn't close to what I could do to show off my POKéMON.I'll have you as my captive audience as often as possible!
 register_matchcall TRAINER_ISABEL_1
 release
 end
 = Route110_EventScript_Timmy
 trainerbattle_single TRAINER_TIMMY Route110_Text_TimmyIntro Route110_Text_TimmyDefeated
-msgbox	Route110_Text_TimmyPostBattle
+msgbox	It's hard to battle with POKéMON you just caught.
 end
 = Route110_EventScript_Jacob
 trainerbattle_single TRAINER_JACOB Route110_Text_JacobIntro Route110_Text_JacobDefeated
-msgbox	Route110_Text_JacobPostBattle
+msgbox	Flat tires and brake problems can cause serious injury! Inspect your BIKE for problems!
 end
 = Route110_EventScript_AquaGrunt4
 lock
@@ -779,24 +779,24 @@ special ObjectEventInteractionPickBerryTree
 goto_if_eq VAR_0x8004 0 BerryTree_EventScript_BerryPocketFull
 special IncrementDailyPickedBerries
 special ObjectEventInteractionRemoveBerryTree
-message BerryTree_Text_PickedTheBerry
+msgbox	BerryTree_Text_PickedTheBerry
 playfanfare MUS_OBTAIN_BERRY
 waitmessage
 waitfanfare
 waitbuttonpress
-message BerryTree_Text_PutAwayBerry
+msgbox	BerryTree_Text_PutAwayBerry
 waitmessage
 waitbuttonpress
 release
 end
 = BerryTree_EventScript_BerryPocketFull
-message BerryTree_Text_BerryPocketFull
+msgbox	BerryTree_Text_BerryPocketFull
 waitmessage
 waitbuttonpress
 release
 end
 = BerryTree_EventScript_CancelPickingBerry
-message BerryTree_Text_BerryLeftUnpicked
+msgbox	BerryTree_Text_BerryLeftUnpicked
 waitmessage
 waitbuttonpress
 release
@@ -805,7 +805,7 @@ end
 call BerryTree_EventScript_GetCareAdverb
 lockall
 special ObjectEventInteractionGetBerryName
-message BerryTree_Text_BerryGrowthStage4
+msgbox	BerryTree_Text_BerryGrowthStage4
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
@@ -838,11 +838,11 @@ releaseall
 end
 = BerryTree_EventScript_WaterBerry
 special ObjectEventInteractionGetBerryName
-message BerryTree_Text_WateredTheBerry
+msgbox	BerryTree_Text_WateredTheBerry
 waitmessage
 special ObjectEventInteractionWaterBerryTree
 special DoWateringBerryTreeAnim
-message BerryTree_Text_PlantIsDelighted
+msgbox	BerryTree_Text_PlantIsDelighted
 waitmessage
 waitbuttonpress
 releaseall
@@ -850,21 +850,21 @@ end
 = BerryTree_EventScript_CheckBerryStage3
 lockall
 special ObjectEventInteractionGetBerryName
-message BerryTree_Text_BerryGrowthStage3
+msgbox	BerryTree_Text_BerryGrowthStage3
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
 = BerryTree_EventScript_CheckBerryStage2
 lockall
 special ObjectEventInteractionGetBerryName
-message BerryTree_Text_BerryGrowthStage2
+msgbox	BerryTree_Text_BerryGrowthStage2
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
 = BerryTree_EventScript_CheckBerryStage1
 lockall
 special ObjectEventInteractionGetBerryCountString
-message BerryTree_Text_BerryGrowthStage1
+msgbox	BerryTree_Text_BerryGrowthStage1
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
@@ -873,7 +873,7 @@ lock
 faceplayer
 specialvar VAR_RESULT PlayerHasBerries
 goto_if_eq VAR_RESULT TRUE BerryTree_EventScript_WantToPlant
-message BerryTree_Text_ItsSoftLoamySoil
+msgbox	BerryTree_Text_ItsSoftLoamySoil
 waitmessage
 waitbuttonpress
 release
@@ -899,62 +899,62 @@ special ObjectEventInteractionPlantBerryTree
 incrementgamestat GAME_STAT_PLANTED_BERRIES
 special IncrementDailyPlantedBerries
 special ObjectEventInteractionGetBerryCountString
-message BerryTree_Text_PlantedOneBerry
+msgbox	BerryTree_Text_PlantedOneBerry
 waitmessage
 waitbuttonpress
 return
 = BerryTree_EventScript_Sparkling
 lockall
-message BerryTree_Text_ExclamationPoint
+msgbox	BerryTree_Text_ExclamationPoint
 waitmessage
 waitbuttonpress
 releaseall
 end
 = Route110_EventScript_Dale
 trainerbattle_single TRAINER_DALE Route110_Text_DaleIntro Route110_Text_DaleDefeated
-msgbox	Route110_Text_DalePostBattle
+msgbox	Fishing is all about concentration. You have to focus on the floater.
 end
 = Route110_EventScript_Edwin
 trainerbattle_single TRAINER_EDWIN_1 Route110_Text_EdwinIntro Route110_Text_EdwinDefeated Route110_EventScript_EdwinRegisterMatchCallAfterBattle
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route110_EventScript_EdwinRematch
-msgbox	Route110_Text_EdwinPostBattle
+msgbox	When I see a POKéMON that I don't know, my passion as a collector is ignited!
 release
 end
 = Route110_EventScript_EdwinRematch
 trainerbattle_rematch TRAINER_EDWIN_1 Route110_Text_EdwinRematchIntro Route110_Text_EdwinRematchDefeated
-msgbox	Route110_Text_EdwinRematchPostBattle
+msgbox	Oh, I long to make all rare POKéMON mine!
 end
 = Route110_EventScript_EdwinRegisterMatchCallAfterBattle
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Route110_Text_EdwinRegister
+msgbox	I like collecting MATCH CALL registrations, too…
 register_matchcall TRAINER_EDWIN_1
 release
 end
 = Route110_EventScript_Jaclyn
 trainerbattle_single TRAINER_JACLYN Route110_Text_JaclynIntro Route110_Text_JaclynDefeated
-msgbox	Route110_Text_JaclynPostBattle
+msgbox	You managed to win only because it was a wonder! Yes, a wonder! Don't think you can win all the time!
 end
 = Route110_EventScript_Edward
 trainerbattle_single TRAINER_EDWARD Route110_Text_EdwardIntro Route110_Text_EdwardDefeated
-msgbox	Route110_Text_EdwardPostBattle
+msgbox	I see your future…Hmm… I see a shining light…
 end
 = Route110_EventScript_Benjamin
 trainerbattle_single TRAINER_BENJAMIN_1 Route110_Text_BenjaminIntro Route110_Text_BenjaminDefeated Route110_EventScript_BenjaminRegisterMatchCallAfterBattle
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route110_EventScript_BenjaminRematch
-msgbox	Route110_Text_BenjaminPostBattle
+msgbox	There's no need to panic or stress. Take it easy. There's plenty of time.
 release
 end
 = Route110_EventScript_BenjaminRematch
 trainerbattle_rematch TRAINER_BENJAMIN_1 Route110_Text_BenjaminRematchIntro Route110_Text_BenjaminRematchDefeated
-msgbox	Route110_Text_BenjaminRematchPostBattle
+msgbox	There's no need to panic or stress. Take it easy. There's plenty of time.
 end
 = Route110_EventScript_BenjaminRegisterMatchCallAfterBattle
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Route110_Text_BenjaminRegister
+msgbox	I'll keep chugging on without stressing. Give me a shout if you're up to it.
 register_matchcall TRAINER_BENJAMIN_1
 release
 end
@@ -962,27 +962,27 @@ end
 trainerbattle_single TRAINER_ABIGAIL_1 Route110_Text_AbigailIntro Route110_Text_AbigailDefeated Route110_EventScript_AbigailRegisterMatchCallAfterBattle
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route110_EventScript_AbigailRematch
-msgbox	Route110_Text_AbigailPostBattle
+msgbox	I'm exhausted, so I need a break. It's important to get proper rest.
 release
 end
 = Route110_EventScript_AbigailRematch
 trainerbattle_rematch TRAINER_ABIGAIL_1 Route110_Text_AbigailRematchIntro Route110_Text_AbigailRematchDefeated
-msgbox	Route110_Text_AbigailRematchPostBattle
+msgbox	Were you going after a record?I'm sorry if I held you up!
 end
 = Route110_EventScript_AbigailRegisterMatchCallAfterBattle
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Route110_Text_AbigailRegister
+msgbox	You know, I like you! Let's have a rematch on CYCLING ROAD.
 register_matchcall TRAINER_ABIGAIL_1
 release
 end
 = Route110_EventScript_Anthony
 trainerbattle_single TRAINER_ANTHONY Route110_Text_AnthonyIntro Route110_Text_AnthonyDefeated
-msgbox	Route110_Text_AnthonyPostBattle
+msgbox	Speed alone won't let me win at POKéMON. I need to reconsider this…
 end
 = Route110_EventScript_Jasmine
 trainerbattle_single TRAINER_JASMINE Route110_Text_JasmineIntro Route110_Text_JasmineDefeated
-msgbox	Route110_Text_JasminePostBattle
+msgbox	Oh, you have some GYM BADGES? No wonder you're so strong!
 end
 = Route110_EventScript_Boy1
 msgbox	Wouldn't it be great to ride a BIKE at full speed on CYCLING ROAD?

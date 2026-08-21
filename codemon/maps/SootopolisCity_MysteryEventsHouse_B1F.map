@@ -65,5 +65,7 @@ waitbuttonpress
 return
 = SootopolisCity_MysteryEventsHouse_B1F_EventScript_BattleTie
 setvar VAR_SOOTOPOLIS_MYSTERY_EVENTS_STATE 3
-msgbox	SootopolisCity_MysteryEventsHouse_B1F_Text_MatchEndedUpDraw
+msgbox	The match ended up a draw.
 return
+counters
+522,524

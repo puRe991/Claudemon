@@ -105,7 +105,7 @@ frontier_getsymbols
 goto_if_ne VAR_RESULT 0 BattleFrontier_BattlePyramidTop_EventScript_WarpToLobbyWon
 msgbox	BRANDON: Hahahah! Grand it was! Grand, yes, indeed!Well done! You've earned recognition! Your FRONTIER PASS, please!
 playfanfare MUS_OBTAIN_SYMBOL
-message BattleFrontier_BattlePyramidTop_Text_ReceivedBraveSymbol
+msgbox	The Brave Symbol was embossed on the FRONTIER PASS!
 waitmessage
 waitfanfare
 frontier_givesymbol
@@ -141,7 +141,7 @@ frontier_getsymbols
 goto_if_eq VAR_RESULT 2 BattleFrontier_BattlePyramidTop_EventScript_WarpToLobbyWon
 msgbox	BRANDON: Hahahah! Remarkable! Yes, it's grand, indeed!Young explorer!You've bested me through and through! Here! I want you to have this!
 playfanfare MUS_OBTAIN_SYMBOL
-message BattleFrontier_BattlePyramidTop_Text_BraveSymbolTookGoldenShine
+msgbox	The Brave Symbol took on a golden shine!
 waitmessage
 waitfanfare
 frontier_givesymbol
@@ -174,7 +174,7 @@ applymovement LOCALID_PLAYER BattleFrontier_BattlePyramidTop_Movement_PlayerClim
 waitmovement 0
 applymovement LOCALID_PYRAMID_TOP_ATTENDANT BattleFrontier_BattlePyramidTop_Movement_AttendantBlockPath
 waitmovement 0
-message BattleFrontier_BattlePyramidTop_Text_PlayerConqueredPyramid
+msgbox	The PYRAMID's new conqueror! Let the name PLAYER be known!
 waitmessage
 playfanfare MUS_OBTAIN_B_POINTS
 waitfanfare

@@ -72,7 +72,7 @@ scriptdefs
 = BattleFrontier_BattleDomeLobby_EventScript_LostChallenge
 lockall
 msgbox	Thank you for playing!
-message BattleFrontier_BattleDomeLobby_Text_RecordWillBeSaved
+msgbox	Your record will be saved. Please wait.
 waitmessage
 special LoadPlayerParty
 frontier_setpartyorder FRONTIER_PARTY_SIZE
@@ -88,7 +88,7 @@ playse SE_SAVE
 waitse
 call BattleFrontier_EventScript_GetCantRecordBattle
 goto_if_eq VAR_RESULT TRUE BattleFrontier_BattleDomeLobby_EventScript_EndChallenge
-message BattleFrontier_BattleDomeLobby_Text_RecordLastMatch
+msgbox	Would you like to record your last BATTLE DOME match on your FRONTIER PASS?
 waitmessage
 multichoicedefault 20 8 MULTI_YESNO 1 FALSE
 switch VAR_RESULT
@@ -115,8 +115,8 @@ goto BattleFrontier_BattleDomeLobby_EventScript_GiveBattlePoints
 = BattleFrontier_BattleDomeLobby_EventScript_GiveBattlePoints
 msgbox	In recognition of your strategy-- a thing of beauty it was, too-- we award you these Battle Point(s)!
 frontier_givepoints
-msgbox	BattleFrontier_Text_ObtainedXBattlePoints
-message BattleFrontier_BattleDomeLobby_Text_RecordWillBeSaved
+msgbox	PLAYER obtained Battle Point(s).
+msgbox	Your record will be saved. Please wait.
 waitmessage
 special LoadPlayerParty
 frontier_setpartyorder FRONTIER_PARTY_SIZE
@@ -133,7 +133,7 @@ goto BattleFrontier_BattleDomeLobby_EventScript_GiveBattlePoints
 = BattleFrontier_BattleDomeLobby_EventScript_ResumeChallenge
 lockall
 msgbox	We've been waiting for you!
-message BattleFrontier_BattleDomeLobby_Text_OkayToSaveBeforeChallenge2
+msgbox	Before I show you to the BATTLE DOME, I must save the data. Is that okay?
 waitmessage
 dome_save CHALLENGE_STATUS_SAVING
 playse SE_SAVE
@@ -231,7 +231,7 @@ case 2 BattleFrontier_BattleDomeLobby_EventScript_CancelChallenge
 case MULTI_B_PRESSED BattleFrontier_BattleDomeLobby_EventScript_CancelChallenge
 goto BattleFrontier_BattleDomeLobby_EventScript_TryEnterChallenge
 = BattleFrontier_BattleDomeLobby_EventScript_TryEnterChallenge
-message BattleFrontier_BattleDomeLobby_Text_WhichLevelMode
+msgbox	The tournament offers two levels of challenge, Level 50 and Open Level. Which is your choice?
 waitmessage
 multichoice 17 6 MULTI_LEVEL_MODE FALSE
 switch VAR_RESULT
@@ -247,7 +247,7 @@ copyvar VAR_0x8004 VAR_RESULT
 setvar VAR_0x8005 FRONTIER_PARTY_SIZE
 special ChoosePartyForBattleFrontier
 goto_if_eq VAR_RESULT 0 BattleFrontier_BattleDomeLobby_EventScript_LoadPartyCancelChallenge
-msgbox	Before I show you to the BATTLE DOME, I must save the data. Is that okay?
+msgboxyesno	Before I show you to the BATTLE DOME, I must save the data. Is that okay?
 switch VAR_RESULT
 case NO BattleFrontier_BattleDomeLobby_EventScript_LoadPartyCancelChallenge
 case YES BattleFrontier_BattleDomeLobby_EventScript_SaveBeforeChallenge
@@ -304,10 +304,10 @@ return
 msgbox	The SINGLE BATTLE Tournament is exactly as the name suggests-- a tournament of SINGLE BATTLES.All participating TRAINERS must enter three POKéMON each.In each battle, one of the three POKéMON must be held in reserve.The other two POKéMON can battle one at a time.Choose the two battling POKéMON after examining the opponent's trio.You win the tournament by defeating four TRAINERS.Battle Points are awarded to the tournament winner.If you want to interrupt your tournament, please save the game.If you don't save before interrupting, you will be disqualified.
 return
 = BattleFrontier_BattleDomeLobby_EventScript_TakeDoublesChallenge
-message BattleFrontier_BattleDomeLobby_Text_TakeDoublesChallenge
+msgbox	Would you like to challenge the DOUBLE BATTLE Tournament?
 return
 = BattleFrontier_BattleDomeLobby_EventScript_TakeSinglesChallenge
-message BattleFrontier_BattleDomeLobby_Text_TakeSinglesChallenge
+msgbox	Would you like to challenge the SINGLE BATTLE Tournament?
 return
 = BattleFrontier_BattleDomeLobby_EventScript_WelcomeDoubles
 msgbox	Where the strategies of TRAINERS are put to the test!Welcome to the BATTLE DOME!I am your guide to the DOUBLE BATTLE Tournament.

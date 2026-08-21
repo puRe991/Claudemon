@@ -73,7 +73,7 @@ setvar VAR_TEMP_5 1
 end
 = BattleFrontier_BattlePikeThreePathRoom_EventScript_ResumeChallenge
 lockall
-message BattleFrontier_BattlePikeThreePathRoom_Text_AwaitingReturnSaveBeforeResume
+msgbox	We've been awaiting your return…Before resuming your Battle Choice challenge, let me save the game…
 waitmessage
 pike_save CHALLENGE_STATUS_SAVING
 playse SE_SAVE
@@ -157,7 +157,7 @@ pike_gethint
 goto_if_eq VAR_RESULT PIKE_HINT_BRAIN BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveBrainHint
 lock
 faceplayer
-msgbox	I beg your pardon, but…Are you perhaps finding it difficult to choose your path?
+msgboxyesno	I beg your pardon, but…Are you perhaps finding it difficult to choose your path?
 switch VAR_RESULT
 case YES BattleFrontier_BattlePikeThreePathRoom_EventScript_AcceptHint
 case NO BattleFrontier_BattlePikeThreePathRoom_EventScript_DeclineHint
@@ -232,14 +232,14 @@ msgbox	You are currently in the 13th room…
 goto BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge
 end
 = BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge
-msgbox	Will you continue with your challenge?
+msgboxyesno	Will you continue with your challenge?
 switch VAR_RESULT
 case NO BattleFrontier_BattlePikeThreePathRoom_EventScript_AskSaveChallenge
 case MULTI_B_PRESSED BattleFrontier_BattlePikeThreePathRoom_EventScript_AskSaveChallenge
 release
 end
 = BattleFrontier_BattlePikeThreePathRoom_EventScript_AskSaveChallenge
-msgbox	Would you like to save your challenge and quit the game for now?
+msgboxyesno	Would you like to save your challenge and quit the game for now?
 switch VAR_RESULT
 case YES BattleFrontier_BattlePikeThreePathRoom_EventScript_PauseChallenge
 case NO BattleFrontier_BattlePikeThreePathRoom_EventScript_AskRetireChallenge
@@ -247,7 +247,7 @@ case MULTI_B_PRESSED BattleFrontier_BattlePikeThreePathRoom_EventScript_AskRetir
 release
 end
 = BattleFrontier_BattlePikeThreePathRoom_EventScript_AskRetireChallenge
-message BattleFrontier_BattlePikeThreePathRoom_Text_RetireFromChallenge
+msgbox	Do you wish to retire from your Battle Choice challenge?
 waitmessage
 multichoicedefault 20 8 MULTI_YESNO 1 FALSE
 switch VAR_RESULT
@@ -261,7 +261,7 @@ waitstate
 end
 = BattleFrontier_BattlePikeThreePathRoom_EventScript_PauseChallenge
 frontier_saveparty
-message BattleFrontier_BattlePikeThreePathRoom_Text_SavingYourData
+msgbox	I am saving your data… A little time, please…
 waitmessage
 special LoadPlayerParty
 pike_save CHALLENGE_STATUS_PAUSED

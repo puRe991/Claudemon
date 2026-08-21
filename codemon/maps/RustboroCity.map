@@ -340,7 +340,7 @@ delay 30
 setflag FLAG_ENABLE_RIVAL_MATCH_CALL
 setvar VAR_RUSTBORO_CITY_STATE 8
 setvar VAR_ROUTE104_STATE 2
-msgbox	BRENDAN: By the way, PLAYER, I walked by MR. BRINEY in PETALBURG WOODS.I bet he was on his way home to his cottage by the sea.PLAYER, how's your POKéDEX? Have you filled in any pages yet?Mine rules.Want to have a battle to test how far you've progressed?
+msgboxyesno	BRENDAN: By the way, PLAYER, I walked by MR. BRINEY in PETALBURG WOODS.I bet he was on his way home to his cottage by the sea.PLAYER, how's your POKéDEX? Have you filled in any pages yet?Mine rules.Want to have a battle to test how far you've progressed?
 goto_if_eq VAR_RESULT YES RustboroCity_EventScript_BattleBrendan
 msgbox	BRENDAN: What's the matter? Don't have any confidence in your POKéMON?
 call RustboroCity_EventScript_RestoreBgm
@@ -378,7 +378,7 @@ setflag FLAG_DEFEATED_RIVAL_RUSTBORO
 goto RustboroCity_EventScript_BrendanBrineyHint
 end
 = RustboroCity_EventScript_BrendanAskToBattle
-msgbox	BRENDAN: What's up? Want to have a battle with me?
+msgboxyesno	BRENDAN: What's up? Want to have a battle with me?
 goto_if_eq VAR_RESULT YES RustboroCity_EventScript_BattleBrendan
 msgbox	BRENDAN: What's the matter? Don't have any confidence in your POKéMON?
 releaseall
@@ -399,7 +399,7 @@ setflag FLAG_ENABLE_RIVAL_MATCH_CALL
 setvar VAR_RUSTBORO_CITY_STATE 8
 setvar VAR_ROUTE104_STATE 2
 setvar VAR_0x8008 0
-msgbox	MAY: Oh, by the way, I passed MR. BRINEY in PETALBURG WOODS.I guess he's on his way home to his cottage by the sea.How's your POKéDEX coming along, PLAYER? Mine's looking pretty decent!So… How about a little battle?
+msgboxyesno	MAY: Oh, by the way, I passed MR. BRINEY in PETALBURG WOODS.I guess he's on his way home to his cottage by the sea.How's your POKéDEX coming along, PLAYER? Mine's looking pretty decent!So… How about a little battle?
 goto_if_eq VAR_RESULT YES RustboroCity_EventScript_BattleMay
 msgbox	MAY: Oh, what's the matter?Haven't you caught or raised your POKéMON very much?That's not very good for a TRAINER!
 call RustboroCity_EventScript_RestoreBgm
@@ -434,7 +434,7 @@ goto RustboroCity_EventScript_MayBrineyHint
 end
 = RustboroCity_EventScript_MayAskToBattle
 setvar VAR_0x8008 1
-msgbox	MAY: So, what do you think? How about a little battle here?
+msgboxyesno	MAY: So, what do you think? How about a little battle here?
 goto_if_eq VAR_RESULT YES RustboroCity_EventScript_BattleMay
 msgbox	MAY: Oh, what's the matter?Haven't you caught or raised your POKéMON very much?That's not very good for a TRAINER!
 releaseall

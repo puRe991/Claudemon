@@ -204,14 +204,14 @@ end
 lock
 faceplayer
 goto_if_set FLAG_RECEIVED_LAVARIDGE_EGG LavaridgeTown_EventScript_ReceivedEgg
-msgbox	I have here an EGG.I'd hoped to hatch it by covering it in hot sand by the hot springs. But that doesn't seem to be enough…I've heard it would be best if it were kept together with POKéMON and carried about.You are a TRAINER, yes? And your POKéMON radiate vitality.So, what say you? Will you take this EGG to hatch?
+msgboxyesno	I have here an EGG.I'd hoped to hatch it by covering it in hot sand by the hot springs. But that doesn't seem to be enough…I've heard it would be best if it were kept together with POKéMON and carried about.You are a TRAINER, yes? And your POKéMON radiate vitality.So, what say you? Will you take this EGG to hatch?
 goto_if_eq VAR_RESULT NO LavaridgeTown_EventScript_DeclineEgg
 getpartysize
 goto_if_eq VAR_RESULT PARTY_SIZE LavaridgeTown_EventScript_NoRoomForEgg
 msgbox	Good! I hope you'll walk plenty with this here EGG!
 setflag FLAG_RECEIVED_LAVARIDGE_EGG
 playfanfare MUS_OBTAIN_ITEM
-message LavaridgeTown_Text_ReceivedTheEgg
+msgbox	PLAYER received the EGG.
 waitfanfare
 giveegg SPECIES_WYNAUT
 release

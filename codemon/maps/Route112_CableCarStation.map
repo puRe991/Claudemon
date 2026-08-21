@@ -57,7 +57,7 @@ end
 = Route112_CableCarStation_EventScript_Attendant
 lock
 faceplayer
-msgbox	The CABLE CAR is ready to go up. Would you like to be on it?
+msgboxyesno	The CABLE CAR is ready to go up. Would you like to be on it?
 goto_if_eq VAR_RESULT YES Route112_CableCarStation_EventScript_RideCableCar
 goto_if_eq VAR_RESULT NO Route112_CableCarStation_EventScript_DeclineRide
 end
@@ -78,3 +78,5 @@ special CableCarWarp
 special CableCar
 release
 end
+counters
+537

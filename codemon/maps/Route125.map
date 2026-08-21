@@ -115,7 +115,7 @@ goto_if_ge VAR_ABNORMAL_WEATHER_LOCATION MARINE_CAVE_LOCATIONS_START AbnormalWea
 goto AbnormalWeather_EventScript_ShowSunEndedMessage
 end
 = AbnormalWeather_EventScript_ShowSunEndedMessage
-msgbox	gText_AbnormalWeatherEnded_Sun
+msgbox	The intense sunshine appears to have subsided…
 goto AbnormalWeather_EventScript_EndEventAndCleanup_2
 end
 = AbnormalWeather_EventScript_EndEventAndCleanup_2
@@ -295,7 +295,7 @@ setmetatile 7 3 METATILE_Fallarbor_RedRockWall TRUE
 setmetatile 7 4 METATILE_Fallarbor_RedRockWall TRUE
 return
 = AbnormalWeather_EventScript_ShowRainEndedMessage
-msgbox	gText_AbnormalWeatherEnded_Rain
+msgbox	The massive downpour appears to have stopped…
 goto AbnormalWeather_EventScript_EndEventAndCleanup_2
 end
 = Route125_EventScript_ItemBigPearl
@@ -307,53 +307,53 @@ end
 end
 = Route125_EventScript_Auron
 trainerbattle_single TRAINER_AURON Route125_Text_AuronIntro Route125_Text_AuronDefeat
-msgbox	Route125_Text_AuronPostBattle
+msgbox	I found an unsightly bottle bobbing in the waves earlier.It angers me that someone would pollute the sea!
 end
 = Route125_EventScript_Presley
 trainerbattle_single TRAINER_PRESLEY Route125_Text_PresleyIntro Route125_Text_PresleyDefeat
-msgbox	Route125_Text_PresleyPostBattle
+msgbox	I put a message in a bottle and put it out to sea.I'm sure that a girl SWIMMER will find it!
 end
 = Route125_EventScript_Iris
 trainerbattle_double TRAINER_KIM_AND_IRIS Route125_Text_IrisIntro Route125_Text_IrisDefeat Route125_Text_IrisNotEnoughMons
-msgbox	Route125_Text_IrisPostBattle
+msgbox	IRIS: KIM, are we really going into the SHOAL CAVE? We'll get all wet.
 end
 = Route125_EventScript_Kim
 trainerbattle_double TRAINER_KIM_AND_IRIS Route125_Text_KimIntro Route125_Text_KimDefeat Route125_Text_KimNotEnoughMons
-msgbox	Route125_Text_KimPostBattle
+msgbox	KIM: A funny old man lives in the SHOAL CAVE, doesn't he?Let's go see him, IRIS!
 end
 = Route125_EventScript_Ernest
 trainerbattle_single TRAINER_ERNEST_1 Route125_Text_ErnestIntro Route125_Text_ErnestDefeat Route125_EventScript_RegisterErnest
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route125_EventScript_RematchErnest
-msgbox	Route125_Text_ErnestPostBattle
+msgbox	The tide ebbs and flows inside the SHOAL CAVE.By the way, it's about six hours from high tide to low tide. Did you know?
 release
 end
 = Route125_EventScript_RematchErnest
 trainerbattle_rematch TRAINER_ERNEST_1 Route125_Text_ErnestRematchIntro Route125_Text_ErnestRematchDefeat
-msgbox	Route125_Text_ErnestRematchPostBattle
+msgbox	The SHOAL CAVE…There are places you can and can't get to depending on the rise and fall of the tide.By the way, it's about six hours from high tide to low tide. Don't forget!
 end
 = Route125_EventScript_RegisterErnest
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Route125_Text_ErnestRegister
+msgbox	Register me in your POKéNAV, and I'll tell you something good.
 register_matchcall TRAINER_ERNEST_1
 release
 end
 = Route125_EventScript_Sharon
 trainerbattle_single TRAINER_SHARON Route125_Text_SharonIntro Route125_Text_SharonDefeat
-msgbox	Route125_Text_SharonPostBattle
+msgbox	Your power… You're the real deal. I'm amazed!
 end
 = Route125_EventScript_Tanya
 trainerbattle_single TRAINER_TANYA Route125_Text_TanyaIntro Route125_Text_TanyaDefeat
-msgbox	Route125_Text_TanyaPostBattle
+msgbox	Whew… Which way is it to MOSSDEEP CITY?
 end
 = Route125_EventScript_Stan
 trainerbattle_single TRAINER_STAN Route125_Text_StanIntro Route125_Text_StanDefeat
-msgbox	Route125_Text_StanPostBattle
+msgbox	I was blown away by HORSEA's charm, so I started swimming, too.
 end
 = Route125_EventScript_Nolen
 trainerbattle_single TRAINER_NOLEN Route125_Text_NolenIntro Route125_Text_NolenDefeat
-msgbox	Route125_Text_NolenPostBattle
+msgbox	Sound travels faster in water than it does through air.
 end
 encounters
 water TENTACOOL:5:35,WINGULL:10:30,WINGULL:15:25,PELIPPER:25:30,PELIPPER:25:30

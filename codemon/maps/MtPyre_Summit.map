@@ -375,7 +375,7 @@ end
 lock
 faceplayer
 goto_if_set FLAG_SOOTOPOLIS_ARCHIE_MAXIE_LEAVE MtPyre_Summit_EventScript_OldManAfterRayquaza
-msgbox	MT. PYRE is where we calm the spirits of POKéMON that have passed on…This is a high place where one can see all of HOENN…The disembodied spirits of POKéMON must find solace here…Is it coincidence that you are here…Will you hear out my tale? A tale long told in the HOENN region?
+msgboxyesno	MT. PYRE is where we calm the spirits of POKéMON that have passed on…This is a high place where one can see all of HOENN…The disembodied spirits of POKéMON must find solace here…Is it coincidence that you are here…Will you hear out my tale? A tale long told in the HOENN region?
 call_if_eq VAR_RESULT YES MtPyre_Summit_EventScript_OldManTale
 call_if_eq VAR_RESULT NO MtPyre_Summit_EventScript_DeclineOldManTale
 release
@@ -387,7 +387,7 @@ return
 msgbox	It happened long, long ago…The world was wracked by a ferocious clash between the POKéMON of the land and the POKéMON of the sea…The POKéMON of the land raised mountains and created continents…The POKéMON of the sea raised huge waves and carved out oceans…Their fierce duel raged without end.The world was engulfed in massive infernos and vicious storms.The BLUE ORB and the RED ORB brought an end to the calamity.Light poured from the two ORBS and becalmed the enraged adversaries.The pair, made docile, dove deep into the sea where eventually they disappeared…
 return
 = MtPyre_Summit_EventScript_OldManAfterRayquaza
-msgbox	It is my role to pass on the legends of HOENN to future generations.And the crisis that just ended in SOOTOPOLIS rewrote a legend…Have you the time to hear the new legend of HOENN?
+msgboxyesno	It is my role to pass on the legends of HOENN to future generations.And the crisis that just ended in SOOTOPOLIS rewrote a legend…Have you the time to hear the new legend of HOENN?
 call_if_eq VAR_RESULT YES MtPyre_Summit_EventScript_OldManNewTale
 call_if_eq VAR_RESULT NO MtPyre_Summit_EventScript_DeclineOldManTale
 release

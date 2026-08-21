@@ -48,7 +48,7 @@ applymovement VAR_LAST_TALKED Common_Movement_ExclamationMark
 waitmovement 0
 applymovement VAR_LAST_TALKED Common_Movement_Delay48
 waitmovement 0
-msgbox	Oh! You have HARBOR MAIL? Will you trade it for a COIN CASE?
+msgboxyesno	Oh! You have HARBOR MAIL? Will you trade it for a COIN CASE?
 goto_if_eq VAR_RESULT YES MauvilleCity_House2_EventScript_AcceptTrade
 goto_if_eq VAR_RESULT NO MauvilleCity_House2_EventScript_DeclineTrade
 end

@@ -208,7 +208,7 @@ fadedefaultbgm
 release
 end
 = OldaleTown_EventScript_BagIsFull
-msgbox	gText_TooBadBagIsFull
+msgbox	Too bad! The BAG is full…
 fadedefaultbgm
 release
 end

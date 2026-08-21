@@ -301,7 +301,7 @@ setmetatile 2 7 METATILE_RSMossdeepGym_Switch_Up TRUE
 goto MossdeepCity_Gym_EventScript_DrawMapAfterSwitchUsed
 end
 = MossdeepCity_Gym_EventScript_TateAndLizaDefeated
-message MossdeepCity_Gym_Text_ReceivedMindBadge
+msgbox	PLAYER received the MIND BADGE from TATE and LIZA.
 waitmessage
 call Common_EventScript_PlayGymBadgeFanfare
 msgbox	TATE: The MIND BADGE enhances the SP. ATK and SP. DEF of POKéMON.LIZA: It also lets you use the HM move DIVE outside of battle.TATE: You should also take this, too.

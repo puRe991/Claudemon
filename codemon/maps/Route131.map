@@ -105,35 +105,35 @@ objscripts
 scriptdefs
 = Route131_EventScript_Talia
 trainerbattle_single TRAINER_TALIA Route131_Text_TaliaIntro Route131_Text_TaliaDefeat
-msgbox	Route131_Text_TaliaPostBattle
+msgbox	There is an odd place nearby. There's a huge tower there. Why don't you go take a look?
 end
 = Route131_EventScript_Kevin
 trainerbattle_single TRAINER_KEVIN Route131_Text_KevinIntro Route131_Text_KevinDefeat
-msgbox	Route131_Text_KevinPostBattle
+msgbox	Tch! …Oh, wait. I'm not angry. Honestly!But, boy, you're strong! Hahaha!
 end
 = Route131_EventScript_Ian
 trainerbattle_double TRAINER_RELI_AND_IAN Route131_Text_IanIntro Route131_Text_IanDefeat Route131_Text_IanNotEnoughMons
-msgbox	Route131_Text_IanPostBattle
+msgbox	IAN: You know how PACIFIDLOG is a floating town?So, wherever there is the sea, that's a part of PACIFIDLOG!
 end
 = Route131_EventScript_Reli
 trainerbattle_double TRAINER_RELI_AND_IAN Route131_Text_ReliIntro Route131_Text_ReliDefeat Route131_Text_ReliNotEnoughMons
-msgbox	Route131_Text_ReliPostBattle
+msgbox	RELI: The people of PACIFIDLOG are together with the sea and POKéMON from the time they are born.
 end
 = Route131_EventScript_Kara
 trainerbattle_single TRAINER_KARA Route131_Text_KaraIntro Route131_Text_KaraDefeat
-msgbox	Route131_Text_KaraPostBattle
+msgbox	Maybe it's not my bathing suit that makes men look. It must be my beauty!
 end
 = Route131_EventScript_Susie
 trainerbattle_single TRAINER_SUSIE Route131_Text_SusieIntro Route131_Text_SusieDefeat
-msgbox	Route131_Text_SusiePostBattle
+msgbox	Did you see a guy over there who whines that he's bored of the sea?That's all talk. He's hopelessly in love with the sea!
 end
 = Route131_EventScript_Herman
 trainerbattle_single TRAINER_HERMAN Route131_Text_HermanIntro Route131_Text_HermanDefeat
-msgbox	Route131_Text_HermanPostBattle
+msgbox	Bored I am by the sea, but swim I must.I'm a born swimmer! That's what I am.
 end
 = Route131_EventScript_Richard
 trainerbattle_single TRAINER_RICHARD Route131_Text_RichardIntro Route131_Text_RichardDefeat
-msgbox	Route131_Text_RichardPostBattle
+msgbox	Gasp… Gasp… I'm wiped out…The going's easy. It's the leaving that's the hard part.Will I have any energy left to make the return trip?
 end
 encounters
 water TENTACOOL:5:35,WINGULL:10:30,WINGULL:15:25,PELIPPER:25:30,PELIPPER:25:30

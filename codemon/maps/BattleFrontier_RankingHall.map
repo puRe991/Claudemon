@@ -54,7 +54,7 @@ end
 = BattleFrontier_RankingHall_EventScript_NinjaBoy
 lock
 faceplayer
-msgbox	Hi, is your name on this list?
+msgboxyesno	Hi, is your name on this list?
 goto_if_eq VAR_RESULT YES BattleFrontier_RankingHall_EventScript_NinjaBoyNameOnList
 msgbox	Oh, is that right?If you saw your friend's name up here, I bet it would make you work harder!
 release

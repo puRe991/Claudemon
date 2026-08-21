@@ -53,7 +53,7 @@ case 1 TrainerHill_Roof_EventScript_GivePrize
 case 2 TrainerHill_Roof_EventScript_AlreadyReceivedPrize
 goto TrainerHill_Roof_EventScript_Arrived
 = TrainerHill_Roof_EventScript_Arrived
-msgbox	TrainerHill_Roof_Text_YouFinallyCameBravo
+msgbox	Hm! Hm!You finally came! Yes, you have arrived!Wait! Don't say it! I know why you came all the way here by yourself!You wanted to see me, the owner of the TRAINER HILL, because…You want to form a tag team with me! Wa-hoo!…Uh? That's not it?Anyway, I watched you on your way up. Marvelous battling! Bravo, indeed!
 goto TrainerHill_Roof_EventScript_GivePrize
 = TrainerHill_Roof_EventScript_GivePrize
 trainerhill_giveprize
@@ -63,9 +63,9 @@ case 1 TrainerHill_Roof_EventScript_NoRoomForPrize
 case 2 TrainerHill_Roof_EventScript_CheckFinalTime
 goto TrainerHill_Roof_EventScript_ReceivePrize
 = TrainerHill_Roof_EventScript_ReceivePrize
-msgbox	TrainerHill_Roof_Text_HaveTheMostMarvelousGift
+msgbox	For a marvelous someone like you, I have the most marvelous gift!
 playfanfare MUS_LEVEL_UP
-message gText_ObtainedTheItem
+msgbox	Obtained the !
 waitfanfare
 waitmessage
 goto TrainerHill_Roof_EventScript_CheckFinalTime
@@ -77,23 +77,23 @@ case 1 TrainerHill_Roof_EventScript_NoNewRecord
 case 2 TrainerHill_Roof_EventScript_EndSpeakToOwner
 goto TrainerHill_Roof_EventScript_NewRecord
 = TrainerHill_Roof_EventScript_NewRecord
-msgbox	TrainerHill_Roof_Text_GotHereMarvelouslyQuickly
+msgbox	Oh, hold on here! Did you possibly get here marvelously quickly?How splendid! You needn't have hurried so to see me!That is so delightful. I'll have the Time Board at the reception updated!
 goto TrainerHill_Roof_EventScript_EndSpeakToOwner
 end
 = TrainerHill_Roof_EventScript_EndSpeakToOwner
-msgbox	TrainerHill_Roof_Text_ArriveZippierNextTime
+msgbox	Perhaps it would please me more if you arrived zippier next time.Then, I should be pleased to form a tag team with you!Until we meet again, amigo!
 release
 end
 = TrainerHill_Roof_EventScript_NoNewRecord
-msgbox	TrainerHill_Roof_Text_YouWerentVeryQuick
+msgbox	But, oh… You weren't very quick getting here.
 goto TrainerHill_Roof_EventScript_EndSpeakToOwner
 end
 = TrainerHill_Roof_EventScript_NoRoomForPrize
-msgbox	TrainerHill_Roof_Text_HaveTheMostMarvelousGift
-msgbox	gText_TheBagIsFull
-msgbox	TrainerHill_Roof_Text_FullUpBeBackLaterForThis
+msgbox	For a marvelous someone like you, I have the most marvelous gift!
+msgbox	The BAG is full…
+msgbox	Oh, no, full up with things! You'll be back later for this!
 goto TrainerHill_Roof_EventScript_CheckFinalTime
 = TrainerHill_Roof_EventScript_AlreadyReceivedPrize
-msgbox	TrainerHill_Roof_Text_ArriveZippierNextTime
+msgbox	Perhaps it would please me more if you arrived zippier next time.Then, I should be pleased to form a tag team with you!Until we meet again, amigo!
 release
 end

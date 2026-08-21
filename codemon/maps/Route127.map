@@ -195,7 +195,7 @@ goto_if_ge VAR_ABNORMAL_WEATHER_LOCATION MARINE_CAVE_LOCATIONS_START AbnormalWea
 goto AbnormalWeather_EventScript_ShowSunEndedMessage
 end
 = AbnormalWeather_EventScript_ShowSunEndedMessage
-msgbox	gText_AbnormalWeatherEnded_Sun
+msgbox	The intense sunshine appears to have subsided…
 goto AbnormalWeather_EventScript_EndEventAndCleanup_2
 end
 = AbnormalWeather_EventScript_EndEventAndCleanup_2
@@ -375,7 +375,7 @@ setmetatile 7 3 METATILE_Fallarbor_RedRockWall TRUE
 setmetatile 7 4 METATILE_Fallarbor_RedRockWall TRUE
 return
 = AbnormalWeather_EventScript_ShowRainEndedMessage
-msgbox	gText_AbnormalWeatherEnded_Rain
+msgbox	The massive downpour appears to have stopped…
 goto AbnormalWeather_EventScript_EndEventAndCleanup_2
 end
 = Route127_EventScript_ItemRareCandy
@@ -387,41 +387,41 @@ end
 end
 = Route127_EventScript_Athena
 trainerbattle_single TRAINER_ATHENA Route127_Text_AthenaIntro Route127_Text_AthenaDefeat
-msgbox	Route127_Text_AthenaPostBattle
+msgbox	When I'm surrounded by the blue sea and sky, it feels as if time slows down.
 end
 = Route127_EventScript_Koji
 trainerbattle_single TRAINER_KOJI_1 Route127_Text_KojiIntro Route127_Text_KojiDefeat Route127_EventScript_RegisterKoji
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route127_EventScript_RematchKoji
-msgbox	Route127_Text_KojiPostBattle
+msgbox	Going barefoot feels great. But your RUNNING SHOES are cool, too.
 release
 end
 = Route127_EventScript_RematchKoji
 trainerbattle_rematch TRAINER_KOJI_1 Route127_Text_KojiRematchIntro Route127_Text_KojiRematchDefeat
-msgbox	Route127_Text_KojiPostRematch
+msgbox	Want to go barefoot for a while? So I can try your RUNNING SHOES?
 end
 = Route127_EventScript_RegisterKoji
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Route127_Text_KojiRegister
+msgbox	This is what I do to people who beat me! I hope we can do this again.
 register_matchcall TRAINER_KOJI_1
 release
 end
 = Route127_EventScript_Aidan
 trainerbattle_single TRAINER_AIDAN Route127_Text_AidanIntro Route127_Text_AidanDefeat
-msgbox	Route127_Text_AidanPostBattle
+msgbox	There're lots of diving spots in the sea around here.You can spot them easily from the sky because of their darker color.
 end
 = Route127_EventScript_Henry
 trainerbattle_single TRAINER_HENRY Route127_Text_HenryIntro Route127_Text_HenryDefeat
-msgbox	Route127_Text_HenryPostBattle
+msgbox	It'd be a handful if I hooked your tough POKéMON!
 end
 = Route127_EventScript_Roger
 trainerbattle_single TRAINER_ROGER Route127_Text_RogerIntro Route127_Text_RogerDefeat
-msgbox	Route127_Text_RogerPostBattle
+msgbox	My fishing line's doing a dance! The tangle tango! Hahaha, snarl!
 end
 = Route127_EventScript_Jonah
 trainerbattle_single TRAINER_JONAH Route127_Text_JonahIntro Route127_Text_JonahDefeat
-msgbox	Route127_Text_JonahPostBattle
+msgbox	It matters not that I catch nothing. The line remains in the water…
 end
 = Route127_EventScript_ItemCarbos
 goto_if_set FLAG_ITEM_ROUTE_127_CARBOS Route127_EventScript_ItemCarbos_Taken
@@ -439,11 +439,11 @@ end
 end
 = Route127_EventScript_Donny
 trainerbattle_single TRAINER_DONNY Route127_Text_DonnyIntro Route127_Text_DonnyDefeat
-msgbox	Route127_Text_DonnyPostBattle
+msgbox	If you have a rival, don't you get the feeling that you have to keep getting better?
 end
 = Route127_EventScript_Camden
 trainerbattle_single TRAINER_CAMDEN Route127_Text_CamdenIntro Route127_Text_CamdenDefeat
-msgbox	Route127_Text_CamdenPostBattle
+msgbox	A well-played match leaves me feeling refreshed and serene.
 end
 encounters
 water TENTACOOL:5:35,WINGULL:10:30,WINGULL:15:25,PELIPPER:25:30,PELIPPER:25:30

@@ -53,7 +53,7 @@ special PlayerEnteredTradeSeat
 end
 = TradeCenter_EventScript_Attendant
 special Script_FacePlayer
-msgbox	TradeCenter_Text_TakeSeatStartTrade
+msgbox	Please take your seat and start your trade.
 special Script_ClearHeldMovement
 closemessage
 end

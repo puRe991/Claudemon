@@ -30,6 +30,12 @@ people_fat_man 4 4 S static 0
 people_woman_2 3 5 E static 0
 people_pokefan_f 5 5 W static 0
 people_man_3 0 6 S wander 0
+dialogs
+0	…Huh? You look to me like a tough TRAINER.Heheh… Listen, I have this proposition.We have a little group going here, and we play a little game with what goes on in the BATTLE FRONTIER.The rules are really simple.First, we pick one of the facilities in the BATTLE FRONTIER.Then, we each pick a different TRAINER who's taking that facility's challenge, and bet with our Battle Points.The guy who bet on the TRAINER with the best record takes all the Battle Points in the pool.Sounds simple, huh? So, anyway…
+1	That TRAINER…He's good, but he gets rattled too easily to survive the BATTLE DOME…
+2	I backed the wrong TRAINER again!Maybe I should be battling normally like everyone else…
+3	Giggle! I know a winner when I see one!
+4	Those TRAINERS… What are they doing? They should be taking challenges.
 objscripts
 0 BattleFrontier_Lounge3_EventScript_Gambler
 1 BattleFrontier_Lounge3_EventScript_FatMan
@@ -40,13 +46,12 @@ movements
 Common_Movement_FaceOriginalDirection	face_down,end
 scriptdefs
 = BattleFrontier_Lounge3_EventScript_Man
-msgbox	BattleFrontier_Lounge3_Text_ShouldBeTakingChallenges
+msgbox	Those TRAINERS… What are they doing? They should be taking challenges.
 end
-= BattleFrontier_Lounge3_Text_ShouldBeTakingChallenges
 = BattleFrontier_Lounge3_EventScript_PokefanF
 lock
 faceplayer
-msgbox	BattleFrontier_Lounge3_Text_KnowWinnerWhenISeeOne
+msgbox	Giggle! I know a winner when I see one!
 goto BattleFrontier_Lounge3_EventScript_FaceOriginalDirection
 end
 = BattleFrontier_Lounge3_EventScript_FaceOriginalDirection
@@ -55,21 +60,18 @@ applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
 waitmovement 0
 release
 end
-= BattleFrontier_Lounge3_Text_KnowWinnerWhenISeeOne
 = BattleFrontier_Lounge3_EventScript_Woman
 lock
 faceplayer
-msgbox	BattleFrontier_Lounge3_Text_BackedWrongTrainer
+msgbox	I backed the wrong TRAINER again!Maybe I should be battling normally like everyone else…
 goto BattleFrontier_Lounge3_EventScript_FaceOriginalDirection
 end
-= BattleFrontier_Lounge3_Text_BackedWrongTrainer
 = BattleFrontier_Lounge3_EventScript_FatMan
 lock
 faceplayer
-msgbox	BattleFrontier_Lounge3_Text_TrainerGoodButRattled
+msgbox	That TRAINER…He's good, but he gets rattled too easily to survive the BATTLE DOME…
 goto BattleFrontier_Lounge3_EventScript_FaceOriginalDirection
 end
-= BattleFrontier_Lounge3_Text_TrainerGoodButRattled
 = BattleFrontier_Lounge3_EventScript_Gambler
 lock
 faceplayer
@@ -77,18 +79,18 @@ goto_if_set FLAG_MET_BATTLE_FRONTIER_GAMBLER BattleFrontier_Lounge3_EventScript_
 call BattleFrontier_Lounge3_EventScript_CountSilverSymbols
 goto_if_le VAR_0x8004 2 BattleFrontier_Lounge3_EventScript_NotEnoughSilverSymbols
 setflag FLAG_MET_BATTLE_FRONTIER_GAMBLER
-msgbox	BattleFrontier_Lounge3_Text_YouLookToughExplainGambling
+msgbox	…Huh? You look to me like a tough TRAINER.Heheh… Listen, I have this proposition.We have a little group going here, and we play a little game with what goes on in the BATTLE FRONTIER.The rules are really simple.First, we pick one of the facilities in the BATTLE FRONTIER.Then, we each pick a different TRAINER who's taking that facility's challenge, and bet with our Battle Points.The guy who bet on the TRAINER with the best record takes all the Battle Points in the pool.Sounds simple, huh? So, anyway…
 goto BattleFrontier_Lounge3_EventScript_AskToEnterChallenge
 end
 = BattleFrontier_Lounge3_EventScript_AskToEnterChallenge
 special ShowFrontierGamblerLookingMessage
 waitmessage
 waitbuttonpress
-msgbox	BattleFrontier_Lounge3_Text_HowAboutEnteringEventForMe
+msgboxyesno	I'll see to it that you benefit, too. So how about it? How about entering that event for me?
 goto_if_eq VAR_RESULT NO BattleFrontier_Lounge3_EventScript_DeclineChallenge
-msgbox	BattleFrontier_Lounge3_Text_SpotMeSomeBattlePoints
+msgboxyesno	All right, that's perfect. So, uh… How about spotting me some of your Battle Points?Trust me, I'll show you my gratitude afterward.
 goto_if_eq VAR_RESULT NO BattleFrontier_Lounge3_EventScript_DeclineChallenge
-message BattleFrontier_Lounge3_Text_HowMuchCanYouSpot
+msgbox	Great, great! So, how much can you spot me?
 waitmessage
 special ShowBattlePointsWindow
 goto BattleFrontier_Lounge3_EventScript_ChooseBetAmount
@@ -108,10 +110,9 @@ special CloseBattlePointsWindow
 goto BattleFrontier_Lounge3_EventScript_DeclineChallenge
 end
 = BattleFrontier_Lounge3_EventScript_DeclineChallenge
-msgbox	BattleFrontier_Lounge3_Text_NotInterested
+msgbox	Not interested?! You shouldn't be so afraid to take a chance!
 release
 end
-= BattleFrontier_Lounge3_Text_NotInterested
 = BattleFrontier_Lounge3_EventScript_Bet15
 setvar VAR_0x8008 BET_AMOUNT_15
 goto BattleFrontier_Lounge3_EventScript_TryPlaceBet
@@ -119,20 +120,18 @@ end
 = BattleFrontier_Lounge3_EventScript_TryPlaceBet
 specialvar VAR_TEMP_1 GetFrontierBattlePoints
 goto_if_ge VAR_TEMP_1 VAR_0x8008 BattleFrontier_Lounge3_EventScript_PlaceBet
-msgbox	BattleFrontier_Lounge3_Text_YouDontHaveEnoughPoints
-message BattleFrontier_Lounge3_Text_HowMuchCanYouSpot
+msgbox	Oh, no, no, no! You don't have enough Battle Points!I wish you wouldn't monkey around and waste everyone's time!
+msgbox	Great, great! So, how much can you spot me?
 waitmessage
 goto BattleFrontier_Lounge3_EventScript_ChooseBetAmount
 end
-= BattleFrontier_Lounge3_Text_HowMuchCanYouSpot
-= BattleFrontier_Lounge3_Text_YouDontHaveEnoughPoints
 = BattleFrontier_Lounge3_EventScript_PlaceBet
 copyvar VAR_0x8004 VAR_0x8008
 special TakeFrontierBattlePoints
 setvar VAR_FRONTIER_GAMBLER_STATE FRONTIER_GAMBLER_PLACED_BET
 special UpdateBattlePointsWindow
 playse SE_SHOP
-msgbox	BattleFrontier_Lounge3_Text_ThanksOffYouGo
+msgbox	Heheh! Thanks much! So, off you go!
 goto BattleFrontier_Lounge3_EventScript_FinishBet
 end
 = BattleFrontier_Lounge3_EventScript_FinishBet
@@ -142,7 +141,6 @@ waitbuttonpress
 special CloseBattlePointsWindow
 release
 end
-= BattleFrontier_Lounge3_Text_ThanksOffYouGo
 = BattleFrontier_Lounge3_EventScript_Bet10
 setvar VAR_0x8008 BET_AMOUNT_10
 goto BattleFrontier_Lounge3_EventScript_TryPlaceBet
@@ -151,14 +149,10 @@ end
 setvar VAR_0x8008 BET_AMOUNT_5
 goto BattleFrontier_Lounge3_EventScript_TryPlaceBet
 end
-= BattleFrontier_Lounge3_Text_SpotMeSomeBattlePoints
-= BattleFrontier_Lounge3_Text_HowAboutEnteringEventForMe
-= BattleFrontier_Lounge3_Text_YouLookToughExplainGambling
 = BattleFrontier_Lounge3_EventScript_NotEnoughSilverSymbols
-msgbox	BattleFrontier_Lounge3_Text_CantYouSeeWereBusyHere
+msgbox	…What's that you want?Can't you see we're kind of busy here? Can't your business wait till later?
 goto BattleFrontier_Lounge3_EventScript_FaceOriginalDirection
 end
-= BattleFrontier_Lounge3_Text_CantYouSeeWereBusyHere
 = BattleFrontier_Lounge3_EventScript_CountSilverSymbols
 setvar VAR_0x8004 0
 call_if_set FLAG_SYS_TOWER_SILVER BattleFrontier_Lounge3_EventScript_AddSilverSymbolCount
@@ -173,7 +167,7 @@ return
 addvar VAR_0x8004 1
 return
 = BattleFrontier_Lounge3_EventScript_AlreadyMetGambler
-msgbox	BattleFrontier_Lounge3_Text_Oh
+msgbox	Oh…
 goto_if_ge VAR_FRONTIER_GAMBLER_STATE FRONTIER_GAMBLER_PLACED_BET BattleFrontier_Lounge3_EventScript_CheckBetResults
 goto BattleFrontier_Lounge3_EventScript_AskToEnterChallenge
 end
@@ -183,24 +177,21 @@ goto_if_eq VAR_FRONTIER_GAMBLER_STATE FRONTIER_GAMBLER_WON BattleFrontier_Lounge
 goto BattleFrontier_Lounge3_EventScript_LostChallenge
 end
 = BattleFrontier_Lounge3_EventScript_LostChallenge
-msgbox	BattleFrontier_Lounge3_Text_NiceTryCantReturnPoints
+msgbox	Oh, it's you… Nice try…I hate to break it to you, but I can't return your Battle Points…I guess we'll have to let it motivate us to try harder next time!
 setvar VAR_FRONTIER_GAMBLER_STATE FRONTIER_GAMBLER_WAITING
 release
 end
-= BattleFrontier_Lounge3_Text_NiceTryCantReturnPoints
 = BattleFrontier_Lounge3_EventScript_WonChallenge
-msgbox	BattleFrontier_Lounge3_Text_HelloChampHeresYourPoints
+msgbox	Oh, yes! Hello there, champ!I knew you could! I knew you would! We're both big winners!I'll return your Battle Points and, of course, a little extra from me!
 call_if_eq VAR_FRONTIER_GAMBLER_AMOUNT_BET FRONTIER_GAMBLER_BET_5 BattleFrontier_Lounge3_EventScript_RewardBet5
 call_if_eq VAR_FRONTIER_GAMBLER_AMOUNT_BET FRONTIER_GAMBLER_BET_10 BattleFrontier_Lounge3_EventScript_RewardBet10
 call_if_eq VAR_FRONTIER_GAMBLER_AMOUNT_BET FRONTIER_GAMBLER_BET_15 BattleFrontier_Lounge3_EventScript_RewardBet15
-msgbox	BattleFrontier_Lounge3_Text_ObtainedBattlePoints
+msgbox	PLAYER obtained Battle Points.
 special GiveFrontierBattlePoints
-msgbox	BattleFrontier_Lounge3_Text_ThinkOfMeForAnotherChallenge
+msgbox	If you're up for another challenge, please do think of me!
 setvar VAR_FRONTIER_GAMBLER_STATE FRONTIER_GAMBLER_WAITING
 release
 end
-= BattleFrontier_Lounge3_Text_ThinkOfMeForAnotherChallenge
-= BattleFrontier_Lounge3_Text_ObtainedBattlePoints
 = BattleFrontier_Lounge3_EventScript_RewardBet15
 buffernumberstring STR_VAR_1 (BET_AMOUNT_15 * 2)
 setvar VAR_0x8004 (BET_AMOUNT_15 * 2)
@@ -213,11 +204,9 @@ return
 buffernumberstring STR_VAR_1 (BET_AMOUNT_5 * 2)
 setvar VAR_0x8004 (BET_AMOUNT_5 * 2)
 return
-= BattleFrontier_Lounge3_Text_HelloChampHeresYourPoints
 = BattleFrontier_Lounge3_EventScript_ChallengeNotAttempted
 special ShowFrontierGamblerGoMessage
 waitmessage
 waitbuttonpress
 release
 end
-= BattleFrontier_Lounge3_Text_Oh

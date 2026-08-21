@@ -44,11 +44,11 @@ scriptdefs
 lock
 faceplayer
 goto_if_set FLAG_MOVE_TUTOR_TAUGHT_METRONOME MoveTutor_EventScript_MetronomeTaught
-msgbox	MoveTutor_Text_MetronomeTeach
+msgboxyesno	I want all sorts of things! But I used up my allowance…Wouldn't it be nice if there were a spell that made money appear when you waggle a finger?If you want, I can teach your POKéMON the move METRONOME.Money won't appear, but your POKéMON will waggle a finger. Yes?
 goto_if_eq VAR_RESULT NO MoveTutor_EventScript_MetronomeDeclined
 call MoveTutor_EventScript_CanOnlyBeLearnedOnce
 goto_if_eq VAR_RESULT NO MoveTutor_EventScript_MetronomeDeclined
-msgbox	MoveTutor_Text_MetronomeWhichMon
+msgbox	Okay! I'll teach it! Which POKéMON should I teach?
 setvar VAR_0x8005 TUTOR_MOVE_METRONOME
 call MoveTutor_EventScript_OpenPartyMenu
 goto_if_eq VAR_RESULT 0 MoveTutor_EventScript_MetronomeDeclined
@@ -56,11 +56,11 @@ setflag FLAG_MOVE_TUTOR_TAUGHT_METRONOME
 goto MoveTutor_EventScript_MetronomeTaught
 end
 = MoveTutor_EventScript_MetronomeTaught
-msgbox	MoveTutor_Text_MetronomeTaught
+msgbox	When a POKéMON waggles its finger like a METRONOME, all sorts of nice things happen.Wouldn't it be nice if we could use it, too?
 release
 end
 = MoveTutor_EventScript_MetronomeDeclined
-msgbox	MoveTutor_Text_MetronomeDeclined
+msgbox	Okay. I'll be here if you change your mind.
 release
 end
 = MoveTutor_EventScript_OpenPartyMenu
@@ -69,7 +69,7 @@ lock
 faceplayer
 return
 = MoveTutor_EventScript_CanOnlyBeLearnedOnce
-msgbox	MoveTutor_Text_ThisMoveCanOnlyBeLearnedOnce
+msgboxyesno	This move can be learned only once. Is that okay?
 return
 = FallarborTown_Mart_EventScript_Skitty
 lock
@@ -89,9 +89,11 @@ end
 = FallarborTown_Mart_EventScript_Clerk
 lock
 faceplayer
-message gText_HowMayIServeYou
+msgbox	Welcome!How may I serve you?
 waitmessage
 pokemart FallarborTown_Mart_Pokemart
-msgbox	gText_PleaseComeAgain
+msgbox	Please come again!
 release
 end
+counters
+562,570,577

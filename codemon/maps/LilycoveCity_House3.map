@@ -96,7 +96,7 @@ end
 = LilycoveCity_House3_EventScript_PokefanF
 lock
 faceplayer
-msgbox	Oh, my, my! Are you traveling alone? But you're so young! Good for you!I'm sure my kids could learn a thing or two from you!Me? I'm a master of S.If I get serious just a little, why, I can concoct great S.Would you like to learn from me, a master of S?
+msgboxyesno	Oh, my, my! Are you traveling alone? But you're so young! Good for you!I'm sure my kids could learn a thing or two from you!Me? I'm a master of S.If I get serious just a little, why, I can concoct great S.Would you like to learn from me, a master of S?
 goto_if_eq VAR_RESULT NO LilycoveCity_House3_EventScript_DeclinePokeblockLearn
 msgbox	Oh, good! You're a smart soul! This is a bit long, so listen up!Are you ready?If you look at S, you should see that they are rated on how they feel.The lower the feel rating, the better it is. Don't forget this!A good has a low feel rating and a high level.A POKéMON can eat more good S than ordinary ones, too.And this is important.If you want to make smooth S, use different kinds of BERRIES.Don't be stingy--the kinds of BERRIES affect the smoothness of S.And another thing.The more people blending BERRIES, the smoother the S.That's why you should talk to other people and make S together.That's about all you need to know to make good S.If everyone had POKéMON they love, smooth S, and a loving family, the world would be a happier place.Don't give up, dear!
 closemessage

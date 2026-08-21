@@ -45,19 +45,19 @@ scriptdefs
 = LilycoveCity_DepartmentStore_2F_EventScript_ClerkLeft
 lock
 faceplayer
-message gText_HowMayIServeYou
+msgbox	Welcome!How may I serve you?
 waitmessage
 pokemart LilycoveCity_DepartmentStore_2F_Pokemart1
-msgbox	gText_PleaseComeAgain
+msgbox	Please come again!
 release
 end
 = LilycoveCity_DepartmentStore_2F_EventScript_ClerkRight
 lock
 faceplayer
-message gText_HowMayIServeYou
+msgbox	Welcome!How may I serve you?
 waitmessage
 pokemart LilycoveCity_DepartmentStore_2F_Pokemart2
-msgbox	gText_PleaseComeAgain
+msgbox	Please come again!
 release
 end
 = LilycoveCity_DepartmentStore_2F_EventScript_Sailor
@@ -69,3 +69,5 @@ end
 = LilycoveCity_DepartmentStore_2F_EventScript_Cook
 msgbox	Learn to use items properly. That's basic, really.
 end
+counters
+670,675,676

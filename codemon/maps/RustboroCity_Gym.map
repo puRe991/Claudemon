@@ -107,7 +107,7 @@ trainerbattle_rematch_double TRAINER_ROXANNE_1 RustboroCity_Gym_Text_RoxannePreR
 msgbox	ROXANNE: I still have much to learn when it comes to battling POKéMON.That awareness makes me love battling all that much more!
 end
 = RustboroCity_Gym_EventScript_RoxanneDefeated
-message RustboroCity_Gym_Text_ReceivedStoneBadge
+msgbox	PLAYER received the STONE BADGE from ROXANNE.
 waitmessage
 call Common_EventScript_PlayGymBadgeFanfare
 msgbox	The STONE BADGE heightens the ATTACK power of your POKéMON.It also enables them to use the HM move CUT outside of battle.Please take this with you, too.

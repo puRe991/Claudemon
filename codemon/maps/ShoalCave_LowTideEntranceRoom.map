@@ -93,17 +93,17 @@ checkitem ITEM_SHOAL_SALT 4
 goto_if_eq VAR_RESULT FALSE ShoalCave_LowTideEntranceRoom_EventScript_NotEnoughShoalSaltOrShells
 checkitem ITEM_SHOAL_SHELL 4
 goto_if_eq VAR_RESULT FALSE ShoalCave_LowTideEntranceRoom_EventScript_NotEnoughShoalSaltOrShells
-msgbox	ShoalCave_LowTideEntranceRoom_Text_WouldYouLikeShellBell
+msgboxyesno	Oh, hey! SHOAL SALT and SHOAL SHELLS! And enough of them, too!Would you like me to make you a SHELL BELL with them?
 goto_if_eq VAR_RESULT NO ShoalCave_LowTideEntranceRoom_EventScript_DeclineShellBell
 checkitemspace ITEM_SHELL_BELL
 call_if_eq VAR_RESULT FALSE ShoalCave_LowTideEntranceRoom_EventScript_CheckSpaceWillBeFreed
 goto_if_eq VAR_RESULT 2 ShoalCave_LowTideEntranceRoom_EventScript_NoRoomForShellBell
-msgbox	ShoalCave_LowTideEntranceRoom_Text_MakeShellBellRightAway
+msgbox	All righty, then! I'll make you a SHELL BELL right away.… … … … … … … … … … … … … … … …There! Done!
 removeitem ITEM_SHOAL_SALT 4
 removeitem ITEM_SHOAL_SHELL 4
 giveitem ITEM_SHELL_BELL
 goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull  @ Never FALSE we already made sure there will be room in the bag.
-msgbox	ShoalCave_LowTideEntranceRoom_Text_ExplainShellBell
+msgbox	Have a POKéMON hold on to that. It'll love it, that's for certain.Why, the SHELL BELL's chime… It's simply sublime!You can get its ingredients every day, so I can make you more.
 setflag FLAG_TEMP_2  @ Not read. Perhaps meant to stop him from re-explaining the Shell Bell if multiple are received in one sitting.
 release
 end
@@ -121,11 +121,11 @@ return
 setvar VAR_RESULT 2
 return
 = ShoalCave_LowTideEntranceRoom_EventScript_NoRoomForShellBell
-msgbox	ShoalCave_LowTideEntranceRoom_Text_NoSpaceInYourBag
+msgbox	You don't have space in your BAG if I were to make it for you.You should make room and come back for a SHELL BELL.
 release
 end
 = ShoalCave_LowTideEntranceRoom_EventScript_DeclineShellBell
-msgbox	ShoalCave_LowTideEntranceRoom_Text_WantedToMakeShellBell
+msgbox	Oh… Is that so… I wanted to make a SHELL BELL…
 release
 end
 = ShoalCave_LowTideEntranceRoom_EventScript_NotEnoughShoalSaltOrShells
@@ -133,11 +133,11 @@ checkitem ITEM_SHOAL_SALT
 goto_if_eq VAR_RESULT TRUE ShoalCave_LowTideEntranceRoom_EventScript_HasSomeShoalSaltOrShell
 checkitem ITEM_SHOAL_SHELL
 goto_if_eq VAR_RESULT TRUE ShoalCave_LowTideEntranceRoom_EventScript_HasSomeShoalSaltOrShell
-msgbox	ShoalCave_LowTideEntranceRoom_Text_AreYouPlanningOnGoingInThere
+msgbox	Are you planning on going deep in there?How about bringing me back some SHOAL SALT and SHOAL SHELLS?I can make you something good if you bring me the ingredients.
 release
 end
 = ShoalCave_LowTideEntranceRoom_EventScript_HasSomeShoalSaltOrShell
-msgbox	ShoalCave_LowTideEntranceRoom_Text_BringMe4ShoalSaltAndShells
+msgbox	If you bring me four each of the SHOAL SALT and SHOAL SHELLS, I can make you a SHELL BELL…You can get those ingredients every day.
 release
 end
 = ShoalCave_LowTideEntranceRoom_EventScript_ResetShoalItems

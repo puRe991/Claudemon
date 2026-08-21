@@ -58,7 +58,7 @@ BattleFrontier_BattlePikeLobby_Movement_PlayerWalkToCorridor	up
 scriptdefs
 = BattleFrontier_BattlePikeLobby_EventScript_LostChallenge
 lockall
-message BattleFrontier_BattlePikeLobby_Text_ChallengeEndedRecordResults
+msgbox	Your challenge has ended…I shall record your results. Please wait…
 waitmessage
 frontier_checkairshow
 frontier_set FRONTIER_DATA_BATTLE_NUM 0
@@ -84,7 +84,7 @@ goto BattleFrontier_BattlePikeLobby_EventScript_GiveBattlePoints
 = BattleFrontier_BattlePikeLobby_EventScript_GiveBattlePoints
 msgbox	In recognition of your amazing luck, we award you these Battle Point(s)…
 frontier_givepoints
-msgbox	BattleFrontier_Text_ObtainedXBattlePoints
+msgbox	PLAYER obtained Battle Point(s).
 frontier_checkairshow
 pike_get PIKE_DATA_TOTAL_STREAKS
 addvar VAR_RESULT 1
@@ -92,7 +92,7 @@ pike_set PIKE_DATA_TOTAL_STREAKS VAR_RESULT
 special LoadPlayerParty
 special HealPlayerParty
 pike_resethelditems
-message BattleFrontier_BattlePikeLobby_Text_ShallRecordResults
+msgbox	I shall record your results. Please wait…
 waitmessage
 pike_save 0
 playse SE_SAVE
@@ -139,7 +139,7 @@ special SavePlayerParty
 msgbox	Where the luck of TRAINERS is put to the test…Welcome to the BATTLE PIKE…I am your guide to the BATTLE PIKE…
 goto BattleFrontier_BattlePikeLobby_EventScript_AskTakeChallenge
 = BattleFrontier_BattlePikeLobby_EventScript_AskTakeChallenge
-message BattleFrontier_BattlePikeLobby_Text_TakeChallenge
+msgbox	Would you like to take the Battle Choice challenge?
 waitmessage
 multichoice 17 6 MULTI_CHALLENGEINFO FALSE
 switch VAR_RESULT
@@ -149,7 +149,7 @@ case 2 BattleFrontier_BattlePikeLobby_EventScript_CancelChallenge
 case MULTI_B_PRESSED BattleFrontier_BattlePikeLobby_EventScript_CancelChallenge
 goto BattleFrontier_BattlePikeLobby_EventScript_TryEnterChallenge
 = BattleFrontier_BattlePikeLobby_EventScript_TryEnterChallenge
-message BattleFrontier_BattlePikeLobby_Text_WhichChallengeMode
+msgbox	You have the choice of two courses, Level 50 and Open Level. Which will you challenge?
 waitmessage
 multichoice 17 6 MULTI_LEVEL_MODE FALSE
 switch VAR_RESULT
@@ -165,7 +165,7 @@ copyvar VAR_0x8004 VAR_RESULT
 setvar VAR_0x8005 FRONTIER_PARTY_SIZE
 special ChoosePartyForBattleFrontier
 goto_if_eq VAR_RESULT 0 BattleFrontier_BattlePikeLobby_EventScript_LoadPartyAndCancelChallenge
-msgbox	Before starting your Battle Choice challenge, I must save the game. Is that acceptable?
+msgboxyesno	Before starting your Battle Choice challenge, I must save the game. Is that acceptable?
 switch VAR_RESULT
 case NO BattleFrontier_BattlePikeLobby_EventScript_LoadPartyAndCancelChallenge
 case YES BattleFrontier_BattlePikeLobby_EventScript_SaveBeforeChallenge

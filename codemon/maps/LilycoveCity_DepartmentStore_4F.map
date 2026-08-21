@@ -45,19 +45,19 @@ scriptdefs
 = LilycoveCity_DepartmentStore_4F_EventScript_ClerkRight
 lock
 faceplayer
-message gText_HowMayIServeYou
+msgbox	Welcome!How may I serve you?
 waitmessage
 pokemart LilycoveCity_DepartmentStore_4F_Pokemart_DefenseTMs
-msgbox	gText_PleaseComeAgain
+msgbox	Please come again!
 release
 end
 = LilycoveCity_DepartmentStore_4F_EventScript_ClerkLeft
 lock
 faceplayer
-message gText_HowMayIServeYou
+msgbox	Welcome!How may I serve you?
 waitmessage
 pokemart LilycoveCity_DepartmentStore_4F_Pokemart_AttackTMs
-msgbox	gText_PleaseComeAgain
+msgbox	Please come again!
 release
 end
 = LilycoveCity_DepartmentStore_4F_EventScript_Youngster
@@ -69,3 +69,5 @@ end
 = LilycoveCity_DepartmentStore_4F_EventScript_Gentleman
 msgbox	Hmm…An attacking move… Or a defensive move…It's no easy matter to decide which TM moves should be taught to POKéMON…
 end
+counters
+670,675,676

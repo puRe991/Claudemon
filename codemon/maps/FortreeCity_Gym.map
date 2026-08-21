@@ -138,7 +138,7 @@ trainerbattle_rematch_double TRAINER_WINONA_1 FortreeCity_Gym_Text_WinonaPreRema
 msgbox	WINONA: Even though I have lost, the wings of my heart remain unbroken.I can rise and soar again and yet again.I am convinced of it!
 end
 = FortreeCity_Gym_EventScript_WinonaDefeated
-message FortreeCity_Gym_Text_ReceivedFeatherBadge
+msgbox	PLAYER received the FEATHER BADGE from WINONA.
 waitmessage
 call Common_EventScript_PlayGymBadgeFanfare
 msgbox	With the FEATHER BADGE, all POKéMON up to LV 70, even those received through trades, will obey your every command.You will also be able to use the HM move FLY outside of battle.And this… This is a gift from me.

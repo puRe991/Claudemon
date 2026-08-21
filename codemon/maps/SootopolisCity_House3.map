@@ -35,7 +35,7 @@ end
 = SootopolisCity_House3_EventScript_Woman
 lock
 faceplayer
-msgbox	You're a POKéMON TRAINER, aren't you?SOOTOPOLIS's JUAN has many fans. Even more than his student WALLACE!Do you have any?
+msgboxyesno	You're a POKéMON TRAINER, aren't you?SOOTOPOLIS's JUAN has many fans. Even more than his student WALLACE!Do you have any?
 goto_if_eq VAR_RESULT YES SootopolisCity_House3_EventScript_HaveFans
 msgbox	Oh, dear… That's a little lonesome.Try working a little harder to get a fan following.
 release

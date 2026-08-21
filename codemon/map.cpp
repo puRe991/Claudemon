@@ -71,6 +71,7 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 		return s.rfind("collision", 0) == 0 || s.rfind("warps", 0) == 0 ||
 		       s.rfind("npcs", 0) == 0 || s.rfind("dialogs", 0) == 0 ||
 		       s.rfind("signs", 0) == 0 || s.rfind("grass", 0) == 0 ||
+		       s.rfind("counters", 0) == 0 ||
 		       s.rfind("encounters", 0) == 0 || s.rfind("objscripts", 0) == 0 ||
 		       s.rfind("triggers", 0) == 0 || s.rfind("movements", 0) == 0 ||
 		       s.rfind("onload", 0) == 0 || s.rfind("scriptdefs", 0) == 0;
@@ -143,6 +144,14 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 				for (int id : g) this->grass_ids.insert(id);
 				++i;
 			}
+		} else if (head.rfind("counters", 0) == 0) {
+			// single line of comma-separated shop/PC-counter metatile ids
+			if (++i < rest.size()) {
+				std::vector<int> g;
+				parse_int_row(rest[i], g);
+				for (int id : g) this->counter_ids.insert(id);
+				++i;
+			}
 		} else if (head.rfind("encounters", 0) == 0) {
 			// lines like "land SP:min:max,SP:min:max,...". Only land triggers
 			// in tall grass; other types are parsed but ignored for now.
@@ -208,6 +217,9 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 					if (l.rfind("msgbox\t", 0) == 0) {
 						instr.push_back("msgbox");
 						instr.push_back(l.substr(7));    // text (may contain \x1f)
+					} else if (l.rfind("msgboxyesno\t", 0) == 0) {
+						instr.push_back("msgboxyesno");
+						instr.push_back(l.substr(12));   // text (may contain \x1f)
 					} else {
 						std::stringstream ss(l);
 						std::string tok;
@@ -248,6 +260,12 @@ bool Map::is_grass(int tile_x, int tile_y) const {
 	if (!in_bounds(tile_x, tile_y) || this->grass_ids.empty()) return false;
 	int id = this->tile_map[this->index(tile_x, tile_y)];
 	return this->grass_ids.count(id) > 0;
+}
+
+bool Map::is_counter(int tile_x, int tile_y) const {
+	if (!in_bounds(tile_x, tile_y) || this->counter_ids.empty()) return false;
+	int id = this->tile_map[this->index(tile_x, tile_y)];
+	return this->counter_ids.count(id) > 0;
 }
 
 bool Map::has_encounters() const { return !this->land_slots.empty(); }

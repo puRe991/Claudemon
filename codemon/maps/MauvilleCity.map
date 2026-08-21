@@ -115,11 +115,11 @@ scriptdefs
 lock
 faceplayer
 goto_if_set FLAG_MOVE_TUTOR_TAUGHT_ROLLOUT MoveTutor_EventScript_RolloutTaught
-msgbox	MoveTutor_Text_RolloutTeach
+msgboxyesno	Did you know that you can go from here a long way in that direction without changing direction?I might even be able to roll that way.Do you think your POKéMON will want to roll, too?I can teach one the move ROLLOUT if you'd like.
 goto_if_eq VAR_RESULT NO MoveTutor_EventScript_RolloutDeclined
 call MoveTutor_EventScript_CanOnlyBeLearnedOnce
 goto_if_eq VAR_RESULT NO MoveTutor_EventScript_RolloutDeclined
-msgbox	MoveTutor_Text_RolloutWhichMon
+msgbox	Ehehe, sure thing! It'd be great if the POKéMON looked like me.
 setvar VAR_0x8005 TUTOR_MOVE_ROLLOUT
 call MoveTutor_EventScript_OpenPartyMenu
 goto_if_eq VAR_RESULT 0 MoveTutor_EventScript_RolloutDeclined
@@ -127,11 +127,11 @@ setflag FLAG_MOVE_TUTOR_TAUGHT_ROLLOUT
 goto MoveTutor_EventScript_RolloutTaught
 end
 = MoveTutor_EventScript_RolloutTaught
-msgbox	MoveTutor_Text_RolloutTaught
+msgbox	Rolling around in the grass makes me happy. Come on, let's roll!
 release
 end
 = MoveTutor_EventScript_RolloutDeclined
-msgbox	MoveTutor_Text_RolloutDeclined
+msgbox	You don't need to be shy about it. Let's roll!
 release
 end
 = MoveTutor_EventScript_OpenPartyMenu
@@ -140,7 +140,7 @@ lock
 faceplayer
 return
 = MoveTutor_EventScript_CanOnlyBeLearnedOnce
-msgbox	MoveTutor_Text_ThisMoveCanOnlyBeLearnedOnce
+msgboxyesno	This move can be learned only once. Is that okay?
 return
 = MauvilleCity_EventScript_ItemXSpeed
 goto_if_set FLAG_ITEM_MAUVILLE_CITY_X_SPEED MauvilleCity_EventScript_ItemXSpeed_Taken
@@ -209,7 +209,7 @@ applymovement LOCALID_MAUVILLE_WALLY Common_Movement_ExclamationMark
 waitmovement 0
 applymovement LOCALID_MAUVILLE_WALLY Common_Movement_Delay48
 waitmovement 0
-msgbox	WALLY: Oh! Hi, PLAYER!I've gotten a lot stronger since we met.PLAYER, I want you and my UNCLE to understand that.PLAYER, please, will you have a battle with me?
+msgboxyesno	WALLY: Oh! Hi, PLAYER!I've gotten a lot stronger since we met.PLAYER, I want you and my UNCLE to understand that.PLAYER, please, will you have a battle with me?
 goto MauvilleCity_EventScript_BattleWallyPrompt
 end
 = MauvilleCity_EventScript_BattleWallyPrompt
@@ -319,7 +319,7 @@ return
 = MauvilleCity_EventScript_WallyRequestBattleAgain
 applymovement LOCALID_MAUVILLE_WALLY Common_Movement_FacePlayer
 waitmovement 0
-msgbox	WALLY: PLAYER, please! Battle with me, please.
+msgboxyesno	WALLY: PLAYER, please! Battle with me, please.
 goto MauvilleCity_EventScript_BattleWallyPrompt
 end
 = MauvilleCity_EventScript_SchoolKidM

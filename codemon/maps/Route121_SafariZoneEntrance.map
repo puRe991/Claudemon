@@ -88,7 +88,7 @@ removemoney 500
 updatemoneybox
 msgbox	Route121_SafariZoneEntrance_Text_HereAreYourSafariBalls
 playfanfare MUS_OBTAIN_ITEM
-message Route121_SafariZoneEntrance_Text_Received30SafariBalls
+msgbox	Route121_SafariZoneEntrance_Text_Received30SafariBalls
 waitfanfare
 msgbox	Route121_SafariZoneEntrance_Text_PleaseEnjoyYourself
 closemessage
@@ -134,3 +134,5 @@ end
 = Route121_SafariZoneEntrance_EventScript_WelcomeAttendant
 msgbox	Route121_SafariZoneEntrance_Text_WelcomeToSafariZone
 end
+counters
+672,673,680,681,720

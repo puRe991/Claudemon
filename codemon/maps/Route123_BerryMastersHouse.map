@@ -33,7 +33,7 @@ lock
 faceplayer
 dotimebasedevents
 goto_if_set FLAG_DAILY_BERRY_MASTERS_WIFE Route123_BerryMastersHouse_EventScript_ReceivedWifeBerryToday
-msgbox	Route123_BerryMastersHouse_Text_HeardAGoodSayingLately
+msgbox	The way my husband grows BERRIES, oh, he's the best in the world.He makes me proud, that he does.Incidentally, child, have you heard a good saying lately?
 setvar VAR_0x8004 EASY_CHAT_TYPE_GOOD_SAYING
 call Common_ShowEasyChatScreen
 lock
@@ -42,8 +42,8 @@ goto_if_eq VAR_RESULT TRUE Route123_BerryMastersHouse_EventScript_GavePhrase
 goto_if_eq VAR_RESULT FALSE Route123_BerryMastersHouse_EventScript_CancelPhrase
 end
 = Route123_BerryMastersHouse_EventScript_CancelPhrase
-msgbox	Route123_BerryMastersHouse_Text_Ah
-msgbox	Route123_BerryMastersHouse_Text_JoyNeverGoesOutOfMyLife
+msgbox	Ah…
+msgbox	Our four grandchildren should become more accomplished than my husband.Joy never goes out of my life!
 release
 end
 = Route123_BerryMastersHouse_EventScript_GavePhrase
@@ -56,7 +56,7 @@ goto_if_eq VAR_0x8004 PHRASE_SUPER_HUSTLE Route123_BerryMastersHouse_EventScript
 end
 = Route123_BerryMastersHouse_EventScript_GiveBelueBerry
 goto_if_set FLAG_RECEIVED_BELUE_BERRY Route123_BerryMastersHouse_EventScript_GiveNormalBerry
-msgbox	Route123_BerryMastersHouse_Text_InspirationalTakeThis
+msgbox	Ah! What a remarkable saying! Inspirational, it is!I want you to have this.
 giveitem ITEM_BELUE_BERRY
 goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
 setflag FLAG_RECEIVED_BELUE_BERRY
@@ -64,11 +64,11 @@ goto Route123_BerryMastersHouse_EventScript_GaveBerry
 end
 = Route123_BerryMastersHouse_EventScript_GaveBerry
 setflag FLAG_DAILY_BERRY_MASTERS_WIFE
-msgbox	Route123_BerryMastersHouse_Text_JoyNeverGoesOutOfMyLife
+msgbox	Our four grandchildren should become more accomplished than my husband.Joy never goes out of my life!
 release
 end
 = Route123_BerryMastersHouse_EventScript_GiveNormalBerry
-msgbox	Route123_BerryMastersHouse_Text_GoodSayingTakeThis
+msgbox	Oh! A good saying it is. You're quite remarkable.I want you to have this.
 random NUM_BERRY_MASTER_WIFE_BERRIES
 addvar VAR_RESULT FIRST_BERRY_INDEX
 giveitem VAR_RESULT
@@ -78,7 +78,7 @@ release
 end
 = Route123_BerryMastersHouse_EventScript_GiveDurinBerry
 goto_if_set FLAG_RECEIVED_DURIN_BERRY Route123_BerryMastersHouse_EventScript_GiveNormalBerry
-msgbox	Route123_BerryMastersHouse_Text_InspirationalTakeThis
+msgbox	Ah! What a remarkable saying! Inspirational, it is!I want you to have this.
 giveitem ITEM_DURIN_BERRY
 goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
 setflag FLAG_RECEIVED_DURIN_BERRY
@@ -86,7 +86,7 @@ goto Route123_BerryMastersHouse_EventScript_GaveBerry
 end
 = Route123_BerryMastersHouse_EventScript_GiveWatmelBerry
 goto_if_set FLAG_RECEIVED_WATMEL_BERRY Route123_BerryMastersHouse_EventScript_GiveNormalBerry
-msgbox	Route123_BerryMastersHouse_Text_InspirationalTakeThis
+msgbox	Ah! What a remarkable saying! Inspirational, it is!I want you to have this.
 giveitem ITEM_WATMEL_BERRY
 goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
 setflag FLAG_RECEIVED_WATMEL_BERRY
@@ -94,7 +94,7 @@ goto Route123_BerryMastersHouse_EventScript_GaveBerry
 end
 = Route123_BerryMastersHouse_EventScript_GivePamtreBerry
 goto_if_set FLAG_RECEIVED_PAMTRE_BERRY Route123_BerryMastersHouse_EventScript_GiveNormalBerry
-msgbox	Route123_BerryMastersHouse_Text_InspirationalTakeThis
+msgbox	Ah! What a remarkable saying! Inspirational, it is!I want you to have this.
 giveitem ITEM_PAMTRE_BERRY
 goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
 setflag FLAG_RECEIVED_PAMTRE_BERRY
@@ -102,14 +102,14 @@ goto Route123_BerryMastersHouse_EventScript_GaveBerry
 end
 = Route123_BerryMastersHouse_EventScript_GiveSpelonBerry
 goto_if_set FLAG_RECEIVED_SPELON_BERRY Route123_BerryMastersHouse_EventScript_GiveNormalBerry
-msgbox	Route123_BerryMastersHouse_Text_InspirationalTakeThis
+msgbox	Ah! What a remarkable saying! Inspirational, it is!I want you to have this.
 giveitem ITEM_SPELON_BERRY
 goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
 setflag FLAG_RECEIVED_SPELON_BERRY
 goto Route123_BerryMastersHouse_EventScript_GaveBerry
 end
 = Route123_BerryMastersHouse_EventScript_ReceivedWifeBerryToday
-msgbox	Route123_BerryMastersHouse_Text_JoyNeverGoesOutOfMyLife
+msgbox	Our four grandchildren should become more accomplished than my husband.Joy never goes out of my life!
 release
 end
 = Route123_BerryMastersHouse_EventScript_BerryMaster
@@ -117,23 +117,23 @@ lock
 faceplayer
 dotimebasedevents
 goto_if_set FLAG_DAILY_BERRY_MASTER_RECEIVED_BERRY Route123_BerryMastersHouse_EventScript_ReceivedBerryToday
-msgbox	Route123_BerryMastersHouse_Text_YoureDeservingOfBerry
+msgbox	You may call me the BERRY MASTER.I dream of filling the world with beautiful flowers, so I raise BERRIES and hand them out to everyone.You're deserving of one!
 random NUM_BERRY_MASTER_BERRIES
 addvar VAR_RESULT NUM_BERRY_MASTER_BERRIES_SKIPPED
 addvar VAR_RESULT FIRST_BERRY_INDEX
 giveitem VAR_RESULT
 goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
 setflag FLAG_DAILY_BERRY_MASTER_RECEIVED_BERRY
-msgbox	Route123_BerryMastersHouse_Text_WhyBeStingyTakeAnother
+msgbox	Why be stingy? Take another!
 random NUM_BERRY_MASTER_BERRIES
 addvar VAR_RESULT NUM_BERRY_MASTER_BERRIES_SKIPPED
 addvar VAR_RESULT FIRST_BERRY_INDEX
 giveitem VAR_RESULT
 goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
-msgbox	Route123_BerryMastersHouse_Text_VisitPrettyPetalFlowerShop
+msgbox	Be sure to visit the PRETTY PETAL flower shop near RUSTBORO.Let flowers fill the world!
 release
 end
 = Route123_BerryMastersHouse_EventScript_ReceivedBerryToday
-msgbox	Route123_BerryMastersHouse_Text_DoneForToday
+msgbox	I'm done for today. Come again another day.Let flowers fill the world!
 release
 end

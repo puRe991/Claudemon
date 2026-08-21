@@ -34,7 +34,7 @@ scriptdefs
 lockall
 applymovement LOCALID_MOVE_DELETER Common_Movement_FacePlayer
 waitmovement 0
-msgbox	Uh… Oh, yes, I'm the MOVE DELETER.I can make POKéMON forget their moves.Would you like me to do that?
+msgboxyesno	Uh… Oh, yes, I'm the MOVE DELETER.I can make POKéMON forget their moves.Would you like me to do that?
 switch VAR_RESULT
 case YES LilycoveCity_MoveDeletersHouse_EventScript_ChooseMonAndMoveToForget
 case NO LilycoveCity_MoveDeletersHouse_EventScript_ComeAgain
@@ -58,7 +58,7 @@ special MoveDeleterChooseMoveToForget
 fadescreen FADE_FROM_BLACK
 goto_if_eq VAR_0x8005 MAX_MON_MOVES LilycoveCity_MoveDeletersHouse_EventScript_ChooseMonAndMoveToForget
 special BufferMoveDeleterNicknameAndMove
-msgbox	Hm! 's ? That move should be forgotten?
+msgboxyesno	Hm! 's ? That move should be forgotten?
 switch VAR_RESULT
 case YES LilycoveCity_MoveDeletersHouse_EventScript_TryForgetMove
 case NO LilycoveCity_MoveDeletersHouse_EventScript_ComeAgain

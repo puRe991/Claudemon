@@ -276,7 +276,7 @@ msgbox	BRAWLY: Battling is vast and it's deep. You can't see the bottom. It's ju
 end
 = DewfordTown_Gym_EventScript_BrawlyDefeated
 call DewfordTown_Gym_EventScript_AnimateFlashFullBrightness
-message DewfordTown_Gym_Text_ReceivedKnuckleBadge
+msgbox	PLAYER received the KNUCKLE BADGE from BRAWLY.
 waitmessage
 call Common_EventScript_PlayGymBadgeFanfare
 msgbox	The KNUCKLE BADGE makes all POKéMON up to Level 30, even those you get in trades, obey without question.And, you'll be able to use the HM move FLASH outside of battle.If you'd like, use this TECHNICAL MACHINE, too.

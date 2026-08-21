@@ -91,33 +91,33 @@ end
 end
 = Route106_EventScript_Ned
 trainerbattle_single TRAINER_NED Route106_Text_NedIntro Route106_Text_NedDefeated
-msgbox	Route106_Text_NedPostBattle
+msgbox	Oh, no! I've got this feeling I'll hook a big one!
 end
 = Route106_EventScript_Elliot
 trainerbattle_single TRAINER_ELLIOT_1 Route106_Text_ElliotIntro Route106_Text_ElliotDefeated Route106_EventScript_ElliotRegisterMatchCallAfterBattle
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route106_EventScript_ElliotRematch
-msgbox	Route106_Text_ElliotPostBattle
+msgbox	Fishing is the greatest whether it's in the sea or a stream. You agree with me, right?
 release
 end
 = Route106_EventScript_ElliotRematch
 trainerbattle_rematch TRAINER_ELLIOT_1 Route106_Text_ElliotRematchIntro Route106_Text_ElliotRematchDefeated
-msgbox	Route106_Text_ElliotRematchPostBattle
+msgbox	Win or lose, POKéMON are the greatest! You agree with me, right?
 end
 = Route106_EventScript_ElliotRegisterMatchCallAfterBattle
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Route106_Text_ElliotRegister
+msgbox	Fishing's great, but so is battling. If you don't mind, can we meet again?
 register_matchcall TRAINER_ELLIOT_1
 release
 end
 = Route106_EventScript_Kyla
 trainerbattle_single TRAINER_KYLA Route106_Text_KylaIntro Route106_Text_KylaDefeated
-msgbox	Route106_Text_KylaPostBattle
+msgbox	Drifting along with the waves… I love it! Why don't you give it a try?
 end
 = Route106_EventScript_Douglas
 trainerbattle_single TRAINER_DOUGLAS Route106_Text_DouglasIntro Route106_Text_DouglasDefeated
-msgbox	Route106_Text_DouglasPostBattle
+msgbox	I wouldn't lose in a swim race…
 end
 signs
 59 13	TRAINER TIPSAdvice on catching POKéMON with a ROD: Press the A Button if you get a bite.

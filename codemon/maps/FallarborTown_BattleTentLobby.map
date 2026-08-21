@@ -56,21 +56,21 @@ FallarborTown_BattleTentLobby_Movement_PlayerWalkToDoor	up,up,up,end
 scriptdefs
 = FallarborTown_BattleTentLobby_EventScript_LostChallenge
 lockall
-message FallarborTown_BattleTentLobby_Text_ThankYouWaitWhileSaving
+msgbox	Thank you so much for participating!Please wait while I save the game.
 waitmessage
 frontier_set FRONTIER_DATA_LVL_MODE FRONTIER_LVL_50
 fallarbortent_save 0
 playse SE_SAVE
 waitse
-msgbox	FallarborTown_BattleTentLobby_Text_AwaitAnotherChallenge2
+msgbox	We await your challenge on another occasion!
 closemessage
 setvar VAR_TEMP_CHALLENGE_STATUS 255
 releaseall
 end
 = FallarborTown_BattleTentLobby_EventScript_WonChallenge
 lockall
-msgbox	FallarborTown_BattleTentLobby_Text_BeatThreeTrainers
-message FallarborTown_BattleTentLobby_Text_WaitWhileSaveGame
+msgbox	How splendid! You have beaten three TRAINERS in succession!
+msgbox	Please wait while I save the game.
 waitmessage
 fallarbortent_setrandomprize
 frontier_set FRONTIER_DATA_LVL_MODE FRONTIER_LVL_50
@@ -79,22 +79,22 @@ playse SE_SAVE
 waitse
 goto FallarborTown_BattleTentLobby_EventScript_GivePrize
 = FallarborTown_BattleTentLobby_EventScript_GivePrize
-msgbox	FallarborTown_BattleTentLobby_Text_PresentYouWithPrize
+msgbox	In commemoration of your 3-win streak, we present you with this prize.
 fallarbortent_giveprize
 switch VAR_RESULT
 case FALSE FallarborTown_BattleTentLobby_EventScript_NoRoomForPrize
 frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
-message FallarborTown_BattleTentLobby_Text_ReceivedPrize
+msgbox	PLAYER received the prize .
 waitmessage
 playfanfare MUS_OBTAIN_ITEM
 waitfanfare
-msgbox	FallarborTown_BattleTentLobby_Text_AwaitAnotherChallenge2
+msgbox	We await your challenge on another occasion!
 closemessage
 setvar VAR_TEMP_CHALLENGE_STATUS 255
 releaseall
 end
 = FallarborTown_BattleTentLobby_EventScript_NoRoomForPrize
-msgbox	FallarborTown_BattleTentLobby_Text_BagFullReturnForPrize
+msgbox	Oh? Your BAG seems to be full.I urge you to clear space and return for your prize.
 waitmessage
 closemessage
 setvar VAR_TEMP_CHALLENGE_STATUS 255
@@ -102,7 +102,7 @@ releaseall
 end
 = FallarborTown_BattleTentLobby_EventScript_ResumeChallenge
 lockall
-message FallarborTown_BattleTentLobby_Text_LookingForwardToArrival
+msgbox	We have been looking forward to your arrival.Before I show you to the BATTLE TENT, I must save the game. Please wait.
 waitmessage
 fallarbortent_save CHALLENGE_STATUS_SAVING
 playse SE_SAVE
@@ -113,7 +113,7 @@ goto FallarborTown_BattleTentLobby_EventScript_EnterChallenge
 = FallarborTown_BattleTentLobby_EventScript_EnterChallenge
 special SavePlayerParty
 frontier_setpartyorder FRONTIER_PARTY_SIZE
-msgbox	FallarborTown_BattleTentLobby_Text_GuideYouToBattleTent
+msgbox	I shall now guide you to the BATTLE TENT.
 closemessage
 call FallarborTown_BattleTentLobby_EventScript_WalkToDoor
 warp FallarborTown_BattleTentCorridor 2 7
@@ -134,7 +134,7 @@ waitdooranim
 return
 = FallarborTown_BattleTentLobby_EventScript_QuitWithoutSaving
 lockall
-msgbox	FallarborTown_BattleTentLobby_Text_DidntSaveBeforeQuitting
+msgbox	My dear challenger!You did not save the game before shutting down, did you?It is unfortunate, but that has resulted in your disqualification from your challenge.You may, of course, start with a fresh challenge.
 closemessage
 frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
 setvar VAR_TEMP_CHALLENGE_STATUS 255
@@ -172,10 +172,10 @@ faceplayer
 fallarbortent_getprize
 goto_if_ne VAR_RESULT ITEM_NONE FallarborTown_BattleTentLobby_EventScript_PrizeWaiting
 special SavePlayerParty
-msgbox	FallarborTown_BattleTentLobby_Text_WelcomeToBattleTent
+msgbox	I welcome you to the BATTLE TENT FALLARBOR SITE!I am your guide to the Set KO Tourney!
 goto FallarborTown_BattleTentLobby_EventScript_AskEnterChallenge
 = FallarborTown_BattleTentLobby_EventScript_AskEnterChallenge
-message FallarborTown_BattleTentLobby_Text_TakeChallenge
+msgbox	Now, do you wish to take the challenge of a Set KO Tourney?
 waitmessage
 multichoice 17 6 MULTI_CHALLENGEINFO FALSE
 switch VAR_RESULT
@@ -191,13 +191,13 @@ setvar VAR_RESULT 2
 frontier_checkineligible
 goto_if_eq VAR_0x8004 TRUE FallarborTown_BattleTentLobby_EventScript_NotEnoughValidMons
 frontier_set FRONTIER_DATA_LVL_MODE FRONTIER_LVL_TENT
-msgbox	FallarborTown_BattleTentLobby_Text_SelectThreeMons
+msgbox	Very well, now select your three POKéMON, please.
 fadescreen FADE_TO_BLACK
 setvar VAR_0x8004 2
 setvar VAR_0x8005 FRONTIER_PARTY_SIZE
 special ChoosePartyForBattleFrontier
 goto_if_eq VAR_RESULT 0 FallarborTown_BattleTentLobby_EventScript_LoadPartyCancelChallenge
-msgbox	FallarborTown_BattleTentLobby_Text_SaveBeforeChallenge
+msgboxyesno	Before showing you to the BATTLE TENT, I must save. Is that okay?
 switch VAR_RESULT
 case NO FallarborTown_BattleTentLobby_EventScript_LoadPartyCancelChallenge
 case YES FallarborTown_BattleTentLobby_EventScript_SaveBeforeChallenge
@@ -220,7 +220,7 @@ goto FallarborTown_BattleTentLobby_EventScript_EnterChallenge
 frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
 goto FallarborTown_BattleTentLobby_EventScript_CancelChallenge
 = FallarborTown_BattleTentLobby_EventScript_CancelChallenge
-msgbox	FallarborTown_BattleTentLobby_Text_AwaitAnotherChallenge
+msgbox	We await your challenge on another occasion!
 goto FallarborTown_BattleTentLobby_EventScript_EndCancelChallenge
 = FallarborTown_BattleTentLobby_EventScript_EndCancelChallenge
 release
@@ -237,16 +237,16 @@ case FRONTIER_LVL_50 FallarborTown_BattleTentLobby_EventScript_NotEnoughValidMon
 case FRONTIER_LVL_OPEN FallarborTown_BattleTentLobby_EventScript_NotEnoughValidMonsLvOpen
 goto FallarborTown_BattleTentLobby_EventScript_NotEnoughValidMonsLv50
 = FallarborTown_BattleTentLobby_EventScript_NotEnoughValidMonsLv50
-msgbox	FallarborTown_BattleTentLobby_Text_NotEnoughValidMonsLv50
+msgbox	My dear challenger!You do not have the three POKéMON required for entry.They also must not hold the same kinds of items.EGGS ineligible.When you have made your preparations, please do return.
 goto FallarborTown_BattleTentLobby_EventScript_EndCancelChallenge
 = FallarborTown_BattleTentLobby_EventScript_NotEnoughValidMonsLvOpen
-msgbox	FallarborTown_BattleTentLobby_Text_NotEnoughValidMonsLvOpen
+msgbox	My dear challenger!You do not have the three POKéMON required for entry.To qualify, you must bring three different kinds of POKéMON.They also must not hold the same kinds of items.EGGS ineligible.When you have made your preparations, please do return.
 goto FallarborTown_BattleTentLobby_EventScript_EndCancelChallenge
 = FallarborTown_BattleTentLobby_EventScript_ExplainChallenge
-msgbox	FallarborTown_BattleTentLobby_Text_ExplainFallarborTent
+msgbox	In the FALLARBOR BATTLE TENT, we undertake the Set KO Tourney.All participants enter with a team of three POKéMON.The three POKéMON must be lined up in the order that they are to appear in.During battle, the POKéMON will appear one at a time in the preset order.Once a POKéMON enters battle, it must remain out until the match is decided.If a match remains undecided in three turns, it goes to judging.If you wish to interrupt your challenge, please save the game.If you don't save, you will not be able to continue with your challenge.If you pull off the feat of beating three TRAINERS in succession, we will present you with a fine prize.
 goto FallarborTown_BattleTentLobby_EventScript_AskEnterChallenge
 = FallarborTown_BattleTentLobby_EventScript_PrizeWaiting
 lockall
-msgbox	FallarborTown_BattleTentLobby_Text_BeatThreeTrainers
+msgbox	How splendid! You have beaten three TRAINERS in succession!
 goto FallarborTown_BattleTentLobby_EventScript_GivePrize
 end

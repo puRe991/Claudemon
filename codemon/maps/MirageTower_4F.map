@@ -87,7 +87,7 @@ end
 = MirageTower_4F_EventScript_ClawFossil
 lock
 faceplayer
-msgbox	You found the CLAW FOSSIL.If this FOSSIL is taken, the ground around it will likely crumble away…Take the CLAW FOSSIL anyway?
+msgboxyesno	You found the CLAW FOSSIL.If this FOSSIL is taken, the ground around it will likely crumble away…Take the CLAW FOSSIL anyway?
 goto_if_eq VAR_RESULT NO MirageTower_4F_EventScript_LeaveClawFossil
 giveitem ITEM_CLAW_FOSSIL
 closemessage
@@ -119,7 +119,7 @@ end
 = MirageTower_4F_EventScript_RootFossil
 lock
 faceplayer
-msgbox	You found the ROOT FOSSIL.If this FOSSIL is taken, the ground around it will likely crumble away…Take the ROOT FOSSIL anyway?
+msgboxyesno	You found the ROOT FOSSIL.If this FOSSIL is taken, the ground around it will likely crumble away…Take the ROOT FOSSIL anyway?
 goto_if_eq VAR_RESULT NO MirageTower_4F_EventScript_LeaveRootFossil
 giveitem ITEM_ROOT_FOSSIL
 closemessage

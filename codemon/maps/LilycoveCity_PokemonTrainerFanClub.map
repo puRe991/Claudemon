@@ -109,7 +109,7 @@ goto_if_eq VAR_RESULT TRUE LilycoveCity_PokemonTrainerFanClub_EventScript_Alread
 copyvar VAR_0x800A VAR_0x8006
 setvar VAR_0x8004 FANCLUB_MEMBER1
 special BufferFanClubTrainerName
-msgbox	LilycoveCity_PokemonTrainerFanClub_Text_WhatsYourOpinionOfTrainer
+msgbox	Hi, there!I'm a big fan of . What's your opinion of ?
 setvar VAR_0x8004 EASY_CHAT_TYPE_FAN_QUESTION
 copyvar VAR_0x8005 VAR_0x800A
 call Common_ShowEasyChatScreen
@@ -121,14 +121,14 @@ end
 = LilycoveCity_PokemonTrainerFanClub_EventScript_CancelGiveOpinion
 setvar VAR_0x8004 FANCLUB_MEMBER1
 special BufferFanClubTrainerName
-msgbox	LilycoveCity_PokemonTrainerFanClub_Text_HaveYouForgottenTrainer
+msgboxyesno	Have you completely forgotten about ?
 goto_if_eq VAR_RESULT YES LilycoveCity_PokemonTrainerFanClub_EventScript_ForgetTrainer
 goto_if_eq VAR_RESULT NO LilycoveCity_PokemonTrainerFanClub_EventScript_AskForOpinion
 end
 = LilycoveCity_PokemonTrainerFanClub_EventScript_AskForOpinion
 setvar VAR_0x8004 FANCLUB_MEMBER1
 special BufferFanClubTrainerName
-msgbox	LilycoveCity_PokemonTrainerFanClub_Text_WhatsYourOpinionOfTrainer2
+msgbox	I'm a big fan of . What's your opinion of ?
 setvar VAR_0x8004 EASY_CHAT_TYPE_FAN_QUESTION
 copyvar VAR_0x8005 VAR_0x800A
 call Common_ShowEasyChatScreen
@@ -138,13 +138,13 @@ goto_if_eq VAR_RESULT 1 LilycoveCity_PokemonTrainerFanClub_EventScript_SubmitOpi
 goto_if_eq VAR_RESULT 0 LilycoveCity_PokemonTrainerFanClub_EventScript_CancelGiveOpinion
 end
 = LilycoveCity_PokemonTrainerFanClub_EventScript_SubmitOpinion
-msgbox	LilycoveCity_PokemonTrainerFanClub_Text_ThatsWhatYouThink
+msgbox	I see, I see. That's what you think about the TRAINER.
 goto LilycoveCity_PokemonTrainerFanClub_EventScript_RateTrainer
 end
 = LilycoveCity_PokemonTrainerFanClub_EventScript_RateTrainer
 setvar VAR_0x8004 FANCLUB_MEMBER1
 special BufferFanClubTrainerName
-message LilycoveCity_PokemonTrainerFanClub_Text_HowStrongRateTrainer
+msgbox	How strong would you rate on a scale of one hundred?
 waitmessage
 setvar VAR_0x8004 SCROLL_MULTI_POKEMON_FAN_CLUB_RATER
 special ShowScrollableMultichoice
@@ -162,21 +162,21 @@ end
 = LilycoveCity_PokemonTrainerFanClub_EventScript_CompleteInterview
 setvar VAR_0x8004 FANCLUB_MEMBER1
 special BufferFanClubTrainerName
-msgbox	LilycoveCity_PokemonTrainerFanClub_Text_ThankYouIllShareThisInfo
+msgbox	I see, I see.Thank you! That's very useful to know.I'll share this information with other fans and discuss it.
 setflag FLAG_FAN_CLUB_STRENGTH_SHARED
 release
 end
 = LilycoveCity_PokemonTrainerFanClub_EventScript_CancelRateTrainer
 setvar VAR_0x8004 FANCLUB_MEMBER1
 special BufferFanClubTrainerName
-msgbox	LilycoveCity_PokemonTrainerFanClub_Text_HaveYouForgottenTrainer2
+msgboxyesno	Have you completely forgotten about ?
 goto_if_eq VAR_RESULT YES LilycoveCity_PokemonTrainerFanClub_EventScript_ForgetTrainer
 goto_if_eq VAR_RESULT NO LilycoveCity_PokemonTrainerFanClub_EventScript_RateTrainer
 end
 = LilycoveCity_PokemonTrainerFanClub_EventScript_ForgetTrainer
 setvar VAR_0x8004 FANCLUB_MEMBER1
 special BufferFanClubTrainerName
-msgbox	LilycoveCity_PokemonTrainerFanClub_Text_YouShouldMeetTrainer
+msgbox	Oh, I see! You should meet sometime. I'm sure you'll become a fan, too!
 release
 end
 = LilycoveCity_PokemonTrainerFanClub_EventScript_AlreadyInterviewed2
@@ -184,7 +184,7 @@ end
 = LilycoveCity_PokemonTrainerFanClub_EventScript_AlreadyInterviewed
 setvar VAR_0x8004 FANCLUB_MEMBER1
 special BufferFanClubTrainerName
-msgbox	LilycoveCity_PokemonTrainerFanClub_HopeYouCatchTVSpecial
+msgbox	There's going to be a TV special on very soon.I hope you catch it!
 release
 end
 @ Shouldnt be reached

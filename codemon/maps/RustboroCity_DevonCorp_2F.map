@@ -84,7 +84,7 @@ applymovement LOCALID_FOSSIL_SCIENTIST Common_Movement_ExclamationMark
 waitmovement 0
 applymovement LOCALID_FOSSIL_SCIENTIST Common_Movement_Delay48
 waitmovement 0
-msgbox	Wait! That thing you have there… Is that a POKéMON fossil?Would you like to bring that POKéMON back to life?I can with my newly developed FOSSIL REGENERATOR.
+msgboxyesno	Wait! That thing you have there… Is that a POKéMON fossil?Would you like to bring that POKéMON back to life?I can with my newly developed FOSSIL REGENERATOR.
 goto_if_eq VAR_RESULT NO RustboroCity_DevonCorp_2F_EventScript_DeclineGiveFossil
 checkitem ITEM_CLAW_FOSSIL
 goto_if_eq VAR_RESULT TRUE RustboroCity_DevonCorp_2F_EventScript_ChooseFossil
@@ -99,7 +99,7 @@ setvar VAR_WHICH_FOSSIL_REVIVED 1
 release
 end
 = RustboroCity_DevonCorp_2F_EventScript_ChooseFossil
-message RustboroCity_DevonCorp_2F_Text_TwoFossilsPickOne
+msgbox	Oh, now that's a surprise! You have not one, but two, fossils?Unfortunately, my machine can only regenerate one POKéMON at a time.Would you like to pick one of your fossils for regeneration?
 waitmessage
 multichoice 17 6 MULTI_FOSSIL FALSE
 switch VAR_RESULT
@@ -136,7 +136,7 @@ applymovement LOCALID_FOSSIL_SCIENTIST Common_Movement_ExclamationMark
 waitmovement 0
 applymovement LOCALID_FOSSIL_SCIENTIST Common_Movement_Delay48
 waitmovement 0
-msgbox	Wait! That thing you have there… Is that a POKéMON fossil?Would you like to bring that POKéMON back to life?I can with my newly developed FOSSIL REGENERATOR.
+msgboxyesno	Wait! That thing you have there… Is that a POKéMON fossil?Would you like to bring that POKéMON back to life?I can with my newly developed FOSSIL REGENERATOR.
 goto_if_eq VAR_RESULT NO RustboroCity_DevonCorp_2F_EventScript_DeclineGiveFossil
 checkitem ITEM_ROOT_FOSSIL
 goto_if_eq VAR_RESULT TRUE RustboroCity_DevonCorp_2F_EventScript_ChooseFossil
@@ -163,12 +163,12 @@ goto_if_eq VAR_RESULT MON_GIVEN_TO_PC RustboroCity_DevonCorp_2F_EventScript_Rece
 goto Common_EventScript_NoMoreRoomForPokemon
 end
 = Common_EventScript_NoMoreRoomForPokemon
-msgbox	gText_NoMoreRoomForPokemon
+msgbox	There's no more room for POKéMON!The POKéMON BOXES are full and can't accept any more!
 release
 end
 = RustboroCity_DevonCorp_2F_EventScript_ReceiveAnorithPC
 call RustboroCity_DevonCorp_2F_EventScript_ReceivedAnorithFanfare
-msgbox	gText_NicknameThisPokemon
+msgboxyesno	Do you want to give a nickname to this ?
 goto_if_eq VAR_RESULT NO RustboroCity_DevonCorp_2F_EventScript_TransferAnorithToPC
 call Common_EventScript_NameReceivedBoxMon
 goto RustboroCity_DevonCorp_2F_EventScript_TransferAnorithToPC
@@ -191,22 +191,22 @@ return
 = EventScript_TransferredLanettesPC
 specialvar VAR_RESULT ShouldShowBoxWasFullMessage
 goto_if_eq VAR_RESULT TRUE EventScript_LanettesPCBoxFull
-msgbox	gText_PkmnTransferredLanettesPC
+msgbox	was transferred to LANETTE'S PC.It was placed in BOX “.”
 return
 = EventScript_LanettesPCBoxFull
 specialvar VAR_RESULT GetPCBoxToSendMon
 bufferboxname STR_VAR_3 VAR_RESULT
-msgbox	gText_PkmnTransferredLanettesPCBoxFull
+msgbox	BOX “” on LANETTE'S PC was full.was transferred to BOX “.”
 return
 = EventScript_TransferredSomeonesPC
 specialvar VAR_RESULT ShouldShowBoxWasFullMessage
 goto_if_eq VAR_RESULT TRUE EventScript_SomeonesPCBoxFull
-msgbox	gText_PkmnTransferredSomeonesPC
+msgbox	was transferred to SOMEONE'S PC.It was placed in BOX “.”
 return
 = EventScript_SomeonesPCBoxFull
 specialvar VAR_RESULT GetPCBoxToSendMon
 bufferboxname STR_VAR_3 VAR_RESULT
-msgbox	gText_PkmnTransferredSomeonesPCBoxFull
+msgbox	BOX “” on SOMEONE'S PC was full.was transferred to BOX “.”
 return
 = Common_EventScript_NameReceivedBoxMon
 fadescreen FADE_TO_BLACK
@@ -217,14 +217,14 @@ return
 = RustboroCity_DevonCorp_2F_EventScript_ReceivedAnorithFanfare
 bufferspeciesname STR_VAR_2 SPECIES_ANORITH
 playfanfare MUS_OBTAIN_ITEM
-message RustboroCity_DevonCorp_2F_Text_ReceivedMonFromResearcher
+msgbox	PLAYER received from the DEVON RESEARCHER.
 waitmessage
 waitfanfare
 bufferspeciesname STR_VAR_1 SPECIES_ANORITH
 return
 = RustboroCity_DevonCorp_2F_EventScript_ReceiveAnorithParty
 call RustboroCity_DevonCorp_2F_EventScript_ReceivedAnorithFanfare
-msgbox	gText_NicknameThisPokemon
+msgboxyesno	Do you want to give a nickname to this ?
 goto_if_eq VAR_RESULT NO RustboroCity_DevonCorp_2F_EventScript_FinishReceivingAnorith
 call Common_EventScript_GetGiftMonPartySlot
 call Common_EventScript_NameReceivedPartyMon
@@ -249,7 +249,7 @@ goto Common_EventScript_NoMoreRoomForPokemon
 end
 = RustboroCity_DevonCorp_2F_EventScript_ReceiveLileepPC
 call RustboroCity_DevonCorp_2F_EventScript_ReceivedLileepFanfare
-msgbox	gText_NicknameThisPokemon
+msgboxyesno	Do you want to give a nickname to this ?
 goto_if_eq VAR_RESULT NO RustboroCity_DevonCorp_2F_EventScript_TransferLileepToPC
 call Common_EventScript_NameReceivedBoxMon
 goto RustboroCity_DevonCorp_2F_EventScript_TransferLileepToPC
@@ -266,14 +266,14 @@ end
 = RustboroCity_DevonCorp_2F_EventScript_ReceivedLileepFanfare
 bufferspeciesname STR_VAR_2 SPECIES_LILEEP
 playfanfare MUS_OBTAIN_ITEM
-message RustboroCity_DevonCorp_2F_Text_ReceivedMonFromResearcher
+msgbox	PLAYER received from the DEVON RESEARCHER.
 waitmessage
 waitfanfare
 bufferspeciesname STR_VAR_1 SPECIES_LILEEP
 return
 = RustboroCity_DevonCorp_2F_EventScript_ReceiveLileepParty
 call RustboroCity_DevonCorp_2F_EventScript_ReceivedLileepFanfare
-msgbox	gText_NicknameThisPokemon
+msgboxyesno	Do you want to give a nickname to this ?
 goto_if_eq VAR_RESULT NO RustboroCity_DevonCorp_2F_EventScript_FinishReceivingLileep
 call Common_EventScript_GetGiftMonPartySlot
 call Common_EventScript_NameReceivedPartyMon

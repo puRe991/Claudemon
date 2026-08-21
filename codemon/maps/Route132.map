@@ -114,27 +114,27 @@ end
 end
 = Route132_EventScript_Jonathan
 trainerbattle_single TRAINER_JONATHAN Route132_Text_JonathanIntro Route132_Text_JonathanDefeat
-msgbox	Route132_Text_JonathanPostBattle
+msgbox	I can't shake this feeling that someone's watching me.I can't concentrate!
 end
 = Route132_EventScript_Makayla
 trainerbattle_single TRAINER_MAKAYLA Route132_Text_MakaylaIntro Route132_Text_MakaylaDefeat
-msgbox	Route132_Text_MakaylaPostBattle
+msgbox	That young man over there looks just like my husband when he was young.He's making me blush!
 end
 = Route132_EventScript_Darcy
 trainerbattle_single TRAINER_DARCY Route132_Text_DarcyIntro Route132_Text_DarcyDefeat
-msgbox	Route132_Text_DarcyPostBattle
+msgbox	I suppose I can partner up with that old man and challenge that other team.
 end
 = Route132_EventScript_Paxton
 trainerbattle_single TRAINER_PAXTON Route132_Text_PaxtonIntro Route132_Text_PaxtonDefeat
-msgbox	Route132_Text_PaxtonPostBattle
+msgbox	My wife must be looking for me. I'd best go find her right away.
 end
 = Route132_EventScript_Ronald
 trainerbattle_single TRAINER_RONALD Route132_Text_RonaldIntro Route132_Text_RonaldDefeat
-msgbox	Route132_Text_RonaldPostBattle
+msgbox	I never battle when I know I'll win. I like to battle at the razor's edge of victory and defeat!
 end
 = Route132_EventScript_Kiyo
 trainerbattle_single TRAINER_KIYO Route132_Text_KiyoIntro Route132_Text_KiyoDefeat
-msgbox	Route132_Text_KiyoPostBattle
+msgbox	Urggh… You're a POKéMON fanatic, aren't you?You must contemplate POKéMON 24 hours a day, don't you?
 end
 = Route132_EventScript_ItemRareCandy
 goto_if_set FLAG_ITEM_ROUTE_132_RARE_CANDY Route132_EventScript_ItemRareCandy_Taken
@@ -145,11 +145,11 @@ end
 end
 = Route132_EventScript_Dana
 trainerbattle_single TRAINER_DANA Route132_Text_DanaIntro Route132_Text_DanaDefeat
-msgbox	Route132_Text_DanaPostBattle
+msgbox	If I get swept away, I'll lose all my sense of place…
 end
 = Route132_EventScript_Gilbert
 trainerbattle_single TRAINER_GILBERT Route132_Text_GilbertIntro Route132_Text_GilbertDefeat
-msgbox	Route132_Text_GilbertPostBattle
+msgbox	TRAINERS travel the fields and mountains, so they must be fit, too.
 end
 encounters
 water TENTACOOL:5:35,WINGULL:10:30,WINGULL:15:25,PELIPPER:25:30,PELIPPER:25:30

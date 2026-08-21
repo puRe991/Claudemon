@@ -96,6 +96,7 @@ private:
 	std::vector<Warp> warp_list;
 	std::vector<Sign> sign_list;
 	std::unordered_set<int> grass_ids;        // metatile ids that are tall grass
+	std::unordered_set<int> counter_ids;      // metatile ids that are shop/PC counters
 	std::vector<EncSlot> land_slots;          // land wild-encounter table
 
 	std::map<std::string, std::vector<Instr>> script_defs;   // label -> instructions
@@ -142,6 +143,10 @@ public:
 
 	// Wild-encounter tall grass.
 	bool is_grass(int tile_x, int tile_y) const;         // is this a grass tile?
+	// Shop/PC-counter tile: impassable, but interact() should look one
+	// tile past it for the clerk/nurse standing behind (pokeemerald's
+	// MB_COUNTER -- there's no way to stand adjacent to them otherwise).
+	bool is_counter(int tile_x, int tile_y) const;
 	// Does stepping on (x,y) trigger a wild encounter? (tall grass, or the
 	// floor of a cave/indoor map that has encounters but no grass tiles)
 	bool encounter_here(int tile_x, int tile_y) const;

@@ -772,7 +772,7 @@ goto_if_eq VAR_RESULT TRUE PetalburgCity_Gym_EventScript_DontGiveEnigmaBerry
 checkpcitem ITEM_ENIGMA_BERRY
 goto_if_eq VAR_RESULT TRUE PetalburgCity_Gym_EventScript_DontGiveEnigmaBerry
 goto_if_eq VAR_ENIGMA_BERRY_AVAILABLE 0 PetalburgCity_Gym_EventScript_DontGiveEnigmaBerry
-msgbox	PetalburgCity_Gym_Text_GiveEnigmaBerry
+msgbox	DAD: Hi, PLAYER!I just received a very rare BERRY. I'd like you to have it.
 setvar VAR_RESULT TRUE
 return
 = PetalburgCity_Gym_EventScript_DontGiveEnigmaBerry
@@ -781,7 +781,7 @@ return
 = PetalburgCity_Gym_EventScript_NormanBattle
 msgbox	DAD: Hm… So, you did get four GYM BADGES.Fine, as I promised, we will have a POKéMON battle.PLAYER…I'm so happy that I can have a real battle with my own child.But, a battle is a battle!I will do everything in my power as a GYM LEADER to win.PLAYER, you'd better give it your best shot, too!
 trainerbattle_no_intro TRAINER_NORMAN_1 PetalburgCity_Gym_Text_NormanDefeat
-message PetalburgCity_Gym_Text_ReceivedBalanceBadge
+msgbox	PLAYER received the BALANCE BADGE from DAD!
 waitmessage
 call Common_EventScript_PlayGymBadgeFanfare
 msgbox	DAD: With that BADGE, the DEFENSE of all your POKéMON will increase.POKéMON that know the HM move SURF will be able to travel over water.This is my gift to you. PLAYER, I'm sure you can use it correctly.

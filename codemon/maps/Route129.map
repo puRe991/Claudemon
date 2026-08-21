@@ -103,7 +103,7 @@ goto_if_ge VAR_ABNORMAL_WEATHER_LOCATION MARINE_CAVE_LOCATIONS_START AbnormalWea
 goto AbnormalWeather_EventScript_ShowSunEndedMessage
 end
 = AbnormalWeather_EventScript_ShowSunEndedMessage
-msgbox	gText_AbnormalWeatherEnded_Sun
+msgbox	The intense sunshine appears to have subsided…
 goto AbnormalWeather_EventScript_EndEventAndCleanup_2
 end
 = AbnormalWeather_EventScript_EndEventAndCleanup_2
@@ -283,28 +283,28 @@ setmetatile 7 3 METATILE_Fallarbor_RedRockWall TRUE
 setmetatile 7 4 METATILE_Fallarbor_RedRockWall TRUE
 return
 = AbnormalWeather_EventScript_ShowRainEndedMessage
-msgbox	gText_AbnormalWeatherEnded_Rain
+msgbox	The massive downpour appears to have stopped…
 goto AbnormalWeather_EventScript_EndEventAndCleanup_2
 end
 = Route129_EventScript_Clarence
 trainerbattle_single TRAINER_CLARENCE Route129_Text_ClarenceIntro Route129_Text_ClarenceDefeat
-msgbox	Route129_Text_ClarencePostBattle
+msgbox	You have your sights on the POKéMON LEAGUE? Keep at it!
 end
 = Route129_EventScript_Reed
 trainerbattle_single TRAINER_REED Route129_Text_ReedIntro Route129_Text_ReedDefeat
-msgbox	Route129_Text_ReedPostBattle
+msgbox	There's nothing for a loser. Time for me to beat it home.
 end
 = Route129_EventScript_Tisha
 trainerbattle_single TRAINER_TISHA Route129_Text_TishaIntro Route129_Text_TishaDefeat
-msgbox	Route129_Text_TishaPostBattle
+msgbox	Don't you hate making mistakes when you're in a rush?That's why I try to take things slowly.
 end
 = Route129_EventScript_Allison
 trainerbattle_single TRAINER_ALLISON Route129_Text_AllisonIntro Route129_Text_AllisonDefeat
-msgbox	Route129_Text_AllisonPostBattle
+msgbox	Do you know what's the greatest thing about triathlons?Testing the limits of your own strength and endurance against Mother Nature!
 end
 = Route129_EventScript_Chase
 trainerbattle_single TRAINER_CHASE Route129_Text_ChaseIntro Route129_Text_ChaseDefeat
-msgbox	Route129_Text_ChasePostBattle
+msgbox	If I'm all tensed up, I won't be able to give it my all.
 end
 encounters
 water TENTACOOL:5:35,WINGULL:10:30,WINGULL:15:25,PELIPPER:25:30,WAILORD:25:30

@@ -202,7 +202,7 @@ lock
 faceplayer
 call Common_EventScript_BufferTrendyPhrase
 special BufferDeepLinkPhrase
-msgbox	I'm studying up on the hip and trendy “” now.Is it true that there's a deep link between “” and “”?
+msgboxyesno	I'm studying up on the hip and trendy “” now.Is it true that there's a deep link between “” and “”?
 goto_if_eq VAR_RESULT YES DewfordTown_Hall_EventScript_ConfirmTrendLink
 goto_if_eq VAR_RESULT NO DewfordTown_Hall_EventScript_RejectTrendLink
 end

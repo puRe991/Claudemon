@@ -75,7 +75,7 @@ applymovement LOCALID_PLAYER Common_Movement_ExclamationMark
 waitmovement 0
 applymovement LOCALID_PLAYER Common_Movement_Delay48
 waitmovement 0
-msgbox	What's wrong with you?You're outnumbered three to one, but you still want to take us on?
+msgboxyesno	What's wrong with you?You're outnumbered three to one, but you still want to take us on?
 goto_if_eq VAR_RESULT YES MossdeepCity_SpaceCenter_2F_EventScript_BattleThreeMagmaGrunts
 msgbox	Good answer! That's what a smart person'll do!
 closemessage
@@ -153,7 +153,7 @@ end
 = MossdeepCity_SpaceCenter_2F_EventScript_ReadyForBattlePrompt
 applymovement VAR_LAST_TALKED Common_Movement_FacePlayer
 waitmovement 0
-msgbox	STEVEN: PLAYER! You're going to help me?Let's go into battle together! Are you ready?
+msgboxyesno	STEVEN: PLAYER! You're going to help me?Let's go into battle together! Are you ready?
 goto_if_eq VAR_RESULT YES MossdeepCity_SpaceCenter_2F_EventScript_ChoosePartyForMultiBattle
 msgbox	STEVEN: Then, hurry! Get ready quickly!
 closemessage
@@ -297,3 +297,5 @@ goto MossdeepCity_SpaceCenter_2F_EventScript_Grunt6
 msgbox	I wish ordinary people could go into space one day…
 release
 end
+counters
+537

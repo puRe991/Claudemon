@@ -70,7 +70,7 @@ waitmovement 0
 delay 30
 applymovement LOCALID_CAVE_OF_ORIGIN_WALLACE Common_Movement_FacePlayer
 waitmovement 0
-message CaveOfOrigin_B1F_Text_WhereIsRayquaza
+msgbox	WALLACE: PLAYER, do you perhaps know where RAYQUAZA is now?If you do, please tell me.
 waitmessage
 goto CaveOfOrigin_B1F_EventScript_WheresRayquaza
 = CaveOfOrigin_B1F_EventScript_WheresRayquaza
@@ -83,7 +83,7 @@ case 3 CaveOfOrigin_B1F_EventScript_DontRemember
 goto CaveOfOrigin_B1F_EventScript_DontRemember
 end
 = CaveOfOrigin_B1F_EventScript_DontRemember
-message CaveOfOrigin_B1F_Text_CantYouRememberSomehow
+msgbox	WALLACE: Huh? You don't remember? Hmm… That's a problem…Can't you remember somehow?
 waitmessage
 goto CaveOfOrigin_B1F_EventScript_WheresRayquaza
 = CaveOfOrigin_B1F_EventScript_AtSkyPillar
@@ -99,10 +99,10 @@ fadescreen FADE_FROM_BLACK
 release
 end
 = CaveOfOrigin_B1F_EventScript_AtMtPyre
-message CaveOfOrigin_B1F_Text_OldLadyDidntMentionThat
+msgbox	WALLACE: MT. PYRE?But when I met the old lady there earlier, she made no mention of it.I very much doubt that the old lady would try to hide something from me…PLAYER, could you think about this more carefully for me?
 waitmessage
 goto CaveOfOrigin_B1F_EventScript_WheresRayquaza
 = CaveOfOrigin_B1F_EventScript_AtCaveOfOrigin
-message CaveOfOrigin_B1F_Text_ButWereInCaveOfOrigin
+msgbox	WALLACE: The CAVE OF ORIGIN?But that's right here! I need you to do better than that!Please, I need you to think about where RAYQUAZA might be right now.
 waitmessage
 goto CaveOfOrigin_B1F_EventScript_WheresRayquaza

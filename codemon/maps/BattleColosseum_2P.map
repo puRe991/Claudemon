@@ -41,7 +41,7 @@ special ColosseumPlayerSpotTriggered
 end
 = BattleColosseum_2P_EventScript_Attendant
 special Script_FacePlayer
-msgbox	BattleColosseum_2P_Text_TakePlaceStartBattle
+msgbox	Please take your place and start your battle.
 special Script_ClearHeldMovement
 closemessage
 end

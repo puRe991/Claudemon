@@ -89,7 +89,7 @@ msgbox	Something unseeable is in the way.
 release
 end
 = FortreeCity_EventScript_AskUseDevonScope
-msgbox	Something unseeable is in the way.Want to use the DEVON SCOPE?
+msgboxyesno	Something unseeable is in the way.Want to use the DEVON SCOPE?
 goto_if_eq VAR_RESULT YES FortreeCity_EventScript_UseDevonScope
 release
 end

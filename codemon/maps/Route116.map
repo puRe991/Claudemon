@@ -132,7 +132,7 @@ goto_if_ge VAR_ABNORMAL_WEATHER_LOCATION MARINE_CAVE_LOCATIONS_START AbnormalWea
 goto AbnormalWeather_EventScript_ShowSunEndedMessage
 end
 = AbnormalWeather_EventScript_ShowSunEndedMessage
-msgbox	gText_AbnormalWeatherEnded_Sun
+msgbox	The intense sunshine appears to have subsided…
 goto AbnormalWeather_EventScript_EndEventAndCleanup_2
 end
 = AbnormalWeather_EventScript_EndEventAndCleanup_2
@@ -312,7 +312,7 @@ setmetatile 7 3 METATILE_Fallarbor_RedRockWall TRUE
 setmetatile 7 4 METATILE_Fallarbor_RedRockWall TRUE
 return
 = AbnormalWeather_EventScript_ShowRainEndedMessage
-msgbox	gText_AbnormalWeatherEnded_Rain
+msgbox	The massive downpour appears to have stopped…
 goto AbnormalWeather_EventScript_EndEventAndCleanup_2
 end
 = Route116_HiddenItem_70_13
@@ -340,11 +340,11 @@ releaseall
 end
 = Route116_EventScript_Devan
 trainerbattle_single TRAINER_DEVAN Route116_Text_DevanIntro Route116_Text_DevanDefeat
-msgbox	Route116_Text_DevanPostBattle
+msgbox	I should try different POKéMON types, that's what I ought to do.
 end
 = Route116_EventScript_Johnson
 trainerbattle_single TRAINER_JOHNSON Route116_Text_JohnsonIntro Route116_Text_JohnsonDefeat
-msgbox	Route116_Text_JohnsonPostBattle
+msgbox	Want to stay here and keep me company?
 end
 = EventScript_CutTree
 lockall
@@ -393,11 +393,11 @@ end
 end
 = Route116_EventScript_Dawson
 trainerbattle_single TRAINER_DAWSON Route116_Text_DawsonIntro Route116_Text_DawsonDefeat
-msgbox	Route116_Text_DawsonPostBattle
+msgbox	Oh, no, no, no! You've mussed up my POKéMON's fur! You've ruined my hairdo, too! I'll have to call my stylist now!
 end
 = Route116_EventScript_Sarah
 trainerbattle_single TRAINER_SARAH Route116_Text_SarahIntro Route116_Text_SarahDefeat
-msgbox	Route116_Text_SarahPostBattle
+msgbox	My life of luxury affords me all that I could possibly desire.However, when it comes to POKéMON, my wealth has no meaning.
 end
 = Route116_EventScript_GlassesMan
 lock
@@ -512,22 +512,22 @@ goto_if_eq VAR_RESULT TRUE Route116_EventScript_RematchJerry
 setvar VAR_0x8004 TRAINER_JERRY_1
 specialvar VAR_RESULT IsTrainerRegistered
 goto_if_eq VAR_RESULT FALSE Route116_EventScript_TryRegisterJerry
-msgbox	Route116_Text_JerryPostBattle
+msgbox	I'll have to redo some courses at the TRAINER'S SCHOOL. If I don't, ROXANNE will be steamed.
 release
 end
 = Route116_EventScript_TryRegisterJerry
 goto_if_set FLAG_HAS_MATCH_CALL Route116_EventScript_RegisterJerry
-msgbox	Route116_Text_JerryPostBattle
+msgbox	I'll have to redo some courses at the TRAINER'S SCHOOL. If I don't, ROXANNE will be steamed.
 release
 end
 = Route116_EventScript_RegisterJerry
-msgbox	Route116_Text_JerryRegister1
+msgbox	I learned at the TRAINER'S SCHOOL that a POKéNAV can register TRAINERS.I don't really get what that means, so can I just try it?
 register_matchcall TRAINER_JERRY_1
 release
 end
 = Route116_EventScript_RematchJerry
 trainerbattle_rematch TRAINER_JERRY_1 Route116_Text_JerryRematchIntro Route116_Text_JerryRematchDefeat
-msgbox	Route116_Text_JerryPostRematch
+msgbox	I'll have to redo some courses at the TRAINER'S SCHOOL. If I don't, ROXANNE will be steamed.
 end
 = Route116_EventScript_TryRegisterJerryAfterBattle
 goto_if_set FLAG_HAS_MATCH_CALL Route116_EventScript_RegisterJerryAfterBattle
@@ -536,7 +536,7 @@ end
 = Route116_EventScript_RegisterJerryAfterBattle
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Route116_Text_JerryRegister2
+msgbox	I learned at the TRAINER'S SCHOOL that a POKéNAV can register TRAINERS.I don't really get what that means, so can I just try it?
 register_matchcall TRAINER_JERRY_1
 release
 end
@@ -547,22 +547,22 @@ goto_if_eq VAR_RESULT TRUE Route116_EventScript_RematchKaren
 setvar VAR_0x8004 TRAINER_KAREN_1
 specialvar VAR_RESULT IsTrainerRegistered
 goto_if_eq VAR_RESULT FALSE Route116_EventScript_TryRegisterKaren
-msgbox	Route116_Text_KarenPostBattle
+msgbox	Awww, I'll never become an elegant TRAINER like ROXANNE this way!
 release
 end
 = Route116_EventScript_TryRegisterKaren
 goto_if_set FLAG_HAS_MATCH_CALL Route116_EventScript_RegisterKaren
-msgbox	Route116_Text_KarenPostBattle
+msgbox	Awww, I'll never become an elegant TRAINER like ROXANNE this way!
 release
 end
 = Route116_EventScript_RegisterKaren
-msgbox	Route116_Text_KarenRegister1
+msgbox	Oh, wow! Isn't that a POKéNAV? I have one, too! Please register me!
 register_matchcall TRAINER_KAREN_1
 release
 end
 = Route116_EventScript_RematchKaren
 trainerbattle_rematch TRAINER_KAREN_1 Route116_Text_KarenRematchIntro Route116_Text_KarenRematchDefeat
-msgbox	Route116_Text_KarenPostRematch
+msgbox	You've beaten ROXANNE? I can't beat you, then. Not yet.
 end
 = Route116_EventScript_TryRegisterKarenAfterBattle
 goto_if_set FLAG_HAS_MATCH_CALL Route116_EventScript_RegisterKarenAfterBattle
@@ -571,13 +571,13 @@ end
 = Route116_EventScript_RegisterKarenAfterBattle
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Route116_Text_KarenRegister2
+msgbox	Oh, wow! Isn't that a POKéNAV? I have one, too! Please register me!
 register_matchcall TRAINER_KAREN_1
 release
 end
 = Route116_EventScript_Janice
 trainerbattle_single TRAINER_JANICE Route116_Text_JaniceIntro Route116_Text_JaniceDefeat
-msgbox	Route116_Text_JanicePostBattle
+msgbox	POKéMON that possess cuteness and power, that's ideal, I think.
 end
 = Route116_EventScript_ItemHPUp
 goto_if_set FLAG_ITEM_ROUTE_116_HP_UP Route116_EventScript_ItemHPUp_Taken
@@ -588,7 +588,7 @@ end
 end
 = Route116_EventScript_Clark
 trainerbattle_single TRAINER_CLARK Route116_Text_ClarkIntro Route116_Text_ClarkDefeat
-msgbox	Route116_Text_ClarkPostBattle
+msgbox	It's no big deal if there's no tunnel. To a HIKER, mountains are roads!
 end
 = Route116_EventScript_Briney
 lock
@@ -622,24 +622,24 @@ special ObjectEventInteractionPickBerryTree
 goto_if_eq VAR_0x8004 0 BerryTree_EventScript_BerryPocketFull
 special IncrementDailyPickedBerries
 special ObjectEventInteractionRemoveBerryTree
-message BerryTree_Text_PickedTheBerry
+msgbox	BerryTree_Text_PickedTheBerry
 playfanfare MUS_OBTAIN_BERRY
 waitmessage
 waitfanfare
 waitbuttonpress
-message BerryTree_Text_PutAwayBerry
+msgbox	BerryTree_Text_PutAwayBerry
 waitmessage
 waitbuttonpress
 release
 end
 = BerryTree_EventScript_BerryPocketFull
-message BerryTree_Text_BerryPocketFull
+msgbox	BerryTree_Text_BerryPocketFull
 waitmessage
 waitbuttonpress
 release
 end
 = BerryTree_EventScript_CancelPickingBerry
-message BerryTree_Text_BerryLeftUnpicked
+msgbox	BerryTree_Text_BerryLeftUnpicked
 waitmessage
 waitbuttonpress
 release
@@ -648,7 +648,7 @@ end
 call BerryTree_EventScript_GetCareAdverb
 lockall
 special ObjectEventInteractionGetBerryName
-message BerryTree_Text_BerryGrowthStage4
+msgbox	BerryTree_Text_BerryGrowthStage4
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
@@ -681,11 +681,11 @@ releaseall
 end
 = BerryTree_EventScript_WaterBerry
 special ObjectEventInteractionGetBerryName
-message BerryTree_Text_WateredTheBerry
+msgbox	BerryTree_Text_WateredTheBerry
 waitmessage
 special ObjectEventInteractionWaterBerryTree
 special DoWateringBerryTreeAnim
-message BerryTree_Text_PlantIsDelighted
+msgbox	BerryTree_Text_PlantIsDelighted
 waitmessage
 waitbuttonpress
 releaseall
@@ -693,21 +693,21 @@ end
 = BerryTree_EventScript_CheckBerryStage3
 lockall
 special ObjectEventInteractionGetBerryName
-message BerryTree_Text_BerryGrowthStage3
+msgbox	BerryTree_Text_BerryGrowthStage3
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
 = BerryTree_EventScript_CheckBerryStage2
 lockall
 special ObjectEventInteractionGetBerryName
-message BerryTree_Text_BerryGrowthStage2
+msgbox	BerryTree_Text_BerryGrowthStage2
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
 = BerryTree_EventScript_CheckBerryStage1
 lockall
 special ObjectEventInteractionGetBerryCountString
-message BerryTree_Text_BerryGrowthStage1
+msgbox	BerryTree_Text_BerryGrowthStage1
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
@@ -716,7 +716,7 @@ lock
 faceplayer
 specialvar VAR_RESULT PlayerHasBerries
 goto_if_eq VAR_RESULT TRUE BerryTree_EventScript_WantToPlant
-message BerryTree_Text_ItsSoftLoamySoil
+msgbox	BerryTree_Text_ItsSoftLoamySoil
 waitmessage
 waitbuttonpress
 release
@@ -742,13 +742,13 @@ special ObjectEventInteractionPlantBerryTree
 incrementgamestat GAME_STAT_PLANTED_BERRIES
 special IncrementDailyPlantedBerries
 special ObjectEventInteractionGetBerryCountString
-message BerryTree_Text_PlantedOneBerry
+msgbox	BerryTree_Text_PlantedOneBerry
 waitmessage
 waitbuttonpress
 return
 = BerryTree_EventScript_Sparkling
 lockall
-message BerryTree_Text_ExclamationPoint
+msgbox	BerryTree_Text_ExclamationPoint
 waitmessage
 waitbuttonpress
 releaseall
@@ -769,11 +769,11 @@ end
 end
 = Route116_EventScript_Jose
 trainerbattle_single TRAINER_JOSE Route116_Text_JoseIntro Route116_Text_JoseDefeat
-msgbox	Route116_Text_JosePostBattle
+msgbox	BUG POKéMON evolve quickly. So they get strong quickly, too.
 end
 = Route116_EventScript_Joey
 trainerbattle_single TRAINER_JOEY Route116_Text_JoeyIntro Route116_Text_JoeyDefeat
-msgbox	Route116_Text_JoeyPostBattle
+msgbox	Bandages are signs of toughness! I've got another one!
 end
 signs
 5 10	ROUTE 116 RUSTBORO CITY

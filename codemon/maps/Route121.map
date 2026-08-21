@@ -183,35 +183,35 @@ end
 trainerbattle_single TRAINER_CRISTIN_1 Route121_Text_CristinIntro Route121_Text_CristinDefeat Route121_EventScript_RegisterCristin
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route121_EventScript_RematchCristin
-msgbox	Route121_Text_CristinPostBattle
+msgbox	I didn't expect to lose this easily… I'll win next time!
 release
 end
 = Route121_EventScript_RematchCristin
 trainerbattle_rematch TRAINER_CRISTIN_1 Route121_Text_CristinRematchIntro Route121_Text_CristinRematchDefeat
-msgbox	Route121_Text_CristinPostRematch
+msgbox	An opponent I just can't beat… Snivel… I can't believe this is happening…
 end
 = Route121_EventScript_RegisterCristin
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Route121_Text_CristinRegister
+msgbox	That was total humiliation! I won't forget you… Hand over your POKéNAV!
 register_matchcall TRAINER_CRISTIN_1
 release
 end
 = Route121_EventScript_Marcel
 trainerbattle_single TRAINER_MARCEL Route121_Text_MarcelIntro Route121_Text_MarcelDefeat
-msgbox	Route121_Text_MarcelPostBattle
+msgbox	I may have to train my gang some more before entering any CONTEST.
 end
 = Route121_EventScript_Pat
 trainerbattle_single TRAINER_PAT Route121_Text_PatIntro Route121_Text_PatDefeat
-msgbox	Route121_Text_PatPostBattle
+msgbox	I raise every POKéMON with the same love and care--I don't pick favorites.
 end
 = Route121_EventScript_Myles
 trainerbattle_single TRAINER_MYLES Route121_Text_MylesIntro Route121_Text_MylesDefeat
-msgbox	Route121_Text_MylesPostBattle
+msgbox	They're great, your POKéMON! How do you raise them?
 end
 = Route121_EventScript_Cale
 trainerbattle_single TRAINER_CALE Route121_Text_CaleIntro Route121_Text_CaleDefeat
-msgbox	Route121_Text_CalePostBattle
+msgbox	I bought too much stuff at the LILYCOVE DEPT. STORE.It's up the road from here. I wish I had a BAG like yours.
 end
 = EventScript_CutTree
 lockall
@@ -262,53 +262,53 @@ end
 trainerbattle_single TRAINER_JESSICA_1 Route121_Text_JessicaIntro Route121_Text_JessicaDefeat Route121_EventScript_RegisterJessica
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route121_EventScript_RematchJessica
-msgbox	Route121_Text_JessicaPostBattle
+msgbox	Maybe I'll go catch more POKéMON at the SAFARI.
 release
 end
 = Route121_EventScript_RematchJessica
 trainerbattle_rematch TRAINER_JESSICA_1 Route121_Text_JessicaRematchIntro Route121_Text_JessicaRematchDefeat
-msgbox	Route121_Text_JessicaPostRematch
+msgbox	Maybe I'll go catch more POKéMON at the SAFARI.
 end
 = Route121_EventScript_RegisterJessica
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Route121_Text_JessicaRegister
+msgbox	I took it easy on you this time! It won't be that way the next time!
 register_matchcall TRAINER_JESSICA_1
 release
 end
 = Route121_EventScript_Tammy
 trainerbattle_single TRAINER_TAMMY Route121_Text_TammyIntro Route121_Text_TammyDefeat
-msgbox	Route121_Text_TammyPostBattle
+msgbox	MT. PYRE… There is a mysterious power at work there…
 end
 = Route121_EventScript_Walter
 trainerbattle_single TRAINER_WALTER_1 Route121_Text_WalterIntro Route121_Text_WalterDefeat Route121_EventScript_RegisterWalter
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route121_EventScript_RematchWalter
-msgbox	Route121_Text_WalterPostBattle
+msgbox	I would like to circle the globe once again with my POKéMON.
 release
 end
 = Route121_EventScript_RematchWalter
 trainerbattle_rematch TRAINER_WALTER_1 Route121_Text_WalterRematchIntro Route121_Text_WalterRematchDefeat
-msgbox	Route121_Text_WalterPostRematch
+msgbox	Your POKéMON and you…Your prowess together will be considered strong, even overseas.
 end
 = Route121_EventScript_RegisterWalter
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Route121_Text_WalterRegister
+msgbox	Your POKéMON prowess is remarkable. Allow me to register you as a memento.
 register_matchcall TRAINER_WALTER_1
 release
 end
 = Route121_EventScript_Vanessa
 trainerbattle_single TRAINER_VANESSA Route121_Text_VanessaIntro Route121_Text_VanessaDefeat
-msgbox	Route121_Text_VanessaPostBattle
+msgbox	I'm going to a CONTEST in LILYCOVE.My POKéMON should have no problem sweeping the MASTER CLASS.
 end
 = Route121_EventScript_Joy
 trainerbattle_double TRAINER_KATE_AND_JOY Route121_Text_JoyIntro Route121_Text_JoyDefeat Route121_Text_JoyNotEnoughMons
-msgbox	Route121_Text_JoyPostBattle
+msgbox	JOY: Ehehe, I'll have to train with KATE, my senior student partner, again.
 end
 = Route121_EventScript_Kate
 trainerbattle_double TRAINER_KATE_AND_JOY Route121_Text_KateIntro Route121_Text_KateDefeat Route121_Text_KateNotEnoughMons
-msgbox	Route121_Text_KatePostBattle
+msgbox	KATE: When someone's relying on me, I get this urge to look cool in front of them…
 end
 = BerryTreeScript
 special ObjectEventInteractionGetBerryTreeData
@@ -335,24 +335,24 @@ special ObjectEventInteractionPickBerryTree
 goto_if_eq VAR_0x8004 0 BerryTree_EventScript_BerryPocketFull
 special IncrementDailyPickedBerries
 special ObjectEventInteractionRemoveBerryTree
-message BerryTree_Text_PickedTheBerry
+msgbox	BerryTree_Text_PickedTheBerry
 playfanfare MUS_OBTAIN_BERRY
 waitmessage
 waitfanfare
 waitbuttonpress
-message BerryTree_Text_PutAwayBerry
+msgbox	BerryTree_Text_PutAwayBerry
 waitmessage
 waitbuttonpress
 release
 end
 = BerryTree_EventScript_BerryPocketFull
-message BerryTree_Text_BerryPocketFull
+msgbox	BerryTree_Text_BerryPocketFull
 waitmessage
 waitbuttonpress
 release
 end
 = BerryTree_EventScript_CancelPickingBerry
-message BerryTree_Text_BerryLeftUnpicked
+msgbox	BerryTree_Text_BerryLeftUnpicked
 waitmessage
 waitbuttonpress
 release
@@ -361,7 +361,7 @@ end
 call BerryTree_EventScript_GetCareAdverb
 lockall
 special ObjectEventInteractionGetBerryName
-message BerryTree_Text_BerryGrowthStage4
+msgbox	BerryTree_Text_BerryGrowthStage4
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
@@ -394,11 +394,11 @@ releaseall
 end
 = BerryTree_EventScript_WaterBerry
 special ObjectEventInteractionGetBerryName
-message BerryTree_Text_WateredTheBerry
+msgbox	BerryTree_Text_WateredTheBerry
 waitmessage
 special ObjectEventInteractionWaterBerryTree
 special DoWateringBerryTreeAnim
-message BerryTree_Text_PlantIsDelighted
+msgbox	BerryTree_Text_PlantIsDelighted
 waitmessage
 waitbuttonpress
 releaseall
@@ -406,21 +406,21 @@ end
 = BerryTree_EventScript_CheckBerryStage3
 lockall
 special ObjectEventInteractionGetBerryName
-message BerryTree_Text_BerryGrowthStage3
+msgbox	BerryTree_Text_BerryGrowthStage3
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
 = BerryTree_EventScript_CheckBerryStage2
 lockall
 special ObjectEventInteractionGetBerryName
-message BerryTree_Text_BerryGrowthStage2
+msgbox	BerryTree_Text_BerryGrowthStage2
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
 = BerryTree_EventScript_CheckBerryStage1
 lockall
 special ObjectEventInteractionGetBerryCountString
-message BerryTree_Text_BerryGrowthStage1
+msgbox	BerryTree_Text_BerryGrowthStage1
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
@@ -429,7 +429,7 @@ lock
 faceplayer
 specialvar VAR_RESULT PlayerHasBerries
 goto_if_eq VAR_RESULT TRUE BerryTree_EventScript_WantToPlant
-message BerryTree_Text_ItsSoftLoamySoil
+msgbox	BerryTree_Text_ItsSoftLoamySoil
 waitmessage
 waitbuttonpress
 release
@@ -455,13 +455,13 @@ special ObjectEventInteractionPlantBerryTree
 incrementgamestat GAME_STAT_PLANTED_BERRIES
 special IncrementDailyPlantedBerries
 special ObjectEventInteractionGetBerryCountString
-message BerryTree_Text_PlantedOneBerry
+msgbox	BerryTree_Text_PlantedOneBerry
 waitmessage
 waitbuttonpress
 return
 = BerryTree_EventScript_Sparkling
 lockall
-message BerryTree_Text_ExclamationPoint
+msgbox	BerryTree_Text_ExclamationPoint
 waitmessage
 waitbuttonpress
 releaseall

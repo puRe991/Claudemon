@@ -51,3 +51,5 @@ end
 = SlateportCity_SternsShipyard_2F_EventScript_Scientist1
 msgbox	Designing a large ship is more like making a big building than putting together a transportation vehicle.
 end
+counters
+537

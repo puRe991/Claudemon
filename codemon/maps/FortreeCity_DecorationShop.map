@@ -37,19 +37,19 @@ scriptdefs
 = FortreeCity_DecorationShop_EventScript_ClerkChairs
 lock
 faceplayer
-message gText_HowMayIServeYou
+msgbox	Welcome!How may I serve you?
 waitmessage
 pokemartdecoration FortreeCity_DecorationShop_PokemartDecor_Chairs
-msgbox	gText_PleaseComeAgain
+msgbox	Please come again!
 release
 end
 = FortreeCity_DecorationShop_EventScript_ClerkDesks
 lock
 faceplayer
-message gText_HowMayIServeYou
+msgbox	Welcome!How may I serve you?
 waitmessage
 pokemartdecoration FortreeCity_DecorationShop_PokemartDecor_Desks
-msgbox	gText_PleaseComeAgain
+msgbox	Please come again!
 release
 end
 = FortreeCity_DecorationShop_EventScript_Girl
@@ -58,3 +58,5 @@ end
 = FortreeCity_DecorationShop_EventScript_PokefanM
 msgbox	Merchandise you buy here is sent to your own PC.That's fantastic! I wish they could also deliver me home like that.
 end
+counters
+982,983,1014

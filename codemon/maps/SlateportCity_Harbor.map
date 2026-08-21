@@ -184,7 +184,7 @@ msgbox	CAPT. STERN: PLAYER!We finally finished making the ferry S.S. TIDAL!We 
 release
 end
 = SlateportCity_Harbor_EventScript_AskToTradeScanner
-message SlateportCity_Harbor_Text_WouldYouTradeScanner
+msgbox	CAPT. STERN: Oh? PLAYER, that item you have…That's a SCANNER! That would sure help us on our explorations.PLAYER, would you trade your SCANNER for something?Like, say, a DEEPSEATOOTH or a DEEPSEASCALE that I have?
 waitmessage
 goto SlateportCity_Harbor_EventScript_ChooseScannerTrade
 end
@@ -201,7 +201,7 @@ msgbox	CAPT. STERN: Are you certain? It's useless to you, PLAYER…Well, okay, 
 release
 end
 = SlateportCity_Harbor_EventScript_DeepSeaScale
-msgbox	CAPT. STERN: So you'll trade it for my DEEPSEASCALE?
+msgboxyesno	CAPT. STERN: So you'll trade it for my DEEPSEASCALE?
 goto_if_eq VAR_RESULT NO SlateportCity_Harbor_EventScript_ChooseDifferentTrade
 giveitem ITEM_DEEP_SEA_SCALE
 goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
@@ -216,12 +216,12 @@ msgbox	CAPT. STERN: Thanks, PLAYER! This will help our research a lot!
 release
 end
 = SlateportCity_Harbor_EventScript_ChooseDifferentTrade
-message SlateportCity_Harbor_Text_WhichOneDoYouWant
+msgbox	CAPT. STERN: Which one do you want?
 waitmessage
 goto SlateportCity_Harbor_EventScript_ChooseScannerTrade
 end
 = SlateportCity_Harbor_EventScript_DeepSeaTooth
-msgbox	CAPT. STERN: So you'll trade it for my DEEPSEATOOTH?
+msgboxyesno	CAPT. STERN: So you'll trade it for my DEEPSEATOOTH?
 goto_if_eq VAR_RESULT NO SlateportCity_Harbor_EventScript_ChooseDifferentTrade
 giveitem ITEM_DEEP_SEA_TOOTH
 goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
@@ -260,7 +260,7 @@ release
 end
 = SlateportCity_Harbor_EventScript_AskForTicket
 msgbox	Hello, are you here for the ferry? May I see your TICKET?
-message SlateportCity_Harbor_Text_FlashedTicketWhereTo
+msgbox	PLAYER flashed the TICKET.Perfect! That's all you need!And where would you like to go?
 waitmessage
 goto SlateportCity_Harbor_EventScript_ChooseDestination
 end
@@ -277,7 +277,7 @@ msgbox	Please sail with us another time!
 release
 end
 = SlateportCity_Harbor_EventScript_Lilycove
-msgbox	LILYCOVE CITY it is, then!
+msgboxyesno	LILYCOVE CITY it is, then!
 goto_if_eq VAR_RESULT NO SlateportCity_Harbor_EventScript_ChooseNewDestination
 setvar VAR_SS_TIDAL_STATE SS_TIDAL_BOARD_SLATEPORT
 call SlateportCity_Harbor_EventScript_BoardFerry
@@ -308,7 +308,7 @@ applymovement LOCALID_PLAYER SlateportCity_Harbor_Movement_BoardFerryNorth
 waitmovement 0
 return
 = SlateportCity_Harbor_EventScript_ChooseNewDestination
-message SlateportCity_Harbor_Text_WhereWouldYouLikeToGo
+msgbox	Then, where would you like to go?
 waitmessage
 goto SlateportCity_Harbor_EventScript_ChooseDestination
 end
@@ -327,10 +327,12 @@ msgbox	PLAYER doesn't have the TICKET…I'm terribly sorry.You must have a TIC
 release
 end
 = SlateportCity_Harbor_EventScript_BattleFrontier
-msgbox	BATTLE FRONTIER it is, then!
+msgboxyesno	BATTLE FRONTIER it is, then!
 goto_if_eq VAR_RESULT NO SlateportCity_Harbor_EventScript_ChooseNewDestination
 call SlateportCity_Harbor_EventScript_BoardFerry
 warp BattleFrontier_OutsideWest 19 67
 waitstate
 release
 end
+counters
+537

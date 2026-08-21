@@ -77,11 +77,11 @@ msgbox	PROF. COZMO: Oh, but… I'm crushed with disappointment…
 release
 end
 = FallarborTown_CozmosHouse_EventScript_AskForMeteorite
-msgbox	PROF. COZMO: Please, may I have that METEORITE?I'm not asking for it for free. How about in exchange for this TM?
+msgboxyesno	PROF. COZMO: Please, may I have that METEORITE?I'm not asking for it for free. How about in exchange for this TM?
 return
 = FallarborTown_CozmosHouse_EventScript_NoticeMeteorite
 msgbox	PROF. COZMO: Oh… I never should have let myself be conned into telling TEAM MAGMA where you can find METEORITES…That METEORITE from METEOR FALLS… It's never going to be mine now…
-msgbox	Oh! Hah?That item…Could it be?Is it the METEORITE that TEAM MAGMA took from METEOR FALLS?Please, may I have it?I'm not asking for it for free. How about in exchange for this TM?
+msgboxyesno	Oh! Hah?That item…Could it be?Is it the METEORITE that TEAM MAGMA took from METEOR FALLS?Please, may I have it?I'm not asking for it for free. How about in exchange for this TM?
 return
 = FallarborTown_CozmosHouse_EventScript_GaveMeteorite
 msgbox	PROF. COZMO: Oh, I can't believe it. This is really, really great!This is really going to help my research!

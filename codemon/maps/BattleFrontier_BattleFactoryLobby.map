@@ -60,7 +60,7 @@ BattleFrontier_BattleFactoryLobby_Movement_PlayerEnterDoor	up,up,up,up,end
 scriptdefs
 = BattleFrontier_BattleFactoryLobby_EventScript_LostChallenge
 lockall
-message BattleFrontier_BattleFactoryLobby_Text_ReturnMonsSaveResults
+msgbox	Thank you for participating!I will return your POKéMON in exchange for our rental POKéMON.I must also save the event results. Please wait.
 waitmessage
 frontier_checkairshow
 special LoadPlayerParty
@@ -72,7 +72,7 @@ goto BattleFrontier_BattleFactoryLobby_EventScript_AskRecordBattle
 = BattleFrontier_BattleFactoryLobby_EventScript_AskRecordBattle
 call BattleFrontier_EventScript_GetCantRecordBattle
 goto_if_eq VAR_RESULT TRUE BattleFrontier_BattleFactoryLobby_EventScript_EndRecordBattle
-message BattleFrontier_BattleFactoryLobby_Text_RecordLastMatch
+msgbox	Would you like to record your last BATTLE FACTORY match on your FRONTIER PASS?
 waitmessage
 multichoicedefault 20 8 MULTI_YESNO 1 FALSE
 switch VAR_RESULT
@@ -99,8 +99,8 @@ goto BattleFrontier_BattleFactoryLobby_EventScript_GiveBattlePoints
 = BattleFrontier_BattleFactoryLobby_EventScript_GiveBattlePoints
 msgbox	In recognition of your wealth of knowledge and keen intelligence, we award you these Battle Point(s).
 frontier_givepoints
-msgbox	BattleFrontier_Text_ObtainedXBattlePoints
-message BattleFrontier_BattleFactoryLobby_Text_ExchangeMonsAndSave
+msgbox	PLAYER obtained Battle Point(s).
+msgbox	Let me exchange your POKéMON for our rental POKéMON.I need to save the battle data, so please wait.
 waitmessage
 frontier_checkairshow
 special LoadPlayerParty
@@ -115,7 +115,7 @@ waitmessage
 goto BattleFrontier_BattleFactoryLobby_EventScript_GiveBattlePoints
 = BattleFrontier_BattleFactoryLobby_EventScript_ResumeChallenge
 lockall
-message BattleFrontier_BattleFactoryLobby_Text_WaitingForYouToResume
+msgbox	We've been waiting for you!Before we resume your challenge, I must save the game.
 waitmessage
 factory_save CHALLENGE_STATUS_SAVING
 playse SE_SAVE
@@ -180,14 +180,14 @@ case 2 BattleFrontier_BattleFactoryLobby_EventScript_CancelChallenge
 case MULTI_B_PRESSED BattleFrontier_BattleFactoryLobby_EventScript_CancelChallenge
 goto BattleFrontier_BattleFactoryLobby_EventScript_TryEnterChallenge
 = BattleFrontier_BattleFactoryLobby_EventScript_TryEnterChallenge
-message BattleFrontier_BattleFactoryLobby_Text_WhichLevelMode
+msgbox	Which level do you wish to challenge? Level 50 or Open Level?
 waitmessage
 multichoice 17 6 MULTI_LEVEL_MODE FALSE
 switch VAR_RESULT
 case FRONTIER_LVL_TENT BattleFrontier_BattleFactoryLobby_EventScript_CancelChallenge
 case MULTI_B_PRESSED BattleFrontier_BattleFactoryLobby_EventScript_CancelChallenge
 frontier_set FRONTIER_DATA_LVL_MODE VAR_RESULT
-msgbox	Before you begin your challenge, I need to save the game. Is that okay?
+msgboxyesno	Before you begin your challenge, I need to save the game. Is that okay?
 switch VAR_RESULT
 case NO BattleFrontier_BattleFactoryLobby_EventScript_LoadPartyAndCancelChallenge
 case YES BattleFrontier_BattleFactoryLobby_EventScript_SaveBeforeChallenge
@@ -230,10 +230,10 @@ return
 msgbox	The Battle Swap Single Tournament is a SINGLE BATTLE competition using only rental POKéMON.First, you will be loaned three POKéMON specifically for this event.Using the supplied rental POKéMON, you must conduct a SINGLE BATTLE.If you win, you are permitted to trade one of your rental POKéMON.Repeat this cycle of battling and trading--if you win seven times in a row, you will earn Battle Points.If you want to interrupt your challenge, please save the game.If you don't save, you will be disqualified from your challenge.
 return
 = BattleFrontier_BattleFactoryLobby_EventScript_TakeDoublesChallenge
-message BattleFrontier_BattleFactoryLobby_Text_TakeDoublesChallenge
+msgbox	Would you like to take the Battle Swap Double challenge?
 return
 = BattleFrontier_BattleFactoryLobby_EventScript_TakeSinglesChallenge
-message BattleFrontier_BattleFactoryLobby_Text_TakeSinglesChallenge
+msgbox	Would you like to take the Battle Swap Single challenge?
 return
 = BattleFrontier_BattleFactoryLobby_EventScript_WelcomeForDoubleBattle
 msgbox	Where the intelligence of TRAINERS is put to the test!Welcome to the BATTLE FACTORY!I am your guide to the Battle Swap Double Tournament.
@@ -264,3 +264,5 @@ goto BattleFrontier_BattleFactoryLobby_EventScript_Attendant
 end
 signs
 9 4	The Battle Swap rules are listed.
+counters
+528,529,530,531

@@ -79,11 +79,11 @@ end
 = SootopolisCity_MysteryEventsHouse_1F_EventScript_TrainerVisiting
 special SavePlayerParty
 special BufferEReaderTrainerName
-msgbox	A TRAINER named is visiting my home.Would you like to challenge ?
+msgboxyesno	A TRAINER named is visiting my home.Would you like to challenge ?
 goto_if_eq VAR_RESULT NO SootopolisCity_MysteryEventsHouse_1F_EventScript_DeclineBattle
 call SootopolisCity_MysteryEventsHouse_1F_EventScript_ChooseParty
 goto_if_eq VAR_RESULT 0 SootopolisCity_MysteryEventsHouse_1F_EventScript_DeclineBattle
-msgbox	Before you two battle, you should save your progress.
+msgboxyesno	Before you two battle, you should save your progress.
 goto_if_eq VAR_RESULT NO SootopolisCity_MysteryEventsHouse_1F_EventScript_DeclineBattle
 special LoadPlayerParty
 call Common_EventScript_SaveGame
@@ -131,3 +131,5 @@ return
 msgbox	When I was young, I traveled the world as a POKéMON TRAINER.Now that I've become an old buzzard, my only amusement is watching young TRAINERS battle.
 release
 end
+counters
+576,578

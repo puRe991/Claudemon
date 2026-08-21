@@ -50,7 +50,7 @@ goto_if_unset FLAG_DELIVERED_DEVON_GOODS Route104_MrBrineysHouse_EventScript_Sai
 goto Route104_MrBrineysHouse_EventScript_WhereAreWeBound
 end
 = Route104_MrBrineysHouse_EventScript_WhereAreWeBound
-message Route104_MrBrineysHouse_Text_WhereAreWeBound
+msgbox	MR. BRINEY: Ahoy! For you, I'll go out to sea anytime!Now, my friend, where are we bound?
 waitmessage
 multichoicedefault 20 8 MULTI_BRINEY_OFF_DEWFORD 1 FALSE
 switch VAR_RESULT
@@ -78,7 +78,7 @@ waitstate
 releaseall
 end
 = Route104_MrBrineysHouse_EventScript_SailDeliverPackage
-msgbox	MR. BRINEY: Ahoy! I know exactly what you want to say!You're to deliver a package to CAPT. STERN in SLATEPORT.What you need me to do is no problem at all--I'm the man for the job!First, we'll set sail for DEWFORD.
+msgboxyesno	MR. BRINEY: Ahoy! I know exactly what you want to say!You're to deliver a package to CAPT. STERN in SLATEPORT.What you need me to do is no problem at all--I'm the man for the job!First, we'll set sail for DEWFORD.
 goto_if_eq VAR_RESULT NO Route104_MrBrineysHouse_EventScript_DeclineDeliverySailing
 goto Route104_MrBrineysHouse_EventScript_SailToDewford
 end
@@ -87,14 +87,14 @@ msgbox	MR. BRINEY: Is that so? Your deliveries can wait?You just go on and tell
 release
 end
 = Route104_MrBrineysHouse_EventScript_SailBothDeliveries
-msgbox	MR. BRINEY: Ahoy! I know exactly what you want to say!You're to deliver a LETTER to DEWFORD and a package to SLATEPORT.What you need me to do is no problem at all--I'm the man for the job!First, we'll set sail for DEWFORD.
+msgboxyesno	MR. BRINEY: Ahoy! I know exactly what you want to say!You're to deliver a LETTER to DEWFORD and a package to SLATEPORT.What you need me to do is no problem at all--I'm the man for the job!First, we'll set sail for DEWFORD.
 goto_if_eq VAR_RESULT NO Route104_MrBrineysHouse_EventScript_DeclineDeliverySailing
 goto Route104_MrBrineysHouse_EventScript_SailToDewford
 end
 = Route104_MrBrineysHouse_EventScript_SailingIntro
 setflag FLAG_MR_BRINEY_SAILING_INTRO
 msgbox	MR. BRINEY: Hold on, lass! Wait up, PEEKO!
-msgbox	Hm? You're PLAYER! You saved my darling PEEKO! We owe so much to you!What's that? You want to sail with me?Hmhm…You have a LETTER bound for DEWFORD and a package for SLATEPORT, then?Quite the busy life you must lead!But, certainly, what you're asking is no problem at all.You've come to the right man! We'll set sail for DEWFORD.
+msgboxyesno	Hm? You're PLAYER! You saved my darling PEEKO! We owe so much to you!What's that? You want to sail with me?Hmhm…You have a LETTER bound for DEWFORD and a package for SLATEPORT, then?Quite the busy life you must lead!But, certainly, what you're asking is no problem at all.You've come to the right man! We'll set sail for DEWFORD.
 goto_if_eq VAR_RESULT NO Route104_MrBrineysHouse_EventScript_DeclineDeliverySailing
 goto Route104_MrBrineysHouse_EventScript_SailToDewford
 end

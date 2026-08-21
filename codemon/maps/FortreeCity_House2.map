@@ -30,11 +30,11 @@ scriptdefs
 lock
 faceplayer
 goto_if_set FLAG_MOVE_TUTOR_TAUGHT_SLEEP_TALK MoveTutor_EventScript_SleepTalkTaught
-msgbox	MoveTutor_Text_SleepTalkTeach
+msgboxyesno	Humph! My wife relies on HIDDEN POWER to stay awake.She should just take a nap like I do, and SLEEP TALK.I can teach your POKéMON how to SLEEP TALK instead. Interested?
 goto_if_eq VAR_RESULT NO MoveTutor_EventScript_SleepTalkDeclined
 call MoveTutor_EventScript_CanOnlyBeLearnedOnce
 goto_if_eq VAR_RESULT NO MoveTutor_EventScript_SleepTalkDeclined
-msgbox	MoveTutor_Text_SleepTalkWhichMon
+msgbox	Ah, an appreciative child! Which POKéMON should I teach?
 setvar VAR_0x8005 TUTOR_MOVE_SLEEP_TALK
 call MoveTutor_EventScript_OpenPartyMenu
 goto_if_eq VAR_RESULT 0 MoveTutor_EventScript_SleepTalkDeclined
@@ -42,11 +42,11 @@ setflag FLAG_MOVE_TUTOR_TAUGHT_SLEEP_TALK
 goto MoveTutor_EventScript_SleepTalkTaught
 end
 = MoveTutor_EventScript_SleepTalkTaught
-msgbox	MoveTutor_Text_SleepTalkTaught
+msgbox	I've never once gotten my wife's coin trick right.I would be happy if I got it right even as I SLEEP TALK…
 release
 end
 = MoveTutor_EventScript_SleepTalkDeclined
-msgbox	MoveTutor_Text_SleepTalkDeclined
+msgbox	Oh, fine, fine. You want to stay awake with HIDDEN POWER, too…
 release
 end
 = MoveTutor_EventScript_OpenPartyMenu
@@ -55,7 +55,7 @@ lock
 faceplayer
 return
 = MoveTutor_EventScript_CanOnlyBeLearnedOnce
-msgbox	MoveTutor_Text_ThisMoveCanOnlyBeLearnedOnce
+msgboxyesno	This move can be learned only once. Is that okay?
 return
 = FortreeCity_House2_EventScript_HiddenPowerGiver
 lock

@@ -229,7 +229,7 @@ goto_if_ge VAR_ABNORMAL_WEATHER_LOCATION MARINE_CAVE_LOCATIONS_START AbnormalWea
 goto AbnormalWeather_EventScript_ShowSunEndedMessage
 end
 = AbnormalWeather_EventScript_ShowSunEndedMessage
-msgbox	gText_AbnormalWeatherEnded_Sun
+msgbox	The intense sunshine appears to have subsided…
 goto AbnormalWeather_EventScript_EndEventAndCleanup_2
 end
 = AbnormalWeather_EventScript_EndEventAndCleanup_2
@@ -409,7 +409,7 @@ setmetatile 7 3 METATILE_Fallarbor_RedRockWall TRUE
 setmetatile 7 4 METATILE_Fallarbor_RedRockWall TRUE
 return
 = AbnormalWeather_EventScript_ShowRainEndedMessage
-msgbox	gText_AbnormalWeatherEnded_Rain
+msgbox	The massive downpour appears to have stopped…
 goto AbnormalWeather_EventScript_EndEventAndCleanup_2
 end
 = Route115_HiddenItem_15_49
@@ -435,23 +435,23 @@ end
 end
 = Route115_EventScript_Marlene
 trainerbattle_single TRAINER_MARLENE Route115_Text_MarleneIntro Route115_Text_MarleneDefeat
-msgbox	Route115_Text_MarlenePostBattle
+msgbox	I was meditating with my POKéMON. But this place isn't very peaceful…
 end
 = Route115_EventScript_Alix
 trainerbattle_single TRAINER_ALIX Route115_Text_AlixIntro Route115_Text_AlixDefeat
-msgbox	Route115_Text_AlixPostBattle
+msgbox	Oh, well. I think I will TELEPORT home.
 end
 = Route115_EventScript_Helene
 trainerbattle_single TRAINER_HELENE Route115_Text_HeleneIntro Route115_Text_HeleneDefeat
-msgbox	Route115_Text_HelenePostBattle
+msgbox	I rarely meet anyone who's better than me…I get it now! You're a GYM LEADER, aren't you?
 end
 = Route115_EventScript_Jaiden
 trainerbattle_single TRAINER_JAIDEN Route115_Text_JaidenIntro Route115_Text_JaidenDefeat
-msgbox	Route115_Text_JaidenPostBattle
+msgbox	But my POKéMON were ultra, weren't they?
 end
 = Route115_EventScript_Kyra
 trainerbattle_single TRAINER_KYRA Route115_Text_KyraIntro Route115_Text_KyraDefeat
-msgbox	Route115_Text_KyraPostBattle
+msgbox	I made the mistake of trying to battle while running!I should take a run to calm down…
 end
 = Route115_EventScript_ItemGreatBall
 goto_if_set FLAG_ITEM_ROUTE_115_GREAT_BALL Route115_EventScript_ItemGreatBall_Taken
@@ -531,24 +531,24 @@ special ObjectEventInteractionPickBerryTree
 goto_if_eq VAR_0x8004 0 BerryTree_EventScript_BerryPocketFull
 special IncrementDailyPickedBerries
 special ObjectEventInteractionRemoveBerryTree
-message BerryTree_Text_PickedTheBerry
+msgbox	BerryTree_Text_PickedTheBerry
 playfanfare MUS_OBTAIN_BERRY
 waitmessage
 waitfanfare
 waitbuttonpress
-message BerryTree_Text_PutAwayBerry
+msgbox	BerryTree_Text_PutAwayBerry
 waitmessage
 waitbuttonpress
 release
 end
 = BerryTree_EventScript_BerryPocketFull
-message BerryTree_Text_BerryPocketFull
+msgbox	BerryTree_Text_BerryPocketFull
 waitmessage
 waitbuttonpress
 release
 end
 = BerryTree_EventScript_CancelPickingBerry
-message BerryTree_Text_BerryLeftUnpicked
+msgbox	BerryTree_Text_BerryLeftUnpicked
 waitmessage
 waitbuttonpress
 release
@@ -557,7 +557,7 @@ end
 call BerryTree_EventScript_GetCareAdverb
 lockall
 special ObjectEventInteractionGetBerryName
-message BerryTree_Text_BerryGrowthStage4
+msgbox	BerryTree_Text_BerryGrowthStage4
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
@@ -590,11 +590,11 @@ releaseall
 end
 = BerryTree_EventScript_WaterBerry
 special ObjectEventInteractionGetBerryName
-message BerryTree_Text_WateredTheBerry
+msgbox	BerryTree_Text_WateredTheBerry
 waitmessage
 special ObjectEventInteractionWaterBerryTree
 special DoWateringBerryTreeAnim
-message BerryTree_Text_PlantIsDelighted
+msgbox	BerryTree_Text_PlantIsDelighted
 waitmessage
 waitbuttonpress
 releaseall
@@ -602,21 +602,21 @@ end
 = BerryTree_EventScript_CheckBerryStage3
 lockall
 special ObjectEventInteractionGetBerryName
-message BerryTree_Text_BerryGrowthStage3
+msgbox	BerryTree_Text_BerryGrowthStage3
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
 = BerryTree_EventScript_CheckBerryStage2
 lockall
 special ObjectEventInteractionGetBerryName
-message BerryTree_Text_BerryGrowthStage2
+msgbox	BerryTree_Text_BerryGrowthStage2
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
 = BerryTree_EventScript_CheckBerryStage1
 lockall
 special ObjectEventInteractionGetBerryCountString
-message BerryTree_Text_BerryGrowthStage1
+msgbox	BerryTree_Text_BerryGrowthStage1
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
@@ -625,7 +625,7 @@ lock
 faceplayer
 specialvar VAR_RESULT PlayerHasBerries
 goto_if_eq VAR_RESULT TRUE BerryTree_EventScript_WantToPlant
-message BerryTree_Text_ItsSoftLoamySoil
+msgbox	BerryTree_Text_ItsSoftLoamySoil
 waitmessage
 waitbuttonpress
 release
@@ -651,13 +651,13 @@ special ObjectEventInteractionPlantBerryTree
 incrementgamestat GAME_STAT_PLANTED_BERRIES
 special IncrementDailyPlantedBerries
 special ObjectEventInteractionGetBerryCountString
-message BerryTree_Text_PlantedOneBerry
+msgbox	BerryTree_Text_PlantedOneBerry
 waitmessage
 waitbuttonpress
 return
 = BerryTree_EventScript_Sparkling
 lockall
-message BerryTree_Text_ExclamationPoint
+msgbox	BerryTree_Text_ExclamationPoint
 waitmessage
 waitbuttonpress
 releaseall
@@ -685,27 +685,27 @@ end
 end
 = Route115_EventScript_Hector
 trainerbattle_single TRAINER_HECTOR Route115_Text_HectorIntro Route115_Text_HectorDefeat
-msgbox	Route115_Text_HectorPostBattle
+msgbox	I have this rare POKéMON. It's enough to keep me satisfied.
 end
 = Route115_EventScript_Koichi
 trainerbattle_single TRAINER_KOICHI Route115_Text_KoichiIntro Route115_Text_KoichiDefeat
-msgbox	Route115_Text_KoichiPostBattle
+msgbox	My MACHOP crew!So long as they seek power, I will grow strong with them!
 end
 = Route115_EventScript_Cyndy
 trainerbattle_single TRAINER_CYNDY_1 Route115_Text_CyndyIntro Route115_Text_CyndyDefeat Route115_EventScript_RegisterCyndy
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route115_EventScript_RematchCyndy
-msgbox	Route115_Text_CyndyPostBattle
+msgbox	The sand acts as a cushion to reduce impact and prevent injury. This is the perfect place to train.
 release
 end
 = Route115_EventScript_RematchCyndy
 trainerbattle_rematch TRAINER_CYNDY_1 Route115_Text_CyndyRematchIntro Route115_Text_CyndyRematchDefeat
-msgbox	Route115_Text_CyndyPostRematch
+msgbox	Even when I lose, I still get some enjoyment out of it. It must be that I love POKéMON.
 end
 = Route115_EventScript_RegisterCyndy
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Route115_Text_CyndyRegister
+msgbox	Okay, fine, you're free to come here. In return, I'd like to battle you again.
 register_matchcall TRAINER_CYNDY_1
 release
 end
@@ -713,17 +713,17 @@ end
 trainerbattle_single TRAINER_NOB_1 Route115_Text_NobIntro Route115_Text_NobDefeat Route115_EventScript_RegisterNob
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route115_EventScript_RematchNob
-msgbox	Route115_Text_NobPostBattle
+msgbox	I've been teaching my POKéMON karate.It looks like they'll get a lot better than me. I'm excited about that.
 release
 end
 = Route115_EventScript_RematchNob
 trainerbattle_rematch TRAINER_NOB_1 Route115_Text_NobRematchIntro Route115_Text_NobRematchDefeat
-msgbox	Route115_Text_NobPostRematch
+msgbox	My POKéMON will grow stronger! I'll redouble my training!
 end
 = Route115_EventScript_RegisterNob
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Route115_Text_NobRegister
+msgbox	You impress me! Give me a rematch after I redo my training!
 register_matchcall TRAINER_NOB_1
 release
 end
@@ -731,17 +731,17 @@ end
 trainerbattle_single TRAINER_TIMOTHY_1 Route115_Text_TimothyIntro Route115_Text_TimothyDefeat Route115_EventScript_RegisterTimothy
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route115_EventScript_RematchTimothy
-msgbox	Route115_Text_TimothyPostBattle
+msgbox	There is no such thing as a born genius. It all depends on effort! That is what I believe…
 release
 end
 = Route115_EventScript_RematchTimothy
 trainerbattle_rematch TRAINER_TIMOTHY_1 Route115_Text_TimothyRematchIntro Route115_Text_TimothyRematchDefeat
-msgbox	Route115_Text_TimothyPostRematch
+msgbox	All it takes is effort!I lost because I haven't put in enough effort!
 end
 = Route115_EventScript_RegisterTimothy
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Route115_Text_TimothyRegister
+msgbox	Hmm… A loss this thorough has been a distant memory.If you would allow it, I wish for another opportunity to do battle.
 register_matchcall TRAINER_TIMOTHY_1
 release
 end

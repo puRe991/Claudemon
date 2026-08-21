@@ -62,11 +62,11 @@ scriptdefs
 lock
 faceplayer
 goto_if_set FLAG_MOVE_TUTOR_TAUGHT_SWAGGER MoveTutor_EventScript_SwaggerTaught
-msgbox	MoveTutor_Text_SwaggerTeach
+msgboxyesno	Heh! My POKéMON totally rules! It's cooler than any POKéMON!I was lipping off with a swagger in my step like that when the CHAIRMAN chewed me out.That took the swagger out of my step.If you'd like, I'll teach the move SWAGGER to a POKéMON of yours.
 goto_if_eq VAR_RESULT NO MoveTutor_EventScript_SwaggerDeclined
 call MoveTutor_EventScript_CanOnlyBeLearnedOnce
 goto_if_eq VAR_RESULT NO MoveTutor_EventScript_SwaggerDeclined
-msgbox	MoveTutor_Text_SwaggerWhichMon
+msgbox	All right, which POKéMON wants to learn how to SWAGGER?
 setvar VAR_0x8005 TUTOR_MOVE_SWAGGER
 call MoveTutor_EventScript_OpenPartyMenu
 goto_if_eq VAR_RESULT 0 MoveTutor_EventScript_SwaggerDeclined
@@ -74,11 +74,11 @@ setflag FLAG_MOVE_TUTOR_TAUGHT_SWAGGER
 goto MoveTutor_EventScript_SwaggerTaught
 end
 = MoveTutor_EventScript_SwaggerTaught
-msgbox	MoveTutor_Text_SwaggerTaught
+msgbox	I'll just praise my POKéMON from now on without the swagger.
 release
 end
 = MoveTutor_EventScript_SwaggerDeclined
-msgbox	MoveTutor_Text_SwaggerDeclined
+msgbox	What, no? Can't you get into the spirit of things?
 release
 end
 = MoveTutor_EventScript_OpenPartyMenu
@@ -87,7 +87,7 @@ lock
 faceplayer
 return
 = MoveTutor_EventScript_CanOnlyBeLearnedOnce
-msgbox	MoveTutor_Text_ThisMoveCanOnlyBeLearnedOnce
+msgboxyesno	This move can be learned only once. Is that okay?
 return
 = SlateportCity_PokemonFanClub_EventScript_Azumarill
 lock
@@ -308,16 +308,16 @@ setvar VAR_0x8005 TVSHOW_PKMN_FAN_CLUB_OPINIONS
 special InterviewBefore
 goto_if_eq VAR_RESULT TRUE SlateportCity_PokemonFanClub_EventScript_AlreadyInterviewed
 copyvar VAR_0x8009 VAR_0x8006
-msgbox	SlateportCity_PokemonFanClub_Text_InterviewRequestHasName
+msgboxyesno	Wow!It's plain to see that you lavish your love on your .Okay, it's named .Can I ask you a favor?I'm a TV reporter, and I'm running a survey on POKéMON.Would you be willing to answer a few simple questions for me?
 goto_if_eq VAR_RESULT YES SlateportCity_PokemonFanClub_EventScript_AcceptInterview
 goto_if_eq VAR_RESULT NO SlateportCity_PokemonFanClub_EventScript_DeclineInterview
 end
 = SlateportCity_PokemonFanClub_EventScript_DeclineInterview
-msgbox	SlateportCity_PokemonFanClub_Text_HereIfYouGetUrgeToTellMe
+msgbox	Oh, okay…Well, if you get the urge to tell me about POKéMON, I'll be here!
 release
 end
 = SlateportCity_PokemonFanClub_EventScript_AcceptInterview
-msgbox	SlateportCity_PokemonFanClub_Text_HereGoesQuickAnswers
+msgbox	Great! Thank you!Okay, here goes. I just need quick answers, okay?
 random 3
 copyvar VAR_0x800A VAR_RESULT
 switch VAR_RESULT
@@ -326,7 +326,7 @@ case 1 SlateportCity_PokemonFanClub_EventScript_RandomQuestion2
 case 2 SlateportCity_PokemonFanClub_EventScript_RandomQuestion3
 end
 = SlateportCity_PokemonFanClub_EventScript_RandomQuestion3
-msgbox	SlateportCity_PokemonFanClub_Text_WhatAttractedYouAboutMon
+msgbox	This question also relates to your beloved .What was it about that attracted you?
 goto SlateportCity_PokemonFanClub_EventScript_ContinueInterview
 end
 = SlateportCity_PokemonFanClub_EventScript_ContinueInterview
@@ -337,13 +337,13 @@ call Common_ShowEasyChatScreen
 lock
 faceplayer
 goto_if_eq VAR_RESULT 0 SlateportCity_PokemonFanClub_EventScript_DeclineInterview
-msgbox	SlateportCity_PokemonFanClub_Text_WhatDoPokemonMeanToYou
+msgbox	Okay, that makes sense.The next question might be a little on the tough side.Here goes…What do POKéMON mean to you?
 setvar VAR_0x8006 1
 call Common_ShowEasyChatScreen
 lock
 faceplayer
 goto_if_eq VAR_RESULT 0 SlateportCity_PokemonFanClub_EventScript_DeclineInterview
-msgbox	SlateportCity_PokemonFanClub_Text_ThatsAllForInterview
+msgbox	I see!Hmhm…Okay! Thanks for helping me out.It was fun and enlightening chatting with you.It's possible that our interview will end up on TV. Tune in and check!Okay, that's all. Bye-bye!
 copyvar VAR_0x8007 VAR_0x800A
 setvar VAR_0x8005 TVSHOW_PKMN_FAN_CLUB_OPINIONS
 goto Interview_EventScript_EndInterview
@@ -360,16 +360,16 @@ setvar VAR_0x8005 TVSHOW_FAN_CLUB_LETTER
 special InterviewBefore
 goto_if_eq VAR_RESULT TRUE SlateportCity_PokemonFanClub_EventScript_AlreadyInterviewed2
 copyvar VAR_0x8009 VAR_0x8006
-msgbox	SlateportCity_PokemonFanClub_Text_InterviewRequest
+msgboxyesno	Hi, you seem to be very close to your .Do you know what? I'm a TV reporter.I travel around interviewing people about POKéMON.I'm wondering if you'd be willing to tell me a little about your ?
 goto_if_eq VAR_RESULT YES SlateportCity_PokemonFanClub_EventScript_AcceptInterview2
 goto_if_eq VAR_RESULT NO SlateportCity_PokemonFanClub_EventScript_DeclineInterview2
 end
 = SlateportCity_PokemonFanClub_EventScript_DeclineInterview2
-msgbox	SlateportCity_PokemonFanClub_Text_HereIfYouGetUrgeToTellMe
+msgbox	Oh, okay…Well, if you get the urge to tell me about POKéMON, I'll be here!
 release
 end
 = SlateportCity_PokemonFanClub_EventScript_AcceptInterview2
-msgbox	SlateportCity_PokemonFanClub_Text_TellMeAnythingAboutYourMon
+msgbox	Wow, thank you!Okay, then, please tell me anything you'd like about your .
 setvar VAR_0x8004 EASY_CHAT_TYPE_INTERVIEW
 copyvar VAR_0x8005 VAR_0x8009
 setvar VAR_0x8006 EASY_CHAT_PERSON_REPORTER_FEMALE
@@ -380,24 +380,24 @@ goto_if_eq VAR_RESULT 1 SlateportCity_PokemonFanClub_EventScript_SubmitResponse2
 goto_if_eq VAR_RESULT 0 SlateportCity_PokemonFanClub_EventScript_DeclineInterview2
 end
 = SlateportCity_PokemonFanClub_EventScript_SubmitResponse2
-msgbox	SlateportCity_PokemonFanClub_Text_ThatsAllForInterview2
+msgbox	Wow… That's an interesting account.You really are tight with , aren't you?I get the feeling that your account will make a great TV story.I promise that I'll turn this into an entertaining show. Keep your eyes out for it.Okay, that's all. Bye-bye!
 setvar VAR_0x8005 TVSHOW_FAN_CLUB_LETTER
 goto Interview_EventScript_EndInterview
 end
 = SlateportCity_PokemonFanClub_EventScript_AlreadyInterviewed2
-msgbox	SlateportCity_PokemonFanClub_Text_EnjoyDoingInterviews
+msgbox	I enjoy this job--you get to learn about POKéMON by doing interviews.
 release
 end
 = SlateportCity_PokemonFanClub_EventScript_RandomQuestion2
-msgbox	SlateportCity_PokemonFanClub_Text_LikenMonToSomethingYouLike
+msgbox	Your is cared for lovingly.If you were to liken it to something that you like, what would it be?
 goto SlateportCity_PokemonFanClub_EventScript_ContinueInterview
 end
 = SlateportCity_PokemonFanClub_EventScript_RandomQuestion1
-msgbox	SlateportCity_PokemonFanClub_Text_DescribeFeelingsFirstMetMon
+msgbox	When you first met , what did you feel?How would you describe your feelings at the time?
 goto SlateportCity_PokemonFanClub_EventScript_ContinueInterview
 end
 = SlateportCity_PokemonFanClub_EventScript_AlreadyInterviewed
-msgbox	SlateportCity_PokemonFanClub_Text_EnjoyDoingInterviews
+msgbox	I enjoy this job--you get to learn about POKéMON by doing interviews.
 release
 end
 = SlateportCity_PokemonFanClub_EventScript_Twin

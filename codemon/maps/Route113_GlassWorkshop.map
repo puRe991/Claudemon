@@ -57,7 +57,7 @@ checkitem ITEM_SOOT_SACK
 goto_if_eq VAR_RESULT FALSE Route113_GlassWorkshop_EventScript_SootSackNotInBag
 msgbox	Have you collected ashes, huff-puff? Let me see, huff-puff.
 goto_if_lt VAR_ASH_GATHER_COUNT LOWEST_ASH_PRICE Route113_GlassWorkshop_EventScript_NotEnoughAsh
-message Route113_GlassWorkshop_Text_WhichGlassItemWoudYouLike
+msgbox	Oh! You've got a lot of ashes, huff-puff!I'll make you a glass item, huff-puff! Which one would you like, huff-puff?
 waitmessage
 goto Route113_GlassWorkshop_EventScript_ChooseGlassItem
 end
@@ -86,7 +86,7 @@ setvar VAR_0x8008 DECOR_PRETTY_DESK
 bufferdecorationname STR_VAR_1 VAR_0x8008
 setvar VAR_0x800A PRETTY_DESK_PRICE
 goto_if_lt VAR_ASH_GATHER_COUNT PRETTY_DESK_PRICE Route113_GlassWorkshop_EventScript_NotEnoughAshForItem
-msgbox	A , huff-puff? Is that the one for you, huff-puff?
+msgboxyesno	A , huff-puff? Is that the one for you, huff-puff?
 goto_if_eq VAR_RESULT NO Route113_GlassWorkshop_EventScript_ChooseDifferentItem
 setvar VAR_GLASS_WORKSHOP_STATE 16
 subvar VAR_ASH_GATHER_COUNT PRETTY_DESK_PRICE
@@ -124,14 +124,14 @@ msgbox	Oh? You've no room in your BAG, huff-puff.I'll hold on to it, so come ba
 release
 end
 = Route113_GlassWorkshop_EventScript_ChooseDifferentItem
-message Route113_GlassWorkshop_Text_WhichWouldYouLike
+msgbox	Which one would you like, huff-puff?
 waitmessage
 goto Route113_GlassWorkshop_EventScript_ChooseGlassItem
 end
 = Route113_GlassWorkshop_EventScript_NotEnoughAshForItem
 subvar VAR_0x800A VAR_ASH_GATHER_COUNT
 buffernumberstring STR_VAR_2 VAR_0x800A
-message Route113_GlassWorkshop_Text_NotEnoughAshToMakeItem
+msgbox	A , huff-puff?There's not enough ash here to make that, though, huff-puff.Let's see… is the number of steps you'll need to walk through volcanic ash for me to make that item, huff-puff.Which item would you rather have me make instead, huff-puff?
 waitmessage
 goto Route113_GlassWorkshop_EventScript_ChooseGlassItem
 end
@@ -141,7 +141,7 @@ setvar VAR_0x8008 DECOR_PRETTY_CHAIR
 bufferdecorationname STR_VAR_1 VAR_0x8008
 setvar VAR_0x800A PRETTY_CHAIR_PRICE
 goto_if_lt VAR_ASH_GATHER_COUNT PRETTY_CHAIR_PRICE Route113_GlassWorkshop_EventScript_NotEnoughAshForItem
-msgbox	A , huff-puff? Is that the one for you, huff-puff?
+msgboxyesno	A , huff-puff? Is that the one for you, huff-puff?
 goto_if_eq VAR_RESULT NO Route113_GlassWorkshop_EventScript_ChooseDifferentItem
 setvar VAR_GLASS_WORKSHOP_STATE 15
 subvar VAR_ASH_GATHER_COUNT PRETTY_CHAIR_PRICE
@@ -152,7 +152,7 @@ setvar VAR_0x8008 ITEM_BLACK_FLUTE
 bufferitemname STR_VAR_1 VAR_0x8008
 setvar VAR_0x800A BLACK_FLUTE_PRICE
 goto_if_lt VAR_ASH_GATHER_COUNT BLACK_FLUTE_PRICE Route113_GlassWorkshop_EventScript_NotEnoughAshForItem
-msgbox	A , huff-puff? Is that the one for you, huff-puff?
+msgboxyesno	A , huff-puff? Is that the one for you, huff-puff?
 goto_if_eq VAR_RESULT NO Route113_GlassWorkshop_EventScript_ChooseDifferentItem
 setvar VAR_GLASS_WORKSHOP_STATE 14
 subvar VAR_ASH_GATHER_COUNT BLACK_FLUTE_PRICE
@@ -163,7 +163,7 @@ setvar VAR_0x8008 ITEM_WHITE_FLUTE
 bufferitemname STR_VAR_1 VAR_0x8008
 setvar VAR_0x800A WHITE_FLUTE_PRICE
 goto_if_lt VAR_ASH_GATHER_COUNT WHITE_FLUTE_PRICE Route113_GlassWorkshop_EventScript_NotEnoughAshForItem
-msgbox	A , huff-puff? Is that the one for you, huff-puff?
+msgboxyesno	A , huff-puff? Is that the one for you, huff-puff?
 goto_if_eq VAR_RESULT NO Route113_GlassWorkshop_EventScript_ChooseDifferentItem
 setvar VAR_GLASS_WORKSHOP_STATE 13
 subvar VAR_ASH_GATHER_COUNT WHITE_FLUTE_PRICE
@@ -174,7 +174,7 @@ setvar VAR_0x8008 ITEM_RED_FLUTE
 bufferitemname STR_VAR_1 VAR_0x8008
 setvar VAR_0x800A RED_FLUTE_PRICE
 goto_if_lt VAR_ASH_GATHER_COUNT RED_FLUTE_PRICE Route113_GlassWorkshop_EventScript_NotEnoughAshForItem
-msgbox	A , huff-puff? Is that the one for you, huff-puff?
+msgboxyesno	A , huff-puff? Is that the one for you, huff-puff?
 goto_if_eq VAR_RESULT NO Route113_GlassWorkshop_EventScript_ChooseDifferentItem
 setvar VAR_GLASS_WORKSHOP_STATE 12
 subvar VAR_ASH_GATHER_COUNT RED_FLUTE_PRICE
@@ -185,7 +185,7 @@ setvar VAR_0x8008 ITEM_YELLOW_FLUTE
 bufferitemname STR_VAR_1 VAR_0x8008
 setvar VAR_0x800A YELLOW_FLUTE_PRICE
 goto_if_lt VAR_ASH_GATHER_COUNT YELLOW_FLUTE_PRICE Route113_GlassWorkshop_EventScript_NotEnoughAshForItem
-msgbox	A , huff-puff? Is that the one for you, huff-puff?
+msgboxyesno	A , huff-puff? Is that the one for you, huff-puff?
 goto_if_eq VAR_RESULT NO Route113_GlassWorkshop_EventScript_ChooseDifferentItem
 setvar VAR_GLASS_WORKSHOP_STATE 11
 subvar VAR_ASH_GATHER_COUNT YELLOW_FLUTE_PRICE
@@ -196,7 +196,7 @@ setvar VAR_0x8008 ITEM_BLUE_FLUTE
 bufferitemname STR_VAR_1 VAR_0x8008
 setvar VAR_0x800A BLUE_FLUTE_PRICE
 goto_if_lt VAR_ASH_GATHER_COUNT BLUE_FLUTE_PRICE Route113_GlassWorkshop_EventScript_NotEnoughAshForItem
-msgbox	A , huff-puff? Is that the one for you, huff-puff?
+msgboxyesno	A , huff-puff? Is that the one for you, huff-puff?
 goto_if_eq VAR_RESULT NO Route113_GlassWorkshop_EventScript_ChooseDifferentItem
 setvar VAR_GLASS_WORKSHOP_STATE 10
 subvar VAR_ASH_GATHER_COUNT BLUE_FLUTE_PRICE

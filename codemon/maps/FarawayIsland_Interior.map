@@ -93,7 +93,7 @@ applymovement LOCALID_FARAWAY_ISLAND_MEW FarawayIsland_Interior_Movement_MewAppe
 waitmovement 0
 setvar VAR_0x8004 0
 special SetMewAboveGrass
-message FarawayIsland_Interior_Text_Mew
+msgbox	Myuu…
 waitse
 playmoncry SPECIES_MEW CRY_MODE_ENCOUNTER
 call_if_eq VAR_FACING DIR_NORTH FarawayIsland_Interior_EventScript_FoundMewNorth

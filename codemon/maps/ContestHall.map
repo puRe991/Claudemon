@@ -524,7 +524,7 @@ waitmovement 0
 return
 = ContestHall_EventScript_VotingUnderWay
 goto_if_eq VAR_CONTEST_TYPE CONTEST_TYPE_LINK ContestHall_EventScript_VotingUnderWayLink
-message ContestHall_Text_VotingUnderWay
+msgbox	ContestHall_Text_VotingUnderWay
 return
 = ContestHall_EventScript_VotingUnderWayLink
 messageautoscroll ContestHall_Text_VotingUnderWay
@@ -843,7 +843,7 @@ call ContestHall_EventScript_EntryXTrainersMon
 return
 = ContestHall_EventScript_EntryXTrainersMon
 goto_if_eq VAR_CONTEST_TYPE CONTEST_TYPE_LINK ContestHall_EventScript_EntryXTrainersMonLink
-message ContestHall_Text_EntryXTrainersMon
+msgbox	ContestHall_Text_EntryXTrainersMon
 waitmessage
 return
 = ContestHall_EventScript_EntryXTrainersMonLink

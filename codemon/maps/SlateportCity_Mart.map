@@ -44,9 +44,11 @@ end
 = SlateportCity_Mart_EventScript_Clerk
 lock
 faceplayer
-message gText_HowMayIServeYou
+msgbox	Welcome!How may I serve you?
 waitmessage
 pokemart SlateportCity_Mart_Pokemart
-msgbox	gText_PleaseComeAgain
+msgbox	Please come again!
 release
 end
+counters
+562,570,577

@@ -111,19 +111,19 @@ end
 end
 = Route113_EventScript_Coby
 trainerbattle_single TRAINER_COBY Route113_Text_CobyIntro Route113_Text_CobyDefeat
-msgbox	Route113_Text_CobyPostBattle
+msgbox	I don't know what to say when I get beaten so easily…
 end
 = Route113_EventScript_Sophie
 trainerbattle_single TRAINER_SOPHIE Route113_Text_SophieIntro Route113_Text_SophieDefeat
-msgbox	Route113_Text_SophiePostBattle
+msgbox	Losing burns me up… I'm just going to sleep right here! Zzz!
 end
 = Route113_EventScript_Lawrence
 trainerbattle_single TRAINER_LAWRENCE Route113_Text_LawrenceIntro Route113_Text_LawrenceDefeat
-msgbox	Route113_Text_LawrencePostBattle
+msgbox	I ought to hide under the ashes, too.
 end
 = Route113_EventScript_Wyatt
 trainerbattle_single TRAINER_WYATT Route113_Text_WyattIntro Route113_Text_WyattDefeat
-msgbox	Route113_Text_WyattPostBattle
+msgbox	Oh, so now you want to say a word to the loser?Aren't you just the coolest? Humph!
 end
 = Route113_EventScript_ItemHyperPotion
 goto_if_set FLAG_ITEM_ROUTE_113_HYPER_POTION Route113_EventScript_ItemHyperPotion_Taken
@@ -134,31 +134,31 @@ end
 end
 = Route113_EventScript_Tia
 trainerbattle_double TRAINER_TORI_AND_TIA Route113_Text_TiaIntro Route113_Text_TiaDefeat Route113_Text_TiaNotEnoughMons
-msgbox	Route113_Text_TiaPostBattle
+msgbox	TIA: We have a lot of ashes! I think enough for a WHITE FLUTE!
 end
 = Route113_EventScript_Tori
 trainerbattle_double TRAINER_TORI_AND_TIA Route113_Text_ToriIntro Route113_Text_ToriDefeat Route113_Text_ToriNotEnoughMons
-msgbox	Route113_Text_ToriPostBattle
+msgbox	TORI: How much ash do we have? Enough for a WHITE FLUTE, I hope.
 end
 = Route113_EventScript_Lung
 trainerbattle_single TRAINER_LUNG Route113_Text_LungIntro Route113_Text_LungDefeat
-msgbox	Route113_Text_LungPostBattle
+msgbox	You know what's crummy about hiding? It's lonely if no one comes along.
 end
 = Route113_EventScript_Lao
 trainerbattle_single TRAINER_LAO_1 Route113_Text_LaoIntro Route113_Text_LaoDefeat Route113_EventScript_RegisterLao
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route113_EventScript_RematchLao
-msgbox	Route113_Text_LaoPostBattle
+msgbox	I must refine the art of concealment. I bid thee farewell.
 release
 end
 = Route113_EventScript_RematchLao
 trainerbattle_rematch TRAINER_LAO_1 Route113_Text_LaoRematchIntro Route113_Text_LaoRematchDefeat
-msgbox	Route113_Text_LaoPostRematch
+msgbox	My flawless concealment was let down by my immature battle skills…I bid thee farewell.
 end
 = Route113_EventScript_RegisterLao
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Route113_Text_LaoRegister
+msgbox	Yiiyaah! Witness the ancient ninja technique of POKéNAV registration!
 register_matchcall TRAINER_LAO_1
 release
 end
@@ -180,27 +180,27 @@ end
 trainerbattle_single TRAINER_MADELINE_1 Route113_Text_MadelineIntro Route113_Text_MadelineDefeat Route113_EventScript_RegisterMadeline
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route113_EventScript_RematchMadeline
-msgbox	Route113_Text_MadelinePostBattle
+msgbox	You're very good at this. I must say I'm impressed!
 release
 end
 = Route113_EventScript_RematchMadeline
 trainerbattle_rematch TRAINER_MADELINE_1 Route113_Text_MadelineRematchIntro Route113_Text_MadelineRematchDefeat
-msgbox	Route113_Text_MadelinePostRematch
+msgbox	You've remained very good at this. I must say I'm impressed!
 end
 = Route113_EventScript_RegisterMadeline
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Route113_Text_MadelineRegister
+msgbox	Here, slide under my parasol. Let me register you in my POKéNAV.
 register_matchcall TRAINER_MADELINE_1
 release
 end
 = Route113_EventScript_Dillon
 trainerbattle_single TRAINER_DILLON Route113_Text_DillonIntro Route113_Text_DillonDefeat
-msgbox	Route113_Text_DillonPostBattle
+msgbox	Ouch! Owww! I can't see! I got ashes in my eyelashes!Get it? Ashes and eyelashes?Okay, that was bad, sorry…
 end
 = Route113_EventScript_Jaylen
 trainerbattle_single TRAINER_JAYLEN Route113_Text_JaylenIntro Route113_Text_JaylenDefeat
-msgbox	Route113_Text_JaylenPostBattle
+msgbox	The volcanic ash blocks the sun, so it doesn't get very warm.That's good for me--I can't stand heat!
 end
 = Route113_EventScript_Gentleman
 msgbox	Wahahaha! Today's technology is a wondrous thing!Take this volcanic ash here. It can be fashioned into glass.

@@ -45,19 +45,19 @@ scriptdefs
 = LilycoveCity_DepartmentStore_3F_EventScript_ClerkRight
 lock
 faceplayer
-message gText_HowMayIServeYou
+msgbox	Welcome!How may I serve you?
 waitmessage
 pokemart LilycoveCity_DepartmentStore_3F_Pokemart_StatBoosters
-msgbox	gText_PleaseComeAgain
+msgbox	Please come again!
 release
 end
 = LilycoveCity_DepartmentStore_3F_EventScript_ClerkLeft
 lock
 faceplayer
-message gText_HowMayIServeYou
+msgbox	Welcome!How may I serve you?
 waitmessage
 pokemart LilycoveCity_DepartmentStore_3F_Pokemart_Vitamins
-msgbox	gText_PleaseComeAgain
+msgbox	Please come again!
 release
 end
 = LilycoveCity_DepartmentStore_3F_EventScript_Woman
@@ -69,3 +69,5 @@ end
 = LilycoveCity_DepartmentStore_3F_EventScript_TriathleteM
 msgbox	For quickly toughening up POKéMON, items are the best.PROTEIN boosts ATTACK, and CALCIUM raises SP. ATK.
 end
+counters
+674,676,677

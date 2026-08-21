@@ -170,11 +170,11 @@ Common_Movement_WalkInPlaceFasterRight	delay,end
 scriptdefs
 = Route112_EventScript_Shayla
 trainerbattle_single TRAINER_SHAYLA Route112_Text_ShaylaIntro Route112_Text_ShaylaDefeat
-msgbox	Route112_Text_ShaylaPostBattle
+msgbox	Are you busy right now? I was thinking that maybe we can have a rematch right now… But it's all right if you're busy.
 end
 = Route112_EventScript_Bryant
 trainerbattle_single TRAINER_BRYANT Route112_Text_BryantIntro Route112_Text_BryantDefeat
-msgbox	Route112_Text_BryantPostBattle
+msgbox	I like the way you battle. It has a certain flair to it.
 end
 = Route112_EventScript_ItemNugget
 goto_if_set FLAG_ITEM_ROUTE_112_NUGGET Route112_EventScript_ItemNugget_Taken
@@ -211,24 +211,24 @@ special ObjectEventInteractionPickBerryTree
 goto_if_eq VAR_0x8004 0 BerryTree_EventScript_BerryPocketFull
 special IncrementDailyPickedBerries
 special ObjectEventInteractionRemoveBerryTree
-message BerryTree_Text_PickedTheBerry
+msgbox	BerryTree_Text_PickedTheBerry
 playfanfare MUS_OBTAIN_BERRY
 waitmessage
 waitfanfare
 waitbuttonpress
-message BerryTree_Text_PutAwayBerry
+msgbox	BerryTree_Text_PutAwayBerry
 waitmessage
 waitbuttonpress
 release
 end
 = BerryTree_EventScript_BerryPocketFull
-message BerryTree_Text_BerryPocketFull
+msgbox	BerryTree_Text_BerryPocketFull
 waitmessage
 waitbuttonpress
 release
 end
 = BerryTree_EventScript_CancelPickingBerry
-message BerryTree_Text_BerryLeftUnpicked
+msgbox	BerryTree_Text_BerryLeftUnpicked
 waitmessage
 waitbuttonpress
 release
@@ -237,7 +237,7 @@ end
 call BerryTree_EventScript_GetCareAdverb
 lockall
 special ObjectEventInteractionGetBerryName
-message BerryTree_Text_BerryGrowthStage4
+msgbox	BerryTree_Text_BerryGrowthStage4
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
@@ -270,11 +270,11 @@ releaseall
 end
 = BerryTree_EventScript_WaterBerry
 special ObjectEventInteractionGetBerryName
-message BerryTree_Text_WateredTheBerry
+msgbox	BerryTree_Text_WateredTheBerry
 waitmessage
 special ObjectEventInteractionWaterBerryTree
 special DoWateringBerryTreeAnim
-message BerryTree_Text_PlantIsDelighted
+msgbox	BerryTree_Text_PlantIsDelighted
 waitmessage
 waitbuttonpress
 releaseall
@@ -282,21 +282,21 @@ end
 = BerryTree_EventScript_CheckBerryStage3
 lockall
 special ObjectEventInteractionGetBerryName
-message BerryTree_Text_BerryGrowthStage3
+msgbox	BerryTree_Text_BerryGrowthStage3
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
 = BerryTree_EventScript_CheckBerryStage2
 lockall
 special ObjectEventInteractionGetBerryName
-message BerryTree_Text_BerryGrowthStage2
+msgbox	BerryTree_Text_BerryGrowthStage2
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
 = BerryTree_EventScript_CheckBerryStage1
 lockall
 special ObjectEventInteractionGetBerryCountString
-message BerryTree_Text_BerryGrowthStage1
+msgbox	BerryTree_Text_BerryGrowthStage1
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
@@ -305,7 +305,7 @@ lock
 faceplayer
 specialvar VAR_RESULT PlayerHasBerries
 goto_if_eq VAR_RESULT TRUE BerryTree_EventScript_WantToPlant
-message BerryTree_Text_ItsSoftLoamySoil
+msgbox	BerryTree_Text_ItsSoftLoamySoil
 waitmessage
 waitbuttonpress
 release
@@ -331,13 +331,13 @@ special ObjectEventInteractionPlantBerryTree
 incrementgamestat GAME_STAT_PLANTED_BERRIES
 special IncrementDailyPlantedBerries
 special ObjectEventInteractionGetBerryCountString
-message BerryTree_Text_PlantedOneBerry
+msgbox	BerryTree_Text_PlantedOneBerry
 waitmessage
 waitbuttonpress
 return
 = BerryTree_EventScript_Sparkling
 lockall
-message BerryTree_Text_ExclamationPoint
+msgbox	BerryTree_Text_ExclamationPoint
 waitmessage
 waitbuttonpress
 releaseall
@@ -382,31 +382,31 @@ end
 trainerbattle_single TRAINER_TRENT_1 Route112_Text_TrentIntro Route112_Text_TrentDefeat Route112_EventScript_RegisterTrent
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route112_EventScript_RematchTrent
-msgbox	Route112_Text_TrentPostBattle
+msgbox	Try hiking, and I mean really pounding, on these mountain trails with a heavy pack weighing dozens of pounds.That, my friend, will get your body into serious shape.
 release
 end
 = Route112_EventScript_RematchTrent
 trainerbattle_rematch TRAINER_TRENT_1 Route112_Text_TrentRematchIntro Route112_Text_TrentRematchDefeat
-msgbox	Route112_Text_TrentRematchPostBattle
+msgbox	I hear there are some seriously tough TRAINERS on top of MT. CHIMNEY.I intend to get up there and give them a challenge!
 end
 = Route112_EventScript_RegisterTrent
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Route112_Text_TrentRegister
+msgbox	Ow, my legs have cramped up. Can you grab me some bandages from my backpack?No, that's my POKéNAV! Oh, fine, I'll register you.
 register_matchcall TRAINER_TRENT_1
 release
 end
 = Route112_EventScript_Carol
 trainerbattle_single TRAINER_CAROL Route112_Text_CarolIntro Route112_Text_CarolDefeat
-msgbox	Route112_Text_CarolPostBattle
+msgbox	It doesn't matter if you're good or bad at singing or POKéMON.If you have the most fun, you win!
 end
 = Route112_EventScript_Larry
 trainerbattle_single TRAINER_LARRY Route112_Text_LarryIntro Route112_Text_LarryDefeat
-msgbox	Route112_Text_LarryPostBattle
+msgbox	I'm not crying because I miss my mommy! Snivel…
 end
 = Route112_EventScript_Brice
 trainerbattle_single TRAINER_BRICE Route112_Text_BriceIntro Route112_Text_BriceDefeat
-msgbox	Route112_Text_BricePostBattle
+msgbox	Hahahahaha! Something flew up my nose! Hahahaha-hatchoo!
 end
 signs
 19 44	MT. CHIMNEY“For LAVARIDGE TOWN or the summit, please take the CABLE CAR.”

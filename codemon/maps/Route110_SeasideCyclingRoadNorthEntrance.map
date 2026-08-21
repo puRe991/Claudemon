@@ -63,3 +63,5 @@ faceplayer
 msgbox	On CYCLING ROAD, you can go all out and cycle as fast as you'd like.It feels great to go that fast, but try not to crash into anyone!
 release
 end
+counters
+672,673,680,681

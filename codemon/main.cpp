@@ -245,11 +245,9 @@ static Session* player_step(Session* s, DIR dir, Audio* audio, GameState* gs) {
 
 // Talk to whatever the player is facing. If a dialog is already open, this
 // advances/closes it. Returns true if something happened.
-static bool interact(Session* s, DialogBox& box, Audio* audio, ScriptVM& vm) {
-    if (box.is_active()) { box.advance(); return true; }   // next page / dismiss
-    int tx, ty;
-    s->player->target_tile(s->player->get_facing(), tx, ty);
-    // 1) an NPC on the faced tile
+// Find and talk to whichever NPC occupies (tx,ty); returns true if one did.
+static bool talk_to_npc_at(Session* s, DialogBox& box, Audio* audio, ScriptVM& vm,
+                           int tx, int ty) {
     for (size_t i = 0; i < s->agents.size(); ++i) {
         Agent& ag = s->agents[i];
         if (ag.ch->get_tile_x() == tx && ag.ch->get_tile_y() == ty) {
@@ -264,6 +262,26 @@ static bool interact(Session* s, DialogBox& box, Audio* audio, ScriptVM& vm) {
             }
             return true;
         }
+    }
+    return false;
+}
+
+static bool interact(Session* s, DialogBox& box, Audio* audio, ScriptVM& vm) {
+    if (box.is_active()) { box.advance(); return true; }   // next page / dismiss
+    int tx, ty;
+    DIR facing = s->player->get_facing();
+    s->player->target_tile(facing, tx, ty);
+    // 1) an NPC on the faced tile
+    if (talk_to_npc_at(s, box, audio, vm, tx, ty)) return true;
+    // 1b) a shop/PC counter: the clerk/nurse stands one tile past it, out
+    // of normal reach since the counter itself blocks movement (pokeemerald
+    // looks through counters the same way -- MetatileBehavior_IsCounter in
+    // field_control_avatar.c).
+    if (s->map->is_counter(tx, ty)) {
+        int cx, cy;
+        Character tmp(tx, ty);
+        tmp.target_tile(facing, cx, cy);
+        if (talk_to_npc_at(s, box, audio, vm, cx, cy)) return true;
     }
     // 2) a readable sign on the faced tile
     const Sign* sg = s->map->sign_at(tx, ty);
@@ -436,6 +454,53 @@ struct StarterSelect {
     }
 };
 
+// `msgbox ..., MSGBOX_YESNO` (heal at the Pokemon Center, buy/sell
+// confirmations, ...): the VM can't drive a cursor-driven choice itself
+// (same reason as StarterSelect above), so this shows a real Ja/Nein
+// prompt and the pick is fed back via ScriptVM::resolve_yesno().
+struct YesNoPrompt {
+    bool open_ = false, done_ = false;
+    int cursor = 0;   // 0 = Ja, 1 = Nein
+    sf::Font font; bool font_ok = false;
+
+    bool load() { return font_ok = font.loadFromFile("assets/fonts/DejaVuSans.ttf"); }
+    void open() { open_ = true; done_ = false; cursor = 0; }
+    bool active() const { return open_; }
+    bool done() const { return done_; }
+    void ack() { done_ = false; }
+    bool yes() const { return cursor == 0; }
+
+    void input(BtnInput b) {
+        if (b == BTN_UP && cursor > 0) cursor--;
+        else if (b == BTN_DOWN && cursor < 1) cursor++;
+        else if (b == BTN_CONFIRM) { done_ = true; open_ = false; }
+    }
+
+    void draw(sf::RenderTarget& target) {
+        if (!open_ || !font_ok) return;
+        sf::View saved = target.getView();
+        target.setView(target.getDefaultView());
+        sf::Vector2f size = target.getView().getSize();
+        float w = 120.f, h = 74.f;
+        float x = size.x - w - 14.f, y = size.y - h - 100.f;
+        sf::RectangleShape box(sf::Vector2f(w, h));
+        box.setPosition(x, y);
+        box.setFillColor(sf::Color(248, 248, 250));
+        box.setOutlineColor(sf::Color(40, 40, 56));
+        box.setOutlineThickness(3.f);
+        target.draw(box);
+        const char* opts[2] = {"Ja", "Nein"};
+        for (int i = 0; i < 2; ++i) {
+            std::string s = std::string(i == cursor ? "> " : "  ") + opts[i];
+            sf::Text t(s, font, 20);
+            t.setPosition(x + 16, y + 10 + i * 32);
+            t.setFillColor(sf::Color(40, 40, 56));
+            target.draw(t);
+        }
+        target.setView(saved);
+    }
+};
+
 int main() {
     const char* map_env = std::getenv("CODEMON_MAP");
     // Story start: the player wakes up in their bedroom on Brendan's House 2F
@@ -484,6 +549,8 @@ int main() {
     StarterSelect starter;
     starter.load();
     if (std::getenv("CODEMON_CHOOSE_STARTER")) starter.open();
+    YesNoPrompt yesno;
+    yesno.load();
     // a few starting items so the bag is not empty
     gs.give_item("ITEM_POTION", 5);
     gs.give_item("ITEM_POKE_BALL", 10);
@@ -549,6 +616,8 @@ int main() {
                     char tok = ((size_t)(i - 1) < walk.size()) ? walk[i - 1] : 0;
                     if (starter.active()) {
                         if (tok) starter.input(token_btn(tok));
+                    } else if (yesno.active()) {
+                        if (tok) yesno.input(token_btn(tok));
                     } else if (battle.active()) {
                         if (tok) battle.input(token_btn(tok));
                     } else if (games.active()) {
@@ -594,6 +663,12 @@ int main() {
                     } else if (!starter.active() && vm.wants_starter()) {
                         starter.open();
                     }
+                    if (yesno.done()) {
+                        if (vm.wants_yesno()) vm.resolve_yesno(yesno.yes());
+                        yesno.ack();
+                    } else if (!yesno.active() && vm.wants_yesno()) {
+                        yesno.open();
+                    }
                     do_pending_warp(nullptr);
                     battle.tick(0.13f);
                     games.tick(0.13f);
@@ -608,6 +683,7 @@ int main() {
                     draw_scene(rt, sess); box.draw(rt);
                     draw_banner(rt, ban_font, banner, banner_t);
                     menu.draw(rt);
+                    if (yesno.active()) yesno.draw(rt);
                     if (fade > 0.f) {
                         rt.setView(rt.getDefaultView());
                         sf::RectangleShape f(rt.getView().getSize());
@@ -644,6 +720,14 @@ int main() {
                     case sf::Keyboard::D: starter.input(BTN_RIGHT); break;
                     case sf::Keyboard::Space:
                     case sf::Keyboard::Return: starter.input(BTN_CONFIRM); break;
+                    default: break;
+                    }
+                } else if (yesno.active()) {
+                    switch (event.key.code) {
+                    case sf::Keyboard::W: yesno.input(BTN_UP); break;
+                    case sf::Keyboard::S: yesno.input(BTN_DOWN); break;
+                    case sf::Keyboard::Space:
+                    case sf::Keyboard::Return: yesno.input(BTN_CONFIRM); break;
                     default: break;
                     }
                 } else if (battle.active()) {
@@ -714,6 +798,12 @@ int main() {
         } else if (!starter.active() && vm.wants_starter()) {
             starter.open();
         }
+        if (yesno.done()) {
+            if (vm.wants_yesno()) vm.resolve_yesno(yesno.yes());
+            yesno.ack();
+        } else if (!yesno.active() && vm.wants_yesno()) {
+            yesno.open();
+        }
         do_pending_warp(&audio);
         float dt = clock.restart().asSeconds();
         if (vm.running()) vm.update(dt);
@@ -739,6 +829,7 @@ int main() {
             box.draw(*scr.get_window());
             draw_banner(*scr.get_window(), ban_font, banner, banner_t);
             menu.draw(*scr.get_window());
+            if (yesno.active()) yesno.draw(*scr.get_window());
             if (fade > 0.f) {
                 sf::View sv = scr.get_window()->getView();
                 scr.get_window()->setView(scr.get_window()->getDefaultView());

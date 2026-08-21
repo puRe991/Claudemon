@@ -39,7 +39,7 @@ waitmovement 0
 applymovement LOCALID_TRAINER_HILL_ELEVATOR_ATTENDANT TrainerHill_Elevator_Movement_AttendantFacePlayer
 waitmovement 0
 lockall
-msgbox	TrainerHill_Elevator_Text_ReturnToReception
+msgboxyesno	Would you like to return to the reception counter?
 goto_if_eq VAR_RESULT NO TrainerHill_Elevator_EventScript_ExitToRoof
 releaseall
 applymovement LOCALID_TRAINER_HILL_ELEVATOR_ATTENDANT TrainerHill_Elevator_Movement_AttendantFaceDown

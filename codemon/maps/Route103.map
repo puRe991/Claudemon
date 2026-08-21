@@ -114,19 +114,19 @@ end
 end
 = Route103_EventScript_Pete
 trainerbattle_single TRAINER_PETE Route103_Text_PeteIntro Route103_Text_PeteDefeated
-msgbox	Route103_Text_PetePostBattle
+msgbox	Oh, I understand where you're coming from now.If I had a POKéMON that trusty, I'd want to SURF on it, too!
 end
 = Route103_EventScript_Isabelle
 trainerbattle_single TRAINER_ISABELLE Route103_Text_IsabelleIntro Route103_Text_IsabelleDefeated
-msgbox	Route103_Text_IsabellePostBattle
+msgbox	I'm a poor swimmer so I was practicing… Sorry for almost crashing into you.
 end
 = Route103_EventScript_Marcos
 trainerbattle_single TRAINER_MARCOS Route103_Text_MarcosIntro Route103_Text_MarcosDefeated
-msgbox	Route103_Text_MarcosPostBattle
+msgbox	I was playing my guitar where few people were around, but a lot of fans have gathered.Heh, maybe I should turn pro.
 end
 = Route103_EventScript_Rhett
 trainerbattle_single TRAINER_RHETT Route103_Text_RhettIntro Route103_Text_RhettDefeated
-msgbox	Route103_Text_RhettPostBattle
+msgbox	Do you like cramped quarters like this?
 end
 = EventScript_CutTree
 lockall
@@ -177,17 +177,17 @@ end
 trainerbattle_single TRAINER_MIGUEL_1 Route103_Text_MiguelIntro Route103_Text_MiguelDefeated Route102_EventScript_MiguelRegisterMatchCallAfterBattle
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route103_EventScript_MiguelRematch
-msgbox	Route103_Text_MiguelPostBattle
+msgbox	My delightful POKéMON looks darling even when it's fainted!
 release
 end
 = Route103_EventScript_MiguelRematch
 trainerbattle_rematch TRAINER_MIGUEL_1 Route103_Text_MiguelRematchIntro Route103_Text_MiguelRematchDefeated
-msgbox	Route103_Text_MiguelRematchPostBattle
+msgbox	The more I spend time with it, the more adorable my POKéMON becomes.
 end
 = Route102_EventScript_MiguelRegisterMatchCallAfterBattle
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Route103_Text_MiguelRegister
+msgbox	I'll get you to come out and look in on my delightful POKéMON again!
 register_matchcall TRAINER_MIGUEL_1
 release
 end
@@ -198,7 +198,7 @@ goto_if_unset FLAG_HAS_MATCH_CALL ProfBirch_EventScript_AskRatePokedex
 goto_if_unset FLAG_ENABLE_PROF_BIRCH_MATCH_CALL EventScript_RegisterProfBirch
 goto ProfBirch_EventScript_AskRatePokedex
 = ProfBirch_EventScript_AskRatePokedex
-msgbox	gBirchDexRatingText_AreYouCurious
+msgboxyesno	PROF. BIRCH: Ah, PLAYER!Are you curious about how your POKéDEX is coming along?
 goto_if_eq VAR_RESULT NO ProfBirch_EventScript_DeclineRating
 call ProfBirch_EventScript_RatePokedex
 release
@@ -211,7 +211,7 @@ copyvar VAR_0x8009 VAR_0x8006
 copyvar VAR_0x800A VAR_RESULT
 buffernumberstring STR_VAR_1 VAR_0x8008  @ Num Hoenn seen
 buffernumberstring STR_VAR_2 VAR_0x8009  @ Num Hoenn caught
-msgbox	gBirchDexRatingText_SoYouveSeenAndCaught
+msgbox	Hmhm…So, you've seen POKéMON, and you've caught POKéMON…
 call ProfBirch_EventScript_ShowRatingMessage
 goto_if_eq VAR_0x800A 0 Common_EventScript_NopReturn  @ National dex not enabled
 setvar VAR_0x8004 1
@@ -220,7 +220,7 @@ copyvar VAR_0x8008 VAR_0x8005
 copyvar VAR_0x8009 VAR_0x8006
 buffernumberstring STR_VAR_1 VAR_0x8008  @ Num National seen
 buffernumberstring STR_VAR_2 VAR_0x8009  @ Num National caught
-msgbox	gBirchDexRatingText_OnANationwideBasis
+msgbox	Hmhm… On a nationwide basis…You've seen POKéMON, and you've caught POKéMON…
 return
 = ProfBirch_EventScript_ShowRatingMessage
 copyvar VAR_0x8004 VAR_0x8009
@@ -229,7 +229,7 @@ waitmessage
 waitbuttonpress
 return
 = ProfBirch_EventScript_DeclineRating
-msgbox	gBirchDexRatingText_Cancel
+msgbox	Hm? Oh, you haven't caught enough POKéMON to make it worthwhile.
 release
 end
 = Route103_EventScript_Boy
@@ -260,24 +260,24 @@ special ObjectEventInteractionPickBerryTree
 goto_if_eq VAR_0x8004 0 BerryTree_EventScript_BerryPocketFull
 special IncrementDailyPickedBerries
 special ObjectEventInteractionRemoveBerryTree
-message BerryTree_Text_PickedTheBerry
+msgbox	BerryTree_Text_PickedTheBerry
 playfanfare MUS_OBTAIN_BERRY
 waitmessage
 waitfanfare
 waitbuttonpress
-message BerryTree_Text_PutAwayBerry
+msgbox	BerryTree_Text_PutAwayBerry
 waitmessage
 waitbuttonpress
 release
 end
 = BerryTree_EventScript_BerryPocketFull
-message BerryTree_Text_BerryPocketFull
+msgbox	BerryTree_Text_BerryPocketFull
 waitmessage
 waitbuttonpress
 release
 end
 = BerryTree_EventScript_CancelPickingBerry
-message BerryTree_Text_BerryLeftUnpicked
+msgbox	BerryTree_Text_BerryLeftUnpicked
 waitmessage
 waitbuttonpress
 release
@@ -286,7 +286,7 @@ end
 call BerryTree_EventScript_GetCareAdverb
 lockall
 special ObjectEventInteractionGetBerryName
-message BerryTree_Text_BerryGrowthStage4
+msgbox	BerryTree_Text_BerryGrowthStage4
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
@@ -319,11 +319,11 @@ releaseall
 end
 = BerryTree_EventScript_WaterBerry
 special ObjectEventInteractionGetBerryName
-message BerryTree_Text_WateredTheBerry
+msgbox	BerryTree_Text_WateredTheBerry
 waitmessage
 special ObjectEventInteractionWaterBerryTree
 special DoWateringBerryTreeAnim
-message BerryTree_Text_PlantIsDelighted
+msgbox	BerryTree_Text_PlantIsDelighted
 waitmessage
 waitbuttonpress
 releaseall
@@ -331,21 +331,21 @@ end
 = BerryTree_EventScript_CheckBerryStage3
 lockall
 special ObjectEventInteractionGetBerryName
-message BerryTree_Text_BerryGrowthStage3
+msgbox	BerryTree_Text_BerryGrowthStage3
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
 = BerryTree_EventScript_CheckBerryStage2
 lockall
 special ObjectEventInteractionGetBerryName
-message BerryTree_Text_BerryGrowthStage2
+msgbox	BerryTree_Text_BerryGrowthStage2
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
 = BerryTree_EventScript_CheckBerryStage1
 lockall
 special ObjectEventInteractionGetBerryCountString
-message BerryTree_Text_BerryGrowthStage1
+msgbox	BerryTree_Text_BerryGrowthStage1
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
@@ -354,7 +354,7 @@ lock
 faceplayer
 specialvar VAR_RESULT PlayerHasBerries
 goto_if_eq VAR_RESULT TRUE BerryTree_EventScript_WantToPlant
-message BerryTree_Text_ItsSoftLoamySoil
+msgbox	BerryTree_Text_ItsSoftLoamySoil
 waitmessage
 waitbuttonpress
 release
@@ -380,33 +380,33 @@ special ObjectEventInteractionPlantBerryTree
 incrementgamestat GAME_STAT_PLANTED_BERRIES
 special IncrementDailyPlantedBerries
 special ObjectEventInteractionGetBerryCountString
-message BerryTree_Text_PlantedOneBerry
+msgbox	BerryTree_Text_PlantedOneBerry
 waitmessage
 waitbuttonpress
 return
 = BerryTree_EventScript_Sparkling
 lockall
-message BerryTree_Text_ExclamationPoint
+msgbox	BerryTree_Text_ExclamationPoint
 waitmessage
 waitbuttonpress
 releaseall
 end
 = Route103_EventScript_Andrew
 trainerbattle_single TRAINER_ANDREW Route103_Text_AndrewIntro Route103_Text_AndrewDefeated
-msgbox	Route103_Text_AndrewPostBattle
+msgbox	Gah, I'm still boiling mad… Grrrrr…
 end
 = Route103_EventScript_Amy
 trainerbattle_double TRAINER_AMY_AND_LIV_1 Route103_Text_AmyIntro Route103_Text_AmyDefeated Route103_Text_AmyNotEnoughPokemon Route102_EventScript_AmyRegisterMatchCallAfterBattle
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route102_EventScript_AmyRematch
-msgbox	Route103_Text_AmyPostBattle
+msgbox	AMY: You have to think about all kinds of things when you're battling against two TRAINERS.
 end
 = Route102_EventScript_AmyRematch
 trainerbattle_rematch_double TRAINER_AMY_AND_LIV_1 Route103_Text_AmyRematchIntro Route103_Text_AmyRematchDefeated Route103_Text_AmyRematchNotEnoughPokemon
-msgbox	Route103_Text_AmyRematchPostBattle
+msgbox	AMY: You have to think about all kinds of things when you're battling against two TRAINERS.
 end
 = Route102_EventScript_AmyRegisterMatchCallAfterBattle
-msgbox	Route103_Text_AmyLivRegister
+msgbox	LIV: Really, we're a lot better… It's true! We'll show you next time!
 register_matchcall TRAINER_AMY_AND_LIV_1
 release
 end
@@ -414,20 +414,20 @@ end
 trainerbattle_double TRAINER_AMY_AND_LIV_1 Route103_Text_LivIntro Route103_Text_LivDefeated Route103_Text_LivNotEnoughPokemon Route102_EventScript_LivRegisterMatchCallAfterBattle
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route102_EventScript_LivRematch
-msgbox	Route103_Text_LivPostBattle
+msgbox	LIV: We work perfectly together, me and my big sister…But we still lost…
 end
 = Route102_EventScript_LivRematch
 trainerbattle_rematch_double TRAINER_AMY_AND_LIV_1 Route103_Text_LivRematchIntro Route103_Text_LivRematchDefeated Route103_Text_LivRematchNotEnoughPokemon
-msgbox	Route103_Text_LivRematchPostBattle
+msgbox	LIV: We work perfectly together, me and my big sister…But why did we lose again?
 end
 = Route102_EventScript_LivRegisterMatchCallAfterBattle
-msgbox	Route103_Text_AmyLivRegister
+msgbox	LIV: Really, we're a lot better… It's true! We'll show you next time!
 register_matchcall TRAINER_AMY_AND_LIV_1
 release
 end
 = Route103_EventScript_Daisy
 trainerbattle_single TRAINER_DAISY Route103_Text_DaisyIntro Route103_Text_DaisyDefeated
-msgbox	Route103_Text_DaisyPostBattle
+msgbox	Aromatherapy is a form of mental healing that works with fragrances.
 end
 = Route103_EventScript_Rival
 lockall

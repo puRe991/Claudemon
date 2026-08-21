@@ -42,7 +42,7 @@ end
 = FallarborTown_MoveRelearnersHouse_EventScript_AskTeachMove
 checkitem ITEM_HEART_SCALE
 goto_if_eq VAR_RESULT FALSE FallarborTown_MoveRelearnersHouse_EventScript_ComeBackWithHeartScale
-msgbox	Oh! That's it! That's an honest to goodness HEART SCALE!Let me guess, you want me to teach a move?
+msgboxyesno	Oh! That's it! That's an honest to goodness HEART SCALE!Let me guess, you want me to teach a move?
 switch VAR_RESULT
 case NO FallarborTown_MoveRelearnersHouse_EventScript_ComeBackWithHeartScale
 goto FallarborTown_MoveRelearnersHouse_EventScript_ChooseMon

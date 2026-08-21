@@ -39,7 +39,7 @@ scriptdefs
 = PacifidlogTown_House4_EventScript_Boy
 lock
 faceplayer
-msgbox	Where did you come from?
+msgboxyesno	Where did you come from?
 goto_if_eq VAR_RESULT YES PacifidlogTown_House4_EventScript_Yes
 goto_if_eq VAR_RESULT NO PacifidlogTown_House4_EventScript_No
 end

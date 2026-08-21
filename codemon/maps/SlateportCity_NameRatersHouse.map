@@ -31,7 +31,7 @@ scriptdefs
 = SlateportCity_NameRatersHouse_EventScript_NameRater
 lock
 faceplayer
-msgbox	Hi, hi! I'm the NAME RATER! I'm the fortune-teller of names!I shall be pleased to rate your POKéMON's nickname.
+msgboxyesno	Hi, hi! I'm the NAME RATER! I'm the fortune-teller of names!I shall be pleased to rate your POKéMON's nickname.
 goto_if_eq VAR_RESULT YES SlateportCity_NameRatersHouse_EventScript_ChooseMonToRate
 goto_if_eq VAR_RESULT NO SlateportCity_NameRatersHouse_EventScript_DeclineNameRate
 end
@@ -54,7 +54,7 @@ goto_if_eq VAR_RESULT TRUE SlateportCity_NameRatersHouse_EventScript_PlayerNotMo
 specialvar VAR_RESULT MonOTNameNotPlayer
 special BufferMonNickname
 goto_if_eq VAR_RESULT TRUE SlateportCity_NameRatersHouse_EventScript_PlayerNotMonsOT
-msgbox	Hmmm… , is it? That is quite a fine name you bestowed.But! What say you, if I were to suggest a slightly better name?
+msgboxyesno	Hmmm… , is it? That is quite a fine name you bestowed.But! What say you, if I were to suggest a slightly better name?
 goto_if_eq VAR_RESULT YES SlateportCity_NameRatersHouse_EventScript_ChangeNickname
 goto_if_eq VAR_RESULT NO SlateportCity_NameRatersHouse_EventScript_DeclineNameRate
 end

@@ -71,15 +71,15 @@ faceplayer
 dotimebasedevents
 goto_if_ne VAR_POKELOT_PRIZE_ITEM ITEM_NONE LilycoveCity_DepartmentStore_1F_EventScript_GivePrizeFromEarlier
 goto_if_set FLAG_DAILY_PICKED_LOTO_TICKET LilycoveCity_DepartmentStore_1F_EventScript_ComeBackTomorrow
-msgbox	LilycoveCity_DepartmentStore_1F_Text_LotteryCornerDrawTicket
+msgboxyesno	This is the POKéMON LOTTERY CORNER.All shoppers at our DEPARTMENT STORE get to draw a POKéMON LOTO TICKET.If the LOTO TICKET's number matches the ID number of any of your POKéMON, you will receive a fabulous gift.Would you like to draw a POKéMON LOTO TICKET?
 goto_if_eq VAR_RESULT NO LilycoveCity_DepartmentStore_1F_EventScript_PleaseVisitAgain
 setflag FLAG_DAILY_PICKED_LOTO_TICKET
-message LilycoveCity_DepartmentStore_1F_Text_PleasePickTicket
+msgbox	Please pick a LOTO TICKET. ………
 waitmessage
 special RetrieveLotteryNumber
 copyvar VAR_0x8008 VAR_RESULT
 special BufferLottoTicketNumber
-msgbox	LilycoveCity_DepartmentStore_1F_Text_TicketNumberIsXPleaseWait
+msgbox	The LOTO TICKET number is .I need to run a check on this number to see if it matches any of your POKéMON's ID numbers. Please wait.
 applymovement LOCALID_LOTTERY_CLERK Common_Movement_WalkInPlaceFasterRight
 waitmovement 0
 playse SE_PC_ON
@@ -105,7 +105,7 @@ special TryPutLotteryWinnerReportOnAir
 goto LilycoveCity_DepartmentStore_1F_EventScript_PleaseVisitAgain2
 end
 = LilycoveCity_DepartmentStore_1F_EventScript_PleaseVisitAgain2
-msgbox	LilycoveCity_DepartmentStore_1F_Text_PleaseVisitAgain2
+msgbox	Please do visit again.
 release
 end
 = LilycoveCity_DepartmentStore_1F_EventScript_RecordPrizeNoRoom
@@ -114,41 +114,41 @@ copyvar VAR_POKELOT_PRIZE_ITEM VAR_0x8005
 goto LilycoveCity_DepartmentStore_1F_EventScript_NoRoomForPrize
 end
 = LilycoveCity_DepartmentStore_1F_EventScript_NoRoomForPrize
-msgbox	LilycoveCity_DepartmentStore_1F_Text_NoRoomForThis
+msgbox	Oh? You seem to have no room for this.Please make room in your BAG and let me know.
 release
 end
 = LilycoveCity_DepartmentStore_1F_EventScript_FullMatch
-msgbox	LilycoveCity_DepartmentStore_1F_Text_AllFiveDigitsMatched
+msgbox	Oh, my goodness, all five digits matched!You've won the jackpot prize! You've won the !
 return
 = LilycoveCity_DepartmentStore_1F_EventScript_FourDigitMatch
-msgbox	LilycoveCity_DepartmentStore_1F_Text_FourDigitsMatched
+msgbox	Four digits matched, so you win the first prize! You've won the !
 return
 = LilycoveCity_DepartmentStore_1F_EventScript_ThreeDigitMatch
-msgbox	LilycoveCity_DepartmentStore_1F_Text_ThreeDigitsMatched
+msgbox	Three digits matched, so you win the second prize! You've won the !
 return
 = LilycoveCity_DepartmentStore_1F_EventScript_TwoDigitMatch
-msgbox	LilycoveCity_DepartmentStore_1F_Text_TwoDigitsMatched
+msgbox	Two digits matched, so you win the third prize! You've won the !
 return
 = LilycoveCity_DepartmentStore_1F_EventScript_TicketMatchPCMon
-msgbox	LilycoveCity_DepartmentStore_1F_Text_TicketMatchesPCMon
+msgbox	Congratulations!The ID number of your PC-boxed matches your LOTO TICKET's number!
 return
 = LilycoveCity_DepartmentStore_1F_EventScript_TicketMatchPartyMon
-msgbox	LilycoveCity_DepartmentStore_1F_Text_TicketMatchesPartyMon
+msgbox	Congratulations!The ID number of your team's matches your LOTO TICKET's number!
 return
 = LilycoveCity_DepartmentStore_1F_EventScript_NoMatch
-msgbox	LilycoveCity_DepartmentStore_1F_Text_NoNumbersMatched
+msgbox	I'm sorry. None of the numbers matched.
 goto LilycoveCity_DepartmentStore_1F_EventScript_PleaseVisitAgain2
 end
 = LilycoveCity_DepartmentStore_1F_EventScript_PleaseVisitAgain
-msgbox	LilycoveCity_DepartmentStore_1F_Text_PleaseVisitAgain
+msgbox	Please do visit again.
 release
 end
 = LilycoveCity_DepartmentStore_1F_EventScript_ComeBackTomorrow
-msgbox	LilycoveCity_DepartmentStore_1F_Text_ComeBackTomorrow
+msgbox	Please come back tomorrow.
 release
 end
 = LilycoveCity_DepartmentStore_1F_EventScript_GivePrizeFromEarlier
-msgbox	LilycoveCity_DepartmentStore_1F_Text_PrizeWeveBeenHolding
+msgbox	PLAYER? Yes, I've been expecting you.This is the prize we've been holding for you.
 giveitem VAR_POKELOT_PRIZE_ITEM
 goto_if_eq VAR_RESULT FALSE LilycoveCity_DepartmentStore_1F_EventScript_NoRoomForPrize
 copyvar VAR_0x8004 VAR_POKELOT_PRIZE_PLACE
@@ -161,3 +161,5 @@ end
 = LilycoveCity_DepartmentStore_1F_EventScript_Greeter
 msgbox	Welcome to LILYCOVE DEPARTMENT STORE.
 end
+counters
+672,673,676,677

@@ -57,7 +57,7 @@ end
 = MtChimney_CableCarStation_EventScript_Attendant
 lock
 faceplayer
-msgbox	The CABLE CAR is ready to go down. Would you like to be on it?
+msgboxyesno	The CABLE CAR is ready to go down. Would you like to be on it?
 goto_if_eq VAR_RESULT YES MtChimney_CableCarStation_EventScript_RideCableCar
 goto_if_eq VAR_RESULT NO MtChimney_CableCarStation_EventScript_DeclineRide
 end
@@ -78,3 +78,5 @@ special CableCarWarp
 special CableCar
 release
 end
+counters
+537

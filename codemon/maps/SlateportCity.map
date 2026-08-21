@@ -348,7 +348,7 @@ special DisplayBerryPowderVendorMenu
 goto SlateportCity_EventScript_ChooseBerryPowderItem
 end
 = SlateportCity_EventScript_ChooseBerryPowderItem
-message SlateportCity_Text_ExchangeWhatWithIt
+msgbox	What would you like to exchange it with?
 waitmessage
 setvar VAR_0x8004 SCROLL_MULTI_BERRY_POWDER_VENDOR
 special ShowScrollableMultichoice
@@ -379,7 +379,7 @@ setvar VAR_0x8009 3000
 goto SlateportCity_EventScript_TryBuyBerryPowderItem
 end
 = SlateportCity_EventScript_TryBuyBerryPowderItem
-msgbox	Okay, you want to exchange your BERRY POWDER for one ?
+msgboxyesno	Okay, you want to exchange your BERRY POWDER for one ?
 goto_if_eq VAR_RESULT NO SlateportCity_EventScript_ChooseBerryPowderItem
 copyvar VAR_0x8004 VAR_0x8009
 specialvar VAR_RESULT HasEnoughBerryPowder
@@ -389,14 +389,14 @@ goto_if_eq VAR_RESULT FALSE SlateportCity_EventScript_NoRoomForBerryPowderItem
 copyvar VAR_0x8004 VAR_0x8009
 special TakeBerryPowder
 special PrintPlayerBerryPowderAmount
-msgbox	This is fine BERRY POWDER. It will make excellent medicine.Would you like to trade more of your BERRY POWDER for something else?
+msgboxyesno	This is fine BERRY POWDER. It will make excellent medicine.Would you like to trade more of your BERRY POWDER for something else?
 goto_if_eq VAR_RESULT YES SlateportCity_EventScript_ChooseBerryPowderItem
 msgbox	Okay! When you get some more BERRY POWDER, bring it to me, please!
 special RemoveBerryPowderVendorMenu
 release
 end
 = SlateportCity_EventScript_NoRoomForBerryPowderItem
-msgbox	gText_TheBagIsFull
+msgbox	The BAG is full…
 special RemoveBerryPowderVendorMenu
 release
 end
@@ -560,19 +560,19 @@ end
 = SlateportCity_EventScript_EnergyGuru
 lock
 faceplayer
-message SlateportCity_Text_EnergyGuruSellWhatYouNeed
+msgbox	I'm the ENERGY GURU! I'll go for it and sell you what you need!
 waitmessage
 pokemart SlateportCity_Pokemart_EnergyGuru
-msgbox	gText_PleaseComeAgain
+msgbox	Please come again!
 release
 end
 = SlateportCity_EventScript_PowerTMClerk
 lock
 faceplayer
-message gText_HowMayIServeYou
+msgbox	Welcome!How may I serve you?
 waitmessage
 pokemart SlateportCity_Pokemart_PowerTMs
-msgbox	gText_PleaseComeAgain
+msgbox	Please come again!
 release
 end
 = SlateportCity_EventScript_EffortRibbonWoman
@@ -586,7 +586,7 @@ specialvar VAR_RESULT Special_AreLeadMonEVsMaxedOut
 call_if_eq VAR_RESULT FALSE SlateportCity_EventScript_MonEVsNotMaxed
 msgbox	Went for it stupendously!As its reward, please give it this EFFORT RIBBON.
 playfanfare MUS_OBTAIN_ITEM
-message SlateportCity_Text_ReceivedEffortRibbon
+msgbox	PLAYER received the EFFORT RIBBON.
 waitfanfare
 msgbox	PLAYER put the EFFORT RIBBON on .
 special GiveLeadMonEffortRibbon
@@ -606,20 +606,20 @@ end
 = SlateportCity_EventScript_DollClerk
 lock
 faceplayer
-message gText_HowMayIServeYou
+msgbox	Welcome!How may I serve you?
 waitmessage
 pokemartdecoration SlateportCity_PokemartDecor_Dolls
-msgbox	gText_PleaseComeAgain
+msgbox	Please come again!
 release
 end
 = SlateportCity_EventScript_DecorClerk
 lock
 faceplayer
 goto_if_unset FLAG_RECEIVED_SECRET_POWER SlateportCity_EventScript_ComeBackWithSecretPower
-message gText_HowMayIServeYou
+msgbox	Welcome!How may I serve you?
 waitmessage
 pokemartdecoration SlateportCity_PokemartDecor
-msgbox	gText_PleaseComeAgain
+msgbox	Please come again!
 release
 end
 = SlateportCity_EventScript_ComeBackWithSecretPower

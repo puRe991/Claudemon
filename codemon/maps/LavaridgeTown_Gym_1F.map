@@ -169,7 +169,7 @@ trainerbattle_rematch_double TRAINER_FLANNERY_1 LavaridgeTown_Gym_1F_Text_Flanne
 msgbox	FLANNERY: I lost the match, but I'm completely satisfied.It's not often I get to enjoy a battle this heated.Let's have another one like this again sometime!
 end
 = LavaridgeTown_Gym_1F_EventScript_FlanneryDefeated
-message LavaridgeTown_Gym_1F_Text_ReceivedHeatBadge
+msgbox	PLAYER received the HEAT BADGE from FLANNERY.
 waitmessage
 call Common_EventScript_PlayGymBadgeFanfare
 msgbox	If you have a HEAT BADGE, all POKéMON up to Level 50, even those you get in trades from other people, will obey you completely.And, it lets POKéMON use the HM move STRENGTH outside of battle.This is a token of my appreciation. Don't be shy about taking it!

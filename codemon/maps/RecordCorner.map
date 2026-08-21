@@ -44,7 +44,7 @@ goto_if_ne VAR_TEMP_RECORD_MIX_GIFT_ITEM ITEM_NONE RecordCorner_EventScript_Rece
 end
 = RecordCorner_EventScript_ReceivedGiftItem
 bufferitemname STR_VAR_2 VAR_TEMP_RECORD_MIX_GIFT_ITEM
-message RecordCorner_Text_PlayerSentOverOneX
+msgbox	sent over one .
 waitmessage
 waitbuttonpress
 releaseall
@@ -67,7 +67,7 @@ end
 = RecordCorner_EventScript_Attendant
 goto_if_ne VAR_TEMP_MIXED_RECORDS 0 RecordCorner_EventScript_AlreadyMixed
 special Script_FacePlayer
-message RecordCorner_Text_TakeSeatAndWait
+msgbox	Please take your seat and wait.
 waitmessage
 waitbuttonpress
 special Script_ClearHeldMovement
@@ -75,9 +75,11 @@ closemessage
 end
 = RecordCorner_EventScript_AlreadyMixed
 special Script_FacePlayer
-message RecordCorner_Text_ThanksForComing
+msgbox	Thanks for coming.
 waitmessage
 waitbuttonpress
 special Script_ClearHeldMovement
 closemessage
 end
+counters
+704,707,713,714

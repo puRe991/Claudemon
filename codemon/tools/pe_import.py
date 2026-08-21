@@ -169,6 +169,7 @@ NUM_TILES_PRIMARY     = 512   # tile ids < this come from the primary tiles.png
 NUM_METATILES_PRIMARY = 512   # metatile ids >= this are secondary
 NUM_PALS_PRIMARY      = 6     # palettes 0-5 primary, 6-15 secondary
 MB_TALL_GRASS         = 2     # metatile behavior for encounter grass
+MB_COUNTER            = 128   # shop/PC-counter behavior (see combined_counter_ids)
 
 
 def _tileset_behaviors(ts_path):
@@ -191,6 +192,25 @@ def combined_grass_ids(prim_path, sec_path):
             if b == MB_TALL_GRASS:
                 grass.add(NUM_METATILES_PRIMARY + i)
     return grass
+
+
+def combined_counter_ids(prim_path, sec_path):
+    """Set of combined-sheet metatile ids that are MB_COUNTER: the raised
+    shop/Pokemon-Center desk tile, impassable but "see-through" for talking
+    to the clerk/nurse standing behind it -- pokeemerald's
+    GetInteractedObjectEventScript() special-cases these (see
+    field_control_avatar.c) to look one tile past a counter for an NPC
+    instead of requiring the player stand right next to them, which the
+    counter's own collision makes impossible."""
+    counters = set()
+    for i, b in enumerate(_tileset_behaviors(prim_path)):
+        if b == MB_COUNTER:
+            counters.add(i)
+    if sec_path:
+        for i, b in enumerate(_tileset_behaviors(sec_path)):
+            if b == MB_COUNTER:
+                counters.add(NUM_METATILES_PRIMARY + i)
+    return counters
 
 
 def load_encounters(src):
@@ -758,17 +778,14 @@ def _clean_dialog(raw):
     return PAGE_SEP.join(pages)
 
 
-def parse_map_texts(map_dir):
-    """Return {text_label: cleaned text} from a map's scripts.inc."""
+def _parse_text_lines(lines):
+    """Core of parse_map_texts/parse_text_file: pull every `label::` /
+    `.string "..."` block out of a list of source lines."""
     import re
-    inc = os.path.join(map_dir, "scripts.inc")
-    if not os.path.isfile(inc):
-        return {}
-    lines = open(inc, encoding="utf-8", errors="replace").read().splitlines()
     texts = {}
     i = 0
     while i < len(lines):
-        m = re.match(r"^(\w+):\s*$", lines[i])
+        m = re.match(r"^(\w+)::?\s*$", lines[i])
         if m and (i + 1 < len(lines)) and ".string" in lines[i + 1]:
             label = m.group(1)
             parts = []
@@ -783,6 +800,27 @@ def parse_map_texts(map_dir):
         else:
             i += 1
     return texts
+
+
+def parse_map_texts(map_dir):
+    """Return {text_label: cleaned text} from a map's scripts.inc."""
+    inc = os.path.join(map_dir, "scripts.inc")
+    if not os.path.isfile(inc):
+        return {}
+    lines = open(inc, encoding="utf-8", errors="replace").read().splitlines()
+    return _parse_text_lines(lines)
+
+
+def parse_text_file(path):
+    """Return {text_label: cleaned text} from a plain data/text/*.inc file
+    (no scripts, just .string blocks -- e.g. mart_clerk.inc's "How may I
+    serve you?", pkmn_center_nurse.inc's "Would you like to rest your
+    Pokemon?"). These live outside data/scripts/ and data/maps/, so the
+    project-wide text pool misses them unless scanned separately."""
+    if not os.path.isfile(path):
+        return {}
+    lines = open(path, encoding="utf-8", errors="replace").read().splitlines()
+    return _parse_text_lines(lines)
 
 
 def parse_map_load_triggers(map_dir):
@@ -950,8 +988,21 @@ def _parse_script_lines(lines, texts):
                 parts = s.split(None, 1)
                 op = parts[0]
                 args = [a.strip() for a in parts[1].split(",")] if len(parts) > 1 else []
-                if op == "msgbox" and args and args[0] in texts:
-                    body.append(["msgbox", texts[args[0]]])
+                if op in ("msgbox", "message") and args and args[0] in texts:
+                    # MSGBOX_YESNO gets its own opcode (rather than a 3rd
+                    # instruction arg) because the map-file writer serializes
+                    # msgbox as "msgbox\t<text>" -- a 3rd element would be
+                    # silently dropped, and the text itself is free-form
+                    # enough that we can't safely tack a marker onto it.
+                    is_yesno = op == "msgbox" and len(args) > 1 and args[1] == "MSGBOX_YESNO"
+                    body.append(["msgboxyesno" if is_yesno else "msgbox", texts[args[0]]])
+                elif op == "message":
+                    # pokeemerald's low-level "message TEXT; waitmessage;
+                    # waitbuttonpress" is the same on-screen effect as the
+                    # msgbox macro (which already expands to exactly that);
+                    # the ScriptVM only knows the "msgbox" opcode, so map
+                    # this one across too instead of silently doing nothing.
+                    body.append(["msgbox", args[0] if args else ""])
                 elif op in _WARP_OPS:
                     body.append([op] + _translate_warp_args(op, args))
                 else:
@@ -1081,6 +1132,7 @@ def cmd_world(src, limit=None):
     os.makedirs(maps_dir, exist_ok=True)
     pair_cache = {}    # (prim,sec) -> sheet name
     grass_cache = {}   # (prim,sec) -> set of grass metatile ids
+    counter_cache = {}   # (prim,sec) -> set of shop/PC-counter metatile ids
     catalog = []
     encounters = load_encounters(src)
     used_species = set()
@@ -1128,6 +1180,15 @@ def cmd_world(src, limit=None):
     global_texts = {}
     for mname in names:
         global_texts.update(parse_map_texts(os.path.join(mroot, mname)))
+    # data/text/*.inc: shared strings with no home map at all (mart clerk
+    # greetings, the Pokemon Center nurse's heal prompt, ...) -- referenced
+    # by the shared scripts below via plain `message`/`msgbox`, so without
+    # these the label itself would render instead of the actual text.
+    tdir = os.path.join(src, "data", "text")
+    if os.path.isdir(tdir):
+        for fn in sorted(os.listdir(tdir)):
+            if fn.endswith(".inc"):
+                global_texts.update(parse_text_file(os.path.join(tdir, fn)))
 
     # Shared scripts (data/scripts/*.inc): common NPCs like the player's mom,
     # the PC, Nurse Joy, move tutors etc. are defined once here and pointed
@@ -1170,8 +1231,10 @@ def cmd_world(src, limit=None):
                 print("  tileset fail", sheet_name, ex); continue
             pair_cache[key] = sheet_name
             grass_cache[key] = combined_grass_ids(prim_path, sec_path)
+            counter_cache[key] = combined_counter_ids(prim_path, sec_path)
         sheet_name = pair_cache[key]
         grass_ids = grass_cache.get(key, set())
+        counter_ids = counter_cache.get(key, set())
 
         w, h = layout["width"], layout["height"]
         try:
@@ -1185,7 +1248,12 @@ def cmd_world(src, limit=None):
         # NPCs from object events, with dialog + full script from scripts.inc
         mapdir = os.path.join(mroot, mname)
         dialogs = parse_map_dialogs(mapdir)
-        texts = parse_map_texts(mapdir)
+        # Local text wins on a clash, but a map-local script can just as
+        # easily reference a shared data/text/*.inc string (e.g. every mart
+        # clerk's "How may I serve you?") as one of its own .string blocks,
+        # so start from the global pool and layer this map's own on top.
+        texts = dict(global_texts)
+        texts.update(parse_map_texts(mapdir))
         all_scripts, all_moves = parse_map_scripts(mapdir, texts)
         # Local (per-map) definitions win on a name clash; shared ones fill
         # in anything the map doesn't define itself.
@@ -1408,8 +1476,8 @@ def cmd_world(src, limit=None):
             for lab, body in keep.items():
                 lines.append("= " + lab)
                 for instr in body:
-                    if instr[0] == "msgbox" and len(instr) >= 2:
-                        lines.append("msgbox\t" + instr[1])
+                    if instr[0] in ("msgbox", "msgboxyesno") and len(instr) >= 2:
+                        lines.append(instr[0] + "\t" + instr[1])
                     else:
                         lines.append(" ".join(instr))
         if signs:
@@ -1421,6 +1489,12 @@ def cmd_world(src, limit=None):
         if used_grass:
             lines.append("grass")
             lines.append(",".join(str(g) for g in used_grass))
+        # Shop/PC-counter metatile ids on this map (see combined_counter_ids):
+        # impassable, but interact() should look one tile past them.
+        used_counters = sorted(set(ids) & counter_ids)
+        if used_counters:
+            lines.append("counters")
+            lines.append(",".join(str(g) for g in used_counters))
         # Encounters are emitted for every map that has them; maps with land
         # encounters but no tall grass (caves/indoor) trigger on the floor.
         enc = encounters.get(mj.get("id"))

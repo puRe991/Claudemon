@@ -301,7 +301,7 @@ pokenavcall Route104_Text_DadPokenavCall
 waitmessage
 delay 30
 playfanfare MUS_REGISTER_MATCH_CALL
-msgbox	Route104_Text_RegisteredDadInPokenav
+msgbox	Registered DAD NORMAN in the POKéNAV.
 waitfanfare
 closemessage
 delay 30
@@ -339,11 +339,11 @@ goto_if_unset FLAG_DELIVERED_STEVEN_LETTER Route104_EventScript_DeliverLetterRem
 goto_if_set FLAG_DELIVERED_STEVEN_LETTER Route104_EventScript_LandedInDewford
 end
 = Route104_EventScript_LandedInDewford
-msgbox	DewfordTown_Text_BrineyLandedInDewford
+msgbox	MR. BRINEY: Ahoy! We've hit land in DEWFORD!You just go on and tell me whenever you want to set sail again!
 releaseall
 end
 = Route104_EventScript_DeliverLetterReminder
-msgbox	Route104_Text_LandedInDewfordDeliverLetter
+msgbox	MR. BRINEY: Ahoy! We've hit land in DEWFORD.I suppose you're off to deliver that LETTER to, who was it now, STEVEN!
 releaseall
 end
 = Route104_EventScript_SailToDewfordNoCall
@@ -448,7 +448,7 @@ waitmovement 0
 applymovement LOCALID_ROUTE104_RIVAL Route104_Movement_RivalApproachPlayer
 waitmovement 0
 copyobjectxytoperm LOCALID_ROUTE104_RIVAL
-msgbox	Me, I'm doing great!Want to check out how good I am with a battle?
+msgboxyesno	Me, I'm doing great!Want to check out how good I am with a battle?
 goto_if_eq VAR_RESULT YES Route104_EventScript_BattleBrendan
 msgbox	BRENDAN: What's the matter? Don't have any confidence in your POKéMON?
 call Route104_EventScript_RestoreMusic
@@ -486,7 +486,7 @@ setflag FLAG_DEFEATED_RIVAL_ROUTE_104
 goto Route104_EventScript_BrendanDefeated
 end
 = Route104_EventScript_BrendanAskToBattle
-msgbox	BRENDAN: What's up? Want to have a battle with me?
+msgboxyesno	BRENDAN: What's up? Want to have a battle with me?
 goto_if_eq VAR_RESULT YES Route104_EventScript_BattleBrendan
 msgbox	BRENDAN: What's the matter? Don't have any confidence in your POKéMON?
 releaseall
@@ -512,7 +512,7 @@ waitmovement 0
 applymovement LOCALID_ROUTE104_RIVAL Route104_Movement_RivalApproachPlayer
 waitmovement 0
 copyobjectxytoperm LOCALID_ROUTE104_RIVAL
-msgbox	Mine's looking pretty decent. So… How about a little battle?
+msgboxyesno	Mine's looking pretty decent. So… How about a little battle?
 goto_if_eq VAR_RESULT YES Route104_EventScript_BattleMay
 msgbox	MAY: Oh, what's the matter?Haven't you caught or raised your POKéMON very much?That's not very good for a TRAINER!
 call Route104_EventScript_RestoreMusic
@@ -546,7 +546,7 @@ setflag FLAG_DEFEATED_RIVAL_ROUTE_104
 goto Route104_EventScript_MayDefeated
 end
 = Route104_EventScript_MayAskToBattle
-msgbox	MAY: So, what do you think? How about a little battle here?
+msgboxyesno	MAY: So, what do you think? How about a little battle here?
 goto_if_eq VAR_RESULT YES Route104_EventScript_BattleMay
 msgbox	MAY: Oh, what's the matter?Haven't you caught or raised your POKéMON very much?That's not very good for a TRAINER!
 releaseall
@@ -559,7 +559,7 @@ waitmovement 0
 goto Route104_EventScript_RivalEncounter
 = Route104_EventScript_Darian
 trainerbattle_single TRAINER_DARIAN Route104_Text_DarianIntro Route104_Text_DarianDefeat
-msgbox	Route104_Text_DarianPostBattle
+msgbox	Hey, MAGIKARP, you sure don't live up to your name, do you?
 end
 = Route104_EventScript_Boy2
 lock
@@ -629,7 +629,7 @@ end
 end
 = Route104_EventScript_Billy
 trainerbattle_single TRAINER_BILLY Route104_Text_BillyIntro Route104_Text_BillyDefeat
-msgbox	Route104_Text_BillyPostBattle
+msgbox	I want to leave my footprints in the sand everywhere, but they disappear quickly…
 end
 = Route104_EventScript_ItemPokeBall
 goto_if_set FLAG_ITEM_ROUTE_104_POKE_BALL Route104_EventScript_ItemPokeBall_Taken
@@ -645,22 +645,22 @@ goto_if_eq VAR_RESULT TRUE Route104_EventScript_RematchCindy
 setvar VAR_0x8004 TRAINER_CINDY_1
 specialvar VAR_RESULT IsTrainerRegistered
 goto_if_eq VAR_RESULT FALSE Route104_EventScript_TryRegisterCindy
-msgbox	Route104_Text_CindyPostBattle
+msgbox	“Hello” is the beginning of “good-bye.” I hope we meet again.
 release
 end
 = Route104_EventScript_TryRegisterCindy
 goto_if_set FLAG_HAS_MATCH_CALL Route104_EventScript_RegisterCindy
-msgbox	Route104_Text_CindyPostBattle
+msgbox	“Hello” is the beginning of “good-bye.” I hope we meet again.
 release
 end
 = Route104_EventScript_RegisterCindy
-msgbox	Route104_Text_CindyRegister1
+msgbox	Hello, we meet again.We seem to be drawn together. Let's register each other in our POKéNAVS.
 register_matchcall TRAINER_CINDY_1
 release
 end
 = Route104_EventScript_RematchCindy
 trainerbattle_rematch TRAINER_CINDY_1 Route104_Text_CindyRematchIntro Route104_Text_CindyRematchDefeat
-msgbox	Route104_Text_CindyPostRematch
+msgbox	“Hello” is the beginning of “good-bye.” I hope we meet again.
 end
 = Route104_EventScript_TryRegisterCindyAfterBattle
 special PlayerFaceTrainerAfterBattle
@@ -669,7 +669,7 @@ goto_if_set FLAG_HAS_MATCH_CALL Route104_EventScript_RegisterCindyAfterBattle
 release
 end
 = Route104_EventScript_RegisterCindyAfterBattle
-msgbox	Route104_Text_CindyRegister2
+msgbox	We should commemorate how we seem to be drawn to each other.Let's register each other in our POKéNAVS.
 register_matchcall TRAINER_CINDY_1
 release
 end
@@ -680,22 +680,22 @@ goto_if_eq VAR_RESULT TRUE Route104_EventScript_RematchWinston
 setvar VAR_0x8004 TRAINER_WINSTON_1
 specialvar VAR_RESULT IsTrainerRegistered
 goto_if_eq VAR_RESULT FALSE Route104_EventScript_TryRegisterWinston
-msgbox	Route104_Text_WinstonPostBattle
+msgbox	There are some things money can't buy. That's POKéMON…
 release
 end
 = Route104_EventScript_TryRegisterWinston
 goto_if_set FLAG_HAS_MATCH_CALL Route104_EventScript_RegisterWinston
-msgbox	Route104_Text_WinstonPostBattle
+msgbox	There are some things money can't buy. That's POKéMON…
 release
 end
 = Route104_EventScript_RegisterWinston
-msgbox	Route104_Text_WinstonRegister1
+msgbox	Hm? Ah, you've obtained a POKéNAV.I will gladly register you. After all, I have plenty of money.
 register_matchcall TRAINER_WINSTON_1
 release
 end
 = Route104_EventScript_RematchWinston
 trainerbattle_rematch TRAINER_WINSTON_1 Route104_Text_WinstonRematchIntro Route104_Text_WinstonRematchDefeat
-msgbox	Route104_Text_WinstonPostRematch
+msgbox	I'm fabulously wealthy, but I can't seem to win at POKéMON…It's so deep, the world of POKéMON…
 end
 = Route104_EventScript_TryRegisterWinstonAfterBattle
 special PlayerFaceTrainerAfterBattle
@@ -704,20 +704,20 @@ goto_if_set FLAG_HAS_MATCH_CALL Route104_EventScript_RegisterWinstonAfterBattle
 release
 end
 = Route104_EventScript_RegisterWinstonAfterBattle
-msgbox	Route104_Text_WinstonRegister2
+msgbox	Hm? Ah, you've obtained a POKéNAV.I will gladly register you. After all, I have plenty of money.
 register_matchcall TRAINER_WINSTON_1
 release
 end
 = Route104_EventScript_Mia
 trainerbattle_double TRAINER_GINA_AND_MIA_1 Route104_Text_MiaIntro Route104_Text_MiaDefeat Route104_Text_MiaNotEnoughMons
 special GetPlayerBigGuyGirlString
-msgbox	Route104_Text_MiaPostBattle
+msgbox	MIA: We will train our POKéMON more and be strong like you.
 release
 end
 = Route104_EventScript_Gina
 trainerbattle_double TRAINER_GINA_AND_MIA_1 Route104_Text_GinaIntro Route104_Text_GinaDefeat Route104_Text_GinaNotEnoughMons
 special GetPlayerBigGuyGirlString
-msgbox	Route104_Text_GinaPostBattle
+msgbox	GINA: You are strong! We have to train lots more!
 release
 end
 = Route104_EventScript_WhiteHerbFlorist
@@ -766,24 +766,24 @@ special ObjectEventInteractionPickBerryTree
 goto_if_eq VAR_0x8004 0 BerryTree_EventScript_BerryPocketFull
 special IncrementDailyPickedBerries
 special ObjectEventInteractionRemoveBerryTree
-message BerryTree_Text_PickedTheBerry
+msgbox	BerryTree_Text_PickedTheBerry
 playfanfare MUS_OBTAIN_BERRY
 waitmessage
 waitfanfare
 waitbuttonpress
-message BerryTree_Text_PutAwayBerry
+msgbox	BerryTree_Text_PutAwayBerry
 waitmessage
 waitbuttonpress
 release
 end
 = BerryTree_EventScript_BerryPocketFull
-message BerryTree_Text_BerryPocketFull
+msgbox	BerryTree_Text_BerryPocketFull
 waitmessage
 waitbuttonpress
 release
 end
 = BerryTree_EventScript_CancelPickingBerry
-message BerryTree_Text_BerryLeftUnpicked
+msgbox	BerryTree_Text_BerryLeftUnpicked
 waitmessage
 waitbuttonpress
 release
@@ -792,7 +792,7 @@ end
 call BerryTree_EventScript_GetCareAdverb
 lockall
 special ObjectEventInteractionGetBerryName
-message BerryTree_Text_BerryGrowthStage4
+msgbox	BerryTree_Text_BerryGrowthStage4
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
@@ -825,11 +825,11 @@ releaseall
 end
 = BerryTree_EventScript_WaterBerry
 special ObjectEventInteractionGetBerryName
-message BerryTree_Text_WateredTheBerry
+msgbox	BerryTree_Text_WateredTheBerry
 waitmessage
 special ObjectEventInteractionWaterBerryTree
 special DoWateringBerryTreeAnim
-message BerryTree_Text_PlantIsDelighted
+msgbox	BerryTree_Text_PlantIsDelighted
 waitmessage
 waitbuttonpress
 releaseall
@@ -837,21 +837,21 @@ end
 = BerryTree_EventScript_CheckBerryStage3
 lockall
 special ObjectEventInteractionGetBerryName
-message BerryTree_Text_BerryGrowthStage3
+msgbox	BerryTree_Text_BerryGrowthStage3
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
 = BerryTree_EventScript_CheckBerryStage2
 lockall
 special ObjectEventInteractionGetBerryName
-message BerryTree_Text_BerryGrowthStage2
+msgbox	BerryTree_Text_BerryGrowthStage2
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
 = BerryTree_EventScript_CheckBerryStage1
 lockall
 special ObjectEventInteractionGetBerryCountString
-message BerryTree_Text_BerryGrowthStage1
+msgbox	BerryTree_Text_BerryGrowthStage1
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
@@ -860,7 +860,7 @@ lock
 faceplayer
 specialvar VAR_RESULT PlayerHasBerries
 goto_if_eq VAR_RESULT TRUE BerryTree_EventScript_WantToPlant
-message BerryTree_Text_ItsSoftLoamySoil
+msgbox	BerryTree_Text_ItsSoftLoamySoil
 waitmessage
 waitbuttonpress
 release
@@ -886,13 +886,13 @@ special ObjectEventInteractionPlantBerryTree
 incrementgamestat GAME_STAT_PLANTED_BERRIES
 special IncrementDailyPlantedBerries
 special ObjectEventInteractionGetBerryCountString
-message BerryTree_Text_PlantedOneBerry
+msgbox	BerryTree_Text_PlantedOneBerry
 waitmessage
 waitbuttonpress
 return
 = BerryTree_EventScript_Sparkling
 lockall
-message BerryTree_Text_ExclamationPoint
+msgbox	BerryTree_Text_ExclamationPoint
 waitmessage
 waitbuttonpress
 releaseall
@@ -901,20 +901,20 @@ end
 lock
 faceplayer
 goto_if_set FLAG_RECEIVED_CHESTO_BERRY_ROUTE_104 Route104_EventScript_ReceivedBerry
-msgbox	Route104_Text_PlantBerriesInSoilTakeThis
+msgbox	If you see BERRIES growing in loamy soil, feel free to take them.But make sure you plant a BERRY in the same spot. That's common courtesy.Here, I'll share this with you.
 giveitem ITEM_CHESTO_BERRY
 goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
 setflag FLAG_RECEIVED_CHESTO_BERRY_ROUTE_104
-msgbox	Route104_Text_TrainersOftenMakeMonHoldBerries
+msgbox	The way you look, you must be a TRAINER, no?TRAINERS often make POKéMON hold BERRIES.It's up to you whether to grow BERRIES or use them.
 release
 end
 = Route104_EventScript_ReceivedBerry
-msgbox	Route104_Text_TrainersOftenMakeMonHoldBerries
+msgbox	The way you look, you must be a TRAINER, no?TRAINERS often make POKéMON hold BERRIES.It's up to you whether to grow BERRIES or use them.
 release
 end
 = Route104_EventScript_Ivan
 trainerbattle_single TRAINER_IVAN Route104_Text_IvanIntro Route104_Text_IvanDefeat
-msgbox	Route104_Text_IvanPostBattle
+msgbox	I got too into fishing. I forgot I had to raise my POKéMON…
 end
 = Route104_EventScript_Girl2
 msgbox	Oh, no, I'm not a TRAINER.But that's right, if TRAINERS lock eyes, it's a challenge to battle.If you don't want to battle, stay out of their sight.
@@ -932,22 +932,22 @@ goto_if_eq VAR_RESULT TRUE Route104_EventScript_RematchHaley
 setvar VAR_0x8004 TRAINER_HALEY_1
 specialvar VAR_RESULT IsTrainerRegistered
 goto_if_eq VAR_RESULT FALSE Route104_EventScript_TryRegisterHaley
-msgbox	Route104_Text_HaleyPostBattle
+msgbox	If you're faced with a decision and you let someone else choose for you, you will regret it, however things turn out.
 release
 end
 = Route104_EventScript_TryRegisterHaley
 goto_if_set FLAG_HAS_MATCH_CALL Route104_EventScript_RegisterHaley
-msgbox	Route104_Text_HaleyPostBattle
+msgbox	If you're faced with a decision and you let someone else choose for you, you will regret it, however things turn out.
 release
 end
 = Route104_EventScript_RegisterHaley
-msgbox	Route104_Text_HaleyRegister1
+msgbox	You're strong, but should I register you in my POKéNAV? Maybe I shouldn't…Okay, sure, I will register you!
 register_matchcall TRAINER_HALEY_1
 release
 end
 = Route104_EventScript_RematchHaley
 trainerbattle_rematch TRAINER_HALEY_1 Route104_Text_HaleyRematchIntro Route104_Text_HaleyRematchDefeat
-msgbox	Route104_Text_HaleyPostRematch
+msgbox	I made the decision to battle, so I can accept this loss with grace.I am still upset about losing!
 end
 = Route104_EventScript_TryRegisterHaleyAfterBattle
 special PlayerFaceTrainerAfterBattle
@@ -956,7 +956,7 @@ goto_if_set FLAG_HAS_MATCH_CALL Route104_EventScript_RegisterHaleyAfterBattle
 release
 end
 = Route104_EventScript_RegisterHaleyAfterBattle
-msgbox	Route104_Text_HaleyRegister2
+msgbox	You're strong, but should I register you in my POKéNAV? Maybe I shouldn't…Okay, sure, I will register you!
 register_matchcall TRAINER_HALEY_1
 release
 end

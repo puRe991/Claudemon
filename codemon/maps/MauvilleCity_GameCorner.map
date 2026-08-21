@@ -102,7 +102,7 @@ goto_if_eq VAR_RESULT TRUE MauvilleCity_GameCorner_EventScript_ChooseTMPrizeMess
 release
 end
 = MauvilleCity_GameCorner_EventScript_ChooseTMPrizeMessage
-message MauvilleCity_GameCorner_Text_WhichPrize
+msgbox	Which prize would you like?
 waitmessage
 setvar VAR_TEMP_1 0
 showcoinsbox 1 1
@@ -130,7 +130,7 @@ setvar VAR_0x8004 ITEM_TM_ICE_BEAM
 goto MauvilleCity_GameCorner_EventScript_ConfirmTMPrize
 = MauvilleCity_GameCorner_EventScript_ConfirmTMPrize
 special BufferTMHMMoveName
-msgbox	So your choice is the ?
+msgboxyesno	So your choice is the ?
 goto_if_eq VAR_RESULT NO MauvilleCity_GameCorner_EventScript_CancelTMSelect
 switch VAR_TEMP_1
 case 1 MauvilleCity_GameCorner_EventScript_BuyTMDoubleTeam
@@ -152,7 +152,7 @@ msgbox	Here you go!
 goto MauvilleCity_GameCorner_EventScript_ReturnToChooseTMPrize
 end
 = MauvilleCity_GameCorner_EventScript_ReturnToChooseTMPrize
-message MauvilleCity_GameCorner_Text_WhichPrize
+msgbox	Which prize would you like?
 waitmessage
 goto MauvilleCity_GameCorner_EventScript_ChooseTMPrize
 = MauvilleCity_GameCorner_EventScript_NoRoomForTM
@@ -269,7 +269,7 @@ end
 lock
 faceplayer
 goto_if_set FLAG_RECEIVED_STARTER_DOLL MauvilleCity_GameCorner_EventScript_ReceivedStarterDoll
-msgbox	I made a mistake and got two of the same DOLLS.Would you like one of them?
+msgboxyesno	I made a mistake and got two of the same DOLLS.Would you like one of them?
 goto_if_eq VAR_RESULT NO MauvilleCity_GameCorner_EventScript_DeclineStarterDoll
 switch VAR_STARTER_MON
 case 0 MauvilleCity_GameCorner_EventScript_GiveTreeckoDoll
@@ -325,7 +325,7 @@ goto_if_eq VAR_RESULT TRUE MauvilleCity_GameCorner_EventScript_ChooseDollPrizeMe
 release
 end
 = MauvilleCity_GameCorner_EventScript_ChooseDollPrizeMessage
-message MauvilleCity_GameCorner_Text_WhichPrize
+msgbox	Which prize would you like?
 waitmessage
 setvar VAR_TEMP_1 0
 showcoinsbox 1 1
@@ -349,7 +349,7 @@ setvar VAR_TEMP_1 3
 bufferdecorationname STR_VAR_1 DECOR_MUDKIP_DOLL
 goto MauvilleCity_GameCorner_EventScript_ConfirmDollPrize
 = MauvilleCity_GameCorner_EventScript_ConfirmDollPrize
-msgbox	So your choice is ?
+msgboxyesno	So your choice is ?
 goto_if_eq VAR_RESULT NO MauvilleCity_GameCorner_EventScript_CancelDollSelect
 switch VAR_TEMP_1
 case 1 MauvilleCity_GameCorner_EventScript_BuyTreeckoDoll
@@ -370,7 +370,7 @@ msgbox	Thank you! We'll send it to your PC at home.
 goto MauvilleCity_GameCorner_EventScript_ReturnToChooseDollPrize
 end
 = MauvilleCity_GameCorner_EventScript_ReturnToChooseDollPrize
-message MauvilleCity_GameCorner_Text_WhichPrize
+msgbox	Which prize would you like?
 waitmessage
 goto MauvilleCity_GameCorner_EventScript_ChooseDollPrize
 = MauvilleCity_GameCorner_EventScript_NoRoomForDoll
@@ -421,7 +421,7 @@ faceplayer
 msgbox	This is MAUVILLE GAME CORNER.
 checkitem ITEM_COIN_CASE
 goto_if_eq VAR_RESULT FALSE MauvilleCity_GameCorner_EventScript_NeedCoinCase
-message MauvilleCity_GameCorner_Text_WereYouLookingForCoins
+msgbox	Were you looking for COINS?It's ¥1000 for 50 COINS. Would you like some?
 waitmessage
 showmoneybox 0 0
 showcoinsbox 1 6
@@ -500,3 +500,5 @@ end
 = MauvilleCity_GameCorner_EventScript_Woman2
 msgbox	COINS are needed to play here in the GAME CORNER.
 end
+counters
+588,591,597,598

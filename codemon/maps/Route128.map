@@ -212,39 +212,39 @@ end
 end
 = Route128_EventScript_Harrison
 trainerbattle_single TRAINER_HARRISON Route128_Text_HarrisonIntro Route128_Text_HarrisonDefeat
-msgbox	Route128_Text_HarrisonPostBattle
+msgbox	There are tough TRAINERS galore around EVER GRANDE.Do you think I may be out of my league?
 end
 = Route128_EventScript_Carlee
 trainerbattle_single TRAINER_CARLEE Route128_Text_CarleeIntro Route128_Text_CarleeDefeat
-msgbox	Route128_Text_CarleePostBattle
+msgbox	I should go back soon. I need to reapply my sunscreen.
 end
 = Route128_EventScript_Alexa
 trainerbattle_single TRAINER_ALEXA Route128_Text_AlexaIntro Route128_Text_AlexaDefeat
-msgbox	Route128_Text_AlexaPostBattle
+msgbox	After all I've done to get here, I won't give up after one setback.
 end
 = Route128_EventScript_Ruben
 trainerbattle_single TRAINER_RUBEN Route128_Text_RubenIntro Route128_Text_RubenDefeat
-msgbox	Route128_Text_RubenPostBattle
+msgbox	There probably is no stronger TRAINER than you!
 end
 = Route128_EventScript_Wayne
 trainerbattle_single TRAINER_WAYNE Route128_Text_WayneIntro Route128_Text_WayneDefeat
-msgbox	Route128_Text_WaynePostBattle
+msgbox	Awww, phooey!My POKéMON knows WATERFALL, but I don't have the SOOTOPOLIS GYM BADGE!
 end
 = Route128_EventScript_Katelyn
 trainerbattle_single TRAINER_KATELYN_1 Route128_Text_KatelynIntro Route128_Text_KatelynDefeat Route128_EventScript_RegisterKatelyn
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route128_EventScript_RematchKatelyn
-msgbox	Route128_Text_KatelynPostBattle
+msgbox	I have to ride a BIKE next, but… I'm about to throw in the towel…
 release
 end
 = Route128_EventScript_RematchKatelyn
 trainerbattle_rematch TRAINER_KATELYN_1 Route128_Text_KatelynRematchIntro Route128_Text_KatelynRematchDefeat
-msgbox	Route128_Text_KatelynPostRematch
+msgbox	You should give serious thought to challenges on VICTORY ROAD.
 end
 = Route128_EventScript_RegisterKatelyn
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Route128_Text_KatelynRegister
+msgbox	Well, I may as well make the best of this. I'd like a rematch sometime.
 register_matchcall TRAINER_KATELYN_1
 release
 end
@@ -252,17 +252,17 @@ end
 trainerbattle_single TRAINER_ISAIAH_1 Route128_Text_IsaiahIntro Route128_Text_IsaiahDefeat Route128_EventScript_RegisterIsaiah
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route128_EventScript_RematchIsaiah
-msgbox	Route128_Text_IsaiahPostBattle
+msgbox	My whole life has been about losing, but I will never give up!
 release
 end
 = Route128_EventScript_RematchIsaiah
 trainerbattle_rematch TRAINER_ISAIAH_1 Route128_Text_IsaiahRematchIntro Route128_Text_IsaiahRematchDefeat
-msgbox	Route128_Text_IsaiahPostRematch
+msgbox	I'll eventually reach EVER GRANDE CITY where I can eventually win…
 end
 = Route128_EventScript_RegisterIsaiah
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Route128_Text_IsaiahRegister
+msgbox	I know I'm not good now, but I think I can win eventually.Please register me in your POKéNAV.
 register_matchcall TRAINER_ISAIAH_1
 release
 end

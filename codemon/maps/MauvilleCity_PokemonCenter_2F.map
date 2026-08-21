@@ -56,11 +56,11 @@ end
 checkitem ITEM_EON_TICKET
 goto_if_eq VAR_RESULT TRUE CableClub_EventScript_TryWonderCardScript
 goto_if_set FLAG_ENABLE_SHIP_SOUTHERN_ISLAND CableClub_EventScript_TryWonderCardScript
-msgbox	MysteryGift_Text_TheresATicketForYou
+msgbox	Thank you for using the MYSTERY EVENT System.You must be PLAYER. There is a ticket here for you.
 giveitem ITEM_EON_TICKET
 setflag FLAG_ENABLE_SHIP_SOUTHERN_ISLAND
 setvar VAR_DISTRIBUTE_EON_TICKET 0
-msgbox	MysteryGift_Text_TryUsingItAtLilycovePort
+msgbox	It appears to be for use at the LILYCOVE CITY port.Why not give it a try and see what it is about?
 release
 end
 @ Unused?
@@ -69,3 +69,5 @@ goto CableClub_EventScript_MysteryGiftThankYou2
 msgbox	gText_ThankYouForAccessingMysteryGift
 release
 end
+counters
+725,726,727,736
