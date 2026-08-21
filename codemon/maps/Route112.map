@@ -156,6 +156,7 @@ objscripts
 4 Route112_EventScript_Trent
 5 Route112_EventScript_MagmaGrunts
 10 Route112_EventScript_Hiker
+11 Route112_EventScript_ItemNugget
 12 Route112_EventScript_Bryant
 13 Route112_EventScript_Shayla
 scriptdefs
@@ -166,6 +167,13 @@ end
 = Route112_EventScript_Bryant
 trainerbattle_single TRAINER_BRYANT Route112_Text_BryantIntro Route112_Text_BryantDefeat
 msgbox	Route112_Text_BryantPostBattle
+end
+= Route112_EventScript_ItemNugget
+goto_if_set FLAG_ITEM_ROUTE_112_NUGGET Route112_EventScript_ItemNugget_Taken
+finditem ITEM_NUGGET
+setflag FLAG_ITEM_ROUTE_112_NUGGET
+end
+= Route112_EventScript_ItemNugget_Taken
 end
 = Route112_EventScript_Hiker
 msgbox	Eh, I'd like to get to MAUVILLE, but if I went down these ledges, it'd be no easy matter to get back to LAVARIDGE.

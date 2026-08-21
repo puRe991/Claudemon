@@ -75,7 +75,15 @@ objscripts
 6 LavaridgeTown_EventScript_EggWoman
 triggers
 6 3 TRIGGER_RUN_IMMEDIATELY 0 LavaridgeTown_EventScript_HotSpringsTrigger
+4 5 0 0 LavaridgeTown_HiddenItem_4_5
 scriptdefs
+= LavaridgeTown_HiddenItem_4_5
+goto_if_set FLAG_HIDDEN_ITEM_LAVARIDGE_TOWN_ICE_HEAL LavaridgeTown_HiddenItem_4_5_Taken
+finditem ITEM_ICE_HEAL
+setflag FLAG_HIDDEN_ITEM_LAVARIDGE_TOWN_ICE_HEAL
+end
+= LavaridgeTown_HiddenItem_4_5_Taken
+end
 = LavaridgeTown_EventScript_HotSpringsTrigger
 specialvar VAR_RESULT GetPlayerFacingDirection
 goto_if_eq VAR_RESULT DIR_SOUTH LavaridgeTown_EventScript_EnteredHotSprings

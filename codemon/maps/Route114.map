@@ -205,6 +205,8 @@ objscripts
 4 Route114_EventScript_Shane
 5 Route114_EventScript_Nancy
 6 Route114_EventScript_Steve
+8 Route114_EventScript_ItemRareCandy
+9 Route114_EventScript_ItemProtein
 11 Route114_EventScript_RoarGentleman
 12 Route114_EventScript_Poochyena
 13 Route114_EventScript_Man
@@ -215,11 +217,36 @@ objscripts
 22 Route114_EventScript_Tyra
 23 Route114_EventScript_Charlotte
 24 Route114_EventScript_Angelina
+25 Route114_EventScript_ItemEnergyPowder
 26 Route114_EventScript_Kai
+triggers
+20 57 0 0 Route114_HiddenItem_20_57
+7 30 0 0 Route114_HiddenItem_7_30
 scriptdefs
+= Route114_HiddenItem_7_30
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_114_REVIVE Route114_HiddenItem_7_30_Taken
+finditem ITEM_REVIVE
+setflag FLAG_HIDDEN_ITEM_ROUTE_114_REVIVE
+end
+= Route114_HiddenItem_7_30_Taken
+end
+= Route114_HiddenItem_20_57
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_114_CARBOS Route114_HiddenItem_20_57_Taken
+finditem ITEM_CARBOS
+setflag FLAG_HIDDEN_ITEM_ROUTE_114_CARBOS
+end
+= Route114_HiddenItem_20_57_Taken
+end
 = Route114_EventScript_Kai
 trainerbattle_single TRAINER_KAI Route114_Text_KaiIntro Route114_Text_KaiDefeat
 msgbox	Route114_Text_KaiPostBattle
+end
+= Route114_EventScript_ItemEnergyPowder
+goto_if_set FLAG_ITEM_ROUTE_114_ENERGY_POWDER Route114_EventScript_ItemEnergyPowder_Taken
+finditem ITEM_ENERGY_POWDER
+setflag FLAG_ITEM_ROUTE_114_ENERGY_POWDER
+end
+= Route114_EventScript_ItemEnergyPowder_Taken
 end
 = Route114_EventScript_Angelina
 trainerbattle_single TRAINER_ANGELINA Route114_Text_AngelinaIntro Route114_Text_AngelinaDefeat
@@ -305,6 +332,20 @@ end
 = Route114_EventScript_ReceivedRoar
 msgbox	TM05 contains ROAR. A ROAR sends POKéMON scurrying.
 release
+end
+= Route114_EventScript_ItemProtein
+goto_if_set FLAG_ITEM_ROUTE_114_PROTEIN Route114_EventScript_ItemProtein_Taken
+finditem ITEM_PROTEIN
+setflag FLAG_ITEM_ROUTE_114_PROTEIN
+end
+= Route114_EventScript_ItemProtein_Taken
+end
+= Route114_EventScript_ItemRareCandy
+goto_if_set FLAG_ITEM_ROUTE_114_RARE_CANDY Route114_EventScript_ItemRareCandy_Taken
+finditem ITEM_RARE_CANDY
+setflag FLAG_ITEM_ROUTE_114_RARE_CANDY
+end
+= Route114_EventScript_ItemRareCandy_Taken
 end
 = Route114_EventScript_Steve
 trainerbattle_single TRAINER_STEVE_1 Route114_Text_SteveIntro Route114_Text_SteveDefeat Route114_EventScript_RegisterSteve

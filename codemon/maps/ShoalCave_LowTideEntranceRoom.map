@@ -81,6 +81,7 @@ npcs
 misc_item_ball 30 3 S static
 people_expert_m 18 15 W static
 objscripts
+0 ShoalCave_LowTideEntranceRoom_EventScript_ItemBigPearl
 1 ShoalCave_LowTideEntranceRoom_EventScript_ShellBellExpert
 scriptdefs
 = ShoalCave_LowTideEntranceRoom_EventScript_ShellBellExpert
@@ -149,6 +150,13 @@ clearflag FLAG_RECEIVED_SHOAL_SHELL_3
 clearflag FLAG_RECEIVED_SHOAL_SHELL_4
 clearflag FLAG_SYS_SHOAL_ITEM
 return
+= ShoalCave_LowTideEntranceRoom_EventScript_ItemBigPearl
+goto_if_set FLAG_ITEM_SHOAL_CAVE_ENTRANCE_BIG_PEARL ShoalCave_LowTideEntranceRoom_EventScript_ItemBigPearl_Taken
+finditem ITEM_BIG_PEARL
+setflag FLAG_ITEM_SHOAL_CAVE_ENTRANCE_BIG_PEARL
+end
+= ShoalCave_LowTideEntranceRoom_EventScript_ItemBigPearl_Taken
+end
 encounters
 land ZUBAT:26:26,SPHEAL:26:26,ZUBAT:28:28,SPHEAL:28:28,ZUBAT:30:30,SPHEAL:30:30,ZUBAT:32:32,SPHEAL:32:32,GOLBAT:32:32,SPHEAL:32:32,GOLBAT:32:32,SPHEAL:32:32
 water TENTACOOL:5:35,ZUBAT:5:35,SPHEAL:25:30,SPHEAL:25:30,SPHEAL:25:35

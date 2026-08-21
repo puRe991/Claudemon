@@ -59,7 +59,24 @@ objscripts
 3 Route108_EventScript_Missy
 4 Route108_EventScript_Carolina
 5 Route108_EventScript_Cory
+6 Route108_EventScript_ItemStarPiece
+triggers
+38 14 0 0 Route108_HiddenItem_38_14
 scriptdefs
+= Route108_HiddenItem_38_14
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_108_RARE_CANDY Route108_HiddenItem_38_14_Taken
+finditem ITEM_RARE_CANDY
+setflag FLAG_HIDDEN_ITEM_ROUTE_108_RARE_CANDY
+end
+= Route108_HiddenItem_38_14_Taken
+end
+= Route108_EventScript_ItemStarPiece
+goto_if_set FLAG_ITEM_ROUTE_108_STAR_PIECE Route108_EventScript_ItemStarPiece_Taken
+finditem ITEM_STAR_PIECE
+setflag FLAG_ITEM_ROUTE_108_STAR_PIECE
+end
+= Route108_EventScript_ItemStarPiece_Taken
+end
 = Route108_EventScript_Cory
 trainerbattle_single TRAINER_CORY_1 Route108_Text_CoryIntro Route108_Text_CoryDefeated Route108_EventScript_CoryRegisterMatchCallAfterBattle
 specialvar VAR_RESULT ShouldTryRematchBattle

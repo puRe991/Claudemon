@@ -85,26 +85,47 @@ dialogs
 objscripts
 2 Route116_EventScript_Joey
 5 Route116_EventScript_Jose
+6 Route116_EventScript_ItemEther
+7 Route116_EventScript_ItemRepel
 10 Route116_EventScript_Briney
 12 Route116_EventScript_Clark
+14 Route116_EventScript_ItemHPUp
 15 Route116_EventScript_Janice
 16 Route116_EventScript_Karen
 17 Route116_EventScript_Jerry
 18 Route116_EventScript_DevonEmployee
+19 Route116_EventScript_ItemXSpecial
 20 Route116_EventScript_WandasBoyfriend
 21 Route116_EventScript_GlassesMan
 22 Route116_EventScript_Sarah
 23 Route116_EventScript_Dawson
+24 Route116_EventScript_ItemPotion
 26 Route116_EventScript_Johnson
 27 Route116_EventScript_Devan
 triggers
 47 9 VAR_ROUTE116_STATE 1 Route116_EventScript_BrineyTrigger
+22 9 0 0 Route116_HiddenItem_22_9
+70 13 0 0 Route116_HiddenItem_70_13
 movements
 Route116_Movement_DevonEmployeeExit	left,left,left,left,left,left,left,left,end
 Route116_Movement_DevonEmployeeExitEast	down,left,left,left,left,left,left,left,left,left,end
 Route116_Movement_GlassesManExit	left,left,left,left,left,left,left,left,left,end
 Route116_Movement_GlassesManExitEast	up,left,left,left,left,left,left,left,left,left,end
 scriptdefs
+= Route116_HiddenItem_70_13
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_116_BLACK_GLASSES Route116_HiddenItem_70_13_Taken
+finditem ITEM_BLACK_GLASSES
+setflag FLAG_HIDDEN_ITEM_ROUTE_116_BLACK_GLASSES
+end
+= Route116_HiddenItem_70_13_Taken
+end
+= Route116_HiddenItem_22_9
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_116_SUPER_POTION Route116_HiddenItem_22_9_Taken
+finditem ITEM_SUPER_POTION
+setflag FLAG_HIDDEN_ITEM_ROUTE_116_SUPER_POTION
+end
+= Route116_HiddenItem_22_9_Taken
+end
 = Route116_EventScript_BrineyTrigger
 lockall
 applymovement LOCALID_ROUTE116_BRINEY Common_Movement_WalkInPlaceFasterRight
@@ -121,6 +142,13 @@ end
 = Route116_EventScript_Johnson
 trainerbattle_single TRAINER_JOHNSON Route116_Text_JohnsonIntro Route116_Text_JohnsonDefeat
 msgbox	Route116_Text_JohnsonPostBattle
+end
+= Route116_EventScript_ItemPotion
+goto_if_set FLAG_ITEM_ROUTE_116_POTION Route116_EventScript_ItemPotion_Taken
+finditem ITEM_POTION
+setflag FLAG_ITEM_ROUTE_116_POTION
+end
+= Route116_EventScript_ItemPotion_Taken
 end
 = Route116_EventScript_Dawson
 trainerbattle_single TRAINER_DAWSON Route116_Text_DawsonIntro Route116_Text_DawsonDefeat
@@ -190,6 +218,13 @@ end
 = Route116_EventScript_BoyfriendGruntLeftTunnel
 msgbox	Nnn… Roar!That goofy goon hightailed it out of the tunnel! I can go back to digging!
 release
+end
+= Route116_EventScript_ItemXSpecial
+goto_if_set FLAG_ITEM_ROUTE_116_X_SPECIAL Route116_EventScript_ItemXSpecial_Taken
+finditem ITEM_X_SPECIAL
+setflag FLAG_ITEM_ROUTE_116_X_SPECIAL
+end
+= Route116_EventScript_ItemXSpecial_Taken
 end
 = Route116_EventScript_DevonEmployee
 lock
@@ -303,6 +338,13 @@ end
 trainerbattle_single TRAINER_JANICE Route116_Text_JaniceIntro Route116_Text_JaniceDefeat
 msgbox	Route116_Text_JanicePostBattle
 end
+= Route116_EventScript_ItemHPUp
+goto_if_set FLAG_ITEM_ROUTE_116_HP_UP Route116_EventScript_ItemHPUp_Taken
+finditem ITEM_HP_UP
+setflag FLAG_ITEM_ROUTE_116_HP_UP
+end
+= Route116_EventScript_ItemHPUp_Taken
+end
 = Route116_EventScript_Clark
 trainerbattle_single TRAINER_CLARK Route116_Text_ClarkIntro Route116_Text_ClarkDefeat
 msgbox	Route116_Text_ClarkPostBattle
@@ -313,6 +355,20 @@ faceplayer
 msgbox	Ohhh, what am I to do?We were on our walk, PEEKO and I, when we were jumped by an odd thug…The scoundrel made off with my darling PEEKO!Wrrrooooooaaaar! PEEKO!
 setvar VAR_ROUTE116_STATE 2
 release
+end
+= Route116_EventScript_ItemRepel
+goto_if_set FLAG_ITEM_ROUTE_116_REPEL Route116_EventScript_ItemRepel_Taken
+finditem ITEM_REPEL
+setflag FLAG_ITEM_ROUTE_116_REPEL
+end
+= Route116_EventScript_ItemRepel_Taken
+end
+= Route116_EventScript_ItemEther
+goto_if_set FLAG_ITEM_ROUTE_116_ETHER Route116_EventScript_ItemEther_Taken
+finditem ITEM_ETHER
+setflag FLAG_ITEM_ROUTE_116_ETHER
+end
+= Route116_EventScript_ItemEther_Taken
 end
 = Route116_EventScript_Jose
 trainerbattle_single TRAINER_JOSE Route116_Text_JoseIntro Route116_Text_JoseDefeat

@@ -111,13 +111,32 @@ warps
 npcs
 misc_item_ball 27 15 S static
 misc_item_ball 19 40 S static
+objscripts
+0 MtPyre_Exterior_EventScript_ItemMaxPotion
+1 MtPyre_Exterior_EventScript_ItemTMSkillSwap
 triggers
 24 21 TRIGGER_RUN_IMMEDIATELY 0 MtPyre_Exterior_EventScript_FogTrigger
 25 21 TRIGGER_RUN_IMMEDIATELY 0 MtPyre_Exterior_EventScript_FogTrigger
 22 27 TRIGGER_RUN_IMMEDIATELY 0 MtPyre_Exterior_EventScript_SunTrigger
 23 28 TRIGGER_RUN_IMMEDIATELY 0 MtPyre_Exterior_EventScript_SunTrigger
 26 21 TRIGGER_RUN_IMMEDIATELY 0 MtPyre_Exterior_EventScript_FogTrigger
+9 8 0 0 MtPyre_Exterior_HiddenItem_9_8
+16 22 0 0 MtPyre_Exterior_HiddenItem_16_22
 scriptdefs
+= MtPyre_Exterior_HiddenItem_16_22
+goto_if_set FLAG_HIDDEN_ITEM_MT_PYRE_EXTERIOR_MAX_ETHER MtPyre_Exterior_HiddenItem_16_22_Taken
+finditem ITEM_MAX_ETHER
+setflag FLAG_HIDDEN_ITEM_MT_PYRE_EXTERIOR_MAX_ETHER
+end
+= MtPyre_Exterior_HiddenItem_16_22_Taken
+end
+= MtPyre_Exterior_HiddenItem_9_8
+goto_if_set FLAG_HIDDEN_ITEM_MT_PYRE_EXTERIOR_ULTRA_BALL MtPyre_Exterior_HiddenItem_9_8_Taken
+finditem ITEM_ULTRA_BALL
+setflag FLAG_HIDDEN_ITEM_MT_PYRE_EXTERIOR_ULTRA_BALL
+end
+= MtPyre_Exterior_HiddenItem_9_8_Taken
+end
 = MtPyre_Exterior_EventScript_FogTrigger
 setweather WEATHER_FOG_HORIZONTAL
 doweather
@@ -125,6 +144,20 @@ end
 = MtPyre_Exterior_EventScript_SunTrigger
 setweather WEATHER_SUNNY
 doweather
+end
+= MtPyre_Exterior_EventScript_ItemTMSkillSwap
+goto_if_set FLAG_ITEM_MT_PYRE_EXTERIOR_TM_SKILL_SWAP MtPyre_Exterior_EventScript_ItemTMSkillSwap_Taken
+finditem ITEM_TM_SKILL_SWAP
+setflag FLAG_ITEM_MT_PYRE_EXTERIOR_TM_SKILL_SWAP
+end
+= MtPyre_Exterior_EventScript_ItemTMSkillSwap_Taken
+end
+= MtPyre_Exterior_EventScript_ItemMaxPotion
+goto_if_set FLAG_ITEM_MT_PYRE_EXTERIOR_MAX_POTION MtPyre_Exterior_EventScript_ItemMaxPotion_Taken
+finditem ITEM_MAX_POTION
+setflag FLAG_ITEM_MT_PYRE_EXTERIOR_MAX_POTION
+end
+= MtPyre_Exterior_EventScript_ItemMaxPotion_Taken
 end
 grass
 13

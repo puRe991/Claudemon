@@ -73,6 +73,8 @@ dialogs
 9	On the other side of this rock… My boyfriend is there.He… He's not just digging the tunnel to come see me.He works his hands raw and rough for the benefit of everyone.
 objscripts
 0 RusturfTunnel_EventScript_WandasBoyfriend
+2 RusturfTunnel_EventScript_ItemPokeBall
+3 RusturfTunnel_EventScript_ItemMaxEther
 5 RusturfTunnel_EventScript_Grunt
 6 RusturfTunnel_EventScript_Peeko
 8 RusturfTunnel_EventScript_Mike
@@ -179,6 +181,20 @@ setvar VAR_RUSTBORO_CITY_STATE 4
 setvar VAR_BRINEY_HOUSE_STATE 1
 setflag FLAG_HIDE_ROUTE_116_MR_BRINEY
 release
+end
+= RusturfTunnel_EventScript_ItemMaxEther
+goto_if_set FLAG_ITEM_RUSTURF_TUNNEL_MAX_ETHER RusturfTunnel_EventScript_ItemMaxEther_Taken
+finditem ITEM_MAX_ETHER
+setflag FLAG_ITEM_RUSTURF_TUNNEL_MAX_ETHER
+end
+= RusturfTunnel_EventScript_ItemMaxEther_Taken
+end
+= RusturfTunnel_EventScript_ItemPokeBall
+goto_if_set FLAG_ITEM_RUSTURF_TUNNEL_POKE_BALL RusturfTunnel_EventScript_ItemPokeBall_Taken
+finditem ITEM_POKE_BALL
+setflag FLAG_ITEM_RUSTURF_TUNNEL_POKE_BALL
+end
+= RusturfTunnel_EventScript_ItemPokeBall_Taken
 end
 = RusturfTunnel_EventScript_WandasBoyfriend
 lock

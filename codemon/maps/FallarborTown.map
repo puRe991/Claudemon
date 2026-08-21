@@ -63,7 +63,16 @@ objscripts
 1 FallarborTown_EventScript_ExpertM
 2 FallarborTown_EventScript_Gentleman
 3 FallarborTown_EventScript_Azurill
+triggers
+2 15 0 0 FallarborTown_HiddenItem_2_15
 scriptdefs
+= FallarborTown_HiddenItem_2_15
+goto_if_set FLAG_HIDDEN_ITEM_FALLARBOR_TOWN_NUGGET FallarborTown_HiddenItem_2_15_Taken
+finditem ITEM_NUGGET
+setflag FLAG_HIDDEN_ITEM_FALLARBOR_TOWN_NUGGET
+end
+= FallarborTown_HiddenItem_2_15_Taken
+end
 = FallarborTown_EventScript_Azurill
 lock
 faceplayer

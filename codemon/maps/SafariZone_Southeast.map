@@ -88,6 +88,33 @@ people_fat_man 20 30 S wander
 people_little_girl 8 26 S wander
 misc_item_ball 31 15 S static
 people_camper 12 16 W static
+objscripts
+3 SafariZone_Southeast_EventScript_ItemBigPearl
+triggers
+19 36 0 0 SafariZone_Southeast_HiddenItem_19_36
+32 33 0 0 SafariZone_Southeast_HiddenItem_32_33
+scriptdefs
+= SafariZone_Southeast_HiddenItem_32_33
+goto_if_set FLAG_HIDDEN_ITEM_SAFARI_ZONE_SOUTH_EAST_FULL_RESTORE SafariZone_Southeast_HiddenItem_32_33_Taken
+finditem ITEM_FULL_RESTORE
+setflag FLAG_HIDDEN_ITEM_SAFARI_ZONE_SOUTH_EAST_FULL_RESTORE
+end
+= SafariZone_Southeast_HiddenItem_32_33_Taken
+end
+= SafariZone_Southeast_HiddenItem_19_36
+goto_if_set FLAG_HIDDEN_ITEM_SAFARI_ZONE_SOUTH_EAST_PP_UP SafariZone_Southeast_HiddenItem_19_36_Taken
+finditem ITEM_PP_UP
+setflag FLAG_HIDDEN_ITEM_SAFARI_ZONE_SOUTH_EAST_PP_UP
+end
+= SafariZone_Southeast_HiddenItem_19_36_Taken
+end
+= SafariZone_Southeast_EventScript_ItemBigPearl
+goto_if_set FLAG_ITEM_SAFARI_ZONE_SOUTH_EAST_BIG_PEARL SafariZone_Southeast_EventScript_ItemBigPearl_Taken
+finditem ITEM_BIG_PEARL
+setflag FLAG_ITEM_SAFARI_ZONE_SOUTH_EAST_BIG_PEARL
+end
+= SafariZone_Southeast_EventScript_ItemBigPearl_Taken
+end
 grass
 13,454,455
 encounters

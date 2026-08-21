@@ -93,6 +93,7 @@ dialogs
 objscripts
 7 Route123_EventScript_Wendy
 8 Route123_EventScript_Braxton
+20 Route123_EventScript_ItemCalcium
 21 Route123_EventScript_GigaDrainGirl
 25 Route123_EventScript_Violet
 26 Route123_EventScript_Yuki
@@ -100,15 +101,67 @@ objscripts
 28 Route123_EventScript_Cameron
 29 Route123_EventScript_Jacki
 30 Route123_EventScript_Kindra
+31 Route123_EventScript_ItemUltraBall
+32 Route123_EventScript_ItemElixir
 33 Route123_EventScript_Jonas
 34 Route123_EventScript_Kayley
 35 Route123_EventScript_Ed
 36 Route123_EventScript_Fernando
 37 Route123_EventScript_Alberto
 38 Route123_EventScript_Frederick
+39 Route123_EventScript_ItemPPUp
 40 Route123_EventScript_Jazmyn
 41 Route123_EventScript_Davis
+42 Route123_EventScript_ItemRevivalHerb
+triggers
+75 1 0 0 Route123_HiddenItem_75_1
+12 1 0 0 Route123_HiddenItem_12_1
+91 15 0 0 Route123_HiddenItem_91_15
+139 15 0 0 Route123_HiddenItem_139_15
+138 18 0 0 Route123_HiddenItem_138_18
 scriptdefs
+= Route123_HiddenItem_138_18
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_123_RARE_CANDY Route123_HiddenItem_138_18_Taken
+finditem ITEM_RARE_CANDY
+setflag FLAG_HIDDEN_ITEM_ROUTE_123_RARE_CANDY
+end
+= Route123_HiddenItem_138_18_Taken
+end
+= Route123_HiddenItem_139_15
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_123_PP_UP Route123_HiddenItem_139_15_Taken
+finditem ITEM_PP_UP
+setflag FLAG_HIDDEN_ITEM_ROUTE_123_PP_UP
+end
+= Route123_HiddenItem_139_15_Taken
+end
+= Route123_HiddenItem_91_15
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_123_HYPER_POTION Route123_HiddenItem_91_15_Taken
+finditem ITEM_HYPER_POTION
+setflag FLAG_HIDDEN_ITEM_ROUTE_123_HYPER_POTION
+end
+= Route123_HiddenItem_91_15_Taken
+end
+= Route123_HiddenItem_12_1
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_123_REVIVE Route123_HiddenItem_12_1_Taken
+finditem ITEM_REVIVE
+setflag FLAG_HIDDEN_ITEM_ROUTE_123_REVIVE
+end
+= Route123_HiddenItem_12_1_Taken
+end
+= Route123_HiddenItem_75_1
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_123_SUPER_REPEL Route123_HiddenItem_75_1_Taken
+finditem ITEM_SUPER_REPEL
+setflag FLAG_HIDDEN_ITEM_ROUTE_123_SUPER_REPEL
+end
+= Route123_HiddenItem_75_1_Taken
+end
+= Route123_EventScript_ItemRevivalHerb
+goto_if_set FLAG_ITEM_ROUTE_123_REVIVAL_HERB Route123_EventScript_ItemRevivalHerb_Taken
+finditem ITEM_REVIVAL_HERB
+setflag FLAG_ITEM_ROUTE_123_REVIVAL_HERB
+end
+= Route123_EventScript_ItemRevivalHerb_Taken
+end
 = Route123_EventScript_Davis
 trainerbattle_single TRAINER_DAVIS Route123_Text_DavisIntro Route123_Text_DavisDefeat
 msgbox	Route123_Text_DavisPostBattle
@@ -116,6 +169,13 @@ end
 = Route123_EventScript_Jazmyn
 trainerbattle_single TRAINER_JAZMYN Route123_Text_JazmynIntro Route123_Text_JazmynDefeat
 msgbox	Route123_Text_JazmynPostBattle
+end
+= Route123_EventScript_ItemPPUp
+goto_if_set FLAG_ITEM_ROUTE_123_PP_UP Route123_EventScript_ItemPPUp_Taken
+finditem ITEM_PP_UP
+setflag FLAG_ITEM_ROUTE_123_PP_UP
+end
+= Route123_EventScript_ItemPPUp_Taken
 end
 = Route123_EventScript_Frederick
 trainerbattle_single TRAINER_FREDRICK Route123_Text_FrederickIntro Route123_Text_FrederickDefeat
@@ -154,6 +214,20 @@ end
 = Route123_EventScript_Jonas
 trainerbattle_single TRAINER_JONAS Route123_Text_JonasIntro Route123_Text_JonasDefeat
 msgbox	Route123_Text_JonasPostBattle
+end
+= Route123_EventScript_ItemElixir
+goto_if_set FLAG_ITEM_ROUTE_123_ELIXIR Route123_EventScript_ItemElixir_Taken
+finditem ITEM_ELIXIR
+setflag FLAG_ITEM_ROUTE_123_ELIXIR
+end
+= Route123_EventScript_ItemElixir_Taken
+end
+= Route123_EventScript_ItemUltraBall
+goto_if_set FLAG_ITEM_ROUTE_123_ULTRA_BALL Route123_EventScript_ItemUltraBall_Taken
+finditem ITEM_ULTRA_BALL
+setflag FLAG_ITEM_ROUTE_123_ULTRA_BALL
+end
+= Route123_EventScript_ItemUltraBall_Taken
 end
 = Route123_EventScript_Kindra
 trainerbattle_single TRAINER_KINDRA Route123_Text_KindraIntro Route123_Text_KindraDefeat
@@ -227,6 +301,13 @@ end
 = Route123_EventScript_ReceivedGigaDrain
 msgbox	I check trees with my GRASS-type POKéMON. I'm like a tree doctor.
 release
+end
+= Route123_EventScript_ItemCalcium
+goto_if_set FLAG_ITEM_ROUTE_123_CALCIUM Route123_EventScript_ItemCalcium_Taken
+finditem ITEM_CALCIUM
+setflag FLAG_ITEM_ROUTE_123_CALCIUM
+end
+= Route123_EventScript_ItemCalcium_Taken
 end
 = Route123_EventScript_Braxton
 trainerbattle_single TRAINER_BRAXTON Route123_Text_BraxtonIntro Route123_Text_BraxtonDefeat

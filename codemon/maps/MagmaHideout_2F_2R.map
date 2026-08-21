@@ -76,9 +76,18 @@ dialogs
 objscripts
 0 MagmaHideout_2F_2R_EventScript_Grunt8
 1 MagmaHideout_2F_2R_EventScript_Grunt7
+2 MagmaHideout_2F_2R_EventScript_ItemMaxElixir
 3 MagmaHideout_2F_2R_EventScript_Grunt6
 4 MagmaHideout_2F_2R_EventScript_Grunt15
+5 MagmaHideout_2F_2R_EventScript_ItemFullRestore
 scriptdefs
+= MagmaHideout_2F_2R_EventScript_ItemFullRestore
+goto_if_set FLAG_ITEM_MAGMA_HIDEOUT_2F_2R_FULL_RESTORE MagmaHideout_2F_2R_EventScript_ItemFullRestore_Taken
+finditem ITEM_FULL_RESTORE
+setflag FLAG_ITEM_MAGMA_HIDEOUT_2F_2R_FULL_RESTORE
+end
+= MagmaHideout_2F_2R_EventScript_ItemFullRestore_Taken
+end
 = MagmaHideout_2F_2R_EventScript_Grunt15
 trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_15 MagmaHideout_2F_2R_Text_Grunt15Intro MagmaHideout_2F_2R_Text_Grunt15Defeat
 msgbox	We dug up something beyond belief! And, we got the BLUE ORB!All that's left is for our leader to… Fufufu… Fwahahaha!
@@ -86,6 +95,13 @@ end
 = MagmaHideout_2F_2R_EventScript_Grunt6
 trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_6 MagmaHideout_2F_2R_Text_Grunt6Intro MagmaHideout_2F_2R_Text_Grunt6Defeat
 msgbox	Don't you get lonely for the sea being in a place like this?
+end
+= MagmaHideout_2F_2R_EventScript_ItemMaxElixir
+goto_if_set FLAG_ITEM_MAGMA_HIDEOUT_2F_2R_MAX_ELIXIR MagmaHideout_2F_2R_EventScript_ItemMaxElixir_Taken
+finditem ITEM_MAX_ELIXIR
+setflag FLAG_ITEM_MAGMA_HIDEOUT_2F_2R_MAX_ELIXIR
+end
+= MagmaHideout_2F_2R_EventScript_ItemMaxElixir_Taken
 end
 = MagmaHideout_2F_2R_EventScript_Grunt7
 trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_7 MagmaHideout_2F_2R_Text_Grunt7Intro MagmaHideout_2F_2R_Text_Grunt7Defeat

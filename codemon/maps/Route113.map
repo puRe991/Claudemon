@@ -72,15 +72,43 @@ objscripts
 2 Route113_EventScript_Jaylen
 3 Route113_EventScript_Dillon
 4 Route113_EventScript_Madeline
+5 Route113_EventScript_ItemMaxEther
+6 Route113_EventScript_ItemSuperRepel
 7 Route113_EventScript_Lao
 8 Route113_EventScript_Lung
 9 Route113_EventScript_Tori
 10 Route113_EventScript_Tia
+11 Route113_EventScript_ItemHyperPotion
 12 Route113_EventScript_Wyatt
 13 Route113_EventScript_Lawrence
 14 Route113_EventScript_Sophie
 15 Route113_EventScript_Coby
+triggers
+66 3 0 0 Route113_HiddenItem_66_3
+22 5 0 0 Route113_HiddenItem_22_5
+73 3 0 0 Route113_HiddenItem_73_3
 scriptdefs
+= Route113_HiddenItem_73_3
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_113_NUGGET Route113_HiddenItem_73_3_Taken
+finditem ITEM_NUGGET
+setflag FLAG_HIDDEN_ITEM_ROUTE_113_NUGGET
+end
+= Route113_HiddenItem_73_3_Taken
+end
+= Route113_HiddenItem_22_5
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_113_TM_DOUBLE_TEAM Route113_HiddenItem_22_5_Taken
+finditem ITEM_TM_DOUBLE_TEAM
+setflag FLAG_HIDDEN_ITEM_ROUTE_113_TM_DOUBLE_TEAM
+end
+= Route113_HiddenItem_22_5_Taken
+end
+= Route113_HiddenItem_66_3
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_113_ETHER Route113_HiddenItem_66_3_Taken
+finditem ITEM_ETHER
+setflag FLAG_HIDDEN_ITEM_ROUTE_113_ETHER
+end
+= Route113_HiddenItem_66_3_Taken
+end
 = Route113_EventScript_Coby
 trainerbattle_single TRAINER_COBY Route113_Text_CobyIntro Route113_Text_CobyDefeat
 msgbox	Route113_Text_CobyPostBattle
@@ -96,6 +124,13 @@ end
 = Route113_EventScript_Wyatt
 trainerbattle_single TRAINER_WYATT Route113_Text_WyattIntro Route113_Text_WyattDefeat
 msgbox	Route113_Text_WyattPostBattle
+end
+= Route113_EventScript_ItemHyperPotion
+goto_if_set FLAG_ITEM_ROUTE_113_HYPER_POTION Route113_EventScript_ItemHyperPotion_Taken
+finditem ITEM_HYPER_POTION
+setflag FLAG_ITEM_ROUTE_113_HYPER_POTION
+end
+= Route113_EventScript_ItemHyperPotion_Taken
 end
 = Route113_EventScript_Tia
 trainerbattle_double TRAINER_TORI_AND_TIA Route113_Text_TiaIntro Route113_Text_TiaDefeat Route113_Text_TiaNotEnoughMons
@@ -126,6 +161,20 @@ waitmovement 0
 msgbox	Route113_Text_LaoRegister
 register_matchcall TRAINER_LAO_1
 release
+end
+= Route113_EventScript_ItemSuperRepel
+goto_if_set FLAG_ITEM_ROUTE_113_SUPER_REPEL Route113_EventScript_ItemSuperRepel_Taken
+finditem ITEM_SUPER_REPEL
+setflag FLAG_ITEM_ROUTE_113_SUPER_REPEL
+end
+= Route113_EventScript_ItemSuperRepel_Taken
+end
+= Route113_EventScript_ItemMaxEther
+goto_if_set FLAG_ITEM_ROUTE_113_MAX_ETHER Route113_EventScript_ItemMaxEther_Taken
+finditem ITEM_MAX_ETHER
+setflag FLAG_ITEM_ROUTE_113_MAX_ETHER
+end
+= Route113_EventScript_ItemMaxEther_Taken
 end
 = Route113_EventScript_Madeline
 trainerbattle_single TRAINER_MADELINE_1 Route113_Text_MadelineIntro Route113_Text_MadelineDefeat Route113_EventScript_RegisterMadeline

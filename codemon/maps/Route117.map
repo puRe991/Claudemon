@@ -79,6 +79,8 @@ objscripts
 7 Route117_EventScript_Dylan
 8 Route117_EventScript_Lydia
 9 Route117_EventScript_Isaac
+13 Route117_EventScript_ItemGreatBall
+15 Route117_EventScript_ItemRevive
 16 Route117_EventScript_Maria
 17 Route117_EventScript_Derek
 18 Route117_EventScript_Meg
@@ -87,7 +89,16 @@ objscripts
 21 Route117_EventScript_Brandi
 22 Route117_EventScript_Aisha
 23 Route117_EventScript_Melina
+triggers
+3 18 0 0 Route117_HiddenItem_3_18
 scriptdefs
+= Route117_HiddenItem_3_18
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_117_REPEL Route117_HiddenItem_3_18_Taken
+finditem ITEM_REPEL
+setflag FLAG_HIDDEN_ITEM_ROUTE_117_REPEL
+end
+= Route117_HiddenItem_3_18_Taken
+end
 = Route117_EventScript_Melina
 trainerbattle_single TRAINER_MELINA Route117_Text_MelinaIntro Route117_Text_MelinaDefeat
 msgbox	Route117_Text_MelinaPostBattle
@@ -156,6 +167,20 @@ waitmovement 0
 msgbox	Route117_Text_MariaRegister
 register_matchcall TRAINER_MARIA_1
 release
+end
+= Route117_EventScript_ItemRevive
+goto_if_set FLAG_ITEM_ROUTE_117_REVIVE Route117_EventScript_ItemRevive_Taken
+finditem ITEM_REVIVE
+setflag FLAG_ITEM_ROUTE_117_REVIVE
+end
+= Route117_EventScript_ItemRevive_Taken
+end
+= Route117_EventScript_ItemGreatBall
+goto_if_set FLAG_ITEM_ROUTE_117_GREAT_BALL Route117_EventScript_ItemGreatBall_Taken
+finditem ITEM_GREAT_BALL
+setflag FLAG_ITEM_ROUTE_117_GREAT_BALL
+end
+= Route117_EventScript_ItemGreatBall_Taken
 end
 = Route117_EventScript_Isaac
 trainerbattle_single TRAINER_ISAAC_1 Route117_Text_IsaacIntro Route117_Text_IsaacDefeat Route117_EventScript_RegisterIsaac

@@ -26,7 +26,15 @@ dialogs
 0	I'm investigating this ship on behalf of CAPT. STERN.He also asked me to find a SCANNER, but I haven't had any success…
 objscripts
 0 AbandonedShip_CaptainsOffice_EventScript_CaptSternAide
+1 AbandonedShip_CaptainsOffice_EventScript_ItemStorageKey
 scriptdefs
+= AbandonedShip_CaptainsOffice_EventScript_ItemStorageKey
+goto_if_set FLAG_ITEM_ABANDONED_SHIP_CAPTAINS_OFFICE_STORAGE_KEY AbandonedShip_CaptainsOffice_EventScript_ItemStorageKey_Taken
+finditem ITEM_STORAGE_KEY
+setflag FLAG_ITEM_ABANDONED_SHIP_CAPTAINS_OFFICE_STORAGE_KEY
+end
+= AbandonedShip_CaptainsOffice_EventScript_ItemStorageKey_Taken
+end
 = AbandonedShip_CaptainsOffice_EventScript_CaptSternAide
 lock
 faceplayer

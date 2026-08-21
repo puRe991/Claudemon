@@ -76,6 +76,7 @@ dialogs
 objscripts
 0 AquaHideout_B2F_EventScript_Matt
 1 AquaHideout_B2F_EventScript_Grunt4
+2 AquaHideout_B2F_EventScript_ItemNestBall
 4 AquaHideout_B2F_EventScript_Grunt6
 5 AquaHideout_B2F_EventScript_Grunt8
 triggers
@@ -102,6 +103,13 @@ end
 = AquaHideout_B2F_EventScript_Grunt6
 trainerbattle_single TRAINER_GRUNT_AQUA_HIDEOUT_6 AquaHideout_B2F_Text_Grunt6Intro AquaHideout_B2F_Text_Grunt6Defeat
 msgbox	That reminds me… I can't remember where I put the MASTER BALL.If I fail to guard it, our BOSS will chew me out…
+end
+= AquaHideout_B2F_EventScript_ItemNestBall
+goto_if_set FLAG_ITEM_AQUA_HIDEOUT_B2F_NEST_BALL AquaHideout_B2F_EventScript_ItemNestBall_Taken
+finditem ITEM_NEST_BALL
+setflag FLAG_ITEM_AQUA_HIDEOUT_B2F_NEST_BALL
+end
+= AquaHideout_B2F_EventScript_ItemNestBall_Taken
 end
 = AquaHideout_B2F_EventScript_Grunt4
 trainerbattle_single TRAINER_GRUNT_AQUA_HIDEOUT_4 AquaHideout_B2F_Text_Grunt4Intro AquaHideout_B2F_Text_Grunt4Defeat AquaHideout_B2F_EventScript_Grunt4Defeated

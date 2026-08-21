@@ -29,7 +29,15 @@ dialogs
 0	Urrrrppp…I'm getting queasy just being aboard this ship…It's not even moving, but…
 objscripts
 0 AbandonedShip_Rooms_B1F_EventScript_FatMan
+1 AbandonedShip_Rooms_B1F_EventScript_ItemEscapeRope
 scriptdefs
+= AbandonedShip_Rooms_B1F_EventScript_ItemEscapeRope
+goto_if_set FLAG_ITEM_ABANDONED_SHIP_ROOMS_B1F_ESCAPE_ROPE AbandonedShip_Rooms_B1F_EventScript_ItemEscapeRope_Taken
+finditem ITEM_ESCAPE_ROPE
+setflag FLAG_ITEM_ABANDONED_SHIP_ROOMS_B1F_ESCAPE_ROPE
+end
+= AbandonedShip_Rooms_B1F_EventScript_ItemEscapeRope_Taken
+end
 = AbandonedShip_Rooms_B1F_EventScript_FatMan
 msgbox	Urrrrppp…I'm getting queasy just being aboard this ship…It's not even moving, but…
 end

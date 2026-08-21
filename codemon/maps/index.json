@@ -10,7 +10,7 @@
    "warps": 2,
    "dialogs": 1,
    "signs": 0,
-   "scripts": 3,
+   "scripts": 5,
    "triggers": 0,
    "spawn": [
     4,
@@ -90,8 +90,8 @@
    "warps": 9,
    "dialogs": 0,
    "signs": 6,
-   "scripts": 0,
-   "triggers": 0,
+   "scripts": 16,
+   "triggers": 4,
    "spawn": [
     21,
     6
@@ -106,7 +106,7 @@
    "warps": 2,
    "dialogs": 0,
    "signs": 0,
-   "scripts": 0,
+   "scripts": 2,
    "triggers": 0,
    "spawn": [
     4,
@@ -122,7 +122,7 @@
    "warps": 3,
    "dialogs": 4,
    "signs": 0,
-   "scripts": 8,
+   "scripts": 10,
    "triggers": 0,
    "spawn": [
     4,
@@ -138,7 +138,7 @@
    "warps": 4,
    "dialogs": 1,
    "signs": 0,
-   "scripts": 1,
+   "scripts": 3,
    "triggers": 0,
    "spawn": [
     9,
@@ -154,7 +154,7 @@
    "warps": 6,
    "dialogs": 3,
    "signs": 0,
-   "scripts": 5,
+   "scripts": 7,
    "triggers": 0,
    "spawn": [
     10,
@@ -170,7 +170,7 @@
    "warps": 3,
    "dialogs": 1,
    "signs": 0,
-   "scripts": 1,
+   "scripts": 3,
    "triggers": 0,
    "spawn": [
     13,
@@ -266,7 +266,7 @@
    "warps": 25,
    "dialogs": 4,
    "signs": 0,
-   "scripts": 10,
+   "scripts": 16,
    "triggers": 0,
    "spawn": [
     24,
@@ -282,7 +282,7 @@
    "warps": 10,
    "dialogs": 4,
    "signs": 0,
-   "scripts": 7,
+   "scripts": 9,
    "triggers": 2,
    "spawn": [
     17,
@@ -346,7 +346,7 @@
    "warps": 2,
    "dialogs": 0,
    "signs": 0,
-   "scripts": 0,
+   "scripts": 2,
    "triggers": 0,
    "spawn": [
     8,
@@ -362,8 +362,8 @@
    "warps": 2,
    "dialogs": 0,
    "signs": 0,
-   "scripts": 0,
-   "triggers": 0,
+   "scripts": 10,
+   "triggers": 4,
    "spawn": [
     23,
     27
@@ -2042,8 +2042,8 @@
    "warps": 5,
    "dialogs": 4,
    "signs": 3,
-   "scripts": 5,
-   "triggers": 0,
+   "scripts": 7,
+   "triggers": 1,
    "spawn": [
     14,
     8
@@ -2218,7 +2218,7 @@
    "warps": 2,
    "dialogs": 0,
    "signs": 0,
-   "scripts": 0,
+   "scripts": 4,
    "triggers": 0,
    "spawn": [
     18,
@@ -2410,7 +2410,7 @@
    "warps": 4,
    "dialogs": 1,
    "signs": 0,
-   "scripts": 2,
+   "scripts": 4,
    "triggers": 0,
    "spawn": [
     21,
@@ -2426,7 +2426,7 @@
    "warps": 7,
    "dialogs": 0,
    "signs": 0,
-   "scripts": 0,
+   "scripts": 2,
    "triggers": 0,
    "spawn": [
     16,
@@ -2442,8 +2442,8 @@
    "warps": 5,
    "dialogs": 0,
    "signs": 0,
-   "scripts": 0,
-   "triggers": 0,
+   "scripts": 8,
+   "triggers": 2,
    "spawn": [
     15,
     12
@@ -2506,8 +2506,8 @@
    "warps": 5,
    "dialogs": 6,
    "signs": 0,
-   "scripts": 12,
-   "triggers": 5,
+   "scripts": 18,
+   "triggers": 7,
    "spawn": [
     14,
     22
@@ -2522,8 +2522,8 @@
    "warps": 6,
    "dialogs": 7,
    "signs": 3,
-   "scripts": 12,
-   "triggers": 1,
+   "scripts": 14,
+   "triggers": 2,
    "spawn": [
     9,
     7
@@ -2650,8 +2650,8 @@
    "warps": 14,
    "dialogs": 19,
    "signs": 8,
-   "scripts": 28,
-   "triggers": 0,
+   "scripts": 36,
+   "triggers": 3,
    "spawn": [
     24,
     15
@@ -3130,7 +3130,7 @@
    "warps": 4,
    "dialogs": 2,
    "signs": 0,
-   "scripts": 2,
+   "scripts": 4,
    "triggers": 0,
    "spawn": [
     20,
@@ -3162,7 +3162,7 @@
    "warps": 2,
    "dialogs": 4,
    "signs": 0,
-   "scripts": 4,
+   "scripts": 8,
    "triggers": 0,
    "spawn": [
     25,
@@ -3194,7 +3194,7 @@
    "warps": 3,
    "dialogs": 2,
    "signs": 0,
-   "scripts": 2,
+   "scripts": 4,
    "triggers": 0,
    "spawn": [
     15,
@@ -3210,7 +3210,7 @@
    "warps": 1,
    "dialogs": 1,
    "signs": 0,
-   "scripts": 1,
+   "scripts": 3,
    "triggers": 0,
    "spawn": [
     10,
@@ -3226,7 +3226,7 @@
    "warps": 2,
    "dialogs": 0,
    "signs": 0,
-   "scripts": 0,
+   "scripts": 2,
    "triggers": 0,
    "spawn": [
     16,
@@ -3242,7 +3242,7 @@
    "warps": 2,
    "dialogs": 5,
    "signs": 0,
-   "scripts": 5,
+   "scripts": 7,
    "triggers": 0,
    "spawn": [
     29,
@@ -3290,7 +3290,7 @@
    "warps": 7,
    "dialogs": 8,
    "signs": 4,
-   "scripts": 24,
+   "scripts": 26,
    "triggers": 0,
    "spawn": [
     22,
@@ -3434,7 +3434,7 @@
    "warps": 6,
    "dialogs": 1,
    "signs": 0,
-   "scripts": 3,
+   "scripts": 11,
    "triggers": 1,
    "spawn": [
     14,
@@ -3482,7 +3482,7 @@
    "warps": 1,
    "dialogs": 0,
    "signs": 0,
-   "scripts": 0,
+   "scripts": 2,
    "triggers": 0,
    "spawn": [
     5,
@@ -3578,7 +3578,7 @@
    "warps": 10,
    "dialogs": 10,
    "signs": 4,
-   "scripts": 18,
+   "scripts": 20,
    "triggers": 10,
    "spawn": [
     28,
@@ -3850,7 +3850,7 @@
    "warps": 5,
    "dialogs": 7,
    "signs": 0,
-   "scripts": 7,
+   "scripts": 9,
    "triggers": 0,
    "spawn": [
     6,
@@ -3866,7 +3866,7 @@
    "warps": 6,
    "dialogs": 3,
    "signs": 0,
-   "scripts": 5,
+   "scripts": 7,
    "triggers": 0,
    "spawn": [
     5,
@@ -3882,7 +3882,7 @@
    "warps": 6,
    "dialogs": 0,
    "signs": 0,
-   "scripts": 0,
+   "scripts": 2,
    "triggers": 0,
    "spawn": [
     4,
@@ -3898,7 +3898,7 @@
    "warps": 5,
    "dialogs": 0,
    "signs": 0,
-   "scripts": 0,
+   "scripts": 2,
    "triggers": 0,
    "spawn": [
     5,
@@ -3914,7 +3914,7 @@
    "warps": 2,
    "dialogs": 2,
    "signs": 0,
-   "scripts": 4,
+   "scripts": 6,
    "triggers": 0,
    "spawn": [
     5,
@@ -3930,8 +3930,8 @@
    "warps": 3,
    "dialogs": 0,
    "signs": 0,
-   "scripts": 2,
-   "triggers": 5,
+   "scripts": 10,
+   "triggers": 7,
    "spawn": [
     17,
     27
@@ -3946,8 +3946,8 @@
    "warps": 3,
    "dialogs": 6,
    "signs": 0,
-   "scripts": 36,
-   "triggers": 6,
+   "scripts": 40,
+   "triggers": 8,
    "spawn": [
     25,
     18
@@ -4234,8 +4234,8 @@
    "warps": 1,
    "dialogs": 0,
    "signs": 0,
-   "scripts": 3,
-   "triggers": 1,
+   "scripts": 5,
+   "triggers": 2,
    "spawn": [
     12,
     14
@@ -4330,7 +4330,7 @@
    "warps": 1,
    "dialogs": 0,
    "signs": 8,
-   "scripts": 12,
+   "scripts": 22,
    "triggers": 10,
    "spawn": [
     19,
@@ -4570,8 +4570,8 @@
    "warps": 6,
    "dialogs": 4,
    "signs": 3,
-   "scripts": 26,
-   "triggers": 8,
+   "scripts": 32,
+   "triggers": 9,
    "spawn": [
     20,
     17
@@ -4698,8 +4698,8 @@
    "warps": 6,
    "dialogs": 5,
    "signs": 2,
-   "scripts": 18,
-   "triggers": 2,
+   "scripts": 34,
+   "triggers": 6,
    "spawn": [
     26,
     20
@@ -4746,7 +4746,7 @@
    "warps": 0,
    "dialogs": 2,
    "signs": 2,
-   "scripts": 11,
+   "scripts": 13,
    "triggers": 0,
    "spawn": [
     25,
@@ -4762,7 +4762,7 @@
    "warps": 1,
    "dialogs": 2,
    "signs": 1,
-   "scripts": 17,
+   "scripts": 21,
    "triggers": 0,
    "spawn": [
     40,
@@ -4778,8 +4778,8 @@
    "warps": 8,
    "dialogs": 7,
    "signs": 5,
-   "scripts": 51,
-   "triggers": 1,
+   "scripts": 69,
+   "triggers": 6,
    "spawn": [
     21,
     41
@@ -4842,8 +4842,8 @@
    "warps": 1,
    "dialogs": 0,
    "signs": 0,
-   "scripts": 9,
-   "triggers": 0,
+   "scripts": 15,
+   "triggers": 2,
    "spawn": [
     20,
     40
@@ -4858,8 +4858,8 @@
    "warps": 1,
    "dialogs": 0,
    "signs": 1,
-   "scripts": 6,
-   "triggers": 0,
+   "scripts": 14,
+   "triggers": 3,
    "spawn": [
     40,
     10
@@ -4890,8 +4890,8 @@
    "warps": 1,
    "dialogs": 0,
    "signs": 0,
-   "scripts": 8,
-   "triggers": 0,
+   "scripts": 12,
+   "triggers": 1,
    "spawn": [
     30,
     10
@@ -4906,8 +4906,8 @@
    "warps": 1,
    "dialogs": 6,
    "signs": 2,
-   "scripts": 36,
-   "triggers": 0,
+   "scripts": 52,
+   "triggers": 6,
    "spawn": [
     20,
     31
@@ -4938,8 +4938,8 @@
    "warps": 6,
    "dialogs": 12,
    "signs": 11,
-   "scripts": 84,
-   "triggers": 9,
+   "scripts": 98,
+   "triggers": 13,
    "spawn": [
     19,
     49
@@ -5002,8 +5002,8 @@
    "warps": 2,
    "dialogs": 1,
    "signs": 0,
-   "scripts": 20,
-   "triggers": 1,
+   "scripts": 22,
+   "triggers": 2,
    "spawn": [
     5,
     3
@@ -5034,7 +5034,7 @@
    "warps": 3,
    "dialogs": 3,
    "signs": 0,
-   "scripts": 3,
+   "scripts": 5,
    "triggers": 0,
    "spawn": [
     7,
@@ -5050,7 +5050,7 @@
    "warps": 3,
    "dialogs": 3,
    "signs": 0,
-   "scripts": 11,
+   "scripts": 15,
    "triggers": 4,
    "spawn": [
     7,
@@ -5066,7 +5066,7 @@
    "warps": 3,
    "dialogs": 3,
    "signs": 0,
-   "scripts": 23,
+   "scripts": 27,
    "triggers": 4,
    "spawn": [
     7,
@@ -5082,7 +5082,7 @@
    "warps": 3,
    "dialogs": 3,
    "signs": 0,
-   "scripts": 3,
+   "scripts": 5,
    "triggers": 0,
    "spawn": [
     6,
@@ -5114,7 +5114,7 @@
    "warps": 3,
    "dialogs": 3,
    "signs": 0,
-   "scripts": 3,
+   "scripts": 5,
    "triggers": 0,
    "spawn": [
     7,
@@ -5130,7 +5130,7 @@
    "warps": 13,
    "dialogs": 6,
    "signs": 0,
-   "scripts": 10,
+   "scripts": 12,
    "triggers": 4,
    "spawn": [
     6,
@@ -5146,7 +5146,7 @@
    "warps": 3,
    "dialogs": 3,
    "signs": 0,
-   "scripts": 3,
+   "scripts": 5,
    "triggers": 0,
    "spawn": [
     8,
@@ -5162,8 +5162,8 @@
    "warps": 5,
    "dialogs": 5,
    "signs": 7,
-   "scripts": 46,
-   "triggers": 34,
+   "scripts": 60,
+   "triggers": 37,
    "spawn": [
     21,
     69
@@ -5210,7 +5210,7 @@
    "warps": 6,
    "dialogs": 3,
    "signs": 3,
-   "scripts": 10,
+   "scripts": 12,
    "triggers": 0,
    "spawn": [
     19,
@@ -5242,8 +5242,8 @@
    "warps": 3,
    "dialogs": 2,
    "signs": 4,
-   "scripts": 17,
-   "triggers": 0,
+   "scripts": 29,
+   "triggers": 3,
    "spawn": [
     50,
     10
@@ -5274,8 +5274,8 @@
    "warps": 5,
    "dialogs": 2,
    "signs": 3,
-   "scripts": 22,
-   "triggers": 0,
+   "scripts": 32,
+   "triggers": 2,
    "spawn": [
     20,
     40
@@ -5338,8 +5338,8 @@
    "warps": 3,
    "dialogs": 1,
    "signs": 2,
-   "scripts": 17,
-   "triggers": 0,
+   "scripts": 31,
+   "triggers": 1,
    "spawn": [
     18,
     41
@@ -5354,8 +5354,8 @@
    "warps": 5,
    "dialogs": 4,
    "signs": 5,
-   "scripts": 38,
-   "triggers": 1,
+   "scripts": 52,
+   "triggers": 3,
    "spawn": [
     49,
     9
@@ -5386,8 +5386,8 @@
    "warps": 1,
    "dialogs": 3,
    "signs": 3,
-   "scripts": 25,
-   "triggers": 0,
+   "scripts": 31,
+   "triggers": 1,
    "spawn": [
     30,
     10
@@ -5418,8 +5418,8 @@
    "warps": 2,
    "dialogs": 2,
    "signs": 2,
-   "scripts": 23,
-   "triggers": 3,
+   "scripts": 29,
+   "triggers": 5,
    "spawn": [
     40,
     10
@@ -5434,8 +5434,8 @@
    "warps": 2,
    "dialogs": 5,
    "signs": 3,
-   "scripts": 53,
-   "triggers": 2,
+   "scripts": 79,
+   "triggers": 6,
    "spawn": [
     20,
     70
@@ -5498,8 +5498,8 @@
    "warps": 2,
    "dialogs": 2,
    "signs": 2,
-   "scripts": 36,
-   "triggers": 0,
+   "scripts": 54,
+   "triggers": 4,
    "spawn": [
     20,
     50
@@ -5514,8 +5514,8 @@
    "warps": 1,
    "dialogs": 1,
    "signs": 2,
-   "scripts": 19,
-   "triggers": 4,
+   "scripts": 33,
+   "triggers": 8,
    "spawn": [
     40,
     10
@@ -5562,8 +5562,8 @@
    "warps": 1,
    "dialogs": 1,
    "signs": 3,
-   "scripts": 25,
-   "triggers": 0,
+   "scripts": 45,
+   "triggers": 5,
    "spawn": [
     69,
     9
@@ -5594,7 +5594,7 @@
    "warps": 1,
    "dialogs": 0,
    "signs": 1,
-   "scripts": 15,
+   "scripts": 21,
    "triggers": 0,
    "spawn": [
     40,
@@ -5626,7 +5626,7 @@
    "warps": 1,
    "dialogs": 0,
    "signs": 0,
-   "scripts": 11,
+   "scripts": 13,
    "triggers": 0,
    "spawn": [
     40,
@@ -5642,7 +5642,7 @@
    "warps": 0,
    "dialogs": 0,
    "signs": 0,
-   "scripts": 10,
+   "scripts": 12,
    "triggers": 0,
    "spawn": [
     38,
@@ -5658,7 +5658,7 @@
    "warps": 0,
    "dialogs": 0,
    "signs": 0,
-   "scripts": 10,
+   "scripts": 16,
    "triggers": 0,
    "spawn": [
     40,
@@ -5674,8 +5674,8 @@
    "warps": 0,
    "dialogs": 0,
    "signs": 0,
-   "scripts": 11,
-   "triggers": 0,
+   "scripts": 17,
+   "triggers": 3,
    "spawn": [
     61,
     19
@@ -5738,7 +5738,7 @@
    "warps": 0,
    "dialogs": 0,
    "signs": 0,
-   "scripts": 8,
+   "scripts": 12,
    "triggers": 0,
    "spawn": [
     40,
@@ -5754,7 +5754,7 @@
    "warps": 0,
    "dialogs": 0,
    "signs": 0,
-   "scripts": 7,
+   "scripts": 13,
    "triggers": 0,
    "spawn": [
     40,
@@ -5770,7 +5770,7 @@
    "warps": 0,
    "dialogs": 0,
    "signs": 0,
-   "scripts": 9,
+   "scripts": 13,
    "triggers": 0,
    "spawn": [
     40,
@@ -5786,7 +5786,7 @@
    "warps": 12,
    "dialogs": 12,
    "signs": 6,
-   "scripts": 69,
+   "scripts": 71,
    "triggers": 21,
    "spawn": [
     16,
@@ -6074,7 +6074,7 @@
    "warps": 3,
    "dialogs": 5,
    "signs": 0,
-   "scripts": 10,
+   "scripts": 14,
    "triggers": 5,
    "spawn": [
     18,
@@ -6106,8 +6106,8 @@
    "warps": 1,
    "dialogs": 2,
    "signs": 0,
-   "scripts": 2,
-   "triggers": 0,
+   "scripts": 4,
+   "triggers": 1,
    "spawn": [
     7,
     5
@@ -6138,7 +6138,7 @@
    "warps": 0,
    "dialogs": 0,
    "signs": 0,
-   "scripts": 2,
+   "scripts": 4,
    "triggers": 0,
    "spawn": [
     20,
@@ -6154,8 +6154,8 @@
    "warps": 0,
    "dialogs": 0,
    "signs": 0,
-   "scripts": 0,
-   "triggers": 0,
+   "scripts": 6,
+   "triggers": 2,
    "spawn": [
     20,
     20
@@ -6170,7 +6170,7 @@
    "warps": 0,
    "dialogs": 0,
    "signs": 0,
-   "scripts": 1,
+   "scripts": 3,
    "triggers": 0,
    "spawn": [
     20,
@@ -6218,8 +6218,8 @@
    "warps": 0,
    "dialogs": 0,
    "signs": 0,
-   "scripts": 0,
-   "triggers": 0,
+   "scripts": 6,
+   "triggers": 2,
    "spawn": [
     19,
     19
@@ -6234,7 +6234,7 @@
    "warps": 1,
    "dialogs": 0,
    "signs": 0,
-   "scripts": 1,
+   "scripts": 3,
    "triggers": 0,
    "spawn": [
     20,
@@ -6250,7 +6250,7 @@
    "warps": 1,
    "dialogs": 0,
    "signs": 0,
-   "scripts": 0,
+   "scripts": 2,
    "triggers": 0,
    "spawn": [
     7,
@@ -6410,7 +6410,7 @@
    "warps": 1,
    "dialogs": 0,
    "signs": 0,
-   "scripts": 1,
+   "scripts": 3,
    "triggers": 1,
    "spawn": [
     13,
@@ -6490,7 +6490,7 @@
    "warps": 4,
    "dialogs": 0,
    "signs": 0,
-   "scripts": 9,
+   "scripts": 11,
    "triggers": 0,
    "spawn": [
     18,
@@ -6506,7 +6506,7 @@
    "warps": 1,
    "dialogs": 0,
    "signs": 0,
-   "scripts": 0,
+   "scripts": 4,
    "triggers": 0,
    "spawn": [
     10,
@@ -6522,7 +6522,7 @@
    "warps": 8,
    "dialogs": 0,
    "signs": 0,
-   "scripts": 0,
+   "scripts": 2,
    "triggers": 0,
    "spawn": [
     23,
@@ -6554,7 +6554,7 @@
    "warps": 2,
    "dialogs": 0,
    "signs": 0,
-   "scripts": 0,
+   "scripts": 2,
    "triggers": 0,
    "spawn": [
     9,
@@ -7418,8 +7418,8 @@
    "warps": 0,
    "dialogs": 0,
    "signs": 0,
-   "scripts": 0,
-   "triggers": 0,
+   "scripts": 14,
+   "triggers": 7,
    "spawn": [
     43,
     37
@@ -7450,8 +7450,8 @@
    "warps": 1,
    "dialogs": 0,
    "signs": 0,
-   "scripts": 0,
-   "triggers": 0,
+   "scripts": 16,
+   "triggers": 8,
    "spawn": [
     32,
     32
@@ -7466,8 +7466,8 @@
    "warps": 2,
    "dialogs": 0,
    "signs": 0,
-   "scripts": 0,
-   "triggers": 0,
+   "scripts": 8,
+   "triggers": 4,
    "spawn": [
     40,
     40
@@ -7482,8 +7482,8 @@
    "warps": 1,
    "dialogs": 0,
    "signs": 0,
-   "scripts": 0,
-   "triggers": 0,
+   "scripts": 4,
+   "triggers": 2,
    "spawn": [
     55,
     15
@@ -7754,8 +7754,8 @@
    "warps": 5,
    "dialogs": 7,
    "signs": 0,
-   "scripts": 11,
-   "triggers": 2,
+   "scripts": 17,
+   "triggers": 3,
    "spawn": [
     23,
     22
@@ -7770,7 +7770,7 @@
    "warps": 7,
    "dialogs": 5,
    "signs": 0,
-   "scripts": 5,
+   "scripts": 9,
    "triggers": 0,
    "spawn": [
     23,
@@ -7786,8 +7786,8 @@
    "warps": 4,
    "dialogs": 6,
    "signs": 0,
-   "scripts": 6,
-   "triggers": 0,
+   "scripts": 12,
+   "triggers": 2,
    "spawn": [
     22,
     14

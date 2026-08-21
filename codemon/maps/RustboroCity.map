@@ -175,6 +175,7 @@ objscripts
 7 RustboroCity_EventScript_LittleGirl
 8 RustboroCity_EventScript_DevonEmployee1
 10 RustboroCity_EventScript_DevonEmployee2
+11 RustboroCity_EventScript_ItemXDefend
 12 RustboroCity_EventScript_Man2
 14 RustboroCity_EventScript_Boy1
 triggers
@@ -712,6 +713,13 @@ lock
 faceplayer
 msgbox	A POKéMON you get in a trade from someone grows fast.But if you don't have certain GYM BADGES, it may not obey you…
 release
+end
+= RustboroCity_EventScript_ItemXDefend
+goto_if_set FLAG_ITEM_RUSTBORO_CITY_X_DEFEND RustboroCity_EventScript_ItemXDefend_Taken
+finditem ITEM_X_DEFEND
+setflag FLAG_ITEM_RUSTBORO_CITY_X_DEFEND
+end
+= RustboroCity_EventScript_ItemXDefend_Taken
 end
 = RustboroCity_EventScript_DevonEmployee2
 lock

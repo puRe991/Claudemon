@@ -222,16 +222,25 @@ objscripts
 5 Route104_EventScript_Girl2
 8 Route104_EventScript_Ivan
 15 Route104_EventScript_ExpertF
+20 Route104_EventScript_ItemPPUp
 21 Route104_EventScript_WhiteHerbFlorist
 22 Route104_EventScript_Gina
 23 Route104_EventScript_Mia
 24 Route104_EventScript_Winston
 25 Route104_EventScript_Cindy
+26 Route104_EventScript_ItemPokeBall
 27 Route104_EventScript_Billy
+28 Route104_EventScript_ItemXAccuracy
+30 Route104_EventScript_ItemPotion
 31 Route104_EventScript_Boy2
 32 Route104_EventScript_Darian
 triggers
 17 51 VAR_ROUTE104_STATE 1 Route104_EventScript_RivalTrigger
+7 6 0 0 Route104_HiddenItem_7_6
+3 9 0 0 Route104_HiddenItem_3_9
+14 55 0 0 Route104_HiddenItem_14_55
+16 72 0 0 Route104_HiddenItem_16_72
+16 64 0 0 Route104_HiddenItem_16_64
 movements
 Route104_Movement_PlayerBackUp	delay,down,delay,end
 Route104_Movement_PlayerFaceRival	delay,delay,end
@@ -239,6 +248,41 @@ Route104_Movement_RivalApproachPlayer	down,face_right,end
 Route104_Movement_RivalExitBrineysCottage	down,end
 Route104_Movement_RivalWalkSlowLeft	left,end
 scriptdefs
+= Route104_HiddenItem_16_64
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_104_HEART_SCALE Route104_HiddenItem_16_64_Taken
+finditem ITEM_HEART_SCALE
+setflag FLAG_HIDDEN_ITEM_ROUTE_104_HEART_SCALE
+end
+= Route104_HiddenItem_16_64_Taken
+end
+= Route104_HiddenItem_16_72
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_104_ANTIDOTE Route104_HiddenItem_16_72_Taken
+finditem ITEM_ANTIDOTE
+setflag FLAG_HIDDEN_ITEM_ROUTE_104_ANTIDOTE
+end
+= Route104_HiddenItem_16_72_Taken
+end
+= Route104_HiddenItem_14_55
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_104_POTION Route104_HiddenItem_14_55_Taken
+finditem ITEM_POTION
+setflag FLAG_HIDDEN_ITEM_ROUTE_104_POTION
+end
+= Route104_HiddenItem_14_55_Taken
+end
+= Route104_HiddenItem_3_9
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_104_POKE_BALL Route104_HiddenItem_3_9_Taken
+finditem ITEM_POKE_BALL
+setflag FLAG_HIDDEN_ITEM_ROUTE_104_POKE_BALL
+end
+= Route104_HiddenItem_3_9_Taken
+end
+= Route104_HiddenItem_7_6
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_104_SUPER_POTION Route104_HiddenItem_7_6_Taken
+finditem ITEM_SUPER_POTION
+setflag FLAG_HIDDEN_ITEM_ROUTE_104_SUPER_POTION
+end
+= Route104_HiddenItem_7_6_Taken
+end
 = Route104_EventScript_RivalTrigger
 lockall
 setflag FLAG_HIDE_RUSTBORO_CITY_RIVAL
@@ -410,9 +454,30 @@ end
 msgbox	A word of advice!A TM, TECHNICAL MACHINE, is good only for one-time use.Once you use it, it's gone. Think twice before using it!
 release
 end
+= Route104_EventScript_ItemPotion
+goto_if_set FLAG_ITEM_ROUTE_104_POTION Route104_EventScript_ItemPotion_Taken
+finditem ITEM_POTION
+setflag FLAG_ITEM_ROUTE_104_POTION
+end
+= Route104_EventScript_ItemPotion_Taken
+end
+= Route104_EventScript_ItemXAccuracy
+goto_if_set FLAG_ITEM_ROUTE_104_X_ACCURACY Route104_EventScript_ItemXAccuracy_Taken
+finditem ITEM_X_ACCURACY
+setflag FLAG_ITEM_ROUTE_104_X_ACCURACY
+end
+= Route104_EventScript_ItemXAccuracy_Taken
+end
 = Route104_EventScript_Billy
 trainerbattle_single TRAINER_BILLY Route104_Text_BillyIntro Route104_Text_BillyDefeat
 msgbox	Route104_Text_BillyPostBattle
+end
+= Route104_EventScript_ItemPokeBall
+goto_if_set FLAG_ITEM_ROUTE_104_POKE_BALL Route104_EventScript_ItemPokeBall_Taken
+finditem ITEM_POKE_BALL
+setflag FLAG_ITEM_ROUTE_104_POKE_BALL
+end
+= Route104_EventScript_ItemPokeBall_Taken
 end
 = Route104_EventScript_Cindy
 trainerbattle_single TRAINER_CINDY_1 Route104_Text_CindyIntro Route104_Text_CindyDefeat Route104_EventScript_TryRegisterCindyAfterBattle
@@ -509,6 +574,13 @@ end
 = Route104_EventScript_ReceivedWhiteHerb
 msgbox	This FLOWER SHOP started selling saplings recently.It made me so happy, I went overboard shopping. Where should I put them?
 release
+end
+= Route104_EventScript_ItemPPUp
+goto_if_set FLAG_ITEM_ROUTE_104_PP_UP Route104_EventScript_ItemPPUp_Taken
+finditem ITEM_PP_UP
+setflag FLAG_ITEM_ROUTE_104_PP_UP
+end
+= Route104_EventScript_ItemPPUp_Taken
 end
 = Route104_EventScript_ExpertF
 lock

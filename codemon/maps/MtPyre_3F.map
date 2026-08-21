@@ -47,6 +47,7 @@ dialogs
 objscripts
 0 MtPyre_3F_EventScript_William
 1 MtPyre_3F_EventScript_Kayla
+2 MtPyre_3F_EventScript_ItemSuperRepel
 3 MtPyre_3F_EventScript_Gabrielle
 scriptdefs
 = MtPyre_3F_EventScript_Gabrielle
@@ -66,6 +67,13 @@ waitmovement 0
 msgbox	I would like to see your POKéMON when they grow up some more…Please, I need to see your POKéNAV.
 register_matchcall TRAINER_GABRIELLE_1
 release
+end
+= MtPyre_3F_EventScript_ItemSuperRepel
+goto_if_set FLAG_ITEM_MT_PYRE_3F_SUPER_REPEL MtPyre_3F_EventScript_ItemSuperRepel_Taken
+finditem ITEM_SUPER_REPEL
+setflag FLAG_ITEM_MT_PYRE_3F_SUPER_REPEL
+end
+= MtPyre_3F_EventScript_ItemSuperRepel_Taken
 end
 = MtPyre_3F_EventScript_Kayla
 trainerbattle_single TRAINER_KAYLA MtPyre_3F_Text_KaylaIntro MtPyre_3F_Text_KaylaDefeat

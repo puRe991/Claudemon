@@ -37,5 +37,15 @@ warps
 7 4 ShoalCave_LowTideInnerRoom 2
 npcs
 misc_item_ball 13 12 S static
+objscripts
+0 ShoalCave_LowTideStairsRoom_EventScript_ItemIceHeal
+scriptdefs
+= ShoalCave_LowTideStairsRoom_EventScript_ItemIceHeal
+goto_if_set FLAG_ITEM_SHOAL_CAVE_STAIRS_ROOM_ICE_HEAL ShoalCave_LowTideStairsRoom_EventScript_ItemIceHeal_Taken
+finditem ITEM_ICE_HEAL
+setflag FLAG_ITEM_SHOAL_CAVE_STAIRS_ROOM_ICE_HEAL
+end
+= ShoalCave_LowTideStairsRoom_EventScript_ItemIceHeal_Taken
+end
 encounters
 land ZUBAT:26:26,SPHEAL:26:26,ZUBAT:28:28,SPHEAL:28:28,ZUBAT:30:30,SPHEAL:30:30,ZUBAT:32:32,SPHEAL:32:32,GOLBAT:32:32,SPHEAL:32:32,GOLBAT:32:32,SPHEAL:32:32

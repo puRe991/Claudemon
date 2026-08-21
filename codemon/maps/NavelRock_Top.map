@@ -64,12 +64,20 @@ npcs
 people_man_1 12 4 S static
 triggers
 12 10 VAR_TEMP_1 0 NavelRock_Top_EventScript_HoOh
+12 9 0 0 NavelRock_Top_HiddenItem_12_9
 movements
 NavelRock_Top_Movement_CameraPanDown	delay,delay,down,down,down,end
 NavelRock_Top_Movement_CameraPanUp	up,up,up,end
 NavelRock_Top_Movement_HoOhAppear	delay,delay,delay,delay,delay,delay,end
 NavelRock_Top_Movement_HoOhApproach	down,down,down,down,down,delay,delay,delay,end
 scriptdefs
+= NavelRock_Top_HiddenItem_12_9
+goto_if_set FLAG_HIDDEN_ITEM_NAVEL_ROCK_TOP_SACRED_ASH NavelRock_Top_HiddenItem_12_9_Taken
+finditem ITEM_SACRED_ASH
+setflag FLAG_HIDDEN_ITEM_NAVEL_ROCK_TOP_SACRED_ASH
+end
+= NavelRock_Top_HiddenItem_12_9_Taken
+end
 = NavelRock_Top_EventScript_HoOh
 lockall
 setvar VAR_TEMP_1 1

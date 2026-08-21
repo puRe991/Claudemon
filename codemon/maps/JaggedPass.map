@@ -118,6 +118,7 @@ dialogs
 objscripts
 0 JaggedPass_EventScript_Eric
 1 JaggedPass_EventScript_Ethan
+2 JaggedPass_EventScript_ItemBurnHeal
 3 JaggedPass_EventScript_Diana
 4 JaggedPass_EventScript_MagmaHideoutGuard
 5 JaggedPass_EventScript_Autumn
@@ -128,7 +129,23 @@ triggers
 21 20 VAR_JAGGED_PASS_STATE 1 JaggedPass_EventScript_OpenMagmaHideout
 14 15 VAR_JAGGED_PASS_STATE 1 JaggedPass_EventScript_OpenMagmaHideout
 13 15 VAR_JAGGED_PASS_STATE 1 JaggedPass_EventScript_OpenMagmaHideout
+8 10 0 0 JaggedPass_HiddenItem_8_10
+7 29 0 0 JaggedPass_HiddenItem_7_29
 scriptdefs
+= JaggedPass_HiddenItem_7_29
+goto_if_set FLAG_HIDDEN_ITEM_JAGGED_PASS_GREAT_BALL JaggedPass_HiddenItem_7_29_Taken
+finditem ITEM_GREAT_BALL
+setflag FLAG_HIDDEN_ITEM_JAGGED_PASS_GREAT_BALL
+end
+= JaggedPass_HiddenItem_7_29_Taken
+end
+= JaggedPass_HiddenItem_8_10
+goto_if_set FLAG_HIDDEN_ITEM_JAGGED_PASS_FULL_HEAL JaggedPass_HiddenItem_8_10_Taken
+finditem ITEM_FULL_HEAL
+setflag FLAG_HIDDEN_ITEM_JAGGED_PASS_FULL_HEAL
+end
+= JaggedPass_HiddenItem_8_10_Taken
+end
 = JaggedPass_EventScript_OpenMagmaHideout
 lockall
 setvar VAR_0x8004 1  @ vertical pan
@@ -206,6 +223,13 @@ special PlayerFaceTrainerAfterBattle
 msgbox	Will you ever be back in this area? If you do return, I'd like a rematch.
 register_matchcall TRAINER_DIANA_1
 release
+end
+= JaggedPass_EventScript_ItemBurnHeal
+goto_if_set FLAG_ITEM_JAGGED_PASS_BURN_HEAL JaggedPass_EventScript_ItemBurnHeal_Taken
+finditem ITEM_BURN_HEAL
+setflag FLAG_ITEM_JAGGED_PASS_BURN_HEAL
+end
+= JaggedPass_EventScript_ItemBurnHeal_Taken
 end
 = JaggedPass_EventScript_Ethan
 trainerbattle_single TRAINER_ETHAN_1 JaggedPass_Text_EthanIntro JaggedPass_Text_EthanDefeat JaggedPass_EventScript_RegisterEthan

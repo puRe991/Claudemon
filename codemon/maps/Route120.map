@@ -259,20 +259,65 @@ objscripts
 12 Route120_EventScript_Lorenzo
 13 Route120_EventScript_Jenna
 14 Route120_EventScript_Jeffrey
+15 Route120_EventScript_ItemNugget
+21 Route120_EventScript_ItemFullHeal
 22 Route120_EventScript_BerryBeauty
 23 Route120_EventScript_Jennifer
 24 Route120_EventScript_Chip
 25 Route120_EventScript_Clarissa
 26 Route120_EventScript_Angelica
+27 Route120_EventScript_ItemNestBall
+28 Route120_EventScript_ItemHyperPotion
 29 Route120_EventScript_BridgeKecleon
 30 Route120_EventScript_Steven
 33 Route120_EventScript_Keigo
 34 Route120_EventScript_Riley
 41 Route120_EventScript_Callie
 42 Route120_EventScript_Leonel
+43 Route120_EventScript_ItemRevive
+triggers
+9 1 0 0 Route120_HiddenItem_9_1
+31 11 0 0 Route120_HiddenItem_31_11
+0 86 0 0 Route120_HiddenItem_0_86
+24 42 0 0 Route120_HiddenItem_24_42
 movements
 Route120_Movement_ApproachKecleonWest	down,left,end
 scriptdefs
+= Route120_HiddenItem_24_42
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_120_ZINC Route120_HiddenItem_24_42_Taken
+finditem ITEM_ZINC
+setflag FLAG_HIDDEN_ITEM_ROUTE_120_ZINC
+end
+= Route120_HiddenItem_24_42_Taken
+end
+= Route120_HiddenItem_0_86
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_120_RARE_CANDY_2 Route120_HiddenItem_0_86_Taken
+finditem ITEM_RARE_CANDY
+setflag FLAG_HIDDEN_ITEM_ROUTE_120_RARE_CANDY_2
+end
+= Route120_HiddenItem_0_86_Taken
+end
+= Route120_HiddenItem_31_11
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_120_REVIVE Route120_HiddenItem_31_11_Taken
+finditem ITEM_REVIVE
+setflag FLAG_HIDDEN_ITEM_ROUTE_120_REVIVE
+end
+= Route120_HiddenItem_31_11_Taken
+end
+= Route120_HiddenItem_9_1
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_120_RARE_CANDY_1 Route120_HiddenItem_9_1_Taken
+finditem ITEM_RARE_CANDY
+setflag FLAG_HIDDEN_ITEM_ROUTE_120_RARE_CANDY_1
+end
+= Route120_HiddenItem_9_1_Taken
+end
+= Route120_EventScript_ItemRevive
+goto_if_set FLAG_ITEM_ROUTE_120_REVIVE Route120_EventScript_ItemRevive_Taken
+finditem ITEM_REVIVE
+setflag FLAG_ITEM_ROUTE_120_REVIVE
+end
+= Route120_EventScript_ItemRevive_Taken
+end
 = Route120_EventScript_Leonel
 trainerbattle_single TRAINER_LEONEL Route120_Text_LeonelIntro Route120_Text_LeonelDefeat
 msgbox	Route120_Text_LeonelPostBattle
@@ -378,6 +423,20 @@ end
 = Route120_EventScript_BridgeKecleon
 msgbox	Something unseeable is in the way.
 end
+= Route120_EventScript_ItemHyperPotion
+goto_if_set FLAG_ITEM_ROUTE_120_HYPER_POTION Route120_EventScript_ItemHyperPotion_Taken
+finditem ITEM_HYPER_POTION
+setflag FLAG_ITEM_ROUTE_120_HYPER_POTION
+end
+= Route120_EventScript_ItemHyperPotion_Taken
+end
+= Route120_EventScript_ItemNestBall
+goto_if_set FLAG_ITEM_ROUTE_120_NEST_BALL Route120_EventScript_ItemNestBall_Taken
+finditem ITEM_NEST_BALL
+setflag FLAG_ITEM_ROUTE_120_NEST_BALL
+end
+= Route120_EventScript_ItemNestBall_Taken
+end
 = Route120_EventScript_Angelica
 trainerbattle_single TRAINER_ANGELICA Route120_Text_AngelicaIntro Route120_Text_AngelicaDefeat
 msgbox	Route120_Text_AngelicaPostBattle
@@ -451,6 +510,20 @@ return
 = Route120_EventScript_ReceivedBerry
 msgbox	Route120_Text_IllGetMoreBerriesFromBerryMaster
 release
+end
+= Route120_EventScript_ItemFullHeal
+goto_if_set FLAG_ITEM_ROUTE_120_FULL_HEAL Route120_EventScript_ItemFullHeal_Taken
+finditem ITEM_FULL_HEAL
+setflag FLAG_ITEM_ROUTE_120_FULL_HEAL
+end
+= Route120_EventScript_ItemFullHeal_Taken
+end
+= Route120_EventScript_ItemNugget
+goto_if_set FLAG_ITEM_ROUTE_120_NUGGET Route120_EventScript_ItemNugget_Taken
+finditem ITEM_NUGGET
+setflag FLAG_ITEM_ROUTE_120_NUGGET
+end
+= Route120_EventScript_ItemNugget_Taken
 end
 = Route120_EventScript_Jeffrey
 trainerbattle_single TRAINER_JEFFREY_1 Route120_Text_JeffreyIntro Route120_Text_JeffreyDefeat Route120_EventScript_RegisterJeffrey

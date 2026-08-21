@@ -29,10 +29,18 @@ objscripts
 0 Route110_TrickHouseEnd_EventScript_TrickMaster
 triggers
 2 2 VAR_TEMP_2 0 Route110_TrickHouseEnd_EventScript_TrickMasterExitTrigger
+4 5 0 0 Route110_TrickHouseEnd_HiddenItem_4_5
 movements
 Route110_TrickHouseEnd_Movement_KeepPlayerInRoom	down,end
 Route110_TrickHouseEnd_Movement_TrickMasterSurprise	delay,end
 scriptdefs
+= Route110_TrickHouseEnd_HiddenItem_4_5
+goto_if_set FLAG_HIDDEN_ITEM_TRICK_HOUSE_NUGGET Route110_TrickHouseEnd_HiddenItem_4_5_Taken
+finditem ITEM_NUGGET
+setflag FLAG_HIDDEN_ITEM_TRICK_HOUSE_NUGGET
+end
+= Route110_TrickHouseEnd_HiddenItem_4_5_Taken
+end
 = Route110_TrickHouseEnd_EventScript_TrickMasterExitTrigger
 lockall
 turnobject LOCALID_TRICK_MASTER_END DIR_WEST

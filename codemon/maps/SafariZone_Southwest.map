@@ -89,7 +89,15 @@ people_woman_2 22 9 S static
 misc_item_ball 0 37 S static
 objscripts
 0 SafariZone_Southwest_EventScript_Woman
+1 SafariZone_Southwest_EventScript_ItemMaxRevive
 scriptdefs
+= SafariZone_Southwest_EventScript_ItemMaxRevive
+goto_if_set FLAG_ITEM_SAFARI_ZONE_SOUTH_WEST_MAX_REVIVE SafariZone_Southwest_EventScript_ItemMaxRevive_Taken
+finditem ITEM_MAX_REVIVE
+setflag FLAG_ITEM_SAFARI_ZONE_SOUTH_WEST_MAX_REVIVE
+end
+= SafariZone_Southwest_EventScript_ItemMaxRevive_Taken
+end
 = SafariZone_Southwest_EventScript_Woman
 msgbox	SafariZone_Southwest_Text_Woman
 end

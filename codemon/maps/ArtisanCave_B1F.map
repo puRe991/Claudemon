@@ -115,5 +115,48 @@ warps
 38 5 ArtisanCave_1F 1
 npcs
 misc_item_ball 32 38 S static
+objscripts
+0 ArtisanCave_B1F_EventScript_ItemHPUp
+triggers
+32 29 0 0 ArtisanCave_B1F_HiddenItem_32_29
+27 8 0 0 ArtisanCave_B1F_HiddenItem_27_8
+7 5 0 0 ArtisanCave_B1F_HiddenItem_7_5
+19 43 0 0 ArtisanCave_B1F_HiddenItem_19_43
+scriptdefs
+= ArtisanCave_B1F_HiddenItem_19_43
+goto_if_set FLAG_HIDDEN_ITEM_ARTISAN_CAVE_B1F_IRON ArtisanCave_B1F_HiddenItem_19_43_Taken
+finditem ITEM_IRON
+setflag FLAG_HIDDEN_ITEM_ARTISAN_CAVE_B1F_IRON
+end
+= ArtisanCave_B1F_HiddenItem_19_43_Taken
+end
+= ArtisanCave_B1F_HiddenItem_7_5
+goto_if_set FLAG_HIDDEN_ITEM_ARTISAN_CAVE_B1F_PROTEIN ArtisanCave_B1F_HiddenItem_7_5_Taken
+finditem ITEM_PROTEIN
+setflag FLAG_HIDDEN_ITEM_ARTISAN_CAVE_B1F_PROTEIN
+end
+= ArtisanCave_B1F_HiddenItem_7_5_Taken
+end
+= ArtisanCave_B1F_HiddenItem_27_8
+goto_if_set FLAG_HIDDEN_ITEM_ARTISAN_CAVE_B1F_CALCIUM ArtisanCave_B1F_HiddenItem_27_8_Taken
+finditem ITEM_CALCIUM
+setflag FLAG_HIDDEN_ITEM_ARTISAN_CAVE_B1F_CALCIUM
+end
+= ArtisanCave_B1F_HiddenItem_27_8_Taken
+end
+= ArtisanCave_B1F_HiddenItem_32_29
+goto_if_set FLAG_HIDDEN_ITEM_ARTISAN_CAVE_B1F_ZINC ArtisanCave_B1F_HiddenItem_32_29_Taken
+finditem ITEM_ZINC
+setflag FLAG_HIDDEN_ITEM_ARTISAN_CAVE_B1F_ZINC
+end
+= ArtisanCave_B1F_HiddenItem_32_29_Taken
+end
+= ArtisanCave_B1F_EventScript_ItemHPUp
+goto_if_set FLAG_ITEM_ARTISAN_CAVE_B1F_HP_UP ArtisanCave_B1F_EventScript_ItemHPUp_Taken
+finditem ITEM_HP_UP
+setflag FLAG_ITEM_ARTISAN_CAVE_B1F_HP_UP
+end
+= ArtisanCave_B1F_EventScript_ItemHPUp_Taken
+end
 encounters
 land SMEARGLE:40:40,SMEARGLE:41:41,SMEARGLE:42:42,SMEARGLE:43:43,SMEARGLE:44:44,SMEARGLE:45:45,SMEARGLE:46:46,SMEARGLE:47:47,SMEARGLE:48:48,SMEARGLE:49:49,SMEARGLE:50:50,SMEARGLE:50:50

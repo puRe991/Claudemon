@@ -38,5 +38,15 @@ warps
 npcs
 people_hex_maniac 11 7 S static
 misc_item_ball 3 11 S static
+objscripts
+1 MtPyre_4F_EventScript_ItemSeaIncense
+scriptdefs
+= MtPyre_4F_EventScript_ItemSeaIncense
+goto_if_set FLAG_ITEM_MT_PYRE_4F_SEA_INCENSE MtPyre_4F_EventScript_ItemSeaIncense_Taken
+finditem ITEM_SEA_INCENSE
+setflag FLAG_ITEM_MT_PYRE_4F_SEA_INCENSE
+end
+= MtPyre_4F_EventScript_ItemSeaIncense_Taken
+end
 encounters
 land SHUPPET:27:27,SHUPPET:28:28,SHUPPET:26:26,SHUPPET:25:25,SHUPPET:29:29,SHUPPET:24:24,SHUPPET:23:23,SHUPPET:22:22,DUSKULL:27:27,DUSKULL:27:27,DUSKULL:25:25,DUSKULL:29:29

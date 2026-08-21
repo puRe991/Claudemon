@@ -80,6 +80,7 @@ objscripts
 5 MauvilleCity_EventScript_Wally
 6 MauvilleCity_EventScript_WallysUncle
 7 MauvilleCity_EventScript_Wattson
+8 MauvilleCity_EventScript_ItemXSpeed
 movements
 MauvilleCity_Movement_PlayerFaceUncleNorth	delay,delay,delay,delay,end
 MauvilleCity_Movement_PlayerWatchScottExitEast	delay,delay,delay,end
@@ -103,6 +104,13 @@ MauvilleCity_Movement_WallysUncleExitEast2	down,left,left,left,left,left,left,le
 MauvilleCity_Movement_WallysUncleExitNorth1	left,left,left,down,down,end
 MauvilleCity_Movement_WallysUncleExitNorth2	left,left,left,left,left,left,left,left,end
 scriptdefs
+= MauvilleCity_EventScript_ItemXSpeed
+goto_if_set FLAG_ITEM_MAUVILLE_CITY_X_SPEED MauvilleCity_EventScript_ItemXSpeed_Taken
+finditem ITEM_X_SPEED
+setflag FLAG_ITEM_MAUVILLE_CITY_X_SPEED
+end
+= MauvilleCity_EventScript_ItemXSpeed_Taken
+end
 = MauvilleCity_EventScript_Wattson
 lock
 faceplayer

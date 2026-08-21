@@ -84,21 +84,56 @@ objscripts
 17 Route121_EventScript_Walter
 18 Route121_EventScript_Tammy
 19 Route121_EventScript_Jessica
+20 Route121_EventScript_ItemCarbos
 22 Route121_EventScript_Cale
 23 Route121_EventScript_Myles
 24 Route121_EventScript_Pat
 25 Route121_EventScript_Marcel
 26 Route121_EventScript_Cristin
+27 Route121_EventScript_ItemRevive
+28 Route121_EventScript_ItemZinc
 triggers
 25 5 VAR_ROUTE121_STATE 0 Route121_EventScript_AquaGruntsMoveOut
 25 6 VAR_ROUTE121_STATE 0 Route121_EventScript_AquaGruntsMoveOut
 25 7 VAR_ROUTE121_STATE 0 Route121_EventScript_AquaGruntsMoveOut
 25 8 VAR_ROUTE121_STATE 0 Route121_EventScript_AquaGruntsMoveOut
+23 10 0 0 Route121_HiddenItem_23_10
+58 3 0 0 Route121_HiddenItem_58_3
+72 5 0 0 Route121_HiddenItem_72_5
+68 8 0 0 Route121_HiddenItem_68_8
 movements
 Route121_Movement_Grunt1Exit	down,down,down,down,down,down,down,down,end
 Route121_Movement_Grunt2Exit	down,down,down,down,down,down,down,down,end
 Route121_Movement_Grunt3Exit	down,down,down,down,down,down,down,down,end
 scriptdefs
+= Route121_HiddenItem_68_8
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_121_MAX_REVIVE Route121_HiddenItem_68_8_Taken
+finditem ITEM_MAX_REVIVE
+setflag FLAG_HIDDEN_ITEM_ROUTE_121_MAX_REVIVE
+end
+= Route121_HiddenItem_68_8_Taken
+end
+= Route121_HiddenItem_72_5
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_121_FULL_HEAL Route121_HiddenItem_72_5_Taken
+finditem ITEM_FULL_HEAL
+setflag FLAG_HIDDEN_ITEM_ROUTE_121_FULL_HEAL
+end
+= Route121_HiddenItem_72_5_Taken
+end
+= Route121_HiddenItem_58_3
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_121_NUGGET Route121_HiddenItem_58_3_Taken
+finditem ITEM_NUGGET
+setflag FLAG_HIDDEN_ITEM_ROUTE_121_NUGGET
+end
+= Route121_HiddenItem_58_3_Taken
+end
+= Route121_HiddenItem_23_10
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_121_HP_UP Route121_HiddenItem_23_10_Taken
+finditem ITEM_HP_UP
+setflag FLAG_HIDDEN_ITEM_ROUTE_121_HP_UP
+end
+= Route121_HiddenItem_23_10_Taken
+end
 = Route121_EventScript_AquaGruntsMoveOut
 lockall
 playbgm MUS_ENCOUNTER_AQUA FALSE
@@ -116,6 +151,20 @@ removeobject LOCALID_ROUTE121_GRUNT_2
 removeobject LOCALID_ROUTE121_GRUNT_3
 setvar VAR_ROUTE121_STATE 1
 releaseall
+end
+= Route121_EventScript_ItemZinc
+goto_if_set FLAG_ITEM_ROUTE_121_ZINC Route121_EventScript_ItemZinc_Taken
+finditem ITEM_ZINC
+setflag FLAG_ITEM_ROUTE_121_ZINC
+end
+= Route121_EventScript_ItemZinc_Taken
+end
+= Route121_EventScript_ItemRevive
+goto_if_set FLAG_ITEM_ROUTE_121_REVIVE Route121_EventScript_ItemRevive_Taken
+finditem ITEM_REVIVE
+setflag FLAG_ITEM_ROUTE_121_REVIVE
+end
+= Route121_EventScript_ItemRevive_Taken
 end
 = Route121_EventScript_Cristin
 trainerbattle_single TRAINER_CRISTIN_1 Route121_Text_CristinIntro Route121_Text_CristinDefeat Route121_EventScript_RegisterCristin
@@ -150,6 +199,13 @@ end
 = Route121_EventScript_Cale
 trainerbattle_single TRAINER_CALE Route121_Text_CaleIntro Route121_Text_CaleDefeat
 msgbox	Route121_Text_CalePostBattle
+end
+= Route121_EventScript_ItemCarbos
+goto_if_set FLAG_ITEM_ROUTE_121_CARBOS Route121_EventScript_ItemCarbos_Taken
+finditem ITEM_CARBOS
+setflag FLAG_ITEM_ROUTE_121_CARBOS
+end
+= Route121_EventScript_ItemCarbos_Taken
 end
 = Route121_EventScript_Jessica
 trainerbattle_single TRAINER_JESSICA_1 Route121_Text_JessicaIntro Route121_Text_JessicaDefeat Route121_EventScript_RegisterJessica

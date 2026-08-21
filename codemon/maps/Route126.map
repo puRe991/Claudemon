@@ -177,6 +177,7 @@ objscripts
 1 Route126_EventScript_Dean
 2 Route126_EventScript_Nikki
 3 Route126_EventScript_Brenda
+4 Route126_EventScript_ItemGreenShard
 5 Route126_EventScript_Sienna
 6 Route126_EventScript_Pablo
 7 Route126_EventScript_Isobel
@@ -211,6 +212,13 @@ end
 = Route126_EventScript_Sienna
 trainerbattle_single TRAINER_SIENNA Route126_Text_SiennaIntro Route126_Text_SiennaDefeat
 msgbox	Route126_Text_SiennaPostBattle
+end
+= Route126_EventScript_ItemGreenShard
+goto_if_set FLAG_ITEM_ROUTE_126_GREEN_SHARD Route126_EventScript_ItemGreenShard_Taken
+finditem ITEM_GREEN_SHARD
+setflag FLAG_ITEM_ROUTE_126_GREEN_SHARD
+end
+= Route126_EventScript_ItemGreenShard_Taken
 end
 = Route126_EventScript_Brenda
 trainerbattle_single TRAINER_BRENDA Route126_Text_BrendaIntro Route126_Text_BrendaDefeat

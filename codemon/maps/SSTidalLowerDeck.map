@@ -39,7 +39,16 @@ dialogs
 objscripts
 0 SSTidalLowerDeck_EventScript_Phillip
 1 SSTidalLowerDeck_EventScript_Leonard
+triggers
+0 2 0 0 SSTidalLowerDeck_HiddenItem_0_2
 scriptdefs
+= SSTidalLowerDeck_HiddenItem_0_2
+goto_if_set FLAG_HIDDEN_ITEM_SS_TIDAL_LOWER_DECK_LEFTOVERS SSTidalLowerDeck_HiddenItem_0_2_Taken
+finditem ITEM_LEFTOVERS
+setflag FLAG_HIDDEN_ITEM_SS_TIDAL_LOWER_DECK_LEFTOVERS
+end
+= SSTidalLowerDeck_HiddenItem_0_2_Taken
+end
 = SSTidalLowerDeck_EventScript_Leonard
 trainerbattle_single TRAINER_LEONARD SSTidalLowerDeck_Text_LeonardIntro SSTidalLowerDeck_Text_LeonardDefeat
 msgbox	We're the CLEANUP BROTHERS!The old one dumps the detergent, and the young one does the scrubbing!

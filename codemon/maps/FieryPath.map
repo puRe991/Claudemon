@@ -90,5 +90,23 @@ misc_pushable_boulder 3 12 S static
 misc_pushable_boulder 6 23 S static
 misc_pushable_boulder 5 24 S static
 misc_item_ball 7 32 S static
+objscripts
+0 FieryPath_EventScript_ItemTMToxic
+7 FieryPath_EventScript_ItemFireStone
+scriptdefs
+= FieryPath_EventScript_ItemFireStone
+goto_if_set FLAG_ITEM_FIERY_PATH_FIRE_STONE FieryPath_EventScript_ItemFireStone_Taken
+finditem ITEM_FIRE_STONE
+setflag FLAG_ITEM_FIERY_PATH_FIRE_STONE
+end
+= FieryPath_EventScript_ItemFireStone_Taken
+end
+= FieryPath_EventScript_ItemTMToxic
+goto_if_set FLAG_ITEM_FIERY_PATH_TM_TOXIC FieryPath_EventScript_ItemTMToxic_Taken
+finditem ITEM_TM_TOXIC
+setflag FLAG_ITEM_FIERY_PATH_TM_TOXIC
+end
+= FieryPath_EventScript_ItemTMToxic_Taken
+end
 encounters
 land NUMEL:15:15,KOFFING:15:15,NUMEL:16:16,MACHOP:15:15,TORKOAL:15:15,SLUGMA:15:15,KOFFING:16:16,MACHOP:16:16,TORKOAL:14:14,TORKOAL:16:16,GRIMER:14:14,GRIMER:14:14

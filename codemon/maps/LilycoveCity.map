@@ -150,6 +150,7 @@ objscripts
 7 LilycoveCity_EventScript_ExpertF
 8 LilycoveCity_EventScript_ExpertM2
 9 LilycoveCity_EventScript_WailmerTrainerGrunt
+10 LilycoveCity_EventScript_ItemMaxRepel
 11 LilycoveCity_EventScript_AquaGrunt4
 12 LilycoveCity_EventScript_AquaGrunt1
 13 LilycoveCity_EventScript_AquaGrunt2
@@ -160,7 +161,32 @@ objscripts
 18 LilycoveCity_EventScript_Man1
 19 LilycoveCity_EventScript_Sailor1
 20 LilycoveCity_EventScript_FatMan
+triggers
+36 31 0 0 LilycoveCity_HiddenItem_36_31
+61 7 0 0 LilycoveCity_HiddenItem_61_7
+64 31 0 0 LilycoveCity_HiddenItem_64_31
 scriptdefs
+= LilycoveCity_HiddenItem_64_31
+goto_if_set FLAG_HIDDEN_ITEM_LILYCOVE_CITY_POKE_BALL LilycoveCity_HiddenItem_64_31_Taken
+finditem ITEM_POKE_BALL
+setflag FLAG_HIDDEN_ITEM_LILYCOVE_CITY_POKE_BALL
+end
+= LilycoveCity_HiddenItem_64_31_Taken
+end
+= LilycoveCity_HiddenItem_61_7
+goto_if_set FLAG_HIDDEN_ITEM_LILYCOVE_CITY_PP_UP LilycoveCity_HiddenItem_61_7_Taken
+finditem ITEM_PP_UP
+setflag FLAG_HIDDEN_ITEM_LILYCOVE_CITY_PP_UP
+end
+= LilycoveCity_HiddenItem_61_7_Taken
+end
+= LilycoveCity_HiddenItem_36_31
+goto_if_set FLAG_HIDDEN_ITEM_LILYCOVE_CITY_HEART_SCALE LilycoveCity_HiddenItem_36_31_Taken
+finditem ITEM_HEART_SCALE
+setflag FLAG_HIDDEN_ITEM_LILYCOVE_CITY_HEART_SCALE
+end
+= LilycoveCity_HiddenItem_36_31_Taken
+end
 = LilycoveCity_EventScript_FatMan
 msgbox	I saw this tall tower somewhere around ROUTE 131.Could that possibly be…?
 end
@@ -220,6 +246,13 @@ msgbox	Fufufu…We moved more loot into our secret HIDEOUT today…Wh-who are 
 end
 = LilycoveCity_EventScript_AquaGrunt4
 msgbox	If this whole wide world becomes ours, TEAM AQUA's, it will be a happier place for POKéMON, too.
+end
+= LilycoveCity_EventScript_ItemMaxRepel
+goto_if_set FLAG_ITEM_LILYCOVE_CITY_MAX_REPEL LilycoveCity_EventScript_ItemMaxRepel_Taken
+finditem ITEM_MAX_REPEL
+setflag FLAG_ITEM_LILYCOVE_CITY_MAX_REPEL
+end
+= LilycoveCity_EventScript_ItemMaxRepel_Taken
 end
 = LilycoveCity_EventScript_WailmerTrainerGrunt
 lockall

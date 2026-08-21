@@ -273,6 +273,8 @@ objscripts
 12 Route110_EventScript_Jaclyn
 13 Route110_EventScript_Edwin
 14 Route110_EventScript_Dale
+18 Route110_EventScript_ItemDireHit
+19 Route110_EventScript_ItemRareCandy
 20 Route110_EventScript_ChallengeGuy
 21 Route110_EventScript_AquaGrunt1
 22 Route110_EventScript_AquaGrunt2
@@ -284,6 +286,7 @@ objscripts
 29 Route110_EventScript_Kaleb
 30 Route110_EventScript_Alyssa
 31 Route110_EventScript_Joseph
+32 Route110_EventScript_ItemElixir
 triggers
 28 92 VAR_CYCLING_CHALLENGE_STATE 2 Route110_EventScript_CyclingChallengeEnd
 29 92 VAR_CYCLING_CHALLENGE_STATE 2 Route110_EventScript_CyclingChallengeEnd
@@ -294,6 +297,10 @@ triggers
 8 85 VAR_REGISTER_BIRCH_STATE 1 Route110_EventScript_BirchScene2
 9 85 VAR_REGISTER_BIRCH_STATE 1 Route110_EventScript_BirchScene3
 10 85 VAR_REGISTER_BIRCH_STATE 1 Route110_EventScript_BirchScene4
+35 39 0 0 Route110_HiddenItem_35_39
+33 45 0 0 Route110_HiddenItem_33_45
+4 35 0 0 Route110_HiddenItem_4_35
+37 67 0 0 Route110_HiddenItem_37_67
 movements
 Route110_Movement_BirchApproachPlayer1	down,left,left,down,end
 Route110_Movement_BirchApproachPlayer2	down,left,down,end
@@ -311,6 +318,34 @@ Route110_Movement_RivalExit1	up,up,up,up,up,up,up,end
 Route110_Movement_RivalExit2	up,up,up,up,up,up,up,down,end
 Route110_Movement_RivalExit3	up,up,up,up,up,up,up,end
 scriptdefs
+= Route110_HiddenItem_37_67
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_110_FULL_HEAL Route110_HiddenItem_37_67_Taken
+finditem ITEM_FULL_HEAL
+setflag FLAG_HIDDEN_ITEM_ROUTE_110_FULL_HEAL
+end
+= Route110_HiddenItem_37_67_Taken
+end
+= Route110_HiddenItem_4_35
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_110_POKE_BALL Route110_HiddenItem_4_35_Taken
+finditem ITEM_POKE_BALL
+setflag FLAG_HIDDEN_ITEM_ROUTE_110_POKE_BALL
+end
+= Route110_HiddenItem_4_35_Taken
+end
+= Route110_HiddenItem_33_45
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_110_GREAT_BALL Route110_HiddenItem_33_45_Taken
+finditem ITEM_GREAT_BALL
+setflag FLAG_HIDDEN_ITEM_ROUTE_110_GREAT_BALL
+end
+= Route110_HiddenItem_33_45_Taken
+end
+= Route110_HiddenItem_35_39
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_110_REVIVE Route110_HiddenItem_35_39_Taken
+finditem ITEM_REVIVE
+setflag FLAG_HIDDEN_ITEM_ROUTE_110_REVIVE
+end
+= Route110_HiddenItem_35_39_Taken
+end
 = Route110_EventScript_BirchScene4
 lockall
 setvar VAR_0x8008 4
@@ -594,6 +629,13 @@ end
 msgbox	Bravo! Splendid showing!Your love of cycling comes from deep within your heart. You've shaken me to my very soul!
 goto Route110_EventScript_EndChallenge
 end
+= Route110_EventScript_ItemElixir
+goto_if_set FLAG_ITEM_ROUTE_110_ELIXIR Route110_EventScript_ItemElixir_Taken
+finditem ITEM_ELIXIR
+setflag FLAG_ITEM_ROUTE_110_ELIXIR
+end
+= Route110_EventScript_ItemElixir_Taken
+end
 = Route110_EventScript_Joseph
 trainerbattle_single TRAINER_JOSEPH Route110_Text_JosephIntro Route110_Text_JosephDefeated
 msgbox	Route110_Text_JosephPostBattle
@@ -680,6 +722,20 @@ end
 = Route110_EventScript_PlayerRidingAcroBike
 msgbox	On this CYCLING ROAD, those riding MACH BIKES are rated for their number of collisions and their total times.ACRO BIKES do not qualify for rating. They are easy to turn, so it's not fair.
 release
+end
+= Route110_EventScript_ItemRareCandy
+goto_if_set FLAG_ITEM_ROUTE_110_RARE_CANDY Route110_EventScript_ItemRareCandy_Taken
+finditem ITEM_RARE_CANDY
+setflag FLAG_ITEM_ROUTE_110_RARE_CANDY
+end
+= Route110_EventScript_ItemRareCandy_Taken
+end
+= Route110_EventScript_ItemDireHit
+goto_if_set FLAG_ITEM_ROUTE_110_DIRE_HIT Route110_EventScript_ItemDireHit_Taken
+finditem ITEM_DIRE_HIT
+setflag FLAG_ITEM_ROUTE_110_DIRE_HIT
+end
+= Route110_EventScript_ItemDireHit_Taken
 end
 = Route110_EventScript_Dale
 trainerbattle_single TRAINER_DALE Route110_Text_DaleIntro Route110_Text_DaleDefeated

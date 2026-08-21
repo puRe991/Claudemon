@@ -46,3 +46,13 @@ warps
 7 16 Route120 1
 npcs
 misc_item_ball 7 5 S static
+objscripts
+0 ScorchedSlab_EventScript_ItemTMSunnyDay
+scriptdefs
+= ScorchedSlab_EventScript_ItemTMSunnyDay
+goto_if_set FLAG_ITEM_SCORCHED_SLAB_TM_SUNNY_DAY ScorchedSlab_EventScript_ItemTMSunnyDay_Taken
+finditem ITEM_TM_SUNNY_DAY
+setflag FLAG_ITEM_SCORCHED_SLAB_TM_SUNNY_DAY
+end
+= ScorchedSlab_EventScript_ItemTMSunnyDay_Taken
+end

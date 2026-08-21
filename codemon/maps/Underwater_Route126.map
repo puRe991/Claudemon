@@ -164,5 +164,71 @@ collision
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 warps
 45 65 Underwater_SootopolisCity 0
+triggers
+30 17 0 0 Underwater_Route126_HiddenItem_30_17
+41 19 0 0 Underwater_Route126_HiddenItem_41_19
+63 19 0 0 Underwater_Route126_HiddenItem_63_19
+10 36 0 0 Underwater_Route126_HiddenItem_10_36
+11 39 0 0 Underwater_Route126_HiddenItem_11_39
+12 35 0 0 Underwater_Route126_HiddenItem_12_35
+65 60 0 0 Underwater_Route126_HiddenItem_65_60
+9 77 0 0 Underwater_Route126_HiddenItem_9_77
+scriptdefs
+= Underwater_Route126_HiddenItem_9_77
+goto_if_set FLAG_HIDDEN_ITEM_UNDERWATER_126_BLUE_SHARD Underwater_Route126_HiddenItem_9_77_Taken
+finditem ITEM_BLUE_SHARD
+setflag FLAG_HIDDEN_ITEM_UNDERWATER_126_BLUE_SHARD
+end
+= Underwater_Route126_HiddenItem_9_77_Taken
+end
+= Underwater_Route126_HiddenItem_65_60
+goto_if_set FLAG_HIDDEN_ITEM_UNDERWATER_126_BIG_PEARL Underwater_Route126_HiddenItem_65_60_Taken
+finditem ITEM_BIG_PEARL
+setflag FLAG_HIDDEN_ITEM_UNDERWATER_126_BIG_PEARL
+end
+= Underwater_Route126_HiddenItem_65_60_Taken
+end
+= Underwater_Route126_HiddenItem_12_35
+goto_if_set FLAG_HIDDEN_ITEM_UNDERWATER_126_YELLOW_SHARD Underwater_Route126_HiddenItem_12_35_Taken
+finditem ITEM_YELLOW_SHARD
+setflag FLAG_HIDDEN_ITEM_UNDERWATER_126_YELLOW_SHARD
+end
+= Underwater_Route126_HiddenItem_12_35_Taken
+end
+= Underwater_Route126_HiddenItem_11_39
+goto_if_set FLAG_HIDDEN_ITEM_UNDERWATER_126_IRON Underwater_Route126_HiddenItem_11_39_Taken
+finditem ITEM_IRON
+setflag FLAG_HIDDEN_ITEM_UNDERWATER_126_IRON
+end
+= Underwater_Route126_HiddenItem_11_39_Taken
+end
+= Underwater_Route126_HiddenItem_10_36
+goto_if_set FLAG_HIDDEN_ITEM_UNDERWATER_126_PEARL Underwater_Route126_HiddenItem_10_36_Taken
+finditem ITEM_PEARL
+setflag FLAG_HIDDEN_ITEM_UNDERWATER_126_PEARL
+end
+= Underwater_Route126_HiddenItem_10_36_Taken
+end
+= Underwater_Route126_HiddenItem_63_19
+goto_if_set FLAG_HIDDEN_ITEM_UNDERWATER_126_STARDUST Underwater_Route126_HiddenItem_63_19_Taken
+finditem ITEM_STARDUST
+setflag FLAG_HIDDEN_ITEM_UNDERWATER_126_STARDUST
+end
+= Underwater_Route126_HiddenItem_63_19_Taken
+end
+= Underwater_Route126_HiddenItem_41_19
+goto_if_set FLAG_HIDDEN_ITEM_UNDERWATER_126_ULTRA_BALL Underwater_Route126_HiddenItem_41_19_Taken
+finditem ITEM_ULTRA_BALL
+setflag FLAG_HIDDEN_ITEM_UNDERWATER_126_ULTRA_BALL
+end
+= Underwater_Route126_HiddenItem_41_19_Taken
+end
+= Underwater_Route126_HiddenItem_30_17
+goto_if_set FLAG_HIDDEN_ITEM_UNDERWATER_126_HEART_SCALE Underwater_Route126_HiddenItem_30_17_Taken
+finditem ITEM_HEART_SCALE
+setflag FLAG_HIDDEN_ITEM_UNDERWATER_126_HEART_SCALE
+end
+= Underwater_Route126_HiddenItem_30_17_Taken
+end
 encounters
 water CLAMPERL:20:30,CHINCHOU:20:30,CLAMPERL:30:35,RELICANTH:30:35,RELICANTH:30:35

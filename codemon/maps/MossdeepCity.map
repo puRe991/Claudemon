@@ -128,6 +128,7 @@ objscripts
 2 MossdeepCity_EventScript_PokefanF
 3 MossdeepCity_EventScript_NinjaBoy
 4 MossdeepCity_EventScript_Girl
+5 MossdeepCity_EventScript_ItemNetBall
 6 MossdeepCity_EventScript_Man
 7 MossdeepCity_EventScript_Woman
 8 MossdeepCity_EventScript_KingsRockBoy
@@ -239,6 +240,13 @@ msgbox	A voyage on a ship is fine.But crossing the sea with POKéMON using SURF
 applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
 waitmovement 0
 release
+end
+= MossdeepCity_EventScript_ItemNetBall
+goto_if_set FLAG_ITEM_MOSSDEEP_CITY_NET_BALL MossdeepCity_EventScript_ItemNetBall_Taken
+finditem ITEM_NET_BALL
+setflag FLAG_ITEM_MOSSDEEP_CITY_NET_BALL
+end
+= MossdeepCity_EventScript_ItemNetBall_Taken
 end
 = MossdeepCity_EventScript_Girl
 msgbox	Wouldn't it be nice?If the whole world was covered in plants and flowers like this island?

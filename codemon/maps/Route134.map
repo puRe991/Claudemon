@@ -104,7 +104,23 @@ objscripts
 6 Route134_EventScript_Kelvin
 7 Route134_EventScript_Reyna
 8 Route134_EventScript_Hudson
+9 Route134_EventScript_ItemCarbos
+10 Route134_EventScript_ItemStarPiece
 scriptdefs
+= Route134_EventScript_ItemStarPiece
+goto_if_set FLAG_ITEM_ROUTE_134_STAR_PIECE Route134_EventScript_ItemStarPiece_Taken
+finditem ITEM_STAR_PIECE
+setflag FLAG_ITEM_ROUTE_134_STAR_PIECE
+end
+= Route134_EventScript_ItemStarPiece_Taken
+end
+= Route134_EventScript_ItemCarbos
+goto_if_set FLAG_ITEM_ROUTE_134_CARBOS Route134_EventScript_ItemCarbos_Taken
+finditem ITEM_CARBOS
+setflag FLAG_ITEM_ROUTE_134_CARBOS
+end
+= Route134_EventScript_ItemCarbos_Taken
+end
 = Route134_EventScript_Hudson
 trainerbattle_single TRAINER_HUDSON Route134_Text_HudsonIntro Route134_Text_HudsonDefeat
 msgbox	Route134_Text_HudsonPostBattle

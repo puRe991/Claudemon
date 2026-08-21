@@ -183,6 +183,9 @@ objscripts
 2 Route124_EventScript_Jenny
 3 Route124_EventScript_Grace
 4 Route124_EventScript_Chad
+5 Route124_EventScript_ItemRedShard
+6 Route124_EventScript_ItemBlueShard
+7 Route124_EventScript_ItemYellowShard
 8 Route124_EventScript_Lila
 9 Route124_EventScript_Roy
 10 Route124_EventScript_Declan
@@ -227,6 +230,27 @@ end
 msgbox	Route124_Text_LilaRoyRegister
 register_matchcall TRAINER_LILA_AND_ROY_1
 release
+end
+= Route124_EventScript_ItemYellowShard
+goto_if_set FLAG_ITEM_ROUTE_124_YELLOW_SHARD Route124_EventScript_ItemYellowShard_Taken
+finditem ITEM_YELLOW_SHARD
+setflag FLAG_ITEM_ROUTE_124_YELLOW_SHARD
+end
+= Route124_EventScript_ItemYellowShard_Taken
+end
+= Route124_EventScript_ItemBlueShard
+goto_if_set FLAG_ITEM_ROUTE_124_BLUE_SHARD Route124_EventScript_ItemBlueShard_Taken
+finditem ITEM_BLUE_SHARD
+setflag FLAG_ITEM_ROUTE_124_BLUE_SHARD
+end
+= Route124_EventScript_ItemBlueShard_Taken
+end
+= Route124_EventScript_ItemRedShard
+goto_if_set FLAG_ITEM_ROUTE_124_RED_SHARD Route124_EventScript_ItemRedShard_Taken
+finditem ITEM_RED_SHARD
+setflag FLAG_ITEM_ROUTE_124_RED_SHARD
+end
+= Route124_EventScript_ItemRedShard_Taken
 end
 = Route124_EventScript_Chad
 trainerbattle_single TRAINER_CHAD Route124_Text_ChadIntro Route124_Text_ChadDefeat

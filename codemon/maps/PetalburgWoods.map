@@ -118,14 +118,22 @@ dialogs
 10	Sometimes, there are things on the ground even if you can't see them.That's why I always check where I'm walking.
 12	Oh, neat! That's the BADGE from RUSTBORO GYM!You must be a TRAINER. You should try using this item.
 objscripts
+4 PetalburgWoods_EventScript_ItemGreatBall
+5 PetalburgWoods_EventScript_ItemXAttack
+6 PetalburgWoods_EventScript_ItemEther
 7 PetalburgWoods_EventScript_Boy1
 8 PetalburgWoods_EventScript_Lyle
 9 PetalburgWoods_EventScript_James
 10 PetalburgWoods_EventScript_Boy2
+11 PetalburgWoods_EventScript_ItemParalyzeHeal
 12 PetalburgWoods_EventScript_Girl
 triggers
 26 23 VAR_PETALBURG_WOODS_STATE 0 PetalburgWoods_EventScript_DevonResearcherLeft
 27 23 VAR_PETALBURG_WOODS_STATE 0 PetalburgWoods_EventScript_DevonResearcherRight
+39 35 0 0 PetalburgWoods_HiddenItem_39_35
+26 6 0 0 PetalburgWoods_HiddenItem_26_6
+40 29 0 0 PetalburgWoods_HiddenItem_40_29
+4 19 0 0 PetalburgWoods_HiddenItem_4_19
 movements
 PetalburgWoods_Movement_AquaApproachPlayer	down,end
 PetalburgWoods_Movement_AquaApproachResearcherLeft	down,down,end
@@ -143,6 +151,34 @@ PetalburgWoods_Movement_DevonResearcherLookAround	face_up,delay,delay,face_right
 PetalburgWoods_Movement_DevonResearcherStartExit	delay,delay,delay,delay,delay,delay,face_up,end
 PetalburgWoods_Movement_WatchResearcherLeave	delay,delay,delay,end
 scriptdefs
+= PetalburgWoods_HiddenItem_4_19
+goto_if_set FLAG_HIDDEN_ITEM_PETALBURG_WOODS_POKE_BALL PetalburgWoods_HiddenItem_4_19_Taken
+finditem ITEM_POKE_BALL
+setflag FLAG_HIDDEN_ITEM_PETALBURG_WOODS_POKE_BALL
+end
+= PetalburgWoods_HiddenItem_4_19_Taken
+end
+= PetalburgWoods_HiddenItem_40_29
+goto_if_set FLAG_HIDDEN_ITEM_PETALBURG_WOODS_TINY_MUSHROOM_2 PetalburgWoods_HiddenItem_40_29_Taken
+finditem ITEM_TINY_MUSHROOM
+setflag FLAG_HIDDEN_ITEM_PETALBURG_WOODS_TINY_MUSHROOM_2
+end
+= PetalburgWoods_HiddenItem_40_29_Taken
+end
+= PetalburgWoods_HiddenItem_26_6
+goto_if_set FLAG_HIDDEN_ITEM_PETALBURG_WOODS_TINY_MUSHROOM_1 PetalburgWoods_HiddenItem_26_6_Taken
+finditem ITEM_TINY_MUSHROOM
+setflag FLAG_HIDDEN_ITEM_PETALBURG_WOODS_TINY_MUSHROOM_1
+end
+= PetalburgWoods_HiddenItem_26_6_Taken
+end
+= PetalburgWoods_HiddenItem_39_35
+goto_if_set FLAG_HIDDEN_ITEM_PETALBURG_WOODS_POTION PetalburgWoods_HiddenItem_39_35_Taken
+finditem ITEM_POTION
+setflag FLAG_HIDDEN_ITEM_PETALBURG_WOODS_POTION
+end
+= PetalburgWoods_HiddenItem_39_35_Taken
+end
 = PetalburgWoods_EventScript_DevonResearcherRight
 lockall
 call PetalburgWoods_EventScript_DevonResearcherIntro
@@ -261,6 +297,13 @@ end
 msgbox	It's a MIRACLE SEED. If a POKéMON holds that item, its GRASS-type moves become stronger.Besides MIRACLE SEED, I think there are other convenient items for POKéMON to hold.
 release
 end
+= PetalburgWoods_EventScript_ItemParalyzeHeal
+goto_if_set FLAG_ITEM_PETALBURG_WOODS_PARALYZE_HEAL PetalburgWoods_EventScript_ItemParalyzeHeal_Taken
+finditem ITEM_PARALYZE_HEAL
+setflag FLAG_ITEM_PETALBURG_WOODS_PARALYZE_HEAL
+end
+= PetalburgWoods_EventScript_ItemParalyzeHeal_Taken
+end
 = PetalburgWoods_EventScript_Boy2
 msgbox	Sometimes, there are things on the ground even if you can't see them.That's why I always check where I'm walking.
 end
@@ -305,6 +348,27 @@ msgbox	I caught a bunch of POKéMON. Now I'm out of POKé BALLS.
 end
 = PetalburgWoods_EventScript_Boy1
 msgbox	Yo, there! Your POKéMON doing okay?If your POKéMON are weak and you want to avoid battles, you should stay out of tall grass.
+end
+= PetalburgWoods_EventScript_ItemEther
+goto_if_set FLAG_ITEM_PETALBURG_WOODS_ETHER PetalburgWoods_EventScript_ItemEther_Taken
+finditem ITEM_ETHER
+setflag FLAG_ITEM_PETALBURG_WOODS_ETHER
+end
+= PetalburgWoods_EventScript_ItemEther_Taken
+end
+= PetalburgWoods_EventScript_ItemXAttack
+goto_if_set FLAG_ITEM_PETALBURG_WOODS_X_ATTACK PetalburgWoods_EventScript_ItemXAttack_Taken
+finditem ITEM_X_ATTACK
+setflag FLAG_ITEM_PETALBURG_WOODS_X_ATTACK
+end
+= PetalburgWoods_EventScript_ItemXAttack_Taken
+end
+= PetalburgWoods_EventScript_ItemGreatBall
+goto_if_set FLAG_ITEM_PETALBURG_WOODS_GREAT_BALL PetalburgWoods_EventScript_ItemGreatBall_Taken
+finditem ITEM_GREAT_BALL
+setflag FLAG_ITEM_PETALBURG_WOODS_GREAT_BALL
+end
+= PetalburgWoods_EventScript_ItemGreatBall_Taken
 end
 signs
 14 32	TRAINER TIPSAny POKéMON that appears even once in a battle is awarded EXP Points.To raise a weak POKéMON, put it at the left of the team list.As soon as a battle starts, switch it out. It will earn EXP Points without being exposed to any harm.

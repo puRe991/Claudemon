@@ -55,5 +55,15 @@ warps
 16 21 MagmaHideout_4F 1
 npcs
 misc_item_ball 9 19 S static
+objscripts
+0 MagmaHideout_3F_3R_EventScript_ItemEscapeRope
+scriptdefs
+= MagmaHideout_3F_3R_EventScript_ItemEscapeRope
+goto_if_set FLAG_ITEM_MAGMA_HIDEOUT_3F_3R_ECAPE_ROPE MagmaHideout_3F_3R_EventScript_ItemEscapeRope_Taken
+finditem ITEM_ESCAPE_ROPE
+setflag FLAG_ITEM_MAGMA_HIDEOUT_3F_3R_ECAPE_ROPE
+end
+= MagmaHideout_3F_3R_EventScript_ItemEscapeRope_Taken
+end
 encounters
 land GEODUDE:27:27,TORKOAL:28:28,GEODUDE:28:28,TORKOAL:30:30,GEODUDE:29:29,GEODUDE:30:30,GEODUDE:30:30,GRAVELER:30:30,GRAVELER:30:30,GRAVELER:31:31,GRAVELER:32:32,GRAVELER:33:33

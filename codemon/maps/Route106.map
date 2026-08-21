@@ -55,7 +55,40 @@ objscripts
 1 Route106_EventScript_Kyla
 2 Route106_EventScript_Elliot
 3 Route106_EventScript_Ned
+4 Route106_EventScript_ItemProtein
+triggers
+41 11 0 0 Route106_HiddenItem_41_11
+53 12 0 0 Route106_HiddenItem_53_12
+68 15 0 0 Route106_HiddenItem_68_15
 scriptdefs
+= Route106_HiddenItem_68_15
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_106_HEART_SCALE Route106_HiddenItem_68_15_Taken
+finditem ITEM_HEART_SCALE
+setflag FLAG_HIDDEN_ITEM_ROUTE_106_HEART_SCALE
+end
+= Route106_HiddenItem_68_15_Taken
+end
+= Route106_HiddenItem_53_12
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_106_STARDUST Route106_HiddenItem_53_12_Taken
+finditem ITEM_STARDUST
+setflag FLAG_HIDDEN_ITEM_ROUTE_106_STARDUST
+end
+= Route106_HiddenItem_53_12_Taken
+end
+= Route106_HiddenItem_41_11
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_106_POKE_BALL Route106_HiddenItem_41_11_Taken
+finditem ITEM_POKE_BALL
+setflag FLAG_HIDDEN_ITEM_ROUTE_106_POKE_BALL
+end
+= Route106_HiddenItem_41_11_Taken
+end
+= Route106_EventScript_ItemProtein
+goto_if_set FLAG_ITEM_ROUTE_106_PROTEIN Route106_EventScript_ItemProtein_Taken
+finditem ITEM_PROTEIN
+setflag FLAG_ITEM_ROUTE_106_PROTEIN
+end
+= Route106_EventScript_ItemProtein_Taken
+end
 = Route106_EventScript_Ned
 trainerbattle_single TRAINER_NED Route106_Text_NedIntro Route106_Text_NedDefeated
 msgbox	Route106_Text_NedPostBattle

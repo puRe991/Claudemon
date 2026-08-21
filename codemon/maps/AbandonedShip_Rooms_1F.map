@@ -54,6 +54,7 @@ dialogs
 3	I'm in trouble with my mom, so I ran. Keep it a secret where I am!
 objscripts
 0 AbandonedShip_Rooms_1F_EventScript_Gentleman
+1 AbandonedShip_Rooms_1F_EventScript_ItemHarborMail
 2 AbandonedShip_Rooms_1F_EventScript_Thalia
 3 AbandonedShip_Rooms_1F_EventScript_Demetrius
 scriptdefs
@@ -78,6 +79,13 @@ waitmovement 0
 msgbox	You're such a tough TRAINER! Let me register you as a memento!
 register_matchcall TRAINER_THALIA_1
 release
+end
+= AbandonedShip_Rooms_1F_EventScript_ItemHarborMail
+goto_if_set FLAG_ITEM_ABANDONED_SHIP_ROOMS_1F_HARBOR_MAIL AbandonedShip_Rooms_1F_EventScript_ItemHarborMail_Taken
+finditem ITEM_HARBOR_MAIL
+setflag FLAG_ITEM_ABANDONED_SHIP_ROOMS_1F_HARBOR_MAIL
+end
+= AbandonedShip_Rooms_1F_EventScript_ItemHarborMail_Taken
 end
 = AbandonedShip_Rooms_1F_EventScript_Gentleman
 msgbox	Ships of this sort are rare, so I'm taking a look around.Hmhm… There appear to be other cabins…

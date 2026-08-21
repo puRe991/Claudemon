@@ -79,11 +79,14 @@ objscripts
 15 Route118_EventScript_Chester
 16 Route118_EventScript_Barny
 17 Route118_EventScript_Dalton
+19 Route118_EventScript_ItemHyperPotion
 20 Route118_EventScript_Deandre
 triggers
 43 11 VAR_ROUTE118_STATE 0 Route118_EventScript_StevenTrigger0
 44 11 VAR_ROUTE118_STATE 0 Route118_EventScript_StevenTrigger1
 45 11 VAR_ROUTE118_STATE 0 Route118_EventScript_StevenTrigger2
+31 13 0 0 Route118_HiddenItem_31_13
+12 14 0 0 Route118_HiddenItem_12_14
 movements
 Route118_Movement_PlayerWatchStevenExit	delay,delay,end
 Route118_Movement_StevenApproachLedge0	left,end
@@ -93,6 +96,20 @@ Route118_Movement_StevenExit1	right,right,right,right,right,right,right,right,ri
 Route118_Movement_StevenExit2	right,right,right,right,right,right,right,right,end
 Route118_Movement_StevenJumpLedge	down,delay,down,end
 scriptdefs
+= Route118_HiddenItem_12_14
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_118_HEART_SCALE Route118_HiddenItem_12_14_Taken
+finditem ITEM_HEART_SCALE
+setflag FLAG_HIDDEN_ITEM_ROUTE_118_HEART_SCALE
+end
+= Route118_HiddenItem_12_14_Taken
+end
+= Route118_HiddenItem_31_13
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_118_IRON Route118_HiddenItem_31_13_Taken
+finditem ITEM_IRON
+setflag FLAG_HIDDEN_ITEM_ROUTE_118_IRON
+end
+= Route118_HiddenItem_31_13_Taken
+end
 = Route118_EventScript_StevenTrigger2
 lockall
 setvar VAR_0x8008 2
@@ -150,6 +167,13 @@ end
 = Route118_EventScript_Deandre
 trainerbattle_single TRAINER_DEANDRE Route118_Text_DeandreIntro Route118_Text_DeandreDefeat
 msgbox	Route118_Text_DeandrePostBattle
+end
+= Route118_EventScript_ItemHyperPotion
+goto_if_set FLAG_ITEM_ROUTE_118_HYPER_POTION Route118_EventScript_ItemHyperPotion_Taken
+finditem ITEM_HYPER_POTION
+setflag FLAG_ITEM_ROUTE_118_HYPER_POTION
+end
+= Route118_EventScript_ItemHyperPotion_Taken
 end
 = Route118_EventScript_Dalton
 trainerbattle_single TRAINER_DALTON_1 Route118_Text_DaltonIntro Route118_Text_DaltonDefeat Route118_EventScript_RegisterDalton

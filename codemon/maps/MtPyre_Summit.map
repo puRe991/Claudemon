@@ -110,6 +110,8 @@ triggers
 22 9 VAR_MT_PYRE_STATE 2 MtPyre_Summit_EventScript_ArchieMaxieTrigger0
 23 9 VAR_MT_PYRE_STATE 2 MtPyre_Summit_EventScript_ArchieMaxieTrigger1
 24 9 VAR_MT_PYRE_STATE 2 MtPyre_Summit_EventScript_ArchieMaxieTrigger2
+9 25 0 0 MtPyre_Summit_HiddenItem_9_25
+37 7 0 0 MtPyre_Summit_HiddenItem_37_7
 movements
 MtPyre_Summit_Movement_ArchieExit	down,down,down,down,down,down,end
 MtPyre_Summit_Movement_ArchieFacePlayer0	left,delay,end
@@ -132,6 +134,20 @@ MtPyre_Summit_Movement_PlayerWatchArchieMaxieExit1	delay,delay,right,delay,delay
 MtPyre_Summit_Movement_PlayerWatchArchieMaxieExit2	delay,delay,delay,delay,delay,end
 MtPyre_Summit_Movement_PlayerWatchMaxie	delay,delay,end
 scriptdefs
+= MtPyre_Summit_HiddenItem_37_7
+goto_if_set FLAG_HIDDEN_ITEM_MT_PYRE_SUMMIT_RARE_CANDY MtPyre_Summit_HiddenItem_37_7_Taken
+finditem ITEM_RARE_CANDY
+setflag FLAG_HIDDEN_ITEM_MT_PYRE_SUMMIT_RARE_CANDY
+end
+= MtPyre_Summit_HiddenItem_37_7_Taken
+end
+= MtPyre_Summit_HiddenItem_9_25
+goto_if_set FLAG_HIDDEN_ITEM_MT_PYRE_SUMMIT_ZINC MtPyre_Summit_HiddenItem_9_25_Taken
+finditem ITEM_ZINC
+setflag FLAG_HIDDEN_ITEM_MT_PYRE_SUMMIT_ZINC
+end
+= MtPyre_Summit_HiddenItem_9_25_Taken
+end
 = MtPyre_Summit_EventScript_ArchieMaxieTrigger2
 lockall
 setvar VAR_0x8008 2

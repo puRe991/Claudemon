@@ -97,11 +97,21 @@ objscripts
 0 Route133_EventScript_Franklin
 1 Route133_EventScript_Linda
 2 Route133_EventScript_Debra
+3 Route133_EventScript_ItemBigPearl
+4 Route133_EventScript_ItemStarPiece
 5 Route133_EventScript_Beck
 6 Route133_EventScript_Warren
 7 Route133_EventScript_Mollie
 8 Route133_EventScript_Conor
+9 Route133_EventScript_ItemMaxRevive
 scriptdefs
+= Route133_EventScript_ItemMaxRevive
+goto_if_set FLAG_ITEM_ROUTE_133_MAX_REVIVE Route133_EventScript_ItemMaxRevive_Taken
+finditem ITEM_MAX_REVIVE
+setflag FLAG_ITEM_ROUTE_133_MAX_REVIVE
+end
+= Route133_EventScript_ItemMaxRevive_Taken
+end
 = Route133_EventScript_Conor
 trainerbattle_single TRAINER_CONOR Route133_Text_ConorIntro Route133_Text_ConorDefeat
 msgbox	Route133_Text_ConorPostBattle
@@ -117,6 +127,20 @@ end
 = Route133_EventScript_Beck
 trainerbattle_single TRAINER_BECK Route133_Text_BeckIntro Route133_Text_BeckDefeat
 msgbox	Route133_Text_BeckPostBattle
+end
+= Route133_EventScript_ItemStarPiece
+goto_if_set FLAG_ITEM_ROUTE_133_STAR_PIECE Route133_EventScript_ItemStarPiece_Taken
+finditem ITEM_STAR_PIECE
+setflag FLAG_ITEM_ROUTE_133_STAR_PIECE
+end
+= Route133_EventScript_ItemStarPiece_Taken
+end
+= Route133_EventScript_ItemBigPearl
+goto_if_set FLAG_ITEM_ROUTE_133_BIG_PEARL Route133_EventScript_ItemBigPearl_Taken
+finditem ITEM_BIG_PEARL
+setflag FLAG_ITEM_ROUTE_133_BIG_PEARL
+end
+= Route133_EventScript_ItemBigPearl_Taken
 end
 = Route133_EventScript_Debra
 trainerbattle_single TRAINER_DEBRA Route133_Text_DebraIntro Route133_Text_DebraDefeat

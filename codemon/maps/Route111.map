@@ -349,6 +349,9 @@ objscripts
 10 Route111_EventScript_Beau
 11 Route111_EventScript_Becky
 16 Route111_EventScript_Girl
+17 Route111_EventScript_ItemTMSandstorm
+24 Route111_EventScript_ItemStardust
+25 Route111_EventScript_ItemHPUp
 27 Route111_EventScript_Irene
 28 Route111_EventScript_Travis
 29 Route111_EventScript_Daisuke
@@ -362,6 +365,7 @@ objscripts
 38 Route111_EventScript_Bryan
 39 Route111_EventScript_Celia
 40 Route111_EventScript_Branden
+41 Route111_EventScript_ItemElixir
 42 Route111_EventScript_Hiker
 44 Route111_EventScript_RockSmashTipFatMan
 triggers
@@ -399,6 +403,9 @@ triggers
 13 42 TRIGGER_RUN_IMMEDIATELY 0 Route111_EventScript_SandstormTrigger
 12 43 TRIGGER_RUN_IMMEDIATELY 0 Route111_EventScript_SandstormTrigger
 11 44 TRIGGER_RUN_IMMEDIATELY 0 Route111_EventScript_SandstormTrigger
+26 70 0 0 Route111_HiddenItem_26_70
+19 55 0 0 Route111_HiddenItem_19_55
+35 66 0 0 Route111_HiddenItem_35_66
 movements
 Route111_Movement_PushDownFromRoute	down,end
 Route111_Movement_PushLeftFromRoute	left,end
@@ -408,6 +415,27 @@ Route111_Movement_WaitForNextWinstrate	delay,delay,delay,end
 Route111_Movement_WinstrateEnterHouse	delay,up,end
 Route111_Movement_WinstrateExitHouse	down,end
 scriptdefs
+= Route111_HiddenItem_35_66
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_111_RARE_CANDY Route111_HiddenItem_35_66_Taken
+finditem ITEM_RARE_CANDY
+setflag FLAG_HIDDEN_ITEM_ROUTE_111_RARE_CANDY
+end
+= Route111_HiddenItem_35_66_Taken
+end
+= Route111_HiddenItem_19_55
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_111_PROTEIN Route111_HiddenItem_19_55_Taken
+finditem ITEM_PROTEIN
+setflag FLAG_HIDDEN_ITEM_ROUTE_111_PROTEIN
+end
+= Route111_HiddenItem_19_55_Taken
+end
+= Route111_HiddenItem_26_70
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_111_STARDUST Route111_HiddenItem_26_70_Taken
+finditem ITEM_STARDUST
+setflag FLAG_HIDDEN_ITEM_ROUTE_111_STARDUST
+end
+= Route111_HiddenItem_26_70_Taken
+end
 = Route111_EventScript_SandstormTrigger
 setweather WEATHER_SANDSTORM
 fadenewbgm MUS_DESERT
@@ -492,6 +520,13 @@ end
 msgbox	Since I spoke to you, the tower of sand hasn't been seen.Perhaps it really was the MIRAGE TOWER…
 release
 end
+= Route111_EventScript_ItemElixir
+goto_if_set FLAG_ITEM_ROUTE_111_ELIXIR Route111_EventScript_ItemElixir_Taken
+finditem ITEM_ELIXIR
+setflag FLAG_ITEM_ROUTE_111_ELIXIR
+end
+= Route111_EventScript_ItemElixir_Taken
+end
 = Route111_EventScript_Branden
 trainerbattle_single TRAINER_BRANDEN Route111_Text_BrandenIntro Route111_Text_BrandenDefeat
 msgbox	Route111_Text_BrandenPostBattle
@@ -570,6 +605,27 @@ end
 = Route111_EventScript_Irene
 trainerbattle_single TRAINER_IRENE Route111_Text_IreneIntro Route111_Text_IreneDefeat
 msgbox	Route111_Text_IrenePostBattle
+end
+= Route111_EventScript_ItemHPUp
+goto_if_set FLAG_ITEM_ROUTE_111_HP_UP Route111_EventScript_ItemHPUp_Taken
+finditem ITEM_HP_UP
+setflag FLAG_ITEM_ROUTE_111_HP_UP
+end
+= Route111_EventScript_ItemHPUp_Taken
+end
+= Route111_EventScript_ItemStardust
+goto_if_set FLAG_ITEM_ROUTE_111_STARDUST Route111_EventScript_ItemStardust_Taken
+finditem ITEM_STARDUST
+setflag FLAG_ITEM_ROUTE_111_STARDUST
+end
+= Route111_EventScript_ItemStardust_Taken
+end
+= Route111_EventScript_ItemTMSandstorm
+goto_if_set FLAG_ITEM_ROUTE_111_TM_SANDSTORM Route111_EventScript_ItemTMSandstorm_Taken
+finditem ITEM_TM_SANDSTORM
+setflag FLAG_ITEM_ROUTE_111_TM_SANDSTORM
+end
+= Route111_EventScript_ItemTMSandstorm_Taken
 end
 = Route111_EventScript_Girl
 lock

@@ -95,7 +95,15 @@ misc_item_ball 7 6 S static
 objscripts
 0 SafariZone_North_EventScript_Fisherman
 1 SafariZone_North_EventScript_Man
+8 SafariZone_North_EventScript_ItemCalcium
 scriptdefs
+= SafariZone_North_EventScript_ItemCalcium
+goto_if_set FLAG_ITEM_SAFARI_ZONE_NORTH_CALCIUM SafariZone_North_EventScript_ItemCalcium_Taken
+finditem ITEM_CALCIUM
+setflag FLAG_ITEM_SAFARI_ZONE_NORTH_CALCIUM
+end
+= SafariZone_North_EventScript_ItemCalcium_Taken
+end
 = SafariZone_North_EventScript_Man
 msgbox	SafariZone_North_Text_Man
 end

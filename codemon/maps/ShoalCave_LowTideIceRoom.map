@@ -67,5 +67,23 @@ warps
 npcs
 misc_item_ball 12 8 S static
 misc_item_ball 12 21 S static
+objscripts
+0 ShoalCave_LowTideIceRoom_EventScript_ItemTMHail
+1 ShoalCave_LowTideIceRoom_EventScript_ItemNeverMeltIce
+scriptdefs
+= ShoalCave_LowTideIceRoom_EventScript_ItemNeverMeltIce
+goto_if_set FLAG_ITEM_SHOAL_CAVE_ICE_ROOM_NEVER_MELT_ICE ShoalCave_LowTideIceRoom_EventScript_ItemNeverMeltIce_Taken
+finditem ITEM_NEVER_MELT_ICE
+setflag FLAG_ITEM_SHOAL_CAVE_ICE_ROOM_NEVER_MELT_ICE
+end
+= ShoalCave_LowTideIceRoom_EventScript_ItemNeverMeltIce_Taken
+end
+= ShoalCave_LowTideIceRoom_EventScript_ItemTMHail
+goto_if_set FLAG_ITEM_SHOAL_CAVE_ICE_ROOM_TM_HAIL ShoalCave_LowTideIceRoom_EventScript_ItemTMHail_Taken
+finditem ITEM_TM_HAIL
+setflag FLAG_ITEM_SHOAL_CAVE_ICE_ROOM_TM_HAIL
+end
+= ShoalCave_LowTideIceRoom_EventScript_ItemTMHail_Taken
+end
 encounters
 land ZUBAT:26:26,SPHEAL:26:26,ZUBAT:28:28,SPHEAL:28:28,ZUBAT:30:30,SPHEAL:30:30,SNORUNT:26:26,SPHEAL:32:32,GOLBAT:30:30,SNORUNT:28:28,GOLBAT:32:32,SNORUNT:30:30

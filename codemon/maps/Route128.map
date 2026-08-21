@@ -101,7 +101,32 @@ objscripts
 7 Route128_EventScript_Alexa
 8 Route128_EventScript_Carlee
 9 Route128_EventScript_Harrison
+triggers
+49 9 0 0 Route128_HiddenItem_49_9
+57 21 0 0 Route128_HiddenItem_57_21
+31 33 0 0 Route128_HiddenItem_31_33
 scriptdefs
+= Route128_HiddenItem_31_33
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_128_HEART_SCALE_3 Route128_HiddenItem_31_33_Taken
+finditem ITEM_HEART_SCALE
+setflag FLAG_HIDDEN_ITEM_ROUTE_128_HEART_SCALE_3
+end
+= Route128_HiddenItem_31_33_Taken
+end
+= Route128_HiddenItem_57_21
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_128_HEART_SCALE_2 Route128_HiddenItem_57_21_Taken
+finditem ITEM_HEART_SCALE
+setflag FLAG_HIDDEN_ITEM_ROUTE_128_HEART_SCALE_2
+end
+= Route128_HiddenItem_57_21_Taken
+end
+= Route128_HiddenItem_49_9
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_128_HEART_SCALE_1 Route128_HiddenItem_49_9_Taken
+finditem ITEM_HEART_SCALE
+setflag FLAG_HIDDEN_ITEM_ROUTE_128_HEART_SCALE_1
+end
+= Route128_HiddenItem_49_9_Taken
+end
 = Route128_EventScript_Harrison
 trainerbattle_single TRAINER_HARRISON Route128_Text_HarrisonIntro Route128_Text_HarrisonDefeat
 msgbox	Route128_Text_HarrisonPostBattle

@@ -177,13 +177,23 @@ misc_item_ball 13 20 S static
 objscripts
 0 Route127_EventScript_Camden
 1 Route127_EventScript_Donny
+2 Route127_EventScript_ItemZinc
+3 Route127_EventScript_ItemCarbos
 4 Route127_EventScript_Jonah
 5 Route127_EventScript_Roger
 6 Route127_EventScript_Henry
 7 Route127_EventScript_Aidan
 8 Route127_EventScript_Koji
 9 Route127_EventScript_Athena
+10 Route127_EventScript_ItemRareCandy
 scriptdefs
+= Route127_EventScript_ItemRareCandy
+goto_if_set FLAG_ITEM_ROUTE_127_RARE_CANDY Route127_EventScript_ItemRareCandy_Taken
+finditem ITEM_RARE_CANDY
+setflag FLAG_ITEM_ROUTE_127_RARE_CANDY
+end
+= Route127_EventScript_ItemRareCandy_Taken
+end
 = Route127_EventScript_Athena
 trainerbattle_single TRAINER_ATHENA Route127_Text_AthenaIntro Route127_Text_AthenaDefeat
 msgbox	Route127_Text_AthenaPostBattle
@@ -221,6 +231,20 @@ end
 = Route127_EventScript_Jonah
 trainerbattle_single TRAINER_JONAH Route127_Text_JonahIntro Route127_Text_JonahDefeat
 msgbox	Route127_Text_JonahPostBattle
+end
+= Route127_EventScript_ItemCarbos
+goto_if_set FLAG_ITEM_ROUTE_127_CARBOS Route127_EventScript_ItemCarbos_Taken
+finditem ITEM_CARBOS
+setflag FLAG_ITEM_ROUTE_127_CARBOS
+end
+= Route127_EventScript_ItemCarbos_Taken
+end
+= Route127_EventScript_ItemZinc
+goto_if_set FLAG_ITEM_ROUTE_127_ZINC Route127_EventScript_ItemZinc_Taken
+finditem ITEM_ZINC
+setflag FLAG_ITEM_ROUTE_127_ZINC
+end
+= Route127_EventScript_ItemZinc_Taken
 end
 = Route127_EventScript_Donny
 trainerbattle_single TRAINER_DONNY Route127_Text_DonnyIntro Route127_Text_DonnyDefeat

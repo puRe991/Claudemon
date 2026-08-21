@@ -64,7 +64,15 @@ dialogs
 objscripts
 0 MagmaHideout_3F_1R_EventScript_Grunt9
 1 MagmaHideout_3F_1R_EventScript_Grunt16
+2 MagmaHideout_3F_1R_EventScript_ItemNugget
 scriptdefs
+= MagmaHideout_3F_1R_EventScript_ItemNugget
+goto_if_set FLAG_ITEM_MAGMA_HIDEOUT_3F_1R_NUGGET MagmaHideout_3F_1R_EventScript_ItemNugget_Taken
+finditem ITEM_NUGGET
+setflag FLAG_ITEM_MAGMA_HIDEOUT_3F_1R_NUGGET
+end
+= MagmaHideout_3F_1R_EventScript_ItemNugget_Taken
+end
 = MagmaHideout_3F_1R_EventScript_Grunt16
 trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_16 MagmaHideout_3F_1R_Text_Grunt16Intro MagmaHideout_3F_1R_Text_Grunt16Defeat
 msgbox	Listen to me. TEAM MAGMA is right!Don't listen to TEAM AQUA. Don't believe their lies!

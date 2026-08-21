@@ -53,6 +53,7 @@ dialogs
 7	Our family has been TRAINERS here since my great-grandmother's time…It is my duty to protect this mountain…
 objscripts
 0 MtPyre_2F_EventScript_Mark
+1 MtPyre_2F_EventScript_ItemUltraBall
 2 MtPyre_2F_EventScript_Woman
 3 MtPyre_2F_EventScript_PokefanM
 4 MtPyre_2F_EventScript_Dez
@@ -81,6 +82,13 @@ msgbox	Ooch, ouch… There are holes in the ground here and there.I didn't noti
 end
 = MtPyre_2F_EventScript_Woman
 msgbox	Memories of my darling SKITTY… My eyes overflow thinking about it.
+end
+= MtPyre_2F_EventScript_ItemUltraBall
+goto_if_set FLAG_ITEM_MT_PYRE_2F_ULTRA_BALL MtPyre_2F_EventScript_ItemUltraBall_Taken
+finditem ITEM_ULTRA_BALL
+setflag FLAG_ITEM_MT_PYRE_2F_ULTRA_BALL
+end
+= MtPyre_2F_EventScript_ItemUltraBall_Taken
 end
 = MtPyre_2F_EventScript_Mark
 trainerbattle_single TRAINER_MARK MtPyre_2F_Text_MarkIntro MtPyre_2F_Text_MarkDefeat

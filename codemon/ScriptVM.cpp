@@ -130,6 +130,15 @@ void ScriptVM::pump() {
 			this->box->open(std::string(), item_name(arg(0)) + " obtained!");
 			this->st = WAIT_MSG;
 			return;
+		} else if (op == "finditem" && argc >= 1) {
+			// Overworld pickup (item balls / hidden items): same effect as
+			// giveitem, "found" phrasing to match pokeemerald's STD_FIND_ITEM.
+			int amt = (argc >= 2) ? value_of(arg(1)) : 1;
+			this->state->give_item(arg(0), amt);
+			this->state->set_var("VAR_RESULT", 1);
+			this->box->open(std::string(), "Found " + item_name(arg(0)) + "!");
+			this->st = WAIT_MSG;
+			return;
 		} else if (op == "applymovement" && argc >= 2) {
 			Character* ch = resolve(arg(0));
 			const std::vector<std::string>& acts = this->map->movement(arg(1));

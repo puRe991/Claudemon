@@ -87,7 +87,15 @@ people_man_1 8 8 S static
 misc_item_ball 33 7 S static
 objscripts
 0 SafariZone_Northwest_EventScript_Man
+1 SafariZone_Northwest_EventScript_ItemTMSolarBeam
 scriptdefs
+= SafariZone_Northwest_EventScript_ItemTMSolarBeam
+goto_if_set FLAG_ITEM_SAFARI_ZONE_NORTH_WEST_TM_SOLAR_BEAM SafariZone_Northwest_EventScript_ItemTMSolarBeam_Taken
+finditem ITEM_TM_SOLAR_BEAM
+setflag FLAG_ITEM_SAFARI_ZONE_NORTH_WEST_TM_SOLAR_BEAM
+end
+= SafariZone_Northwest_EventScript_ItemTMSolarBeam_Taken
+end
 = SafariZone_Northwest_EventScript_Man
 msgbox	SafariZone_Northwest_Text_Man
 end

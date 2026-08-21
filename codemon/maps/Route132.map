@@ -96,13 +96,22 @@ misc_item_ball 20 27 S static
 objscripts
 0 Route132_EventScript_Gilbert
 1 Route132_EventScript_Dana
+2 Route132_EventScript_ItemRareCandy
 3 Route132_EventScript_Kiyo
 4 Route132_EventScript_Ronald
 5 Route132_EventScript_Paxton
 6 Route132_EventScript_Darcy
 7 Route132_EventScript_Makayla
 8 Route132_EventScript_Jonathan
+9 Route132_EventScript_ItemProtein
 scriptdefs
+= Route132_EventScript_ItemProtein
+goto_if_set FLAG_ITEM_ROUTE_132_PROTEIN Route132_EventScript_ItemProtein_Taken
+finditem ITEM_PROTEIN
+setflag FLAG_ITEM_ROUTE_132_PROTEIN
+end
+= Route132_EventScript_ItemProtein_Taken
+end
 = Route132_EventScript_Jonathan
 trainerbattle_single TRAINER_JONATHAN Route132_Text_JonathanIntro Route132_Text_JonathanDefeat
 msgbox	Route132_Text_JonathanPostBattle
@@ -126,6 +135,13 @@ end
 = Route132_EventScript_Kiyo
 trainerbattle_single TRAINER_KIYO Route132_Text_KiyoIntro Route132_Text_KiyoDefeat
 msgbox	Route132_Text_KiyoPostBattle
+end
+= Route132_EventScript_ItemRareCandy
+goto_if_set FLAG_ITEM_ROUTE_132_RARE_CANDY Route132_EventScript_ItemRareCandy_Taken
+finditem ITEM_RARE_CANDY
+setflag FLAG_ITEM_ROUTE_132_RARE_CANDY
+end
+= Route132_EventScript_ItemRareCandy_Taken
 end
 = Route132_EventScript_Dana
 trainerbattle_single TRAINER_DANA Route132_Text_DanaIntro Route132_Text_DanaDefeat

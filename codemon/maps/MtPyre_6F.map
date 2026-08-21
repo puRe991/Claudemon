@@ -40,11 +40,19 @@ dialogs
 2	I had this feeling that a lost TRAINER would be panicked and easy to beat.It's dirty and I won't try it again…
 objscripts
 0 MtPyre_6F_EventScript_Valerie
+1 MtPyre_6F_EventScript_ItemTMShadowBall
 2 MtPyre_6F_EventScript_Cedric
 scriptdefs
 = MtPyre_6F_EventScript_Cedric
 trainerbattle_single TRAINER_CEDRIC MtPyre_6F_Text_CedricIntro MtPyre_6F_Text_CedricDefeat
 msgbox	I had this feeling that a lost TRAINER would be panicked and easy to beat.It's dirty and I won't try it again…
+end
+= MtPyre_6F_EventScript_ItemTMShadowBall
+goto_if_set FLAG_ITEM_MT_PYRE_6F_TM_SHADOW_BALL MtPyre_6F_EventScript_ItemTMShadowBall_Taken
+finditem ITEM_TM_SHADOW_BALL
+setflag FLAG_ITEM_MT_PYRE_6F_TM_SHADOW_BALL
+end
+= MtPyre_6F_EventScript_ItemTMShadowBall_Taken
 end
 = MtPyre_6F_EventScript_Valerie
 trainerbattle_single TRAINER_VALERIE_1 MtPyre_6F_Text_ValerieIntro MtPyre_6F_Text_ValerieDefeat MtPyre_6F_EventScript_RegisterValerie

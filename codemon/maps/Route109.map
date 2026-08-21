@@ -171,6 +171,7 @@ objscripts
 6 Route109_EventScript_Ricky
 7 Route109_EventScript_Lola
 8 Route109_EventScript_SeashoreHouseGirl
+9 Route109_EventScript_ItemPPUp
 10 Route109_EventScript_Gwen
 11 Route109_EventScript_Austina
 12 Route109_EventScript_Carter
@@ -183,7 +184,15 @@ objscripts
 19 Route109_EventScript_Zigzagoon
 20 Route109_EventScript_Hailey
 21 Route109_EventScript_Chandler
+22 Route109_EventScript_ItemPotion
 23 Route109_EventScript_Elijah
+triggers
+16 23 0 0 Route109_HiddenItem_16_23
+33 5 0 0 Route109_HiddenItem_33_5
+9 10 0 0 Route109_HiddenItem_9_10
+28 20 0 0 Route109_HiddenItem_28_20
+13 16 0 0 Route109_HiddenItem_13_16
+8 42 0 0 Route109_HiddenItem_8_42
 movements
 Route109_Movement_BrineyEnterBoat	down,end
 Route109_Movement_BrineyExitBoat	down,delay,end
@@ -193,9 +202,58 @@ Route109_Movement_PlayerEnterBoatWest	left,down,end
 Route109_Movement_PlayerExitBoat	down,down,left,delay,end
 Route109_Movement_SailToDewford	delay,down,down,down,down,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,down,down,left,left,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,left,left,left,left,left,left,left,left,left,left,left,delay,end
 scriptdefs
+= Route109_HiddenItem_8_42
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_109_HEART_SCALE_3 Route109_HiddenItem_8_42_Taken
+finditem ITEM_HEART_SCALE
+setflag FLAG_HIDDEN_ITEM_ROUTE_109_HEART_SCALE_3
+end
+= Route109_HiddenItem_8_42_Taken
+end
+= Route109_HiddenItem_13_16
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_109_HEART_SCALE_2 Route109_HiddenItem_13_16_Taken
+finditem ITEM_HEART_SCALE
+setflag FLAG_HIDDEN_ITEM_ROUTE_109_HEART_SCALE_2
+end
+= Route109_HiddenItem_13_16_Taken
+end
+= Route109_HiddenItem_28_20
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_109_ETHER Route109_HiddenItem_28_20_Taken
+finditem ITEM_ETHER
+setflag FLAG_HIDDEN_ITEM_ROUTE_109_ETHER
+end
+= Route109_HiddenItem_28_20_Taken
+end
+= Route109_HiddenItem_9_10
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_109_GREAT_BALL Route109_HiddenItem_9_10_Taken
+finditem ITEM_GREAT_BALL
+setflag FLAG_HIDDEN_ITEM_ROUTE_109_GREAT_BALL
+end
+= Route109_HiddenItem_9_10_Taken
+end
+= Route109_HiddenItem_33_5
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_109_HEART_SCALE_1 Route109_HiddenItem_33_5_Taken
+finditem ITEM_HEART_SCALE
+setflag FLAG_HIDDEN_ITEM_ROUTE_109_HEART_SCALE_1
+end
+= Route109_HiddenItem_33_5_Taken
+end
+= Route109_HiddenItem_16_23
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_109_REVIVE Route109_HiddenItem_16_23_Taken
+finditem ITEM_REVIVE
+setflag FLAG_HIDDEN_ITEM_ROUTE_109_REVIVE
+end
+= Route109_HiddenItem_16_23_Taken
+end
 = Route109_EventScript_Elijah
 trainerbattle_single TRAINER_ELIJAH Route109_Text_ElijahIntro Route109_Text_ElijahDefeated
 msgbox	Route109_Text_ElijahPostBattle
+end
+= Route109_EventScript_ItemPotion
+goto_if_set FLAG_ITEM_ROUTE_109_POTION Route109_EventScript_ItemPotion_Taken
+finditem ITEM_POTION
+setflag FLAG_ITEM_ROUTE_109_POTION
+end
+= Route109_EventScript_ItemPotion_Taken
 end
 = Route109_EventScript_Chandler
 trainerbattle_single TRAINER_CHANDLER Route109_Text_ChandlerIntro Route109_Text_ChandlerDefeated
@@ -268,6 +326,13 @@ end
 = Route109_EventScript_Gwen
 trainerbattle_single TRAINER_GWEN Route109_Text_GwenIntro Route109_Text_GwenDefeated
 msgbox	Route109_Text_GwenPostBattle
+end
+= Route109_EventScript_ItemPPUp
+goto_if_set FLAG_ITEM_ROUTE_109_PP_UP Route109_EventScript_ItemPPUp_Taken
+finditem ITEM_PP_UP
+setflag FLAG_ITEM_ROUTE_109_PP_UP
+end
+= Route109_EventScript_ItemPPUp_Taken
 end
 = Route109_EventScript_SeashoreHouseGirl
 msgbox	Yo, TRAINERS! Whether you're hot to trot, or cool cat not, chill at my papa's spot!

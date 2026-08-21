@@ -121,16 +121,26 @@ objscripts
 1 VictoryRoad_1F_EventScript_Hope
 2 VictoryRoad_1F_EventScript_Albert
 3 VictoryRoad_1F_EventScript_EntranceWally
+4 VictoryRoad_1F_EventScript_ItemMaxElixir
+5 VictoryRoad_1F_EventScript_ItemPPUp
 6 VictoryRoad_1F_EventScript_ExitWally
 7 VictoryRoad_1F_EventScript_Katelynn
 8 VictoryRoad_1F_EventScript_Quincy
 triggers
 2 23 VAR_VICTORY_ROAD_1F_STATE 0 VictoryRoad_1F_EventScript_WallyBattleTrigger1
 3 23 VAR_VICTORY_ROAD_1F_STATE 0 VictoryRoad_1F_EventScript_WallyBattleTrigger2
+30 39 0 0 VictoryRoad_1F_HiddenItem_30_39
 movements
 VictoryRoad_1F_Movement_WallyApproachPlayer1	left,left,left,left,left,left,left,left,left,left,up,end
 VictoryRoad_1F_Movement_WallyApproachPlayer2	left,left,left,left,left,left,left,left,left,up,end
 scriptdefs
+= VictoryRoad_1F_HiddenItem_30_39
+goto_if_set FLAG_HIDDEN_ITEM_VICTORY_ROAD_1F_ULTRA_BALL VictoryRoad_1F_HiddenItem_30_39_Taken
+finditem ITEM_ULTRA_BALL
+setflag FLAG_HIDDEN_ITEM_VICTORY_ROAD_1F_ULTRA_BALL
+end
+= VictoryRoad_1F_HiddenItem_30_39_Taken
+end
 = VictoryRoad_1F_EventScript_WallyBattleTrigger2
 lockall
 setvar VAR_0x8008 2
@@ -176,6 +186,20 @@ end
 = VictoryRoad_1F_EventScript_RematchWally
 trainerbattle_rematch TRAINER_WALLY_VR_2 VictoryRoad_1F_Text_WallyIntro VictoryRoad_1F_Text_WallyDefeat
 msgbox	WALLY: I couldn't beat you this time, too… But one of these days, PLAYER, I'm going to catch up to you…And challenge the POKéMON LEAGUE!
+end
+= VictoryRoad_1F_EventScript_ItemPPUp
+goto_if_set FLAG_ITEM_VICTORY_ROAD_1F_PP_UP VictoryRoad_1F_EventScript_ItemPPUp_Taken
+finditem ITEM_PP_UP
+setflag FLAG_ITEM_VICTORY_ROAD_1F_PP_UP
+end
+= VictoryRoad_1F_EventScript_ItemPPUp_Taken
+end
+= VictoryRoad_1F_EventScript_ItemMaxElixir
+goto_if_set FLAG_ITEM_VICTORY_ROAD_1F_MAX_ELIXIR VictoryRoad_1F_EventScript_ItemMaxElixir_Taken
+finditem ITEM_MAX_ELIXIR
+setflag FLAG_ITEM_VICTORY_ROAD_1F_MAX_ELIXIR
+end
+= VictoryRoad_1F_EventScript_ItemMaxElixir_Taken
 end
 = VictoryRoad_1F_EventScript_EntranceWally
 msgbox	WALLY: I couldn't beat you today, PLAYER, but one of these days, I'll catch up to you!

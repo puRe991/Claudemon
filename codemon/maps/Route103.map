@@ -79,11 +79,20 @@ objscripts
 4 Route103_EventScript_Andrew
 8 Route103_EventScript_Boy
 10 Route103_EventScript_Miguel
+11 Route103_EventScript_ItemGuardSpec
 14 Route103_EventScript_Rhett
 15 Route103_EventScript_Marcos
 16 Route103_EventScript_Isabelle
 17 Route103_EventScript_Pete
+18 Route103_EventScript_ItemPPUp
 scriptdefs
+= Route103_EventScript_ItemPPUp
+goto_if_set FLAG_ITEM_ROUTE_103_PP_UP Route103_EventScript_ItemPPUp_Taken
+finditem ITEM_PP_UP
+setflag FLAG_ITEM_ROUTE_103_PP_UP
+end
+= Route103_EventScript_ItemPPUp_Taken
+end
 = Route103_EventScript_Pete
 trainerbattle_single TRAINER_PETE Route103_Text_PeteIntro Route103_Text_PeteDefeated
 msgbox	Route103_Text_PetePostBattle
@@ -99,6 +108,13 @@ end
 = Route103_EventScript_Rhett
 trainerbattle_single TRAINER_RHETT Route103_Text_RhettIntro Route103_Text_RhettDefeated
 msgbox	Route103_Text_RhettPostBattle
+end
+= Route103_EventScript_ItemGuardSpec
+goto_if_set FLAG_ITEM_ROUTE_103_GUARD_SPEC Route103_EventScript_ItemGuardSpec_Taken
+finditem ITEM_GUARD_SPEC
+setflag FLAG_ITEM_ROUTE_103_GUARD_SPEC
+end
+= Route103_EventScript_ItemGuardSpec_Taken
 end
 = Route103_EventScript_Miguel
 trainerbattle_single TRAINER_MIGUEL_1 Route103_Text_MiguelIntro Route103_Text_MiguelDefeated Route102_EventScript_MiguelRegisterMatchCallAfterBattle

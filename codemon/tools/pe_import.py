@@ -902,6 +902,27 @@ def parse_map_scripts(map_dir, texts):
     return scripts, movements
 
 
+def parse_item_ball_scripts(src):
+    """The visible item-ball pickup scripts live in one shared file, not per
+    map (`data/scripts/item_ball_scripts.inc`), each just `finditem ITEM_X`.
+    Returns label -> item name."""
+    out = {}
+    p = os.path.join(src, "data", "scripts", "item_ball_scripts.inc")
+    if not os.path.isfile(p):
+        return out
+    label = None
+    for ln in open(p, encoding="utf-8", errors="replace"):
+        m = _re.match(r"^(\w+)::", ln)
+        if m:
+            label = m.group(1)
+            continue
+        m = _re.search(r"\bfinditem\s+(ITEM_\w+)", ln)
+        if m and label:
+            out[label] = m.group(1)
+            label = None
+    return out
+
+
 def reachable_scripts(entry_labels, scripts):
     """BFS the scripts reachable from entry labels via label-valued args."""
     keep = {}
@@ -971,7 +992,12 @@ def cmd_world(src, limit=None):
                 pass
             break
 
+    # Visible item-ball pickup scripts (`data/scripts/item_ball_scripts.inc`):
+    # label -> item, so item balls give the real item instead of sitting inert.
+    item_ball_scripts = parse_item_ball_scripts(src)
+
     done = 0
+    item_total = 0
     for mname in names:
         mj_path = os.path.join(mroot, mname, "map.json")
         if not os.path.isfile(mj_path):
@@ -1011,6 +1037,34 @@ def cmd_world(src, limit=None):
         dialogs = parse_map_dialogs(mapdir)
         texts = parse_map_texts(mapdir)
         all_scripts, all_moves = parse_map_scripts(mapdir, texts)
+
+        # Item balls: synthesize a pickup script for any ball whose script
+        # isn't already defined locally (almost all of them -- the real
+        # scripts live in one shared file, data/scripts/item_ball_scripts.inc,
+        # keyed by label). Gated by the object's own flag so it only pays out
+        # once, exactly like the real finditem/STD_FIND_ITEM behaviour.
+        for oe in mj.get("object_events", []):
+            if oe.get("graphics_id") != "OBJ_EVENT_GFX_ITEM_BALL":
+                continue
+            label = oe.get("script")
+            if not label or label in all_scripts:
+                continue
+            item = item_ball_scripts.get(label)
+            if not item:
+                continue
+            flag = oe.get("flag")
+            if flag:
+                done_label = label + "_Taken"
+                all_scripts[label] = [
+                    ["goto_if_set", flag, done_label],
+                    ["finditem", item],
+                    ["setflag", flag],
+                    ["end"],
+                ]
+                all_scripts[done_label] = [["end"]]
+            else:
+                all_scripts[label] = [["finditem", item], ["end"]]
+            item_total += 1
         npcs = []
         for oe in mj.get("object_events", []):
             try:
@@ -1117,6 +1171,33 @@ def cmd_world(src, limit=None):
             coord_triggers.append((cx, cy, ce.get("var", "0"),
                                    ce.get("var_value", "0"), ce["script"]))
 
+        # Hidden items: no sprite, just an (item, flag) pair on a bg_event
+        # tile. Simplified here to pick up on stepping onto the tile (the
+        # real game gates the reveal on the Itemfinder, which this engine
+        # doesn't model) via an always-true coord trigger ("0" == "0").
+        for bg in mj.get("bg_events", []):
+            if bg.get("type") != "hidden_item" or not bg.get("item"):
+                continue
+            try:
+                hx = int(bg["x"]); hy = int(bg["y"])
+            except Exception:
+                continue
+            label = f"{mname}_HiddenItem_{hx}_{hy}"
+            flag = bg.get("flag")
+            if flag:
+                done_label = label + "_Taken"
+                all_scripts[label] = [
+                    ["goto_if_set", flag, done_label],
+                    ["finditem", bg["item"]],
+                    ["setflag", flag],
+                    ["end"],
+                ]
+                all_scripts[done_label] = [["end"]]
+            else:
+                all_scripts[label] = [["finditem", bg["item"]], ["end"]]
+            coord_triggers.append((hx, hy, "0", "0", label))
+            item_total += 1
+
         entry = [n[6] for n in npcs if n[6] in all_scripts]
         entry += [t[4] for t in coord_triggers if t[4] in all_scripts]
         keep = reachable_scripts(entry, all_scripts)
@@ -1194,7 +1275,8 @@ def cmd_world(src, limit=None):
     print(f"world: {len(catalog)} maps, {len(pair_cache)} tileset sheets, "
           f"{total_npcs} NPCs, {total_warps} warps, {total_dlg} dialogs, "
           f"{total_signs} signs, {imported} wild sprites, "
-          f"{total_scripts} scripts, {total_trig} triggers -> {os.path.relpath(maps_dir)}")
+          f"{total_scripts} scripts, {total_trig} triggers, "
+          f"{item_total} item pickups -> {os.path.relpath(maps_dir)}")
 
 
 # --------------------------------------------------------------------------- #

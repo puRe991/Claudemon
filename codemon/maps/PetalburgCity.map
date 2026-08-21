@@ -88,6 +88,8 @@ objscripts
 0 PetalburgCity_EventScript_WallysMom
 2 PetalburgCity_EventScript_Boy
 3 PetalburgCity_EventScript_Gentleman
+5 PetalburgCity_EventScript_ItemMaxRevive
+6 PetalburgCity_EventScript_ItemEther
 7 PetalburgCity_EventScript_GymBoy
 triggers
 8 10 VAR_PETALBURG_CITY_STATE 0 PetalburgCity_EventScript_ShowGymToPlayer0
@@ -98,6 +100,7 @@ triggers
 4 11 VAR_SCOTT_PETALBURG_ENCOUNTER 0 PetalburgCity_EventScript_Scott1
 4 12 VAR_SCOTT_PETALBURG_ENCOUNTER 0 PetalburgCity_EventScript_Scott2
 4 13 VAR_SCOTT_PETALBURG_ENCOUNTER 0 PetalburgCity_EventScript_Scott3
+11 29 0 0 PetalburgCity_HiddenItem_11_29
 movements
 PetalburgCity_Movement_BoyApproachPlayer0	right,right,right,delay,end
 PetalburgCity_Movement_BoyApproachPlayer1	right,right,end
@@ -123,6 +126,13 @@ PetalburgCity_Movement_ScottExit2	down,left,left,left,left,left,left,left,left,l
 PetalburgCity_Movement_ScottExit3	up,left,left,left,left,left,left,left,left,left,left,left,end
 PetalburgCity_Movement_ScottStartWalkLeft	left,left,left,left,end
 scriptdefs
+= PetalburgCity_HiddenItem_11_29
+goto_if_set FLAG_HIDDEN_ITEM_PETALBURG_CITY_RARE_CANDY PetalburgCity_HiddenItem_11_29_Taken
+finditem ITEM_RARE_CANDY
+setflag FLAG_HIDDEN_ITEM_PETALBURG_CITY_RARE_CANDY
+end
+= PetalburgCity_HiddenItem_11_29_Taken
+end
 = PetalburgCity_EventScript_Scott3
 lockall
 addobject LOCALID_PETALBURG_SCOTT
@@ -299,6 +309,20 @@ goto PetalburgCity_EventScript_ShowGymToPlayer
 end
 = PetalburgCity_EventScript_GymBoy
 msgbox	Hiya! Are you maybe… A rookie TRAINER?Do you know what POKéMON TRAINERS do when they reach a new town?They first check what kind of GYM is in the town.
+end
+= PetalburgCity_EventScript_ItemEther
+goto_if_set FLAG_ITEM_PETALBURG_CITY_ETHER PetalburgCity_EventScript_ItemEther_Taken
+finditem ITEM_ETHER
+setflag FLAG_ITEM_PETALBURG_CITY_ETHER
+end
+= PetalburgCity_EventScript_ItemEther_Taken
+end
+= PetalburgCity_EventScript_ItemMaxRevive
+goto_if_set FLAG_ITEM_PETALBURG_CITY_MAX_REVIVE PetalburgCity_EventScript_ItemMaxRevive_Taken
+finditem ITEM_MAX_REVIVE
+setflag FLAG_ITEM_PETALBURG_CITY_MAX_REVIVE
+end
+= PetalburgCity_EventScript_ItemMaxRevive_Taken
 end
 = PetalburgCity_EventScript_Gentleman
 msgbox	Let's say you have six POKéMON. If you catch another one…It is automatically sent to a STORAGE BOX over a PC connection.

@@ -30,7 +30,15 @@ dialogs
 0	This is a perfect place to go exploring! It's exciting here!I bet there're amazing treasures on board.
 objscripts
 0 AbandonedShip_Rooms2_B1F_EventScript_Camper
+1 AbandonedShip_Rooms2_B1F_EventScript_ItemDiveBall
 scriptdefs
+= AbandonedShip_Rooms2_B1F_EventScript_ItemDiveBall
+goto_if_set FLAG_ITEM_ABANDONED_SHIP_ROOMS_2_B1F_DIVE_BALL AbandonedShip_Rooms2_B1F_EventScript_ItemDiveBall_Taken
+finditem ITEM_DIVE_BALL
+setflag FLAG_ITEM_ABANDONED_SHIP_ROOMS_2_B1F_DIVE_BALL
+end
+= AbandonedShip_Rooms2_B1F_EventScript_ItemDiveBall_Taken
+end
 = AbandonedShip_Rooms2_B1F_EventScript_Camper
 msgbox	This is a perfect place to go exploring! It's exciting here!I bet there're amazing treasures on board.
 end

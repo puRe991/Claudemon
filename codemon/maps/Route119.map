@@ -346,19 +346,32 @@ objscripts
 12 Route119_EventScript_Takashi
 13 Route119_EventScript_Hugh
 14 Route119_EventScript_Phil
+15 Route119_EventScript_ItemSuperRepel
+16 Route119_EventScript_ItemZinc
+17 Route119_EventScript_ItemElixir
+18 Route119_EventScript_ItemLeafStone
+19 Route119_EventScript_ItemRareCandy
+20 Route119_EventScript_ItemHyperPotion
 21 Route119_EventScript_BridgeAquaGrunt1
 22 Route119_EventScript_BridgeAquaGrunt2
 23 Route119_EventScript_Boy1
 28 Route119_EventScript_CyclingTriathleteM
+29 Route119_EventScript_ItemHyperPotion2
 30 Route119_EventScript_Boy2
 31 Route119_EventScript_Hideo
 34 Route119_EventScript_Chris
 35 Route119_EventScript_Rachel
 36 Route119_EventScript_Dayton
 37 Route119_EventScript_Fabian
+38 Route119_EventScript_ItemNugget
+39 Route119_EventScript_ItemElixir2
 triggers
 25 31 VAR_ROUTE119_STATE 0 Route119_EventScript_RivalTrigger1
 26 31 VAR_ROUTE119_STATE 0 Route119_EventScript_RivalTrigger2
+17 82 0 0 Route119_HiddenItem_17_82
+38 63 0 0 Route119_HiddenItem_38_63
+26 120 0 0 Route119_HiddenItem_26_120
+20 29 0 0 Route119_HiddenItem_20_29
 movements
 Route119_Movement_PlayerWatchRivalExit1	delay,delay,delay,delay,end
 Route119_Movement_PlayerWatchRivalExit2	delay,delay,delay,delay,end
@@ -370,6 +383,34 @@ Route119_Movement_ScottEnter	down,down,down,down,left,left,down,end
 Route119_Movement_ScottExit1	up,right,right,up,up,up,up,up,end
 Route119_Movement_ScottExit2	up,right,up,up,up,up,up,end
 scriptdefs
+= Route119_HiddenItem_20_29
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_119_MAX_ETHER Route119_HiddenItem_20_29_Taken
+finditem ITEM_MAX_ETHER
+setflag FLAG_HIDDEN_ITEM_ROUTE_119_MAX_ETHER
+end
+= Route119_HiddenItem_20_29_Taken
+end
+= Route119_HiddenItem_26_120
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_119_FULL_HEAL Route119_HiddenItem_26_120_Taken
+finditem ITEM_FULL_HEAL
+setflag FLAG_HIDDEN_ITEM_ROUTE_119_FULL_HEAL
+end
+= Route119_HiddenItem_26_120_Taken
+end
+= Route119_HiddenItem_38_63
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_119_ULTRA_BALL Route119_HiddenItem_38_63_Taken
+finditem ITEM_ULTRA_BALL
+setflag FLAG_HIDDEN_ITEM_ROUTE_119_ULTRA_BALL
+end
+= Route119_HiddenItem_38_63_Taken
+end
+= Route119_HiddenItem_17_82
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_119_CALCIUM Route119_HiddenItem_17_82_Taken
+finditem ITEM_CALCIUM
+setflag FLAG_HIDDEN_ITEM_ROUTE_119_CALCIUM
+end
+= Route119_HiddenItem_17_82_Taken
+end
 = Route119_EventScript_RivalTrigger2
 setvar VAR_TEMP_1 2
 goto Route119_EventScript_RivalEncounter
@@ -527,6 +568,20 @@ return
 setvar VAR_TEMP_1 1
 goto Route119_EventScript_RivalEncounter
 end
+= Route119_EventScript_ItemElixir2
+goto_if_set FLAG_ITEM_ROUTE_119_ELIXIR_2 Route119_EventScript_ItemElixir2_Taken
+finditem ITEM_ELIXIR
+setflag FLAG_ITEM_ROUTE_119_ELIXIR_2
+end
+= Route119_EventScript_ItemElixir2_Taken
+end
+= Route119_EventScript_ItemNugget
+goto_if_set FLAG_ITEM_ROUTE_119_NUGGET Route119_EventScript_ItemNugget_Taken
+finditem ITEM_NUGGET
+setflag FLAG_ITEM_ROUTE_119_NUGGET
+end
+= Route119_EventScript_ItemNugget_Taken
+end
 = Route119_EventScript_Fabian
 trainerbattle_single TRAINER_FABIAN Route119_Text_FabianIntro Route119_Text_FabianDefeat
 msgbox	Route119_Text_FabianPostBattle
@@ -549,6 +604,13 @@ msgbox	Route119_Text_HideoPostBattle
 end
 = Route119_EventScript_Boy2
 msgbox	Can your POKéMON use its SECRET POWER on a big pile of grass and make a SECRET BASE?
+end
+= Route119_EventScript_ItemHyperPotion2
+goto_if_set FLAG_ITEM_ROUTE_119_HYPER_POTION_2 Route119_EventScript_ItemHyperPotion2_Taken
+finditem ITEM_HYPER_POTION
+setflag FLAG_ITEM_ROUTE_119_HYPER_POTION_2
+end
+= Route119_EventScript_ItemHyperPotion2_Taken
 end
 = Route119_EventScript_CyclingTriathleteM
 msgbox	Tch… It's a no-go…The tall grass snares BIKE tires. There's no way you can cycle here.
@@ -573,6 +635,48 @@ closemessage
 applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
 waitmovement 0
 release
+end
+= Route119_EventScript_ItemHyperPotion
+goto_if_set FLAG_ITEM_ROUTE_119_HYPER_POTION_1 Route119_EventScript_ItemHyperPotion_Taken
+finditem ITEM_HYPER_POTION
+setflag FLAG_ITEM_ROUTE_119_HYPER_POTION_1
+end
+= Route119_EventScript_ItemHyperPotion_Taken
+end
+= Route119_EventScript_ItemRareCandy
+goto_if_set FLAG_ITEM_ROUTE_119_RARE_CANDY Route119_EventScript_ItemRareCandy_Taken
+finditem ITEM_RARE_CANDY
+setflag FLAG_ITEM_ROUTE_119_RARE_CANDY
+end
+= Route119_EventScript_ItemRareCandy_Taken
+end
+= Route119_EventScript_ItemLeafStone
+goto_if_set FLAG_ITEM_ROUTE_119_LEAF_STONE Route119_EventScript_ItemLeafStone_Taken
+finditem ITEM_LEAF_STONE
+setflag FLAG_ITEM_ROUTE_119_LEAF_STONE
+end
+= Route119_EventScript_ItemLeafStone_Taken
+end
+= Route119_EventScript_ItemElixir
+goto_if_set FLAG_ITEM_ROUTE_119_ELIXIR_1 Route119_EventScript_ItemElixir_Taken
+finditem ITEM_ELIXIR
+setflag FLAG_ITEM_ROUTE_119_ELIXIR_1
+end
+= Route119_EventScript_ItemElixir_Taken
+end
+= Route119_EventScript_ItemZinc
+goto_if_set FLAG_ITEM_ROUTE_119_ZINC Route119_EventScript_ItemZinc_Taken
+finditem ITEM_ZINC
+setflag FLAG_ITEM_ROUTE_119_ZINC
+end
+= Route119_EventScript_ItemZinc_Taken
+end
+= Route119_EventScript_ItemSuperRepel
+goto_if_set FLAG_ITEM_ROUTE_119_SUPER_REPEL Route119_EventScript_ItemSuperRepel_Taken
+finditem ITEM_SUPER_REPEL
+setflag FLAG_ITEM_ROUTE_119_SUPER_REPEL
+end
+= Route119_EventScript_ItemSuperRepel_Taken
 end
 = Route119_EventScript_Phil
 trainerbattle_single TRAINER_PHIL Route119_Text_PhilIntro Route119_Text_PhilDefeat
