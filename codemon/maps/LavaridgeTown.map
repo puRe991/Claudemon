@@ -56,6 +56,8 @@ people_old_man 5 8 S static 0
 people_twin 10 13 S wander 0
 people_hot_springs_old_woman 4 4 S static 0
 people_hot_springs_old_woman 5 4 S static 0
+people_may_walking 6 16 W static FLAG_HIDE_LAVARIDGE_TOWN_RIVAL_ON_BIKE
+people_may_walking 12 15 S static FLAG_HIDE_LAVARIDGE_TOWN_RIVAL
 people_expert_f 4 7 S static 0
 dialogs
 0	Oh, you like hot springs, do you?That's surprising for one as young as you.
@@ -64,7 +66,7 @@ dialogs
 3	I bathe in the hot springs every day.I want to become a beautiful and strong GYM LEADER like FLANNERY.
 4	If people put POKéMON in hot springs, it might be seriously strange.Why, it might be an electric bath, or a bubble bath, or even a lava bath…
 5	They're claiming that these hot springs are good for calming nervous tension, relieving aching muscles, solving romantic problems, and attracting money…
-6	I have here an EGG.I'd hoped to hatch it by covering it in hot sand by the hot springs. But that doesn't seem to be enough…I've heard it would be best if it were kept together with POKéMON and carried about.You are a TRAINER, yes? And your POKéMON radiate vitality.So, what say you? Will you take this EGG to hatch?
+8	I have here an EGG.I'd hoped to hatch it by covering it in hot sand by the hot springs. But that doesn't seem to be enough…I've heard it would be best if it were kept together with POKéMON and carried about.You are a TRAINER, yes? And your POKéMON radiate vitality.So, what say you? Will you take this EGG to hatch?
 objscripts
 0 LavaridgeTown_EventScript_ExpertF
 1 LavaridgeTown_EventScript_ExpertM
@@ -72,7 +74,7 @@ objscripts
 3 LavaridgeTown_EventScript_Twin
 4 LavaridgeTown_EventScript_HotSpringsOldWoman1
 5 LavaridgeTown_EventScript_HotSpringsOldWoman2
-6 LavaridgeTown_EventScript_EggWoman
+8 LavaridgeTown_EventScript_EggWoman
 triggers
 6 3 TRIGGER_RUN_IMMEDIATELY 0 LavaridgeTown_EventScript_HotSpringsTrigger
 4 5 0 0 LavaridgeTown_HiddenItem_4_5

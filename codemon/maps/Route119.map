@@ -301,6 +301,7 @@ people_ninja_boy 28 14 S static 0
 people_ninja_boy 19 49 S static 0
 people_man_5 10 50 E static 0
 people_man_5 8 63 S static 0
+people_may_walking 25 32 N static FLAG_HIDE_ROUTE_119_RIVAL
 misc_item_ball 12 121 S static FLAG_ITEM_ROUTE_119_SUPER_REPEL
 misc_item_ball 4 96 S static FLAG_ITEM_ROUTE_119_ZINC
 misc_item_ball 29 53 S static FLAG_ITEM_ROUTE_119_ELIXIR_1
@@ -309,6 +310,7 @@ misc_item_ball 8 18 S static FLAG_ITEM_ROUTE_119_RARE_CANDY
 misc_item_ball 33 117 S static FLAG_ITEM_ROUTE_119_HYPER_POTION_1
 people_team_aqua_aqua_member_m 13 33 E static FLAG_HIDE_ROUTE_119_TEAM_AQUA
 people_team_aqua_aqua_member_m 13 34 E static FLAG_HIDE_ROUTE_119_TEAM_AQUA
+people_may_walking 17 33 N static FLAG_HIDE_ROUTE_119_RIVAL_ON_BIKE
 people_boy_3 31 109 S static 0
 people_man_1 8 23 S static 0
 people_man_1 9 23 S static 0
@@ -328,11 +330,11 @@ misc_item_ball 19 5 S static FLAG_ITEM_ROUTE_119_NUGGET
 misc_item_ball 24 42 S static FLAG_ITEM_ROUTE_119_ELIXIR_2
 people_scott 28 25 S static FLAG_HIDE_ROUTE_119_SCOTT
 dialogs
-21	We're standing lookout here.Hey, you! Stay away from the WEATHER INSTITUTE. It's not safe.
-22	Lookout duty is surprisingly boring.Hey, you! Please don't go near the WEATHER INSTITUTE.
-23	I thought you FLY by catching a whole flock of BIRD POKéMON, and then hanging on to them somehow.But it turns out there's an HM move called FLY!I wish I'd known about that a long time ago…
-28	Tch… It's a no-go…The tall grass snares BIKE tires. There's no way you can cycle here.
-30	Can your POKéMON use its SECRET POWER on a big pile of grass and make a SECRET BASE?
+22	We're standing lookout here.Hey, you! Stay away from the WEATHER INSTITUTE. It's not safe.
+23	Lookout duty is surprisingly boring.Hey, you! Please don't go near the WEATHER INSTITUTE.
+25	I thought you FLY by catching a whole flock of BIRD POKéMON, and then hanging on to them somehow.But it turns out there's an HM move called FLY!I wish I'd known about that a long time ago…
+30	Tch… It's a no-go…The tall grass snares BIKE tires. There's no way you can cycle here.
+32	Can your POKéMON use its SECRET POWER on a big pile of grass and make a SECRET BASE?
 objscripts
 0 BerryTreeScript
 1 BerryTreeScript
@@ -349,31 +351,31 @@ objscripts
 12 Route119_EventScript_Takashi
 13 Route119_EventScript_Hugh
 14 Route119_EventScript_Phil
-15 Route119_EventScript_ItemSuperRepel
-16 Route119_EventScript_ItemZinc
-17 Route119_EventScript_ItemElixir
-18 Route119_EventScript_ItemLeafStone
-19 Route119_EventScript_ItemRareCandy
-20 Route119_EventScript_ItemHyperPotion
-21 Route119_EventScript_BridgeAquaGrunt1
-22 Route119_EventScript_BridgeAquaGrunt2
-23 Route119_EventScript_Boy1
-24 BerryTreeScript
-25 BerryTreeScript
+16 Route119_EventScript_ItemSuperRepel
+17 Route119_EventScript_ItemZinc
+18 Route119_EventScript_ItemElixir
+19 Route119_EventScript_ItemLeafStone
+20 Route119_EventScript_ItemRareCandy
+21 Route119_EventScript_ItemHyperPotion
+22 Route119_EventScript_BridgeAquaGrunt1
+23 Route119_EventScript_BridgeAquaGrunt2
+25 Route119_EventScript_Boy1
 26 BerryTreeScript
 27 BerryTreeScript
-28 Route119_EventScript_CyclingTriathleteM
-29 Route119_EventScript_ItemHyperPotion2
-30 Route119_EventScript_Boy2
-31 Route119_EventScript_Hideo
-32 Route119_EventScript_Kecleon1
-33 Route119_EventScript_Kecleon2
-34 Route119_EventScript_Chris
-35 Route119_EventScript_Rachel
-36 Route119_EventScript_Dayton
-37 Route119_EventScript_Fabian
-38 Route119_EventScript_ItemNugget
-39 Route119_EventScript_ItemElixir2
+28 BerryTreeScript
+29 BerryTreeScript
+30 Route119_EventScript_CyclingTriathleteM
+31 Route119_EventScript_ItemHyperPotion2
+32 Route119_EventScript_Boy2
+33 Route119_EventScript_Hideo
+34 Route119_EventScript_Kecleon1
+35 Route119_EventScript_Kecleon2
+36 Route119_EventScript_Chris
+37 Route119_EventScript_Rachel
+38 Route119_EventScript_Dayton
+39 Route119_EventScript_Fabian
+40 Route119_EventScript_ItemNugget
+41 Route119_EventScript_ItemElixir2
 triggers
 25 31 VAR_ROUTE119_STATE 0 Route119_EventScript_RivalTrigger1
 26 31 VAR_ROUTE119_STATE 0 Route119_EventScript_RivalTrigger2

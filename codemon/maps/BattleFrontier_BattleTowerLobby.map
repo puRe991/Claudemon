@@ -32,7 +32,6 @@ people_man_4 23 5 S static 0
 people_woman_5 17 8 S wander 0
 people_boy_1 15 9 S wander 0
 people_reporter_f 11 9 E static FLAG_HIDE_BATTLE_TOWER_REPORTER
-people_may_walking 1 5 S static FLAG_HIDE_APPRENTICE
 people_teala 10 5 S static 0
 people_teala 14 5 S static 0
 people_teala 18 5 S static 0
@@ -40,19 +39,18 @@ dialogs
 0	Where the talents of TRAINERS are put to the test!Welcome to the BATTLE TOWER!I am your guide to the SINGLE BATTLE ROOMS.
 2	The number of matches you win in a row is recorded.I'd better not get beaten in an embarrassing way!
 3	Once you've entered the BATTLE TOWER, you can't leave until you either lose or you beat seven TRAINERS in a row.You'd best be certain that you're up to the challenge.
-6	Where the talents of TRAINERS are put to the test!Welcome to the BATTLE TOWER!I am your guide to the DOUBLE BATTLE ROOMS.
-7	Where the talents of TRAINERS are put to the test!Welcome to the BATTLE TOWER!I am your guide to the MULTI BATTLE ROOMS.
-8	Where the talents of TRAINERS are put to the test!Welcome to the BATTLE TOWER!I am your guide to the LINK MULTI BATTLE ROOMS.
+5	Where the talents of TRAINERS are put to the test!Welcome to the BATTLE TOWER!I am your guide to the DOUBLE BATTLE ROOMS.
+6	Where the talents of TRAINERS are put to the test!Welcome to the BATTLE TOWER!I am your guide to the MULTI BATTLE ROOMS.
+7	Where the talents of TRAINERS are put to the test!Welcome to the BATTLE TOWER!I am your guide to the LINK MULTI BATTLE ROOMS.
 objscripts
 0 BattleFrontier_BattleTowerLobby_EventScript_SinglesAttendant
 1 BattleFrontier_BattleTowerLobby_EventScript_FeelingsMan
 2 BattleFrontier_BattleTowerLobby_EventScript_Woman
 3 BattleFrontier_BattleTowerLobby_EventScript_Boy
 4 BattleFrontier_BattleTowerLobby_EventScript_Reporter
-5 BattleFrontier_BattleTowerLobby_EventScript_Apprentice
-6 BattleFrontier_BattleTowerLobby_EventScript_DoublesAttendant
-7 BattleFrontier_BattleTowerLobby_EventScript_MultisAttendant
-8 BattleFrontier_BattleTowerLobby_EventScript_LinkMultisAttendant
+5 BattleFrontier_BattleTowerLobby_EventScript_DoublesAttendant
+6 BattleFrontier_BattleTowerLobby_EventScript_MultisAttendant
+7 BattleFrontier_BattleTowerLobby_EventScript_LinkMultisAttendant
 onload
 VAR_TEMP_CHALLENGE_STATUS 0 BattleFrontier_BattleTowerLobby_EventScript_GetChallengeStatus
 VAR_TEMP_CHALLENGE_STATUS CHALLENGE_STATUS_SAVING BattleFrontier_BattleTowerLobby_EventScript_QuitWithoutSaving
@@ -60,8 +58,6 @@ VAR_TEMP_CHALLENGE_STATUS CHALLENGE_STATUS_PAUSED BattleFrontier_BattleTowerLobb
 VAR_TEMP_CHALLENGE_STATUS CHALLENGE_STATUS_WON BattleFrontier_BattleTowerLobby_EventScript_WonChallenge
 VAR_TEMP_CHALLENGE_STATUS CHALLENGE_STATUS_LOST BattleFrontier_BattleTowerLobby_EventScript_LostChallenge
 movements
-Apprentice_EventScript_FirstMeeting	delay,delay
-Apprentice_EventScript_Gone	delay,delay,delay
 BattleFrontier_BattleTowerLobby_Movement_AttendantEnterElevator	up,delay,end
 BattleFrontier_BattleTowerLobby_Movement_PlayerEnterElevator	up,up,delay,end
 BattleFrontier_BattleTowerLobby_Movement_WalkToElevator	up,up,up,end
@@ -668,14 +664,6 @@ end
 msgbox	The BATTLE TOWER's DOUBLE BATTLE ROOMS are facilities for conducting DOUBLE BATTLES with four POKéMON.There are many DOUBLE BATTLE ROOMS in the BATTLE TOWER for team battles.In each of the DOUBLE BATTLE ROOMS, seven TRAINERS await your challenge.If you manage to defeat all seven, you will earn Battle Points.If you want to interrupt your challenge, please save the game.If you don't save before interrupting, you will be disqualified.
 goto BattleFrontier_BattleTowerLobby_EventScript_AskEnterDoublesChallenge
 end
-= BattleFrontier_BattleTowerLobby_EventScript_Apprentice
-lock
-faceplayer
-apprentice_gavelvlmode
-goto_if_eq VAR_RESULT FALSE Apprentice_EventScript_FirstMeeting
-apprentice_shouldcheckgone
-goto_if_eq VAR_0x8004 FALSE Apprentice_EventScript_AskQuestion  @ VAR_0x8004 always TRUE here
-goto_if_set FLAG_DAILY_APPRENTICE_LEAVES Apprentice_EventScript_Gone
 = BattleFrontier_BattleTowerLobby_EventScript_Reporter
 lock
 faceplayer

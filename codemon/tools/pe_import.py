@@ -1231,18 +1231,21 @@ def cmd_world(src, limit=None):
                 continue
             gid = oe.get("graphics_id", "")
             scr = oe.get("script", "") or ""
-            # OBJ_EVENT_GFX_VAR_* is a runtime-substituted sprite id. Mostly
-            # that's decoration placeholders (player-placed secret-base
-            # furniture, hidden until decorated, with no script) -- skip
-            # those, or every bedroom fills with generic sprites. But the
-            # same trick draws the story RIVAL outdoors (their sprite swaps
-            # with the player's chosen gender via VAR_OBJ_GFX_ID_0), and
-            # those DO have a real script (e.g. Route103_EventScript_Rival,
-            # the post-starter rival battle that unlocks the Pokedex) --
-            # keep those, drawn as May to match checkplayergender always
-            # reporting MALE (see ScriptVM::pump's "special checkplayergender").
+            # OBJ_EVENT_GFX_VAR_* is a runtime-substituted sprite id, used for
+            # a grab-bag of things we can't know the real look of at import
+            # time: secret-base decoration placeholders (no script), and
+            # dynamic feature NPCs like the Battle Tower apprentice, Union
+            # Room player slots, or the record-mix visitor (all with a real
+            # script, but no way to guess their sprite) -- skip all of those,
+            # a wrong sprite is worse than none. The one case worth keeping
+            # is the story RIVAL: their outdoor sprite is *always* just the
+            # player's opposite-gender counterpart (VAR_OBJ_GFX_ID_0), never
+            # actually random, and every rival object event's script name
+            # says so (Route103_EventScript_Rival, RustboroCity_..._Rival,
+            # etc. -- the chain that eventually unlocks the Pokedex).
             if "OBJ_EVENT_GFX_VAR_" in gid:
-                if not scr or scr == "0x0":
+                is_rival = "rival" in scr.lower() or "RIVAL" in (oe.get("local_id") or "")
+                if not is_rival:
                     continue
                 gid = "OBJ_EVENT_GFX_RIVAL_MAY_NORMAL"
             sheet = resolve(gid)

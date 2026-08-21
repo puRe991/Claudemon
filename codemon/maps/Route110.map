@@ -237,6 +237,8 @@ people_team_aqua_aqua_member_m 9 83 N static FLAG_HIDE_ROUTE_110_TEAM_AQUA
 people_team_aqua_aqua_member_m 10 83 N static FLAG_HIDE_ROUTE_110_TEAM_AQUA
 people_team_aqua_aqua_member_m 8 82 S static FLAG_HIDE_ROUTE_110_TEAM_AQUA
 people_cycling_triathlete_m 21 78 S static 0
+people_may_walking 34 54 W pace_h FLAG_HIDE_ROUTE_110_RIVAL
+people_may_walking 34 54 S static FLAG_HIDE_ROUTE_110_RIVAL_ON_BIKE
 people_youngster 33 69 W pace_h 0
 people_pokefan_f 10 76 W static 0
 people_pokefan_m 7 76 E static 0
@@ -284,12 +286,12 @@ objscripts
 23 Route110_EventScript_AquaGrunt3
 24 Route110_EventScript_AquaGrunt4
 26 Route110_EventScript_Jacob
-27 Route110_EventScript_Timmy
-28 Route110_EventScript_Isabel
-29 Route110_EventScript_Kaleb
-30 Route110_EventScript_Alyssa
-31 Route110_EventScript_Joseph
-32 Route110_EventScript_ItemElixir
+29 Route110_EventScript_Timmy
+30 Route110_EventScript_Isabel
+31 Route110_EventScript_Kaleb
+32 Route110_EventScript_Alyssa
+33 Route110_EventScript_Joseph
+34 Route110_EventScript_ItemElixir
 triggers
 28 92 VAR_CYCLING_CHALLENGE_STATE 2 Route110_EventScript_CyclingChallengeEnd
 29 92 VAR_CYCLING_CHALLENGE_STATE 2 Route110_EventScript_CyclingChallengeEnd
