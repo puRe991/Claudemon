@@ -36,8 +36,8 @@ warps
 9 10 MtPyre_3F 2
 2 12 MtPyre_3F 3
 npcs
-people_hex_maniac 11 7 S static
-misc_item_ball 3 11 S static
+people_hex_maniac 11 7 S static 0
+misc_item_ball 3 11 S static FLAG_ITEM_MT_PYRE_4F_SEA_INCENSE
 objscripts
 1 MtPyre_4F_EventScript_ItemSeaIncense
 scriptdefs

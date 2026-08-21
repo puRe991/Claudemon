@@ -163,17 +163,17 @@ collision
 0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,1,1,1,1,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,1,1,1,0,0,1,0,0,0,0,0,0,0
 1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,0,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,1,0,0,1,1,1,1,1,0,0,1,1,0,0,0,1,1,1,1,0,1,0,0,1,0,1,0,0,0,0,0,0,0
 npcs
-people_swimmer_m 45 42 W pace_h
-people_swimmer_f 18 68 W pace_h
-misc_item_ball 14 6 S static
-misc_item_ball 64 39 S static
-people_fisherman 42 21 W static
-people_fisherman 64 19 E static
-people_fisherman 54 14 N static
-people_man_5 15 23 W static
-people_black_belt 63 63 S static
-people_woman_5 12 23 E static
-misc_item_ball 13 20 S static
+people_swimmer_m 45 42 W pace_h 0
+people_swimmer_f 18 68 W pace_h 0
+misc_item_ball 14 6 S static FLAG_ITEM_ROUTE_127_ZINC
+misc_item_ball 64 39 S static FLAG_ITEM_ROUTE_127_CARBOS
+people_fisherman 42 21 W static 0
+people_fisherman 64 19 E static 0
+people_fisherman 54 14 N static 0
+people_man_5 15 23 W static 0
+people_black_belt 63 63 S static 0
+people_woman_5 12 23 E static 0
+misc_item_ball 13 20 S static FLAG_ITEM_ROUTE_127_RARE_CANDY
 objscripts
 0 Route127_EventScript_Camden
 1 Route127_EventScript_Donny

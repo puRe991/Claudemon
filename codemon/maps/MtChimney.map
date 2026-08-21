@@ -102,36 +102,36 @@ warps
 20 41 JaggedPass 2
 21 41 JaggedPass 3
 npcs
-people_team_aqua_archie 24 19 W static
-people_team_magma_maxie 13 6 E static
-people_team_magma_magma_member_m 12 11 W static
-people_team_magma_magma_member_m 32 5 W static
-people_team_magma_magma_member_m 28 12 E static
-people_team_aqua_aqua_member_m 19 39 E static
-people_team_aqua_aqua_member_m 29 5 E static
-people_team_aqua_aqua_member_m 31 12 W static
-people_old_woman 19 39 E static
-people_team_magma_magma_member_m 22 39 W static
-pokemon_poochyena 23 19 S static
-pokemon_poochyena 23 18 S static
-people_team_magma_magma_member_m 23 17 S static
-pokemon_poochyena 23 20 S static
-pokemon_poochyena 22 19 S static
-people_team_magma_magma_member_m 23 21 N static
-people_team_magma_magma_member_m 21 19 E static
-pokemon_poochyena 30 12 S static
-pokemon_poochyena 29 12 S static
-pokemon_poochyena 30 5 S static
-pokemon_poochyena 31 5 S static
-people_team_magma_magma_member_m 9 16 E static
-pokemon_poochyena 20 39 S static
-pokemon_poochyena 21 39 S static
-people_expert_f 16 18 S static
-people_beauty 14 7 S static
-people_beauty 29 7 S static
-people_beauty 27 17 S static
-people_team_magma_magma_member_f 13 16 W static
-people_hiker 7 7 E static
+people_team_aqua_archie 24 19 W static FLAG_HIDE_MT_CHIMNEY_TEAM_AQUA
+people_team_magma_maxie 13 6 E static FLAG_HIDE_MT_CHIMNEY_TEAM_MAGMA
+people_team_magma_magma_member_m 12 11 W static FLAG_HIDE_MT_CHIMNEY_TEAM_MAGMA
+people_team_magma_magma_member_m 32 5 W static FLAG_HIDE_MT_CHIMNEY_TEAM_MAGMA
+people_team_magma_magma_member_m 28 12 E static FLAG_HIDE_MT_CHIMNEY_TEAM_MAGMA
+people_team_aqua_aqua_member_m 19 39 E static FLAG_HIDE_MT_CHIMNEY_TEAM_AQUA
+people_team_aqua_aqua_member_m 29 5 E static FLAG_HIDE_MT_CHIMNEY_TEAM_AQUA
+people_team_aqua_aqua_member_m 31 12 W static FLAG_HIDE_MT_CHIMNEY_TEAM_AQUA
+people_old_woman 19 39 E static FLAG_HIDE_MT_CHIMNEY_LAVA_COOKIE_LADY
+people_team_magma_magma_member_m 22 39 W static FLAG_HIDE_MT_CHIMNEY_TEAM_MAGMA
+pokemon_poochyena 23 19 S static FLAG_HIDE_MT_CHIMNEY_TEAM_AQUA
+pokemon_poochyena 23 18 S static FLAG_HIDE_MT_CHIMNEY_TEAM_MAGMA
+people_team_magma_magma_member_m 23 17 S static FLAG_HIDE_MT_CHIMNEY_TEAM_MAGMA
+pokemon_poochyena 23 20 S static FLAG_HIDE_MT_CHIMNEY_TEAM_MAGMA
+pokemon_poochyena 22 19 S static FLAG_HIDE_MT_CHIMNEY_TEAM_MAGMA
+people_team_magma_magma_member_m 23 21 N static FLAG_HIDE_MT_CHIMNEY_TEAM_MAGMA
+people_team_magma_magma_member_m 21 19 E static FLAG_HIDE_MT_CHIMNEY_TEAM_MAGMA
+pokemon_poochyena 30 12 S static FLAG_HIDE_MT_CHIMNEY_TEAM_AQUA
+pokemon_poochyena 29 12 S static FLAG_HIDE_MT_CHIMNEY_TEAM_MAGMA
+pokemon_poochyena 30 5 S static FLAG_HIDE_MT_CHIMNEY_TEAM_AQUA
+pokemon_poochyena 31 5 S static FLAG_HIDE_MT_CHIMNEY_TEAM_MAGMA
+people_team_magma_magma_member_m 9 16 E static FLAG_HIDE_MT_CHIMNEY_TEAM_MAGMA
+pokemon_poochyena 20 39 S static FLAG_HIDE_MT_CHIMNEY_TEAM_AQUA
+pokemon_poochyena 21 39 S static FLAG_HIDE_MT_CHIMNEY_TEAM_MAGMA
+people_expert_f 16 18 S static FLAG_HIDE_MT_CHIMNEY_TRAINERS
+people_beauty 14 7 S static FLAG_HIDE_MT_CHIMNEY_TRAINERS
+people_beauty 29 7 S static FLAG_HIDE_MT_CHIMNEY_TRAINERS
+people_beauty 27 17 S static FLAG_HIDE_MT_CHIMNEY_TRAINERS
+people_team_magma_magma_member_f 13 16 W static FLAG_HIDE_MT_CHIMNEY_TEAM_MAGMA
+people_hiker 7 7 E static FLAG_HIDE_MT_CHIMNEY_TRAINERS
 dialogs
 1	The power contained in the METEORITE…By amplifying its power with this machine, MT. CHIMNEY's volcanic activity will instantly intensify…Its energy will grow deep inside the crater and… Fufufu…
 2	BOSS, hurry! Give it the METEORITE's energy!Hehehe…
@@ -194,6 +194,11 @@ objscripts
 28 MtChimney_EventScript_Grunt1
 29 MtChimney_EventScript_Sawyer
 movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
+Common_Movement_FaceOriginalDirection	face_down,end
+Common_Movement_FacePlayer	face_down,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
 MtChimney_Movement_ArchieApproachPlayerEast	up,up,up,up,up,up,right,end
 MtChimney_Movement_ArchieApproachPlayerNorth	up,up,up,up,up,right,right,end
 MtChimney_Movement_ArchieExitEast	left,down,down,down,down,down,down,down,end

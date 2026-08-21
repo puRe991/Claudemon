@@ -84,12 +84,12 @@ warps
 31 3 MagmaHideout_2F_2R 1
 20 22 MagmaHideout_2F_3R 0
 npcs
-people_team_magma_magma_member_m 4 5 E static
-misc_item_ball 3 20 S static
-people_team_magma_magma_member_m 30 20 W static
-misc_pushable_boulder 5 22 S static
-misc_pushable_boulder 7 22 S static
-misc_pushable_boulder 6 23 S static
+people_team_magma_magma_member_m 4 5 E static FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS
+misc_item_ball 3 20 S static FLAG_ITEM_MAGMA_HIDEOUT_1F_RARE_CANDY
+people_team_magma_magma_member_m 30 20 W static FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS
+misc_pushable_boulder 5 22 S static FLAG_TEMP_11
+misc_pushable_boulder 7 22 S static FLAG_TEMP_12
+misc_pushable_boulder 6 23 S static FLAG_TEMP_13
 dialogs
 0	Okay, I'll try to put a little more effort into things from now on…
 2	I won't tell you after all. You'll find out when you get there!It'd be better if you saved surprises to the end, don't you think?
@@ -97,7 +97,41 @@ objscripts
 0 MagmaHideout_1F_EventScript_Grunt1
 1 MagmaHideout_1F_EventScript_ItemRareCandy
 2 MagmaHideout_1F_EventScript_Grunt2
+3 EventScript_StrengthBoulder
+4 EventScript_StrengthBoulder
+5 EventScript_StrengthBoulder
 scriptdefs
+= EventScript_StrengthBoulder
+lockall
+goto_if_unset FLAG_BADGE04_GET EventScript_CantStrength
+goto_if_set FLAG_SYS_USE_STRENGTH EventScript_CheckActivatedBoulder
+checkpartymove MOVE_STRENGTH
+goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CantStrength
+setfieldeffectargument 0 VAR_RESULT
+msgbox	Text_WantToStrength
+goto_if_eq VAR_RESULT NO EventScript_CancelStrength
+closemessage
+dofieldeffect FLDEFF_USE_STRENGTH
+waitstate
+goto EventScript_ActivateStrength
+end
+= EventScript_ActivateStrength
+setflag FLAG_SYS_USE_STRENGTH
+msgbox	Text_MonUsedStrength
+releaseall
+end
+= EventScript_CancelStrength
+closemessage
+releaseall
+end
+= EventScript_CantStrength
+msgbox	Text_CantStrength
+releaseall
+end
+= EventScript_CheckActivatedBoulder
+msgbox	Text_StrengthActivated
+releaseall
+end
 = MagmaHideout_1F_EventScript_Grunt2
 trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_2 MagmaHideout_1F_Text_Grunt2Intro MagmaHideout_1F_Text_Grunt2Defeat
 msgbox	I won't tell you after all. You'll find out when you get there!It'd be better if you saved surprises to the end, don't you think?

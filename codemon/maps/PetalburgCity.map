@@ -70,15 +70,15 @@ warps
 20 24 PetalburgCity_House2 0
 25 12 PetalburgCity_Mart 0
 npcs
-people_woman_4 16 18 S wander
-people_wally 15 10 N static
-people_boy_1 8 22 S static
-people_gentleman 20 10 S wander
-people_pokefan_m 15 10 N static
-misc_item_ball 19 2 S static
-misc_item_ball 3 28 S static
-people_boy_2 12 15 S static
-people_scott 13 12 S static
+people_woman_4 16 18 S wander FLAG_HIDE_PETALBURG_CITY_WALLYS_MOM
+people_wally 15 10 N static FLAG_HIDE_PETALBURG_CITY_WALLY
+people_boy_1 8 22 S static 0
+people_gentleman 20 10 S wander 0
+people_pokefan_m 15 10 N static FLAG_HIDE_PETALBURG_CITY_WALLYS_DAD
+misc_item_ball 19 2 S static FLAG_ITEM_PETALBURG_CITY_MAX_REVIVE
+misc_item_ball 3 28 S static FLAG_ITEM_PETALBURG_CITY_ETHER
+people_boy_2 12 15 S static 0
+people_scott 13 12 S static FLAG_HIDE_PETALBURG_CITY_SCOTT
 dialogs
 0	Where has our WALLY gone?We have to leave for VERDANTURF TOWN very soon…
 2	My face is reflected in the water.It's a shining grin full of hope…Or it could be a look of somber silence struggling with fear…What do you see reflected in your face?
@@ -102,6 +102,14 @@ triggers
 4 13 VAR_SCOTT_PETALBURG_ENCOUNTER 0 PetalburgCity_EventScript_Scott3
 11 29 0 0 PetalburgCity_HiddenItem_11_29
 movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
+Common_Movement_FaceOriginalDirection	face_down,end
+Common_Movement_FacePlayer	face_down,end
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
 PetalburgCity_Movement_BoyApproachPlayer0	right,right,right,delay,end
 PetalburgCity_Movement_BoyApproachPlayer1	right,right,end
 PetalburgCity_Movement_BoyApproachPlayer2	right,right,right,delay,end

@@ -24,8 +24,8 @@ warps
 3 8 VerdanturfTown 6
 4 8 VerdanturfTown 6
 npcs
-people_woman_5 4 5 N static
-people_woman_5 4 4 S static
+people_woman_5 4 5 N static 0
+people_woman_5 4 4 S static 0
 dialogs
 0	Far away, deep in EVER GRANDE CITY, is the POKéMON LEAGUE.The TRAINERS who gather there are all frighteningly well skilled.
 1	In the POKéMON LEAGUE, I think the rules say that you have to battle the ELITE FOUR all in a row.If you lose to any of them, you have to begin your challenge again from the first one.

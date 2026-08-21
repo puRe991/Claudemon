@@ -36,11 +36,12 @@ warps
 19 11 ShoalCave_LowTideInnerRoom 5
 28 11 ShoalCave_LowTideIceRoom 0
 npcs
-misc_pushable_boulder 25 3 S static
-people_black_belt 11 4 S wander
+misc_pushable_boulder 25 3 S static FLAG_TEMP_11
+people_black_belt 11 4 S wander 0
 dialogs
 1	The penetrating cold around these parts is an impediment to training.But with focus, one can overcome!With this FOCUS BAND, buckle down and withstand the cold!
 objscripts
+0 EventScript_StrengthBoulder
 1 ShoalCave_LowTideLowerRoom_EventScript_BlackBelt
 scriptdefs
 = ShoalCave_LowTideLowerRoom_EventScript_BlackBelt
@@ -56,6 +57,37 @@ end
 = ShoalCave_LowTideLowerRoom_EventScript_ReceivedFocusBand
 msgbox	Everything starts with focus!
 release
+end
+= EventScript_StrengthBoulder
+lockall
+goto_if_unset FLAG_BADGE04_GET EventScript_CantStrength
+goto_if_set FLAG_SYS_USE_STRENGTH EventScript_CheckActivatedBoulder
+checkpartymove MOVE_STRENGTH
+goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CantStrength
+setfieldeffectargument 0 VAR_RESULT
+msgbox	Text_WantToStrength
+goto_if_eq VAR_RESULT NO EventScript_CancelStrength
+closemessage
+dofieldeffect FLDEFF_USE_STRENGTH
+waitstate
+goto EventScript_ActivateStrength
+end
+= EventScript_ActivateStrength
+setflag FLAG_SYS_USE_STRENGTH
+msgbox	Text_MonUsedStrength
+releaseall
+end
+= EventScript_CancelStrength
+closemessage
+releaseall
+end
+= EventScript_CantStrength
+msgbox	Text_CantStrength
+releaseall
+end
+= EventScript_CheckActivatedBoulder
+msgbox	Text_StrengthActivated
+releaseall
 end
 encounters
 land ZUBAT:26:26,SPHEAL:26:26,ZUBAT:28:28,SPHEAL:28:28,ZUBAT:30:30,SPHEAL:30:30,ZUBAT:32:32,SPHEAL:32:32,GOLBAT:32:32,SPHEAL:32:32,GOLBAT:32:32,SPHEAL:32:32

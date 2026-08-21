@@ -843,7 +843,30 @@ def _move_action(tok):
 
 
 def parse_map_scripts(map_dir, texts):
-    """Parse scripts.inc into executable scripts + movement templates.
+    """Parse a map's scripts.inc into executable scripts + movement templates.
+    See _parse_script_lines for the return shape."""
+    inc = os.path.join(map_dir, "scripts.inc")
+    if not os.path.isfile(inc):
+        return {}, {}
+    lines = open(inc, encoding="utf-8", errors="replace").read().splitlines()
+    return _parse_script_lines(lines, texts)
+
+
+def parse_shared_script_file(path, texts):
+    """Parse one data/scripts/*.inc shared script file the same way as a
+    map's scripts.inc. Many object events (e.g. every player house's Mom)
+    point at a script defined once in a shared file like players_house.inc
+    rather than in that map's own scripts.inc, so these need to be in the
+    pool too or the reference silently resolves to nothing."""
+    if not os.path.isfile(path):
+        return {}, {}
+    lines = open(path, encoding="utf-8", errors="replace").read().splitlines()
+    return _parse_script_lines(lines, texts)
+
+
+def _parse_script_lines(lines, texts):
+    """Parse scripts.inc-formatted lines into executable scripts + movement
+    templates.
 
     Returns (scripts, movements):
       scripts[label]   = list of instructions; each instruction is a list of
@@ -851,11 +874,6 @@ def parse_map_scripts(map_dir, texts):
                          inline as ["msgbox", <text>].
       movements[label] = list of compact actions (up/down/left/right/face_*/...)
     """
-    inc = os.path.join(map_dir, "scripts.inc")
-    if not os.path.isfile(inc):
-        return {}, {}
-    lines = open(inc, encoding="utf-8", errors="replace").read().splitlines()
-
     scripts, movements = {}, {}
     i, n = 0, len(lines)
     while i < n:
@@ -941,6 +959,32 @@ def parse_item_ball_scripts(src):
     return out
 
 
+def parse_new_game_flags(src):
+    """The flags pokeemerald sets at the very start of a new save, mostly
+    FLAG_HIDE_* for every NPC/item that shouldn't appear until its own scene
+    unlocks it (data/scripts/new_game.inc, EventScript_ResetAllMapFlags).
+    Without these, every "hidden until met" NPC -- the rival standing in
+    your bedroom, Birch already in his lab, etc. -- is visible from turn one,
+    which can even block the story (the rival's static placement sits right
+    on the stairs down)."""
+    out = []
+    p = os.path.join(src, "data", "scripts", "new_game.inc")
+    if not os.path.isfile(p):
+        return out
+    in_block = False
+    for ln in open(p, encoding="utf-8", errors="replace"):
+        if ln.startswith("EventScript_ResetAllMapFlags::"):
+            in_block = True
+            continue
+        if in_block:
+            if _re.match(r"^\w+::", ln):
+                break
+            m = _re.search(r"\bsetflag\s+(FLAG_\w+)", ln)
+            if m:
+                out.append(m.group(1))
+    return out
+
+
 def reachable_scripts(entry_labels, scripts):
     """BFS the scripts reachable from entry labels via label-valued args."""
     keep = {}
@@ -1014,6 +1058,33 @@ def cmd_world(src, limit=None):
     # label -> item, so item balls give the real item instead of sitting inert.
     item_ball_scripts = parse_item_ball_scripts(src)
 
+    # A project-wide text pool: shared scripts (below) reference text labels
+    # that are usually defined in just one of the maps that uses them (e.g.
+    # Mom's "Isn't it nice in here?" line lives in Brendan's House 1F's own
+    # scripts.inc, but the shared PlayersHouse_1F_EventScript_Mom that shows
+    # it is reused by May's House too), so a single map's local text pool
+    # isn't enough to resolve them.
+    global_texts = {}
+    for mname in names:
+        global_texts.update(parse_map_texts(os.path.join(mroot, mname)))
+
+    # Shared scripts (data/scripts/*.inc): common NPCs like the player's mom,
+    # the PC, Nurse Joy, move tutors etc. are defined once here and pointed
+    # to by object events across many maps -- without these, that object
+    # event's script label resolves to nothing and interacting does nothing.
+    shared_scripts, shared_moves = {}, {}
+    sdir = os.path.join(src, "data", "scripts")
+    if os.path.isdir(sdir):
+        for fn in sorted(os.listdir(sdir)):
+            # item_ball_scripts.inc is handled separately above (with the
+            # pickup-flag gating item balls need); skip it here so its plain
+            # `finditem` bodies don't shadow the flag-gated versions.
+            if not fn.endswith(".inc") or fn == "item_ball_scripts.inc":
+                continue
+            s, m = parse_shared_script_file(os.path.join(sdir, fn), global_texts)
+            shared_scripts.update(s)
+            shared_moves.update(m)
+
     done = 0
     item_total = 0
     for mname in names:
@@ -1055,6 +1126,12 @@ def cmd_world(src, limit=None):
         dialogs = parse_map_dialogs(mapdir)
         texts = parse_map_texts(mapdir)
         all_scripts, all_moves = parse_map_scripts(mapdir, texts)
+        # Local (per-map) definitions win on a name clash; shared ones fill
+        # in anything the map doesn't define itself.
+        for lab, body in shared_scripts.items():
+            all_scripts.setdefault(lab, body)
+        for lab, acts in shared_moves.items():
+            all_moves.setdefault(lab, acts)
 
         # Item balls: synthesize a pickup script for any ball whose script
         # isn't already defined locally (almost all of them -- the real
@@ -1103,7 +1180,9 @@ def cmd_world(src, limit=None):
             move, face = movement_token(oe.get("movement_type"))
             scr = oe.get("script", "") or ""
             dlg = dialogs.get(scr, "")
-            npcs.append((sheet, x, y, face, move, dlg, scr))
+            raw_flag = oe.get("flag") or ""
+            hide_flag = raw_flag if raw_flag and raw_flag != "0x0" else "-"
+            npcs.append((sheet, x, y, face, move, dlg, scr, hide_flag))
 
         # Signs (readable bg_events) share the same script->text resolution.
         signs = []
@@ -1169,7 +1248,7 @@ def cmd_world(src, limit=None):
         if npcs:
             lines.append("npcs")
             for n in npcs:
-                lines.append(f"{n[0]} {n[1]} {n[2]} {n[3]} {n[4]}")
+                lines.append(f"{n[0]} {n[1]} {n[2]} {n[3]} {n[4]} {n[7]}")
             # dialog lines are tab-separated (text has spaces): "<index>\t<text>"
             dlg_lines = [(i, n[5]) for i, n in enumerate(npcs) if n[5]]
             if dlg_lines:
@@ -1288,13 +1367,22 @@ def cmd_world(src, limit=None):
 
     total_scripts = sum(c.get("scripts", 0) for c in catalog)
     total_trig = sum(c.get("triggers", 0) for c in catalog)
+
+    # New-game default state: which NPCs/items start hidden until their own
+    # story beat unlocks them. The engine applies these flags once at a
+    # fresh game's very first load.
+    new_game_flags = parse_new_game_flags(src)
+    with open(os.path.join(ASSETS_DIR, "new_game_flags.txt"), "w") as f:
+        f.write("\n".join(new_game_flags) + "\n")
+
     # Colour the front sprites of every wild species that can be encountered.
     imported = sum(1 for sp in sorted(used_species) if import_pokemon_front(sp, src))
     print(f"world: {len(catalog)} maps, {len(pair_cache)} tileset sheets, "
           f"{total_npcs} NPCs, {total_warps} warps, {total_dlg} dialogs, "
           f"{total_signs} signs, {imported} wild sprites, "
           f"{total_scripts} scripts, {total_trig} triggers, "
-          f"{item_total} item pickups -> {os.path.relpath(maps_dir)}")
+          f"{item_total} item pickups, {len(new_game_flags)} new-game hide-flags "
+          f"-> {os.path.relpath(maps_dir)}")
 
 
 # --------------------------------------------------------------------------- #

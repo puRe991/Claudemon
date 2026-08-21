@@ -136,21 +136,21 @@ warps
 5 51 RustboroCity_Flat2_1F 0
 26 46 RustboroCity_House3 0
 npcs
-people_woman_5 22 34 S wander
-people_fat_man 19 13 S static
-people_ninja_boy 25 37 N static
-people_twin 21 46 S wander
-people_boy_2 12 45 S static
-people_man_3 26 23 S static
-people_little_boy 24 51 E static
-people_little_girl 25 51 W static
-people_man_2 30 10 E static
-people_team_aqua_aqua_member_m 13 21 E static
-people_devon_employee 13 34 S wander
-misc_item_ball 36 51 S static
-people_man_4 19 27 S static
-people_scientist_1 11 15 S static
-people_boy_1 31 36 S static
+people_woman_5 22 34 S wander 0
+people_fat_man 19 13 S static 0
+people_ninja_boy 25 37 N static 0
+people_twin 21 46 S wander 0
+people_boy_2 12 45 S static 0
+people_man_3 26 23 S static 0
+people_little_boy 24 51 E static 0
+people_little_girl 25 51 W static 0
+people_man_2 30 10 E static FLAG_HIDE_RUSTBORO_CITY_DEVON_EMPLOYEE_1
+people_team_aqua_aqua_member_m 13 21 E static FLAG_HIDE_RUSTBORO_CITY_AQUA_GRUNT
+people_devon_employee 13 34 S wander 0
+misc_item_ball 36 51 S static FLAG_ITEM_RUSTBORO_CITY_X_DEFEND
+people_man_4 19 27 S static 0
+people_scientist_1 11 15 S static FLAG_HIDE_RUSTBORO_CITY_SCIENTIST
+people_boy_1 31 36 S static 0
 dialogs
 0	I challenged the GYM LEADER, but…It's not going to be easy winning with my FIRE-type POKéMON…FIRE-type POKéMON don't match up well against ROCK-type POKéMON…
 1	The DEVON CORPORATION… We all just shorten it to DEVON.That company makes all sorts of convenient products.
@@ -201,6 +201,15 @@ triggers
 18 53 VAR_RUSTBORO_CITY_STATE 7 RustboroCity_EventScript_RivalTrigger6
 19 53 VAR_RUSTBORO_CITY_STATE 7 RustboroCity_EventScript_RivalTrigger7
 movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
+Common_Movement_FaceLeft	face_left,end
+Common_Movement_FaceOriginalDirection	face_down,end
+Common_Movement_FaceRight	face_right,end
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
 RustboroCity_Movement_EmployeeApproachDown	down,down,down,right,right,end
 RustboroCity_Movement_EmployeeApproachLeft	down,down,right,right,end
 RustboroCity_Movement_EmployeeApproachPlayerDown	down,end

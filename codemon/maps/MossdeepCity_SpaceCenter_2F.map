@@ -25,15 +25,15 @@ collision
 warps
 13 1 MossdeepCity_SpaceCenter_1F 2
 npcs
-people_rich_boy 6 2 N static
-people_gentleman 11 8 N static
-people_scientist_1 5 6 S wander
-people_steven 1 8 S static
-people_team_magma_magma_member_m 12 2 E static
-people_team_magma_magma_member_m 13 3 N static
-people_team_magma_magma_member_m 14 2 W static
-people_team_magma_magma_member_m 0 8 E static
-people_team_magma_maxie 1 9 N static
+people_rich_boy 6 2 N static 0
+people_gentleman 11 8 N static 0
+people_scientist_1 5 6 S wander 0
+people_steven 1 8 S static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_STEVEN
+people_team_magma_magma_member_m 12 2 E static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA
+people_team_magma_magma_member_m 13 3 N static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA
+people_team_magma_magma_member_m 14 2 W static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA
+people_team_magma_magma_member_m 0 8 E static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA
+people_team_magma_maxie 1 9 N static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA
 dialogs
 3	STEVEN: TEAM MAGMA…What's the point of stealing rocket fuel?
 4	Three of us here, and look at the sorry mess we got ourselves into.
@@ -52,6 +52,12 @@ objscripts
 7 MossdeepCity_SpaceCenter_2F_EventScript_Tabitha
 8 MossdeepCity_SpaceCenter_2F_EventScript_Maxie
 movements
+Common_Movement_FaceOriginalDirection	face_down,end
+Common_Movement_FacePlayer	face_down,end
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
 MossdeepCity_SpaceCenter_2F_Movement_StevenFight	delay,up,up,delay,delay,delay,down,down,end
 MossdeepCity_SpaceCenter_2F_Movement_StevenFightSouth	face_left,delay,right,right,delay,delay,delay,left,left,face_down,end
 scriptdefs

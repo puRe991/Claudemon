@@ -27,17 +27,17 @@ warps
 8 9 MossdeepCity 8
 13 1 MossdeepCity_SpaceCenter_2F 0
 npcs
-people_scientist_1 7 2 N static
-people_scientist_1 2 2 N static
-people_sailor 6 6 W static
-people_old_man 10 2 N static
-people_woman_4 14 7 S wander
-people_team_magma_magma_member_f 12 9 W static
-people_team_magma_magma_member_m 11 6 W static
-people_team_magma_magma_member_m 10 2 S static
-people_team_magma_magma_member_m 13 2 S static
-people_ninja_boy 2 5 S static
-people_steven 1 4 S static
+people_scientist_1 7 2 N static 0
+people_scientist_1 2 2 N static 0
+people_sailor 6 6 W static 0
+people_old_man 10 2 N static 0
+people_woman_4 14 7 S wander 0
+people_team_magma_magma_member_f 12 9 W static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA
+people_team_magma_magma_member_m 11 6 W static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA
+people_team_magma_magma_member_m 10 2 S static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA
+people_team_magma_magma_member_m 13 2 S static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA
+people_ninja_boy 2 5 S static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_MAGMA_NOTE
+people_steven 1 4 S static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_STEVEN
 dialogs
 1	A rocket launch demands perfection. Not even a 1% margin of error is allowed.Even if it's 99% okay, the whole thing is useless if 1% happens to be no good.Despite that, we never stop trying. Why? It's a dream that never ends.
 2	I was taking a stroll down the beach when I found this.It's not anything I need, so you can have it.
@@ -60,6 +60,8 @@ objscripts
 9 MossdeepCity_SpaceCenter_1F_EventScript_MagmaNote
 10 MossdeepCity_SpaceCenter_1F_EventScript_Steven
 movements
+Common_Movement_FaceOriginalDirection	face_down,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
 MossdeepCity_SpaceCenter_1F_Movement_MoveGruntFromStairs	face_left,delay,right,delay,end
 MossdeepCity_SpaceCenter_1F_Movement_MoveGruntFromStairsEast	delay,right,delay,end
 MossdeepCity_SpaceCenter_1F_Movement_MoveGruntFromStairsWest	delay,left,delay,end

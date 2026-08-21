@@ -27,9 +27,9 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0
 npcs
-people_scientist_1 0 6 S static
-people_scientist_1 0 4 S static
-people_scientist_1 0 8 S static
-people_scientist_1 12 4 S static
-people_scientist_1 12 6 S static
-people_scientist_1 12 8 S static
+people_scientist_1 0 6 S static 0
+people_scientist_1 0 4 S static 0
+people_scientist_1 0 8 S static 0
+people_scientist_1 12 4 S static 0
+people_scientist_1 12 6 S static 0
+people_scientist_1 12 8 S static 0

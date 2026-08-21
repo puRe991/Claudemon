@@ -73,7 +73,7 @@ warps
 8 20 AncientTomb 2
 8 11 AncientTomb 1
 npcs
-people_man_1 8 7 S static
+people_man_1 8 7 S static FLAG_HIDE_REGISTEEL
 objscripts
 0 AncientTomb_EventScript_Registeel
 scriptdefs

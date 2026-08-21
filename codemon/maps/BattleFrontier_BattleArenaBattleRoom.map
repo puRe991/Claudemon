@@ -25,10 +25,10 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 npcs
-people_black_belt 5 3 S static
-people_black_belt 10 3 S static
-people_black_belt 5 9 N static
-people_black_belt 10 9 N static
-people_black_belt 4 5 E static
-people_black_belt 11 5 W static
-people_black_belt 7 4 S static
+people_black_belt 5 3 S static 0
+people_black_belt 10 3 S static 0
+people_black_belt 5 9 N static 0
+people_black_belt 10 9 N static 0
+people_black_belt 4 5 E static 0
+people_black_belt 11 5 W static 0
+people_black_belt 7 4 S static 0

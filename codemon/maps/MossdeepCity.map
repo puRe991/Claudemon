@@ -94,23 +94,23 @@ warps
 64 15 MossdeepCity_SpaceCenter_1F 0
 36 24 MossdeepCity_GameCorner_1F 0
 npcs
-people_sailor 38 12 S wander
-people_expert_m 50 34 S wander
-people_pokefan_f 32 12 S wander
-people_ninja_boy 26 21 S wander
-people_girl_1 45 18 W static
-misc_item_ball 62 35 S static
-people_man_1 55 5 N static
-people_woman_1 56 21 E static
-people_boy_2 23 13 S wander
-people_team_magma_magma_member_m 44 23 S static
-people_team_magma_magma_member_m 44 24 N static
-people_team_magma_magma_member_m 44 25 S static
-people_team_magma_magma_member_m 44 26 N static
-people_team_magma_maxie 45 25 W static
-people_black_belt 19 25 S static
-people_scott 61 29 S static
-people_black_belt 31 29 S static
+people_sailor 38 12 S wander 0
+people_expert_m 50 34 S wander 0
+people_pokefan_f 32 12 S wander 0
+people_ninja_boy 26 21 S wander 0
+people_girl_1 45 18 W static 0
+misc_item_ball 62 35 S static FLAG_ITEM_MOSSDEEP_CITY_NET_BALL
+people_man_1 55 5 N static 0
+people_woman_1 56 21 E static 0
+people_boy_2 23 13 S wander 0
+people_team_magma_magma_member_m 44 23 S static FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA
+people_team_magma_magma_member_m 44 24 N static FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA
+people_team_magma_magma_member_m 44 25 S static FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA
+people_team_magma_magma_member_m 44 26 N static FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA
+people_team_magma_maxie 45 25 W static FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA
+people_black_belt 19 25 S static 0
+people_scott 61 29 S static FLAG_HIDE_MOSSDEEP_CITY_SCOTT
+people_black_belt 31 29 S static 0
 dialogs
 0	I heard from a SAILOR buddy that TEAM AQUA set up shop in LILYCOVE.I also heard that someone came along and wiped the floor with them!But MOSSDEEP here's been targeted by that TEAM MAGMA.If you want to know what they're up to, go visit the SPACE CENTER.
 1	All life needs the sea to live, even though it makes its home on the land.Life, having run its course, becomes soil and returns to the land.And the sea is always connected to the land.Yes, like the very shoreline here.
@@ -132,6 +132,7 @@ objscripts
 6 MossdeepCity_EventScript_Man
 7 MossdeepCity_EventScript_Woman
 8 MossdeepCity_EventScript_KingsRockBoy
+14 MossdeepCity_EventScript_DynamicPunchTutor
 15 MossdeepCity_EventScript_Scott
 16 MossdeepCity_EventScript_BlackBelt
 triggers
@@ -146,6 +147,7 @@ triggers
 40 25 VAR_MOSSDEEP_CITY_STATE 1 MossdeepCity_EventScript_TeamMagmaEnterSpaceCenter
 40 26 VAR_MOSSDEEP_CITY_STATE 1 MossdeepCity_EventScript_TeamMagmaEnterSpaceCenter
 movements
+Common_Movement_FaceOriginalDirection	face_down,end
 MossdeepCity_Movement_Grunt1EnterSpaceCenter	delay,delay,down,down,down,right,right,right,down,down,down,right,right,right,right,right,right,right,end
 MossdeepCity_Movement_Grunt2EnterSpaceCenter	delay,delay,down,down,right,right,right,down,down,down,right,right,right,right,right,right,right,end
 MossdeepCity_Movement_Grunt3EnterSpaceCenter	delay,delay,down,right,right,right,down,down,down,right,right,right,right,right,right,right,end
@@ -209,6 +211,37 @@ return
 applymovement LOCALID_PLAYER MossdeepCity_Movement_PlayerWatchScottExit
 applymovement LOCALID_MOSSDEEP_SCOTT MossdeepCity_Movement_ScottExitNorth
 waitmovement 0
+return
+= MossdeepCity_EventScript_DynamicPunchTutor
+lock
+faceplayer
+goto_if_set FLAG_MOVE_TUTOR_TAUGHT_DYNAMICPUNCH MoveTutor_EventScript_DynamicPunchTaught
+msgbox	MoveTutor_Text_DynamicPunchTeach
+goto_if_eq VAR_RESULT NO MoveTutor_EventScript_DynamicPunchDeclined
+call MoveTutor_EventScript_CanOnlyBeLearnedOnce
+goto_if_eq VAR_RESULT NO MoveTutor_EventScript_DynamicPunchDeclined
+msgbox	MoveTutor_Text_DynamicPunchWhichMon
+setvar VAR_0x8005 TUTOR_MOVE_DYNAMIC_PUNCH
+call MoveTutor_EventScript_OpenPartyMenu
+goto_if_eq VAR_RESULT 0 MoveTutor_EventScript_DynamicPunchDeclined
+setflag FLAG_MOVE_TUTOR_TAUGHT_DYNAMICPUNCH
+goto MoveTutor_EventScript_DynamicPunchTaught
+end
+= MoveTutor_EventScript_DynamicPunchTaught
+msgbox	MoveTutor_Text_DynamicPunchTaught
+release
+end
+= MoveTutor_EventScript_DynamicPunchDeclined
+msgbox	MoveTutor_Text_DynamicPunchDeclined
+release
+end
+= MoveTutor_EventScript_OpenPartyMenu
+special ChooseMonForMoveTutor
+lock
+faceplayer
+return
+= MoveTutor_EventScript_CanOnlyBeLearnedOnce
+msgbox	MoveTutor_Text_ThisMoveCanOnlyBeLearnedOnce
 return
 = MossdeepCity_EventScript_KingsRockBoy
 lock

@@ -65,8 +65,8 @@ collision
 warps
 15 24 BirthIsland_Harbor 0
 npcs
-people_man_1 15 12 S static
-pokemon_deoxys 15 3 S static
+people_man_1 15 12 S static FLAG_HIDE_BIRTH_ISLAND_DEOXYS_TRIANGLE
+pokemon_deoxys 15 3 S static FLAG_HIDE_DEOXYS
 objscripts
 0 BirthIsland_Exterior_EventScript_Triangle
 movements

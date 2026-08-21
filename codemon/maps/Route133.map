@@ -83,16 +83,16 @@ collision
 0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0
 0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,1,1,0,0,1,1,1,1,0,0,0,0,0,0
 npcs
-people_swimmer_m 68 27 S pace_v
-people_swimmer_f 13 3 S static
-people_swimmer_f 68 28 S static
-misc_item_ball 53 12 S static
-misc_item_ball 8 10 S static
-people_man_5 7 14 S static
-people_man_3 37 15 S static
-people_expert_f 56 11 S static
-people_expert_m 56 15 S static
-misc_item_ball 48 28 S static
+people_swimmer_m 68 27 S pace_v 0
+people_swimmer_f 13 3 S static 0
+people_swimmer_f 68 28 S static 0
+misc_item_ball 53 12 S static FLAG_ITEM_ROUTE_133_BIG_PEARL
+misc_item_ball 8 10 S static FLAG_ITEM_ROUTE_133_STAR_PIECE
+people_man_5 7 14 S static 0
+people_man_3 37 15 S static 0
+people_expert_f 56 11 S static 0
+people_expert_m 56 15 S static 0
+misc_item_ball 48 28 S static FLAG_ITEM_ROUTE_133_MAX_REVIVE
 objscripts
 0 Route133_EventScript_Franklin
 1 Route133_EventScript_Linda

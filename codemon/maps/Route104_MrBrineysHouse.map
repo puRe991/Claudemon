@@ -24,8 +24,8 @@ warps
 5 8 Route104 0
 6 8 Route104 0
 npcs
-people_expert_m 5 3 S static
-pokemon_wingull 6 3 S static
+people_expert_m 5 3 S static FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
+pokemon_wingull 6 3 S static FLAG_HIDE_BRINEYS_HOUSE_PEEKO
 dialogs
 1	PEEKO: Pii piihyoro!
 objscripts

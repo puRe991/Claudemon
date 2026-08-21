@@ -34,17 +34,62 @@ warps
 5 2 SeafloorCavern_Room9 0
 5 12 SeafloorCavern_Room3 0
 npcs
-misc_pushable_boulder 4 7 S static
-misc_pushable_boulder 5 7 S static
-misc_pushable_boulder 6 7 S static
-misc_pushable_boulder 3 6 S static
-misc_pushable_boulder 7 6 S static
-misc_pushable_boulder 4 5 S static
-misc_pushable_boulder 5 5 S static
-misc_pushable_boulder 6 5 S static
-misc_pushable_boulder 3 4 S static
-misc_pushable_boulder 4 4 S static
-misc_pushable_boulder 6 4 S static
-misc_pushable_boulder 7 4 S static
+misc_pushable_boulder 4 7 S static FLAG_TEMP_11
+misc_pushable_boulder 5 7 S static FLAG_TEMP_12
+misc_pushable_boulder 6 7 S static FLAG_TEMP_13
+misc_pushable_boulder 3 6 S static FLAG_TEMP_14
+misc_pushable_boulder 7 6 S static FLAG_TEMP_15
+misc_pushable_boulder 4 5 S static FLAG_TEMP_16
+misc_pushable_boulder 5 5 S static FLAG_TEMP_17
+misc_pushable_boulder 6 5 S static FLAG_TEMP_18
+misc_pushable_boulder 3 4 S static FLAG_TEMP_19
+misc_pushable_boulder 4 4 S static FLAG_TEMP_1A
+misc_pushable_boulder 6 4 S static FLAG_TEMP_1B
+misc_pushable_boulder 7 4 S static FLAG_TEMP_1C
+objscripts
+0 EventScript_StrengthBoulder
+1 EventScript_StrengthBoulder
+2 EventScript_StrengthBoulder
+3 EventScript_StrengthBoulder
+4 EventScript_StrengthBoulder
+5 EventScript_StrengthBoulder
+6 EventScript_StrengthBoulder
+7 EventScript_StrengthBoulder
+8 EventScript_StrengthBoulder
+9 EventScript_StrengthBoulder
+10 EventScript_StrengthBoulder
+11 EventScript_StrengthBoulder
+scriptdefs
+= EventScript_StrengthBoulder
+lockall
+goto_if_unset FLAG_BADGE04_GET EventScript_CantStrength
+goto_if_set FLAG_SYS_USE_STRENGTH EventScript_CheckActivatedBoulder
+checkpartymove MOVE_STRENGTH
+goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CantStrength
+setfieldeffectargument 0 VAR_RESULT
+msgbox	Text_WantToStrength
+goto_if_eq VAR_RESULT NO EventScript_CancelStrength
+closemessage
+dofieldeffect FLDEFF_USE_STRENGTH
+waitstate
+goto EventScript_ActivateStrength
+end
+= EventScript_ActivateStrength
+setflag FLAG_SYS_USE_STRENGTH
+msgbox	Text_MonUsedStrength
+releaseall
+end
+= EventScript_CancelStrength
+closemessage
+releaseall
+end
+= EventScript_CantStrength
+msgbox	Text_CantStrength
+releaseall
+end
+= EventScript_CheckActivatedBoulder
+msgbox	Text_StrengthActivated
+releaseall
+end
 encounters
 land ZUBAT:30:30,ZUBAT:31:31,ZUBAT:32:32,ZUBAT:33:33,ZUBAT:28:28,ZUBAT:29:29,ZUBAT:34:34,ZUBAT:35:35,GOLBAT:34:34,GOLBAT:35:35,GOLBAT:33:33,GOLBAT:36:36

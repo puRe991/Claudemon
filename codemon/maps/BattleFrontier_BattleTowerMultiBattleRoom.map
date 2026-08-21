@@ -21,5 +21,5 @@ collision
 0,0,0,0,0,0,0,0,0,0
 1,0,0,0,0,0,0,0,0,1
 npcs
-people_teala 1 4 E static
-people_teala 1 5 E static
+people_teala 1 4 E static 0
+people_teala 1 5 E static 0

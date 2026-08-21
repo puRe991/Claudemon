@@ -28,15 +28,15 @@ warps
 6 10 SlateportCity 4
 7 10 SlateportCity 4
 npcs
-people_man_1 11 4 S static
-people_twin 1 5 S wander
-people_reporter_f 11 5 N static
-people_woman_4 6 2 S static
-people_gentleman 6 5 S static
-people_man_1 3 9 S static
-pokemon_skitty 8 3 S static
-pokemon_azumarill 10 8 S static
-people_man_4 11 8 W static
+people_man_1 11 4 S static 0
+people_twin 1 5 S wander 0
+people_reporter_f 11 5 N static 0
+people_woman_4 6 2 S static 0
+people_gentleman 6 5 S static 0
+people_man_1 3 9 S static 0
+pokemon_skitty 8 3 S static 0
+pokemon_azumarill 10 8 S static 0
+people_man_4 11 8 W static 0
 dialogs
 0	If you keep letting a POKéMON faint in battle, it'll come to resent it.Soon, it will become less trusting of the TRAINER.In other words, it certainly won't like you very much.
 1	Do POKéMON enjoy having items used on them?Mine acted really happy when I gave it some PROTEIN.
@@ -47,12 +47,48 @@ dialogs
 objscripts
 0 SlateportCity_PokemonFanClub_EventScript_Man
 1 SlateportCity_PokemonFanClub_EventScript_Twin
+2 SlateportCity_PokemonFanClub_EventScript_Reporter
 3 SlateportCity_PokemonFanClub_EventScript_SootheBellWoman
 4 SlateportCity_PokemonFanClub_EventScript_Chairman
 5 SlateportCity_PokemonFanClub_EventScript_Zigzagoon
 6 SlateportCity_PokemonFanClub_EventScript_Skitty
 7 SlateportCity_PokemonFanClub_EventScript_Azumarill
+8 SlateportCity_PokemonFanClub_EventScript_SwaggerTutor
+movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
 scriptdefs
+= SlateportCity_PokemonFanClub_EventScript_SwaggerTutor
+lock
+faceplayer
+goto_if_set FLAG_MOVE_TUTOR_TAUGHT_SWAGGER MoveTutor_EventScript_SwaggerTaught
+msgbox	MoveTutor_Text_SwaggerTeach
+goto_if_eq VAR_RESULT NO MoveTutor_EventScript_SwaggerDeclined
+call MoveTutor_EventScript_CanOnlyBeLearnedOnce
+goto_if_eq VAR_RESULT NO MoveTutor_EventScript_SwaggerDeclined
+msgbox	MoveTutor_Text_SwaggerWhichMon
+setvar VAR_0x8005 TUTOR_MOVE_SWAGGER
+call MoveTutor_EventScript_OpenPartyMenu
+goto_if_eq VAR_RESULT 0 MoveTutor_EventScript_SwaggerDeclined
+setflag FLAG_MOVE_TUTOR_TAUGHT_SWAGGER
+goto MoveTutor_EventScript_SwaggerTaught
+end
+= MoveTutor_EventScript_SwaggerTaught
+msgbox	MoveTutor_Text_SwaggerTaught
+release
+end
+= MoveTutor_EventScript_SwaggerDeclined
+msgbox	MoveTutor_Text_SwaggerDeclined
+release
+end
+= MoveTutor_EventScript_OpenPartyMenu
+special ChooseMonForMoveTutor
+lock
+faceplayer
+return
+= MoveTutor_EventScript_CanOnlyBeLearnedOnce
+msgbox	MoveTutor_Text_ThisMoveCanOnlyBeLearnedOnce
+return
 = SlateportCity_PokemonFanClub_EventScript_Azumarill
 lock
 faceplayer
@@ -261,6 +297,107 @@ release
 end
 = SlateportCity_PokemonFanClub_EventScript_ReceivedSootheBell
 msgbox	POKéMON are very sensitive to the feelings of their TRAINERS.If you treat your POKéMON with love and care, they'll love you back.
+release
+end
+= SlateportCity_PokemonFanClub_EventScript_Reporter
+lock
+faceplayer
+specialvar VAR_RESULT IsLeadMonNicknamedOrNotEnglish
+goto_if_eq VAR_RESULT FALSE SlateportCity_PokemonFanClub_EventScript_ReporterNoNickname
+setvar VAR_0x8005 TVSHOW_PKMN_FAN_CLUB_OPINIONS
+special InterviewBefore
+goto_if_eq VAR_RESULT TRUE SlateportCity_PokemonFanClub_EventScript_AlreadyInterviewed
+copyvar VAR_0x8009 VAR_0x8006
+msgbox	SlateportCity_PokemonFanClub_Text_InterviewRequestHasName
+goto_if_eq VAR_RESULT YES SlateportCity_PokemonFanClub_EventScript_AcceptInterview
+goto_if_eq VAR_RESULT NO SlateportCity_PokemonFanClub_EventScript_DeclineInterview
+end
+= SlateportCity_PokemonFanClub_EventScript_DeclineInterview
+msgbox	SlateportCity_PokemonFanClub_Text_HereIfYouGetUrgeToTellMe
+release
+end
+= SlateportCity_PokemonFanClub_EventScript_AcceptInterview
+msgbox	SlateportCity_PokemonFanClub_Text_HereGoesQuickAnswers
+random 3
+copyvar VAR_0x800A VAR_RESULT
+switch VAR_RESULT
+case 0 SlateportCity_PokemonFanClub_EventScript_RandomQuestion1
+case 1 SlateportCity_PokemonFanClub_EventScript_RandomQuestion2
+case 2 SlateportCity_PokemonFanClub_EventScript_RandomQuestion3
+end
+= SlateportCity_PokemonFanClub_EventScript_RandomQuestion3
+msgbox	SlateportCity_PokemonFanClub_Text_WhatAttractedYouAboutMon
+goto SlateportCity_PokemonFanClub_EventScript_ContinueInterview
+end
+= SlateportCity_PokemonFanClub_EventScript_ContinueInterview
+setvar VAR_0x8004 EASY_CHAT_TYPE_FAN_CLUB
+copyvar VAR_0x8005 VAR_0x8009
+setvar VAR_0x8006 0
+call Common_ShowEasyChatScreen
+lock
+faceplayer
+goto_if_eq VAR_RESULT 0 SlateportCity_PokemonFanClub_EventScript_DeclineInterview
+msgbox	SlateportCity_PokemonFanClub_Text_WhatDoPokemonMeanToYou
+setvar VAR_0x8006 1
+call Common_ShowEasyChatScreen
+lock
+faceplayer
+goto_if_eq VAR_RESULT 0 SlateportCity_PokemonFanClub_EventScript_DeclineInterview
+msgbox	SlateportCity_PokemonFanClub_Text_ThatsAllForInterview
+copyvar VAR_0x8007 VAR_0x800A
+setvar VAR_0x8005 TVSHOW_PKMN_FAN_CLUB_OPINIONS
+goto Interview_EventScript_EndInterview
+end
+= Interview_EventScript_EndInterview
+special InterviewAfter
+incrementgamestat GAME_STAT_GOT_INTERVIEWED
+release
+end
+@ Shares reporter object with TVSHOW_PKMN_FAN_CLUB_OPINIONS
+goto SlateportCity_PokemonFanClub_EventScript_ReporterNoNickname
+= SlateportCity_PokemonFanClub_EventScript_ReporterNoNickname
+setvar VAR_0x8005 TVSHOW_FAN_CLUB_LETTER
+special InterviewBefore
+goto_if_eq VAR_RESULT TRUE SlateportCity_PokemonFanClub_EventScript_AlreadyInterviewed2
+copyvar VAR_0x8009 VAR_0x8006
+msgbox	SlateportCity_PokemonFanClub_Text_InterviewRequest
+goto_if_eq VAR_RESULT YES SlateportCity_PokemonFanClub_EventScript_AcceptInterview2
+goto_if_eq VAR_RESULT NO SlateportCity_PokemonFanClub_EventScript_DeclineInterview2
+end
+= SlateportCity_PokemonFanClub_EventScript_DeclineInterview2
+msgbox	SlateportCity_PokemonFanClub_Text_HereIfYouGetUrgeToTellMe
+release
+end
+= SlateportCity_PokemonFanClub_EventScript_AcceptInterview2
+msgbox	SlateportCity_PokemonFanClub_Text_TellMeAnythingAboutYourMon
+setvar VAR_0x8004 EASY_CHAT_TYPE_INTERVIEW
+copyvar VAR_0x8005 VAR_0x8009
+setvar VAR_0x8006 EASY_CHAT_PERSON_REPORTER_FEMALE
+call Common_ShowEasyChatScreen
+lock
+faceplayer
+goto_if_eq VAR_RESULT 1 SlateportCity_PokemonFanClub_EventScript_SubmitResponse2
+goto_if_eq VAR_RESULT 0 SlateportCity_PokemonFanClub_EventScript_DeclineInterview2
+end
+= SlateportCity_PokemonFanClub_EventScript_SubmitResponse2
+msgbox	SlateportCity_PokemonFanClub_Text_ThatsAllForInterview2
+setvar VAR_0x8005 TVSHOW_FAN_CLUB_LETTER
+goto Interview_EventScript_EndInterview
+end
+= SlateportCity_PokemonFanClub_EventScript_AlreadyInterviewed2
+msgbox	SlateportCity_PokemonFanClub_Text_EnjoyDoingInterviews
+release
+end
+= SlateportCity_PokemonFanClub_EventScript_RandomQuestion2
+msgbox	SlateportCity_PokemonFanClub_Text_LikenMonToSomethingYouLike
+goto SlateportCity_PokemonFanClub_EventScript_ContinueInterview
+end
+= SlateportCity_PokemonFanClub_EventScript_RandomQuestion1
+msgbox	SlateportCity_PokemonFanClub_Text_DescribeFeelingsFirstMetMon
+goto SlateportCity_PokemonFanClub_EventScript_ContinueInterview
+end
+= SlateportCity_PokemonFanClub_EventScript_AlreadyInterviewed
+msgbox	SlateportCity_PokemonFanClub_Text_EnjoyDoingInterviews
 release
 end
 = SlateportCity_PokemonFanClub_EventScript_Twin

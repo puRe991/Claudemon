@@ -22,11 +22,11 @@ warps
 7 7 VerdanturfTown 3
 8 7 VerdanturfTown 3
 npcs
-people_wally 14 5 S wander
-people_black_belt 5 4 S static
-people_pokefan_m 7 2 S static
-people_pokefan_f 2 4 E static
-people_woman_2 5 5 W static
+people_wally 14 5 S wander FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLY
+people_black_belt 5 4 S static FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WANDAS_BOYFRIEND
+people_pokefan_m 7 2 S static FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLYS_UNCLE
+people_pokefan_f 2 4 E static 0
+people_woman_2 5 5 W static FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WANDA
 dialogs
 0	WALLY: I lost to you, PLAYER, but I'm not feeling down anymore.Because I have a new purpose in life. Together with my RALTS, I'm going to challenge POKéMON GYMS and become a great TRAINER.Please watch me, PLAYER. I'm going to be stronger than you.When I do, I'm going to challenge you to another battle.
 1	Thanks to you, I can see my girlfriend every day. Happy? You bet I am!

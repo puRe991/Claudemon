@@ -24,12 +24,12 @@ warps
 14 1 RustboroCity_DevonCorp_1F 2
 2 1 RustboroCity_DevonCorp_3F 0
 npcs
-people_scientist_1 6 5 N static
-people_scientist_1 1 5 E static
-people_scientist_1 2 6 S static
-people_scientist_1 10 5 N static
-people_scientist_1 14 8 N static
-people_scientist_1 14 5 N static
+people_scientist_1 6 5 N static 0
+people_scientist_1 1 5 E static 0
+people_scientist_1 2 6 S static 0
+people_scientist_1 10 5 N static 0
+people_scientist_1 14 8 N static 0
+people_scientist_1 14 5 N static 0
 dialogs
 0	We're developing a device for talking with POKéMON.But we haven't had much success…
 1	I'm developing new kinds of POKé BALLS…But I haven't made much headway…
@@ -44,6 +44,9 @@ objscripts
 3 RustboroCity_DevonCorp_2F_EventScript_PokemonDreamsScientist
 4 RustboroCity_DevonCorp_2F_EventScript_FossilScientist
 5 RustboroCity_DevonCorp_2F_EventScript_MatchCallScientist
+movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
 scriptdefs
 = RustboroCity_DevonCorp_2F_EventScript_MatchCallScientist
 lock
@@ -159,6 +162,10 @@ goto_if_eq VAR_RESULT MON_GIVEN_TO_PARTY RustboroCity_DevonCorp_2F_EventScript_R
 goto_if_eq VAR_RESULT MON_GIVEN_TO_PC RustboroCity_DevonCorp_2F_EventScript_ReceiveAnorithPC
 goto Common_EventScript_NoMoreRoomForPokemon
 end
+= Common_EventScript_NoMoreRoomForPokemon
+msgbox	gText_NoMoreRoomForPokemon
+release
+end
 = RustboroCity_DevonCorp_2F_EventScript_ReceiveAnorithPC
 call RustboroCity_DevonCorp_2F_EventScript_ReceivedAnorithFanfare
 msgbox	gText_NicknameThisPokemon
@@ -175,6 +182,38 @@ setvar VAR_FOSSIL_RESURRECTION_STATE 0
 setflag FLAG_RECEIVED_REVIVED_FOSSIL_MON
 release
 end
+= Common_EventScript_TransferredToPC
+bufferboxname STR_VAR_1 VAR_PC_BOX_TO_SEND_MON
+bufferspeciesname STR_VAR_2 VAR_TEMP_TRANSFERRED_SPECIES
+call_if_unset FLAG_SYS_PC_LANETTE EventScript_TransferredSomeonesPC
+call_if_set FLAG_SYS_PC_LANETTE EventScript_TransferredLanettesPC
+return
+= EventScript_TransferredLanettesPC
+specialvar VAR_RESULT ShouldShowBoxWasFullMessage
+goto_if_eq VAR_RESULT TRUE EventScript_LanettesPCBoxFull
+msgbox	gText_PkmnTransferredLanettesPC
+return
+= EventScript_LanettesPCBoxFull
+specialvar VAR_RESULT GetPCBoxToSendMon
+bufferboxname STR_VAR_3 VAR_RESULT
+msgbox	gText_PkmnTransferredLanettesPCBoxFull
+return
+= EventScript_TransferredSomeonesPC
+specialvar VAR_RESULT ShouldShowBoxWasFullMessage
+goto_if_eq VAR_RESULT TRUE EventScript_SomeonesPCBoxFull
+msgbox	gText_PkmnTransferredSomeonesPC
+return
+= EventScript_SomeonesPCBoxFull
+specialvar VAR_RESULT GetPCBoxToSendMon
+bufferboxname STR_VAR_3 VAR_RESULT
+msgbox	gText_PkmnTransferredSomeonesPCBoxFull
+return
+= Common_EventScript_NameReceivedBoxMon
+fadescreen FADE_TO_BLACK
+special ChangeBoxPokemonNickname
+lock
+faceplayer
+return
 = RustboroCity_DevonCorp_2F_EventScript_ReceivedAnorithFanfare
 bufferspeciesname STR_VAR_2 SPECIES_ANORITH
 playfanfare MUS_OBTAIN_ITEM
@@ -191,6 +230,11 @@ call Common_EventScript_GetGiftMonPartySlot
 call Common_EventScript_NameReceivedPartyMon
 goto RustboroCity_DevonCorp_2F_EventScript_FinishReceivingAnorith
 end
+= Common_EventScript_GetGiftMonPartySlot
+getpartysize
+subvar VAR_RESULT 1
+copyvar VAR_0x8004 VAR_RESULT
+return
 = RustboroCity_DevonCorp_2F_EventScript_LileepReady
 bufferspeciesname STR_VAR_2 SPECIES_LILEEP
 msgbox	Thanks for waiting!Your fossilized POKéMON has been brought back to life!The fossil was an ancient POKéMON. , it was!

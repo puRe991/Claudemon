@@ -29,10 +29,10 @@ collision
 warps
 13 3 LilycoveCity_DepartmentStore_5F 2
 npcs
-people_man_2 4 4 N static
-people_man_3 7 5 S wander
-people_rooftop_sale_woman 6 1 S static
-people_woman_3 15 5 S static
+people_man_2 4 4 N static 0
+people_man_3 7 5 S wander 0
+people_rooftop_sale_woman 6 1 S static FLAG_HIDE_LILYCOVE_DEPARTMENT_STORE_ROOFTOP_SALE_WOMAN
+people_woman_3 15 5 S static 0
 dialogs
 0	Don't they have set dates for their clear-out sales?I watch TV, but they never show any commercials.
 1	Ohh… I'm bone-dry thirsty!
@@ -40,9 +40,41 @@ objscripts
 0 LilycoveCity_DepartmentStoreRooftop_EventScript_Man
 1 LilycoveCity_DepartmentStoreRooftop_EventScript_ThirstyMan
 2 LilycoveCity_DepartmentStoreRooftop_EventScript_SaleWoman
+3 LilycoveCity_DepartmentStoreRooftop_EventScript_SubstituteTutor
 movements
 LilycoveCity_DepartmentStoreRooftop_PokemartDecor_ClearOutSale	delay,delay
 scriptdefs
+= LilycoveCity_DepartmentStoreRooftop_EventScript_SubstituteTutor
+lock
+faceplayer
+goto_if_set FLAG_MOVE_TUTOR_TAUGHT_SUBSTITUTE MoveTutor_EventScript_SubstituteTaught
+msgbox	MoveTutor_Text_SubstituteTeach
+goto_if_eq VAR_RESULT NO MoveTutor_EventScript_SubstituteDeclined
+call MoveTutor_EventScript_CanOnlyBeLearnedOnce
+goto_if_eq VAR_RESULT NO MoveTutor_EventScript_SubstituteDeclined
+msgbox	MoveTutor_Text_SubstituteWhichMon
+setvar VAR_0x8005 TUTOR_MOVE_SUBSTITUTE
+call MoveTutor_EventScript_OpenPartyMenu
+goto_if_eq VAR_RESULT 0 MoveTutor_EventScript_SubstituteDeclined
+setflag FLAG_MOVE_TUTOR_TAUGHT_SUBSTITUTE
+goto MoveTutor_EventScript_SubstituteTaught
+end
+= MoveTutor_EventScript_SubstituteTaught
+msgbox	MoveTutor_Text_SubstituteTaught
+release
+end
+= MoveTutor_EventScript_SubstituteDeclined
+msgbox	MoveTutor_Text_SubstituteDeclined
+release
+end
+= MoveTutor_EventScript_OpenPartyMenu
+special ChooseMonForMoveTutor
+lock
+faceplayer
+return
+= MoveTutor_EventScript_CanOnlyBeLearnedOnce
+msgbox	MoveTutor_Text_ThisMoveCanOnlyBeLearnedOnce
+return
 = LilycoveCity_DepartmentStoreRooftop_EventScript_SaleWoman
 lock
 faceplayer

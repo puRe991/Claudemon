@@ -20,8 +20,8 @@ warps
 7 6 AbandonedShip_Deck 4
 8 6 AbandonedShip_Deck 4
 npcs
-people_scientist_1 3 4 S static
-misc_item_ball 0 6 S static
+people_scientist_1 3 4 S static 0
+misc_item_ball 0 6 S static FLAG_ITEM_ABANDONED_SHIP_CAPTAINS_OFFICE_STORAGE_KEY
 dialogs
 0	I'm investigating this ship on behalf of CAPT. STERN.He also asked me to find a SCANNER, but I haven't had any success…
 objscripts

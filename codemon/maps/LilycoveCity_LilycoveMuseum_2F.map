@@ -31,10 +31,10 @@ collision
 warps
 13 1 LilycoveCity_LilycoveMuseum_1F 2
 npcs
-people_gentleman 10 8 N static
-people_girl_2 19 10 S wander
-people_expert_m 7 3 S wander
-people_rich_boy 14 6 S wander
+people_gentleman 10 8 N static 0
+people_girl_2 19 10 S wander FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_2
+people_expert_m 7 3 S wander FLAG_HIDE_LILYCOVE_MUSEUM_TOURISTS
+people_rich_boy 14 6 S wander FLAG_HIDE_LILYCOVE_MUSEUM_TOURISTS
 dialogs
 0	I wish to fill this exhibit hall with modern and vibrant paintings of POKéMON.
 1	I've been away awhile, so the new paintings up here surprised me.I wish someone would paint my POKéMON this pretty.
@@ -46,6 +46,7 @@ objscripts
 2 LilycoveCity_LilycoveMuseum_2F_EventScript_ExpertM
 3 LilycoveCity_LilycoveMuseum_2F_EventScript_RichBoy
 movements
+Common_Movement_FacePlayer	face_down,end
 LilycoveCity_LilycoveMuseum_2F_Movement_FaceExhibitHall	face_up,delay,end
 scriptdefs
 = LilycoveCity_LilycoveMuseum_2F_EventScript_RichBoy

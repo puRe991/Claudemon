@@ -23,16 +23,16 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 npcs
-people_reporter_m 5 4 S static
-people_twin 7 2 S static
-people_boy_1 9 2 S static
-people_boy_2 11 2 S static
-people_ninja_boy 16 2 S static
-people_man_1 4 2 S static
-people_expert_m 16 1 S static
-people_camper 8 1 S static
-people_man_2 0 4 S static
-people_fat_man 12 1 S static
-people_girl_2 13 2 S static
-people_girl_1 10 2 S static
-people_woman_3 14 2 S static
+people_reporter_m 5 4 S static 0
+people_twin 7 2 S static 0
+people_boy_1 9 2 S static 0
+people_boy_2 11 2 S static 0
+people_ninja_boy 16 2 S static 0
+people_man_1 4 2 S static 0
+people_expert_m 16 1 S static 0
+people_camper 8 1 S static 0
+people_man_2 0 4 S static 0
+people_fat_man 12 1 S static 0
+people_girl_2 13 2 S static 0
+people_girl_1 10 2 S static 0
+people_woman_3 14 2 S static 0

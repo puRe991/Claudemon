@@ -50,13 +50,13 @@ warps
 16 15 LavaridgeTown_House 0
 9 2 LavaridgeTown_PokemonCenter_1F 3
 npcs
-people_expert_f 8 7 S static
-people_expert_m 5 1 S static
-people_old_man 5 8 S static
-people_twin 10 13 S wander
-people_hot_springs_old_woman 4 4 S static
-people_hot_springs_old_woman 5 4 S static
-people_expert_f 4 7 S static
+people_expert_f 8 7 S static 0
+people_expert_m 5 1 S static 0
+people_old_man 5 8 S static 0
+people_twin 10 13 S wander 0
+people_hot_springs_old_woman 4 4 S static 0
+people_hot_springs_old_woman 5 4 S static 0
+people_expert_f 4 7 S static 0
 dialogs
 0	Oh, you like hot springs, do you?That's surprising for one as young as you.
 1	We draw as much hot water as we need, and yet the hot springs never run dry.Isn't it magical?These hot springs appear near active volcanoes. Veins of water under the ground are heated by magma to well up as hot springs.

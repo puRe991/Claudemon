@@ -36,12 +36,12 @@ warps
 6 3 BattleFrontier_BattlePalaceBattleRoom 0
 10 3 BattleFrontier_BattlePalaceBattleRoom 0
 npcs
-people_expert_m 8 12 N static
-pokemon_azurill 3 5 S wander
-pokemon_kirlia 12 6 W pace_h
-pokemon_pikachu 15 5 S static
-people_man_1 4 9 W pace_h
-pokemon_azumarill 13 9 S static
-pokemon_wingull 3 10 S wander
+people_expert_m 8 12 N static 0
+pokemon_azurill 3 5 S wander 0
+pokemon_kirlia 12 6 W pace_h 0
+pokemon_pikachu 15 5 S static 0
+people_man_1 4 9 W pace_h 0
+pokemon_azumarill 13 9 S static 0
+pokemon_wingull 3 10 S wander 0
 grass
 13

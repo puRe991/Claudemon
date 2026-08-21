@@ -45,30 +45,30 @@ collision
 warps
 51 5 Route117_PokemonDayCare 0
 npcs
-people_woman_1 13 13 S static
-people_little_boy 25 5 S static
-people_old_man 47 4 S static
-people_man_1 33 3 S static
-pokemon_kecleon 39 4 S static
-pokemon_azumarill 42 2 S static
-pokemon_pikachu 49 2 S static
-people_running_triathlete_m 38 16 S static
-people_woman_2 8 10 S static
-people_man_4 33 11 S static
-people_man_1 41 13 S static
-people_man_1 42 13 S static
-people_man_1 43 13 S static
-misc_item_ball 16 18 S static
-misc_cuttable_tree 15 2 S static
-misc_item_ball 9 1 S static
-people_running_triathlete_f 26 13 S static
-people_maniac 17 12 N static
-people_lass 43 6 S static
-people_lass 42 6 S static
-people_girl_2 48 10 S wander
-people_lass 15 4 E static
-people_girl_3 21 4 W static
-people_running_triathlete_f 16 4 S static
+people_woman_1 13 13 S static 0
+people_little_boy 25 5 S static 0
+people_old_man 47 4 S static 0
+people_man_1 33 3 S static 0
+pokemon_kecleon 39 4 S static 0
+pokemon_azumarill 42 2 S static 0
+pokemon_pikachu 49 2 S static 0
+people_running_triathlete_m 38 16 S static 0
+people_woman_2 8 10 S static 0
+people_man_4 33 11 S static 0
+people_man_1 41 13 S static 0
+people_man_1 42 13 S static 0
+people_man_1 43 13 S static 0
+misc_item_ball 16 18 S static FLAG_ITEM_ROUTE_117_GREAT_BALL
+misc_cuttable_tree 15 2 S static FLAG_TEMP_11
+misc_item_ball 9 1 S static FLAG_ITEM_ROUTE_117_REVIVE
+people_running_triathlete_f 26 13 S static 0
+people_maniac 17 12 N static 0
+people_lass 43 6 S static 0
+people_lass 42 6 S static 0
+people_girl_2 48 10 S wander 0
+people_lass 15 4 E static 0
+people_girl_3 21 4 W static 0
+people_running_triathlete_f 16 4 S static 0
 dialogs
 0	What do you think? Aren't these flowers pretty?I planted them all!
 1	The air is tasty here!
@@ -76,10 +76,15 @@ dialogs
 objscripts
 0 Route117_EventScript_Woman
 1 Route117_EventScript_LittleBoy
+2 Route117_EventScript_DaycareMan
 7 Route117_EventScript_Dylan
 8 Route117_EventScript_Lydia
 9 Route117_EventScript_Isaac
+10 BerryTreeScript
+11 BerryTreeScript
+12 BerryTreeScript
 13 Route117_EventScript_ItemGreatBall
+14 EventScript_CutTree
 15 Route117_EventScript_ItemRevive
 16 Route117_EventScript_Maria
 17 Route117_EventScript_Derek
@@ -91,6 +96,8 @@ objscripts
 23 Route117_EventScript_Melina
 triggers
 3 18 0 0 Route117_HiddenItem_3_18
+movements
+Movement_CutTreeDown	delay,end
 scriptdefs
 = Route117_HiddenItem_3_18
 goto_if_set FLAG_HIDDEN_ITEM_ROUTE_117_REPEL Route117_HiddenItem_3_18_Taken
@@ -175,12 +182,206 @@ setflag FLAG_ITEM_ROUTE_117_REVIVE
 end
 = Route117_EventScript_ItemRevive_Taken
 end
+= EventScript_CutTree
+lockall
+goto_if_unset FLAG_BADGE01_GET EventScript_CheckTreeCantCut
+checkpartymove MOVE_CUT
+goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CheckTreeCantCut
+setfieldeffectargument 0 VAR_RESULT
+bufferpartymonnick STR_VAR_1 VAR_RESULT
+buffermovename STR_VAR_2 MOVE_CUT
+msgbox	Text_WantToCut
+goto_if_eq VAR_RESULT NO EventScript_CancelCut
+msgbox	Text_MonUsedFieldMove
+closemessage
+dofieldeffect FLDEFF_USE_CUT_ON_TREE
+waitstate
+goto EventScript_CutTreeDown
+end
+@ Use cut from party menu
+goto EventScript_UseCut
+= EventScript_UseCut
+lockall
+dofieldeffect FLDEFF_USE_CUT_ON_TREE
+waitstate
+goto EventScript_CutTreeDown
+end
+= EventScript_CutTreeDown
+applymovement VAR_LAST_TALKED Movement_CutTreeDown
+waitmovement 0
+removeobject VAR_LAST_TALKED
+releaseall
+end
+= EventScript_CancelCut
+closemessage
+releaseall
+end
+= EventScript_CheckTreeCantCut
+msgbox	Text_CantCut
+releaseall
+end
 = Route117_EventScript_ItemGreatBall
 goto_if_set FLAG_ITEM_ROUTE_117_GREAT_BALL Route117_EventScript_ItemGreatBall_Taken
 finditem ITEM_GREAT_BALL
 setflag FLAG_ITEM_ROUTE_117_GREAT_BALL
 end
 = Route117_EventScript_ItemGreatBall_Taken
+end
+= BerryTreeScript
+special ObjectEventInteractionGetBerryTreeData
+switch VAR_0x8004
+case BERRY_STAGE_SPARKLING BerryTree_EventScript_Sparkling
+case BERRY_STAGE_NO_BERRY BerryTree_EventScript_CheckSoil
+case BERRY_STAGE_PLANTED BerryTree_EventScript_CheckBerryStage1
+case BERRY_STAGE_SPROUTED BerryTree_EventScript_CheckBerryStage2
+case BERRY_STAGE_TALLER BerryTree_EventScript_CheckBerryStage3
+case BERRY_STAGE_FLOWERING BerryTree_EventScript_CheckBerryStage4
+case BERRY_STAGE_BERRIES BerryTree_EventScript_CheckBerryFullyGrown
+end
+= BerryTree_EventScript_CheckBerryFullyGrown
+buffernumberstring STR_VAR_2 VAR_0x8006
+lock
+faceplayer
+special ObjectEventInteractionGetBerryCountString
+msgbox	BerryTree_Text_WantToPick
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_PickBerry
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPickingBerry
+goto BerryTree_EventScript_PickBerry
+= BerryTree_EventScript_PickBerry
+special ObjectEventInteractionPickBerryTree
+goto_if_eq VAR_0x8004 0 BerryTree_EventScript_BerryPocketFull
+special IncrementDailyPickedBerries
+special ObjectEventInteractionRemoveBerryTree
+message BerryTree_Text_PickedTheBerry
+playfanfare MUS_OBTAIN_BERRY
+waitmessage
+waitfanfare
+waitbuttonpress
+message BerryTree_Text_PutAwayBerry
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_BerryPocketFull
+message BerryTree_Text_BerryPocketFull
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_CancelPickingBerry
+message BerryTree_Text_BerryLeftUnpicked
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_CheckBerryStage4
+call BerryTree_EventScript_GetCareAdverb
+lockall
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_BerryGrowthStage4
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+@ VAR_0x8005 here is the number of times watered
+@ Buffered by ObjectEventInteractionGetBerryTreeData
+goto BerryTree_EventScript_GetCareAdverb
+= BerryTree_EventScript_GetCareAdverb
+goto_if_eq VAR_0x8005 0 BerryTree_EventScript_SetAdverbPoor
+goto_if_eq VAR_0x8005 4 BerryTree_EventScript_SetAdverbGreat
+bufferstring STR_VAR_2 BerryTree_Text_CareAdverbGood
+return
+= BerryTree_EventScript_SetAdverbGreat
+bufferstring STR_VAR_2 BerryTree_Text_CareAdverbGreat
+return
+= BerryTree_EventScript_SetAdverbPoor
+bufferstring STR_VAR_2 BerryTree_Text_CareAdverbPoor
+return
+@ VAR_0x8006 here is the number of berries
+goto BerryTree_EventScript_CheckBerryFullyGrown
+= BerryTree_EventScript_WantToWater
+checkitem ITEM_WAILMER_PAIL
+goto_if_eq VAR_RESULT FALSE BerryTree_EventScript_DontWater
+special ObjectEventInteractionGetBerryName
+msgbox	BerryTree_Text_WantToWater
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_WaterBerry
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_DontWater
+goto BerryTree_EventScript_DontWater
+= BerryTree_EventScript_DontWater
+releaseall
+end
+= BerryTree_EventScript_WaterBerry
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_WateredTheBerry
+waitmessage
+special ObjectEventInteractionWaterBerryTree
+special DoWateringBerryTreeAnim
+message BerryTree_Text_PlantIsDelighted
+waitmessage
+waitbuttonpress
+releaseall
+end
+= BerryTree_EventScript_CheckBerryStage3
+lockall
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_BerryGrowthStage3
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckBerryStage2
+lockall
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_BerryGrowthStage2
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckBerryStage1
+lockall
+special ObjectEventInteractionGetBerryCountString
+message BerryTree_Text_BerryGrowthStage1
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckSoil
+lock
+faceplayer
+specialvar VAR_RESULT PlayerHasBerries
+goto_if_eq VAR_RESULT TRUE BerryTree_EventScript_WantToPlant
+message BerryTree_Text_ItsSoftLoamySoil
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_WantToPlant
+msgbox	BerryTree_Text_WantToPlant
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_ChooseBerryToPlant
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPlanting
+end
+= BerryTree_EventScript_CancelPlanting
+release
+end
+= BerryTree_EventScript_ChooseBerryToPlant
+fadescreen FADE_TO_BLACK
+closemessage
+special Bag_ChooseBerry
+goto_if_eq VAR_ITEM_ID 0 BerryTree_EventScript_CancelPlanting
+removeitem VAR_ITEM_ID
+call BerryTree_EventScript_PlantBerry
+goto BerryTree_EventScript_CancelPlanting
+= BerryTree_EventScript_PlantBerry
+special ObjectEventInteractionPlantBerryTree
+incrementgamestat GAME_STAT_PLANTED_BERRIES
+special IncrementDailyPlantedBerries
+special ObjectEventInteractionGetBerryCountString
+message BerryTree_Text_PlantedOneBerry
+waitmessage
+waitbuttonpress
+return
+= BerryTree_EventScript_Sparkling
+lockall
+message BerryTree_Text_ExclamationPoint
+waitmessage
+waitbuttonpress
+releaseall
 end
 = Route117_EventScript_Isaac
 trainerbattle_single TRAINER_ISAAC_1 Route117_Text_IsaacIntro Route117_Text_IsaacDefeat Route117_EventScript_RegisterIsaac
@@ -234,6 +435,70 @@ special PlayerFaceTrainerAfterBattle
 waitmovement 0
 msgbox	Route117_Text_DylanRegister
 register_matchcall TRAINER_DYLAN_1
+release
+end
+= Route117_EventScript_DaycareMan
+lock
+faceplayer
+special GetDaycareMonNicknames
+specialvar VAR_RESULT GetDaycareState
+goto_if_eq VAR_RESULT DAYCARE_EGG_WAITING Route117_EventScript_DaycareEggWaiting
+goto_if_eq VAR_RESULT DAYCARE_ONE_MON Route117_EventScript_CheckOnOneMon
+goto_if_eq VAR_RESULT DAYCARE_TWO_MONS Route117_EventScript_CheckOnTwoMons
+msgbox	Route117_Text_SeeWifeIfYoudLikeMeToRaiseMon
+release
+end
+= Route117_EventScript_CheckOnTwoMons
+special GetDaycareMonNicknames
+msgbox	Route117_Text_YourMonsAreDoingFine
+special SetDaycareCompatibilityString
+special ShowFieldMessageStringVar4
+waitmessage
+waitbuttonpress
+setvar VAR_0x8004 0
+call Route117_EventScript_CheckMonReceivedMail
+setvar VAR_0x8004 1
+call Route117_EventScript_CheckMonReceivedMail
+release
+end
+= Route117_EventScript_CheckMonReceivedMail
+specialvar VAR_RESULT CheckDaycareMonReceivedMail
+call_if_eq VAR_RESULT 1 Route117_EventScript_MonReceivedMail
+return
+= Route117_EventScript_MonReceivedMail
+msgbox	Route117_Text_FriendlyWithOtherTrainersMon
+return
+= Route117_EventScript_CheckOnOneMon
+special GetDaycareMonNicknames
+msgbox	Route117_Text_YourMonIsDoingFine
+setvar VAR_0x8004 0
+call Route117_EventScript_CheckMonReceivedMail
+release
+end
+= Route117_EventScript_DaycareEggWaiting
+msgbox	Route117_Text_DoYouWantEgg
+goto_if_eq VAR_RESULT YES Route117_EventScript_DaycareAcceptEgg
+msgbox	Route117_Text_IWillKeepDoYouWantIt
+goto_if_eq VAR_RESULT YES Route117_EventScript_DaycareAcceptEgg
+msgbox	Route117_Text_IllKeepIt
+clearflag FLAG_PENDING_DAYCARE_EGG
+special RejectEggFromDayCare
+release
+end
+= Route117_EventScript_DaycareAcceptEgg
+specialvar VAR_RESULT CalculatePlayerPartyCount
+goto_if_ne VAR_RESULT PARTY_SIZE Route117_EventScript_DaycareReceiveEgg
+msgbox	Route117_Text_YouHaveNoRoomForIt
+release
+end
+= Route117_EventScript_DaycareReceiveEgg
+message Route117_Text_ReceivedEgg
+playfanfare MUS_LEVEL_UP
+waitfanfare
+waitbuttonpress
+msgbox	Route117_Text_TakeGoodCareOfIt
+special GiveEggFromDaycare
+clearflag FLAG_PENDING_DAYCARE_EGG
 release
 end
 = Route117_EventScript_LittleBoy

@@ -24,13 +24,13 @@ warps
 3 8 Route119 1
 4 8 Route119 1
 npcs
-people_woman_4 7 2 S static
-pokemon_wingull 1 6 S wander
-pokemon_wingull 0 4 S wander
-pokemon_wingull 2 2 S wander
-pokemon_wingull 8 5 S wander
-pokemon_wingull 6 6 S wander
-pokemon_wingull 5 3 S wander
+people_woman_4 7 2 S static 0
+pokemon_wingull 1 6 S wander 0
+pokemon_wingull 0 4 S wander 0
+pokemon_wingull 2 2 S wander 0
+pokemon_wingull 8 5 S wander 0
+pokemon_wingull 6 6 S wander 0
+pokemon_wingull 5 3 S wander 0
 dialogs
 0	I heard about a cave called the CAVE OF ORIGIN.People rumor that the spirits of POKéMON are revived there. Could something like that really happen?
 1	WINGULL: Pihyoh!

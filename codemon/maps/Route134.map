@@ -83,17 +83,17 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,1,1,0,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1,1,0,0,0,0,1,1,0,0,0,0
 npcs
-people_swimmer_m 49 9 S static
-people_swimmer_f 58 7 S static
-people_man_3 41 23 E static
-people_man_5 24 23 S static
-people_black_belt 49 16 W pace_h
-people_woman_5 43 23 W static
-people_sailor 24 30 S pace_v
-people_girl_3 50 16 S static
-people_sailor 63 14 S static
-misc_item_ball 50 17 S static
-misc_item_ball 22 27 S static
+people_swimmer_m 49 9 S static 0
+people_swimmer_f 58 7 S static 0
+people_man_3 41 23 E static 0
+people_man_5 24 23 S static 0
+people_black_belt 49 16 W pace_h 0
+people_woman_5 43 23 W static 0
+people_sailor 24 30 S pace_v 0
+people_girl_3 50 16 S static 0
+people_sailor 63 14 S static 0
+misc_item_ball 50 17 S static FLAG_ITEM_ROUTE_134_CARBOS
+misc_item_ball 22 27 S static FLAG_ITEM_ROUTE_134_STAR_PIECE
 objscripts
 0 Route134_EventScript_Jack
 1 Route134_EventScript_Laurel

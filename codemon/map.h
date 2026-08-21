@@ -22,6 +22,7 @@ struct NpcSpawn {
 	DIR facing;          // initial facing
 	MoveKind movement;   // behaviour
 	std::string dialog;  // line shown on interaction (may be empty)
+	std::string hide_flag; // pokeemerald FLAG_HIDE_*; set -> not spawned (empty = always shown)
 };
 
 // One warp/transition as authored in the map file's `warps` section. Stepping

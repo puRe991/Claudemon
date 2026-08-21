@@ -20,7 +20,7 @@ warps
 3 6 SootopolisCity 5
 4 6 SootopolisCity 5
 npcs
-people_expert_f 3 3 E static
+people_expert_f 3 3 E static 0
 dialogs
 0	MT. PYRE…At its peak are two orbs placed side by side. Did you know?
 objscripts

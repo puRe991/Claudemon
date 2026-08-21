@@ -25,7 +25,7 @@ warps
 6 8 LilycoveCity 1
 2 1 LilycoveCity_CoveLilyMotel_2F 0
 npcs
-people_man_1 10 3 N static
+people_man_1 10 3 N static 0
 dialogs
 0	Hm, so they doubled the guests by using POKéMON as attractions?Hm, well, maybe I should make a cute POKéMON our inn's mascot.I wonder if that will attract more guests to stay with us?
 objscripts
@@ -33,6 +33,11 @@ objscripts
 triggers
 10 2 VAR_TEMP_1 0 LilycoveCity_CoveLilyMotel_1F_EventScript_BlockingTV
 movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
+Common_Movement_FaceOriginalDirection	face_down,end
+Common_Movement_FacePlayer	face_down,end
+Common_Movement_WalkInPlaceFasterDown	delay,end
 LilycoveCity_CoveLilyMotel_1F_Movement_OwnerPushPlayer	up,end
 LilycoveCity_CoveLilyMotel_1F_Movement_OwnerReturn	face_down,down,face_up,end
 LilycoveCity_CoveLilyMotel_1F_Movement_PlayerPushFromTV	face_right,delay,left,delay,end

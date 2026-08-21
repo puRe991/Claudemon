@@ -65,8 +65,8 @@ collision
 warps
 17 10 ShoalCave_LowTideLowerRoom 3
 npcs
-misc_item_ball 12 8 S static
-misc_item_ball 12 21 S static
+misc_item_ball 12 8 S static FLAG_ITEM_SHOAL_CAVE_ICE_ROOM_TM_HAIL
+misc_item_ball 12 21 S static FLAG_ITEM_SHOAL_CAVE_ICE_ROOM_NEVER_MELT_ICE
 objscripts
 0 ShoalCave_LowTideIceRoom_EventScript_ItemTMHail
 1 ShoalCave_LowTideIceRoom_EventScript_ItemNeverMeltIce

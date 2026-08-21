@@ -35,14 +35,14 @@ warps
 6 12 MtPyre_3F 5
 11 9 MtPyre_1F 5
 npcs
-people_maniac 3 6 E static
-misc_item_ball 0 10 S static
-people_woman_1 9 3 E static
-people_pokefan_m 12 10 S static
-people_woman_4 2 9 S static
-people_man_4 3 9 S static
-people_black_belt 6 9 N static
-people_hex_maniac 6 6 S static
+people_maniac 3 6 E static 0
+misc_item_ball 0 10 S static FLAG_ITEM_MT_PYRE_2F_ULTRA_BALL
+people_woman_1 9 3 E static 0
+people_pokefan_m 12 10 S static 0
+people_woman_4 2 9 S static 0
+people_man_4 3 9 S static 0
+people_black_belt 6 9 N static 0
+people_hex_maniac 6 6 S static 0
 dialogs
 0	People don't come here often, so I thought there'd be rare POKéMON.
 2	Memories of my darling SKITTY… My eyes overflow thinking about it.

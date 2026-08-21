@@ -48,9 +48,9 @@ warps
 6 16 OldaleTown_PokemonCenter_1F 0
 14 6 OldaleTown_Mart 0
 npcs
-people_girl_3 16 11 W static
-people_mart_employee 13 7 S static
-people_maniac 8 9 E static
+people_girl_3 16 11 W static 0
+people_mart_employee 13 7 S static 0
+people_maniac 8 9 E static 0
 dialogs
 0	I want to take a rest, so I'm saving my progress.
 1	Hi! I work at a POKéMON MART.Can I get you to come with me?
@@ -65,6 +65,8 @@ triggers
 9 19 VAR_OLDALE_RIVAL_STATE 1 OldaleTown_EventScript_RivalTrigger2
 10 19 VAR_OLDALE_RIVAL_STATE 1 OldaleTown_EventScript_RivalTrigger3
 movements
+Common_Movement_FaceOriginalDirection	face_down,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
 OldaleTown_Movement_BackUp	up,delay,delay,right,delay,end
 OldaleTown_Movement_EmployeeEast	up,up,up,up,up,up,up,delay,end
 OldaleTown_Movement_EmployeeNorth	up,up,up,up,up,up,up,delay,end

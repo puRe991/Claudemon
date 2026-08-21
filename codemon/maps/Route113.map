@@ -47,22 +47,22 @@ warps
 41 12 TerraCave_Entrance 0
 88 5 TerraCave_Entrance 0
 npcs
-people_ninja_boy 66 12 S wander
-people_gentleman 36 10 S wander
-people_youngster 62 8 S static
-people_youngster 21 11 S static
-people_woman_5 51 11 S static
-misc_item_ball 53 7 S static
-misc_item_ball 79 5 S static
-people_ninja_boy 29 6 S static
-people_ninja_boy 71 2 S static
-people_twin 45 6 S static
-people_twin 46 6 S static
-misc_item_ball 15 15 S static
-people_maniac 75 3 W static
-people_camper 71 4 N static
-people_picnicker 7 6 S static
-people_man_5 7 13 S pace_v
+people_ninja_boy 66 12 S wander 0
+people_gentleman 36 10 S wander 0
+people_youngster 62 8 S static 0
+people_youngster 21 11 S static 0
+people_woman_5 51 11 S static 0
+misc_item_ball 53 7 S static FLAG_ITEM_ROUTE_113_MAX_ETHER
+misc_item_ball 79 5 S static FLAG_ITEM_ROUTE_113_SUPER_REPEL
+people_ninja_boy 29 6 S static 0
+people_ninja_boy 71 2 S static 0
+people_twin 45 6 S static 0
+people_twin 46 6 S static 0
+misc_item_ball 15 15 S static FLAG_ITEM_ROUTE_113_HYPER_POTION
+people_maniac 75 3 W static 0
+people_camper 71 4 N static 0
+people_picnicker 7 6 S static 0
+people_man_5 7 13 S pace_v 0
 dialogs
 0	It's fun walking through the volcano's ashes on the ground and grass.You can see where you walked--it's really neat!
 1	Wahahaha! Today's technology is a wondrous thing!Take this volcanic ash here. It can be fashioned into glass.

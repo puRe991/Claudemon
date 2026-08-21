@@ -73,7 +73,7 @@ warps
 8 20 DesertRuins 2
 8 11 DesertRuins 1
 npcs
-people_man_1 8 7 S static
+people_man_1 8 7 S static FLAG_HIDE_REGIROCK
 objscripts
 0 DesertRuins_EventScript_Regirock
 scriptdefs

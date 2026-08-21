@@ -36,7 +36,7 @@ warps
 3 12 ShoalCave_LowTideInnerRoom 1
 7 4 ShoalCave_LowTideInnerRoom 2
 npcs
-misc_item_ball 13 12 S static
+misc_item_ball 13 12 S static FLAG_ITEM_SHOAL_CAVE_STAIRS_ROOM_ICE_HEAL
 objscripts
 0 ShoalCave_LowTideStairsRoom_EventScript_ItemIceHeal
 scriptdefs

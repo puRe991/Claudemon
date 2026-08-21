@@ -21,16 +21,21 @@ collision
 warps
 1 1 LittlerootTown_MaysHouse_1F 2
 npcs
-people_may_walking 1 1 S static
-people_mom 1 1 S static
-people_man_1 3 4 S static
-misc_item_ball 5 4 S static
+people_may_walking 1 1 S static FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_BEDROOM
+people_mom 1 1 S static FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_BEDROOM_MOM
+people_man_1 3 4 S static FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_2F_PICHU_DOLL
+misc_item_ball 5 4 S static FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_2F_POKE_BALL
 dialogs
 3	It's RIVAL's POKé BALL!Better leave it right where it is.
 objscripts
 0 RivalsHouse_2F_EventScript_Rival
 3 LittlerootTown_MaysHouse_2F_EventScript_RivalsPokeBall
 movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
+Common_Movement_FacePlayer	face_down,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
 LittlerootTown_MaysHouse_2F_Movement_MayApproachPlayerEast	right,right,down,delay,end
 LittlerootTown_MaysHouse_2F_Movement_MayApproachPlayerNorth	right,right,down,down,right,end
 LittlerootTown_MaysHouse_2F_Movement_MayApproachPlayerSouth	right,right,right,end

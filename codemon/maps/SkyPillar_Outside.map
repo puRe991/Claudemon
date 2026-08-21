@@ -52,7 +52,7 @@ warps
 17 13 SkyPillar_Entrance 1
 14 5 SkyPillar_1F 0
 npcs
-people_wallace 13 7 S static
+people_wallace 13 7 S static FLAG_HIDE_SKY_PILLAR_WALLACE
 objscripts
 0 SkyPillar_Outside_EventScript_Wallace
 scriptdefs

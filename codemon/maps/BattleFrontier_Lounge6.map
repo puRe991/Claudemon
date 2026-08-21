@@ -25,7 +25,7 @@ collision
 warps
 4 9 BattleFrontier_OutsideEast 8
 npcs
-people_beauty 2 4 E static
+people_beauty 2 4 E static 0
 dialogs
 0	My POKéMON is a . Do you know it? It's quite cute and rather nice.This little one, I could trade with pride!Would you like to trade me a for my ?
 objscripts

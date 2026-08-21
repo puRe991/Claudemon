@@ -25,16 +25,65 @@ collision
 warps
 1 4 MirageTower_3F 1
 npcs
-misc_fossil 5 4 S static
-misc_fossil 7 4 S static
-misc_breakable_rock 6 7 S static
+misc_fossil 5 4 S static FLAG_HIDE_MIRAGE_TOWER_ROOT_FOSSIL
+misc_fossil 7 4 S static FLAG_HIDE_MIRAGE_TOWER_CLAW_FOSSIL
+misc_breakable_rock 6 7 S static FLAG_TEMP_11
 dialogs
 0	You found the ROOT FOSSIL.If this FOSSIL is taken, the ground around it will likely crumble away…Take the ROOT FOSSIL anyway?
 1	You found the CLAW FOSSIL.If this FOSSIL is taken, the ground around it will likely crumble away…Take the CLAW FOSSIL anyway?
 objscripts
 0 MirageTower_4F_EventScript_RootFossil
 1 MirageTower_4F_EventScript_ClawFossil
+2 EventScript_RockSmash
+movements
+Movement_SmashRock	delay,end
 scriptdefs
+= EventScript_RockSmash
+lockall
+goto_if_unset FLAG_BADGE03_GET EventScript_CantSmashRock
+checkpartymove MOVE_ROCK_SMASH
+goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CantSmashRock
+setfieldeffectargument 0 VAR_RESULT
+bufferpartymonnick STR_VAR_1 VAR_RESULT
+buffermovename STR_VAR_2 MOVE_ROCK_SMASH
+msgbox	Text_WantToSmash
+goto_if_eq VAR_RESULT NO EventScript_CancelSmash
+msgbox	Text_MonUsedFieldMove
+closemessage
+dofieldeffect FLDEFF_USE_ROCK_SMASH
+waitstate
+goto EventScript_SmashRock
+end
+@ Use rock smash from party menu
+goto EventScript_UseRockSmash
+= EventScript_UseRockSmash
+lockall
+dofieldeffect FLDEFF_USE_ROCK_SMASH
+waitstate
+goto EventScript_SmashRock
+end
+= EventScript_SmashRock
+applymovement VAR_LAST_TALKED Movement_SmashRock
+waitmovement 0
+removeobject VAR_LAST_TALKED
+specialvar VAR_RESULT TryUpdateRusturfTunnelState
+goto_if_eq VAR_RESULT TRUE EventScript_EndSmash
+special RockSmashWildEncounter
+goto_if_eq VAR_RESULT FALSE EventScript_EndSmash
+waitstate
+releaseall
+end
+= EventScript_EndSmash
+releaseall
+end
+= EventScript_CancelSmash
+closemessage
+releaseall
+end
+= EventScript_CantSmashRock
+msgbox	Text_CantSmash
+releaseall
+end
 = MirageTower_4F_EventScript_ClawFossil
 lock
 faceplayer

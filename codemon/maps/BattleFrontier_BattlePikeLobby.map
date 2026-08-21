@@ -33,10 +33,10 @@ warps
 4 12 BattleFrontier_OutsideWest 0
 6 12 BattleFrontier_OutsideWest 0
 npcs
-people_link_receptionist 5 5 S static
-people_hiker 10 9 N static
-people_twin 0 5 W static
-people_beauty 8 9 S wander
+people_link_receptionist 5 5 S static 0
+people_hiker 10 9 N static 0
+people_twin 0 5 W static 0
+people_beauty 8 9 S wander 0
 dialogs
 0	Where the luck of TRAINERS is put to the test…Welcome to the BATTLE PIKE…I am your guide to the BATTLE PIKE…
 1	Arrgh! I blew my chance! I was one room away from the goal!In this place, you'd better watch out for poison, freezing, and so on.
@@ -148,6 +148,9 @@ goto BattleFrontier_BattlePikeLobby_EventScript_EndCancelChallenge
 = BattleFrontier_BattlePikeLobby_EventScript_EndCancelChallenge
 release
 end
+= Common_EventScript_SaveGame
+special SaveGame
+return
 = BattleFrontier_BattlePikeLobby_EventScript_LoadPartyAndCancelChallenge
 special LoadPlayerParty
 goto BattleFrontier_BattlePikeLobby_EventScript_CancelChallenge

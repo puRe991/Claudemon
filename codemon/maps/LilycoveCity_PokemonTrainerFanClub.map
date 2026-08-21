@@ -34,15 +34,15 @@ warps
 6 13 LilycoveCity 5
 5 13 LilycoveCity 5
 npcs
-people_lass 3 11 N static
-people_man_4 8 10 W static
-people_pokefan_m 6 11 N static
-people_little_girl 5 8 S static
-people_ninja_boy 7 11 N static
-people_boy_2 1 9 S static
-people_woman_3 3 10 E static
-people_expert_f 10 10 W static
-people_boy_1 11 5 S static
+people_lass 3 11 N static 0
+people_man_4 8 10 W static 0
+people_pokefan_m 6 11 N static 0
+people_little_girl 5 8 S static 0
+people_ninja_boy 7 11 N static FLAG_HIDE_FANCLUB_LITTLE_BOY
+people_boy_2 1 9 S static FLAG_HIDE_FANCLUB_BOY
+people_woman_3 3 10 E static FLAG_HIDE_FANCLUB_LADY
+people_expert_f 10 10 W static FLAG_HIDE_FANCLUB_OLD_LADY
+people_boy_1 11 5 S static FLAG_HIDE_LILYCOVE_FAN_CLUB_INTERVIEWER
 dialogs
 0	I can't help it, I can only get to like BRAWLY…
 1	I hate to say this, but the TRAINER everybody's talking about is , no question about it!That TRAINER's power… It's out of the ordinary.

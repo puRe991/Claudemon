@@ -51,17 +51,17 @@ warps
 8 13 MauvilleCity_GameCorner 0
 19 14 MauvilleCity_House2 0
 npcs
-people_boy_3 29 16 S wander
-people_rich_boy 24 10 S wander
-people_maniac 14 11 E static
-people_woman_4 18 6 S static
-people_school_kid_m 17 14 S static
-people_wally 8 6 N static
-people_pokefan_m 9 6 W static
-people_man_1 29 9 S static
-misc_item_ball 28 19 S static
-people_fat_man 13 7 W static
-people_scott 12 14 N static
+people_boy_3 29 16 S wander 0
+people_rich_boy 24 10 S wander 0
+people_maniac 14 11 E static 0
+people_woman_4 18 6 S static 0
+people_school_kid_m 17 14 S static 0
+people_wally 8 6 N static FLAG_HIDE_MAUVILLE_CITY_WALLY
+people_pokefan_m 9 6 W static FLAG_HIDE_MAUVILLE_CITY_WALLYS_UNCLE
+people_man_1 29 9 S static FLAG_HIDE_MAUVILLE_CITY_WATTSON
+misc_item_ball 28 19 S static FLAG_ITEM_MAUVILLE_CITY_X_SPEED
+people_fat_man 13 7 W static 0
+people_scott 12 14 N static FLAG_HIDE_MAUVILLE_CITY_SCOTT
 dialogs
 0	You know, it's cool to have POKéMON battles and stuff…But if your POKéMON gets hurt, you have to nurse it back to health.
 1	Even if you're riding a BIKE, wild POKéMON could jump you.
@@ -81,7 +81,14 @@ objscripts
 6 MauvilleCity_EventScript_WallysUncle
 7 MauvilleCity_EventScript_Wattson
 8 MauvilleCity_EventScript_ItemXSpeed
+9 MauvilleCity_EventScript_RolloutTutor
 movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
+Common_Movement_FaceOriginalDirection	face_down,end
+Common_Movement_FacePlayer	face_down,end
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
 MauvilleCity_Movement_PlayerFaceUncleNorth	delay,delay,delay,delay,end
 MauvilleCity_Movement_PlayerWatchScottExitEast	delay,delay,delay,end
 MauvilleCity_Movement_PlayerWatchScottExitNorth	delay,delay,end
@@ -104,6 +111,37 @@ MauvilleCity_Movement_WallysUncleExitEast2	down,left,left,left,left,left,left,le
 MauvilleCity_Movement_WallysUncleExitNorth1	left,left,left,down,down,end
 MauvilleCity_Movement_WallysUncleExitNorth2	left,left,left,left,left,left,left,left,end
 scriptdefs
+= MauvilleCity_EventScript_RolloutTutor
+lock
+faceplayer
+goto_if_set FLAG_MOVE_TUTOR_TAUGHT_ROLLOUT MoveTutor_EventScript_RolloutTaught
+msgbox	MoveTutor_Text_RolloutTeach
+goto_if_eq VAR_RESULT NO MoveTutor_EventScript_RolloutDeclined
+call MoveTutor_EventScript_CanOnlyBeLearnedOnce
+goto_if_eq VAR_RESULT NO MoveTutor_EventScript_RolloutDeclined
+msgbox	MoveTutor_Text_RolloutWhichMon
+setvar VAR_0x8005 TUTOR_MOVE_ROLLOUT
+call MoveTutor_EventScript_OpenPartyMenu
+goto_if_eq VAR_RESULT 0 MoveTutor_EventScript_RolloutDeclined
+setflag FLAG_MOVE_TUTOR_TAUGHT_ROLLOUT
+goto MoveTutor_EventScript_RolloutTaught
+end
+= MoveTutor_EventScript_RolloutTaught
+msgbox	MoveTutor_Text_RolloutTaught
+release
+end
+= MoveTutor_EventScript_RolloutDeclined
+msgbox	MoveTutor_Text_RolloutDeclined
+release
+end
+= MoveTutor_EventScript_OpenPartyMenu
+special ChooseMonForMoveTutor
+lock
+faceplayer
+return
+= MoveTutor_EventScript_CanOnlyBeLearnedOnce
+msgbox	MoveTutor_Text_ThisMoveCanOnlyBeLearnedOnce
+return
 = MauvilleCity_EventScript_ItemXSpeed
 goto_if_set FLAG_ITEM_MAUVILLE_CITY_X_SPEED MauvilleCity_EventScript_ItemXSpeed_Taken
 finditem ITEM_X_SPEED

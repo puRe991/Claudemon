@@ -73,27 +73,27 @@ warps
 20 21 VictoryRoad_1F 2
 5 26 VictoryRoad_B2F 3
 npcs
-misc_pushable_boulder 20 5 S static
-misc_pushable_boulder 21 4 S static
-misc_pushable_boulder 4 7 S static
-misc_pushable_boulder 9 10 S static
-misc_pushable_boulder 20 26 S static
-misc_pushable_boulder 21 25 S static
-misc_pushable_boulder 35 6 S static
-misc_breakable_rock 19 5 S static
-misc_breakable_rock 20 4 S static
-misc_breakable_rock 18 12 S static
-misc_breakable_rock 20 25 S static
-misc_breakable_rock 21 26 S static
-misc_pushable_boulder 34 4 S static
-people_man_3 37 12 W static
-people_woman_5 26 16 N static
-people_woman_5 5 21 W static
-misc_breakable_rock 34 3 S static
-misc_item_ball 42 8 S static
-misc_item_ball 32 3 S static
-people_man_3 14 16 S static
-people_woman_5 14 20 S static
+misc_pushable_boulder 20 5 S static FLAG_TEMP_13
+misc_pushable_boulder 21 4 S static FLAG_TEMP_14
+misc_pushable_boulder 4 7 S static FLAG_TEMP_11
+misc_pushable_boulder 9 10 S static FLAG_TEMP_12
+misc_pushable_boulder 20 26 S static FLAG_TEMP_17
+misc_pushable_boulder 21 25 S static FLAG_TEMP_16
+misc_pushable_boulder 35 6 S static FLAG_TEMP_1E
+misc_breakable_rock 19 5 S static FLAG_TEMP_19
+misc_breakable_rock 20 4 S static FLAG_TEMP_1A
+misc_breakable_rock 18 12 S static FLAG_TEMP_1B
+misc_breakable_rock 20 25 S static FLAG_TEMP_1C
+misc_breakable_rock 21 26 S static FLAG_TEMP_1D
+misc_pushable_boulder 34 4 S static FLAG_TEMP_1F
+people_man_3 37 12 W static 0
+people_woman_5 26 16 N static 0
+people_woman_5 5 21 W static 0
+misc_breakable_rock 34 3 S static FLAG_TEMP_15
+misc_item_ball 42 8 S static FLAG_ITEM_VICTORY_ROAD_B1F_TM_PSYCHIC
+misc_item_ball 32 3 S static FLAG_ITEM_VICTORY_ROAD_B1F_FULL_RESTORE
+people_man_3 14 16 S static 0
+people_woman_5 14 20 S static 0
 dialogs
 13	The POKéMON LEAGUE became distant again… What a letdown…
 14	By being together all the time, trust grows between POKéMON and TRAINERS.
@@ -101,13 +101,29 @@ dialogs
 19	Even outside of battle, I sense incredible power emanating from you and your POKéMON.
 20	Sure, this is VICTORY ROAD.But it's not all that different from the path you've taken so far.Try to enjoy things the rest of the way!
 objscripts
+0 EventScript_StrengthBoulder
+1 EventScript_StrengthBoulder
+2 EventScript_StrengthBoulder
+3 EventScript_StrengthBoulder
+4 EventScript_StrengthBoulder
+5 EventScript_StrengthBoulder
+6 EventScript_StrengthBoulder
+7 EventScript_RockSmash
+8 EventScript_RockSmash
+9 EventScript_RockSmash
+10 EventScript_RockSmash
+11 EventScript_RockSmash
+12 EventScript_StrengthBoulder
 13 VictoryRoad_B1F_EventScript_Samuel
 14 VictoryRoad_B1F_EventScript_Shannon
 15 VictoryRoad_B1F_EventScript_Michelle
+16 EventScript_RockSmash
 17 VictoryRoad_B1F_EventScript_ItemTMPsychic
 18 VictoryRoad_B1F_EventScript_ItemFullRestore
 19 VictoryRoad_B1F_EventScript_Mitchell
 20 VictoryRoad_B1F_EventScript_Halle
+movements
+Movement_SmashRock	delay,end
 scriptdefs
 = VictoryRoad_B1F_EventScript_Halle
 trainerbattle_single TRAINER_HALLE VictoryRoad_B1F_Text_HalleIntro VictoryRoad_B1F_Text_HalleDefeat
@@ -131,6 +147,52 @@ setflag FLAG_ITEM_VICTORY_ROAD_B1F_TM_PSYCHIC
 end
 = VictoryRoad_B1F_EventScript_ItemTMPsychic_Taken
 end
+= EventScript_RockSmash
+lockall
+goto_if_unset FLAG_BADGE03_GET EventScript_CantSmashRock
+checkpartymove MOVE_ROCK_SMASH
+goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CantSmashRock
+setfieldeffectargument 0 VAR_RESULT
+bufferpartymonnick STR_VAR_1 VAR_RESULT
+buffermovename STR_VAR_2 MOVE_ROCK_SMASH
+msgbox	Text_WantToSmash
+goto_if_eq VAR_RESULT NO EventScript_CancelSmash
+msgbox	Text_MonUsedFieldMove
+closemessage
+dofieldeffect FLDEFF_USE_ROCK_SMASH
+waitstate
+goto EventScript_SmashRock
+end
+@ Use rock smash from party menu
+goto EventScript_UseRockSmash
+= EventScript_UseRockSmash
+lockall
+dofieldeffect FLDEFF_USE_ROCK_SMASH
+waitstate
+goto EventScript_SmashRock
+end
+= EventScript_SmashRock
+applymovement VAR_LAST_TALKED Movement_SmashRock
+waitmovement 0
+removeobject VAR_LAST_TALKED
+specialvar VAR_RESULT TryUpdateRusturfTunnelState
+goto_if_eq VAR_RESULT TRUE EventScript_EndSmash
+special RockSmashWildEncounter
+goto_if_eq VAR_RESULT FALSE EventScript_EndSmash
+waitstate
+releaseall
+end
+= EventScript_EndSmash
+releaseall
+end
+= EventScript_CancelSmash
+closemessage
+releaseall
+end
+= EventScript_CantSmashRock
+msgbox	Text_CantSmash
+releaseall
+end
 = VictoryRoad_B1F_EventScript_Michelle
 trainerbattle_single TRAINER_MICHELLE VictoryRoad_B1F_Text_MichelleIntro VictoryRoad_B1F_Text_MichelleDefeat
 msgbox	You'll do fine, for sure! Your POKéMON are all eager to go!
@@ -142,6 +204,37 @@ end
 = VictoryRoad_B1F_EventScript_Samuel
 trainerbattle_single TRAINER_SAMUEL VictoryRoad_B1F_Text_SamuelIntro VictoryRoad_B1F_Text_SamuelDefeat
 msgbox	The POKéMON LEAGUE became distant again… What a letdown…
+end
+= EventScript_StrengthBoulder
+lockall
+goto_if_unset FLAG_BADGE04_GET EventScript_CantStrength
+goto_if_set FLAG_SYS_USE_STRENGTH EventScript_CheckActivatedBoulder
+checkpartymove MOVE_STRENGTH
+goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CantStrength
+setfieldeffectargument 0 VAR_RESULT
+msgbox	Text_WantToStrength
+goto_if_eq VAR_RESULT NO EventScript_CancelStrength
+closemessage
+dofieldeffect FLDEFF_USE_STRENGTH
+waitstate
+goto EventScript_ActivateStrength
+end
+= EventScript_ActivateStrength
+setflag FLAG_SYS_USE_STRENGTH
+msgbox	Text_MonUsedStrength
+releaseall
+end
+= EventScript_CancelStrength
+closemessage
+releaseall
+end
+= EventScript_CantStrength
+msgbox	Text_CantStrength
+releaseall
+end
+= EventScript_CheckActivatedBoulder
+msgbox	Text_StrengthActivated
+releaseall
 end
 encounters
 land GOLBAT:40:40,HARIYAMA:40:40,LAIRON:40:40,LAIRON:40:40,GOLBAT:38:38,HARIYAMA:38:38,GOLBAT:42:42,HARIYAMA:42:42,LAIRON:42:42,MAWILE:38:38,LAIRON:42:42,MAWILE:38:38

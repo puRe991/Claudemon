@@ -23,9 +23,9 @@ collision
 warps
 2 1 RustboroCity_DevonCorp_2F 1
 npcs
-people_gentleman 17 5 W static
-people_man_2 3 5 E static
-people_gentleman 15 5 S static
+people_gentleman 17 5 W static 0
+people_man_2 3 5 E static FLAG_HIDE_RUSTBORO_CITY_DEVON_CORP_3F_EMPLOYEE
+people_gentleman 15 5 S static 0
 dialogs
 0	MR. STONE: I'm counting on you!
 1	If you visit the SHIPYARD in SLATEPORT, you should go see CAPT. STERN.
@@ -34,6 +34,8 @@ objscripts
 0 RustboroCity_DevonCorp_3F_EventScript_MrStone
 1 RustboroCity_DevonCorp_3F_EventScript_Employee
 2 RustboroCity_DevonCorp_3F_EventScript_MrStone
+movements
+Common_Movement_FaceOriginalDirection	face_down,end
 scriptdefs
 = RustboroCity_DevonCorp_3F_EventScript_MrStone
 lock

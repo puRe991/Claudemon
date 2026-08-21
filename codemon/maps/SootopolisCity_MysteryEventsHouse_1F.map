@@ -23,7 +23,7 @@ warps
 4 7 SootopolisCity 12
 3 1 SootopolisCity_MysteryEventsHouse_B1F 0
 npcs
-people_old_man 6 4 E static
+people_old_man 6 4 E static 0
 dialogs
 0	When I was young, I traveled the world as a POKéMON TRAINER.Now that I've become an old buzzard, my only amusement is watching young TRAINERS battle.
 objscripts
@@ -87,6 +87,9 @@ special LoadPlayerParty
 msgbox	You won't battle? I'm disappointed that I can't see you battle…
 release
 end
+= Common_EventScript_SaveGame
+special SaveGame
+return
 = SootopolisCity_MysteryEventsHouse_1F_EventScript_ChooseParty
 msgbox	Oh, good, good!But my house isn't all that sturdy.Could I ask you to keep it down to a 3-on-3 match?
 fadescreen FADE_TO_BLACK

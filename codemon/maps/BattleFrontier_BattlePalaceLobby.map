@@ -31,12 +31,12 @@ warps
 13 11 BattleFrontier_OutsideEast 2
 5 4 BattleFrontier_BattlePalaceCorridor 0
 npcs
-people_expert_m 5 6 S static
-people_black_belt 11 8 S wander
-people_maniac 24 5 S static
-people_man_3 18 10 S wander
-people_beauty 2 10 S wander
-people_expert_m 19 6 S static
+people_expert_m 5 6 S static 0
+people_black_belt 11 8 S wander 0
+people_maniac 24 5 S static 0
+people_man_3 18 10 S wander 0
+people_beauty 2 10 S wander 0
+people_expert_m 19 6 S static 0
 dialogs
 1	For a hardy fellow like me, hardy POKéMON are the best.Offense is the best defense! A relentless attack is the ultimate!But that's not what I wanted to chat about.Every so often a really cute lady swings by here.She says that she can tell what POKéMON are thinking.I don't know about that part, but she is really cute.Huh? Why are you looking at me like that?
 2	I wonder what sort of nature a POKéMON would have if it favored enfeebling its opponents and chipping away slowly.I'd be surprised if it was a LAX nature.But, nah, that can't be right.
@@ -169,6 +169,9 @@ goto BattleFrontier_BattlePalaceLobby_EventScript_EndCancelChallenge
 = BattleFrontier_BattlePalaceLobby_EventScript_EndCancelChallenge
 release
 end
+= Common_EventScript_SaveGame
+special SaveGame
+return
 = BattleFrontier_BattlePalaceLobby_EventScript_LoadPartyAndCancelChallenge
 special LoadPlayerParty
 goto BattleFrontier_BattlePalaceLobby_EventScript_CancelChallenge

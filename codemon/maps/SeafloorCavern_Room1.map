@@ -49,17 +49,22 @@ warps
 17 13 SeafloorCavern_Room5 0
 6 2 SeafloorCavern_Room2 0
 npcs
-misc_pushable_boulder 5 11 S static
-misc_pushable_boulder 12 11 S static
-misc_breakable_rock 5 10 S static
-people_team_aqua_aqua_member_m 8 6 S static
-people_team_aqua_aqua_member_m 15 10 S static
+misc_pushable_boulder 5 11 S static FLAG_TEMP_11
+misc_pushable_boulder 12 11 S static FLAG_TEMP_12
+misc_breakable_rock 5 10 S static FLAG_TEMP_13
+people_team_aqua_aqua_member_m 8 6 S static FLAG_HIDE_SEAFLOOR_CAVERN_AQUA_GRUNTS
+people_team_aqua_aqua_member_m 15 10 S static FLAG_HIDE_SEAFLOOR_CAVERN_AQUA_GRUNTS
 dialogs
 3	I want to get a promotion so I can boss around the GRUNTS…
 4	That submarine we jacked, man, it's brutal as a ride. It's way too tight in there!
 objscripts
+0 EventScript_StrengthBoulder
+1 EventScript_StrengthBoulder
+2 EventScript_RockSmash
 3 SeafloorCavern_Room1_EventScript_Grunt1
 4 SeafloorCavern_Room1_EventScript_Grunt2
+movements
+Movement_SmashRock	delay,end
 scriptdefs
 = SeafloorCavern_Room1_EventScript_Grunt2
 trainerbattle_single TRAINER_GRUNT_SEAFLOOR_CAVERN_2 SeafloorCavern_Room1_Text_Grunt2Intro SeafloorCavern_Room1_Text_Grunt2Defeat
@@ -68,6 +73,83 @@ end
 = SeafloorCavern_Room1_EventScript_Grunt1
 trainerbattle_single TRAINER_GRUNT_SEAFLOOR_CAVERN_1 SeafloorCavern_Room1_Text_Grunt1Intro SeafloorCavern_Room1_Text_Grunt1Defeat
 msgbox	I want to get a promotion so I can boss around the GRUNTS…
+end
+= EventScript_RockSmash
+lockall
+goto_if_unset FLAG_BADGE03_GET EventScript_CantSmashRock
+checkpartymove MOVE_ROCK_SMASH
+goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CantSmashRock
+setfieldeffectargument 0 VAR_RESULT
+bufferpartymonnick STR_VAR_1 VAR_RESULT
+buffermovename STR_VAR_2 MOVE_ROCK_SMASH
+msgbox	Text_WantToSmash
+goto_if_eq VAR_RESULT NO EventScript_CancelSmash
+msgbox	Text_MonUsedFieldMove
+closemessage
+dofieldeffect FLDEFF_USE_ROCK_SMASH
+waitstate
+goto EventScript_SmashRock
+end
+@ Use rock smash from party menu
+goto EventScript_UseRockSmash
+= EventScript_UseRockSmash
+lockall
+dofieldeffect FLDEFF_USE_ROCK_SMASH
+waitstate
+goto EventScript_SmashRock
+end
+= EventScript_SmashRock
+applymovement VAR_LAST_TALKED Movement_SmashRock
+waitmovement 0
+removeobject VAR_LAST_TALKED
+specialvar VAR_RESULT TryUpdateRusturfTunnelState
+goto_if_eq VAR_RESULT TRUE EventScript_EndSmash
+special RockSmashWildEncounter
+goto_if_eq VAR_RESULT FALSE EventScript_EndSmash
+waitstate
+releaseall
+end
+= EventScript_EndSmash
+releaseall
+end
+= EventScript_CancelSmash
+closemessage
+releaseall
+end
+= EventScript_CantSmashRock
+msgbox	Text_CantSmash
+releaseall
+end
+= EventScript_StrengthBoulder
+lockall
+goto_if_unset FLAG_BADGE04_GET EventScript_CantStrength
+goto_if_set FLAG_SYS_USE_STRENGTH EventScript_CheckActivatedBoulder
+checkpartymove MOVE_STRENGTH
+goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CantStrength
+setfieldeffectargument 0 VAR_RESULT
+msgbox	Text_WantToStrength
+goto_if_eq VAR_RESULT NO EventScript_CancelStrength
+closemessage
+dofieldeffect FLDEFF_USE_STRENGTH
+waitstate
+goto EventScript_ActivateStrength
+end
+= EventScript_ActivateStrength
+setflag FLAG_SYS_USE_STRENGTH
+msgbox	Text_MonUsedStrength
+releaseall
+end
+= EventScript_CancelStrength
+closemessage
+releaseall
+end
+= EventScript_CantStrength
+msgbox	Text_CantStrength
+releaseall
+end
+= EventScript_CheckActivatedBoulder
+msgbox	Text_StrengthActivated
+releaseall
 end
 encounters
 land ZUBAT:30:30,ZUBAT:31:31,ZUBAT:32:32,ZUBAT:33:33,ZUBAT:28:28,ZUBAT:29:29,ZUBAT:34:34,ZUBAT:35:35,GOLBAT:34:34,GOLBAT:35:35,GOLBAT:33:33,GOLBAT:36:36

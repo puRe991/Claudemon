@@ -18,9 +18,9 @@ warps
 3 5 FortreeCity 1
 4 5 FortreeCity 1
 npcs
-people_ninja_boy 1 3 E static
-people_man_1 2 3 W static
-people_expert_f 7 4 S static
+people_ninja_boy 1 3 E static 0
+people_man_1 2 3 W static 0
+people_expert_f 7 4 S static 0
 dialogs
 0	Wrooooaaar! I need it! I have to get me a ! I'll do anything for it!…Uh… Did you hear that? My shout from the bottom of my heart?Having heard that, you will trade your for my , won't you?
 1	ZIGZAGOON: Gumomoh?

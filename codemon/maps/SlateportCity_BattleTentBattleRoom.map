@@ -21,4 +21,4 @@ collision
 1,0,0,0,0,0,0,0,0,0
 1,0,0,0,0,0,0,0,0,0
 npcs
-people_scientist_1 1 4 E static
+people_scientist_1 1 4 E static 0

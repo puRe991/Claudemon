@@ -163,15 +163,15 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,1,1,1,1,1,1,0,0,1,1,0,0,1,1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 npcs
-people_swimmer_m 51 65 S static
-people_swimmer_m 56 22 S static
-people_swimmer_f 63 43 S static
-people_swimmer_f 9 48 N static
-misc_item_ball 14 1 S static
-people_swimmer_f 15 66 S static
-people_swimmer_m 7 66 S static
-people_swimmer_f 64 5 S static
-people_swimmer_m 56 5 S static
+people_swimmer_m 51 65 S static 0
+people_swimmer_m 56 22 S static 0
+people_swimmer_f 63 43 S static 0
+people_swimmer_f 9 48 N static 0
+misc_item_ball 14 1 S static FLAG_ITEM_ROUTE_126_GREEN_SHARD
+people_swimmer_f 15 66 S static 0
+people_swimmer_m 7 66 S static 0
+people_swimmer_f 64 5 S static 0
+people_swimmer_m 56 5 S static 0
 objscripts
 0 Route126_EventScript_Barry
 1 Route126_EventScript_Dean

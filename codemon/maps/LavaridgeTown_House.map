@@ -22,16 +22,48 @@ warps
 3 7 LavaridgeTown 4
 4 7 LavaridgeTown 4
 npcs
-people_old_man 2 3 S static
-people_man_1 6 6 S static
-people_ninja_boy 8 4 S wander
+people_old_man 2 3 S static 0
+people_man_1 6 6 S static 0
+people_ninja_boy 8 4 S wander 0
 dialogs
 0	My wife's warming an EGG in the hot springs. This is what she told me.She left two POKéMON with the DAY CARE. And they discovered that EGG!
 1	ZIGZAGOON: Pshoo!
 objscripts
 0 LavaridgeTown_House_EventScript_OldMan
 1 LavaridgeTown_House_EventScript_Zigzagoon
+2 LavaridgeTown_House_EventScript_MimicTutor
 scriptdefs
+= LavaridgeTown_House_EventScript_MimicTutor
+lock
+faceplayer
+goto_if_set FLAG_MOVE_TUTOR_TAUGHT_MIMIC MoveTutor_EventScript_MimicTaught
+msgbox	MoveTutor_MimicTeach
+goto_if_eq VAR_RESULT NO MoveTutor_EventScript_MimicDeclined
+call MoveTutor_EventScript_CanOnlyBeLearnedOnce
+goto_if_eq VAR_RESULT NO MoveTutor_EventScript_MimicDeclined
+msgbox	MoveTutor_Text_MimicWhichMon
+setvar VAR_0x8005 TUTOR_MOVE_MIMIC
+call MoveTutor_EventScript_OpenPartyMenu
+goto_if_eq VAR_RESULT 0 MoveTutor_EventScript_MimicDeclined
+setflag FLAG_MOVE_TUTOR_TAUGHT_MIMIC
+goto MoveTutor_EventScript_MimicTaught
+end
+= MoveTutor_EventScript_MimicTaught
+msgbox	MoveTutor_Text_MimicTaught
+release
+end
+= MoveTutor_EventScript_MimicDeclined
+msgbox	MoveTutor_MimicDeclined
+release
+end
+= MoveTutor_EventScript_OpenPartyMenu
+special ChooseMonForMoveTutor
+lock
+faceplayer
+return
+= MoveTutor_EventScript_CanOnlyBeLearnedOnce
+msgbox	MoveTutor_Text_ThisMoveCanOnlyBeLearnedOnce
+return
 = LavaridgeTown_House_EventScript_Zigzagoon
 lock
 faceplayer

@@ -25,17 +25,19 @@ collision
 warps
 4 9 BattleFrontier_OutsideEast 9
 npcs
-people_hiker 4 6 N static
-people_fat_man 4 4 S static
-people_woman_2 3 5 E static
-people_pokefan_f 5 5 W static
-people_man_3 0 6 S wander
+people_hiker 4 6 N static 0
+people_fat_man 4 4 S static 0
+people_woman_2 3 5 E static 0
+people_pokefan_f 5 5 W static 0
+people_man_3 0 6 S wander 0
 objscripts
 0 BattleFrontier_Lounge3_EventScript_Gambler
 1 BattleFrontier_Lounge3_EventScript_FatMan
 2 BattleFrontier_Lounge3_EventScript_Woman
 3 BattleFrontier_Lounge3_EventScript_PokefanF
 4 BattleFrontier_Lounge3_EventScript_Man
+movements
+Common_Movement_FaceOriginalDirection	face_down,end
 scriptdefs
 = BattleFrontier_Lounge3_EventScript_Man
 msgbox	BattleFrontier_Lounge3_Text_ShouldBeTakingChallenges

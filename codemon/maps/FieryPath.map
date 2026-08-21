@@ -82,16 +82,22 @@ warps
 26 36 Route112 4
 26 4 Route112 5
 npcs
-misc_item_ball 8 3 S static
-misc_pushable_boulder 10 15 S static
-misc_pushable_boulder 17 15 S static
-misc_pushable_boulder 8 11 S static
-misc_pushable_boulder 3 12 S static
-misc_pushable_boulder 6 23 S static
-misc_pushable_boulder 5 24 S static
-misc_item_ball 7 32 S static
+misc_item_ball 8 3 S static FLAG_ITEM_FIERY_PATH_TM_TOXIC
+misc_pushable_boulder 10 15 S static FLAG_TEMP_11
+misc_pushable_boulder 17 15 S static FLAG_TEMP_12
+misc_pushable_boulder 8 11 S static FLAG_TEMP_13
+misc_pushable_boulder 3 12 S static FLAG_TEMP_14
+misc_pushable_boulder 6 23 S static FLAG_TEMP_15
+misc_pushable_boulder 5 24 S static FLAG_TEMP_16
+misc_item_ball 7 32 S static FLAG_ITEM_FIERY_PATH_FIRE_STONE
 objscripts
 0 FieryPath_EventScript_ItemTMToxic
+1 EventScript_StrengthBoulder
+2 EventScript_StrengthBoulder
+3 EventScript_StrengthBoulder
+4 EventScript_StrengthBoulder
+5 EventScript_StrengthBoulder
+6 EventScript_StrengthBoulder
 7 FieryPath_EventScript_ItemFireStone
 scriptdefs
 = FieryPath_EventScript_ItemFireStone
@@ -100,6 +106,37 @@ finditem ITEM_FIRE_STONE
 setflag FLAG_ITEM_FIERY_PATH_FIRE_STONE
 end
 = FieryPath_EventScript_ItemFireStone_Taken
+end
+= EventScript_StrengthBoulder
+lockall
+goto_if_unset FLAG_BADGE04_GET EventScript_CantStrength
+goto_if_set FLAG_SYS_USE_STRENGTH EventScript_CheckActivatedBoulder
+checkpartymove MOVE_STRENGTH
+goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CantStrength
+setfieldeffectargument 0 VAR_RESULT
+msgbox	Text_WantToStrength
+goto_if_eq VAR_RESULT NO EventScript_CancelStrength
+closemessage
+dofieldeffect FLDEFF_USE_STRENGTH
+waitstate
+goto EventScript_ActivateStrength
+end
+= EventScript_ActivateStrength
+setflag FLAG_SYS_USE_STRENGTH
+msgbox	Text_MonUsedStrength
+releaseall
+end
+= EventScript_CancelStrength
+closemessage
+releaseall
+end
+= EventScript_CantStrength
+msgbox	Text_CantStrength
+releaseall
+end
+= EventScript_CheckActivatedBoulder
+msgbox	Text_StrengthActivated
+releaseall
 end
 = FieryPath_EventScript_ItemTMToxic
 goto_if_set FLAG_ITEM_FIERY_PATH_TM_TOXIC FieryPath_EventScript_ItemTMToxic_Taken

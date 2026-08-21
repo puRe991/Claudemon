@@ -34,11 +34,11 @@ warps
 4 13 BattleFrontier_OutsideWest 8
 4 1 BattleFrontier_OutsideWest 9
 npcs
-people_teala 0 11 E static
-people_teala 8 11 W static
-people_man_2 8 4 W static
-people_scott 4 5 S static
-people_man_2 0 4 E static
+people_teala 0 11 E static 0
+people_teala 8 11 W static 0
+people_man_2 8 4 W static 0
+people_scott 4 5 S static FLAG_HIDE_BATTLE_FRONTIER_RECEPTION_GATE_SCOTT
+people_man_2 0 4 E static 0
 dialogs
 0	The front lines of POKéMON battling! Welcome to the BATTLE FRONTIER!
 1	I'm your guide to the various facilities here in the BATTLE FRONTIER.

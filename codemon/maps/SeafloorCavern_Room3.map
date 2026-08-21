@@ -41,19 +41,26 @@ warps
 9 13 SeafloorCavern_Room7 1
 4 15 SeafloorCavern_Room6 1
 npcs
-misc_pushable_boulder 13 10 S static
-misc_pushable_boulder 11 10 S static
-misc_pushable_boulder 12 9 S static
-misc_pushable_boulder 12 7 S static
-misc_pushable_boulder 11 8 S static
-misc_pushable_boulder 12 11 S static
-misc_pushable_boulder 13 8 S static
-people_team_aqua_aqua_member_f 9 5 W static
-people_team_aqua_aqua_member_m 5 5 E static
+misc_pushable_boulder 13 10 S static FLAG_TEMP_12
+misc_pushable_boulder 11 10 S static FLAG_TEMP_14
+misc_pushable_boulder 12 9 S static FLAG_TEMP_15
+misc_pushable_boulder 12 7 S static FLAG_TEMP_16
+misc_pushable_boulder 11 8 S static FLAG_TEMP_17
+misc_pushable_boulder 12 11 S static FLAG_TEMP_18
+misc_pushable_boulder 13 8 S static FLAG_TEMP_19
+people_team_aqua_aqua_member_f 9 5 W static FLAG_HIDE_SEAFLOOR_CAVERN_AQUA_GRUNTS
+people_team_aqua_aqua_member_m 5 5 E static FLAG_HIDE_SEAFLOOR_CAVERN_AQUA_GRUNTS
 dialogs
 7	Ahahahaha! You're so darn strong.It's terribly disappointing that you're not a TEAM AQUA member.You could have enjoyed the fabulous world our BOSS has promised as one of us…
 8	You know, we don't dare question the motives of our leader.But here you are, just some punk, going up against our BOSS.Maybe… You must be something…
 objscripts
+0 EventScript_StrengthBoulder
+1 EventScript_StrengthBoulder
+2 EventScript_StrengthBoulder
+3 EventScript_StrengthBoulder
+4 EventScript_StrengthBoulder
+5 EventScript_StrengthBoulder
+6 EventScript_StrengthBoulder
 7 SeafloorCavern_Room3_EventScript_Shelly
 8 SeafloorCavern_Room3_EventScript_Grunt5
 scriptdefs
@@ -64,6 +71,37 @@ end
 = SeafloorCavern_Room3_EventScript_Shelly
 trainerbattle_single TRAINER_SHELLY_SEAFLOOR_CAVERN SeafloorCavern_Room3_Text_ShellyIntro SeafloorCavern_Room3_Text_ShellyDefeat
 msgbox	Ahahahaha! You're so darn strong.It's terribly disappointing that you're not a TEAM AQUA member.You could have enjoyed the fabulous world our BOSS has promised as one of us…
+end
+= EventScript_StrengthBoulder
+lockall
+goto_if_unset FLAG_BADGE04_GET EventScript_CantStrength
+goto_if_set FLAG_SYS_USE_STRENGTH EventScript_CheckActivatedBoulder
+checkpartymove MOVE_STRENGTH
+goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CantStrength
+setfieldeffectargument 0 VAR_RESULT
+msgbox	Text_WantToStrength
+goto_if_eq VAR_RESULT NO EventScript_CancelStrength
+closemessage
+dofieldeffect FLDEFF_USE_STRENGTH
+waitstate
+goto EventScript_ActivateStrength
+end
+= EventScript_ActivateStrength
+setflag FLAG_SYS_USE_STRENGTH
+msgbox	Text_MonUsedStrength
+releaseall
+end
+= EventScript_CancelStrength
+closemessage
+releaseall
+end
+= EventScript_CantStrength
+msgbox	Text_CantStrength
+releaseall
+end
+= EventScript_CheckActivatedBoulder
+msgbox	Text_StrengthActivated
+releaseall
 end
 encounters
 land ZUBAT:30:30,ZUBAT:31:31,ZUBAT:32:32,ZUBAT:33:33,ZUBAT:28:28,ZUBAT:29:29,ZUBAT:34:34,ZUBAT:35:35,GOLBAT:34:34,GOLBAT:35:35,GOLBAT:33:33,GOLBAT:36:36

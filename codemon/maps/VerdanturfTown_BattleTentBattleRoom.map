@@ -21,6 +21,6 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0
 npcs
-people_expert_m 2 4 E static
+people_expert_m 2 4 E static 0
 grass
 13

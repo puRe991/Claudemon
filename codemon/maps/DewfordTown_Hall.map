@@ -24,15 +24,15 @@ warps
 5 8 DewfordTown 0
 6 8 DewfordTown 0
 npcs
-people_girl_2 4 6 N static
-people_woman_2 1 5 E static
-people_man_1 5 4 W static
-people_expert_m 9 3 N static
-people_twin 5 2 N static
-people_little_boy 14 7 S wander
-people_school_kid_m 12 3 E static
-people_psychic_m 15 3 W static
-people_maniac 8 6 S wander
+people_girl_2 4 6 N static 0
+people_woman_2 1 5 E static 0
+people_man_1 5 4 W static 0
+people_expert_m 9 3 N static 0
+people_twin 5 2 N static 0
+people_little_boy 14 7 S wander 0
+people_school_kid_m 12 3 E static 0
+people_psychic_m 15 3 W static 0
+people_maniac 8 6 S wander FLAG_HIDE_DEWFORD_HALL_SLUDGE_BOMB_MAN
 dialogs
 0	What's in vogue? Why, it has to be “”!I can't imagine what life would be like without “”!
 1	I'm teaching my POKéMON about “,” but it's not going well.It's a bit too much, I think.
@@ -52,6 +52,10 @@ objscripts
 7 DewfordTown_Hall_EventScript_PsychicM
 8 DewfordTown_Hall_EventScript_SludgeBombMan
 movements
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
 DewfordTown_Hall_Movement_PsychicWalkInPlaceLeft	delay,end
 DewfordTown_Hall_Movement_SchoolKidWalkInPlaceRight	delay,end
 scriptdefs

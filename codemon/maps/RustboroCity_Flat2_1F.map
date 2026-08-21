@@ -25,8 +25,8 @@ warps
 3 8 RustboroCity 10
 3 1 RustboroCity_Flat2_2F 0
 npcs
-pokemon_skitty 11 4 W static
-people_old_woman 8 4 E static
+pokemon_skitty 11 4 W static 0
+people_old_woman 8 4 E static 0
 dialogs
 0	SKITTY: Gyaaaah!
 1	DEVON CORPORATION's workers live in this building.

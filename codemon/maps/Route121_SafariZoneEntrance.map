@@ -36,15 +36,16 @@ warps
 14 13 Route121 0
 15 13 Route121 0
 npcs
-people_picnicker 17 9 W static
-people_camper 10 2 S static
-people_camper 8 2 S static
+people_picnicker 17 9 W static 0
+people_camper 10 2 S static 0
+people_camper 8 2 S static 0
 objscripts
 0 Route121_SafariZoneEntrance_EventScript_WelcomeAttendant
 1 Route121_SafariZoneEntrance_EventScript_InfoAttendant
 triggers
 8 4 VAR_TEMP_1 0 Route121_SafariZoneEntrance_EventScript_EntranceCounterTrigger
 movements
+Common_Movement_WalkInPlaceFasterUp	delay,end
 Route121_SafariZoneEntrance_Movement_BackAwayFromCounter	right,end
 Route121_SafariZoneEntrance_Movement_EnterSafariZone	left,left,left,left,left,left,down,delay,end
 scriptdefs

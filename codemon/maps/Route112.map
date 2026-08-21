@@ -130,20 +130,20 @@ warps
 11 36 FieryPath 0
 22 10 FieryPath 1
 npcs
-people_team_magma_magma_member_m 26 30 N static
-people_hiker 24 34 W pace_h
-people_camper 29 49 S static
-people_picnicker 22 46 S static
-people_hiker 15 40 S static
-people_team_magma_magma_member_m 27 30 N static
-people_man_1 27 6 S static
-people_man_1 28 6 S static
-people_man_1 29 6 S static
-people_man_1 30 6 S static
-people_hiker 8 50 S static
-misc_item_ball 14 43 S static
-people_man_5 31 7 S static
-people_woman_2 31 11 S static
+people_team_magma_magma_member_m 26 30 N static FLAG_HIDE_ROUTE_112_TEAM_MAGMA
+people_hiker 24 34 W pace_h 0
+people_camper 29 49 S static 0
+people_picnicker 22 46 S static 0
+people_hiker 15 40 S static 0
+people_team_magma_magma_member_m 27 30 N static FLAG_HIDE_ROUTE_112_TEAM_MAGMA
+people_man_1 27 6 S static 0
+people_man_1 28 6 S static 0
+people_man_1 29 6 S static 0
+people_man_1 30 6 S static 0
+people_hiker 8 50 S static 0
+misc_item_ball 14 43 S static FLAG_ITEM_ROUTE_112_NUGGET
+people_man_5 31 7 S static 0
+people_woman_2 31 11 S static 0
 dialogs
 0	Hey, man, is our leader really going to awaken that thing?
 5	Hey, man, is our leader really going to awaken that thing?
@@ -155,10 +155,18 @@ objscripts
 3 Route112_EventScript_Carol
 4 Route112_EventScript_Trent
 5 Route112_EventScript_MagmaGrunts
+6 BerryTreeScript
+7 BerryTreeScript
+8 BerryTreeScript
+9 BerryTreeScript
 10 Route112_EventScript_Hiker
 11 Route112_EventScript_ItemNugget
 12 Route112_EventScript_Bryant
 13 Route112_EventScript_Shayla
+movements
+Common_Movement_FaceOriginalDirection	face_down,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
 scriptdefs
 = Route112_EventScript_Shayla
 trainerbattle_single TRAINER_SHAYLA Route112_Text_ShaylaIntro Route112_Text_ShaylaDefeat
@@ -177,6 +185,162 @@ end
 end
 = Route112_EventScript_Hiker
 msgbox	Eh, I'd like to get to MAUVILLE, but if I went down these ledges, it'd be no easy matter to get back to LAVARIDGE.
+end
+= BerryTreeScript
+special ObjectEventInteractionGetBerryTreeData
+switch VAR_0x8004
+case BERRY_STAGE_SPARKLING BerryTree_EventScript_Sparkling
+case BERRY_STAGE_NO_BERRY BerryTree_EventScript_CheckSoil
+case BERRY_STAGE_PLANTED BerryTree_EventScript_CheckBerryStage1
+case BERRY_STAGE_SPROUTED BerryTree_EventScript_CheckBerryStage2
+case BERRY_STAGE_TALLER BerryTree_EventScript_CheckBerryStage3
+case BERRY_STAGE_FLOWERING BerryTree_EventScript_CheckBerryStage4
+case BERRY_STAGE_BERRIES BerryTree_EventScript_CheckBerryFullyGrown
+end
+= BerryTree_EventScript_CheckBerryFullyGrown
+buffernumberstring STR_VAR_2 VAR_0x8006
+lock
+faceplayer
+special ObjectEventInteractionGetBerryCountString
+msgbox	BerryTree_Text_WantToPick
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_PickBerry
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPickingBerry
+goto BerryTree_EventScript_PickBerry
+= BerryTree_EventScript_PickBerry
+special ObjectEventInteractionPickBerryTree
+goto_if_eq VAR_0x8004 0 BerryTree_EventScript_BerryPocketFull
+special IncrementDailyPickedBerries
+special ObjectEventInteractionRemoveBerryTree
+message BerryTree_Text_PickedTheBerry
+playfanfare MUS_OBTAIN_BERRY
+waitmessage
+waitfanfare
+waitbuttonpress
+message BerryTree_Text_PutAwayBerry
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_BerryPocketFull
+message BerryTree_Text_BerryPocketFull
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_CancelPickingBerry
+message BerryTree_Text_BerryLeftUnpicked
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_CheckBerryStage4
+call BerryTree_EventScript_GetCareAdverb
+lockall
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_BerryGrowthStage4
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+@ VAR_0x8005 here is the number of times watered
+@ Buffered by ObjectEventInteractionGetBerryTreeData
+goto BerryTree_EventScript_GetCareAdverb
+= BerryTree_EventScript_GetCareAdverb
+goto_if_eq VAR_0x8005 0 BerryTree_EventScript_SetAdverbPoor
+goto_if_eq VAR_0x8005 4 BerryTree_EventScript_SetAdverbGreat
+bufferstring STR_VAR_2 BerryTree_Text_CareAdverbGood
+return
+= BerryTree_EventScript_SetAdverbGreat
+bufferstring STR_VAR_2 BerryTree_Text_CareAdverbGreat
+return
+= BerryTree_EventScript_SetAdverbPoor
+bufferstring STR_VAR_2 BerryTree_Text_CareAdverbPoor
+return
+@ VAR_0x8006 here is the number of berries
+goto BerryTree_EventScript_CheckBerryFullyGrown
+= BerryTree_EventScript_WantToWater
+checkitem ITEM_WAILMER_PAIL
+goto_if_eq VAR_RESULT FALSE BerryTree_EventScript_DontWater
+special ObjectEventInteractionGetBerryName
+msgbox	BerryTree_Text_WantToWater
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_WaterBerry
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_DontWater
+goto BerryTree_EventScript_DontWater
+= BerryTree_EventScript_DontWater
+releaseall
+end
+= BerryTree_EventScript_WaterBerry
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_WateredTheBerry
+waitmessage
+special ObjectEventInteractionWaterBerryTree
+special DoWateringBerryTreeAnim
+message BerryTree_Text_PlantIsDelighted
+waitmessage
+waitbuttonpress
+releaseall
+end
+= BerryTree_EventScript_CheckBerryStage3
+lockall
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_BerryGrowthStage3
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckBerryStage2
+lockall
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_BerryGrowthStage2
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckBerryStage1
+lockall
+special ObjectEventInteractionGetBerryCountString
+message BerryTree_Text_BerryGrowthStage1
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckSoil
+lock
+faceplayer
+specialvar VAR_RESULT PlayerHasBerries
+goto_if_eq VAR_RESULT TRUE BerryTree_EventScript_WantToPlant
+message BerryTree_Text_ItsSoftLoamySoil
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_WantToPlant
+msgbox	BerryTree_Text_WantToPlant
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_ChooseBerryToPlant
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPlanting
+end
+= BerryTree_EventScript_CancelPlanting
+release
+end
+= BerryTree_EventScript_ChooseBerryToPlant
+fadescreen FADE_TO_BLACK
+closemessage
+special Bag_ChooseBerry
+goto_if_eq VAR_ITEM_ID 0 BerryTree_EventScript_CancelPlanting
+removeitem VAR_ITEM_ID
+call BerryTree_EventScript_PlantBerry
+goto BerryTree_EventScript_CancelPlanting
+= BerryTree_EventScript_PlantBerry
+special ObjectEventInteractionPlantBerryTree
+incrementgamestat GAME_STAT_PLANTED_BERRIES
+special IncrementDailyPlantedBerries
+special ObjectEventInteractionGetBerryCountString
+message BerryTree_Text_PlantedOneBerry
+waitmessage
+waitbuttonpress
+return
+= BerryTree_EventScript_Sparkling
+lockall
+message BerryTree_Text_ExclamationPoint
+waitmessage
+waitbuttonpress
+releaseall
 end
 = Route112_EventScript_MagmaGrunts
 lockall

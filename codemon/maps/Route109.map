@@ -131,30 +131,30 @@ collision
 warps
 12 5 Route109_SeashoreHouse 0
 npcs
-misc_mr_brineys_boat 21 26 N static
-people_expert_m 21 24 N static
-people_swimmer_m 12 36 E static
-people_swimmer_f 25 39 S static
-people_sailor 15 17 S static
-people_sailor 24 13 W static
-people_tuber_m 19 10 S static
-people_tuber_f 22 7 S static
-people_little_girl 11 6 S static
-misc_item_ball 27 46 S static
-people_tuber_f 29 32 S static
-people_tuber_f 28 31 S static
-people_fisherman 21 56 W static
-people_tuber_m 24 18 E static
-people_tuber_f 25 18 W static
-people_pokefan_f 30 32 S static
-people_woman_4 8 41 S static
-people_man_4 9 41 S static
-people_old_man 33 6 S static
-people_man_1 32 6 S static
-people_tuber_f 17 13 S static
-people_tuber_m 27 7 S static
-misc_item_ball 25 6 S static
-people_man_5 17 56 S static
+misc_mr_brineys_boat 21 26 N static FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
+people_expert_m 21 24 N static FLAG_HIDE_ROUTE_109_MR_BRINEY
+people_swimmer_m 12 36 E static 0
+people_swimmer_f 25 39 S static 0
+people_sailor 15 17 S static 0
+people_sailor 24 13 W static 0
+people_tuber_m 19 10 S static 0
+people_tuber_f 22 7 S static 0
+people_little_girl 11 6 S static 0
+misc_item_ball 27 46 S static FLAG_ITEM_ROUTE_109_PP_UP
+people_tuber_f 29 32 S static 0
+people_tuber_f 28 31 S static 0
+people_fisherman 21 56 W static 0
+people_tuber_m 24 18 E static 0
+people_tuber_f 25 18 W static 0
+people_pokefan_f 30 32 S static 0
+people_woman_4 8 41 S static 0
+people_man_4 9 41 S static 0
+people_old_man 33 6 S static 0
+people_man_1 32 6 S static 0
+people_tuber_f 17 13 S static 0
+people_tuber_m 27 7 S static 0
+misc_item_ball 25 6 S static FLAG_ITEM_ROUTE_109_POTION
+people_man_5 17 56 S static 0
 dialogs
 8	Yo, TRAINERS! Whether you're hot to trot, or cool cat not, chill at my papa's spot!
 13	Our sand castle's taking a long time to make.
@@ -194,6 +194,7 @@ triggers
 13 16 0 0 Route109_HiddenItem_13_16
 8 42 0 0 Route109_HiddenItem_8_42
 movements
+Common_Movement_FaceOriginalDirection	face_down,end
 Route109_Movement_BrineyEnterBoat	down,end
 Route109_Movement_BrineyExitBoat	down,delay,end
 Route109_Movement_PlayerEnterBoatEast	right,down,end

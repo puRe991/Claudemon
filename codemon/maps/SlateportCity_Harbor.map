@@ -38,14 +38,14 @@ warps
 19 15 SlateportCity 9
 20 15 SlateportCity 9
 npcs
-people_beauty 8 10 S static
-people_sailor 4 12 W static
-people_fat_man 1 12 E static
-people_scientist_1 6 13 S static
-misc_ss_tidal 8 9 E static
-people_team_aqua_aqua_member_m 7 10 E static
-people_team_aqua_archie 8 10 W static
-misc_submarine_shadow 7 9 E static
+people_beauty 8 10 S static FLAG_HIDE_SLATEPORT_CITY_HARBOR_PATRONS
+people_sailor 4 12 W static FLAG_HIDE_SLATEPORT_CITY_HARBOR_PATRONS
+people_fat_man 1 12 E static FLAG_HIDE_SLATEPORT_CITY_HARBOR_PATRONS
+people_scientist_1 6 13 S static FLAG_HIDE_SLATEPORT_CITY_HARBOR_CAPTAIN_STERN
+misc_ss_tidal 8 9 E static FLAG_HIDE_SLATEPORT_CITY_HARBOR_SS_TIDAL
+people_team_aqua_aqua_member_m 7 10 E static FLAG_HIDE_SLATEPORT_CITY_HARBOR_AQUA_GRUNT
+people_team_aqua_archie 8 10 W static FLAG_HIDE_SLATEPORT_CITY_HARBOR_ARCHIE
+misc_submarine_shadow 7 9 E static FLAG_HIDE_SLATEPORT_CITY_HARBOR_SUBMARINE_SHADOW
 dialogs
 0	I beg your pardon? You're looking for a ship?I'm sorry, the ferry service isn't available at present…
 1	For a ship to sail safely, we need to know about the weather!Speaking of weather, I heard something from a guy at the WEATHER INSTITUTE.He was saying abnormal weather has been reported all over the place!You should visit the WEATHER INSTITUTE and ask around!
@@ -62,6 +62,10 @@ triggers
 8 13 VAR_SLATEPORT_HARBOR_STATE 1 SlateportCity_Harbor_EventScript_AquaEscapeTrigger2
 8 14 VAR_SLATEPORT_HARBOR_STATE 1 SlateportCity_Harbor_EventScript_AquaEscapeTrigger3
 movements
+Common_Movement_FaceOriginalDirection	face_down,end
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
 SlateportCity_Harbor_Movement_AquaBoardSub	delay,delay,up,delay,end
 SlateportCity_Harbor_Movement_BoardFerryEast	right,delay,end
 SlateportCity_Harbor_Movement_BoardFerryNorth	up,end

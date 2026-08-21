@@ -46,33 +46,43 @@ warps
 42 6 TerraCave_Entrance 0
 9 6 TerraCave_Entrance 0
 npcs
-people_man_1 35 5 S static
-people_man_1 36 5 S static
-people_man_1 37 5 S static
-people_man_5 64 10 S static
-people_reporter_f 33 8 S static
-people_cameraman 34 8 S static
-people_girl_2 12 10 S wander
-people_reporter_f 33 8 S static
-people_cameraman 34 8 S static
-people_reporter_f 33 8 S static
-people_cameraman 34 8 S static
-misc_cuttable_tree 38 8 S static
-people_fisherman 28 8 W static
-people_woman_2 7 12 N static
-people_fisherman 14 14 S static
-people_man_5 56 7 S static
-people_fisherman 39 15 S static
-people_man_5 17 11 S static
-people_steven 44 7 S static
-misc_item_ball 69 7 S static
-people_youngster 7 7 S static
+people_man_1 35 5 S static 0
+people_man_1 36 5 S static 0
+people_man_1 37 5 S static 0
+people_man_5 64 10 S static 0
+people_reporter_f 33 8 S static FLAG_HIDE_ROUTE_118_GABBY_AND_TY_1
+people_cameraman 34 8 S static FLAG_HIDE_ROUTE_118_GABBY_AND_TY_1
+people_girl_2 12 10 S wander 0
+people_reporter_f 33 8 S static FLAG_HIDE_ROUTE_118_GABBY_AND_TY_2
+people_cameraman 34 8 S static FLAG_HIDE_ROUTE_118_GABBY_AND_TY_2
+people_reporter_f 33 8 S static FLAG_HIDE_ROUTE_118_GABBY_AND_TY_3
+people_cameraman 34 8 S static FLAG_HIDE_ROUTE_118_GABBY_AND_TY_3
+misc_cuttable_tree 38 8 S static FLAG_TEMP_11
+people_fisherman 28 8 W static 0
+people_woman_2 7 12 N static 0
+people_fisherman 14 14 S static 0
+people_man_5 56 7 S static 0
+people_fisherman 39 15 S static 0
+people_man_5 17 11 S static 0
+people_steven 44 7 S static FLAG_HIDE_ROUTE_118_STEVEN
+misc_item_ball 69 7 S static FLAG_ITEM_ROUTE_118_HYPER_POTION
+people_youngster 7 7 S static 0
 dialogs
 6	Even if there isn't a boat, you can cross rivers and the sea if you have a POKéMON that knows SURF.POKéMON can be counted on to do so much!
 12	Hmm! A GOOD ROD is really good!Wouldn't you agree?
 objscripts
+0 BerryTreeScript
+1 BerryTreeScript
+2 BerryTreeScript
 3 Route118_EventScript_Perry
+4 GabbyAndTy_EventScript_GabbyBattle2
+5 GabbyAndTy_EventScript_TyBattle2
 6 Route118_EventScript_Girl
+7 GabbyAndTy_EventScript_GabbyBattle5
+8 GabbyAndTy_EventScript_TyBattle5
+9 GabbyAndTy_EventScript_GabbyBattle6
+10 GabbyAndTy_EventScript_TyBattle6
+11 EventScript_CutTree
 12 Route118_EventScript_GoodRodFisherman
 13 Route118_EventScript_Rose
 14 Route118_EventScript_Wade
@@ -88,6 +98,13 @@ triggers
 31 13 0 0 Route118_HiddenItem_31_13
 12 14 0 0 Route118_HiddenItem_12_14
 movements
+Common_Movement_FaceUp	face_up,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
+GabbyAndTy_Movement_WalkInPlaceDown	delay,end
+GabbyAndTy_Movement_WalkInPlaceLeft	delay,end
+GabbyAndTy_Movement_WalkInPlaceUp	delay,end
+Movement_CutTreeDown	delay,end
 Route118_Movement_PlayerWatchStevenExit	delay,delay,end
 Route118_Movement_StevenApproachLedge0	left,end
 Route118_Movement_StevenApproachLedge2	right,end
@@ -246,12 +263,314 @@ end
 msgbox	Try catching all sorts of POKéMON with your GOOD ROD.
 release
 end
+= EventScript_CutTree
+lockall
+goto_if_unset FLAG_BADGE01_GET EventScript_CheckTreeCantCut
+checkpartymove MOVE_CUT
+goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CheckTreeCantCut
+setfieldeffectargument 0 VAR_RESULT
+bufferpartymonnick STR_VAR_1 VAR_RESULT
+buffermovename STR_VAR_2 MOVE_CUT
+msgbox	Text_WantToCut
+goto_if_eq VAR_RESULT NO EventScript_CancelCut
+msgbox	Text_MonUsedFieldMove
+closemessage
+dofieldeffect FLDEFF_USE_CUT_ON_TREE
+waitstate
+goto EventScript_CutTreeDown
+end
+@ Use cut from party menu
+goto EventScript_UseCut
+= EventScript_UseCut
+lockall
+dofieldeffect FLDEFF_USE_CUT_ON_TREE
+waitstate
+goto EventScript_CutTreeDown
+end
+= EventScript_CutTreeDown
+applymovement VAR_LAST_TALKED Movement_CutTreeDown
+waitmovement 0
+removeobject VAR_LAST_TALKED
+releaseall
+end
+= EventScript_CancelCut
+closemessage
+releaseall
+end
+= EventScript_CheckTreeCantCut
+msgbox	Text_CantCut
+releaseall
+end
+= GabbyAndTy_EventScript_TyBattle6
+trainerbattle_double TRAINER_GABBY_AND_TY_6 GabbyAndTy_Text_TyIntro GabbyAndTy_Text_TyDefeat GabbyAndTy_Text_TyNotEnoughMons GabbyAndTy_EventScript_RequestInterview
+msgbox	GabbyAndTy_Text_TyPostBattle
+release
+end
+= GabbyAndTy_EventScript_RequestInterview
+special GabbyAndTyBeforeInterview
+special GetGabbyAndTyLocalIds
+call_if_eq VAR_FACING DIR_NORTH GabbyAndTy_EventScript_FacePlayerNorth
+call_if_eq VAR_FACING DIR_SOUTH GabbyAndTy_EventScript_FacePlayerSouth
+call_if_eq VAR_FACING DIR_EAST GabbyAndTy_EventScript_FacePlayerEast
+goto_if_set FLAG_TEMP_SKIP_GABBY_INTERVIEW GabbyAndTy_EventScript_KeepingAnEyeOutForYou
+specialvar VAR_RESULT GabbyAndTyGetLastQuote
+goto_if_eq VAR_RESULT 0 GabbyAndTy_EventScript_DidntInterviewLastTime
+msgbox	GabbyAndTy_Text_QuoteFromLastInterview
+specialvar VAR_RESULT GabbyAndTyGetLastBattleTrivia
+switch VAR_RESULT
+case 0 GabbyAndTy_EventScript_RequestInterviewNoTrivia
+case 1 GabbyAndTy_EventScript_RequestInterviewShortBattle
+case 2 GabbyAndTy_EventScript_RequestInterviewThrewBall
+case 3 GabbyAndTy_EventScript_RequestInterviewUsedItems
+case 4 GabbyAndTy_EventScript_RequestInterviewLostAMon
+end
+= GabbyAndTy_EventScript_RequestInterviewLostAMon
+msgbox	GabbyAndTy_Text_WeLookedRespectableInterviewAgain
+goto GabbyAndTy_EventScript_Interview
+end
+= GabbyAndTy_EventScript_Interview
+goto_if_eq VAR_RESULT NO GabbyAndTy_EventScript_DontGiveUpKeepingEyeOut
+msgbox	GabbyAndTy_Text_DescribeYourFeelings
+setvar VAR_0x8004 EASY_CHAT_TYPE_GABBY_AND_TY
+call Common_ShowEasyChatScreen
+lock
+faceplayer
+goto_if_eq VAR_RESULT 0 GabbyAndTy_EventScript_DontGiveUpKeepingEyeOut
+msgbox	GabbyAndTy_Text_PerfectWellBeSeeingYou
+special GabbyAndTyAfterInterview
+setflag FLAG_TEMP_SKIP_GABBY_INTERVIEW
+release
+end
+= GabbyAndTy_EventScript_DontGiveUpKeepingEyeOut
+msgbox	GabbyAndTy_Text_DontGiveUpKeepingEyeOut
+setflag FLAG_TEMP_SKIP_GABBY_INTERVIEW
+release
+end
+= GabbyAndTy_EventScript_RequestInterviewUsedItems
+msgbox	GabbyAndTy_Text_CleverItemSkillsInterviewAgain
+goto GabbyAndTy_EventScript_Interview
+end
+= GabbyAndTy_EventScript_RequestInterviewThrewBall
+msgbox	GabbyAndTy_Text_YouThrewABallAtUsInterviewAgain
+goto GabbyAndTy_EventScript_Interview
+end
+= GabbyAndTy_EventScript_RequestInterviewShortBattle
+msgbox	GabbyAndTy_Text_YouStompedUsInterviewAgain
+goto GabbyAndTy_EventScript_Interview
+end
+= GabbyAndTy_EventScript_RequestInterviewNoTrivia
+msgbox	GabbyAndTy_Text_InterviewAgain
+goto GabbyAndTy_EventScript_Interview
+end
+= GabbyAndTy_EventScript_DidntInterviewLastTime
+msgbox	GabbyAndTy_Text_GiveUsAnInterviewThisTime
+goto GabbyAndTy_EventScript_Interview
+end
+= GabbyAndTy_EventScript_KeepingAnEyeOutForYou
+msgbox	GabbyAndTy_Text_KeepingAnEyeOutForYou
+release
+end
+= GabbyAndTy_EventScript_FacePlayerEast
+applymovement VAR_0x8004 GabbyAndTy_Movement_WalkInPlaceLeft
+applymovement VAR_0x8005 Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+return
+= GabbyAndTy_EventScript_FacePlayerSouth
+applymovement VAR_0x8004 GabbyAndTy_Movement_WalkInPlaceUp
+applymovement VAR_0x8005 Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+return
+= GabbyAndTy_EventScript_FacePlayerNorth
+applymovement VAR_0x8004 GabbyAndTy_Movement_WalkInPlaceDown
+waitmovement 0
+return
+= GabbyAndTy_EventScript_GabbyBattle6
+trainerbattle_double TRAINER_GABBY_AND_TY_6 GabbyAndTy_Text_GabbyIntro GabbyAndTy_Text_GabbyDefeat GabbyAndTy_Text_GabbyNotEnoughMons GabbyAndTy_EventScript_RequestInterview
+msgbox	GabbyAndTy_Text_KeepingAnEyeOutForYou
+release
+end
+= GabbyAndTy_EventScript_TyBattle5
+trainerbattle_double TRAINER_GABBY_AND_TY_5 GabbyAndTy_Text_TyIntro GabbyAndTy_Text_TyDefeat GabbyAndTy_Text_TyNotEnoughMons GabbyAndTy_EventScript_RequestInterview
+msgbox	GabbyAndTy_Text_TyPostBattle
+release
+end
+= GabbyAndTy_EventScript_GabbyBattle5
+trainerbattle_double TRAINER_GABBY_AND_TY_5 GabbyAndTy_Text_GabbyIntro GabbyAndTy_Text_GabbyDefeat GabbyAndTy_Text_GabbyNotEnoughMons GabbyAndTy_EventScript_RequestInterview
+msgbox	GabbyAndTy_Text_KeepingAnEyeOutForYou
+release
+end
 = Route118_EventScript_Girl
 msgbox	Even if there isn't a boat, you can cross rivers and the sea if you have a POKéMON that knows SURF.POKéMON can be counted on to do so much!
+end
+= GabbyAndTy_EventScript_TyBattle2
+trainerbattle_double TRAINER_GABBY_AND_TY_2 GabbyAndTy_Text_TyIntro GabbyAndTy_Text_TyDefeat GabbyAndTy_Text_TyNotEnoughMons GabbyAndTy_EventScript_RequestInterview
+msgbox	GabbyAndTy_Text_TyPostBattle
+release
+end
+= GabbyAndTy_EventScript_GabbyBattle2
+trainerbattle_double TRAINER_GABBY_AND_TY_2 GabbyAndTy_Text_GabbyIntro GabbyAndTy_Text_GabbyDefeat GabbyAndTy_Text_GabbyNotEnoughMons GabbyAndTy_EventScript_RequestInterview
+msgbox	GabbyAndTy_Text_KeepingAnEyeOutForYou
+release
 end
 = Route118_EventScript_Perry
 trainerbattle_single TRAINER_PERRY Route118_Text_PerryIntro Route118_Text_PerryDefeat
 msgbox	Route118_Text_PerryPostBattle
+end
+= BerryTreeScript
+special ObjectEventInteractionGetBerryTreeData
+switch VAR_0x8004
+case BERRY_STAGE_SPARKLING BerryTree_EventScript_Sparkling
+case BERRY_STAGE_NO_BERRY BerryTree_EventScript_CheckSoil
+case BERRY_STAGE_PLANTED BerryTree_EventScript_CheckBerryStage1
+case BERRY_STAGE_SPROUTED BerryTree_EventScript_CheckBerryStage2
+case BERRY_STAGE_TALLER BerryTree_EventScript_CheckBerryStage3
+case BERRY_STAGE_FLOWERING BerryTree_EventScript_CheckBerryStage4
+case BERRY_STAGE_BERRIES BerryTree_EventScript_CheckBerryFullyGrown
+end
+= BerryTree_EventScript_CheckBerryFullyGrown
+buffernumberstring STR_VAR_2 VAR_0x8006
+lock
+faceplayer
+special ObjectEventInteractionGetBerryCountString
+msgbox	BerryTree_Text_WantToPick
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_PickBerry
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPickingBerry
+goto BerryTree_EventScript_PickBerry
+= BerryTree_EventScript_PickBerry
+special ObjectEventInteractionPickBerryTree
+goto_if_eq VAR_0x8004 0 BerryTree_EventScript_BerryPocketFull
+special IncrementDailyPickedBerries
+special ObjectEventInteractionRemoveBerryTree
+message BerryTree_Text_PickedTheBerry
+playfanfare MUS_OBTAIN_BERRY
+waitmessage
+waitfanfare
+waitbuttonpress
+message BerryTree_Text_PutAwayBerry
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_BerryPocketFull
+message BerryTree_Text_BerryPocketFull
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_CancelPickingBerry
+message BerryTree_Text_BerryLeftUnpicked
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_CheckBerryStage4
+call BerryTree_EventScript_GetCareAdverb
+lockall
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_BerryGrowthStage4
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+@ VAR_0x8005 here is the number of times watered
+@ Buffered by ObjectEventInteractionGetBerryTreeData
+goto BerryTree_EventScript_GetCareAdverb
+= BerryTree_EventScript_GetCareAdverb
+goto_if_eq VAR_0x8005 0 BerryTree_EventScript_SetAdverbPoor
+goto_if_eq VAR_0x8005 4 BerryTree_EventScript_SetAdverbGreat
+bufferstring STR_VAR_2 BerryTree_Text_CareAdverbGood
+return
+= BerryTree_EventScript_SetAdverbGreat
+bufferstring STR_VAR_2 BerryTree_Text_CareAdverbGreat
+return
+= BerryTree_EventScript_SetAdverbPoor
+bufferstring STR_VAR_2 BerryTree_Text_CareAdverbPoor
+return
+@ VAR_0x8006 here is the number of berries
+goto BerryTree_EventScript_CheckBerryFullyGrown
+= BerryTree_EventScript_WantToWater
+checkitem ITEM_WAILMER_PAIL
+goto_if_eq VAR_RESULT FALSE BerryTree_EventScript_DontWater
+special ObjectEventInteractionGetBerryName
+msgbox	BerryTree_Text_WantToWater
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_WaterBerry
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_DontWater
+goto BerryTree_EventScript_DontWater
+= BerryTree_EventScript_DontWater
+releaseall
+end
+= BerryTree_EventScript_WaterBerry
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_WateredTheBerry
+waitmessage
+special ObjectEventInteractionWaterBerryTree
+special DoWateringBerryTreeAnim
+message BerryTree_Text_PlantIsDelighted
+waitmessage
+waitbuttonpress
+releaseall
+end
+= BerryTree_EventScript_CheckBerryStage3
+lockall
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_BerryGrowthStage3
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckBerryStage2
+lockall
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_BerryGrowthStage2
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckBerryStage1
+lockall
+special ObjectEventInteractionGetBerryCountString
+message BerryTree_Text_BerryGrowthStage1
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckSoil
+lock
+faceplayer
+specialvar VAR_RESULT PlayerHasBerries
+goto_if_eq VAR_RESULT TRUE BerryTree_EventScript_WantToPlant
+message BerryTree_Text_ItsSoftLoamySoil
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_WantToPlant
+msgbox	BerryTree_Text_WantToPlant
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_ChooseBerryToPlant
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPlanting
+end
+= BerryTree_EventScript_CancelPlanting
+release
+end
+= BerryTree_EventScript_ChooseBerryToPlant
+fadescreen FADE_TO_BLACK
+closemessage
+special Bag_ChooseBerry
+goto_if_eq VAR_ITEM_ID 0 BerryTree_EventScript_CancelPlanting
+removeitem VAR_ITEM_ID
+call BerryTree_EventScript_PlantBerry
+goto BerryTree_EventScript_CancelPlanting
+= BerryTree_EventScript_PlantBerry
+special ObjectEventInteractionPlantBerryTree
+incrementgamestat GAME_STAT_PLANTED_BERRIES
+special IncrementDailyPlantedBerries
+special ObjectEventInteractionGetBerryCountString
+message BerryTree_Text_PlantedOneBerry
+waitmessage
+waitbuttonpress
+return
+= BerryTree_EventScript_Sparkling
+lockall
+message BerryTree_Text_ExclamationPoint
+waitmessage
+waitbuttonpress
+releaseall
 end
 signs
 13 6	ROUTE 118 MAUVILLE CITY

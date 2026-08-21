@@ -98,19 +98,19 @@ warps
 36 38 Route104 6
 37 38 Route104 7
 npcs
-misc_cuttable_tree 19 10 S static
-misc_cuttable_tree 19 11 S static
-people_team_aqua_aqua_member_m 26 17 E static
-people_man_2 26 20 S static
-misc_item_ball 45 7 S static
-misc_item_ball 35 20 S static
-misc_item_ball 4 8 S static
-people_boy_2 15 19 S wander
-people_bug_catcher 7 32 W pace_h
-people_bug_catcher 4 14 S static
-people_boy_3 30 34 S wander
-misc_item_ball 4 26 S static
-people_girl_2 33 5 S static
+misc_cuttable_tree 19 10 S static FLAG_TEMP_11
+misc_cuttable_tree 19 11 S static FLAG_TEMP_12
+people_team_aqua_aqua_member_m 26 17 E static FLAG_HIDE_PETALBURG_WOODS_AQUA_GRUNT
+people_man_2 26 20 S static FLAG_HIDE_PETALBURG_WOODS_DEVON_EMPLOYEE
+misc_item_ball 45 7 S static FLAG_ITEM_PETALBURG_WOODS_GREAT_BALL
+misc_item_ball 35 20 S static FLAG_ITEM_PETALBURG_WOODS_X_ATTACK
+misc_item_ball 4 8 S static FLAG_ITEM_PETALBURG_WOODS_ETHER
+people_boy_2 15 19 S wander 0
+people_bug_catcher 7 32 W pace_h 0
+people_bug_catcher 4 14 S static 0
+people_boy_3 30 34 S wander 0
+misc_item_ball 4 26 S static FLAG_ITEM_PETALBURG_WOODS_PARALYZE_HEAL
+people_girl_2 33 5 S static 0
 dialogs
 7	Yo, there! Your POKéMON doing okay?If your POKéMON are weak and you want to avoid battles, you should stay out of tall grass.
 8	I caught a bunch of POKéMON. Now I'm out of POKé BALLS.
@@ -118,6 +118,8 @@ dialogs
 10	Sometimes, there are things on the ground even if you can't see them.That's why I always check where I'm walking.
 12	Oh, neat! That's the BADGE from RUSTBORO GYM!You must be a TRAINER. You should try using this item.
 objscripts
+0 EventScript_CutTree
+1 EventScript_CutTree
 4 PetalburgWoods_EventScript_ItemGreatBall
 5 PetalburgWoods_EventScript_ItemXAttack
 6 PetalburgWoods_EventScript_ItemEther
@@ -135,6 +137,10 @@ triggers
 40 29 0 0 PetalburgWoods_HiddenItem_40_29
 4 19 0 0 PetalburgWoods_HiddenItem_4_19
 movements
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
+Movement_CutTreeDown	delay,end
 PetalburgWoods_Movement_AquaApproachPlayer	down,end
 PetalburgWoods_Movement_AquaApproachResearcherLeft	down,down,end
 PetalburgWoods_Movement_AquaApproachResearcherRight	down,down,down,end
@@ -369,6 +375,44 @@ finditem ITEM_GREAT_BALL
 setflag FLAG_ITEM_PETALBURG_WOODS_GREAT_BALL
 end
 = PetalburgWoods_EventScript_ItemGreatBall_Taken
+end
+= EventScript_CutTree
+lockall
+goto_if_unset FLAG_BADGE01_GET EventScript_CheckTreeCantCut
+checkpartymove MOVE_CUT
+goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CheckTreeCantCut
+setfieldeffectargument 0 VAR_RESULT
+bufferpartymonnick STR_VAR_1 VAR_RESULT
+buffermovename STR_VAR_2 MOVE_CUT
+msgbox	Text_WantToCut
+goto_if_eq VAR_RESULT NO EventScript_CancelCut
+msgbox	Text_MonUsedFieldMove
+closemessage
+dofieldeffect FLDEFF_USE_CUT_ON_TREE
+waitstate
+goto EventScript_CutTreeDown
+end
+@ Use cut from party menu
+goto EventScript_UseCut
+= EventScript_UseCut
+lockall
+dofieldeffect FLDEFF_USE_CUT_ON_TREE
+waitstate
+goto EventScript_CutTreeDown
+end
+= EventScript_CutTreeDown
+applymovement VAR_LAST_TALKED Movement_CutTreeDown
+waitmovement 0
+removeobject VAR_LAST_TALKED
+releaseall
+end
+= EventScript_CancelCut
+closemessage
+releaseall
+end
+= EventScript_CheckTreeCantCut
+msgbox	Text_CantCut
+releaseall
 end
 signs
 14 32	TRAINER TIPSAny POKéMON that appears even once in a battle is awarded EXP Points.To raise a weak POKéMON, put it at the left of the team list.As soon as a battle starts, switch it out. It will earn EXP Points without being exposed to any harm.

@@ -34,11 +34,13 @@ warps
 6 13 EverGrandeCity_Hall3 1
 6 2 EverGrandeCity_Hall4 0
 npcs
-people_man_1 6 5 S static
+people_man_1 6 5 S static 0
 dialogs
 0	I am the last of the POKéMON LEAGUE ELITE FOUR, DRAKE the DRAGON master!In their natural state, POKéMON are wild living things. They are free.At times, they hinder us. At times, they help us.For us to battle with POKéMON as partners, do you know what it takes?Do you know what is needed?If you don't, then you will never prevail over me!
 objscripts
 0 EverGrandeCity_DrakesRoom_EventScript_Drake
+movements
+Common_Movement_Delay32	delay,delay,end
 scriptdefs
 = EverGrandeCity_DrakesRoom_EventScript_Drake
 lock
@@ -57,6 +59,24 @@ call PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles
 msgbox	You deserve every credit for coming this far as a TRAINER of POKéMON.You do seem to know what is needed.Yes, what a TRAINER needs is a virtuous heart.POKéMON touch the good hearts of TRAINERS and learn good from wrong.They touch the good hearts of TRAINERS and grow strong.Go! Go onwards! The CHAMPION is waiting!
 release
 end
+= PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles
+applymovement LOCALID_PLAYER Common_Movement_Delay32
+waitmovement 0
+playse SE_DOOR
+setmetatile 6 1 METATILE_EliteFour_OpenDoor_Frame FALSE
+setmetatile 6 2 METATILE_EliteFour_OpenDoor_Opening FALSE
+setmetatile 0 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 1 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+setmetatile 2 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 3 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+setmetatile 4 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 8 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+setmetatile 9 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 10 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+setmetatile 11 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 12 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+special DrawWholeMapView
+return
 = EverGrandeCity_DrakesRoom_EventScript_PostBattleSpeech
 msgbox	You deserve every credit for coming this far as a TRAINER of POKéMON.You do seem to know what is needed.Yes, what a TRAINER needs is a virtuous heart.POKéMON touch the good hearts of TRAINERS and learn good from wrong.They touch the good hearts of TRAINERS and grow strong.Go! Go onwards! The CHAMPION is waiting!
 release

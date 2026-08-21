@@ -22,7 +22,7 @@ warps
 10 1 Route110_TrickHousePuzzle1 2
 2 1 Route110_TrickHouseCorridor 0
 npcs
-people_man_1 4 5 E static
+people_man_1 4 5 E static FLAG_HIDE_TRICK_HOUSE_END_MAN
 dialogs
 0	Aak! You've made it to me? Hmmm… You're sharp!
 objscripts
@@ -31,6 +31,12 @@ triggers
 2 2 VAR_TEMP_2 0 Route110_TrickHouseEnd_EventScript_TrickMasterExitTrigger
 4 5 0 0 Route110_TrickHouseEnd_HiddenItem_4_5
 movements
+Common_Movement_ExclamationMark	delay,end
+Common_Movement_FacePlayer	face_down,end
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
 Route110_TrickHouseEnd_Movement_KeepPlayerInRoom	down,end
 Route110_TrickHouseEnd_Movement_TrickMasterSurprise	delay,end
 scriptdefs

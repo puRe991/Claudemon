@@ -19,4 +19,4 @@ collision
 0,0,0,0,0
 1,0,0,0,1
 npcs
-people_link_receptionist 2 4 S static
+people_link_receptionist 2 4 S static 0

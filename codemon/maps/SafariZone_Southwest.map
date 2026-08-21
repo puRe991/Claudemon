@@ -85,8 +85,8 @@ collision
 warps
 29 7 SafariZone_RestHouse 0
 npcs
-people_woman_2 22 9 S static
-misc_item_ball 0 37 S static
+people_woman_2 22 9 S static 0
+misc_item_ball 0 37 S static FLAG_ITEM_SAFARI_ZONE_SOUTH_WEST_MAX_REVIVE
 objscripts
 0 SafariZone_Southwest_EventScript_Woman
 1 SafariZone_Southwest_EventScript_ItemMaxRevive

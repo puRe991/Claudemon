@@ -51,10 +51,10 @@ warps
 1 21 Route110_TrickHouseEntrance 2
 13 1 Route110_TrickHouseEnd 0
 npcs
-people_picnicker 7 9 E static
-people_man_5 11 10 E static
-people_camper 4 5 N static
-misc_item_ball 11 21 S static
+people_picnicker 7 9 E static 0
+people_man_5 11 10 E static 0
+people_camper 4 5 N static 0
+misc_item_ball 11 21 S static FLAG_ITEM_TRICK_HOUSE_PUZZLE_6_GLITTER_MAIL
 dialogs
 0	I'm sure having a good time checking this place out.It's a challenge I've found worth repeating!
 1	Ehehehe… I guess I lost because I was trying to cheat.

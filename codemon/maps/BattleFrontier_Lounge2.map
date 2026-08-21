@@ -22,11 +22,11 @@ warps
 1 7 BattleFrontier_OutsideWest 3
 2 7 BattleFrontier_OutsideWest 3
 npcs
-people_maniac 8 4 E static
-people_maniac 10 4 W static
-people_maniac 10 3 W static
-people_running_triathlete_f 4 6 S wander
-people_maniac 10 5 W static
+people_maniac 8 4 E static 0
+people_maniac 10 4 W static 0
+people_maniac 10 3 W static 0
+people_running_triathlete_f 4 6 S wander 0
+people_maniac 10 5 W static 0
 objscripts
 0 BattleFrontier_Lounge2_EventScript_FrontierManiac
 1 BattleFrontier_Lounge2_EventScript_Maniac1

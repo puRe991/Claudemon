@@ -38,7 +38,7 @@ warps
 9 5 TrainerHill_4F 1
 15 5 TrainerHill_Elevator 1
 npcs
-people_gentleman 12 7 S static
+people_gentleman 12 7 S static 0
 objscripts
 0 TrainerHill_Roof_EventScript_Owner
 scriptdefs

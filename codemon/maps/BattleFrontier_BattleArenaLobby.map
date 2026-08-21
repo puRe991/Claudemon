@@ -31,11 +31,11 @@ collision
 warps
 7 12 BattleFrontier_OutsideEast 1
 npcs
-people_black_belt 7 7 S static
-people_woman_5 2 10 S wander
-people_man_5 14 11 W static
-people_camper 14 12 W static
-people_youngster 14 10 W static
+people_black_belt 7 7 S static 0
+people_woman_5 2 10 S wander 0
+people_man_5 14 11 W static 0
+people_camper 14 12 W static 0
+people_youngster 14 10 W static 0
 dialogs
 0	Where the battling spirit of TRAINERS is put to the test!I welcome you to the BATTLE ARENA!I am your guide to the Set KO Tourney!
 1	In the BATTLE ARENA, the order of POKéMON is totally important.For example, if your first POKéMON has certain type disadvantages, try making your second POKéMON one with moves that are super effective against the first one.I think that will be a good way of making an effective team.
@@ -168,6 +168,9 @@ goto BattleFrontier_BattleArenaLobby_EventScript_EndCancelChallenge
 = BattleFrontier_BattleArenaLobby_EventScript_EndCancelChallenge
 release
 end
+= Common_EventScript_SaveGame
+special SaveGame
+return
 = BattleFrontier_BattleArenaLobby_EventScript_LoadPartyAndCancelChallenge
 special LoadPlayerParty
 goto BattleFrontier_BattleArenaLobby_EventScript_CancelChallenge

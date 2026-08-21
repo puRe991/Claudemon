@@ -22,8 +22,8 @@ warps
 3 7 OldaleTown 1
 4 7 OldaleTown 1
 npcs
-people_pokefan_f 4 4 E static
-people_school_kid_m 7 4 W static
+people_pokefan_f 4 4 E static 0
+people_school_kid_m 7 4 W static 0
 dialogs
 0	When POKéMON battle, they eventually level up and become stronger.
 1	If the POKéMON with you become stronger, you'll be able to go farther away from here.

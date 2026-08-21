@@ -22,9 +22,15 @@ warps
 2 7 BattleFrontier_OutsideWest 5
 3 7 BattleFrontier_OutsideWest 5
 npcs
-people_scott 2 3 S static
+people_scott 2 3 S static 0
 objscripts
 0 BattleFrontier_ScottsHouse_EventScript_Scott
+movements
+Common_Movement_FacePlayer	face_down,end
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
 scriptdefs
 = BattleFrontier_ScottsHouse_EventScript_Scott
 lock

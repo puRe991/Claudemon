@@ -24,4 +24,36 @@ warps
 5 8 - 0
 6 8 - 0
 npcs
-people_link_receptionist 9 6 W static
+people_link_receptionist 9 6 W static 0
+objscripts
+0 TradeCenter_EventScript_Attendant
+triggers
+4 5 VAR_TEMP_0 0 EventScript_TradeCenter_Chair0
+7 5 VAR_TEMP_0 0 EventScript_TradeCenter_Chair1
+scriptdefs
+= EventScript_TradeCenter_Chair1
+setvar VAR_0x8005 1
+special PlayerEnteredTradeSeat
+end
+/* Never used */
+goto EventScript_TradeCenter_Chair2
+= EventScript_TradeCenter_Chair2
+setvar VAR_0x8005 2
+special PlayerEnteredTradeSeat
+end
+/* Never used */
+goto EventScript_TradeCenter_Chair3
+= EventScript_TradeCenter_Chair3
+setvar VAR_0x8005 3
+special PlayerEnteredTradeSeat
+end
+= EventScript_TradeCenter_Chair0
+setvar VAR_0x8005 0
+special PlayerEnteredTradeSeat
+end
+= TradeCenter_EventScript_Attendant
+special Script_FacePlayer
+msgbox	TradeCenter_Text_TakeSeatStartTrade
+special Script_ClearHeldMovement
+closemessage
+end

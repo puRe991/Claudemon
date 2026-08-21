@@ -24,11 +24,14 @@ warps
 3 8 MauvilleCity 6
 4 8 MauvilleCity 6
 npcs
-people_woman_3 4 5 W static
+people_woman_3 4 5 W static 0
 dialogs
 0	If I had a BIKE, it'd be easy to cycle to SLATEPORT for some shopping.I'd be able to buy HARBOR MAIL at the POKéMON MART in SLATEPORT…
 objscripts
 0 MauvilleCity_House2_EventScript_Woman
+movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
 scriptdefs
 = MauvilleCity_House2_EventScript_Woman
 lock

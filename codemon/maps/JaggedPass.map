@@ -101,13 +101,13 @@ warps
 14 5 MtChimney 3
 16 18 MagmaHideout_1F 0
 npcs
-people_hiker 10 8 E static
-people_camper 16 35 W pace_h
-misc_item_ball 23 24 S static
-people_picnicker 9 21 S static
-people_team_magma_magma_member_m 16 19 N static
-people_picnicker 14 25 E static
-people_cycling_triathlete_m 18 25 W static
+people_hiker 10 8 E static 0
+people_camper 16 35 W pace_h 0
+misc_item_ball 23 24 S static FLAG_ITEM_JAGGED_PASS_BURN_HEAL
+people_picnicker 9 21 S static 0
+people_team_magma_magma_member_m 16 19 N static FLAG_HIDE_JAGGED_PASS_MAGMA_GUARD
+people_picnicker 14 25 E static 0
+people_cycling_triathlete_m 18 25 W static 0
 dialogs
 0	Yes, I did lose at POKéMON…But, when it comes to the love of the mountains, I have you beat!
 1	If I had an ACRO BIKE, I'd be able to jump ledges.
@@ -131,6 +131,11 @@ triggers
 13 15 VAR_JAGGED_PASS_STATE 1 JaggedPass_EventScript_OpenMagmaHideout
 8 10 0 0 JaggedPass_HiddenItem_8_10
 7 29 0 0 JaggedPass_HiddenItem_7_29
+movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
+Common_Movement_FaceOriginalDirection	face_down,end
+Common_Movement_FacePlayer	face_down,end
 scriptdefs
 = JaggedPass_HiddenItem_7_29
 goto_if_set FLAG_HIDDEN_ITEM_JAGGED_PASS_GREAT_BALL JaggedPass_HiddenItem_7_29_Taken

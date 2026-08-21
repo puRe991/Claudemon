@@ -31,4 +31,4 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 npcs
-people_black_belt 9 12 S static
+people_black_belt 9 12 S static 0

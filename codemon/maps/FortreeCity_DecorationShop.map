@@ -18,10 +18,10 @@ warps
 3 5 FortreeCity 8
 4 5 FortreeCity 8
 npcs
-people_pokefan_m 6 5 S static
-people_girl_3 0 4 W static
-people_mart_employee 1 2 S static
-people_mart_employee 6 2 S static
+people_pokefan_m 6 5 S static 0
+people_girl_3 0 4 W static 0
+people_mart_employee 1 2 S static 0
+people_mart_employee 6 2 S static 0
 dialogs
 0	Merchandise you buy here is sent to your own PC.That's fantastic! I wish they could also deliver me home like that.
 1	I'm buying a pretty desk and I'm putting my cute DOLLS on it.If I don't, when I decorate my SECRET BASE, my DOLLS will get dirty or poked with splinters.

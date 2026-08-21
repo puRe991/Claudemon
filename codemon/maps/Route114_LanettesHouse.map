@@ -22,7 +22,7 @@ warps
 5 7 Route114 2
 6 7 Route114 2
 npcs
-people_woman_2 5 4 S static
+people_woman_2 5 4 S static FLAG_HIDE_LANETTES_HOUSE_LANETTE
 dialogs
 0	LANETTE: Oh! PLAYER!I'm sorry everything is so cluttered… When I get engrossed in research, things end up this way…This is embarrassing… Please keep this a secret in exchange for this.
 objscripts

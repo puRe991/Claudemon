@@ -54,7 +54,7 @@ warps
 16 1 MagmaHideout_2F_3R 1
 16 21 MagmaHideout_4F 1
 npcs
-misc_item_ball 9 19 S static
+misc_item_ball 9 19 S static FLAG_ITEM_MAGMA_HIDEOUT_3F_3R_ECAPE_ROPE
 objscripts
 0 MagmaHideout_3F_3R_EventScript_ItemEscapeRope
 scriptdefs

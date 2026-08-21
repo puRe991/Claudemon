@@ -39,8 +39,8 @@ collision
 warps
 12 15 MagmaHideout_3F_1R 1
 npcs
-people_team_magma_magma_member_m 16 3 S static
-misc_item_ball 5 9 S static
+people_team_magma_magma_member_m 16 3 S static FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS
+misc_item_ball 5 9 S static FLAG_ITEM_MAGMA_HIDEOUT_3F_2R_PP_MAX
 dialogs
 0	You know, losing to you cleared my mind.The next time I see our leader, I'm going to ask him about what we do.
 objscripts

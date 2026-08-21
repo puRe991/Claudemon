@@ -81,14 +81,14 @@ warps
 23 31 MtPyre_Exterior 1
 24 31 MtPyre_Exterior 1
 npcs
-people_old_man 22 5 S static
-people_team_aqua_archie 23 6 N static
-people_expert_f 23 5 S static
-people_team_aqua_aqua_member_m 21 15 E static
-people_team_aqua_aqua_member_m 25 18 W static
-people_team_aqua_aqua_member_m 21 11 E static
-people_team_aqua_aqua_member_f 25 11 W static
-people_team_magma_maxie 23 6 N static
+people_old_man 22 5 S static 0
+people_team_aqua_archie 23 6 N static FLAG_HIDE_MT_PYRE_SUMMIT_ARCHIE
+people_expert_f 23 5 S static 0
+people_team_aqua_aqua_member_m 21 15 E static FLAG_HIDE_MT_PYRE_SUMMIT_TEAM_AQUA
+people_team_aqua_aqua_member_m 25 18 W static FLAG_HIDE_MT_PYRE_SUMMIT_TEAM_AQUA
+people_team_aqua_aqua_member_m 21 11 E static FLAG_HIDE_MT_PYRE_SUMMIT_TEAM_AQUA
+people_team_aqua_aqua_member_f 25 11 W static FLAG_HIDE_MT_PYRE_SUMMIT_TEAM_AQUA
+people_team_magma_maxie 23 6 N static FLAG_HIDE_MT_PYRE_SUMMIT_MAXIE
 dialogs
 0	MT. PYRE is where we calm the spirits of POKéMON that have passed on…This is a high place where one can see all of HOENN…The disembodied spirits of POKéMON must find solace here…Is it coincidence that you are here…Will you hear out my tale? A tale long told in the HOENN region?
 2	The BLUE ORB and RED ORB taken by those sinister men…They must never be apart… I fear something terrible will happen…
@@ -113,6 +113,13 @@ triggers
 9 25 0 0 MtPyre_Summit_HiddenItem_9_25
 37 7 0 0 MtPyre_Summit_HiddenItem_37_7
 movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
+Common_Movement_FaceUp	face_up,end
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
 MtPyre_Summit_Movement_ArchieExit	down,down,down,down,down,down,end
 MtPyre_Summit_Movement_ArchieFacePlayer0	left,delay,end
 MtPyre_Summit_Movement_ArchieFacePlayer2	right,delay,end

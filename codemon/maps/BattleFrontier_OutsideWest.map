@@ -159,30 +159,30 @@ warps
 26 61 BattleFrontier_ReceptionGate 1
 39 55 ArtisanCave_B1F 0
 npcs
-people_boy_2 26 38 S wander
-misc_ss_tidal 20 70 E static
-people_beauty 19 68 N static
-people_expert_m 26 20 S wander
-people_man_3 27 30 S wander
-people_woman_5 33 41 S wander
-people_fat_man 28 43 S wander
-people_gentleman 17 20 S wander
-people_maniac 13 44 N static
-people_maniac 14 44 N static
-people_man_5 23 47 S static
-people_girl_1 38 27 S wander
-people_woman_3 45 18 S wander
-people_camper 9 47 S static
-people_lass 35 5 S wander
-people_man_2 11 66 W static
-people_fisherman 31 31 S static
-people_fisherman 42 48 S static
-people_fat_man 38 22 S wander
-people_woman_2 12 9 S static
-people_boy_1 12 10 N static
-people_old_man 11 10 S static
-people_man_4 8 5 S static
-people_pokefan_f 4 26 S static
+people_boy_2 26 38 S wander 0
+misc_ss_tidal 20 70 E static 0
+people_beauty 19 68 N static 0
+people_expert_m 26 20 S wander 0
+people_man_3 27 30 S wander 0
+people_woman_5 33 41 S wander 0
+people_fat_man 28 43 S wander 0
+people_gentleman 17 20 S wander 0
+people_maniac 13 44 N static 0
+people_maniac 14 44 N static 0
+people_man_5 23 47 S static 0
+people_girl_1 38 27 S wander 0
+people_woman_3 45 18 S wander 0
+people_camper 9 47 S static 0
+people_lass 35 5 S wander 0
+people_man_2 11 66 W static 0
+people_fisherman 31 31 S static 0
+people_fisherman 42 48 S static 0
+people_fat_man 38 22 S wander 0
+people_woman_2 12 9 S static 0
+people_boy_1 12 10 N static 0
+people_old_man 11 10 S static 0
+people_man_4 8 5 S static 0
+people_pokefan_f 4 26 S static 0
 dialogs
 0	I'm the best out of all my friends. But here… I've been useless!
 2	Hello, are you here for the ferry? May I see your TICKET?
@@ -230,6 +230,12 @@ BattleFrontier_OutsideWest_Movement_GirlShudderEast	delay,delay,end
 BattleFrontier_OutsideWest_Movement_GirlShudderNorth	delay,delay,end
 BattleFrontier_OutsideWest_Movement_GirlShudderSouth	delay,delay,end
 BattleFrontier_OutsideWest_Movement_GirlShudderWest	delay,delay,end
+Common_Movement_FaceAwayPlayer	face_down,end
+Common_Movement_FaceOriginalDirection	face_down,end
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
 scriptdefs
 = BattleFrontier_OutsideWest_EventScript_PokefanF
 msgbox	I heard a rumor that someone saw a POKéMON with an unusually long tail somewhere in the BATTLE FRONTIER.It must be adorable. I'm sure of it…Oh, challenges can wait. I feel driven to find the delightful creature!

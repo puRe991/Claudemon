@@ -36,17 +36,23 @@ warps
 11 14 LilycoveCity 12
 12 14 LilycoveCity 12
 npcs
-people_beauty 8 10 S static
-misc_ss_tidal 8 9 E static
-people_sailor 3 13 S wander
-people_sailor 8 10 S static
-people_expert_m 8 10 S static
+people_beauty 8 10 S static FLAG_HIDE_LILYCOVE_HARBOR_FERRY_ATTENDANT
+misc_ss_tidal 8 9 E static FLAG_HIDE_LILYCOVE_HARBOR_SSTIDAL
+people_sailor 3 13 S wander 0
+people_sailor 8 10 S static FLAG_HIDE_LILYCOVE_HARBOR_FERRY_SAILOR
+people_expert_m 8 10 S static FLAG_HIDE_LILYCOVE_HARBOR_EVENT_TICKET_TAKER
 dialogs
 2	Until they finish making the ferry, we sailors have nothing to do…I wish they'd get a move on, the folks at the SHIPYARD in SLATEPORT.
 objscripts
 0 LilycoveCity_Harbor_EventScript_FerryAttendant
 2 LilycoveCity_Harbor_EventScript_Sailor
 movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
+Common_Movement_FacePlayer	face_down,end
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
 LilycoveCity_Harbor_Movement_BrineyBoardFerry	delay,delay,delay,end
 LilycoveCity_Harbor_Movement_PlayerBoardFerryEast	right,delay,end
 LilycoveCity_Harbor_Movement_PlayerBoardFerryNorth	up,end

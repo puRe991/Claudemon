@@ -22,10 +22,10 @@ warps
 3 7 Route111 0
 4 7 Route111 0
 npcs
-people_lass 7 5 W static
-people_man_1 4 5 E static
-people_pokefan_f 7 4 W static
-people_expert_f 4 4 E static
+people_lass 7 5 W static 0
+people_man_1 4 5 E static 0
+people_pokefan_f 7 4 W static 0
+people_expert_f 4 4 E static 0
 dialogs
 0	Mommy is stronger than Daddy.I'm stronger than Mommy.And Grandma's stronger than me!But my big brother is even stronger than Grandma.
 1	You're the first TRAINER I've seen who deploys POKéMON so masterfully.But, I should tell you--my son is stronger than you.He even took the POKéMON LEAGUE challenge, I'll have you know.
@@ -36,6 +36,8 @@ objscripts
 1 Route111_WinstrateFamilysHouse_EventScript_Victor
 2 Route111_WinstrateFamilysHouse_EventScript_Victoria
 3 Route111_WinstrateFamilysHouse_EventScript_Vicky
+movements
+Common_Movement_FaceOriginalDirection	face_down,end
 scriptdefs
 = Route111_WinstrateFamilysHouse_EventScript_Vicky
 lock

@@ -24,4 +24,24 @@ warps
 6 8 - 0
 7 8 - 0
 npcs
-people_link_receptionist 9 3 W static
+people_link_receptionist 9 3 W static 0
+objscripts
+0 BattleColosseum_2P_EventScript_Attendant
+triggers
+3 5 VAR_TEMP_0 0 EventScript_BattleColosseum_2P_PlayerSpot0
+10 5 VAR_TEMP_0 0 EventScript_BattleColosseum_2P_PlayerSpot1
+scriptdefs
+= EventScript_BattleColosseum_2P_PlayerSpot1
+setvar VAR_0x8005 1
+special ColosseumPlayerSpotTriggered
+end
+= EventScript_BattleColosseum_2P_PlayerSpot0
+setvar VAR_0x8005 0
+special ColosseumPlayerSpotTriggered
+end
+= BattleColosseum_2P_EventScript_Attendant
+special Script_FacePlayer
+msgbox	BattleColosseum_2P_Text_TakePlaceStartBattle
+special Script_ClearHeldMovement
+closemessage
+end

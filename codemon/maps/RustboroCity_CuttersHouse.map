@@ -24,8 +24,8 @@ warps
 5 8 RustboroCity 8
 6 8 RustboroCity 8
 npcs
-people_pokefan_m 7 5 E static
-people_lass 9 2 S wander
+people_pokefan_m 7 5 E static 0
+people_lass 9 2 S wander 0
 dialogs
 0	That determined expression… That limber way you move… And your well-trained POKéMON…You're obviously a skilled TRAINER!No, wait, don't say a word. I can tell just by looking at you.I'm sure that you can put this HIDDEN MACHINE to good use.No need to be modest or shy. Go on, take it!
 1	When they were expanding the city of RUSTBORO, my dad helped out.He made his POKéMON use CUT to clear the land of trees.

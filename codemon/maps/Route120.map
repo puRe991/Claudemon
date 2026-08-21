@@ -206,60 +206,75 @@ warps
 7 55 AncientTomb 0
 19 23 ScorchedSlab 0
 npcs
-people_man_1 4 79 S static
-people_man_1 5 79 S static
-people_man_1 6 79 S static
-people_man_1 7 79 S static
-people_man_1 34 24 S static
-people_man_1 35 24 S static
-people_man_1 36 24 S static
-people_man_1 9 92 S static
-people_man_1 10 92 S static
-people_man_1 11 92 S static
-people_man_5 5 22 W pace_h
-people_man_5 32 14 E static
-people_camper 27 51 W static
-people_picnicker 36 45 W static
-people_maniac 19 80 S static
-misc_item_ball 20 55 S static
-people_cameraman 37 5 S static
-people_reporter_f 36 5 S static
-people_reporter_f 36 5 S static
-people_cameraman 37 5 S static
-misc_cuttable_tree 35 32 S static
-misc_item_ball 7 89 S static
-people_beauty 14 92 S wander
-people_woman_5 31 37 S static
-people_hiker 9 60 W pace_h
-people_woman_5 16 6 S static
-people_woman_5 18 34 W static
-misc_item_ball 22 13 S static
-misc_item_ball 23 82 S static
-pokemon_kecleon 12 16 S static
-people_steven 13 15 S static
-misc_cuttable_tree 20 1 S static
-misc_cuttable_tree 15 1 S static
-people_ninja_boy 10 72 S static
-people_ninja_boy 19 28 S static
-people_man_1 12 16 S static
-pokemon_kecleon 20 11 S static
-pokemon_kecleon 27 2 S static
-pokemon_kecleon 4 77 S static
-pokemon_kecleon 7 51 S static
-pokemon_kecleon 19 48 S static
-people_girl_3 19 32 N static
-people_man_3 14 34 E static
-misc_item_ball 24 33 S static
+people_man_1 4 79 S static 0
+people_man_1 5 79 S static 0
+people_man_1 6 79 S static 0
+people_man_1 7 79 S static 0
+people_man_1 34 24 S static 0
+people_man_1 35 24 S static 0
+people_man_1 36 24 S static 0
+people_man_1 9 92 S static 0
+people_man_1 10 92 S static 0
+people_man_1 11 92 S static 0
+people_man_5 5 22 W pace_h 0
+people_man_5 32 14 E static 0
+people_camper 27 51 W static 0
+people_picnicker 36 45 W static 0
+people_maniac 19 80 S static 0
+misc_item_ball 20 55 S static FLAG_ITEM_ROUTE_120_NUGGET
+people_cameraman 37 5 S static FLAG_HIDE_ROUTE_120_GABBY_AND_TY_1
+people_reporter_f 36 5 S static FLAG_HIDE_ROUTE_120_GABBY_AND_TY_1
+people_reporter_f 36 5 S static FLAG_HIDE_ROUTE_120_GABBY_AND_TY_2
+people_cameraman 37 5 S static FLAG_HIDE_ROUTE_120_GABBY_AND_TY_2
+misc_cuttable_tree 35 32 S static FLAG_TEMP_11
+misc_item_ball 7 89 S static FLAG_ITEM_ROUTE_120_FULL_HEAL
+people_beauty 14 92 S wander 0
+people_woman_5 31 37 S static 0
+people_hiker 9 60 W pace_h 0
+people_woman_5 16 6 S static 0
+people_woman_5 18 34 W static 0
+misc_item_ball 22 13 S static FLAG_ITEM_ROUTE_120_NEST_BALL
+misc_item_ball 23 82 S static FLAG_ITEM_ROUTE_120_HYPER_POTION
+pokemon_kecleon 12 16 S static FLAG_HIDE_ROUTE_120_KECLEON_BRIDGE
+people_steven 13 15 S static FLAG_HIDE_ROUTE_120_STEVEN
+misc_cuttable_tree 20 1 S static FLAG_TEMP_14
+misc_cuttable_tree 15 1 S static FLAG_TEMP_12
+people_ninja_boy 10 72 S static 0
+people_ninja_boy 19 28 S static 0
+people_man_1 12 16 S static FLAG_HIDE_ROUTE_120_KECLEON_BRIDGE_SHADOW
+pokemon_kecleon 20 11 S static FLAG_HIDE_ROUTE_120_KECLEON_1
+pokemon_kecleon 27 2 S static FLAG_HIDE_ROUTE_120_KECLEON_2
+pokemon_kecleon 4 77 S static FLAG_HIDE_ROUTE_120_KECLEON_3
+pokemon_kecleon 7 51 S static FLAG_HIDE_ROUTE_120_KECLEON_5
+pokemon_kecleon 19 48 S static FLAG_HIDE_ROUTE_120_KECLEON_4
+people_girl_3 19 32 N static 0
+people_man_3 14 34 E static 0
+misc_item_ball 24 33 S static FLAG_ITEM_ROUTE_120_REVIVE
 dialogs
 29	Something unseeable is in the way.
 30	STEVEN: Hm? PLAYER, hi. It's been a while.There's something here that you can't see, right?Now, if I were to use this device on the invisible obstacle…No, no. Rather than describing it, I should just show you. That would be more fun.PLAYER, are your POKéMON ready for battle?
 objscripts
+0 BerryTreeScript
+1 BerryTreeScript
+2 BerryTreeScript
+3 BerryTreeScript
+4 BerryTreeScript
+5 BerryTreeScript
+6 BerryTreeScript
+7 BerryTreeScript
+8 BerryTreeScript
+9 BerryTreeScript
 10 Route120_EventScript_Colin
 11 Route120_EventScript_Robert
 12 Route120_EventScript_Lorenzo
 13 Route120_EventScript_Jenna
 14 Route120_EventScript_Jeffrey
 15 Route120_EventScript_ItemNugget
+16 GabbyAndTy_EventScript_TyBattle3
+17 GabbyAndTy_EventScript_GabbyBattle3
+18 GabbyAndTy_EventScript_GabbyBattle6
+19 GabbyAndTy_EventScript_TyBattle6
+20 EventScript_CutTree
 21 Route120_EventScript_ItemFullHeal
 22 Route120_EventScript_BerryBeauty
 23 Route120_EventScript_Jennifer
@@ -270,8 +285,15 @@ objscripts
 28 Route120_EventScript_ItemHyperPotion
 29 Route120_EventScript_BridgeKecleon
 30 Route120_EventScript_Steven
+31 EventScript_CutTree
+32 EventScript_CutTree
 33 Route120_EventScript_Keigo
 34 Route120_EventScript_Riley
+36 Route120_EventScript_Kecleon1
+37 Route120_EventScript_Kecleon2
+38 Route120_EventScript_Kecleon3
+39 Route120_EventScript_Kecleon5
+40 Route120_EventScript_Kecleon4
 41 Route120_EventScript_Callie
 42 Route120_EventScript_Leonel
 43 Route120_EventScript_ItemRevive
@@ -281,6 +303,16 @@ triggers
 0 86 0 0 Route120_HiddenItem_0_86
 24 42 0 0 Route120_HiddenItem_24_42
 movements
+Common_Movement_FacePlayer	face_down,end
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
+GabbyAndTy_Movement_WalkInPlaceDown	delay,end
+GabbyAndTy_Movement_WalkInPlaceLeft	delay,end
+GabbyAndTy_Movement_WalkInPlaceUp	delay,end
+Movement_CutTreeDown	delay,end
+Movement_KecleonAppears	delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,end
 Route120_Movement_ApproachKecleonWest	down,left,end
 scriptdefs
 = Route120_HiddenItem_24_42
@@ -326,6 +358,71 @@ end
 trainerbattle_single TRAINER_CALLIE Route120_Text_CallieIntro Route120_Text_CallieDefeat
 msgbox	Route120_Text_CalliePostBattle
 end
+= Route120_EventScript_Kecleon4
+lock
+faceplayer
+setvar VAR_0x8009 4
+goto EventScript_Kecleon
+end
+= EventScript_Kecleon
+checkitem ITEM_DEVON_SCOPE
+goto_if_eq VAR_RESULT TRUE EventScript_AskUseDevonScope
+msgbox	Something unseeable is in the way.
+release
+end
+= EventScript_AskUseDevonScope
+msgbox	Something unseeable is in the way.Want to use the DEVON SCOPE?
+goto_if_eq VAR_RESULT YES EventScript_BattleKecleon
+release
+end
+= EventScript_BattleKecleon
+msgbox	PLAYER used the DEVON SCOPE.An invisible POKéMON became completely visible!The startled POKéMON attacked!
+closemessage
+applymovement VAR_LAST_TALKED Common_Movement_FacePlayer
+waitmovement 0
+applymovement VAR_LAST_TALKED Movement_KecleonAppears
+waitmovement 0
+waitse
+playmoncry SPECIES_KECLEON CRY_MODE_ENCOUNTER
+delay 40
+waitmoncry
+setwildbattle SPECIES_KECLEON 30
+setflag FLAG_SYS_CTRL_OBJ_DELETE
+dowildbattle
+clearflag FLAG_SYS_CTRL_OBJ_DELETE
+specialvar VAR_RESULT GetBattleOutcome
+goto_if_eq VAR_RESULT B_OUTCOME_WON EventScript_RemoveKecleon
+goto_if_eq VAR_RESULT B_OUTCOME_RAN EventScript_RemoveKecleon
+goto_if_eq VAR_RESULT B_OUTCOME_PLAYER_TELEPORTED EventScript_RemoveKecleon
+release
+end
+= EventScript_RemoveKecleon
+goto Common_EventScript_RemoveStaticPokemon
+end
+= Route120_EventScript_Kecleon5
+lock
+faceplayer
+setvar VAR_0x8009 5
+goto EventScript_Kecleon
+end
+= Route120_EventScript_Kecleon3
+lock
+faceplayer
+setvar VAR_0x8009 3
+goto EventScript_Kecleon
+end
+= Route120_EventScript_Kecleon2
+lock
+faceplayer
+setvar VAR_0x8009 2
+goto EventScript_Kecleon
+end
+= Route120_EventScript_Kecleon1
+lock
+faceplayer
+setvar VAR_0x8009 1
+goto EventScript_Kecleon
+end
 = Route120_EventScript_Riley
 trainerbattle_single TRAINER_RILEY Route120_Text_RileyIntro Route120_Text_RileyDefeat
 msgbox	Route120_Text_RileyPostBattle
@@ -333,6 +430,44 @@ end
 = Route120_EventScript_Keigo
 trainerbattle_single TRAINER_KEIGO Route120_Text_KeigoIntro Route120_Text_KeigoDefeat
 msgbox	Route120_Text_KeigoPostBattle
+end
+= EventScript_CutTree
+lockall
+goto_if_unset FLAG_BADGE01_GET EventScript_CheckTreeCantCut
+checkpartymove MOVE_CUT
+goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CheckTreeCantCut
+setfieldeffectargument 0 VAR_RESULT
+bufferpartymonnick STR_VAR_1 VAR_RESULT
+buffermovename STR_VAR_2 MOVE_CUT
+msgbox	Text_WantToCut
+goto_if_eq VAR_RESULT NO EventScript_CancelCut
+msgbox	Text_MonUsedFieldMove
+closemessage
+dofieldeffect FLDEFF_USE_CUT_ON_TREE
+waitstate
+goto EventScript_CutTreeDown
+end
+@ Use cut from party menu
+goto EventScript_UseCut
+= EventScript_UseCut
+lockall
+dofieldeffect FLDEFF_USE_CUT_ON_TREE
+waitstate
+goto EventScript_CutTreeDown
+end
+= EventScript_CutTreeDown
+applymovement VAR_LAST_TALKED Movement_CutTreeDown
+waitmovement 0
+removeobject VAR_LAST_TALKED
+releaseall
+end
+= EventScript_CancelCut
+closemessage
+releaseall
+end
+= EventScript_CheckTreeCantCut
+msgbox	Text_CantCut
+releaseall
 end
 = Route120_EventScript_Steven
 lock
@@ -518,6 +653,104 @@ setflag FLAG_ITEM_ROUTE_120_FULL_HEAL
 end
 = Route120_EventScript_ItemFullHeal_Taken
 end
+= GabbyAndTy_EventScript_TyBattle6
+trainerbattle_double TRAINER_GABBY_AND_TY_6 GabbyAndTy_Text_TyIntro GabbyAndTy_Text_TyDefeat GabbyAndTy_Text_TyNotEnoughMons GabbyAndTy_EventScript_RequestInterview
+msgbox	GabbyAndTy_Text_TyPostBattle
+release
+end
+= GabbyAndTy_EventScript_RequestInterview
+special GabbyAndTyBeforeInterview
+special GetGabbyAndTyLocalIds
+call_if_eq VAR_FACING DIR_NORTH GabbyAndTy_EventScript_FacePlayerNorth
+call_if_eq VAR_FACING DIR_SOUTH GabbyAndTy_EventScript_FacePlayerSouth
+call_if_eq VAR_FACING DIR_EAST GabbyAndTy_EventScript_FacePlayerEast
+goto_if_set FLAG_TEMP_SKIP_GABBY_INTERVIEW GabbyAndTy_EventScript_KeepingAnEyeOutForYou
+specialvar VAR_RESULT GabbyAndTyGetLastQuote
+goto_if_eq VAR_RESULT 0 GabbyAndTy_EventScript_DidntInterviewLastTime
+msgbox	GabbyAndTy_Text_QuoteFromLastInterview
+specialvar VAR_RESULT GabbyAndTyGetLastBattleTrivia
+switch VAR_RESULT
+case 0 GabbyAndTy_EventScript_RequestInterviewNoTrivia
+case 1 GabbyAndTy_EventScript_RequestInterviewShortBattle
+case 2 GabbyAndTy_EventScript_RequestInterviewThrewBall
+case 3 GabbyAndTy_EventScript_RequestInterviewUsedItems
+case 4 GabbyAndTy_EventScript_RequestInterviewLostAMon
+end
+= GabbyAndTy_EventScript_RequestInterviewLostAMon
+msgbox	GabbyAndTy_Text_WeLookedRespectableInterviewAgain
+goto GabbyAndTy_EventScript_Interview
+end
+= GabbyAndTy_EventScript_Interview
+goto_if_eq VAR_RESULT NO GabbyAndTy_EventScript_DontGiveUpKeepingEyeOut
+msgbox	GabbyAndTy_Text_DescribeYourFeelings
+setvar VAR_0x8004 EASY_CHAT_TYPE_GABBY_AND_TY
+call Common_ShowEasyChatScreen
+lock
+faceplayer
+goto_if_eq VAR_RESULT 0 GabbyAndTy_EventScript_DontGiveUpKeepingEyeOut
+msgbox	GabbyAndTy_Text_PerfectWellBeSeeingYou
+special GabbyAndTyAfterInterview
+setflag FLAG_TEMP_SKIP_GABBY_INTERVIEW
+release
+end
+= GabbyAndTy_EventScript_DontGiveUpKeepingEyeOut
+msgbox	GabbyAndTy_Text_DontGiveUpKeepingEyeOut
+setflag FLAG_TEMP_SKIP_GABBY_INTERVIEW
+release
+end
+= GabbyAndTy_EventScript_RequestInterviewUsedItems
+msgbox	GabbyAndTy_Text_CleverItemSkillsInterviewAgain
+goto GabbyAndTy_EventScript_Interview
+end
+= GabbyAndTy_EventScript_RequestInterviewThrewBall
+msgbox	GabbyAndTy_Text_YouThrewABallAtUsInterviewAgain
+goto GabbyAndTy_EventScript_Interview
+end
+= GabbyAndTy_EventScript_RequestInterviewShortBattle
+msgbox	GabbyAndTy_Text_YouStompedUsInterviewAgain
+goto GabbyAndTy_EventScript_Interview
+end
+= GabbyAndTy_EventScript_RequestInterviewNoTrivia
+msgbox	GabbyAndTy_Text_InterviewAgain
+goto GabbyAndTy_EventScript_Interview
+end
+= GabbyAndTy_EventScript_DidntInterviewLastTime
+msgbox	GabbyAndTy_Text_GiveUsAnInterviewThisTime
+goto GabbyAndTy_EventScript_Interview
+end
+= GabbyAndTy_EventScript_KeepingAnEyeOutForYou
+msgbox	GabbyAndTy_Text_KeepingAnEyeOutForYou
+release
+end
+= GabbyAndTy_EventScript_FacePlayerEast
+applymovement VAR_0x8004 GabbyAndTy_Movement_WalkInPlaceLeft
+applymovement VAR_0x8005 Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+return
+= GabbyAndTy_EventScript_FacePlayerSouth
+applymovement VAR_0x8004 GabbyAndTy_Movement_WalkInPlaceUp
+applymovement VAR_0x8005 Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+return
+= GabbyAndTy_EventScript_FacePlayerNorth
+applymovement VAR_0x8004 GabbyAndTy_Movement_WalkInPlaceDown
+waitmovement 0
+return
+= GabbyAndTy_EventScript_GabbyBattle6
+trainerbattle_double TRAINER_GABBY_AND_TY_6 GabbyAndTy_Text_GabbyIntro GabbyAndTy_Text_GabbyDefeat GabbyAndTy_Text_GabbyNotEnoughMons GabbyAndTy_EventScript_RequestInterview
+msgbox	GabbyAndTy_Text_KeepingAnEyeOutForYou
+release
+end
+= GabbyAndTy_EventScript_GabbyBattle3
+trainerbattle_double TRAINER_GABBY_AND_TY_3 GabbyAndTy_Text_GabbyIntro GabbyAndTy_Text_GabbyDefeat GabbyAndTy_Text_GabbyNotEnoughMons GabbyAndTy_EventScript_RequestInterview
+msgbox	GabbyAndTy_Text_KeepingAnEyeOutForYou
+release
+end
+= GabbyAndTy_EventScript_TyBattle3
+trainerbattle_double TRAINER_GABBY_AND_TY_3 GabbyAndTy_Text_TyIntro GabbyAndTy_Text_TyDefeat GabbyAndTy_Text_TyNotEnoughMons GabbyAndTy_EventScript_RequestInterview
+msgbox	GabbyAndTy_Text_TyPostBattle
+release
+end
 = Route120_EventScript_ItemNugget
 goto_if_set FLAG_ITEM_ROUTE_120_NUGGET Route120_EventScript_ItemNugget_Taken
 finditem ITEM_NUGGET
@@ -572,6 +805,162 @@ end
 = Route120_EventScript_Colin
 trainerbattle_single TRAINER_COLIN Route120_Text_ColinIntro Route120_Text_ColinDefeat
 msgbox	Route120_Text_ColinPostBattle
+end
+= BerryTreeScript
+special ObjectEventInteractionGetBerryTreeData
+switch VAR_0x8004
+case BERRY_STAGE_SPARKLING BerryTree_EventScript_Sparkling
+case BERRY_STAGE_NO_BERRY BerryTree_EventScript_CheckSoil
+case BERRY_STAGE_PLANTED BerryTree_EventScript_CheckBerryStage1
+case BERRY_STAGE_SPROUTED BerryTree_EventScript_CheckBerryStage2
+case BERRY_STAGE_TALLER BerryTree_EventScript_CheckBerryStage3
+case BERRY_STAGE_FLOWERING BerryTree_EventScript_CheckBerryStage4
+case BERRY_STAGE_BERRIES BerryTree_EventScript_CheckBerryFullyGrown
+end
+= BerryTree_EventScript_CheckBerryFullyGrown
+buffernumberstring STR_VAR_2 VAR_0x8006
+lock
+faceplayer
+special ObjectEventInteractionGetBerryCountString
+msgbox	BerryTree_Text_WantToPick
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_PickBerry
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPickingBerry
+goto BerryTree_EventScript_PickBerry
+= BerryTree_EventScript_PickBerry
+special ObjectEventInteractionPickBerryTree
+goto_if_eq VAR_0x8004 0 BerryTree_EventScript_BerryPocketFull
+special IncrementDailyPickedBerries
+special ObjectEventInteractionRemoveBerryTree
+message BerryTree_Text_PickedTheBerry
+playfanfare MUS_OBTAIN_BERRY
+waitmessage
+waitfanfare
+waitbuttonpress
+message BerryTree_Text_PutAwayBerry
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_BerryPocketFull
+message BerryTree_Text_BerryPocketFull
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_CancelPickingBerry
+message BerryTree_Text_BerryLeftUnpicked
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_CheckBerryStage4
+call BerryTree_EventScript_GetCareAdverb
+lockall
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_BerryGrowthStage4
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+@ VAR_0x8005 here is the number of times watered
+@ Buffered by ObjectEventInteractionGetBerryTreeData
+goto BerryTree_EventScript_GetCareAdverb
+= BerryTree_EventScript_GetCareAdverb
+goto_if_eq VAR_0x8005 0 BerryTree_EventScript_SetAdverbPoor
+goto_if_eq VAR_0x8005 4 BerryTree_EventScript_SetAdverbGreat
+bufferstring STR_VAR_2 BerryTree_Text_CareAdverbGood
+return
+= BerryTree_EventScript_SetAdverbGreat
+bufferstring STR_VAR_2 BerryTree_Text_CareAdverbGreat
+return
+= BerryTree_EventScript_SetAdverbPoor
+bufferstring STR_VAR_2 BerryTree_Text_CareAdverbPoor
+return
+@ VAR_0x8006 here is the number of berries
+goto BerryTree_EventScript_CheckBerryFullyGrown
+= BerryTree_EventScript_WantToWater
+checkitem ITEM_WAILMER_PAIL
+goto_if_eq VAR_RESULT FALSE BerryTree_EventScript_DontWater
+special ObjectEventInteractionGetBerryName
+msgbox	BerryTree_Text_WantToWater
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_WaterBerry
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_DontWater
+goto BerryTree_EventScript_DontWater
+= BerryTree_EventScript_DontWater
+releaseall
+end
+= BerryTree_EventScript_WaterBerry
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_WateredTheBerry
+waitmessage
+special ObjectEventInteractionWaterBerryTree
+special DoWateringBerryTreeAnim
+message BerryTree_Text_PlantIsDelighted
+waitmessage
+waitbuttonpress
+releaseall
+end
+= BerryTree_EventScript_CheckBerryStage3
+lockall
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_BerryGrowthStage3
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckBerryStage2
+lockall
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_BerryGrowthStage2
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckBerryStage1
+lockall
+special ObjectEventInteractionGetBerryCountString
+message BerryTree_Text_BerryGrowthStage1
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckSoil
+lock
+faceplayer
+specialvar VAR_RESULT PlayerHasBerries
+goto_if_eq VAR_RESULT TRUE BerryTree_EventScript_WantToPlant
+message BerryTree_Text_ItsSoftLoamySoil
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_WantToPlant
+msgbox	BerryTree_Text_WantToPlant
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_ChooseBerryToPlant
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPlanting
+end
+= BerryTree_EventScript_CancelPlanting
+release
+end
+= BerryTree_EventScript_ChooseBerryToPlant
+fadescreen FADE_TO_BLACK
+closemessage
+special Bag_ChooseBerry
+goto_if_eq VAR_ITEM_ID 0 BerryTree_EventScript_CancelPlanting
+removeitem VAR_ITEM_ID
+call BerryTree_EventScript_PlantBerry
+goto BerryTree_EventScript_CancelPlanting
+= BerryTree_EventScript_PlantBerry
+special ObjectEventInteractionPlantBerryTree
+incrementgamestat GAME_STAT_PLANTED_BERRIES
+special IncrementDailyPlantedBerries
+special ObjectEventInteractionGetBerryCountString
+message BerryTree_Text_PlantedOneBerry
+waitmessage
+waitbuttonpress
+return
+= BerryTree_EventScript_Sparkling
+lockall
+message BerryTree_Text_ExclamationPoint
+waitmessage
+waitbuttonpress
+releaseall
 end
 signs
 27 3	ROUTE 120 FORTREE CITY

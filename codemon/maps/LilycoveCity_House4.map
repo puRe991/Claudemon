@@ -24,8 +24,8 @@ warps
 3 8 LilycoveCity 11
 4 8 LilycoveCity 11
 npcs
-people_man_4 1 4 S wander
-people_man_1 7 4 S wander
+people_man_4 1 4 S wander 0
+people_man_1 7 4 S wander 0
 dialogs
 0	This planet's biggest mysteries are at the bottom of the sea.Somebody said that, but I don't know…
 1	There's a deep underwater trench between MOSSDEEP and SOOTOPOLIS.That's what someone told me, anyway.

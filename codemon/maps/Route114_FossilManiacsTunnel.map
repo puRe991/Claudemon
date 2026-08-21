@@ -59,7 +59,7 @@ warps
 7 25 Route114_FossilManiacsHouse 2
 6 2 DesertUnderpass 0
 npcs
-people_maniac 5 3 N static
+people_maniac 5 3 N static 0
 dialogs
 0	I'm the FOSSIL MANIAC… I'm a nice guy who loves FOSSILS…Do you want a FOSSIL?But the FOSSILS around these parts all belong to me… None for you…If you can't bear to go without a FOSSIL, look in a desert where there are boulders and sand that may hide FOSSILS…
 objscripts
@@ -67,6 +67,9 @@ objscripts
 triggers
 5 4 VAR_FOSSIL_MANIAC_STATE 1 Route114_FossilManiacsTunnel_EventScript_ManiacMentionCaveIn
 6 4 VAR_FOSSIL_MANIAC_STATE 1 Route114_FossilManiacsTunnel_EventScript_ManiacMentionCaveIn
+movements
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
 scriptdefs
 = Route114_FossilManiacsTunnel_EventScript_ManiacMentionCaveIn
 lockall

@@ -22,8 +22,8 @@ warps
 3 7 Route123 0
 4 7 Route123 0
 npcs
-people_expert_m 4 4 S static
-people_old_woman 7 4 S static
+people_expert_m 4 4 S static 0
+people_old_woman 7 4 S static 0
 objscripts
 0 Route123_BerryMastersHouse_EventScript_BerryMaster
 1 Route123_BerryMastersHouse_EventScript_BerryMastersWife

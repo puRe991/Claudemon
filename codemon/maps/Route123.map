@@ -45,56 +45,77 @@ collision
 warps
 22 6 Route123_BerryMastersHouse 0
 npcs
-people_man_1 11 3 S static
-people_man_1 12 3 S static
-people_man_1 14 3 S static
-people_man_1 15 3 S static
-people_man_1 81 1 S static
-people_man_1 82 1 S static
-people_man_1 83 1 S static
-people_woman_5 70 12 S static
-people_man_3 58 7 S static
-people_man_1 14 5 S static
-people_man_1 15 5 S static
-people_man_1 17 5 S static
-people_man_1 18 5 S static
-people_man_1 17 3 S static
-people_man_1 18 3 S static
-people_man_1 11 5 S static
-people_man_1 12 5 S static
-misc_cuttable_tree 101 13 S static
-misc_cuttable_tree 129 14 S static
-misc_cuttable_tree 92 9 S static
-misc_item_ball 31 8 S static
-people_girl_3 108 13 S static
-people_man_1 109 13 S static
-people_man_1 110 13 S static
-people_man_1 111 13 S static
-people_woman_2 18 9 S static
-people_twin 38 13 S static
-people_twin 37 13 S static
-people_psychic_m 138 12 W static
-people_lass 49 16 S static
-people_hex_maniac 87 12 S static
-misc_item_ball 27 18 S static
-misc_item_ball 75 9 S static
-people_ninja_boy 138 14 S static
-people_woman_2 138 16 N static
-people_maniac 87 17 N static
-people_man_5 66 16 S static
-people_man_5 66 19 N static
-people_expert_m 49 19 N static
-misc_item_ball 43 15 S static
-people_woman_5 14 16 N static
-people_youngster 14 12 S static
-misc_item_ball 57 16 S static
+people_man_1 11 3 S static 0
+people_man_1 12 3 S static 0
+people_man_1 14 3 S static 0
+people_man_1 15 3 S static 0
+people_man_1 81 1 S static 0
+people_man_1 82 1 S static 0
+people_man_1 83 1 S static 0
+people_woman_5 70 12 S static 0
+people_man_3 58 7 S static 0
+people_man_1 14 5 S static 0
+people_man_1 15 5 S static 0
+people_man_1 17 5 S static 0
+people_man_1 18 5 S static 0
+people_man_1 17 3 S static 0
+people_man_1 18 3 S static 0
+people_man_1 11 5 S static 0
+people_man_1 12 5 S static 0
+misc_cuttable_tree 101 13 S static FLAG_TEMP_11
+misc_cuttable_tree 129 14 S static FLAG_TEMP_12
+misc_cuttable_tree 92 9 S static FLAG_TEMP_13
+misc_item_ball 31 8 S static FLAG_ITEM_ROUTE_123_CALCIUM
+people_girl_3 108 13 S static 0
+people_man_1 109 13 S static 0
+people_man_1 110 13 S static 0
+people_man_1 111 13 S static 0
+people_woman_2 18 9 S static 0
+people_twin 38 13 S static 0
+people_twin 37 13 S static 0
+people_psychic_m 138 12 W static 0
+people_lass 49 16 S static 0
+people_hex_maniac 87 12 S static 0
+misc_item_ball 27 18 S static FLAG_ITEM_ROUTE_123_ULTRA_BALL
+misc_item_ball 75 9 S static FLAG_ITEM_ROUTE_123_ELIXIR
+people_ninja_boy 138 14 S static 0
+people_woman_2 138 16 N static 0
+people_maniac 87 17 N static 0
+people_man_5 66 16 S static 0
+people_man_5 66 19 N static 0
+people_expert_m 49 19 N static 0
+misc_item_ball 43 15 S static FLAG_ITEM_ROUTE_123_PP_UP
+people_woman_5 14 16 N static 0
+people_youngster 14 12 S static 0
+misc_item_ball 57 16 S static FLAG_ITEM_ROUTE_123_REVIVAL_HERB
 dialogs
 21	I love GRASS-type POKéMON!Do you have any GRASS-type POKéMON?
 objscripts
+0 BerryTreeScript
+1 BerryTreeScript
+2 BerryTreeScript
+3 BerryTreeScript
+4 BerryTreeScript
+5 BerryTreeScript
+6 BerryTreeScript
 7 Route123_EventScript_Wendy
 8 Route123_EventScript_Braxton
+9 BerryTreeScript
+10 BerryTreeScript
+11 BerryTreeScript
+12 BerryTreeScript
+13 BerryTreeScript
+14 BerryTreeScript
+15 BerryTreeScript
+16 BerryTreeScript
+17 EventScript_CutTree
+18 EventScript_CutTree
+19 EventScript_CutTree
 20 Route123_EventScript_ItemCalcium
 21 Route123_EventScript_GigaDrainGirl
+22 BerryTreeScript
+23 BerryTreeScript
+24 BerryTreeScript
 25 Route123_EventScript_Violet
 26 Route123_EventScript_Yuki
 27 Route123_EventScript_Miu
@@ -119,6 +140,8 @@ triggers
 91 15 0 0 Route123_HiddenItem_91_15
 139 15 0 0 Route123_HiddenItem_139_15
 138 18 0 0 Route123_HiddenItem_138_18
+movements
+Movement_CutTreeDown	delay,end
 scriptdefs
 = Route123_HiddenItem_138_18
 goto_if_set FLAG_HIDDEN_ITEM_ROUTE_123_RARE_CANDY Route123_HiddenItem_138_18_Taken
@@ -281,6 +304,162 @@ end
 trainerbattle_single TRAINER_VIOLET Route123_Text_VioletIntro Route123_Text_VioletDefeat
 msgbox	Route123_Text_VioletPostBattle
 end
+= BerryTreeScript
+special ObjectEventInteractionGetBerryTreeData
+switch VAR_0x8004
+case BERRY_STAGE_SPARKLING BerryTree_EventScript_Sparkling
+case BERRY_STAGE_NO_BERRY BerryTree_EventScript_CheckSoil
+case BERRY_STAGE_PLANTED BerryTree_EventScript_CheckBerryStage1
+case BERRY_STAGE_SPROUTED BerryTree_EventScript_CheckBerryStage2
+case BERRY_STAGE_TALLER BerryTree_EventScript_CheckBerryStage3
+case BERRY_STAGE_FLOWERING BerryTree_EventScript_CheckBerryStage4
+case BERRY_STAGE_BERRIES BerryTree_EventScript_CheckBerryFullyGrown
+end
+= BerryTree_EventScript_CheckBerryFullyGrown
+buffernumberstring STR_VAR_2 VAR_0x8006
+lock
+faceplayer
+special ObjectEventInteractionGetBerryCountString
+msgbox	BerryTree_Text_WantToPick
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_PickBerry
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPickingBerry
+goto BerryTree_EventScript_PickBerry
+= BerryTree_EventScript_PickBerry
+special ObjectEventInteractionPickBerryTree
+goto_if_eq VAR_0x8004 0 BerryTree_EventScript_BerryPocketFull
+special IncrementDailyPickedBerries
+special ObjectEventInteractionRemoveBerryTree
+message BerryTree_Text_PickedTheBerry
+playfanfare MUS_OBTAIN_BERRY
+waitmessage
+waitfanfare
+waitbuttonpress
+message BerryTree_Text_PutAwayBerry
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_BerryPocketFull
+message BerryTree_Text_BerryPocketFull
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_CancelPickingBerry
+message BerryTree_Text_BerryLeftUnpicked
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_CheckBerryStage4
+call BerryTree_EventScript_GetCareAdverb
+lockall
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_BerryGrowthStage4
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+@ VAR_0x8005 here is the number of times watered
+@ Buffered by ObjectEventInteractionGetBerryTreeData
+goto BerryTree_EventScript_GetCareAdverb
+= BerryTree_EventScript_GetCareAdverb
+goto_if_eq VAR_0x8005 0 BerryTree_EventScript_SetAdverbPoor
+goto_if_eq VAR_0x8005 4 BerryTree_EventScript_SetAdverbGreat
+bufferstring STR_VAR_2 BerryTree_Text_CareAdverbGood
+return
+= BerryTree_EventScript_SetAdverbGreat
+bufferstring STR_VAR_2 BerryTree_Text_CareAdverbGreat
+return
+= BerryTree_EventScript_SetAdverbPoor
+bufferstring STR_VAR_2 BerryTree_Text_CareAdverbPoor
+return
+@ VAR_0x8006 here is the number of berries
+goto BerryTree_EventScript_CheckBerryFullyGrown
+= BerryTree_EventScript_WantToWater
+checkitem ITEM_WAILMER_PAIL
+goto_if_eq VAR_RESULT FALSE BerryTree_EventScript_DontWater
+special ObjectEventInteractionGetBerryName
+msgbox	BerryTree_Text_WantToWater
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_WaterBerry
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_DontWater
+goto BerryTree_EventScript_DontWater
+= BerryTree_EventScript_DontWater
+releaseall
+end
+= BerryTree_EventScript_WaterBerry
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_WateredTheBerry
+waitmessage
+special ObjectEventInteractionWaterBerryTree
+special DoWateringBerryTreeAnim
+message BerryTree_Text_PlantIsDelighted
+waitmessage
+waitbuttonpress
+releaseall
+end
+= BerryTree_EventScript_CheckBerryStage3
+lockall
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_BerryGrowthStage3
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckBerryStage2
+lockall
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_BerryGrowthStage2
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckBerryStage1
+lockall
+special ObjectEventInteractionGetBerryCountString
+message BerryTree_Text_BerryGrowthStage1
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckSoil
+lock
+faceplayer
+specialvar VAR_RESULT PlayerHasBerries
+goto_if_eq VAR_RESULT TRUE BerryTree_EventScript_WantToPlant
+message BerryTree_Text_ItsSoftLoamySoil
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_WantToPlant
+msgbox	BerryTree_Text_WantToPlant
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_ChooseBerryToPlant
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPlanting
+end
+= BerryTree_EventScript_CancelPlanting
+release
+end
+= BerryTree_EventScript_ChooseBerryToPlant
+fadescreen FADE_TO_BLACK
+closemessage
+special Bag_ChooseBerry
+goto_if_eq VAR_ITEM_ID 0 BerryTree_EventScript_CancelPlanting
+removeitem VAR_ITEM_ID
+call BerryTree_EventScript_PlantBerry
+goto BerryTree_EventScript_CancelPlanting
+= BerryTree_EventScript_PlantBerry
+special ObjectEventInteractionPlantBerryTree
+incrementgamestat GAME_STAT_PLANTED_BERRIES
+special IncrementDailyPlantedBerries
+special ObjectEventInteractionGetBerryCountString
+message BerryTree_Text_PlantedOneBerry
+waitmessage
+waitbuttonpress
+return
+= BerryTree_EventScript_Sparkling
+lockall
+message BerryTree_Text_ExclamationPoint
+waitmessage
+waitbuttonpress
+releaseall
+end
 = Route123_EventScript_GigaDrainGirl
 lock
 faceplayer
@@ -308,6 +487,44 @@ finditem ITEM_CALCIUM
 setflag FLAG_ITEM_ROUTE_123_CALCIUM
 end
 = Route123_EventScript_ItemCalcium_Taken
+end
+= EventScript_CutTree
+lockall
+goto_if_unset FLAG_BADGE01_GET EventScript_CheckTreeCantCut
+checkpartymove MOVE_CUT
+goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CheckTreeCantCut
+setfieldeffectargument 0 VAR_RESULT
+bufferpartymonnick STR_VAR_1 VAR_RESULT
+buffermovename STR_VAR_2 MOVE_CUT
+msgbox	Text_WantToCut
+goto_if_eq VAR_RESULT NO EventScript_CancelCut
+msgbox	Text_MonUsedFieldMove
+closemessage
+dofieldeffect FLDEFF_USE_CUT_ON_TREE
+waitstate
+goto EventScript_CutTreeDown
+end
+@ Use cut from party menu
+goto EventScript_UseCut
+= EventScript_UseCut
+lockall
+dofieldeffect FLDEFF_USE_CUT_ON_TREE
+waitstate
+goto EventScript_CutTreeDown
+end
+= EventScript_CutTreeDown
+applymovement VAR_LAST_TALKED Movement_CutTreeDown
+waitmovement 0
+removeobject VAR_LAST_TALKED
+releaseall
+end
+= EventScript_CancelCut
+closemessage
+releaseall
+end
+= EventScript_CheckTreeCantCut
+msgbox	Text_CantCut
+releaseall
 end
 = Route123_EventScript_Braxton
 trainerbattle_single TRAINER_BRAXTON Route123_Text_BraxtonIntro Route123_Text_BraxtonDefeat

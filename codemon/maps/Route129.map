@@ -83,11 +83,11 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 npcs
-people_swimmer_m 28 16 S static
-people_swimmer_f 10 14 S static
-people_swimmer_f 13 22 S static
-people_swimmer_m 35 9 S static
-people_swimmer_m 13 27 S static
+people_swimmer_m 28 16 S static 0
+people_swimmer_f 10 14 S static 0
+people_swimmer_f 13 22 S static 0
+people_swimmer_m 35 9 S static 0
+people_swimmer_m 13 27 S static 0
 objscripts
 0 Route129_EventScript_Chase
 1 Route129_EventScript_Allison

@@ -35,8 +35,8 @@ warps
 12 10 MtPyre_4F 2
 12 12 MtPyre_4F 3
 npcs
-people_black_belt 3 7 S static
-misc_item_ball 6 11 S static
+people_black_belt 3 7 S static 0
+misc_item_ball 6 11 S static FLAG_ITEM_MT_PYRE_5F_LAX_INCENSE
 objscripts
 1 MtPyre_5F_EventScript_ItemLaxIncense
 scriptdefs

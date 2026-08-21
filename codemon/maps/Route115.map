@@ -167,41 +167,47 @@ warps
 21 6 TerraCave_Entrance 0
 36 10 TerraCave_Entrance 0
 npcs
-people_woman_2 18 68 S wander
-people_expert_m 5 15 E static
-people_black_belt 27 53 S static
-people_man_1 12 5 S static
-people_man_1 13 5 S static
-people_man_1 14 5 S static
-people_girl_3 15 50 S static
-people_black_belt 19 15 W pace_h
-people_maniac 24 62 S static
-misc_item_ball 20 60 S static
-misc_item_ball 18 7 S static
-misc_item_ball 23 29 S static
-people_man_1 31 64 S static
-people_man_1 31 65 S static
-misc_breakable_rock 29 50 S static
-misc_item_ball 31 56 S static
-people_running_triathlete_f 10 15 S static
-people_ninja_boy 11 12 S static
-people_girl_3 15 7 W static
-people_lass 10 7 E static
-people_lass 28 62 W static
-misc_item_ball 26 67 S static
-misc_item_ball 12 14 S static
+people_woman_2 18 68 S wander 0
+people_expert_m 5 15 E static 0
+people_black_belt 27 53 S static 0
+people_man_1 12 5 S static 0
+people_man_1 13 5 S static 0
+people_man_1 14 5 S static 0
+people_girl_3 15 50 S static 0
+people_black_belt 19 15 W pace_h 0
+people_maniac 24 62 S static 0
+misc_item_ball 20 60 S static FLAG_ITEM_ROUTE_115_SUPER_POTION
+misc_item_ball 18 7 S static FLAG_ITEM_ROUTE_115_TM_FOCUS_PUNCH
+misc_item_ball 23 29 S static FLAG_ITEM_ROUTE_115_IRON
+people_man_1 31 64 S static 0
+people_man_1 31 65 S static 0
+misc_breakable_rock 29 50 S static FLAG_TEMP_11
+misc_item_ball 31 56 S static FLAG_ITEM_ROUTE_115_GREAT_BALL
+people_running_triathlete_f 10 15 S static 0
+people_ninja_boy 11 12 S static 0
+people_girl_3 15 7 W static 0
+people_lass 10 7 E static 0
+people_lass 28 62 W static 0
+misc_item_ball 26 67 S static FLAG_ITEM_ROUTE_115_PP_UP
+misc_item_ball 12 14 S static FLAG_ITEM_ROUTE_115_HEAL_POWDER
 dialogs
 0	Exploring a cave isn't like walking on a road.You never know when wild POKéMON will appear. It's full of suspense.
 objscripts
 0 Route115_EventScript_Woman
 1 Route115_EventScript_Timothy
 2 Route115_EventScript_Nob
+3 BerryTreeScript
+4 BerryTreeScript
+5 BerryTreeScript
 6 Route115_EventScript_Cyndy
 7 Route115_EventScript_Koichi
 8 Route115_EventScript_Hector
 9 Route115_EventScript_ItemSuperPotion
 10 Route115_EventScript_ItemTMFocusPunch
 11 Route115_EventScript_ItemIron
+12 BerryTreeScript
+13 BerryTreeScript
+14 EventScript_RockSmash
 15 Route115_EventScript_ItemGreatBall
 16 Route115_EventScript_Kyra
 17 Route115_EventScript_Jaiden
@@ -212,6 +218,8 @@ objscripts
 22 Route115_EventScript_ItemHealPowder
 triggers
 15 49 0 0 Route115_HiddenItem_15_49
+movements
+Movement_SmashRock	delay,end
 scriptdefs
 = Route115_HiddenItem_15_49
 goto_if_set FLAG_HIDDEN_ITEM_ROUTE_115_HEART_SCALE Route115_HiddenItem_15_49_Taken
@@ -260,6 +268,208 @@ finditem ITEM_GREAT_BALL
 setflag FLAG_ITEM_ROUTE_115_GREAT_BALL
 end
 = Route115_EventScript_ItemGreatBall_Taken
+end
+= EventScript_RockSmash
+lockall
+goto_if_unset FLAG_BADGE03_GET EventScript_CantSmashRock
+checkpartymove MOVE_ROCK_SMASH
+goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CantSmashRock
+setfieldeffectargument 0 VAR_RESULT
+bufferpartymonnick STR_VAR_1 VAR_RESULT
+buffermovename STR_VAR_2 MOVE_ROCK_SMASH
+msgbox	Text_WantToSmash
+goto_if_eq VAR_RESULT NO EventScript_CancelSmash
+msgbox	Text_MonUsedFieldMove
+closemessage
+dofieldeffect FLDEFF_USE_ROCK_SMASH
+waitstate
+goto EventScript_SmashRock
+end
+@ Use rock smash from party menu
+goto EventScript_UseRockSmash
+= EventScript_UseRockSmash
+lockall
+dofieldeffect FLDEFF_USE_ROCK_SMASH
+waitstate
+goto EventScript_SmashRock
+end
+= EventScript_SmashRock
+applymovement VAR_LAST_TALKED Movement_SmashRock
+waitmovement 0
+removeobject VAR_LAST_TALKED
+specialvar VAR_RESULT TryUpdateRusturfTunnelState
+goto_if_eq VAR_RESULT TRUE EventScript_EndSmash
+special RockSmashWildEncounter
+goto_if_eq VAR_RESULT FALSE EventScript_EndSmash
+waitstate
+releaseall
+end
+= EventScript_EndSmash
+releaseall
+end
+= EventScript_CancelSmash
+closemessage
+releaseall
+end
+= EventScript_CantSmashRock
+msgbox	Text_CantSmash
+releaseall
+end
+= BerryTreeScript
+special ObjectEventInteractionGetBerryTreeData
+switch VAR_0x8004
+case BERRY_STAGE_SPARKLING BerryTree_EventScript_Sparkling
+case BERRY_STAGE_NO_BERRY BerryTree_EventScript_CheckSoil
+case BERRY_STAGE_PLANTED BerryTree_EventScript_CheckBerryStage1
+case BERRY_STAGE_SPROUTED BerryTree_EventScript_CheckBerryStage2
+case BERRY_STAGE_TALLER BerryTree_EventScript_CheckBerryStage3
+case BERRY_STAGE_FLOWERING BerryTree_EventScript_CheckBerryStage4
+case BERRY_STAGE_BERRIES BerryTree_EventScript_CheckBerryFullyGrown
+end
+= BerryTree_EventScript_CheckBerryFullyGrown
+buffernumberstring STR_VAR_2 VAR_0x8006
+lock
+faceplayer
+special ObjectEventInteractionGetBerryCountString
+msgbox	BerryTree_Text_WantToPick
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_PickBerry
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPickingBerry
+goto BerryTree_EventScript_PickBerry
+= BerryTree_EventScript_PickBerry
+special ObjectEventInteractionPickBerryTree
+goto_if_eq VAR_0x8004 0 BerryTree_EventScript_BerryPocketFull
+special IncrementDailyPickedBerries
+special ObjectEventInteractionRemoveBerryTree
+message BerryTree_Text_PickedTheBerry
+playfanfare MUS_OBTAIN_BERRY
+waitmessage
+waitfanfare
+waitbuttonpress
+message BerryTree_Text_PutAwayBerry
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_BerryPocketFull
+message BerryTree_Text_BerryPocketFull
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_CancelPickingBerry
+message BerryTree_Text_BerryLeftUnpicked
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_CheckBerryStage4
+call BerryTree_EventScript_GetCareAdverb
+lockall
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_BerryGrowthStage4
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+@ VAR_0x8005 here is the number of times watered
+@ Buffered by ObjectEventInteractionGetBerryTreeData
+goto BerryTree_EventScript_GetCareAdverb
+= BerryTree_EventScript_GetCareAdverb
+goto_if_eq VAR_0x8005 0 BerryTree_EventScript_SetAdverbPoor
+goto_if_eq VAR_0x8005 4 BerryTree_EventScript_SetAdverbGreat
+bufferstring STR_VAR_2 BerryTree_Text_CareAdverbGood
+return
+= BerryTree_EventScript_SetAdverbGreat
+bufferstring STR_VAR_2 BerryTree_Text_CareAdverbGreat
+return
+= BerryTree_EventScript_SetAdverbPoor
+bufferstring STR_VAR_2 BerryTree_Text_CareAdverbPoor
+return
+@ VAR_0x8006 here is the number of berries
+goto BerryTree_EventScript_CheckBerryFullyGrown
+= BerryTree_EventScript_WantToWater
+checkitem ITEM_WAILMER_PAIL
+goto_if_eq VAR_RESULT FALSE BerryTree_EventScript_DontWater
+special ObjectEventInteractionGetBerryName
+msgbox	BerryTree_Text_WantToWater
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_WaterBerry
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_DontWater
+goto BerryTree_EventScript_DontWater
+= BerryTree_EventScript_DontWater
+releaseall
+end
+= BerryTree_EventScript_WaterBerry
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_WateredTheBerry
+waitmessage
+special ObjectEventInteractionWaterBerryTree
+special DoWateringBerryTreeAnim
+message BerryTree_Text_PlantIsDelighted
+waitmessage
+waitbuttonpress
+releaseall
+end
+= BerryTree_EventScript_CheckBerryStage3
+lockall
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_BerryGrowthStage3
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckBerryStage2
+lockall
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_BerryGrowthStage2
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckBerryStage1
+lockall
+special ObjectEventInteractionGetBerryCountString
+message BerryTree_Text_BerryGrowthStage1
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckSoil
+lock
+faceplayer
+specialvar VAR_RESULT PlayerHasBerries
+goto_if_eq VAR_RESULT TRUE BerryTree_EventScript_WantToPlant
+message BerryTree_Text_ItsSoftLoamySoil
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_WantToPlant
+msgbox	BerryTree_Text_WantToPlant
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_ChooseBerryToPlant
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPlanting
+end
+= BerryTree_EventScript_CancelPlanting
+release
+end
+= BerryTree_EventScript_ChooseBerryToPlant
+fadescreen FADE_TO_BLACK
+closemessage
+special Bag_ChooseBerry
+goto_if_eq VAR_ITEM_ID 0 BerryTree_EventScript_CancelPlanting
+removeitem VAR_ITEM_ID
+call BerryTree_EventScript_PlantBerry
+goto BerryTree_EventScript_CancelPlanting
+= BerryTree_EventScript_PlantBerry
+special ObjectEventInteractionPlantBerryTree
+incrementgamestat GAME_STAT_PLANTED_BERRIES
+special IncrementDailyPlantedBerries
+special ObjectEventInteractionGetBerryCountString
+message BerryTree_Text_PlantedOneBerry
+waitmessage
+waitbuttonpress
+return
+= BerryTree_EventScript_Sparkling
+lockall
+message BerryTree_Text_ExclamationPoint
+waitmessage
+waitbuttonpress
+releaseall
 end
 = Route115_EventScript_ItemIron
 goto_if_set FLAG_ITEM_ROUTE_115_IRON Route115_EventScript_ItemIron_Taken

@@ -97,18 +97,24 @@ collision
 warps
 5 4 SeafloorCavern_Room8 0
 npcs
-people_man_1 17 38 S static
-people_team_aqua_archie 9 42 E static
-people_team_magma_maxie 9 42 E static
-people_team_magma_magma_member_m 8 41 E static
-people_team_magma_magma_member_f 8 42 E static
-misc_item_ball 14 5 S static
-people_man_1 17 38 S static
+people_man_1 17 38 S static FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_KYOGRE
+people_team_aqua_archie 9 42 E static FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_ARCHIE
+people_team_magma_maxie 9 42 E static FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_MAXIE
+people_team_magma_magma_member_m 8 41 E static FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_MAGMA_GRUNTS
+people_team_magma_magma_member_f 8 42 E static FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_MAGMA_GRUNTS
+misc_item_ball 14 5 S static FLAG_ITEM_SEAFLOOR_CAVERN_ROOM_9_TM_EARTHQUAKE
+people_man_1 17 38 S static FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_KYOGRE_ASLEEP
 objscripts
 5 SeafloorCavern_Room9_EventScript_ItemTMEarthquake
 triggers
 17 42 VAR_SEAFLOOR_CAVERN_STATE 0 SeafloorCavern_Room9_EventScript_ArchieAwakenKyogre
 movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
+Common_Movement_FacePlayer	face_down,end
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
 SeafloorCavern_Room9_Movement_ArchieApproachPlayer	right,right,right,right,right,right,right,end
 SeafloorCavern_Room9_Movement_ArchieExit	face_up,delay,down,delay,delay,end
 SeafloorCavern_Room9_Movement_ArchieListenMessage	left,delay,end

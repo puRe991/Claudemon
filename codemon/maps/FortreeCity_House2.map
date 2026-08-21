@@ -18,13 +18,45 @@ warps
 3 5 FortreeCity 4
 4 5 FortreeCity 4
 npcs
-people_expert_f 2 3 S wander
-people_expert_m 6 3 W static
+people_expert_f 2 3 S wander 0
+people_expert_m 6 3 W static 0
 dialogs
 0	Let this old woman see if your hidden power has awoken…I hold a coin in my hand.Now, tell me, have I palmed it in the right hand? Or in the left?
 objscripts
 0 FortreeCity_House2_EventScript_HiddenPowerGiver
+1 FortreeCity_House2_EventScript_SleepTalkTutor
 scriptdefs
+= FortreeCity_House2_EventScript_SleepTalkTutor
+lock
+faceplayer
+goto_if_set FLAG_MOVE_TUTOR_TAUGHT_SLEEP_TALK MoveTutor_EventScript_SleepTalkTaught
+msgbox	MoveTutor_Text_SleepTalkTeach
+goto_if_eq VAR_RESULT NO MoveTutor_EventScript_SleepTalkDeclined
+call MoveTutor_EventScript_CanOnlyBeLearnedOnce
+goto_if_eq VAR_RESULT NO MoveTutor_EventScript_SleepTalkDeclined
+msgbox	MoveTutor_Text_SleepTalkWhichMon
+setvar VAR_0x8005 TUTOR_MOVE_SLEEP_TALK
+call MoveTutor_EventScript_OpenPartyMenu
+goto_if_eq VAR_RESULT 0 MoveTutor_EventScript_SleepTalkDeclined
+setflag FLAG_MOVE_TUTOR_TAUGHT_SLEEP_TALK
+goto MoveTutor_EventScript_SleepTalkTaught
+end
+= MoveTutor_EventScript_SleepTalkTaught
+msgbox	MoveTutor_Text_SleepTalkTaught
+release
+end
+= MoveTutor_EventScript_SleepTalkDeclined
+msgbox	MoveTutor_Text_SleepTalkDeclined
+release
+end
+= MoveTutor_EventScript_OpenPartyMenu
+special ChooseMonForMoveTutor
+lock
+faceplayer
+return
+= MoveTutor_EventScript_CanOnlyBeLearnedOnce
+msgbox	MoveTutor_Text_ThisMoveCanOnlyBeLearnedOnce
+return
 = FortreeCity_House2_EventScript_HiddenPowerGiver
 lock
 faceplayer

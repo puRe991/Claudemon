@@ -65,10 +65,11 @@ collision
 warps
 20 4 MarineCave_Entrance 0
 npcs
-people_man_1 9 22 S static
+people_man_1 9 22 S static FLAG_HIDE_MARINE_CAVE_KYOGRE
 triggers
 9 26 VAR_TEMP_1 1 MarineCave_End_EventScript_Kyogre
 movements
+Common_Movement_FaceUp	face_up,end
 MarineCave_End_Movement_KyogreApproach	delay,delay,delay,delay,delay,delay,delay,delay,end
 scriptdefs
 = MarineCave_End_EventScript_Kyogre

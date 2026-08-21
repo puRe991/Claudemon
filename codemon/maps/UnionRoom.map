@@ -30,7 +30,7 @@ warps
 7 11 - 0
 8 11 - 0
 npcs
-people_nurse 3 2 S static
+people_nurse 3 2 S static 0
 objscripts
 0 UnionRoom_EventScript_Attendant
 scriptdefs

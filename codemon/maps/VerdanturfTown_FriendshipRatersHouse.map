@@ -22,8 +22,8 @@ warps
 3 7 VerdanturfTown 5
 4 7 VerdanturfTown 5
 npcs
-people_woman_2 3 4 S static
-pokemon_pikachu 4 4 S static
+people_woman_2 3 4 S static 0
+pokemon_pikachu 4 4 S static 0
 dialogs
 0	Let me see your POKéMON. I'll check to see how much it likes you.Oh. Your POKéMON…
 1	PIKACHU: Pika pika!

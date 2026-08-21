@@ -85,12 +85,12 @@ collision
 warps
 32 33 Route121_SafariZoneEntrance 0
 npcs
-people_camper 32 34 S static
-people_boy_1 26 28 S wander
-people_man_4 16 6 S static
-people_youngster 15 31 S wander
-people_camper 36 16 W static
-people_camper 36 17 W static
+people_camper 32 34 S static 0
+people_boy_1 26 28 S wander 0
+people_man_4 16 6 S static 0
+people_youngster 15 31 S wander 0
+people_camper 36 16 W static FLAG_HIDE_SAFARI_ZONE_SOUTH_CONSTRUCTION_WORKERS
+people_camper 36 17 W static FLAG_HIDE_SAFARI_ZONE_SOUTH_CONSTRUCTION_WORKERS
 objscripts
 0 SafariZone_South_EventScript_ExitAttendant
 1 SafariZone_South_EventScript_Boy

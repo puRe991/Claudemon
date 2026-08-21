@@ -41,10 +41,10 @@ collision
 warps
 7 17 BattleFrontier_OutsideEast 3
 npcs
-people_hiker 7 12 S static
-people_hex_maniac 14 13 W static
-people_woman_3 2 15 S wander
-people_fat_man 12 16 S wander
+people_hiker 7 12 S static 0
+people_hex_maniac 14 13 W static 0
+people_woman_3 2 15 S wander 0
+people_fat_man 12 16 S wander 0
 dialogs
 0	Where the courage of TRAINERS is put to the test!Welcome to the BATTLE PYRAMID!I am your guide to the Battle Quest.
 1	Welcome…I shall be pleased to tell you what misfortunes await in the PYRAMID…
@@ -60,6 +60,7 @@ BattleFrontier_BattlePyramidLobby_Movement_AttendantMoveAside	right,face_left,en
 BattleFrontier_BattlePyramidLobby_Movement_AttendantWalkToPanel	up,up,up,up,up,up,up,face_down,end
 BattleFrontier_BattlePyramidLobby_Movement_PlayerStepOnPanel	up,up,end
 BattleFrontier_BattlePyramidLobby_Movement_PlayerWalkToPanel	up,up,up,up,up,up,up,end
+Common_Movement_FacePlayer	face_down,end
 scriptdefs
 = BattleFrontier_BattlePyramidLobby_EventScript_FatMan
 msgbox	Awaaaaaaarrrrgh!I had a whole lot of items, but I lost them all when I lost!Awaaaaaaarrrrgh!
@@ -298,6 +299,9 @@ goto BattleFrontier_BattlePyramidLobby_EventScript_EndCancelChallenge
 = BattleFrontier_BattlePyramidLobby_EventScript_EndCancelChallenge
 release
 end
+= Common_EventScript_SaveGame
+special SaveGame
+return
 = BattleFrontier_BattlePyramidLobby_EventScript_LoadPartyAndCancelChallenge
 special LoadPlayerParty
 goto BattleFrontier_BattlePyramidLobby_EventScript_CancelChallenge

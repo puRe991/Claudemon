@@ -83,8 +83,8 @@ collision
 0,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 npcs
-people_man_1 8 8 S static
-misc_item_ball 33 7 S static
+people_man_1 8 8 S static 0
+misc_item_ball 33 7 S static FLAG_ITEM_SAFARI_ZONE_NORTH_WEST_TM_SOLAR_BEAM
 objscripts
 0 SafariZone_Northwest_EventScript_Man
 1 SafariZone_Northwest_EventScript_ItemTMSolarBeam

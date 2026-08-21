@@ -20,7 +20,7 @@ warps
 12 5 Route110 3
 13 5 Route110 3
 npcs
-people_mart_employee 7 2 S static
+people_mart_employee 7 2 S static 0
 dialogs
 0	On CYCLING ROAD, you can go all out and cycle as fast as you'd like.It feels great to go that fast, but try not to crash into anyone!
 objscripts

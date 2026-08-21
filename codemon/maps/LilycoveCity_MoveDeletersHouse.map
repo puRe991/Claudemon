@@ -22,11 +22,13 @@ warps
 3 7 LilycoveCity 7
 4 7 LilycoveCity 7
 npcs
-people_expert_m 4 4 S static
+people_expert_m 4 4 S static 0
 dialogs
 0	Uh… Oh, yes, I'm the MOVE DELETER.I can make POKéMON forget their moves.Would you like me to do that?
 objscripts
 0 LilycoveCity_MoveDeletersHouse_EventScript_MoveDeleter
+movements
+Common_Movement_FacePlayer	face_down,end
 scriptdefs
 = LilycoveCity_MoveDeletersHouse_EventScript_MoveDeleter
 lockall

@@ -23,10 +23,10 @@ collision
 warps
 6 7 Underwater_Route128 0
 npcs
-people_brendan_walking 5 4 S static
-people_brendan_walking 6 4 S static
-people_brendan_walking 7 4 S static
-people_brendan_walking 8 4 S static
+people_brendan_walking 5 4 S static FLAG_HIDE_UNDERWATER_SEA_FLOOR_CAVERN_STOLEN_SUBMARINE
+people_brendan_walking 6 4 S static FLAG_HIDE_UNDERWATER_SEA_FLOOR_CAVERN_STOLEN_SUBMARINE
+people_brendan_walking 7 4 S static FLAG_HIDE_UNDERWATER_SEA_FLOOR_CAVERN_STOLEN_SUBMARINE
+people_brendan_walking 8 4 S static FLAG_HIDE_UNDERWATER_SEA_FLOOR_CAVERN_STOLEN_SUBMARINE
 dialogs
 0	“SUBMARINE EXPLORER 1” is painted on the hull.This is the submarine TEAM AQUA stole in SLATEPORT!TEAM AQUA must have gone ashore here.
 1	“SUBMARINE EXPLORER 1” is painted on the hull.This is the submarine TEAM AQUA stole in SLATEPORT!TEAM AQUA must have gone ashore here.

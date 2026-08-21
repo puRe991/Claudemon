@@ -135,41 +135,41 @@ warps
 40 7 SlateportCity_Harbor 2
 21 44 SlateportCity_House 0
 npcs
-people_fat_man 21 11 S wander
-people_man_1 34 29 S wander
-people_rich_boy 5 13 S wander
-people_woman_4 26 29 S static
-people_team_aqua_aqua_member_f 31 27 N static
-people_cook 5 43 S static
-people_old_woman 20 37 S static
-people_girl_1 8 42 S wander
-people_cameraman 29 13 W static
-people_reporter_f 28 14 N static
-people_scientist_1 28 13 E static
-people_sailor 37 41 E static
-people_sailor 28 46 S wander
-people_pokefan_f 9 50 S wander
-people_man_3 16 46 S wander
-people_maniac 8 24 S wander
-people_woman_5 15 31 S static
-people_team_aqua_aqua_member_m 30 27 E static
-people_team_aqua_aqua_member_m 29 27 E static
-people_mart_employee 6 38 E static
-people_mart_employee 5 51 S static
-people_man_5 34 51 S static
-people_woman_5 4 47 S static
-people_mart_employee 11 47 S static
-people_pokefan_m 5 47 S static
-people_team_aqua_aqua_member_m 22 27 E static
-people_team_aqua_aqua_member_m 23 27 N static
-people_team_aqua_aqua_member_m 24 27 E static
-people_team_aqua_aqua_member_m 21 26 E static
-people_team_aqua_aqua_member_m 20 26 E static
-people_team_aqua_aqua_member_m 26 27 N static
-people_team_aqua_aqua_member_m 28 27 N static
-people_team_aqua_aqua_member_m 25 27 N static
-people_pokefan_f 11 37 W static
-people_scott 10 12 S static
+people_fat_man 21 11 S wander 0
+people_man_1 34 29 S wander 0
+people_rich_boy 5 13 S wander 0
+people_woman_4 26 29 S static 0
+people_team_aqua_aqua_member_f 31 27 N static FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA
+people_cook 5 43 S static 0
+people_old_woman 20 37 S static 0
+people_girl_1 8 42 S wander 0
+people_cameraman 29 13 W static FLAG_HIDE_SLATEPORT_CITY_GABBY_AND_TY
+people_reporter_f 28 14 N static FLAG_HIDE_SLATEPORT_CITY_GABBY_AND_TY
+people_scientist_1 28 13 E static FLAG_HIDE_SLATEPORT_CITY_CAPTAIN_STERN
+people_sailor 37 41 E static 0
+people_sailor 28 46 S wander 0
+people_pokefan_f 9 50 S wander 0
+people_man_3 16 46 S wander 0
+people_maniac 8 24 S wander 0
+people_woman_5 15 31 S static 0
+people_team_aqua_aqua_member_m 30 27 E static FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA
+people_team_aqua_aqua_member_m 29 27 E static FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA
+people_mart_employee 6 38 E static 0
+people_mart_employee 5 51 S static 0
+people_man_5 34 51 S static 0
+people_woman_5 4 47 S static 0
+people_mart_employee 11 47 S static FLAG_HIDE_SLATEPORT_CITY_TM_SALESMAN
+people_pokefan_m 5 47 S static 0
+people_team_aqua_aqua_member_m 22 27 E static FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA
+people_team_aqua_aqua_member_m 23 27 N static FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA
+people_team_aqua_aqua_member_m 24 27 E static FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA
+people_team_aqua_aqua_member_m 21 26 E static FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA
+people_team_aqua_aqua_member_m 20 26 E static FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA
+people_team_aqua_aqua_member_m 26 27 N static FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA
+people_team_aqua_aqua_member_m 28 27 N static FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA
+people_team_aqua_aqua_member_m 25 27 N static FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA
+people_pokefan_f 11 37 W static 0
+people_scott 10 12 S static FLAG_HIDE_SLATEPORT_CITY_SCOTT
 dialogs
 0	Whew… I'm just bushed…I hiked over from MAUVILLE CITY. But, boy, this city's huge.If I'd known this, I would've ridden my BIKE here.
 1	STERN, the fellow who built the MUSEUM, also happens to be the leader of an undersea exploration team.So, everyone calls him CAPT. STERN.
@@ -239,6 +239,16 @@ objscripts
 triggers
 10 13 VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE 2 SlateportCity_EventScript_ScottBattleTentScene
 movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
+Common_Movement_FaceOriginalDirection	face_down,end
+Common_Movement_FacePlayer	face_down,end
+Common_Movement_FaceUp	face_up,end
+Common_Movement_QuestionMark	delay,end
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
 SlateportCity_Movement_DelayAquaGrunt	delay,delay,end
 SlateportCity_Movement_GabbyExit	delay,left,left,down,left,left,left,left,left,left,left,left,end
 SlateportCity_Movement_ManConcern	delay,delay,delay,delay,delay,delay,delay,end

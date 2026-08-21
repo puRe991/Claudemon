@@ -17,6 +17,7 @@
 #include <cctype>
 #include <cstdio>
 #include <cstdlib>
+#include <fstream>
 #include <random>
 #include <sstream>
 #include <string>
@@ -139,7 +140,8 @@ static void free_session(Session* s) {
 
 // Load a map and build the player + NPC agents. arrival<0 means use the map's
 // own start position.
-static Session* load_session(const std::string& path, int arr_x, int arr_y) {
+static Session* load_session(const std::string& path, int arr_x, int arr_y,
+                             GameState* gs) {
     Session* s = new Session();
     s->path = path;
     s->map = new Map(path);
@@ -151,6 +153,9 @@ static Session* load_session(const std::string& path, int arr_x, int arr_y) {
     s->player->face(DIR::S);
 
     for (const NpcSpawn& sp : s->map->npcs()) {
+        // pokeemerald FLAG_HIDE_*: this object doesn't exist yet/anymore
+        // (not met, already given away, story hasn't reached it, ...).
+        if (!sp.hide_flag.empty() && gs && gs->flag(sp.hide_flag)) continue;
         Character* ch = new Character(sp.x, sp.y);
         if (!ch->load_sprite_sheet("assets/overworld/" + sp.sheet + ".png")) {
             delete ch; continue;
@@ -208,7 +213,7 @@ static void tick_npcs(Session* s, std::mt19937& rng) {
 // Move the player one tile if possible; then, if the destination tile is a
 // warp, load the target map and place the player at the arrival warp. Returns
 // the (possibly new) session.
-static Session* player_step(Session* s, DIR dir, Audio* audio) {
+static Session* player_step(Session* s, DIR dir, Audio* audio, GameState* gs) {
     int tx, ty;
     s->player->target_tile(dir, tx, ty);
     // Warp/door tiles are impassable metatiles but can be walked onto: the warp
@@ -226,7 +231,7 @@ static Session* player_step(Session* s, DIR dir, Audio* audio) {
 
     const Warp* wp = s->map->warp_at(s->player->get_tile_x(), s->player->get_tile_y());
     if (wp && wp->dest != "-") {
-        Session* ns = load_session("maps/" + wp->dest + ".map", -1, -1);
+        Session* ns = load_session("maps/" + wp->dest + ".map", -1, -1, gs);
         if (ns->map->ready()) {
             const Warp* dw = ns->map->warp_by_index(wp->dest_warp);
             if (dw) ns->player->set_tile(dw->x, dw->y);
@@ -341,21 +346,109 @@ static DIR char_to_dir(char c) {
                  default: return DIR::NONE; }
 }
 
+/******************************************************************************
+StarterSelect - the one-time "choose your partner" screen (Treecko / Torchic /
+Mudkip), matching Prof. Birch's bag on Route 101. Opt-in via
+CODEMON_CHOOSE_STARTER so existing demos/tests keep their fixed Treecko start;
+real play always opens it. Follows the Menu/Minigame active()/input()/draw()
+shape so it slots into both the headless token loop and the interactive one.
+*****************************************************************************/
+struct StarterSelect {
+    static constexpr const char* SPECIES[3] = {"TREECKO", "TORCHIC", "MUDKIP"};
+    bool open_ = false, done_ = false;
+    int cursor = 1;
+    sf::Font font; bool font_ok = false;
+    sf::Texture tex[3]; bool tex_ok[3] = {false, false, false};
+
+    void load() {
+        font_ok = font.loadFromFile("assets/fonts/DejaVuSans.ttf");
+        for (int i = 0; i < 3; ++i)
+            tex_ok[i] = tex[i].loadFromFile(std::string("assets/pokemon/") + SPECIES[i] + ".png");
+    }
+    void open() { open_ = true; done_ = false; cursor = 1; }
+    bool active() const { return open_; }
+    bool done() const { return done_; }
+    void ack() { done_ = false; }               // caller has consumed the choice
+    const char* chosen() const { return SPECIES[cursor]; }
+
+    void input(BtnInput b) {
+        if (b == BTN_LEFT && cursor > 0) cursor--;
+        else if (b == BTN_RIGHT && cursor < 2) cursor++;
+        else if (b == BTN_CONFIRM) { done_ = true; open_ = false; }
+    }
+
+    void draw(sf::RenderTarget& target) {
+        if (!open_ || !font_ok) return;
+        sf::View saved = target.getView();
+        target.setView(target.getDefaultView());
+        sf::Vector2f size = target.getView().getSize();
+        sf::RectangleShape bg(size);
+        bg.setFillColor(sf::Color(20, 28, 48, 250));
+        target.draw(bg);
+
+        sf::Text title("Choose your partner Pokemon!", font, 22);
+        title.setPosition(size.x * 0.5f - 200, 30);
+        title.setFillColor(sf::Color(150, 210, 255));
+        target.draw(title);
+
+        for (int i = 0; i < 3; ++i) {
+            float x = size.x * (0.18f + 0.32f * i);
+            float y = size.y * 0.35f;
+            bool sel = i == cursor;
+            if (sel) {
+                sf::RectangleShape hl(sf::Vector2f(110, 110));
+                hl.setPosition(x - 15, y - 15);
+                hl.setFillColor(sf::Color(60, 90, 150, 150));
+                hl.setOutlineColor(sf::Color(150, 210, 255));
+                hl.setOutlineThickness(2.f);
+                target.draw(hl);
+            }
+            if (tex_ok[i]) {
+                sf::Sprite s(tex[i]);
+                s.setScale(3.f, 3.f);
+                s.setPosition(x, y);
+                target.draw(s);
+            }
+            sf::Text label(SPECIES[i], font, 18);
+            label.setPosition(x, y + 90);
+            label.setFillColor(sel ? sf::Color(150, 210, 255) : sf::Color::White);
+            target.draw(label);
+        }
+
+        sf::Text hint("[A/D] choose   [SPACE] confirm", font, 15);
+        hint.setPosition(size.x * 0.5f - 130, size.y - 40);
+        hint.setFillColor(sf::Color(180, 180, 180));
+        target.draw(hint);
+        target.setView(saved);
+    }
+};
+
 int main() {
     const char* map_env = std::getenv("CODEMON_MAP");
     // Story start: the player wakes up in their bedroom on Brendan's House 2F
     // (heal location HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F, tile 4,2),
     // then walks downstairs and out into Littleroot Town.
     const char* start_map = map_env ? map_env : "maps/LittlerootTown_BrendansHouse_2F.map";
-    Session* sess = load_session(start_map, -1, -1);
     std::mt19937 rng(1234);
+
+    GameState gs;
+    // New-game default world state: every NPC/item hidden until its own
+    // story beat unlocks it (data/scripts/new_game.inc in pokeemerald),
+    // e.g. the rival isn't standing in your bedroom, Birch isn't already
+    // in his lab, Mom's "moving in" dialogue is used instead of the daily one.
+    {
+        std::ifstream ngf("assets/new_game_flags.txt");
+        std::string ln;
+        while (std::getline(ngf, ln))
+            if (!ln.empty()) gs.set_flag(ln);
+    }
+    Session* sess = load_session(start_map, -1, -1, &gs);
 
     const unsigned win_w = VIEW_TW * sess->map->get_tile_size() * SCALE;
     const unsigned win_h = VIEW_TH * sess->map->get_tile_size() * SCALE;
 
     DialogBox box;
     box.load_font();
-    GameState gs;
     BattleData bdata;
     bdata.load("assets/battle");
     std::vector<Mon> team;                          // the player's party
@@ -374,6 +467,9 @@ int main() {
     Minigame games;
     games.load_font();
     games.configure(&gs, &rng);
+    StarterSelect starter;
+    starter.load();
+    if (std::getenv("CODEMON_CHOOSE_STARTER")) starter.open();
     // a few starting items so the bag is not empty
     gs.give_item("ITEM_POTION", 5);
     gs.give_item("ITEM_POKE_BALL", 10);
@@ -420,7 +516,9 @@ int main() {
             for (int i = 0; i < frames; ++i) {
                 if (i > 0) {
                     char tok = ((size_t)(i - 1) < walk.size()) ? walk[i - 1] : 0;
-                    if (battle.active()) {
+                    if (starter.active()) {
+                        if (tok) starter.input(token_btn(tok));
+                    } else if (battle.active()) {
                         if (tok) battle.input(token_btn(tok));
                     } else if (games.active()) {
                         if (tok) games.input(token_btn(tok));
@@ -441,7 +539,7 @@ int main() {
                             int pbx = sess->player->get_tile_x();
                             int pby = sess->player->get_tile_y();
                             Session* before = sess;
-                            sess = player_step(sess, char_to_dir(tok), nullptr);
+                            sess = player_step(sess, char_to_dir(tok), nullptr, &gs);
                             if (sess != before) {
                                 vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player);
                                 on_map_change(sess->path);
@@ -453,13 +551,18 @@ int main() {
                         }
                         if (walk.empty()) tick_npcs(sess, rng);
                     }
+                    if (starter.done()) {
+                        team[0] = bdata.make_mon(starter.chosen(), 5);
+                        starter.ack();
+                    }
                     battle.tick(0.13f);
                     games.tick(0.13f);
                     if (banner_t > 0.f) banner_t -= 0.13f;
                     if (fade > 0.f) fade -= 0.13f * 1.6f;
                 }
                 rt.clear(sf::Color(40, 72, 56));
-                if (battle.active()) battle.draw(rt);
+                if (starter.active()) starter.draw(rt);
+                else if (battle.active()) battle.draw(rt);
                 else if (games.active()) games.draw(rt);
                 else {
                     draw_scene(rt, sess); box.draw(rt);
@@ -494,7 +597,15 @@ int main() {
         while (scr.get_event(&event)) {
             if (event.type == sf::Event::Closed) scr.close();
             else if (event.type == sf::Event::KeyPressed) {
-                if (battle.active()) {
+                if (starter.active()) {
+                    switch (event.key.code) {
+                    case sf::Keyboard::A: starter.input(BTN_LEFT); break;
+                    case sf::Keyboard::D: starter.input(BTN_RIGHT); break;
+                    case sf::Keyboard::Space:
+                    case sf::Keyboard::Return: starter.input(BTN_CONFIRM); break;
+                    default: break;
+                    }
+                } else if (battle.active()) {
                     switch (event.key.code) {
                     case sf::Keyboard::W: battle.input(BTN_UP); break;
                     case sf::Keyboard::S: battle.input(BTN_DOWN); break;
@@ -541,7 +652,7 @@ int main() {
                         int pbx = sess->player->get_tile_x();
                         int pby = sess->player->get_tile_y();
                         Session* before = sess;
-                        sess = player_step(sess, dir, &audio);
+                        sess = player_step(sess, dir, &audio, &gs);
                         if (sess != before) {
                             vm.configure(sess->map, &gs, &box, &battle, &audio, sess->player);
                             on_map_change(sess->path);
@@ -553,6 +664,10 @@ int main() {
                     }
                 }
             }
+        }
+        if (starter.done()) {
+            team[0] = bdata.make_mon(starter.chosen(), 5);
+            starter.ack();
         }
         float dt = clock.restart().asSeconds();
         if (vm.running()) vm.update(dt);
@@ -570,7 +685,8 @@ int main() {
         }
 
         scr.clear();
-        if (battle.active()) { battle.draw(*scr.get_window()); }
+        if (starter.active()) { starter.draw(*scr.get_window()); }
+        else if (battle.active()) { battle.draw(*scr.get_window()); }
         else if (games.active()) { games.draw(*scr.get_window()); }
         else {
             draw_scene(*scr.get_window(), sess);

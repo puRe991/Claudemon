@@ -66,7 +66,7 @@ warps
 13 17 LavaridgeTown_Gym_1F 24
 12 12 LavaridgeTown_Gym_1F 25
 npcs
-people_man_5 4 18 S static
-people_man_5 3 6 S static
-people_man_5 13 17 S static
-people_hiker 4 16 S static
+people_man_5 4 18 S static 0
+people_man_5 3 6 S static 0
+people_man_5 13 17 S static 0
+people_hiker 4 16 S static 0

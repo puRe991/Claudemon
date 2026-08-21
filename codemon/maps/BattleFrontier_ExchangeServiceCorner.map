@@ -29,15 +29,15 @@ warps
 6 10 BattleFrontier_OutsideEast 6
 8 10 BattleFrontier_OutsideEast 6
 npcs
-people_teala 4 4 W static
-people_rich_boy 0 5 E static
-people_pokefan_f 0 4 S static
-people_sailor 14 6 S wander
-people_man_5 1 9 S wander
-people_teala 5 5 S static
-people_teala 9 5 S static
-people_teala 10 4 E static
-people_girl_1 12 10 S wander
+people_teala 4 4 W static 0
+people_rich_boy 0 5 E static 0
+people_pokefan_f 0 4 S static 0
+people_sailor 14 6 S wander 0
+people_man_5 1 9 S wander 0
+people_teala 5 5 S static 0
+people_teala 9 5 S static 0
+people_teala 10 4 E static 0
+people_girl_1 12 10 S wander 0
 dialogs
 1	Oh, they're so nice! I wish I had them! Cute cushions! Big plush DOLLS! Little plush DOLLS! I wish I had them all!
 2	Leave it to your mommy!If it's anything you want, I'll go through anything to get it, honey!

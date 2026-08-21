@@ -85,14 +85,14 @@ collision
 warps
 36 6 SkyPillar_Entrance 0
 npcs
-people_swimmer_m 41 32 S static
-people_swimmer_m 18 19 W pace_h
-people_swimmer_f 10 22 S static
-people_swimmer_f 31 25 S static
-people_swimmer_f 9 16 S static
-people_tuber_m_swimming 8 16 S static
-people_swimmer_m 52 20 S static
-people_swimmer_f 52 27 S pace_v
+people_swimmer_m 41 32 S static 0
+people_swimmer_m 18 19 W pace_h 0
+people_swimmer_f 10 22 S static 0
+people_swimmer_f 31 25 S static 0
+people_swimmer_f 9 16 S static 0
+people_tuber_m_swimming 8 16 S static 0
+people_swimmer_m 52 20 S static 0
+people_swimmer_f 52 27 S pace_v 0
 objscripts
 0 Route131_EventScript_Richard
 1 Route131_EventScript_Herman

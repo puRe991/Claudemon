@@ -62,12 +62,12 @@ warps
 10 22 MagmaHideout_2F_1R 0
 36 4 MagmaHideout_1F 2
 npcs
-people_team_magma_magma_member_m 29 8 W static
-people_team_magma_magma_member_m 25 11 E static
-misc_item_ball 21 7 S static
-people_team_magma_magma_member_m 8 9 S static
-people_team_magma_magma_member_f 7 13 E static
-misc_item_ball 14 6 S static
+people_team_magma_magma_member_m 29 8 W static FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS
+people_team_magma_magma_member_m 25 11 E static FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS
+misc_item_ball 21 7 S static FLAG_ITEM_MAGMA_HIDEOUT_2F_2R_MAX_ELIXIR
+people_team_magma_magma_member_m 8 9 S static FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS
+people_team_magma_magma_member_f 7 13 E static FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS
+misc_item_ball 14 6 S static FLAG_ITEM_MAGMA_HIDEOUT_2F_2R_FULL_RESTORE
 dialogs
 0	I'm getting this feeling that our plan is going to end in failure…
 1	You just happened to win this time, but that doesn't matter.TEAM MAGMA's goal is about to be reached!

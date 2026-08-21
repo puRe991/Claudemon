@@ -137,24 +137,24 @@ warps
 48 25 SootopolisCity_LotadAndSeedotHouse 0
 51 36 SootopolisCity_MysteryEventsHouse_1F 0
 npcs
-people_expert_m 31 18 S static
-people_woman_4 47 33 W static
-people_girl_2 9 43 S wander
-people_ninja_boy 51 14 S static
-people_boy_1 43 26 S static
-people_man_1 26 4 S wander
-people_steven 20 36 S static
-people_woman_5 49 34 S wander
-people_man_1 28 44 S static
-people_man_1 34 44 S static
-pokemon_rayquaza 31 41 E static
-people_maniac 17 44 E static
-people_girl_3 14 42 E static
-people_black_belt 17 40 E static
-people_boy_2 19 37 S static
-people_team_magma_maxie 29 33 S static
-people_team_aqua_archie 31 33 S static
-people_wallace 31 18 S static
+people_expert_m 31 18 S static 0
+people_woman_4 47 33 W static FLAG_HIDE_SOOTOPOLIS_CITY_RESIDENTS
+people_girl_2 9 43 S wander 0
+people_ninja_boy 51 14 S static 0
+people_boy_1 43 26 S static 0
+people_man_1 26 4 S wander FLAG_HIDE_SOOTOPOLIS_CITY_MAN_1
+people_steven 20 36 S static FLAG_HIDE_SOOTOPOLIS_CITY_STEVEN
+people_woman_5 49 34 S wander 0
+people_man_1 28 44 S static FLAG_HIDE_SOOTOPOLIS_CITY_GROUDON
+people_man_1 34 44 S static FLAG_HIDE_SOOTOPOLIS_CITY_KYOGRE
+pokemon_rayquaza 31 41 E static FLAG_HIDE_SOOTOPOLIS_CITY_RAYQUAZA
+people_maniac 17 44 E static FLAG_HIDE_SOOTOPOLIS_CITY_RESIDENTS
+people_girl_3 14 42 E static FLAG_HIDE_SOOTOPOLIS_CITY_RESIDENTS
+people_black_belt 17 40 E static FLAG_HIDE_SOOTOPOLIS_CITY_RESIDENTS
+people_boy_2 19 37 S static FLAG_HIDE_SOOTOPOLIS_CITY_RESIDENTS
+people_team_magma_maxie 29 33 S static FLAG_HIDE_SOOTOPOLIS_CITY_MAXIE
+people_team_aqua_archie 31 33 S static FLAG_HIDE_SOOTOPOLIS_CITY_ARCHIE
+people_wallace 31 18 S static FLAG_HIDE_SOOTOPOLIS_CITY_WALLACE
 dialogs
 0	Who might you be?This is the CAVE OF ORIGIN.The spirits of POKéMON, becalmed at MT. PYRE, are said to be revived here.Please leave.
 1	The weather was clear this morning, but…All of a sudden, dark clouds brewed up, rain started falling in sheets, and there was thunder and lightning, too.The weather just went completely wild!Is all of this because of those POKéMON?
@@ -188,6 +188,8 @@ objscripts
 16 SootopolisCity_EventScript_Archie
 17 SootopolisCity_EventScript_Wallace
 movements
+Common_Movement_FaceOriginalDirection	face_down,end
+Common_Movement_FacePlayer	face_down,end
 SootopolisCity_Movement_ExpertMoveAside	left,delay,end
 SootopolisCity_Movement_PlayerArriveCaveEntrance	delay,delay,delay,delay,right,right,up,up,up,delay,end
 SootopolisCity_Movement_PlayerEnterCaveOfOrigin	up,up,end

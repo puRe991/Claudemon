@@ -22,10 +22,10 @@ warps
 3 7 RustboroCity 2
 4 7 RustboroCity 2
 npcs
-people_mart_employee 1 3 E static
-people_boy_1 2 5 N static
-people_pokefan_f 8 4 S wander
-people_bug_catcher 8 2 N static
+people_mart_employee 1 3 E static 0
+people_boy_1 2 5 N static 0
+people_pokefan_f 8 4 S wander 0
+people_bug_catcher 8 2 N static 0
 dialogs
 1	My POKéMON evolved. It has a lot of HP now.I should buy SUPER POTIONS for it instead of ordinary POTIONS.
 2	I'm buying some PARLYZ HEALS and ANTIDOTES.Just in case I run into SHROOMISH in PETALBURG WOODS.

@@ -85,10 +85,10 @@ warps
 8 2 MagmaHideout_1F 1
 17 33 MagmaHideout_3F_1R 2
 npcs
-people_team_magma_magma_member_m 18 19 S static
-people_team_magma_magma_member_m 12 14 S static
-people_team_magma_magma_member_f 8 8 E static
-people_team_magma_magma_member_m 21 11 N static
+people_team_magma_magma_member_m 18 19 S static FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS
+people_team_magma_magma_member_m 12 14 S static FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS
+people_team_magma_magma_member_f 8 8 E static FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS
+people_team_magma_magma_member_m 21 11 N static FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS
 dialogs
 0	I've already lost.Do I really need to keep running around in a circle?
 1	Actually, I'm no expert at battling…

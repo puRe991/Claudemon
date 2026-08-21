@@ -55,9 +55,9 @@ warps
 21 9 MagmaHideout_3F_2R 0
 23 3 MagmaHideout_2F_1R 2
 npcs
-people_team_magma_magma_member_m 2 7 E static
-people_team_magma_magma_member_f 21 21 W static
-misc_item_ball 9 16 S static
+people_team_magma_magma_member_m 2 7 E static FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS
+people_team_magma_magma_member_f 21 21 W static FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS
+misc_item_ball 9 16 S static FLAG_ITEM_MAGMA_HIDEOUT_3F_1R_NUGGET
 dialogs
 0	Do you think it's odd that we're wearing hoods in this magma-filled volcano?
 1	Listen to me. TEAM MAGMA is right!Don't listen to TEAM AQUA. Don't believe their lies!

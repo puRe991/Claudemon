@@ -43,13 +43,13 @@ collision
 1,1,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 npcs
-people_swimmer_m 41 10 S static
-people_swimmer_m 23 11 S static
-people_swimmer_f 16 7 S static
-people_swimmer_f 50 11 S static
-people_swimmer_f 33 4 S static
-people_tuber_m_swimming 32 4 S static
-people_swimmer_m 50 5 S static
+people_swimmer_m 41 10 S static 0
+people_swimmer_m 23 11 S static 0
+people_swimmer_f 16 7 S static 0
+people_swimmer_f 50 11 S static 0
+people_swimmer_f 33 4 S static 0
+people_tuber_m_swimming 32 4 S static 0
+people_swimmer_m 50 5 S static 0
 objscripts
 0 Route107_EventScript_Darrin
 1 Route107_EventScript_Tony

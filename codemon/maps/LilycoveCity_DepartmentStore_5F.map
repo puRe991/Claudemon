@@ -23,13 +23,13 @@ warps
 2 1 LilycoveCity_DepartmentStoreElevator 0
 16 1 LilycoveCity_DepartmentStoreRooftop 0
 npcs
-people_little_girl 1 6 S wander
-people_pokefan_f 7 7 S static
-people_woman_3 7 2 S static
-people_woman_3 9 2 S static
-people_woman_3 15 6 W static
-people_woman_3 17 6 N static
-people_woman_2 9 5 E static
+people_little_girl 1 6 S wander 0
+people_pokefan_f 7 7 S static 0
+people_woman_3 7 2 S static 0
+people_woman_3 9 2 S static 0
+people_woman_3 15 6 W static 0
+people_woman_3 17 6 N static 0
+people_woman_2 9 5 E static 0
 dialogs
 0	I'm not big enough to raise POKéMON, so I'm getting a cute DOLL instead.
 1	This place is full of cute DOLLS.I should buy some for me, instead of just for my children.
@@ -42,6 +42,8 @@ objscripts
 5 LilycoveCity_DepartmentStore_5F_EventScript_ClerkFarRight
 6 LilycoveCity_DepartmentStore_5F_EventScript_Woman
 movements
+Common_Movement_FacePlayer	face_down,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
 LilycoveCity_DepartmentStore_5F_Pokemart_Cushions	delay
 LilycoveCity_DepartmentStore_5F_Pokemart_Dolls	delay
 LilycoveCity_DepartmentStore_5F_Pokemart_Mats	delay

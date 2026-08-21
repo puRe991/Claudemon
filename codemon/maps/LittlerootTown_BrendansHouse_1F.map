@@ -25,19 +25,28 @@ warps
 8 8 LittlerootTown 1
 8 2 LittlerootTown_BrendansHouse_2F 0
 npcs
-people_mom 2 6 E static
-people_man_1 1 3 S static
-people_man_1 4 5 S static
-people_woman_4 2 7 E static
-people_man_1 5 6 W static
-people_ninja_boy 1 5 S wander
-people_brendan_walking 8 8 N static
+people_mom 2 6 E static FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_MOM
+people_man_1 1 3 S static FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_VIGOROTH_2
+people_man_1 4 5 S static FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_VIGOROTH_1
+people_woman_4 2 7 E static FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_MOM
+people_man_1 5 6 W static FLAG_HIDE_PLAYERS_HOUSE_DAD
+people_ninja_boy 1 5 S wander FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_SIBLING
+people_brendan_walking 8 8 N static FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_BRENDAN
+objscripts
+0 PlayersHouse_1F_EventScript_Mom
+1 PlayersHouse_1F_EventScript_Vigoroth2
+2 PlayersHouse_1F_EventScript_Vigoroth1
 triggers
 8 8 VAR_LITTLEROOT_INTRO_STATE 4 LittlerootTown_BrendansHouse_1F_EventScript_GoSeeRoom
 7 3 VAR_LITTLEROOT_RIVAL_STATE 2 LittlerootTown_BrendansHouse_1F_EventScript_MeetRival0
 8 4 VAR_LITTLEROOT_RIVAL_STATE 2 LittlerootTown_BrendansHouse_1F_EventScript_MeetRival1
 9 3 VAR_LITTLEROOT_RIVAL_STATE 2 LittlerootTown_BrendansHouse_1F_EventScript_MeetRival2
 movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
 LittlerootTown_BrendansHouse_1F_Movement_BrendanApproachPlayer0	delay,left,delay,up,up,up,up,end
 LittlerootTown_BrendansHouse_1F_Movement_BrendanApproachPlayer1	up,up,up,end
 LittlerootTown_BrendansHouse_1F_Movement_BrendanApproachPlayer2	delay,right,delay,up,up,up,up,end
@@ -47,6 +56,7 @@ LittlerootTown_BrendansHouse_1F_Movement_BrendanGoUpstairs2	delay,left,delay,up,
 LittlerootTown_BrendansHouse_1F_Movement_PlayerWatchBrendanExit0	delay,delay,delay,end
 LittlerootTown_BrendansHouse_1F_Movement_PlayerWatchBrendanExit1	delay,delay,delay,delay,delay,delay,end
 LittlerootTown_BrendansHouse_1F_Movement_PlayerWatchBrendanExit2	delay,delay,delay,end
+PlayersHouse_1F_Movement_MovePlayerAwayFromDoor	up,end
 scriptdefs
 = LittlerootTown_BrendansHouse_1F_EventScript_MeetRival2
 lockall
@@ -133,4 +143,90 @@ setvar VAR_0x8005 MALE
 applymovement VAR_0x8004 Common_Movement_WalkInPlaceFasterLeft
 waitmovement 0
 goto PlayersHouse_1F_EventScript_MomGoSeeRoom
+end
+= PlayersHouse_1F_EventScript_MomGoSeeRoom
+msgbox	MOM: Well, PLAYER?Aren't you interested in seeing your very own room?
+closemessage
+applymovement VAR_0x8004 Common_Movement_WalkInPlaceFasterUp
+applymovement LOCALID_PLAYER PlayersHouse_1F_Movement_MovePlayerAwayFromDoor
+waitmovement 0
+releaseall
+end
+= PlayersHouse_1F_EventScript_Vigoroth1
+lock
+faceplayer
+waitse
+playmoncry SPECIES_VIGOROTH CRY_MODE_NORMAL
+msgbox	Fugiiiiih!
+waitmoncry
+release
+end
+= PlayersHouse_1F_EventScript_Vigoroth2
+lock
+faceplayer
+waitse
+playmoncry SPECIES_VIGOROTH CRY_MODE_NORMAL
+msgbox	Huggoh, uggo uggo…
+waitmoncry
+release
+end
+= PlayersHouse_1F_EventScript_Mom
+lock
+faceplayer
+goto_if_eq VAR_LITTLEROOT_HOUSES_STATE_MAY 4 PlayersHouse_1F_EventScript_DontPushYourselfTooHard
+goto_if_eq VAR_LITTLEROOT_HOUSES_STATE_BRENDAN 4 PlayersHouse_1F_EventScript_DontPushYourselfTooHard
+goto_if_set FLAG_HAS_MATCH_CALL PlayersHouse_1F_EventScript_TryRegisterMom
+goto_if_set FLAG_RESCUED_BIRCH PlayersHouse_1F_EventScript_MomHealsParty
+goto_if_eq VAR_TEMP_1 1 PlayersHouse_1F_EventScript_SeeYouHoney
+goto_if_eq VAR_LITTLEROOT_INTRO_STATE 7 PlayersHouse_1F_EventScript_DidYouMeetProfBirch
+msgbox	MOM: See, PLAYER? Isn't it nice in here, too?
+release
+end
+= PlayersHouse_1F_EventScript_DidYouMeetProfBirch
+msgbox	MOM: Did you introduce yourself to PROF. BIRCH?
+release
+end
+= PlayersHouse_1F_EventScript_SeeYouHoney
+msgbox	MOM: See you, honey!
+release
+end
+= PlayersHouse_1F_EventScript_MomHealsParty
+msgbox	MOM: How are you doing, PLAYER? You look a little tired.I think you should rest a bit.
+goto PlayersHouse_1F_EventScript_HealParty
+end
+= PlayersHouse_1F_EventScript_HealParty
+closemessage
+call Common_EventScript_OutOfCenterPartyHeal
+incrementgamestat GAME_STAT_RESTED_AT_HOME
+msgbox	MOM: Take care, honey!
+release
+end
+= PlayersHouse_1F_EventScript_TryRegisterMom
+goto_if_set FLAG_ENABLE_MOM_MATCH_CALL PlayersHouse_1F_EventScript_CheckGiveAmuletCoin
+msgbox	MOM: What is that, honey? A POKéNAV? Someone from DEVON gave it to you?Well, honey, how about registering your mom?… … …
+closemessage
+delay 30
+playfanfare MUS_REGISTER_MATCH_CALL
+msgbox	Registered MOM in the POKéNAV.
+waitfanfare
+closemessage
+delay 30
+setflag FLAG_ENABLE_MOM_MATCH_CALL
+release
+end
+= PlayersHouse_1F_EventScript_CheckGiveAmuletCoin
+goto_if_set FLAG_BADGE05_GET PlayersHouse_1F_EventScript_TryGiveAmuletCoin
+goto PlayersHouse_1F_EventScript_MomHealsParty
+= PlayersHouse_1F_EventScript_TryGiveAmuletCoin
+goto_if_set FLAG_RECEIVED_AMULET_COIN PlayersHouse_1F_EventScript_MomHealsParty
+msgbox	MOM: Oh? Did DAD give you that BADGE?Then here's something from your MOM!
+giveitem ITEM_AMULET_COIN
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+msgbox	Don't push yourself too hard, dear. You can always come home.Go for it, honey!
+setflag FLAG_RECEIVED_AMULET_COIN
+release
+end
+= PlayersHouse_1F_EventScript_DontPushYourselfTooHard
+msgbox	Don't push yourself too hard, dear. You can always come home.Go for it, honey!
+release
 end

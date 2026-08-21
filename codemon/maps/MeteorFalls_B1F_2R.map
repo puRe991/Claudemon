@@ -41,7 +41,7 @@ collision
 warps
 5 15 MeteorFalls_B1F_1R 3
 npcs
-misc_item_ball 5 3 S static
+misc_item_ball 5 3 S static FLAG_ITEM_METEOR_FALLS_B1F_2R_TM_DRAGON_CLAW
 objscripts
 0 MeteorFalls_B1F_2R_EventScript_ItemTMDragonClaw
 scriptdefs

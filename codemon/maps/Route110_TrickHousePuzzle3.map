@@ -51,13 +51,13 @@ warps
 1 21 Route110_TrickHouseEntrance 2
 13 1 Route110_TrickHouseEnd 0
 npcs
-people_camper 7 19 S static
-people_picnicker 4 4 E static
-people_hiker 10 10 S static
-misc_item_ball 1 2 S static
-misc_item_ball 4 2 S static
-misc_breakable_rock 1 20 S static
-misc_breakable_rock 2 21 S static
+people_camper 7 19 S static 0
+people_picnicker 4 4 E static 0
+people_hiker 10 10 S static 0
+misc_item_ball 1 2 S static FLAG_ITEM_TRICK_HOUSE_PUZZLE_3_WOOD_MAIL
+misc_item_ball 4 2 S static FLAG_ITEM_TRICK_HOUSE_PUZZLE_3_SHADOW_MAIL
+misc_breakable_rock 1 20 S static FLAG_TEMP_15
+misc_breakable_rock 2 21 S static FLAG_TEMP_16
 dialogs
 0	It's full of doors here! It's too small and dark in here! Help!
 1	I know I'm weak! And, I have no sense of direction!
@@ -68,11 +68,15 @@ objscripts
 2 Route110_TrickHousePuzzle3_EventScript_Alan
 3 Route110_TrickHousePuzzle3_EventScript_ItemWoodMail
 4 Route110_TrickHousePuzzle3_EventScript_ItemShadowMail
+5 EventScript_RockSmash
+6 EventScript_RockSmash
 triggers
 4 14 VAR_TEMP_1 0 Route110_TrickHousePuzzle3_EventScript_Button1
 3 11 VAR_TEMP_2 0 Route110_TrickHousePuzzle3_EventScript_Button2
 12 5 VAR_TEMP_3 0 Route110_TrickHousePuzzle3_EventScript_Button3
 8 2 VAR_TEMP_4 0 Route110_TrickHousePuzzle3_EventScript_Button4
+movements
+Movement_SmashRock	delay,end
 scriptdefs
 = Route110_TrickHousePuzzle3_EventScript_Button4
 lockall
@@ -310,6 +314,52 @@ end
 lockall
 setvar VAR_TEMP_8 1
 goto Route110_TrickHousePuzzle3_EventScript_PressButton
+end
+= EventScript_RockSmash
+lockall
+goto_if_unset FLAG_BADGE03_GET EventScript_CantSmashRock
+checkpartymove MOVE_ROCK_SMASH
+goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CantSmashRock
+setfieldeffectargument 0 VAR_RESULT
+bufferpartymonnick STR_VAR_1 VAR_RESULT
+buffermovename STR_VAR_2 MOVE_ROCK_SMASH
+msgbox	Text_WantToSmash
+goto_if_eq VAR_RESULT NO EventScript_CancelSmash
+msgbox	Text_MonUsedFieldMove
+closemessage
+dofieldeffect FLDEFF_USE_ROCK_SMASH
+waitstate
+goto EventScript_SmashRock
+end
+@ Use rock smash from party menu
+goto EventScript_UseRockSmash
+= EventScript_UseRockSmash
+lockall
+dofieldeffect FLDEFF_USE_ROCK_SMASH
+waitstate
+goto EventScript_SmashRock
+end
+= EventScript_SmashRock
+applymovement VAR_LAST_TALKED Movement_SmashRock
+waitmovement 0
+removeobject VAR_LAST_TALKED
+specialvar VAR_RESULT TryUpdateRusturfTunnelState
+goto_if_eq VAR_RESULT TRUE EventScript_EndSmash
+special RockSmashWildEncounter
+goto_if_eq VAR_RESULT FALSE EventScript_EndSmash
+waitstate
+releaseall
+end
+= EventScript_EndSmash
+releaseall
+end
+= EventScript_CancelSmash
+closemessage
+releaseall
+end
+= EventScript_CantSmashRock
+msgbox	Text_CantSmash
+releaseall
 end
 = Route110_TrickHousePuzzle3_EventScript_ItemShadowMail
 goto_if_set FLAG_ITEM_TRICK_HOUSE_PUZZLE_3_SHADOW_MAIL Route110_TrickHousePuzzle3_EventScript_ItemShadowMail_Taken

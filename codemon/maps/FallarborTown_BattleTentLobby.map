@@ -26,11 +26,11 @@ warps
 6 9 FallarborTown 1
 7 9 FallarborTown 1
 npcs
-people_black_belt 6 5 S static
-people_hiker 1 5 S wander
-people_little_boy 12 6 S wander
-people_lass 10 9 S static
-people_scott 0 7 E static
+people_black_belt 6 5 S static 0
+people_hiker 1 5 S wander 0
+people_little_boy 12 6 S wander 0
+people_lass 10 9 S static 0
+people_scott 0 7 E static FLAG_HIDE_FALLARBOR_TOWN_BATTLE_TENT_SCOTT
 dialogs
 1	I heard something about some tent, so I came to camp out.I didn't know that tents these days are so luxurious!Since I'm here, I may as well try my hand at battling!
 2	Fufufufufu.I'm going to make everyone think I'm just a kid and let them play down.Then, I'll shock them and grab the title!
@@ -151,6 +151,9 @@ goto FallarborTown_BattleTentLobby_EventScript_EndCancelChallenge
 = FallarborTown_BattleTentLobby_EventScript_EndCancelChallenge
 release
 end
+= Common_EventScript_SaveGame
+special SaveGame
+return
 = FallarborTown_BattleTentLobby_EventScript_LoadPartyCancelChallenge
 special LoadPlayerParty
 goto FallarborTown_BattleTentLobby_EventScript_CancelChallenge

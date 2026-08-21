@@ -24,8 +24,8 @@ warps
 5 8 RustboroCity 9
 6 8 RustboroCity 9
 npcs
-people_pokefan_f 4 4 S static
-people_little_girl 4 5 N static
+people_pokefan_f 4 4 S static 0
+people_little_girl 4 5 N static 0
 dialogs
 0	The TRAINER'S SCHOOL is excellent.If you study there, you could even become a GYM LEADER.
 1	ROXANNE, the GYM LEADER, really knows a lot about POKéMON.She's really strong, too!

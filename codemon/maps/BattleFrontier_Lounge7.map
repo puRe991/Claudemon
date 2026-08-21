@@ -25,10 +25,10 @@ collision
 warps
 4 9 BattleFrontier_OutsideWest 7
 npcs
-people_sailor 0 7 S wander
-people_expert_f 2 5 E static
-people_expert_f 6 5 W static
-people_gentleman 8 3 W static
+people_sailor 0 7 S wander 0
+people_expert_f 2 5 E static 0
+people_expert_f 6 5 W static 0
+people_gentleman 8 3 W static 0
 dialogs
 0	Those ladies, the way they bad-mouth each other, you probably think that they don't get along.But if that were true, they wouldn't stay out here together, would they?
 1	Buhahaha!You couldn't tell it from looking now, but I used to be one tough TRAINER.I had a reputation as the toughest BEAUTY around, I tell you!… … … … … …What is it now? You don't believe me.I'm not like that blowhard woman over there. I'm actually talented!Let me prove it to you. I can teach your POKéMON special and yet cute moves.But my lessons don't come free. How about paying for the moves I teach with a wee bit of Battle Points?

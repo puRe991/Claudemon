@@ -24,7 +24,7 @@ warps
 3 8 Route124 0
 4 8 Route124 0
 npcs
-people_man_5 5 4 W static
+people_man_5 5 4 W static 0
 dialogs
 0	I'm the DIVING TREASURE HUNTER!I'm the awesome dude who makes deep-sea dives to gather treasures resting at the bottom.
 objscripts

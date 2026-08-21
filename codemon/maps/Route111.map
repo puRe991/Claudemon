@@ -289,51 +289,51 @@ warps
 19 58 MirageTower_1F 0
 31 113 TrainerHill_Entrance 0
 npcs
-people_man_1 13 114 S static
-people_pokefan_f 13 113 S static
-people_lass 13 113 S static
-people_expert_f 13 113 S static
-people_picnicker 28 51 S static
-people_man_1 22 5 S static
-people_man_1 23 5 S static
-people_man_3 8 91 S wander
-people_camper 29 37 S static
-people_hiker 27 69 S static
-people_camper 21 47 W static
-people_picnicker 32 66 S static
-people_cameraman 14 86 S static
-people_reporter_f 13 86 S static
-misc_breakable_rock 18 101 S static
-misc_breakable_rock 19 100 S static
-people_girl_1 23 8 S wander
-misc_item_ball 33 104 S static
-people_man_1 18 5 S static
-people_man_1 19 5 S static
-people_reporter_f 13 86 S static
-people_cameraman 14 86 S static
-people_reporter_f 13 86 S static
-people_cameraman 14 86 S static
-misc_item_ball 12 54 S static
-misc_item_ball 3 114 S static
-misc_cuttable_tree 22 21 S static
-people_picnicker 10 82 W pace_h
-people_camper 11 71 W pace_h
-people_black_belt 32 29 S static
-people_woman_5 11 11 N static
-people_man_3 9 27 S static
-people_boy_1 13 20 N static
-people_man_4 20 114 S wander
-people_camper 26 132 W static
-people_woman_2 20 132 E static
-people_picnicker 19 121 N static
-people_man_5 16 119 E static
-people_hiker 29 77 W pace_h
-people_picnicker 22 77 E static
-people_camper 37 77 W static
-misc_item_ball 19 118 S static
-people_hiker 14 56 S static
-misc_fossil 20 53 S static
-people_fat_man 19 101 N static
+people_man_1 13 114 S static FLAG_HIDE_ROUTE_111_VICTOR_WINSTRATE
+people_pokefan_f 13 113 S static FLAG_HIDE_ROUTE_111_VICTORIA_WINSTRATE
+people_lass 13 113 S static FLAG_HIDE_ROUTE_111_VIVI_WINSTRATE
+people_expert_f 13 113 S static FLAG_HIDE_ROUTE_111_VICKY_WINSTRATE
+people_picnicker 28 51 S static 0
+people_man_1 22 5 S static 0
+people_man_1 23 5 S static 0
+people_man_3 8 91 S wander 0
+people_camper 29 37 S static 0
+people_hiker 27 69 S static 0
+people_camper 21 47 W static 0
+people_picnicker 32 66 S static 0
+people_cameraman 14 86 S static FLAG_HIDE_ROUTE_111_GABBY_AND_TY_1
+people_reporter_f 13 86 S static FLAG_HIDE_ROUTE_111_GABBY_AND_TY_1
+misc_breakable_rock 18 101 S static FLAG_TEMP_11
+misc_breakable_rock 19 100 S static FLAG_TEMP_12
+people_girl_1 23 8 S wander 0
+misc_item_ball 33 104 S static FLAG_ITEM_ROUTE_111_TM_SANDSTORM
+people_man_1 18 5 S static 0
+people_man_1 19 5 S static 0
+people_reporter_f 13 86 S static FLAG_HIDE_ROUTE_111_GABBY_AND_TY_2
+people_cameraman 14 86 S static FLAG_HIDE_ROUTE_111_GABBY_AND_TY_2
+people_reporter_f 13 86 S static FLAG_HIDE_ROUTE_111_GABBY_AND_TY_3
+people_cameraman 14 86 S static FLAG_HIDE_ROUTE_111_GABBY_AND_TY_3
+misc_item_ball 12 54 S static FLAG_ITEM_ROUTE_111_STARDUST
+misc_item_ball 3 114 S static FLAG_ITEM_ROUTE_111_HP_UP
+misc_cuttable_tree 22 21 S static FLAG_TEMP_13
+people_picnicker 10 82 W pace_h 0
+people_camper 11 71 W pace_h 0
+people_black_belt 32 29 S static 0
+people_woman_5 11 11 N static 0
+people_man_3 9 27 S static 0
+people_boy_1 13 20 N static FLAG_HIDE_ROUTE_111_SECRET_POWER_MAN
+people_man_4 20 114 S wander 0
+people_camper 26 132 W static 0
+people_woman_2 20 132 E static 0
+people_picnicker 19 121 N static 0
+people_man_5 16 119 E static 0
+people_hiker 29 77 W pace_h 0
+people_picnicker 22 77 E static 0
+people_camper 37 77 W static 0
+misc_item_ball 19 118 S static FLAG_ITEM_ROUTE_111_ELIXIR
+people_hiker 14 56 S static 0
+misc_fossil 20 53 S static FLAG_HIDE_ROUTE_111_DESERT_FOSSIL
+people_fat_man 19 101 N static FLAG_HIDE_ROUTE_111_ROCK_SMASH_TIP_GUY
 dialogs
 0	Hello! I take it you're a traveler.How's this? What do you say to taking on our family of four in a series of POKéMON battles?
 7	If you don't raise your POKéMON some more, it could be tough to keep winning up through the ranks.I've heard the POKéMON LEAGUE's ELITE FOUR are far stronger than any GYM LEADER.
@@ -343,20 +343,34 @@ dialogs
 objscripts
 0 Route111_EventScript_Victor
 4 Route111_EventScript_Heidi
+5 BerryTreeScript
+6 BerryTreeScript
 7 Route111_EventScript_Man1
 8 Route111_EventScript_Drew
 9 Route111_EventScript_Dusty
 10 Route111_EventScript_Beau
 11 Route111_EventScript_Becky
+12 GabbyAndTy_EventScript_TyBattle1
+13 GabbyAndTy_EventScript_GabbyBattle1
+14 EventScript_RockSmash
+15 EventScript_RockSmash
 16 Route111_EventScript_Girl
 17 Route111_EventScript_ItemTMSandstorm
+18 BerryTreeScript
+19 BerryTreeScript
+20 GabbyAndTy_EventScript_GabbyBattle4
+21 GabbyAndTy_EventScript_TyBattle4
+22 GabbyAndTy_EventScript_GabbyBattle6
+23 GabbyAndTy_EventScript_TyBattle6
 24 Route111_EventScript_ItemStardust
 25 Route111_EventScript_ItemHPUp
+26 EventScript_CutTree
 27 Route111_EventScript_Irene
 28 Route111_EventScript_Travis
 29 Route111_EventScript_Daisuke
 30 Route111_EventScript_Brooke
 31 Route111_EventScript_Wilton
+32 Route111_EventScript_SecretPowerMan
 33 Route111_EventScript_Man2
 34 Route111_EventScript_Tyron
 35 Route111_EventScript_Celina
@@ -407,10 +421,21 @@ triggers
 19 55 0 0 Route111_HiddenItem_19_55
 35 66 0 0 Route111_HiddenItem_35_66
 movements
+Common_Movement_FaceOriginalDirection	face_down,end
+Common_Movement_FacePlayer	face_down,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
+GabbyAndTy_Movement_WalkInPlaceDown	delay,end
+GabbyAndTy_Movement_WalkInPlaceLeft	delay,end
+GabbyAndTy_Movement_WalkInPlaceUp	delay,end
+Movement_CutTreeDown	delay,end
+Movement_SmashRock	delay,end
 Route111_Movement_PushDownFromRoute	down,end
 Route111_Movement_PushLeftFromRoute	left,end
 Route111_Movement_PushRightFromRoute	right,end
 Route111_Movement_PushUpFromRoute	up,end
+Route111_Movement_SecretPowerManExit	down,down,down,down,down,left,left,left,left,down,down,end
+Route111_Movement_SecretPowerManExitNorth	left,down,down,down,down,down,left,left,left,down,down,end
 Route111_Movement_WaitForNextWinstrate	delay,delay,delay,end
 Route111_Movement_WinstrateEnterHouse	delay,up,end
 Route111_Movement_WinstrateExitHouse	down,end
@@ -564,6 +589,39 @@ end
 = Route111_EventScript_Man2
 msgbox	I challenged the WINSTRATE family, but four matches in a row is tough going… They destroyed me.
 end
+= Route111_EventScript_SecretPowerMan
+lock
+faceplayer
+msgbox	Route111_Text_MakingRoomUseTMToMakeYourOwn
+goto_if_eq VAR_RESULT YES Route111_EventScript_GiveSecretPower
+msgbox	Route111_Text_DontWantThis
+release
+end
+= Route111_EventScript_GiveSecretPower
+giveitem ITEM_TM_SECRET_POWER
+goto_if_eq VAR_RESULT FALSE Route111_EventScript_NoRoomForSecretPower
+msgbox	Route111_Text_ExplainSecretPower
+closemessage
+setflag FLAG_RECEIVED_SECRET_POWER
+clearflag FLAG_HIDE_SLATEPORT_CITY_TM_SALESMAN
+call_if_eq VAR_FACING DIR_WEST Route111_EventScript_SecretPowerManExit
+call_if_eq VAR_FACING DIR_EAST Route111_EventScript_SecretPowerManExit
+call_if_eq VAR_FACING DIR_NORTH Route111_EventScript_SecretPowerManExitNorth
+removeobject VAR_LAST_TALKED
+release
+end
+= Route111_EventScript_SecretPowerManExitNorth
+applymovement VAR_LAST_TALKED Route111_Movement_SecretPowerManExitNorth
+waitmovement 0
+return
+= Route111_EventScript_SecretPowerManExit
+applymovement VAR_LAST_TALKED Route111_Movement_SecretPowerManExit
+waitmovement 0
+return
+= Route111_EventScript_NoRoomForSecretPower
+msgbox	Route111_Text_DontHaveAnyRoom
+release
+end
 = Route111_EventScript_Wilton
 trainerbattle_single TRAINER_WILTON_1 Route111_Text_WiltonIntro Route111_Text_WiltonDefeat Route111_EventScript_RegisterWilton
 specialvar VAR_RESULT ShouldTryRematchBattle
@@ -612,6 +670,44 @@ end
 trainerbattle_single TRAINER_IRENE Route111_Text_IreneIntro Route111_Text_IreneDefeat
 msgbox	Route111_Text_IrenePostBattle
 end
+= EventScript_CutTree
+lockall
+goto_if_unset FLAG_BADGE01_GET EventScript_CheckTreeCantCut
+checkpartymove MOVE_CUT
+goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CheckTreeCantCut
+setfieldeffectargument 0 VAR_RESULT
+bufferpartymonnick STR_VAR_1 VAR_RESULT
+buffermovename STR_VAR_2 MOVE_CUT
+msgbox	Text_WantToCut
+goto_if_eq VAR_RESULT NO EventScript_CancelCut
+msgbox	Text_MonUsedFieldMove
+closemessage
+dofieldeffect FLDEFF_USE_CUT_ON_TREE
+waitstate
+goto EventScript_CutTreeDown
+end
+@ Use cut from party menu
+goto EventScript_UseCut
+= EventScript_UseCut
+lockall
+dofieldeffect FLDEFF_USE_CUT_ON_TREE
+waitstate
+goto EventScript_CutTreeDown
+end
+= EventScript_CutTreeDown
+applymovement VAR_LAST_TALKED Movement_CutTreeDown
+waitmovement 0
+removeobject VAR_LAST_TALKED
+releaseall
+end
+= EventScript_CancelCut
+closemessage
+releaseall
+end
+= EventScript_CheckTreeCantCut
+msgbox	Text_CantCut
+releaseall
+end
 = Route111_EventScript_ItemHPUp
 goto_if_set FLAG_ITEM_ROUTE_111_HP_UP Route111_EventScript_ItemHPUp_Taken
 finditem ITEM_HP_UP
@@ -625,6 +721,260 @@ finditem ITEM_STARDUST
 setflag FLAG_ITEM_ROUTE_111_STARDUST
 end
 = Route111_EventScript_ItemStardust_Taken
+end
+= GabbyAndTy_EventScript_TyBattle6
+trainerbattle_double TRAINER_GABBY_AND_TY_6 GabbyAndTy_Text_TyIntro GabbyAndTy_Text_TyDefeat GabbyAndTy_Text_TyNotEnoughMons GabbyAndTy_EventScript_RequestInterview
+msgbox	GabbyAndTy_Text_TyPostBattle
+release
+end
+= GabbyAndTy_EventScript_RequestInterview
+special GabbyAndTyBeforeInterview
+special GetGabbyAndTyLocalIds
+call_if_eq VAR_FACING DIR_NORTH GabbyAndTy_EventScript_FacePlayerNorth
+call_if_eq VAR_FACING DIR_SOUTH GabbyAndTy_EventScript_FacePlayerSouth
+call_if_eq VAR_FACING DIR_EAST GabbyAndTy_EventScript_FacePlayerEast
+goto_if_set FLAG_TEMP_SKIP_GABBY_INTERVIEW GabbyAndTy_EventScript_KeepingAnEyeOutForYou
+specialvar VAR_RESULT GabbyAndTyGetLastQuote
+goto_if_eq VAR_RESULT 0 GabbyAndTy_EventScript_DidntInterviewLastTime
+msgbox	GabbyAndTy_Text_QuoteFromLastInterview
+specialvar VAR_RESULT GabbyAndTyGetLastBattleTrivia
+switch VAR_RESULT
+case 0 GabbyAndTy_EventScript_RequestInterviewNoTrivia
+case 1 GabbyAndTy_EventScript_RequestInterviewShortBattle
+case 2 GabbyAndTy_EventScript_RequestInterviewThrewBall
+case 3 GabbyAndTy_EventScript_RequestInterviewUsedItems
+case 4 GabbyAndTy_EventScript_RequestInterviewLostAMon
+end
+= GabbyAndTy_EventScript_RequestInterviewLostAMon
+msgbox	GabbyAndTy_Text_WeLookedRespectableInterviewAgain
+goto GabbyAndTy_EventScript_Interview
+end
+= GabbyAndTy_EventScript_Interview
+goto_if_eq VAR_RESULT NO GabbyAndTy_EventScript_DontGiveUpKeepingEyeOut
+msgbox	GabbyAndTy_Text_DescribeYourFeelings
+setvar VAR_0x8004 EASY_CHAT_TYPE_GABBY_AND_TY
+call Common_ShowEasyChatScreen
+lock
+faceplayer
+goto_if_eq VAR_RESULT 0 GabbyAndTy_EventScript_DontGiveUpKeepingEyeOut
+msgbox	GabbyAndTy_Text_PerfectWellBeSeeingYou
+special GabbyAndTyAfterInterview
+setflag FLAG_TEMP_SKIP_GABBY_INTERVIEW
+release
+end
+= GabbyAndTy_EventScript_DontGiveUpKeepingEyeOut
+msgbox	GabbyAndTy_Text_DontGiveUpKeepingEyeOut
+setflag FLAG_TEMP_SKIP_GABBY_INTERVIEW
+release
+end
+= GabbyAndTy_EventScript_RequestInterviewUsedItems
+msgbox	GabbyAndTy_Text_CleverItemSkillsInterviewAgain
+goto GabbyAndTy_EventScript_Interview
+end
+= GabbyAndTy_EventScript_RequestInterviewThrewBall
+msgbox	GabbyAndTy_Text_YouThrewABallAtUsInterviewAgain
+goto GabbyAndTy_EventScript_Interview
+end
+= GabbyAndTy_EventScript_RequestInterviewShortBattle
+msgbox	GabbyAndTy_Text_YouStompedUsInterviewAgain
+goto GabbyAndTy_EventScript_Interview
+end
+= GabbyAndTy_EventScript_RequestInterviewNoTrivia
+msgbox	GabbyAndTy_Text_InterviewAgain
+goto GabbyAndTy_EventScript_Interview
+end
+= GabbyAndTy_EventScript_DidntInterviewLastTime
+msgbox	GabbyAndTy_Text_GiveUsAnInterviewThisTime
+goto GabbyAndTy_EventScript_Interview
+end
+= GabbyAndTy_EventScript_KeepingAnEyeOutForYou
+msgbox	GabbyAndTy_Text_KeepingAnEyeOutForYou
+release
+end
+= GabbyAndTy_EventScript_FacePlayerEast
+applymovement VAR_0x8004 GabbyAndTy_Movement_WalkInPlaceLeft
+applymovement VAR_0x8005 Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+return
+= GabbyAndTy_EventScript_FacePlayerSouth
+applymovement VAR_0x8004 GabbyAndTy_Movement_WalkInPlaceUp
+applymovement VAR_0x8005 Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+return
+= GabbyAndTy_EventScript_FacePlayerNorth
+applymovement VAR_0x8004 GabbyAndTy_Movement_WalkInPlaceDown
+waitmovement 0
+return
+= GabbyAndTy_EventScript_GabbyBattle6
+trainerbattle_double TRAINER_GABBY_AND_TY_6 GabbyAndTy_Text_GabbyIntro GabbyAndTy_Text_GabbyDefeat GabbyAndTy_Text_GabbyNotEnoughMons GabbyAndTy_EventScript_RequestInterview
+msgbox	GabbyAndTy_Text_KeepingAnEyeOutForYou
+release
+end
+= GabbyAndTy_EventScript_TyBattle4
+trainerbattle_double TRAINER_GABBY_AND_TY_4 GabbyAndTy_Text_TyIntro GabbyAndTy_Text_TyDefeat GabbyAndTy_Text_TyNotEnoughMons GabbyAndTy_EventScript_RequestInterview
+msgbox	GabbyAndTy_Text_TyPostBattle
+release
+end
+= GabbyAndTy_EventScript_GabbyBattle4
+trainerbattle_double TRAINER_GABBY_AND_TY_4 GabbyAndTy_Text_GabbyIntro GabbyAndTy_Text_GabbyDefeat GabbyAndTy_Text_GabbyNotEnoughMons GabbyAndTy_EventScript_RequestInterview
+msgbox	GabbyAndTy_Text_KeepingAnEyeOutForYou
+release
+end
+= BerryTreeScript
+special ObjectEventInteractionGetBerryTreeData
+switch VAR_0x8004
+case BERRY_STAGE_SPARKLING BerryTree_EventScript_Sparkling
+case BERRY_STAGE_NO_BERRY BerryTree_EventScript_CheckSoil
+case BERRY_STAGE_PLANTED BerryTree_EventScript_CheckBerryStage1
+case BERRY_STAGE_SPROUTED BerryTree_EventScript_CheckBerryStage2
+case BERRY_STAGE_TALLER BerryTree_EventScript_CheckBerryStage3
+case BERRY_STAGE_FLOWERING BerryTree_EventScript_CheckBerryStage4
+case BERRY_STAGE_BERRIES BerryTree_EventScript_CheckBerryFullyGrown
+end
+= BerryTree_EventScript_CheckBerryFullyGrown
+buffernumberstring STR_VAR_2 VAR_0x8006
+lock
+faceplayer
+special ObjectEventInteractionGetBerryCountString
+msgbox	BerryTree_Text_WantToPick
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_PickBerry
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPickingBerry
+goto BerryTree_EventScript_PickBerry
+= BerryTree_EventScript_PickBerry
+special ObjectEventInteractionPickBerryTree
+goto_if_eq VAR_0x8004 0 BerryTree_EventScript_BerryPocketFull
+special IncrementDailyPickedBerries
+special ObjectEventInteractionRemoveBerryTree
+message BerryTree_Text_PickedTheBerry
+playfanfare MUS_OBTAIN_BERRY
+waitmessage
+waitfanfare
+waitbuttonpress
+message BerryTree_Text_PutAwayBerry
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_BerryPocketFull
+message BerryTree_Text_BerryPocketFull
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_CancelPickingBerry
+message BerryTree_Text_BerryLeftUnpicked
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_CheckBerryStage4
+call BerryTree_EventScript_GetCareAdverb
+lockall
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_BerryGrowthStage4
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+@ VAR_0x8005 here is the number of times watered
+@ Buffered by ObjectEventInteractionGetBerryTreeData
+goto BerryTree_EventScript_GetCareAdverb
+= BerryTree_EventScript_GetCareAdverb
+goto_if_eq VAR_0x8005 0 BerryTree_EventScript_SetAdverbPoor
+goto_if_eq VAR_0x8005 4 BerryTree_EventScript_SetAdverbGreat
+bufferstring STR_VAR_2 BerryTree_Text_CareAdverbGood
+return
+= BerryTree_EventScript_SetAdverbGreat
+bufferstring STR_VAR_2 BerryTree_Text_CareAdverbGreat
+return
+= BerryTree_EventScript_SetAdverbPoor
+bufferstring STR_VAR_2 BerryTree_Text_CareAdverbPoor
+return
+@ VAR_0x8006 here is the number of berries
+goto BerryTree_EventScript_CheckBerryFullyGrown
+= BerryTree_EventScript_WantToWater
+checkitem ITEM_WAILMER_PAIL
+goto_if_eq VAR_RESULT FALSE BerryTree_EventScript_DontWater
+special ObjectEventInteractionGetBerryName
+msgbox	BerryTree_Text_WantToWater
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_WaterBerry
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_DontWater
+goto BerryTree_EventScript_DontWater
+= BerryTree_EventScript_DontWater
+releaseall
+end
+= BerryTree_EventScript_WaterBerry
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_WateredTheBerry
+waitmessage
+special ObjectEventInteractionWaterBerryTree
+special DoWateringBerryTreeAnim
+message BerryTree_Text_PlantIsDelighted
+waitmessage
+waitbuttonpress
+releaseall
+end
+= BerryTree_EventScript_CheckBerryStage3
+lockall
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_BerryGrowthStage3
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckBerryStage2
+lockall
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_BerryGrowthStage2
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckBerryStage1
+lockall
+special ObjectEventInteractionGetBerryCountString
+message BerryTree_Text_BerryGrowthStage1
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckSoil
+lock
+faceplayer
+specialvar VAR_RESULT PlayerHasBerries
+goto_if_eq VAR_RESULT TRUE BerryTree_EventScript_WantToPlant
+message BerryTree_Text_ItsSoftLoamySoil
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_WantToPlant
+msgbox	BerryTree_Text_WantToPlant
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_ChooseBerryToPlant
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPlanting
+end
+= BerryTree_EventScript_CancelPlanting
+release
+end
+= BerryTree_EventScript_ChooseBerryToPlant
+fadescreen FADE_TO_BLACK
+closemessage
+special Bag_ChooseBerry
+goto_if_eq VAR_ITEM_ID 0 BerryTree_EventScript_CancelPlanting
+removeitem VAR_ITEM_ID
+call BerryTree_EventScript_PlantBerry
+goto BerryTree_EventScript_CancelPlanting
+= BerryTree_EventScript_PlantBerry
+special ObjectEventInteractionPlantBerryTree
+incrementgamestat GAME_STAT_PLANTED_BERRIES
+special IncrementDailyPlantedBerries
+special ObjectEventInteractionGetBerryCountString
+message BerryTree_Text_PlantedOneBerry
+waitmessage
+waitbuttonpress
+return
+= BerryTree_EventScript_Sparkling
+lockall
+message BerryTree_Text_ExclamationPoint
+waitmessage
+waitbuttonpress
+releaseall
 end
 = Route111_EventScript_ItemTMSandstorm
 goto_if_set FLAG_ITEM_ROUTE_111_TM_SANDSTORM Route111_EventScript_ItemTMSandstorm_Taken
@@ -656,6 +1006,72 @@ goto Route111_EventScript_ViciousSandstormTriggerUp
 lockall
 setvar VAR_0x8004 0
 goto Route111_EventScript_ViciousSandstormTrigger
+end
+= EventScript_RockSmash
+lockall
+goto_if_unset FLAG_BADGE03_GET EventScript_CantSmashRock
+checkpartymove MOVE_ROCK_SMASH
+goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CantSmashRock
+setfieldeffectargument 0 VAR_RESULT
+bufferpartymonnick STR_VAR_1 VAR_RESULT
+buffermovename STR_VAR_2 MOVE_ROCK_SMASH
+msgbox	Text_WantToSmash
+goto_if_eq VAR_RESULT NO EventScript_CancelSmash
+msgbox	Text_MonUsedFieldMove
+closemessage
+dofieldeffect FLDEFF_USE_ROCK_SMASH
+waitstate
+goto EventScript_SmashRock
+end
+@ Use rock smash from party menu
+goto EventScript_UseRockSmash
+= EventScript_UseRockSmash
+lockall
+dofieldeffect FLDEFF_USE_ROCK_SMASH
+waitstate
+goto EventScript_SmashRock
+end
+= EventScript_SmashRock
+applymovement VAR_LAST_TALKED Movement_SmashRock
+waitmovement 0
+removeobject VAR_LAST_TALKED
+specialvar VAR_RESULT TryUpdateRusturfTunnelState
+goto_if_eq VAR_RESULT TRUE EventScript_EndSmash
+special RockSmashWildEncounter
+goto_if_eq VAR_RESULT FALSE EventScript_EndSmash
+waitstate
+releaseall
+end
+= EventScript_EndSmash
+releaseall
+end
+= EventScript_CancelSmash
+closemessage
+releaseall
+end
+= EventScript_CantSmashRock
+msgbox	Text_CantSmash
+releaseall
+end
+= GabbyAndTy_EventScript_GabbyBattle1
+trainerbattle_double TRAINER_GABBY_AND_TY_1 GabbyAndTy_Text_GabbyPreFirstBattle GabbyAndTy_Text_GabbyDefeatFirstTime GabbyAndTy_Text_GabbyNotEnoughMons GabbyAndTy_EventScript_FirstInterview
+msgbox	GabbyAndTy_Text_KeepingAnEyeOutForYou
+release
+end
+= GabbyAndTy_EventScript_FirstInterview
+special GabbyAndTyBeforeInterview
+special GetGabbyAndTyLocalIds
+call_if_eq VAR_FACING DIR_NORTH GabbyAndTy_EventScript_FacePlayerNorth
+call_if_eq VAR_FACING DIR_SOUTH GabbyAndTy_EventScript_FacePlayerSouth
+call_if_eq VAR_FACING DIR_EAST GabbyAndTy_EventScript_FacePlayerEast
+goto_if_set FLAG_TEMP_SKIP_GABBY_INTERVIEW GabbyAndTy_EventScript_KeepingAnEyeOutForYou
+msgbox	GabbyAndTy_Text_WhoAreYouInterview
+goto GabbyAndTy_EventScript_Interview
+end
+= GabbyAndTy_EventScript_TyBattle1
+trainerbattle_double TRAINER_GABBY_AND_TY_1 GabbyAndTy_Text_TyPreFirstBattle GabbyAndTy_Text_TyDefeatFirstTime GabbyAndTy_Text_TyNotEnoughMons GabbyAndTy_EventScript_FirstInterview
+msgbox	GabbyAndTy_Text_TyPostBattle
+release
 end
 = Route111_EventScript_Becky
 trainerbattle_single TRAINER_BECKY Route111_Text_BeckyIntro Route111_Text_BeckyDefeat

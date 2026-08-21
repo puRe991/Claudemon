@@ -27,16 +27,45 @@ warps
 5 1 UnionRoom 0
 9 1 TradeCenter 0
 npcs
-people_teala 6 2 S static
-people_teala 2 2 S static
-people_teala 10 2 S static
-people_man_1 1 2 S static
-people_youngster 8 8 N static
+people_teala 6 2 S static 0
+people_teala 2 2 S static 0
+people_teala 10 2 S static 0
+people_man_1 1 2 S static FLAG_HIDE_POKEMON_CENTER_2F_MYSTERY_GIFT_MAN
+people_youngster 8 8 N static 0
 dialogs
 4	Did you know that you can link battle at the COLOSSEUM here?They put up your record on the wall for everyone to see.It's embarrassing if you lose more often than you win…
 objscripts
+3 CableClub_EventScript_MysteryGiftMan
 4 MauvilleCity_PokemonCenter_2F_EventScript_Youngster
 scriptdefs
 = MauvilleCity_PokemonCenter_2F_EventScript_Youngster
 msgbox	Did you know that you can link battle at the COLOSSEUM here?They put up your record on the wall for everyone to see.It's embarrassing if you lose more often than you win…
+end
+= CableClub_EventScript_MysteryGiftMan
+specialvar VAR_RESULT ShouldDistributeEonTicket
+goto_if_eq VAR_RESULT TRUE CableClub_EventScript_DistributeEonTicket
+goto CableClub_EventScript_TryWonderCardScript
+end
+= CableClub_EventScript_TryWonderCardScript
+trywondercardscript
+goto CableClub_EventScript_MysteryGiftThankYou
+= CableClub_EventScript_MysteryGiftThankYou
+msgbox	gText_ThankYouForAccessingMysteryGift
+end
+= CableClub_EventScript_DistributeEonTicket
+checkitem ITEM_EON_TICKET
+goto_if_eq VAR_RESULT TRUE CableClub_EventScript_TryWonderCardScript
+goto_if_set FLAG_ENABLE_SHIP_SOUTHERN_ISLAND CableClub_EventScript_TryWonderCardScript
+msgbox	MysteryGift_Text_TheresATicketForYou
+giveitem ITEM_EON_TICKET
+setflag FLAG_ENABLE_SHIP_SOUTHERN_ISLAND
+setvar VAR_DISTRIBUTE_EON_TICKET 0
+msgbox	MysteryGift_Text_TryUsingItAtLilycovePort
+release
+end
+@ Unused?
+goto CableClub_EventScript_MysteryGiftThankYou2
+= CableClub_EventScript_MysteryGiftThankYou2
+msgbox	gText_ThankYouForAccessingMysteryGift
+release
 end

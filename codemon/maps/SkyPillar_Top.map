@@ -53,13 +53,14 @@ collision
 warps
 16 14 SkyPillar_5F 1
 npcs
-pokemon_rayquaza 14 7 S static
-pokemon_rayquaza_still 14 6 S static
+pokemon_rayquaza 14 7 S static FLAG_HIDE_SKY_PILLAR_TOP_RAYQUAZA
+pokemon_rayquaza_still 14 6 S static FLAG_HIDE_SKY_PILLAR_TOP_RAYQUAZA_STILL
 objscripts
 1 SkyPillar_Top_EventScript_Rayquaza
 triggers
 14 9 VAR_SKY_PILLAR_RAYQUAZA_CRY_DONE 0 SkyPillar_Top_EventScript_AwakenRayquaza
 movements
+Common_Movement_FaceUp	face_up,end
 SkyPillar_Top_Movement_CameraPanDown	down,down,down,end
 SkyPillar_Top_Movement_CameraPanUp	up,up,up,end
 SkyPillar_Top_Movement_RayquazaFlyOff	delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,end

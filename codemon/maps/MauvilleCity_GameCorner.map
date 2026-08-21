@@ -28,18 +28,18 @@ warps
 11 10 MauvilleCity 5
 12 10 MauvilleCity 5
 npcs
-people_woman_2 12 7 S static
-people_gentleman 16 5 S static
-people_beauty 11 2 S static
-people_beauty 14 2 S static
-people_girl_2 7 3 S static
-people_pokefan_m 19 4 S static
-people_old_man 20 8 W static
-people_cook 6 8 E static
-people_beauty 13 2 S static
-people_man_3 1 7 E static
-people_maniac 9 8 W static
-people_woman_5 4 6 W static
+people_woman_2 12 7 S static 0
+people_gentleman 16 5 S static 0
+people_beauty 11 2 S static 0
+people_beauty 14 2 S static 0
+people_girl_2 7 3 S static 0
+people_pokefan_m 19 4 S static 0
+people_old_man 20 8 W static 0
+people_cook 6 8 E static 0
+people_beauty 13 2 S static 0
+people_man_3 1 7 E static 0
+people_maniac 9 8 W static 0
+people_woman_5 4 6 W static 0
 dialogs
 0	COINS are needed to play here in the GAME CORNER.
 1	This ROULETTE thing… It's rather demanding.Win or lose, it's only by luck.
@@ -66,6 +66,8 @@ objscripts
 9 MauvilleCity_GameCorner_EventScript_Man
 10 MauvilleCity_GameCorner_EventScript_Maniac
 11 MauvilleCity_GameCorner_EventScript_Woman
+movements
+Common_Movement_FaceOriginalDirection	face_down,end
 scriptdefs
 = MauvilleCity_GameCorner_EventScript_Woman
 lock

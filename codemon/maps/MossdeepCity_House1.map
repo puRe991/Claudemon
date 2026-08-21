@@ -22,8 +22,8 @@ warps
 3 7 MossdeepCity 0
 4 7 MossdeepCity 0
 npcs
-people_black_belt 3 3 S wander
-people_woman_2 7 4 W static
+people_black_belt 3 3 S wander 0
+people_woman_2 7 4 W static 0
 dialogs
 0	Hmm! Your …
 1	My husband can tell what kind of S a POKéMON likes at a glance.

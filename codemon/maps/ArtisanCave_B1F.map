@@ -114,7 +114,7 @@ warps
 8 48 BattleFrontier_OutsideWest 10
 38 5 ArtisanCave_1F 1
 npcs
-misc_item_ball 32 38 S static
+misc_item_ball 32 38 S static FLAG_ITEM_ARTISAN_CAVE_B1F_HP_UP
 objscripts
 0 ArtisanCave_B1F_EventScript_ItemHPUp
 triggers

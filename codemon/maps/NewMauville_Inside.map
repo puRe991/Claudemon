@@ -87,14 +87,14 @@ collision
 warps
 32 33 NewMauville_Entrance 1
 npcs
-misc_item_ball 32 25 S static
-misc_item_ball 16 22 S static
-misc_item_ball 39 4 S static
-misc_item_ball 17 10 S static
-misc_item_ball 2 11 S static
-misc_item_ball 25 18 S static
-misc_item_ball 6 11 S static
-misc_item_ball 13 10 S static
+misc_item_ball 32 25 S static FLAG_ITEM_NEW_MAUVILLE_ULTRA_BALL
+misc_item_ball 16 22 S static FLAG_ITEM_NEW_MAUVILLE_ESCAPE_ROPE
+misc_item_ball 39 4 S static FLAG_ITEM_NEW_MAUVILLE_THUNDER_STONE
+misc_item_ball 17 10 S static FLAG_ITEM_NEW_MAUVILLE_FULL_HEAL
+misc_item_ball 2 11 S static FLAG_ITEM_NEW_MAUVILLE_PARALYZE_HEAL
+misc_item_ball 25 18 S static FLAG_HIDE_NEW_MAUVILLE_VOLTORB_1
+misc_item_ball 6 11 S static FLAG_HIDE_NEW_MAUVILLE_VOLTORB_2
+misc_item_ball 13 10 S static FLAG_HIDE_NEW_MAUVILLE_VOLTORB_3
 objscripts
 0 NewMauville_Inside_EventScript_ItemUltraBall
 1 NewMauville_Inside_EventScript_ItemEscapeRope

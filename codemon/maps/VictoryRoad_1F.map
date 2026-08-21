@@ -99,15 +99,15 @@ warps
 42 38 VictoryRoad_B1F 2
 9 14 VictoryRoad_B1F 4
 npcs
-people_man_3 33 22 S static
-people_woman_5 6 15 W static
-people_man_3 27 34 S static
-people_wally 12 25 S static
-misc_item_ball 40 26 S static
-misc_item_ball 37 39 S static
-people_wally 31 9 S static
-people_woman_5 29 17 E static
-people_man_3 32 17 W static
+people_man_3 33 22 S static 0
+people_woman_5 6 15 W static 0
+people_man_3 27 34 S static 0
+people_wally 12 25 S static FLAG_HIDE_VICTORY_ROAD_ENTRANCE_WALLY
+misc_item_ball 40 26 S static FLAG_ITEM_VICTORY_ROAD_1F_MAX_ELIXIR
+misc_item_ball 37 39 S static FLAG_ITEM_VICTORY_ROAD_1F_PP_UP
+people_wally 31 9 S static FLAG_HIDE_VICTORY_ROAD_EXIT_WALLY
+people_woman_5 29 17 E static 0
+people_man_3 32 17 W static 0
 dialogs
 0	You've made it this far. Keep the momentum going and become the CHAMPION! If anyone can, it's you!
 1	You seem to have the potential for becoming the CHAMPION.
@@ -131,6 +131,7 @@ triggers
 3 23 VAR_VICTORY_ROAD_1F_STATE 0 VictoryRoad_1F_EventScript_WallyBattleTrigger2
 30 39 0 0 VictoryRoad_1F_HiddenItem_30_39
 movements
+Common_Movement_WalkInPlaceFasterDown	delay,end
 VictoryRoad_1F_Movement_WallyApproachPlayer1	left,left,left,left,left,left,left,left,left,left,up,end
 VictoryRoad_1F_Movement_WallyApproachPlayer2	left,left,left,left,left,left,left,left,left,up,end
 scriptdefs

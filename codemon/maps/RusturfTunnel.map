@@ -55,16 +55,16 @@ warps
 29 16 VerdanturfTown 4
 18 20 Route116 2
 npcs
-people_black_belt 23 5 E static
-misc_breakable_rock 24 5 S static
-misc_item_ball 3 1 S static
-misc_item_ball 30 2 S static
-people_expert_m 5 4 E static
-people_team_aqua_aqua_member_m 14 5 W static
-pokemon_wingull 14 4 W static
-misc_breakable_rock 24 4 S static
-people_hiker 32 13 W static
-people_woman_2 25 4 W static
+people_black_belt 23 5 E static FLAG_HIDE_RUSTURF_TUNNEL_WANDAS_BOYFRIEND
+misc_breakable_rock 24 5 S static FLAG_HIDE_RUSTURF_TUNNEL_ROCK_1
+misc_item_ball 3 1 S static FLAG_ITEM_RUSTURF_TUNNEL_POKE_BALL
+misc_item_ball 30 2 S static FLAG_ITEM_RUSTURF_TUNNEL_MAX_ETHER
+people_expert_m 5 4 E static FLAG_HIDE_RUSTURF_TUNNEL_BRINEY
+people_team_aqua_aqua_member_m 14 5 W static FLAG_HIDE_RUSTURF_TUNNEL_AQUA_GRUNT
+pokemon_wingull 14 4 W static FLAG_HIDE_RUSTURF_TUNNEL_PEEKO
+misc_breakable_rock 24 4 S static FLAG_HIDE_RUSTURF_TUNNEL_ROCK_2
+people_hiker 32 13 W static 0
+people_woman_2 25 4 W static FLAG_HIDE_RUSTURF_TUNNEL_WANDA
 dialogs
 0	… …Why can't they keep digging? Is the bedrock too hard?My beloved awaits me in VERDANTURF TOWN just beyond here…If RUSTBORO and VERDANTURF were joined by this tunnel, I could visit her every day…But this… What am I to do?
 5	Grah, keelhaul it all!That hostage POKéMON turned out to be worthless!And to think I made a getaway… In this tunnel to nowhere!Hey! You! So you want to battle me?
@@ -73,10 +73,12 @@ dialogs
 9	On the other side of this rock… My boyfriend is there.He… He's not just digging the tunnel to come see me.He works his hands raw and rough for the benefit of everyone.
 objscripts
 0 RusturfTunnel_EventScript_WandasBoyfriend
+1 EventScript_RockSmash
 2 RusturfTunnel_EventScript_ItemPokeBall
 3 RusturfTunnel_EventScript_ItemMaxEther
 5 RusturfTunnel_EventScript_Grunt
 6 RusturfTunnel_EventScript_Peeko
+7 EventScript_RockSmash
 8 RusturfTunnel_EventScript_Mike
 9 RusturfTunnel_EventScript_Wanda
 triggers
@@ -86,6 +88,9 @@ triggers
 25 4 TRIGGER_RUN_IMMEDIATELY 0 RusturfTunnel_EventScript_TunnelBlockagePos2
 25 5 TRIGGER_RUN_IMMEDIATELY 0 RusturfTunnel_EventScript_TunnelBlockagePos3
 movements
+Common_Movement_FaceOriginalDirection	face_down,end
+Common_Movement_FacePlayer	face_down,end
+Movement_SmashRock	delay,end
 RusturfTunnel_Movement_BrineyApproachPeeko1	right,right,right,right,right,right,right,end
 RusturfTunnel_Movement_BrineyApproachPeeko2	delay,right,end
 RusturfTunnel_Movement_BrineyExit	left,left,left,left,left,left,left,left,left,left,left,end
@@ -129,6 +134,52 @@ end
 = RusturfTunnel_EventScript_Mike
 trainerbattle_single TRAINER_MIKE_2 RusturfTunnel_Text_MikeIntro RusturfTunnel_Text_MikeDefeat
 msgbox	They halted development here to protect POKéMON, right? There's a feel-good story!
+end
+= EventScript_RockSmash
+lockall
+goto_if_unset FLAG_BADGE03_GET EventScript_CantSmashRock
+checkpartymove MOVE_ROCK_SMASH
+goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CantSmashRock
+setfieldeffectargument 0 VAR_RESULT
+bufferpartymonnick STR_VAR_1 VAR_RESULT
+buffermovename STR_VAR_2 MOVE_ROCK_SMASH
+msgbox	Text_WantToSmash
+goto_if_eq VAR_RESULT NO EventScript_CancelSmash
+msgbox	Text_MonUsedFieldMove
+closemessage
+dofieldeffect FLDEFF_USE_ROCK_SMASH
+waitstate
+goto EventScript_SmashRock
+end
+@ Use rock smash from party menu
+goto EventScript_UseRockSmash
+= EventScript_UseRockSmash
+lockall
+dofieldeffect FLDEFF_USE_ROCK_SMASH
+waitstate
+goto EventScript_SmashRock
+end
+= EventScript_SmashRock
+applymovement VAR_LAST_TALKED Movement_SmashRock
+waitmovement 0
+removeobject VAR_LAST_TALKED
+specialvar VAR_RESULT TryUpdateRusturfTunnelState
+goto_if_eq VAR_RESULT TRUE EventScript_EndSmash
+special RockSmashWildEncounter
+goto_if_eq VAR_RESULT FALSE EventScript_EndSmash
+waitstate
+releaseall
+end
+= EventScript_EndSmash
+releaseall
+end
+= EventScript_CancelSmash
+closemessage
+releaseall
+end
+= EventScript_CantSmashRock
+msgbox	Text_CantSmash
+releaseall
 end
 = RusturfTunnel_EventScript_Peeko
 lock

@@ -53,13 +53,13 @@ warps
 12 13 FortreeCity_House5 0
 37 13 FortreeCity_DecorationShop 0
 npcs
-people_man_2 31 3 S static
-people_girl_1 32 16 S wander
-people_woman_5 32 10 S wander
-people_boy_1 11 14 S static
-people_old_man 8 10 S static
-people_gameboy_kid 9 16 S static
-pokemon_kecleon 25 8 S static
+people_man_2 31 3 S static 0
+people_girl_1 32 16 S wander 0
+people_woman_5 32 10 S wander 0
+people_boy_1 11 14 S static 0
+people_old_man 8 10 S static 0
+people_gameboy_kid 9 16 S static 0
+pokemon_kecleon 25 8 S static FLAG_HIDE_FORTREE_CITY_KECLEON
 dialogs
 0	No one believes me, but I saw this gigantic POKéMON in the sky.It seemed to squirm as it flew toward ROUTE 131.By the way… Sniff… Um… You, uh…smell singed.Were you at a volcano or something?
 1	The ground absorbs rainwater, and trees grow by drinking that water…Our FORTREE CITY exists because there's both water and soil.
@@ -78,6 +78,7 @@ objscripts
 6 FortreeCity_EventScript_Kecleon
 movements
 FortreeCity_Movement_KecleonFlee	right,end
+Movement_KecleonAppears	delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,end
 scriptdefs
 = FortreeCity_EventScript_Kecleon
 lock

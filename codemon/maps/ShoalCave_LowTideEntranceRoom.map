@@ -78,8 +78,8 @@ warps
 6 2 ShoalCave_LowTideInnerRoom 6
 27 2 ShoalCave_LowTideInnerRoom 7
 npcs
-misc_item_ball 30 3 S static
-people_expert_m 18 15 W static
+misc_item_ball 30 3 S static FLAG_ITEM_SHOAL_CAVE_ENTRANCE_BIG_PEARL
+people_expert_m 18 15 W static 0
 objscripts
 0 ShoalCave_LowTideEntranceRoom_EventScript_ItemBigPearl
 1 ShoalCave_LowTideEntranceRoom_EventScript_ShellBellExpert

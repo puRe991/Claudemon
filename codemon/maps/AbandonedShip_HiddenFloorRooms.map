@@ -43,10 +43,10 @@ warps
 21 1 AbandonedShip_HiddenFloorCorridors 4
 36 1 AbandonedShip_HiddenFloorCorridors 5
 npcs
-misc_item_ball 41 4 S static
-misc_item_ball 16 10 S static
-misc_item_ball 5 11 S static
-misc_item_ball 31 11 S static
+misc_item_ball 41 4 S static FLAG_ITEM_ABANDONED_SHIP_HIDDEN_FLOOR_ROOM_6_LUXURY_BALL
+misc_item_ball 16 10 S static FLAG_ITEM_ABANDONED_SHIP_HIDDEN_FLOOR_ROOM_2_SCANNER
+misc_item_ball 5 11 S static FLAG_ITEM_ABANDONED_SHIP_HIDDEN_FLOOR_ROOM_1_TM_RAIN_DANCE
+misc_item_ball 31 11 S static FLAG_ITEM_ABANDONED_SHIP_HIDDEN_FLOOR_ROOM_3_WATER_STONE
 objscripts
 0 AbandonedShip_HiddenFloorRooms_EventScript_ItemLuxuryBall
 1 AbandonedShip_HiddenFloorRooms_EventScript_ItemScanner

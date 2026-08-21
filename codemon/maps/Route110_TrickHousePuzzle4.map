@@ -51,20 +51,20 @@ warps
 1 21 Route110_TrickHouseEntrance 2
 13 1 Route110_TrickHouseEnd 0
 npcs
-people_girl_3 2 2 S static
-people_girl_3 14 7 W static
-people_black_belt 2 14 E static
-misc_item_ball 2 5 S static
-misc_pushable_boulder 13 3 S static
-misc_pushable_boulder 12 5 S static
-misc_pushable_boulder 5 16 S static
-misc_pushable_boulder 4 6 S static
-misc_pushable_boulder 12 2 S static
-misc_pushable_boulder 5 7 S static
-misc_pushable_boulder 9 3 S static
-misc_pushable_boulder 10 12 S static
-misc_pushable_boulder 14 2 S static
-misc_pushable_boulder 10 15 S static
+people_girl_3 2 2 S static 0
+people_girl_3 14 7 W static 0
+people_black_belt 2 14 E static 0
+misc_item_ball 2 5 S static FLAG_ITEM_TRICK_HOUSE_PUZZLE_4_MECH_MAIL
+misc_pushable_boulder 13 3 S static FLAG_TEMP_11
+misc_pushable_boulder 12 5 S static FLAG_TEMP_12
+misc_pushable_boulder 5 16 S static FLAG_TEMP_13
+misc_pushable_boulder 4 6 S static FLAG_TEMP_14
+misc_pushable_boulder 12 2 S static FLAG_TEMP_15
+misc_pushable_boulder 5 7 S static FLAG_TEMP_16
+misc_pushable_boulder 9 3 S static FLAG_TEMP_17
+misc_pushable_boulder 10 12 S static FLAG_TEMP_18
+misc_pushable_boulder 14 2 S static FLAG_TEMP_19
+misc_pushable_boulder 10 15 S static FLAG_TEMP_1A
 dialogs
 0	Wouldn't you agree? You would go anywhere if TRAINERS were there.
 1	Has anyone made it to the end?
@@ -74,7 +74,48 @@ objscripts
 1 Route110_TrickHousePuzzle4_EventScript_Paula
 2 Route110_TrickHousePuzzle4_EventScript_Yuji
 3 Route110_TrickHousePuzzle4_EventScript_ItemMechMail
+4 EventScript_StrengthBoulder
+5 EventScript_StrengthBoulder
+6 EventScript_StrengthBoulder
+7 EventScript_StrengthBoulder
+8 EventScript_StrengthBoulder
+9 EventScript_StrengthBoulder
+10 EventScript_StrengthBoulder
+11 EventScript_StrengthBoulder
+12 EventScript_StrengthBoulder
+13 EventScript_StrengthBoulder
 scriptdefs
+= EventScript_StrengthBoulder
+lockall
+goto_if_unset FLAG_BADGE04_GET EventScript_CantStrength
+goto_if_set FLAG_SYS_USE_STRENGTH EventScript_CheckActivatedBoulder
+checkpartymove MOVE_STRENGTH
+goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CantStrength
+setfieldeffectargument 0 VAR_RESULT
+msgbox	Text_WantToStrength
+goto_if_eq VAR_RESULT NO EventScript_CancelStrength
+closemessage
+dofieldeffect FLDEFF_USE_STRENGTH
+waitstate
+goto EventScript_ActivateStrength
+end
+= EventScript_ActivateStrength
+setflag FLAG_SYS_USE_STRENGTH
+msgbox	Text_MonUsedStrength
+releaseall
+end
+= EventScript_CancelStrength
+closemessage
+releaseall
+end
+= EventScript_CantStrength
+msgbox	Text_CantStrength
+releaseall
+end
+= EventScript_CheckActivatedBoulder
+msgbox	Text_StrengthActivated
+releaseall
+end
 = Route110_TrickHousePuzzle4_EventScript_ItemMechMail
 goto_if_set FLAG_ITEM_TRICK_HOUSE_PUZZLE_4_MECH_MAIL Route110_TrickHousePuzzle4_EventScript_ItemMechMail_Taken
 finditem ITEM_MECH_MAIL

@@ -47,13 +47,13 @@ warps
 5 8 LittlerootTown_BrendansHouse_1F 1
 7 16 LittlerootTown_ProfessorBirchsLab 0
 npcs
-people_twin 16 10 S wander
-people_fat_man 12 13 S wander
-people_boy_2 14 17 S wander
-people_mom 5 8 N static
-misc_truck 2 10 E static
-misc_truck 11 10 E static
-people_prof_birch 14 10 N static
+people_twin 16 10 S wander 0
+people_fat_man 12 13 S wander FLAG_HIDE_LITTLEROOT_TOWN_FAT_MAN
+people_boy_2 14 17 S wander 0
+people_mom 5 8 N static FLAG_HIDE_LITTLEROOT_TOWN_MOM_OUTSIDE
+misc_truck 2 10 E static FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_TRUCK
+misc_truck 11 10 E static FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_TRUCK
+people_prof_birch 14 10 N static FLAG_HIDE_LITTLEROOT_TOWN_BIRCH
 dialogs
 0	Um, um, um!If you go outside and go in the grass, wild POKéMON will jump out!
 1	If you use a PC, you can store items and POKéMON.The power of science is staggering!
@@ -74,6 +74,11 @@ triggers
 10 2 VAR_LITTLEROOT_TOWN_STATE 3 LittlerootTown_EventScript_GiveRunningShoesTrigger0
 11 2 VAR_LITTLEROOT_TOWN_STATE 3 LittlerootTown_EventScript_GiveRunningShoesTrigger1
 movements
+Common_Movement_FaceOriginalDirection	face_down,end
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
 LittlerootTown_Movement_MomApproachPlayer0	up,up,up,up,up,up,end
 LittlerootTown_Movement_MomApproachPlayer1	up,up,up,up,up,up,end
 LittlerootTown_Movement_MomApproachPlayerFemale2	left,left,left,end

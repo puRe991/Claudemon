@@ -49,25 +49,25 @@ collision
 warps
 45 6 AlteringCave 0
 npcs
-people_man_3 49 12 W static
-people_woman_2 71 11 S static
-people_twin 65 12 S static
-people_twin 64 12 S static
-people_fisherman 50 8 S static
-people_man_1 58 5 S static
-people_man_1 59 5 S static
-people_man_1 60 5 S static
-people_boy_1 20 10 S wander
-people_prof_birch 7 3 S wander
-people_pokefan_m 56 13 E static
-misc_item_ball 50 5 S static
-misc_cuttable_tree 67 7 S static
-misc_cuttable_tree 72 8 S static
-people_black_belt 67 5 S static
-people_man_5 67 9 N static
-people_swimmer_f 36 6 S static
-people_swimmer_m 36 13 S pace_v
-misc_item_ball 64 7 S static
+people_man_3 49 12 W static 0
+people_woman_2 71 11 S static 0
+people_twin 65 12 S static 0
+people_twin 64 12 S static 0
+people_fisherman 50 8 S static 0
+people_man_1 58 5 S static 0
+people_man_1 59 5 S static 0
+people_man_1 60 5 S static 0
+people_boy_1 20 10 S wander 0
+people_prof_birch 7 3 S wander FLAG_HIDE_ROUTE_103_BIRCH
+people_pokefan_m 56 13 E static 0
+misc_item_ball 50 5 S static FLAG_ITEM_ROUTE_103_GUARD_SPEC
+misc_cuttable_tree 67 7 S static FLAG_TEMP_12
+misc_cuttable_tree 72 8 S static FLAG_TEMP_13
+people_black_belt 67 5 S static 0
+people_man_5 67 9 N static 0
+people_swimmer_f 36 6 S static 0
+people_swimmer_m 36 13 S pace_v 0
+misc_item_ball 64 7 S static FLAG_ITEM_ROUTE_103_PP_UP
 dialogs
 0	If you cross the sea from here, it'll be a shortcut to OLDALE TOWN.Fufufu, that's useful, isn't it?
 8	My POKéMON is staggeringly tired… I should have brought a POTION…
@@ -77,14 +77,22 @@ objscripts
 2 Route103_EventScript_Liv
 3 Route103_EventScript_Amy
 4 Route103_EventScript_Andrew
+5 BerryTreeScript
+6 BerryTreeScript
+7 BerryTreeScript
 8 Route103_EventScript_Boy
+9 ProfBirch_EventScript_RatePokedexOrRegister
 10 Route103_EventScript_Miguel
 11 Route103_EventScript_ItemGuardSpec
+12 EventScript_CutTree
+13 EventScript_CutTree
 14 Route103_EventScript_Rhett
 15 Route103_EventScript_Marcos
 16 Route103_EventScript_Isabelle
 17 Route103_EventScript_Pete
 18 Route103_EventScript_ItemPPUp
+movements
+Movement_CutTreeDown	delay,end
 scriptdefs
 = Route103_EventScript_ItemPPUp
 goto_if_set FLAG_ITEM_ROUTE_103_PP_UP Route103_EventScript_ItemPPUp_Taken
@@ -108,6 +116,44 @@ end
 = Route103_EventScript_Rhett
 trainerbattle_single TRAINER_RHETT Route103_Text_RhettIntro Route103_Text_RhettDefeated
 msgbox	Route103_Text_RhettPostBattle
+end
+= EventScript_CutTree
+lockall
+goto_if_unset FLAG_BADGE01_GET EventScript_CheckTreeCantCut
+checkpartymove MOVE_CUT
+goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CheckTreeCantCut
+setfieldeffectargument 0 VAR_RESULT
+bufferpartymonnick STR_VAR_1 VAR_RESULT
+buffermovename STR_VAR_2 MOVE_CUT
+msgbox	Text_WantToCut
+goto_if_eq VAR_RESULT NO EventScript_CancelCut
+msgbox	Text_MonUsedFieldMove
+closemessage
+dofieldeffect FLDEFF_USE_CUT_ON_TREE
+waitstate
+goto EventScript_CutTreeDown
+end
+@ Use cut from party menu
+goto EventScript_UseCut
+= EventScript_UseCut
+lockall
+dofieldeffect FLDEFF_USE_CUT_ON_TREE
+waitstate
+goto EventScript_CutTreeDown
+end
+= EventScript_CutTreeDown
+applymovement VAR_LAST_TALKED Movement_CutTreeDown
+waitmovement 0
+removeobject VAR_LAST_TALKED
+releaseall
+end
+= EventScript_CancelCut
+closemessage
+releaseall
+end
+= EventScript_CheckTreeCantCut
+msgbox	Text_CantCut
+releaseall
 end
 = Route103_EventScript_ItemGuardSpec
 goto_if_set FLAG_ITEM_ROUTE_103_GUARD_SPEC Route103_EventScript_ItemGuardSpec_Taken
@@ -134,8 +180,205 @@ msgbox	Route103_Text_MiguelRegister
 register_matchcall TRAINER_MIGUEL_1
 release
 end
+= ProfBirch_EventScript_RatePokedexOrRegister
+lock
+faceplayer
+goto_if_unset FLAG_HAS_MATCH_CALL ProfBirch_EventScript_AskRatePokedex
+goto_if_unset FLAG_ENABLE_PROF_BIRCH_MATCH_CALL EventScript_RegisterProfBirch
+goto ProfBirch_EventScript_AskRatePokedex
+= ProfBirch_EventScript_AskRatePokedex
+msgbox	gBirchDexRatingText_AreYouCurious
+goto_if_eq VAR_RESULT NO ProfBirch_EventScript_DeclineRating
+call ProfBirch_EventScript_RatePokedex
+release
+end
+= ProfBirch_EventScript_RatePokedex
+setvar VAR_0x8004 0
+specialvar VAR_RESULT ScriptGetPokedexInfo
+copyvar VAR_0x8008 VAR_0x8005
+copyvar VAR_0x8009 VAR_0x8006
+copyvar VAR_0x800A VAR_RESULT
+buffernumberstring STR_VAR_1 VAR_0x8008  @ Num Hoenn seen
+buffernumberstring STR_VAR_2 VAR_0x8009  @ Num Hoenn caught
+msgbox	gBirchDexRatingText_SoYouveSeenAndCaught
+call ProfBirch_EventScript_ShowRatingMessage
+goto_if_eq VAR_0x800A 0 Common_EventScript_NopReturn  @ National dex not enabled
+setvar VAR_0x8004 1
+specialvar VAR_RESULT ScriptGetPokedexInfo
+copyvar VAR_0x8008 VAR_0x8005
+copyvar VAR_0x8009 VAR_0x8006
+buffernumberstring STR_VAR_1 VAR_0x8008  @ Num National seen
+buffernumberstring STR_VAR_2 VAR_0x8009  @ Num National caught
+msgbox	gBirchDexRatingText_OnANationwideBasis
+return
+= ProfBirch_EventScript_ShowRatingMessage
+copyvar VAR_0x8004 VAR_0x8009
+special ShowPokedexRatingMessage
+waitmessage
+waitbuttonpress
+return
+= ProfBirch_EventScript_DeclineRating
+msgbox	gBirchDexRatingText_Cancel
+release
+end
 = Route103_EventScript_Boy
 msgbox	My POKéMON is staggeringly tired… I should have brought a POTION…
+end
+= BerryTreeScript
+special ObjectEventInteractionGetBerryTreeData
+switch VAR_0x8004
+case BERRY_STAGE_SPARKLING BerryTree_EventScript_Sparkling
+case BERRY_STAGE_NO_BERRY BerryTree_EventScript_CheckSoil
+case BERRY_STAGE_PLANTED BerryTree_EventScript_CheckBerryStage1
+case BERRY_STAGE_SPROUTED BerryTree_EventScript_CheckBerryStage2
+case BERRY_STAGE_TALLER BerryTree_EventScript_CheckBerryStage3
+case BERRY_STAGE_FLOWERING BerryTree_EventScript_CheckBerryStage4
+case BERRY_STAGE_BERRIES BerryTree_EventScript_CheckBerryFullyGrown
+end
+= BerryTree_EventScript_CheckBerryFullyGrown
+buffernumberstring STR_VAR_2 VAR_0x8006
+lock
+faceplayer
+special ObjectEventInteractionGetBerryCountString
+msgbox	BerryTree_Text_WantToPick
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_PickBerry
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPickingBerry
+goto BerryTree_EventScript_PickBerry
+= BerryTree_EventScript_PickBerry
+special ObjectEventInteractionPickBerryTree
+goto_if_eq VAR_0x8004 0 BerryTree_EventScript_BerryPocketFull
+special IncrementDailyPickedBerries
+special ObjectEventInteractionRemoveBerryTree
+message BerryTree_Text_PickedTheBerry
+playfanfare MUS_OBTAIN_BERRY
+waitmessage
+waitfanfare
+waitbuttonpress
+message BerryTree_Text_PutAwayBerry
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_BerryPocketFull
+message BerryTree_Text_BerryPocketFull
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_CancelPickingBerry
+message BerryTree_Text_BerryLeftUnpicked
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_CheckBerryStage4
+call BerryTree_EventScript_GetCareAdverb
+lockall
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_BerryGrowthStage4
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+@ VAR_0x8005 here is the number of times watered
+@ Buffered by ObjectEventInteractionGetBerryTreeData
+goto BerryTree_EventScript_GetCareAdverb
+= BerryTree_EventScript_GetCareAdverb
+goto_if_eq VAR_0x8005 0 BerryTree_EventScript_SetAdverbPoor
+goto_if_eq VAR_0x8005 4 BerryTree_EventScript_SetAdverbGreat
+bufferstring STR_VAR_2 BerryTree_Text_CareAdverbGood
+return
+= BerryTree_EventScript_SetAdverbGreat
+bufferstring STR_VAR_2 BerryTree_Text_CareAdverbGreat
+return
+= BerryTree_EventScript_SetAdverbPoor
+bufferstring STR_VAR_2 BerryTree_Text_CareAdverbPoor
+return
+@ VAR_0x8006 here is the number of berries
+goto BerryTree_EventScript_CheckBerryFullyGrown
+= BerryTree_EventScript_WantToWater
+checkitem ITEM_WAILMER_PAIL
+goto_if_eq VAR_RESULT FALSE BerryTree_EventScript_DontWater
+special ObjectEventInteractionGetBerryName
+msgbox	BerryTree_Text_WantToWater
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_WaterBerry
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_DontWater
+goto BerryTree_EventScript_DontWater
+= BerryTree_EventScript_DontWater
+releaseall
+end
+= BerryTree_EventScript_WaterBerry
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_WateredTheBerry
+waitmessage
+special ObjectEventInteractionWaterBerryTree
+special DoWateringBerryTreeAnim
+message BerryTree_Text_PlantIsDelighted
+waitmessage
+waitbuttonpress
+releaseall
+end
+= BerryTree_EventScript_CheckBerryStage3
+lockall
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_BerryGrowthStage3
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckBerryStage2
+lockall
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_BerryGrowthStage2
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckBerryStage1
+lockall
+special ObjectEventInteractionGetBerryCountString
+message BerryTree_Text_BerryGrowthStage1
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckSoil
+lock
+faceplayer
+specialvar VAR_RESULT PlayerHasBerries
+goto_if_eq VAR_RESULT TRUE BerryTree_EventScript_WantToPlant
+message BerryTree_Text_ItsSoftLoamySoil
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_WantToPlant
+msgbox	BerryTree_Text_WantToPlant
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_ChooseBerryToPlant
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPlanting
+end
+= BerryTree_EventScript_CancelPlanting
+release
+end
+= BerryTree_EventScript_ChooseBerryToPlant
+fadescreen FADE_TO_BLACK
+closemessage
+special Bag_ChooseBerry
+goto_if_eq VAR_ITEM_ID 0 BerryTree_EventScript_CancelPlanting
+removeitem VAR_ITEM_ID
+call BerryTree_EventScript_PlantBerry
+goto BerryTree_EventScript_CancelPlanting
+= BerryTree_EventScript_PlantBerry
+special ObjectEventInteractionPlantBerryTree
+incrementgamestat GAME_STAT_PLANTED_BERRIES
+special IncrementDailyPlantedBerries
+special ObjectEventInteractionGetBerryCountString
+message BerryTree_Text_PlantedOneBerry
+waitmessage
+waitbuttonpress
+return
+= BerryTree_EventScript_Sparkling
+lockall
+message BerryTree_Text_ExclamationPoint
+waitmessage
+waitbuttonpress
+releaseall
 end
 = Route103_EventScript_Andrew
 trainerbattle_single TRAINER_ANDREW Route103_Text_AndrewIntro Route103_Text_AndrewDefeated

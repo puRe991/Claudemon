@@ -22,9 +22,9 @@ warps
 3 7 MossdeepCity 6
 4 7 MossdeepCity 6
 npcs
-people_steven 9 6 E static
-misc_item_ball 4 3 S static
-people_ninja_boy 6 4 S static
+people_steven 9 6 E static FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_STEVEN
+misc_item_ball 4 3 S static FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_BELDUM_POKEBALL
+people_ninja_boy 6 4 S static FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_INVISIBLE_NINJA_BOY
 dialogs
 0	STEVEN: Apparently, there's an underwater cavern between MOSSDEEP and SOOTOPOLIS.You know, the one that CAPT. STERN found in his submarine.
 1	PLAYER checked the POKé BALL.It contained the POKéMON BELDUM.Take the POKé BALL?
@@ -58,6 +58,10 @@ goto_if_eq VAR_RESULT MON_GIVEN_TO_PARTY MossdeepCity_StevensHouse_EventScript_S
 goto_if_eq VAR_RESULT MON_GIVEN_TO_PC MossdeepCity_StevensHouse_EventScript_SendBeldumPC
 goto Common_EventScript_NoMoreRoomForPokemon
 end
+= Common_EventScript_NoMoreRoomForPokemon
+msgbox	gText_NoMoreRoomForPokemon
+release
+end
 = MossdeepCity_StevensHouse_EventScript_SendBeldumPC
 call MossdeepCity_StevensHouse_EventScript_ReceivedBeldumFanfare
 msgbox	gText_NicknameThisPokemon
@@ -74,6 +78,38 @@ setflag FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_BELDUM_POKEBALL
 setflag FLAG_RECEIVED_BELDUM
 releaseall
 end
+= Common_EventScript_TransferredToPC
+bufferboxname STR_VAR_1 VAR_PC_BOX_TO_SEND_MON
+bufferspeciesname STR_VAR_2 VAR_TEMP_TRANSFERRED_SPECIES
+call_if_unset FLAG_SYS_PC_LANETTE EventScript_TransferredSomeonesPC
+call_if_set FLAG_SYS_PC_LANETTE EventScript_TransferredLanettesPC
+return
+= EventScript_TransferredLanettesPC
+specialvar VAR_RESULT ShouldShowBoxWasFullMessage
+goto_if_eq VAR_RESULT TRUE EventScript_LanettesPCBoxFull
+msgbox	gText_PkmnTransferredLanettesPC
+return
+= EventScript_LanettesPCBoxFull
+specialvar VAR_RESULT GetPCBoxToSendMon
+bufferboxname STR_VAR_3 VAR_RESULT
+msgbox	gText_PkmnTransferredLanettesPCBoxFull
+return
+= EventScript_TransferredSomeonesPC
+specialvar VAR_RESULT ShouldShowBoxWasFullMessage
+goto_if_eq VAR_RESULT TRUE EventScript_SomeonesPCBoxFull
+msgbox	gText_PkmnTransferredSomeonesPC
+return
+= EventScript_SomeonesPCBoxFull
+specialvar VAR_RESULT GetPCBoxToSendMon
+bufferboxname STR_VAR_3 VAR_RESULT
+msgbox	gText_PkmnTransferredSomeonesPCBoxFull
+return
+= Common_EventScript_NameReceivedBoxMon
+fadescreen FADE_TO_BLACK
+special ChangeBoxPokemonNickname
+lock
+faceplayer
+return
 = MossdeepCity_StevensHouse_EventScript_ReceivedBeldumFanfare
 bufferspeciesname STR_VAR_2 SPECIES_BELDUM
 removeobject LOCALID_STEVENS_HOUSE_BALL
@@ -91,6 +127,11 @@ call Common_EventScript_GetGiftMonPartySlot
 call Common_EventScript_NameReceivedPartyMon
 goto MossdeepCity_StevensHouse_EventScript_ReceivedBeldum
 end
+= Common_EventScript_GetGiftMonPartySlot
+getpartysize
+subvar VAR_RESULT 1
+copyvar VAR_0x8004 VAR_RESULT
+return
 = MossdeepCity_StevensHouse_EventScript_LeaveBeldum
 msgbox	PLAYER left the POKé BALL where it was.
 releaseall

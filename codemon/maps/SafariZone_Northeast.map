@@ -83,20 +83,27 @@ collision
 1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,0,1,1,1,1,1
 1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,0,1,1,1,1,1
 npcs
-people_boy_3 8 20 S static
-people_girl_3 30 22 S static
-misc_breakable_rock 11 11 S static
-people_woman_1 13 35 S static
-misc_breakable_rock 8 13 S static
-misc_breakable_rock 9 7 S static
-misc_breakable_rock 8 10 S static
-misc_breakable_rock 12 8 S static
-misc_item_ball 8 17 S static
+people_boy_3 8 20 S static 0
+people_girl_3 30 22 S static 0
+misc_breakable_rock 11 11 S static FLAG_TEMP_15
+people_woman_1 13 35 S static 0
+misc_breakable_rock 8 13 S static FLAG_TEMP_13
+misc_breakable_rock 9 7 S static FLAG_TEMP_11
+misc_breakable_rock 8 10 S static FLAG_TEMP_14
+misc_breakable_rock 12 8 S static FLAG_TEMP_12
+misc_item_ball 8 17 S static FLAG_ITEM_SAFARI_ZONE_NORTH_EAST_NUGGET
 objscripts
+2 EventScript_RockSmash
+4 EventScript_RockSmash
+5 EventScript_RockSmash
+6 EventScript_RockSmash
+7 EventScript_RockSmash
 8 SafariZone_Northeast_EventScript_ItemNugget
 triggers
 31 35 0 0 SafariZone_Northeast_HiddenItem_31_35
 21 5 0 0 SafariZone_Northeast_HiddenItem_21_5
+movements
+Movement_SmashRock	delay,end
 scriptdefs
 = SafariZone_Northeast_HiddenItem_21_5
 goto_if_set FLAG_HIDDEN_ITEM_SAFARI_ZONE_NORTH_EAST_ZINC SafariZone_Northeast_HiddenItem_21_5_Taken
@@ -118,6 +125,52 @@ finditem ITEM_NUGGET
 setflag FLAG_ITEM_SAFARI_ZONE_NORTH_EAST_NUGGET
 end
 = SafariZone_Northeast_EventScript_ItemNugget_Taken
+end
+= EventScript_RockSmash
+lockall
+goto_if_unset FLAG_BADGE03_GET EventScript_CantSmashRock
+checkpartymove MOVE_ROCK_SMASH
+goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CantSmashRock
+setfieldeffectargument 0 VAR_RESULT
+bufferpartymonnick STR_VAR_1 VAR_RESULT
+buffermovename STR_VAR_2 MOVE_ROCK_SMASH
+msgbox	Text_WantToSmash
+goto_if_eq VAR_RESULT NO EventScript_CancelSmash
+msgbox	Text_MonUsedFieldMove
+closemessage
+dofieldeffect FLDEFF_USE_ROCK_SMASH
+waitstate
+goto EventScript_SmashRock
+end
+@ Use rock smash from party menu
+goto EventScript_UseRockSmash
+= EventScript_UseRockSmash
+lockall
+dofieldeffect FLDEFF_USE_ROCK_SMASH
+waitstate
+goto EventScript_SmashRock
+end
+= EventScript_SmashRock
+applymovement VAR_LAST_TALKED Movement_SmashRock
+waitmovement 0
+removeobject VAR_LAST_TALKED
+specialvar VAR_RESULT TryUpdateRusturfTunnelState
+goto_if_eq VAR_RESULT TRUE EventScript_EndSmash
+special RockSmashWildEncounter
+goto_if_eq VAR_RESULT FALSE EventScript_EndSmash
+waitstate
+releaseall
+end
+= EventScript_EndSmash
+releaseall
+end
+= EventScript_CancelSmash
+closemessage
+releaseall
+end
+= EventScript_CantSmashRock
+msgbox	Text_CantSmash
+releaseall
 end
 grass
 13

@@ -65,10 +65,11 @@ collision
 warps
 5 4 TerraCave_Entrance 1
 npcs
-people_man_1 17 22 S static
+people_man_1 17 22 S static FLAG_HIDE_TERRA_CAVE_GROUDON
 triggers
 17 26 VAR_TEMP_1 1 TerraCave_End_EventScript_Groudon
 movements
+Common_Movement_FaceUp	face_up,end
 TerraCave_End_Movement_GroudonApproach	delay,delay,delay,delay,delay,delay,delay,delay,end
 scriptdefs
 = TerraCave_End_EventScript_Groudon

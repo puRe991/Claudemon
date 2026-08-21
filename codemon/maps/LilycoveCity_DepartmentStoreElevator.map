@@ -18,9 +18,11 @@ warps
 1 5 - 0
 2 5 - 0
 npcs
-people_teala 0 5 S static
+people_teala 0 5 S static 0
 objscripts
 0 LilycoveCity_DepartmentStoreElevator_EventScript_Attendant
+movements
+Common_Movement_WalkInPlaceFasterDown	delay,end
 scriptdefs
 = LilycoveCity_DepartmentStoreElevator_EventScript_Attendant
 lock

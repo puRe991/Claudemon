@@ -83,11 +83,11 @@ collision
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 npcs
-people_rich_boy 7 7 S static
-people_fat_man 20 30 S wander
-people_little_girl 8 26 S wander
-misc_item_ball 31 15 S static
-people_camper 12 16 W static
+people_rich_boy 7 7 S static 0
+people_fat_man 20 30 S wander 0
+people_little_girl 8 26 S wander 0
+misc_item_ball 31 15 S static FLAG_ITEM_SAFARI_ZONE_SOUTH_EAST_BIG_PEARL
+people_camper 12 16 W static FLAG_HIDE_SAFARI_ZONE_SOUTH_EAST_EXPANSION
 objscripts
 3 SafariZone_Southeast_EventScript_ItemBigPearl
 triggers

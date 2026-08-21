@@ -286,47 +286,47 @@ warps
 6 32 Route119_WeatherInstitute_1F 0
 33 109 Route119_House 0
 npcs
-people_man_1 24 5 S static
-people_man_1 25 5 S static
-people_man_1 26 5 S static
-people_bug_catcher 12 123 S static
-people_maniac 26 123 S static
-people_maniac 5 125 S static
-people_camper 7 74 S static
-people_maniac 28 116 S static
-people_picnicker 35 83 S static
-people_bug_catcher 34 122 S static
-people_bug_catcher 17 128 S static
-people_ninja_boy 28 14 S static
-people_ninja_boy 19 49 S static
-people_man_5 10 50 E static
-people_man_5 8 63 S static
-misc_item_ball 12 121 S static
-misc_item_ball 4 96 S static
-misc_item_ball 29 53 S static
-misc_item_ball 25 76 S static
-misc_item_ball 8 18 S static
-misc_item_ball 33 117 S static
-people_team_aqua_aqua_member_m 13 33 E static
-people_team_aqua_aqua_member_m 13 34 E static
-people_boy_3 31 109 S static
-people_man_1 8 23 S static
-people_man_1 9 23 S static
-people_man_1 29 90 S static
-people_man_1 30 90 S static
-people_cycling_triathlete_m 19 133 S wander
-misc_item_ball 3 56 S static
-people_boy_2 35 93 S wander
-people_ninja_boy 29 6 S static
-pokemon_kecleon 31 6 S static
-pokemon_kecleon 25 15 S static
-people_fisherman 13 104 E static
-people_woman_2 8 68 N static
-people_man_5 16 52 E static
-people_man_5 32 15 W static
-misc_item_ball 19 5 S static
-misc_item_ball 24 42 S static
-people_scott 28 25 S static
+people_man_1 24 5 S static 0
+people_man_1 25 5 S static 0
+people_man_1 26 5 S static 0
+people_bug_catcher 12 123 S static 0
+people_maniac 26 123 S static 0
+people_maniac 5 125 S static 0
+people_camper 7 74 S static 0
+people_maniac 28 116 S static 0
+people_picnicker 35 83 S static 0
+people_bug_catcher 34 122 S static 0
+people_bug_catcher 17 128 S static 0
+people_ninja_boy 28 14 S static 0
+people_ninja_boy 19 49 S static 0
+people_man_5 10 50 E static 0
+people_man_5 8 63 S static 0
+misc_item_ball 12 121 S static FLAG_ITEM_ROUTE_119_SUPER_REPEL
+misc_item_ball 4 96 S static FLAG_ITEM_ROUTE_119_ZINC
+misc_item_ball 29 53 S static FLAG_ITEM_ROUTE_119_ELIXIR_1
+misc_item_ball 25 76 S static FLAG_ITEM_ROUTE_119_LEAF_STONE
+misc_item_ball 8 18 S static FLAG_ITEM_ROUTE_119_RARE_CANDY
+misc_item_ball 33 117 S static FLAG_ITEM_ROUTE_119_HYPER_POTION_1
+people_team_aqua_aqua_member_m 13 33 E static FLAG_HIDE_ROUTE_119_TEAM_AQUA
+people_team_aqua_aqua_member_m 13 34 E static FLAG_HIDE_ROUTE_119_TEAM_AQUA
+people_boy_3 31 109 S static 0
+people_man_1 8 23 S static 0
+people_man_1 9 23 S static 0
+people_man_1 29 90 S static 0
+people_man_1 30 90 S static 0
+people_cycling_triathlete_m 19 133 S wander 0
+misc_item_ball 3 56 S static FLAG_ITEM_ROUTE_119_HYPER_POTION_2
+people_boy_2 35 93 S wander 0
+people_ninja_boy 29 6 S static 0
+pokemon_kecleon 31 6 S static FLAG_HIDE_ROUTE_119_KECLEON_1
+pokemon_kecleon 25 15 S static FLAG_HIDE_ROUTE_119_KECLEON_2
+people_fisherman 13 104 E static 0
+people_woman_2 8 68 N static 0
+people_man_5 16 52 E static 0
+people_man_5 32 15 W static 0
+misc_item_ball 19 5 S static FLAG_ITEM_ROUTE_119_NUGGET
+misc_item_ball 24 42 S static FLAG_ITEM_ROUTE_119_ELIXIR_2
+people_scott 28 25 S static FLAG_HIDE_ROUTE_119_SCOTT
 dialogs
 21	We're standing lookout here.Hey, you! Stay away from the WEATHER INSTITUTE. It's not safe.
 22	Lookout duty is surprisingly boring.Hey, you! Please don't go near the WEATHER INSTITUTE.
@@ -334,6 +334,9 @@ dialogs
 28	Tch… It's a no-go…The tall grass snares BIKE tires. There's no way you can cycle here.
 30	Can your POKéMON use its SECRET POWER on a big pile of grass and make a SECRET BASE?
 objscripts
+0 BerryTreeScript
+1 BerryTreeScript
+2 BerryTreeScript
 3 Route119_EventScript_Greg
 4 Route119_EventScript_Taylor
 5 Route119_EventScript_Donald
@@ -355,10 +358,16 @@ objscripts
 21 Route119_EventScript_BridgeAquaGrunt1
 22 Route119_EventScript_BridgeAquaGrunt2
 23 Route119_EventScript_Boy1
+24 BerryTreeScript
+25 BerryTreeScript
+26 BerryTreeScript
+27 BerryTreeScript
 28 Route119_EventScript_CyclingTriathleteM
 29 Route119_EventScript_ItemHyperPotion2
 30 Route119_EventScript_Boy2
 31 Route119_EventScript_Hideo
+32 Route119_EventScript_Kecleon1
+33 Route119_EventScript_Kecleon2
 34 Route119_EventScript_Chris
 35 Route119_EventScript_Rachel
 36 Route119_EventScript_Dayton
@@ -373,6 +382,10 @@ triggers
 26 120 0 0 Route119_HiddenItem_26_120
 20 29 0 0 Route119_HiddenItem_20_29
 movements
+Common_Movement_FaceOriginalDirection	face_down,end
+Common_Movement_FacePlayer	face_down,end
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Movement_KecleonAppears	delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,end
 Route119_Movement_PlayerWatchRivalExit1	delay,delay,delay,delay,end
 Route119_Movement_PlayerWatchRivalExit2	delay,delay,delay,delay,end
 Route119_Movement_RivalEnter1	right,right,right,right,right,right,right,right,up,end
@@ -598,6 +611,53 @@ end
 trainerbattle_single TRAINER_CHRIS Route119_Text_ChrisIntro Route119_Text_ChrisDefeat
 msgbox	Route119_Text_ChrisPostBattle
 end
+= Route119_EventScript_Kecleon2
+lock
+faceplayer
+setvar VAR_0x8009 7
+goto EventScript_Kecleon
+end
+= EventScript_Kecleon
+checkitem ITEM_DEVON_SCOPE
+goto_if_eq VAR_RESULT TRUE EventScript_AskUseDevonScope
+msgbox	Something unseeable is in the way.
+release
+end
+= EventScript_AskUseDevonScope
+msgbox	Something unseeable is in the way.Want to use the DEVON SCOPE?
+goto_if_eq VAR_RESULT YES EventScript_BattleKecleon
+release
+end
+= EventScript_BattleKecleon
+msgbox	PLAYER used the DEVON SCOPE.An invisible POKéMON became completely visible!The startled POKéMON attacked!
+closemessage
+applymovement VAR_LAST_TALKED Common_Movement_FacePlayer
+waitmovement 0
+applymovement VAR_LAST_TALKED Movement_KecleonAppears
+waitmovement 0
+waitse
+playmoncry SPECIES_KECLEON CRY_MODE_ENCOUNTER
+delay 40
+waitmoncry
+setwildbattle SPECIES_KECLEON 30
+setflag FLAG_SYS_CTRL_OBJ_DELETE
+dowildbattle
+clearflag FLAG_SYS_CTRL_OBJ_DELETE
+specialvar VAR_RESULT GetBattleOutcome
+goto_if_eq VAR_RESULT B_OUTCOME_WON EventScript_RemoveKecleon
+goto_if_eq VAR_RESULT B_OUTCOME_RAN EventScript_RemoveKecleon
+goto_if_eq VAR_RESULT B_OUTCOME_PLAYER_TELEPORTED EventScript_RemoveKecleon
+release
+end
+= EventScript_RemoveKecleon
+goto Common_EventScript_RemoveStaticPokemon
+end
+= Route119_EventScript_Kecleon1
+lock
+faceplayer
+setvar VAR_0x8009 6
+goto EventScript_Kecleon
+end
 = Route119_EventScript_Hideo
 trainerbattle_single TRAINER_HIDEO Route119_Text_HideoIntro Route119_Text_HideoDefeat
 msgbox	Route119_Text_HideoPostBattle
@@ -614,6 +674,162 @@ end
 end
 = Route119_EventScript_CyclingTriathleteM
 msgbox	Tch… It's a no-go…The tall grass snares BIKE tires. There's no way you can cycle here.
+end
+= BerryTreeScript
+special ObjectEventInteractionGetBerryTreeData
+switch VAR_0x8004
+case BERRY_STAGE_SPARKLING BerryTree_EventScript_Sparkling
+case BERRY_STAGE_NO_BERRY BerryTree_EventScript_CheckSoil
+case BERRY_STAGE_PLANTED BerryTree_EventScript_CheckBerryStage1
+case BERRY_STAGE_SPROUTED BerryTree_EventScript_CheckBerryStage2
+case BERRY_STAGE_TALLER BerryTree_EventScript_CheckBerryStage3
+case BERRY_STAGE_FLOWERING BerryTree_EventScript_CheckBerryStage4
+case BERRY_STAGE_BERRIES BerryTree_EventScript_CheckBerryFullyGrown
+end
+= BerryTree_EventScript_CheckBerryFullyGrown
+buffernumberstring STR_VAR_2 VAR_0x8006
+lock
+faceplayer
+special ObjectEventInteractionGetBerryCountString
+msgbox	BerryTree_Text_WantToPick
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_PickBerry
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPickingBerry
+goto BerryTree_EventScript_PickBerry
+= BerryTree_EventScript_PickBerry
+special ObjectEventInteractionPickBerryTree
+goto_if_eq VAR_0x8004 0 BerryTree_EventScript_BerryPocketFull
+special IncrementDailyPickedBerries
+special ObjectEventInteractionRemoveBerryTree
+message BerryTree_Text_PickedTheBerry
+playfanfare MUS_OBTAIN_BERRY
+waitmessage
+waitfanfare
+waitbuttonpress
+message BerryTree_Text_PutAwayBerry
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_BerryPocketFull
+message BerryTree_Text_BerryPocketFull
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_CancelPickingBerry
+message BerryTree_Text_BerryLeftUnpicked
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_CheckBerryStage4
+call BerryTree_EventScript_GetCareAdverb
+lockall
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_BerryGrowthStage4
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+@ VAR_0x8005 here is the number of times watered
+@ Buffered by ObjectEventInteractionGetBerryTreeData
+goto BerryTree_EventScript_GetCareAdverb
+= BerryTree_EventScript_GetCareAdverb
+goto_if_eq VAR_0x8005 0 BerryTree_EventScript_SetAdverbPoor
+goto_if_eq VAR_0x8005 4 BerryTree_EventScript_SetAdverbGreat
+bufferstring STR_VAR_2 BerryTree_Text_CareAdverbGood
+return
+= BerryTree_EventScript_SetAdverbGreat
+bufferstring STR_VAR_2 BerryTree_Text_CareAdverbGreat
+return
+= BerryTree_EventScript_SetAdverbPoor
+bufferstring STR_VAR_2 BerryTree_Text_CareAdverbPoor
+return
+@ VAR_0x8006 here is the number of berries
+goto BerryTree_EventScript_CheckBerryFullyGrown
+= BerryTree_EventScript_WantToWater
+checkitem ITEM_WAILMER_PAIL
+goto_if_eq VAR_RESULT FALSE BerryTree_EventScript_DontWater
+special ObjectEventInteractionGetBerryName
+msgbox	BerryTree_Text_WantToWater
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_WaterBerry
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_DontWater
+goto BerryTree_EventScript_DontWater
+= BerryTree_EventScript_DontWater
+releaseall
+end
+= BerryTree_EventScript_WaterBerry
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_WateredTheBerry
+waitmessage
+special ObjectEventInteractionWaterBerryTree
+special DoWateringBerryTreeAnim
+message BerryTree_Text_PlantIsDelighted
+waitmessage
+waitbuttonpress
+releaseall
+end
+= BerryTree_EventScript_CheckBerryStage3
+lockall
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_BerryGrowthStage3
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckBerryStage2
+lockall
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_BerryGrowthStage2
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckBerryStage1
+lockall
+special ObjectEventInteractionGetBerryCountString
+message BerryTree_Text_BerryGrowthStage1
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckSoil
+lock
+faceplayer
+specialvar VAR_RESULT PlayerHasBerries
+goto_if_eq VAR_RESULT TRUE BerryTree_EventScript_WantToPlant
+message BerryTree_Text_ItsSoftLoamySoil
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_WantToPlant
+msgbox	BerryTree_Text_WantToPlant
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_ChooseBerryToPlant
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPlanting
+end
+= BerryTree_EventScript_CancelPlanting
+release
+end
+= BerryTree_EventScript_ChooseBerryToPlant
+fadescreen FADE_TO_BLACK
+closemessage
+special Bag_ChooseBerry
+goto_if_eq VAR_ITEM_ID 0 BerryTree_EventScript_CancelPlanting
+removeitem VAR_ITEM_ID
+call BerryTree_EventScript_PlantBerry
+goto BerryTree_EventScript_CancelPlanting
+= BerryTree_EventScript_PlantBerry
+special ObjectEventInteractionPlantBerryTree
+incrementgamestat GAME_STAT_PLANTED_BERRIES
+special IncrementDailyPlantedBerries
+special ObjectEventInteractionGetBerryCountString
+message BerryTree_Text_PlantedOneBerry
+waitmessage
+waitbuttonpress
+return
+= BerryTree_EventScript_Sparkling
+lockall
+message BerryTree_Text_ExclamationPoint
+waitmessage
+waitbuttonpress
+releaseall
 end
 = Route119_EventScript_Boy1
 msgbox	I thought you FLY by catching a whole flock of BIRD POKéMON, and then hanging on to them somehow.But it turns out there's an HM move called FLY!I wish I'd known about that a long time ago…

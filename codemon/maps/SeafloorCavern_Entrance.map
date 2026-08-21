@@ -46,11 +46,18 @@ warps
 10 18 Underwater_Route128 0
 10 1 SeafloorCavern_Room1 0
 npcs
-people_team_aqua_aqua_member_m 10 2 N static
+people_team_aqua_aqua_member_m 10 2 N static FLAG_HIDE_SEAFLOOR_CAVERN_ENTRANCE_AQUA_GRUNT
 dialogs
 0	Hey! I remember your face!If you're here, it must mean that you're about to mess with us again!A punk like you, do you really think you can take on TEAM AQUA?I'd say you're too early by about a trillion years!You're a perfect fit for the likes of TEAM MAGMA!Speaking of TEAM MAGMA, I hear they were spotted near MOSSDEEP.That bunch of goons, they sure don't look good near the sea!
 objscripts
 0 SeafloorCavern_Entrance_EventScript_Grunt
+movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
 scriptdefs
 = SeafloorCavern_Entrance_EventScript_Grunt
 lockall

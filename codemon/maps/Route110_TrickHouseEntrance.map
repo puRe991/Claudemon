@@ -23,7 +23,7 @@ warps
 6 7 Route110 1
 5 2 Route110_TrickHousePuzzle1 0
 npcs
-people_man_1 6 2 W static
+people_man_1 6 2 W static FLAG_HIDE_TRICK_HOUSE_ENTRANCE_MAN
 objscripts
 0 Route110_TrickHouseEntrance_EventScript_TrickMaster
 triggers
@@ -32,6 +32,10 @@ triggers
 6 6 VAR_TRICK_HOUSE_BEING_WATCHED_STATE 0 Route110_TrickHouseEntrance_EventScript_TrickMasterHiding
 7 7 VAR_TRICK_HOUSE_BEING_WATCHED_STATE 0 Route110_TrickHouseEntrance_EventScript_TrickMasterHiding
 movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
+Common_Movement_FacePlayer	face_down,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
 Route110_TrickHouse_Movement_TrickMasterJumpAway	face_up,delay,delay,delay,delay,delay,delay,delay,end
 Route110_TrickHouse_Movement_TrickMasterSpin	face_up,delay,face_left,delay,face_down,delay,face_right,delay,end
 scriptdefs

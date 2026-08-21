@@ -28,4 +28,56 @@ warps
 11 9 - 0
 10 9 - 0
 npcs
-people_link_receptionist 10 5 S static
+people_link_receptionist 10 5 S static 0
+objscripts
+0 RecordCorner_EventScript_Attendant
+triggers
+6 4 VAR_TEMP_0 0 EventScript_RecordCenter_Spot0
+6 6 VAR_TEMP_0 0 EventScript_RecordCenter_Spot2
+13 4 VAR_TEMP_0 0 EventScript_RecordCenter_Spot1
+13 6 VAR_TEMP_0 0 EventScript_RecordCenter_Spot3
+scriptdefs
+= EventScript_RecordCenter_Spot3
+setvar VAR_0x8005 3
+special RecordMixingPlayerSpotTriggered
+goto_if_ne VAR_TEMP_RECORD_MIX_GIFT_ITEM ITEM_NONE RecordCorner_EventScript_ReceivedGiftItem
+end
+= RecordCorner_EventScript_ReceivedGiftItem
+bufferitemname STR_VAR_2 VAR_TEMP_RECORD_MIX_GIFT_ITEM
+message RecordCorner_Text_PlayerSentOverOneX
+waitmessage
+waitbuttonpress
+releaseall
+end
+= EventScript_RecordCenter_Spot1
+setvar VAR_0x8005 1
+special RecordMixingPlayerSpotTriggered
+goto_if_ne VAR_TEMP_RECORD_MIX_GIFT_ITEM ITEM_NONE RecordCorner_EventScript_ReceivedGiftItem
+end
+= EventScript_RecordCenter_Spot2
+setvar VAR_0x8005 2
+special RecordMixingPlayerSpotTriggered
+goto_if_ne VAR_TEMP_RECORD_MIX_GIFT_ITEM ITEM_NONE RecordCorner_EventScript_ReceivedGiftItem
+end
+= EventScript_RecordCenter_Spot0
+setvar VAR_0x8005 0
+special RecordMixingPlayerSpotTriggered
+goto_if_ne VAR_TEMP_RECORD_MIX_GIFT_ITEM ITEM_NONE RecordCorner_EventScript_ReceivedGiftItem
+end
+= RecordCorner_EventScript_Attendant
+goto_if_ne VAR_TEMP_MIXED_RECORDS 0 RecordCorner_EventScript_AlreadyMixed
+special Script_FacePlayer
+message RecordCorner_Text_TakeSeatAndWait
+waitmessage
+waitbuttonpress
+special Script_ClearHeldMovement
+closemessage
+end
+= RecordCorner_EventScript_AlreadyMixed
+special Script_FacePlayer
+message RecordCorner_Text_ThanksForComing
+waitmessage
+waitbuttonpress
+special Script_ClearHeldMovement
+closemessage
+end

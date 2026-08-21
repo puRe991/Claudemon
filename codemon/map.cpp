@@ -97,18 +97,19 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 				this->warp_list.push_back(wp);
 			}
 		} else if (head.rfind("npcs", 0) == 0) {
-			// "<sheet_key> <x> <y> <S|N|E|W> <static|wander|pace_v|pace_h>"
+			// "<sheet_key> <x> <y> <S|N|E|W> <static|wander|pace_v|pace_h> [hide_flag]"
 			for (++i; i < rest.size() && !is_keyword(rest[i]); ++i) {
 				if (rest[i].empty()) continue;
 				std::stringstream ss(rest[i]);
 				NpcSpawn n;
-				std::string face, move;
+				std::string face, move, flag;
 				if (!(ss >> n.sheet >> n.x >> n.y >> face >> move)) continue;
 				n.facing = (face == "N") ? DIR::N : (face == "E") ? DIR::E :
 				           (face == "W") ? DIR::W : DIR::S;
 				n.movement = (move == "wander") ? MOVE_WANDER :
 				             (move == "pace_v") ? MOVE_PACE_V :
 				             (move == "pace_h") ? MOVE_PACE_H : MOVE_STATIC;
+				if (ss >> flag && flag != "-") n.hide_flag = flag;
 				this->npc_spawns.push_back(n);
 			}
 		} else if (head.rfind("dialogs", 0) == 0) {

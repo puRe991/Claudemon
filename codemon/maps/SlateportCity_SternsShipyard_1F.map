@@ -37,10 +37,10 @@ warps
 3 14 SlateportCity 2
 3 1 SlateportCity_SternsShipyard_2F 0
 npcs
-people_man_1 5 5 S static
-people_scientist_1 10 7 N static
-people_scientist_1 18 8 S wander
-people_expert_m 12 11 S wander
+people_man_1 5 5 S static 0
+people_scientist_1 10 7 N static 0
+people_scientist_1 18 8 S wander 0
+people_expert_m 12 11 S wander FLAG_HIDE_SLATEPORT_CITY_STERNS_SHIPYARD_MR_BRINEY
 dialogs
 0	Umm… If this goes here, and that goes over there…Then where does this thing go? And what about that doohickey?Aaargh! I can't make heads or tails of this!
 1	The seasons, the weather, where the moon sits in the sky…These and other conditions make the sea change its expression.That's right! The sea is like a living thing!
@@ -51,6 +51,9 @@ objscripts
 1 SlateportCity_SternsShipyard_1F_EventScript_Scientist1
 2 SlateportCity_SternsShipyard_1F_EventScript_Scientist2
 3 SlateportCity_SternsShipyard_1F_EventScript_Briney
+movements
+Common_Movement_FaceOriginalDirection	face_down,end
+Common_Movement_FacePlayer	face_down,end
 scriptdefs
 = SlateportCity_SternsShipyard_1F_EventScript_Briney
 msgbox	MR. BRINEY: Ah, PLAYER! It's been too long!Aye, since I met you, this old sea dog's been feeling frisky!So I've decided to help DOCK make a ferry.Aye, after all, a ferry would be able to carry a lot of people.But, you know, that DOCK is really something special.With his knack for technology and my experience, I'm sure that we can build one great ship, aye!

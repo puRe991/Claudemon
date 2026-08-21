@@ -32,31 +32,31 @@ warps
 9 1 LilycoveCity_ContestHall 0
 21 1 LilycoveCity_ContestHall 1
 npcs
-people_teala 14 2 S static
-people_teala 15 2 S static
-people_man_4 26 9 E static
-people_artist 9 1 S static
-people_black_belt 18 8 S wander
-people_girl_2 4 9 S wander
-people_artist 3 4 S wander
-people_reporter_m 13 10 E static
-people_boy_1 23 8 S static
-people_twin 28 9 W static
-people_artist 21 1 S static
-people_fisherman 5 6 S wander
-people_fat_man 0 8 E static
-people_ninja_boy 8 7 S wander
-people_pokefan_f 22 9 E static
-people_expert_m 26 5 E static
-people_girl_1 24 9 W static
-people_man_5 27 3 S static
-people_camper 28 3 S static
-people_little_girl 28 7 N static
-people_scientist_2 26 7 N static
-people_woman_1 27 7 N static
-people_ninja_boy 26 3 S static
-people_old_man 26 5 E static
-people_little_girl 9 10 E static
+people_teala 14 2 S static 0
+people_teala 15 2 S static 0
+people_man_4 26 9 E static 0
+people_artist 9 1 S static FLAG_HIDE_LILYCOVE_CONTEST_HALL_CONTEST_ATTENDANT_1
+people_black_belt 18 8 S wander 0
+people_girl_2 4 9 S wander 0
+people_artist 3 4 S wander 0
+people_reporter_m 13 10 E static FLAG_HIDE_LILYCOVE_CONTEST_HALL_REPORTER
+people_boy_1 23 8 S static 0
+people_twin 28 9 W static 0
+people_artist 21 1 S static FLAG_HIDE_LILYCOVE_CONTEST_HALL_CONTEST_ATTENDANT_2
+people_fisherman 5 6 S wander 0
+people_fat_man 0 8 E static 0
+people_ninja_boy 8 7 S wander 0
+people_pokefan_f 22 9 E static 0
+people_expert_m 26 5 E static FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER_REPLACEMENT
+people_girl_1 24 9 W static 0
+people_man_5 27 3 S static FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER
+people_camper 28 3 S static FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER
+people_little_girl 28 7 N static FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER
+people_scientist_2 26 7 N static FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER
+people_woman_1 27 7 N static FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER
+people_ninja_boy 26 3 S static FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER
+people_old_man 26 5 E static FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER
+people_little_girl 9 10 E static 0
 dialogs
 4	Hoo, boy… Master Rank CONTESTS, here I come.The world will know that my dearest POKéMON is the cutest being in all existence. The time has come! Uheheheh.
 5	You can see a whole variety of POKéMON here.That's why I make this place a regular part of my daily stroll.
@@ -68,13 +68,18 @@ dialogs
 objscripts
 0 LilycoveCity_ContestLobby_EventScript_ContestReceptionist
 1 LilycoveCity_ContestLobby_EventScript_LinkContestReceptionist
+2 BerryBlender_EventScript_Blender2Man
 4 LilycoveCity_ContestLobby_EventScript_BlackBelt
 5 LilycoveCity_ContestLobby_EventScript_Girl
 6 LilycoveCity_ContestLobby_EventScript_Artist
+7 LilycoveCity_ContestLobby_EventScript_Reporter
 8 LilycoveCity_ContestLobby_EventScript_Blender3Boy
+9 BerryBlender_EventScript_Blender2Twin
 11 LilycoveCity_ContestLobby_EventScript_Fisherman
 12 LilycoveCity_ContestLobby_EventScript_FatMan
 13 LilycoveCity_ContestLobby_EventScript_NinjaBoy
+14 BerryBlender_EventScript_Blender3PokefanF
+15 BerryBlender_EventScript_Blender1ExpertM
 16 LilycoveCity_ContestLobby_EventScript_Blender3Girl
 17 LilycoveCity_ContestLobby_EventScript_BlendMasterOnlooker2
 18 LilycoveCity_ContestLobby_EventScript_BlendMasterOnlooker3
@@ -85,6 +90,8 @@ objscripts
 23 LilycoveCity_ContestLobby_EventScript_BlendMaster
 24 LilycoveCity_ContestLobby_EventScript_LittleGirl
 movements
+BerryBlender_EventScript_ExpertMCheckGiveBerry	delay,face_down,delay,delay,delay,delay,delay
+Common_Movement_FaceOriginalDirection	face_down,end
 LilycoveCity_ContestLobby_Movement_PlayerApproachReceptionist	delay,left,end
 LilycoveCity_ContestLobby_Movement_PlayerWalkToContestHall	left,left,left,left,up,up,up,delay,delay,end
 LilycoveCity_ContestLobby_Movement_ReceptionistApproachCounter	left,left,delay,end
@@ -151,6 +158,13 @@ end
 = LilycoveCity_ContestLobby_EventScript_Blender3Girl
 msgbox	BerryBlender_Text_WhatKindOfPokeblockWillIGet
 end
+= BerryBlender_EventScript_Blender1ExpertM
+setvar VAR_0x8008 15
+goto BerryBlender_EventScript_ExpertMCheckGiveBerry
+end
+= BerryBlender_EventScript_Blender3PokefanF
+msgbox	BerryBlender_Text_LookGoodAtBlendingJoinUs
+end
 = LilycoveCity_ContestLobby_EventScript_NinjaBoy
 msgbox	I made S with Mom, Dad, and Big Sister. They turned out great!I bet you can make smoother, better S if you have more people.
 end
@@ -160,8 +174,98 @@ end
 = LilycoveCity_ContestLobby_EventScript_Fisherman
 msgbox	Day in and day out, I lavished my care on this POKéMON.Its condition is peaking. Today, victory is mine!
 end
+= BerryBlender_EventScript_Blender2Twin
+msgbox	BerryBlender_Text_MakeDeliciousPokeblocks
+end
 = LilycoveCity_ContestLobby_EventScript_Blender3Boy
 msgbox	BerryBlender_Text_LetsGetBlendingAlready
+end
+= LilycoveCity_ContestLobby_EventScript_Reporter
+lock
+faceplayer
+goto_if_set FLAG_TEMP_2 LilycoveCity_ContestLobby_EventScript_AlreadyInterviewed
+setvar VAR_0x8005 TVSHOW_BRAVO_TRAINER_POKEMON_PROFILE
+special InterviewBefore
+goto_if_eq VAR_RESULT TRUE LilycoveCity_ContestLobby_EventScript_AlreadyInterviewed
+copyvar VAR_0x8009 VAR_0x8006
+msgbox	LilycoveCity_ContestLobby_Text_InterviewRequest
+goto_if_eq VAR_RESULT YES LilycoveCity_ContestLobby_EventScript_AcceptInterview
+goto_if_eq VAR_RESULT NO LilycoveCity_ContestLobby_EventScript_DeclineInterview
+end
+= LilycoveCity_ContestLobby_EventScript_DeclineInterview
+msgbox	LilycoveCity_ContestLobby_Text_PleaseDoShareStoryWithMe
+release
+end
+= LilycoveCity_ContestLobby_EventScript_AcceptInterview
+msgbox	LilycoveCity_ContestLobby_Text_DescribeContest
+setvar VAR_0x8004 EASY_CHAT_TYPE_CONTEST_INTERVIEW
+copyvar VAR_0x8005 VAR_0x8009
+setvar VAR_0x8006 0
+call Common_ShowEasyChatScreen
+lock
+faceplayer
+goto_if_eq VAR_RESULT 1 LilycoveCity_ContestLobby_EventScript_SubmitResponse
+goto_if_eq VAR_RESULT 0 LilycoveCity_ContestLobby_EventScript_DeclineInterview
+end
+= LilycoveCity_ContestLobby_EventScript_SubmitResponse
+setvar VAR_0x8004 24
+special SetContestCategoryStringVarForInterview
+msgbox	LilycoveCity_ContestLobby_Text_WhatImageWhenYouHearX
+setvar VAR_0x8004 EASY_CHAT_TYPE_CONTEST_INTERVIEW
+copyvar VAR_0x8005 VAR_0x8009
+setvar VAR_0x8006 1
+call Common_ShowEasyChatScreen
+lock
+faceplayer
+goto_if_eq VAR_RESULT 0 LilycoveCity_ContestLobby_EventScript_DeclineInterview
+msgbox	LilycoveCity_ContestLobby_Text_ThatsAllForInterview
+setflag FLAG_TEMP_2
+setvar VAR_0x8005 TVSHOW_BRAVO_TRAINER_POKEMON_PROFILE
+goto Interview_EventScript_EndInterview
+end
+= Interview_EventScript_EndInterview
+special InterviewAfter
+incrementgamestat GAME_STAT_GOT_INTERVIEWED
+release
+end
+@ Shares reporter object with TVSHOW_PKMN_FAN_CLUB_OPINIONS
+goto SlateportCity_PokemonFanClub_EventScript_ReporterNoNickname
+= SlateportCity_PokemonFanClub_EventScript_ReporterNoNickname
+setvar VAR_0x8005 TVSHOW_FAN_CLUB_LETTER
+special InterviewBefore
+goto_if_eq VAR_RESULT TRUE SlateportCity_PokemonFanClub_EventScript_AlreadyInterviewed2
+copyvar VAR_0x8009 VAR_0x8006
+msgbox	SlateportCity_PokemonFanClub_Text_InterviewRequest
+goto_if_eq VAR_RESULT YES SlateportCity_PokemonFanClub_EventScript_AcceptInterview2
+goto_if_eq VAR_RESULT NO SlateportCity_PokemonFanClub_EventScript_DeclineInterview2
+end
+= SlateportCity_PokemonFanClub_EventScript_DeclineInterview2
+msgbox	SlateportCity_PokemonFanClub_Text_HereIfYouGetUrgeToTellMe
+release
+end
+= SlateportCity_PokemonFanClub_EventScript_AcceptInterview2
+msgbox	SlateportCity_PokemonFanClub_Text_TellMeAnythingAboutYourMon
+setvar VAR_0x8004 EASY_CHAT_TYPE_INTERVIEW
+copyvar VAR_0x8005 VAR_0x8009
+setvar VAR_0x8006 EASY_CHAT_PERSON_REPORTER_FEMALE
+call Common_ShowEasyChatScreen
+lock
+faceplayer
+goto_if_eq VAR_RESULT 1 SlateportCity_PokemonFanClub_EventScript_SubmitResponse2
+goto_if_eq VAR_RESULT 0 SlateportCity_PokemonFanClub_EventScript_DeclineInterview2
+end
+= SlateportCity_PokemonFanClub_EventScript_SubmitResponse2
+msgbox	SlateportCity_PokemonFanClub_Text_ThatsAllForInterview2
+setvar VAR_0x8005 TVSHOW_FAN_CLUB_LETTER
+goto Interview_EventScript_EndInterview
+end
+= SlateportCity_PokemonFanClub_EventScript_AlreadyInterviewed2
+msgbox	SlateportCity_PokemonFanClub_Text_EnjoyDoingInterviews
+release
+end
+= LilycoveCity_ContestLobby_EventScript_AlreadyInterviewed
+msgbox	LilycoveCity_ContestLobby_Text_LookingForwardToNextContest
+release
 end
 = LilycoveCity_ContestLobby_EventScript_Artist
 msgbox	Wow, coming out to a CONTEST is a feast for these eyes!Would you look at all the POKéMON that just scream to be painted?
@@ -171,6 +275,9 @@ msgbox	You can see a whole variety of POKéMON here.That's why I make this plac
 end
 = LilycoveCity_ContestLobby_EventScript_BlackBelt
 msgbox	Hoo, boy… Master Rank CONTESTS, here I come.The world will know that my dearest POKéMON is the cutest being in all existence. The time has come! Uheheheh.
+end
+= BerryBlender_EventScript_Blender2Man
+msgbox	BerryBlender_Text_SetNewBlenderRecord
 end
 = LilycoveCity_ContestLobby_EventScript_LinkContestReceptionist
 special ClearLinkContestFlags
@@ -232,6 +339,9 @@ case 1 LilycoveCity_ContestLobby_EventScript_GlobalMode   @ Shortened to G-Mode
 case 2 LilycoveCity_ContestLobby_EventScript_CancelLinkContest
 case MULTI_B_PRESSED LilycoveCity_ContestLobby_EventScript_CancelLinkContest
 end
+= Common_EventScript_SaveGame
+special SaveGame
+return
 = LilycoveCity_ContestLobby_EventScript_ContestReceptionist
 special ClearLinkContestFlags
 specialvar VAR_RESULT IsContestDebugActive  @ Always FALSE
@@ -333,3 +443,163 @@ applymovement LOCALID_PLAYER LilycoveCity_ContestLobby_Movement_PlayerWalkToCont
 waitmovement 0
 releaseall
 return
+= LilycoveCity_ContestLobby_EventScript_SpeakToContestReceptionist
+lock
+faceplayer
+goto_if_ne VAR_CONTEST_PRIZE_PICKUP 0 LilycoveCity_ContestLobby_EventScript_PickUpPrize
+call_if_set FLAG_RECEIVED_POKEBLOCK_CASE LilycoveCity_ContestLobby_EventScript_ReceptionWelcome
+call_if_unset FLAG_RECEIVED_POKEBLOCK_CASE LilycoveCity_ContestLobby_EventScript_GivePokeblockCase
+goto LilycoveCity_ContestLobby_EventScript_AskEnterContest
+end
+= LilycoveCity_ContestLobby_EventScript_AskEnterContest
+message LilycoveCity_ContestLobby_Text_EnterContest1
+waitmessage
+multichoice 0 0 MULTI_ENTERINFO FALSE
+switch VAR_RESULT
+case 0 LilycoveCity_ContestLobby_EventScript_ChooseContestRank
+case 1 LilycoveCity_ContestLobby_EventScript_ContestInfo
+case 2 LilycoveCity_ContestLobby_EventScript_CancelEnterContest
+case MULTI_B_PRESSED LilycoveCity_ContestLobby_EventScript_CancelEnterContest
+end
+= LilycoveCity_ContestLobby_EventScript_CancelEnterContest
+msgbox	LilycoveCity_ContestLobby_Text_ParticipateAnotherTime
+release
+end
+= LilycoveCity_ContestLobby_EventScript_ContestInfo
+message LilycoveCity_ContestLobby_Text_WhichTopic1
+waitmessage
+multichoice 0 0 MULTI_CONTEST_INFO FALSE
+switch VAR_RESULT
+case 0 LilycoveCity_ContestLobby_EventScript_ExplainContests
+case 1 LilycoveCity_ContestLobby_EventScript_ExplainContestTypes
+case 2 LilycoveCity_ContestLobby_EventScript_ExplainContestRanks
+case 3 LilycoveCity_ContestLobby_EventScript_AskEnterContest
+case MULTI_B_PRESSED LilycoveCity_ContestLobby_EventScript_AskEnterContest
+end
+= LilycoveCity_ContestLobby_EventScript_ExplainContestRanks
+msgbox	LilycoveCity_ContestLobby_Text_ExplainContestRanks
+goto LilycoveCity_ContestLobby_EventScript_ContestInfo
+end
+= LilycoveCity_ContestLobby_EventScript_ExplainContestTypes
+msgbox	LilycoveCity_ContestLobby_Text_ExplainContestTypes
+goto LilycoveCity_ContestLobby_EventScript_ContestInfo
+end
+= LilycoveCity_ContestLobby_EventScript_ExplainContests
+msgbox	LilycoveCity_ContestLobby_Text_ExplainContests
+goto LilycoveCity_ContestLobby_EventScript_ContestInfo
+end
+= LilycoveCity_ContestLobby_EventScript_ChooseContestRank
+message LilycoveCity_ContestLobby_Text_EnterWhichRank
+waitmessage
+multichoice 0 0 MULTI_CONTEST_RANK FALSE
+switch VAR_RESULT
+case 0 LilycoveCity_ContestLobby_EventScript_EnterNormalRank
+case 1 LilycoveCity_ContestLobby_EventScript_EnterSuperRank
+case 2 LilycoveCity_ContestLobby_EventScript_EnterHyperRank
+case 3 LilycoveCity_ContestLobby_EventScript_EnterMasterRank
+case 4 LilycoveCity_ContestLobby_EventScript_CancelEnterContest
+case MULTI_B_PRESSED LilycoveCity_ContestLobby_EventScript_CancelEnterContest
+end
+= LilycoveCity_ContestLobby_EventScript_EnterMasterRank
+setvar VAR_CONTEST_RANK CONTEST_RANK_MASTER
+goto LilycoveCity_ContestLobby_EventScript_ChooseContestType
+end
+@ The multichoice selection IDs are equal to the CATEGORY values
+@ So rather than list the cases they just copy VAR_RESULT for a valid selection into VAR_CONTEST_CATEGORY
+goto LilycoveCity_ContestLobby_EventScript_ChooseContestType
+= LilycoveCity_ContestLobby_EventScript_ChooseContestType
+message LilycoveCity_ContestLobby_Text_EnterWhichContest1
+waitmessage
+multichoice 0 0 MULTI_CONTEST_TYPE FALSE
+switch VAR_RESULT
+case 5 LilycoveCity_ContestLobby_EventScript_CancelEnterContest
+case MULTI_B_PRESSED LilycoveCity_ContestLobby_EventScript_CancelEnterContest
+copyvar VAR_CONTEST_CATEGORY VAR_RESULT
+goto LilycoveCity_ContestLobby_EventScript_ChooseContestMon
+end
+= LilycoveCity_ContestLobby_EventScript_ChooseContestMon
+msgbox	LilycoveCity_ContestLobby_Text_EnterWhichPokemon1
+choosecontestmon
+goto_if_eq VAR_0x8004 PARTY_NOTHING_CHOSEN LilycoveCity_ContestLobby_EventScript_CancelEnterContest
+special TryEnterContestMon
+goto_if_eq VAR_RESULT CANT_ENTER_CONTEST LilycoveCity_ContestLobby_EventScript_CantEnterLowRank
+goto_if_eq VAR_RESULT CAN_ENTER_CONTEST_EQUAL_RANK LilycoveCity_ContestLobby_EventScript_EnterMon
+goto_if_eq VAR_RESULT CAN_ENTER_CONTEST_HIGH_RANK LilycoveCity_ContestLobby_EventScript_ConfirmEntryAlreadyWon
+goto_if_eq VAR_RESULT CANT_ENTER_CONTEST_EGG LilycoveCity_ContestLobby_EventScript_CantEnterEgg
+goto_if_eq VAR_RESULT CANT_ENTER_CONTEST_FAINTED LilycoveCity_ContestLobby_EventScript_CantEnterFainted
+end
+= LilycoveCity_ContestLobby_EventScript_CantEnterFainted
+msgbox	LilycoveCity_ContestLobby_Text_MonInNoConditionForContest
+goto LilycoveCity_ContestLobby_EventScript_ChooseContestMon
+release
+end
+@ The return here is back to LilycoveCity_ContestLobby_EventScript_ContestReceptionist
+goto LilycoveCity_ContestLobby_EventScript_EnterMon
+= LilycoveCity_ContestLobby_EventScript_EnterMon
+msgbox	LilycoveCity_ContestLobby_Text_YourMonIsEntryNum4
+closemessage
+releaseall
+setvar VAR_CONTEST_HALL_STATE 1
+return
+= LilycoveCity_ContestLobby_EventScript_CantEnterEgg
+msgbox	LilycoveCity_ContestLobby_Text_EggCannotTakePart
+goto LilycoveCity_ContestLobby_EventScript_ChooseContestMon
+release
+end
+= LilycoveCity_ContestLobby_EventScript_ConfirmEntryAlreadyWon
+msgbox	LilycoveCity_ContestLobby_Text_AlreadyWonEnterAnyway
+switch VAR_RESULT
+case NO LilycoveCity_ContestLobby_EventScript_ChooseContestMon
+case YES LilycoveCity_ContestLobby_EventScript_EnterMon
+end
+= LilycoveCity_ContestLobby_EventScript_CantEnterLowRank
+msgbox	LilycoveCity_ContestLobby_Text_MonNotQualifiedForRank
+goto LilycoveCity_ContestLobby_EventScript_ChooseContestMon
+release
+end
+@ Unused
+goto LilycoveCity_ContestLobby_EventScript_ConfirmEntry
+= LilycoveCity_ContestLobby_EventScript_ConfirmEntry
+msgbox	LilycoveCity_ContestLobby_Text_ConfirmContestMon
+switch VAR_RESULT
+case NO LilycoveCity_ContestLobby_EventScript_ChooseContestMon
+case YES LilycoveCity_ContestLobby_EventScript_EnterMon
+end
+= LilycoveCity_ContestLobby_EventScript_EnterHyperRank
+setvar VAR_CONTEST_RANK CONTEST_RANK_HYPER
+goto LilycoveCity_ContestLobby_EventScript_ChooseContestType
+end
+= LilycoveCity_ContestLobby_EventScript_EnterSuperRank
+setvar VAR_CONTEST_RANK CONTEST_RANK_SUPER
+goto LilycoveCity_ContestLobby_EventScript_ChooseContestType
+end
+= LilycoveCity_ContestLobby_EventScript_EnterNormalRank
+setvar VAR_CONTEST_RANK CONTEST_RANK_NORMAL
+goto LilycoveCity_ContestLobby_EventScript_ChooseContestType
+end
+= LilycoveCity_ContestLobby_EventScript_GivePokeblockCase
+msgbox	LilycoveCity_ContestLobby_Text_ReceptionDontHavePokeblockCase
+giveitem ITEM_POKEBLOCK_CASE
+setflag FLAG_RECEIVED_POKEBLOCK_CASE
+msgbox	LilycoveCity_ContestLobby_Text_NowThatWeveClearedThatUp
+return
+= LilycoveCity_ContestLobby_EventScript_ReceptionWelcome
+msgbox	LilycoveCity_ContestLobby_Text_ContestReception
+return
+= LilycoveCity_ContestLobby_EventScript_PickUpPrize
+msgbox	LilycoveCity_ContestLobby_Text_PokemonWonWeHavePrize
+switch VAR_CONTEST_PRIZE_PICKUP
+case 4 LilycoveCity_ContestLobby_EventScript_GiveLuxuryBallAtCounter
+end
+= LilycoveCity_ContestLobby_EventScript_GiveLuxuryBallAtCounter
+giveitem ITEM_LUXURY_BALL
+goto_if_eq VAR_RESULT FALSE LilycoveCity_ContestLobby_EventScript_NoRoomForLuxuryBallAtCounter
+setvar VAR_CONTEST_PRIZE_PICKUP 0
+closemessage
+release
+end
+= LilycoveCity_ContestLobby_EventScript_NoRoomForLuxuryBallAtCounter
+call Common_EventScript_BagIsFull
+msgbox	LilycoveCity_ContestLobby_Text_ComeBackForPrizeLater
+release
+end

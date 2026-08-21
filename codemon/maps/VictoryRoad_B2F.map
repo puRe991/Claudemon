@@ -70,13 +70,13 @@ warps
 19 12 VictoryRoad_B1F 1
 5 26 VictoryRoad_B1F 6
 npcs
-people_man_3 15 6 S static
-people_man_3 43 14 N static
-people_woman_5 2 17 S static
-people_woman_5 35 22 W static
-misc_item_ball 13 8 S static
-people_woman_5 25 18 S static
-people_man_3 25 21 N static
+people_man_3 15 6 S static 0
+people_man_3 43 14 N static 0
+people_woman_5 2 17 S static 0
+people_woman_5 35 22 W static 0
+misc_item_ball 13 8 S static FLAG_ITEM_VICTORY_ROAD_B2F_FULL_HEAL
+people_woman_5 25 18 S static 0
+people_man_3 25 21 N static 0
 dialogs
 0	I was better than everyone in my family. I've never lost before…I've lost my confidence… Maybe I'll go home…
 1	The rumors I heard, that tough little kid is from PETALBURG CITY.

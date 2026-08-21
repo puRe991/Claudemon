@@ -88,7 +88,7 @@ warps
 14 33 ShoalCave_LowTideEntranceRoom 2
 40 33 ShoalCave_LowTideEntranceRoom 3
 npcs
-misc_item_ball 26 14 S static
+misc_item_ball 26 14 S static FLAG_ITEM_SHOAL_CAVE_INNER_ROOM_RARE_CANDY
 objscripts
 0 ShoalCave_LowTideInnerRoom_EventScript_ItemRareCandy
 scriptdefs

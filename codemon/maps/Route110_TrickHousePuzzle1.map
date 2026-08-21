@@ -51,21 +51,21 @@ warps
 1 21 Route110_TrickHouseEntrance 2
 13 1 Route110_TrickHouseEnd 0
 npcs
-people_lass 14 20 W static
-people_youngster 14 8 W static
-people_lass 2 15 S static
-misc_cuttable_tree 11 16 S static
-misc_cuttable_tree 13 18 S static
-misc_cuttable_tree 14 14 S static
-misc_cuttable_tree 11 8 S static
-misc_cuttable_tree 8 10 S static
-misc_cuttable_tree 11 12 S static
-misc_cuttable_tree 2 4 S static
-misc_cuttable_tree 13 6 S static
-misc_cuttable_tree 0 6 S static
-misc_item_ball 9 4 S static
-misc_cuttable_tree 4 8 S static
-misc_cuttable_tree 2 12 S static
+people_lass 14 20 W static 0
+people_youngster 14 8 W static 0
+people_lass 2 15 S static 0
+misc_cuttable_tree 11 16 S static FLAG_TEMP_13
+misc_cuttable_tree 13 18 S static FLAG_TEMP_12
+misc_cuttable_tree 14 14 S static FLAG_TEMP_14
+misc_cuttable_tree 11 8 S static FLAG_TEMP_17
+misc_cuttable_tree 8 10 S static FLAG_TEMP_16
+misc_cuttable_tree 11 12 S static FLAG_TEMP_15
+misc_cuttable_tree 2 4 S static FLAG_TEMP_19
+misc_cuttable_tree 13 6 S static FLAG_TEMP_18
+misc_cuttable_tree 0 6 S static FLAG_TEMP_1B
+misc_item_ball 9 4 S static FLAG_ITEM_TRICK_HOUSE_PUZZLE_1_ORANGE_MAIL
+misc_cuttable_tree 4 8 S static FLAG_TEMP_1C
+misc_cuttable_tree 2 12 S static FLAG_TEMP_1E
 dialogs
 0	I never get tired of hacking and slashing!
 1	I lost my way, I lost a battle, and I'm now even more lost… I can't get out…
@@ -74,8 +74,59 @@ objscripts
 0 Route110_TrickHousePuzzle1_EventScript_Sally
 1 Route110_TrickHousePuzzle1_EventScript_Eddie
 2 Route110_TrickHousePuzzle1_EventScript_Robin
+3 EventScript_CutTree
+4 EventScript_CutTree
+5 EventScript_CutTree
+6 EventScript_CutTree
+7 EventScript_CutTree
+8 EventScript_CutTree
+9 EventScript_CutTree
+10 EventScript_CutTree
+11 EventScript_CutTree
 12 Route110_TrickHousePuzzle1_EventScript_ItemOrangeMail
+13 EventScript_CutTree
+14 EventScript_CutTree
+movements
+Movement_CutTreeDown	delay,end
 scriptdefs
+= EventScript_CutTree
+lockall
+goto_if_unset FLAG_BADGE01_GET EventScript_CheckTreeCantCut
+checkpartymove MOVE_CUT
+goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CheckTreeCantCut
+setfieldeffectargument 0 VAR_RESULT
+bufferpartymonnick STR_VAR_1 VAR_RESULT
+buffermovename STR_VAR_2 MOVE_CUT
+msgbox	Text_WantToCut
+goto_if_eq VAR_RESULT NO EventScript_CancelCut
+msgbox	Text_MonUsedFieldMove
+closemessage
+dofieldeffect FLDEFF_USE_CUT_ON_TREE
+waitstate
+goto EventScript_CutTreeDown
+end
+@ Use cut from party menu
+goto EventScript_UseCut
+= EventScript_UseCut
+lockall
+dofieldeffect FLDEFF_USE_CUT_ON_TREE
+waitstate
+goto EventScript_CutTreeDown
+end
+= EventScript_CutTreeDown
+applymovement VAR_LAST_TALKED Movement_CutTreeDown
+waitmovement 0
+removeobject VAR_LAST_TALKED
+releaseall
+end
+= EventScript_CancelCut
+closemessage
+releaseall
+end
+= EventScript_CheckTreeCantCut
+msgbox	Text_CantCut
+releaseall
+end
 = Route110_TrickHousePuzzle1_EventScript_ItemOrangeMail
 goto_if_set FLAG_ITEM_TRICK_HOUSE_PUZZLE_1_ORANGE_MAIL Route110_TrickHousePuzzle1_EventScript_ItemOrangeMail_Taken
 finditem ITEM_ORANGE_MAIL

@@ -20,7 +20,7 @@ warps
 3 6 SootopolisCity 9
 4 6 SootopolisCity 9
 npcs
-people_woman_2 4 3 S wander
+people_woman_2 4 3 S wander 0
 dialogs
 0	Hello! You're our first guest in a good while.You've brightened up my day, so I'll give you a big WAILMER DOLL.
 objscripts

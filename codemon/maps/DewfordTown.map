@@ -49,11 +49,11 @@ warps
 17 14 DewfordTown_House1 0
 8 8 DewfordTown_House2 0
 npcs
-people_woman_2 7 12 S wander
-people_expert_m 12 9 W static
-people_fisherman 12 14 S wander
-misc_mr_brineys_boat 12 8 S static
-people_boy_1 1 6 S static
+people_woman_2 7 12 S wander 0
+people_expert_m 12 9 W static FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN
+people_fisherman 12 14 S wander 0
+misc_mr_brineys_boat 12 8 S static FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
+people_boy_1 1 6 S static 0
 dialogs
 0	DEWFORD is a tiny island community. If something gets trendy here, everyone picks up on it right away.
 2	This is a renowned fishing spot. Are you getting the itch to fish?

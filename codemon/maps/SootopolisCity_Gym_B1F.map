@@ -57,16 +57,16 @@ collision
 warps
 11 22 SootopolisCity_Gym_1F 2
 npcs
-people_lass 7 17 E static
-people_beauty 9 19 W static
-people_woman_2 12 7 W static
-people_beauty 11 9 N static
-people_beauty 5 6 S static
-people_pokefan_f 7 8 E static
-people_lass 4 8 E static
-people_beauty 9 7 S static
-people_woman_2 6 13 E static
-people_pokefan_f 10 13 W static
+people_lass 7 17 E static 0
+people_beauty 9 19 W static 0
+people_woman_2 12 7 W static 0
+people_beauty 11 9 N static 0
+people_beauty 5 6 S static 0
+people_pokefan_f 7 8 E static 0
+people_lass 4 8 E static 0
+people_beauty 9 7 S static 0
+people_woman_2 6 13 E static 0
+people_pokefan_f 10 13 W static 0
 dialogs
 0	Watch what happens if you crack all the floor tiles.
 1	I'll tell you something good.If you want to reach JUAN, you need to walk on each floor tile once.

@@ -85,16 +85,16 @@ collision
 warps
 22 19 ShoalCave_LowTideEntranceRoom 0
 npcs
-people_swimmer_m 7 31 S static
-people_swimmer_m 45 9 E static
-people_swimmer_f 38 24 S static
-people_swimmer_f 30 28 S static
-people_sailor 21 30 S static
-people_lass 17 19 S static
-people_lass 18 19 S static
-people_man_5 43 19 S static
-people_expert_m 48 19 W pace_h
-misc_item_ball 46 17 S static
+people_swimmer_m 7 31 S static 0
+people_swimmer_m 45 9 E static 0
+people_swimmer_f 38 24 S static 0
+people_swimmer_f 30 28 S static 0
+people_sailor 21 30 S static 0
+people_lass 17 19 S static 0
+people_lass 18 19 S static 0
+people_man_5 43 19 S static 0
+people_expert_m 48 19 W pace_h 0
+misc_item_ball 46 17 S static FLAG_ITEM_ROUTE_125_BIG_PEARL
 objscripts
 0 Route125_EventScript_Nolen
 1 Route125_EventScript_Stan

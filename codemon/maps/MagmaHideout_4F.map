@@ -62,14 +62,14 @@ warps
 46 7 MagmaHideout_3F_1R 0
 20 21 MagmaHideout_3F_3R 1
 npcs
-people_man_1 16 17 S static
-people_team_magma_magma_member_m 31 22 E static
-people_team_magma_magma_member_m 30 13 W static
-people_team_magma_magma_member_m 26 13 E static
-people_team_magma_magma_member_m 22 4 S static
-people_team_magma_maxie 16 21 N static
-people_man_1 16 17 S static
-misc_item_ball 3 7 S static
+people_man_1 16 17 S static FLAG_HIDE_MAGMA_HIDEOUT_4F_GROUDON
+people_team_magma_magma_member_m 31 22 E static FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS
+people_team_magma_magma_member_m 30 13 W static FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS
+people_team_magma_magma_member_m 26 13 E static FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS
+people_team_magma_magma_member_m 22 4 S static FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS
+people_team_magma_maxie 16 21 N static FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS
+people_man_1 16 17 S static FLAG_HIDE_MAGMA_HIDEOUT_4F_GROUDON_ASLEEP
+misc_item_ball 3 7 S static FLAG_ITEM_MAGMA_HIDEOUT_4F_MAX_REVIVE
 dialogs
 1	I wonder if GROUDON even has a tail?
 2	MAXIE, sir! An intruder is headed your way!
@@ -84,6 +84,9 @@ objscripts
 5 MagmaHideout_4F_EventScript_Maxie
 7 MagmaHideout_4F_EventScript_ItemMaxRevive
 movements
+Common_Movement_FacePlayer	face_down,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
 MagmaHideout_4F_Movement_GroudonApproach	delay,delay,down,delay,delay,delay,down,delay,delay,delay,end
 MagmaHideout_4F_Movement_GroudonExit	delay,delay,end
 MagmaHideout_4F_Movement_MaxieLookAround	face_left,delay,face_right,delay,face_left,delay,face_right,delay,face_up,delay,delay,end

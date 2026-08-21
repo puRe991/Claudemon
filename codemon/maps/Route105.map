@@ -165,14 +165,14 @@ collision
 warps
 9 20 IslandCave 0
 npcs
-people_swimmer_m 19 60 E static
-people_swimmer_m 27 36 W pace_h
-people_swimmer_f 8 45 S pace_v
-people_swimmer_f 19 9 S static
-misc_item_ball 8 73 S static
-people_hiker 17 48 S static
-people_man_5 4 54 S static
-people_hiker 4 58 N static
+people_swimmer_m 19 60 E static 0
+people_swimmer_m 27 36 W pace_h 0
+people_swimmer_f 8 45 S pace_v 0
+people_swimmer_f 19 9 S static 0
+misc_item_ball 8 73 S static FLAG_ITEM_ROUTE_105_IRON
+people_hiker 17 48 S static 0
+people_man_5 4 54 S static 0
+people_hiker 4 58 N static 0
 objscripts
 0 Route105_EventScript_Luis
 1 Route105_EventScript_Dominik

@@ -210,40 +210,40 @@ warps
 16 88 Route110_SeasideCyclingRoadSouthEntrance 0
 19 88 Route110_SeasideCyclingRoadSouthEntrance 2
 npcs
-people_camper 17 90 S static
-people_cycling_triathlete_m 29 79 S static
-people_expert_f 14 69 S wander
-people_cycling_triathlete_m 9 57 S wander
-people_expert_m 10 11 S wander
-people_cycling_triathlete_f 27 24 S wander
-people_boy_3 15 7 S wander
-people_cycling_triathlete_f 16 73 S static
-people_cycling_triathlete_m 19 31 S static
-people_cycling_triathlete_f 30 31 W static
-people_cycling_triathlete_m 16 55 S static
-people_psychic_m 3 39 E static
-people_lass 33 15 W static
-people_maniac 34 40 S static
-people_fisherman 10 19 S static
-people_man_1 5 11 S static
-people_man_1 6 11 S static
-people_man_1 7 11 S static
-misc_item_ball 30 69 S static
-misc_item_ball 26 47 S static
-people_cycling_triathlete_m 27 92 S static
-people_team_aqua_aqua_member_m 7 83 N static
-people_team_aqua_aqua_member_m 8 83 N static
-people_team_aqua_aqua_member_m 9 83 N static
-people_team_aqua_aqua_member_m 10 83 N static
-people_team_aqua_aqua_member_m 8 82 S static
-people_cycling_triathlete_m 21 78 S static
-people_youngster 33 69 W pace_h
-people_pokefan_f 10 76 W static
-people_pokefan_m 7 76 E static
-people_cycling_triathlete_f 10 39 W static
-people_man_5 36 40 S static
-misc_item_ball 6 38 S static
-people_prof_birch 9 79 S static
+people_camper 17 90 S static 0
+people_cycling_triathlete_m 29 79 S static 0
+people_expert_f 14 69 S wander 0
+people_cycling_triathlete_m 9 57 S wander 0
+people_expert_m 10 11 S wander 0
+people_cycling_triathlete_f 27 24 S wander 0
+people_boy_3 15 7 S wander 0
+people_cycling_triathlete_f 16 73 S static 0
+people_cycling_triathlete_m 19 31 S static 0
+people_cycling_triathlete_f 30 31 W static 0
+people_cycling_triathlete_m 16 55 S static 0
+people_psychic_m 3 39 E static 0
+people_lass 33 15 W static 0
+people_maniac 34 40 S static 0
+people_fisherman 10 19 S static 0
+people_man_1 5 11 S static 0
+people_man_1 6 11 S static 0
+people_man_1 7 11 S static 0
+misc_item_ball 30 69 S static FLAG_ITEM_ROUTE_110_DIRE_HIT
+misc_item_ball 26 47 S static FLAG_ITEM_ROUTE_110_RARE_CANDY
+people_cycling_triathlete_m 27 92 S static 0
+people_team_aqua_aqua_member_m 7 83 N static FLAG_HIDE_ROUTE_110_TEAM_AQUA
+people_team_aqua_aqua_member_m 8 83 N static FLAG_HIDE_ROUTE_110_TEAM_AQUA
+people_team_aqua_aqua_member_m 9 83 N static FLAG_HIDE_ROUTE_110_TEAM_AQUA
+people_team_aqua_aqua_member_m 10 83 N static FLAG_HIDE_ROUTE_110_TEAM_AQUA
+people_team_aqua_aqua_member_m 8 82 S static FLAG_HIDE_ROUTE_110_TEAM_AQUA
+people_cycling_triathlete_m 21 78 S static 0
+people_youngster 33 69 W pace_h 0
+people_pokefan_f 10 76 W static 0
+people_pokefan_m 7 76 E static 0
+people_cycling_triathlete_f 10 39 W static 0
+people_man_5 36 40 S static 0
+misc_item_ball 6 38 S static FLAG_ITEM_ROUTE_110_ELIXIR
+people_prof_birch 9 79 S static FLAG_HIDE_ROUTE_110_BIRCH
 dialogs
 0	Which should I choose?Make a beeline for MAUVILLE on CYCLING ROAD, or take the low road and look for POKéMON?
 1	Learning techniques will make BIKE riding even more fun.There are some places that you can reach only by using a BIKE technique.
@@ -273,6 +273,9 @@ objscripts
 12 Route110_EventScript_Jaclyn
 13 Route110_EventScript_Edwin
 14 Route110_EventScript_Dale
+15 BerryTreeScript
+16 BerryTreeScript
+17 BerryTreeScript
 18 Route110_EventScript_ItemDireHit
 19 Route110_EventScript_ItemRareCandy
 20 Route110_EventScript_ChallengeGuy
@@ -302,6 +305,12 @@ triggers
 4 35 0 0 Route110_HiddenItem_4_35
 37 67 0 0 Route110_HiddenItem_37_67
 movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
+Common_Movement_FaceOriginalDirection	face_down,end
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
 Route110_Movement_BirchApproachPlayer1	down,left,left,down,end
 Route110_Movement_BirchApproachPlayer2	down,left,down,end
 Route110_Movement_BirchApproachPlayer3	down,down,end
@@ -736,6 +745,162 @@ finditem ITEM_DIRE_HIT
 setflag FLAG_ITEM_ROUTE_110_DIRE_HIT
 end
 = Route110_EventScript_ItemDireHit_Taken
+end
+= BerryTreeScript
+special ObjectEventInteractionGetBerryTreeData
+switch VAR_0x8004
+case BERRY_STAGE_SPARKLING BerryTree_EventScript_Sparkling
+case BERRY_STAGE_NO_BERRY BerryTree_EventScript_CheckSoil
+case BERRY_STAGE_PLANTED BerryTree_EventScript_CheckBerryStage1
+case BERRY_STAGE_SPROUTED BerryTree_EventScript_CheckBerryStage2
+case BERRY_STAGE_TALLER BerryTree_EventScript_CheckBerryStage3
+case BERRY_STAGE_FLOWERING BerryTree_EventScript_CheckBerryStage4
+case BERRY_STAGE_BERRIES BerryTree_EventScript_CheckBerryFullyGrown
+end
+= BerryTree_EventScript_CheckBerryFullyGrown
+buffernumberstring STR_VAR_2 VAR_0x8006
+lock
+faceplayer
+special ObjectEventInteractionGetBerryCountString
+msgbox	BerryTree_Text_WantToPick
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_PickBerry
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPickingBerry
+goto BerryTree_EventScript_PickBerry
+= BerryTree_EventScript_PickBerry
+special ObjectEventInteractionPickBerryTree
+goto_if_eq VAR_0x8004 0 BerryTree_EventScript_BerryPocketFull
+special IncrementDailyPickedBerries
+special ObjectEventInteractionRemoveBerryTree
+message BerryTree_Text_PickedTheBerry
+playfanfare MUS_OBTAIN_BERRY
+waitmessage
+waitfanfare
+waitbuttonpress
+message BerryTree_Text_PutAwayBerry
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_BerryPocketFull
+message BerryTree_Text_BerryPocketFull
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_CancelPickingBerry
+message BerryTree_Text_BerryLeftUnpicked
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_CheckBerryStage4
+call BerryTree_EventScript_GetCareAdverb
+lockall
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_BerryGrowthStage4
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+@ VAR_0x8005 here is the number of times watered
+@ Buffered by ObjectEventInteractionGetBerryTreeData
+goto BerryTree_EventScript_GetCareAdverb
+= BerryTree_EventScript_GetCareAdverb
+goto_if_eq VAR_0x8005 0 BerryTree_EventScript_SetAdverbPoor
+goto_if_eq VAR_0x8005 4 BerryTree_EventScript_SetAdverbGreat
+bufferstring STR_VAR_2 BerryTree_Text_CareAdverbGood
+return
+= BerryTree_EventScript_SetAdverbGreat
+bufferstring STR_VAR_2 BerryTree_Text_CareAdverbGreat
+return
+= BerryTree_EventScript_SetAdverbPoor
+bufferstring STR_VAR_2 BerryTree_Text_CareAdverbPoor
+return
+@ VAR_0x8006 here is the number of berries
+goto BerryTree_EventScript_CheckBerryFullyGrown
+= BerryTree_EventScript_WantToWater
+checkitem ITEM_WAILMER_PAIL
+goto_if_eq VAR_RESULT FALSE BerryTree_EventScript_DontWater
+special ObjectEventInteractionGetBerryName
+msgbox	BerryTree_Text_WantToWater
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_WaterBerry
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_DontWater
+goto BerryTree_EventScript_DontWater
+= BerryTree_EventScript_DontWater
+releaseall
+end
+= BerryTree_EventScript_WaterBerry
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_WateredTheBerry
+waitmessage
+special ObjectEventInteractionWaterBerryTree
+special DoWateringBerryTreeAnim
+message BerryTree_Text_PlantIsDelighted
+waitmessage
+waitbuttonpress
+releaseall
+end
+= BerryTree_EventScript_CheckBerryStage3
+lockall
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_BerryGrowthStage3
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckBerryStage2
+lockall
+special ObjectEventInteractionGetBerryName
+message BerryTree_Text_BerryGrowthStage2
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckBerryStage1
+lockall
+special ObjectEventInteractionGetBerryCountString
+message BerryTree_Text_BerryGrowthStage1
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckSoil
+lock
+faceplayer
+specialvar VAR_RESULT PlayerHasBerries
+goto_if_eq VAR_RESULT TRUE BerryTree_EventScript_WantToPlant
+message BerryTree_Text_ItsSoftLoamySoil
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_WantToPlant
+msgbox	BerryTree_Text_WantToPlant
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_ChooseBerryToPlant
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPlanting
+end
+= BerryTree_EventScript_CancelPlanting
+release
+end
+= BerryTree_EventScript_ChooseBerryToPlant
+fadescreen FADE_TO_BLACK
+closemessage
+special Bag_ChooseBerry
+goto_if_eq VAR_ITEM_ID 0 BerryTree_EventScript_CancelPlanting
+removeitem VAR_ITEM_ID
+call BerryTree_EventScript_PlantBerry
+goto BerryTree_EventScript_CancelPlanting
+= BerryTree_EventScript_PlantBerry
+special ObjectEventInteractionPlantBerryTree
+incrementgamestat GAME_STAT_PLANTED_BERRIES
+special IncrementDailyPlantedBerries
+special ObjectEventInteractionGetBerryCountString
+message BerryTree_Text_PlantedOneBerry
+waitmessage
+waitbuttonpress
+return
+= BerryTree_EventScript_Sparkling
+lockall
+message BerryTree_Text_ExclamationPoint
+waitmessage
+waitbuttonpress
+releaseall
 end
 = Route110_EventScript_Dale
 trainerbattle_single TRAINER_DALE Route110_Text_DaleIntro Route110_Text_DaleDefeated

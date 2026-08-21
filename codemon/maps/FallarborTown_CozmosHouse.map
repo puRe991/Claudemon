@@ -24,8 +24,8 @@ warps
 3 8 FallarborTown 3
 4 8 FallarborTown 3
 npcs
-people_scientist_1 6 4 S wander
-people_woman_2 5 6 S wander
+people_scientist_1 6 4 S wander FLAG_HIDE_FALLARBOR_HOUSE_PROF_COZMO
+people_woman_2 5 6 S wander 0
 dialogs
 0	PROF. COZMO: Oh… I never should have let myself be conned into telling TEAM MAGMA where you can find METEORITES…That METEORITE from METEOR FALLS… It's never going to be mine now…
 1	PROF. COZMO went off to METEOR FALLS on ROUTE 114 with some people from TEAM MAGMA.

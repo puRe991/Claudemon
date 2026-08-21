@@ -23,8 +23,8 @@ warps
 13 1 AbandonedShip_Corridors_B1F 3
 22 1 AbandonedShip_Corridors_B1F 4
 npcs
-people_fat_man 25 6 W static
-misc_item_ball 6 7 S static
+people_fat_man 25 6 W static 0
+misc_item_ball 6 7 S static FLAG_ITEM_ABANDONED_SHIP_ROOMS_B1F_ESCAPE_ROPE
 dialogs
 0	Urrrrppp…I'm getting queasy just being aboard this ship…It's not even moving, but…
 objscripts

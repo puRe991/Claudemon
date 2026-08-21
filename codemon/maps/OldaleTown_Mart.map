@@ -22,9 +22,9 @@ warps
 3 7 OldaleTown 3
 4 7 OldaleTown 3
 npcs
-people_mart_employee 1 3 E static
-people_woman_5 5 5 E static
-people_boy_1 9 4 S wander
+people_mart_employee 1 3 E static 0
+people_woman_5 5 5 E static 0
+people_boy_1 9 4 S wander 0
 dialogs
 1	The clerk says they're all sold out. I can't buy any POKé BALLS.
 2	If a POKéMON gets hurt and loses its HP and faints, it won't be able to battle.To prevent your POKéMON from fainting, restore its HP with a POTION.

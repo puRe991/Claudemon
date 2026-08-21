@@ -67,9 +67,9 @@ warps
 14 27 LilycoveCity 6
 22 1 AquaHideout_B1F 0
 npcs
-people_team_aqua_aqua_member_m 13 11 S static
-people_team_aqua_aqua_member_m 14 11 S static
-people_team_aqua_aqua_member_m 20 4 S static
+people_team_aqua_aqua_member_m 13 11 S static FLAG_HIDE_AQUA_HIDEOUT_1F_GRUNT_1_BLOCKING_ENTRANCE
+people_team_aqua_aqua_member_m 14 11 S static FLAG_HIDE_AQUA_HIDEOUT_1F_GRUNT_2_BLOCKING_ENTRANCE
+people_team_aqua_aqua_member_m 20 4 S static FLAG_HIDE_AQUA_HIDEOUT_GRUNTS
 dialogs
 0	What? What? What do you want with TEAM AQUA?Our BOSS isn't here! He's gone off to snatch something important!… … Where did he go?Wahaha! Do you really think I'd tell you something that crucial?
 1	What? What? What do you want with TEAM AQUA?Our BOSS isn't here! He's on his way to MT. PYRE on ROUTE 122!… … Why did he go?Wahaha! Do you really think I'd tell you something that crucial?
