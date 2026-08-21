@@ -12,6 +12,7 @@
 #include "ScriptVM.h"
 #include "Menu.h"
 #include "Minigame.h"
+#include "UiFrame.h"
 
 #include <algorithm>
 #include <cctype>
@@ -390,11 +391,16 @@ struct StarterSelect {
     int cursor = 1;
     sf::Font font; bool font_ok = false;
     sf::Texture tex[3]; bool tex_ok[3] = {false, false, false};
+    UiFrame frame;
+    sf::Texture cursor_tex; bool cursor_ok = false;
 
     void load() {
         font_ok = font.loadFromFile("assets/fonts/DejaVuSans.ttf");
         for (int i = 0; i < 3; ++i)
             tex_ok[i] = tex[i].loadFromFile(std::string("assets/pokemon/") + SPECIES[i] + ".png");
+        frame.load();
+        cursor_ok = cursor_tex.loadFromFile("assets/graphics/interface/arrow_cursor.png");
+        cursor_tex.setSmooth(false);
     }
     void open() { open_ = true; done_ = false; cursor = 1; }
     bool active() const { return open_; }
@@ -414,42 +420,59 @@ struct StarterSelect {
         target.setView(target.getDefaultView());
         sf::Vector2f size = target.getView().getSize();
         sf::RectangleShape bg(size);
-        bg.setFillColor(sf::Color(20, 28, 48, 250));
+        bg.setFillColor(sf::Color(20, 40, 32));
         target.draw(bg);
 
+        const sf::Color head_col(255, 232, 160), body_col(40, 40, 56);
+        sf::FloatRect title_r(size.x * 0.5f - 220, 22, 440, 44);
+        frame.draw(target, title_r.left, title_r.top, title_r.width, title_r.height, 2.5f);
         std::string title_s = "Wähle dein Partner-Pokémon!";
-        sf::Text title(sf::String::fromUtf8(title_s.begin(), title_s.end()), font, 22);
-        title.setPosition(size.x * 0.5f - 200, 30);
-        title.setFillColor(sf::Color(150, 210, 255));
+        sf::Text title(sf::String::fromUtf8(title_s.begin(), title_s.end()), font, 20);
+        title.setPosition(title_r.left + 20, title_r.top + 12);
+        title.setFillColor(body_col);
         target.draw(title);
 
+        // Front sprites are 64x64 native; at the 3x scale used elsewhere for
+        // this screen that's 192x192, so the card has to be sized for that
+        // (not just for the label under it) or the sprite spills out of it.
+        const float card_w = 210.f, card_h = 250.f, sprite_px = 64.f * 3.f;
         for (int i = 0; i < 3; ++i) {
-            float x = size.x * (0.18f + 0.32f * i);
-            float y = size.y * 0.35f;
+            float cx = size.x * (0.2f + 0.3f * i);
+            float card_top = 96.f;
+            sf::FloatRect card(cx - card_w / 2.f, card_top, card_w, card_h);
             bool sel = i == cursor;
+            frame.draw(target, card.left, card.top, card.width, card.height, 2.f);
+            float sx = cx - sprite_px / 2.f, sy = card_top + 14.f;
             if (sel) {
-                sf::RectangleShape hl(sf::Vector2f(110, 110));
-                hl.setPosition(x - 15, y - 15);
-                hl.setFillColor(sf::Color(60, 90, 150, 150));
-                hl.setOutlineColor(sf::Color(150, 210, 255));
-                hl.setOutlineThickness(2.f);
-                target.draw(hl);
+                if (cursor_ok) {
+                    sf::Sprite cs(cursor_tex);
+                    cs.setPosition(card.left - 22.f, sy + sprite_px * 0.35f);
+                    target.draw(cs);
+                } else {
+                    sf::Text mark(">", font, 22);
+                    mark.setPosition(card.left - 18.f, sy + sprite_px * 0.3f);
+                    mark.setFillColor(head_col);
+                    target.draw(mark);
+                }
             }
             if (tex_ok[i]) {
                 sf::Sprite s(tex[i]);
                 s.setScale(3.f, 3.f);
-                s.setPosition(x, y);
+                s.setPosition(sx, sy);
                 target.draw(s);
             }
-            sf::Text label(SPECIES[i], font, 18);
-            label.setPosition(x, y + 90);
-            label.setFillColor(sel ? sf::Color(150, 210, 255) : sf::Color::White);
+            sf::Text label(SPECIES[i], font, 16);
+            sf::FloatRect lb = label.getLocalBounds();
+            label.setPosition(cx - lb.width / 2.f, sy + sprite_px + 6.f);
+            label.setFillColor(sel ? sf::Color(24, 72, 160) : body_col);
             target.draw(label);
         }
 
-        sf::Text hint("[A/D] waehlen   [SPACE] bestaetigen", font, 15);
-        hint.setPosition(size.x * 0.5f - 130, size.y - 40);
-        hint.setFillColor(sf::Color(180, 180, 180));
+        sf::FloatRect hint_r(size.x * 0.5f - 170, size.y - 56, 340, 40);
+        frame.draw(target, hint_r.left, hint_r.top, hint_r.width, hint_r.height, 2.f);
+        sf::Text hint("[A/D] waehlen   [SPACE] bestaetigen", font, 14);
+        hint.setPosition(hint_r.left + 16, hint_r.top + 12);
+        hint.setFillColor(body_col);
         target.draw(hint);
         target.setView(saved);
     }
@@ -463,8 +486,15 @@ struct YesNoPrompt {
     bool open_ = false, done_ = false;
     int cursor = 0;   // 0 = Ja, 1 = Nein
     sf::Font font; bool font_ok = false;
+    UiFrame frame;
+    sf::Texture cursor_tex; bool cursor_ok = false;
 
-    bool load() { return font_ok = font.loadFromFile("assets/fonts/DejaVuSans.ttf"); }
+    bool load() {
+        frame.load();
+        cursor_ok = cursor_tex.loadFromFile("assets/graphics/interface/arrow_cursor.png");
+        cursor_tex.setSmooth(false);
+        return font_ok = font.loadFromFile("assets/fonts/DejaVuSans.ttf");
+    }
     void open() { open_ = true; done_ = false; cursor = 0; }
     bool active() const { return open_; }
     bool done() const { return done_; }
@@ -482,20 +512,28 @@ struct YesNoPrompt {
         sf::View saved = target.getView();
         target.setView(target.getDefaultView());
         sf::Vector2f size = target.getView().getSize();
-        float w = 120.f, h = 74.f;
+        float w = 132.f, h = 78.f;
         float x = size.x - w - 14.f, y = size.y - h - 100.f;
-        sf::RectangleShape box(sf::Vector2f(w, h));
-        box.setPosition(x, y);
-        box.setFillColor(sf::Color(248, 248, 250));
-        box.setOutlineColor(sf::Color(40, 40, 56));
-        box.setOutlineThickness(3.f);
-        target.draw(box);
+        frame.draw(target, x, y, w, h, 2.5f);
+        const sf::Color body_col(40, 40, 56), sel_col(24, 72, 160);
         const char* opts[2] = {"Ja", "Nein"};
         for (int i = 0; i < 2; ++i) {
-            std::string s = std::string(i == cursor ? "> " : "  ") + opts[i];
-            sf::Text t(s, font, 20);
-            t.setPosition(x + 16, y + 10 + i * 32);
-            t.setFillColor(sf::Color(40, 40, 56));
+            bool sel = i == cursor;
+            if (sel) {
+                if (cursor_ok) {
+                    sf::Sprite cs(cursor_tex);
+                    cs.setPosition(x + 12, y + 12 + i * 32);
+                    target.draw(cs);
+                } else {
+                    sf::Text mark(">", font, 20);
+                    mark.setPosition(x + 14, y + 10 + i * 32);
+                    mark.setFillColor(sel_col);
+                    target.draw(mark);
+                }
+            }
+            sf::Text t(opts[i], font, 20);
+            t.setPosition(x + 40, y + 10 + i * 32);
+            t.setFillColor(sel ? sel_col : body_col);
             target.draw(t);
         }
         target.setView(saved);
@@ -530,10 +568,31 @@ struct Shop {
     const std::unordered_map<std::string, int>* prices = nullptr;
     sf::Font font; bool font_ok = false;
     std::string flash;   // transient feedback ("Gekauft!" / "Nicht genug Geld!")
+    UiFrame frame;
+    sf::Texture cursor_tex; bool cursor_ok = false;
+    std::unordered_map<std::string, sf::Texture> icon_cache;
 
-    bool load() { return font_ok = font.loadFromFile("assets/fonts/DejaVuSans.ttf"); }
+    bool load() {
+        frame.load();
+        cursor_ok = cursor_tex.loadFromFile("assets/graphics/interface/arrow_cursor.png");
+        cursor_tex.setSmooth(false);
+        return font_ok = font.loadFromFile("assets/fonts/DejaVuSans.ttf");
+    }
     void configure(GameState* g, const std::unordered_map<std::string, int>* p) {
         this->gs = g; this->prices = p;
+    }
+    // "ITEM_POTION" -> assets/items/potion.png, cached like Menu::item_icon.
+    const sf::Texture* icon_of(const std::string& item) {
+        std::string f = item;
+        if (f.rfind("ITEM_", 0) == 0) f = f.substr(5);
+        for (char& c : f) c = (char)std::tolower((unsigned char)c);
+        auto it = icon_cache.find(f);
+        if (it != icon_cache.end()) return it->second.getSize().x ? &it->second : nullptr;
+        sf::Texture tex;
+        if (!tex.loadFromFile("assets/items/" + f + ".png")) { icon_cache[f]; return nullptr; }
+        tex.setSmooth(false);
+        icon_cache[f] = tex;
+        return &icon_cache[f];
     }
     bool active() const { return open_; }
     bool done() const { return done_; }
@@ -589,64 +648,68 @@ struct Shop {
         sf::View saved = target.getView();
         target.setView(target.getDefaultView());
         sf::Vector2f size = target.getView().getSize();
-        sf::RectangleShape bg(size);
-        bg.setFillColor(sf::Color(20, 28, 48, 250));
-        target.draw(bg);
+        sf::RectangleShape dim(size);
+        dim.setFillColor(sf::Color(0, 0, 0, 140));
+        target.draw(dim);
 
-        sf::Text money_t("Geld: " + std::to_string(gs ? gs->money : 0) + " P", font, 18);
-        money_t.setPosition(20, 16);
-        money_t.setFillColor(sf::Color(255, 220, 120));
-        target.draw(money_t);
+        const sf::Color head_col(24, 72, 160), body_col(40, 40, 56), muted_col(100, 100, 112);
+        auto text = [&](const std::string& s, float px, float py, unsigned cs, sf::Color col) {
+            sf::Text t(sf::String::fromUtf8(s.begin(), s.end()), font, cs);
+            t.setPosition(px, py); t.setFillColor(col); target.draw(t);
+        };
+
+        sf::FloatRect panel(size.x * 0.5f - 200, 20, 400, size.y - 40);
+        frame.draw(target, panel.left, panel.top, panel.width, panel.height, 3.f);
+
+        sf::FloatRect money_r(panel.left, panel.top - 6, 180, 40);
+        frame.draw(target, money_r.left, money_r.top, money_r.width, money_r.height, 2.f);
+        text("Geld: " + std::to_string(gs ? gs->money : 0) + " P",
+             money_r.left + 14, money_r.top + 8, 16, body_col);
 
         if (stage == MSG) {
-            sf::Text t(sf::String::fromUtf8(flash.begin(), flash.end()), font, 20);
-            t.setPosition(size.x * 0.5f - 140, size.y * 0.5f - 10);
-            t.setFillColor(sf::Color::White);
-            target.draw(t);
-            sf::Text hint("[SPACE] weiter", font, 14);
-            hint.setPosition(size.x * 0.5f - 60, size.y * 0.5f + 30);
-            hint.setFillColor(sf::Color(180, 180, 180));
-            target.draw(hint);
+            text(flash, panel.left + 30, panel.top + panel.height * 0.4f, 18, body_col);
+            text("[SPACE] weiter", panel.left + 30, panel.top + panel.height * 0.4f + 34, 14, muted_col);
             target.setView(saved);
             return;
         }
 
-        float y0 = 60.f;
-        for (size_t i = 0; i < items.size(); ++i) {
-            bool sel = (int)i == cursor;
-            std::string line = item_display_name(items[i]) + "  " +
-                                std::to_string(price_of(items[i])) + " P";
-            sf::Text t((sel ? "> " : "  ") + line, font, 18);
-            t.setPosition(30, y0 + i * 26);
-            t.setFillColor(sel ? sf::Color(150, 210, 255) : sf::Color::White);
-            target.draw(t);
-        }
-        {
-            bool sel = cursor == (int)items.size();
-            std::string s = std::string(sel ? "> " : "  ") + "Verlassen";
-            sf::Text t(sf::String::fromUtf8(s.begin(), s.end()), font, 18);
-            t.setPosition(30, y0 + items.size() * 26 + 10);
-            t.setFillColor(sel ? sf::Color(150, 210, 255) : sf::Color::White);
-            target.draw(t);
+        // rows[0..items.size()-1] are the items, the trailing row is "Verlassen"
+        int row_count = (int)items.size() + 1;
+        const int visible = 7;
+        int scroll = std::max(0, std::min(cursor - visible / 2, row_count - visible));
+        scroll = std::max(0, scroll);
+        float x = panel.left + 24, y0 = panel.top + 56;
+        for (int r = 0; r < visible && scroll + r < row_count; ++r) {
+            int i = scroll + r;
+            bool sel = i == cursor;
+            float ry = y0 + r * 42;
+            if (sel) {
+                if (cursor_ok) { sf::Sprite cs(cursor_tex); cs.setPosition(x - 22, ry - 2); target.draw(cs); }
+                else text(">", x - 18, ry, 18, head_col);
+            }
+            if (i < (int)items.size()) {
+                const sf::Texture* ic = icon_of(items[i]);
+                if (ic) { sf::Sprite s(*ic); s.setPosition(x, ry - 4); target.draw(s); }
+                text(item_display_name(items[i]), x + 36, ry, 17, sel ? head_col : body_col);
+                std::string price_s = std::to_string(price_of(items[i])) + " P";
+                text(price_s, panel.left + panel.width - 26 - price_s.size() * 9.f, ry, 16,
+                     sel ? head_col : muted_col);
+            } else {
+                text("Verlassen", x + 36, ry, 17, sel ? head_col : body_col);
+            }
         }
 
         if (stage == QTY) {
-            std::string s = "Anzahl: " + std::to_string(qty) + "  (" +
-                             std::to_string(price_of(items[cursor]) * qty) + " P)";
-            sf::Text t(sf::String::fromUtf8(s.begin(), s.end()), font, 18);
-            t.setPosition(size.x * 0.5f - 60, size.y - 60);
-            t.setFillColor(sf::Color(150, 210, 255));
-            target.draw(t);
-            sf::Text hint("[W/S] Anzahl  [A] zurueck  [SPACE] kaufen", font, 14);
-            hint.setPosition(size.x * 0.5f - 150, size.y - 30);
-            hint.setFillColor(sf::Color(180, 180, 180));
-            target.draw(hint);
-        } else {
-            sf::Text hint("[W/S] waehlen  [SPACE] auswaehlen", font, 14);
-            hint.setPosition(30, size.y - 30);
-            hint.setFillColor(sf::Color(180, 180, 180));
-            target.draw(hint);
+            sf::FloatRect qr(panel.left + 20, panel.top + panel.height - 84, panel.width - 40, 64);
+            frame.draw(target, qr.left, qr.top, qr.width, qr.height, 2.f);
+            text("Anzahl: " + std::to_string(qty), qr.left + 16, qr.top + 8, 17, body_col);
+            text(std::to_string(price_of(items[cursor]) * qty) + " P",
+                 qr.left + 16, qr.top + 32, 16, muted_col);
         }
+        std::string hint_s = stage == QTY
+            ? "[W/S] Anzahl  [A] zurueck  [SPACE] kaufen"
+            : "[W/S] waehlen  [SPACE] auswaehlen";
+        text(hint_s, panel.left, panel.top + panel.height + 8, 13, sf::Color(230, 230, 230));
         target.setView(saved);
     }
 };
