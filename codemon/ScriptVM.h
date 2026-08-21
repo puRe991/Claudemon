@@ -62,6 +62,7 @@ private:
 	struct MoveQ { Character* ch; std::deque<std::string> actions; };
 	std::vector<MoveQ> queues;
 	float move_timer;
+	std::string pending_win_script;  // trainerbattle's post-victory script label, if any
 
 	int value_of(const std::string& s) const;   // resolve a symbol/number
 	Character* resolve(const std::string& localid) const;

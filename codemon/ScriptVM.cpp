@@ -180,16 +180,23 @@ void ScriptVM::pump() {
 		} else if (op == "goto_if_ne" && argc >= 3) {
 			if (value_of(arg(0)) != value_of(arg(1))) jump(arg(2));
 		} else if (op == "call" && argc >= 1) {
-			this->call_stack.push_back({this->cur, this->ip});
-			jump(arg(0));
+			// A "call" that targets a script we don't have (most commonly a
+			// shared Common_EventScript_* helper the per-map importer never
+			// saw) must NOT jump into an empty body and finish() the whole
+			// calling script early -- treat it as a no-op and keep going,
+			// same as call returning immediately with no visible effect.
+			if (this->map->has_script(arg(0))) {
+				this->call_stack.push_back({this->cur, this->ip});
+				jump(arg(0));
+			}
 		} else if (op == "call_if_set" && argc >= 2) {
-			if (this->state->flag(arg(0))) {
+			if (this->state->flag(arg(0)) && this->map->has_script(arg(1))) {
 				this->call_stack.push_back({this->cur, this->ip}); jump(arg(1)); }
 		} else if (op == "call_if_unset" && argc >= 2) {
-			if (!this->state->flag(arg(0))) {
+			if (!this->state->flag(arg(0)) && this->map->has_script(arg(1))) {
 				this->call_stack.push_back({this->cur, this->ip}); jump(arg(1)); }
 		} else if (op == "call_if_eq" && argc >= 3) {
-			if (value_of(arg(0)) == value_of(arg(1))) {
+			if (value_of(arg(0)) == value_of(arg(1)) && this->map->has_script(arg(2))) {
 				this->call_stack.push_back({this->cur, this->ip}); jump(arg(2)); }
 		} else if (op == "return") {
 			if (this->call_stack.empty()) { finish(); return; }
@@ -203,11 +210,19 @@ void ScriptVM::pump() {
 			bool solid = (argc >= 4) ? value_of(arg(3)) != 0 : false;
 			this->map->set_metatile(value_of(arg(0)), value_of(arg(1)),
 			                        value_of(arg(2)), solid);
-		} else if (op == "trainerbattle_single" || op == "trainerbattle") {
-			// trainerbattle_single TRAINER_X, intro, lose; trainerbattle TYPE, TRAINER_X, ...
+		} else if (op.rfind("trainerbattle", 0) == 0) {
+			// trainerbattle_single TRAINER_X, intro, lose[, winScript, flags...]
+			// trainerbattle TYPE, TRAINER_X, ... -- the optional winScript label
+			// (present for gym leaders/story trainers, e.g. the one that hands
+			// out the badge) only runs if the player actually wins.
 			std::string tid;
-			for (size_t k = 0; k < argc; ++k)
-				if (arg(k).rfind("TRAINER_", 0) == 0) { tid = arg(k); break; }
+			this->pending_win_script.clear();
+			for (size_t k = 0; k < argc; ++k) {
+				const std::string& a = arg(k);
+				if (a.rfind("TRAINER_", 0) == 0 && tid.empty()) tid = a;
+				else if (this->pending_win_script.empty() && this->map->has_script(a))
+					this->pending_win_script = a;
+			}
 			if (this->battle && this->bdata && this->party &&
 			    this->battle->start_trainer(tid, name_from_trainer(tid), this->party)) {
 				this->st = WAIT_BATTLE;
@@ -249,8 +264,13 @@ void ScriptVM::on_key() {
 void ScriptVM::update(float dt) {
 	if (this->st == WAIT_BATTLE) {
 		if (!this->battle || !this->battle->active()) {
-			// battle finished (won or lost); continue the script
+			// battle finished; a win-script (badge, story flag, ...) only
+			// runs when the player actually won.
+			bool won = this->battle && this->battle->won();
+			std::string ws = this->pending_win_script;
+			this->pending_win_script.clear();
 			this->st = RUN;
+			if (won && !ws.empty()) jump(ws);
 			this->pump();
 		}
 		return;

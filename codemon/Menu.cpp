@@ -280,7 +280,25 @@ void Menu::draw(sf::RenderTarget& target) {
 		     x, y, 20, sf::Color(230, 230, 160)); y += 26;
 		text("Region: HOENN   Party: " +
 		     std::to_string(this->team ? (int)this->team->size() : 0) + "/6",
-		     x, y, 16, sf::Color(200, 200, 200)); y += 30;
+		     x, y, 16, sf::Color(200, 200, 200)); y += 26;
+		{
+			static const char* names[8] = {"STONE", "KNUCKLE", "DYNAMO", "HEAT",
+			                               "BALANCE", "FEATHER", "MIND", "RAIN"};
+			int got = 0;
+			float bx = x;
+			for (int i = 0; i < 8; ++i) {
+				bool have = this->gs && this->gs->flag(
+					"FLAG_BADGE0" + std::to_string(i + 1) + "_GET");
+				if (have) ++got;
+				text(names[i], bx, y, 12,
+				     have ? sf::Color(250, 210, 90) : sf::Color(90, 90, 90));
+				bx += 62;
+			}
+			text("Badges " + std::to_string(got) + "/8",
+			     panel.getPosition().x + panel.getSize().x - 90, y, 14,
+			     sf::Color(200, 200, 200));
+			y += 24;
+		}
 		text("CONDITION", x, y, 18, sf::Color(150, 210, 255)); y += 26;
 		if (this->team) {
 			int row = 0;
@@ -298,7 +316,7 @@ void Menu::draw(sf::RenderTarget& target) {
 				     "  DEF " + std::to_string(m.def), x, ry + 24, 15, sf::Color(210, 210, 210));
 				text("SPA " + std::to_string(m.spa) + "  SPD " + std::to_string(m.spd) +
 				     "  SPE " + std::to_string(m.spe), x, ry + 40, 15, sf::Color(210, 210, 210));
-				if (++row >= 5) break;
+				if (++row >= 4) break;
 			}
 		}
 	}
