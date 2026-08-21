@@ -273,6 +273,10 @@ end
 msgbox	I believe I'm the only person here who, for some unknown reason, would choose fishing over battling.Huh? You can't catch anything here? That's disappointing…
 end
 @ Unused
+goto BattleFrontier_OutsideWest_EventScript_UnusedNPC3
+= BattleFrontier_OutsideWest_EventScript_UnusedNPC3
+msgbox	Grandpa, over here! The BATTLE DOME is here! Go get 'em, Grandpa!
+end
 = BattleFrontier_OutsideWest_EventScript_Lass
 msgbox	Today, I'm going to keep battling, no matter what, until I get a Symbol.
 end

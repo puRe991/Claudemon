@@ -114,23 +114,11 @@ return
 = BattleFrontier_BattlePyramidTop_EventScript_BrandonHeardSilverSpeech
 applymovement LOCALID_BRANDON BattleFrontier_BattlePyramidTop_Movement_BrandonApproachPlayer
 waitmovement 0
+goto BattleFrontier_BattlePyramidTop_EventScript_BattleBrandonSilver
 = BattleFrontier_BattlePyramidTop_EventScript_BrandonHeardGoldSpeech
 applymovement LOCALID_BRANDON BattleFrontier_BattlePyramidTop_Movement_BrandonApproachPlayer
 waitmovement 0
-= BattleFrontier_BattlePyramidTop_EventScript_BrandonIntroGold
-frontier_get FRONTIER_DATA_HEARD_BRAIN_SPEECH
-goto_if_ne VAR_RESULT FALSE BattleFrontier_BattlePyramidTop_EventScript_BrandonHeardGoldSpeech
-special SpawnCameraObject
-applymovement LOCALID_CAMERA BattleFrontier_BattlePyramidTop_Movement_CameraPanUp
-waitmovement 0
-msgbox	BRANDON: …You've finally returned, young explorer…Your love of adventure seems to come deep from within your heart…Yes… You are exactly as I was in my own youth…… … …Ah…The passionate!The dangerous!The desperate!Those days of death-defying, life-affirming adventures are back…
-closemessage
-frontier_set FRONTIER_DATA_HEARD_BRAIN_SPEECH
-applymovement LOCALID_BRANDON BattleFrontier_BattlePyramidTop_Movement_BrandonApproachPlayer
-waitmovement 0
-msgbox	Now, then!I sense my own courage is off the meter!
 goto BattleFrontier_BattlePyramidTop_EventScript_BattleBrandonGold
-end
 = BattleFrontier_BattlePyramidTop_EventScript_BattleBrandonGold
 msgbox	Everything you have! I'm braced for it all!
 call BattleFrontier_BattlePyramidTop_EventScript_DoBrandonBattle
@@ -148,6 +136,20 @@ waitfanfare
 frontier_givesymbol
 msgbox	Ah, yes! It just goes to show that I have much to learn still!May our paths cross again! Farewell for now, young explorer!
 goto BattleFrontier_BattlePyramidTop_EventScript_WarpToLobbyWon
+= BattleFrontier_BattlePyramidTop_EventScript_BrandonIntroGold
+frontier_get FRONTIER_DATA_HEARD_BRAIN_SPEECH
+goto_if_ne VAR_RESULT FALSE BattleFrontier_BattlePyramidTop_EventScript_BrandonHeardGoldSpeech
+special SpawnCameraObject
+applymovement LOCALID_CAMERA BattleFrontier_BattlePyramidTop_Movement_CameraPanUp
+waitmovement 0
+msgbox	BRANDON: …You've finally returned, young explorer…Your love of adventure seems to come deep from within your heart…Yes… You are exactly as I was in my own youth…… … …Ah…The passionate!The dangerous!The desperate!Those days of death-defying, life-affirming adventures are back…
+closemessage
+frontier_set FRONTIER_DATA_HEARD_BRAIN_SPEECH
+applymovement LOCALID_BRANDON BattleFrontier_BattlePyramidTop_Movement_BrandonApproachPlayer
+waitmovement 0
+msgbox	Now, then!I sense my own courage is off the meter!
+goto BattleFrontier_BattlePyramidTop_EventScript_BattleBrandonGold
+end
 = BattleFrontier_BattlePyramidTop_EventScript_Attendant
 lock
 faceplayer
@@ -166,6 +168,7 @@ waitmessage
 playfanfare MUS_OBTAIN_B_POINTS
 waitfanfare
 closemessage
+goto BattleFrontier_BattlePyramidTop_EventScript_WarpToLobbyWon
 = BattleFrontier_BattlePyramidTop_EventScript_BrandonHereMoveAside
 msgbox	It is a delight to see you here!Unfortunately, you were second by a mere fraction of time!Our chief has already conquered the PYRAMID ahead of you.However, my young explorer… You are a TRAINER!Assert your power and take the glory of the pinnacle from our chief!Now, please! When you are ready, take one more step of courage!
 applymovement LOCALID_PYRAMID_TOP_ATTENDANT BattleFrontier_BattlePyramidTop_Movement_AttendantMoveAside

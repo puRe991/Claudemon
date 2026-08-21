@@ -89,10 +89,7 @@ goto_if_eq VAR_RESULT YES MauvilleCity_BikeShop_EventScript_SwitchBikes
 goto_if_eq VAR_RESULT NO MauvilleCity_BikeShop_EventScript_KeepBike
 end
 @ If the player does not have a bike on them Rydel assumes its stored in the PC
-= MauvilleCity_BikeShop_EventScript_KeepBike
-msgbox	RYDEL: Good, good! I'm happy that you like it!
-release
-end
+goto MauvilleCity_BikeShop_EventScript_SwitchBikes
 = MauvilleCity_BikeShop_EventScript_SwitchBikes
 msgbox	RYDEL: Okay, no problem! I'll switch BIKES for you!
 checkitem ITEM_ACRO_BIKE
@@ -115,4 +112,8 @@ msgbox	PLAYER got the ACRO BIKE exchanged for a MACH BIKE.
 removeitem ITEM_ACRO_BIKE
 giveitem ITEM_MACH_BIKE
 goto MauvilleCity_BikeShop_EventScript_ComeBackToSwitchBikes
+end
+= MauvilleCity_BikeShop_EventScript_KeepBike
+msgbox	RYDEL: Good, good! I'm happy that you like it!
+release
 end

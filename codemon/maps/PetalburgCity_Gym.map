@@ -369,6 +369,19 @@ msgbox	Sure, it's fine to make your POKéMON stronger.But what decides the winn
 end
 @ VAR_0x8004 below is the room number
 @ VAR_0x8005 below is 0 when the door should be slid open and 1 when it should be unlocked immediately
+goto PetalburgCity_Gym_EventScript_OpenGymEntranceDoors
+= PetalburgCity_Gym_EventScript_OpenGymEntranceDoors
+setvar VAR_0x8004 1
+call_if_eq VAR_0x8005 0 PetalburgCity_Gym_EventScript_SlideOpenRoomDoors
+call_if_eq VAR_0x8005 1 PetalburgCity_Gym_EventScript_UnlockRoomDoors
+call PetalburgCity_Gym_EventScript_SetEntranceRoomDoorMetatiles
+return
+= PetalburgCity_Gym_EventScript_SetEntranceRoomDoorMetatiles
+setmetatile 6 85 METATILE_PetalburgGym_RoomEntrance_Left FALSE
+setmetatile 7 85 METATILE_PetalburgGym_RoomEntrance_Right FALSE
+setmetatile 1 98 METATILE_PetalburgGym_RoomEntrance_Left FALSE
+setmetatile 2 98 METATILE_PetalburgGym_RoomEntrance_Right FALSE
+return
 = PetalburgCity_Gym_EventScript_SlideOpenStrengthRoomDoors
 setvar VAR_0x8005 0
 call PetalburgCity_Gym_EventScript_OpenStrengthRoomDoors
@@ -625,6 +638,7 @@ return
 = PetalburgCity_Gym_EventScript_NormanFaceDoorSouth
 return
 @ For all other NormanFaceDoorX Norman is already facing the door from NormanAddressWallyX
+goto PetalburgCity_Gym_EventScript_NormanFaceDoorNorth
 = PetalburgCity_Gym_EventScript_NormanAddressWallyEast
 applymovement LOCALID_PETALBURG_GYM_NORMAN Common_Movement_WalkInPlaceFasterDown
 waitmovement 0
@@ -868,18 +882,6 @@ call PetalburgCity_Gym_EventScript_OpenDefenseRoomDoors
 call PetalburgCity_Gym_EventScript_OpenRecoveryRoomDoors
 call PetalburgCity_Gym_EventScript_OpenStrengthRoomDoors
 call PetalburgCity_Gym_EventScript_OpenOHKORoomDoors
-return
-= PetalburgCity_Gym_EventScript_OpenGymEntranceDoors
-setvar VAR_0x8004 1
-call_if_eq VAR_0x8005 0 PetalburgCity_Gym_EventScript_SlideOpenRoomDoors
-call_if_eq VAR_0x8005 1 PetalburgCity_Gym_EventScript_UnlockRoomDoors
-call PetalburgCity_Gym_EventScript_SetEntranceRoomDoorMetatiles
-return
-= PetalburgCity_Gym_EventScript_SetEntranceRoomDoorMetatiles
-setmetatile 6 85 METATILE_PetalburgGym_RoomEntrance_Left FALSE
-setmetatile 7 85 METATILE_PetalburgGym_RoomEntrance_Right FALSE
-setmetatile 1 98 METATILE_PetalburgGym_RoomEntrance_Left FALSE
-setmetatile 2 98 METATILE_PetalburgGym_RoomEntrance_Right FALSE
 return
 = PetalburgCity_Gym_EventScript_NormanThreeBadges
 msgbox	DAD: Hm… PLAYER, you have gotten stronger.I can tell by the number of BADGES that you've earned.

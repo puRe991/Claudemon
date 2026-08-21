@@ -108,10 +108,7 @@ setflag FLAG_TEMP_2  @ Not read. Perhaps meant to stop him from re-explaining th
 release
 end
 @ If the bag is full check if a slot will be freed when 4 Shoal Salt or Shells are given
-= ShoalCave_LowTideEntranceRoom_EventScript_NoRoomForShellBell
-msgbox	ShoalCave_LowTideEntranceRoom_Text_NoSpaceInYourBag
-release
-end
+goto ShoalCave_LowTideEntranceRoom_EventScript_CheckSpaceWillBeFreed
 = ShoalCave_LowTideEntranceRoom_EventScript_CheckSpaceWillBeFreed
 checkitem ITEM_SHOAL_SALT 5
 goto_if_eq VAR_RESULT TRUE ShoalCave_LowTideEntranceRoom_EventScript_CheckSpaceWillBeFreedShells
@@ -123,6 +120,10 @@ return
 = ShoalCave_LowTideEntranceRoom_EventScript_NoSpaceWillBeFreed
 setvar VAR_RESULT 2
 return
+= ShoalCave_LowTideEntranceRoom_EventScript_NoRoomForShellBell
+msgbox	ShoalCave_LowTideEntranceRoom_Text_NoSpaceInYourBag
+release
+end
 = ShoalCave_LowTideEntranceRoom_EventScript_DeclineShellBell
 msgbox	ShoalCave_LowTideEntranceRoom_Text_WantedToMakeShellBell
 release

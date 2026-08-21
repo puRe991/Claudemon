@@ -40,6 +40,7 @@ goto MossdeepCity_GameCorner_1F_EventScript_InfoMan2
 release
 end
 @ Script is redundant the label in the goto also does lock and faceplayer
+goto MossdeepCity_GameCorner_1F_EventScript_OldMan
 = MossdeepCity_GameCorner_1F_EventScript_OldMan
 lock
 faceplayer
@@ -50,5 +51,9 @@ end
 @ The house that was here in RS was moved to Sootopolis and replaced by the Game Corner
 @ The text below is unused and duplicated in its replacement in Sootopolis City
 @ And the BG Door event was moved inaccessibly into a wall
+goto RS_MysteryEventsHouse_EventScript_Door
+= RS_MysteryEventsHouse_EventScript_Door
+msgbox	The door appears to be locked.
+end
 signs
 3 0	The door appears to be locked.

@@ -73,7 +73,8 @@ goto_if_eq VAR_RESULT TRUE RustboroCity_DevonCorp_2F_EventScript_NoticeClawFossi
 release
 end
 @ This whole section has needless duplication and could be condensed considerably
-= RustboroCity_DevonCorp_2F_EventScript_NoticeClawFossil
+goto RustboroCity_DevonCorp_2F_EventScript_NoticeRootFossil
+= RustboroCity_DevonCorp_2F_EventScript_NoticeRootFossil
 closemessage
 playse SE_PIN
 applymovement LOCALID_FOSSIL_SCIENTIST Common_Movement_ExclamationMark
@@ -82,16 +83,16 @@ applymovement LOCALID_FOSSIL_SCIENTIST Common_Movement_Delay48
 waitmovement 0
 msgbox	Wait! That thing you have there… Is that a POKéMON fossil?Would you like to bring that POKéMON back to life?I can with my newly developed FOSSIL REGENERATOR.
 goto_if_eq VAR_RESULT NO RustboroCity_DevonCorp_2F_EventScript_DeclineGiveFossil
-checkitem ITEM_ROOT_FOSSIL
+checkitem ITEM_CLAW_FOSSIL
 goto_if_eq VAR_RESULT TRUE RustboroCity_DevonCorp_2F_EventScript_ChooseFossil
-goto RustboroCity_DevonCorp_2F_EventScript_GiveClawFossil
+goto RustboroCity_DevonCorp_2F_EventScript_GiveRootFossil
 end
-= RustboroCity_DevonCorp_2F_EventScript_GiveClawFossil
-bufferitemname STR_VAR_1 ITEM_CLAW_FOSSIL
+= RustboroCity_DevonCorp_2F_EventScript_GiveRootFossil
+bufferitemname STR_VAR_1 ITEM_ROOT_FOSSIL
 msgbox	Excellent! Let's do this right away.PLAYER handed the to the DEVON RESEARCHER.
-removeitem ITEM_CLAW_FOSSIL
+removeitem ITEM_ROOT_FOSSIL
 setvar VAR_FOSSIL_RESURRECTION_STATE 1
-setvar VAR_WHICH_FOSSIL_REVIVED 2
+setvar VAR_WHICH_FOSSIL_REVIVED 1
 release
 end
 = RustboroCity_DevonCorp_2F_EventScript_ChooseFossil
@@ -110,22 +111,22 @@ end
 = RustboroCity_DevonCorp_2F_EventScript_ChooseRootFossil
 goto RustboroCity_DevonCorp_2F_EventScript_GiveRootFossil
 end
-= RustboroCity_DevonCorp_2F_EventScript_GiveRootFossil
-bufferitemname STR_VAR_1 ITEM_ROOT_FOSSIL
-msgbox	Excellent! Let's do this right away.PLAYER handed the to the DEVON RESEARCHER.
-removeitem ITEM_ROOT_FOSSIL
-setvar VAR_FOSSIL_RESURRECTION_STATE 1
-setvar VAR_WHICH_FOSSIL_REVIVED 1
-release
-end
 = RustboroCity_DevonCorp_2F_EventScript_ChooseClawFossil
 goto RustboroCity_DevonCorp_2F_EventScript_GiveClawFossil
+end
+= RustboroCity_DevonCorp_2F_EventScript_GiveClawFossil
+bufferitemname STR_VAR_1 ITEM_CLAW_FOSSIL
+msgbox	Excellent! Let's do this right away.PLAYER handed the to the DEVON RESEARCHER.
+removeitem ITEM_CLAW_FOSSIL
+setvar VAR_FOSSIL_RESURRECTION_STATE 1
+setvar VAR_WHICH_FOSSIL_REVIVED 2
+release
 end
 = RustboroCity_DevonCorp_2F_EventScript_DeclineGiveFossil
 msgbox	Oh, is that so?DEVON's technological expertise is outstanding, I tell you.
 release
 end
-= RustboroCity_DevonCorp_2F_EventScript_NoticeRootFossil
+= RustboroCity_DevonCorp_2F_EventScript_NoticeClawFossil
 closemessage
 playse SE_PIN
 applymovement LOCALID_FOSSIL_SCIENTIST Common_Movement_ExclamationMark
@@ -134,9 +135,9 @@ applymovement LOCALID_FOSSIL_SCIENTIST Common_Movement_Delay48
 waitmovement 0
 msgbox	Wait! That thing you have there… Is that a POKéMON fossil?Would you like to bring that POKéMON back to life?I can with my newly developed FOSSIL REGENERATOR.
 goto_if_eq VAR_RESULT NO RustboroCity_DevonCorp_2F_EventScript_DeclineGiveFossil
-checkitem ITEM_CLAW_FOSSIL
+checkitem ITEM_ROOT_FOSSIL
 goto_if_eq VAR_RESULT TRUE RustboroCity_DevonCorp_2F_EventScript_ChooseFossil
-goto RustboroCity_DevonCorp_2F_EventScript_GiveRootFossil
+goto RustboroCity_DevonCorp_2F_EventScript_GiveClawFossil
 end
 = RustboroCity_DevonCorp_2F_EventScript_StillRegenerating
 msgbox	The FOSSIL REGENERATOR, which I made, is incredible.But it has one drawback--it takes a long time to work.So, uh… How about you go for a stroll and look around for a while?

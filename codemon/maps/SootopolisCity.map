@@ -265,6 +265,15 @@ waitstate
 releaseall
 end
 @ Unused
+goto SootopolisCity_Movement_Levitate
+= SootopolisCity_Movement_Levitate
+levitate
+step_end
+@ Unused
+goto SootopolisCity_Movement_DestroyTask
+= SootopolisCity_Movement_DestroyTask
+destroy_extra_task
+step_end
 = SootopolisCity_EventScript_Maxie
 lockall
 goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 5 SootopolisCity_EventScript_MaxieRayquaza
@@ -502,6 +511,7 @@ closemessage
 release
 end
 @ Gives 2 berries daily. First ranges from FIRST_KIRI_BERRY to LAST_KIRI_BERRY second is always Figy or Iapapa
+goto SootopolisCity_EventScript_KiriGiveBerry
 = SootopolisCity_EventScript_KiriGiveBerry
 dotimebasedevents
 special GetPlayerBigGuyGirlString

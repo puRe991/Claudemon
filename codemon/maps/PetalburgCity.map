@@ -255,6 +255,13 @@ applymovement LOCALID_PLAYER PetalburgCity_Movement_PlayerWalkToGym3
 waitmovement 0
 return
 @ Unused
+goto PetalburgCity_Movement_Delay48
+= PetalburgCity_Movement_Delay48
+delay_16
+delay_16
+delay_16
+step_end
+goto PetalburgCity_EventScript_Scott0
 = PetalburgCity_EventScript_LeadPlayerToGym2
 applymovement LOCALID_GYM_BOY PetalburgCity_Movement_BoyWalkToGym2
 applymovement LOCALID_PLAYER PetalburgCity_Movement_PlayerWalkToGym2

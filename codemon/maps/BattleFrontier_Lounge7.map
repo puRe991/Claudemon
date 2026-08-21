@@ -243,6 +243,7 @@ end
 @ VAR_TEMP_C is the scroll multichoice ID
 @ VAR_TEMP_FRONTIER_TUTOR_SELECTION is the move selection
 @ VAR_TEMP_FRONTIER_TUTOR_ID is which move tutor was spoken to
+goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
 = BattleFrontier_Lounge7_EventScript_AlreadyMetRightTutor
 msgbox	Ihihihi!Have you come to learn hard and yet pretty POKéMON moves?
 goto BattleFrontier_Lounge7_EventScript_ChooseRightTutorMove

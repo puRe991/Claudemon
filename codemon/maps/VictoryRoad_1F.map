@@ -205,6 +205,7 @@ end
 msgbox	WALLY: I couldn't beat you today, PLAYER, but one of these days, I'll catch up to you!
 end
 @ This Wally appears and remains at the exit after the Hall of Fame is entered
+goto VictoryRoad_1F_EventScript_ExitWally
 = VictoryRoad_1F_EventScript_Albert
 trainerbattle_single TRAINER_ALBERT VictoryRoad_1F_Text_AlbertIntro VictoryRoad_1F_Text_AlbertDefeat
 msgbox	I lost here…That means I lack the qualifications to become the CHAMPION…

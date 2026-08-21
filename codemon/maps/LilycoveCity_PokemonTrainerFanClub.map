@@ -71,6 +71,7 @@ goto_if_unset FLAG_FAN_CLUB_STRENGTH_SHARED LilycoveCity_PokemonTrainerFanClub_E
 end
 @ The interviewer doesnt count as an individual fan club member
 @ Instead they always ask about whoever the Lass would be interested in if not the player
+goto LilycoveCity_PokemonTrainerFanClub_EventScript_Interview
 = LilycoveCity_PokemonTrainerFanClub_EventScript_Interview
 setvar VAR_0x8005 TVSHOW_FAN_CLUB_SPECIAL
 special InterviewBefore
@@ -157,6 +158,7 @@ msgbox	LilycoveCity_PokemonTrainerFanClub_HopeYouCatchTVSpecial
 release
 end
 @ Shouldnt be reached
+goto LilycoveCity_PokemonTrainerFanClub_EventScript_AlreadyInterviewed2
 = LilycoveCity_PokemonTrainerFanClub_EventScript_ExpertF
 lock
 faceplayer

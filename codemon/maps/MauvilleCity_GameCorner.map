@@ -432,6 +432,14 @@ case 1 MauvilleCity_GameCorner_EventScript_Buy500Coins
 goto MauvilleCity_GameCorner_EventScript_CancelBuyCoins
 end
 @ Unused
+goto MauvilleCity_GameCorner_EventScript_ChooseCoinsDefault500
+= MauvilleCity_GameCorner_EventScript_ChooseCoinsDefault500
+multichoicedefault 15 0 MULTI_GAME_CORNER_COINS 1 FALSE
+switch VAR_RESULT
+case 0 MauvilleCity_GameCorner_EventScript_Buy50Coins
+case 1 MauvilleCity_GameCorner_EventScript_Buy500Coins
+goto MauvilleCity_GameCorner_EventScript_CancelBuyCoins
+end
 = MauvilleCity_GameCorner_EventScript_CancelBuyCoins
 msgbox	Oh… You don't need COINS, then? Good luck on your adventure!
 hidemoneybox

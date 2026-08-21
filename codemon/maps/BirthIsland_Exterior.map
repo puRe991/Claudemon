@@ -85,6 +85,10 @@ end
 @ The actual rock triangle movement is handled by DoDeoxysRockInteraction.
 @ Unless the player has solved the puzzle and needs to encounter Deoxys 
 @ there's nothing else the script needs to do.
+goto BirthIsland_Exterior_EventScript_Failed
+= BirthIsland_Exterior_EventScript_Failed
+release
+end
 = BirthIsland_Exterior_EventScript_Complete
 release
 end
@@ -125,8 +129,5 @@ setvar VAR_0x8004 SPECIES_DEOXYS
 goto Common_EventScript_LegendaryFlewAway
 end
 = BirthIsland_Exterior_EventScript_Progressed
-release
-end
-= BirthIsland_Exterior_EventScript_Failed
 release
 end

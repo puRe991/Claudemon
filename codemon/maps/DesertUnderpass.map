@@ -68,6 +68,11 @@ removeobject LOCALID_UNDERPASS_FOSSIL
 release
 end
 @ Unused
+goto DesertUnderpass_Text_FoundRootFossil
+= DesertUnderpass_Text_FoundRootFossil
+@ Unused
+goto DesertUnderpass_Text_FoundClawFossil
+= DesertUnderpass_Text_FoundClawFossil
 = DesertUnderpass_EventScript_GiveClawFossil
 giveitem ITEM_CLAW_FOSSIL
 removeobject LOCALID_UNDERPASS_FOSSIL

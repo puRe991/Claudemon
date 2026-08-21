@@ -317,6 +317,11 @@ case 2 SlateportCity_Harbor_EventScript_CancelDestinationSelect
 case MULTI_B_PRESSED SlateportCity_Harbor_EventScript_CancelDestinationSelect
 end
 @ Unused. Should be impossible for player to reach Ferry without having received SS Tidal ticket
+goto SlateportCity_Harbor_EventScript_NoTicket
+= SlateportCity_Harbor_EventScript_NoTicket
+msgbox	PLAYER doesn't have the TICKET…I'm terribly sorry.You must have a TICKET to board the ferry.
+release
+end
 = SlateportCity_Harbor_EventScript_BattleFrontier
 msgbox	BATTLE FRONTIER it is, then!
 goto_if_eq VAR_RESULT NO SlateportCity_Harbor_EventScript_ChooseNewDestination

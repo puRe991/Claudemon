@@ -453,6 +453,12 @@ setvar VAR_0x8004 2
 goto Route111_EventScript_ViciousSandstormTrigger
 end
 @ Unused
+goto Route111_EventScript_ViciousSandstormTriggerRight
+= Route111_EventScript_ViciousSandstormTriggerRight
+lockall
+setvar VAR_0x8004 3
+goto Route111_EventScript_ViciousSandstormTrigger
+end
 = Route111_EventScript_ViciousSandstormTrigger
 checkitem ITEM_GO_GOGGLES
 goto_if_eq VAR_RESULT FALSE Route111_EventScript_PreventRouteAccess
@@ -645,6 +651,12 @@ msgbox	Route111_Text_WhatColorBerriesToLookForToday
 release
 end
 @ Unused
+goto Route111_EventScript_ViciousSandstormTriggerUp
+= Route111_EventScript_ViciousSandstormTriggerUp
+lockall
+setvar VAR_0x8004 0
+goto Route111_EventScript_ViciousSandstormTrigger
+end
 = Route111_EventScript_Becky
 trainerbattle_single TRAINER_BECKY Route111_Text_BeckyIntro Route111_Text_BeckyDefeat
 msgbox	Route111_Text_BeckyPostBattle

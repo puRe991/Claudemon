@@ -899,6 +899,24 @@ def parse_map_scripts(map_dir, texts):
             i += 1
         else:
             i += 1
+
+    # pokeemerald scripts commonly chain adjacent "::" labels by falling
+    # through (no goto/return needed -- the next label is just the next
+    # instruction in the assembled ROM). Our engine looks up a script's body
+    # by label and runs only that list, so a label whose body doesn't end in
+    # an unconditional terminator must get an explicit goto to the next
+    # label in file order, or it silently finish()es a call/subscript early
+    # (e.g. a helper that falls through a chain of "goto_if_not_defeated"
+    # checks into the next one, common in gym "count defeated trainers"
+    # helpers) -- which can abort a caller's script before it reaches
+    # whatever comes after the call (a badge's setflag, for instance).
+    TERMINATORS = {"end", "return", "goto"}
+    order = list(scripts.keys())
+    for idx, label in enumerate(order):
+        body = scripts[label]
+        if body and body[-1][0] not in TERMINATORS and idx + 1 < len(order):
+            body.append(["goto", order[idx + 1]])
+
     return scripts, movements
 
 

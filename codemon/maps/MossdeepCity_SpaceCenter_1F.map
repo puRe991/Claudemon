@@ -111,6 +111,7 @@ release
 end
 @ Functionally unused by mistake. The movement is handled anyway after the switch (see above)
 @ This also means VAR_MOSSDEEP_SPACE_CENTER_STAIR_GUARD_STATE can never be 3
+goto MossdeepCity_SpaceCenter_1F_EventScript_MoveGruntFromStairsEast
 = MossdeepCity_SpaceCenter_1F_EventScript_Grunt2Defeated
 msgbox	Please, tell our leader that I never abandoned my post. That I stayed to the bitter end…
 release

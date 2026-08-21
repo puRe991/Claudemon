@@ -129,3 +129,5 @@ goto BattleFrontier_Lounge2_EventScript_GiveAdvice
 end
 = BattleFrontier_Lounge2_Text_SwingByForTheLatestWord
 @ Unused
+goto BattleFrontier_Lounge2_Text_MyInformationsBeenUsefulRight
+= BattleFrontier_Lounge2_Text_MyInformationsBeenUsefulRight

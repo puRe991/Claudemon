@@ -201,7 +201,12 @@ triggers
 18 53 VAR_RUSTBORO_CITY_STATE 7 RustboroCity_EventScript_RivalTrigger6
 19 53 VAR_RUSTBORO_CITY_STATE 7 RustboroCity_EventScript_RivalTrigger7
 movements
+RustboroCity_Movement_EmployeeApproachDown	down,down,down,right,right,end
+RustboroCity_Movement_EmployeeApproachLeft	down,down,right,right,end
 RustboroCity_Movement_EmployeeApproachPlayerDown	down,end
+RustboroCity_Movement_EmployeeApproachPlayerFar	down,down,down,right,right,right,delay,end
+RustboroCity_Movement_EmployeeApproachRight	down,down,right,right,end
+RustboroCity_Movement_EmployeeApproachUp	down,right,right,end
 RustboroCity_Movement_EmployeeChaseGrunt1	right,right,right,right,right,right,delay,end
 RustboroCity_Movement_EmployeeChaseGrunt2	up,up,up,up,up,up,up,end
 RustboroCity_Movement_GruntEscape	delay,delay,right,right,right,right,right,up,up,up,up,up,up,up,up,up,end
@@ -578,6 +583,18 @@ msgbox	Oh, it's you!You're that fantastic TRAINER who helped me in PETALBURG WO
 releaseall
 end
 @ The below movement scripts are either partially or fully duplicated by the movement scripts when the player returns the goods
+goto RustboroCity_EventScript_EmployeeFacePlayerUp1
+= RustboroCity_EventScript_EmployeeFacePlayerUp1
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+return
 = RustboroCity_EventScript_EmployeeApproachPlayerDown1
 applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_WalkInPlaceFasterDown
 waitmovement 0
@@ -611,17 +628,6 @@ waitmovement 0
 applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_Delay48
 waitmovement 0
 applymovement LOCALID_PLAYER Common_Movement_FaceRight
-waitmovement 0
-return
-= RustboroCity_EventScript_EmployeeFacePlayerUp1
-applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_WalkInPlaceFasterUp
-waitmovement 0
-playse SE_PIN
-applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_ExclamationMark
-waitmovement 0
-applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_Delay48
-waitmovement 0
-applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterDown
 waitmovement 0
 return
 = RustboroCity_EventScript_HelpGetGoodsTrigger2
@@ -677,6 +683,61 @@ setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
 releaseall
 end
 @ Unused
+goto RustboroCity_EventScript_ShadyCharacterTookOff
+= RustboroCity_EventScript_ShadyCharacterTookOff
+msgbox	That shady character, I think he took off towards the tunnel over there.
+return
+@ Unused
+goto RustboroCity_EventScript_YouGotItThankYou
+= RustboroCity_EventScript_YouGotItThankYou
+msgbox	Oh! How did it go? The DEVON GOODS?You did! You got them back!You really are a great TRAINER!I know! As my thanks, I'll give you another GREAT BALL!
+return
+@ Unknown unused employee movements. Based on the differences in movement theyre for approaching an object (probably the player) in different positions
+goto RustboroCity_EventScript_EmployeeApproachUp
+= RustboroCity_EventScript_EmployeeApproachUp
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE RustboroCity_Movement_EmployeeApproachUp
+waitmovement 0
+return
+@ Unused see above
+goto RustboroCity_EventScript_EmployeeApproachLeft
+= RustboroCity_EventScript_EmployeeApproachLeft
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE RustboroCity_Movement_EmployeeApproachLeft
+waitmovement 0
+return
+@ Unused see above
+goto RustboroCity_EventScript_EmployeeApproachRight
+= RustboroCity_EventScript_EmployeeApproachRight
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE RustboroCity_Movement_EmployeeApproachRight
+waitmovement 0
+return
+@ Unused see above
+goto RustboroCity_EventScript_EmployeeApproachDown
+= RustboroCity_EventScript_EmployeeApproachDown
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE RustboroCity_Movement_EmployeeApproachDown
+waitmovement 0
+return
+@ Unused similar movement to the above scripts
+goto RustboroCity_EventScript_EmployeeApproachPlayerFar
+= RustboroCity_EventScript_EmployeeApproachPlayerFar
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE RustboroCity_Movement_EmployeeApproachPlayerFar
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+return
+@ Unused
+goto RustboroCity_EventScript_DevonEmployee1
+= RustboroCity_EventScript_DevonEmployee1
+lock
+faceplayer
+goto_if_set FLAG_RECOVERED_DEVON_GOODS RustboroCity_EventScript_ReturnGoodsSpokeToEmployee
+msgbox	That shady character, I think he took off towards the tunnel over there.
+release
+end
+= RustboroCity_EventScript_ReturnGoodsSpokeToEmployee
+waitse
+setvar VAR_TEMP_1 4
+goto RustboroCity_EventScript_ReturnGoods
+end
 = RustboroCity_EventScript_StolenGoodsTrigger3
 lockall
 setobjectxyperm LOCALID_RUSTBORO_DEVON_EMPLOYEE 14 21
@@ -726,18 +787,6 @@ lock
 faceplayer
 msgbox	Oh? Who might you be? You're a new face around these parts.Have you just transferred into the POKéMON TRAINER'S SCHOOL?
 release
-end
-= RustboroCity_EventScript_DevonEmployee1
-lock
-faceplayer
-goto_if_set FLAG_RECOVERED_DEVON_GOODS RustboroCity_EventScript_ReturnGoodsSpokeToEmployee
-msgbox	That shady character, I think he took off towards the tunnel over there.
-release
-end
-= RustboroCity_EventScript_ReturnGoodsSpokeToEmployee
-waitse
-setvar VAR_TEMP_1 4
-goto RustboroCity_EventScript_ReturnGoods
 end
 = RustboroCity_EventScript_LittleGirl
 lock

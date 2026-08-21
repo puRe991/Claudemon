@@ -605,6 +605,7 @@ msgbox	If you want to change your POKéMON's nickname, you'll have to get the NA
 release
 end
 @ Unclear if the text here was meant to be different but its not
+goto SlateportCity_EventScript_ManiacSternInterview
 = SlateportCity_EventScript_ManiacSternInterview
 msgbox	If you want to change your POKéMON's nickname, you'll have to get the NAME RATER to help you.
 release

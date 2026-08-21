@@ -55,6 +55,11 @@ objscripts
 1 BattleFrontier_BattlePyramidLobby_EventScript_HintGiver
 2 BattleFrontier_BattlePyramidLobby_EventScript_Woman
 3 BattleFrontier_BattlePyramidLobby_EventScript_FatMan
+movements
+BattleFrontier_BattlePyramidLobby_Movement_AttendantMoveAside	right,face_left,end
+BattleFrontier_BattlePyramidLobby_Movement_AttendantWalkToPanel	up,up,up,up,up,up,up,face_down,end
+BattleFrontier_BattlePyramidLobby_Movement_PlayerStepOnPanel	up,up,end
+BattleFrontier_BattlePyramidLobby_Movement_PlayerWalkToPanel	up,up,up,up,up,up,up,end
 scriptdefs
 = BattleFrontier_BattlePyramidLobby_EventScript_FatMan
 msgbox	Awaaaaaaarrrrgh!I had a whole lot of items, but I lost them all when I lost!Awaaaaaaarrrrgh!
@@ -80,6 +85,7 @@ case FRONTIER_LVL_TENT BattleFrontier_BattlePyramidLobby_EventScript_NoHint
 case MULTI_B_PRESSED BattleFrontier_BattlePyramidLobby_EventScript_NoHint
 return
 @ Shouldnt occur
+goto BattleFrontier_BattlePyramidLobby_EventScript_NoHint
 = BattleFrontier_BattlePyramidLobby_EventScript_NoHint
 return
 = BattleFrontier_BattlePyramidLobby_EventScript_GiveHintLvOpen
@@ -196,5 +202,118 @@ setvar VAR_FRONTIER_FACILITY FRONTIER_FACILITY_PYRAMID
 setvar VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES
 special SavePlayerParty
 msgbox	Where the courage of TRAINERS is put to the test!Welcome to the BATTLE PYRAMID!I am your guide to the Battle Quest.
+goto BattleFrontier_BattlePyramidLobby_EventScript_AskTakeChallenge
+= BattleFrontier_BattlePyramidLobby_EventScript_AskTakeChallenge
+message BattleFrontier_BattlePyramidLobby_Text_EmbarkOnChallenge
+waitmessage
+multichoice 17 6 MULTI_CHALLENGEINFO FALSE
+switch VAR_RESULT
+case 0 BattleFrontier_BattlePyramidLobby_EventScript_TryEnterChallenge
+case 1 BattleFrontier_BattlePyramidLobby_EventScript_ExplainChallenge
+case 2 BattleFrontier_BattlePyramidLobby_EventScript_CancelChallenge
+case MULTI_B_PRESSED BattleFrontier_BattlePyramidLobby_EventScript_CancelChallenge
+goto BattleFrontier_BattlePyramidLobby_EventScript_TryEnterChallenge
+= BattleFrontier_BattlePyramidLobby_EventScript_TryEnterChallenge
+message BattleFrontier_BattlePyramidLobby_Text_WhichLevelMode
+waitmessage
+multichoice 17 6 MULTI_LEVEL_MODE FALSE
+switch VAR_RESULT
+case FRONTIER_LVL_TENT BattleFrontier_BattlePyramidLobby_EventScript_CancelChallenge
+case MULTI_B_PRESSED BattleFrontier_BattlePyramidLobby_EventScript_CancelChallenge
+frontier_checkineligible
+goto_if_eq VAR_0x8004 TRUE BattleFrontier_BattlePyramidLobby_EventScript_NotEnoughValidMons
+frontier_set FRONTIER_DATA_LVL_MODE VAR_RESULT
+msgbox	Very good. Now, please select the three POKéMON you wish to accompany you.
+fadescreen FADE_TO_BLACK
+call BattleFrontier_EventScript_GetLvlMode
+copyvar VAR_0x8004 VAR_RESULT
+setvar VAR_0x8005 FRONTIER_PARTY_SIZE
+special ChoosePartyForBattleFrontier
+goto_if_eq VAR_RESULT 0 BattleFrontier_BattlePyramidLobby_EventScript_LoadPartyAndCancelChallenge
+msgbox	Before you enter the BATTLE PYRAMID, the game must be saved. Is that okay?
+switch VAR_RESULT
+case NO BattleFrontier_BattlePyramidLobby_EventScript_LoadPartyAndCancelChallenge
+case YES BattleFrontier_BattlePyramidLobby_EventScript_SaveBeforeChallenge
+case MULTI_B_PRESSED BattleFrontier_BattlePyramidLobby_EventScript_LoadPartyAndCancelChallenge
+goto BattleFrontier_BattlePyramidLobby_EventScript_SaveBeforeChallenge
+= BattleFrontier_BattlePyramidLobby_EventScript_SaveBeforeChallenge
+setvar VAR_TEMP_CHALLENGE_STATUS 0
+frontier_set FRONTIER_DATA_SELECTED_MON_ORDER
+pyramid_init
+pyramid_set PYRAMID_DATA_WIN_STREAK_ACTIVE TRUE
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS CHALLENGE_STATUS_SAVING
+frontier_set FRONTIER_DATA_PAUSED FALSE
+pyramid_seedfloor
+pyramid_settrainers
+special LoadPlayerParty
+closemessage
+delay 2
+call Common_EventScript_SaveGame
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+goto_if_eq VAR_RESULT 0 BattleFrontier_BattlePyramidLobby_EventScript_CancelChallengeSaveFailed
+goto BattleFrontier_BattlePyramidLobby_EventScript_EnterChallenge
+= BattleFrontier_BattlePyramidLobby_EventScript_EnterChallenge
+special SavePlayerParty
+frontier_setpartyorder FRONTIER_PARTY_SIZE
+msgbox	Very good. I will now show you into the BATTLE PYRAMID.
+closemessage
+call BattleFrontier_BattlePyramidLobby_EventScript_WalkToPanelAndReceiveBag
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
+setvar VAR_RESULT 0
+special HealPlayerParty
+warp MAP_BATTLE_FRONTIER_BATTLE_PYRAMID_FLOOR 1 1
+setvar VAR_TEMP_CHALLENGE_STATUS 0
+waitstate
+end
+= BattleFrontier_BattlePyramidLobby_EventScript_WalkToPanelAndReceiveBag
+applymovement LOCALID_PYRAMID_LOBBY_ATTENDANT BattleFrontier_BattlePyramidLobby_Movement_AttendantWalkToPanel
+applymovement LOCALID_PLAYER BattleFrontier_BattlePyramidLobby_Movement_PlayerWalkToPanel
+waitmovement 0
+msgbox	We will hold your BAG for safekeeping, PLAYER, while you are exploring.
+pyramid_get PYRAMID_DATA_WIN_STREAK
+goto_if_eq VAR_RESULT 0 BattleFrontier_BattlePyramidLobby_EventScript_ReceiveNewBattleBag
+msgbox	In exchange, please take this BATTLE BAG, the one you used previously.
+goto BattleFrontier_BattlePyramidLobby_EventScript_ReceiveBattleBag
+= BattleFrontier_BattlePyramidLobby_EventScript_ReceiveBattleBag
+message BattleFrontier_BattlePyramidLobby_Text_ExchangedBagForBattleBag
+waitmessage
+playse SE_EXP_MAX
+waitse
+msgbox	When you step on this floor panel, you will be transported to a higher floor in the PYRAMID.I hope for your sake that your quest goes safely!
+closemessage
+applymovement LOCALID_PYRAMID_LOBBY_ATTENDANT BattleFrontier_BattlePyramidLobby_Movement_AttendantMoveAside
+waitmovement 0
+applymovement LOCALID_PLAYER BattleFrontier_BattlePyramidLobby_Movement_PlayerStepOnPanel
+waitmovement 0
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_ReceiveNewBattleBag
+msgbox	In exchange, please take this BATTLE BAG.
+goto BattleFrontier_BattlePyramidLobby_EventScript_ReceiveBattleBag
+= BattleFrontier_BattlePyramidLobby_EventScript_CancelChallengeSaveFailed
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
+goto BattleFrontier_BattlePyramidLobby_EventScript_CancelChallenge
+= BattleFrontier_BattlePyramidLobby_EventScript_CancelChallenge
+msgbox	We await your challenge in the future!
+goto BattleFrontier_BattlePyramidLobby_EventScript_EndCancelChallenge
+= BattleFrontier_BattlePyramidLobby_EventScript_EndCancelChallenge
+release
+end
+= BattleFrontier_BattlePyramidLobby_EventScript_LoadPartyAndCancelChallenge
+special LoadPlayerParty
+goto BattleFrontier_BattlePyramidLobby_EventScript_CancelChallenge
+= BattleFrontier_BattlePyramidLobby_EventScript_NotEnoughValidMons
+switch VAR_RESULT
+case FRONTIER_LVL_50 BattleFrontier_BattlePyramidLobby_EventScript_NotEnoughValidMonsLv50
+case FRONTIER_LVL_OPEN BattleFrontier_BattlePyramidLobby_EventScript_NotEnoughValidMonsLvOpen
+goto BattleFrontier_BattlePyramidLobby_EventScript_NotEnoughValidMonsLv50
+= BattleFrontier_BattlePyramidLobby_EventScript_NotEnoughValidMonsLv50
+msgbox	A slight problem, adventurer!You seem to not have the three POKéMON qualified for the challenge.The three POKéMON must be different and each no higher than Level 50.Please also remember to take all items from your POKéMON.EGGS ineligible.When you are ready, please have a word with me.
+goto BattleFrontier_BattlePyramidLobby_EventScript_EndCancelChallenge
+= BattleFrontier_BattlePyramidLobby_EventScript_NotEnoughValidMonsLvOpen
+msgbox	A slight problem, adventurer!You seem to not have the three POKéMON qualified for the challenge.Please also remember to take all items from your POKéMON.EGGS ineligible.When you are ready, please have a word with me.
+goto BattleFrontier_BattlePyramidLobby_EventScript_EndCancelChallenge
+= BattleFrontier_BattlePyramidLobby_EventScript_ExplainChallenge
+msgbox	The Battle Quest is a battling event in which you must explore the PYRAMID and try to reach the top.In the PYRAMID are seven floors of mazes, all of them filled with not only skilled TRAINERS but also wild POKéMON.You must enter with three POKéMON, none of them holding an item.On your ascent, you will be provided with a BATTLE BAG for items.If you fail in your challenge, any item placed in the BATTLE BAG disappears.If you want to interrupt your challenge, you must select “REST” and save the game.If you don't save before interrupting, you will be disqualified.
+goto BattleFrontier_BattlePyramidLobby_EventScript_AskTakeChallenge
 signs
 1 12	The Battle Quest rules are listed.

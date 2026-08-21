@@ -129,6 +129,7 @@ switch VAR_RESULT
 case 1 MossdeepCity_SpaceCenter_2F_EventScript_DefeatedMaxieTabitha
 fadescreen FADE_TO_BLACK
 special SetCB2WhiteOut
+goto MossdeepCity_SpaceCenter_2F_EventScript_DefeatedMaxieTabitha
 = MossdeepCity_SpaceCenter_2F_EventScript_DefeatedMaxieTabitha
 msgbox	MAXIE: We failed to make the volcano erupt…We failed to control GROUDON after we had awoken it…Is our goal to expand the land misguided?… … … … … … … … … … … …If… If we, TEAM MAGMA, are wrong… … … … … … …Then might TEAM AQUA's goal to expand the sea also be equally misguided?
 closemessage
@@ -238,6 +239,7 @@ msgbox	TEAM MAGMA… Do they want to go to space, too?
 release
 end
 @ Battle for the below 3 grunts is handled in MossdeepCity_SpaceCenter_2F_EventScript_BattleThreeMagmaGrunts
+goto MossdeepCity_SpaceCenter_2F_EventScript_Grunt6
 = MossdeepCity_SpaceCenter_2F_EventScript_RichBoyNormal
 msgbox	I wish ordinary people could go into space one day…
 release

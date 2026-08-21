@@ -103,6 +103,18 @@ waitmovement 0
 freerotatingtilepuzzle
 end
 @ Unused
+goto Route110_TrickHousePuzzle7_EventScript_RedButton
+= Route110_TrickHousePuzzle7_EventScript_RedButton
+playse SE_SWITCH
+waitse
+playse SE_REPEL
+initrotatingtilepuzzle TRUE
+moverotatingtileobjects 4
+waitmovement 0
+turnrotatingtileobjects
+waitmovement 0
+freerotatingtilepuzzle
+end
 = Route110_TrickHousePuzzle7_EventScript_GreenButton
 playse SE_SWITCH
 waitse

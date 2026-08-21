@@ -40,6 +40,11 @@ msgbox	It's a letter.… … … … … …To PLAYER…I've decided to do a 
 releaseall
 end
 @ Unused leftover from RS
+goto MossdeepCity_StevensHouse_EventScript_DiveItemBall
+= MossdeepCity_StevensHouse_EventScript_DiveItemBall
+finditem ITEM_HM_DIVE
+setflag FLAG_RECEIVED_HM_DIVE
+end
 = MossdeepCity_StevensHouse_EventScript_BeldumPokeball
 lockall
 msgbox	PLAYER checked the POKé BALL.It contained the POKéMON BELDUM.Take the POKé BALL?

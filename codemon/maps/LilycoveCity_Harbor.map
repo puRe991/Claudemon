@@ -87,6 +87,7 @@ goto_if_ne VAR_TEMP_B 0 LilycoveCity_Harbor_EventScript_MultipleEventTicketsFirs
 goto LilycoveCity_Harbor_EventScript_NoFirstTimeEventTickets
 end
 @ First goto_if_eq is unnecessary; identical scripts
+goto LilycoveCity_Harbor_EventScript_NoFirstTimeEventTickets
 = LilycoveCity_Harbor_EventScript_NoFirstTimeEventTickets
 goto_if_eq VAR_TEMP_A 0 LilycoveCity_Harbor_EventScript_NoEventTickets
 msgbox	Hello, are you here for the ferry? May I see your TICKET?
@@ -187,6 +188,32 @@ waitmessage
 goto LilycoveCity_Harbor_EventScript_FerryRegularLocationSelect
 end
 @ Unused
+goto LilycoveCity_Harbor_EventScript_NoTicket
+= LilycoveCity_Harbor_EventScript_NoTicket
+msgbox	PLAYER doesn't have the TICKET…I'm terribly sorry.You must have a TICKET to board the ferry.
+release
+end
+@ Unused
+goto LilycoveCity_Harbor_EventScript_GoToSlateportUnused
+= LilycoveCity_Harbor_EventScript_GoToSlateportUnused
+msgbox	SLATEPORT CITY it is, then!
+goto_if_eq VAR_RESULT NO LilycoveCity_Harbor_EventScript_FerryDestinationChangeMind
+setvar VAR_SS_TIDAL_STATE SS_TIDAL_BOARD_LILYCOVE
+call LilycoveCity_Harbor_EventScript_BoardFerry
+warp MAP_SS_TIDAL_CORRIDOR 1 10
+waitstate
+release
+end
+@ Unused
+goto LilycoveCity_Harbor_EventScript_GoToBattleFrontierUnused
+= LilycoveCity_Harbor_EventScript_GoToBattleFrontierUnused
+msgbox	BATTLE FRONTIER it is, then!
+goto_if_eq VAR_RESULT NO LilycoveCity_Harbor_EventScript_FerryDestinationChangeMind
+call LilycoveCity_Harbor_EventScript_BoardFerry
+warp MAP_BATTLE_FRONTIER_OUTSIDE_WEST 19 67
+waitstate
+release
+end
 = LilycoveCity_Harbor_EventScript_MultipleEventTicketsFirstTime
 msgbox	EventTicket_Text_ThatPass
 closemessage

@@ -112,6 +112,7 @@ releaseall
 end
 = TrainerHill_Entrance_EventScript_AllFloorsUsed
 msgbox	Let's see… The TRAINERS here now are…There appear to be TRAINERS gathered in every room.
+goto TrainerHill_Entrance_EventScript_AskChallengeTrainers
 = TrainerHill_Entrance_EventScript_SaveGame
 msgbox	Is this your first visit here?Before you enter, please save your game.
 trainerhill_setsaved
@@ -179,3 +180,4 @@ release
 end
 = TrainerHill_Entrance_EventScript_ThanksForPlaying
 msgbox	Thank you for playing!
+goto TrainerHill_Entrance_EventScript_AttendantEnd
