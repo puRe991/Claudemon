@@ -51,6 +51,7 @@ npcs
 people_girl_3 16 11 W static 0
 people_mart_employee 13 7 S static 0
 people_maniac 8 9 E static 0
+people_may_walking 11 19 N static FLAG_HIDE_OLDALE_TOWN_RIVAL
 dialogs
 0	I want to take a rest, so I'm saving my progress.
 1	Hi! I work at a POKéMON MART.Can I get you to come with me?
@@ -59,6 +60,7 @@ objscripts
 0 OldaleTown_EventScript_Girl
 1 OldaleTown_EventScript_MartEmployee
 2 OldaleTown_EventScript_FootprintsMan
+3 OldaleTown_EventScript_Rival
 triggers
 0 10 VAR_OLDALE_TOWN_STATE 0 OldaleTown_EventScript_BlockedPath
 8 19 VAR_OLDALE_RIVAL_STATE 1 OldaleTown_EventScript_RivalTrigger1
@@ -66,6 +68,7 @@ triggers
 10 19 VAR_OLDALE_RIVAL_STATE 1 OldaleTown_EventScript_RivalTrigger3
 movements
 Common_Movement_FaceOriginalDirection	face_down,end
+Common_Movement_FacePlayer	face_down,end
 Common_Movement_WalkInPlaceFasterRight	delay,end
 OldaleTown_Movement_BackUp	up,delay,delay,right,delay,end
 OldaleTown_Movement_EmployeeEast	up,up,up,up,up,up,up,delay,end
@@ -153,6 +156,13 @@ closemessage
 applymovement LOCALID_FOOTPRINTS_MAN OldaleTown_Movement_ReturnToOriginalPosition
 waitmovement 0
 releaseall
+end
+= OldaleTown_EventScript_Rival
+lockall
+applymovement LOCALID_OLDALE_RIVAL Common_Movement_FacePlayer
+waitmovement 0
+setvar VAR_0x8009 0
+goto OldaleTown_EventScript_ShowRivalMessage
 end
 = OldaleTown_EventScript_FootprintsMan
 lock

@@ -1230,16 +1230,25 @@ def cmd_world(src, limit=None):
             if not (0 <= x < w and 0 <= y < h):
                 continue
             gid = oe.get("graphics_id", "")
-            # OBJ_EVENT_GFX_VAR_* are decoration placeholders: player-placed
-            # furniture, hidden until decorated. They are never real NPCs, so
-            # skip them (otherwise every bedroom fills with generic sprites).
+            scr = oe.get("script", "") or ""
+            # OBJ_EVENT_GFX_VAR_* is a runtime-substituted sprite id. Mostly
+            # that's decoration placeholders (player-placed secret-base
+            # furniture, hidden until decorated, with no script) -- skip
+            # those, or every bedroom fills with generic sprites. But the
+            # same trick draws the story RIVAL outdoors (their sprite swaps
+            # with the player's chosen gender via VAR_OBJ_GFX_ID_0), and
+            # those DO have a real script (e.g. Route103_EventScript_Rival,
+            # the post-starter rival battle that unlocks the Pokedex) --
+            # keep those, drawn as May to match checkplayergender always
+            # reporting MALE (see ScriptVM::pump's "special checkplayergender").
             if "OBJ_EVENT_GFX_VAR_" in gid:
-                continue
+                if not scr or scr == "0x0":
+                    continue
+                gid = "OBJ_EVENT_GFX_RIVAL_MAY_NORMAL"
             sheet = resolve(gid)
             if not sheet:
                 continue
             move, face = movement_token(oe.get("movement_type"))
-            scr = oe.get("script", "") or ""
             dlg = dialogs.get(scr, "")
             raw_flag = oe.get("flag") or ""
             hide_flag = raw_flag if raw_flag and raw_flag != "0x0" else "-"

@@ -94,7 +94,14 @@ void ScriptVM::finish() {
 void ScriptVM::resolve_starter(const std::string& species) {
 	if (this->st != WAIT_STARTER) return;
 	if (this->bdata && this->party) *this->party = this->bdata->make_mon(species, 5);
-	if (this->state) this->state->set_flag("FLAG_SYS_POKEMON_GET");
+	if (this->state) {
+		this->state->set_flag("FLAG_SYS_POKEMON_GET");
+		// pokeemerald's VAR_STARTER_MON (0=Treecko, 1=Torchic, 2=Mudkip):
+		// the Route 103 rival battle switches on this to field the right
+		// counter-type starter against whichever one the player picked.
+		int idx = (species == "TORCHIC") ? 1 : (species == "MUDKIP") ? 2 : 0;
+		this->state->set_var("VAR_STARTER_MON", idx);
+	}
 	this->st = RUN;
 	this->pump();
 }
