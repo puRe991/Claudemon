@@ -68,6 +68,8 @@ triggers
 6 17 VAR_ROUTE101_STATE 2 Route101_EventScript_PreventExitWest
 6 18 VAR_ROUTE101_STATE 2 Route101_EventScript_PreventExitWest
 7 13 VAR_ROUTE101_STATE 2 Route101_EventScript_PreventExitNorth
+onload
+VAR_ROUTE101_STATE 0 Route101_EventScript_HideMapNamePopup
 movements
 Common_Movement_WalkInPlaceFasterLeft	delay,end
 Common_Movement_WalkInPlaceFasterRight	delay,end
@@ -83,6 +85,10 @@ Route101_Movement_ZigzagoonChase1	up,right,right,right,right,up,end
 Route101_Movement_ZigzagoonChaseInCircles	up,up,up,right,right,right,down,down,left,left,left,up,up,right,right,right,down,down,left,left,left,up,up,right,right,right,down,down,left,left,end
 Route101_Movement_ZigzagoonFaceBirch	delay,delay,delay,delay,end
 scriptdefs
+= Route101_EventScript_HideMapNamePopup
+setflag FLAG_HIDE_MAP_NAME_POPUP
+setvar VAR_ROUTE101_STATE 1
+end
 = Route101_EventScript_PreventExitNorth
 lockall
 msgbox	Wh-Where are you going?! Don't leave me like this!
@@ -199,7 +205,7 @@ clearflag FLAG_HIDE_MAP_NAME_POPUP
 checkplayergender
 call_if_eq VAR_RESULT MALE Route101_EventScript_HideMayInBedroom
 call_if_eq VAR_RESULT FEMALE Route101_EventScript_HideBrendanInBedroom
-warp MAP_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB 6 5
+warp LittlerootTown_ProfessorBirchsLab 6 5
 waitstate
 release
 end

@@ -98,12 +98,26 @@ objscripts
 3 SafariZone_South_EventScript_Youngster
 4 SafariZone_South_EventScript_ConstructionWorker1
 5 SafariZone_South_EventScript_ConstructionWorker2
+onload
+VAR_SAFARI_ZONE_STATE 2 SafariZone_South_EventScript_EnterSafariZone
 movements
+SafariZone_South_Movement_ExitAttendantBlockDoor	right,delay,end
 SafariZone_South_Movement_MoveExitAttendantEast	down,delay,end
 SafariZone_South_Movement_MoveExitAttendantNorth	left,delay,end
+SafariZone_South_Movement_PlayerEnter	down,end
 SafariZone_South_Movement_PlayerExitEast	right,delay,end
 SafariZone_South_Movement_PlayerExitNorth	up,end
 scriptdefs
+= SafariZone_South_EventScript_EnterSafariZone
+lockall
+applymovement LOCALID_PLAYER SafariZone_South_Movement_PlayerEnter
+waitmovement 0
+applymovement LOCALID_SAFARI_EXIT_ATTENDANT SafariZone_South_Movement_ExitAttendantBlockDoor
+waitmovement 0
+setobjectxyperm LOCALID_SAFARI_EXIT_ATTENDANT 32 34
+setvar VAR_SAFARI_ZONE_STATE 0
+releaseall
+end
 = SafariZone_South_EventScript_ConstructionWorker2
 msgbox	SafariZone_South_Text_AreaOffLimits2
 end
@@ -145,7 +159,7 @@ end
 = SafariZone_South_EventScript_Exit
 setvar VAR_SAFARI_ZONE_STATE 1
 special ExitSafariMode
-warpdoor MAP_ROUTE121_SAFARI_ZONE_ENTRANCE 2 5
+warpdoor Route121_SafariZoneEntrance 2 5
 waitstate
 end
 = SafariZone_South_EventScript_ExitEarlyNorth

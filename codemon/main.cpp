@@ -275,6 +275,18 @@ static bool interact(Session* s, DialogBox& box, Audio* audio, ScriptVM& vm) {
     return false;
 }
 
+// pokeemerald's MAP_SCRIPT_ON_FRAME_TABLE: on entering a map, run any
+// var-gated one-time setup script (e.g. Route 101 advancing
+// VAR_ROUTE101_STATE 0->1, which the Birch-rescue coord trigger waits on).
+// These are simple setflag/setvar scripts with no blocking ops, so running
+// them inline to completion is safe.
+static void run_load_triggers(Map* map, GameState& gs, ScriptVM& vm) {
+    for (const LoadTrigger& t : map->on_load_triggers()) {
+        if (gs.get_var(t.var) == std::atoi(t.val.c_str()))
+            vm.start(t.label, nullptr);
+    }
+}
+
 // After a real step, run a coord_event trigger if the player is on one and its
 // variable condition matches.
 static void check_trigger(Session* s, ScriptVM& vm, GameState& gs) {
@@ -462,6 +474,7 @@ int main() {
     ScriptVM vm;
     vm.set_battle_data(&bdata, &team[0]);
     vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player);
+    run_load_triggers(sess->map, gs, vm);
     Menu menu;
     menu.load_font();
     menu.configure(&gs, &team, &pc_box, &bdata);
@@ -497,6 +510,23 @@ int main() {
     auto on_map_change = [&](const std::string& path) {
         banner = pretty_map(path); banner_t = 2.2f; fade = 1.0f;
         menu.set_location(banner);
+    };
+    // A script-driven `warp` (e.g. Route 101 Birch's bag sending the player
+    // to his lab after picking a starter) swaps the session the same way
+    // stepping onto a warp tile does.
+    auto do_pending_warp = [&](Audio* aud) {
+        if (!vm.has_pending_warp()) return;
+        std::string dest; int wx, wy;
+        vm.get_pending_warp(dest, wx, wy);
+        vm.clear_pending_warp();
+        if (dest == "-") return;
+        Session* ns = load_session("maps/" + dest + ".map", wx, wy, &gs);
+        if (!ns->map->ready()) { free_session(ns); return; }
+        free_session(sess);
+        sess = ns;
+        vm.configure(sess->map, &gs, &box, &battle, aud, sess->player);
+        run_load_triggers(sess->map, gs, vm);
+        on_map_change(sess->path);
     };
     menu.set_location(banner);
 
@@ -543,6 +573,7 @@ int main() {
                             sess = player_step(sess, char_to_dir(tok), nullptr, &gs);
                             if (sess != before) {
                                 vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player);
+    run_load_triggers(sess->map, gs, vm);
                                 on_map_change(sess->path);
                             } else if (sess->player->get_tile_x() != pbx ||
                                        sess->player->get_tile_y() != pby) {
@@ -552,10 +583,18 @@ int main() {
                         }
                         if (walk.empty()) tick_npcs(sess, rng);
                     }
+                    // Route 101's Birch's-bag script blocks on `special
+                    // ChooseStarter`; show the real chooser and feed the
+                    // pick back so the script (and its Pokedex/heal/warp
+                    // follow-up) continues.
                     if (starter.done()) {
-                        team[0] = bdata.make_mon(starter.chosen(), 5);
+                        if (vm.wants_starter()) vm.resolve_starter(starter.chosen());
+                        else team[0] = bdata.make_mon(starter.chosen(), 5);
                         starter.ack();
+                    } else if (!starter.active() && vm.wants_starter()) {
+                        starter.open();
                     }
+                    do_pending_warp(nullptr);
                     battle.tick(0.13f);
                     games.tick(0.13f);
                     if (banner_t > 0.f) banner_t -= 0.13f;
@@ -590,6 +629,7 @@ int main() {
     // --- interactive game --------------------------------------------------
     Audio audio; audio.load("assets");
     vm.configure(sess->map, &gs, &box, &battle, &audio, sess->player);
+    run_load_triggers(sess->map, gs, vm);
     Window scr(win_w, win_h, "Codemon!");
 
     sf::Clock clock; float npc_accum = 0.f;
@@ -656,6 +696,7 @@ int main() {
                         sess = player_step(sess, dir, &audio, &gs);
                         if (sess != before) {
                             vm.configure(sess->map, &gs, &box, &battle, &audio, sess->player);
+    run_load_triggers(sess->map, gs, vm);
                             on_map_change(sess->path);
                         } else if (sess->player->get_tile_x() != pbx ||
                                    sess->player->get_tile_y() != pby) {
@@ -667,9 +708,13 @@ int main() {
             }
         }
         if (starter.done()) {
-            team[0] = bdata.make_mon(starter.chosen(), 5);
+            if (vm.wants_starter()) vm.resolve_starter(starter.chosen());
+            else team[0] = bdata.make_mon(starter.chosen(), 5);
             starter.ack();
+        } else if (!starter.active() && vm.wants_starter()) {
+            starter.open();
         }
+        do_pending_warp(&audio);
         float dt = clock.restart().asSeconds();
         if (vm.running()) vm.update(dt);
         battle.tick(dt);

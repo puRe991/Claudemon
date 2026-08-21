@@ -36,10 +36,24 @@ dialogs
 0	The CABLE CAR is ready to go up. Would you like to be on it?
 objscripts
 0 Route112_CableCarStation_EventScript_Attendant
+onload
+VAR_CABLE_CAR_STATION_STATE 2 Route112_CableCarStation_EventScript_ExitCableCar
 movements
 Route112_CableCarStation_Movement_BoardCableCar	up,up,up,delay,end
+Route112_CableCarStation_Movement_ExitCableCar	down,down,down,delay,end
+Route112_CableCarStation_Movement_FollowPlayerOutFromCableCar	delay,left,down,down,end
 Route112_CableCarStation_Movement_LeadPlayerToCableCar	up,up,right,delay,end
 scriptdefs
+= Route112_CableCarStation_EventScript_ExitCableCar
+lockall
+applymovement LOCALID_PLAYER Route112_CableCarStation_Movement_ExitCableCar
+applymovement LOCALID_ROUTE112_CABLE_CAR_ATTENDANT Route112_CableCarStation_Movement_FollowPlayerOutFromCableCar
+waitmovement 0
+setvar VAR_CABLE_CAR_STATION_STATE 0
+setobjectxyperm LOCALID_ROUTE112_CABLE_CAR_ATTENDANT 6 7
+setobjectmovementtype LOCALID_ROUTE112_CABLE_CAR_ATTENDANT MOVEMENT_TYPE_FACE_DOWN
+releaseall
+end
 = Route112_CableCarStation_EventScript_Attendant
 lock
 faceplayer

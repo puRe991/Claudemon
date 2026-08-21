@@ -33,7 +33,40 @@ objscripts
 0 MossdeepCity_StevensHouse_EventScript_Steven
 1 MossdeepCity_StevensHouse_EventScript_BeldumPokeball
 2 MossdeepCity_StevensHouse_EventScript_Letter
+onload
+VAR_STEVENS_HOUSE_STATE 1 MossdeepCity_StevensHouse_EventScript_StevenGivesDive
+movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+MossdeepCity_StevensHouse_Movement_StevenApproachPlayer	left,left,left,left,left,left,delay,end
+MossdeepCity_StevensHouse_Movement_StevenReturn	up,right,right,right,delay,end
 scriptdefs
+= MossdeepCity_StevensHouse_EventScript_StevenGivesDive
+lockall
+applymovement LOCALID_STEVENS_HOUSE_STEVEN Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_STEVENS_HOUSE_STEVEN Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_STEVENS_HOUSE_STEVEN Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_STEVENS_HOUSE_STEVEN MossdeepCity_StevensHouse_Movement_StevenApproachPlayer
+waitmovement 0
+msgbox	STEVEN: PLAYER…As you can see, there's not much here, but this is my home.Thank you for all that you've done.This is my token of appreciation. It's the HIDDEN MACHINE DIVE.No need to be shy--you've earned this HM.
+giveitem ITEM_HM_DIVE
+setflag FLAG_RECEIVED_HM_DIVE
+setflag FLAG_OMIT_DIVE_FROM_STEVEN_LETTER
+msgbox	STEVEN: While you're using SURF, you should notice dark patches of water.Use DIVE if you come to deep water like it. You'll drop to the seafloor.When you want to come back up, use DIVE again.In some places, it won't be possible for you to surface, though.
+closemessage
+delay 20
+applymovement LOCALID_STEVENS_HOUSE_STEVEN MossdeepCity_StevensHouse_Movement_StevenReturn
+waitmovement 0
+setflag FLAG_HIDE_MOSSDEEP_CITY_SCOTT
+setflag FLAG_HIDE_SEAFLOOR_CAVERN_ENTRANCE_AQUA_GRUNT
+setvar VAR_STEVENS_HOUSE_STATE 2
+releaseall
+end
 = MossdeepCity_StevensHouse_EventScript_Letter
 lockall
 msgbox	It's a letter.… … … … … …To PLAYER…I've decided to do a little soul- searching and train on the road.I don't plan to return home for some time.I have a favor to ask of you.I want you to take the POKé BALL on the desk.Inside it is a BELDUM, my favorite POKéMON.I'm counting on you.May our paths cross someday.STEVEN STONE

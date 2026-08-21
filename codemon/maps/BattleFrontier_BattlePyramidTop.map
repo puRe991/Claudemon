@@ -57,6 +57,9 @@ objscripts
 0 BattleFrontier_BattlePyramidTop_EventScript_Attendant
 triggers
 17 9 VAR_TEMP_2 0 BattleFrontier_BattlePyramidTop_EventScript_BattleBrandon
+onload
+VAR_TEMP_PLAYING_PYRAMID_MUSIC 0 BattleFrontier_BattlePyramidTop_EventScript_PlayPyramidMusic
+VAR_TEMP_F 1 BattleFrontier_BattlePyramidTop_EventScript_ShowMapName
 movements
 BattleFrontier_BattlePyramidTop_Movement_AttendantBlockPath	left,delay,end
 BattleFrontier_BattlePyramidTop_Movement_AttendantMoveAside	right,delay,end
@@ -64,6 +67,14 @@ BattleFrontier_BattlePyramidTop_Movement_BrandonApproachPlayer	down,end
 BattleFrontier_BattlePyramidTop_Movement_CameraPanUp	up,up,delay,end
 BattleFrontier_BattlePyramidTop_Movement_PlayerClimbToTop	up,up,up,up,up,delay,end
 scriptdefs
+= BattleFrontier_BattlePyramidTop_EventScript_ShowMapName
+special ShowMapNamePopup
+setvar VAR_TEMP_F 0
+end
+= BattleFrontier_BattlePyramidTop_EventScript_PlayPyramidMusic
+playbgm MUS_B_PYRAMID_TOP FALSE
+setvar VAR_TEMP_PLAYING_PYRAMID_MUSIC 1
+end
 = BattleFrontier_BattlePyramidTop_EventScript_BattleBrandon
 lockall
 switch VAR_TEMP_C
@@ -102,7 +113,7 @@ msgbox	Young explorer! I look forward to our next meeting!
 goto BattleFrontier_BattlePyramidTop_EventScript_WarpToLobbyWon
 = BattleFrontier_BattlePyramidTop_EventScript_WarpToLobbyWon
 frontier_set FRONTIER_DATA_CHALLENGE_STATUS CHALLENGE_STATUS_WON
-warp MAP_BATTLE_FRONTIER_BATTLE_PYRAMID_LOBBY 7 13
+warp BattleFrontier_BattlePyramidLobby 7 13
 waitstate
 end
 = BattleFrontier_BattlePyramidTop_EventScript_DoBrandonBattle

@@ -304,6 +304,8 @@ triggers
 33 45 0 0 Route110_HiddenItem_33_45
 4 35 0 0 Route110_HiddenItem_4_35
 37 67 0 0 Route110_HiddenItem_37_67
+onload
+VAR_CYCLING_CHALLENGE_STATE 1 Route110_EventScript_BeginCylcingRoadChallenge
 movements
 Common_Movement_Delay48	delay,delay,delay,end
 Common_Movement_ExclamationMark	delay,end
@@ -327,6 +329,10 @@ Route110_Movement_RivalExit1	up,up,up,up,up,up,up,end
 Route110_Movement_RivalExit2	up,up,up,up,up,up,up,down,end
 Route110_Movement_RivalExit3	up,up,up,up,up,up,up,end
 scriptdefs
+= Route110_EventScript_BeginCylcingRoadChallenge
+special Special_BeginCyclingRoadChallenge
+setvar VAR_CYCLING_CHALLENGE_STATE 2
+return
 = Route110_HiddenItem_37_67
 goto_if_set FLAG_HIDDEN_ITEM_ROUTE_110_FULL_HEAL Route110_HiddenItem_37_67_Taken
 finditem ITEM_FULL_HEAL

@@ -238,6 +238,8 @@ objscripts
 33 SlateportCity_EventScript_BerryPowderClerk
 triggers
 10 13 VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE 2 SlateportCity_EventScript_ScottBattleTentScene
+onload
+VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE 1 SlateportCity_EventScript_ScottScene
 movements
 Common_Movement_Delay48	delay,delay,delay,end
 Common_Movement_ExclamationMark	delay,end
@@ -254,9 +256,12 @@ SlateportCity_Movement_GabbyExit	delay,left,left,down,left,left,left,left,left,l
 SlateportCity_Movement_ManConcern	delay,delay,delay,delay,delay,delay,delay,end
 SlateportCity_Movement_OldWomanConcern	delay,delay,delay,delay,delay,delay,delay,end
 SlateportCity_Movement_PlayerEnterHarbor	delay,delay,delay,right,up,end
+SlateportCity_Movement_PlayerFaceScott	delay,delay,delay,end
 SlateportCity_Movement_PlayerFaceStern	delay,delay,delay,delay,delay,delay,delay,delay,end
 SlateportCity_Movement_PlayerWatchScottExit	delay,delay,end
 SlateportCity_Movement_PushPlayerDown	delay,down,delay,end
+SlateportCity_Movement_ScottApproachPlayer	right,right,right,right,right,right,right,end
+SlateportCity_Movement_ScottExit	left,left,left,left,left,left,left,left,end
 SlateportCity_Movement_ScottExitAfterBattleTent	right,right,right,right,right,right,right,right,end
 SlateportCity_Movement_ScottExitBattleTent	delay,down,end
 SlateportCity_Movement_SternEnterHarbor	right,up,up,delay,end
@@ -267,6 +272,41 @@ SlateportCity_PokemartDecor_Dolls	delay
 SlateportCity_Pokemart_EnergyGuru	delay
 SlateportCity_Pokemart_PowerTMs	delay,delay
 scriptdefs
+= SlateportCity_EventScript_ScottScene
+lockall
+addobject LOCALID_SLATEPORT_SCOTT
+applymovement LOCALID_PLAYER SlateportCity_Movement_PlayerFaceScott
+applymovement LOCALID_SLATEPORT_SCOTT SlateportCity_Movement_ScottApproachPlayer
+waitmovement 0
+msgbox	SCOTT: Huh? I'm sure I met you somewhere before.Have I introduced myself to you? If not, my name's SCOTT.I just saw TEAM AQUA run away from here like they were stung.Let me guess--you drove them away?
+closemessage
+applymovement LOCALID_SLATEPORT_SCOTT Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+delay 60
+msgbox	SCOTT: Hmm… Maybe, just maybe, this TRAINER…
+applymovement LOCALID_SLATEPORT_SCOTT Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+msgbox	SCOTT: All right! I think you're going to become a good friend.So, let's register each other in our POKéNAVS.… … … … … …
+closemessage
+delay 30
+playfanfare MUS_REGISTER_MATCH_CALL
+msgbox	Registered this SCOTT person in the POKéNAV.
+waitfanfare
+closemessage
+delay 30
+setflag FLAG_ENABLE_SCOTT_MATCH_CALL
+msgbox	SCOTT: What I'd like to do is tag along with you, but I do want to keep an eye on the talents of other people, too.So, I'll be off to roam other towns a bit more.Be seeing you, PLAYER!
+closemessage
+applymovement LOCALID_SLATEPORT_SCOTT SlateportCity_Movement_ScottExit
+waitmovement 0
+removeobject LOCALID_SLATEPORT_SCOTT
+setobjectxyperm LOCALID_SLATEPORT_SCOTT 10 12
+setobjectmovementtype LOCALID_SLATEPORT_SCOTT MOVEMENT_TYPE_FACE_DOWN
+clearflag FLAG_HIDE_MAP_NAME_POPUP
+setvar VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE 2
+addvar VAR_SCOTT_STATE 1
+releaseall
+end
 = SlateportCity_EventScript_ScottBattleTentScene
 lockall
 applymovement LOCALID_PLAYER Common_Movement_FaceUp
@@ -684,7 +724,7 @@ clearflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_SUBMARINE_SHADOW
 clearflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_AQUA_GRUNT
 clearflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_ARCHIE
 setvar VAR_SLATEPORT_CITY_STATE 2
-warp MAP_SLATEPORT_CITY_HARBOR 11 14
+warp SlateportCity_Harbor 11 14
 waitstate
 releaseall
 end

@@ -54,7 +54,73 @@ objscripts
 1 SSTidalCorridor_EventScript_Sailor
 2 SSTidalCorridor_EventScript_Briney
 3 SSTidalCorridor_EventScript_Peeko
+onload
+VAR_SS_TIDAL_SCOTT_STATE 0 SSTidalCorridor_EventScript_ScottScene
+VAR_SS_TIDAL_STATE SS_TIDAL_BOARD_SLATEPORT SSTidalCorridor_EventScript_DepartSlateportForLilycove
+VAR_SS_TIDAL_STATE SS_TIDAL_BOARD_LILYCOVE SSTidalCorridor_EventScript_DepartLilycoveForSlateport
+VAR_SS_TIDAL_STATE SS_TIDAL_EXIT_CURRENTS_RIGHT SSTidalCorridor_EventScript_HalfwayToLilycove
+VAR_SS_TIDAL_STATE SS_TIDAL_EXIT_CURRENTS_LEFT SSTidalCorridor_EventScript_ArrivedInSlateport
+movements
+Common_Movement_WalkInPlaceFasterRight	delay,end
+SSTidalCorridor_Movement_PlayerWatchScottExit	delay,delay,delay,delay,delay,delay,end
+SSTidalCorridor_Movement_SailorMoveForScott	delay,right,right,delay,delay,delay,end
+SSTidalCorridor_Movement_SailorReturn	left,left,delay,end
+SSTidalCorridor_Movement_ScottApproachPlayer	left,left,left,left,left,left,left,end
+SSTidalCorridor_Movement_ScottExit	delay,delay,delay,delay,delay,down,left,end
 scriptdefs
+= SSTidalCorridor_EventScript_ArrivedInSlateport
+special ResetSSTidalFlag
+setvar VAR_SS_TIDAL_STATE SS_TIDAL_LAND_SLATEPORT
+lockall
+playse SE_DING_DONG
+msgbox	We have made land in SLATEPORT CITY. Thank you for sailing with us.
+releaseall
+end
+= SSTidalCorridor_EventScript_HalfwayToLilycove
+special ResetSSTidalFlag
+setvar VAR_SS_TIDAL_STATE SS_TIDAL_HALFWAY_LILYCOVE
+lockall
+playse SE_DING_DONG
+msgbox	We hope you enjoy your voyage on our ferry.
+releaseall
+end
+= SSTidalCorridor_EventScript_DepartLilycoveForSlateport
+setvar VAR_SS_TIDAL_STATE SS_TIDAL_DEPART_LILYCOVE
+lockall
+playse SE_DING_DONG
+msgbox	We hope you enjoy your voyage on our ferry.
+releaseall
+end
+= SSTidalCorridor_EventScript_DepartSlateportForLilycove
+special SetSSTidalFlag
+setvar VAR_SS_TIDAL_STATE SS_TIDAL_DEPART_SLATEPORT
+lockall
+playse SE_DING_DONG
+msgbox	This ferry is built to plow through fast-running currents.We hope you enjoy your voyage with us. Feel free to explore the ship.
+releaseall
+end
+= SSTidalCorridor_EventScript_ScottScene
+lockall
+applymovement LOCALID_SS_TIDAL_SCOTT SSTidalCorridor_Movement_ScottApproachPlayer
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+msgbox	SCOTT: Well, hi, hi! PLAYER, PLAYER!Something's come up, so I have to disembark, but am I glad to see you!Congratulations, LEAGUE CHAMPION!There's a place I'd like to invite someone like you.It's the… BATTLE FRONTIER!What's the place like? You'll understand when you see it!I've spoken with the ship's CAPTAIN about this.The next time you take a ferry, you should be able to sail to the BATTLE FRONTIER.Okay, PLAYER, I'll be waiting for you at the BATTLE FRONTIER!
+closemessage
+applymovement LOCALID_PLAYER SSTidalCorridor_Movement_PlayerWatchScottExit
+applymovement LOCALID_SS_TIDAL_EXIT_SAILOR SSTidalCorridor_Movement_SailorMoveForScott
+applymovement LOCALID_SS_TIDAL_SCOTT SSTidalCorridor_Movement_ScottExit
+waitmovement 0
+playse SE_EXIT
+waitse
+removeobject LOCALID_SS_TIDAL_SCOTT
+applymovement LOCALID_SS_TIDAL_EXIT_SAILOR SSTidalCorridor_Movement_SailorReturn
+waitmovement 0
+delay 30
+setflag FLAG_MET_SCOTT_ON_SS_TIDAL
+setvar VAR_SS_TIDAL_SCOTT_STATE 1
+releaseall
+end
 = SSTidalCorridor_EventScript_Peeko
 lock
 faceplayer
@@ -105,7 +171,7 @@ end
 setrespawn HEAL_LOCATION_SLATEPORT_CITY
 msgbox	We've arrived!
 call_if_set FLAG_RECEIVED_TM_SNATCH SSTidalCorridor_EventScript_HideSnatchGiver
-warp MAP_SLATEPORT_CITY_HARBOR 8 11
+warp SlateportCity_Harbor 8 11
 waitstate
 release
 end
@@ -116,7 +182,7 @@ return
 setrespawn HEAL_LOCATION_LILYCOVE_CITY
 msgbox	We've arrived!
 call_if_set FLAG_RECEIVED_TM_SNATCH SSTidalCorridor_EventScript_HideSnatchGiver
-warp MAP_LILYCOVE_CITY_HARBOR 8 11
+warp LilycoveCity_Harbor 8 11
 waitstate
 release
 end

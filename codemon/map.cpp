@@ -73,7 +73,7 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 		       s.rfind("signs", 0) == 0 || s.rfind("grass", 0) == 0 ||
 		       s.rfind("encounters", 0) == 0 || s.rfind("objscripts", 0) == 0 ||
 		       s.rfind("triggers", 0) == 0 || s.rfind("movements", 0) == 0 ||
-		       s.rfind("scriptdefs", 0) == 0;
+		       s.rfind("onload", 0) == 0 || s.rfind("scriptdefs", 0) == 0;
 	};
 
 	for (size_t i = 0; i < rest.size(); ) {
@@ -174,6 +174,14 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 				ScriptTrigger t;
 				if (ss >> t.x >> t.y >> t.var >> t.val >> t.label)
 					this->script_triggers.push_back(t);
+			}
+		} else if (head.rfind("onload", 0) == 0) {
+			for (++i; i < rest.size() && !is_keyword(rest[i]); ++i) {
+				if (rest[i].empty()) continue;
+				std::stringstream ss(rest[i]);
+				LoadTrigger t;
+				if (ss >> t.var >> t.val >> t.label)
+					this->load_triggers.push_back(t);
 			}
 		} else if (head.rfind("movements", 0) == 0) {
 			for (++i; i < rest.size() && !is_keyword(rest[i]); ++i) {

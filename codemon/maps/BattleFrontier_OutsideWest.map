@@ -414,7 +414,7 @@ msgbox	LILYCOVE CITY it is, then!
 goto_if_eq VAR_RESULT NO BattleFrontier_OutsideWest_EventScript_ChooseNewFerryDestination
 msgbox	Please board the ferry and wait for departure.
 call BattleFrontier_OutsideWest_EventScript_BoardFerry
-warp MAP_LILYCOVE_CITY_HARBOR 8 11
+warp LilycoveCity_Harbor 8 11
 waitstate
 release
 end
@@ -437,7 +437,7 @@ msgbox	SLATEPORT CITY it is, then!
 goto_if_eq VAR_RESULT NO BattleFrontier_OutsideWest_EventScript_ChooseNewFerryDestination
 msgbox	Please board the ferry and wait for departure.
 call BattleFrontier_OutsideWest_EventScript_BoardFerry
-warp MAP_SLATEPORT_CITY_HARBOR 8 11
+warp SlateportCity_Harbor 8 11
 waitstate
 release
 end

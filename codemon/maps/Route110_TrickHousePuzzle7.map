@@ -90,7 +90,12 @@ triggers
 0 14 VAR_TEMP_1 0 Route110_TrickHousePuzzle7_EventScript_BlueButton
 6 6 VAR_TEMP_1 0 Route110_TrickHousePuzzle7_EventScript_GreenButton
 9 7 VAR_TEMP_1 0 Route110_TrickHousePuzzle7_EventScript_PurpleButton
+onload
+VAR_TRICK_HOUSE_PUZZLE_7_STATE_2 1 Route110_TrickHousePuzzle7_EventScript_ClearState2
 scriptdefs
+= Route110_TrickHousePuzzle7_EventScript_ClearState2
+setvar VAR_TRICK_HOUSE_PUZZLE_7_STATE_2 0
+end
 = Route110_TrickHousePuzzle7_EventScript_PurpleButton
 playse SE_SWITCH
 waitse

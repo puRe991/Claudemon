@@ -36,10 +36,24 @@ dialogs
 0	The CABLE CAR is ready to go down. Would you like to be on it?
 objscripts
 0 MtChimney_CableCarStation_EventScript_Attendant
+onload
+VAR_CABLE_CAR_STATION_STATE 1 MtChimney_CableCarStation_EventScript_ExitCableCar
 movements
 MtChimney_CableCarStation_Movement_BoardCableCar	up,up,up,delay,end
+MtChimney_CableCarStation_Movement_ExitCableCar	down,down,down,delay,end
+MtChimney_CableCarStation_Movement_FollowPlayerOutFromCableCar	delay,right,down,down,end
 MtChimney_CableCarStation_Movement_LeadPlayerToCableCar	up,up,left,delay,end
 scriptdefs
+= MtChimney_CableCarStation_EventScript_ExitCableCar
+lockall
+applymovement LOCALID_PLAYER MtChimney_CableCarStation_Movement_ExitCableCar
+applymovement LOCALID_MT_CHIMNEY_CABLE_CAR_ATTENDANT MtChimney_CableCarStation_Movement_FollowPlayerOutFromCableCar
+waitmovement 0
+setvar VAR_CABLE_CAR_STATION_STATE 0
+setobjectxyperm LOCALID_MT_CHIMNEY_CABLE_CAR_ATTENDANT 6 7
+setobjectmovementtype LOCALID_MT_CHIMNEY_CABLE_CAR_ATTENDANT MOVEMENT_TYPE_FACE_DOWN
+releaseall
+end
 = MtChimney_CableCarStation_EventScript_Attendant
 lock
 faceplayer

@@ -76,7 +76,114 @@ objscripts
 triggers
 6 3 TRIGGER_RUN_IMMEDIATELY 0 LavaridgeTown_EventScript_HotSpringsTrigger
 4 5 0 0 LavaridgeTown_HiddenItem_4_5
+onload
+VAR_LAVARIDGE_TOWN_STATE 1 LavaridgeTown_EventScript_RivalGiveGoGoggles
+movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
+LavaridgeTown_Movement_PlayerWatchRivalExit	delay,delay,delay,end
+LavaridgeTown_Movement_RivalApproachPlayer1	left,left,up,end
+LavaridgeTown_Movement_RivalApproachPlayer2	left,left,left,left,left,left,end
+LavaridgeTown_Movement_RivalExit1	down,right,right,right,right,right,right,right,right,end
+LavaridgeTown_Movement_RivalExit2	right,right,right,up,up,up,up,up,up,up,end
+LavaridgeTown_Movement_RivalExitHerbShop	down,end
 scriptdefs
+= LavaridgeTown_EventScript_RivalGiveGoGoggles
+lockall
+getplayerxy VAR_0x8008 VAR_0x8009
+call_if_eq VAR_0x8008 9 LavaridgeTown_EventScript_RivalNoticePlayer
+call_if_ne VAR_0x8008 9 LavaridgeTown_EventScript_RivalExitHerbShop
+delay 20
+checkplayergender
+call_if_eq VAR_RESULT MALE LavaridgeTown_EventScript_PlayMayMusic
+call_if_eq VAR_RESULT FEMALE LavaridgeTown_EventScript_PlayBrendanMusic
+call_if_eq VAR_0x8008 9 LavaridgeTown_EventScript_RivalApproachPlayer1
+call_if_ne VAR_0x8008 9 LavaridgeTown_EventScript_RivalApproachPlayer2
+checkplayergender
+goto_if_eq VAR_RESULT MALE LavaridgeTown_EventScript_MayGiveGoGoggles
+goto_if_eq VAR_RESULT FEMALE LavaridgeTown_EventScript_BrendanGiveGoGoggles
+end
+= LavaridgeTown_EventScript_BrendanGiveGoGoggles
+msgbox	BRENDAN: PLAYER, hey, it's been a while. How's it going?Hmm… That's a decent collection of BADGES.All right, then. You may as well have this.
+giveitem ITEM_GO_GOGGLES
+setflag FLAG_RECEIVED_GO_GOGGLES
+msgbox	BRENDAN: Keep those with you if you're planning on going into that desert near ROUTE 111.There should be some POKéMON that are exclusively desert-dwellers. You might look around for those.As for me… I'm considering challenging NORMAN, the GYM LEADER of PETALBURG.Unlike you, PLAYER, your dad looks like he really is tough.See you around!
+goto LavaridgeTown_EventScript_RivalExit
+end
+= LavaridgeTown_EventScript_RivalExit
+closemessage
+removeobject LOCALID_LAVARIDGE_RIVAL
+addobject LOCALID_LAVARIDGE_RIVAL_ON_BIKE
+delay 30
+call_if_eq VAR_0x8008 9 LavaridgeTown_EventScript_RivalExit1
+call_if_ne VAR_0x8008 9 LavaridgeTown_EventScript_RivalExit2
+removeobject LOCALID_LAVARIDGE_RIVAL_ON_BIKE
+setvar VAR_LAVARIDGE_TOWN_STATE 2
+clearflag FLAG_HIDE_MAP_NAME_POPUP
+savebgm MUS_DUMMY
+fadedefaultbgm
+releaseall
+end
+= LavaridgeTown_EventScript_RivalExit2
+applymovement LOCALID_LAVARIDGE_RIVAL_ON_BIKE LavaridgeTown_Movement_RivalExit2
+waitmovement 0
+return
+= LavaridgeTown_EventScript_RivalExit1
+applymovement LOCALID_PLAYER LavaridgeTown_Movement_PlayerWatchRivalExit
+applymovement LOCALID_LAVARIDGE_RIVAL_ON_BIKE LavaridgeTown_Movement_RivalExit1
+waitmovement 0
+return
+= LavaridgeTown_EventScript_MayGiveGoGoggles
+msgbox	MAY: PLAYER! Long time no see!Oh? While I visited the hot springs, you got the LAVARIDGE GYM BADGE.You must have collected good POKéMON… No, I believe you raised some.I guess it would be okay for you to have this.
+giveitem ITEM_GO_GOGGLES
+setflag FLAG_RECEIVED_GO_GOGGLES
+msgbox	MAY: With those GO-GOGGLES, you'll have no trouble getting through the desert near ROUTE 111.But, wow, PLAYER… Challenging GYMS…You're trying hard because you don't want to lose to me, I bet!PLAYER, I think I should challenge your dad in PETALBURG GYM.See you again!
+goto LavaridgeTown_EventScript_RivalExit
+end
+= LavaridgeTown_EventScript_RivalApproachPlayer2
+applymovement LOCALID_LAVARIDGE_RIVAL LavaridgeTown_Movement_RivalApproachPlayer2
+waitmovement 0
+return
+= LavaridgeTown_EventScript_RivalApproachPlayer1
+applymovement LOCALID_LAVARIDGE_RIVAL LavaridgeTown_Movement_RivalApproachPlayer1
+waitmovement 0
+return
+= LavaridgeTown_EventScript_PlayBrendanMusic
+playbgm MUS_ENCOUNTER_BRENDAN TRUE
+return
+= LavaridgeTown_EventScript_PlayMayMusic
+playbgm MUS_ENCOUNTER_MAY TRUE
+return
+= LavaridgeTown_EventScript_RivalExitHerbShop
+opendoor 12 15
+waitdooranim
+addobject LOCALID_LAVARIDGE_RIVAL
+applymovement LOCALID_LAVARIDGE_RIVAL LavaridgeTown_Movement_RivalExitHerbShop
+waitmovement 0
+closedoor 12 15
+waitdooranim
+applymovement LOCALID_LAVARIDGE_RIVAL Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_LAVARIDGE_RIVAL Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_LAVARIDGE_RIVAL Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+return
+= LavaridgeTown_EventScript_RivalNoticePlayer
+applymovement LOCALID_LAVARIDGE_RIVAL Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_LAVARIDGE_RIVAL Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_LAVARIDGE_RIVAL Common_Movement_Delay48
+waitmovement 0
+return
 = LavaridgeTown_HiddenItem_4_5
 goto_if_set FLAG_HIDDEN_ITEM_LAVARIDGE_TOWN_ICE_HEAL LavaridgeTown_HiddenItem_4_5_Taken
 finditem ITEM_ICE_HEAL

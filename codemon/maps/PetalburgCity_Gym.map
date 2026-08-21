@@ -297,6 +297,8 @@ objscripts
 6 PetalburgCity_Gym_EventScript_Jody
 7 PetalburgCity_Gym_EventScript_Berke
 8 PetalburgCity_Gym_EventScript_GymGuide
+onload
+VAR_PETALBURG_GYM_STATE 1 PetalburgCity_Gym_EventScript_ReturnFromWallyTutorial
 movements
 Common_Movement_Delay48	delay,delay,delay,end
 Common_Movement_ExclamationMark	delay,end
@@ -315,6 +317,7 @@ PetalburgCity_Gym_Movement_PlayerExitWithWallysDadWest	delay,down,down,down,left
 PetalburgCity_Gym_Movement_WallyArrive	delay,up,delay,delay,up,up,end
 PetalburgCity_Gym_Movement_WallyArriveNorth	delay,up,delay,delay,up,right,up,up,delay,end
 PetalburgCity_Gym_Movement_WallyExitEast	down,down,right,down,delay,delay,delay,end
+PetalburgCity_Gym_Movement_WallyExitGym	down,down,down,delay,end
 PetalburgCity_Gym_Movement_WallyExitNorth	down,down,down,down,delay,delay,delay,end
 PetalburgCity_Gym_Movement_WallyExitSouthWest	down,down,down,delay,delay,delay,end
 PetalburgCity_Gym_Movement_WallysDadApproachPlayerEast	right,right,up,up,up,end
@@ -325,6 +328,24 @@ PetalburgCity_Gym_Movement_WallysDadExitEast	down,down,left,left,down,down,delay
 PetalburgCity_Gym_Movement_WallysDadExitNorth	down,down,left,left,down,down,delay,delay,delay,delay,end
 PetalburgCity_Gym_Movement_WallysDadExitWest	down,down,left,left,left,left,down,down,delay,delay,delay,delay,end
 scriptdefs
+= PetalburgCity_Gym_EventScript_ReturnFromWallyTutorial
+lockall
+msgbox	DAD: So, did it work out?
+msgbox	WALLY: Thank you, yes, it did. Here's your POKéMON back.PLAYER, thank you for coming along with me.You two are why I was able to catch my POKéMON.I promise I'll take really good care of it.Oh! My mom's waiting for me, so I have to go!Bye, PLAYER!
+closemessage
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterDown
+applymovement LOCALID_PETALBURG_GYM_WALLY PetalburgCity_Gym_Movement_WallyExitGym
+waitmovement 0
+playse SE_EXIT
+removeobject LOCALID_PETALBURG_GYM_WALLY
+setflag FLAG_HIDE_PETALBURG_CITY_WALLY
+delay 30
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+msgbox	DAD: Now…PLAYER, if you want to become a strong TRAINER, here's my advice.Head for RUSTBORO CITY beyond this town.There, you should challenge the GYM LEADER, ROXANNE.After her, go on to other POKéMON GYMS and defeat their LEADERS.Collect BADGES from them, understood?Of course, I'm a GYM LEADER, too. We'll battle one day, PLAYER.But that's only after you become stronger.
+setvar VAR_PETALBURG_GYM_STATE 2
+releaseall
+end
 = PetalburgCity_Gym_EventScript_GymGuide
 lock
 faceplayer
@@ -601,7 +622,7 @@ clearflag FLAG_HIDE_PETALBURG_CITY_WALLY
 clearflag FLAG_HIDE_PETALBURG_GYM_WALLY
 setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_RIVAL
 special InitBirchState
-warp MAP_PETALBURG_CITY 15 8
+warp PetalburgCity 15 8
 waitstate
 release
 end
@@ -820,7 +841,7 @@ call_if_eq VAR_0x8008 3 PetalburgCity_Gym_EventScript_ExitGymWithWallysDadWest
 removeobject LOCALID_PETALBURG_GYM_WALLYS_DAD
 setvar VAR_PETALBURG_CITY_STATE 4
 clearflag FLAG_HIDE_PETALBURG_CITY_WALLYS_DAD
-warp MAP_PETALBURG_CITY 15 8
+warp PetalburgCity 15 8
 waitstate
 release
 end

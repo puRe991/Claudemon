@@ -61,13 +61,31 @@ npcs
 pokemon_mew 13 17 S static FLAG_HIDE_MEW
 objscripts
 0 FarawayIsland_Interior_EventScript_Mew
+onload
+VAR_TEMP_1 0 FarawayIsland_Interior_EventScript_FindMew
 movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
 FarawayIsland_Interior_Movement_MewAppear	delay,end
 FarawayIsland_Interior_Movement_MewFloatUpEast	delay,up,up,delay,delay,delay,end
 FarawayIsland_Interior_Movement_MewFloatUpNorth	delay,up,up,delay,delay,delay,end
 FarawayIsland_Interior_Movement_MewFloatUpSouth	delay,up,up,delay,delay,delay,end
 FarawayIsland_Interior_Movement_MewFloatUpWest	delay,up,up,delay,delay,delay,end
+FarawayIsland_Interior_Movement_MewMoveAndHide	up,up,up,delay,delay,end
 scriptdefs
+= FarawayIsland_Interior_EventScript_FindMew
+lockall
+playse SE_PIN
+applymovement LOCALID_FARAWAY_ISLAND_MEW Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_FARAWAY_ISLAND_MEW Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_FARAWAY_ISLAND_MEW FarawayIsland_Interior_Movement_MewMoveAndHide
+waitmovement 0
+copyobjectxytoperm LOCALID_FARAWAY_ISLAND_MEW
+setvar VAR_TEMP_1 1
+releaseall
+end
 = FarawayIsland_Interior_EventScript_Mew
 lock
 faceplayer

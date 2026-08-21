@@ -20,3 +20,29 @@ collision
 0,0,1,0,0,0,0,0,0,0,1,0,0,0
 npcs
 people_link_receptionist 6 6 S static 0
+onload
+VAR_TEMP_0 0 BattleFrontier_BattlePikeCorridor_EventScript_EnterCorridor
+movements
+BattleFrontier_BattlePikeCorridor_Movement_AttendantEnterCorridor	up,up,left,face_down,end
+BattleFrontier_BattlePikeCorridor_Movement_PlayerEnterCorridor	up,up,end
+BattleFrontier_BattlePikeCorridor_Movement_PlayerExitCorridor	up,up,delay,end
+scriptdefs
+= BattleFrontier_BattlePikeCorridor_EventScript_EnterCorridor
+delay 16
+frontier_set FRONTIER_DATA_BATTLE_NUM 1
+pike_cleartrainerids
+pike_nohealing TRUE
+applymovement LOCALID_PLAYER BattleFrontier_BattlePikeCorridor_Movement_PlayerEnterCorridor
+applymovement LOCALID_PIKE_CORRIDOR_ATTENDANT BattleFrontier_BattlePikeCorridor_Movement_AttendantEnterCorridor
+waitmovement 0
+lockall
+msgbox	Your Battle Choice challenge has now begun…
+closemessage
+releaseall
+applymovement LOCALID_PLAYER BattleFrontier_BattlePikeCorridor_Movement_PlayerExitCorridor
+waitmovement 0
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS 99
+call BattleFrontier_BattlePike_EventScript_CloseCurtain
+warpsilent BattleFrontier_BattlePikeThreePathRoom 6 10
+waitstate
+end

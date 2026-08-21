@@ -49,7 +49,68 @@ objscripts
 1 BattleFrontier_ReceptionGate_EventScript_FacilityGuide
 2 BattleFrontier_ReceptionGate_EventScript_RulesGuide
 4 BattleFrontier_ReceptionGate_EventScript_FrontierPassGuide
+onload
+VAR_HAS_ENTERED_BATTLE_FRONTIER 0 BattleFrontier_ReceptionGate_EventScript_FirstTimeEntering
+movements
+BattleFrontier_ReceptionGate_Movement_FacilityGuideFaceScott	delay,delay,delay,delay,delay,end
+BattleFrontier_ReceptionGate_Movement_GreeterFaceScott	delay,delay,delay,delay,delay,end
+BattleFrontier_ReceptionGate_Movement_PlayerApproachCounter	up,up,left,left,end
+BattleFrontier_ReceptionGate_Movement_PlayerFaceScott	delay,delay,delay,delay,delay,end
+BattleFrontier_ReceptionGate_Movement_ScottEnter	down,down,down,down,down,down,left,end
+BattleFrontier_ReceptionGate_Movement_ScottExit	right,up,up,up,up,up,up,end
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
 scriptdefs
+= BattleFrontier_ReceptionGate_EventScript_FirstTimeEntering
+lockall
+setvar VAR_HAS_ENTERED_BATTLE_FRONTIER 1
+playse SE_PIN
+applymovement LOCALID_FRONTIER_RECEPTION_GREETER Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_FRONTIER_RECEPTION_GREETER Common_Movement_Delay48
+waitmovement 0
+msgbox	Is it your first time here? Please step this way!
+closemessage
+applymovement LOCALID_PLAYER BattleFrontier_ReceptionGate_Movement_PlayerApproachCounter
+waitmovement 0
+goto BattleFrontier_ReceptionGate_EventScript_ScottScene
+end
+= BattleFrontier_ReceptionGate_EventScript_ScottScene
+msgbox	The front lines of POKéMON battling! Welcome to the BATTLE FRONTIER!
+msgbox	For a first-time visitor, we issue the FRONTIER PASS.It's for use at all the facilities in the BATTLE FRONTIER.Here you are!
+playfanfare MUS_OBTAIN_ITEM
+message BattleFrontier_ReceptionGate_Text_ObtainedFrontierPass
+waitfanfare
+waitmessage
+msgbox	PLAYER placed the TRAINER CARD in the FRONTIER PASS.
+setflag FLAG_SYS_FRONTIER_PASS
+msgbox	We hope you enjoy all that the BATTLE FRONTIER has to offer!
+msgbox	???: Well, if it isn't PLAYER! You came out here!
+closemessage
+applymovement LOCALID_FRONTIER_RECEPTION_GREETER Common_Movement_WalkInPlaceFasterUp
+applymovement LOCALID_FRONTIER_RECEPTION_GUIDE Common_Movement_WalkInPlaceFasterUp
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_FRONTIER_RECEPTION_GREETER Common_Movement_ExclamationMark
+applymovement LOCALID_FRONTIER_RECEPTION_GUIDE Common_Movement_ExclamationMark
+applymovement LOCALID_PLAYER Common_Movement_ExclamationMark
+waitmovement 0
+msgbox	GUIDE: Oh! MR. SCOTT, sir! Good day to you, sir!
+closemessage
+applymovement LOCALID_FRONTIER_RECEPTION_GREETER BattleFrontier_ReceptionGate_Movement_GreeterFaceScott
+applymovement LOCALID_FRONTIER_RECEPTION_GUIDE BattleFrontier_ReceptionGate_Movement_FacilityGuideFaceScott
+applymovement LOCALID_PLAYER BattleFrontier_ReceptionGate_Movement_PlayerFaceScott
+applymovement LOCALID_FRONTIER_RECEPTION_SCOTT BattleFrontier_ReceptionGate_Movement_ScottEnter
+waitmovement 0
+msgbox	SCOTT: It's great to see you here, it really is!I hope you'll take your time and explore everywhere.Naturally, I hope you'll also experience the pure essence of battling.I also have my quarters here, so feel free to visit if you have time.
+closemessage
+applymovement LOCALID_FRONTIER_RECEPTION_SCOTT BattleFrontier_ReceptionGate_Movement_ScottExit
+waitmovement 0
+removeobject LOCALID_FRONTIER_RECEPTION_SCOTT
+releaseall
+end
 = BattleFrontier_ReceptionGate_EventScript_FrontierPassGuide
 lock
 faceplayer

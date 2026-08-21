@@ -32,3 +32,29 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 npcs
 people_black_belt 9 12 S static 0
+onload
+VAR_TEMP_0 0 BattleFrontier_BattleArenaCorridor_EventScript_WalkToBattleRoom
+movements
+BattleFrontier_BattleArenaCorridor_Movement_AttendantFacePlayer	delay,end
+BattleFrontier_BattleArenaCorridor_Movement_AttendantMoveOutOfWay	up,delay,end
+BattleFrontier_BattleArenaCorridor_Movement_AttendantWalkToDoor	left,left,left,left,left,left,left,left,up,up,up,up,up,up,up,up,right,right,right,right,end
+BattleFrontier_BattleArenaCorridor_Movement_PlayerEnterDoor	right,delay,end
+BattleFrontier_BattleArenaCorridor_Movement_PlayerWalkToDoor	up,left,left,left,left,left,left,left,left,up,up,up,up,up,up,up,up,right,right,right,end
+scriptdefs
+= BattleFrontier_BattleArenaCorridor_EventScript_WalkToBattleRoom
+delay 16
+setvar VAR_TEMP_0 1
+applymovement LOCALID_ARENA_CORRIDOR_ATTENDANT BattleFrontier_BattleArenaCorridor_Movement_AttendantWalkToDoor
+applymovement LOCALID_PLAYER BattleFrontier_BattleArenaCorridor_Movement_PlayerWalkToDoor
+waitmovement 0
+applymovement LOCALID_ARENA_CORRIDOR_ATTENDANT BattleFrontier_BattleArenaCorridor_Movement_AttendantFacePlayer
+waitmovement 0
+msgbox	Your battles shall be waged in the next room. Please step in!
+applymovement LOCALID_ARENA_CORRIDOR_ATTENDANT BattleFrontier_BattleArenaCorridor_Movement_AttendantMoveOutOfWay
+waitmovement 0
+applymovement LOCALID_PLAYER BattleFrontier_BattleArenaCorridor_Movement_PlayerEnterDoor
+waitmovement 0
+setvar VAR_0x8006 0
+warp BattleFrontier_BattleArenaBattleRoom 7 5
+waitstate
+end

@@ -34,9 +34,62 @@ objscripts
 0 RustboroCity_DevonCorp_3F_EventScript_MrStone
 1 RustboroCity_DevonCorp_3F_EventScript_Employee
 2 RustboroCity_DevonCorp_3F_EventScript_MrStone
+onload
+VAR_DEVON_CORP_3F_STATE 0 RustboroCity_DevonCorp_3F_EventScript_MeetPresident
 movements
 Common_Movement_FaceOriginalDirection	face_down,end
+RustboroCity_DevonCorp_3F_Movement_EmployeeFaceDesk	delay,delay,end
+RustboroCity_DevonCorp_3F_Movement_EmployeeReturnToPlayer	left,left,left,left,up,left,left,left,end
+RustboroCity_DevonCorp_3F_Movement_EmployeeWalkOffscreen	right,right,right,down,right,right,right,right,end
+RustboroCity_DevonCorp_3F_Movement_LeadPlayerToPresident	right,right,right,down,right,right,right,right,right,right,right,right,right,delay,end
+RustboroCity_DevonCorp_3F_Movement_PlayerApproachDesk	delay,delay,down,down,delay,end
+RustboroCity_DevonCorp_3F_Movement_PlayerFollowToPresident	right,right,right,right,down,right,right,right,right,right,right,right,right,end
 scriptdefs
+= RustboroCity_DevonCorp_3F_EventScript_MeetPresident
+lockall
+msgbox	This is the DEVON CORPORATION's third floor.Our PRESIDENT's OFFICE is on this floor.Anyway, I can't tell you how much I'm grateful for what you've done.Um… By the way, that parcel you got back for us…Could I get you to deliver that to the SHIPYARD in SLATEPORT?It would be awful if those robbers tried to take it again.Uh… Hehehe, so, uh, could I count on you to do that for me?Oh, that's right. Could you wait here a second?
+closemessage
+applymovement LOCALID_DEVON_CORP_3F_EMPLOYEE RustboroCity_DevonCorp_3F_Movement_EmployeeWalkOffscreen
+waitmovement 0
+delay 80
+applymovement LOCALID_DEVON_CORP_3F_EMPLOYEE RustboroCity_DevonCorp_3F_Movement_EmployeeReturnToPlayer
+waitmovement 0
+msgbox	Our PRESIDENT would like to have a word with you.Please come with me.
+closemessage
+playbgm MUS_FOLLOW_ME FALSE
+applymovement LOCALID_DEVON_CORP_3F_EMPLOYEE RustboroCity_DevonCorp_3F_Movement_LeadPlayerToPresident
+applymovement LOCALID_PLAYER RustboroCity_DevonCorp_3F_Movement_PlayerFollowToPresident
+waitmovement 0
+msgbox	Please, go ahead.
+closemessage
+fadedefaultbgm
+applymovement LOCALID_DEVON_CORP_3F_EMPLOYEE RustboroCity_DevonCorp_3F_Movement_EmployeeFaceDesk
+applymovement LOCALID_PLAYER RustboroCity_DevonCorp_3F_Movement_PlayerApproachDesk
+waitmovement 0
+msgbox	I'm MR. STONE, the PRESIDENT of the DEVON CORPORATION.I'd just got word about you!You saved our staff not just once, but twice!I have a favor to ask of an amazing person like you.I understand that you're delivering a package to SLATEPORT's SHIPYARD.Well, on the way, could you stop off in DEWFORD TOWN?I was hoping that you'd deliver a LETTER to STEVEN in DEWFORD.
+giveitem ITEM_LETTER
+msgbox	MR. STONE: Now, you should know that I am a great PRESIDENT.So, I'd never be so cheap as to ask a favor for nothing in return.That's why I want you to have this!
+playfanfare MUS_OBTAIN_ITEM
+message RustboroCity_DevonCorp_3F_Text_ReceivedPokenav
+waitfanfare
+setflag FLAG_SYS_POKENAV_GET
+setflag FLAG_RECEIVED_POKENAV
+setflag FLAG_HIDE_RUSTBORO_CITY_POKEMON_SCHOOL_SCOTT
+msgbox	MR. STONE: That device…It's a POKéMON NAVIGATOR, or POKéNAV for short.It's an indispensable tool for any TRAINER on an adventure.It has a map of the HOENN region.You can check the locations of DEWFORD and SLATEPORT easily!By the way, I've heard that sinister criminals--MAGMA and AQUA, I believe-- have been making trouble far and wide.I think it would be best if you rested up before you go on your way.
+closemessage
+call Common_EventScript_OutOfCenterPartyHeal
+msgbox	MR. STONE: Well, then, PLAYER, go with caution and care!
+setflag FLAG_HIDE_ROUTE_116_WANDAS_BOYFRIEND
+clearflag FLAG_HIDE_RUSTURF_TUNNEL_WANDAS_BOYFRIEND
+clearflag FLAG_HIDE_RUSTURF_TUNNEL_WANDA
+clearflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
+clearflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
+setvar VAR_BRINEY_LOCATION 1
+clearflag FLAG_HIDE_RUSTBORO_CITY_RIVAL
+setvar VAR_DEVON_CORP_3F_STATE 1
+setvar VAR_RUSTBORO_CITY_STATE 6
+releaseall
+end
 = RustboroCity_DevonCorp_3F_EventScript_MrStone
 lock
 faceplayer

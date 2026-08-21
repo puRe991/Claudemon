@@ -51,16 +51,63 @@ objscripts
 6 MossdeepCity_SpaceCenter_2F_EventScript_Grunt7
 7 MossdeepCity_SpaceCenter_2F_EventScript_Tabitha
 8 MossdeepCity_SpaceCenter_2F_EventScript_Maxie
+onload
+VAR_MOSSDEEP_SPACE_CENTER_STATE 1 MossdeepCity_SpaceCenter_2F_EventScript_ThreeMagmaGrunts
 movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
 Common_Movement_FaceOriginalDirection	face_down,end
 Common_Movement_FacePlayer	face_down,end
 Common_Movement_WalkInPlaceFasterDown	delay,end
 Common_Movement_WalkInPlaceFasterLeft	delay,end
 Common_Movement_WalkInPlaceFasterRight	delay,end
 Common_Movement_WalkInPlaceFasterUp	delay,end
+MossdeepCity_SpaceCenter_2F_Movement_Grunt5Defeated	delay,down,delay,end
+MossdeepCity_SpaceCenter_2F_Movement_Grunt6Defeated	delay,left,delay,end
+MossdeepCity_SpaceCenter_2F_Movement_Grunt7Defeated	delay,right,delay,end
+MossdeepCity_SpaceCenter_2F_Movement_PlayerExit	up,end
 MossdeepCity_SpaceCenter_2F_Movement_StevenFight	delay,up,up,delay,delay,delay,down,down,end
 MossdeepCity_SpaceCenter_2F_Movement_StevenFightSouth	face_left,delay,right,right,delay,delay,delay,left,left,face_down,end
 scriptdefs
+= MossdeepCity_SpaceCenter_2F_EventScript_ThreeMagmaGrunts
+playse SE_PIN
+applymovement LOCALID_PLAYER Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_Delay48
+waitmovement 0
+msgbox	What's wrong with you?You're outnumbered three to one, but you still want to take us on?
+goto_if_eq VAR_RESULT YES MossdeepCity_SpaceCenter_2F_EventScript_BattleThreeMagmaGrunts
+msgbox	Good answer! That's what a smart person'll do!
+closemessage
+applymovement LOCALID_PLAYER MossdeepCity_SpaceCenter_2F_Movement_PlayerExit
+waitmovement 0
+warp MossdeepCity_SpaceCenter_1F 13 1
+waitstate
+releaseall
+end
+= MossdeepCity_SpaceCenter_2F_EventScript_BattleThreeMagmaGrunts
+msgbox	A reckless go-getter, are you? Okay, I'll go first!
+trainerbattle_no_intro TRAINER_GRUNT_SPACE_CENTER_5 MossdeepCity_SpaceCenter_2F_Text_Grunt5Defeat
+applymovement LOCALID_SPACE_CENTER_GRUNT_5 MossdeepCity_SpaceCenter_2F_Movement_Grunt5Defeated
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+msgbox	It's too soon to be relieved! I'm up next!
+trainerbattle_no_intro TRAINER_GRUNT_SPACE_CENTER_6 MossdeepCity_SpaceCenter_2F_Text_Grunt6Defeat
+applymovement LOCALID_SPACE_CENTER_GRUNT_6 MossdeepCity_SpaceCenter_2F_Movement_Grunt6Defeated
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+msgbox	I bet you want to take a break. But I'm not about to let you do that!
+trainerbattle_no_intro TRAINER_GRUNT_SPACE_CENTER_7 MossdeepCity_SpaceCenter_2F_Text_Grunt7Defeat
+applymovement LOCALID_SPACE_CENTER_GRUNT_7 MossdeepCity_SpaceCenter_2F_Movement_Grunt7Defeated
+waitmovement 0
+setvar VAR_MOSSDEEP_SPACE_CENTER_STATE 2
+copyobjectxytoperm LOCALID_SPACE_CENTER_GRUNT_6
+copyobjectxytoperm LOCALID_SPACE_CENTER_GRUNT_7
+copyobjectxytoperm LOCALID_SPACE_CENTER_GRUNT_5
+releaseall
+end
 = MossdeepCity_SpaceCenter_2F_EventScript_Maxie
 lockall
 msgbox	MAXIE: Clear out of the way! Don't you dare interfere!

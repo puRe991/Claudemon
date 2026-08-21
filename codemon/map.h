@@ -48,6 +48,15 @@ struct ScriptTrigger {
 	std::string label;
 };
 
+// A pokeemerald MAP_SCRIPT_ON_FRAME_TABLE entry: while var==val, run `label`
+// once on entering the map (its own body updates var so it won't refire).
+// Used for one-time "just arrived here" setup, e.g. Route 101 advancing
+// VAR_ROUTE101_STATE from 0 to 1 -- the same condition the Birch-rescue
+// coord trigger waits on.
+struct LoadTrigger {
+	std::string var, val, label;
+};
+
 // One decoded script instruction: opcode plus string arguments.
 using Instr = std::vector<std::string>;
 
@@ -93,6 +102,7 @@ private:
 	std::map<std::string, std::vector<std::string>> move_defs; // label -> actions
 	std::unordered_map<int, std::string> npc_script_map;      // npc index -> label
 	std::vector<ScriptTrigger> script_triggers;
+	std::vector<LoadTrigger> load_triggers;
 
 	int index(int x, int y) const;
 
@@ -145,6 +155,7 @@ public:
 	const std::vector<std::string>& movement(const std::string& label) const;
 	std::string npc_script(int npc_index) const;         // "" if none
 	const ScriptTrigger* trigger_at(int tile_x, int tile_y) const;
+	const std::vector<LoadTrigger>& on_load_triggers() const { return this->load_triggers; }
 
 	// Runtime metatile edit (setmetatile). Returns false if out of bounds.
 	bool set_metatile(int tile_x, int tile_y, int id, bool impassable);

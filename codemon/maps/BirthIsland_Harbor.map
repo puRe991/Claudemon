@@ -51,7 +51,7 @@ delay 30
 hideobjectat LOCALID_BIRTH_ISLAND_SAILOR MAP_BIRTH_ISLAND_HARBOR
 setvar VAR_0x8004 LOCALID_BIRTH_ISLAND_SS_TIDAL
 call Common_EventScript_FerryDepartIsland
-warp MAP_LILYCOVE_CITY_HARBOR 8 11
+warp LilycoveCity_Harbor 8 11
 waitstate
 release
 end

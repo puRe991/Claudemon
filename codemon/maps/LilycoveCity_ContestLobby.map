@@ -89,16 +89,204 @@ objscripts
 22 LilycoveCity_ContestLobby_EventScript_BlendMasterOnlooker1
 23 LilycoveCity_ContestLobby_EventScript_BlendMaster
 24 LilycoveCity_ContestLobby_EventScript_LittleGirl
+onload
+VAR_LILYCOVE_CONTEST_LOBBY_STATE 1 LilycoveCity_ContestLobby_EventScript_TryDoContestArtist
+VAR_LILYCOVE_CONTEST_LOBBY_STATE 2 LilycoveCity_ContestLobby_EventScript_TryDoLinkContestArtist
 movements
 BerryBlender_EventScript_ExpertMCheckGiveBerry	delay,face_down,delay,delay,delay,delay,delay
+Common_Movement_ExclamationMark	delay,end
 Common_Movement_FaceOriginalDirection	face_down,end
+LilycoveCity_ContestLobby_Movement_ArtistApproachPlayer	down,down,down,right,right,right,right,end
+LilycoveCity_ContestLobby_Movement_ArtistBeginToExit	down,down,down,end
+LilycoveCity_ContestLobby_Movement_ArtistExit	down,down,down,down,down,down,down,down,end
+LilycoveCity_ContestLobby_Movement_ArtistReturnToPlayer	delay,delay,delay,delay,up,up,up,delay,end
+LilycoveCity_ContestLobby_Movement_LinkArtistApproachPlayer	down,down,down,left,left,left,left,left,end
+LilycoveCity_ContestLobby_Movement_LinkArtistBeginExit	down,down,down,end
+LilycoveCity_ContestLobby_Movement_LinkArtistExit	down,down,down,down,down,down,down,down,end
+LilycoveCity_ContestLobby_Movement_LinkArtistReturnToPlayer	delay,delay,delay,delay,up,up,up,delay,end
 LilycoveCity_ContestLobby_Movement_PlayerApproachReceptionist	delay,left,end
+LilycoveCity_ContestLobby_Movement_PlayerFaceArtist	delay,end
+LilycoveCity_ContestLobby_Movement_PlayerFaceLinkArtist	delay,end
 LilycoveCity_ContestLobby_Movement_PlayerWalkToContestHall	left,left,left,left,up,up,up,delay,delay,end
 LilycoveCity_ContestLobby_Movement_ReceptionistApproachCounter	left,left,delay,end
 LilycoveCity_ContestLobby_Movement_ReceptionistExitCounter	down,down,delay,end
 LilycoveCity_ContestLobby_Movement_ReceptionistFacePlayer	delay,end
 LilycoveCity_ContestLobby_Movement_ReceptionistWalkToContestHall	left,left,left,up,up,up,delay,delay,end
 scriptdefs
+= LilycoveCity_ContestLobby_EventScript_TryDoLinkContestArtist
+goto_if_set FLAG_HIDE_LILYCOVE_MUSEUM_CURATOR LilycoveCity_ContestLobby_EventScript_LinkContestArtist
+setvar VAR_LILYCOVE_CONTEST_LOBBY_STATE 0
+end
+= LilycoveCity_ContestLobby_EventScript_LinkContestArtist
+lockall
+addobject LOCALID_CONTEST_LOBBY_LINK_ARTIST
+applymovement LOCALID_CONTEST_LOBBY_LINK_ARTIST LilycoveCity_ContestLobby_Movement_LinkArtistApproachPlayer
+waitmovement LOCALID_CONTEST_LOBBY_LINK_ARTIST
+applymovement LOCALID_PLAYER LilycoveCity_ContestLobby_Movement_PlayerFaceLinkArtist
+waitmovement 0
+msgbox	Congratulations!I did a painting of your POKéMON to commemorate its victory…Well, your POKéMON's appeals were so fantastic, it spurred me into painting better than I usually do. Look, see?
+lockall
+fadescreen FADE_TO_BLACK
+showcontestpainting CONTEST_WINNER_ARTIST
+msgbox	What do you think? I'm confident in what I've done, but do you like it?A work of this caliber, it wouldn't look out of place in an art museum.Huh? An art museum really is looking for paintings?Do you think I should take this there?
+goto_if_eq VAR_RESULT YES LilycoveCity_ContestLobby_EventScript_TakePaintingToMuseumLink
+goto_if_eq VAR_RESULT NO LilycoveCity_ContestLobby_EventScript_ConfirmDontTakePaintingLink
+end
+= LilycoveCity_ContestLobby_EventScript_ConfirmDontTakePaintingLink
+msgbox	Oh… Then, I guess I'll just take this home with me…But, you know, I would like to take this to the art museum… Okay?
+goto_if_eq VAR_RESULT YES LilycoveCity_ContestLobby_EventScript_TakePaintingToMuseumLink
+msgbox	Oh, fine, that's the way it is. I will hang this in my own house.I'll just have to try harder next time. Well, be seeing you.
+closemessage
+applymovement LOCALID_CONTEST_LOBBY_LINK_ARTIST LilycoveCity_ContestLobby_Movement_LinkArtistExit
+waitmovement 0
+setvar VAR_LILYCOVE_CONTEST_LOBBY_STATE 0
+removeobject LOCALID_CONTEST_LOBBY_LINK_ARTIST
+releaseall
+end
+= LilycoveCity_ContestLobby_EventScript_TakePaintingToMuseumLink
+msgbox	What, really? Then, sure, I will take this painting there right now.I'll give it a proper title, too.I hope they'll like it and consider exhibiting this.Please check if they did accept this. Thank you!
+closemessage
+special SaveMuseumContestPainting
+setvar VAR_LILYCOVE_CONTEST_LOBBY_STATE 0
+specialvar VAR_RESULT GiveMonArtistRibbon
+call_if_eq VAR_RESULT TRUE LilycoveCity_ContestLobby_EventScript_ReceivedLinkArtistRibbon
+applymovement LOCALID_CONTEST_LOBBY_LINK_ARTIST LilycoveCity_ContestLobby_Movement_LinkArtistExit
+waitmovement 0
+removeobject LOCALID_CONTEST_LOBBY_LINK_ARTIST
+call LilycoveCity_ContestLobby_EventScript_UpdateMuseumPatrons
+call LilycoveCity_ContestLobby_EventScript_SetPaintingFlag
+releaseall
+end
+= LilycoveCity_ContestLobby_EventScript_SetPaintingFlag
+switch VAR_CONTEST_CATEGORY
+case CONTEST_CATEGORY_COOL LilycoveCity_ContestLobby_EventScript_MadeCoolPainting
+case CONTEST_CATEGORY_BEAUTY LilycoveCity_ContestLobby_EventScript_MadeBeautyPainting
+case CONTEST_CATEGORY_CUTE LilycoveCity_ContestLobby_EventScript_MadeCutePainting
+case CONTEST_CATEGORY_SMART LilycoveCity_ContestLobby_EventScript_MadeSmartPainting
+case CONTEST_CATEGORY_TOUGH LilycoveCity_ContestLobby_EventScript_MadeToughPainting
+return
+= LilycoveCity_ContestLobby_EventScript_MadeToughPainting
+setflag FLAG_TOUGH_PAINTING_MADE
+return
+= LilycoveCity_ContestLobby_EventScript_MadeSmartPainting
+setflag FLAG_SMART_PAINTING_MADE
+return
+= LilycoveCity_ContestLobby_EventScript_MadeCutePainting
+setflag FLAG_CUTE_PAINTING_MADE
+return
+= LilycoveCity_ContestLobby_EventScript_MadeBeautyPainting
+setflag FLAG_BEAUTY_PAINTING_MADE
+return
+= LilycoveCity_ContestLobby_EventScript_MadeCoolPainting
+setflag FLAG_COOL_PAINTING_MADE
+return
+= LilycoveCity_ContestLobby_EventScript_UpdateMuseumPatrons
+specialvar VAR_0x8004 CountPlayerMuseumPaintings
+switch VAR_0x8004
+case 1 LilycoveCity_ContestLobby_EventScript_ShowPatron1
+case 2 LilycoveCity_ContestLobby_EventScript_ShowPatron2
+case 3 LilycoveCity_ContestLobby_EventScript_ShowPatron3
+case 4 LilycoveCity_ContestLobby_EventScript_ShowPatron4
+case 5 LilycoveCity_ContestLobby_EventScript_ShowTourists
+return
+= LilycoveCity_ContestLobby_EventScript_ShowTourists
+clearflag FLAG_HIDE_LILYCOVE_MUSEUM_TOURISTS
+return
+= LilycoveCity_ContestLobby_EventScript_ShowPatron4
+clearflag FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_4
+return
+= LilycoveCity_ContestLobby_EventScript_ShowPatron3
+clearflag FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_3
+return
+= LilycoveCity_ContestLobby_EventScript_ShowPatron2
+clearflag FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_2
+return
+= LilycoveCity_ContestLobby_EventScript_ShowPatron1
+clearflag FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_1
+return
+= LilycoveCity_ContestLobby_EventScript_ReceivedLinkArtistRibbon
+incrementgamestat GAME_STAT_RECEIVED_RIBBONS
+setflag FLAG_SYS_RIBBON_GET
+special BufferContestWinnerMonName
+applymovement LOCALID_CONTEST_LOBBY_LINK_ARTIST LilycoveCity_ContestLobby_Movement_LinkArtistBeginExit
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_CONTEST_LOBBY_LINK_ARTIST Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_CONTEST_LOBBY_LINK_ARTIST LilycoveCity_ContestLobby_Movement_LinkArtistReturnToPlayer
+waitmovement 0
+msgbox	Oh, that's right!As a memento of me painting your POKéMON, please take this.
+playfanfare MUS_OBTAIN_ITEM
+msgbox	PLAYER received a RIBBON.
+waitfanfare
+msgbox	PLAYER put the RIBBON on .
+msgbox	Okay, see you!
+closemessage
+return
+= LilycoveCity_ContestLobby_EventScript_TryDoContestArtist
+goto_if_set FLAG_HIDE_LILYCOVE_MUSEUM_CURATOR LilycoveCity_ContestLobby_EventScript_ContestArtist
+setvar VAR_LILYCOVE_CONTEST_LOBBY_STATE 0
+end
+= LilycoveCity_ContestLobby_EventScript_ContestArtist
+lockall
+addobject LOCALID_CONTEST_LOBBY_ARTIST
+applymovement LOCALID_CONTEST_LOBBY_ARTIST LilycoveCity_ContestLobby_Movement_ArtistApproachPlayer
+waitmovement LOCALID_CONTEST_LOBBY_ARTIST
+applymovement LOCALID_PLAYER LilycoveCity_ContestLobby_Movement_PlayerFaceArtist
+waitmovement 0
+msgbox	Congratulations!I did a painting of your POKéMON to commemorate its victory…Well, your POKéMON's appeals were so fantastic, it spurred me into painting better than I usually do. Look, see?
+lockall
+fadescreen FADE_TO_BLACK
+showcontestpainting CONTEST_WINNER_ARTIST
+lockall
+msgbox	What do you think? I'm confident in what I've done, but do you like it?A work of this caliber, it wouldn't look out of place in an art museum.Huh? An art museum really is looking for paintings?Do you think I should take this there?
+goto_if_eq VAR_RESULT YES LilycoveCity_ContestLobby_EventScript_TakePaintingToMuseum
+goto_if_eq VAR_RESULT NO LilycoveCity_ContestLobby_EventScript_ConfirmDontTakePainting
+releaseall
+end
+= LilycoveCity_ContestLobby_EventScript_ConfirmDontTakePainting
+msgbox	Oh… Then, I guess I'll just take this home with me…But, you know, I would like to take this to the art museum… Okay?
+goto_if_eq VAR_RESULT YES LilycoveCity_ContestLobby_EventScript_TakePaintingToMuseum
+msgbox	Oh, fine, that's the way it is. I will hang this in my own house.I'll just have to try harder next time. Well, be seeing you.
+closemessage
+applymovement LOCALID_CONTEST_LOBBY_ARTIST LilycoveCity_ContestLobby_Movement_ArtistExit
+waitmovement 0
+setvar VAR_LILYCOVE_CONTEST_LOBBY_STATE 0
+removeobject LOCALID_CONTEST_LOBBY_ARTIST
+releaseall
+end
+= LilycoveCity_ContestLobby_EventScript_TakePaintingToMuseum
+msgbox	What, really? Then, sure, I will take this painting there right now.I'll give it a proper title, too.I hope they'll like it and consider exhibiting this.Please check if they did accept this. Thank you!
+closemessage
+special SaveMuseumContestPainting
+setvar VAR_LILYCOVE_CONTEST_LOBBY_STATE 0
+specialvar VAR_RESULT GiveMonArtistRibbon
+call_if_eq VAR_RESULT TRUE LilycoveCity_ContestLobby_EventScript_ReceivedArtistRibbon
+applymovement LOCALID_CONTEST_LOBBY_ARTIST LilycoveCity_ContestLobby_Movement_ArtistExit
+waitmovement 0
+removeobject LOCALID_CONTEST_LOBBY_ARTIST
+call LilycoveCity_ContestLobby_EventScript_UpdateMuseumPatrons
+call LilycoveCity_ContestLobby_EventScript_SetPaintingFlag
+releaseall
+end
+= LilycoveCity_ContestLobby_EventScript_ReceivedArtistRibbon
+incrementgamestat GAME_STAT_RECEIVED_RIBBONS
+special BufferContestWinnerMonName
+applymovement LOCALID_CONTEST_LOBBY_ARTIST LilycoveCity_ContestLobby_Movement_ArtistBeginToExit
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_CONTEST_LOBBY_ARTIST Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_CONTEST_LOBBY_ARTIST LilycoveCity_ContestLobby_Movement_ArtistReturnToPlayer
+waitmovement 0
+msgbox	Oh, that's right!As a memento of me painting your POKéMON, please take this.
+playfanfare MUS_OBTAIN_ITEM
+msgbox	PLAYER received a RIBBON.
+waitfanfare
+msgbox	PLAYER put the RIBBON on .
+msgbox	Okay, see you!
+closemessage
+return
 = LilycoveCity_ContestLobby_EventScript_LittleGirl
 lock
 faceplayer

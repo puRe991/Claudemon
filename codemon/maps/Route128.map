@@ -105,7 +105,90 @@ triggers
 49 9 0 0 Route128_HiddenItem_49_9
 57 21 0 0 Route128_HiddenItem_57_21
 31 33 0 0 Route128_HiddenItem_31_33
+onload
+VAR_ROUTE128_STATE 1 Route128_EventScript_KyogreAwakenedScene
+movements
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
+Route128_Movement_ArchieBackUp	delay,up,delay,delay,end
+Route128_Movement_ArchieExit	delay,delay,up,left,up,up,up,up,up,up,up,up,end
+Route128_Movement_ArchieLookAround	down,delay,delay,delay,delay,delay,delay,end
+Route128_Movement_ArchieRunLeft	left,left,left,delay,end
+Route128_Movement_MaxieApproachArchie	left,delay,end
+Route128_Movement_MaxieApproachPlayer	right,delay,end
+Route128_Movement_MaxieExit	left,left,left,up,up,up,up,up,up,up,end
+Route128_Movement_MaxieWalkLeft	left,left,delay,delay,end
+Route128_Movement_StevenApproachPlayer	left,end
+Route128_Movement_StevenWalkUp	up,end
 scriptdefs
+= Route128_EventScript_KyogreAwakenedScene
+lockall
+delay 20
+applymovement LOCALID_ROUTE128_ARCHIE Route128_Movement_ArchieLookAround
+waitmovement 0
+msgbox	ARCHIE: What happened… What is this wretched scene…Did I…make a horrible mistake?
+closemessage
+applymovement LOCALID_ROUTE128_ARCHIE Route128_Movement_ArchieBackUp
+waitmovement 0
+msgbox	I… I only wanted…
+closemessage
+applymovement LOCALID_ROUTE128_MAXIE Route128_Movement_MaxieApproachArchie
+waitmovement 0
+applymovement LOCALID_ROUTE128_ARCHIE Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+msgbox	MAXIE: Do you understand now, ARCHIE?Do you finally see how disastrous your dream turned out to be?We have to hurry! We have to do something before the situation goes completely out of control!
+closemessage
+applymovement LOCALID_ROUTE128_MAXIE Route128_Movement_MaxieApproachPlayer
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+msgbox	MAXIE: PLAYER, don't say anything.I know that I have no right to be critical of ARCHIE…But the way things are now, I doubt that we humans will be capable of doing anything about it.But neither can we stand by and just watch helplessly.The responsibility for putting an end to this falls to ARCHIE and me…
+closemessage
+applymovement LOCALID_ROUTE128_ARCHIE Route128_Movement_ArchieRunLeft
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterLeft
+applymovement LOCALID_ROUTE128_MAXIE Route128_Movement_MaxieWalkLeft
+waitmovement 0
+msgbox	MAXIE: This defies belief…Those super-ancient POKéMON…Their power is unbelievable. They've upset the balance of nature…
+closemessage
+delay 40
+applymovement LOCALID_ROUTE128_MAXIE Route128_Movement_MaxieExit
+applymovement LOCALID_ROUTE128_ARCHIE Route128_Movement_ArchieExit
+waitmovement 0
+removeobject LOCALID_ROUTE128_MAXIE
+removeobject LOCALID_ROUTE128_ARCHIE
+delay 100
+setfieldeffectargument 0 1
+dofieldeffect FLDEFF_NPCFLY_OUT
+waitfieldeffect FLDEFF_NPCFLY_OUT
+addobject LOCALID_ROUTE128_STEVEN
+applymovement LOCALID_ROUTE128_STEVEN Route128_Movement_StevenApproachPlayer
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+msgbox	STEVEN: PLAYER! What is happening?
+closemessage
+applymovement LOCALID_ROUTE128_STEVEN Route128_Movement_StevenWalkUp
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+msgbox	This is terrible…After the scorching heat wave ended, this deluge began.If this doesn't stop, all of HOENN… No, the whole world will drown.This huge rain cloud is spreading from above SOOTOPOLIS…What in the world is taking place there?There's no point arguing here… SOOTOPOLIS might provide answers…
+applymovement LOCALID_ROUTE128_STEVEN Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+msgbox	PLAYER… I don't know what you intend to do, but don't do anything reckless.Okay. I'm going to SOOTOPOLIS.
+closemessage
+applymovement LOCALID_ROUTE128_STEVEN Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+delay 50
+setfieldeffectargument 0 1
+dofieldeffect FLDEFF_NPCFLY_OUT
+delay 15
+removeobject LOCALID_ROUTE128_STEVEN
+waitfieldeffect FLDEFF_NPCFLY_OUT
+clearflag FLAG_HIDE_MAP_NAME_POPUP
+setvar VAR_ROUTE128_STATE 2
+releaseall
+end
 = Route128_HiddenItem_31_33
 goto_if_set FLAG_HIDDEN_ITEM_ROUTE_128_HEART_SCALE_3 Route128_HiddenItem_31_33_Taken
 finditem ITEM_HEART_SCALE

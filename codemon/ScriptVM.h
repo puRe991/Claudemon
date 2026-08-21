@@ -46,8 +46,23 @@ public:
 	void on_key();                   // player pressed the advance key
 	void update(float dt);           // advance timers / movement
 
+	// `special ChooseStarter` (Route 101 Birch's bag): the VM can't drive a
+	// multi-frame UI itself, so it blocks here and the game loop shows the
+	// real starter-choice screen, then calls resolve_starter() to continue.
+	bool wants_starter() const { return this->st == WAIT_STARTER; }
+	void resolve_starter(const std::string& species);
+
+	// `warp`/`warpdoor`/... (e.g. Birch's bag sending the player to his lab):
+	// the VM can't swap the active Session itself, so it records the
+	// destination and the game loop performs the actual map change.
+	bool has_pending_warp() const { return this->pending_warp; }
+	void get_pending_warp(std::string& dest, int& x, int& y) const {
+		dest = this->warp_dest; x = this->warp_x; y = this->warp_y;
+	}
+	void clear_pending_warp() { this->pending_warp = false; }
+
 private:
-	enum State { IDLE, RUN, WAIT_MSG, WAIT_MOVE, WAIT_BATTLE };
+	enum State { IDLE, RUN, WAIT_MSG, WAIT_MOVE, WAIT_BATTLE, WAIT_STARTER };
 
 	Map* map; GameState* state; DialogBox* box; Battle* battle;
 	Audio* audio; Character* player; Character* owner;
@@ -63,6 +78,9 @@ private:
 	std::vector<MoveQ> queues;
 	float move_timer;
 	std::string pending_win_script;  // trainerbattle's post-victory script label, if any
+
+	bool pending_warp = false;
+	std::string warp_dest; int warp_x = -1, warp_y = -1;
 
 	int value_of(const std::string& s) const;   // resolve a symbol/number
 	Character* resolve(const std::string& localid) const;

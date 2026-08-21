@@ -91,6 +91,14 @@ void ScriptVM::finish() {
 	if (this->owner) this->owner = nullptr;
 }
 
+void ScriptVM::resolve_starter(const std::string& species) {
+	if (this->st != WAIT_STARTER) return;
+	if (this->bdata && this->party) *this->party = this->bdata->make_mon(species, 5);
+	if (this->state) this->state->set_flag("FLAG_SYS_POKEMON_GET");
+	this->st = RUN;
+	this->pump();
+}
+
 void ScriptVM::apply_move_action(Character* ch, const std::string& act) {
 	if (act == "up")    ch->step(DIR::N);
 	else if (act == "down")  ch->step(DIR::S);
@@ -242,8 +250,22 @@ void ScriptVM::pump() {
 			} else if (fn == "GetPlayerXY") {
 				this->state->set_var("VAR_0x8004", this->player->get_tile_x());
 				this->state->set_var("VAR_0x8005", this->player->get_tile_y());
+			} else if (fn == "ChooseStarter") {
+				this->st = WAIT_STARTER;
+				return;
 			}
 			// unknown specials: no-op (cannot run arbitrary GBA C)
+		} else if ((op == "warp" || op == "warpdoor" || op == "warphole" ||
+		            op == "warpsilent" || op == "warpspinenter" ||
+		            op == "warpteleport" || op == "warpmossdeepgym" ||
+		            op == "warpwhitefade") && argc >= 1) {
+			// The destination map has already changed here; nothing later in
+			// this script (waitstate/release/end) still applies, so stop.
+			this->warp_dest = arg(0);
+			this->warp_x = (argc >= 2) ? value_of(arg(1)) : -1;
+			this->warp_y = (argc >= 3) ? value_of(arg(2)) : -1;
+			this->pending_warp = true;
+			finish(); return;
 		} else if (op == "end") {
 			finish(); return;
 		}

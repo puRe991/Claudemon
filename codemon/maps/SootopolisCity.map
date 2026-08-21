@@ -187,21 +187,317 @@ objscripts
 15 SootopolisCity_EventScript_Maxie
 16 SootopolisCity_EventScript_Archie
 17 SootopolisCity_EventScript_Wallace
+onload
+VAR_SOOTOPOLIS_CITY_STATE 1 SootopolisCity_EventScript_StartLegendariesScene
+VAR_SKY_PILLAR_STATE 1 SootopolisCity_EventScript_StartRayquazaScene
 movements
 Common_Movement_FaceOriginalDirection	face_down,end
 Common_Movement_FacePlayer	face_down,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
 SootopolisCity_Movement_ExpertMoveAside	left,delay,end
+SootopolisCity_Movement_GroudonAttack	delay,delay,delay,delay,delay,delay,right,end
+SootopolisCity_Movement_GroudonDefend	delay,delay,delay,delay,delay,delay,delay,delay,delay,right,end
+SootopolisCity_Movement_GroudonIdle	delay,delay,delay,delay,delay,delay,end
+SootopolisCity_Movement_GroudonMoveBack	delay,left,delay,delay,delay,delay,end
+SootopolisCity_Movement_KyogreAttack	delay,delay,delay,delay,delay,delay,delay,delay,delay,end
+SootopolisCity_Movement_KyogreDefend	delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,end
+SootopolisCity_Movement_KyogreIdle	delay,delay,delay,delay,delay,delay,end
+SootopolisCity_Movement_KyogreMoveBack	delay,right,delay,delay,delay,delay,end
+SootopolisCity_Movement_PanBackToDive	down,down,down,down,down,down,down,delay,delay,end
+SootopolisCity_Movement_PanBackToPokeCenter	delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,end
+SootopolisCity_Movement_PanToActionFromDive	delay,delay,up,up,up,up,up,up,up,end
+SootopolisCity_Movement_PanToActionFromPokeCenter	delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,end
+SootopolisCity_Movement_PanUp	up,up,up,up,end
+SootopolisCity_Movement_PlayerApproachLegendaries	up,up,up,up,end
 SootopolisCity_Movement_PlayerArriveCaveEntrance	delay,delay,delay,delay,right,right,up,up,up,delay,end
 SootopolisCity_Movement_PlayerEnterCaveOfOrigin	up,up,end
 SootopolisCity_Movement_PlayerStartWalkToCaveOfOriginNorth	up,up,up,up,right,up,up,up,up,up,up,up,up,up,up,up,left,up,up,up,up,left,left,left,left,up,up,up,up,up,up,up,up,up,up,end
 SootopolisCity_Movement_PlayerStartWalkToCaveOfOriginWest	left,up,up,up,right,up,up,up,up,up,up,up,up,up,up,up,left,up,up,up,up,left,left,left,left,up,up,up,up,up,up,up,up,up,up,end
 SootopolisCity_Movement_PlayerWalkToCaveOfOrigin	up,up,up,right,right,right,right,down,down,right,right,right,right,right,up,right,right,right,right,down,down,down,right,right,right,right,right,down,down,down,down,left,left,left,left,left,left,left,left,down,down,down,down,down,down,down,down,right,right,right,end
+SootopolisCity_Movement_RayquazaFlyOff	up,delay,delay,delay,delay,delay,delay,end
 SootopolisCity_Movement_StevenArriveCaveEntrance	down,down,left,delay,right,up,up,up,right,delay,end
 SootopolisCity_Movement_StevenStartWalkToCaveOfOrigin	up,up,up,right,up,up,up,up,up,up,up,up,up,up,up,left,up,up,up,up,left,left,left,left,up,up,up,up,up,up,up,up,up,up,up,delay,end
 SootopolisCity_Movement_StevenWalkToCaveOfOrigin	up,up,right,right,right,right,down,down,right,right,right,right,right,up,right,right,right,right,down,down,down,right,right,right,right,right,down,down,down,down,left,left,left,left,left,left,left,left,down,down,down,down,down,down,down,down,right,right,right,right,delay,delay,delay,delay,right,up,up,end
 SootopolisCity_Movement_WallaceMoveFromGym	right,delay,end
 SootopolisCity_Movement_WallaceMoveFromGymWest	left,delay,end
 scriptdefs
+= SootopolisCity_EventScript_StartRayquazaScene
+lockall
+special StorePlayerCoordsInVars
+goto_if_ne VAR_0x8004 43 SootopolisCity_EventScript_RayquazaSceneFromDive
+goto_if_ne VAR_0x8005 32 SootopolisCity_EventScript_RayquazaSceneFromDive
+goto SootopolisCity_EventScript_RayquazaSceneFromPokeCenter
+end
+= SootopolisCity_EventScript_RayquazaSceneFromPokeCenter
+delay 60
+special SpawnCameraObject
+applymovement LOCALID_CAMERA SootopolisCity_Movement_PanToActionFromPokeCenter
+waitmovement 0
+special RemoveCameraObject
+delay 60
+fadescreenspeed FADE_TO_BLACK 8
+call SootopolisCity_EventScript_SetRoughWater
+removeobject LOCALID_SOOTOPOLIS_GROUDON
+removeobject LOCALID_SOOTOPOLIS_KYOGRE
+addobject LOCALID_SOOTOPOLIS_RAYQUAZA
+setvar VAR_0x8004 TRUE
+special Script_DoRayquazaScene
+playse SE_THUNDER
+special SpawnCameraObject
+applymovement LOCALID_CAMERA SootopolisCity_Movement_PanUp
+waitmovement 0
+waitse
+playmoncry SPECIES_RAYQUAZA CRY_MODE_ENCOUNTER
+setvar VAR_0x8004 1  @ vertical pan
+setvar VAR_0x8005 1  @ horizontal pan
+setvar VAR_0x8006 8  @ num shakes
+setvar VAR_0x8007 3  @ shake delay
+special ShakeCamera
+waitstate
+waitse
+playmoncry SPECIES_RAYQUAZA CRY_MODE_ENCOUNTER
+setvar VAR_0x8004 1  @ vertical pan
+setvar VAR_0x8005 2  @ horizontal pan
+setvar VAR_0x8006 8  @ num shakes
+setvar VAR_0x8007 5  @ shake delay
+special ShakeCamera
+waitstate
+waitmoncry
+setweather WEATHER_NONE
+doweather
+applymovement LOCALID_SOOTOPOLIS_RAYQUAZA SootopolisCity_Movement_RayquazaFlyOff
+waitmovement 0
+removeobject LOCALID_SOOTOPOLIS_RAYQUAZA
+special WaitWeather
+clearflag FLAG_SYS_WEATHER_CTRL
+setvar VAR_SKY_PILLAR_STATE 3
+clearflag FLAG_LEGENDARIES_IN_SOOTOPOLIS
+fadenewbgm MUS_SOOTOPOLIS
+delay 120
+clearflag FLAG_HIDE_MAP_NAME_POPUP
+warpwhitefade SootopolisCity 43 32
+waitstate
+end
+= SootopolisCity_EventScript_SetRoughWater
+setmetatile 27 43 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 28 43 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 29 43 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 30 43 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 27 44 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 28 44 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 29 44 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 30 44 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 27 45 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 28 45 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 29 45 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 30 45 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 32 43 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 33 43 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 34 43 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 35 43 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 32 44 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 33 44 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 34 44 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 35 44 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 32 45 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 33 45 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 34 45 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 35 45 METATILE_Sootopolis_RoughWater FALSE
+return
+= SootopolisCity_EventScript_RayquazaSceneFromDive
+delay 60
+special SpawnCameraObject
+applymovement LOCALID_CAMERA SootopolisCity_Movement_PanToActionFromDive
+waitmovement 0
+special RemoveCameraObject
+delay 60
+fadescreenspeed FADE_TO_BLACK 8
+call SootopolisCity_EventScript_SetRoughWater
+removeobject LOCALID_SOOTOPOLIS_GROUDON
+removeobject LOCALID_SOOTOPOLIS_KYOGRE
+addobject LOCALID_SOOTOPOLIS_RAYQUAZA
+setvar VAR_0x8004 TRUE
+special Script_DoRayquazaScene
+special SpawnCameraObject
+applymovement LOCALID_CAMERA SootopolisCity_Movement_PanUp
+applymovement LOCALID_PLAYER SootopolisCity_Movement_PlayerApproachLegendaries
+waitmovement 0
+waitse
+playmoncry SPECIES_RAYQUAZA CRY_MODE_ENCOUNTER
+setvar VAR_0x8004 1  @ vertical pan
+setvar VAR_0x8005 1  @ horizontal pan
+setvar VAR_0x8006 8  @ num shakes
+setvar VAR_0x8007 3  @ shake delay
+special ShakeCamera
+waitstate
+waitse
+playmoncry SPECIES_RAYQUAZA CRY_MODE_ENCOUNTER
+setvar VAR_0x8004 1  @ vertical pan
+setvar VAR_0x8005 2  @ horizontal pan
+setvar VAR_0x8006 8  @ num shakes
+setvar VAR_0x8007 5  @ shake delay
+special ShakeCamera
+waitstate
+waitmoncry
+setweather WEATHER_NONE
+doweather
+applymovement LOCALID_SOOTOPOLIS_RAYQUAZA SootopolisCity_Movement_RayquazaFlyOff
+waitmovement 0
+removeobject LOCALID_SOOTOPOLIS_RAYQUAZA
+special WaitWeather
+clearflag FLAG_SYS_WEATHER_CTRL
+setvar VAR_SKY_PILLAR_STATE 2
+clearflag FLAG_LEGENDARIES_IN_SOOTOPOLIS
+fadenewbgm MUS_SURF
+delay 120
+clearflag FLAG_HIDE_MAP_NAME_POPUP
+warpwhitefade SootopolisCity 29 53
+waitstate
+end
+= SootopolisCity_EventScript_StartLegendariesScene
+lockall
+special StorePlayerCoordsInVars
+goto_if_ne VAR_0x8004 43 SootopolisCity_EventScript_LegendariesSceneFromDive
+goto_if_ne VAR_0x8005 32 SootopolisCity_EventScript_LegendariesSceneFromDive
+goto SootopolisCity_EventScript_LegendariesSceneFromPokeCenter
+end
+= SootopolisCity_EventScript_LegendariesSceneFromPokeCenter
+delay 60
+special SpawnCameraObject
+applymovement LOCALID_CAMERA SootopolisCity_Movement_PanToActionFromPokeCenter
+waitmovement 0
+special RemoveCameraObject
+delay 60
+fadescreenspeed FADE_TO_BLACK 8
+setweather WEATHER_ABNORMAL
+doweather
+setvar VAR_0x8004 FALSE @ Just do Groudon/Kyogre fight scene
+special Script_DoRayquazaScene
+applymovement LOCALID_SOOTOPOLIS_KYOGRE Common_Movement_WalkInPlaceFasterLeft
+applymovement LOCALID_SOOTOPOLIS_GROUDON Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+delay 60
+waitse
+playmoncry SPECIES_KYOGRE CRY_MODE_ENCOUNTER
+applymovement LOCALID_SOOTOPOLIS_KYOGRE SootopolisCity_Movement_KyogreAttack
+applymovement LOCALID_SOOTOPOLIS_GROUDON SootopolisCity_Movement_GroudonDefend
+waitmovement 0
+setvar VAR_0x8004 1  @ vertical pan
+setvar VAR_0x8005 1  @ horizontal pan
+setvar VAR_0x8006 8  @ num shakes
+setvar VAR_0x8007 5  @ shake delay
+special ShakeCamera
+waitstate
+applymovement LOCALID_SOOTOPOLIS_KYOGRE SootopolisCity_Movement_KyogreMoveBack
+applymovement LOCALID_SOOTOPOLIS_GROUDON SootopolisCity_Movement_GroudonMoveBack
+waitmovement 0
+waitse
+playmoncry SPECIES_GROUDON CRY_MODE_ENCOUNTER
+applymovement LOCALID_SOOTOPOLIS_KYOGRE SootopolisCity_Movement_KyogreDefend
+applymovement LOCALID_SOOTOPOLIS_GROUDON SootopolisCity_Movement_GroudonAttack
+waitmovement 0
+setvar VAR_0x8004 1  @ vertical pan
+setvar VAR_0x8005 1  @ horizontal pan
+setvar VAR_0x8006 8  @ num shakes
+setvar VAR_0x8007 5  @ shake delay
+special ShakeCamera
+waitstate
+applymovement LOCALID_SOOTOPOLIS_KYOGRE SootopolisCity_Movement_KyogreMoveBack
+applymovement LOCALID_SOOTOPOLIS_GROUDON SootopolisCity_Movement_GroudonMoveBack
+waitmovement 0
+waitse
+playmoncry SPECIES_KYOGRE CRY_MODE_ENCOUNTER
+applymovement LOCALID_SOOTOPOLIS_KYOGRE SootopolisCity_Movement_KyogreAttack
+applymovement LOCALID_SOOTOPOLIS_GROUDON SootopolisCity_Movement_GroudonDefend
+waitmovement 0
+setvar VAR_0x8004 1  @ vertical pan
+setvar VAR_0x8005 1  @ horizontal pan
+setvar VAR_0x8006 8  @ num shakes
+setvar VAR_0x8007 5  @ shake delay
+special ShakeCamera
+waitstate
+applymovement LOCALID_SOOTOPOLIS_KYOGRE SootopolisCity_Movement_KyogreMoveBack
+applymovement LOCALID_SOOTOPOLIS_GROUDON SootopolisCity_Movement_GroudonMoveBack
+waitmovement 0
+special SpawnCameraObject
+applymovement LOCALID_SOOTOPOLIS_KYOGRE SootopolisCity_Movement_KyogreIdle
+applymovement LOCALID_SOOTOPOLIS_GROUDON SootopolisCity_Movement_GroudonIdle
+applymovement LOCALID_CAMERA SootopolisCity_Movement_PanBackToPokeCenter
+waitmovement 0
+special RemoveCameraObject
+setvar VAR_SOOTOPOLIS_CITY_STATE 2
+clearflag FLAG_HIDE_MAP_NAME_POPUP
+releaseall
+end
+= SootopolisCity_EventScript_LegendariesSceneFromDive
+delay 60
+special SpawnCameraObject
+applymovement LOCALID_CAMERA SootopolisCity_Movement_PanToActionFromDive
+waitmovement 0
+special RemoveCameraObject
+delay 60
+fadescreenspeed FADE_TO_BLACK 8
+setweather WEATHER_ABNORMAL
+doweather
+setvar VAR_0x8004 FALSE @ Just do Groudon/Kyogre fight scene
+special Script_DoRayquazaScene
+applymovement LOCALID_SOOTOPOLIS_KYOGRE Common_Movement_WalkInPlaceFasterLeft
+applymovement LOCALID_SOOTOPOLIS_GROUDON Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+delay 60
+waitse
+playmoncry SPECIES_KYOGRE CRY_MODE_ENCOUNTER
+applymovement LOCALID_SOOTOPOLIS_KYOGRE SootopolisCity_Movement_KyogreAttack
+applymovement LOCALID_SOOTOPOLIS_GROUDON SootopolisCity_Movement_GroudonDefend
+waitmovement 0
+setvar VAR_0x8004 1  @ vertical pan
+setvar VAR_0x8005 1  @ horizontal pan
+setvar VAR_0x8006 8  @ num shakes
+setvar VAR_0x8007 5  @ shake delay
+special ShakeCamera
+waitstate
+applymovement LOCALID_SOOTOPOLIS_KYOGRE SootopolisCity_Movement_KyogreMoveBack
+applymovement LOCALID_SOOTOPOLIS_GROUDON SootopolisCity_Movement_GroudonMoveBack
+waitmovement 0
+waitse
+playmoncry SPECIES_GROUDON CRY_MODE_ENCOUNTER
+applymovement LOCALID_SOOTOPOLIS_KYOGRE SootopolisCity_Movement_KyogreDefend
+applymovement LOCALID_SOOTOPOLIS_GROUDON SootopolisCity_Movement_GroudonAttack
+waitmovement 0
+setvar VAR_0x8004 1  @ vertical pan
+setvar VAR_0x8005 1  @ horizontal pan
+setvar VAR_0x8006 8  @ num shakes
+setvar VAR_0x8007 5  @ shake delay
+special ShakeCamera
+waitstate
+applymovement LOCALID_SOOTOPOLIS_KYOGRE SootopolisCity_Movement_KyogreMoveBack
+applymovement LOCALID_SOOTOPOLIS_GROUDON SootopolisCity_Movement_GroudonMoveBack
+waitmovement 0
+waitse
+playmoncry SPECIES_KYOGRE CRY_MODE_ENCOUNTER
+applymovement LOCALID_SOOTOPOLIS_KYOGRE SootopolisCity_Movement_KyogreAttack
+applymovement LOCALID_SOOTOPOLIS_GROUDON SootopolisCity_Movement_GroudonDefend
+waitmovement 0
+setvar VAR_0x8004 1  @ vertical pan
+setvar VAR_0x8005 1  @ horizontal pan
+setvar VAR_0x8006 8  @ num shakes
+setvar VAR_0x8007 5  @ shake delay
+special ShakeCamera
+waitstate
+applymovement LOCALID_SOOTOPOLIS_KYOGRE SootopolisCity_Movement_KyogreMoveBack
+applymovement LOCALID_SOOTOPOLIS_GROUDON SootopolisCity_Movement_GroudonMoveBack
+waitmovement 0
+special SpawnCameraObject
+applymovement LOCALID_SOOTOPOLIS_KYOGRE SootopolisCity_Movement_KyogreIdle
+applymovement LOCALID_SOOTOPOLIS_GROUDON SootopolisCity_Movement_GroudonIdle
+applymovement LOCALID_CAMERA SootopolisCity_Movement_PanBackToDive
+waitmovement 0
+special RemoveCameraObject
+setvar VAR_SOOTOPOLIS_CITY_STATE 2
+clearflag FLAG_HIDE_MAP_NAME_POPUP
+releaseall
+end
 = SootopolisCity_EventScript_Wallace
 lock
 faceplayer
@@ -262,7 +558,7 @@ setflag FLAG_SOOTOPOLIS_ARCHIE_MAXIE_LEAVE
 clearflag FLAG_HIDE_MT_PYRE_SUMMIT_MAXIE
 clearflag FLAG_HIDE_MT_PYRE_SUMMIT_ARCHIE
 setvar VAR_MT_PYRE_STATE 2
-warpsilent MAP_SOOTOPOLIS_CITY 31 34
+warpsilent SootopolisCity 31 34
 waitstate
 releaseall
 end
@@ -424,7 +720,7 @@ closemessage
 setflag FLAG_STEVEN_GUIDES_TO_CAVE_OF_ORIGIN
 applymovement LOCALID_PLAYER SootopolisCity_Movement_PlayerEnterCaveOfOrigin
 waitmovement 0
-warp MAP_CAVE_OF_ORIGIN_ENTRANCE 9 20
+warp CaveOfOrigin_Entrance 9 20
 waitstate
 end
 = SootopolisCity_EventScript_StartWalkToCaveOfOriginNorth

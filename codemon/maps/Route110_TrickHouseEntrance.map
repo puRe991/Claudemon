@@ -31,6 +31,8 @@ triggers
 5 6 VAR_TRICK_HOUSE_BEING_WATCHED_STATE 0 Route110_TrickHouseEntrance_EventScript_TrickMasterHiding
 6 6 VAR_TRICK_HOUSE_BEING_WATCHED_STATE 0 Route110_TrickHouseEntrance_EventScript_TrickMasterHiding
 7 7 VAR_TRICK_HOUSE_BEING_WATCHED_STATE 0 Route110_TrickHouseEntrance_EventScript_TrickMasterHiding
+onload
+VAR_TRICK_HOUSE_FOUND_TRICK_MASTER 1 Route110_TrickHouseEntrance_EventScript_BeginChallenge
 movements
 Common_Movement_Delay48	delay,delay,delay,end
 Common_Movement_ExclamationMark	delay,end
@@ -39,6 +41,26 @@ Common_Movement_WalkInPlaceFasterUp	delay,end
 Route110_TrickHouse_Movement_TrickMasterJumpAway	face_up,delay,delay,delay,delay,delay,delay,delay,end
 Route110_TrickHouse_Movement_TrickMasterSpin	face_up,delay,face_left,delay,face_down,delay,face_right,delay,end
 scriptdefs
+= Route110_TrickHouseEntrance_EventScript_BeginChallenge
+lockall
+delay 20
+call_if_eq VAR_TRICK_HOUSE_LEVEL 0 Route110_TrickHouseEntrance_EventScript_MeetTrickMaster
+msgbox	You, you've come to challenge my TRICK HOUSE, haven't you?That's why you're here, isn't it? Yes, it is!Consider your challenge accepted!Enter through the scroll there, and let your challenge commence!I shall be waiting in the back!
+closemessage
+delay 20
+applymovement LOCALID_TRICK_MASTER Route110_TrickHouse_Movement_TrickMasterSpin
+waitmovement 0
+playse SE_M_EXPLOSION
+applymovement LOCALID_TRICK_MASTER Route110_TrickHouse_Movement_TrickMasterJumpAway
+waitmovement 0
+removeobject LOCALID_TRICK_MASTER
+setvar VAR_TRICK_HOUSE_ENTRANCE_STATE 1
+setvar VAR_TRICK_HOUSE_FOUND_TRICK_MASTER 0
+releaseall
+end
+= Route110_TrickHouseEntrance_EventScript_MeetTrickMaster
+msgbox	Behold!For I am the greatest living mystery of a man in all of HOENN! They call me…The TRICK MASTER! Wahahaha! Glad to meet you!
+return
 = Route110_TrickHouseEntrance_EventScript_TrickMasterHiding
 lockall
 msgbox	You're being watched…
@@ -212,7 +234,7 @@ call_if_eq VAR_TRICK_HOUSE_LEVEL 6 Route110_TrickHouseEntrance_EventScript_Found
 call_if_eq VAR_TRICK_HOUSE_LEVEL 7 Route110_TrickHouseEntrance_EventScript_FoundBeneathCushion
 closemessage
 setvar VAR_TRICK_HOUSE_FOUND_TRICK_MASTER 1
-warpsilent MAP_ROUTE110_TRICK_HOUSE_ENTRANCE 6 2
+warpsilent Route110_TrickHouseEntrance 6 2
 waitstate
 releaseall
 end

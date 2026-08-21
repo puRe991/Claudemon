@@ -45,10 +45,36 @@ objscripts
 1 LilycoveCity_LilycoveMuseum_2F_EventScript_Girl
 2 LilycoveCity_LilycoveMuseum_2F_EventScript_ExpertM
 3 LilycoveCity_LilycoveMuseum_2F_EventScript_RichBoy
+onload
+VAR_LILYCOVE_MUSEUM_2F_STATE 0 LilycoveCity_LilycoveMuseum_2F_EventScript_ShowExhibitHall
 movements
 Common_Movement_FacePlayer	face_down,end
 LilycoveCity_LilycoveMuseum_2F_Movement_FaceExhibitHall	face_up,delay,end
+LilycoveCity_LilycoveMuseum_2F_Movement_PlayerWalkInPlaceLeft	delay,end
 scriptdefs
+= LilycoveCity_LilycoveMuseum_2F_EventScript_ShowExhibitHall
+lockall
+applymovement LOCALID_MUSEUM_2F_CURATOR Common_Movement_FacePlayer
+applymovement LOCALID_PLAYER LilycoveCity_LilycoveMuseum_2F_Movement_PlayerWalkInPlaceLeft
+waitmovement 0
+msgbox	This is our special exhibit hall.
+applymovement LOCALID_MUSEUM_2F_CURATOR LilycoveCity_LilycoveMuseum_2F_Movement_FaceExhibitHall
+waitmovement 0
+applymovement LOCALID_PLAYER LilycoveCity_LilycoveMuseum_2F_Movement_FaceExhibitHall
+waitmovement 0
+msgbox	As you can plainly see, there is not a single painting on exhibit.Here, I don't wish to exhibit works of so-called classical art.Such classical works you can see on our ground floor.I wish to exhibit work that is far different from the classics.Art, after all, is not restricted to old, famous works!This exhibit hall, I wish to fill it with…Modern and vibrant artworks of POKéMON seemingly ready to spring forth into glorious life!
+applymovement LOCALID_MUSEUM_2F_CURATOR Common_Movement_FacePlayer
+waitmovement 0
+applymovement LOCALID_PLAYER LilycoveCity_LilycoveMuseum_2F_Movement_PlayerWalkInPlaceLeft
+waitmovement 0
+msgbox	I beg your pardon. I didn't intend to monopolize the conversation.Now, as you are young, and yet obviously well traveled…You must encounter lively POKéMON and works of art depicting them.If you were to come across such a painting, may we ask you to obtain the artist's permission to exhibit it here?
+#ifdef UBFIX
+setvar VAR_LILYCOVE_MUSEUM_2F_STATE 1
+#else
+copyvar VAR_LILYCOVE_MUSEUM_2F_STATE 1 warn=FALSE
+#endif
+releaseall
+end
 = LilycoveCity_LilycoveMuseum_2F_EventScript_RichBoy
 msgbox	Wow, is that right? These paintings are of your POKéMON.Isn't that just the ultimate joy for a TRAINER?
 end

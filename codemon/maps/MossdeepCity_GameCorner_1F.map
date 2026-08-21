@@ -32,10 +32,42 @@ people_man_4 4 2 S static 0
 objscripts
 0 MossdeepCity_GameCorner_1F_EventScript_OldMan
 1 MossdeepCity_GameCorner_1F_EventScript_InfoMan
+onload
+VAR_CABLE_CLUB_STATE USING_MINIGAME CableClub_EventScript_ExitMinigameRoom
 movements
+Movement_AttendantFaceDown	face_down,end
 Movement_AttendantFaceLeft	face_left,end
 Movement_PlayerEnterMinigameRoom	left,up,up,up,end
+Movement_PlayerExitLinkRoom	down,down,end
 scriptdefs
+= CableClub_EventScript_ExitMinigameRoom
+lockall
+call CableClub_EventScript_CloseLinkAndExitLinkRoom
+call EventScript_CloseMossdeepGameCornerBarrier
+special DrawWholeMapView
+playse SE_CLICK
+erasebox 0 0 29 19
+releaseall
+end
+= EventScript_CloseMossdeepGameCornerBarrier
+setmetatile 5 2 METATILE_MossdeepGameCorner_CounterClosed_Top TRUE
+setmetatile 5 3 METATILE_MossdeepGameCorner_CounterClosed_Bottom TRUE
+return
+= CableClub_EventScript_CloseLinkAndExitLinkRoom
+special CloseLink
+setvar VAR_CABLE_CLUB_STATE 0
+goto_if_eq VAR_0x8007 0 CableClub_EventScript_PlayerExitLinkRoom
+applymovement VAR_0x8007 Movement_AttendantFaceLeft
+waitmovement 0
+applymovement LOCALID_PLAYER Movement_PlayerExitLinkRoom
+waitmovement 0
+applymovement VAR_0x8007 Movement_AttendantFaceDown
+waitmovement 0
+return
+= CableClub_EventScript_PlayerExitLinkRoom
+applymovement LOCALID_PLAYER Movement_PlayerExitLinkRoom
+waitmovement 0
+return
 = MossdeepCity_GameCorner_1F_EventScript_InfoMan
 lock
 faceplayer

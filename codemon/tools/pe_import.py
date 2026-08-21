@@ -785,6 +785,43 @@ def parse_map_texts(map_dir):
     return texts
 
 
+def parse_map_load_triggers(map_dir):
+    """pokeemerald maps can auto-run a script on load via a var check
+    (MAP_SCRIPT_ON_FRAME_TABLE -> `map_script_2 VAR, val, LABEL`), used all
+    over for one-time "first time entering this map" setup -- e.g. Route 101
+    advances VAR_ROUTE101_STATE from 0 to 1 this way, which is also the exact
+    condition the Birch-rescue coord trigger waits on. Without running this,
+    that trigger (and ~100 similar ones elsewhere) can never fire.
+
+    Returns [(var, val, label), ...] for this map's ON_FRAME_TABLE script."""
+    inc = os.path.join(map_dir, "scripts.inc")
+    if not os.path.isfile(inc):
+        return []
+    lines = open(inc, encoding="utf-8", errors="replace").read().splitlines()
+    # find the label named by "map_script MAP_SCRIPT_ON_FRAME_TABLE, <label>"
+    frame_label = None
+    for ln in lines:
+        m = _re.search(r"map_script\s+MAP_SCRIPT_ON_FRAME_TABLE,\s*(\w+)", ln)
+        if m:
+            frame_label = m.group(1)
+            break
+    if not frame_label:
+        return []
+    out = []
+    in_block = False
+    for ln in lines:
+        if _re.match(r"^" + _re.escape(frame_label) + r":\s*$", ln):
+            in_block = True
+            continue
+        if in_block:
+            if _re.match(r"^\w+::?\s*$", ln):
+                break
+            m = _re.search(r"map_script_2\s+(\w+),\s*(\w+),\s*(\w+)", ln)
+            if m:
+                out.append((m.group(1), m.group(2), m.group(3)))
+    return out
+
+
 def parse_map_dialogs(map_dir):
     """Return {script_label: dialog_text} for a map's scripts.inc."""
     import re
@@ -814,6 +851,26 @@ def parse_map_dialogs(map_dir):
 # full event-script extraction (for the in-engine ScriptVM)
 # --------------------------------------------------------------------------- #
 import re as _re
+
+# MAP_ id -> folder name, so script-driven `warp`/`warpdoor`/... instructions
+# can point at the right .map file. Populated once by cmd_world (it already
+# builds this table for the `warps` door-tile section) before any script
+# parsing happens, so it's ready by the time _parse_script_lines needs it.
+_WARP_DEST = {}
+_WARP_OPS = {"warp", "warpdoor", "warphole", "warpsilent", "warpspinenter",
+             "warpteleport", "warpmossdeepgym", "warpwhitefade"}
+
+
+def _translate_warp_args(op, args):
+    """A script `warp` instruction names its destination by MAP_ constant
+    (e.g. MAP_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB); the engine's map files
+    are named by folder instead, so rewrite arg[0] to match (or "-" if the
+    destination map wasn't importable)."""
+    if op not in _WARP_OPS or not args:
+        return args
+    dest = _WARP_DEST.get(args[0], "-")
+    return [dest] + args[1:]
+
 
 # Movement macro -> compact engine action. Unknowns become "delay" (a no-op
 # pause) so a template still runs to completion.
@@ -895,6 +952,8 @@ def _parse_script_lines(lines, texts):
                 args = [a.strip() for a in parts[1].split(",")] if len(parts) > 1 else []
                 if op == "msgbox" and args and args[0] in texts:
                     body.append(["msgbox", texts[args[0]]])
+                elif op in _WARP_OPS:
+                    body.append([op] + _translate_warp_args(op, args))
                 else:
                     body.append([op] + args)
             scripts[label] = body
@@ -1039,6 +1098,8 @@ def cmd_world(src, limit=None):
                 id_to_folder[json.load(open(p)).get("id")] = d
             except Exception:
                 pass
+    _WARP_DEST.clear()
+    _WARP_DEST.update(id_to_folder)
 
     # Story-accurate spawns: a map's heal location is where the player wakes /
     # respawns (MAP_ id -> (x, y)). Used in preference to a geometric guess.
@@ -1295,8 +1356,14 @@ def cmd_world(src, limit=None):
             coord_triggers.append((hx, hy, "0", "0", label))
             item_total += 1
 
+        # One-time "on entering this map" auto-triggers (var-gated), e.g.
+        # Route 101 advancing VAR_ROUTE101_STATE 0->1, which is also the
+        # exact condition the Birch-rescue coord trigger waits on.
+        load_triggers = [t for t in parse_map_load_triggers(mapdir) if t[2] in all_scripts]
+
         entry = [n[6] for n in npcs if n[6] in all_scripts]
         entry += [t[4] for t in coord_triggers if t[4] in all_scripts]
+        entry += [t[2] for t in load_triggers]
         keep = reachable_scripts(entry, all_scripts)
         used_moves = set()
         for body in keep.values():
@@ -1315,6 +1382,11 @@ def cmd_world(src, limit=None):
             lines.append("triggers")
             for (cx, cy, var, val, lab) in trig:
                 lines.append(f"{cx} {cy} {var} {val} {lab}")
+        onload = [t for t in load_triggers if t[2] in keep]
+        if onload:
+            lines.append("onload")
+            for (var, val, lab) in onload:
+                lines.append(f"{var} {val} {lab}")
         if used_moves:
             lines.append("movements")
             for lab in sorted(used_moves):

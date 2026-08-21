@@ -281,7 +281,7 @@ msgbox	LILYCOVE CITY it is, then!
 goto_if_eq VAR_RESULT NO SlateportCity_Harbor_EventScript_ChooseNewDestination
 setvar VAR_SS_TIDAL_STATE SS_TIDAL_BOARD_SLATEPORT
 call SlateportCity_Harbor_EventScript_BoardFerry
-warp MAP_SS_TIDAL_CORRIDOR 1 10
+warp SSTidalCorridor 1 10
 waitstate
 release
 end
@@ -330,7 +330,7 @@ end
 msgbox	BATTLE FRONTIER it is, then!
 goto_if_eq VAR_RESULT NO SlateportCity_Harbor_EventScript_ChooseNewDestination
 call SlateportCity_Harbor_EventScript_BoardFerry
-warp MAP_BATTLE_FRONTIER_OUTSIDE_WEST 19 67
+warp BattleFrontier_OutsideWest 19 67
 waitstate
 release
 end

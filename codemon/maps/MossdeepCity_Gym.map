@@ -184,7 +184,7 @@ freerotatingtilepuzzle
 end
 = MossdeepCity_Gym_EventScript_WarpToEntrance
 lockall
-warpmossdeepgym MAP_MOSSDEEP_CITY_GYM 7 30
+warpmossdeepgym MossdeepCity_Gym 7 30
 waitstate
 releaseall
 end

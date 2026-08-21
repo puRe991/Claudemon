@@ -58,17 +58,42 @@ objscripts
 4 TrainerHill_Entrance_EventScript_Man
 triggers
 9 6 VAR_TRAINER_HILL_IS_ACTIVE 0 TrainerHill_Entrance_EventScript_EntryTrigger
+onload
+VAR_TEMP_0 0 TrainerHill_Entrance_EventScript_ExitChallenge
+VAR_TEMP_D 17 TrainerHill_Entrance_EventScript_ExitElevator
+VAR_TEMP_5 1 TrainerHill_Entrance_EventScript_EntryTrigger
+VAR_TEMP_1 1 TrainerHill_EventScript_WarpToEntranceCounter
 movements
 Common_Movement_Delay48	delay,delay,delay,end
 Common_Movement_ExclamationMark	delay,end
 Common_Movement_WalkInPlaceFasterDown	delay,end
 Common_Movement_WalkInPlaceFasterLeft	delay,end
 Movement_PkmnCenterNurse_Bow	delay,delay,end
+TrainerHill_Entrance_Movement_PlayerExitElevator	down,down,end
 TrainerHill_Entrance_Movement_PlayerFaceAttendant	face_right,end
 TrainerHill_Entrance_Movement_PushPlayerBackFromCounter	down,end
 TrainerHill_Entrance_Pokemart_Basic	delay
 TrainerHill_Entrance_Pokemart_Expanded	delay
 scriptdefs
+= TrainerHill_EventScript_WarpToEntranceCounter
+setvar VAR_TEMP_1 0
+warp TrainerHill_Entrance 9 6
+waitstate
+end
+@ Unused
+goto TrainerHill_1F_Movement_SetInvisible
+= TrainerHill_1F_Movement_SetInvisible
+set_invisible
+step_end
+@ TRAINER_PHILLIP is an actual Trainer on the SS Tidal but is used as a placeholder here
+goto TrainerHill_EventScript_TrainerBattle
+= TrainerHill_EventScript_TrainerBattle
+trainerbattle TRAINER_BATTLE_HILL TRAINER_PHILLIP LOCALID_NONE BattleFacility_TrainerBattle_PlaceholderText BattleFacility_TrainerBattle_PlaceholderText
+trainerhill_postbattletext
+waitmessage
+waitbuttonpress
+closemessage
+end
 = TrainerHill_Entrance_EventScript_EntryTrigger
 lockall
 applymovement LOCALID_PLAYER TrainerHill_Entrance_Movement_PlayerFaceAttendant
@@ -140,6 +165,45 @@ applymovement LOCALID_PLAYER TrainerHill_Entrance_Movement_PushPlayerBackFromCou
 waitmovement 0
 releaseall
 end
+= TrainerHill_Entrance_EventScript_ExitElevator
+lockall
+applymovement LOCALID_PLAYER TrainerHill_Entrance_Movement_PlayerExitElevator
+waitmovement 0
+setmetatile 17 10 METATILE_TrainerHill_CounterDoor TRUE
+special DrawWholeMapView
+playse SE_CLICK
+waitse
+setvar VAR_TEMP_D 0
+releaseall
+end
+= TrainerHill_Entrance_EventScript_ExitChallenge
+setvar VAR_TEMP_0 1
+trainerhill_getstatus
+switch VAR_RESULT
+case TRAINER_HILL_PLAYER_STATUS_LOST TrainerHill_Entrance_EventScript_ExitChallengeLost
+case TRAINER_HILL_PLAYER_STATUS_ECARD_SCANNED TrainerHill_Entrance_EventScript_ExitChallengeECard
+case TRAINER_HILL_PLAYER_STATUS_NORMAL TrainerHill_Entrance_EventScript_EndExitChallenge
+goto TrainerHill_Entrance_EventScript_ExitChallengeLost
+= TrainerHill_Entrance_EventScript_ExitChallengeLost
+lockall
+applymovement LOCALID_PLAYER TrainerHill_Entrance_Movement_PlayerFaceAttendant
+msgbox	That was too bad.I think you put in a tremendous effort in your battling.Please come back and try again!
+goto TrainerHill_Entrance_EventScript_PlayerExitChallenge
+= TrainerHill_Entrance_EventScript_PlayerExitChallenge
+closemessage
+applymovement LOCALID_PLAYER TrainerHill_Entrance_Movement_PushPlayerBackFromCounter
+waitmovement 0
+setvar VAR_TRAINER_HILL_IS_ACTIVE 0
+special HealPlayerParty
+releaseall
+goto TrainerHill_Entrance_EventScript_EndExitChallenge
+= TrainerHill_Entrance_EventScript_EndExitChallenge
+end
+= TrainerHill_Entrance_EventScript_ExitChallengeECard
+lockall
+applymovement LOCALID_PLAYER TrainerHill_Entrance_Movement_PlayerFaceAttendant
+msgbox	When the TRAINERS switch places, the movement can be hectic.To avoid the stampede, we moved the reception counter here.I'm sorry for the inconvenience.
+goto TrainerHill_Entrance_EventScript_PlayerExitChallenge
 = TrainerHill_Entrance_EventScript_Man
 goto_if_unset FLAG_SYS_GAME_CLEAR TrainerHill_Entrance_EventScript_ManTrainerHillClosed
 msgbox	Who knows what sort of TRAINERS and POKéMON combos are ahead?All I know is that I'll knock aside anyone that stands in my way!

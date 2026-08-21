@@ -48,9 +48,169 @@ objscripts
 2 LittlerootTown_ProfessorBirchsLab_EventScript_Cyndaquil
 3 LittlerootTown_ProfessorBirchsLab_EventScript_Totodile
 4 LittlerootTown_ProfessorBirchsLab_EventScript_Chikorita
+onload
+VAR_BIRCH_LAB_STATE 2 LittlerootTown_ProfessorBirchsLab_EventScript_GiveStarterEvent
+VAR_BIRCH_LAB_STATE 4 LittlerootTown_ProfessorBirchsLab_EventScript_GivePokedexEvent
+VAR_DEX_UPGRADE_JOHTO_STARTER_STATE 1 LittlerootTown_ProfessorBirchsLab_EventScript_UpgradeToNationalDex
+VAR_DEX_UPGRADE_JOHTO_STARTER_STATE 4 LittlerootTown_ProfessorBirchsLab_EventScript_ChooseJohtoStarter
 movements
+Common_Movement_WalkInPlaceFasterLeft	delay,end
 Common_Movement_WalkInPlaceFasterRight	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
+LittlerootTown_ProfessorBirchsLab_Movement_BirchRetrievePokedexes	left,delay,delay,delay,right,delay,delay,delay,right,down,down,down,down,right,right,right,delay,end
+LittlerootTown_ProfessorBirchsLab_Movement_BirchReturnPokedex	left,left,left,up,up,up,up,left,delay,end
+LittlerootTown_ProfessorBirchsLab_Movement_PlayerEnterLabForJohtoStarter	up,up,up,up,up,up,up,end
+LittlerootTown_ProfessorBirchsLab_Movement_PlayerEnterLabForPokedex	up,up,up,up,up,up,up,end
+LittlerootTown_ProfessorBirchsLab_Movement_RivalApproachPlayer	down,delay,end
 scriptdefs
+= LittlerootTown_ProfessorBirchsLab_EventScript_ChooseJohtoStarter
+lockall
+applymovement LOCALID_PLAYER LittlerootTown_ProfessorBirchsLab_Movement_PlayerEnterLabForJohtoStarter
+waitmovement 0
+msgbox	PROF. BIRCH: Oh, PLAYER! Let's have a look at your POKéDEX.… … … … … … … … … … … …Yes, there's no doubt about it.You really have completed the HOENN region's POKéDEX.That's more than just impressive.I have a gift for you.Consider it my show of appreciation for the fantastic work you've done.My gift is a rare POKéMON only found in another region!You can have any one of these three POKéMON!
+setvar VAR_DEX_UPGRADE_JOHTO_STARTER_STATE 5
+releaseall
+end
+= LittlerootTown_ProfessorBirchsLab_EventScript_UpgradeToNationalDex
+lockall
+delay 30
+msgbox	PROF. BIRCH: Now…PLAYER and RIVAL, I've had the two of you help me study POKéMON.Thanks to your help, new facts are coming to light.It appears that in the HOENN region, there are also POKéMON from other regions.It goes to show how rich and varied the natural environments of HOENN happen to be.That's why I think it's necessary for me to upgrade your POKéDEX to the NATIONAL Mode.Here, let me see your POKéDEX units.
+closemessage
+applymovement LOCALID_BIRCHS_LAB_BIRCH LittlerootTown_ProfessorBirchsLab_Movement_BirchRetrievePokedexes
+waitmovement 0
+delay 20
+playse SE_CLICK
+delay 10
+playse SE_CLICK
+delay 10
+playse SE_CLICK
+delay 10
+playse SE_CLICK
+delay 20
+applymovement LOCALID_BIRCHS_LAB_RIVAL Common_Movement_WalkInPlaceFasterRight
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+checkplayergender
+call_if_eq VAR_RESULT MALE LittlerootTown_ProfessorBirchsLab_EventScript_MayUpgradeComment
+call_if_eq VAR_RESULT FEMALE LittlerootTown_ProfessorBirchsLab_EventScript_BrendanUpgradeComment
+playse SE_PC_ON
+waitse
+delay 20
+applymovement LOCALID_BIRCHS_LAB_BIRCH LittlerootTown_ProfessorBirchsLab_Movement_BirchReturnPokedex
+waitmovement 0
+applymovement LOCALID_BIRCHS_LAB_RIVAL Common_Movement_WalkInPlaceFasterUp
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+msgbox	PROF. BIRCH: Okay, all done!
+playfanfare MUS_OBTAIN_ITEM
+message LittlerootTown_ProfessorBirchsLab_Text_PokedexUpgradedToNational
+waitmessage
+waitfanfare
+setflag FLAG_SYS_NATIONAL_DEX
+special EnableNationalPokedex
+msgbox	PROF. BIRCH: But listen. You've become the CHAMPION, but your POKéMON journey isn't over.There is no end to the road that is POKéMON.Somewhere, there is a grassy patch that's waiting for you!
+closemessage
+setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCH
+setflag FLAG_HIDE_LITTLEROOT_TOWN_RIVAL
+setvar VAR_DEX_UPGRADE_JOHTO_STARTER_STATE 2
+setvar VAR_SCOTT_BF_CALL_STEP_COUNTER 0
+setflag FLAG_SCOTT_CALL_BATTLE_FRONTIER
+releaseall
+end
+= LittlerootTown_ProfessorBirchsLab_EventScript_BrendanUpgradeComment
+msgbox	BRENDAN: I went out all over HOENN and checked out POKéMON.You can thank me for getting the NATIONAL Mode POKéDEX.Yep, you're lucky, PLAYER!
+closemessage
+return
+= LittlerootTown_ProfessorBirchsLab_EventScript_MayUpgradeComment
+msgbox	MAY: Eheheh!It's so cool that even my POKéDEX is getting updated!It's because you went out and caught so many POKéMON, PLAYER!
+closemessage
+return
+= LittlerootTown_ProfessorBirchsLab_EventScript_GivePokedexEvent
+lockall
+applymovement LOCALID_PLAYER LittlerootTown_ProfessorBirchsLab_Movement_PlayerEnterLabForPokedex
+waitmovement 0
+goto LittlerootTown_ProfessorBirchsLab_EventScript_GivePokedex
+end
+= LittlerootTown_ProfessorBirchsLab_EventScript_GivePokedex
+msgbox	PROF. BIRCH: Oh, hi, PLAYER!I heard you beat RIVAL on your first try. That's excellent!RIVAL's been helping with my research for a long time.RIVAL has an extensive history as a TRAINER already.Here, PLAYER, I ordered this for my research, but I think you should have this POKéDEX.
+call LittlerootTown_ProfessorBirchsLab_EventScript_ReceivePokedex
+msgbox	PROF. BIRCH: The POKéDEX is a high-tech tool that automatically makes a record of any POKéMON you meet or catch.My kid, RIVAL, goes everywhere with it.Whenever my kid catches a rare POKéMON and records its data in the POKéDEX, why, RIVAL looks for me while I'm out doing fieldwork, and shows me.
+closemessage
+applymovement LOCALID_BIRCHS_LAB_RIVAL LittlerootTown_ProfessorBirchsLab_Movement_RivalApproachPlayer
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+checkplayergender
+call_if_eq VAR_RESULT MALE LittlerootTown_ProfessorBirchsLab_EventScript_MayGivePokeBalls
+call_if_eq VAR_RESULT FEMALE LittlerootTown_ProfessorBirchsLab_EventScript_BrendanGivePokeBalls
+setvar VAR_BIRCH_LAB_STATE 5
+setflag FLAG_ADVENTURE_STARTED
+setvar VAR_OLDALE_TOWN_STATE 1
+setvar VAR_LITTLEROOT_RIVAL_STATE 4
+setvar VAR_LITTLEROOT_TOWN_STATE 3
+releaseall
+end
+= LittlerootTown_ProfessorBirchsLab_EventScript_BrendanGivePokeBalls
+msgbox	BRENDAN: Huh… So you got a POKéDEX, too.Well then, here. I'll give you these.
+giveitem ITEM_POKE_BALL 5
+call_if_eq VAR_RESULT FALSE LittlerootTown_ProfessorBirchsLab_EventScript_BrendanNoRoomForPokeBalls
+msgbox	BRENDAN: You know it's more fun to have a whole bunch of POKéMON.I'm going to explore all over the place to find different POKéMON.If I find any cool POKéMON, you bet I'll try to get them with POKé BALLS.
+setvar VAR_RESULT 1
+return
+= LittlerootTown_ProfessorBirchsLab_EventScript_BrendanNoRoomForPokeBalls
+msgbox	Hey, your BAG's full.
+return
+= LittlerootTown_ProfessorBirchsLab_EventScript_MayGivePokeBalls
+msgbox	MAY: Oh, wow, PLAYER! You got a POKéDEX, too!That's great! Just like me! I've got something for you, too!
+giveitem ITEM_POKE_BALL 5
+call_if_eq VAR_RESULT FALSE LittlerootTown_ProfessorBirchsLab_EventScript_MayNoRoomForPokeBalls
+msgbox	MAY: It's fun if you can get a lot of POKéMON!I'm going to look all over the place because I want different POKéMON.If I find any cute POKéMON, I'll catch them with POKé BALLS!
+setvar VAR_RESULT 0
+return
+= LittlerootTown_ProfessorBirchsLab_EventScript_MayNoRoomForPokeBalls
+msgbox	Oh? Your BAG's full.
+return
+= LittlerootTown_ProfessorBirchsLab_EventScript_ReceivePokedex
+playfanfare MUS_OBTAIN_ITEM
+message LittlerootTown_ProfessorBirchsLab_Text_ReceivedPokedex
+waitfanfare
+setflag FLAG_SYS_POKEDEX_GET
+special SetUnlockedPokedexFlags
+setflag FLAG_RECEIVED_POKEDEX_FROM_BIRCH
+setvar VAR_CABLE_CLUB_TUTORIAL_STATE 1
+return
+= LittlerootTown_ProfessorBirchsLab_EventScript_GiveStarterEvent
+lockall
+bufferleadmonspeciesname STR_VAR_1
+message LittlerootTown_ProfessorBirchsLab_Text_LikeYouToHavePokemon
+waitmessage
+playfanfare MUS_OBTAIN_ITEM
+waitfanfare
+msgbox	PROF. BIRCH: While you're at it, why not give a nickname to that ?
+goto_if_eq VAR_RESULT YES LittlerootTown_ProfessorBirchsLab_EventScript_NicknameStarter
+goto_if_eq VAR_RESULT NO LittlerootTown_ProfessorBirchsLab_EventScript_GoSeeRival
+end
+= LittlerootTown_ProfessorBirchsLab_EventScript_GoSeeRival
+msgbox	PROF. BIRCH: If you work at POKéMON and gain experience, I think you'll make an extremely good TRAINER.My kid, RIVAL, is also studying POKéMON while helping me out.PLAYER, don't you think it might be a good idea to go see RIVAL?
+goto_if_eq VAR_RESULT YES LittlerootTown_ProfessorBirchsLab_EventScript_AgreeToSeeRival
+goto_if_eq VAR_RESULT NO LittlerootTown_ProfessorBirchsLab_EventScript_DeclineSeeingRival
+end
+= LittlerootTown_ProfessorBirchsLab_EventScript_DeclineSeeingRival
+msgbox	PROF. BIRCH: Oh, don't be that way. You should go meet my kid.
+goto_if_eq VAR_RESULT YES LittlerootTown_ProfessorBirchsLab_EventScript_AgreeToSeeRival
+goto_if_eq VAR_RESULT NO LittlerootTown_ProfessorBirchsLab_EventScript_DeclineSeeingRival
+end
+= LittlerootTown_ProfessorBirchsLab_EventScript_AgreeToSeeRival
+msgbox	PROF. BIRCH: Great! RIVAL should be happy, too.Get RIVAL to teach you what it means to be a TRAINER.
+clearflag FLAG_HIDE_ROUTE_101_BOY
+setvar VAR_BIRCH_LAB_STATE 3
+releaseall
+end
+= LittlerootTown_ProfessorBirchsLab_EventScript_NicknameStarter
+setvar VAR_0x8004 0
+call Common_EventScript_NameReceivedPartyMon
+goto LittlerootTown_ProfessorBirchsLab_EventScript_GoSeeRival
+end
 = LittlerootTown_ProfessorBirchsLab_EventScript_Chikorita
 release
 goto_if_ge VAR_DEX_UPGRADE_JOHTO_STARTER_STATE 6 LittlerootTown_ProfessorBirchsLab_EventScript_AlreadyChoseJohtoStarter

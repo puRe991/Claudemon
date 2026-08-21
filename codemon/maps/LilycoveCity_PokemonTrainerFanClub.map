@@ -62,7 +62,37 @@ objscripts
 6 LilycoveCity_PokemonTrainerFanClub_EventScript_Woman
 7 LilycoveCity_PokemonTrainerFanClub_EventScript_ExpertF
 8 LilycoveCity_PokemonTrainerFanClub_EventScript_Interviewer
+onload
+VAR_LILYCOVE_FAN_CLUB_STATE 1 LilycoveCity_PokemonTrainerFanClub_EventScript_MeetFirstFans
+movements
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+LilycoveCity_PokemonTrainerFanClub_Movement_FanApproachPlayer	delay,delay,down,down,down,left,left,end
+LilycoveCity_PokemonTrainerFanClub_Movement_LittleGirlHideFromPlayer	delay,up,up,right,delay,end
+LilycoveCity_PokemonTrainerFanClub_Movement_LittleGirlMoveCloserToPlayer	down,delay,end
+LilycoveCity_PokemonTrainerFanClub_Movement_LittleGirlWatchPlayer	left,left,down,down,left,down,end
 scriptdefs
+= LilycoveCity_PokemonTrainerFanClub_EventScript_MeetFirstFans
+lockall
+applymovement LOCALID_TRAINER_FAN_CLUB_LASS Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+msgbox	Oh, wow! It's PLAYER!
+applymovement LOCALID_TRAINER_FAN_CLUB_LITTLE_GIRL LilycoveCity_PokemonTrainerFanClub_Movement_LittleGirlWatchPlayer
+applymovement LOCALID_TRAINER_FAN_CLUB_MAN LilycoveCity_PokemonTrainerFanClub_Movement_FanApproachPlayer
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+msgbox	I've heard the news! You're really strong, aren't you?We always argue about who is the strongest of all TRAINERS here.So when I heard about you, I decided to be your fan!I hope you'll keep on battling other tough TRAINERS.That way, we'll be able to see more of your hot, hot battles.That will make the others here see exactly how great you are.Remember, I'm cheering for you, PLAYER!
+applymovement LOCALID_TRAINER_FAN_CLUB_LITTLE_GIRL LilycoveCity_PokemonTrainerFanClub_Movement_LittleGirlMoveCloserToPlayer
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+applymovement LOCALID_TRAINER_FAN_CLUB_LITTLE_GIRL LilycoveCity_PokemonTrainerFanClub_Movement_LittleGirlHideFromPlayer
+waitmovement 0
+setvar VAR_LILYCOVE_FAN_CLUB_STATE 2
+releaseall
+end
 = LilycoveCity_PokemonTrainerFanClub_EventScript_Interviewer
 lock
 faceplayer

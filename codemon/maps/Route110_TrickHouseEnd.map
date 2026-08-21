@@ -30,6 +30,8 @@ objscripts
 triggers
 2 2 VAR_TEMP_2 0 Route110_TrickHouseEnd_EventScript_TrickMasterExitTrigger
 4 5 0 0 Route110_TrickHouseEnd_HiddenItem_4_5
+onload
+VAR_TEMP_1 0 Route110_TrickHouseEnd_EventScript_CloseDoor
 movements
 Common_Movement_ExclamationMark	delay,end
 Common_Movement_FacePlayer	face_down,end
@@ -40,6 +42,14 @@ Common_Movement_WalkInPlaceFasterUp	delay,end
 Route110_TrickHouseEnd_Movement_KeepPlayerInRoom	down,end
 Route110_TrickHouseEnd_Movement_TrickMasterSurprise	delay,end
 scriptdefs
+= Route110_TrickHouseEnd_EventScript_CloseDoor
+setvar VAR_TEMP_1 1
+call Route110_TrickHouseEnd_EventScript_SetDoorClosedMetatile
+special DrawWholeMapView
+end
+= Route110_TrickHouseEnd_EventScript_SetDoorClosedMetatile
+setmetatile 10 1 METATILE_GenericBuilding_TrickHouse_Door_Closed TRUE
+return
 = Route110_TrickHouseEnd_HiddenItem_4_5
 goto_if_set FLAG_HIDDEN_ITEM_TRICK_HOUSE_NUGGET Route110_TrickHouseEnd_HiddenItem_4_5_Taken
 finditem ITEM_NUGGET

@@ -151,7 +151,7 @@ msgbox	WAHAHAHAHA! WAHAHAHAHA! CLICKETY-CLACK!
 waitmovement 0
 msgbox	YOUR NEXT CHALLENGE WE WAIT FOR.
 closemessage
-warp MAP_ROUTE110_TRICK_HOUSE_PUZZLE5 0 21
+warp Route110_TrickHousePuzzle5 0 21
 waitstate
 releaseall
 end

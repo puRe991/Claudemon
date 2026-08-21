@@ -34,3 +34,167 @@ warps
 npcs
 people_wallace 6 5 S static 0
 people_prof_birch 6 12 N static FLAG_HIDE_CHAMPIONS_ROOM_BIRCH
+onload
+VAR_TEMP_1 0 EverGrandeCity_ChampionsRoom_EventScript_EnterRoom
+movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
+Common_Movement_WalkUp4	up,up,up,up,end
+EverGrandeCity_ChampionsRoom_Movement_BirchArrives	up,up,up,up,up,right,up,delay,end
+EverGrandeCity_ChampionsRoom_Movement_PlayerApproachWallace	up,up,end
+EverGrandeCity_ChampionsRoom_Movement_PlayerExit	up,delay,up,delay,delay,end
+EverGrandeCity_ChampionsRoom_Movement_PlayerExitStart	up,up,end
+EverGrandeCity_ChampionsRoom_Movement_RivalApproachPlayer	up,up,up,up,up,left,up,delay,end
+EverGrandeCity_ChampionsRoom_Movement_RivalFollows	right,up,end
+EverGrandeCity_ChampionsRoom_Movement_RivalLookBackAndForth	delay,delay,delay,delay,delay,delay,delay,delay,end
+EverGrandeCity_ChampionsRoom_Movement_WallaceExit	up,delay,delay,end
+EverGrandeCity_ChampionsRoom_Movement_WallaceExitStart	up,up,delay,end
+scriptdefs
+= EverGrandeCity_ChampionsRoom_EventScript_EnterRoom
+lockall
+applymovement LOCALID_PLAYER Common_Movement_WalkUp4
+waitmovement 0
+delay 40
+applymovement LOCALID_PLAYER EverGrandeCity_ChampionsRoom_Movement_PlayerApproachWallace
+waitmovement 0
+setvar VAR_TEMP_1 1
+goto EverGrandeCity_ChampionsRoom_EventScript_Wallace
+releaseall
+end
+= EverGrandeCity_ChampionsRoom_EventScript_Wallace
+playbgm MUS_ENCOUNTER_CHAMPION FALSE
+msgbox	WALLACE: Welcome, PLAYER.That incident in SOOTOPOLIS CITY… That was superb work, putting an end to that crisis all by yourself.Oops!It wouldn't be fair to say that you alone ended the crisis.You overcame that difficult situation by working as one with your POKéMON.We TRAINERS raise POKéMON by giving them items and by teaching them new techniques for battle.But we ourselves also learn many things from POKéMON.And this is where your achievements are put to the test against what others like you have achieved.Now!Who can most elegantly dance with their POKéMON in HOENN?Show me right here and now!
+trainerbattle_no_intro TRAINER_WALLACE EverGrandeCity_ChampionsRoom_Text_Defeat
+goto EverGrandeCity_ChampionsRoom_EventScript_Defeated
+end
+= EverGrandeCity_ChampionsRoom_EventScript_Defeated
+playse SE_DOOR
+setmetatile 6 1 METATILE_EliteFour_OpenDoorChampion_Frame FALSE
+setmetatile 6 2 METATILE_EliteFour_OpenDoorChampion_Opening FALSE
+special DrawWholeMapView
+msgbox	WALLACE: The POKéMON you sent into battle…At times they danced like a spring breeze, and at times they struck like lightning.It was with light, yet surefooted, elegance that you led your POKéMON.Even I felt bedazzled by your masterful performance!You now stand at the glorious peak of the POKéMON LEAGUE.I now proclaim you to be the new HOENN region…
+closemessage
+playse SE_DOOR
+checkplayergender
+call_if_eq VAR_RESULT MALE EverGrandeCity_ChampionsRoom_EventScript_PlayMayMusic
+call_if_eq VAR_RESULT FEMALE EverGrandeCity_ChampionsRoom_EventScript_PlayBrendanMusic
+addobject LOCALID_CHAMPIONS_ROOM_RIVAL
+call EverGrandeCity_ChampionsRoom_EventScript_RivalApproachPlayer
+checkplayergender
+goto_if_eq VAR_RESULT MALE EverGrandeCity_ChampionsRoom_EventScript_MayAdvice
+goto_if_eq VAR_RESULT FEMALE EverGrandeCity_ChampionsRoom_EventScript_BrendanAdvice
+end
+= EverGrandeCity_ChampionsRoom_EventScript_BrendanAdvice
+msgbox	BRENDAN: PLAYER!How would you like some advice before you challenge the CHAMPION?…
+delay 40
+playse SE_PIN
+applymovement LOCALID_CHAMPIONS_ROOM_RIVAL Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_CHAMPIONS_ROOM_RIVAL Common_Movement_Delay48
+waitmovement 0
+call EverGrandeCity_ChampionsRoom_EventScript_RivalLookBackAndForth
+msgbox	BRENDAN: PLAYER…Are you trying to tell me… You've beaten the CHAMPION?
+goto EverGrandeCity_ChampionsRoom_EventScript_BirchArrivesExitForHoF
+end
+= EverGrandeCity_ChampionsRoom_EventScript_BirchArrivesExitForHoF
+closemessage
+addobject LOCALID_CHAMPIONS_ROOM_BIRCH
+applymovement LOCALID_CHAMPIONS_ROOM_BIRCH EverGrandeCity_ChampionsRoom_Movement_BirchArrives
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+msgbox	PROF. BIRCH: See? What did I tell you, RIVAL?Didn't I tell you that you don't need to worry about PLAYER?… … … … … … … … PLAYER, you've finally done it.When I heard that you defeated your own father at the PETALBURG GYM, I thought perhaps you had a chance…But to think you've actually become the CHAMPION!Ah, yes!What became of your POKéDEX? Here, let me see.
+call ProfBirch_EventScript_RatePokedex
+msgbox	PROF. BIRCH: Anyways, congratulations!Now, go proudly into the final room!
+applymovement LOCALID_CHAMPIONS_ROOM_WALLACE Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+delay 20
+applymovement LOCALID_CHAMPIONS_ROOM_WALLACE Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+msgbox	WALLACE: PLAYER…No, let me rephrase that properly.The new CHAMPION!Come with me.
+closemessage
+delay 30
+applymovement LOCALID_CHAMPIONS_ROOM_WALLACE EverGrandeCity_ChampionsRoom_Movement_WallaceExitStart
+applymovement LOCALID_PLAYER EverGrandeCity_ChampionsRoom_Movement_PlayerExitStart
+applymovement LOCALID_CHAMPIONS_ROOM_BIRCH Common_Movement_WalkInPlaceFasterUp
+applymovement LOCALID_CHAMPIONS_ROOM_RIVAL EverGrandeCity_ChampionsRoom_Movement_RivalFollows
+waitmovement 0
+delay 20
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+msgbox	WALLACE: I'm sorry, but…From here on, only those TRAINERS who have become CHAMPIONS may enter.You'll have to wait outside with PROF. BIRCH.
+checkplayergender
+call_if_eq VAR_RESULT MALE EverGrandeCity_ChampionsRoom_EventScript_MayCongratulations
+call_if_eq VAR_RESULT FEMALE EverGrandeCity_ChampionsRoom_EventScript_BrendanCongratulations
+closemessage
+applymovement LOCALID_CHAMPIONS_ROOM_WALLACE EverGrandeCity_ChampionsRoom_Movement_WallaceExit
+applymovement LOCALID_PLAYER EverGrandeCity_ChampionsRoom_Movement_PlayerExit
+waitmovement 0
+setflag FLAG_HIDE_PETALBURG_GYM_GREETER
+warp EverGrandeCity_HallOfFame 7 16
+waitstate
+releaseall
+end
+= EverGrandeCity_ChampionsRoom_EventScript_BrendanCongratulations
+msgbox	BRENDAN: Whaaaat?! … … … … … … … … … … … … …It can't be helped if that's the rule.PLAYER, way to go! Congratulations!
+return
+= EverGrandeCity_ChampionsRoom_EventScript_MayCongratulations
+msgbox	MAY: Groan…… … … … … … … … … … … … … … … …I'm just joking! That's okay! That's the rule!PLAYER! Honestly, congratulations!
+return
+= ProfBirch_EventScript_RatePokedex
+setvar VAR_0x8004 0
+specialvar VAR_RESULT ScriptGetPokedexInfo
+copyvar VAR_0x8008 VAR_0x8005
+copyvar VAR_0x8009 VAR_0x8006
+copyvar VAR_0x800A VAR_RESULT
+buffernumberstring STR_VAR_1 VAR_0x8008  @ Num Hoenn seen
+buffernumberstring STR_VAR_2 VAR_0x8009  @ Num Hoenn caught
+msgbox	gBirchDexRatingText_SoYouveSeenAndCaught
+call ProfBirch_EventScript_ShowRatingMessage
+goto_if_eq VAR_0x800A 0 Common_EventScript_NopReturn  @ National dex not enabled
+setvar VAR_0x8004 1
+specialvar VAR_RESULT ScriptGetPokedexInfo
+copyvar VAR_0x8008 VAR_0x8005
+copyvar VAR_0x8009 VAR_0x8006
+buffernumberstring STR_VAR_1 VAR_0x8008  @ Num National seen
+buffernumberstring STR_VAR_2 VAR_0x8009  @ Num National caught
+msgbox	gBirchDexRatingText_OnANationwideBasis
+return
+= ProfBirch_EventScript_ShowRatingMessage
+copyvar VAR_0x8004 VAR_0x8009
+special ShowPokedexRatingMessage
+waitmessage
+waitbuttonpress
+return
+= EverGrandeCity_ChampionsRoom_EventScript_RivalLookBackAndForth
+applymovement LOCALID_CHAMPIONS_ROOM_RIVAL EverGrandeCity_ChampionsRoom_Movement_RivalLookBackAndForth
+waitmovement 0
+return
+= EverGrandeCity_ChampionsRoom_EventScript_MayAdvice
+msgbox	MAY: PLAYER!Here's some advice before you challenge the CHAMPION…
+delay 40
+playse SE_PIN
+applymovement LOCALID_CHAMPIONS_ROOM_RIVAL Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_CHAMPIONS_ROOM_RIVAL Common_Movement_Delay48
+waitmovement 0
+call EverGrandeCity_ChampionsRoom_EventScript_RivalLookBackAndForth
+msgbox	MAY: Huh? What, what, what?PLAYER… Could it be that… It's already over?
+goto EverGrandeCity_ChampionsRoom_EventScript_BirchArrivesExitForHoF
+end
+= EverGrandeCity_ChampionsRoom_EventScript_RivalApproachPlayer
+applymovement LOCALID_CHAMPIONS_ROOM_RIVAL EverGrandeCity_ChampionsRoom_Movement_RivalApproachPlayer
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+return
+= EverGrandeCity_ChampionsRoom_EventScript_PlayBrendanMusic
+playbgm MUS_ENCOUNTER_BRENDAN FALSE
+return
+= EverGrandeCity_ChampionsRoom_EventScript_PlayMayMusic
+playbgm MUS_ENCOUNTER_MAY FALSE
+return
