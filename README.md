@@ -250,6 +250,9 @@ has been verified either by an automated test or by headless screenshot
   moves (power/type/accuracy parsed), 17-type effectiveness chart, STAB,
   physical/special split, wild encounters (real per-map tables + Gen-3 slot
   weighting), 854 trainer battles with real parties, trainer rematches
+* Switching Pokémon mid-battle (a POKéMON option in the action menu), and
+  surviving a faint by switching to a healthy party member instead of an
+  automatic loss — the battle only ends once the whole team is down
 * Capture mechanic (approximate probability, Poké Ball only — see below)
 * EXP gain, all 6 species growth curves, level-up stat recalculation,
   level-up movesets (411 learnsets), **level-up evolution** (172 paths)
@@ -277,7 +280,8 @@ has been verified either by an automated test or by headless screenshot
   hits, no accuracy/evasion rolls, no move priority, no stat-stage changes
   from status moves (Growl etc. do nothing but print text), no weather, no
   abilities, no held items, no IV/EV/natures, no PP/Struggle, no doubles, no
-  EXP Share
+  EXP Share (mid-battle switching and faint recovery are implemented, see
+  above)
 * **Catch mechanic** is a flat approximate formula, independent of species
   catch rate or ball type (only `ITEM_POKE_BALL` exists functionally)
 * **Evolution**: level-up only; stone/trade/friendship evolutions are
@@ -292,8 +296,6 @@ has been verified either by an automated test or by headless screenshot
 
 ### ❌ Not implemented yet
 
-* Switching Pokémon mid-battle, or continuing a battle on a healthy party
-  member after the active one faints
 * Using bag items (Potions, status healers, Poké Balls, berries) outside the
   TM/HM-teaching flow
 * `specialvar` opcode (breaks `GetBattleOutcome`, rematch checks, Pokérus,
@@ -335,8 +337,8 @@ screenshot), not just written and assumed correct.
 - [ ] Critical hits, accuracy/evasion, move priority
 - [ ] Stat-stage changes from status moves
 - [ ] Weather, abilities, held items, IV/EV/natures, PP/Struggle
+- [x] Switching Pokémon mid-battle / surviving a faint with a healthy party
 - [ ] Double battles, EXP Share
-- [ ] Switching Pokémon mid-battle / surviving a faint with a healthy party
 - [ ] Stone/trade/friendship evolution triggers
 - [ ] Ball-type-aware, catch-rate-aware capture formula
 
