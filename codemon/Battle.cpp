@@ -86,8 +86,8 @@ bool Battle::start_wild(const std::string& species, int level, Mon* pm) {
 	load_sprites();
 	this->prev_ehp = this->enemy.hp; this->prev_php = this->player->hp; this->shake_t = 0.f;
 	this->log.clear();
-	queue("A wild " + nice(species) + " appeared!");
-	queue("Go! " + nice(this->player->species) + "!");
+	queue("Wildes " + nice(species) + " taucht auf!");
+	queue("Los, " + nice(this->player->species) + "!");
 	show_messages(ACTION);
 	return true;
 }
@@ -113,9 +113,9 @@ bool Battle::start_trainer(const std::string& trainer_id, const std::string& nam
 	load_sprites();
 	this->prev_ehp = this->enemy.hp; this->prev_php = this->player->hp; this->shake_t = 0.f;
 	this->log.clear();
-	queue(this->enemy_title + " wants to battle!");
-	queue(this->enemy_title + " sent out " + nice(this->enemy.species) + "!");
-	queue("Go! " + nice(this->player->species) + "!");
+	queue(this->enemy_title + " möchte kämpfen!");
+	queue(this->enemy_title + " schickt " + nice(this->enemy.species) + "!");
+	queue("Los, " + nice(this->player->species) + "!");
 	show_messages(ACTION);
 	return true;
 }
@@ -133,16 +133,16 @@ std::string Battle::ai_move() const {
 
 void Battle::do_move(Mon& atk, Mon& def, const std::string& mv,
                      const std::string& atk_name) {
-	queue(atk_name + " used " + nice(mv) + "!");
+	queue(atk_name + " setzt " + nice(mv) + " ein!");
 	const MoveInfo* mi = this->data->move(mv);
 	if (!mi || mi->power <= 0) return;                 // status move: no damage model
 	float eff = BattleData::type_eff(mi->type, def.t1, def.t2);
-	if (eff == 0.f) { queue("It doesn't affect " + nice(def.species) + "..."); return; }
+	if (eff == 0.f) { queue("Hat keine Wirkung auf " + nice(def.species) + " ..."); return; }
 	int dmg = this->data->damage(atk, def, mv, *this->rng);
 	def.hp = std::max(0, def.hp - dmg);
-	if (eff > 1.f) queue("It's super effective!");
-	else if (eff < 1.f) queue("It's not very effective...");
-	if (def.fainted()) queue(nice(def.species) + " fainted!");
+	if (eff > 1.f) queue("Das ist sehr effektiv!");
+	else if (eff < 1.f) queue("Das ist nicht sehr effektiv ...");
+	if (def.fainted()) queue(nice(def.species) + " wurde besiegt!");
 }
 
 void Battle::send_next_enemy() {
@@ -150,7 +150,7 @@ void Battle::send_next_enemy() {
 	this->enemy = this->data->make_mon(this->party[this->party_idx].first,
 	                                   this->party[this->party_idx].second);
 	load_sprites();
-	queue(this->enemy_title + " sent out " + nice(this->enemy.species) + "!");
+	queue(this->enemy_title + " schickt " + nice(this->enemy.species) + "!");
 }
 
 void Battle::resolve_turn(const std::string& player_move) {
@@ -170,8 +170,8 @@ void Battle::resolve_turn(const std::string& player_move) {
 
 	// outcome
 	if (this->player->fainted()) {
-		queue(nice(this->player->species) + " fainted!");
-		queue("You lost the battle...");
+		queue(nice(this->player->species) + " wurde besiegt!");
+		queue("Du hast den Kampf verloren ...");
 		this->over = true; this->victory = false;
 		show_messages(INACTIVE);
 		return;
@@ -188,8 +188,8 @@ void Battle::resolve_turn(const std::string& player_move) {
 			show_messages(ACTION);
 			return;
 		}
-		queue(this->is_trainer ? ("You defeated " + this->enemy_title + "!")
-		                       : "The wild pokemon was defeated!");
+		queue(this->is_trainer ? ("Du hast " + this->enemy_title + " besiegt!")
+		                       : "Das wilde POKéMON wurde besiegt!");
 		this->over = true; this->victory = true;
 		show_messages(INACTIVE);
 		return;
@@ -235,8 +235,8 @@ void Battle::enemy_turn_after() {
 	std::string em = ai_move();
 	do_move(this->enemy, *this->player, em, nice(this->enemy.species));
 	if (this->player->fainted()) {
-		queue(nice(this->player->species) + " fainted!");
-		queue("You lost the battle...");
+		queue(nice(this->player->species) + " wurde besiegt!");
+		queue("Du hast den Kampf verloren ...");
 		this->over = true; this->victory = false;
 		show_messages(INACTIVE);
 	} else {
@@ -246,38 +246,38 @@ void Battle::enemy_turn_after() {
 
 void Battle::throw_ball() {
 	if (this->is_trainer) {
-		this->log.clear(); queue("You can't catch a TRAINER's POKeMON!");
+		this->log.clear(); queue("Du kannst nicht das POKéMON eines TRAINERS fangen!");
 		show_messages(ACTION); return;
 	}
 	if (!this->gs || this->gs->item_count("ITEM_POKE_BALL") <= 0) {
-		this->log.clear(); queue("You have no POKe BALLS left!");
+		this->log.clear(); queue("Du hast keine POKéBÄLLE mehr!");
 		show_messages(ACTION); return;
 	}
 	this->gs->give_item("ITEM_POKE_BALL", -1);
 	this->log.clear();
-	queue("You threw a POKe BALL!");
+	queue("Du hast einen POKéBALL geworfen!");
 	float ratio = this->enemy.max_hp > 0 ? 1.f - (float)this->enemy.hp / this->enemy.max_hp : 0.f;
 	int chance = 35 + (int)(ratio * 55.f);        // 35%..90%, better when weakened
 	if ((int)((*this->rng)() % 100) < chance) {
-		queue("Gotcha! " + nice(this->enemy.species) + " was caught!");
+		queue("Erwischt! " + nice(this->enemy.species) + " wurde gefangen!");
 		Mon caught = this->data->make_mon(this->enemy.species, this->enemy.level);
 		if (this->team && this->team->size() < 6) this->team->push_back(caught);
 		else if (this->box) { this->box->push_back(caught);
-			queue(nice(this->enemy.species) + " was sent to the PC."); }
+			queue(nice(this->enemy.species) + " wurde zur PC-BOX geschickt."); }
 		this->over = true; this->victory = true;
 		show_messages(INACTIVE);
 	} else {
-		queue(nice(this->enemy.species) + " broke free!");
+		queue(nice(this->enemy.species) + " hat sich befreit!");
 		enemy_turn_after();
 	}
 }
 
 void Battle::flee() {
 	if (this->is_trainer) {
-		this->log.clear(); queue("No! There's no running from a TRAINER battle!");
+		this->log.clear(); queue("Nein! Du kannst nicht vor einem TRAINER-Kampf fliehen!");
 		show_messages(ACTION); return;
 	}
-	this->log.clear(); queue("Got away safely!");
+	this->log.clear(); queue("Erfolgreich entkommen!");
 	this->over = true; this->victory = false;
 	show_messages(INACTIVE);
 }
@@ -390,9 +390,9 @@ void Battle::draw(sf::RenderTarget& target) {
 		sf::Text t(sf::String::fromUtf8(line.begin(), line.end()), this->font, 22);
 		t.setPosition(tx, ty + 30); t.setFillColor(body_col); target.draw(t);
 	} else if (this->phase == ACTION) {
-		sf::Text q("What will " + nice(this->player->species) + " do?", this->font, 20);
+		sf::Text q("Was soll " + nice(this->player->species) + " tun?", this->font, 20);
 		q.setPosition(tx, ty); q.setFillColor(body_col); target.draw(q);
-		const char* acts[] = {"FIGHT", "BALL", "RUN"};
+		const char* acts[] = {"KAMPF", "BALL", "FLUCHT"};
 		for (int i = 0; i < 3; ++i) {
 			bool sel = i == this->action_cursor;
 			bool dis = (i != 0) && this->is_trainer;   // no catching/running trainers
@@ -403,13 +403,14 @@ void Battle::draw(sf::RenderTarget& target) {
 			target.draw(a);
 		}
 		if (this->gs) {
-			sf::Text bc("BALLS x" + std::to_string(this->gs->item_count("ITEM_POKE_BALL")),
-			            this->font, 16);
+			std::string bt = "BÄLLE x" + std::to_string(this->gs->item_count("ITEM_POKE_BALL"));
+			sf::Text bc(sf::String::fromUtf8(bt.begin(), bt.end()), this->font, 16);
 			bc.setPosition(size.x * 0.72f, ty + 34);
 			bc.setFillColor(muted_col); target.draw(bc);
 		}
 	} else if (this->phase == MOVE) {
-		sf::Text q("Choose a move:", this->font, 20);
+		std::string qs = "Wähle eine Attacke:";
+		sf::Text q(sf::String::fromUtf8(qs.begin(), qs.end()), this->font, 20);
 		q.setPosition(tx, ty); q.setFillColor(body_col); target.draw(q);
 		for (size_t i = 0; i < this->player->moves.size(); ++i) {
 			float mx = size.x * 0.42f + (i % 2) * (size.x * 0.27f);

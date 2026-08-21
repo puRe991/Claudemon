@@ -386,7 +386,8 @@ struct StarterSelect {
         bg.setFillColor(sf::Color(20, 28, 48, 250));
         target.draw(bg);
 
-        sf::Text title("Choose your partner Pokemon!", font, 22);
+        std::string title_s = "Wähle dein Partner-Pokémon!";
+        sf::Text title(sf::String::fromUtf8(title_s.begin(), title_s.end()), font, 22);
         title.setPosition(size.x * 0.5f - 200, 30);
         title.setFillColor(sf::Color(150, 210, 255));
         target.draw(title);
@@ -415,7 +416,7 @@ struct StarterSelect {
             target.draw(label);
         }
 
-        sf::Text hint("[A/D] choose   [SPACE] confirm", font, 15);
+        sf::Text hint("[A/D] waehlen   [SPACE] bestaetigen", font, 15);
         hint.setPosition(size.x * 0.5f - 130, size.y - 40);
         hint.setFillColor(sf::Color(180, 180, 180));
         target.draw(hint);

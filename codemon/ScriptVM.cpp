@@ -127,7 +127,7 @@ void ScriptVM::pump() {
 			int amt = (argc >= 2) ? value_of(arg(1)) : 1;
 			this->state->give_item(arg(0), amt);
 			this->state->set_var("VAR_RESULT", 1);
-			this->box->open(std::string(), item_name(arg(0)) + " obtained!");
+			this->box->open(std::string(), item_name(arg(0)) + " erhalten!");
 			this->st = WAIT_MSG;
 			return;
 		} else if (op == "finditem" && argc >= 1) {
@@ -136,7 +136,7 @@ void ScriptVM::pump() {
 			int amt = (argc >= 2) ? value_of(arg(1)) : 1;
 			this->state->give_item(arg(0), amt);
 			this->state->set_var("VAR_RESULT", 1);
-			this->box->open(std::string(), "Found " + item_name(arg(0)) + "!");
+			this->box->open(std::string(), item_name(arg(0)) + " gefunden!");
 			this->st = WAIT_MSG;
 			return;
 		} else if (op == "applymovement" && argc >= 2) {
@@ -228,7 +228,7 @@ void ScriptVM::pump() {
 				this->st = WAIT_BATTLE;
 				return;
 			}
-			this->box->open(std::string(), "A TRAINER wants to battle!");
+			this->box->open(std::string(), "Ein TRAINER möchte kämpfen!");
 			this->st = WAIT_MSG;
 			return;
 		} else if (op == "checkplayergender") {

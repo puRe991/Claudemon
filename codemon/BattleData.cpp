@@ -258,21 +258,21 @@ void BattleData::grant_exp(Mon& mon, long gained, std::vector<std::string>& msgs
 	auto sp = species.find(mon.species);
 	std::string growth = sp == species.end() ? "MEDIUM_FAST" : sp->second.growth;
 	mon.exp += gained;
-	msgs.push_back(disp(mon.species) + " gained " + std::to_string(gained) + " EXP!");
+	msgs.push_back(disp(mon.species) + " erhält " + std::to_string(gained) + " EP!");
 	while (mon.level < 100 && mon.exp >= exp_for_level(growth, mon.level + 1)) {
 		mon.level++;
 		recompute_stats(mon, false);
-		msgs.push_back(disp(mon.species) + " grew to Lv. " + std::to_string(mon.level) + "!");
+		msgs.push_back(disp(mon.species) + " erreicht Level " + std::to_string(mon.level) + "!");
 		// learn any move taught at this level
 		auto li = learn.find(mon.species);
 		if (li != learn.end()) {
 			for (auto& lv : li->second) if (lv.first == mon.level) {
 				if (mon.moves.size() < 4) {
 					mon.moves.push_back(lv.second);
-					msgs.push_back(disp(mon.species) + " learned " + disp(lv.second) + "!");
+					msgs.push_back(disp(mon.species) + " erlernt " + disp(lv.second) + "!");
 				} else {
-					msgs.push_back(disp(mon.species) + " learned " + disp(lv.second) +
-					               " (forgot " + disp(mon.moves[0]) + ")");
+					msgs.push_back(disp(mon.species) + " erlernt " + disp(lv.second) +
+					               " (vergisst " + disp(mon.moves[0]) + ")");
 					mon.moves[0] = lv.second;
 				}
 			}
@@ -286,7 +286,7 @@ void BattleData::grant_exp(Mon& mon, long gained, std::vector<std::string>& msgs
 					std::string from = disp(mon.species);
 					mon.species = e.target;
 					recompute_stats(mon, true);
-					msgs.push_back(from + " evolved into " + disp(mon.species) + "!");
+					msgs.push_back(from + " entwickelt sich zu " + disp(mon.species) + "!");
 					break;
 				}
 			}

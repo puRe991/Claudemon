@@ -97,17 +97,17 @@ void Menu::teach_selected() {
 	Mon& m = (*this->team)[this->teach_cursor];
 	std::string mv_disp = pretty(this->teach_move, "");
 	if (!this->bdata->can_learn_tm(m.species, this->teach_move)) {
-		this->flash = pretty(m.species, "") + " can't learn " + mv_disp + ".";
+		this->flash = pretty(m.species, "") + " kann " + mv_disp + " nicht erlernen.";
 		return;
 	}
 	if (std::find(m.moves.begin(), m.moves.end(), this->teach_move) != m.moves.end()) {
-		this->flash = pretty(m.species, "") + " already knows " + mv_disp + ".";
+		this->flash = pretty(m.species, "") + " kennt " + mv_disp + " bereits.";
 		return;
 	}
 	if (m.moves.size() < 4) m.moves.push_back(this->teach_move);
 	else m.moves[0] = this->teach_move;   // overwrite the oldest move
 	if (!is_hm(this->teach_item) && this->gs) this->gs->take_item(this->teach_item, 1);
-	this->flash = pretty(m.species, "") + " learned " + mv_disp + "!";
+	this->flash = pretty(m.species, "") + " erlernt " + mv_disp + "!";
 	this->screen = BAG;
 	auto items = bag_sorted();
 	if (this->bag_cursor >= (int)items.size())
@@ -136,14 +136,14 @@ void Menu::input(BtnInput b) {
 				if (is_machine(item) && this->bdata) {
 					std::string tm = item.substr(5);            // ITEM_TM09 -> TM09
 					std::string mv = this->bdata->tm_to_move(tm);
-					if (mv.empty()) this->flash = "Nothing happens.";
+					if (mv.empty()) this->flash = "Es passiert nichts.";
 					else {
 						this->teach_item = item; this->teach_move = mv;
 						this->teach_cursor = 0; this->flash.clear();
 						this->screen = TEACH;
 					}
 				} else {
-					this->flash = "Can't use " + pretty(item, "ITEM_") + " here.";
+					this->flash = pretty(item, "ITEM_") + " kann hier nicht benutzt werden.";
 				}
 			}
 		}
@@ -203,18 +203,18 @@ void Menu::draw(sf::RenderTarget& target) {
 	};
 
 	if (this->screen == MAIN) {
-		text("MENU", x, y, 24, head_col); y += 44;
-		const char* opts[] = {"BAG", "POKeMON", "PC BOX", "POKeNAV", "CLOSE"};
+		text("MENÜ", x, y, 24, head_col); y += 44;
+		const char* opts[] = {"BEUTEL", "POKéMON", "PC-BOX", "POKéNAV", "SCHLIESSEN"};
 		for (int i = 0; i < 5; ++i) {
 			bool sel = i == this->cursor;
 			if (sel) cursor_at(x, y + i * 38);
 			text(opts[i], x, y + i * 38, 22, sel ? head_col : body_col);
 		}
 	} else if (this->screen == BAG) {
-		text("BAG", x, y, 24, head_col); y += 44;
+		text("BEUTEL", x, y, 24, head_col); y += 44;
 		auto items = bag_sorted();
 		if (items.empty()) {
-			text("(empty)", x, y, 20, muted_col);
+			text("(leer)", x, y, 20, muted_col);
 		} else {
 			for (int row = 0; row < (int)items.size() && row < 10; ++row) {
 				const auto& kv = items[row];
@@ -236,9 +236,9 @@ void Menu::draw(sf::RenderTarget& target) {
 			text(this->flash, x, panel.getPosition().y + panel.getSize().y - 60, 16,
 			     sf::Color(190, 90, 20));
 	} else if (this->screen == TEACH) {
-		text("TEACH " + pretty(this->teach_move, ""), x, y, 22, head_col);
+		text("LEHRE " + pretty(this->teach_move, ""), x, y, 22, head_col);
 		y += 40;
-		text("Choose a POKeMON:", x, y, 16, muted_col); y += 30;
+		text("Wähle ein POKéMON:", x, y, 16, muted_col); y += 30;
 		if (this->team) {
 			for (int row = 0; row < (int)this->team->size() && row < 6; ++row) {
 				const Mon& m = (*this->team)[row];
@@ -250,7 +250,7 @@ void Menu::draw(sf::RenderTarget& target) {
 				if (ic) { sf::Sprite s(*ic); s.setScale(0.55f, 0.55f); s.setPosition(x, ry - 6); target.draw(s); }
 				text(pretty(m.species, "") + "  Lv" + std::to_string(m.level), x + 44, ry, 20,
 				     able ? body_col : sf::Color(170, 170, 170));
-				text(able ? "ABLE" : "unable", panel.getPosition().x + panel.getSize().x - 90, ry, 16,
+				text(able ? "OK" : "nicht möglich", panel.getPosition().x + panel.getSize().x - 110, ry, 16,
 				     able ? sf::Color(30, 150, 60) : sf::Color(190, 90, 90));
 			}
 		}
@@ -258,7 +258,7 @@ void Menu::draw(sf::RenderTarget& target) {
 			text(this->flash, x, panel.getPosition().y + panel.getSize().y - 60, 16,
 			     sf::Color(190, 90, 20));
 	} else if (this->screen == PARTY) {
-		text("POKeMON", x, y, 24, head_col); y += 40;
+		text("POKéMON", x, y, 24, head_col); y += 40;
 		if (this->team) {
 			int row = 0;
 			for (const Mon& m : *this->team) {
@@ -272,8 +272,8 @@ void Menu::draw(sf::RenderTarget& target) {
 			}
 		}
 	} else if (this->screen == PC) {
-		text("PC BOX", x, y, 24, head_col); y += 40;
-		text("Stored: " + std::to_string(this->box ? (int)this->box->size() : 0), x, y, 18, muted_col);
+		text("PC-BOX", x, y, 24, head_col); y += 40;
+		text("Aufbewahrt: " + std::to_string(this->box ? (int)this->box->size() : 0), x, y, 18, muted_col);
 		y += 30;
 		if (this->box && !this->box->empty()) {
 			int row = 0;
@@ -285,18 +285,18 @@ void Menu::draw(sf::RenderTarget& target) {
 				if (++row >= 10) break;
 			}
 		} else {
-			text("(no POKeMON stored)", x, y, 20, muted_col);
+			text("(keine POKéMON aufbewahrt)", x, y, 20, muted_col);
 		}
 	} else if (this->screen == POKENAV) {
-		text("POKeNAV", x, y, 24, head_col); y += 36;
-		text("Location:  " + (this->location.empty() ? "---" : this->location),
+		text("POKéNAV", x, y, 24, head_col); y += 36;
+		text("Ort:  " + (this->location.empty() ? "---" : this->location),
 		     x, y, 20, sf::Color(150, 110, 20)); y += 26;
-		text("Region: HOENN   Party: " +
+		text("Region: HOENN   Team: " +
 		     std::to_string(this->team ? (int)this->team->size() : 0) + "/6",
 		     x, y, 16, muted_col); y += 26;
 		{
-			static const char* names[8] = {"STONE", "KNUCKLE", "DYNAMO", "HEAT",
-			                               "BALANCE", "FEATHER", "MIND", "RAIN"};
+			static const char* names[8] = {"STEIN", "FAUST", "DYNAMO", "HITZE",
+			                               "BALANCE", "FEDER", "GEIST", "REGEN"};
 			int got = 0;
 			float bx = x;
 			for (int i = 0; i < 8; ++i) {
@@ -307,11 +307,11 @@ void Menu::draw(sf::RenderTarget& target) {
 				     have ? sf::Color(190, 140, 10) : sf::Color(170, 170, 170));
 				bx += 62;
 			}
-			text("Badges " + std::to_string(got) + "/8",
-			     panel.getPosition().x + panel.getSize().x - 90, y, 14, muted_col);
+			y += 20;
+			text("Orden: " + std::to_string(got) + "/8", x, y, 14, muted_col);
 			y += 24;
 		}
-		text("CONDITION", x, y, 18, head_col); y += 26;
+		text("ZUSTAND", x, y, 18, head_col); y += 26;
 		if (this->team) {
 			int row = 0;
 			for (const Mon& m : *this->team) {
@@ -324,19 +324,19 @@ void Menu::draw(sf::RenderTarget& target) {
 					const sf::Texture* ti = type_icon(tp);
 					if (ti) { sf::Sprite s(*ti); s.setPosition(tx2, ry - 2); target.draw(s); tx2 += 44; }
 				}
-				text("HP " + std::to_string(m.max_hp) + "  ATK " + std::to_string(m.atk) +
-				     "  DEF " + std::to_string(m.def), x, ry + 24, 15, muted_col);
-				text("SPA " + std::to_string(m.spa) + "  SPD " + std::to_string(m.spd) +
-				     "  SPE " + std::to_string(m.spe), x, ry + 40, 15, muted_col);
+				text("KP " + std::to_string(m.max_hp) + "  ANG " + std::to_string(m.atk) +
+				     "  VER " + std::to_string(m.def), x, ry + 24, 15, muted_col);
+				text("SA " + std::to_string(m.spa) + "  SV " + std::to_string(m.spd) +
+				     "  INI " + std::to_string(m.spe), x, ry + 40, 15, muted_col);
 				if (++row >= 4) break;
 			}
 		}
 	}
 	if (this->screen == BAG)
-		text("[SPACE] use   [A] back", x, panel.getPosition().y + panel.getSize().y - 34, 16, muted_col);
+		text("[SPACE] benutzen   [A] zurück", x, panel.getPosition().y + panel.getSize().y - 34, 16, muted_col);
 	else if (this->screen == TEACH)
-		text("[SPACE] teach   [A] back", x, panel.getPosition().y + panel.getSize().y - 34, 16, muted_col);
+		text("[SPACE] lehren   [A] zurück", x, panel.getPosition().y + panel.getSize().y - 34, 16, muted_col);
 	else if (this->screen != MAIN)
-		text("[SPACE] back", x, panel.getPosition().y + panel.getSize().y - 34, 16, muted_col);
+		text("[SPACE] zurück", x, panel.getPosition().y + panel.getSize().y - 34, 16, muted_col);
 	target.setView(saved);
 }
