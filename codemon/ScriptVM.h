@@ -35,8 +35,12 @@ public:
 	void configure(Map* map, GameState* state, DialogBox* box,
 	               Battle* battle, Audio* audio, Character* player);
 
-	// Battle hooks for trainerbattle (set once at startup).
-	void set_battle_data(BattleData* bd, Mon* party) { this->bdata = bd; this->party = party; }
+	// Battle hooks for trainerbattle (set once at startup). `team` is the
+	// player's whole party (not just the lead mon) so `special
+	// HealPlayerParty` can actually heal all of it, not only team[0].
+	void set_battle_data(BattleData* bd, std::vector<Mon>* team) {
+		this->bdata = bd; this->team = team;
+	}
 
 	// Begin running `label`; owner is the interacted NPC (for LOCALID + face).
 	void start(const std::string& label, Character* owner);
@@ -81,7 +85,7 @@ private:
 
 	Map* map; GameState* state; DialogBox* box; Battle* battle;
 	Audio* audio; Character* player; Character* owner;
-	BattleData* bdata; Mon* party;
+	BattleData* bdata; std::vector<Mon>* team;
 
 	State st;
 	std::string cur;                 // current script label

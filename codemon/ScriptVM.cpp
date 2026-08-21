@@ -3,7 +3,7 @@
 
 ScriptVM::ScriptVM()
 	: map(nullptr), state(nullptr), box(nullptr), battle(nullptr),
-	  audio(nullptr), player(nullptr), owner(nullptr), bdata(nullptr), party(nullptr),
+	  audio(nullptr), player(nullptr), owner(nullptr), bdata(nullptr), team(nullptr),
 	  st(IDLE), ip(0), switch_value(0), move_timer(0.f) {}
 
 void ScriptVM::configure(Map* m, GameState* s, DialogBox* b, Battle* bt,
@@ -95,7 +95,8 @@ void ScriptVM::finish() {
 
 void ScriptVM::resolve_starter(const std::string& species) {
 	if (this->st != WAIT_STARTER) return;
-	if (this->bdata && this->party) *this->party = this->bdata->make_mon(species, 5);
+	if (this->bdata && this->team && !this->team->empty())
+		(*this->team)[0] = this->bdata->make_mon(species, 5);
 	if (this->state) {
 		this->state->set_flag("FLAG_SYS_POKEMON_GET");
 		// pokeemerald's VAR_STARTER_MON (0=Treecko, 1=Torchic, 2=Mudkip):
@@ -244,8 +245,8 @@ void ScriptVM::pump() {
 				else if (this->pending_win_script.empty() && this->map->has_script(a))
 					this->pending_win_script = a;
 			}
-			if (this->battle && this->bdata && this->party &&
-			    this->battle->start_trainer(tid, name_from_trainer(tid), this->party)) {
+			if (this->battle && this->bdata && this->team && !this->team->empty() &&
+			    this->battle->start_trainer(tid, name_from_trainer(tid), &(*this->team)[0])) {
 				this->st = WAIT_BATTLE;
 				return;
 			}
@@ -258,8 +259,8 @@ void ScriptVM::pump() {
 			// special <Func> ; special2 <var> <Func>. Implement the few that
 			// have a clear overworld effect; the rest are safely ignored.
 			const std::string& fn = (op == "special2" && argc >= 2) ? arg(1) : arg(0);
-			if (fn == "HealPlayerParty" && this->party) {
-				this->party->hp = this->party->max_hp;
+			if (fn == "HealPlayerParty" && this->team) {
+				for (Mon& m : *this->team) m.hp = m.max_hp;
 			} else if (fn == "GetPlayerXY") {
 				this->state->set_var("VAR_0x8004", this->player->get_tile_x());
 				this->state->set_var("VAR_0x8005", this->player->get_tile_y());

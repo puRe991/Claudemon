@@ -750,7 +750,7 @@ int main() {
     battle.configure(&bdata, &rng);
     battle.set_capture(&gs, &team, &pc_box);
     ScriptVM vm;
-    vm.set_battle_data(&bdata, &team[0]);
+    vm.set_battle_data(&bdata, &team);
     vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player);
     run_load_triggers(sess->map, gs, vm);
     Menu menu;
