@@ -257,6 +257,10 @@ has been verified either by an automated test or by headless screenshot
   surviving a faint by switching to a healthy party member instead of an
   automatic loss — the battle only ends once the whole team is down
 * Capture mechanic (approximate probability, Poké Ball only — see below)
+* Scripted legendary/static encounters (Regirock/Regice/Registeel,
+  Rayquaza, Kyogre/Groudon, Kecleon, the New Mauville Voltorb swarm) via
+  `setwildbattle`/`dowildbattle`, with a real WON/LOST/RAN/CAUGHT battle
+  outcome scripts can branch on (`specialvar VAR_RESULT GetBattleOutcome`)
 * EXP gain, all 6 species growth curves, level-up stat recalculation,
   level-up movesets (411 learnsets), **level-up evolution** (172 paths)
 * TM/HM teaching from the bag, gated by real per-species learnsets (372
@@ -298,6 +302,10 @@ has been verified either by an automated test or by headless screenshot
 * **Text interpolation** (`bufferstring` family): the importer bakes static
   values into dialog at import time, but genuinely dynamic values (e.g.
   Birch's Pokédex-seen/caught rating) render with the number missing
+* **`specialvar` opcode**: `GetBattleOutcome` and `PlayerHasBerries` return
+  real answers; everything else (`ShouldTryRematchBattle`, Pokérus, trading,
+  breeding, contests, the fan club, Trainer Hill, ...) honestly returns
+  0/false since those systems don't exist here, rather than faking one
 * **Status-curing bag items** (Antidote, Paralyze Heal, Full Heal, ...) are
   still not usable — there are no status conditions in the battle system yet
   for them to cure (see above), so faking a cure would be dishonest; they'll
@@ -305,10 +313,6 @@ has been verified either by an automated test or by headless screenshot
 
 ### ❌ Not implemented yet
 
-* `specialvar` opcode (breaks `GetBattleOutcome`, rematch checks, Pokérus,
-  breeding-state checks and more — 361 uses across the maps)
-* Scripted legendary/static encounters (`setwildbattle`/`dowildbattle`:
-  Rayquaza, the Regis, Kyogre/Groudon, Kecleon, the Voltorb swarm)
 * Gift/fossil Pokémon (`givemon`: Johto starters, Beldum, Castform, fossils)
 * Mossdeep Gym's rotating-tile puzzle
 * HM field moves (Cut/Surf/Fly/Strength/Flash/Rock Smash/Waterfall/Dive) —
@@ -353,8 +357,9 @@ screenshot), not just written and assumed correct.
 - [x] Save/load system
 - [x] Usable healing/revive bag items (Potions, berries, Revive) outside
       TM/HM teaching — status healers still can't act, see above
-- [ ] `specialvar` opcode (`GetBattleOutcome`, rematch checks, Pokérus, ...)
-- [ ] Scripted legendary/static encounters (`setwildbattle`/`dowildbattle`)
+- [x] `specialvar` opcode — `GetBattleOutcome`/`PlayerHasBerries` real,
+      the rest honestly default to 0/false (see above)
+- [x] Scripted legendary/static encounters (`setwildbattle`/`dowildbattle`)
 - [ ] Gift/fossil Pokémon (`givemon`)
 - [ ] Mossdeep Gym rotating-tile puzzle
 - [ ] Comparison `goto_if_ge/gt/lt/le`, `multichoice`, `checkitem`/
