@@ -56,4 +56,15 @@ public:
 	void close();
 	void input(BtnInput b);
 	void draw(sf::RenderTarget& target);
+
+	// SPEICHERN in the main menu: the menu can't touch the save file itself
+	// (it doesn't know the current map/player position), so it just raises a
+	// request flag; the game loop performs the actual save and reports the
+	// result back via set_flash().
+	bool wants_save() const { return this->save_requested; }
+	void ack_save() { this->save_requested = false; }
+	void set_flash(const std::string& s) { this->flash = s; }
+
+private:
+	bool save_requested = false;
 };

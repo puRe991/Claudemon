@@ -117,12 +117,13 @@ void Menu::teach_selected() {
 void Menu::input(BtnInput b) {
 	if (this->screen == MAIN) {
 		if (b == BTN_UP && this->cursor > 0) this->cursor--;
-		else if (b == BTN_DOWN && this->cursor < 4) this->cursor++;
+		else if (b == BTN_DOWN && this->cursor < 5) this->cursor++;
 		else if (b == BTN_CONFIRM) {
 			if (this->cursor == 0) { this->screen = BAG; this->bag_cursor = 0; this->flash.clear(); }
 			else if (this->cursor == 1) this->screen = PARTY;
 			else if (this->cursor == 2) this->screen = PC;
 			else if (this->cursor == 3) this->screen = POKENAV;
+			else if (this->cursor == 4) { this->save_requested = true; this->flash.clear(); }
 			else this->screen = CLOSED;
 		}
 	} else if (this->screen == BAG) {
@@ -204,12 +205,14 @@ void Menu::draw(sf::RenderTarget& target) {
 
 	if (this->screen == MAIN) {
 		text("MENÜ", x, y, 24, head_col); y += 44;
-		const char* opts[] = {"BEUTEL", "POKéMON", "PC-BOX", "POKéNAV", "SCHLIESSEN"};
-		for (int i = 0; i < 5; ++i) {
+		const char* opts[] = {"BEUTEL", "POKéMON", "PC-BOX", "POKéNAV", "SPEICHERN", "SCHLIESSEN"};
+		for (int i = 0; i < 6; ++i) {
 			bool sel = i == this->cursor;
 			if (sel) cursor_at(x, y + i * 38);
 			text(opts[i], x, y + i * 38, 22, sel ? head_col : body_col);
 		}
+		if (!this->flash.empty())
+			text(this->flash, x, y + 6 * 38 + 10, 16, sf::Color(30, 140, 60));
 	} else if (this->screen == BAG) {
 		text("BEUTEL", x, y, 24, head_col); y += 44;
 		if (this->gs) {

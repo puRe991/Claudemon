@@ -27,6 +27,11 @@ public:
 	void set_flag(const std::string& name) { vars[name] = 1; }
 	void clear_flag(const std::string& name) { vars[name] = 0; }
 
+	// For SaveGame: every FLAG_*/VAR_* currently set (0-valued ones are kept
+	// out by set_var/set_flag never storing a meaningful 0, so this is exactly
+	// what needs to survive a save/load round-trip).
+	const std::unordered_map<std::string, int>& all_vars() const { return vars; }
+
 	// Poke Dollars. pokeemerald starts a new save with 3000; scripts read/
 	// write it only through native code (AddMoney/RemoveMoney specials),
 	// never a plain VAR_*, so it gets its own home instead of living in `vars`.

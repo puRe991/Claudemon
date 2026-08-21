@@ -13,6 +13,7 @@
 #include "Menu.h"
 #include "Minigame.h"
 #include "UiFrame.h"
+#include "SaveGame.h"
 
 #include <algorithm>
 #include <cctype>
@@ -776,36 +777,48 @@ struct Shop {
 
 int main() {
     const char* map_env = std::getenv("CODEMON_MAP");
-    // Story start: the player wakes up in their bedroom on Brendan's House 2F
-    // (heal location HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F, tile 4,2),
-    // then walks downstairs and out into Littleroot Town.
-    const char* start_map = map_env ? map_env : "maps/LittlerootTown_BrendansHouse_2F.map";
     std::mt19937 rng(1234);
 
+    static const char* SAVE_PATH = "savegame.dat";
     GameState gs;
-    // New-game default world state: every NPC/item hidden until its own
-    // story beat unlocks it (data/scripts/new_game.inc in pokeemerald),
-    // e.g. the rival isn't standing in your bedroom, Birch isn't already
-    // in his lab, Mom's "moving in" dialogue is used instead of the daily one.
-    {
+    BattleData bdata;
+    bdata.load("assets/battle");
+    std::vector<Mon> team;                          // the player's party
+    team.reserve(6);                                // keep &team[0] stable
+    std::vector<Mon> pc_box;                         // PC storage
+
+    // A saved run resumes exactly where it left off (map, position, flags,
+    // bag, money, party, PC box). CODEMON_MAP/CODEMON_NO_SAVE force a fresh
+    // start for demos/tests even when a savegame.dat is lying around.
+    std::string start_map; int start_x = -1, start_y = -1;
+    bool resumed = false;
+    if (!map_env && !std::getenv("CODEMON_NO_SAVE")) {
+        resumed = SaveGame::load(SAVE_PATH, gs, team, pc_box, start_map, start_x, start_y);
+    }
+    if (!resumed) {
+        // Story start: the player wakes up in their bedroom on Brendan's
+        // House 2F (heal location
+        // HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F, tile 4,2), then
+        // walks downstairs and out into Littleroot Town.
+        start_map = map_env ? map_env : "maps/LittlerootTown_BrendansHouse_2F.map";
+        start_x = start_y = -1;
+        // New-game default world state: every NPC/item hidden until its own
+        // story beat unlocks it (data/scripts/new_game.inc in pokeemerald),
+        // e.g. the rival isn't standing in your bedroom, Birch isn't already
+        // in his lab, Mom's "moving in" dialogue is used instead of the daily one.
         std::ifstream ngf("assets/new_game_flags.txt");
         std::string ln;
         while (std::getline(ngf, ln))
             if (!ln.empty()) gs.set_flag(ln);
+        team.push_back(bdata.make_mon("TREECKO", 8));   // starter
     }
-    Session* sess = load_session(start_map, -1, -1, &gs);
+    Session* sess = load_session(start_map, start_x, start_y, &gs);
 
     const unsigned win_w = VIEW_TW * sess->map->get_tile_size() * SCALE;
     const unsigned win_h = VIEW_TH * sess->map->get_tile_size() * SCALE;
 
     DialogBox box;
     box.load_font();
-    BattleData bdata;
-    bdata.load("assets/battle");
-    std::vector<Mon> team;                          // the player's party
-    team.reserve(6);                                // keep &team[0] stable
-    team.push_back(bdata.make_mon("TREECKO", 8));   // starter
-    std::vector<Mon> pc_box;                         // PC storage
     Battle battle;
     battle.configure(&bdata, &rng);
     battle.set_capture(&gs, &team, &pc_box);
@@ -839,15 +852,17 @@ int main() {
     shop.configure(&gs, &item_prices);
     HealFx healfx;
     healfx.load();
-    // a few starting items so the bag is not empty
-    gs.give_item("ITEM_POTION", 5);
-    gs.give_item("ITEM_POKE_BALL", 10);
-    gs.give_item("ITEM_ANTIDOTE", 2);
-    gs.give_item("ITEM_TM19", 1);   // Giga Drain  (teachable in the bag)
-    gs.give_item("ITEM_TM31", 1);   // Brick Break
-    gs.give_item("ITEM_TM40", 1);   // Aerial Ace
-    gs.give_item("ITEM_HM01", 1);   // Cut (reusable HM)
-    gs.set_var("COINS", 50);
+    if (!resumed) {
+        // a few starting items so the bag is not empty
+        gs.give_item("ITEM_POTION", 5);
+        gs.give_item("ITEM_POKE_BALL", 10);
+        gs.give_item("ITEM_ANTIDOTE", 2);
+        gs.give_item("ITEM_TM19", 1);   // Giga Drain  (teachable in the bag)
+        gs.give_item("ITEM_TM31", 1);   // Brick Break
+        gs.give_item("ITEM_TM40", 1);   // Aerial Ace
+        gs.give_item("ITEM_HM01", 1);   // Cut (reusable HM)
+        gs.set_var("COINS", 50);
+    }
     // demo hook: grant EXP to the starter to show level-ups / evolution
     if (const char* xe = std::getenv("CODEMON_GRANT_EXP")) {
         std::vector<std::string> xm;
@@ -969,6 +984,12 @@ int main() {
                     }
                     if (!healfx.active() && vm.wants_heal_fx()) healfx.start((int)team.size());
                     healfx.tick(0.13f);
+                    if (menu.wants_save()) {
+                        bool ok = SaveGame::save(SAVE_PATH, gs, team, pc_box, sess->path,
+                                                  sess->player->get_tile_x(), sess->player->get_tile_y());
+                        menu.set_flash(ok ? "Spiel gespeichert!" : "Speichern fehlgeschlagen.");
+                        menu.ack_save();
+                    }
                     do_pending_warp(nullptr);
                     battle.tick(0.13f);
                     games.tick(0.13f);
@@ -1123,6 +1144,12 @@ int main() {
             else vm.close_shop();
         }
         if (!healfx.active() && vm.wants_heal_fx()) healfx.start((int)team.size());
+        if (menu.wants_save()) {
+            bool ok = SaveGame::save(SAVE_PATH, gs, team, pc_box, sess->path,
+                                      sess->player->get_tile_x(), sess->player->get_tile_y());
+            menu.set_flash(ok ? "Spiel gespeichert!" : "Speichern fehlgeschlagen.");
+            menu.ack_save();
+        }
         do_pending_warp(&audio);
         float dt = clock.restart().asSeconds();
         healfx.tick(dt);
