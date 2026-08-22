@@ -111,6 +111,25 @@ add_custom_command(TARGET codemon POST_BUILD
             "${SRC_DIR}/assets" "$<TARGET_FILE_DIR:codemon>/assets"
     COMMENT "Staging maps/ and assets/ next to the game binary")
 
+if(WIN32)
+    # SFML's audio module always dynamically loads OpenAL Soft's DLL at
+    # runtime, even when SFML itself is statically linked (neither the
+    # bundled codemon/SFML nor a from-source CODEMON_FETCH_SFML build copy it
+    # anywhere), so without this codemon.exe fails to start with "openAL32.dll
+    # not found". redist/ carries the matching official DLL for each
+    # architecture (from the same SFML 2.5.1 release codemon/SFML is built
+    # from).
+    if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+        set(CODEMON_OPENAL_DLL "${SRC_DIR}/redist/openal32-x64.dll")
+    else()
+        set(CODEMON_OPENAL_DLL "${SRC_DIR}/redist/openal32-x86.dll")
+    endif()
+    add_custom_command(TARGET codemon POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy
+                "${CODEMON_OPENAL_DLL}" "$<TARGET_FILE_DIR:codemon>/openal32.dll"
+        COMMENT "Staging openal32.dll next to the game binary")
+endif()
+
 # --- Tests ------------------------------------------------------------------
 enable_testing()
 
