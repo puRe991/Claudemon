@@ -263,6 +263,12 @@ has been verified either by an automated test or by headless screenshot
 * Switching Pokémon mid-battle (a POKéMON option in the action menu), and
   surviving a faint by switching to a healthy party member instead of an
   automatic loss — the battle only ends once the whole team is down
+* Real win/loss gating on scripted trainer battles (gym leaders, the Elite
+  Four, the Champion, every ordinary trainer): losing no longer continues
+  the "you won" story script that follows the battle command — instead the
+  team is healed and the player is whited out back to the last Pokémon
+  Center visited, same as losing any battle in the real games (including
+  random wild encounters)
 * Capture mechanic (approximate probability, Poké Ball only — see below)
 * Scripted legendary/static encounters (Regirock/Regice/Registeel,
   Rayquaza, Kyogre/Groudon, Kecleon, the New Mauville Voltorb swarm) via
@@ -357,6 +363,8 @@ screenshot), not just written and assumed correct.
 - [ ] Stat-stage changes from status moves
 - [ ] Weather, abilities, held items, IV/EV/natures, PP/Struggle
 - [x] Switching Pokémon mid-battle / surviving a faint with a healthy party
+- [x] Whiteout on a lost battle (heal + warp to last heal location) instead
+      of scripted trainer battles continuing their win dialogue on a loss
 - [ ] Double battles, EXP Share
 - [ ] Stone/trade/friendship evolution triggers
 - [ ] Ball-type-aware, catch-rate-aware capture formula
