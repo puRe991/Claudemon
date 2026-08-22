@@ -250,9 +250,16 @@ has been verified either by an automated test or by headless screenshot
   `unset` conditionals, `switch`/`case`, movement scripts, `giveitem`/
   `finditem`, `setmetatile`
 * Turn-based battles: 385 species (real stats/types/growth curve), 354
-  moves (power/type/accuracy parsed), 17-type effectiveness chart, STAB,
-  physical/special split, wild encounters (real per-map tables + Gen-3 slot
-  weighting), 854 trainer battles with real parties, trainer rematches
+  moves (power/type/accuracy/effect data parsed), 17-type effectiveness
+  chart, STAB, physical/special split, an accuracy roll on every move, wild
+  encounters (real per-map tables + Gen-3 slot weighting), 854 trainer
+  battles with real parties, trainer rematches
+* Status conditions — sleep, poison, toxic, burn, paralysis, freeze, and
+  confusion — driven by each move's real pokeemerald effect data (Toxic,
+  Thunder Wave, Sleep Powder, Will-O-Wisp, Confuse Ray, and the % secondary
+  chance on hits like Body Slam/Ice Beam/Flamethrower/Poison Sting), with
+  real turn-blocking, end-of-turn damage, paralysis' quartered Speed, burn's
+  halved physical damage, and Gen-3 type immunities
 * Switching Pokémon mid-battle (a POKéMON option in the action menu), and
   surviving a faint by switching to a healthy party member instead of an
   automatic loss — the battle only ends once the whole team is down
@@ -269,8 +276,10 @@ has been verified either by an automated test or by headless screenshot
   level-up movesets (411 learnsets), **level-up evolution** (172 paths)
 * TM/HM teaching from the bag, gated by real per-species learnsets (372
   entries); TMs consumed on use, HMs reusable
-* Using healing/revive bag items (Potion family, soft drinks, berries,
-  Revive/Max Revive) on a chosen party member, with real Gen-3 heal amounts
+* Using healing/revive/status-curing bag items (Potion family, soft drinks,
+  berries, Revive/Max Revive, Antidote/Paralyze Heal/Awakening/Burn Heal/
+  Ice Heal/Full Heal/Full Restore) on a chosen party member, with real
+  Gen-3 heal amounts and status-cure matching
 * Shops (`pokemart`) and Ja/Nein prompts via the VM block-and-resume pattern
 * Story-accurate start (Brendan's House 2F, canonical heal-location tile)
 * UI: start menu (Bag/Party/PC Box/PokéNav), map-name banner, HP bars,
@@ -288,13 +297,12 @@ has been verified either by an automated test or by headless screenshot
 
 ### ⚠️ Partial / simplified
 
-* **Battle system** is a simplified 1v1 damage calculator: no status
-  conditions (paralysis/burn/poison/sleep/freeze/confusion), no critical
-  hits, no accuracy/evasion rolls, no move priority, no stat-stage changes
-  from status moves (Growl etc. do nothing but print text), no weather, no
+* **Battle system** is a simplified 1v1 damage calculator: no critical hits,
+  no evasion (no stat stages at all, so status moves like Growl/Swords
+  Dance do nothing but print text), no move priority, no weather, no
   abilities, no held items, no IV/EV/natures, no PP/Struggle, no doubles, no
-  EXP Share (mid-battle switching and faint recovery are implemented, see
-  above)
+  EXP Share (status conditions, accuracy, mid-battle switching and faint
+  recovery are implemented, see above)
 * **Catch mechanic** is a flat approximate formula, independent of species
   catch rate or ball type (only `ITEM_POKE_BALL` exists functionally)
 * **Evolution**: level-up only; stone/trade/friendship evolutions are
@@ -310,10 +318,6 @@ has been verified either by an automated test or by headless screenshot
   real answers; everything else (`ShouldTryRematchBattle`, Pokérus, trading,
   breeding, contests, the fan club, Trainer Hill, ...) honestly returns
   0/false since those systems don't exist here, rather than faking one
-* **Status-curing bag items** (Antidote, Paralyze Heal, Full Heal, ...) are
-  still not usable — there are no status conditions in the battle system yet
-  for them to cure (see above), so faking a cure would be dishonest; they'll
-  become real once status conditions exist
 
 ### ❌ Not implemented yet
 
@@ -347,8 +351,9 @@ screenshot), not just written and assumed correct.
 - [x] Turn-based battle system (trainers + wild, capture)
 - [x] RPG progression (EXP, levels, level-up evolution, level-up movesets)
 - [x] TM/HM teaching gated by real learnsets
-- [ ] Status conditions (paralysis/burn/poison/sleep/freeze/confusion)
-- [ ] Critical hits, accuracy/evasion, move priority
+- [x] Status conditions (paralysis/burn/poison/toxic/sleep/freeze/confusion)
+      + a real per-move accuracy roll
+- [ ] Critical hits, evasion, move priority
 - [ ] Stat-stage changes from status moves
 - [ ] Weather, abilities, held items, IV/EV/natures, PP/Struggle
 - [x] Switching Pokémon mid-battle / surviving a faint with a healthy party
@@ -358,8 +363,7 @@ screenshot), not just written and assumed correct.
 
 **Core loop**
 - [x] Save/load system
-- [x] Usable healing/revive bag items (Potions, berries, Revive) outside
-      TM/HM teaching — status healers still can't act, see above
+- [x] Usable healing/revive/status-curing bag items outside TM/HM teaching
 - [x] `specialvar` opcode — `GetBattleOutcome`/`PlayerHasBerries` real,
       the rest honestly default to 0/false (see above)
 - [x] Scripted legendary/static encounters (`setwildbattle`/`dowildbattle`)
