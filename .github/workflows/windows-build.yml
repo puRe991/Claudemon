@@ -1,9 +1,17 @@
 name: Windows build
 
-# Builds codemon.exe on a real Windows runner using the MSVC toolchain and
-# the SFML bundled under codemon/SFML (statically linked, see CMakeLists.txt
-# and run-windows.bat) -- no separate SFML install needed. The result is
-# uploaded as a downloadable build artifact.
+# Builds codemon.exe on a real Windows runner using the MSVC toolchain, for
+# both 64-bit and 32-bit targets:
+#   - x64 links the SFML bundled under codemon/SFML (statically linked, see
+#     CMakeLists.txt and run-windows.bat) -- no separate SFML install needed.
+#   - x86 has no bundled SFML in the repo, so this workflow downloads the
+#     matching official static SFML 2.5.1 Windows package for it. It has to
+#     match the bundled x64 build's compiler (MSVC 2015 / "vc14", confirmed
+#     via the /FAILIFMISMATCH:"_MSC_VER=1900" linker directive embedded in
+#     codemon/SFML/lib/*.lib) so the two stay ABI-consistent; the actual
+#     compiling/linking still happens with whatever MSVC windows-latest
+#     ships, which is binary-compatible with vc14's CRT.
+# Both results are uploaded as separate downloadable build artifacts.
 
 on:
   push:
@@ -12,14 +20,39 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: x64
+            cmake_arch: x64
+            artifact_name: codemon-windows-x64
+          - platform: x86
+            cmake_arch: Win32
+            artifact_name: codemon-windows-x86
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
         # sprites/ (a git submodule) is only used by the pe_import.py asset
         # pipeline, never by the game itself, so it isn't needed for a build.
 
+      - name: Download 32-bit SFML 2.5.1 (vc14)
+        if: matrix.platform == 'x86'
+        shell: bash
+        run: |
+          curl -sSL -o sfml32.zip https://www.sfml-dev.org/files/SFML-2.5.1-windows-vc14-32-bit.zip
+          unzip -q sfml32.zip -d sfml32
+
       - name: Configure (CMake)
-        run: cmake -S . -B build -A x64
+        shell: bash
+        run: |
+          if [ "${{ matrix.platform }}" = "x86" ]; then
+            cmake -S . -B build -A ${{ matrix.cmake_arch }} \
+              -DSFML_DIR="$PWD/sfml32/SFML-2.5.1/lib/cmake/SFML" \
+              -DSFML_STATIC_LIBRARIES=TRUE
+          else
+            cmake -S . -B build -A ${{ matrix.cmake_arch }}
+          fi
 
       - name: Build (Release)
         run: cmake --build build --config Release --parallel
@@ -43,7 +76,7 @@ jobs:
       - name: Upload codemon.exe (+ maps/assets) as a build artifact
         uses: actions/upload-artifact@v4
         with:
-          name: codemon-windows-x64
+          name: ${{ matrix.artifact_name }}
           # maps/ and assets/ are copied next to the binary by CMakeLists.txt's
           # POST_BUILD step, so the whole output directory is what a player needs.
           path: ${{ steps.locate.outputs.dir }}
