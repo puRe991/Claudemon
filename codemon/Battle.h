@@ -82,7 +82,19 @@ private:
 	void flee();
 	void enemy_turn_after();     // enemy attacks once, then back to ACTION / end
 	void send_next_enemy();
+	void handle_enemy_faint();   // award EXP, next trainer mon, or victory
 	static std::string nice(const std::string& id);   // POKEMON_NAME -> Pokemon Name
+
+	// --- status conditions --------------------------------------------------
+	bool roll_accuracy(int accuracy) const;
+	// True if `m` couldn't act this turn (sleep/freeze/full paralysis/a
+	// confusion self-hit) -- queues the matching message either way.
+	bool status_blocks_turn(Mon& m);
+	// Apply a move's status effect (or confusion) to `target`, honoring the
+	// Gen-3 one-major-status-at-a-time rule and type immunities.
+	void try_inflict_status(Mon& target, const std::string& effect);
+	// End-of-turn poison/burn/toxic damage for both sides.
+	void apply_end_of_turn_effects();
 
 public:
 	Battle();

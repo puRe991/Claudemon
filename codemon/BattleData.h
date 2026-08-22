@@ -23,10 +23,17 @@ struct Evolution {
 	std::string target;   // resulting species (no SPECIES_ prefix)
 };
 
+// Major status conditions -- Gen-3 rule: at most one of these at a time.
+// Confusion is tracked separately on Mon (it's volatile and can coexist
+// with any of these, e.g. a poisoned mon can also be confused).
+enum class Status { NONE, SLEEP, POISON, TOXIC, BURN, PARALYSIS, FREEZE };
+
 struct MoveInfo {
 	int power;
 	std::string type;
-	int accuracy;
+	int accuracy;               // 0 = never misses (Swift, self-target moves, ...)
+	std::string effect;         // bare EFFECT_* suffix, e.g. "SLEEP", "BURN_HIT"
+	int secondary_chance = 0;   // % chance an EFFECT_*_HIT's secondary status lands
 };
 
 // A battle-ready pokemon with computed stats and up to four moves.
@@ -38,6 +45,9 @@ struct Mon {
 	std::string t1 = "NORMAL", t2 = "NORMAL";
 	std::vector<std::string> moves;
 	long exp = 0;
+	Status status = Status::NONE;
+	int status_turns = 0;       // SLEEP: turns left asleep; TOXIC: turns badly poisoned so far
+	int confusion_turns = 0;    // 0 = not confused
 	bool fainted() const { return hp <= 0; }
 };
 
@@ -74,6 +84,14 @@ public:
 	                      const std::string& d1, const std::string& d2);
 	// Is a move type physical (uses Atk/Def) in the Gen-3 split?
 	static bool is_physical(const std::string& type);
+	// Status condition a move's bare EFFECT_* suffix inflicts, or NONE if
+	// it isn't a status-inflicting effect (most aren't -- stat stages,
+	// weather etc. are out of scope and left alone).
+	static Status effect_status(const std::string& effect);
+	// EFFECT_CONFUSE / EFFECT_CONFUSE_HIT: the volatile confusion status
+	// (tracked separately from `status` since it can coexist with one).
+	static bool effect_confuses(const std::string& effect);
+	static const char* status_name(Status s);   // "PSN", "PAR", ... for the UI
 
 	// Damage of `attacker` using `move_name` against `defender`.
 	int damage(const Mon& attacker, const Mon& defender,

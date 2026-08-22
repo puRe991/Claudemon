@@ -28,7 +28,9 @@ bool BattleData::load(const std::string& dir) {
 	while (std::getline(mv, line)) {
 		auto c = split(line, '\t');
 		if (c.size() < 4) continue;
-		moves[c[0]] = MoveInfo{std::stoi(c[1]), c[2], std::stoi(c[3])};
+		MoveInfo mi{std::stoi(c[1]), c[2], std::stoi(c[3])};
+		if (c.size() >= 6) { mi.effect = c[4]; mi.secondary_chance = std::stoi(c[5]); }
+		moves[c[0]] = mi;
 	}
 	std::ifstream ls(dir + "/learnsets.tsv");
 	while (std::getline(ls, line)) {
@@ -134,6 +136,35 @@ bool BattleData::is_physical(const std::string& type) {
 	return false;
 }
 
+Status BattleData::effect_status(const std::string& effect) {
+	// Pure-status moves (Thunder Wave, Toxic, Sleep Powder, ...) and the
+	// damaging moves with a chance of a secondary status (Body Slam,
+	// Ice Beam, ...) share the same EFFECT_* naming for each status.
+	if (effect == "SLEEP") return Status::SLEEP;
+	if (effect == "POISON" || effect == "POISON_HIT") return Status::POISON;
+	if (effect == "TOXIC") return Status::TOXIC;
+	if (effect == "WILL_O_WISP" || effect == "BURN_HIT") return Status::BURN;
+	if (effect == "PARALYZE" || effect == "PARALYZE_HIT") return Status::PARALYSIS;
+	if (effect == "FREEZE_HIT") return Status::FREEZE;
+	return Status::NONE;
+}
+
+bool BattleData::effect_confuses(const std::string& effect) {
+	return effect == "CONFUSE" || effect == "CONFUSE_HIT";
+}
+
+const char* BattleData::status_name(Status s) {
+	switch (s) {
+		case Status::SLEEP:     return "SLP";
+		case Status::POISON:    return "PSN";
+		case Status::TOXIC:     return "PSN";
+		case Status::BURN:      return "BRN";
+		case Status::PARALYSIS: return "PAR";
+		case Status::FREEZE:    return "FRZ";
+		default:                return "";
+	}
+}
+
 // Compact Gen-3 type chart. eff(a,d): 2 = super, 1 = normal, 0 = half, -1 = none.
 static int chart(const std::string& a, const std::string& d) {
 	struct E { const char* a; const char* d; int v; };
@@ -197,7 +228,10 @@ int BattleData::damage(const Mon& atk, const Mon& def,
 	float stab = (mi->type == atk.t1 || mi->type == atk.t2) ? 1.5f : 1.0f;
 	float eff = type_eff(mi->type, def.t1, def.t2);
 	float roll = 0.85f + (rng() % 16) / 100.0f;      // 0.85 .. 1.00
-	int dmg = (int)(base * stab * eff * roll);
+	// Burn halves physical damage output (Gen-3: applied to the attack
+	// stat, equivalent to halving the final physical hit).
+	float burn = (atk.status == Status::BURN && is_physical(mi->type)) ? 0.5f : 1.0f;
+	int dmg = (int)(base * stab * eff * roll * burn);
 	return std::max(eff > 0.f ? 1 : 0, dmg);
 }
 

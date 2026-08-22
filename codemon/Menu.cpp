@@ -43,6 +43,25 @@ static int heal_amount(const std::string& item) {
 static bool is_revive_item(const std::string& item) {
 	return item == "ITEM_REVIVE" || item == "ITEM_MAX_REVIVE" || item == "ITEM_REVIVAL_HERB";
 }
+// The single status a dedicated status healer cures; NONE if `item` isn't one.
+static Status status_cured(const std::string& item) {
+	if (item == "ITEM_ANTIDOTE") return Status::POISON;   // also cures TOXIC, see below
+	if (item == "ITEM_PARALYZE_HEAL") return Status::PARALYSIS;
+	if (item == "ITEM_AWAKENING") return Status::SLEEP;
+	if (item == "ITEM_BURN_HEAL") return Status::BURN;
+	if (item == "ITEM_ICE_HEAL") return Status::FREEZE;
+	return Status::NONE;
+}
+// Full Heal cures any status; Full Restore does too, on top of a full heal.
+static bool cures_any_status(const std::string& item) {
+	return item == "ITEM_FULL_HEAL" || item == "ITEM_FULL_RESTORE";
+}
+static bool has_curable_status(const std::string& item, const Mon& m) {
+	if (cures_any_status(item)) return m.status != Status::NONE;
+	Status cures = status_cured(item);
+	if (cures == Status::NONE) return false;
+	return m.status == cures || (cures == Status::POISON && m.status == Status::TOXIC);
+}
 
 bool Menu::load_font(const std::string& path) {
 	this->font_ok = this->font.loadFromFile(path);
@@ -130,22 +149,41 @@ void Menu::teach_selected() {
 		this->bag_cursor = std::max(0, (int)items.size() - 1);
 }
 
-// Apply use_item to team[use_cursor]: heals HP, or revives a fainted mon.
+// Apply use_item to team[use_cursor]: heals HP, cures a status, and/or
+// revives a fainted mon, depending on what the item actually is.
 void Menu::use_selected() {
 	if (!this->team || this->use_cursor < 0 || this->use_cursor >= (int)this->team->size()) return;
 	Mon& m = (*this->team)[this->use_cursor];
 	std::string name = pretty(m.species, "");
-	bool revive = is_revive_item(this->use_item);
-	if (revive) {
+	const std::string& item = this->use_item;
+
+	if (is_revive_item(item)) {
 		if (!m.fainted()) { this->flash = name + " ist nicht kampfunfähig."; return; }
-		m.hp = (this->use_item == "ITEM_MAX_REVIVE") ? m.max_hp : std::max(1, m.max_hp / 2);
-	} else {
-		if (m.fainted()) { this->flash = name + " ist kampfunfähig."; return; }
-		if (m.hp >= m.max_hp) { this->flash = name + " hat bereits volle KP."; return; }
-		int amt = heal_amount(this->use_item);
-		m.hp = (amt <= 0) ? m.max_hp : std::min(m.max_hp, m.hp + amt);
+		m.hp = (item == "ITEM_MAX_REVIVE") ? m.max_hp : std::max(1, m.max_hp / 2);
+		if (this->gs) this->gs->take_item(item, 1);
+		this->flash = name + " wurde wiederbelebt!";
+		this->screen = BAG;
+		auto items = bag_sorted();
+		if (this->bag_cursor >= (int)items.size())
+			this->bag_cursor = std::max(0, (int)items.size() - 1);
+		return;
 	}
-	if (this->gs) this->gs->take_item(this->use_item, 1);
+
+	bool cures = has_curable_status(item, m);
+	int amt = heal_amount(item);          // -1 = this item doesn't restore HP
+	bool healed = false;
+	if (cures) { m.status = Status::NONE; m.status_turns = 0; }
+	if (amt >= 0 && !m.fainted() && m.hp < m.max_hp) {
+		m.hp = (amt == 0) ? m.max_hp : std::min(m.max_hp, m.hp + amt);
+		healed = true;
+	}
+	if (!cures && !healed) {
+		this->flash = m.fainted() ? (name + " ist kampfunfähig.")
+		            : (amt >= 0)  ? (name + " hat bereits volle KP.")
+		                          : (name + " hat kein Problem, das behandelt werden müsste.");
+		return;
+	}
+	if (this->gs) this->gs->take_item(item, 1);
 	this->flash = name + " wurde behandelt!";
 	this->screen = BAG;
 	auto items = bag_sorted();
@@ -182,7 +220,8 @@ void Menu::input(BtnInput b) {
 						this->teach_cursor = 0; this->flash.clear();
 						this->screen = TEACH;
 					}
-				} else if (heal_amount(item) >= 0 || is_revive_item(item)) {
+				} else if (heal_amount(item) >= 0 || is_revive_item(item) ||
+				           status_cured(item) != Status::NONE || cures_any_status(item)) {
 					this->use_item = item; this->use_cursor = 0; this->flash.clear();
 					this->screen = USE_ITEM;
 				} else {
@@ -321,7 +360,9 @@ void Menu::draw(sf::RenderTarget& target) {
 			for (int row = 0; row < (int)this->team->size() && row < 6; ++row) {
 				const Mon& m = (*this->team)[row];
 				bool sel = row == this->use_cursor;
-				bool able = revive ? m.fainted() : (!m.fainted() && m.hp < m.max_hp);
+				bool able = revive ? m.fainted()
+				          : has_curable_status(this->use_item, m) ||
+				            (!m.fainted() && heal_amount(this->use_item) >= 0 && m.hp < m.max_hp);
 				float ry = y + row * 44;
 				if (sel) cursor_at(x, ry);
 				const sf::Texture* ic = mon_icon(m.species);
@@ -345,6 +386,8 @@ void Menu::draw(sf::RenderTarget& target) {
 				const sf::Texture* ic = mon_icon(m.species);
 				if (ic) { sf::Sprite s(*ic); s.setScale(0.9f, 0.9f); s.setPosition(x, ry); target.draw(s); }
 				text(pretty(m.species, "") + "  Lv" + std::to_string(m.level), x + 66, ry + 6, 20, body_col);
+				if (m.status != Status::NONE)
+					text(BattleData::status_name(m.status), x + 290, ry + 8, 15, sf::Color(190, 60, 60));
 				hp_bar(x + 66, ry + 34, m.hp, m.max_hp);
 				text(std::to_string(m.hp) + "/" + std::to_string(m.max_hp), x + 226, ry + 32, 16, body_col);
 				if (++row >= 6) break;

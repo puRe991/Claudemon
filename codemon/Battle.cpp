@@ -3,6 +3,13 @@
 #include <cctype>
 #include <algorithm>
 
+// Fainting cures every status condition (every generation's rule), so a
+// later Revive doesn't bring a mon back still nominally poisoned/asleep/...
+static void deal_damage(Mon& m, int dmg) {
+	m.hp = std::max(0, m.hp - dmg);
+	if (m.hp == 0) { m.status = Status::NONE; m.status_turns = 0; m.confusion_turns = 0; }
+}
+
 Battle::Battle()
 	: data(nullptr), rng(nullptr), gs(nullptr), team(nullptr), box(nullptr),
 	  action_cursor(0), font_ok(false), player(nullptr), active_idx(0),
@@ -139,18 +146,122 @@ std::string Battle::ai_move() const {
 	return best;
 }
 
+bool Battle::roll_accuracy(int accuracy) const {
+	if (accuracy <= 0) return true;   // 0 = never misses (pokeemerald convention)
+	return (int)((*this->rng)() % 100) < accuracy;
+}
+
+bool Battle::status_blocks_turn(Mon& m) {
+	std::string name = nice(m.species);
+	if (m.status == Status::SLEEP) {
+		if (--m.status_turns <= 0) {
+			m.status = Status::NONE;
+			queue(name + " ist aufgewacht!");
+		} else {
+			queue(name + " schläft tief und fest.");
+			return true;
+		}
+	} else if (m.status == Status::FREEZE) {
+		if (roll_accuracy(20)) {
+			m.status = Status::NONE;
+			queue(name + " ist aufgetaut!");
+		} else {
+			queue(name + " ist gefroren!");
+			return true;
+		}
+	}
+	if (m.confusion_turns > 0) {
+		if (--m.confusion_turns <= 0) {
+			queue(name + " ist nicht mehr verwirrt!");
+		} else if (roll_accuracy(33)) {
+			queue(name + " ist verwirrt!");
+			int dmg = std::max(1, (((2 * m.level) / 5 + 2) * 40 * m.atk /
+			                       std::max(1, m.def)) / 50 + 2);
+			deal_damage(m, dmg);
+			queue(name + " verletzt sich selbst vor Verwirrung!");
+			return true;
+		}
+	}
+	if (m.status == Status::PARALYSIS && roll_accuracy(25)) {
+		queue(name + " ist paralysiert! Es kann sich nicht bewegen!");
+		return true;
+	}
+	return false;
+}
+
+void Battle::try_inflict_status(Mon& target, const std::string& effect) {
+	if (BattleData::effect_confuses(effect)) {
+		if (target.confusion_turns <= 0) {
+			target.confusion_turns = 2 + (int)((*this->rng)() % 3);   // 2-4 turns
+			queue(nice(target.species) + " ist jetzt verwirrt!");
+		}
+		return;
+	}
+	Status st = BattleData::effect_status(effect);
+	if (st == Status::NONE || target.status != Status::NONE) return;   // one major status at a time
+	// Gen-3 type-based status immunities.
+	if ((st == Status::POISON || st == Status::TOXIC) &&
+	    (target.t1 == "POISON" || target.t2 == "POISON" ||
+	     target.t1 == "STEEL" || target.t2 == "STEEL")) return;
+	if (st == Status::BURN && (target.t1 == "FIRE" || target.t2 == "FIRE")) return;
+	if (st == Status::FREEZE && (target.t1 == "ICE" || target.t2 == "ICE")) return;
+	target.status = st;
+	target.status_turns = (st == Status::SLEEP) ? 1 + (int)((*this->rng)() % 3) : 0;
+	switch (st) {
+		case Status::SLEEP:     queue(nice(target.species) + " ist eingeschlafen!"); break;
+		case Status::POISON:    queue(nice(target.species) + " wurde vergiftet!"); break;
+		case Status::TOXIC:     queue(nice(target.species) + " wurde schwer vergiftet!"); break;
+		case Status::BURN:      queue(nice(target.species) + " erlitt Verbrennungen!"); break;
+		case Status::PARALYSIS: queue(nice(target.species) + " ist paralysiert!"); break;
+		case Status::FREEZE:    queue(nice(target.species) + " wurde eingefroren!"); break;
+		default: break;
+	}
+}
+
+void Battle::apply_end_of_turn_effects() {
+	Mon* sides[2] = {this->player, &this->enemy};
+	for (Mon* m : sides) {
+		if (!m || m->fainted() || m->status == Status::NONE) continue;
+		int dmg = 0;
+		const char* msg = nullptr;
+		if (m->status == Status::POISON) {
+			dmg = std::max(1, m->max_hp / 8);
+			msg = " leidet unter der Vergiftung!";
+		} else if (m->status == Status::TOXIC) {
+			m->status_turns++;
+			dmg = std::max(1, (m->max_hp * m->status_turns) / 16);
+			msg = " leidet stark unter der Vergiftung!";
+		} else if (m->status == Status::BURN) {
+			dmg = std::max(1, m->max_hp / 8);
+			msg = " leidet unter der Verbrennung!";
+		}
+		if (!msg) continue;
+		deal_damage(*m, dmg);
+		queue(nice(m->species) + msg);
+		if (m->fainted()) queue(nice(m->species) + " wurde besiegt!");
+	}
+}
+
 void Battle::do_move(Mon& atk, Mon& def, const std::string& mv,
                      const std::string& atk_name) {
+	if (status_blocks_turn(atk)) return;
 	queue(atk_name + " setzt " + nice(mv) + " ein!");
 	const MoveInfo* mi = this->data->move(mv);
-	if (!mi || mi->power <= 0) return;                 // status move: no damage model
+	if (!mi) return;
+	if (!roll_accuracy(mi->accuracy)) { queue("Der Angriff geht daneben!"); return; }
 	float eff = BattleData::type_eff(mi->type, def.t1, def.t2);
 	if (eff == 0.f) { queue("Hat keine Wirkung auf " + nice(def.species) + " ..."); return; }
+	if (mi->power <= 0) {                      // pure status move: no damage model
+		try_inflict_status(def, mi->effect);
+		return;
+	}
 	int dmg = this->data->damage(atk, def, mv, *this->rng);
-	def.hp = std::max(0, def.hp - dmg);
+	deal_damage(def, dmg);
 	if (eff > 1.f) queue("Das ist sehr effektiv!");
 	else if (eff < 1.f) queue("Das ist nicht sehr effektiv ...");
-	if (def.fainted()) queue(nice(def.species) + " wurde besiegt!");
+	if (def.fainted()) { queue(nice(def.species) + " wurde besiegt!"); return; }
+	if (mi->secondary_chance > 0 && roll_accuracy(mi->secondary_chance))
+		try_inflict_status(def, mi->effect);
 }
 
 void Battle::send_next_enemy() {
@@ -161,9 +272,32 @@ void Battle::send_next_enemy() {
 	queue(this->enemy_title + " schickt " + nice(this->enemy.species) + "!");
 }
 
+void Battle::handle_enemy_faint() {
+	// award experience to the player's pokemon
+	long gain = (long)this->data->exp_yield(this->enemy.species) *
+	            this->enemy.level / 7;
+	std::vector<std::string> xm;
+	this->data->grant_exp(*this->player, gain, xm);
+	for (const std::string& m : xm) queue(m);
+	if (this->is_trainer && this->party_idx + 1 < this->party.size()) {
+		send_next_enemy();
+		show_messages(ACTION);
+		return;
+	}
+	queue(this->is_trainer ? ("Du hast " + this->enemy_title + " besiegt!")
+	                       : "Das wilde POKéMON wurde besiegt!");
+	this->over = true; this->victory = true;
+	this->last_outcome = OUTCOME_WON;
+	show_messages(INACTIVE);
+}
+
 void Battle::resolve_turn(const std::string& player_move) {
 	std::string enemy_move = ai_move();
-	bool player_first = this->player->spe >= this->enemy.spe;
+	// Paralysis quarters effective Speed for turn-order purposes (Gen-3).
+	auto eff_speed = [](const Mon& m) {
+		return m.status == Status::PARALYSIS ? std::max(1, m.spe / 4) : m.spe;
+	};
+	bool player_first = eff_speed(*this->player) >= eff_speed(this->enemy);
 
 	Mon* first = player_first ? this->player : &this->enemy;
 	Mon* second = player_first ? &this->enemy : this->player;
@@ -176,28 +310,15 @@ void Battle::resolve_turn(const std::string& player_move) {
 	if (!second->fainted() && !first->fainted())
 		do_move(*second, *first, sm, second_name);
 
+	apply_end_of_turn_effects();
+
 	// outcome
 	if (this->player->fainted()) {
 		handle_player_faint();
 		return;
 	}
 	if (this->enemy.fainted()) {
-		// award experience to the player's pokemon
-		long gain = (long)this->data->exp_yield(this->enemy.species) *
-		            this->enemy.level / 7;
-		std::vector<std::string> xm;
-		this->data->grant_exp(*this->player, gain, xm);
-		for (const std::string& m : xm) queue(m);
-		if (this->is_trainer && this->party_idx + 1 < this->party.size()) {
-			send_next_enemy();
-			show_messages(ACTION);
-			return;
-		}
-		queue(this->is_trainer ? ("Du hast " + this->enemy_title + " besiegt!")
-		                       : "Das wilde POKéMON wurde besiegt!");
-		this->over = true; this->victory = true;
-		this->last_outcome = OUTCOME_WON;
-		show_messages(INACTIVE);
+		handle_enemy_faint();
 		return;
 	}
 	show_messages(ACTION);
@@ -301,17 +422,16 @@ void Battle::do_switch(int idx) {
 		return;
 	}
 	// a voluntary switch spends the turn -- the opponent gets a free hit.
-	std::string em = ai_move();
-	do_move(this->enemy, *this->player, em, nice(this->enemy.species));
-	if (this->player->fainted()) handle_player_faint();
-	else show_messages(ACTION);
+	enemy_turn_after();
 }
 
 void Battle::enemy_turn_after() {
 	std::string em = ai_move();
 	do_move(this->enemy, *this->player, em, nice(this->enemy.species));
-	if (this->player->fainted()) handle_player_faint();
-	else show_messages(ACTION);
+	apply_end_of_turn_effects();
+	if (this->player->fainted()) { handle_player_faint(); return; }
+	if (this->enemy.fainted()) { handle_enemy_faint(); return; }
+	show_messages(ACTION);
 }
 
 void Battle::throw_ball() {
@@ -369,6 +489,23 @@ static void draw_hp_bar(sf::RenderTarget& t, float x, float y, float w, float h,
 	t.draw(fg);
 }
 
+static void draw_status_badge(sf::RenderTarget& t, const sf::Font& font,
+                              float x, float y, Status st) {
+	const char* label = BattleData::status_name(st);
+	if (!*label) return;
+	sf::Color col = (st == Status::BURN) ? sf::Color(220, 100, 40)
+	              : (st == Status::PARALYSIS) ? sf::Color(210, 180, 30)
+	              : (st == Status::FREEZE) ? sf::Color(110, 195, 230)
+	              : (st == Status::SLEEP) ? sf::Color(140, 140, 160)
+	              : sf::Color(160, 70, 190);   // POISON / TOXIC
+	sf::RectangleShape bg(sf::Vector2f(38, 20));
+	bg.setPosition(x, y); bg.setFillColor(col);
+	t.draw(bg);
+	sf::Text txt(label, font, 14);
+	txt.setPosition(x + 4, y + 2); txt.setFillColor(sf::Color::White);
+	t.draw(txt);
+}
+
 void Battle::draw(sf::RenderTarget& target) {
 	if (this->phase == INACTIVE) return;
 	sf::View saved = target.getView();
@@ -410,6 +547,7 @@ void Battle::draw(sf::RenderTarget& target) {
 			sf::Text n(nice(this->enemy.species) + "  Lv" + std::to_string(this->enemy.level),
 			           this->font, 20);
 			n.setPosition(24, 24); n.setFillColor(sf::Color(20, 20, 20)); target.draw(n);
+			draw_status_badge(target, this->font, 210, 22, this->enemy.status);
 		}
 		draw_hp_bar(target, 24, 52, 240, 16, this->enemy.hp, this->enemy.max_hp);
 	}
@@ -426,6 +564,7 @@ void Battle::draw(sf::RenderTarget& target) {
 		           this->font, 20);
 		n.setPosition(size.x - 264, size.y * 0.44f);
 		n.setFillColor(sf::Color(20, 20, 20)); target.draw(n);
+		draw_status_badge(target, this->font, size.x - 60, size.y * 0.44f - 2, this->player->status);
 		sf::Text hp(std::to_string(this->player->hp) + " / " + std::to_string(this->player->max_hp),
 		            this->font, 18);
 		hp.setPosition(size.x - 264, size.y * 0.44f + 48);
