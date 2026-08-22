@@ -1,0 +1,50 @@
+name: Windows build
+
+# Builds codemon.exe on a real Windows runner using the MSVC toolchain and
+# the SFML bundled under codemon/SFML (statically linked, see CMakeLists.txt
+# and run-windows.bat) -- no separate SFML install needed. The result is
+# uploaded as a downloadable build artifact.
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        # sprites/ (a git submodule) is only used by the pe_import.py asset
+        # pipeline, never by the game itself, so it isn't needed for a build.
+
+      - name: Configure (CMake)
+        run: cmake -S . -B build -A x64
+
+      - name: Build (Release)
+        run: cmake --build build --config Release --parallel
+
+      - name: Run tests
+        run: ctest --test-dir build -C Release --output-on-failure
+
+      - name: Locate the built executable
+        id: locate
+        shell: bash
+        run: |
+          if [ -f "build/Release/codemon.exe" ]; then
+            echo "dir=build/Release" >> "$GITHUB_OUTPUT"
+          elif [ -f "build/codemon.exe" ]; then
+            echo "dir=build" >> "$GITHUB_OUTPUT"
+          else
+            echo "codemon.exe not found after build" >&2
+            exit 1
+          fi
+
+      - name: Upload codemon.exe (+ maps/assets) as a build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: codemon-windows-x64
+          # maps/ and assets/ are copied next to the binary by CMakeLists.txt's
+          # POST_BUILD step, so the whole output directory is what a player needs.
+          path: ${{ steps.locate.outputs.dir }}
+          if-no-files-found: error
