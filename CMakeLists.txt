@@ -31,18 +31,36 @@ endif()
 # On Windows, if the caller did not point CMake at an SFML install, fall back
 # to the MSVC SFML that ships with the repo under codemon/SFML. That bundled
 # build has no runtime DLLs (only static + import libraries), so link SFML
-# statically there to produce a self-contained codemon.exe.
-if(WIN32 AND NOT DEFINED SFML_DIR AND NOT DEFINED ENV{SFML_DIR})
+# statically there to produce a self-contained codemon.exe. That bundled copy
+# is 64-bit only, though -- for a 32-bit (Win32) build, there's nothing to
+# point SFML_DIR at, so CODEMON_FETCH_SFML instead pulls SFML's source via
+# FetchContent and builds it as part of this project (SFML's own CMake uses
+# its bundled extlibs on Windows, so this needs no extra dependencies).
+option(CODEMON_FETCH_SFML "Build SFML from source via FetchContent instead of using a bundled/system install (needed for 32-bit Windows, which has no bundled SFML)" OFF)
+
+if(CODEMON_FETCH_SFML)
+    include(FetchContent)
+    set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
+    set(SFML_USE_STATIC_STD_LIBS ON CACHE BOOL "" FORCE)
+    FetchContent_Declare(
+        SFML
+        GIT_REPOSITORY https://github.com/SFML/SFML.git
+        GIT_TAG        2.5.1
+        GIT_SHALLOW    TRUE)
+    FetchContent_MakeAvailable(SFML)
+elseif(WIN32 AND NOT DEFINED SFML_DIR AND NOT DEFINED ENV{SFML_DIR})
     set(SFML_STATIC_LIBRARIES TRUE)
     set(SFML_DIR "${CMAKE_CURRENT_SOURCE_DIR}/codemon/SFML/lib/cmake/SFML")
 endif()
 
-set(SFML_COMPONENTS graphics window system audio)
-if(WIN32)
-    # sfml-main provides the WinMain -> main shim used by the VS project.
-    list(APPEND SFML_COMPONENTS main)
+if(NOT CODEMON_FETCH_SFML)
+    set(SFML_COMPONENTS graphics window system audio)
+    if(WIN32)
+        # sfml-main provides the WinMain -> main shim used by the VS project.
+        list(APPEND SFML_COMPONENTS main)
+    endif()
+    find_package(SFML 2.5 COMPONENTS ${SFML_COMPONENTS} REQUIRED)
 endif()
-find_package(SFML 2.5 COMPONENTS ${SFML_COMPONENTS} REQUIRED)
 
 set(SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/codemon")
 

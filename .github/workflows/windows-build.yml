@@ -4,13 +4,14 @@ name: Windows build
 # both 64-bit and 32-bit targets:
 #   - x64 links the SFML bundled under codemon/SFML (statically linked, see
 #     CMakeLists.txt and run-windows.bat) -- no separate SFML install needed.
-#   - x86 has no bundled SFML in the repo, so this workflow downloads the
-#     matching official static SFML 2.5.1 Windows package for it. It has to
-#     match the bundled x64 build's compiler (MSVC 2015 / "vc14", confirmed
-#     via the /FAILIFMISMATCH:"_MSC_VER=1900" linker directive embedded in
-#     codemon/SFML/lib/*.lib) so the two stay ABI-consistent; the actual
-#     compiling/linking still happens with whatever MSVC windows-latest
-#     ships, which is binary-compatible with vc14's CRT.
+#   - x86 has no bundled SFML in the repo (the bundled copy is 64-bit only),
+#     so CMakeLists.txt's CODEMON_FETCH_SFML option is used instead: it pulls
+#     SFML 2.5.1's source via FetchContent and builds it as part of this
+#     project. (A first attempt downloaded the official prebuilt 32-bit SFML
+#     package from sfml-dev.org directly in the job, but that host isn't
+#     reliably reachable from GitHub-hosted runners -- connection timeouts,
+#     not a code issue -- so building from source, which only needs GitHub
+#     itself, is used instead.)
 # Both results are uploaded as separate downloadable build artifacts.
 
 on:
@@ -36,20 +37,15 @@ jobs:
         # sprites/ (a git submodule) is only used by the pe_import.py asset
         # pipeline, never by the game itself, so it isn't needed for a build.
 
-      - name: Download 32-bit SFML 2.5.1 (vc14)
-        if: matrix.platform == 'x86'
-        shell: bash
-        run: |
-          curl -sSL -o sfml32.zip https://www.sfml-dev.org/files/SFML-2.5.1-windows-vc14-32-bit.zip
-          unzip -q sfml32.zip -d sfml32
-
       - name: Configure (CMake)
         shell: bash
         run: |
           if [ "${{ matrix.platform }}" = "x86" ]; then
-            cmake -S . -B build -A ${{ matrix.cmake_arch }} \
-              -DSFML_DIR="$PWD/sfml32/SFML-2.5.1/lib/cmake/SFML" \
-              -DSFML_STATIC_LIBRARIES=TRUE
+            # SFML 2.5.1's own CMakeLists.txt only requires CMake 3.0.2, which
+            # newer CMake (4.0+) refuses to configure at all -- this tells it
+            # to treat that as 3.5 instead of hard-erroring on the fetched
+            # SFML source.
+            cmake -S . -B build -A ${{ matrix.cmake_arch }} -DCODEMON_FETCH_SFML=ON -DCMAKE_POLICY_VERSION_MINIMUM=3.5
           else
             cmake -S . -B build -A ${{ matrix.cmake_arch }}
           fi
