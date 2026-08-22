@@ -811,6 +811,10 @@ int main() {
         while (std::getline(ngf, ln))
             if (!ln.empty()) gs.set_flag(ln);
         team.push_back(bdata.make_mon("TREECKO", 8));   // starter
+        // Whiteout recovery point before the player has healed anywhere for
+        // real: the story-start heal location itself.
+        gs.last_heal_map = "LittlerootTown_BrendansHouse_2F";
+        gs.last_heal_x = 4; gs.last_heal_y = 2;
     }
     Session* sess = load_session(start_map, start_x, start_y, &gs);
 
@@ -908,6 +912,33 @@ int main() {
                      default: return BTN_CONFIRM; }
     };
 
+    // Whiteout recovery for battles the VM never knew about (random wild
+    // encounters started directly by try_encounter()); ScriptVM handles its
+    // own scripted battles (trainerbattle/dowildbattle) itself, the same way.
+    bool battle_was_active = false;
+    auto handle_whiteout = [&](Audio* aud) {
+        if (battle_was_active && !battle.active() && !vm.running() && !battle.won()) {
+            for (Mon& m : team) {
+                m.hp = m.max_hp;
+                m.status = Status::NONE; m.status_turns = 0; m.confusion_turns = 0;
+            }
+            if (!gs.last_heal_map.empty()) {
+                Session* ns = load_session("maps/" + gs.last_heal_map + ".map",
+                                           gs.last_heal_x, gs.last_heal_y, &gs);
+                if (ns->map->ready()) {
+                    free_session(sess);
+                    sess = ns;
+                    vm.configure(sess->map, &gs, &box, &battle, aud, sess->player, &sess->actors);
+                    run_load_triggers(sess->map, gs, vm);
+                    on_map_change(sess->path);
+                } else {
+                    free_session(ns);
+                }
+            }
+        }
+        battle_was_active = battle.active();
+    };
+
     // --- headless screenshot / animation mode ------------------------------
     if (const char* shot = std::getenv("CODEMON_SCREENSHOT")) {
         int frames = 1;
@@ -917,6 +948,7 @@ int main() {
         if (rt.create(win_w, win_h)) {
             for (int i = 0; i < frames; ++i) {
                 if (i > 0) {
+                    handle_whiteout(nullptr);
                     char tok = ((size_t)(i - 1) < walk.size()) ? walk[i - 1] : 0;
                     if (starter.active()) {
                         if (tok) starter.input(token_btn(tok));
@@ -1033,6 +1065,7 @@ int main() {
 
     sf::Clock clock; float npc_accum = 0.f;
     while (scr.get_window()->isOpen()) {
+        handle_whiteout(&audio);
         sf::Event event;
         while (scr.get_event(&event)) {
             if (event.type == sf::Event::Closed) scr.close();

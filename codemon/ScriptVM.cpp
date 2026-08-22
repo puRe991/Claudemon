@@ -353,7 +353,18 @@ void ScriptVM::pump() {
 			// have a clear overworld effect; the rest are safely ignored.
 			const std::string& fn = (op == "special2" && argc >= 2) ? arg(1) : arg(0);
 			if (fn == "HealPlayerParty" && this->team) {
-				for (Mon& m : *this->team) m.hp = m.max_hp;
+				for (Mon& m : *this->team) {
+					m.hp = m.max_hp;
+					m.status = Status::NONE; m.status_turns = 0; m.confusion_turns = 0;
+				}
+				// Pokemon Center heals also mark this as the whiteout recovery
+				// point (pokeemerald's lastHealLocation), read back if a later
+				// battle is lost.
+				if (this->state && this->map) {
+					this->state->last_heal_map = this->map->name();
+					this->state->last_heal_x = this->player->get_tile_x();
+					this->state->last_heal_y = this->player->get_tile_y();
+				}
 			} else if (fn == "GetPlayerXY") {
 				this->state->set_var("VAR_0x8004", this->player->get_tile_x());
 				this->state->set_var("VAR_0x8005", this->player->get_tile_y());
@@ -470,13 +481,34 @@ void ScriptVM::close_shop() {
 void ScriptVM::update(float dt) {
 	if (this->st == WAIT_BATTLE) {
 		if (!this->battle || !this->battle->active()) {
-			// battle finished; a win-script (badge, story flag, ...) only
-			// runs when the player actually won.
 			bool won = this->battle && this->battle->won();
 			std::string ws = this->pending_win_script;
 			this->pending_win_script.clear();
+			if (!won) {
+				// A lost battle (trainer or wild) never resumes the calling
+				// script -- on real hardware the overworld task is torn down
+				// for the whiteout sequence instead. Every trainerbattle
+				// script in the game (gym leaders, the Elite Four, the
+				// Champion, ...) relies on this: the "you won" dialogue and
+				// flag right after the battle command only runs because a
+				// loss never reaches it. Match that: heal up and warp back
+				// to the last place the player healed, like a real whiteout.
+				if (this->team)
+					for (Mon& m : *this->team) {
+						m.hp = m.max_hp;
+						m.status = Status::NONE; m.status_turns = 0; m.confusion_turns = 0;
+					}
+				if (this->state && !this->state->last_heal_map.empty()) {
+					this->warp_dest = this->state->last_heal_map;
+					this->warp_x = this->state->last_heal_x;
+					this->warp_y = this->state->last_heal_y;
+					this->pending_warp = true;
+				}
+				finish();
+				return;
+			}
 			this->st = RUN;
-			if (won && !ws.empty()) jump(ws);
+			if (!ws.empty()) jump(ws);
 			this->pump();
 		}
 		return;

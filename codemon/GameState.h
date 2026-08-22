@@ -37,6 +37,12 @@ public:
 	// never a plain VAR_*, so it gets its own home instead of living in `vars`.
 	int money = 3000;
 
+	// Whiteout recovery point (pokeemerald's gSaveBlock1Ptr->lastHealLocation):
+	// updated every time the player heals at a Pokemon Center, read when a
+	// lost battle needs somewhere to send them back to.
+	std::string last_heal_map;
+	int last_heal_x = -1, last_heal_y = -1;
+
 	void give_item(const std::string& item, int amount) { bag[item] += amount; }
 	// Remove up to `amount` of an item; erases the entry when it hits zero.
 	void take_item(const std::string& item, int amount) {

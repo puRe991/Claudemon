@@ -89,6 +89,7 @@ private:
 	int tile_px;                 // metatile edge length (px), from the tileset
 	Coordinates dimensions;      // width, height in tiles
 	Coordinates start_pos;       // player spawn tile
+	std::string map_name;        // bare stem, e.g. "OldaleTown_PokemonCenter_1F"
 
 	std::vector<int>  tile_map;  // width*height metatile ids
 	std::vector<char> solid;     // width*height passability (1 = blocked)
@@ -129,6 +130,9 @@ public:
 	unsigned int get_height() const;
 	int get_tile_size() const;
 	Coordinates get_start_pos() const;
+	// Bare map name (no "maps/" prefix, no ".map" extension) -- the same
+	// form used everywhere a map is referenced by name (warps, saves, ...).
+	const std::string& name() const { return map_name; }
 	bool ready() const;
 
 	// NPCs authored for this map.

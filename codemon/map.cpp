@@ -19,6 +19,13 @@ int Map::index(int x, int y) const {
 
 Map::Map(const std::string& map_path, const std::string& tileset_dir)
 	: tile_px(16) {
+	{
+		size_t slash = map_path.find_last_of('/');
+		std::string stem = (slash == std::string::npos) ? map_path : map_path.substr(slash + 1);
+		size_t dot = stem.rfind(".map");
+		if (dot != std::string::npos) stem = stem.substr(0, dot);
+		this->map_name = stem;
+	}
 	std::ifstream f(map_path);
 	if (!f.is_open()) {
 		std::cerr << "Map: could not open " << map_path << "\n";

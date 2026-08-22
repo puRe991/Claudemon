@@ -12,7 +12,7 @@ void write_mon(std::ofstream& f, const Mon& m) {
 		if (i) f << ',';
 		f << m.moves[i];
 	}
-	f << '\n';
+	f << '\t' << (int)m.status << '\t' << m.status_turns << '\t' << m.confusion_turns << '\n';
 }
 
 // Splits on '\t'; returns false if the line doesn't have enough fields.
@@ -37,6 +37,11 @@ bool read_mon(const std::string& line, Mon& m) {
 	m.moves.clear();
 	std::stringstream ms(f[12]);
 	while (std::getline(ms, tok, ',')) if (!tok.empty()) m.moves.push_back(tok);
+	if (f.size() >= 16) {
+		m.status = (Status)std::atoi(f[13].c_str());
+		m.status_turns = std::atoi(f[14].c_str());
+		m.confusion_turns = std::atoi(f[15].c_str());
+	}
 	return true;
 }
 
@@ -57,6 +62,7 @@ bool SaveGame::save(const std::string& path, const GameState& gs,
 	f << "map\t" << map_path << '\n';
 	f << "pos\t" << player_x << '\t' << player_y << '\n';
 	f << "money\t" << gs.money << '\n';
+	f << "heal\t" << gs.last_heal_map << '\t' << gs.last_heal_x << '\t' << gs.last_heal_y << '\n';
 
 	f << "vars\t" << gs.all_vars().size() << '\n';
 	for (const auto& kv : gs.all_vars()) f << kv.first << '\t' << kv.second << '\n';
@@ -105,6 +111,10 @@ bool SaveGame::load(const std::string& path, GameState& gs,
 			new_y = std::atoi(parts[2].c_str());
 		} else if (key == "money" && parts.size() >= 2) {
 			new_gs.money = std::atoi(parts[1].c_str());
+		} else if (key == "heal" && parts.size() >= 4) {
+			new_gs.last_heal_map = parts[1];
+			new_gs.last_heal_x = std::atoi(parts[2].c_str());
+			new_gs.last_heal_y = std::atoi(parts[3].c_str());
 		} else if (key == "vars" && parts.size() >= 2) {
 			int n = std::atoi(parts[1].c_str());
 			for (int i = 0; i < n && std::getline(f, line); ++i) {
