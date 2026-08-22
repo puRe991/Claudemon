@@ -26,7 +26,7 @@ people_mom 1 1 S static FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_BEDROOM_MOM
 people_man_1 3 4 S static FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_2F_PICHU_DOLL
 misc_item_ball 5 4 S static FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_2F_POKE_BALL
 dialogs
-3	It's RIVAL's POKé BALL!Better leave it right where it is.
+3	Das ist RIVALS POKé BALL!Lass ihn lieber genau da liegen, wo er ist.
 objscripts
 0 RivalsHouse_2F_EventScript_Rival
 3 LittlerootTown_MaysHouse_2F_EventScript_RivalsPokeBall
@@ -52,7 +52,7 @@ scriptdefs
 = LittlerootTown_MaysHouse_2F_EventScript_RivalsPokeBall
 lockall
 goto_if_eq VAR_LITTLEROOT_RIVAL_STATE 2 LittlerootTown_MaysHouse_2F_EventScript_MeetMay
-msgbox	It's RIVAL's POKé BALL!Better leave it right where it is.
+msgbox	Das ist RIVALS POKé BALL!Lass ihn lieber genau da liegen, wo er ist.
 releaseall
 end
 = LittlerootTown_MaysHouse_2F_EventScript_MeetMay
@@ -84,7 +84,7 @@ applymovement LOCALID_RIVALS_HOUSE_2F_RIVAL LittlerootTown_MaysHouse_2F_Movement
 waitmovement 0
 applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterLeft
 waitmovement 0
-msgbox	Huh? Who… Who are you?… … … … … … … … … … … … … … … …Oh, you're PLAYER. So your move was today.Um… I'm MAY. Glad to meet you!I… I have this dream of becoming friends with POKéMON all over the world.I… I heard about you, PLAYER, from my dad, PROF. BIRCH.I was hoping that you would be nice, PLAYER, and that we could be friends.Oh, this is silly, isn't it? I… I've just met you, PLAYER.Eheheh…Oh, no! I forgot!I was supposed to go help Dad catch some wild POKéMON!PLAYER, I'll catch you later!
+msgbox	Häh? Wer… wer bist du denn?… … … … … … … … … … … … … … … …Achso, du bist PLAYER. Dann war dein Umzug also heute.Ähm… Ich bin MAY. Freut mich, dich kennenzulernen!Ich… ich habe diesen Traum, mit POKéMON aus der ganzen Welt Freundschaft zu schließen.Ich… ich hab schon von dir gehört, PLAYER, von meinem Dad, PROF. BIRCH.Ich hab gehofft, dass du nett bist, PLAYER, und dass wir Freunde werden könnten.Ach, das ist albern, oder? Ich… ich hab dich doch gerade erst kennengelernt, PLAYER.Eheheh…Oh nein! Ich hab's vergessen!Ich sollte eigentlich Dad helfen, ein paar wilde POKéMON zu fangen!PLAYER, wir sehen uns später!
 closemessage
 applymovement LOCALID_PLAYER LittlerootTown_MaysHouse_2F_Movement_PlayerWatchMayEast
 applymovement LOCALID_RIVALS_HOUSE_2F_RIVAL LittlerootTown_MaysHouse_2F_Movement_MayWalkToPCEast
@@ -95,7 +95,7 @@ applymovement LOCALID_RIVALS_HOUSE_2F_RIVAL LittlerootTown_MaysHouse_2F_Movement
 waitmovement 0
 applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
 waitmovement 0
-msgbox	Huh? Who… Who are you?… … … … … … … … … … … … … … … …Oh, you're PLAYER. So your move was today.Um… I'm MAY. Glad to meet you!I… I have this dream of becoming friends with POKéMON all over the world.I… I heard about you, PLAYER, from my dad, PROF. BIRCH.I was hoping that you would be nice, PLAYER, and that we could be friends.Oh, this is silly, isn't it? I… I've just met you, PLAYER.Eheheh…Oh, no! I forgot!I was supposed to go help Dad catch some wild POKéMON!PLAYER, I'll catch you later!
+msgbox	Häh? Wer… wer bist du denn?… … … … … … … … … … … … … … … …Achso, du bist PLAYER. Dann war dein Umzug also heute.Ähm… Ich bin MAY. Freut mich, dich kennenzulernen!Ich… ich habe diesen Traum, mit POKéMON aus der ganzen Welt Freundschaft zu schließen.Ich… ich hab schon von dir gehört, PLAYER, von meinem Dad, PROF. BIRCH.Ich hab gehofft, dass du nett bist, PLAYER, und dass wir Freunde werden könnten.Ach, das ist albern, oder? Ich… ich hab dich doch gerade erst kennengelernt, PLAYER.Eheheh…Oh nein! Ich hab's vergessen!Ich sollte eigentlich Dad helfen, ein paar wilde POKéMON zu fangen!PLAYER, wir sehen uns später!
 closemessage
 applymovement LOCALID_RIVALS_HOUSE_2F_RIVAL LittlerootTown_MaysHouse_2F_Movement_MayWalkToPCWest
 waitmovement 0
@@ -105,7 +105,7 @@ applymovement LOCALID_RIVALS_HOUSE_2F_RIVAL LittlerootTown_MaysHouse_2F_Movement
 waitmovement 0
 applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterLeft
 waitmovement 0
-msgbox	Huh? Who… Who are you?… … … … … … … … … … … … … … … …Oh, you're PLAYER. So your move was today.Um… I'm MAY. Glad to meet you!I… I have this dream of becoming friends with POKéMON all over the world.I… I heard about you, PLAYER, from my dad, PROF. BIRCH.I was hoping that you would be nice, PLAYER, and that we could be friends.Oh, this is silly, isn't it? I… I've just met you, PLAYER.Eheheh…Oh, no! I forgot!I was supposed to go help Dad catch some wild POKéMON!PLAYER, I'll catch you later!
+msgbox	Häh? Wer… wer bist du denn?… … … … … … … … … … … … … … … …Achso, du bist PLAYER. Dann war dein Umzug also heute.Ähm… Ich bin MAY. Freut mich, dich kennenzulernen!Ich… ich habe diesen Traum, mit POKéMON aus der ganzen Welt Freundschaft zu schließen.Ich… ich hab schon von dir gehört, PLAYER, von meinem Dad, PROF. BIRCH.Ich hab gehofft, dass du nett bist, PLAYER, und dass wir Freunde werden könnten.Ach, das ist albern, oder? Ich… ich hab dich doch gerade erst kennengelernt, PLAYER.Eheheh…Oh nein! Ich hab's vergessen!Ich sollte eigentlich Dad helfen, ein paar wilde POKéMON zu fangen!PLAYER, wir sehen uns später!
 closemessage
 applymovement LOCALID_PLAYER LittlerootTown_MaysHouse_2F_Movement_PlayerWatchMaySouth
 applymovement LOCALID_RIVALS_HOUSE_2F_RIVAL LittlerootTown_MaysHouse_2F_Movement_MayWalkToPCSouth
@@ -116,7 +116,7 @@ applymovement LOCALID_RIVALS_HOUSE_2F_RIVAL LittlerootTown_MaysHouse_2F_Movement
 waitmovement 0
 applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterLeft
 waitmovement 0
-msgbox	Huh? Who… Who are you?… … … … … … … … … … … … … … … …Oh, you're PLAYER. So your move was today.Um… I'm MAY. Glad to meet you!I… I have this dream of becoming friends with POKéMON all over the world.I… I heard about you, PLAYER, from my dad, PROF. BIRCH.I was hoping that you would be nice, PLAYER, and that we could be friends.Oh, this is silly, isn't it? I… I've just met you, PLAYER.Eheheh…Oh, no! I forgot!I was supposed to go help Dad catch some wild POKéMON!PLAYER, I'll catch you later!
+msgbox	Häh? Wer… wer bist du denn?… … … … … … … … … … … … … … … …Achso, du bist PLAYER. Dann war dein Umzug also heute.Ähm… Ich bin MAY. Freut mich, dich kennenzulernen!Ich… ich habe diesen Traum, mit POKéMON aus der ganzen Welt Freundschaft zu schließen.Ich… ich hab schon von dir gehört, PLAYER, von meinem Dad, PROF. BIRCH.Ich hab gehofft, dass du nett bist, PLAYER, und dass wir Freunde werden könnten.Ach, das ist albern, oder? Ich… ich hab dich doch gerade erst kennengelernt, PLAYER.Eheheh…Oh nein! Ich hab's vergessen!Ich sollte eigentlich Dad helfen, ein paar wilde POKéMON zu fangen!PLAYER, wir sehen uns später!
 closemessage
 applymovement LOCALID_PLAYER LittlerootTown_MaysHouse_2F_Movement_PlayerWatchMayNorth
 applymovement LOCALID_RIVALS_HOUSE_2F_RIVAL LittlerootTown_MaysHouse_2F_Movement_MayWalkToPCNorth
@@ -130,11 +130,11 @@ goto_if_eq VAR_RESULT MALE RivalsHouse_2F_EventScript_May
 goto_if_eq VAR_RESULT FEMALE RivalsHouse_2F_EventScript_Brendan
 end
 = RivalsHouse_2F_EventScript_Brendan
-msgbox	POKéMON fully restored… Items all packed, and…
+msgbox	POKéMON vollständig geheilt… Items komplett gepackt, und…
 releaseall
 end
 = RivalsHouse_2F_EventScript_May
-msgbox	POKéMON fully restored! Items ready, and…
+msgbox	POKéMON vollständig geheilt! Items bereit, und…
 releaseall
 end
 = RivalsHouse_2F_EventScript_RivalPostLilycove
@@ -148,15 +148,15 @@ releaseall
 end
 = RivalsHouse_2F_EventScript_BrendanPostLilycove
 goto_if_set FLAG_MET_RIVAL_IN_HOUSE_AFTER_LILYCOVE RivalsHouse_2F_EventScript_BrendanWhereShouldIGoNext
-msgbox	BRENDAN: Hey, it's PLAYER.I was just checking out my POKéDEX.There are still many POKéMON that I need to catch, I know, but this is looking pretty good.Checking this POKéDEX out gives me the urge to hit the road again.
+msgbox	BRENDAN: Hey, das ist ja PLAYER.Ich hab mir gerade meinen POKéDEX angeschaut.Es gibt zwar noch viele POKéMON, die ich fangen muss, ich weiß, aber das sieht schon ziemlich gut aus.Wenn ich mir den POKéDEX so ansehe, bekomme ich richtig Lust, wieder loszuziehen.
 return
 = RivalsHouse_2F_EventScript_BrendanWhereShouldIGoNext
-msgbox	BRENDAN: I'm having a hard time deciding where I should catch POKéMON next.Hey, PLAYER, if I see you while I'm out catching POKéMON, I can pitch you a battle if you'd like.
+msgbox	BRENDAN: Ich tu mich schwer damit, zu entscheiden, wo ich als Nächstes POKéMON fangen soll.Hey, PLAYER, wenn ich dich unterwegs beim Fangen treffe, kann ich dich gern zu einem Kampf herausfordern, wenn du magst.
 return
 = RivalsHouse_2F_EventScript_MayPostLilycove
 goto_if_set FLAG_MET_RIVAL_IN_HOUSE_AFTER_LILYCOVE RivalsHouse_2F_EventScript_MayWhereShouldIGoNext
-msgbox	MAY: PLAYER!I was just checking my POKéDEX.There's still a lot of POKéMON that I've seen but haven't caught.And there are many others that I think will evolve.I wonder where I should go catch some POKéMON next?
+msgbox	MAY: PLAYER!Ich hab mir gerade meinen POKéDEX angeschaut.Es gibt immer noch jede Menge POKéMON, die ich zwar gesehen, aber noch nicht gefangen hab.Und es gibt viele andere, die sich, glaube ich, noch entwickeln werden.Ich frag mich, wo ich als Nächstes POKéMON fangen sollte?
 return
 = RivalsHouse_2F_EventScript_MayWhereShouldIGoNext
-msgbox	MAY: I wonder where I should go catch some POKéMON next?Wouldn't it be funny if we ran into each other, PLAYER?
+msgbox	MAY: Ich frag mich, wo ich als Nächstes POKéMON fangen sollte?Wär doch lustig, wenn wir uns dabei über den Weg laufen, PLAYER, oder?
 return

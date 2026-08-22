@@ -52,11 +52,11 @@ people_youngster 3 9 W static 0
 people_man_2 3 18 S static 0
 people_hiker 1 6 S static 0
 dialogs
-0	Since you are so strong, you should challenge other GYM LEADERS.By battling many TRAINERS, you should learn many things.
-1	You haven't seen anything of the ROCK type's terrifying power!
-2	ROXANNE is stronger than me by several times.You'd better be on your guard!
-3	Yo, how's it going?Listen, my friend! Would you like to become the CHAMPION?I'm no TRAINER, not me, but I can sure give you winning advice.That's settled, then! We'll aim for the POKéMON CHAMPIONSHIP together!It's your job as a TRAINER to collect GYM BADGES, am I right?But GYM LEADERS aren't pushovers!And that's where I come in! I'm here to provide expert advice!ROXANNE, the GYM LEADER, is a user of ROCK-type POKéMON.The ROCK type is very durable, but it can't stand WATER-type and GRASS-type moves.Come see me afterwards, if you beat the GYM LEADER.Well, go for it!
-4	I have to hand it to our LEADER.It took smarts and sense for her to pick the ROCK type at her young age.
+0	Weil du so stark bist, solltest du auch andere GYM LEADER herausfordern.Wenn du gegen viele TRAINER kämpfst, lernst du bestimmt eine Menge.
+1	Du hast noch gar nichts von der erschreckenden Kraft des GESTEIN-Typs gesehen!
+2	ROXANNE ist um einiges stärker als ich.Du solltest besser auf der Hut sein!
+3	Yo, wie läuft's?Hör zu, mein Freund! Möchtest du CHAMPION werden?Ich bin kein TRAINER, ich nicht, aber ich kann dir sicher gewinnbringende Tipps geben.Also gut, abgemacht! Wir peilen die POKéMON CHAMPIONSHIP zusammen an!Es ist deine Aufgabe als TRAINER, GYM BADGES zu sammeln, richtig?Aber GYM LEADER sind kein Zuckerschlecken!Und da komme ich ins Spiel! Ich bin hier, um dir Expertentipps zu geben!ROXANNE, die GYM LEADER, setzt auf GESTEIN-POKéMON.Der GESTEIN-Typ ist sehr widerstandsfähig, aber er kann WASSER- und PFLANZEN-Attacken nicht ab.Komm danach nochmal zu mir, wenn du den GYM LEADER besiegt hast.Na dann, viel Erfolg!
+4	Das muss ich unserer LEADER lassen.Es brauchte Verstand und Gespür, sich in ihrem jungen Alter für den GESTEIN-Typ zu entscheiden.
 objscripts
 0 RustboroCity_Gym_EventScript_Roxanne
 1 RustboroCity_Gym_EventScript_Josh
@@ -66,51 +66,51 @@ objscripts
 scriptdefs
 = RustboroCity_Gym_EventScript_Marc
 trainerbattle_single TRAINER_MARC RustboroCity_Gym_Text_MarcIntro RustboroCity_Gym_Text_MarcDefeat
-msgbox	I have to hand it to our LEADER.It took smarts and sense for her to pick the ROCK type at her young age.
+msgbox	Das muss ich unserer LEADER lassen.Es brauchte Verstand und Gespür, sich in ihrem jungen Alter für den GESTEIN-Typ zu entscheiden.
 end
 = RustboroCity_Gym_EventScript_GymGuide
 lock
 faceplayer
 goto_if_set FLAG_DEFEATED_RUSTBORO_GYM RustboroCity_Gym_EventScript_GymGuidePostVictory
-msgbox	Yo, how's it going?Listen, my friend! Would you like to become the CHAMPION?I'm no TRAINER, not me, but I can sure give you winning advice.That's settled, then! We'll aim for the POKéMON CHAMPIONSHIP together!It's your job as a TRAINER to collect GYM BADGES, am I right?But GYM LEADERS aren't pushovers!And that's where I come in! I'm here to provide expert advice!ROXANNE, the GYM LEADER, is a user of ROCK-type POKéMON.The ROCK type is very durable, but it can't stand WATER-type and GRASS-type moves.Come see me afterwards, if you beat the GYM LEADER.Well, go for it!
+msgbox	Yo, wie läuft's?Hör zu, mein Freund! Möchtest du CHAMPION werden?Ich bin kein TRAINER, ich nicht, aber ich kann dir sicher gewinnbringende Tipps geben.Also gut, abgemacht! Wir peilen die POKéMON CHAMPIONSHIP zusammen an!Es ist deine Aufgabe als TRAINER, GYM BADGES zu sammeln, richtig?Aber GYM LEADER sind kein Zuckerschlecken!Und da komme ich ins Spiel! Ich bin hier, um dir Expertentipps zu geben!ROXANNE, die GYM LEADER, setzt auf GESTEIN-POKéMON.Der GESTEIN-Typ ist sehr widerstandsfähig, aber er kann WASSER- und PFLANZEN-Attacken nicht ab.Komm danach nochmal zu mir, wenn du den GYM LEADER besiegt hast.Na dann, viel Erfolg!
 release
 end
 = RustboroCity_Gym_EventScript_GymGuidePostVictory
-msgbox	Whoa! What a breathtaking victory! My cheering must've worked!Great! Check your TRAINER CARD.The STONE BADGE you got should be properly recorded on it.In other words…You've climbed the first step on the stairs to the CHAMPIONSHIP!That's got to feel awesome!
+msgbox	Whoa! Was für ein atemberaubender Sieg! Mein Anfeuern muss geholfen haben!Großartig! Schau in deine TRAINER CARD.Das STONE BADGE, das du bekommen hast, sollte dort ordentlich vermerkt sein.Mit anderen Worten…Du hast die erste Stufe auf der Treppe zur CHAMPIONSHIP erklommen!Das muss sich großartig anfühlen!
 release
 end
 = RustboroCity_Gym_EventScript_Tommy
 trainerbattle_single TRAINER_TOMMY RustboroCity_Gym_Text_TommyIntro RustboroCity_Gym_Text_TommyDefeat
-msgbox	ROXANNE is stronger than me by several times.You'd better be on your guard!
+msgbox	ROXANNE ist um einiges stärker als ich.Du solltest besser auf der Hut sein!
 end
 = RustboroCity_Gym_EventScript_Josh
 trainerbattle_single TRAINER_JOSH RustboroCity_Gym_Text_JoshIntro RustboroCity_Gym_Text_JoshDefeat
-msgbox	You haven't seen anything of the ROCK type's terrifying power!
+msgbox	Du hast noch gar nichts von der erschreckenden Kraft des GESTEIN-Typs gesehen!
 end
 = RustboroCity_Gym_EventScript_Roxanne
 trainerbattle_single TRAINER_ROXANNE_1 RustboroCity_Gym_Text_RoxanneIntro RustboroCity_Gym_Text_RoxanneDefeat RustboroCity_Gym_EventScript_RoxanneDefeated NO_MUSIC
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE RustboroCity_Gym_EventScript_RoxanneRematch
 goto_if_unset FLAG_RECEIVED_TM_ROCK_TOMB RustboroCity_Gym_EventScript_GiveRockTomb
-msgbox	Since you are so strong, you should challenge other GYM LEADERS.By battling many TRAINERS, you should learn many things.
+msgbox	Weil du so stark bist, solltest du auch andere GYM LEADER herausfordern.Wenn du gegen viele TRAINER kämpfst, lernst du bestimmt eine Menge.
 release
 end
 = RustboroCity_Gym_EventScript_GiveRockTomb
 giveitem ITEM_TM_ROCK_TOMB
 goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
 setflag FLAG_RECEIVED_TM_ROCK_TOMB
-msgbox	That TECHNICAL MACHINE, TM39, contains ROCK TOMB.It not only inflicts damage by dropping rocks, it also lowers SPEED.If you use a TM, it instantly teaches the move to a POKéMON.Remember, a TM can be used only once, so think before you use it.
+msgbox	Dieses TECHNICAL MACHINE, TM39, enthält ROCK TOMB.Es fügt nicht nur Schaden zu, indem es Steine fallen lässt, sondern senkt auch die SPEED.Wenn du ein TM benutzt, bringt es einem POKéMON die Attacke sofort bei.Denk dran, ein TM lässt sich nur einmal benutzen, überleg also, bevor du es einsetzt.
 release
 end
 = RustboroCity_Gym_EventScript_RoxanneRematch
 trainerbattle_rematch_double TRAINER_ROXANNE_1 RustboroCity_Gym_Text_RoxannePreRematch RustboroCity_Gym_Text_RoxanneRematchDefeat RustboroCity_Gym_Text_RoxanneRematchNeedTwoMons
-msgbox	ROXANNE: I still have much to learn when it comes to battling POKéMON.That awareness makes me love battling all that much more!
+msgbox	ROXANNE: Ich hab noch viel zu lernen, wenn es um POKéMON-Kämpfe geht.Genau dieses Bewusstsein lässt mich das Kämpfen nur noch mehr lieben!
 end
 = RustboroCity_Gym_EventScript_RoxanneDefeated
-msgbox	PLAYER received the STONE BADGE from ROXANNE.
+msgbox	PLAYER hat das STONE BADGE von ROXANNE erhalten.
 waitmessage
 call Common_EventScript_PlayGymBadgeFanfare
-msgbox	The STONE BADGE heightens the ATTACK power of your POKéMON.It also enables them to use the HM move CUT outside of battle.Please take this with you, too.
+msgbox	Das STONE BADGE erhöht die ANGRIFFSKRAFT deiner POKéMON.Es ermöglicht ihnen außerdem, die HM-Attacke CUT außerhalb von Kämpfen einzusetzen.Bitte nimm auch das hier mit.
 setflag FLAG_DEFEATED_RUSTBORO_GYM
 setflag FLAG_BADGE01_GET
 setvar VAR_RUSTBORO_CITY_STATE 1

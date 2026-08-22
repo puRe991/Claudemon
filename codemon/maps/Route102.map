@@ -53,8 +53,8 @@ people_man_1 24 2 S static 0
 people_man_1 25 2 S static 0
 people_youngster 19 4 S static 0
 dialogs
-0	I'm…not very tall, so I sink right into tall grass.The grass goes up my nose and… Fwafwafwafwafwa…Fwatchoo!
-4	I'm going to catch a whole bunch of POKéMON!
+0	Ich bin… nicht sehr groß, deshalb versink ich total im hohen Gras.Das Gras geht mir bis in die Nase und… Fwafwafwafwafwa…Fwatschu!
+4	Ich werde jede Menge POKéMON fangen!
 objscripts
 0 Route102_EventScript_LittleBoy
 1 Route102_EventScript_Calvin
@@ -68,7 +68,7 @@ objscripts
 scriptdefs
 = Route102_EventScript_Allen
 trainerbattle_single TRAINER_ALLEN Route102_Text_AllenIntro Route102_Text_AllenDefeated
-msgbox	I haven't won once yet… I wish I would win soon…
+msgbox	Ich hab noch kein einziges Mal gewonnen… Ich wünschte, ich würde bald mal gewinnen…
 end
 = BerryTreeScript
 special ObjectEventInteractionGetBerryTreeData
@@ -234,15 +234,15 @@ end
 = Route102_EventScript_ItemPotion_Taken
 end
 = Route102_EventScript_Boy
-msgbox	I'm going to catch a whole bunch of POKéMON!
+msgbox	Ich werde jede Menge POKéMON fangen!
 end
 = Route102_EventScript_Tiana
 trainerbattle_single TRAINER_TIANA Route102_Text_TianaIntro Route102_Text_TianaDefeated
-msgbox	To keep winning my way up, I see that I have to catch more POKéMON.
+msgbox	Um mich weiter nach oben zu kämpfen, muss ich wohl mehr POKéMON fangen.
 end
 = Route102_EventScript_Rick
 trainerbattle_single TRAINER_RICK Route102_Text_RickIntro Route102_Text_RickDefeated
-msgbox	If you lock eyes with a TRAINER, you have to challenge! It's a rule!
+msgbox	Wenn sich deine Blicke mit denen eines TRAINERS kreuzen, musst du ihn herausfordern! Das ist Regel!
 end
 = Route102_EventScript_Calvin
 trainerbattle_single TRAINER_CALVIN_1 Route102_Text_CalvinIntro Route102_Text_CalvinDefeated Route102_EventScript_CalvinRegisterMatchCallAfterBattle
@@ -251,22 +251,22 @@ goto_if_eq VAR_RESULT TRUE Route102_EventScript_CalvinRematch
 setvar VAR_0x8004 TRAINER_CALVIN_1
 specialvar VAR_RESULT IsTrainerRegistered
 goto_if_eq VAR_RESULT FALSE Route102_EventScript_CalvinTryRegister
-msgbox	Listen, you. If you're strong, you should have told me before!
+msgbox	Hör mal. Wenn du stark bist, hättest du mir das vorher sagen sollen!
 release
 end
 = Route102_EventScript_CalvinTryRegister
 goto_if_set FLAG_HAS_MATCH_CALL Route102_EventScript_CalvinRegister
-msgbox	Listen, you. If you're strong, you should have told me before!
+msgbox	Hör mal. Wenn du stark bist, hättest du mir das vorher sagen sollen!
 release
 end
 = Route102_EventScript_CalvinRegister
-msgbox	I've been working hard at this since I saw you before.I'd like to battle you again, so can you register me in your POKéNAV?
+msgbox	Ich hab hart trainiert, seit ich dich zuletzt gesehen habe.Ich würde gern nochmal gegen dich kämpfen, kannst du mich also in deinem POKéNAV registrieren?
 register_matchcall TRAINER_CALVIN_1
 release
 end
 = Route102_EventScript_CalvinRematch
 trainerbattle_rematch TRAINER_CALVIN_1 Route102_Text_CalvinRematchIntro Route102_Text_CalvinRematchDefeated
-msgbox	If you're going to get stronger, I'll get stronger, too.
+msgbox	Wenn du stärker wirst, werde ich auch stärker.
 end
 = Route102_EventScript_CalvinRegisterMatchCallAfterBattle
 special PlayerFaceTrainerAfterBattle
@@ -275,12 +275,12 @@ goto_if_set FLAG_HAS_MATCH_CALL Route102_EventScript_CalvinRegisterMatchCall
 release
 end
 = Route102_EventScript_CalvinRegisterMatchCall
-msgbox	I'd like to battle you again, so can you register me in your POKéNAV?
+msgbox	Ich würde gern nochmal gegen dich kämpfen, kannst du mich also in deinem POKéNAV registrieren?
 register_matchcall TRAINER_CALVIN_1
 release
 end
 = Route102_EventScript_LittleBoy
-msgbox	I'm…not very tall, so I sink right into tall grass.The grass goes up my nose and… Fwafwafwafwafwa…Fwatchoo!
+msgbox	Ich bin… nicht sehr groß, deshalb versink ich total im hohen Gras.Das Gras geht mir bis in die Nase und… Fwafwafwafwafwa…Fwatschu!
 end
 signs
 17 2	ROUTE 102 PETALBURG CITY

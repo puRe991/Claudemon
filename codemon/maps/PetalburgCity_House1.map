@@ -27,15 +27,15 @@ npcs
 people_girl_1 7 4 S wander 0
 people_expert_m 4 4 S static 0
 dialogs
-0	Sigh…I wish I could go on an adventure with some POKéMON…Crawl through some damp grass… Climb rocky, rugged mountains…Cross the raging seas… Wander about in dark caves…And, sometimes, even get a little homesick…It must be fabulous to travel!
-1	Traveling is wonderful!When I was young, I roamed the seas and the mountains!
+0	Seufz…Ich wünschte, ich könnte mit ein paar POKéMON auf Abenteuerreise gehen…Durch feuchtes Gras kriechen… Auf zerklüftete, felsige Berge klettern…Über tosende Meere fahren… Durch dunkle Höhlen wandern…Und manchmal sogar ein bisschen Heimweh bekommen…Es muss fantastisch sein, zu reisen!
+1	Reisen ist wundervoll!Als ich jung war, bin ich über Meere und Berge gezogen!
 objscripts
 0 PetalburgCity_House1_EventScript_Woman
 1 PetalburgCity_House1_EventScript_Man
 scriptdefs
 = PetalburgCity_House1_EventScript_Man
-msgbox	Traveling is wonderful!When I was young, I roamed the seas and the mountains!
+msgbox	Reisen ist wundervoll!Als ich jung war, bin ich über Meere und Berge gezogen!
 end
 = PetalburgCity_House1_EventScript_Woman
-msgbox	Sigh…I wish I could go on an adventure with some POKéMON…Crawl through some damp grass… Climb rocky, rugged mountains…Cross the raging seas… Wander about in dark caves…And, sometimes, even get a little homesick…It must be fabulous to travel!
+msgbox	Seufz…Ich wünschte, ich könnte mit ein paar POKéMON auf Abenteuerreise gehen…Durch feuchtes Gras kriechen… Auf zerklüftete, felsige Berge klettern…Über tosende Meere fahren… Durch dunkle Höhlen wandern…Und manchmal sogar ein bisschen Heimweh bekommen…Es muss fantastisch sein, zu reisen!
 end

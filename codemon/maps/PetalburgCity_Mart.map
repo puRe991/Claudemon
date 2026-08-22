@@ -27,9 +27,9 @@ people_man_1 9 4 E static 0
 people_boy_1 6 3 S static 0
 people_woman_2 5 5 E static 0
 dialogs
-1	Do you have any ANTIDOTES with you?If you walk around with a poisoned POKéMON, it will lose HP until it faints. Take some ANTIDOTES with you.
-2	Do you use REPEL? It keeps POKéMON away, so it's useful when you're in a hurry.
-3	Even if a POKéMON is weak now, it will grow stronger.The most important thing is love! Love for your POKéMON!
+1	Hast du ein paar ANTIDOTES dabei?Wenn du mit einem vergifteten POKéMON herumläufst, verliert es so lange HP, bis es besiegt wird. Nimm ein paar ANTIDOTES mit.
+2	Benutzt du REPEL? Es hält POKéMON fern, also nützlich, wenn du es eilig hast.
+3	Auch wenn ein POKéMON jetzt schwach ist, wird es stärker werden.Das Wichtigste ist Liebe! Liebe zu deinem POKéMON!
 objscripts
 0 PetalburgCity_Mart_EventScript_Clerk
 1 PetalburgCity_Mart_EventScript_Man
@@ -40,27 +40,27 @@ PetalburgCity_Mart_Pokemart_Basic	ITEM_POKE_BALL,ITEM_POTION,ITEM_ANTIDOTE,ITEM_
 PetalburgCity_Mart_Pokemart_Expanded	ITEM_POKE_BALL,ITEM_GREAT_BALL,ITEM_POTION,ITEM_SUPER_POTION,ITEM_ANTIDOTE,ITEM_PARALYZE_HEAL,ITEM_AWAKENING,ITEM_ESCAPE_ROPE,ITEM_REPEL,ITEM_X_SPEED,ITEM_X_ATTACK,ITEM_X_DEFEND,ITEM_ORANGE_MAIL
 scriptdefs
 = PetalburgCity_Mart_EventScript_Woman
-msgbox	Even if a POKéMON is weak now, it will grow stronger.The most important thing is love! Love for your POKéMON!
+msgbox	Auch wenn ein POKéMON jetzt schwach ist, wird es stärker werden.Das Wichtigste ist Liebe! Liebe zu deinem POKéMON!
 end
 = PetalburgCity_Mart_EventScript_Boy
-msgbox	Do you use REPEL? It keeps POKéMON away, so it's useful when you're in a hurry.
+msgbox	Benutzt du REPEL? Es hält POKéMON fern, also nützlich, wenn du es eilig hast.
 end
 = PetalburgCity_Mart_EventScript_Man
-msgbox	Do you have any ANTIDOTES with you?If you walk around with a poisoned POKéMON, it will lose HP until it faints. Take some ANTIDOTES with you.
+msgbox	Hast du ein paar ANTIDOTES dabei?Wenn du mit einem vergifteten POKéMON herumläufst, verliert es so lange HP, bis es besiegt wird. Nimm ein paar ANTIDOTES mit.
 end
 = PetalburgCity_Mart_EventScript_Clerk
 lock
 faceplayer
-msgbox	Welcome!How may I serve you?
+msgbox	Willkommen!Wie kann ich dir helfen?
 waitmessage
 goto_if_set FLAG_PETALBURG_MART_EXPANDED_ITEMS PetalburgCity_Mart_EventScript_ExpandedItems
 pokemart PetalburgCity_Mart_Pokemart_Basic
-msgbox	Please come again!
+msgbox	Bitte komm wieder!
 release
 end
 = PetalburgCity_Mart_EventScript_ExpandedItems
 pokemart PetalburgCity_Mart_Pokemart_Expanded
-msgbox	Please come again!
+msgbox	Bitte komm wieder!
 release
 end
 counters

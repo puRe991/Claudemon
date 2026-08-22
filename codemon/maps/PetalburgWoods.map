@@ -112,11 +112,11 @@ people_boy_3 30 34 S wander 0
 misc_item_ball 4 26 S static FLAG_ITEM_PETALBURG_WOODS_PARALYZE_HEAL
 people_girl_2 33 5 S static 0
 dialogs
-7	Yo, there! Your POKéMON doing okay?If your POKéMON are weak and you want to avoid battles, you should stay out of tall grass.
-8	I caught a bunch of POKéMON. Now I'm out of POKé BALLS.
-9	If you have a big BUG POKéMON, people respect you for it.
-10	Sometimes, there are things on the ground even if you can't see them.That's why I always check where I'm walking.
-12	Oh, neat! That's the BADGE from RUSTBORO GYM!You must be a TRAINER. You should try using this item.
+7	Yo, du da! Geht's deinen POKéMON gut?Wenn deine POKéMON schwach sind und du Kämpfe vermeiden willst, bleib besser aus dem hohen Gras.
+8	Ich hab jede Menge POKéMON gefangen. Jetzt sind mir die POKé BALLS ausgegangen.
+9	Wenn du ein großes KÄFER-POKéMON hast, respektieren dich die Leute dafür.
+10	Manchmal liegen Dinge am Boden, auch wenn man sie nicht sehen kann.Deshalb schau ich immer, wo ich hintrete.
+12	Oh, cool! Das ist das BADGE von der RUSTBORO GYM!Du musst ein TRAINER sein. Du solltest dieses Item mal ausprobieren.
 objscripts
 0 EventScript_CutTree
 1 EventScript_CutTree
@@ -192,25 +192,25 @@ applymovement LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE PetalburgWoods_Movement_Dev
 waitmovement 0
 applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterLeft
 waitmovement 0
-msgbox	Hello, have you seen any POKéMON called SHROOMISH around here?I really love that POKéMON.
+msgbox	Hallo, hast du hier irgendwo ein POKéMON namens SHROOMISH gesehen?Ich liebe dieses POKéMON wirklich.
 closemessage
 playbgm MUS_ENCOUNTER_AQUA FALSE
 applymovement LOCALID_PETALBURG_WOODS_GRUNT PetalburgWoods_Movement_AquaEntrance
 waitmovement 0
-msgbox	I was going to ambush you, but you had to dawdle in PETALBURG WOODS forever, didn't you?I got sick of waiting, so here I am!
+msgbox	Ich wollte dir eigentlich auflauern, aber du musstest ja ewig in PETALBURG WOODS trödeln, was?Ich hatte es satt zu warten, also bin ich jetzt hier!
 closemessage
 applymovement LOCALID_PETALBURG_WOODS_GRUNT PetalburgWoods_Movement_AquaApproachResearcherRight
 waitmovement 0
 applymovement LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE Common_Movement_WalkInPlaceFasterUp
 waitmovement 0
-msgbox	You! DEVON RESEARCHER!Hand over those papers!
+msgbox	Du! DEVON-FORSCHER!Her mit diesen Papieren!
 closemessage
 applymovement LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE PetalburgWoods_Movement_DevonResearcherFleeToPlayerRight
 waitmovement 0
-msgbox	Aiyeeeh!You're a POKéMON TRAINER, aren't you? You've got to help me, please!
+msgbox	Aiyeeeh!Du bist doch ein POKéMON TRAINER, oder? Du musst mir helfen, bitte!
 applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
 waitmovement 0
-msgbox	Hunh? What do you think you're doing? What, you're going to protect him?No one who crosses TEAM AQUA gets any mercy, not even a kid!Come on and battle me!
+msgbox	Hunh? Was glaubst du eigentlich, was du da machst? Was, du willst ihn beschützen?Wer sich mit TEAM AQUA anlegt, bekommt keine Gnade, nicht mal ein Kind!Los, kämpf gegen mich!
 trainerbattle_no_intro TRAINER_GRUNT_PETALBURG_WOODS PetalburgWoods_Text_YoureKiddingMe
 applymovement LOCALID_PETALBURG_WOODS_GRUNT PetalburgWoods_Movement_AquaBackOff
 waitmovement 0
@@ -226,33 +226,33 @@ setvar VAR_PETALBURG_WOODS_STATE 1
 releaseall
 end
 = PetalburgWoods_EventScript_DevonResearcherPostBattle
-msgbox	Grrr… You've got some nerve meddling with TEAM AQUA! Come on and battle me again!I wish I could say that, but I'm out of POKéMON…And, hey, we of TEAM AQUA are also after something in RUSTBORO.I'll let you go today!
+msgbox	Grrr… Du hast vielleicht Nerven, dich mit TEAM AQUA anzulegen! Los, kämpf nochmal gegen mich!So gern ich das sagen würde, aber mir sind die POKéMON ausgegangen…Und, hey, wir von TEAM AQUA sind auch hinter etwas in RUSTBORO her.Heute lass ich dich noch laufen!
 closemessage
 applymovement LOCALID_PETALBURG_WOODS_GRUNT PetalburgWoods_Movement_AquaRunAway
 waitmovement 0
 removeobject LOCALID_PETALBURG_WOODS_GRUNT
 applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterDown
 waitmovement 0
-msgbox	Whew… That was awfully close!Thanks to you, he didn't rob me of these important papers.I know, I'll give you a GREAT BALL as my thanks!
+msgbox	Puh… Das war aber wirklich knapp!Dank dir hat er mir diese wichtigen Papiere nicht gestohlen.Ich weiß, ich geb dir einen GREAT BALL als Dank!
 giveitem ITEM_GREAT_BALL
 goto_if_eq VAR_RESULT FALSE PetalburgWoods_EventScript_BagFull
 goto PetalburgWoods_EventScript_DevonResearcherFinish
 end
 = PetalburgWoods_EventScript_DevonResearcherFinish
-msgbox	Didn't that TEAM AQUA thug say they were after something in RUSTBORO, too?
+msgbox	Hat dieser TEAM-AQUA-Schläger nicht gesagt, dass sie auch hinter etwas in RUSTBORO her sind?
 applymovement LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE PetalburgWoods_Movement_DevonResearcherStartExit
 waitmovement 0
-msgbox	Uh-oh! It's a crisis! I can't be wasting time!
+msgbox	Uh-oh! Das ist eine Krise! Ich kann keine Zeit verlieren!
 closemessage
 return
 = PetalburgWoods_EventScript_BagFull
-msgbox	You're loaded with items. I can't give you this GREAT BALL.
+msgbox	Du bist voll bepackt mit Items. Ich kann dir diesen GREAT BALL nicht geben.
 goto PetalburgWoods_EventScript_DevonResearcherFinish
 end
 = PetalburgWoods_EventScript_DevonResearcherIntro
 applymovement LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE PetalburgWoods_Movement_DevonResearcherLookAround
 waitmovement 0
-msgbox	Hmmm… Not a one to be found…
+msgbox	Hmmm… Nirgends eins zu finden…
 closemessage
 return
 = PetalburgWoods_EventScript_DevonResearcherLeft
@@ -260,26 +260,26 @@ lockall
 call PetalburgWoods_EventScript_DevonResearcherIntro
 applymovement LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE PetalburgWoods_Movement_DevonResearcherApproachPlayerLeft
 waitmovement 0
-msgbox	Hello, have you seen any POKéMON called SHROOMISH around here?I really love that POKéMON.
+msgbox	Hallo, hast du hier irgendwo ein POKéMON namens SHROOMISH gesehen?Ich liebe dieses POKéMON wirklich.
 closemessage
 playbgm MUS_ENCOUNTER_AQUA FALSE
 applymovement LOCALID_PETALBURG_WOODS_GRUNT PetalburgWoods_Movement_AquaEntrance
 waitmovement 0
-msgbox	I was going to ambush you, but you had to dawdle in PETALBURG WOODS forever, didn't you?I got sick of waiting, so here I am!
+msgbox	Ich wollte dir eigentlich auflauern, aber du musstest ja ewig in PETALBURG WOODS trödeln, was?Ich hatte es satt zu warten, also bin ich jetzt hier!
 closemessage
 applymovement LOCALID_PETALBURG_WOODS_GRUNT PetalburgWoods_Movement_AquaApproachResearcherLeft
 waitmovement 0
 applymovement LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE Common_Movement_WalkInPlaceFasterUp
 waitmovement 0
-msgbox	You! DEVON RESEARCHER!Hand over those papers!
+msgbox	Du! DEVON-FORSCHER!Her mit diesen Papieren!
 closemessage
 applymovement LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE PetalburgWoods_Movement_DevonResearcherFleeToPlayerLeft
 waitmovement 0
-msgbox	Aiyeeeh!You're a POKéMON TRAINER, aren't you? You've got to help me, please!
+msgbox	Aiyeeeh!Du bist doch ein POKéMON TRAINER, oder? Du musst mir helfen, bitte!
 closemessage
 applymovement LOCALID_PETALBURG_WOODS_GRUNT PetalburgWoods_Movement_AquaApproachPlayer
 waitmovement 0
-msgbox	Hunh? What do you think you're doing? What, you're going to protect him?No one who crosses TEAM AQUA gets any mercy, not even a kid!Come on and battle me!
+msgbox	Hunh? Was glaubst du eigentlich, was du da machst? Was, du willst ihn beschützen?Wer sich mit TEAM AQUA anlegt, bekommt keine Gnade, nicht mal ein Kind!Los, kämpf gegen mich!
 trainerbattle_no_intro TRAINER_GRUNT_PETALBURG_WOODS PetalburgWoods_Text_YoureKiddingMe
 applymovement LOCALID_PETALBURG_WOODS_GRUNT PetalburgWoods_Movement_AquaBackOff
 waitmovement 0
@@ -293,14 +293,14 @@ end
 lock
 faceplayer
 goto_if_set FLAG_RECEIVED_MIRACLE_SEED PetalburgWoods_EventScript_ExplainMiracleSeed
-msgbox	Oh, neat! That's the BADGE from RUSTBORO GYM!You must be a TRAINER. You should try using this item.
+msgbox	Oh, cool! Das ist das BADGE von der RUSTBORO GYM!Du musst ein TRAINER sein. Du solltest dieses Item mal ausprobieren.
 giveitem ITEM_MIRACLE_SEED
 goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
 setflag FLAG_RECEIVED_MIRACLE_SEED
 release
 end
 = PetalburgWoods_EventScript_ExplainMiracleSeed
-msgbox	It's a MIRACLE SEED. If a POKéMON holds that item, its GRASS-type moves become stronger.Besides MIRACLE SEED, I think there are other convenient items for POKéMON to hold.
+msgbox	Das ist ein MIRACLE SEED. Wenn ein POKéMON dieses Item trägt, werden seine PFLANZEN-Attacken stärker.Neben MIRACLE SEED gibt es, glaube ich, noch andere praktische Items zum Tragen für POKéMON.
 release
 end
 = PetalburgWoods_EventScript_ItemParalyzeHeal
@@ -311,7 +311,7 @@ end
 = PetalburgWoods_EventScript_ItemParalyzeHeal_Taken
 end
 = PetalburgWoods_EventScript_Boy2
-msgbox	Sometimes, there are things on the ground even if you can't see them.That's why I always check where I'm walking.
+msgbox	Manchmal liegen Dinge am Boden, auch wenn man sie nicht sehen kann.Deshalb schau ich immer, wo ich hintrete.
 end
 = PetalburgWoods_EventScript_James
 trainerbattle_single TRAINER_JAMES_1 PetalburgWoods_Text_InstantlyPopularWithBugPokemon PetalburgWoods_Text_CantBePopularIfILose PetalburgWoods_EventScript_TryRegisterJames
@@ -320,22 +320,22 @@ goto_if_eq VAR_RESULT TRUE PetalburgWoods_EventScript_JamesRematch
 setvar VAR_0x8004 TRAINER_JAMES_1
 specialvar VAR_RESULT IsTrainerRegistered
 goto_if_eq VAR_RESULT FALSE PetalburgWoods_EventScript_TryRegisterJames2
-msgbox	If you have a big BUG POKéMON, people respect you for it.
+msgbox	Wenn du ein großes KÄFER-POKéMON hast, respektieren dich die Leute dafür.
 release
 end
 = PetalburgWoods_EventScript_TryRegisterJames2
 goto_if_set FLAG_HAS_MATCH_CALL PetalburgWoods_EventScript_RegisterJames2
-msgbox	If you have a big BUG POKéMON, people respect you for it.
+msgbox	Wenn du ein großes KÄFER-POKéMON hast, respektieren dich die Leute dafür.
 release
 end
 = PetalburgWoods_EventScript_RegisterJames2
-msgbox	I want a rematch when my BUG POKéMON grow up!I'm registering you in my POKéNAV!
+msgbox	Ich will einen Rückkampf, wenn meine KÄFER-POKéMON groß geworden sind!Ich registriere dich in meinem POKéNAV!
 register_matchcall TRAINER_JAMES_1
 release
 end
 = PetalburgWoods_EventScript_JamesRematch
 trainerbattle_rematch TRAINER_JAMES_1 PetalburgWoods_Text_MyPokemonHaveGrown PetalburgWoods_Text_CantBePopularIfLose
-msgbox	You get to be popular if you have strong POKéMON, right? So, I've been training hard.
+msgbox	Man wird beliebt, wenn man starke POKéMON hat, oder? Also hab ich hart trainiert.
 end
 = PetalburgWoods_EventScript_TryRegisterJames
 special PlayerFaceTrainerAfterBattle
@@ -344,16 +344,16 @@ goto_if_set FLAG_HAS_MATCH_CALL PetalburgWoods_EventScript_RegisterJames
 release
 end
 = PetalburgWoods_EventScript_RegisterJames
-msgbox	I want a rematch when my BUG POKéMON grow up!I'm registering you in my POKéNAV!
+msgbox	Ich will einen Rückkampf, wenn meine KÄFER-POKéMON groß geworden sind!Ich registriere dich in meinem POKéNAV!
 register_matchcall TRAINER_JAMES_1
 release
 end
 = PetalburgWoods_EventScript_Lyle
 trainerbattle_single TRAINER_LYLE PetalburgWoods_Text_GoBugPokemonTeam PetalburgWoods_Text_ICouldntWin
-msgbox	I caught a bunch of POKéMON. Now I'm out of POKé BALLS.
+msgbox	Ich hab jede Menge POKéMON gefangen. Jetzt sind mir die POKé BALLS ausgegangen.
 end
 = PetalburgWoods_EventScript_Boy1
-msgbox	Yo, there! Your POKéMON doing okay?If your POKéMON are weak and you want to avoid battles, you should stay out of tall grass.
+msgbox	Yo, du da! Geht's deinen POKéMON gut?Wenn deine POKéMON schwach sind und du Kämpfe vermeiden willst, bleib besser aus dem hohen Gras.
 end
 = PetalburgWoods_EventScript_ItemEther
 goto_if_set FLAG_ITEM_PETALBURG_WOODS_ETHER PetalburgWoods_EventScript_ItemEther_Taken
@@ -415,8 +415,8 @@ msgbox	Text_CantCut
 releaseall
 end
 signs
-14 32	TRAINER TIPSAny POKéMON that appears even once in a battle is awarded EXP Points.To raise a weak POKéMON, put it at the left of the team list.As soon as a battle starts, switch it out. It will earn EXP Points without being exposed to any harm.
-11 8	TRAINER TIPSIn addition to Hit Points (HP), POKéMON have Power Points (PP) that are used to make moves during battle.If a POKéMON runs out of PP, it must be taken to a POKéMON CENTER.
+14 32	TRAINER TIPSJedes POKéMON, das auch nur einmal in einem Kampf erscheint, erhält EXP-Punkte.Um ein schwaches POKéMON aufzuziehen, stell es ganz links in die Teamliste.Sobald ein Kampf beginnt, wechsle es sofort aus. Es erhält EXP-Punkte, ohne dabei Schaden zu nehmen.
+11 8	TRAINER TIPSNeben Hit Points (HP) haben POKéMON auch Power Points (PP), die für Attacken im Kampf verbraucht werden.Wenn einem POKéMON die PP ausgehen, muss es zu einem POKéMON CENTER gebracht werden.
 grass
 13,454,455
 encounters

@@ -48,7 +48,7 @@ scriptdefs
 = LittlerootTown_BrendansHouse_2F_EventScript_RivalsPokeBall
 lockall
 goto_if_eq VAR_LITTLEROOT_RIVAL_STATE 2 LittlerootTown_BrendansHouse_2F_EventScript_MeetBrendan
-msgbox	It's RIVAL's POKé BALL!Better leave it right where it is.
+msgbox	Das ist RIVALS POKé BALL!Lass ihn lieber genau da liegen, wo er ist.
 releaseall
 end
 = LittlerootTown_BrendansHouse_2F_EventScript_MeetBrendan
@@ -80,7 +80,7 @@ applymovement LOCALID_RIVALS_HOUSE_2F_RIVAL LittlerootTown_BrendansHouse_2F_Move
 waitmovement 0
 applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
 waitmovement 0
-msgbox	Hey! You…Who are you?Oh, you're PLAYER, aren't you? Moved in next door, right?I didn't know that you're a girl.Dad, PROF. BIRCH, said that our new next-door neighbor is a GYM LEADER's kid, so I assumed you'd be a guy.My name's BRENDAN. So, hi, neighbor!Huh? Hey, PLAYER, don't you have a POKéMON?Do you want me to go catch you one?Aw, darn, I forgot…I'm supposed to go help my dad catch some wild POKéMON.Some other time, okay?
+msgbox	Hey! Du…Wer bist du denn?Ach, du bist PLAYER, oder? Bist nebenan eingezogen, richtig?Ich wusste gar nicht, dass du ein Mädchen bist.Dad, also PROF. BIRCH, meinte, unser neuer Nachbar wäre das Kind einer GYM LEADER, deshalb dachte ich, du wärst ein Junge.Ich bin übrigens BRENDAN. Also dann, hi, Nachbar!Hä? Sag mal, PLAYER, hast du etwa gar kein POKéMON?Willst du, dass ich dir eins fange?Ach, verflixt, ich hab's vergessen…Ich soll eigentlich meinem Dad helfen, ein paar wilde POKéMON zu fangen.Ein andermal, okay?
 closemessage
 applymovement LOCALID_RIVALS_HOUSE_2F_RIVAL LittlerootTown_BrendansHouse_2F_Movement_BrendanWalkToPCEast
 waitmovement 0
@@ -90,7 +90,7 @@ applymovement LOCALID_RIVALS_HOUSE_2F_RIVAL LittlerootTown_BrendansHouse_2F_Move
 waitmovement 0
 applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterRight
 waitmovement 0
-msgbox	Hey! You…Who are you?Oh, you're PLAYER, aren't you? Moved in next door, right?I didn't know that you're a girl.Dad, PROF. BIRCH, said that our new next-door neighbor is a GYM LEADER's kid, so I assumed you'd be a guy.My name's BRENDAN. So, hi, neighbor!Huh? Hey, PLAYER, don't you have a POKéMON?Do you want me to go catch you one?Aw, darn, I forgot…I'm supposed to go help my dad catch some wild POKéMON.Some other time, okay?
+msgbox	Hey! Du…Wer bist du denn?Ach, du bist PLAYER, oder? Bist nebenan eingezogen, richtig?Ich wusste gar nicht, dass du ein Mädchen bist.Dad, also PROF. BIRCH, meinte, unser neuer Nachbar wäre das Kind einer GYM LEADER, deshalb dachte ich, du wärst ein Junge.Ich bin übrigens BRENDAN. Also dann, hi, Nachbar!Hä? Sag mal, PLAYER, hast du etwa gar kein POKéMON?Willst du, dass ich dir eins fange?Ach, verflixt, ich hab's vergessen…Ich soll eigentlich meinem Dad helfen, ein paar wilde POKéMON zu fangen.Ein andermal, okay?
 closemessage
 applymovement LOCALID_PLAYER LittlerootTown_BrendansHouse_2F_Movement_PlayerWatchBrendanWest
 applymovement LOCALID_RIVALS_HOUSE_2F_RIVAL LittlerootTown_BrendansHouse_2F_Movement_BrendanWalkToPCWest
@@ -101,7 +101,7 @@ applymovement LOCALID_RIVALS_HOUSE_2F_RIVAL LittlerootTown_BrendansHouse_2F_Move
 waitmovement 0
 applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterRight
 waitmovement 0
-msgbox	Hey! You…Who are you?Oh, you're PLAYER, aren't you? Moved in next door, right?I didn't know that you're a girl.Dad, PROF. BIRCH, said that our new next-door neighbor is a GYM LEADER's kid, so I assumed you'd be a guy.My name's BRENDAN. So, hi, neighbor!Huh? Hey, PLAYER, don't you have a POKéMON?Do you want me to go catch you one?Aw, darn, I forgot…I'm supposed to go help my dad catch some wild POKéMON.Some other time, okay?
+msgbox	Hey! Du…Wer bist du denn?Ach, du bist PLAYER, oder? Bist nebenan eingezogen, richtig?Ich wusste gar nicht, dass du ein Mädchen bist.Dad, also PROF. BIRCH, meinte, unser neuer Nachbar wäre das Kind einer GYM LEADER, deshalb dachte ich, du wärst ein Junge.Ich bin übrigens BRENDAN. Also dann, hi, Nachbar!Hä? Sag mal, PLAYER, hast du etwa gar kein POKéMON?Willst du, dass ich dir eins fange?Ach, verflixt, ich hab's vergessen…Ich soll eigentlich meinem Dad helfen, ein paar wilde POKéMON zu fangen.Ein andermal, okay?
 closemessage
 applymovement LOCALID_PLAYER LittlerootTown_BrendansHouse_2F_Movement_PlayerWatchBrendanSouth
 applymovement LOCALID_RIVALS_HOUSE_2F_RIVAL LittlerootTown_BrendansHouse_2F_Movement_BrendanWalkToPCSouth
@@ -112,12 +112,12 @@ applymovement LOCALID_RIVALS_HOUSE_2F_RIVAL LittlerootTown_BrendansHouse_2F_Move
 waitmovement 0
 applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterRight
 waitmovement 0
-msgbox	Hey! You…Who are you?Oh, you're PLAYER, aren't you? Moved in next door, right?I didn't know that you're a girl.Dad, PROF. BIRCH, said that our new next-door neighbor is a GYM LEADER's kid, so I assumed you'd be a guy.My name's BRENDAN. So, hi, neighbor!Huh? Hey, PLAYER, don't you have a POKéMON?Do you want me to go catch you one?Aw, darn, I forgot…I'm supposed to go help my dad catch some wild POKéMON.Some other time, okay?
+msgbox	Hey! Du…Wer bist du denn?Ach, du bist PLAYER, oder? Bist nebenan eingezogen, richtig?Ich wusste gar nicht, dass du ein Mädchen bist.Dad, also PROF. BIRCH, meinte, unser neuer Nachbar wäre das Kind einer GYM LEADER, deshalb dachte ich, du wärst ein Junge.Ich bin übrigens BRENDAN. Also dann, hi, Nachbar!Hä? Sag mal, PLAYER, hast du etwa gar kein POKéMON?Willst du, dass ich dir eins fange?Ach, verflixt, ich hab's vergessen…Ich soll eigentlich meinem Dad helfen, ein paar wilde POKéMON zu fangen.Ein andermal, okay?
 closemessage
 applymovement LOCALID_PLAYER LittlerootTown_BrendansHouse_2F_Movement_PlayerWatchBrendanNorth
 applymovement LOCALID_RIVALS_HOUSE_2F_RIVAL LittlerootTown_BrendansHouse_2F_Movement_BrendanWalkToPCNorth
 waitmovement 0
 return
 signs
-1 1	PLAYER flipped open the notebook.ADVENTURE RULE NO. 1 Open the MENU with START.ADVENTURE RULE NO. 2 Record your progress with SAVE.The remaining pages are blank…
-3 1	It's a Nintendo GameCube.A Game Boy Advance is connected to serve as the Controller.
+1 1	PLAYER hat das Notizbuch aufgeschlagen.ABENTEUERREGEL NR. 1 Öffne das MENÜ mit START.ABENTEUERREGEL NR. 2 Halte deinen Fortschritt mit SPEICHERN fest.Die restlichen Seiten sind leer…
+3 1	Es ist ein Nintendo GameCube.Ein Game Boy Advance ist als Controller angeschlossen.

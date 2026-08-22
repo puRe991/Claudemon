@@ -39,10 +39,10 @@ misc_item_ball 6 8 S static FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_POKEBALL_CYNDAQ
 misc_item_ball 6 8 S static FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_POKEBALL_TOTODILE
 misc_item_ball 6 8 S static FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_POKEBALL_CHIKORITA
 dialogs
-0	Hunh? PROF. BIRCH?The PROF's away on fieldwork. Ergo, he isn't here.Oh, let me explain what fieldwork is.It is to study things in the natural environment, like fields and mountains, instead of a laboratory.The PROF isn't one for doing desk work. He's the type of person who would rather go outside and experience things than read about them here.
-3	PROF. BIRCH: The FIRE POKéMON CYNDAQUIL caught your eye!You're as sharp as ever!So the CYNDAQUIL is your choice?
-4	PROF. BIRCH: The WATER POKéMON TOTODILE is your choice!You know how to pick a good one.So, you'll take the TOTODILE?
-5	PROF. BIRCH: The GRASS POKéMON CHIKORITA is your choice!You sure know what you're doing.So, you'll take the CHIKORITA?
+0	Hunh? PROF. BIRCH?Der PROF ist gerade bei einer Feldstudie unterwegs. Ergo, er ist nicht hier.Oh, lass mich erklären, was eine Feldstudie ist.Dabei erforscht man Dinge direkt in der Natur, also auf Feldern und in den Bergen, statt in einem Labor.Der PROF ist nicht der Typ für Schreibtischarbeit. Er ist eher jemand, der lieber rausgeht und Dinge selbst erlebt, statt nur darüber zu lesen.
+3	PROF. BIRCH: Das FEUER-POKéMON CYNDAQUIL hat es dir angetan!Du hast immer noch ein scharfes Auge!Also, CYNDAQUIL ist deine Wahl?
+4	PROF. BIRCH: Das WASSER-POKéMON TOTODILE ist deine Wahl!Du weißt, wie man ein gutes aussucht.Also, du nimmst TOTODILE?
+5	PROF. BIRCH: Das PFLANZEN-POKéMON CHIKORITA ist deine Wahl!Du weißt schon, was du tust.Also, du nimmst CHIKORITA?
 objscripts
 0 LittlerootTown_ProfessorBirchsLab_EventScript_Aide
 1 LittlerootTown_ProfessorBirchsLab_EventScript_Birch
@@ -70,14 +70,14 @@ scriptdefs
 lockall
 applymovement LOCALID_PLAYER LittlerootTown_ProfessorBirchsLab_Movement_PlayerEnterLabForJohtoStarter
 waitmovement 0
-msgbox	PROF. BIRCH: Oh, PLAYER! Let's have a look at your POKéDEX.… … … … … … … … … … … …Yes, there's no doubt about it.You really have completed the HOENN region's POKéDEX.That's more than just impressive.I have a gift for you.Consider it my show of appreciation for the fantastic work you've done.My gift is a rare POKéMON only found in another region!You can have any one of these three POKéMON!
+msgbox	PROF. BIRCH: Oh, PLAYER! Lass uns mal einen Blick in deinen POKéDEX werfen.… … … … … … … … … … … …Ja, daran besteht kein Zweifel.Du hast den POKéDEX der HOENN-Region tatsächlich vollständig.Das ist mehr als nur beeindruckend.Ich hab ein Geschenk für dich.Betrachte es als meinen Dank für die fantastische Arbeit, die du geleistet hast.Mein Geschenk ist ein seltenes POKéMON, das man nur in einer anderen Region findet!Du kannst dir eins dieser drei POKéMON aussuchen!
 setvar VAR_DEX_UPGRADE_JOHTO_STARTER_STATE 5
 releaseall
 end
 = LittlerootTown_ProfessorBirchsLab_EventScript_UpgradeToNationalDex
 lockall
 delay 30
-msgbox	PROF. BIRCH: Now…PLAYER and RIVAL, I've had the two of you help me study POKéMON.Thanks to your help, new facts are coming to light.It appears that in the HOENN region, there are also POKéMON from other regions.It goes to show how rich and varied the natural environments of HOENN happen to be.That's why I think it's necessary for me to upgrade your POKéDEX to the NATIONAL Mode.Here, let me see your POKéDEX units.
+msgbox	PROF. BIRCH: Also…PLAYER und RIVAL, ihr habt mir beide dabei geholfen, POKéMON zu erforschen.Dank eurer Hilfe kommen immer neue Erkenntnisse ans Licht.Es scheint, dass es in der HOENN-Region auch POKéMON aus anderen Regionen gibt.Das zeigt, wie reich und vielfältig die Lebensräume in HOENN tatsächlich sind.Deshalb halte ich es für nötig, euren POKéDEX auf den NATIONALEN Modus hochzustufen.Hier, zeigt mir mal eure POKéDEX-Geräte.
 closemessage
 applymovement LOCALID_BIRCHS_LAB_BIRCH LittlerootTown_ProfessorBirchsLab_Movement_BirchRetrievePokedexes
 waitmovement 0
@@ -104,14 +104,14 @@ waitmovement 0
 applymovement LOCALID_BIRCHS_LAB_RIVAL Common_Movement_WalkInPlaceFasterUp
 applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
 waitmovement 0
-msgbox	PROF. BIRCH: Okay, all done!
+msgbox	PROF. BIRCH: Okay, fertig!
 playfanfare MUS_OBTAIN_ITEM
-msgbox	PLAYER's POKéDEX was upgraded to the NATIONAL Mode!
+msgbox	PLAYERs POKéDEX wurde auf den NATIONALEN Modus hochgestuft!
 waitmessage
 waitfanfare
 setflag FLAG_SYS_NATIONAL_DEX
 special EnableNationalPokedex
-msgbox	PROF. BIRCH: But listen. You've become the CHAMPION, but your POKéMON journey isn't over.There is no end to the road that is POKéMON.Somewhere, there is a grassy patch that's waiting for you!
+msgbox	PROF. BIRCH: Aber hör zu. Du bist zwar CHAMPION geworden, aber deine POKéMON-Reise ist noch nicht vorbei.Der Weg, der POKéMON heißt, hat kein Ende.Irgendwo da draußen wartet noch ein Grasfleck auf dich!
 closemessage
 setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCH
 setflag FLAG_HIDE_LITTLEROOT_TOWN_RIVAL
@@ -121,11 +121,11 @@ setflag FLAG_SCOTT_CALL_BATTLE_FRONTIER
 releaseall
 end
 = LittlerootTown_ProfessorBirchsLab_EventScript_BrendanUpgradeComment
-msgbox	BRENDAN: I went out all over HOENN and checked out POKéMON.You can thank me for getting the NATIONAL Mode POKéDEX.Yep, you're lucky, PLAYER!
+msgbox	BRENDAN: Ich bin überall in HOENN unterwegs gewesen und hab mir POKéMON angeschaut.Du kannst mir danken, dass du den POKéDEX im NATIONALEN Modus bekommen hast.Ja, du hast echt Glück, PLAYER!
 closemessage
 return
 = LittlerootTown_ProfessorBirchsLab_EventScript_MayUpgradeComment
-msgbox	MAY: Eheheh!It's so cool that even my POKéDEX is getting updated!It's because you went out and caught so many POKéMON, PLAYER!
+msgbox	MAY: Eheheh!Es ist so cool, dass sogar mein POKéDEX aktualisiert wird!Das liegt daran, dass du losgezogen bist und so viele POKéMON gefangen hast, PLAYER!
 closemessage
 return
 = LittlerootTown_ProfessorBirchsLab_EventScript_GivePokedexEvent
@@ -135,9 +135,9 @@ waitmovement 0
 goto LittlerootTown_ProfessorBirchsLab_EventScript_GivePokedex
 end
 = LittlerootTown_ProfessorBirchsLab_EventScript_GivePokedex
-msgbox	PROF. BIRCH: Oh, hi, PLAYER!I heard you beat RIVAL on your first try. That's excellent!RIVAL's been helping with my research for a long time.RIVAL has an extensive history as a TRAINER already.Here, PLAYER, I ordered this for my research, but I think you should have this POKéDEX.
+msgbox	PROF. BIRCH: Oh, hi, PLAYER!Ich hab gehört, du hast RIVAL gleich beim ersten Versuch besiegt. Ausgezeichnet!RIVAL hilft mir schon seit Langem bei meiner Forschung.RIVAL hat schon eine ganze Menge Erfahrung als TRAINER.Hier, PLAYER, ich hab das eigentlich für meine Forschung bestellt, aber ich denke, diesen POKéDEX solltest du haben.
 call LittlerootTown_ProfessorBirchsLab_EventScript_ReceivePokedex
-msgbox	PROF. BIRCH: The POKéDEX is a high-tech tool that automatically makes a record of any POKéMON you meet or catch.My kid, RIVAL, goes everywhere with it.Whenever my kid catches a rare POKéMON and records its data in the POKéDEX, why, RIVAL looks for me while I'm out doing fieldwork, and shows me.
+msgbox	PROF. BIRCH: Der POKéDEX ist ein Hightech-Gerät, das automatisch jedes POKéMON aufzeichnet, dem du begegnest oder das du fängst.Mein Kind, RIVAL, nimmt das Gerät überallhin mit.Immer wenn mein Kind ein seltenes POKéMON fängt und dessen Daten im POKéDEX festhält, sucht RIVAL mich sogar bei meinen Feldstudien und zeigt es mir.
 closemessage
 applymovement LOCALID_BIRCHS_LAB_RIVAL LittlerootTown_ProfessorBirchsLab_Movement_RivalApproachPlayer
 waitmovement 0
@@ -154,28 +154,28 @@ setvar VAR_LITTLEROOT_TOWN_STATE 3
 releaseall
 end
 = LittlerootTown_ProfessorBirchsLab_EventScript_BrendanGivePokeBalls
-msgbox	BRENDAN: Huh… So you got a POKéDEX, too.Well then, here. I'll give you these.
+msgbox	BRENDAN: Huh… Du hast also auch einen POKéDEX bekommen.Na gut, dann. Hier, die gebe ich dir.
 giveitem ITEM_POKE_BALL 5
 call_if_eq VAR_RESULT FALSE LittlerootTown_ProfessorBirchsLab_EventScript_BrendanNoRoomForPokeBalls
-msgbox	BRENDAN: You know it's more fun to have a whole bunch of POKéMON.I'm going to explore all over the place to find different POKéMON.If I find any cool POKéMON, you bet I'll try to get them with POKé BALLS.
+msgbox	BRENDAN: Weißt du, es macht mehr Spaß, einen ganzen Haufen POKéMON zu haben.Ich werde überall umherziehen, um verschiedene POKéMON zu finden.Wenn ich coole POKéMON finde, kannst du drauf wetten, dass ich sie mit POKé BALLS zu fangen versuche.
 setvar VAR_RESULT 1
 return
 = LittlerootTown_ProfessorBirchsLab_EventScript_BrendanNoRoomForPokeBalls
-msgbox	Hey, your BAG's full.
+msgbox	Hey, deine BAG ist voll.
 return
 = LittlerootTown_ProfessorBirchsLab_EventScript_MayGivePokeBalls
-msgbox	MAY: Oh, wow, PLAYER! You got a POKéDEX, too!That's great! Just like me! I've got something for you, too!
+msgbox	MAY: Oh, wow, PLAYER! Du hast auch einen POKéDEX bekommen!Das ist toll! Genau wie ich! Ich hab auch etwas für dich!
 giveitem ITEM_POKE_BALL 5
 call_if_eq VAR_RESULT FALSE LittlerootTown_ProfessorBirchsLab_EventScript_MayNoRoomForPokeBalls
-msgbox	MAY: It's fun if you can get a lot of POKéMON!I'm going to look all over the place because I want different POKéMON.If I find any cute POKéMON, I'll catch them with POKé BALLS!
+msgbox	MAY: Es macht Spaß, wenn man viele POKéMON hat!Ich werde überall suchen, weil ich verschiedene POKéMON haben möchte.Wenn ich niedliche POKéMON finde, fang ich sie mit POKé BALLS!
 setvar VAR_RESULT 0
 return
 = LittlerootTown_ProfessorBirchsLab_EventScript_MayNoRoomForPokeBalls
-msgbox	Oh? Your BAG's full.
+msgbox	Oh? Deine BAG ist voll.
 return
 = LittlerootTown_ProfessorBirchsLab_EventScript_ReceivePokedex
 playfanfare MUS_OBTAIN_ITEM
-msgbox	PLAYER received the POKéDEX!
+msgbox	PLAYER hat den POKéDEX erhalten!
 waitfanfare
 setflag FLAG_SYS_POKEDEX_GET
 special SetUnlockedPokedexFlags
@@ -185,7 +185,7 @@ return
 = LittlerootTown_ProfessorBirchsLab_EventScript_GiveStarterEvent
 lockall
 bufferleadmonspeciesname STR_VAR_1
-msgbox	PROF. BIRCH: So, PLAYER.I've heard so much about you from your father.I've heard that you don't have your own POKéMON yet.But the way you battled earlier, you pulled it off with aplomb!I guess you have your father's blood in your veins after all!Oh, yes. As thanks for rescuing me, I'd like you to have the POKéMON you used earlier.PLAYER received the !
+msgbox	PROF. BIRCH: Also, PLAYER.Ich hab schon so viel von deinem Vater über dich gehört.Ich hab gehört, dass du noch kein eigenes POKéMON hast.Aber so, wie du eben gekämpft hast, hast du das mit Bravour hingekriegt!Ich schätze, das Blut deines Vaters fließt eben doch in deinen Adern!Ach ja. Als Dank dafür, dass du mich gerettet hast, möchte ich, dass du das POKéMON bekommst, das du eben benutzt hast.PLAYER hat das  erhalten!
 waitmessage
 playfanfare MUS_OBTAIN_ITEM
 waitfanfare
@@ -204,7 +204,7 @@ goto_if_eq VAR_RESULT YES LittlerootTown_ProfessorBirchsLab_EventScript_AgreeToS
 goto_if_eq VAR_RESULT NO LittlerootTown_ProfessorBirchsLab_EventScript_DeclineSeeingRival
 end
 = LittlerootTown_ProfessorBirchsLab_EventScript_AgreeToSeeRival
-msgbox	PROF. BIRCH: Great! RIVAL should be happy, too.Get RIVAL to teach you what it means to be a TRAINER.
+msgbox	PROF. BIRCH: Großartig! RIVAL wird sich sicher auch freuen.Lass dir von RIVAL zeigen, was es bedeutet, ein TRAINER zu sein.
 clearflag FLAG_HIDE_ROUTE_101_BOY
 setvar VAR_BIRCH_LAB_STATE 3
 releaseall
@@ -234,7 +234,7 @@ hidemonpic
 goto Common_EventScript_NoMoreRoomForPokemon
 end
 = Common_EventScript_NoMoreRoomForPokemon
-msgbox	There's no more room for POKéMON!The POKéMON BOXES are full and can't accept any more!
+msgbox	Es ist kein Platz mehr für POKéMON!Die POKéMON-BOXEN sind voll und können keine weiteren aufnehmen!
 release
 end
 = LittlerootTown_ProfessorBirchsLab_EventScript_SendChikoritaToPC
@@ -251,7 +251,7 @@ goto LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedChikorita
 end
 = LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedChikorita
 hidemonpic
-msgbox	PROF. BIRCH: Listen, PLAYER. You've completed the HOENN POKéDEX, but your POKéMON journey isn't over.There is no end to the road that is POKéMON.Somewhere, there is a grassy patch that's waiting for you!
+msgbox	PROF. BIRCH: Hör zu, PLAYER. Du hast den HOENN-POKéDEX vervollständigt, aber deine POKéMON-Reise ist noch nicht vorbei.Der Weg, der POKéMON heißt, hat kein Ende.Irgendwo da draußen wartet noch ein Grasfleck auf dich!
 setvar VAR_DEX_UPGRADE_JOHTO_STARTER_STATE 6
 releaseall
 end
@@ -264,22 +264,22 @@ return
 = EventScript_TransferredLanettesPC
 specialvar VAR_RESULT ShouldShowBoxWasFullMessage
 goto_if_eq VAR_RESULT TRUE EventScript_LanettesPCBoxFull
-msgbox	was transferred to LANETTE'S PC.It was placed in BOX “.”
+msgbox	wurde auf LANETTES PC übertragen.Es wurde in BOX „ “ abgelegt.
 return
 = EventScript_LanettesPCBoxFull
 specialvar VAR_RESULT GetPCBoxToSendMon
 bufferboxname STR_VAR_3 VAR_RESULT
-msgbox	BOX “” on LANETTE'S PC was full.was transferred to BOX “.”
+msgbox	BOX „ “ auf LANETTES PC war voll.wurde in BOX „ “ übertragen.
 return
 = EventScript_TransferredSomeonesPC
 specialvar VAR_RESULT ShouldShowBoxWasFullMessage
 goto_if_eq VAR_RESULT TRUE EventScript_SomeonesPCBoxFull
-msgbox	was transferred to SOMEONE'S PC.It was placed in BOX “.”
+msgbox	wurde auf JEMANDES PC übertragen.Es wurde in BOX „ “ abgelegt.
 return
 = EventScript_SomeonesPCBoxFull
 specialvar VAR_RESULT GetPCBoxToSendMon
 bufferboxname STR_VAR_3 VAR_RESULT
-msgbox	BOX “” on SOMEONE'S PC was full.was transferred to BOX “.”
+msgbox	BOX „ “ auf JEMANDES PC war voll.wurde in BOX „ “ übertragen.
 return
 = Common_EventScript_NameReceivedBoxMon
 fadescreen FADE_TO_BLACK
@@ -289,7 +289,7 @@ faceplayer
 return
 = LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedJohtoStarter
 playfanfare MUS_OBTAIN_ITEM
-msgbox	PLAYER received the from PROF. BIRCH!
+msgbox	PLAYER hat  von PROF. BIRCH erhalten!
 waitmessage
 waitfanfare
 return
@@ -309,11 +309,11 @@ copyvar VAR_0x8004 VAR_RESULT
 return
 = LittlerootTown_ProfessorBirchsLab_EventScript_TakeYourTime
 hidemonpic
-msgbox	PROF. BIRCH: Take your time before you decide.They're all invaluable POKéMON.
+msgbox	PROF. BIRCH: Lass dir Zeit mit deiner Entscheidung.Sie sind alle unbezahlbare POKéMON.
 releaseall
 end
 = LittlerootTown_ProfessorBirchsLab_EventScript_AlreadyChoseJohtoStarter
-msgbox	You received the promised POKéMON. Better leave the others alone.
+msgbox	Du hast das versprochene POKéMON erhalten. Lass die anderen besser in Ruhe.
 releaseall
 end
 = LittlerootTown_ProfessorBirchsLab_EventScript_Totodile
@@ -349,7 +349,7 @@ goto LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedTotodile
 end
 = LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedTotodile
 hidemonpic
-msgbox	PROF. BIRCH: Listen, PLAYER. You've completed the HOENN POKéDEX, but your POKéMON journey isn't over.There is no end to the road that is POKéMON.Somewhere, there is a grassy patch that's waiting for you!
+msgbox	PROF. BIRCH: Hör zu, PLAYER. Du hast den HOENN-POKéDEX vervollständigt, aber deine POKéMON-Reise ist noch nicht vorbei.Der Weg, der POKéMON heißt, hat kein Ende.Irgendwo da draußen wartet noch ein Grasfleck auf dich!
 setvar VAR_DEX_UPGRADE_JOHTO_STARTER_STATE 6
 releaseall
 end
@@ -395,7 +395,7 @@ goto LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedCyndaquil
 end
 = LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedCyndaquil
 hidemonpic
-msgbox	PROF. BIRCH: Listen, PLAYER. You've completed the HOENN POKéDEX, but your POKéMON journey isn't over.There is no end to the road that is POKéMON.Somewhere, there is a grassy patch that's waiting for you!
+msgbox	PROF. BIRCH: Hör zu, PLAYER. Du hast den HOENN-POKéDEX vervollständigt, aber deine POKéMON-Reise ist noch nicht vorbei.Der Weg, der POKéMON heißt, hat kein Ende.Irgendwo da draußen wartet noch ein Grasfleck auf dich!
 setvar VAR_DEX_UPGRADE_JOHTO_STARTER_STATE 6
 releaseall
 end
@@ -420,10 +420,10 @@ call_if_eq VAR_RESULT FEMALE LittlerootTown_ProfessorBirchsLab_EventScript_Brend
 release
 end
 = LittlerootTown_ProfessorBirchsLab_EventScript_BrendanWhereShouldIGoNext
-msgbox	BRENDAN: Where should I look for POKéMON next…
+msgbox	BRENDAN: Wo sollte ich als Nächstes nach POKéMON suchen…
 return
 = LittlerootTown_ProfessorBirchsLab_EventScript_MayWhereShouldIGoNext
-msgbox	MAY: I wonder where I should go look for POKéMON next?
+msgbox	MAY: Ich frag mich, wo ich als Nächstes nach POKéMON suchen sollte?
 return
 = LittlerootTown_ProfessorBirchsLab_EventScript_RivalTakeBreakFromFieldwork
 checkplayergender
@@ -432,10 +432,10 @@ call_if_eq VAR_RESULT FEMALE LittlerootTown_ProfessorBirchsLab_EventScript_Brend
 release
 end
 = LittlerootTown_ProfessorBirchsLab_EventScript_BrendanTakeBreakFromFieldwork
-msgbox	BRENDAN: For the time being, I'm taking a break from fieldwork.I'll be helping out the PROF here for a while.
+msgbox	BRENDAN: Im Moment mach ich erst mal eine Pause von der Feldarbeit.Ich werde eine Weile hier dem PROF helfen.
 return
 = LittlerootTown_ProfessorBirchsLab_EventScript_MayTakeBreakFromFieldwork
-msgbox	MAY: I think I'll take a short break from fieldwork.I think I'll help the PROF here for a while.
+msgbox	MAY: Ich glaube, ich mach eine kurze Pause von der Feldarbeit.Ich werde wohl eine Weile hier dem PROF helfen.
 return
 = LittlerootTown_ProfessorBirchsLab_EventScript_RivalHaveYouGoneToBattleFrontier
 checkplayergender
@@ -444,10 +444,10 @@ call_if_eq VAR_RESULT FEMALE LittlerootTown_ProfessorBirchsLab_EventScript_Brend
 release
 end
 = LittlerootTown_ProfessorBirchsLab_EventScript_BrendanHaveYouGoneToBattleFrontier
-msgbox	BRENDAN: Hey, PLAYER! Have you gone out to that place, the BATTLE FRONTIER?
+msgbox	BRENDAN: Hey, PLAYER! Warst du schon mal an diesem Ort, der BATTLE FRONTIER?
 return
 = LittlerootTown_ProfessorBirchsLab_EventScript_MayHaveYouGoneToBattleFrontier
-msgbox	MAY: Oh, hi, PLAYER! Have you gone to that place, the BATTLE FRONTIER?
+msgbox	MAY: Oh, hi, PLAYER! Warst du schon an diesem Ort, der BATTLE FRONTIER?
 return
 = LittlerootTown_ProfessorBirchsLab_EventScript_RivalFuturePlans
 checkplayergender
@@ -456,7 +456,7 @@ call_if_eq VAR_RESULT FEMALE LittlerootTown_ProfessorBirchsLab_EventScript_Brend
 release
 end
 = LittlerootTown_ProfessorBirchsLab_EventScript_MayWhatNextImStayingHere
-msgbox	MAY: PLAYER, after this… What are you going to do?Are you going to keep battling and sharpening your skills?Or are you going to try filling the NATIONAL POKéDEX?I'm staying here to help the PROF.
+msgbox	MAY: PLAYER, was machst du jetzt eigentlich…?Willst du weiter kämpfen und deine Fähigkeiten verbessern?Oder willst du versuchen, den NATIONALEN POKéDEX zu vervollständigen?Ich bleibe hier, um dem PROF zu helfen.
 return
 = LittlerootTown_ProfessorBirchsLab_EventScript_Birch
 lock
@@ -472,11 +472,11 @@ goto_if_unset FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_UNKNOWN_0x380 ProfBirch_Event
 goto_if_eq VAR_DEX_UPGRADE_JOHTO_STARTER_STATE 3 ProfBirch_EventScript_RatePokedexOrRegister
 goto_if_ge VAR_DEX_UPGRADE_JOHTO_STARTER_STATE 6 ProfBirch_EventScript_RatePokedexOrRegister
 goto_if_eq VAR_BIRCH_LAB_STATE 5 LittlerootTown_ProfessorBirchsLab_EventScript_PokemonAwait
-msgbox	PROF. BIRCH: RIVAL? Gone home, I think.Or maybe that kid's scrabbling around in tall grass again somewhere…If you or your POKéMON get tired, you should get some rest at home.
+msgbox	PROF. BIRCH: RIVAL? Nach Hause gegangen, glaube ich.Oder das Kind wühlt schon wieder irgendwo im hohen Gras herum…Wenn du oder deine POKéMON müde werdet, solltet ihr euch zu Hause ausruhen.
 release
 end
 = LittlerootTown_ProfessorBirchsLab_EventScript_PokemonAwait
-msgbox	PROF. BIRCH: Countless POKéMON await you!Argh, I'm getting the itch to get out and do fieldwork again!
+msgbox	PROF. BIRCH: Unzählige POKéMON warten auf dich!Argh, mich juckt's schon wieder in den Fingern, rauszugehen und Feldforschung zu betreiben!
 release
 end
 = ProfBirch_EventScript_RatePokedexOrRegister
@@ -499,7 +499,7 @@ copyvar VAR_0x8009 VAR_0x8006
 copyvar VAR_0x800A VAR_RESULT
 buffernumberstring STR_VAR_1 VAR_0x8008  @ Num Hoenn seen
 buffernumberstring STR_VAR_2 VAR_0x8009  @ Num Hoenn caught
-msgbox	Hmhm…So, you've seen POKéMON, and you've caught POKéMON…
+msgbox	Hmhm…Also, du hast POKéMON gesehen, und du hast POKéMON gefangen…
 call ProfBirch_EventScript_ShowRatingMessage
 goto_if_eq VAR_0x800A 0 Common_EventScript_NopReturn  @ National dex not enabled
 setvar VAR_0x8004 1
@@ -508,7 +508,7 @@ copyvar VAR_0x8008 VAR_0x8005
 copyvar VAR_0x8009 VAR_0x8006
 buffernumberstring STR_VAR_1 VAR_0x8008  @ Num National seen
 buffernumberstring STR_VAR_2 VAR_0x8009  @ Num National caught
-msgbox	Hmhm… On a nationwide basis…You've seen POKéMON, and you've caught POKéMON…
+msgbox	Hmhm… Landesweit gesehen…Du hast POKéMON gesehen, und du hast POKéMON gefangen…
 return
 = ProfBirch_EventScript_ShowRatingMessage
 copyvar VAR_0x8004 VAR_0x8009
@@ -517,15 +517,15 @@ waitmessage
 waitbuttonpress
 return
 = ProfBirch_EventScript_DeclineRating
-msgbox	Hm? Oh, you haven't caught enough POKéMON to make it worthwhile.
+msgbox	Hm? Oh, du hast noch nicht genug POKéMON gefangen, damit sich das lohnt.
 release
 end
 = EventScript_RegisterProfBirch
-msgbox	PROF. BIRCH: Oh, PLAYER! I've already heard about you!It seems your POKéNAV's been upgraded with MATCH CALL.Well, I should register, too!That way, I'd be able to examine your POKéDEX even while you're out in the field.… … … … … …
+msgbox	PROF. BIRCH: Oh, PLAYER! Ich hab schon von dir gehört!Es scheint, dein POKéNAV wurde mit MATCH CALL aufgerüstet.Nun, dann sollte ich mich auch registrieren!So könnte ich deinen POKéDEX sogar überprüfen, während du draußen unterwegs bist.… … … … … …
 closemessage
 delay 30
 playfanfare MUS_REGISTER_MATCH_CALL
-msgbox	Registered PROF. BIRCH in the POKéNAV.
+msgbox	PROF. BIRCH wurde im POKéNAV registriert.
 waitfanfare
 closemessage
 delay 30
@@ -534,11 +534,11 @@ setvar VAR_REGISTER_BIRCH_STATE 2
 release
 end
 = LittlerootTown_ProfessorBirchsLab_EventScript_GrassyPatchWaiting
-msgbox	PROF. BIRCH: But listen. You've become the CHAMPION, but your POKéMON journey isn't over.There is no end to the road that is POKéMON.Somewhere, there is a grassy patch that's waiting for you!
+msgbox	PROF. BIRCH: Aber hör zu. Du bist zwar CHAMPION geworden, aber deine POKéMON-Reise ist noch nicht vorbei.Der Weg, der POKéMON heißt, hat kein Ende.Irgendwo da draußen wartet noch ein Grasfleck auf dich!
 release
 end
 = LittlerootTown_ProfessorBirchsLab_EventScript_CanHaveAnyOneOfRarePokemon
-msgbox	PROF. BIRCH: These are rare POKéMON only found in another region!You can have any one of these three POKéMON!
+msgbox	PROF. BIRCH: Das hier sind seltene POKéMON, die man nur in einer anderen Region findet!Du kannst dir eins dieser drei POKéMON aussuchen!
 release
 end
 = LittlerootTown_ProfessorBirchsLab_EventScript_Aide
@@ -546,31 +546,31 @@ lock
 faceplayer
 goto_if_ge VAR_BIRCH_LAB_STATE 3 LittlerootTown_ProfessorBirchsLab_EventScript_AideReceivedStarter
 goto_if_set FLAG_BIRCH_AIDE_MET LittlerootTown_ProfessorBirchsLab_EventScript_AideAlreadyMet
-msgbox	Hunh? PROF. BIRCH?The PROF's away on fieldwork. Ergo, he isn't here.Oh, let me explain what fieldwork is.It is to study things in the natural environment, like fields and mountains, instead of a laboratory.The PROF isn't one for doing desk work. He's the type of person who would rather go outside and experience things than read about them here.
+msgbox	Hunh? PROF. BIRCH?Der PROF ist gerade bei einer Feldstudie unterwegs. Ergo, er ist nicht hier.Oh, lass mich erklären, was eine Feldstudie ist.Dabei erforscht man Dinge direkt in der Natur, also auf Feldern und in den Bergen, statt in einem Labor.Der PROF ist nicht der Typ für Schreibtischarbeit. Er ist eher jemand, der lieber rausgeht und Dinge selbst erlebt, statt nur darüber zu lesen.
 setflag FLAG_BIRCH_AIDE_MET
 release
 end
 = LittlerootTown_ProfessorBirchsLab_EventScript_AideAlreadyMet
-msgbox	The PROF isn't one for doing desk work. He's the type of person who would rather go outside and experience things than read about them here.
+msgbox	Der PROF ist nicht der Typ für Schreibtischarbeit. Er ist eher jemand, der lieber rausgeht und Dinge selbst erlebt, statt nur darüber zu lesen.
 release
 end
 = LittlerootTown_ProfessorBirchsLab_EventScript_AideReceivedStarter
-msgbox	PROF. BIRCH is studying the habitats and distribution of POKéMON.The PROF enjoys RIVAL's help, too. There's a lot of love there.
+msgbox	PROF. BIRCH erforscht die Lebensräume und die Verbreitung von POKéMON.Der PROF freut sich auch über RIVALs Hilfe. Da steckt viel Zuneigung drin.
 release
 end
 signs
-10 7	It's a serious-looking machine. The PROF must use this for research.
-11 7	It's a serious-looking machine. The PROF must use this for research.
-7 1	It's a book that's too hard to read.
-8 1	It's a book that's too hard to read.
-1 1	It's crammed with books on POKéMON.
-0 7	It's crammed with books on POKéMON.
-1 7	It's crammed with books on POKéMON.
-2 7	It's crammed with books on POKéMON.
-3 7	It's crammed with books on POKéMON.
-4 1	It's a PC used for research. Better not mess around with it.
-3 1	It's a PC used for research. Better not mess around with it.
-1 10	It's a PC used for research. Better not mess around with it.
-1 9	It's a PC used for research. Better not mess around with it.
-11 10	It's a PC used for research. Better not mess around with it.
-11 9	It's a PC used for research. Better not mess around with it.
+10 7	Das ist eine ernst aussehende Maschine. Der PROF benutzt sie wohl für seine Forschung.
+11 7	Das ist eine ernst aussehende Maschine. Der PROF benutzt sie wohl für seine Forschung.
+7 1	Das ist ein Buch, das viel zu schwer zu lesen ist.
+8 1	Das ist ein Buch, das viel zu schwer zu lesen ist.
+1 1	Es ist vollgestopft mit Büchern über POKéMON.
+0 7	Es ist vollgestopft mit Büchern über POKéMON.
+1 7	Es ist vollgestopft mit Büchern über POKéMON.
+2 7	Es ist vollgestopft mit Büchern über POKéMON.
+3 7	Es ist vollgestopft mit Büchern über POKéMON.
+4 1	Das ist ein PC, der für die Forschung benutzt wird. Besser nicht dran herumspielen.
+3 1	Das ist ein PC, der für die Forschung benutzt wird. Besser nicht dran herumspielen.
+1 10	Das ist ein PC, der für die Forschung benutzt wird. Besser nicht dran herumspielen.
+1 9	Das ist ein PC, der für die Forschung benutzt wird. Besser nicht dran herumspielen.
+11 10	Das ist ein PC, der für die Forschung benutzt wird. Besser nicht dran herumspielen.
+11 9	Das ist ein PC, der für die Forschung benutzt wird. Besser nicht dran herumspielen.

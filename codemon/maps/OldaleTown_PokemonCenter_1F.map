@@ -30,9 +30,9 @@ people_gentleman 4 4 S static 0
 people_boy_1 10 6 E static 0
 people_girl_3 3 7 E static 0
 dialogs
-1	That PC in the corner there is for any POKéMON TRAINER to use.Naturally, that means you're welcome to use it, too.
-2	POKéMON CENTERS are great!You can use their services as much as you like, and it's all for free. You never have to worry!
-3	The POKéMON WIRELESS CLUB on the second floor was built recently.But they say they're still making adjustments.
+1	Der PC da drüben in der Ecke steht jedem POKéMON TRAINER zur Verfügung.Das heißt natürlich, dass auch du ihn gerne benutzen darfst.
+2	POKéMON CENTER sind großartig!Du kannst ihre Dienste so oft nutzen, wie du willst, und das alles kostenlos. Du brauchst dir nie Sorgen zu machen!
+3	Der POKéMON WIRELESS CLUB im zweiten Stock wurde erst kürzlich gebaut.Aber es heißt, sie würden noch daran feilen.
 objscripts
 0 OldaleTown_PokemonCenter_1F_EventScript_Nurse
 1 OldaleTown_PokemonCenter_1F_EventScript_Gentleman
@@ -49,18 +49,18 @@ scriptdefs
 lock
 faceplayer
 goto_if_set FLAG_SYS_POKEDEX_GET OldaleTown_PokemonCenter_1F_EventScript_WirelessClubAvailable
-msgbox	The POKéMON WIRELESS CLUB on the second floor was built recently.But they say they're still making adjustments.
+msgbox	Der POKéMON WIRELESS CLUB im zweiten Stock wurde erst kürzlich gebaut.Aber es heißt, sie würden noch daran feilen.
 release
 end
 = OldaleTown_PokemonCenter_1F_EventScript_WirelessClubAvailable
-msgbox	The POKéMON WIRELESS CLUB on the second floor was built recently.I traded POKéMON right away.
+msgbox	Der POKéMON WIRELESS CLUB im zweiten Stock wurde erst kürzlich gebaut.Ich hab gleich POKéMON getauscht.
 release
 end
 = OldaleTown_PokemonCenter_1F_EventScript_Boy
-msgbox	POKéMON CENTERS are great!You can use their services as much as you like, and it's all for free. You never have to worry!
+msgbox	POKéMON CENTER sind großartig!Du kannst ihre Dienste so oft nutzen, wie du willst, und das alles kostenlos. Du brauchst dir nie Sorgen zu machen!
 end
 = OldaleTown_PokemonCenter_1F_EventScript_Gentleman
-msgbox	That PC in the corner there is for any POKéMON TRAINER to use.Naturally, that means you're welcome to use it, too.
+msgbox	Der PC da drüben in der Ecke steht jedem POKéMON TRAINER zur Verfügung.Das heißt natürlich, dass auch du ihn gerne benutzen darfst.
 end
 = OldaleTown_PokemonCenter_1F_EventScript_Nurse
 setvar VAR_0x800B LOCALID_OLDALE_NURSE
@@ -80,7 +80,7 @@ goto_if_eq VAR_RESULT YES EventScript_PkmnCenterNurse_HealPkmn
 goto_if_eq VAR_RESULT NO EventScript_PkmnCenterNurse_Goodbye
 end
 = EventScript_PkmnCenterNurse_Goodbye
-msgbox	We hope to see you again!
+msgbox	Wir hoffen, dich bald wiederzusehen!
 return
 @ VAR_0x8004 is 1 when player has Gold Card; jumps are identical
 goto EventScript_PkmnCenterNurse_HealPkmn
@@ -105,28 +105,28 @@ end
 goto EventScript_PkmnCenterNurse_ReturnPkmn
 = EventScript_PkmnCenterNurse_ReturnPkmn
 goto_if_eq VAR_0x8004 1 EventScript_PkmnCenterNurse_ReturnPkmn2
-msgbox	Thank you for waiting.We've restored your POKéMON to full health.
+msgbox	Danke für deine Geduld.Wir haben deine POKéMON vollständig geheilt.
 waitmessage
 applymovement VAR_0x800B Movement_PkmnCenterNurse_Bow
 waitmovement 0
-msgbox	We hope to see you again!
+msgbox	Wir hoffen, dich bald wiederzusehen!
 return
 = EventScript_PkmnCenterNurse_ReturnPkmn2
-msgbox	Thank you for waiting.
+msgbox	Danke für deine Geduld.
 waitmessage
 applymovement VAR_0x800B Movement_PkmnCenterNurse_Bow
 waitmovement 0
-msgbox	We hope to see you again!
+msgbox	Wir hoffen, dich bald wiederzusehen!
 return
 = EventScript_PkmnCenterNurse_PlayerWaitingInUnionRoom
 goto_if_set FLAG_NURSE_UNION_ROOM_REMINDER EventScript_PkmnCenterNurse_ReturnPkmn
-msgbox	Thank you for waiting.We've restored your POKéMON to full health.
+msgbox	Danke für deine Geduld.Wir haben deine POKéMON vollständig geheilt.
 setflag FLAG_NURSE_UNION_ROOM_REMINDER
-msgbox	It appears as if is playing right now. Go for it!
+msgbox	Es sieht so aus, als würde  gerade spielen. Auf geht's!
 waitmessage
 applymovement VAR_0x800B Movement_PkmnCenterNurse_Bow
 waitmovement 0
-msgbox	We hope to see you again!
+msgbox	Wir hoffen, dich bald wiederzusehen!
 return
 = EventScript_PkmnCenterNurse_CheckPokerus
 specialvar VAR_RESULT IsPokerusInParty
@@ -147,15 +147,15 @@ waitmovement 0
 special HealPlayerParty
 return
 = EventScript_PkmnCenterNurse_IllTakeYourPkmn2
-msgbox	Okay, I'll take your POKéMON for a few seconds.
+msgbox	Okay, ich nehme deine POKéMON kurz mit.
 return
 = EventScript_PkmnCenterNurse_IllTakeYourPkmn
-msgbox	Okay, I'll take your POKéMON for a few seconds.
+msgbox	Okay, ich nehme deine POKéMON kurz mit.
 return
 = EventScript_PkmnCenterNurse_GoldCard
 goto_if_set FLAG_NURSE_MENTIONS_GOLD_CARD EventScript_PkmnCenterNurse_AskForUsual
 setflag FLAG_NURSE_MENTIONS_GOLD_CARD
-msgbox	Hello, and welcome to the POKéMON CENTER.We restore your tired POKéMON to full health.Would you like to…
+msgbox	Hallo, und willkommen im POKéMON CENTER.Wir heilen deine erschöpften POKéMON vollständig.Möchtest du…
 playse SE_PIN
 applymovement VAR_0x800B Common_Movement_ExclamationMark
 waitmovement 0
@@ -163,7 +163,7 @@ applymovement VAR_0x800B Common_Movement_Delay48
 waitmovement 0
 msgboxyesno	Th-that card… Could it be… The GOLD CARD?!Oh, the gold color is brilliant! The four stars seem to sparkle!I've seen several TRAINERS with a SILVER CARD before, but, PLAYER, you're the first TRAINER I've ever seen with a GOLD CARD!Okay, PLAYER, please allow me the honor of resting your POKéMON!
 goto_if_eq VAR_RESULT YES EventScript_PkmnCenterNurse_GoldCardHealPkmn
-msgbox	We hope to see you again!
+msgbox	Wir hoffen, dich bald wiederzusehen!
 return
 = EventScript_PkmnCenterNurse_GoldCardHealPkmn
 setvar VAR_0x8004 1
@@ -172,7 +172,7 @@ end
 = EventScript_PkmnCenterNurse_AskForUsual
 msgboxyesno	I'm delighted to see you, PLAYER! You want the usual, am I right?
 goto_if_eq VAR_RESULT YES EventScript_PkmnCenterNurse_GoldCardHealPkmn
-msgbox	We hope to see you again!
+msgbox	Wir hoffen, dich bald wiederzusehen!
 return
 counters
 517

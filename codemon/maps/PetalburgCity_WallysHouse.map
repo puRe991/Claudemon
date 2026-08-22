@@ -25,8 +25,8 @@ npcs
 people_pokefan_m 3 4 E static 0
 people_woman_4 7 5 W static 0
 dialogs
-0	You're… Ah, you must be PLAYER, right?Thank you for playing with WALLY a little while ago.He's been frail and sickly ever since he was a baby.We've sent him to stay with my relatives in VERDANTURF TOWN for a while.The air is a lot cleaner there than it is here.What's that? Where's WALLY? He's already left, our WALLY.I wonder where he could have gotten by now?
-1	WALLY was really happy when he told us that he caught a POKéMON.It's been ages since I've seen him smile like that.
+0	Du bist… Ah, du musst PLAYER sein, richtig?Danke, dass du vorhin mit WALLY gespielt hast.Er war schon als Baby zart und kränklich.Wir haben ihn für eine Weile zu meinen Verwandten nach VERDANTURF TOWN geschickt.Die Luft dort ist viel sauberer als hier.Was war das? Wo WALLY ist? Er ist schon los, unser WALLY.Ich frage mich, wo er wohl inzwischen sein mag?
+1	WALLY war wirklich glücklich, als er uns erzählt hat, dass er ein POKéMON gefangen hat.Es ist ewig her, dass ich ihn so lächeln gesehen habe.
 objscripts
 0 PetalburgCity_WallysHouse_EventScript_WallysDad
 1 PetalburgCity_WallysHouse_EventScript_WallysMom
@@ -35,10 +35,10 @@ VAR_PETALBURG_CITY_STATE 4 PetalburgCity_WallysHouse_EventScript_GiveHMSurf
 scriptdefs
 = PetalburgCity_WallysHouse_EventScript_GiveHMSurf
 lockall
-msgbox	PLAYER! Please excuse us for dragging you here this way.But our WALLY's become very healthy since he went to VERDANTURF TOWN.We owe it all to you!When WALLY left town, you helped him catch a POKéMON, right?I think that made WALLY really happy.Actually, not just WALLY. It made me, his father, happy too.Happy that he's gained such a great friend as you.This isn't a bribe or anything, but I'd really like you to have this.
+msgbox	PLAYER! Entschuldige, dass wir dich so hierher geschleppt haben.Aber unser WALLY ist sehr gesund geworden, seit er nach VERDANTURF TOWN gegangen ist.Das haben wir alles dir zu verdanken!Als WALLY die Stadt verließ, hast du ihm geholfen, ein POKéMON zu fangen, richtig?Ich glaube, das hat WALLY wirklich glücklich gemacht.Und nicht nur WALLY. Es hat auch mich, seinen Vater, glücklich gemacht.Glücklich, dass er so einen tollen Freund wie dich gefunden hat.Das ist kein Bestechungsversuch oder so, aber ich möchte wirklich, dass du das hier bekommst.
 giveitem ITEM_HM_SURF
 setflag FLAG_RECEIVED_HM_SURF
-msgbox	If your POKéMON can SURF, you'll be able to go to all sorts of places.
+msgbox	Wenn dein POKéMON SURFEN kann, wirst du an alle möglichen Orte gelangen können.
 setvar VAR_PETALBURG_CITY_STATE 5
 releaseall
 end
@@ -46,11 +46,11 @@ end
 lock
 faceplayer
 goto_if_set FLAG_RECEIVED_HM_SURF PetalburgCity_WallysHouse_EventScript_ReceivedHMSurf
-msgbox	WALLY was really happy when he told us that he caught a POKéMON.It's been ages since I've seen him smile like that.
+msgbox	WALLY war wirklich glücklich, als er uns erzählt hat, dass er ein POKéMON gefangen hat.Es ist ewig her, dass ich ihn so lächeln gesehen habe.
 release
 end
 = PetalburgCity_WallysHouse_EventScript_ReceivedHMSurf
-msgbox	I want you to keep this a secret from my husband…But our WALLY left VERDANTURF TOWN without telling anyone.You know, WALLY is frail, but he's surprisingly strong-willed.I'm sure that he'll come back safe and sound one day!
+msgbox	Ich möchte, dass du das vor meinem Mann geheim hältst…Aber unser WALLY hat VERDANTURF TOWN verlassen, ohne es jemandem zu sagen.Weißt du, WALLY ist zart, aber er ist überraschend willensstark.Ich bin sicher, dass er eines Tages wohlbehalten zurückkommen wird!
 release
 end
 = PetalburgCity_WallysHouse_EventScript_WallysDad
@@ -59,19 +59,19 @@ faceplayer
 goto_if_set FLAG_DEFEATED_WALLY_VICTORY_ROAD PetalburgCity_WallysHouse_EventScript_DefeatedWallyInVictoryRoad
 goto_if_set FLAG_RECEIVED_HM_SURF PetalburgCity_WallysHouse_EventScript_ReceievedHMSurf
 goto_if_set FLAG_THANKED_FOR_PLAYING_WITH_WALLY PetalburgCity_WallysHouse_EventScript_PlayedWithWally
-msgbox	You're… Ah, you must be PLAYER, right?Thank you for playing with WALLY a little while ago.He's been frail and sickly ever since he was a baby.We've sent him to stay with my relatives in VERDANTURF TOWN for a while.The air is a lot cleaner there than it is here.What's that? Where's WALLY? He's already left, our WALLY.I wonder where he could have gotten by now?
+msgbox	Du bist… Ah, du musst PLAYER sein, richtig?Danke, dass du vorhin mit WALLY gespielt hast.Er war schon als Baby zart und kränklich.Wir haben ihn für eine Weile zu meinen Verwandten nach VERDANTURF TOWN geschickt.Die Luft dort ist viel sauberer als hier.Was war das? Wo WALLY ist? Er ist schon los, unser WALLY.Ich frage mich, wo er wohl inzwischen sein mag?
 setflag FLAG_THANKED_FOR_PLAYING_WITH_WALLY
 release
 end
 = PetalburgCity_WallysHouse_EventScript_PlayedWithWally
-msgbox	I wonder how our WALLY is doing?
+msgbox	Ich frage mich, wie es unserem WALLY wohl geht?
 release
 end
 = PetalburgCity_WallysHouse_EventScript_ReceievedHMSurf
-msgbox	WALLY's coming home soon. I'm looking forward to that.
+msgbox	WALLY kommt bald nach Hause. Ich freu mich schon darauf.
 release
 end
 = PetalburgCity_WallysHouse_EventScript_DefeatedWallyInVictoryRoad
-msgbox	Oh? You met WALLY in EVER GRANDE CITY?Oh, PLAYER, don't be silly.He may have gotten healthy, but he can't go somewhere far away like that all by himself.
+msgbox	Oh? Du hast WALLY in EVER GRANDE CITY getroffen?Ach, PLAYER, sei nicht albern.Er mag ja gesünder geworden sein, aber so weit weg kann er unmöglich ganz allein hinkommen.
 release
 end
