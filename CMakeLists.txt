@@ -42,12 +42,20 @@ if(CODEMON_FETCH_SFML)
     include(FetchContent)
     set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
     set(SFML_USE_STATIC_STD_LIBS ON CACHE BOOL "" FORCE)
+    # SFML 2.5.1's own source still uses std::auto_ptr, which C++17 removed
+    # from the standard library outright. CMAKE_CXX_STANDARD is read when a
+    # target is created and would otherwise leak into SFML's own targets
+    # (add_subdirectory'd below), so unset it around the fetch and restore it
+    # for this project's own targets afterwards.
+    set(CODEMON_SAVED_CXX_STANDARD "${CMAKE_CXX_STANDARD}")
+    unset(CMAKE_CXX_STANDARD)
     FetchContent_Declare(
         SFML
         GIT_REPOSITORY https://github.com/SFML/SFML.git
         GIT_TAG        2.5.1
         GIT_SHALLOW    TRUE)
     FetchContent_MakeAvailable(SFML)
+    set(CMAKE_CXX_STANDARD "${CODEMON_SAVED_CXX_STANDARD}")
 elseif(WIN32 AND NOT DEFINED SFML_DIR AND NOT DEFINED ENV{SFML_DIR})
     set(SFML_STATIC_LIBRARIES TRUE)
     set(SFML_DIR "${CMAKE_CURRENT_SOURCE_DIR}/codemon/SFML/lib/cmake/SFML")
