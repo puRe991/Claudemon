@@ -347,6 +347,28 @@ has been verified either by an automated test or by headless screenshot
   animations — all currently silent no-ops where scripts use them
 * A map editor / procedural map generator
 
+### 🎯 Next-fix priority (walkthrough-ordered, per a Bulbapedia walkthrough audit)
+
+Story content itself (dialogue, scripts, maps) is imported for the whole
+game and translated through Rustboro Gym; these are the *systemic* gaps
+found to actually block or break story progression, in the order they'd be
+hit:
+
+1. **Cut as a field move** — the single biggest blocker right after the
+   first Badge: Cutter's House already hands out HM01, but there's no HM
+   field-move system at all yet, so Cut trees are permanent walls (blocks
+   Route 116 / Rusturf Tunnel and other early routes). Surf/Rock Smash/
+   Strength/Waterfall/Fly/Dive matter later but aren't needed this early.
+2. **Running Shoes' run mechanic** — the item is already given (Mom's scene
+   in Littleroot) but holding B to move faster isn't implemented.
+3. **Trading** — not implemented at all; blocks at least the Route 116
+   Trainer's School Seedot↔Ralts in-game trade, and any later trade-based
+   content/evolutions.
+4. **`goto_if_ge/gt/lt/le` / `multichoice` no-ops** — need an actual audit
+   (not yet done) of which dialogue/quest branches in the imported scripts
+   use them, starting with the Rustboro→Rusturf Tunnel Team Aqua/Devon
+   Goods sequence, to find anything on the critical story path.
+
 ## To-do checklist
 
 Everything checked off below has been verified working (test or headless
