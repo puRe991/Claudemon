@@ -628,7 +628,7 @@ msgbox	Please come again!
 release
 end
 = SlateportCity_EventScript_ComeBackWithSecretPower
-msgbox	gText_ComeBackWithSecretPower
+msgbox	Do you know the TM SECRET POWER?Our group, we love the TM SECRET POWER.One of our members will give it to you. Come back and show me if you get it.We'll accept you as a member and sell you good stuff in secrecy.
 release
 end
 = SlateportCity_EventScript_AquaGrunt3

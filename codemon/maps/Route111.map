@@ -513,7 +513,7 @@ setvar VAR_TEMP_3 1
 releaseall
 end
 = Route111_EventScript_PreventRouteAccess
-msgbox	gText_SandstormIsVicious
+msgbox	The sandstorm is vicious. It's impossible to keep going.
 closemessage
 call_if_eq VAR_0x8004 0 Route111_EventScript_PushUpFromRoute
 call_if_eq VAR_0x8004 1 Route111_EventScript_PushDownFromRoute
@@ -658,15 +658,15 @@ end
 = Route111_EventScript_SecretPowerMan
 lock
 faceplayer
-msgbox	Route111_Text_MakingRoomUseTMToMakeYourOwn
+msgbox	What's that? What am I doing?I'm thinking about making my own room here using a POKéMON move.I know! I'll give you this TM. Will you use it to make your own room?
 goto_if_eq VAR_RESULT YES Route111_EventScript_GiveSecretPower
-msgbox	Route111_Text_DontWantThis
+msgbox	Oh, you don't want this? If you change your mind, tell me, okay?
 release
 end
 = Route111_EventScript_GiveSecretPower
 giveitem ITEM_TM_SECRET_POWER
 goto_if_eq VAR_RESULT FALSE Route111_EventScript_NoRoomForSecretPower
-msgbox	Route111_Text_ExplainSecretPower
+msgbox	Find a big tree that looks like it might drop some vines.Use SECRET POWER in front of the tree. Some vines should get free and drop down, so you can climb the tree.You'll find a lot of space for putting your favorite things.It'll be your own secret room… A SECRET BASE!You should make one, too.Another thing, you don't always have to make your SECRET BASE in a tree.Try using SECRET POWER on rock walls that have small indents in them.I'm going to look for other places, too. Okay, bye!
 closemessage
 setflag FLAG_RECEIVED_SECRET_POWER
 clearflag FLAG_HIDE_SLATEPORT_CITY_TM_SALESMAN
@@ -685,7 +685,7 @@ applymovement VAR_LAST_TALKED Route111_Movement_SecretPowerManExit
 waitmovement 0
 return
 = Route111_EventScript_NoRoomForSecretPower
-msgbox	Route111_Text_DontHaveAnyRoom
+msgbox	Oh, you don't have any room for this.I'll hold on to it, so come back for it another time, okay?
 release
 end
 = Route111_EventScript_Wilton
@@ -902,7 +902,7 @@ buffernumberstring STR_VAR_2 VAR_0x8006
 lock
 faceplayer
 special ObjectEventInteractionGetBerryCountString
-msgbox	BerryTree_Text_WantToPick
+msgbox	You found STR_VAR_2 STR_VAR_1!Do you want to pick the STR_VAR_1?
 goto_if_eq VAR_RESULT YES BerryTree_EventScript_PickBerry
 goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPickingBerry
 goto BerryTree_EventScript_PickBerry
@@ -911,24 +911,24 @@ special ObjectEventInteractionPickBerryTree
 goto_if_eq VAR_0x8004 0 BerryTree_EventScript_BerryPocketFull
 special IncrementDailyPickedBerries
 special ObjectEventInteractionRemoveBerryTree
-msgbox	BerryTree_Text_PickedTheBerry
+msgbox	PLAYER picked the STR_VAR_2 STR_VAR_1.
 playfanfare MUS_OBTAIN_BERRY
 waitmessage
 waitfanfare
 waitbuttonpress
-msgbox	BerryTree_Text_PutAwayBerry
+msgbox	PLAYER put away the STR_VAR_1 in the BAG's BERRIES POCKET.The soil returned to its soft and loamy state.
 waitmessage
 waitbuttonpress
 release
 end
 = BerryTree_EventScript_BerryPocketFull
-msgbox	BerryTree_Text_BerryPocketFull
+msgbox	The BAG's BERRIES POCKET is full.The STR_VAR_1 couldn't be taken.
 waitmessage
 waitbuttonpress
 release
 end
 = BerryTree_EventScript_CancelPickingBerry
-msgbox	BerryTree_Text_BerryLeftUnpicked
+msgbox	PLAYER left the STR_VAR_1 unpicked.
 waitmessage
 waitbuttonpress
 release
@@ -937,7 +937,7 @@ end
 call BerryTree_EventScript_GetCareAdverb
 lockall
 special ObjectEventInteractionGetBerryName
-msgbox	BerryTree_Text_BerryGrowthStage4
+msgbox	These STR_VAR_1 flowers are blooming STR_VAR_2.
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
@@ -961,7 +961,7 @@ goto BerryTree_EventScript_CheckBerryFullyGrown
 checkitem ITEM_WAILMER_PAIL
 goto_if_eq VAR_RESULT FALSE BerryTree_EventScript_DontWater
 special ObjectEventInteractionGetBerryName
-msgbox	BerryTree_Text_WantToWater
+msgbox	Want to water the STR_VAR_1 with the WAILMER PAIL?
 goto_if_eq VAR_RESULT YES BerryTree_EventScript_WaterBerry
 goto_if_eq VAR_RESULT NO BerryTree_EventScript_DontWater
 goto BerryTree_EventScript_DontWater
@@ -970,11 +970,11 @@ releaseall
 end
 = BerryTree_EventScript_WaterBerry
 special ObjectEventInteractionGetBerryName
-msgbox	BerryTree_Text_WateredTheBerry
+msgbox	PLAYER watered the STR_VAR_1.
 waitmessage
 special ObjectEventInteractionWaterBerryTree
 special DoWateringBerryTreeAnim
-msgbox	BerryTree_Text_PlantIsDelighted
+msgbox	The plant seems to be delighted.
 waitmessage
 waitbuttonpress
 releaseall
@@ -982,21 +982,21 @@ end
 = BerryTree_EventScript_CheckBerryStage3
 lockall
 special ObjectEventInteractionGetBerryName
-msgbox	BerryTree_Text_BerryGrowthStage3
+msgbox	This STR_VAR_1 plant is growing taller.
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
 = BerryTree_EventScript_CheckBerryStage2
 lockall
 special ObjectEventInteractionGetBerryName
-msgbox	BerryTree_Text_BerryGrowthStage2
+msgbox	STR_VAR_1 has sprouted.
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
 = BerryTree_EventScript_CheckBerryStage1
 lockall
 special ObjectEventInteractionGetBerryCountString
-msgbox	BerryTree_Text_BerryGrowthStage1
+msgbox	One STR_VAR_1 was planted here.
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
@@ -1005,13 +1005,13 @@ lock
 faceplayer
 specialvar VAR_RESULT PlayerHasBerries
 goto_if_eq VAR_RESULT TRUE BerryTree_EventScript_WantToPlant
-msgbox	BerryTree_Text_ItsSoftLoamySoil
+msgbox	It's soft, loamy soil.
 waitmessage
 waitbuttonpress
 release
 end
 = BerryTree_EventScript_WantToPlant
-msgbox	BerryTree_Text_WantToPlant
+msgbox	It's soft, loamy soil. Want to plant a BERRY?
 goto_if_eq VAR_RESULT YES BerryTree_EventScript_ChooseBerryToPlant
 goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPlanting
 end
@@ -1031,13 +1031,13 @@ special ObjectEventInteractionPlantBerryTree
 incrementgamestat GAME_STAT_PLANTED_BERRIES
 special IncrementDailyPlantedBerries
 special ObjectEventInteractionGetBerryCountString
-msgbox	BerryTree_Text_PlantedOneBerry
+msgbox	PLAYER planted one STR_VAR_1 in the soft, loamy soil.
 waitmessage
 waitbuttonpress
 return
 = BerryTree_EventScript_Sparkling
 lockall
-msgbox	BerryTree_Text_ExclamationPoint
+msgbox	!
 waitmessage
 waitbuttonpress
 releaseall

@@ -246,7 +246,7 @@ buffernumberstring STR_VAR_2 VAR_0x8006
 lock
 faceplayer
 special ObjectEventInteractionGetBerryCountString
-msgbox	BerryTree_Text_WantToPick
+msgbox	You found STR_VAR_2 STR_VAR_1!Do you want to pick the STR_VAR_1?
 goto_if_eq VAR_RESULT YES BerryTree_EventScript_PickBerry
 goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPickingBerry
 goto BerryTree_EventScript_PickBerry
@@ -255,24 +255,24 @@ special ObjectEventInteractionPickBerryTree
 goto_if_eq VAR_0x8004 0 BerryTree_EventScript_BerryPocketFull
 special IncrementDailyPickedBerries
 special ObjectEventInteractionRemoveBerryTree
-msgbox	BerryTree_Text_PickedTheBerry
+msgbox	PLAYER picked the STR_VAR_2 STR_VAR_1.
 playfanfare MUS_OBTAIN_BERRY
 waitmessage
 waitfanfare
 waitbuttonpress
-msgbox	BerryTree_Text_PutAwayBerry
+msgbox	PLAYER put away the STR_VAR_1 in the BAG's BERRIES POCKET.The soil returned to its soft and loamy state.
 waitmessage
 waitbuttonpress
 release
 end
 = BerryTree_EventScript_BerryPocketFull
-msgbox	BerryTree_Text_BerryPocketFull
+msgbox	The BAG's BERRIES POCKET is full.The STR_VAR_1 couldn't be taken.
 waitmessage
 waitbuttonpress
 release
 end
 = BerryTree_EventScript_CancelPickingBerry
-msgbox	BerryTree_Text_BerryLeftUnpicked
+msgbox	PLAYER left the STR_VAR_1 unpicked.
 waitmessage
 waitbuttonpress
 release
@@ -281,7 +281,7 @@ end
 call BerryTree_EventScript_GetCareAdverb
 lockall
 special ObjectEventInteractionGetBerryName
-msgbox	BerryTree_Text_BerryGrowthStage4
+msgbox	These STR_VAR_1 flowers are blooming STR_VAR_2.
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
@@ -305,7 +305,7 @@ goto BerryTree_EventScript_CheckBerryFullyGrown
 checkitem ITEM_WAILMER_PAIL
 goto_if_eq VAR_RESULT FALSE BerryTree_EventScript_DontWater
 special ObjectEventInteractionGetBerryName
-msgbox	BerryTree_Text_WantToWater
+msgbox	Want to water the STR_VAR_1 with the WAILMER PAIL?
 goto_if_eq VAR_RESULT YES BerryTree_EventScript_WaterBerry
 goto_if_eq VAR_RESULT NO BerryTree_EventScript_DontWater
 goto BerryTree_EventScript_DontWater
@@ -314,11 +314,11 @@ releaseall
 end
 = BerryTree_EventScript_WaterBerry
 special ObjectEventInteractionGetBerryName
-msgbox	BerryTree_Text_WateredTheBerry
+msgbox	PLAYER watered the STR_VAR_1.
 waitmessage
 special ObjectEventInteractionWaterBerryTree
 special DoWateringBerryTreeAnim
-msgbox	BerryTree_Text_PlantIsDelighted
+msgbox	The plant seems to be delighted.
 waitmessage
 waitbuttonpress
 releaseall
@@ -326,21 +326,21 @@ end
 = BerryTree_EventScript_CheckBerryStage3
 lockall
 special ObjectEventInteractionGetBerryName
-msgbox	BerryTree_Text_BerryGrowthStage3
+msgbox	This STR_VAR_1 plant is growing taller.
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
 = BerryTree_EventScript_CheckBerryStage2
 lockall
 special ObjectEventInteractionGetBerryName
-msgbox	BerryTree_Text_BerryGrowthStage2
+msgbox	STR_VAR_1 has sprouted.
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
 = BerryTree_EventScript_CheckBerryStage1
 lockall
 special ObjectEventInteractionGetBerryCountString
-msgbox	BerryTree_Text_BerryGrowthStage1
+msgbox	One STR_VAR_1 was planted here.
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
@@ -349,13 +349,13 @@ lock
 faceplayer
 specialvar VAR_RESULT PlayerHasBerries
 goto_if_eq VAR_RESULT TRUE BerryTree_EventScript_WantToPlant
-msgbox	BerryTree_Text_ItsSoftLoamySoil
+msgbox	It's soft, loamy soil.
 waitmessage
 waitbuttonpress
 release
 end
 = BerryTree_EventScript_WantToPlant
-msgbox	BerryTree_Text_WantToPlant
+msgbox	It's soft, loamy soil. Want to plant a BERRY?
 goto_if_eq VAR_RESULT YES BerryTree_EventScript_ChooseBerryToPlant
 goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPlanting
 end
@@ -375,13 +375,13 @@ special ObjectEventInteractionPlantBerryTree
 incrementgamestat GAME_STAT_PLANTED_BERRIES
 special IncrementDailyPlantedBerries
 special ObjectEventInteractionGetBerryCountString
-msgbox	BerryTree_Text_PlantedOneBerry
+msgbox	PLAYER planted one STR_VAR_1 in the soft, loamy soil.
 waitmessage
 waitbuttonpress
 return
 = BerryTree_EventScript_Sparkling
 lockall
-msgbox	BerryTree_Text_ExclamationPoint
+msgbox	!
 waitmessage
 waitbuttonpress
 releaseall
@@ -448,12 +448,12 @@ specialvar VAR_RESULT GetDaycareState
 goto_if_eq VAR_RESULT DAYCARE_EGG_WAITING Route117_EventScript_DaycareEggWaiting
 goto_if_eq VAR_RESULT DAYCARE_ONE_MON Route117_EventScript_CheckOnOneMon
 goto_if_eq VAR_RESULT DAYCARE_TWO_MONS Route117_EventScript_CheckOnTwoMons
-msgbox	Route117_Text_SeeWifeIfYoudLikeMeToRaiseMon
+msgbox	I'm the DAY-CARE MAN.I help take care of the precious POKéMON of TRAINERS.If you'd like me to raise your POKéMON, have a word with my wife.
 release
 end
 = Route117_EventScript_CheckOnTwoMons
 special GetDaycareMonNicknames
-msgbox	Route117_Text_YourMonsAreDoingFine
+msgbox	Ah, it's you! Your STR_VAR_1 and STR_VAR_2 are doing fine.
 special SetDaycareCompatibilityString
 special ShowFieldMessageStringVar4
 waitmessage
@@ -469,21 +469,21 @@ specialvar VAR_RESULT CheckDaycareMonReceivedMail
 call_if_eq VAR_RESULT 1 Route117_EventScript_MonReceivedMail
 return
 = Route117_EventScript_MonReceivedMail
-msgbox	Route117_Text_FriendlyWithOtherTrainersMon
+msgbox	By the way, about your STR_VAR_1, it seemed to be friendly with STR_VAR_2's STR_VAR_3.I may even have seen it receiving a piece of MAIL.
 return
 = Route117_EventScript_CheckOnOneMon
 special GetDaycareMonNicknames
-msgbox	Route117_Text_YourMonIsDoingFine
+msgbox	Ah, it's you! Good to see you. Your STR_VAR_1's doing fine.
 setvar VAR_0x8004 0
 call Route117_EventScript_CheckMonReceivedMail
 release
 end
 = Route117_EventScript_DaycareEggWaiting
-msgbox	Route117_Text_DoYouWantEgg
+msgbox	Ah, it's you!We were raising your POKéMON, and my goodness, were we surprised!Your POKéMON had an EGG!We don't know how it got there, but your POKéMON had it.You do want it, yes?
 goto_if_eq VAR_RESULT YES Route117_EventScript_DaycareAcceptEgg
-msgbox	Route117_Text_IWillKeepDoYouWantIt
+msgbox	I really will keep it. You do want this, yes?
 goto_if_eq VAR_RESULT YES Route117_EventScript_DaycareAcceptEgg
-msgbox	Route117_Text_IllKeepIt
+msgbox	Well then, I'll keep it. Thanks!
 clearflag FLAG_PENDING_DAYCARE_EGG
 special RejectEggFromDayCare
 release
@@ -491,15 +491,15 @@ end
 = Route117_EventScript_DaycareAcceptEgg
 specialvar VAR_RESULT CalculatePlayerPartyCount
 goto_if_ne VAR_RESULT PARTY_SIZE Route117_EventScript_DaycareReceiveEgg
-msgbox	Route117_Text_YouHaveNoRoomForIt
+msgbox	You have no room for it… Come back when you've made room.
 release
 end
 = Route117_EventScript_DaycareReceiveEgg
-msgbox	Route117_Text_ReceivedEgg
+msgbox	PLAYER received the EGG from the DAY-CARE MAN.
 playfanfare MUS_LEVEL_UP
 waitfanfare
 waitbuttonpress
-msgbox	Route117_Text_TakeGoodCareOfIt
+msgbox	Take good care of it.
 special GiveEggFromDaycare
 clearflag FLAG_PENDING_DAYCARE_EGG
 release

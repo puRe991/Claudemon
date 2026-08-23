@@ -159,7 +159,7 @@ goto_if_eq VAR_RESULT TRUE EventScript_PkmnCenterNurse_ExplainPokerus
 goto_if_eq VAR_RESULT FALSE EventScript_PkmnCenterNurse_CheckTrainerHillAndUnionRoom
 end
 = EventScript_PkmnCenterNurse_ExplainPokerus
-msgbox	gText_PokerusExplanation
+msgbox	Your POKéMON may be infected with POKéRUS.Little is known about the POKéRUS except that they are microscopic life- forms that attach to POKéMON.While infected, POKéMON are said to grow exceptionally well.
 setflag FLAG_POKERUS_EXPLAINED
 return
 = EventScript_PkmnCenterNurse_TakeAndHealPkmn

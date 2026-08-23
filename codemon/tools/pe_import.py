@@ -826,6 +826,12 @@ def _clean_dialog(raw):
             s = s.replace(code, " ")
         s = s.replace('\\"', '"')
         s = s.replace("{PLAYER}", "PLAYER").replace("{RIVAL}", "RIVAL")
+        # Keep {STR_VAR_n} as a bare STR_VAR_n token: ScriptVM substitutes it
+        # at display time (see the msgbox opcode's str_vars replace loop), the
+        # same way already-imported texts like "STR_VAR_1 setzt STR_VAR_2
+        # ein!" (Cut/Rock Smash) rely on. Dropping the braces entirely (the
+        # generic strip below) would silently eat the mon's name/move.
+        s = re.sub(r"\{(STR_VAR_\d+)\}", r"\1", s)
         s = re.sub(r"\{[^}]*\}", "", s)     # drop remaining control codes
         s = s.replace("$", " ")
         s = re.sub(r"\s+", " ", s).strip()
@@ -1272,6 +1278,13 @@ def cmd_world(src, limit=None):
         for fn in sorted(os.listdir(sdir)):
             if fn.endswith(".inc"):
                 global_texts.update(parse_text_file(os.path.join(sdir, fn)))
+    # data/event_scripts.s: the single biggest shared-script file (HM/badge
+    # flavour text like Text_CantStrength's "Would you like to use STRENGTH?",
+    # the PokeRus explanation, the department store elevator floor list, ...)
+    # -- same gap as the two blocks above if skipped.
+    events_s = os.path.join(src, "data", "event_scripts.s")
+    if os.path.isfile(events_s):
+        global_texts.update(parse_text_file(events_s))
 
     # Shared scripts (data/scripts/*.inc): common NPCs like the player's mom,
     # the PC, Nurse Joy, move tutors etc. are defined once here and pointed

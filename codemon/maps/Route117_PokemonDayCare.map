@@ -37,9 +37,9 @@ specialvar VAR_RESULT GetDaycareState
 goto_if_eq VAR_RESULT DAYCARE_EGG_WAITING Route117_PokemonDayCare_EventScript_EggWaiting
 goto_if_eq VAR_RESULT DAYCARE_ONE_MON Route117_PokemonDayCare_EventScript_OneMonInDaycare
 goto_if_eq VAR_RESULT DAYCARE_TWO_MONS Route117_PokemonDayCare_EventScript_TwoMonsInDaycare
-msgbox	Route117_PokemonDayCare_Text_WouldYouLikeUsToRaiseAMon
+msgbox	I'm the DAY-CARE LADY.We can raise POKéMON for you.Would you like us to raise one?
 goto_if_eq VAR_RESULT YES Route117_PokemonDayCare_EventScript_GiveMonToRaise
-msgbox	Route117_PokemonDayCare_Text_FineThenComeAgain
+msgbox	Oh, fine, then. Come again.
 release
 end
 = Route117_PokemonDayCare_EventScript_GiveMonToRaise
@@ -47,7 +47,7 @@ specialvar VAR_RESULT CountPartyNonEggMons
 goto_if_eq VAR_RESULT 1 Route117_PokemonDayCare_EventScript_OnlyOneMon
 specialvar VAR_RESULT CountPartyAliveNonEggMons
 goto_if_eq VAR_RESULT 2 Route117_PokemonDayCare_EventScript_OnlyTwoAliveMons
-msgbox	Route117_PokemonDayCare_Text_WhichMonShouldWeRaise
+msgbox	Which POKéMON should we raise for you?
 fadescreen FADE_TO_BLACK
 special ChooseSendDaycareMon
 goto_if_eq VAR_0x8004 PARTY_NOTHING_CHOSEN Route117_PokemonDayCare_EventScript_ComeAgain
@@ -56,7 +56,7 @@ goto_if_eq VAR_RESULT 0 Route117_PokemonDayCare_EventScript_OnlyOneAliveMon
 specialvar VAR_0x8005 GetSelectedMonNicknameAndSpecies
 waitse
 playmoncry VAR_0x8005 CRY_MODE_NORMAL
-msgbox	Route117_PokemonDayCare_Text_WellRaiseYourMon
+msgbox	Fine, we'll raise your STR_VAR_1 for a while.Come back for it later.
 waitmoncry
 special StoreSelectedPokemonInDaycare
 incrementgamestat GAME_STAT_USED_DAYCARE
@@ -65,35 +65,35 @@ goto_if_eq VAR_RESULT DAYCARE_ONE_MON Route117_PokemonDayCare_EventScript_CanRai
 release
 end
 = Route117_PokemonDayCare_EventScript_CanRaiseOneMore
-msgbox	Route117_PokemonDayCare_Text_WeCanRaiseOneMore
+msgbox	We can raise two of your POKéMON. Would you like us to raise one more?
 goto_if_eq VAR_RESULT YES Route117_PokemonDayCare_EventScript_GiveMonToRaise
 goto Route117_PokemonDayCare_EventScript_ComeAgain
 end
 = Route117_PokemonDayCare_EventScript_ComeAgain
-msgbox	Route117_PokemonDayCare_Text_ComeAgain
+msgbox	Fine. Come again.
 release
 end
 = Route117_PokemonDayCare_EventScript_OnlyOneAliveMon
-msgbox	Route117_PokemonDayCare_Text_WhatWillYouBattleWith
+msgbox	If you leave me that POKéMON, what will you battle with?Come back another time.
 release
 end
 = Route117_PokemonDayCare_EventScript_OnlyTwoAliveMons
-msgbox	Route117_PokemonDayCare_Text_YoullBeLeftWithJustOne
+msgbox	Huh? Now, now.If you leave that POKéMON with me, you'll be left with just one.You will be better off if you catch some more, I dare say.
 release
 end
 = Route117_PokemonDayCare_EventScript_OnlyOneMon
-msgbox	Route117_PokemonDayCare_Text_YouHaveJustOneMon
+msgbox	Oh? But you have just one POKéMON.Come back another time.
 release
 end
 = Route117_PokemonDayCare_EventScript_TwoMonsInDaycare
-msgbox	Route117_PokemonDayCare_Text_GoodToSeeYou
+msgbox	Ah, it's you! Good to see you. Your POKéMON can only be doing good!
 setvar VAR_0x8004 0
 call Route117_PokemonDayCare_EventScript_DisplayLevelsGained
 setvar VAR_0x8004 1
 call Route117_PokemonDayCare_EventScript_DisplayLevelsGained
-msgbox	Route117_PokemonDayCare_Text_TakeYourMonBack
+msgbox	Will you take your POKéMON back?
 goto_if_eq VAR_RESULT YES Route117_PokemonDayCare_EventScript_TryRetrieveMon
-msgbox	Route117_PokemonDayCare_Text_ComeAgain
+msgbox	Fine. Come again.
 release
 end
 @ Unused
@@ -103,8 +103,8 @@ special ShowDaycareLevelMenu
 goto_if_eq VAR_RESULT 2 Route117_PokemonDayCare_EventScript_ComeAgain
 copyvar VAR_0x8004 VAR_RESULT
 specialvar VAR_RESULT TakePokemonFromDaycare
-msgbox	Route117_PokemonDayCare_Text_HeresYourMon
-msgbox	Route117_PokemonDayCare_Text_ComeAgain
+msgbox	Perfect! Here's your POKéMON.
+msgbox	Fine. Come again.
 release
 end
 = Route117_PokemonDayCare_EventScript_TryRetrieveMon
@@ -120,14 +120,14 @@ goto Route117_PokemonDayCare_EventScript_CostPrompt
 end
 = Route117_PokemonDayCare_EventScript_CostPrompt
 special GetDaycareCostAndPrepareString
-msgbox	Route117_PokemonDayCare_Text_ItWillCostX
+msgbox	If you want your STR_VAR_1 back, it will cost ¥STR_VAR_2.
 goto_if_eq VAR_RESULT YES Route117_PokemonDayCare_EventScript_CheckEnoughMoney
 goto Route117_PokemonDayCare_EventScript_ComeAgain
 end
 = Route117_PokemonDayCare_EventScript_CheckEnoughMoney
 specialvar VAR_RESULT IsEnoughForCostInVar0x8005
 goto_if_eq VAR_RESULT 1 Route117_PokemonDayCare_EventScript_RetrieveMon
-msgbox	Route117_PokemonDayCare_Text_NotEnoughMoney
+msgbox	You don't have enough money…
 release
 end
 = Route117_PokemonDayCare_EventScript_RetrieveMon
@@ -136,22 +136,22 @@ waitmovement 0
 specialvar VAR_RESULT TakePokemonFromDaycare
 special SubtractMoneyFromVar0x8005
 playse SE_SHOP
-msgbox	Route117_PokemonDayCare_Text_HeresYourMon
+msgbox	Perfect! Here's your POKéMON.
 waitse
 playmoncry VAR_RESULT CRY_MODE_NORMAL
-msgbox	Route117_PokemonDayCare_Text_TookBackMon
+msgbox	PLAYER took back STR_VAR_1 from the DAY-CARE LADY.
 waitmoncry
 specialvar VAR_RESULT GetDaycareState
 goto_if_eq VAR_RESULT DAYCARE_ONE_MON Route117_PokemonDayCare_EventScript_AskRetrieveOtherMon
 goto Route117_PokemonDayCare_EventScript_ComeAgain
 end
 = Route117_PokemonDayCare_EventScript_AskRetrieveOtherMon
-msgbox	Route117_PokemonDayCare_Text_TakeOtherOneBackToo
+msgbox	Will you take back the other one, too?
 goto_if_eq VAR_RESULT YES Route117_PokemonDayCare_EventScript_TryRetrieveMon
 goto Route117_PokemonDayCare_EventScript_ComeAgain
 end
 = Route117_PokemonDayCare_EventScript_NoRoom
-msgbox	Route117_PokemonDayCare_Text_YourTeamIsFull
+msgbox	Your POKéMON team is full. Make room, then come see me.
 release
 end
 = Route117_PokemonDayCare_EventScript_DisplayLevelsGained
@@ -159,20 +159,20 @@ specialvar VAR_RESULT GetNumLevelsGainedFromDaycare
 call_if_ne VAR_RESULT 0 Route117_PokemonDayCare_EventScript_YourMonHasGrownXLevels
 return
 = Route117_PokemonDayCare_EventScript_YourMonHasGrownXLevels
-msgbox	Route117_PokemonDayCare_Text_YourMonHasGrownXLevels
+msgbox	By level, your STR_VAR_1 has grown by STR_VAR_2.
 return
 = Route117_PokemonDayCare_EventScript_OneMonInDaycare
-msgbox	Route117_PokemonDayCare_Text_GoodToSeeYou
+msgbox	Ah, it's you! Good to see you. Your POKéMON can only be doing good!
 setvar VAR_0x8004 0
 call Route117_PokemonDayCare_EventScript_DisplayLevelsGained
-msgbox	Route117_PokemonDayCare_Text_WeCanRaiseOneMore
+msgbox	We can raise two of your POKéMON. Would you like us to raise one more?
 goto_if_eq VAR_RESULT YES Route117_PokemonDayCare_EventScript_GiveMonToRaise
-msgbox	Route117_PokemonDayCare_Text_TakeYourMonBack
+msgbox	Will you take your POKéMON back?
 goto_if_eq VAR_RESULT YES Route117_PokemonDayCare_EventScript_TryRetrieveMon
 goto Route117_PokemonDayCare_EventScript_ComeAgain
 end
 = Route117_PokemonDayCare_EventScript_EggWaiting
-msgbox	Route117_PokemonDayCare_Text_HusbandWasLookingForYou
+msgbox	My husband was looking for you.
 release
 end
 counters

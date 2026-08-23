@@ -100,7 +100,7 @@ end
 = SafariZone_Northwest_EventScript_ItemTMSolarBeam_Taken
 end
 = SafariZone_Northwest_EventScript_Man
-msgbox	SafariZone_Northwest_Text_Man
+msgbox	Gasp… Gasp… I…made it out here…but…I'm exhausted… I don't have the energy to catch POKéMON…
 end
 grass
 13,454,455

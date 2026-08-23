@@ -163,10 +163,10 @@ msgbox	Das ist ein robuster Felsen, aber vielleicht kann ihn ein POKéMON zertr�
 releaseall
 end
 = SafariZone_North_EventScript_Man
-msgbox	SafariZone_North_Text_Man
+msgbox	I'm going to catch a lot of rare POKéMON here and trade them with my friends!
 end
 = SafariZone_North_EventScript_Fisherman
-msgbox	SafariZone_North_Text_Fisherman
+msgbox	I'm on a mission to find WATER POKéMON you don't see in HOENN.Do you have any idea where the lake is?
 end
 grass
 13,454,455

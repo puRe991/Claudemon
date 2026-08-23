@@ -43,7 +43,7 @@ end
 trywondercardscript
 goto CableClub_EventScript_MysteryGiftThankYou
 = CableClub_EventScript_MysteryGiftThankYou
-msgbox	gText_ThankYouForAccessingMysteryGift
+msgbox	Thank you for accessing the MYSTERY GIFT System.
 end
 = CableClub_EventScript_DistributeEonTicket
 checkitem ITEM_EON_TICKET
@@ -59,7 +59,7 @@ end
 @ Unused?
 goto CableClub_EventScript_MysteryGiftThankYou2
 = CableClub_EventScript_MysteryGiftThankYou2
-msgbox	gText_ThankYouForAccessingMysteryGift
+msgbox	Thank you for accessing the MYSTERY GIFT System.
 release
 end
 counters

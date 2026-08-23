@@ -125,7 +125,7 @@ goto_if_eq VAR_CONTEST_TYPE CONTEST_TYPE_LINK ContestHall_EventScript_EndLinkCon
 call ContestHall_EventScript_CheckShouldSkipPrize
 goto_if_set FLAG_TEMP_2 ContestHall_EventScript_SkipPrize
 lockall
-msgbox	ContestHall_Text_AcceptYourPrize
+msgbox	MC: Here you are! Please accept your prize!
 releaseall
 call ContestHall_EventScript_WinnerApproachForPrize
 call ContestHall_EventScript_GivePrizeIfWinner
@@ -226,7 +226,7 @@ return
 special GetContestWinnerId
 goto_if_eq VAR_0x8005 3 ContestHall_EventScript_GiveContestPrizes
 lockall
-msgbox	ContestHall_Text_CongratsPleaseCompeteAgain
+msgbox	MC: Congratulations! Please do compete again!
 releaseall
 return
 = ContestHall_EventScript_GiveContestPrizes
@@ -235,20 +235,20 @@ specialvar VAR_RESULT HasMonWonThisContestBefore
 goto_if_eq VAR_RESULT FALSE ContestHall_EventScript_ReceiveContestRibbon
 goto_if_eq VAR_CONTEST_RANK CONTEST_RANK_MASTER ContestHall_EventScript_GiveLuxuryBall
 lockall
-msgbox	ContestHall_Text_CongratsPleaseCompeteAgain
+msgbox	MC: Congratulations! Please do compete again!
 releaseall
 return
 = ContestHall_EventScript_GiveLuxuryBall
 giveitem ITEM_LUXURY_BALL
 goto_if_eq VAR_RESULT FALSE ContestHall_EventScript_NoRoomForLuxuryBall
 lockall
-msgbox	ContestHall_Text_CongratsPleaseCompeteAgain
+msgbox	MC: Congratulations! Please do compete again!
 releaseall
 return
 = ContestHall_EventScript_NoRoomForLuxuryBall
 lockall
 call Common_EventScript_BagIsFull
-msgbox	ContestHall_Text_PickUpPrizeAtCounterLater
+msgbox	Please pick up your prize at the reception counter later. Please do compete again!
 releaseall
 setvar VAR_CONTEST_PRIZE_PICKUP 4
 return
@@ -257,12 +257,12 @@ special GiveMonContestRibbon
 incrementgamestat GAME_STAT_RECEIVED_RIBBONS
 setflag FLAG_SYS_RIBBON_GET
 lockall
-msgbox	ContestHall_Text_ConferRibbonAsPrize
+msgbox	We confer on you this RIBBON as your prize!
 playfanfare MUS_OBTAIN_ITEM
-msgbox	ContestHall_Text_ReceivedRibbon
+msgbox	PLAYER received a RIBBON.
 waitfanfare
 special BufferContestWinnerMonName
-msgbox	ContestHall_Text_PutRibbonOnMon
+msgbox	PLAYER put the RIBBON on STR_VAR_1.
 releaseall
 return
 = ContestHall_EventScript_SetSketchFlag
@@ -303,7 +303,7 @@ releaseall
 return
 = ContestHall_EventScript_SkipPrize
 lockall
-msgbox	ContestHall_Text_CongratsPleaseCompeteAgain
+msgbox	MC: Congratulations! Please do compete again!
 releaseall
 delay 90
 special ShouldReadyContestArtist
@@ -354,7 +354,7 @@ setvar VAR_TEMP_1 0
 return
 = ContestHall_EventScript_CongratsWinner
 goto_if_eq VAR_CONTEST_TYPE CONTEST_TYPE_LINK ContestHall_EventScript_CongratsWinnerLink
-msgbox	ContestHall_Text_CongratsTrainerXandMon
+msgbox	MC: Entry No. STR_VAR_2!STR_VAR_3 and STR_VAR_1, congratulations!
 return
 = ContestHall_EventScript_CongratsWinnerLink
 messageautoscroll ContestHall_Text_CongratsTrainerXandMon
@@ -411,7 +411,7 @@ special LinkContestWaitForConnection
 return
 = ContestHall_EventScript_WeWillDeclareWinner
 goto_if_eq VAR_CONTEST_TYPE CONTEST_TYPE_LINK ContestHall_EventScript_WeWillDeclareWinnerLink
-msgbox	ContestHall_Text_WeWillNowDeclareWinner
+msgbox	JUDGE: We will now declare the winner!
 return
 = ContestHall_EventScript_WeWillDeclareWinnerLink
 call ContestHall_EventScript_TryWaitForLink
@@ -421,7 +421,7 @@ delay 30
 return
 = ContestHall_EventScript_JudgeLooksReady
 goto_if_eq VAR_CONTEST_TYPE CONTEST_TYPE_LINK ContestHall_EventScript_JudgeLooksReadyLink
-msgbox	ContestHall_Text_JudgeLooksReady
+msgbox	Now, all that remains is the pulse- pounding proclamation of the winner.The JUDGE looks ready to make the announcement!
 return
 = ContestHall_EventScript_JudgeLooksReadyLink
 call ContestHall_EventScript_TryWaitForLink
@@ -431,7 +431,7 @@ delay 30
 return
 = ContestHall_EventScript_ThankYouForAppeals
 goto_if_eq VAR_CONTEST_TYPE CONTEST_TYPE_LINK ContestHall_EventScript_ThankYouForAppealsLink
-msgbox	ContestHall_Text_ThankYouForAppeals
+msgbox	Thank you all for a most wonderful display of quality appeals!This concludes all judging! Thank you for your fine efforts!
 return
 = ContestHall_EventScript_ThankYouForAppealsLink
 call ContestHall_EventScript_TryWaitForLink
@@ -441,7 +441,7 @@ delay 30
 return
 = ContestHall_EventScript_ThatsItForJudging
 goto_if_eq VAR_CONTEST_TYPE CONTEST_TYPE_LINK ContestHall_EventScript_ThatsItForJudgingLink
-msgbox	ContestHall_Text_ThatsItForJudging
+msgbox	MC: That's it for judging!
 return
 = ContestHall_EventScript_ThatsItForJudgingLink
 call ContestHall_EventScript_TryWaitForLink
@@ -474,7 +474,7 @@ releaseall
 return
 = ContestHall_EventScript_LetsAppeal
 goto_if_eq VAR_CONTEST_TYPE CONTEST_TYPE_LINK ContestHall_EventScript_LetsAppealLink
-msgbox	ContestHall_Text_VotingCompleteLetsAppeal
+msgbox	Voting is now complete!While the votes are being tallied, let's move on to secondary judging!The second stage of judging is the much anticipated appeal time!May the contestants amaze us with superb appeals of dazzling moves!Let's see a little enthusiasm! Let's appeal!
 return
 = ContestHall_EventScript_LetsAppealLink
 specialvar VAR_RESULT IsWirelessContest
@@ -524,7 +524,7 @@ waitmovement 0
 return
 = ContestHall_EventScript_VotingUnderWay
 goto_if_eq VAR_CONTEST_TYPE CONTEST_TYPE_LINK ContestHall_EventScript_VotingUnderWayLink
-msgbox	ContestHall_Text_VotingUnderWay
+msgbox	Voting under way…
 return
 = ContestHall_EventScript_VotingUnderWayLink
 messageautoscroll ContestHall_Text_VotingUnderWay
@@ -532,7 +532,7 @@ call ContestHall_EventScript_TryWaitForLink
 return
 = ContestHall_EventScript_AudienceWillVote
 goto_if_eq VAR_CONTEST_TYPE CONTEST_TYPE_LINK ContestHall_EventScript_AudienceWillVoteLink
-msgbox	ContestHall_Text_SeenContestantsAudienceWillVote
+msgbox	MC: We've just seen the four POKéMON contestants.Now it's time for primary judging!The audience will vote on their favorite POKéMON contestants.Without any further ado, let the voting begin!
 return
 = ContestHall_EventScript_AudienceWillVoteLink
 specialvar VAR_RESULT IsWirelessContest
@@ -843,7 +843,7 @@ call ContestHall_EventScript_EntryXTrainersMon
 return
 = ContestHall_EventScript_EntryXTrainersMon
 goto_if_eq VAR_CONTEST_TYPE CONTEST_TYPE_LINK ContestHall_EventScript_EntryXTrainersMonLink
-msgbox	ContestHall_Text_EntryXTrainersMon
+msgbox	MC: Entry No. STR_VAR_2! STR_VAR_1's STR_VAR_3!
 waitmessage
 return
 = ContestHall_EventScript_EntryXTrainersMonLink
@@ -906,7 +906,7 @@ return
 = ContestHall_EventScript_GettingStarted
 goto_if_eq VAR_CONTEST_TYPE CONTEST_TYPE_LINK ContestHall_EventScript_GettingStartedLink
 lockall
-msgbox	ContestHall_Text_GettingStartedParticipantsAsFollows
+msgbox	MC: Hello! We're just getting started with a STR_VAR_3 Rank POKéMON STR_VAR_2!The participating TRAINERS and their POKéMON are as follows:
 releaseall
 return
 = ContestHall_EventScript_GettingStartedLink

@@ -80,11 +80,11 @@ end
 lock
 faceplayer
 goto_if_set FLAG_SYS_CHAT_USED ProfileMan_EventScript_GivenProfileBefore
-msgbox	ProfileMan_Text_CollectTrainerProfiles
+msgbox	Hello there, TRAINER! You've got a wonderful smile, there.I have a hobby--collecting the profiles of POKéMON TRAINERS.
 goto ProfileMan_EventScript_AskToSeeProfile
 end
 = ProfileMan_EventScript_AskToSeeProfile
-msgbox	ProfileMan_Text_MayISeeYourProfile
+msgbox	So, how about it? May I see your profile?
 multichoice 17 6 MULTI_YESNOINFO_2 FALSE
 switch VAR_RESULT
 case 0 ProfileMan_EventScript_CreateProfile
@@ -93,15 +93,15 @@ case 2 ProfileMan_EventScript_Info
 case MULTI_B_PRESSED ProfileMan_EventScript_DeclineShowProfile
 end
 = ProfileMan_EventScript_DeclineShowProfile
-msgbox	ProfileMan_Text_ImagineYouWouldHaveWonderfulProfile
+msgbox	Oh, no, really?I imagine someone like you would have a wonderful profile…
 release
 end
 = ProfileMan_EventScript_Info
-msgbox	ProfileMan_Text_EasyChatExplanation
+msgbox	You make your own profile by putting together four words or phrases.Here, I'll show you an example of a profile using four pieces of text.You can switch those four pieces with other text pieces any which way you like to make your own profile.There are a lot of text pieces that you can use.They are arranged in groups like POKéMON, lifestyles, and hobbies so it is easier to look them up.So, first, choose the group of text pieces to display a list of choices.Then, pick the choice you want.Repeat for the remaining text choices, and you'll have your very own profile.
 goto ProfileMan_EventScript_AskToSeeProfile
 end
 = ProfileMan_EventScript_CreateProfile
-msgbox	ProfileMan_Text_LetsSeeItThen
+msgbox	Yes! Thank you! So, let's see it, then.
 closemessage
 setvar VAR_0x8004 EASY_CHAT_TYPE_PROFILE
 call Common_ShowEasyChatScreen
@@ -115,19 +115,19 @@ setvar VAR_0x8004 0
 special ShowEasyChatProfile
 waitmessage
 delay 80
-msgbox	ProfileMan_Text_FantasticProfile
+msgbox	F-fantastic!Your profile, it's wonderful! It really says what you're about.Why, anyone hearing this profile would be captivated by you!Thank you!
 release
 end
 = ProfileMan_EventScript_CancelShowProfile
-msgbox	ProfileMan_Text_NotIntoItRightNow
+msgbox	Oh? You're not into it right now?Well, anytime is good by me!
 release
 end
 = ProfileMan_EventScript_GivenProfileBefore
-msgbox	ProfileMan_Text_YouHaveWonderfulSmile
+msgbox	Hello there, TRAINER! You've got a wonderful smile.
 goto ProfileMan_EventScript_AskToSeeNewProfile
 end
 = ProfileMan_EventScript_AskToSeeNewProfile
-msgbox	ProfileMan_Text_MayISeeYourNewProfile
+msgbox	May I see your new profile?
 multichoice 17 6 MULTI_YESNOINFO_2 FALSE
 switch VAR_RESULT
 case 0 ProfileMan_EventScript_CreateNewProfile
@@ -136,7 +136,7 @@ case 2 ProfileMan_EventScript_InfoNewProfile
 case MULTI_B_PRESSED ProfileMan_EventScript_DeclineNewProfile
 end
 = ProfileMan_EventScript_DeclineNewProfile
-msgbox	ProfileMan_Text_LikeProfileWayItIs
+msgbox	Oh, you like your profile the way it is.I don't blame you--it's a wonderful profile the way it is now.
 release
 end
 @ Unused
@@ -144,11 +144,11 @@ goto ProfileMan_EventScript_Ret
 = ProfileMan_EventScript_Ret
 return
 = ProfileMan_EventScript_InfoNewProfile
-msgbox	ProfileMan_Text_EasyChatExplanation
+msgbox	You make your own profile by putting together four words or phrases.Here, I'll show you an example of a profile using four pieces of text.You can switch those four pieces with other text pieces any which way you like to make your own profile.There are a lot of text pieces that you can use.They are arranged in groups like POKéMON, lifestyles, and hobbies so it is easier to look them up.So, first, choose the group of text pieces to display a list of choices.Then, pick the choice you want.Repeat for the remaining text choices, and you'll have your very own profile.
 goto ProfileMan_EventScript_AskToSeeNewProfile
 end
 = ProfileMan_EventScript_CreateNewProfile
-msgbox	ProfileMan_Text_EvenBetterThanLastProfile
+msgbox	Yes! Thank you!I hope it's even better than the profile you showed me before.
 closemessage
 setvar VAR_0x8004 EASY_CHAT_TYPE_PROFILE
 call Common_ShowEasyChatScreen
@@ -229,7 +229,7 @@ goto_if_eq VAR_RESULT TRUE EventScript_PkmnCenterNurse_ExplainPokerus
 goto_if_eq VAR_RESULT FALSE EventScript_PkmnCenterNurse_CheckTrainerHillAndUnionRoom
 end
 = EventScript_PkmnCenterNurse_ExplainPokerus
-msgbox	gText_PokerusExplanation
+msgbox	Your POKéMON may be infected with POKéRUS.Little is known about the POKéRUS except that they are microscopic life- forms that attach to POKéMON.While infected, POKéMON are said to grow exceptionally well.
 setflag FLAG_POKERUS_EXPLAINED
 return
 = EventScript_PkmnCenterNurse_TakeAndHealPkmn

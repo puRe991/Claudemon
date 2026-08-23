@@ -289,8 +289,29 @@ static Session* player_step(Session* s, DIR dir, Audio* audio, GameState* gs,
     // it still needs Surf, confirmed via the same Ja/Nein prompt as above.
     const Warp* target_warp = s->map->warp_at(tx, ty);
     bool water = s->map->is_water(tx, ty);
-    bool clear = (s->map->passable(tx, ty) || target_warp) &&
-                !actor_at(s->actors, s->player, tx, ty);
+    bool blocked_by_actor = actor_at(s->actors, s->player, tx, ty);
+    // Strength: walking into a boulder pushes it one tile further in the same
+    // direction instead of just bumping (pokeemerald's TryPushBoulder in
+    // field_player_avatar.c). The player doesn't move on this same step --
+    // COLLISION_PUSHED_BOULDER blocks that attempt while the boulder itself
+    // slides forward; a normal step onto the now-empty tile follows next.
+    if (blocked_by_actor && gs->flag("FLAG_SYS_USE_STRENGTH")) {
+        for (Agent& ag : s->agents) {
+            if (ag.ch->is_removed()) continue;
+            if (ag.ch->get_tile_x() != tx || ag.ch->get_tile_y() != ty) continue;
+            if (ag.sheet != "misc_pushable_boulder") break;
+            int bx, by; ag.ch->target_tile(dir, bx, by);
+            if (s->map->in_bounds(bx, by) && s->map->passable(bx, by) &&
+                !s->map->is_water(bx, by) && !actor_at(s->actors, ag.ch, bx, by)) {
+                ag.ch->step(dir);
+                if (audio) audio->play_step();
+            } else if (audio) audio->play_bump();
+            break;
+        }
+        s->player->face(dir);
+        return s;
+    }
+    bool clear = (s->map->passable(tx, ty) || target_warp) && !blocked_by_actor;
     if (!clear || (water && !can_surf)) {
         s->player->face(dir);
         if (clear && water && needs_surf) *needs_surf = true;

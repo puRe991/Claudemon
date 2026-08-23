@@ -311,6 +311,14 @@ has been verified either by an automated test or by headless screenshot
   water wild-encounter table (5-slot Gen-3 rates) — without this, roughly
   the entire back half of Hoenn (Mossdeep, Sootopolis, Ever Grande/the
   Pokémon League itself) was unreachable
+* Strength: activating it is the same generic `checkpartymove`/Ja-Nein/
+  `setflag FLAG_SYS_USE_STRENGTH` script shape Cut and Surf already use (so
+  it worked for free), plus a new native push mechanic in `player_step()`
+  mirroring pokeemerald's `TryPushBoulder` — walking into a
+  `misc_pushable_boulder` NPC with Strength active shoves it one tile
+  further in the same direction (checked for bounds/collision/water) instead
+  of just blocking, gating every Trick House/Seafloor Cavern/Victory Road
+  boulder puzzle
 * Using healing/revive/status-curing bag items (Potion family, soft drinks,
   berries, Revive/Max Revive, Antidote/Paralyze Heal/Awakening/Burn Heal/
   Ice Heal/Full Heal/Full Restore) on a chosen party member, with real
@@ -358,11 +366,10 @@ has been verified either by an automated test or by headless screenshot
 ### ❌ Not implemented yet
 
 * Gift/fossil Pokémon (`givemon`: Johto starters, Beldum, Castform, fossils)
-* HM field moves other than Cut/Rock Smash/Surf (Fly/Strength/Flash/
-  Waterfall/Dive) — Strength needs a real boulder-push mechanic, Waterfall/
-  Dive need their own walk-onto-special-tile triggers (same shape as Surf,
-  see above, but distinct metatile behaviors and no assets/mechanic for
-  Dive's underwater maps yet)
+* HM field moves other than Cut/Rock Smash/Surf/Strength (Fly/Flash/
+  Waterfall/Dive) — Waterfall/Dive need their own walk-onto-special-tile
+  triggers (same shape as Surf, see above, but distinct metatile behaviors
+  and no assets/mechanic for Dive's underwater maps yet)
 * Bike, day-night cycle, overworld weather, fishing, berry growing
 * Pokédex screen (no seen/caught tracking), party summary/stats screen,
   player naming/gender selection, options/settings screen
@@ -446,12 +453,39 @@ hit:
      classified), a gate that blocks entry without Surf and prompts for it
      with the real games' own question text, automatic dismount back on
      land, and a water wild-encounter table.
-6. **A per-map LOCALID→object registry** — the biggest concrete gap the
+6. ~~Strength as a field move~~ — done. Activating it needed no new VM code
+   at all (`EventScript_StrengthBoulder` is the same
+   `checkpartymove`/Ja-Nein/`setflag` shape Cut and Surf already use), but
+   pushing the boulder is a walk-into-it collision, not an interaction, so it
+   needed a new native mechanic in `player_step()` mirroring pokeemerald's
+   `TryPushBoulder`: walking into a `misc_pushable_boulder` NPC while
+   `FLAG_SYS_USE_STRENGTH` is set moves it one tile further (bounds/
+   collision/water-checked) instead of just blocking, and the player only
+   advances into its old tile on the *next* step, exactly like the original.
+   Along the way, found and fixed a much bigger, unrelated bug this surfaced:
+   any msgbox referencing a text label defined in `data/event_scripts.s`
+   (pokeemerald's single biggest shared-script file — HM/badge flavour text,
+   the PokéRus explanation, the department store elevator's floor prompt,
+   ...) was rendering the raw label name (e.g. literally "Text_CantStrength")
+   instead of real text, because the importer's global text pool only
+   scanned `data/text/*.inc` and `data/scripts/*.inc`, never that file. Fixed
+   in `pe_import.py` and back-filled non-destructively into the 74 already-
+   imported `.map` files it affected (Pokémon Centers, Battle Frontier
+   rooms, several routes, the Trick House/boulder rooms, ...) — 486 lines
+   resolved to their real text. One text (`gStringVar4`, a runtime-formatted
+   Battle Frontier buffer, not a static string) is legitimately out of scope
+   for a static text pool and left as-is. Also fixed a second, narrower bug
+   found while re-deriving the Strength text: the importer's `{STR_VAR_n}`
+   handling dropped the token entirely instead of keeping it as the bare
+   `STR_VAR_n` placeholder `ScriptVM`'s msgbox substitution actually looks
+   for, silently eating the Pokémon's name out of "X used STRENGTH!"-style
+   lines.
+7. **A per-map LOCALID→object registry** — the biggest concrete gap the
    `goto_if`/`multichoice` audit above found: needed for
    `addobject`/`hideobject`/`showobject` to work at all, which blocks
    scripted mid-scene NPC spawns like Petalburg Gym's Wally tutorial
    cutscene.
-7. **`multichoice` support** — a real choice-menu UI (same block-and-resume
+8. **`multichoice` support** — a real choice-menu UI (same block-and-resume
    VM pattern as the party picker/Ja-Nein prompt) plus hand-transcribing
    each non-Battle-Frontier option list's text from pokeemerald's C source.
 
@@ -510,7 +544,8 @@ screenshot), not just written and assumed correct.
 - [x] Overworld minigames (slots/roulette/blender/jump) with coin currency
 - [x] Cut/Rock Smash field moves (badge-gated, real removeobject/text)
 - [x] Surf (real water-tile gate, Ja/Nein prompt, dismount, water encounters)
-- [ ] Remaining HM field moves (Fly/Strength/Flash/Waterfall/Dive)
+- [x] Strength (native boulder-push collision mechanic, real activation text)
+- [ ] Remaining HM field moves (Fly/Flash/Waterfall/Dive)
 - [x] Running Shoes (hold Shift, gated on FLAG_SYS_B_DASH, real 2x speed)
 - [ ] Bike
 - [ ] Day-night cycle, overworld weather

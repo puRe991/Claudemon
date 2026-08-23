@@ -33,11 +33,11 @@ objscripts
 2 SafariZone_RestHouse_EventScript_FatMan
 scriptdefs
 = SafariZone_RestHouse_EventScript_FatMan
-msgbox	SafariZone_RestHouse_Text_FatMan
+msgbox	If you put a on the FEEDER, POKéMON are attracted to it.I think POKéMON with the same sort of nature are drawn by a certain .
 end
 = SafariZone_RestHouse_EventScript_PsychicM
-msgbox	SafariZone_RestHouse_Text_PsychicM
+msgbox	If you use S, wild POKéMON won't be so quick to run away.It's not much use to give S to POKéMON that don't flee easily.
 end
 = SafariZone_RestHouse_EventScript_Youngster
-msgbox	SafariZone_RestHouse_Text_Youngster
+msgbox	I don't have any S, but I caught a good number of POKéMON.You can improve your chances of making a catch by getting closer to them before throwing a SAFARI BALL.
 end

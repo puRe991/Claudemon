@@ -102,7 +102,7 @@ end
 = SafariZone_Southwest_EventScript_ItemMaxRevive_Taken
 end
 = SafariZone_Southwest_EventScript_Woman
-msgbox	SafariZone_Southwest_Text_Woman
+msgbox	Sometimes, when I toss a at POKéMON, it gets ignored.Do POKéMON have likes and dislikes about what they eat?
 end
 grass
 13

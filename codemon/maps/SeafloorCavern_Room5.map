@@ -70,7 +70,7 @@ goto_if_set FLAG_SYS_USE_STRENGTH EventScript_CheckActivatedBoulder
 checkpartymove MOVE_STRENGTH
 goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CantStrength
 setfieldeffectargument 0 VAR_RESULT
-msgbox	Text_WantToStrength
+msgbox	It's a big boulder, but a POKéMON may be able to push it aside.Would you like to use STRENGTH?
 goto_if_eq VAR_RESULT NO EventScript_CancelStrength
 closemessage
 dofieldeffect FLDEFF_USE_STRENGTH
@@ -79,7 +79,7 @@ goto EventScript_ActivateStrength
 end
 = EventScript_ActivateStrength
 setflag FLAG_SYS_USE_STRENGTH
-msgbox	Text_MonUsedStrength
+msgbox	STR_VAR_1 used STRENGTH!STR_VAR_1's STRENGTH made it possible to move boulders around!
 releaseall
 end
 = EventScript_CancelStrength
@@ -87,11 +87,11 @@ closemessage
 releaseall
 end
 = EventScript_CantStrength
-msgbox	Text_CantStrength
+msgbox	It's a big boulder, but a POKéMON may be able to push it aside.
 releaseall
 end
 = EventScript_CheckActivatedBoulder
-msgbox	Text_StrengthActivated
+msgbox	STRENGTH made it possible to move boulders around.
 releaseall
 end
 = EventScript_RockSmash
