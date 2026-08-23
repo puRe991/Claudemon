@@ -32,6 +32,10 @@ static const float NPC_TICK = 0.45f;
 // play only); Character::MOVE_DURATION is kept a little under this so one
 // slide always finishes before the next step is allowed to start.
 static const float MOVE_INTERVAL = 0.15f;
+// Running Shoes (FLAG_SYS_B_DASH): the real games' hold-B-to-run, adapted to
+// PC as held Shift -- exactly half MOVE_INTERVAL, the same 2x speed as the
+// original (paired with Character::RUN_MOVE_DURATION for the slide itself).
+static const float RUN_MOVE_INTERVAL = MOVE_INTERVAL / 2.f;
 // Fixed camera viewport in tiles (so the window size is independent of the map).
 static const int VIEW_TW = 16, VIEW_TH = 12;
 // Headless/screenshot mode wants exact, deterministic tile-snapped rendering
@@ -1194,6 +1198,11 @@ int main() {
             bool ui_blocked = starter.active() || yesno.active() || shop.active() ||
                               battle.active() || games.active() || menu.active() ||
                               box.is_active() || vm.running();
+            bool run_held = !ui_blocked && gs.flag("FLAG_SYS_B_DASH") &&
+                            (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) ||
+                             sf::Keyboard::isKeyPressed(sf::Keyboard::RShift));
+            float interval = run_held ? RUN_MOVE_INTERVAL : MOVE_INTERVAL;
+            sess->player->set_running(run_held);
             DIR held = DIR::NONE;
             if (!ui_blocked) {
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) held = DIR::N;
@@ -1206,7 +1215,7 @@ int main() {
                 move_cooldown = 0.f;
             } else if (sess->player->get_facing() != held) {
                 sess->player->face(held);
-                move_cooldown = MOVE_INTERVAL;
+                move_cooldown = interval;
             } else {
                 move_cooldown -= dt;
                 if (move_cooldown <= 0.f) {
@@ -1214,7 +1223,7 @@ int main() {
                     int pby = sess->player->get_tile_y();
                     Session* before = sess;
                     sess = player_step(sess, held, &audio, &gs);
-                    move_cooldown += MOVE_INTERVAL;
+                    move_cooldown += interval;
                     if (sess != before) {
                         vm.configure(sess->map, &gs, &box, &battle, &audio, sess->player, &sess->actors);
                         run_load_triggers(sess->map, gs, vm);

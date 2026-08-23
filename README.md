@@ -190,7 +190,8 @@ ctest --test-dir build --output-on-failure
 ```
 
 **Controls**: WASD to move, Space/Enter to confirm/interact, `M` opens the
-menu, `G` opens minigames (where available).
+menu, `G` opens minigames (where available), hold `Shift` to run (once the
+Running Shoes are received).
 
 ### Windows
 
@@ -290,6 +291,9 @@ has been verified either by an automated test or by headless screenshot
   `removeobject` permanently clearing the tree, gated on the first Badge,
   same checks/messages as pokeemerald) — Rock Smash uses the identical
   shared opcodes/script shape so it works the same way
+* Running Shoes: once received (`FLAG_SYS_B_DASH`), holding Shift moves at
+  the real games' exact 2x walk speed — the GBA's hold-B-to-run adapted to
+  a PC control (there's no B button), same gated flag as the original
 * EXP gain, all 6 species growth curves, level-up stat recalculation,
   level-up movesets (411 learnsets), **level-up evolution** (172 paths)
 * TM/HM teaching from the bag, gated by real per-species learnsets (372
@@ -343,7 +347,7 @@ has been verified either by an automated test or by headless screenshot
 * Gift/fossil Pokémon (`givemon`: Johto starters, Beldum, Castform, fossils)
 * HM field moves other than Cut/Rock Smash (Surf/Fly/Strength/Flash/
   Waterfall/Dive) — water is currently just impassable terrain
-* Running/bike, day-night cycle, overworld weather, fishing, berry growing
+* Bike, day-night cycle, overworld weather, fishing, berry growing
 * Pokédex screen (no seen/caught tracking), party summary/stats screen,
   player naming/gender selection, options/settings screen
 * Multiple PC boxes (currently one unlimited list), item storage in the PC
@@ -365,8 +369,9 @@ hit:
    cuttable trees now work exactly like pokeemerald (Rock Smash rides along
    for free, same shared opcodes/script shape). Surf/Strength/Waterfall/Fly/
    Dive still aren't implemented but aren't needed this early.
-2. **Running Shoes' run mechanic** — the item is already given (Mom's scene
-   in Littleroot) but holding B to move faster isn't implemented.
+2. ~~Running Shoes' run mechanic~~ — done: gated on `FLAG_SYS_B_DASH`,
+   holding Shift (the PC-appropriate stand-in for the GBA's B button) now
+   moves at the real games' 2x walk speed.
 3. **Trading** — not implemented at all; blocks at least the Route 116
    Trainer's School Seedot↔Ralts in-game trade, and any later trade-based
    content/evolutions.
@@ -427,7 +432,8 @@ screenshot), not just written and assumed correct.
 - [x] Overworld minigames (slots/roulette/blender/jump) with coin currency
 - [x] Cut/Rock Smash field moves (badge-gated, real removeobject/text)
 - [ ] Remaining HM field moves (Surf/Fly/Strength/Flash/Waterfall/Dive)
-- [ ] Running/bike
+- [x] Running Shoes (hold Shift, gated on FLAG_SYS_B_DASH, real 2x speed)
+- [ ] Bike
 - [ ] Day-night cycle, overworld weather
 - [ ] Fishing, berry growing
 

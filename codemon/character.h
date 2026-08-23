@@ -33,6 +33,10 @@ private:
 	bool animated;             // false -> step() snaps instantly, no slide
 	                           // (headless/screenshot mode: deterministic,
 	                           // frame-exact rendering, no real-time tick())
+	bool running;              // Running Shoes (FLAG_SYS_B_DASH) held down:
+	                           // tick() slides at RUN_MOVE_DURATION instead
+	                           // of MOVE_DURATION, matching main.cpp's
+	                           // shortened RUN_MOVE_INTERVAL between steps.
 	DIR facing;
 	int anim_phase;            // 0 = idle, 1 = step A, 2 = step B
 	bool step_toggle;          // alternates the two walk frames
@@ -70,6 +74,11 @@ public:
 	// the sprite at its old tile forever); real interactive play wants the
 	// smooth slide. Defaults to animated.
 	void set_animated(bool a) { this->animated = a; }
+
+	// PC control adaptation of the GBA's "hold B to run": here it's held
+	// Shift, gated on FLAG_SYS_B_DASH (see main.cpp). Only meaningful while
+	// animated -- headless mode never calls tick() so it has no effect there.
+	void set_running(bool r) { this->running = r; }
 
 	void set_hide_flag(const std::string& f) { this->hide_flag = f; }
 	const std::string& get_hide_flag() const { return this->hide_flag; }

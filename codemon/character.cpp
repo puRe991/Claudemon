@@ -2,12 +2,12 @@
 #include "character.h"
 
 Character::Character()
-	: tile(0, 0), prev_tile(0, 0), move_t(1.f), animated(true),
+	: tile(0, 0), prev_tile(0, 0), move_t(1.f), animated(true), running(false),
 	  facing(DIR::S), anim_phase(0), step_toggle(false),
 	  frame_w(16), frame_h(32), loaded(false) {}
 
 Character::Character(int tile_x, int tile_y)
-	: tile(tile_x, tile_y), prev_tile(tile_x, tile_y), move_t(1.f), animated(true),
+	: tile(tile_x, tile_y), prev_tile(tile_x, tile_y), move_t(1.f), animated(true), running(false),
 	  facing(DIR::S), anim_phase(0), step_toggle(false),
 	  frame_w(16), frame_h(32), loaded(false) {}
 
@@ -79,11 +79,15 @@ void Character::set_idle() { this->anim_phase = 0; }
 // Real Pokemon-game walk speed is ~2px/frame at 60fps for a 16px tile, i.e.
 // about 8 frames -- this just needs to be a bit under MOVE_INTERVAL (see
 // main.cpp) so one slide always finishes before the next one can start.
+// Running (Running Shoes, held Shift) is the real games' exact 2x walk
+// speed, paired with main.cpp's halved RUN_MOVE_INTERVAL the same way.
 static const float MOVE_DURATION = 0.13f;
+static const float RUN_MOVE_DURATION = MOVE_DURATION / 2.f;
 
 void Character::tick(float dt) {
 	if (this->move_t < 1.f) {
-		this->move_t += dt / MOVE_DURATION;
+		float duration = this->running ? RUN_MOVE_DURATION : MOVE_DURATION;
+		this->move_t += dt / duration;
 		if (this->move_t > 1.f) this->move_t = 1.f;
 	}
 }
