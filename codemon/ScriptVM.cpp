@@ -8,9 +8,10 @@ ScriptVM::ScriptVM()
 	  st(IDLE), ip(0), switch_value(0), move_timer(0.f) {}
 
 void ScriptVM::configure(Map* m, GameState* s, DialogBox* b, Battle* bt,
-                         Audio* a, Character* p, std::vector<Character*>* act) {
+                         Audio* a, Character* p, std::vector<Character*>* act,
+                         const std::unordered_map<std::string, Character*>* lid) {
 	this->map = m; this->state = s; this->box = b; this->battle = bt;
-	this->audio = a; this->player = p; this->actors = act;
+	this->audio = a; this->player = p; this->actors = act; this->localid_map = lid;
 }
 
 bool ScriptVM::running() const { return this->st != IDLE; }
@@ -109,7 +110,11 @@ int ScriptVM::value_of(const std::string& s) const {
 
 Character* ScriptVM::resolve(const std::string& localid) const {
 	if (localid.find("PLAYER") != std::string::npos) return this->player;
-	return this->owner;                  // any other object -> the interacted NPC
+	if (this->localid_map) {
+		auto it = this->localid_map->find(localid);
+		if (it != this->localid_map->end()) return it->second;
+	}
+	return this->owner;   // VAR_LAST_TALKED / unnamed object -> the interacted NPC
 }
 
 void ScriptVM::start(const std::string& label, Character* npc) {
@@ -594,17 +599,47 @@ void ScriptVM::pump() {
 			// RESEARCHER.", and similar item-name-in-a-sentence lines).
 			this->str_vars[arg(0)] = item_name(arg(1));
 		} else if (op == "removeobject" && argc >= 1) {
-			// A cut tree/smashed rock's own EventScript_*Down removes it for
-			// good: mark its FLAG_TEMP_*/FLAG_HIDE_* (so it stays gone across
-			// a map reload) and drop it from the live actor list right away
-			// (both rendering and collision walk `actors`, see main.cpp).
 			Character* ch = resolve(arg(0));
+			// Real pokeemerald removeobject is just a despawn with no flag
+			// side effect -- but a cut tree/smashed rock's own
+			// EventScript_*Down additionally wants it gone for good, and
+			// (since its target is always resolved via the owner fallback,
+			// never a named LOCALID) always did so by marking its own
+			// FLAG_TEMP_*/FLAG_HIDE_* here. A LOCALID-addressed cutscene NPC
+			// (Wally, ...) skips that: `addobject` brings it right back
+			// later in the same or a later scene, so nothing may be marked
+			// permanent here.
+			bool via_localid = this->localid_map && this->localid_map->count(arg(0));
 			if (ch && ch != this->player) {
-				if (!ch->get_hide_flag().empty())
-					this->state->set_flag(ch->get_hide_flag());
-				ch->mark_removed();   // still-alive Agent entry stays uninteractable
+				if (!via_localid) {
+					if (!ch->get_hide_flag().empty())
+						this->state->set_flag(ch->get_hide_flag());
+					ch->mark_removed();   // still-alive Agent entry stays uninteractable
+				}
 				if (this->actors) {
 					auto& a = *this->actors;
+					a.erase(std::remove(a.begin(), a.end(), ch), a.end());
+				}
+			}
+		} else if (op == "addobject" && argc >= 1) {
+			// The counterpart to removeobject above: re-add a LOCALID object
+			// to the live actor list (render/collision) regardless of its
+			// own FLAG_HIDE_* -- that's the whole point of a cutscene NPC
+			// who's otherwise flag-hidden the rest of the time (Wally, ...).
+			Character* ch = resolve(arg(0));
+			if (ch && ch != this->player && this->actors) {
+				auto& a = *this->actors;
+				if (std::find(a.begin(), a.end(), ch) == a.end()) a.push_back(ch);
+			}
+		} else if ((op == "hideobject" || op == "showobject") && argc >= 1) {
+			// No separate "present but invisible" state in this engine --
+			// alias to the same actor-list add/remove as add/removeobject.
+			Character* ch = resolve(arg(0));
+			if (ch && ch != this->player && this->actors) {
+				auto& a = *this->actors;
+				if (op == "showobject") {
+					if (std::find(a.begin(), a.end(), ch) == a.end()) a.push_back(ch);
+				} else {
 					a.erase(std::remove(a.begin(), a.end(), ch), a.end());
 				}
 			}

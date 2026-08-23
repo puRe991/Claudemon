@@ -23,7 +23,7 @@ warps
 6 7 Route110 1
 5 2 Route110_TrickHousePuzzle1 0
 npcs
-people_man_1 6 2 W static FLAG_HIDE_TRICK_HOUSE_ENTRANCE_MAN
+people_man_1 6 2 W static FLAG_HIDE_TRICK_HOUSE_ENTRANCE_MAN LOCALID_TRICK_MASTER
 objscripts
 0 Route110_TrickHouseEntrance_EventScript_TrickMaster
 triggers

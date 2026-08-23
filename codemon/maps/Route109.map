@@ -134,8 +134,8 @@ left 40 Route108
 warps
 12 5 Route109_SeashoreHouse 0
 npcs
-misc_mr_brineys_boat 21 26 N static FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
-people_expert_m 21 24 N static FLAG_HIDE_ROUTE_109_MR_BRINEY
+misc_mr_brineys_boat 21 26 N static FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT LOCALID_ROUTE109_BOAT
+people_expert_m 21 24 N static FLAG_HIDE_ROUTE_109_MR_BRINEY LOCALID_ROUTE109_BRINEY
 people_swimmer_m 12 36 E static 0
 people_swimmer_f 25 39 S static 0
 people_sailor 15 17 S static 0

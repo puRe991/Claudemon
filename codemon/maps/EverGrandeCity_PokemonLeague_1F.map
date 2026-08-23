@@ -33,10 +33,10 @@ warps
 10 1 EverGrandeCity_Hall5 0
 1 7 EverGrandeCity_PokemonLeague_2F 0
 npcs
-people_nurse 3 2 S static 0
+people_nurse 3 2 S static 0 LOCALID_LEAGUE_NURSE
 people_mart_employee 16 2 S static 0
-people_man_3 8 2 S static 0
-people_man_3 11 2 S static 0
+people_man_3 8 2 S static 0 LOCALID_LEAGUE_GUARD_1
+people_man_3 11 2 S static 0 LOCALID_LEAGUE_GUARD_2
 objscripts
 0 EverGrandeCity_PokemonLeague_1F_EventScript_Nurse
 1 EverGrandeCity_PokemonLeague_1F_EventScript_Clerk

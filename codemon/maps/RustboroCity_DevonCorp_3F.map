@@ -24,7 +24,7 @@ warps
 2 1 RustboroCity_DevonCorp_2F 1
 npcs
 people_gentleman 17 5 W static 0
-people_man_2 3 5 E static FLAG_HIDE_RUSTBORO_CITY_DEVON_CORP_3F_EMPLOYEE
+people_man_2 3 5 E static FLAG_HIDE_RUSTBORO_CITY_DEVON_CORP_3F_EMPLOYEE LOCALID_DEVON_CORP_3F_EMPLOYEE
 people_gentleman 15 5 S static 0
 dialogs
 0	MR. STONE: I'm counting on you!

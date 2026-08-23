@@ -25,7 +25,7 @@ warps
 6 8 OldaleTown 2
 1 6 OldaleTown_PokemonCenter_2F 0
 npcs
-people_nurse 7 2 S static 0
+people_nurse 7 2 S static 0 LOCALID_OLDALE_NURSE
 people_gentleman 4 4 S static 0
 people_boy_1 10 6 E static 0
 people_girl_3 3 7 E static 0

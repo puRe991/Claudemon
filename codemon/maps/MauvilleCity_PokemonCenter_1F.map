@@ -25,7 +25,7 @@ warps
 6 8 MauvilleCity 1
 1 6 MauvilleCity_PokemonCenter_2F 0
 npcs
-people_nurse 7 2 S static 0
+people_nurse 7 2 S static 0 LOCALID_MAUVILLE_NURSE
 people_woman_1 8 6 S static 0
 people_woman_5 11 4 S wander 0
 people_youngster 2 8 S static 0

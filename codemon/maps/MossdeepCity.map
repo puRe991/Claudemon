@@ -107,13 +107,13 @@ misc_item_ball 62 35 S static FLAG_ITEM_MOSSDEEP_CITY_NET_BALL
 people_man_1 55 5 N static 0
 people_woman_1 56 21 E static 0
 people_boy_2 23 13 S wander 0
-people_team_magma_magma_member_m 44 23 S static FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA
-people_team_magma_magma_member_m 44 24 N static FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA
-people_team_magma_magma_member_m 44 25 S static FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA
-people_team_magma_magma_member_m 44 26 N static FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA
-people_team_magma_maxie 45 25 W static FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA
+people_team_magma_magma_member_m 44 23 S static FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA LOCALID_MOSSDEEP_GRUNT_1
+people_team_magma_magma_member_m 44 24 N static FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA LOCALID_MOSSDEEP_GRUNT_2
+people_team_magma_magma_member_m 44 25 S static FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA LOCALID_MOSSDEEP_GRUNT_3
+people_team_magma_magma_member_m 44 26 N static FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA LOCALID_MOSSDEEP_GRUNT_4
+people_team_magma_maxie 45 25 W static FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA LOCALID_MOSSDEEP_MAXIE
 people_black_belt 19 25 S static 0
-people_scott 61 29 S static FLAG_HIDE_MOSSDEEP_CITY_SCOTT
+people_scott 61 29 S static FLAG_HIDE_MOSSDEEP_CITY_SCOTT LOCALID_MOSSDEEP_SCOTT
 people_black_belt 31 29 S static 0
 dialogs
 0	I heard from a SAILOR buddy that TEAM AQUA set up shop in LILYCOVE.I also heard that someone came along and wiped the floor with them!But MOSSDEEP here's been targeted by that TEAM MAGMA.If you want to know what they're up to, go visit the SPACE CENTER.

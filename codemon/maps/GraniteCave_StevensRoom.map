@@ -33,7 +33,7 @@ collision
 warps
 7 3 GraniteCave_1F 3
 npcs
-people_steven 7 8 S static FLAG_HIDE_GRANITE_CAVE_STEVEN
+people_steven 7 8 S static FLAG_HIDE_GRANITE_CAVE_STEVEN LOCALID_GRANITE_CAVE_STEVEN
 dialogs
 0	My name is STEVEN.I'm interested in rare stones, so I travel here and there.Oh? A LETTER for me?
 objscripts

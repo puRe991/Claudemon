@@ -25,10 +25,10 @@ warps
 6 8 FallarborTown 2
 1 6 FallarborTown_PokemonCenter_2F 0
 npcs
-people_nurse 7 2 S static 0
+people_nurse 7 2 S static 0 LOCALID_FALLARBOR_NURSE
 people_girl_3 10 6 E static 0
 people_expert_m 2 3 S static 0
-people_woman_2 10 2 N static FLAG_HIDE_FALLARBOR_POKEMON_CENTER_LANETTE
+people_woman_2 10 2 N static FLAG_HIDE_FALLARBOR_POKEMON_CENTER_LANETTE LOCALID_FALLARBOR_LANETTE
 dialogs
 1	I wonder what POKéMON looked like long, long ago?Maybe the FOSSIL MANIAC at the edge of town will know.
 2	In the fields of FALLARBOR, we plant seedlings of hardy trees that thrive even in volcanic ash.

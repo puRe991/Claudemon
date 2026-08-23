@@ -21,7 +21,7 @@ collision
 1,0,0,0,0,0,0,0,0,0
 1,0,0,0,0,0,0,0,0,0
 npcs
-people_black_belt 3 2 S static 0
+people_black_belt 3 2 S static 0 LOCALID_FALLARBOR_TENT_BATTLE_ATTENDANT
 onload
 VAR_TEMP_0 0 FallarborTown_BattleTentBattleRoom_EventScript_EnterRoom
 movements

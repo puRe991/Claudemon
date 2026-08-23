@@ -22,7 +22,7 @@ warps
 6 8 BattleFrontier_OutsideWest 1
 7 8 BattleFrontier_OutsideWest 1
 npcs
-people_teala 5 2 S static 0
+people_teala 5 2 S static 0 LOCALID_DOME_PRE_BATTLE_ATTENDANT
 onload
 VAR_TEMP_0 0 BattleFrontier_BattleDomePreBattleRoom_EventScript_EnterRoom
 movements

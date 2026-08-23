@@ -50,7 +50,7 @@ warps
 npcs
 people_woman_1 13 13 S static 0
 people_little_boy 25 5 S static 0
-people_old_man 47 4 S static 0
+people_old_man 47 4 S static 0 LOCALID_DAYCARE_MAN
 people_man_1 33 3 S static 0
 pokemon_kecleon 39 4 S static 0
 pokemon_azumarill 42 2 S static 0

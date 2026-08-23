@@ -392,10 +392,8 @@ has been verified either by an automated test or by headless screenshot
   since there's no second player)
 * `multichoice` prompts (mostly Battle Frontier, out of scope anyway; the
   option text itself lives in pokeemerald's C source, not any imported
-  script file, so each one needs its own hand transcription) and
-  `addobject`/`hideobject`/`showobject` (need a real per-map LOCALID
-  object registry this engine doesn't have yet — see the audit below);
-  door-open animations (purely cosmetic, no gameplay effect either way)
+  script file, so each one needs its own hand transcription); door-open
+  animations (purely cosmetic, no gameplay effect either way)
 * A map editor / procedural map generator
 
 ### 🎯 Next-fix priority (walkthrough-ordered, per a Bulbapedia walkthrough audit)
@@ -435,14 +433,13 @@ hit:
      Frontier uses (e.g. the Latios/Latias roamer color choice on TV) needs
      its own hand-transcribed option list, not a single generic fix — scoped
      out for now, tracked below.
-   - `addobject`/`hideobject`/`showobject` (41/0/0 files) — **not
-     implemented**, and turned out bigger than expected: this engine has no
-     LOCALID→object registry at all (`ScriptVM::resolve()` only knows
+   - `addobject`/`hideobject`/`showobject` (41/0/0 files) — at the time of
+     this audit, not implemented, and bigger than expected: this engine had
+     no LOCALID→object registry at all (`ScriptVM::resolve()` only knew
      "the player" or "the NPC just talked to"), so scripts that spawn an
      NPC mid-scene by id -- e.g. Petalburg Gym's Wally tutorial battle
-     cutscene (`addobject LOCALID_PETALBURG_GYM_WALLY`) -- currently do
-     nothing when they try. Fixing this needs a real per-map LOCALID
-     registry, not a one-opcode patch; scoped out for now, tracked below.
+     cutscene (`addobject LOCALID_PETALBURG_GYM_WALLY`) -- did nothing when
+     they tried. **Since implemented** — see below.
    - `opendoor`/`closedoor`/`waitdooranim` — confirmed purely cosmetic
      (metatile swap + SFX; door tiles are already walkable independent of
      the animation), left as no-ops.
@@ -520,11 +517,26 @@ hit:
    arrival tiles reuse each town's own heal-location coordinates (same spot
    recovering from a whiteout would use). Gated on the team knowing FLY, not
    a badge, same simplification as Surf/Strength/Waterfall.
-9. **A per-map LOCALID→object registry** — the biggest concrete gap the
-   `goto_if`/`multichoice` audit above found: needed for
-   `addobject`/`hideobject`/`showobject` to work at all, which blocks
-   scripted mid-scene NPC spawns like Petalburg Gym's Wally tutorial
-   cutscene.
+9. ~~A per-map LOCALID→object registry~~ — done. `NpcSpawn` now carries the
+   `LOCALID_*` name porymap gave an object event, if any (most don't have
+   one) -- read straight off `map.json`'s own `local_id` field, so no
+   fragile index/position matching was needed. `Session::localid_map` (name
+   → `Character*`) is built in `load_session` and handed to `ScriptVM`,
+   whose `resolve()` now checks it before falling back to "the NPC just
+   talked to". A LOCALID-tagged NPC's `Character` is created even while its
+   own `FLAG_HIDE_*` is set (unlike a plain hidden NPC, which is skipped
+   entirely) so `addobject` has something to spawn; it just isn't added to
+   the live actor list until then. `addobject`/`hideobject`/`showobject`
+   are new opcodes that add/remove a resolved object from that list, nothing
+   more — real pokeemerald's `removeobject` has no flag side effect, unlike
+   this engine's existing one for Cut/Rock Smash's own trees (which
+   permanently marks `FLAG_HIDE_*`/`FLAG_TEMP_*` and the object
+   uninteractable, since that call is *never* LOCALID-resolved in practice —
+   only ever the tree just interacted with). Verified end to end on
+   Petalburg Gym's Wally tutorial cutscene (`addobject` spawning him,
+   `applymovement` walking him into place by LOCALID, no crash across the
+   whole scripted sequence) with no regression on Cut (a tree still cut and
+   stays gone).
 10. **`multichoice` support** — a real choice-menu UI (same block-and-resume
     VM pattern as the party picker/Ja-Nein prompt) plus hand-transcribing
     each non-Battle-Frontier option list's text from pokeemerald's C source.
@@ -571,8 +583,8 @@ screenshot), not just written and assumed correct.
 - [x] Mossdeep Gym rotating-tile puzzle (also covers Trick House Puzzle #7)
 - [x] Comparison `goto_if_ge/gt/lt/le`/`call_if_ge/gt/lt/le`,
       `checkitem`/`removeitem`/`bufferitemname`
-- [ ] `multichoice`, NPC add/hide/move opcodes (LOCALID registry), door
-      animations (cosmetic only, see audit above)
+- [x] LOCALID→object registry + `addobject`/`hideobject`/`showobject`
+- [ ] `multichoice`, door animations (cosmetic only, see audit above)
 
 **Audio**
 - [x] Step/bump/select SFX

@@ -25,7 +25,7 @@ warps
 6 8 RustboroCity 3
 1 6 RustboroCity_PokemonCenter_2F 0
 npcs
-people_nurse 7 2 S static 0
+people_nurse 7 2 S static 0 LOCALID_RUSTBORO_NURSE
 people_man_1 11 2 W static 0
 people_boy_1 3 4 S wander 0
 people_girl_3 10 6 E static 0

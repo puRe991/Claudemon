@@ -65,7 +65,7 @@ collision
 warps
 20 4 MarineCave_Entrance 0
 npcs
-people_man_1 9 22 S static FLAG_HIDE_MARINE_CAVE_KYOGRE
+people_man_1 9 22 S static FLAG_HIDE_MARINE_CAVE_KYOGRE LOCALID_MARINE_CAVE_KYOGRE
 triggers
 9 26 VAR_TEMP_1 1 MarineCave_End_EventScript_Kyogre
 movements

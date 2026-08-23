@@ -34,14 +34,14 @@ warps
 6 13 LilycoveCity 5
 5 13 LilycoveCity 5
 npcs
-people_lass 3 11 N static 0
-people_man_4 8 10 W static 0
-people_pokefan_m 6 11 N static 0
-people_little_girl 5 8 S static 0
-people_ninja_boy 7 11 N static FLAG_HIDE_FANCLUB_LITTLE_BOY
-people_boy_2 1 9 S static FLAG_HIDE_FANCLUB_BOY
-people_woman_3 3 10 E static FLAG_HIDE_FANCLUB_LADY
-people_expert_f 10 10 W static FLAG_HIDE_FANCLUB_OLD_LADY
+people_lass 3 11 N static 0 LOCALID_TRAINER_FAN_CLUB_LASS
+people_man_4 8 10 W static 0 LOCALID_TRAINER_FAN_CLUB_MAN
+people_pokefan_m 6 11 N static 0 LOCALID_TRAINER_FAN_CLUB_POKEFAN_M
+people_little_girl 5 8 S static 0 LOCALID_TRAINER_FAN_CLUB_LITTLE_GIRL
+people_ninja_boy 7 11 N static FLAG_HIDE_FANCLUB_LITTLE_BOY LOCALID_TRAINER_FAN_CLUB_NINJA_BOY
+people_boy_2 1 9 S static FLAG_HIDE_FANCLUB_BOY LOCALID_TRAINER_FAN_CLUB_BOY
+people_woman_3 3 10 E static FLAG_HIDE_FANCLUB_LADY LOCALID_TRAINER_FAN_CLUB_WOMAN
+people_expert_f 10 10 W static FLAG_HIDE_FANCLUB_OLD_LADY LOCALID_TRAINER_FAN_CLUB_EXPERT_F
 people_boy_1 11 5 S static FLAG_HIDE_LILYCOVE_FAN_CLUB_INTERVIEWER
 dialogs
 0	I can't help it, I can only get to like BRAWLY…

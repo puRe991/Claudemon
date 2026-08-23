@@ -41,8 +41,8 @@ collision
 warps
 7 17 BattleFrontier_OutsideEast 3
 npcs
-people_hiker 7 12 S static 0
-people_hex_maniac 14 13 W static 0
+people_hiker 7 12 S static 0 LOCALID_PYRAMID_LOBBY_ATTENDANT
+people_hex_maniac 14 13 W static 0 LOCALID_PYRAMID_LOBBY_HINT_GIVER
 people_woman_3 2 15 S wander 0
 people_fat_man 12 16 S wander 0
 dialogs

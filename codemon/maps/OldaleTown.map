@@ -53,9 +53,9 @@ warps
 14 6 OldaleTown_Mart 0
 npcs
 people_girl_3 16 11 W static 0
-people_mart_employee 13 7 S static 0
-people_maniac 8 9 E static 0
-people_may_walking 11 19 N static FLAG_HIDE_OLDALE_TOWN_RIVAL
+people_mart_employee 13 7 S static 0 LOCALID_OLDALE_MART_EMPLOYEE
+people_maniac 8 9 E static 0 LOCALID_FOOTPRINTS_MAN
+people_may_walking 11 19 N static FLAG_HIDE_OLDALE_TOWN_RIVAL LOCALID_OLDALE_RIVAL
 dialogs
 0	Ich möchte mich ausruhen, deshalb speichere ich meinen Fortschritt.
 1	Hi! Ich arbeite in einem POKéMON MART.Kannst du kurz mit mir kommen?

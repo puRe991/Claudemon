@@ -24,7 +24,7 @@ warps
 2 8 Route117 0
 3 8 Route117 0
 npcs
-people_old_woman 2 2 S static 0
+people_old_woman 2 2 S static 0 LOCALID_DAYCARE_LADY
 objscripts
 0 Route117_PokemonDayCare_EventScript_DaycareWoman
 movements

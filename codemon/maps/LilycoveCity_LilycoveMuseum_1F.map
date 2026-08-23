@@ -36,13 +36,13 @@ warps
 16 1 LilycoveCity_LilycoveMuseum_2F 0
 npcs
 people_beauty 5 12 E static 0
-people_gentleman 16 2 S static FLAG_HIDE_LILYCOVE_MUSEUM_CURATOR
+people_gentleman 16 2 S static FLAG_HIDE_LILYCOVE_MUSEUM_CURATOR LOCALID_MUSEUM_1F_CURATOR
 people_school_kid_m 13 7 E static 0
 people_artist 13 10 S wander 0
 people_ninja_boy 2 8 N static 0
 people_woman_4 3 8 N static 0
 people_woman_2 11 3 S wander FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_1
-people_artist 19 3 N static FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_4
+people_artist 19 3 N static FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_4 LOCALID_MUSEUM_1F_ARTIST_2
 people_fat_man 2 2 S wander FLAG_HIDE_LILYCOVE_MUSEUM_TOURISTS
 people_psychic_m 6 2 S wander FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_3
 dialogs

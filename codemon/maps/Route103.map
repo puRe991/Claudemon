@@ -53,7 +53,7 @@ warps
 45 6 AlteringCave 0
 npcs
 people_man_3 49 12 W static 0
-people_may_walking 10 3 E static FLAG_HIDE_ROUTE_103_RIVAL
+people_may_walking 10 3 E static FLAG_HIDE_ROUTE_103_RIVAL LOCALID_ROUTE103_RIVAL
 people_woman_2 71 11 S static 0
 people_twin 65 12 S static 0
 people_twin 64 12 S static 0

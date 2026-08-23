@@ -83,11 +83,11 @@ warps
 npcs
 people_old_man 22 5 S static 0
 people_team_aqua_archie 23 6 N static FLAG_HIDE_MT_PYRE_SUMMIT_ARCHIE
-people_expert_f 23 5 S static 0
-people_team_aqua_aqua_member_m 21 15 E static FLAG_HIDE_MT_PYRE_SUMMIT_TEAM_AQUA
-people_team_aqua_aqua_member_m 25 18 W static FLAG_HIDE_MT_PYRE_SUMMIT_TEAM_AQUA
-people_team_aqua_aqua_member_m 21 11 E static FLAG_HIDE_MT_PYRE_SUMMIT_TEAM_AQUA
-people_team_aqua_aqua_member_f 25 11 W static FLAG_HIDE_MT_PYRE_SUMMIT_TEAM_AQUA
+people_expert_f 23 5 S static 0 LOCALID_MT_PYRE_SUMMIT_OLD_LADY
+people_team_aqua_aqua_member_m 21 15 E static FLAG_HIDE_MT_PYRE_SUMMIT_TEAM_AQUA LOCALID_MT_PYRE_SUMMIT_GRUNT_1
+people_team_aqua_aqua_member_m 25 18 W static FLAG_HIDE_MT_PYRE_SUMMIT_TEAM_AQUA LOCALID_MT_PYRE_SUMMIT_GRUNT_2
+people_team_aqua_aqua_member_m 21 11 E static FLAG_HIDE_MT_PYRE_SUMMIT_TEAM_AQUA LOCALID_MT_PYRE_SUMMIT_GRUNT_3
+people_team_aqua_aqua_member_f 25 11 W static FLAG_HIDE_MT_PYRE_SUMMIT_TEAM_AQUA LOCALID_MT_PYRE_SUMMIT_GRUNT_4
 people_team_magma_maxie 23 6 N static FLAG_HIDE_MT_PYRE_SUMMIT_MAXIE
 dialogs
 0	MT. PYRE is where we calm the spirits of POKéMON that have passed on…This is a high place where one can see all of HOENN…The disembodied spirits of POKéMON must find solace here…Is it coincidence that you are here…Will you hear out my tale? A tale long told in the HOENN region?

@@ -22,7 +22,7 @@ warps
 3 7 FortreeCity 3
 4 7 FortreeCity 3
 npcs
-people_mart_employee 1 3 E static 0
+people_mart_employee 1 3 E static 0 LOCALID_FORTREE_MART_CLERK
 people_woman_2 9 3 N static 0
 people_girl_3 8 5 S wander 0
 people_boy_2 5 6 E static 0

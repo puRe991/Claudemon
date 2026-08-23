@@ -98,8 +98,8 @@ warps
 22 7 FarawayIsland_Interior 0
 23 7 FarawayIsland_Interior 1
 npcs
-people_sailor 13 39 N static 0
-misc_ss_tidal 13 41 E static 0
+people_sailor 13 39 N static 0 LOCALID_FARAWAY_ISLAND_SAILOR
+misc_ss_tidal 13 41 E static 0 LOCALID_FARAWAY_ISLAND_SS_TIDAL
 objscripts
 0 FarawayIsland_Entrance_EventScript_Sailor
 triggers

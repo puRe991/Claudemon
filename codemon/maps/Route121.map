@@ -60,9 +60,9 @@ people_man_1 66 14 S static 0
 people_man_1 67 14 S static 0
 people_lass 39 9 S static 0
 people_lass 40 9 S static 0
-people_team_aqua_aqua_member_m 30 8 N static FLAG_HIDE_ROUTE_121_TEAM_AQUA_GRUNTS
-people_team_aqua_aqua_member_m 30 7 E static FLAG_HIDE_ROUTE_121_TEAM_AQUA_GRUNTS
-people_team_aqua_aqua_member_m 31 7 W static FLAG_HIDE_ROUTE_121_TEAM_AQUA_GRUNTS
+people_team_aqua_aqua_member_m 30 8 N static FLAG_HIDE_ROUTE_121_TEAM_AQUA_GRUNTS LOCALID_ROUTE121_GRUNT_1
+people_team_aqua_aqua_member_m 30 7 E static FLAG_HIDE_ROUTE_121_TEAM_AQUA_GRUNTS LOCALID_ROUTE121_GRUNT_2
+people_team_aqua_aqua_member_m 31 7 W static FLAG_HIDE_ROUTE_121_TEAM_AQUA_GRUNTS LOCALID_ROUTE121_GRUNT_3
 misc_cuttable_tree 32 5 S static FLAG_TEMP_11
 misc_cuttable_tree 65 4 S static FLAG_TEMP_12
 people_pokefan_f 63 5 W static 0

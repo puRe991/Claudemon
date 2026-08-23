@@ -21,8 +21,8 @@ collision
 0,0,0,0,0,0,0,0,0,0
 1,0,0,0,0,0,0,0,0,1
 npcs
-people_teala 1 4 E static 0
-people_teala 1 5 E static 0
+people_teala 1 4 E static 0 LOCALID_TOWER_MULTI_BATTLE_ATTENDANT_1
+people_teala 1 5 E static 0 LOCALID_TOWER_MULTI_BATTLE_ATTENDANT_2
 onload
 VAR_TEMP_0 0 BattleFrontier_BattleTowerMultiBattleRoom_EventScript_EnterRoom
 movements

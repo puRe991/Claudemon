@@ -239,7 +239,7 @@ people_woman_5 18 34 W static 0
 misc_item_ball 22 13 S static FLAG_ITEM_ROUTE_120_NEST_BALL
 misc_item_ball 23 82 S static FLAG_ITEM_ROUTE_120_HYPER_POTION
 pokemon_kecleon 12 16 S static FLAG_HIDE_ROUTE_120_KECLEON_BRIDGE
-people_steven 13 15 S static FLAG_HIDE_ROUTE_120_STEVEN
+people_steven 13 15 S static FLAG_HIDE_ROUTE_120_STEVEN LOCALID_ROUTE120_STEVEN
 misc_cuttable_tree 20 1 S static FLAG_TEMP_14
 misc_cuttable_tree 15 1 S static FLAG_TEMP_12
 people_ninja_boy 10 72 S static 0

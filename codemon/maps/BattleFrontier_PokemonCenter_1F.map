@@ -25,7 +25,7 @@ warps
 6 8 BattleFrontier_OutsideEast 12
 1 6 BattleFrontier_PokemonCenter_2F 0
 npcs
-people_nurse 7 2 S static 0
+people_nurse 7 2 S static 0 LOCALID_FRONTIER_NURSE
 people_school_kid_m 4 5 W pace_h 0
 people_man_3 11 4 S static 0
 people_picnicker 2 3 W static 0

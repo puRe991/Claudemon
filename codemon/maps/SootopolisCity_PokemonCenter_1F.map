@@ -25,7 +25,7 @@ warps
 6 8 SootopolisCity 0
 1 6 SootopolisCity_PokemonCenter_2F 0
 npcs
-people_nurse 7 2 S static 0
+people_nurse 7 2 S static 0 LOCALID_SOOTOPOLIS_NURSE
 people_gentleman 12 4 S wander 0
 people_woman_5 4 7 S wander 0
 people_woman_1 2 3 S wander 0

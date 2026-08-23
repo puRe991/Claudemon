@@ -75,13 +75,13 @@ warps
 npcs
 people_woman_4 16 18 S wander FLAG_HIDE_PETALBURG_CITY_WALLYS_MOM
 people_wally 15 10 N static FLAG_HIDE_PETALBURG_CITY_WALLY
-people_boy_1 8 22 S static 0
+people_boy_1 8 22 S static 0 LOCALID_PETALBURG_BOY
 people_gentleman 20 10 S wander 0
 people_pokefan_m 15 10 N static FLAG_HIDE_PETALBURG_CITY_WALLYS_DAD
 misc_item_ball 19 2 S static FLAG_ITEM_PETALBURG_CITY_MAX_REVIVE
 misc_item_ball 3 28 S static FLAG_ITEM_PETALBURG_CITY_ETHER
-people_boy_2 12 15 S static 0
-people_scott 13 12 S static FLAG_HIDE_PETALBURG_CITY_SCOTT
+people_boy_2 12 15 S static 0 LOCALID_GYM_BOY
+people_scott 13 12 S static FLAG_HIDE_PETALBURG_CITY_SCOTT LOCALID_PETALBURG_SCOTT
 dialogs
 0	Wo ist bloß unser WALLY hin?Wir müssen ganz bald nach VERDANTURF TOWN aufbrechen…
 2	Mein Gesicht spiegelt sich im Wasser.Es ist ein strahlendes Grinsen voller Hoffnung…Oder vielleicht ist es ein stiller, ernster Blick, der mit der Angst ringt…Was siehst du in deinem eigenen Gesicht widergespiegelt?

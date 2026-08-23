@@ -26,7 +26,7 @@ warps
 1 6 LavaridgeTown_PokemonCenter_2F 0
 2 1 LavaridgeTown 5
 npcs
-people_nurse 7 2 S static 0
+people_nurse 7 2 S static 0 LOCALID_LAVARIDGE_NURSE
 people_youngster 11 8 N static 0
 people_woman_3 10 6 W static 0
 people_gentleman 1 3 E static 0

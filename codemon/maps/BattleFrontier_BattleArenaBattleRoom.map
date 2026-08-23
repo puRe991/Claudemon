@@ -25,13 +25,13 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 npcs
-people_black_belt 5 3 S static 0
-people_black_belt 10 3 S static 0
-people_black_belt 5 9 N static 0
-people_black_belt 10 9 N static 0
-people_black_belt 4 5 E static 0
+people_black_belt 5 3 S static 0 LOCALID_ARENA_BATTLE_BLACK_BELT_1
+people_black_belt 10 3 S static 0 LOCALID_ARENA_BATTLE_BLACK_BELT_2
+people_black_belt 5 9 N static 0 LOCALID_ARENA_BATTLE_BLACK_BELT_3
+people_black_belt 10 9 N static 0 LOCALID_ARENA_BATTLE_BLACK_BELT_4
+people_black_belt 4 5 E static 0 LOCALID_ARENA_BATTLE_ATTENDANT
 people_black_belt 11 5 W static 0
-people_black_belt 7 4 S static 0
+people_black_belt 7 4 S static 0 LOCALID_ARENA_BATTLE_ANNOUNCER
 onload
 VAR_TEMP_0 0 BattleFrontier_BattleArenaBattleRoom_EventScript_EnterRoom
 movements

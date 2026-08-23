@@ -23,7 +23,7 @@ warps
 4 7 SootopolisCity 12
 3 1 SootopolisCity_MysteryEventsHouse_B1F 0
 npcs
-people_old_man 6 4 E static 0
+people_old_man 6 4 E static 0 LOCALID_MYSTERY_EVENTS_OLD_MAN
 dialogs
 0	When I was young, I traveled the world as a POKéMON TRAINER.Now that I've become an old buzzard, my only amusement is watching young TRAINERS battle.
 objscripts

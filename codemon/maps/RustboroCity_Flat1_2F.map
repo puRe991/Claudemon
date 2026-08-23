@@ -26,7 +26,7 @@ people_twin 9 5 S static 0
 people_man_1 9 4 S static 0
 people_man_1 10 5 S static 0
 people_man_1 10 6 S static 0
-people_man_1 8 5 E static 0
+people_man_1 8 5 E static 0 LOCALID_WALDAS_DAD
 people_man_1 8 6 S static 0
 people_man_1 9 7 S static 0
 dialogs

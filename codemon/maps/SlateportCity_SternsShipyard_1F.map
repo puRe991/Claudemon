@@ -37,7 +37,7 @@ warps
 3 14 SlateportCity 2
 3 1 SlateportCity_SternsShipyard_2F 0
 npcs
-people_man_1 5 5 S static 0
+people_man_1 5 5 S static 0 LOCALID_DOCK
 people_scientist_1 10 7 N static 0
 people_scientist_1 18 8 S wander 0
 people_expert_m 12 11 S wander FLAG_HIDE_SLATEPORT_CITY_STERNS_SHIPYARD_MR_BRINEY

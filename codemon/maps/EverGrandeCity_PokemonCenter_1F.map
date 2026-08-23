@@ -25,10 +25,10 @@ warps
 6 8 EverGrandeCity 1
 1 6 EverGrandeCity_PokemonCenter_2F 0
 npcs
-people_nurse 7 2 S static 0
+people_nurse 7 2 S static 0 LOCALID_EVER_GRANDE_NURSE
 people_woman_5 5 5 S static 0
 people_expert_m 10 7 E static 0
-people_scott 9 4 N static FLAG_HIDE_EVER_GRANDE_POKEMON_CENTER_1F_SCOTT
+people_scott 9 4 N static FLAG_HIDE_EVER_GRANDE_POKEMON_CENTER_1F_SCOTT LOCALID_EVER_GRANDE_SCOTT
 dialogs
 1	The POKéMON LEAGUE is only a short distance after the VICTORY ROAD.If you've come this far, what choice do you have but to keep going?
 2	The long and harrowing VICTORY ROAD…It's like reliving the path one has traveled in life…Believe in your POKéMON and give it your very best!

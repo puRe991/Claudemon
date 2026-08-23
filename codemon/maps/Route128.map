@@ -89,9 +89,9 @@ right -40 EverGrandeCity
 npcs
 people_swimmer_m 35 33 S static 0
 people_swimmer_f 78 24 S static 0
-people_steven 40 22 S static FLAG_HIDE_ROUTE_128_STEVEN
-people_team_aqua_archie 37 22 W static FLAG_HIDE_ROUTE_128_ARCHIE
-people_team_magma_maxie 38 21 N static FLAG_HIDE_ROUTE_128_MAXIE
+people_steven 40 22 S static FLAG_HIDE_ROUTE_128_STEVEN LOCALID_ROUTE128_STEVEN
+people_team_aqua_archie 37 22 W static FLAG_HIDE_ROUTE_128_ARCHIE LOCALID_ROUTE128_ARCHIE
+people_team_magma_maxie 38 21 N static FLAG_HIDE_ROUTE_128_MAXIE LOCALID_ROUTE128_MAXIE
 people_fisherman 63 28 N static 0
 people_man_3 47 9 E static 0
 people_woman_5 24 8 S static 0

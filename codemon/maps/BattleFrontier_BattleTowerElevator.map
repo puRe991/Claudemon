@@ -17,7 +17,7 @@ collision
 0,0,0,0,0
 0,0,0,0,0
 npcs
-people_teala 1 5 N static 0
+people_teala 1 5 N static 0 LOCALID_TOWER_ELEVATOR_ATTENDANT
 onload
 VAR_TEMP_0 0 BattleFrontier_BattleTowerElevator_EventScript_EnterElevator
 movements

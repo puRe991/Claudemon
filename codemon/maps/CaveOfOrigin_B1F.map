@@ -43,7 +43,7 @@ collision
 warps
 9 3 CaveOfOrigin_1F 1
 npcs
-people_wallace 9 13 N static FLAG_HIDE_CAVE_OF_ORIGIN_B1F_WALLACE
+people_wallace 9 13 N static FLAG_HIDE_CAVE_OF_ORIGIN_B1F_WALLACE LOCALID_CAVE_OF_ORIGIN_WALLACE
 dialogs
 0	Ah, so you are PLAYER? I've heard tales of your exploits.My name is WALLACE.I was once the GYM LEADER of SOOTOPOLIS, but something came up.So now, I've entrusted my mentor JUAN with the GYM's operation.… … … … … … … … … … … …GROUDON and KYOGRE, the two POKéMON wreaking havoc here, are considered to be super-ancient POKéMON.But there aren't just two super- ancient POKéMON.There is one more somewhere.Somewhere, there is a super- ancient POKéMON named RAYQUAZA.It's said that it was RAYQUAZA that becalmed the two combatants in the distant past.But even I have no clue as to RAYQUAZA's whereabouts…
 objscripts

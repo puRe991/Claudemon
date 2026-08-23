@@ -30,7 +30,7 @@ warps
 6 11 MtChimney 0
 7 11 MtChimney 1
 npcs
-people_beauty 6 6 S static 0
+people_beauty 6 6 S static 0 LOCALID_MT_CHIMNEY_CABLE_CAR_ATTENDANT
 misc_cable_car 6 3 S static 0
 dialogs
 0	The CABLE CAR is ready to go down. Would you like to be on it?

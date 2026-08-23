@@ -26,7 +26,7 @@ warps
 6 9 VerdanturfTown 0
 7 9 VerdanturfTown 0
 npcs
-people_expert_m 6 5 S static 0
+people_expert_m 6 5 S static 0 LOCALID_VERDANTURF_TENT_ATTENDANT
 people_girl_1 0 5 S wander 0
 people_boy_3 9 7 S wander 0
 people_boy_2 1 8 E static 0

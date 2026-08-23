@@ -304,7 +304,7 @@ people_ninja_boy 28 14 S static 0
 people_ninja_boy 19 49 S static 0
 people_man_5 10 50 E static 0
 people_man_5 8 63 S static 0
-people_may_walking 25 32 N static FLAG_HIDE_ROUTE_119_RIVAL
+people_may_walking 25 32 N static FLAG_HIDE_ROUTE_119_RIVAL LOCALID_ROUTE119_RIVAL
 misc_item_ball 12 121 S static FLAG_ITEM_ROUTE_119_SUPER_REPEL
 misc_item_ball 4 96 S static FLAG_ITEM_ROUTE_119_ZINC
 misc_item_ball 29 53 S static FLAG_ITEM_ROUTE_119_ELIXIR_1
@@ -313,7 +313,7 @@ misc_item_ball 8 18 S static FLAG_ITEM_ROUTE_119_RARE_CANDY
 misc_item_ball 33 117 S static FLAG_ITEM_ROUTE_119_HYPER_POTION_1
 people_team_aqua_aqua_member_m 13 33 E static FLAG_HIDE_ROUTE_119_TEAM_AQUA
 people_team_aqua_aqua_member_m 13 34 E static FLAG_HIDE_ROUTE_119_TEAM_AQUA
-people_may_walking 17 33 N static FLAG_HIDE_ROUTE_119_RIVAL_ON_BIKE
+people_may_walking 17 33 N static FLAG_HIDE_ROUTE_119_RIVAL_ON_BIKE LOCALID_ROUTE119_RIVAL_ON_BIKE
 people_boy_3 31 109 S static 0
 people_man_1 8 23 S static 0
 people_man_1 9 23 S static 0
@@ -331,7 +331,7 @@ people_man_5 16 52 E static 0
 people_man_5 32 15 W static 0
 misc_item_ball 19 5 S static FLAG_ITEM_ROUTE_119_NUGGET
 misc_item_ball 24 42 S static FLAG_ITEM_ROUTE_119_ELIXIR_2
-people_scott 28 25 S static FLAG_HIDE_ROUTE_119_SCOTT
+people_scott 28 25 S static FLAG_HIDE_ROUTE_119_SCOTT LOCALID_ROUTE119_SCOTT
 dialogs
 22	We're standing lookout here.Hey, you! Stay away from the WEATHER INSTITUTE. It's not safe.
 23	Lookout duty is surprisingly boring.Hey, you! Please don't go near the WEATHER INSTITUTE.

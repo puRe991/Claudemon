@@ -22,7 +22,7 @@ warps
 3 7 FallarborTown 0
 4 7 FallarborTown 0
 npcs
-people_mart_employee 1 3 E static 0
+people_mart_employee 1 3 E static 0 LOCALID_FALLARBOR_MART_CLERK
 people_woman_2 5 3 S wander 0
 people_pokefan_m 9 6 S static 0
 pokemon_skitty 2 5 S static 0

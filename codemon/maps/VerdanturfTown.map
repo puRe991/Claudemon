@@ -55,7 +55,7 @@ warps
 17 15 VerdanturfTown_House 0
 npcs
 people_man_2 4 17 S wander 0
-people_twin 9 2 W static 0
+people_twin 9 2 W static 0 LOCALID_VERDANTURF_TWIN
 people_boy_1 7 11 S wander 0
 people_camper 7 6 S wander 0
 dialogs

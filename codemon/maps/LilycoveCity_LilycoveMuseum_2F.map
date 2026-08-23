@@ -31,7 +31,7 @@ collision
 warps
 13 1 LilycoveCity_LilycoveMuseum_1F 2
 npcs
-people_gentleman 10 8 N static 0
+people_gentleman 10 8 N static 0 LOCALID_MUSEUM_2F_CURATOR
 people_girl_2 19 10 S wander FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_2
 people_expert_m 7 3 S wander FLAG_HIDE_LILYCOVE_MUSEUM_TOURISTS
 people_rich_boy 14 6 S wander FLAG_HIDE_LILYCOVE_MUSEUM_TOURISTS

@@ -182,8 +182,8 @@ people_lass 31 24 W static 0
 people_boy_1 27 63 S wander 0
 people_woman_2 30 50 S wander 0
 people_girl_3 28 74 N static 0
-misc_mr_brineys_boat 12 54 N static FLAG_HIDE_ROUTE_104_MR_BRINEY_BOAT
-people_expert_m 12 51 E static FLAG_HIDE_ROUTE_104_MR_BRINEY
+misc_mr_brineys_boat 12 54 N static FLAG_HIDE_ROUTE_104_MR_BRINEY_BOAT LOCALID_ROUTE104_BOAT
+people_expert_m 12 51 E static FLAG_HIDE_ROUTE_104_MR_BRINEY LOCALID_ROUTE104_BRINEY
 people_fisherman 29 8 S static 0
 people_man_1 34 6 S static 0
 people_man_1 35 6 S static 0
@@ -209,7 +209,7 @@ misc_cuttable_tree 35 22 S static FLAG_TEMP_11
 misc_item_ball 5 8 S static FLAG_ITEM_ROUTE_104_POTION
 people_boy_2 5 26 S static 0
 people_fisherman 15 59 W static 0
-people_may_walking 17 50 S static FLAG_HIDE_ROUTE_104_RIVAL
+people_may_walking 17 50 S static FLAG_HIDE_ROUTE_104_RIVAL LOCALID_ROUTE104_RIVAL
 dialogs
 0	Das Meer, was?Ich frage mich, wie es wohl auf dem Meeresgrund aussieht?
 1	In dieser Strandhütte lebt MR. BRINEY.Er war einst ein mächtiger Seemann, der das Meer nie fürchtete, egal wie stürmisch es war.

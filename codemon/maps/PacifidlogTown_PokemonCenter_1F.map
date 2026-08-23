@@ -25,7 +25,7 @@ warps
 6 8 PacifidlogTown 0
 1 6 PacifidlogTown_PokemonCenter_2F 0
 npcs
-people_nurse 7 2 S static 0
+people_nurse 7 2 S static 0 LOCALID_PACIFIDLOG_NURSE
 people_old_man 10 6 W static 0
 people_girl_2 2 2 N static 0
 people_woman_1 4 5 S static 0

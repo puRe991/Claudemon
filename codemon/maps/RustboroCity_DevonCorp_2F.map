@@ -28,7 +28,7 @@ people_scientist_1 6 5 N static 0
 people_scientist_1 1 5 E static 0
 people_scientist_1 2 6 S static 0
 people_scientist_1 10 5 N static 0
-people_scientist_1 14 8 N static 0
+people_scientist_1 14 8 N static 0 LOCALID_FOSSIL_SCIENTIST
 people_scientist_1 14 5 N static 0
 dialogs
 0	We're developing a device for talking with POKéMON.But we haven't had much success…

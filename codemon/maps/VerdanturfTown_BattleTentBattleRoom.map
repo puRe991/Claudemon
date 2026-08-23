@@ -21,7 +21,7 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0
 npcs
-people_expert_m 2 4 E static 0
+people_expert_m 2 4 E static 0 LOCALID_VERDANTURF_TENT_BATTLE_ATTENDANT
 onload
 VAR_TEMP_0 0 VerdanturfTown_BattleTentBattleRoom_EventScript_EnterRoom
 movements

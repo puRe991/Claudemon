@@ -66,8 +66,8 @@ warps
 14 5 SouthernIsland_Interior 0
 15 5 SouthernIsland_Interior 1
 npcs
-people_sailor 13 23 N static 0
-misc_ss_tidal 13 25 E static 0
+people_sailor 13 23 N static 0 LOCALID_SOUTHERN_ISLAND_SAILOR
+misc_ss_tidal 13 25 E static 0 LOCALID_SOUTHERN_ISLAND_SS_TIDAL
 objscripts
 0 SouthernIsland_Exterior_EventScript_Sailor
 movements

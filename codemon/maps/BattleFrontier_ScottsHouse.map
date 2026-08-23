@@ -22,7 +22,7 @@ warps
 2 7 BattleFrontier_OutsideWest 5
 3 7 BattleFrontier_OutsideWest 5
 npcs
-people_scott 2 3 S static 0
+people_scott 2 3 S static 0 LOCALID_SCOTTS_HOUSE_SCOTT
 objscripts
 0 BattleFrontier_ScottsHouse_EventScript_Scott
 movements

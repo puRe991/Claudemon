@@ -69,10 +69,10 @@ warps
 12 12 LavaridgeTown_Gym_B1F 23
 npcs
 people_man_1 13 9 S static 0
-people_man_5 3 14 S static 0
-people_man_3 2 15 S static 0
-people_man_5 3 10 S static 0
-people_girl_3 5 2 S static 0
+people_man_5 3 14 S static 0 LOCALID_COLE
+people_man_3 2 15 S static 0 LOCALID_GERALD
+people_man_5 3 10 S static 0 LOCALID_AXLE
+people_girl_3 5 2 S static 0 LOCALID_DANIELLE
 people_man_2 12 16 E static 0
 dialogs
 0	Your power reminds me of someone…Oh! I know! You battle like NORMAN, the GYM LEADER of PETALBURG.

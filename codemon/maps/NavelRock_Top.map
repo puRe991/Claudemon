@@ -61,7 +61,7 @@ collision
 warps
 13 20 NavelRock_Up4 1
 npcs
-people_man_1 12 4 S static FLAG_HIDE_HO_OH
+people_man_1 12 4 S static FLAG_HIDE_HO_OH LOCALID_NAVEL_ROCK_HO_OH
 triggers
 12 10 VAR_TEMP_1 0 NavelRock_Top_EventScript_HoOh
 12 9 0 0 NavelRock_Top_HiddenItem_12_9

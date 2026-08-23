@@ -19,7 +19,7 @@ collision
 0,0,0,0,0
 1,0,0,0,1
 npcs
-people_link_receptionist 2 4 S static 0
+people_link_receptionist 2 4 S static 0 LOCALID_PIKE_FINAL_ROOM_ATTENDANT
 onload
 VAR_TEMP_0 0 BattleFrontier_BattlePikeRoomFinal_EventScript_EnterRoom
 movements

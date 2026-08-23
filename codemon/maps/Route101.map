@@ -47,9 +47,9 @@ up 0 OldaleTown
 down 0 LittlerootTown
 npcs
 people_youngster 16 8 S static 0
-people_prof_birch 9 13 S static FLAG_HIDE_ROUTE_101_BIRCH_ZIGZAGOON_BATTLE
+people_prof_birch 9 13 S static FLAG_HIDE_ROUTE_101_BIRCH_ZIGZAGOON_BATTLE LOCALID_ROUTE101_BIRCH
 misc_birchs_bag 7 14 S static FLAG_HIDE_ROUTE_101_BIRCH_STARTERS_BAG
-people_man_1 10 13 S static FLAG_HIDE_ROUTE_101_ZIGZAGOON
+people_man_1 10 13 S static FLAG_HIDE_ROUTE_101_ZIGZAGOON LOCALID_ROUTE101_ZIGZAGOON
 people_prof_birch 5 11 S static FLAG_HIDE_ROUTE_101_BIRCH
 people_boy_2 2 13 S wander FLAG_HIDE_ROUTE_101_BOY
 dialogs

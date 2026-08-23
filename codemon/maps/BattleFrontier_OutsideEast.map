@@ -177,7 +177,7 @@ people_cycling_triathlete_f 59 35 S static 0
 people_twin 18 40 S static 0
 people_man_1 17 40 E static 0
 people_man_1 40 56 S static 0
-pokemon_sudowoodo 54 62 S static FLAG_HIDE_BATTLE_FRONTIER_SUDOWOODO
+pokemon_sudowoodo 54 62 S static FLAG_HIDE_BATTLE_FRONTIER_SUDOWOODO LOCALID_FRONTIER_SUDOWOODO
 people_maniac 42 34 S static 0
 people_girl_3 51 53 S wander 0
 people_psychic_m 62 18 S static 0

@@ -26,7 +26,7 @@ warps
 npcs
 people_man_4 6 6 W static 0
 people_twin 4 4 S static 0
-pokemon_wingull 4 5 N static FLAG_HIDE_MOSSDEEP_CITY_HOUSE_2_WINGULL
+pokemon_wingull 4 5 N static FLAG_HIDE_MOSSDEEP_CITY_HOUSE_2_WINGULL LOCALID_MOSSDEEP_HOUSE_WINGULL
 dialogs
 0	My little sister exchanges MAIL with her boyfriend in FORTREE.I don't envy her one bit at all.
 1	Even though I can't see my friend in FORTREE, my POKéMON carries MAIL back and forth for us.I'm not lonesome, even though we're apart.

@@ -22,8 +22,8 @@ warps
 3 7 MossdeepCity 6
 4 7 MossdeepCity 6
 npcs
-people_steven 9 6 E static FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_STEVEN
-misc_item_ball 4 3 S static FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_BELDUM_POKEBALL
+people_steven 9 6 E static FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_STEVEN LOCALID_STEVENS_HOUSE_STEVEN
+misc_item_ball 4 3 S static FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_BELDUM_POKEBALL LOCALID_STEVENS_HOUSE_BALL
 people_ninja_boy 6 4 S static FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_INVISIBLE_NINJA_BOY
 dialogs
 0	STEVEN: Apparently, there's an underwater cavern between MOSSDEEP and SOOTOPOLIS.You know, the one that CAPT. STERN found in his submarine.

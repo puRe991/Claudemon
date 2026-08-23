@@ -24,9 +24,12 @@ goto/call/return family with goto_if_set/eq/ne conditionals, switch/case,
 giveitem, setmetatile, and a trainerbattle stub. Unknown opcodes (special, and
 GBA-only engine calls) are skipped so a script still runs to completion.
 
-LOCALID resolution is simplified: LOCALID_PLAYER is the player and any other
-object id is the NPC the player interacted with (the script owner) - enough for
-the "NPC approaches the player" cutscenes.
+LOCALID resolution: LOCALID_PLAYER is the player; a name found in the current
+map's localid_map (object events porymap actually named, see NpcSpawn::
+local_id) is that specific object, for cutscenes that address more than one
+NPC by id (e.g. Wally's Petalburg Gym battle); anything else (VAR_LAST_TALKED,
+an unnamed object, ...) falls back to the script's owner -- the NPC the player
+interacted with, enough for the common "NPC approaches the player" case.
 *****************************************************************************/
 class ScriptVM
 {
@@ -38,7 +41,8 @@ public:
 	// LOCALID (the Mossdeep Gym rotating-tile puzzle).
 	void configure(Map* map, GameState* state, DialogBox* box, Battle* battle,
 	               Audio* audio, Character* player,
-	               std::vector<Character*>* actors = nullptr);
+	               std::vector<Character*>* actors = nullptr,
+	               const std::unordered_map<std::string, Character*>* localid_map = nullptr);
 
 	// Battle hooks for trainerbattle (set once at startup). `team` is the
 	// player's whole party (not just the lead mon) so `special
@@ -109,6 +113,7 @@ private:
 	Audio* audio; Character* player; Character* owner;
 	BattleData* bdata; std::vector<Mon>* team;
 	std::vector<Character*>* actors = nullptr;
+	const std::unordered_map<std::string, Character*>* localid_map = nullptr;
 
 	// Mossdeep Gym's (and Trick House Puzzle #7's) rotating-tile puzzle:
 	// `moverotatingtileobjects` records which characters actually shifted

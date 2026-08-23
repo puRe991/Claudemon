@@ -25,10 +25,10 @@ collision
 1,0,0,0,0,0,0,0,0,0,0,0,0,0,1
 1,1,1,1,1,1,0,0,0,1,1,1,1,1,1
 npcs
-people_woman_3 6 4 S static 0
-people_contest_judge 7 4 S static 0
-misc_item_ball 7 5 S static FLAG_HIDE_CONTEST_POKE_BALL
-people_artist 12 6 W static 0
+people_woman_3 6 4 S static 0 LOCALID_CONTEST_MC
+people_contest_judge 7 4 S static 0 LOCALID_CONTEST_JUDGE
+misc_item_ball 7 5 S static FLAG_HIDE_CONTEST_POKE_BALL LOCALID_CONTEST_POKEBALL
+people_artist 12 6 W static 0 LOCALID_CONTEST_ARTIST
 onload
 VAR_CONTEST_HALL_STATE 1 ContestHall_EventScript_Contest
 movements

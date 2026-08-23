@@ -31,7 +31,7 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 npcs
-people_scientist_1 8 12 N static 0
+people_scientist_1 8 12 N static 0 LOCALID_FACTORY_PRE_BATTLE_ATTENDANT
 onload
 VAR_TEMP_0 0 BattleFrontier_BattleFactoryPreBattleRoom_EventScript_EnterRoom
 movements

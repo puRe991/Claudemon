@@ -19,7 +19,7 @@ collision
 0,0,0,0,1,0,0,0,1,0,0,0,0,0
 0,0,1,0,0,0,0,0,0,0,1,0,0,0
 npcs
-people_link_receptionist 6 6 S static 0
+people_link_receptionist 6 6 S static 0 LOCALID_PIKE_CORRIDOR_ATTENDANT
 onload
 VAR_TEMP_0 0 BattleFrontier_BattlePikeCorridor_EventScript_EnterCorridor
 movements

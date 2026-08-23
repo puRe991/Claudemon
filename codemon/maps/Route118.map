@@ -68,7 +68,7 @@ people_fisherman 14 14 S static 0
 people_man_5 56 7 S static 0
 people_fisherman 39 15 S static 0
 people_man_5 17 11 S static 0
-people_steven 44 7 S static FLAG_HIDE_ROUTE_118_STEVEN
+people_steven 44 7 S static FLAG_HIDE_ROUTE_118_STEVEN LOCALID_ROUTE118_STEVEN
 misc_item_ball 69 7 S static FLAG_ITEM_ROUTE_118_HYPER_POTION
 people_youngster 7 7 S static 0
 dialogs

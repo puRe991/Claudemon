@@ -31,7 +31,7 @@ collision
 warps
 7 12 BattleFrontier_OutsideEast 1
 npcs
-people_black_belt 7 7 S static 0
+people_black_belt 7 7 S static 0 LOCALID_ARENA_ATTENDANT
 people_woman_5 2 10 S wander 0
 people_man_5 14 11 W static 0
 people_camper 14 12 W static 0

@@ -31,8 +31,8 @@ collision
 warps
 8 2 BirthIsland_Exterior 0
 npcs
-people_sailor 8 5 N static 0
-misc_ss_tidal 8 7 E static 0
+people_sailor 8 5 N static 0 LOCALID_BIRTH_ISLAND_SAILOR
+misc_ss_tidal 8 7 E static 0 LOCALID_BIRTH_ISLAND_SS_TIDAL
 objscripts
 0 BirthIsland_Harbor_EventScript_Sailor
 movements

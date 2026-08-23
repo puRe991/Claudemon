@@ -293,7 +293,7 @@ warps
 19 58 MirageTower_1F 0
 31 113 TrainerHill_Entrance 0
 npcs
-people_man_1 13 114 S static FLAG_HIDE_ROUTE_111_VICTOR_WINSTRATE
+people_man_1 13 114 S static FLAG_HIDE_ROUTE_111_VICTOR_WINSTRATE LOCALID_ROUTE111_VICTOR
 people_pokefan_f 13 113 S static FLAG_HIDE_ROUTE_111_VICTORIA_WINSTRATE
 people_lass 13 113 S static FLAG_HIDE_ROUTE_111_VIVI_WINSTRATE
 people_expert_f 13 113 S static FLAG_HIDE_ROUTE_111_VICKY_WINSTRATE
@@ -337,7 +337,7 @@ people_camper 37 77 W static 0
 misc_item_ball 19 118 S static FLAG_ITEM_ROUTE_111_ELIXIR
 people_hiker 14 56 S static 0
 misc_fossil 20 53 S static FLAG_HIDE_ROUTE_111_DESERT_FOSSIL
-people_fat_man 19 101 N static FLAG_HIDE_ROUTE_111_ROCK_SMASH_TIP_GUY
+people_fat_man 19 101 N static FLAG_HIDE_ROUTE_111_ROCK_SMASH_TIP_GUY LOCALID_ROUTE111_ROCK_SMASH_MAN
 dialogs
 0	Hello! I take it you're a traveler.How's this? What do you say to taking on our family of four in a series of POKéMON battles?
 7	If you don't raise your POKéMON some more, it could be tough to keep winning up through the ranks.I've heard the POKéMON LEAGUE's ELITE FOUR are far stronger than any GYM LEADER.

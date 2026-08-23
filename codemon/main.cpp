@@ -123,6 +123,12 @@ struct Session {
     std::vector<Agent> agents;
     std::vector<Character*> npc_chars;
     std::vector<Character*> actors;   // npcs + player, for draw/collision
+    // pokeemerald LOCALID_* -> its Character, for scripted cutscenes that
+    // address a specific object event by name (`applymovement`/`addobject`/
+    // `removeobject`/`hideobject`/`showobject`) rather than "the NPC just
+    // talked to" -- see ScriptVM's resolve(). Only NPCs porymap actually
+    // named get an entry (NpcSpawn::local_id), most don't.
+    std::unordered_map<std::string, Character*> localid_map;
 };
 
 static bool actor_at(const std::vector<Character*>& actors, Character* self,
@@ -164,8 +170,12 @@ static Session* load_session(const std::string& path, int arr_x, int arr_y,
 
     for (const NpcSpawn& sp : s->map->npcs()) {
         // pokeemerald FLAG_HIDE_*: this object doesn't exist yet/anymore
-        // (not met, already given away, story hasn't reached it, ...).
-        if (!sp.hide_flag.empty() && gs && gs->flag(sp.hide_flag)) continue;
+        // (not met, already given away, story hasn't reached it, ...) --
+        // skip it entirely, UNLESS a script might still `addobject` it later
+        // by LOCALID (a Wally-style cutscene NPC also starts flag-hidden,
+        // but its Character still needs to exist for that to work).
+        bool hidden = !sp.hide_flag.empty() && gs && gs->flag(sp.hide_flag);
+        if (hidden && sp.local_id.empty()) continue;
         Character* ch = new Character(sp.x, sp.y);
         if (!ch->load_sprite_sheet("assets/overworld/" + sp.sheet + ".png")) {
             delete ch; continue;
@@ -179,8 +189,9 @@ static Session* load_session(const std::string& path, int arr_x, int arr_y,
         ag.sheet = sp.sheet; ag.dialog = sp.dialog;
         s->agents.push_back(ag);
         s->npc_chars.push_back(ch);
+        if (!sp.local_id.empty()) s->localid_map[sp.local_id] = ch;
+        if (!hidden) s->actors.push_back(ch);
     }
-    for (Character* n : s->npc_chars) s->actors.push_back(n);
     s->actors.push_back(s->player);
     return s;
 }
@@ -1058,7 +1069,7 @@ int main() {
     battle.set_capture(&gs, &team, &pc_box);
     ScriptVM vm;
     vm.set_battle_data(&bdata, &team);
-    vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player, &sess->actors);
+    vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player, &sess->actors, &sess->localid_map);
     run_load_triggers(sess->map, gs, vm);
     if (const char* ts = std::getenv("CODEMON_TEST_SCRIPT")) vm.start(ts, sess->player);
     Menu menu;
@@ -1124,7 +1135,7 @@ int main() {
         if (!ns->map->ready()) { free_session(ns); return; }
         free_session(sess);
         sess = ns;
-        vm.configure(sess->map, &gs, &box, &battle, aud, sess->player, &sess->actors);
+        vm.configure(sess->map, &gs, &box, &battle, aud, sess->player, &sess->actors, &sess->localid_map);
         run_load_triggers(sess->map, gs, vm);
         on_map_change(sess->path);
     };
@@ -1141,7 +1152,7 @@ int main() {
         free_session(sess);
         sess = ns;
         sess->player->face(DIR::S);
-        vm.configure(sess->map, &gs, &box, &battle, aud, sess->player, &sess->actors);
+        vm.configure(sess->map, &gs, &box, &battle, aud, sess->player, &sess->actors, &sess->localid_map);
         run_load_triggers(sess->map, gs, vm);
         on_map_change(sess->path);
     };
@@ -1170,7 +1181,7 @@ int main() {
                 if (ns->map->ready()) {
                     free_session(sess);
                     sess = ns;
-                    vm.configure(sess->map, &gs, &box, &battle, aud, sess->player, &sess->actors);
+                    vm.configure(sess->map, &gs, &box, &battle, aud, sess->player, &sess->actors, &sess->localid_map);
                     run_load_triggers(sess->map, gs, vm);
                     on_map_change(sess->path);
                 } else {
@@ -1234,7 +1245,7 @@ int main() {
                                 yesno.open("Ein gewaltiger Wasserfall stürzt herab... Möchtest du WASSERFALL einsetzen?");
                             }
                             if (sess != before) {
-                                vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player, &sess->actors);
+                                vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player, &sess->actors, &sess->localid_map);
     run_load_triggers(sess->map, gs, vm);
                                 on_map_change(sess->path);
                             } else if (sess->player->get_tile_x() != pbx ||
@@ -1270,7 +1281,7 @@ int main() {
                             Session* before = sess;
                             sess = player_step(sess, sess->player->get_facing(), nullptr, &gs, true);
                             if (sess != before) {
-                                vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player, &sess->actors);
+                                vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player, &sess->actors, &sess->localid_map);
                                 run_load_triggers(sess->map, gs, vm);
                                 on_map_change(sess->path);
                             } else if (sess->player->get_tile_x() != pbx ||
@@ -1289,7 +1300,7 @@ int main() {
                             Session* before = sess;
                             sess = player_step(sess, sess->player->get_facing(), nullptr, &gs, false, nullptr, true);
                             if (sess != before) {
-                                vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player, &sess->actors);
+                                vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player, &sess->actors, &sess->localid_map);
                                 run_load_triggers(sess->map, gs, vm);
                                 on_map_change(sess->path);
                             } else if (sess->player->get_tile_x() != pbx ||
@@ -1366,7 +1377,7 @@ int main() {
 
     // --- interactive game --------------------------------------------------
     Audio audio; audio.load("assets");
-    vm.configure(sess->map, &gs, &box, &battle, &audio, sess->player, &sess->actors);
+    vm.configure(sess->map, &gs, &box, &battle, &audio, sess->player, &sess->actors, &sess->localid_map);
     run_load_triggers(sess->map, gs, vm);
     Window scr(win_w, win_h, "Codemon!");
 
@@ -1505,7 +1516,7 @@ int main() {
                         yesno.open("Ein gewaltiger Wasserfall stürzt herab... Möchtest du WASSERFALL einsetzen?");
                     }
                     if (sess != before) {
-                        vm.configure(sess->map, &gs, &box, &battle, &audio, sess->player, &sess->actors);
+                        vm.configure(sess->map, &gs, &box, &battle, &audio, sess->player, &sess->actors, &sess->localid_map);
                         run_load_triggers(sess->map, gs, vm);
                         on_map_change(sess->path);
                     } else if (sess->player->get_tile_x() != pbx ||
@@ -1533,7 +1544,7 @@ int main() {
                 Session* before = sess;
                 sess = player_step(sess, sess->player->get_facing(), &audio, &gs, true);
                 if (sess != before) {
-                    vm.configure(sess->map, &gs, &box, &battle, &audio, sess->player, &sess->actors);
+                    vm.configure(sess->map, &gs, &box, &battle, &audio, sess->player, &sess->actors, &sess->localid_map);
                     run_load_triggers(sess->map, gs, vm);
                     on_map_change(sess->path);
                 } else if (sess->player->get_tile_x() != pbx ||
@@ -1552,7 +1563,7 @@ int main() {
                 Session* before = sess;
                 sess = player_step(sess, sess->player->get_facing(), &audio, &gs, false, nullptr, true);
                 if (sess != before) {
-                    vm.configure(sess->map, &gs, &box, &battle, &audio, sess->player, &sess->actors);
+                    vm.configure(sess->map, &gs, &box, &battle, &audio, sess->player, &sess->actors, &sess->localid_map);
                     run_load_triggers(sess->map, gs, vm);
                     on_map_change(sess->path);
                 } else if (sess->player->get_tile_x() != pbx ||

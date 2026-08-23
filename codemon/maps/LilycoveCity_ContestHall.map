@@ -77,34 +77,34 @@ npcs
 people_boy_1 30 30 S wander 0
 people_boy_3 11 7 S wander 0
 people_girl_3 40 8 S wander 0
-people_woman_3 12 22 S static 0
-people_contest_judge 15 22 S static 0
-people_black_belt 10 25 N static 0
-people_expert_m 12 25 N static 0
-people_maniac 14 25 N static 0
-people_link_receptionist 16 25 N static 0
+people_woman_3 12 22 S static 0 LOCALID_SMART_MC
+people_contest_judge 15 22 S static 0 LOCALID_SMART_JUDGE
+people_black_belt 10 25 N static 0 LOCALID_SMART_CONTESTANT_1
+people_expert_m 12 25 N static 0 LOCALID_SMART_CONTESTANT_2
+people_maniac 14 25 N static 0 LOCALID_SMART_CONTESTANT_3
+people_link_receptionist 16 25 N static 0 LOCALID_SMART_CONTESTANT_4
 people_expert_f 8 24 E static 0
-people_woman_5 18 24 W static 0
-people_boy_1 8 22 E static 0
-people_woman_3 24 10 S static 0
-people_contest_judge 27 10 S static 0
-people_woman_4 22 13 N static 0
-people_twin 24 13 N static 0
-people_psychic_m 26 13 N static 0
-people_pokefan_f 28 13 N static 0
-people_woman_2 20 10 E static 0
-people_woman_1 30 11 W static 0
-people_man_1 26 8 S static 0
-people_camper 13 20 S static 0
-people_woman_3 36 22 S static 0
-people_contest_judge 39 22 S static 0
-people_boy_2 34 25 N static 0
-people_girl_2 36 25 N static 0
-people_boy_3 38 25 N static 0
-people_expert_f 40 25 N static 0
-people_woman_2 32 23 E static 0
-people_man_1 37 20 S static 0
-people_little_girl 42 24 W static 0
+people_woman_5 18 24 W static 0 LOCALID_SMART_AUDIENCE_4
+people_boy_1 8 22 E static 0 LOCALID_SMART_AUDIENCE_2
+people_woman_3 24 10 S static 0 LOCALID_BEAUTY_MC
+people_contest_judge 27 10 S static 0 LOCALID_BEAUTY_JUDGE
+people_woman_4 22 13 N static 0 LOCALID_BEAUTY_CONTESTANT_1
+people_twin 24 13 N static 0 LOCALID_BEAUTY_CONTESTANT_2
+people_psychic_m 26 13 N static 0 LOCALID_BEAUTY_CONTESTANT_3
+people_pokefan_f 28 13 N static 0 LOCALID_BEAUTY_CONTESTANT_4
+people_woman_2 20 10 E static 0 LOCALID_BEAUTY_AUDIENCE_1
+people_woman_1 30 11 W static 0 LOCALID_BEAUTY_AUDIENCE_3
+people_man_1 26 8 S static 0 LOCALID_BEAUTY_AUDIENCE_2
+people_camper 13 20 S static 0 LOCALID_SMART_AUDIENCE_3
+people_woman_3 36 22 S static 0 LOCALID_CUTE_MC
+people_contest_judge 39 22 S static 0 LOCALID_CUTE_JUDGE
+people_boy_2 34 25 N static 0 LOCALID_CUTE_CONTESTANT_1
+people_girl_2 36 25 N static 0 LOCALID_CUTE_CONTESTANT_2
+people_boy_3 38 25 N static 0 LOCALID_CUTE_CONTESTANT_3
+people_expert_f 40 25 N static 0 LOCALID_CUTE_CONTESTANT_4
+people_woman_2 32 23 E static 0 LOCALID_CUTE_AUDIENCE_1
+people_man_1 37 20 S static 0 LOCALID_CUTE_AUDIENCE_3
+people_little_girl 42 24 W static 0 LOCALID_CUTE_AUDIENCE_2
 people_sailor 23 26 S wander 0
 dialogs
 0	This POKéMON won the BEAUTY CONTEST here before.Well, guess what? Today, I made it win a SMARTNESS CONTEST!My abilities scare even me…

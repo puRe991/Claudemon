@@ -40,12 +40,12 @@ warps
 11 16 BattleFrontier_OutsideWest 1
 12 16 BattleFrontier_OutsideWest 1
 npcs
-people_teala 5 10 S static 0
+people_teala 5 10 S static 0 LOCALID_DOME_ATTENDANT_SINGLES
 people_man_3 1 11 S wander 0
 people_lass 14 14 S wander 0
 people_fat_man 18 14 S wander 0
 people_maniac 8 14 S wander 0
-people_teala 17 10 S static 0
+people_teala 17 10 S static 0 LOCALID_DOME_ATTENDANT_DOUBLES
 dialogs
 1	I would've won if I'd kept this POKéMON held in reserve.You need to check your opponent's POKéMON carefully before choosing your battling POKéMON.
 2	When a TRAINER chains tournament wins at the BATTLE DOME, he or she gains a reputation as a star.Tough TRAINERS are drawn by that reputation to the BATTLE DOME.A true superstar is a TRAINER who can keep winning tournaments.

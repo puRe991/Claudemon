@@ -98,11 +98,11 @@ misc_item_ball 2 4 S static FLAG_ITEM_METEOR_FALLS_1F_1R_TM_IRON_TAIL
 misc_item_ball 2 14 S static FLAG_ITEM_METEOR_FALLS_1F_1R_MOON_STONE
 misc_item_ball 27 5 S static FLAG_ITEM_METEOR_FALLS_1F_1R_FULL_HEAL
 misc_item_ball 26 32 S static FLAG_ITEM_METEOR_FALLS_1F_1R_PP_UP
-people_team_magma_magma_member_m 12 20 S static FLAG_HIDE_METEOR_FALLS_TEAM_MAGMA
-people_team_magma_magma_member_m 14 21 W static FLAG_HIDE_METEOR_FALLS_TEAM_MAGMA
+people_team_magma_magma_member_m 12 20 S static FLAG_HIDE_METEOR_FALLS_TEAM_MAGMA LOCALID_METEOR_FALLS_MAGMA_GRUNT_1
+people_team_magma_magma_member_m 14 21 W static FLAG_HIDE_METEOR_FALLS_TEAM_MAGMA LOCALID_METEOR_FALLS_MAGMA_GRUNT_2
 people_team_aqua_archie 6 20 E static FLAG_HIDE_METEOR_FALLS_TEAM_AQUA
 people_team_aqua_aqua_member_m 6 20 E static FLAG_HIDE_METEOR_FALLS_TEAM_AQUA
-people_team_aqua_aqua_member_m 6 21 S static FLAG_HIDE_METEOR_FALLS_TEAM_AQUA
+people_team_aqua_aqua_member_m 6 21 S static FLAG_HIDE_METEOR_FALLS_TEAM_AQUA LOCALID_METEOR_FALLS_AQUA_GRUNT_2
 people_scientist_1 13 23 W pace_h FLAG_HIDE_METEOR_FALLS_1F_1R_COZMO
 dialogs
 9	I… I'm COZMO… I'm a PROFESSOR…TEAM MAGMA asked me to guide them to METEOR FALLS…But they tricked me. They even took my METEORITE away…And then another similar bunch, TEAM AQUA showed up.After that… I don't understand any of it.But that TEAM MAGMA…What are they going to do with that METEORITE at MT. CHIMNEY?

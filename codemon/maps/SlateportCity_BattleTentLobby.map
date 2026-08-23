@@ -26,7 +26,7 @@ warps
 6 9 SlateportCity 3
 7 9 SlateportCity 3
 npcs
-people_scientist_1 6 5 S static 0
+people_scientist_1 6 5 S static 0 LOCALID_SLATEPORT_TENT_ATTENDANT
 people_sailor 1 5 S wander 0
 people_man_3 3 7 N static 0
 people_girl_1 1 8 S static 0

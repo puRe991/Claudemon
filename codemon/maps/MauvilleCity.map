@@ -61,12 +61,12 @@ people_rich_boy 24 10 S wander 0
 people_maniac 14 11 E static 0
 people_woman_4 18 6 S static 0
 people_school_kid_m 17 14 S static 0
-people_wally 8 6 N static FLAG_HIDE_MAUVILLE_CITY_WALLY
-people_pokefan_m 9 6 W static FLAG_HIDE_MAUVILLE_CITY_WALLYS_UNCLE
+people_wally 8 6 N static FLAG_HIDE_MAUVILLE_CITY_WALLY LOCALID_MAUVILLE_WALLY
+people_pokefan_m 9 6 W static FLAG_HIDE_MAUVILLE_CITY_WALLYS_UNCLE LOCALID_MAUVILLE_WALLYS_UNCLE
 people_man_1 29 9 S static FLAG_HIDE_MAUVILLE_CITY_WATTSON
 misc_item_ball 28 19 S static FLAG_ITEM_MAUVILLE_CITY_X_SPEED
 people_fat_man 13 7 W static 0
-people_scott 12 14 N static FLAG_HIDE_MAUVILLE_CITY_SCOTT
+people_scott 12 14 N static FLAG_HIDE_MAUVILLE_CITY_SCOTT LOCALID_MAUVILLE_SCOTT
 dialogs
 0	You know, it's cool to have POKéMON battles and stuff…But if your POKéMON gets hurt, you have to nurse it back to health.
 1	Even if you're riding a BIKE, wild POKéMON could jump you.

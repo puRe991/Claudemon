@@ -25,13 +25,13 @@ warps
 2 8 LittlerootTown 0
 2 2 LittlerootTown_MaysHouse_2F 0
 npcs
-people_mom 8 6 W static FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_MOM
+people_mom 8 6 W static FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_MOM LOCALID_PLAYERS_HOUSE_1F_MOM
 people_man_1 6 5 S static FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_VIGOROTH_1
 people_man_1 9 3 W pace_h FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_VIGOROTH_2
-people_woman_4 8 7 W static FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_MOM
-people_man_1 5 6 E static FLAG_HIDE_PLAYERS_HOUSE_DAD
+people_woman_4 8 7 W static FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_MOM LOCALID_RIVALS_HOUSE_1F_MOM
+people_man_1 5 6 E static FLAG_HIDE_PLAYERS_HOUSE_DAD LOCALID_PLAYERS_HOUSE_1F_DAD
 people_ninja_boy 9 5 S wander FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_SIBLING
-people_may_walking 2 8 N static FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_MAY
+people_may_walking 2 8 N static FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_MAY LOCALID_RIVALS_HOUSE_1F_RIVAL
 dialogs
 3	Ganz der Vater, dieses Kind.Mein Mann ist genauso wild auf POKéMON wie unser Kind.Wenn er nicht in seinem LABOR ist, dann wühlt er wahrscheinlich irgendwo im hohen Gras herum.
 5	Hi, Nachbar!Hast du schon dein eigenes POKéMON?

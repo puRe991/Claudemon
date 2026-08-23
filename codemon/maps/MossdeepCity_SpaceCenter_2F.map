@@ -25,15 +25,15 @@ collision
 warps
 13 1 MossdeepCity_SpaceCenter_1F 2
 npcs
-people_rich_boy 6 2 N static 0
-people_gentleman 11 8 N static 0
-people_scientist_1 5 6 S wander 0
-people_steven 1 8 S static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_STEVEN
-people_team_magma_magma_member_m 12 2 E static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA
-people_team_magma_magma_member_m 13 3 N static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA
-people_team_magma_magma_member_m 14 2 W static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA
-people_team_magma_magma_member_m 0 8 E static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA
-people_team_magma_maxie 1 9 N static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA
+people_rich_boy 6 2 N static 0 LOCALID_SPACE_CENTER_2F_RICH_BOY
+people_gentleman 11 8 N static 0 LOCALID_SPACE_CENTER_2F_GENTLEMAN
+people_scientist_1 5 6 S wander 0 LOCALID_SPACE_CENTER_2F_SCIENTIST
+people_steven 1 8 S static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_STEVEN LOCALID_SPACE_CENTER_2F_STEVEN
+people_team_magma_magma_member_m 12 2 E static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA LOCALID_SPACE_CENTER_GRUNT_6
+people_team_magma_magma_member_m 13 3 N static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA LOCALID_SPACE_CENTER_GRUNT_5
+people_team_magma_magma_member_m 14 2 W static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA LOCALID_SPACE_CENTER_GRUNT_7
+people_team_magma_magma_member_m 0 8 E static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA LOCALID_SPACE_CENTER_TABITHA
+people_team_magma_maxie 1 9 N static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA LOCALID_SPACE_CENTER_MAXIE
 dialogs
 3	STEVEN: TEAM MAGMA…What's the point of stealing rocket fuel?
 4	Three of us here, and look at the sorry mess we got ourselves into.

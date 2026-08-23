@@ -32,30 +32,30 @@ warps
 9 1 LilycoveCity_ContestHall 0
 21 1 LilycoveCity_ContestHall 1
 npcs
-people_teala 14 2 S static 0
-people_teala 15 2 S static 0
-people_man_4 26 9 E static 0
-people_artist 9 1 S static FLAG_HIDE_LILYCOVE_CONTEST_HALL_CONTEST_ATTENDANT_1
+people_teala 14 2 S static 0 LOCALID_CONTEST_LOBBY_RECEPTIONIST
+people_teala 15 2 S static 0 LOCALID_CONTEST_LOBBY_LINK_RECEPTIONIST
+people_man_4 26 9 E static 0 LOCALID_CONTEST_LOBBY_BLENDER_2_LEADER
+people_artist 9 1 S static FLAG_HIDE_LILYCOVE_CONTEST_HALL_CONTEST_ATTENDANT_1 LOCALID_CONTEST_LOBBY_ARTIST
 people_black_belt 18 8 S wander 0
 people_girl_2 4 9 S wander 0
 people_artist 3 4 S wander 0
 people_reporter_m 13 10 E static FLAG_HIDE_LILYCOVE_CONTEST_HALL_REPORTER
-people_boy_1 23 8 S static 0
-people_twin 28 9 W static 0
-people_artist 21 1 S static FLAG_HIDE_LILYCOVE_CONTEST_HALL_CONTEST_ATTENDANT_2
+people_boy_1 23 8 S static 0 LOCALID_CONTEST_LOBBY_BLENDER_3_PARTICIPANT_1
+people_twin 28 9 W static 0 LOCALID_CONTEST_LOBBY_BLENDER_2_PARTICIPANT
+people_artist 21 1 S static FLAG_HIDE_LILYCOVE_CONTEST_HALL_CONTEST_ATTENDANT_2 LOCALID_CONTEST_LOBBY_LINK_ARTIST
 people_fisherman 5 6 S wander 0
 people_fat_man 0 8 E static 0
 people_ninja_boy 8 7 S wander 0
-people_pokefan_f 22 9 E static 0
-people_expert_m 26 5 E static FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER_REPLACEMENT
-people_girl_1 24 9 W static 0
+people_pokefan_f 22 9 E static 0 LOCALID_CONTEST_LOBBY_BLENDER_3_LEADER
+people_expert_m 26 5 E static FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER_REPLACEMENT LOCALID_BLEND_MASTER
+people_girl_1 24 9 W static 0 LOCALID_CONTEST_LOBBY_BLENDER_3_PARTICIPANT_2
 people_man_5 27 3 S static FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER
 people_camper 28 3 S static FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER
 people_little_girl 28 7 N static FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER
 people_scientist_2 26 7 N static FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER
 people_woman_1 27 7 N static FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER
 people_ninja_boy 26 3 S static FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER
-people_old_man 26 5 E static FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER
+people_old_man 26 5 E static FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER LOCALID_BLEND_MASTER
 people_little_girl 9 10 E static 0
 dialogs
 4	Hoo, boy… Master Rank CONTESTS, here I come.The world will know that my dearest POKéMON is the cutest being in all existence. The time has come! Uheheheh.

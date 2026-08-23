@@ -58,8 +58,8 @@ people_old_man 5 8 S static 0
 people_twin 10 13 S wander 0
 people_hot_springs_old_woman 4 4 S static 0
 people_hot_springs_old_woman 5 4 S static 0
-people_may_walking 6 16 W static FLAG_HIDE_LAVARIDGE_TOWN_RIVAL_ON_BIKE
-people_may_walking 12 15 S static FLAG_HIDE_LAVARIDGE_TOWN_RIVAL
+people_may_walking 6 16 W static FLAG_HIDE_LAVARIDGE_TOWN_RIVAL_ON_BIKE LOCALID_LAVARIDGE_RIVAL_ON_BIKE
+people_may_walking 12 15 S static FLAG_HIDE_LAVARIDGE_TOWN_RIVAL LOCALID_LAVARIDGE_RIVAL
 people_expert_f 4 7 S static 0
 dialogs
 0	Oh, you like hot springs, do you?That's surprising for one as young as you.

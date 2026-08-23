@@ -33,7 +33,7 @@ warps
 4 12 BattleFrontier_OutsideWest 0
 6 12 BattleFrontier_OutsideWest 0
 npcs
-people_link_receptionist 5 5 S static 0
+people_link_receptionist 5 5 S static 0 LOCALID_PIKE_LOBBY_ATTENDANT
 people_hiker 10 9 N static 0
 people_twin 0 5 W static 0
 people_beauty 8 9 S wander 0

@@ -119,8 +119,8 @@ people_team_aqua_aqua_member_m 38 9 W static FLAG_HIDE_LILYCOVE_CITY_AQUA_GRUNTS
 people_gentleman 50 7 S wander 0
 people_may_walking 27 7 S static FLAG_HIDE_LILYCOVE_CITY_RIVAL
 people_school_kid_m 16 23 E static 0
-people_woman_3 41 25 W static 0
-people_man_2 40 25 E static 0
+people_woman_3 41 25 W static 0 LOCALID_LILYCOVE_WOMAN_1
+people_man_2 40 25 E static 0 LOCALID_LILYCOVE_MAN_1
 people_sailor 16 34 S static 0
 people_fat_man 16 35 N static 0
 dialogs

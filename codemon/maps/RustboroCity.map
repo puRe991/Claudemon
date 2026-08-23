@@ -146,15 +146,15 @@ people_ninja_boy 25 37 N static 0
 people_twin 21 46 S wander 0
 people_boy_2 12 45 S static 0
 people_man_3 26 23 S static 0
-people_little_boy 24 51 E static 0
-people_little_girl 25 51 W static 0
-people_man_2 30 10 E static FLAG_HIDE_RUSTBORO_CITY_DEVON_EMPLOYEE_1
-people_team_aqua_aqua_member_m 13 21 E static FLAG_HIDE_RUSTBORO_CITY_AQUA_GRUNT
+people_little_boy 24 51 E static 0 LOCALID_RUSTBORO_LITTLE_BOY
+people_little_girl 25 51 W static 0 LOCALID_RUSTBORO_LITTLE_GIRL
+people_man_2 30 10 E static FLAG_HIDE_RUSTBORO_CITY_DEVON_EMPLOYEE_1 LOCALID_RUSTBORO_DEVON_EMPLOYEE
+people_team_aqua_aqua_member_m 13 21 E static FLAG_HIDE_RUSTBORO_CITY_AQUA_GRUNT LOCALID_RUSTBORO_GRUNT
 people_devon_employee 13 34 S wander 0
 misc_item_ball 36 51 S static FLAG_ITEM_RUSTBORO_CITY_X_DEFEND
 people_man_4 19 27 S static 0
-people_may_walking 16 50 S static FLAG_HIDE_RUSTBORO_CITY_RIVAL
-people_scientist_1 11 15 S static FLAG_HIDE_RUSTBORO_CITY_SCIENTIST
+people_may_walking 16 50 S static FLAG_HIDE_RUSTBORO_CITY_RIVAL LOCALID_RUSTBORO_RIVAL
+people_scientist_1 11 15 S static FLAG_HIDE_RUSTBORO_CITY_SCIENTIST LOCALID_RUSTBORO_SCIENTIST
 people_boy_1 31 36 S static 0
 dialogs
 0	Ich hab den GYM LEADER herausgefordert, aber…Es wird nicht leicht, mit meinem FEUER-POKéMON zu gewinnen…FEUER-POKéMON haben es schwer gegen GESTEIN-POKéMON…

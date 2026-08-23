@@ -51,7 +51,7 @@ collision
 warps
 10 12 Route114_FossilManiacsTunnel 2
 npcs
-misc_fossil 132 10 S static FLAG_HIDE_DESERT_UNDERPASS_FOSSIL
+misc_fossil 132 10 S static FLAG_HIDE_DESERT_UNDERPASS_FOSSIL LOCALID_UNDERPASS_FOSSIL
 objscripts
 0 DesertUnderpass_EventScript_Fossil
 scriptdefs

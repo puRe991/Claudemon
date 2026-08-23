@@ -55,16 +55,16 @@ warps
 29 16 VerdanturfTown 4
 18 20 Route116 2
 npcs
-people_black_belt 23 5 E static FLAG_HIDE_RUSTURF_TUNNEL_WANDAS_BOYFRIEND
+people_black_belt 23 5 E static FLAG_HIDE_RUSTURF_TUNNEL_WANDAS_BOYFRIEND LOCALID_RUSTURF_TUNNEL_WANDAS_BF
 misc_breakable_rock 24 5 S static FLAG_HIDE_RUSTURF_TUNNEL_ROCK_1
 misc_item_ball 3 1 S static FLAG_ITEM_RUSTURF_TUNNEL_POKE_BALL
 misc_item_ball 30 2 S static FLAG_ITEM_RUSTURF_TUNNEL_MAX_ETHER
-people_expert_m 5 4 E static FLAG_HIDE_RUSTURF_TUNNEL_BRINEY
-people_team_aqua_aqua_member_m 14 5 W static FLAG_HIDE_RUSTURF_TUNNEL_AQUA_GRUNT
-pokemon_wingull 14 4 W static FLAG_HIDE_RUSTURF_TUNNEL_PEEKO
+people_expert_m 5 4 E static FLAG_HIDE_RUSTURF_TUNNEL_BRINEY LOCALID_RUSTURF_TUNNEL_BRINEY
+people_team_aqua_aqua_member_m 14 5 W static FLAG_HIDE_RUSTURF_TUNNEL_AQUA_GRUNT LOCALID_RUSTURF_TUNNEL_GRUNT
+pokemon_wingull 14 4 W static FLAG_HIDE_RUSTURF_TUNNEL_PEEKO LOCALID_RUSTURF_TUNNEL_PEEKO
 misc_breakable_rock 24 4 S static FLAG_HIDE_RUSTURF_TUNNEL_ROCK_2
 people_hiker 32 13 W static 0
-people_woman_2 25 4 W static FLAG_HIDE_RUSTURF_TUNNEL_WANDA
+people_woman_2 25 4 W static FLAG_HIDE_RUSTURF_TUNNEL_WANDA LOCALID_RUSTURF_TUNNEL_WANDA
 dialogs
 0	… …Why can't they keep digging? Is the bedrock too hard?My beloved awaits me in VERDANTURF TOWN just beyond here…If RUSTBORO and VERDANTURF were joined by this tunnel, I could visit her every day…But this… What am I to do?
 5	Grah, keelhaul it all!That hostage POKéMON turned out to be worthless!And to think I made a getaway… In this tunnel to nowhere!Hey! You! So you want to battle me?

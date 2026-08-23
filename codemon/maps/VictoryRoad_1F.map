@@ -102,7 +102,7 @@ npcs
 people_man_3 33 22 S static 0
 people_woman_5 6 15 W static 0
 people_man_3 27 34 S static 0
-people_wally 12 25 S static FLAG_HIDE_VICTORY_ROAD_ENTRANCE_WALLY
+people_wally 12 25 S static FLAG_HIDE_VICTORY_ROAD_ENTRANCE_WALLY LOCALID_VICTORY_ROAD_ENTRANCE_WALLY
 misc_item_ball 40 26 S static FLAG_ITEM_VICTORY_ROAD_1F_MAX_ELIXIR
 misc_item_ball 37 39 S static FLAG_ITEM_VICTORY_ROAD_1F_PP_UP
 people_wally 31 9 S static FLAG_HIDE_VICTORY_ROAD_EXIT_WALLY

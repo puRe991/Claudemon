@@ -17,9 +17,9 @@ warps
 4 2 - 0
 4 3 - 0
 npcs
-misc_moving_box 0 0 S static 0
-misc_moving_box 0 3 S static 0
-misc_moving_box 2 3 S static 0
+misc_moving_box 0 0 S static 0 LOCALID_TRUCK_BOX_TOP
+misc_moving_box 0 3 S static 0 LOCALID_TRUCK_BOX_BOTTOM_L
+misc_moving_box 2 3 S static 0 LOCALID_TRUCK_BOX_BOTTOM_R
 dialogs
 0	The box is printed with a POKéMON logo.It's a POKéMON brand moving and delivery service.
 1	The box is printed with a POKéMON logo.It's a POKéMON brand moving and delivery service.

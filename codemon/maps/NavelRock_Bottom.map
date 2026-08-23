@@ -49,7 +49,7 @@ collision
 warps
 14 19 NavelRock_Down11 0
 npcs
-pokemon_lugia 11 13 S static FLAG_HIDE_LUGIA
+pokemon_lugia 11 13 S static FLAG_HIDE_LUGIA LOCALID_NAVEL_ROCK_LUGIA
 objscripts
 0 NavelRock_Bottom_EventScript_Lugia
 scriptdefs

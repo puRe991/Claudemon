@@ -27,15 +27,15 @@ warps
 8 9 MossdeepCity 8
 13 1 MossdeepCity_SpaceCenter_2F 0
 npcs
-people_scientist_1 7 2 N static 0
-people_scientist_1 2 2 N static 0
-people_sailor 6 6 W static 0
-people_old_man 10 2 N static 0
-people_woman_4 14 7 S wander 0
+people_scientist_1 7 2 N static 0 LOCALID_SPACE_CENTER_1F_SCIENTIST_1
+people_scientist_1 2 2 N static 0 LOCALID_SPACE_CENTER_1F_SCIENTIST_2
+people_sailor 6 6 W static 0 LOCALID_SPACE_CENTER_1F_SAILOR
+people_old_man 10 2 N static 0 LOCALID_SPACE_CENTER_1F_OLD_MAN
+people_woman_4 14 7 S wander 0 LOCALID_SPACE_CENTER_1F_WOMAN
 people_team_magma_magma_member_f 12 9 W static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA
 people_team_magma_magma_member_m 11 6 W static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA
-people_team_magma_magma_member_m 10 2 S static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA
-people_team_magma_magma_member_m 13 2 S static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA
+people_team_magma_magma_member_m 10 2 S static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA LOCALID_SPACE_CENTER_1F_OLD_MAN
+people_team_magma_magma_member_m 13 2 S static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA LOCALID_SPACE_CENTER_1F_STAIR_GRUNT
 people_ninja_boy 2 5 S static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_MAGMA_NOTE
 people_steven 1 4 S static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_STEVEN
 dialogs

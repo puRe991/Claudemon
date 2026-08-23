@@ -134,12 +134,12 @@ warps
 11 36 FieryPath 0
 22 10 FieryPath 1
 npcs
-people_team_magma_magma_member_m 26 30 N static FLAG_HIDE_ROUTE_112_TEAM_MAGMA
+people_team_magma_magma_member_m 26 30 N static FLAG_HIDE_ROUTE_112_TEAM_MAGMA LOCALID_ROUTE112_GRUNT_1
 people_hiker 24 34 W pace_h 0
 people_camper 29 49 S static 0
 people_picnicker 22 46 S static 0
 people_hiker 15 40 S static 0
-people_team_magma_magma_member_m 27 30 N static FLAG_HIDE_ROUTE_112_TEAM_MAGMA
+people_team_magma_magma_member_m 27 30 N static FLAG_HIDE_ROUTE_112_TEAM_MAGMA LOCALID_ROUTE112_GRUNT_2
 people_man_1 27 6 S static 0
 people_man_1 28 6 S static 0
 people_man_1 29 6 S static 0

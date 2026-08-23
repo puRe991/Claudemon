@@ -25,7 +25,7 @@ warps
 6 8 MossdeepCity 2
 1 6 MossdeepCity_PokemonCenter_2F 0
 npcs
-people_nurse 7 2 S static 0
+people_nurse 7 2 S static 0 LOCALID_MOSSDEEP_NURSE
 people_woman_2 8 4 N static 0
 people_girl_1 3 5 S static 0
 dialogs

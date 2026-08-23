@@ -124,12 +124,12 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 				if (cn.dir != DIR::NONE) this->connection_list.push_back(cn);
 			}
 		} else if (head.rfind("npcs", 0) == 0) {
-			// "<sheet_key> <x> <y> <S|N|E|W> <static|wander|pace_v|pace_h> [hide_flag]"
+			// "<sheet_key> <x> <y> <S|N|E|W> <static|wander|pace_v|pace_h> [hide_flag] [local_id]"
 			for (++i; i < rest.size() && !is_keyword(rest[i]); ++i) {
 				if (rest[i].empty()) continue;
 				std::stringstream ss(rest[i]);
 				NpcSpawn n;
-				std::string face, move, flag;
+				std::string face, move, flag, lid;
 				if (!(ss >> n.sheet >> n.x >> n.y >> face >> move)) continue;
 				n.facing = (face == "N") ? DIR::N : (face == "E") ? DIR::E :
 				           (face == "W") ? DIR::W : DIR::S;
@@ -137,6 +137,7 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 				             (move == "pace_v") ? MOVE_PACE_V :
 				             (move == "pace_h") ? MOVE_PACE_H : MOVE_STATIC;
 				if (ss >> flag && flag != "-") n.hide_flag = flag;
+				if (ss >> lid && lid != "-") n.local_id = lid;
 				this->npc_spawns.push_back(n);
 			}
 		} else if (head.rfind("dialogs", 0) == 0) {

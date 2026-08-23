@@ -69,7 +69,7 @@ collision
 warps
 10 29 MeteorFalls_1F_1R 5
 npcs
-people_steven 19 3 N static 0
+people_steven 19 3 N static 0 LOCALID_METEOR_FALLS_STEVEN
 dialogs
 0	STEVEN: Oh, wow, PLAYER. I'm amazed you knew where to find me.Do you, uh…maybe think of me as just a rock maniac?No, that can't be right.We battled alongside each other at the SOOTOPOLIS SPACE CENTER.You should have a very good idea about how good I am.Okay, PLAYER, if you're going to mount a serious challenge, expect the worst!
 objscripts

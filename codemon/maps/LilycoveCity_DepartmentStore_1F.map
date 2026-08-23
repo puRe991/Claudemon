@@ -25,7 +25,7 @@ warps
 2 1 LilycoveCity_DepartmentStoreElevator 0
 npcs
 people_beauty 8 2 S static 0
-people_beauty 10 2 S static 0
+people_beauty 10 2 S static 0 LOCALID_LOTTERY_CLERK
 people_pokefan_f 14 5 S wander 0
 people_little_girl 4 4 S wander 0
 people_pokefan_m 3 6 S static 0

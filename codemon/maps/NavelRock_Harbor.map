@@ -31,8 +31,8 @@ collision
 warps
 8 2 NavelRock_Exterior 0
 npcs
-people_sailor 8 5 N static 0
-misc_ss_tidal 8 7 E static 0
+people_sailor 8 5 N static 0 LOCALID_NAVEL_ROCK_SAILOR
+misc_ss_tidal 8 7 E static 0 LOCALID_NAVEL_ROCK_SS_TIDAL
 objscripts
 0 NavelRock_Harbor_EventScript_Sailor
 movements

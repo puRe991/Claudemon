@@ -23,6 +23,10 @@ struct NpcSpawn {
 	MoveKind movement;   // behaviour
 	std::string dialog;  // line shown on interaction (may be empty)
 	std::string hide_flag; // pokeemerald FLAG_HIDE_*; set -> not spawned (empty = always shown)
+	// pokeemerald's LOCALID_* constant for this object event, if any script
+	// addresses it by name (`applymovement`/`addobject`/`removeobject`/...)
+	// -- most NPCs don't have one. See main.cpp's Session::localid_map.
+	std::string local_id;
 };
 
 // One warp/transition as authored in the map file's `warps` section. Stepping

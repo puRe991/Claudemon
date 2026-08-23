@@ -25,7 +25,7 @@ warps
 6 8 LilycoveCity 2
 1 6 LilycoveCity_PokemonCenter_2F 0
 npcs
-people_nurse 7 2 S static 0
+people_nurse 7 2 S static 0 LOCALID_LILYCOVE_NURSE
 people_boy_1 10 7 E static 0
 people_maniac 11 8 N static 0
 dialogs

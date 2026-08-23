@@ -13,7 +13,7 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
 npcs
-people_teala 9 2 W static 0
+people_teala 9 2 W static 0 LOCALID_TOWER_CORRIDOR_ATTENDANT
 onload
 VAR_TEMP_0 0 BattleFrontier_BattleTowerCorridor_EventScript_EnterCorridor
 movements

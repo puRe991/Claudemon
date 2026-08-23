@@ -266,7 +266,7 @@ warps
 7 7 PetalburgCity_Gym 33
 6 7 PetalburgCity_Gym 33
 npcs
-people_man_1 4 2 S static FLAG_HIDE_PETALBURG_GYM_NORMAN
+people_man_1 4 2 S static FLAG_HIDE_PETALBURG_GYM_NORMAN LOCALID_PETALBURG_GYM_NORMAN
 people_woman_5 4 94 S static 0
 people_man_3 4 81 S static 0
 people_man_3 4 42 S static 0
@@ -275,8 +275,8 @@ people_man_3 4 68 S static 0
 people_woman_5 4 16 S static 0
 people_man_3 4 29 S static 0
 people_man_2 3 109 S static FLAG_HIDE_PETALBURG_GYM_GREETER
-people_wally 4 111 N static FLAG_HIDE_PETALBURG_GYM_WALLY
-people_pokefan_m 1 7 N static FLAG_HIDE_PETALBURG_GYM_WALLYS_DAD
+people_wally 4 111 N static FLAG_HIDE_PETALBURG_GYM_WALLY LOCALID_PETALBURG_GYM_WALLY
+people_pokefan_m 1 7 N static FLAG_HIDE_PETALBURG_GYM_WALLYS_DAD LOCALID_PETALBURG_GYM_WALLYS_DAD
 dialogs
 0	DAD: Hm?Na, wenn das nicht PLAYER ist! Also bist du mit dem Umzug fertig?Ich bin überrascht, dass du es allein hierher geschafft hast.Oh, ich sehe. Du hast dein POKéMON dabei.Hm… Dann wirst du wohl auch ein TRAINER wie ich, PLAYER.Das sind großartige Neuigkeiten! Ich freu mich schon drauf!
 1	Es warten noch stärkere TRAINER auf dich.Links ist der DEFENSE ROOM, rechts der RECOVERY ROOM.In beiden Fällen wird die ANGRIFFSKRAFT deiner POKéMON auf die Probe gestellt.

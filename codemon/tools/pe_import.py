@@ -1470,7 +1470,11 @@ def cmd_world(src, limit=None):
             dlg = dialogs.get(scr, "")
             raw_flag = oe.get("flag") or ""
             hide_flag = raw_flag if raw_flag and raw_flag != "0x0" else "-"
-            npcs.append((sheet, x, y, face, move, dlg, scr, hide_flag))
+            # Only object events porymap actually named (referenced by some
+            # script via applymovement/addobject/removeobject/...) carry this;
+            # most NPCs don't and get "-" (see Session::localid_map).
+            local_id = oe.get("local_id") or "-"
+            npcs.append((sheet, x, y, face, move, dlg, scr, hide_flag, local_id))
 
         # Signs (readable bg_events) share the same script->text resolution.
         signs = []
@@ -1557,7 +1561,7 @@ def cmd_world(src, limit=None):
         if npcs:
             lines.append("npcs")
             for n in npcs:
-                lines.append(f"{n[0]} {n[1]} {n[2]} {n[3]} {n[4]} {n[7]}")
+                lines.append(f"{n[0]} {n[1]} {n[2]} {n[3]} {n[4]} {n[7]} {n[8]}")
             # dialog lines are tab-separated (text has spaces): "<index>\t<text>"
             dlg_lines = [(i, n[5]) for i, n in enumerate(npcs) if n[5]]
             if dlg_lines:

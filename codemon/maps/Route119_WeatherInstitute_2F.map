@@ -27,14 +27,14 @@ collision
 warps
 17 1 Route119_WeatherInstitute_1F 2
 npcs
-people_team_aqua_aqua_member_m 15 6 E static FLAG_HIDE_ROUTE_119_TEAM_AQUA
-people_team_aqua_aqua_member_m 10 8 S static FLAG_HIDE_ROUTE_119_TEAM_AQUA
-people_team_aqua_aqua_member_f 4 6 E static FLAG_HIDE_ROUTE_119_TEAM_AQUA
+people_team_aqua_aqua_member_m 15 6 E static FLAG_HIDE_ROUTE_119_TEAM_AQUA LOCALID_WEATHER_INSTITUTE_2F_GRUNT_1
+people_team_aqua_aqua_member_m 10 8 S static FLAG_HIDE_ROUTE_119_TEAM_AQUA LOCALID_WEATHER_INSTITUTE_2F_GRUNT_2
+people_team_aqua_aqua_member_f 4 6 E static FLAG_HIDE_ROUTE_119_TEAM_AQUA LOCALID_WEATHER_INSTITUTE_2F_SHELLY
 people_man_4 0 6 E static FLAG_HIDE_WEATHER_INSTITUTE_2F_WORKERS
-people_scientist_1 18 6 S static 0
+people_scientist_1 18 6 S static 0 LOCALID_WEATHER_INSTITUTE_2F_SCIENTIST
 people_man_4 1 7 E static FLAG_HIDE_WEATHER_INSTITUTE_2F_WORKERS
-people_team_aqua_aqua_member_m 16 6 W static FLAG_HIDE_WEATHER_INSTITUTE_2F_AQUA_GRUNT_M
-people_team_aqua_aqua_member_f 19 6 W static FLAG_HIDE_ROUTE_119_TEAM_AQUA
+people_team_aqua_aqua_member_m 16 6 W static FLAG_HIDE_WEATHER_INSTITUTE_2F_AQUA_GRUNT_M LOCALID_WEATHER_INSTITUTE_2F_GRUNT_3
+people_team_aqua_aqua_member_f 19 6 W static FLAG_HIDE_ROUTE_119_TEAM_AQUA LOCALID_WEATHER_INSTITUTE_2F_GRUNT_4
 dialogs
 0	If the POKéMON they made here can control the weather freely, then we of TEAM AQUA definitely need it!
 1	You don't have any idea what we of TEAM AQUA are working towards! You stay out of our way!

@@ -25,8 +25,8 @@ collision
 warps
 1 4 MirageTower_3F 1
 npcs
-misc_fossil 5 4 S static FLAG_HIDE_MIRAGE_TOWER_ROOT_FOSSIL
-misc_fossil 7 4 S static FLAG_HIDE_MIRAGE_TOWER_CLAW_FOSSIL
+misc_fossil 5 4 S static FLAG_HIDE_MIRAGE_TOWER_ROOT_FOSSIL LOCALID_MIRAGE_ROOT_FOSSIL
+misc_fossil 7 4 S static FLAG_HIDE_MIRAGE_TOWER_CLAW_FOSSIL LOCALID_MIRAGE_CLAW_FOSSIL
 misc_breakable_rock 6 7 S static FLAG_TEMP_11
 dialogs
 0	You found the ROOT FOSSIL.If this FOSSIL is taken, the ground around it will likely crumble away…Take the ROOT FOSSIL anyway?

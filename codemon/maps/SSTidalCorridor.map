@@ -39,11 +39,11 @@ warps
 13 3 SSTidalRooms 11
 16 2 SSTidalLowerDeck 0
 npcs
-people_sailor 1 11 N static 0
+people_sailor 1 11 N static 0 LOCALID_SS_TIDAL_EXIT_SAILOR
 people_sailor 16 7 S wander 0
 people_expert_m 9 2 S static FLAG_HIDE_SS_TIDAL_CORRIDOR_MR_BRINEY
 pokemon_wingull 7 2 S static FLAG_HIDE_SS_TIDAL_CORRIDOR_MR_BRINEY
-people_scott 9 10 W static FLAG_HIDE_SS_TIDAL_CORRIDOR_SCOTT
+people_scott 9 10 W static FLAG_HIDE_SS_TIDAL_CORRIDOR_SCOTT LOCALID_SS_TIDAL_SCOTT
 dialogs
 0	It'll be some time before we make land, I reckon.You can rest up in your cabin if you'd like. Your cabin's No. 2.The bed in there is soft and plushy. I can attest to how comfy it is!
 1	Go visit other cabins. TRAINERS bored of the boat trip will be itching to battle.

@@ -38,14 +38,14 @@ warps
 19 15 SlateportCity 9
 20 15 SlateportCity 9
 npcs
-people_beauty 8 10 S static FLAG_HIDE_SLATEPORT_CITY_HARBOR_PATRONS
+people_beauty 8 10 S static FLAG_HIDE_SLATEPORT_CITY_HARBOR_PATRONS LOCALID_SLATEPORT_HARBOR_ARCHIE
 people_sailor 4 12 W static FLAG_HIDE_SLATEPORT_CITY_HARBOR_PATRONS
 people_fat_man 1 12 E static FLAG_HIDE_SLATEPORT_CITY_HARBOR_PATRONS
-people_scientist_1 6 13 S static FLAG_HIDE_SLATEPORT_CITY_HARBOR_CAPTAIN_STERN
-misc_ss_tidal 8 9 E static FLAG_HIDE_SLATEPORT_CITY_HARBOR_SS_TIDAL
-people_team_aqua_aqua_member_m 7 10 E static FLAG_HIDE_SLATEPORT_CITY_HARBOR_AQUA_GRUNT
-people_team_aqua_archie 8 10 W static FLAG_HIDE_SLATEPORT_CITY_HARBOR_ARCHIE
-misc_submarine_shadow 7 9 E static FLAG_HIDE_SLATEPORT_CITY_HARBOR_SUBMARINE_SHADOW
+people_scientist_1 6 13 S static FLAG_HIDE_SLATEPORT_CITY_HARBOR_CAPTAIN_STERN LOCALID_SLATEPORT_HARBOR_CAPT_STERN
+misc_ss_tidal 8 9 E static FLAG_HIDE_SLATEPORT_CITY_HARBOR_SS_TIDAL LOCALID_SLATEPORT_HARBOR_SS_TIDAL
+people_team_aqua_aqua_member_m 7 10 E static FLAG_HIDE_SLATEPORT_CITY_HARBOR_AQUA_GRUNT LOCALID_SLATEPORT_HARBOR_GRUNT
+people_team_aqua_archie 8 10 W static FLAG_HIDE_SLATEPORT_CITY_HARBOR_ARCHIE LOCALID_SLATEPORT_HARBOR_ARCHIE
+misc_submarine_shadow 7 9 E static FLAG_HIDE_SLATEPORT_CITY_HARBOR_SUBMARINE_SHADOW LOCALID_SLATEPORT_HARBOR_SUBMARINE
 dialogs
 0	I beg your pardon? You're looking for a ship?I'm sorry, the ferry service isn't available at present…
 1	For a ship to sail safely, we need to know about the weather!Speaking of weather, I heard something from a guy at the WEATHER INSTITUTE.He was saying abnormal weather has been reported all over the place!You should visit the WEATHER INSTITUTE and ask around!

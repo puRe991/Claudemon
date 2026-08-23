@@ -20,7 +20,7 @@ warps
 1 6 TrainerHill_Roof 1
 2 6 TrainerHill_Roof 1
 npcs
-people_teala 0 6 S static 0
+people_teala 0 6 S static 0 LOCALID_TRAINER_HILL_ELEVATOR_ATTENDANT
 objscripts
 0 TrainerHill_Elevator_EventScript_Attendant
 onload

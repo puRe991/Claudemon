@@ -22,7 +22,7 @@ warps
 3 7 FallarborTown 4
 4 7 FallarborTown 4
 npcs
-people_fat_man 4 4 S static 0
+people_fat_man 4 4 S static 0 LOCALID_MOVE_RELEARNER
 dialogs
 0	I'm the MOVE TUTOR.I know all the moves that POKéMON learn--every one of them--and I can teach POKéMON those moves.I can teach a move to a POKéMON of yours if you'd like.I'll do it for a HEART SCALE. I'm collecting those now.
 objscripts

@@ -27,14 +27,14 @@ warps
 13 9 BattleFrontier_OutsideEast 0
 6 1 BattleFrontier_BattleTowerBattleRoom 0
 npcs
-people_teala 6 5 S static 0
+people_teala 6 5 S static 0 LOCALID_TOWER_ATTENDANT_SINGLES
 people_man_4 23 5 S static 0
 people_woman_5 17 8 S wander 0
 people_boy_1 15 9 S wander 0
-people_reporter_f 11 9 E static FLAG_HIDE_BATTLE_TOWER_REPORTER
-people_teala 10 5 S static 0
-people_teala 14 5 S static 0
-people_teala 18 5 S static 0
+people_reporter_f 11 9 E static FLAG_HIDE_BATTLE_TOWER_REPORTER LOCALID_TOWER_LOBBY_REPORTER
+people_teala 10 5 S static 0 LOCALID_TOWER_ATTENDANT_DOUBLES
+people_teala 14 5 S static 0 LOCALID_TOWER_ATTENDANT_MULTIS
+people_teala 18 5 S static 0 LOCALID_TOWER_ATTENDANT_LINK_MULTIS
 dialogs
 0	Where the talents of TRAINERS are put to the test!Welcome to the BATTLE TOWER!I am your guide to the SINGLE BATTLE ROOMS.
 2	The number of matches you win in a row is recorded.I'd better not get beaten in an embarrassing way!
