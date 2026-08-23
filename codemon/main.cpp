@@ -149,6 +149,11 @@ static Session* load_session(const std::string& path, int arr_x, int arr_y,
     Session* s = new Session();
     s->path = path;
     s->map = new Map(path);
+    // pokeemerald's MAP_SCRIPT_ON_TRANSITION unconditionally sets this map's
+    // own FLAG_VISITED_* the instant you step onto it (used by the FLIEGEN
+    // destination list, see Menu.cpp) -- runs every entry, not just once, but
+    // GameState::set_flag is idempotent so that's harmless.
+    if (gs && !s->map->visit_flag().empty()) gs->set_flag(s->map->visit_flag());
     int px = (arr_x >= 0) ? arr_x : (int)s->map->get_start_pos().get_x();
     int py = (arr_y >= 0) ? arr_y : (int)s->map->get_start_pos().get_y();
 
@@ -1123,6 +1128,23 @@ int main() {
         run_load_triggers(sess->map, gs, vm);
         on_map_change(sess->path);
     };
+    // FLIEGEN: the menu can't touch the session either (same reasoning as
+    // do_pending_warp above), so it just names a destination and the game
+    // loop performs the actual load_session + player placement.
+    auto do_pending_fly = [&](Audio* aud) {
+        if (!menu.wants_fly()) return;
+        std::string dest; int fx, fy;
+        menu.fly_destination(dest, fx, fy);
+        menu.ack_fly();
+        Session* ns = load_session("maps/" + dest + ".map", fx, fy, &gs);
+        if (!ns->map->ready()) { free_session(ns); return; }
+        free_session(sess);
+        sess = ns;
+        sess->player->face(DIR::S);
+        vm.configure(sess->map, &gs, &box, &battle, aud, sess->player, &sess->actors);
+        run_load_triggers(sess->map, gs, vm);
+        on_map_change(sess->path);
+    };
     menu.set_location(banner);
 
     // Map a walk token to a battle button (for scripted battle demos).
@@ -1307,6 +1329,7 @@ int main() {
                         menu.ack_save();
                     }
                     do_pending_warp(nullptr);
+                    do_pending_fly(nullptr);
                     battle.tick(0.13f);
                     games.tick(0.13f);
                     if (banner_t > 0.f) banner_t -= 0.13f;
@@ -1568,6 +1591,7 @@ int main() {
             menu.ack_save();
         }
         do_pending_warp(&audio);
+        do_pending_fly(&audio);
         healfx.tick(dt);
         if (vm.running()) vm.update(dt);
         battle.tick(dt);

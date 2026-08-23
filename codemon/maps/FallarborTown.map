@@ -106,3 +106,6 @@ signs
 6 8	BATTLE TENT FALLARBOR SITE “May the Greatest Teams Gather!”
 10 11	FALLARBOR TOWN “A farm community with small gardens.”
 3 7	MOVE TUTOR'S HOUSE “New moves taught to POKéMON.”
+
+visit
+FLAG_VISITED_FALLARBOR_TOWN

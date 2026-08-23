@@ -15,7 +15,7 @@ Menu - the overworld start menu with a Bag (item icons + counts) and a Pokemon
 class Menu
 {
 private:
-	enum Screen { CLOSED, MAIN, BAG, PARTY, PC, POKENAV, TEACH, USE_ITEM };
+	enum Screen { CLOSED, MAIN, BAG, PARTY, PC, POKENAV, TEACH, USE_ITEM, FLY };
 	sf::Font font; bool font_ok;
 	Screen screen;
 	int cursor;
@@ -25,6 +25,13 @@ private:
 	std::string teach_move; // the move that TM/HM teaches
 	int use_cursor;         // selected party member for a healing/revive item
 	std::string use_item;   // ITEM_POTION / ITEM_REVIVE / ... pending use
+	int fly_cursor;         // selected destination in the FLY screen
+	// Visited-town destinations available right now (filtered from the fixed
+	// FLY_DESTINATIONS table by GameState::flag() each time FLY opens).
+	std::vector<int> fly_available;
+	bool fly_requested = false;
+	std::string fly_map;    // pending fly destination once confirmed
+	int fly_x = 0, fly_y = 0;
 	std::string flash;      // transient status line (e.g. "X learned MOVE!")
 	GameState* gs;
 	BattleData* bdata;
@@ -68,6 +75,15 @@ public:
 	bool wants_save() const { return this->save_requested; }
 	void ack_save() { this->save_requested = false; }
 	void set_flash(const std::string& s) { this->flash = s; }
+
+	// FLIEGEN in the main menu: same request/ack shape as SPEICHERN, but with
+	// a destination map+tile the game loop resolves via load_session (the
+	// menu itself can't touch the session, same reasoning as save above).
+	bool wants_fly() const { return this->fly_requested; }
+	void fly_destination(std::string& map, int& x, int& y) const {
+		map = this->fly_map; x = this->fly_x; y = this->fly_y;
+	}
+	void ack_fly() { this->fly_requested = false; this->screen = CLOSED; }
 
 private:
 	bool save_requested = false;

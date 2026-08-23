@@ -326,6 +326,12 @@ has been verified either by an automated test or by headless screenshot
   water, matching pokeemerald's `IsPlayerSurfingNorth` check. Gates Route
   119, Meteor Falls, Route 114, Victory Road B2F, the Ever Grande/Battle
   Frontier/Safari Zone Southeast waterfalls
+* Fly: a new FLIEGEN entry in the start menu lists every town/city actually
+  visited (pokeemerald's `MAP_SCRIPT_ON_TRANSITION` unconditionally setting
+  that map's own `FLAG_VISITED_*`, now tracked on every map entry) and warps
+  straight to it, landing at the same tile as that town's own heal location.
+  Gated on the team knowing FLY (badge check omitted, same simplification
+  already used for Surf/Strength/Waterfall)
 * Using healing/revive/status-curing bag items (Potion family, soft drinks,
   berries, Revive/Max Revive, Antidote/Paralyze Heal/Awakening/Burn Heal/
   Ice Heal/Full Heal/Full Restore) on a chosen party member, with real
@@ -373,8 +379,8 @@ has been verified either by an automated test or by headless screenshot
 ### ❌ Not implemented yet
 
 * Gift/fossil Pokémon (`givemon`: Johto starters, Beldum, Castform, fossils)
-* HM field moves other than Cut/Rock Smash/Surf/Strength/Waterfall (Fly/
-  Flash/Dive) — Dive needs its own walk-onto-special-tile trigger (same
+* HM field moves other than Cut/Rock Smash/Surf/Strength/Waterfall/Fly
+  (Flash/Dive) — Dive needs its own walk-onto-special-tile trigger (same
   shape as Surf/Waterfall, see above) and there's no assets/mechanic for its
   underwater maps yet
 * Bike, day-night cycle, overworld weather, fishing, berry growing
@@ -496,14 +502,32 @@ hit:
    Backfilled non-destructively into the 7 maps that actually have a
    waterfall (Route 119, Meteor Falls, Route 114, Victory Road B2F, Ever
    Grande City, Battle Frontier Outside East, Safari Zone Southeast).
-8. **A per-map LOCALID→object registry** — the biggest concrete gap the
+8. ~~Fly as a field move~~ — done, but the biggest of the four so far: real
+   Fly needs a region-map UI this engine has no assets/infrastructure for at
+   all, so it's simplified to a FLIEGEN entry in the start menu listing
+   every visited town/city as plain text. "Visited" itself didn't exist as
+   data anywhere -- pokeemerald sets each town's `FLAG_VISITED_*` from its
+   `MAP_SCRIPT_ON_TRANSITION` (not the `MAP_SCRIPT_ON_FRAME_TABLE` this
+   engine already imports), sometimes indirectly through an unconditionally-
+   called helper script (Slateport) or a coord_event near the entrance (Ever
+   Grande, already covered by the existing trigger system with zero new
+   code). Rather than tracing each town's call graph, the importer derives
+   the expected flag name from the map's own folder name and just confirms
+   it's really set somewhere in that map's scripts.inc (`derive_visited_flag`)
+   -- true for exactly the 16 canFly towns/cities, matching pokeemerald's own
+   `region_map.c` list. New `visit` map-file section (backfilled into those
+   16 maps) makes `load_session` set the flag unconditionally on every entry;
+   arrival tiles reuse each town's own heal-location coordinates (same spot
+   recovering from a whiteout would use). Gated on the team knowing FLY, not
+   a badge, same simplification as Surf/Strength/Waterfall.
+9. **A per-map LOCALID→object registry** — the biggest concrete gap the
    `goto_if`/`multichoice` audit above found: needed for
    `addobject`/`hideobject`/`showobject` to work at all, which blocks
    scripted mid-scene NPC spawns like Petalburg Gym's Wally tutorial
    cutscene.
-9. **`multichoice` support** — a real choice-menu UI (same block-and-resume
-   VM pattern as the party picker/Ja-Nein prompt) plus hand-transcribing
-   each non-Battle-Frontier option list's text from pokeemerald's C source.
+10. **`multichoice` support** — a real choice-menu UI (same block-and-resume
+    VM pattern as the party picker/Ja-Nein prompt) plus hand-transcribing
+    each non-Battle-Frontier option list's text from pokeemerald's C source.
 
 ## To-do checklist
 
@@ -562,7 +586,8 @@ screenshot), not just written and assumed correct.
 - [x] Surf (real water-tile gate, Ja/Nein prompt, dismount, water encounters)
 - [x] Strength (native boulder-push collision mechanic, real activation text)
 - [x] Waterfall (climbing gated on surfing north into it, real activation text)
-- [ ] Remaining HM field moves (Fly/Flash/Dive)
+- [x] Fly (FLIEGEN menu entry, visited-town tracking, real arrival tiles)
+- [ ] Remaining HM field moves (Flash/Dive)
 - [x] Running Shoes (hold Shift, gated on FLAG_SYS_B_DASH, real 2x speed)
 - [ ] Bike
 - [ ] Day-night cycle, overworld weather

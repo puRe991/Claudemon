@@ -4,9 +4,34 @@
 #include <algorithm>
 
 Menu::Menu() : font_ok(false), screen(CLOSED), cursor(0),
-               bag_cursor(0), teach_cursor(0), use_cursor(0),
+               bag_cursor(0), teach_cursor(0), use_cursor(0), fly_cursor(0),
                gs(nullptr), bdata(nullptr), team(nullptr), box(nullptr),
                cursor_ok(false) {}
+
+// Fixed Fly destinations (pokeemerald's canFly town/city list, region_map.c's
+// GetMapSecType switch): flag -> (map file stem, arrival tile), the same
+// tile each town's own heal location uses (src/data/heal_locations.json),
+// since flying lands you at the same spot recovering from a whiteout would.
+struct FlyDest { const char* flag; const char* map; const char* name; int x, y; };
+static const FlyDest FLY_DESTINATIONS[] = {
+	{"FLAG_VISITED_LITTLEROOT_TOWN", "LittlerootTown",  "Littleroot Town",  5,  9},
+	{"FLAG_VISITED_OLDALE_TOWN",     "OldaleTown",      "Oldale Town",       6, 17},
+	{"FLAG_VISITED_DEWFORD_TOWN",    "DewfordTown",     "Dewford Town",      2, 11},
+	{"FLAG_VISITED_LAVARIDGE_TOWN",  "LavaridgeTown",   "Lavaridge Town",    9,  7},
+	{"FLAG_VISITED_FALLARBOR_TOWN",  "FallarborTown",   "Fallarbor Town",   14,  8},
+	{"FLAG_VISITED_VERDANTURF_TOWN", "VerdanturfTown",  "Verdanturf Town",  16,  4},
+	{"FLAG_VISITED_PACIFIDLOG_TOWN", "PacifidlogTown",  "Pacifidlog Town",   8, 16},
+	{"FLAG_VISITED_PETALBURG_CITY",  "PetalburgCity",   "Petalburg City",  20, 17},
+	{"FLAG_VISITED_SLATEPORT_CITY",  "SlateportCity",   "Slateport City",  19, 20},
+	{"FLAG_VISITED_MAUVILLE_CITY",   "MauvilleCity",    "Mauville City",   22,  6},
+	{"FLAG_VISITED_RUSTBORO_CITY",   "RustboroCity",    "Rustboro City",   16, 39},
+	{"FLAG_VISITED_FORTREE_CITY",    "FortreeCity",     "Fortree City",     5,  7},
+	{"FLAG_VISITED_LILYCOVE_CITY",   "LilycoveCity",    "Lilycove City",   24, 15},
+	{"FLAG_VISITED_MOSSDEEP_CITY",   "MossdeepCity",    "Mossdeep City",   28, 17},
+	{"FLAG_VISITED_SOOTOPOLIS_CITY", "SootopolisCity",  "Sootopolis City", 43, 32},
+	{"FLAG_VISITED_EVER_GRANDE_CITY","EverGrandeCity",  "Ever Grande City",27, 49},
+};
+static const int FLY_DESTINATIONS_N = sizeof(FLY_DESTINATIONS) / sizeof(FLY_DESTINATIONS[0]);
 
 void Menu::configure(GameState* g, std::vector<Mon>* t, std::vector<Mon>* b,
                      BattleData* bd) {
@@ -194,14 +219,44 @@ void Menu::use_selected() {
 void Menu::input(BtnInput b) {
 	if (this->screen == MAIN) {
 		if (b == BTN_UP && this->cursor > 0) this->cursor--;
-		else if (b == BTN_DOWN && this->cursor < 5) this->cursor++;
+		else if (b == BTN_DOWN && this->cursor < 6) this->cursor++;
 		else if (b == BTN_CONFIRM) {
 			if (this->cursor == 0) { this->screen = BAG; this->bag_cursor = 0; this->flash.clear(); }
 			else if (this->cursor == 1) this->screen = PARTY;
 			else if (this->cursor == 2) this->screen = PC;
 			else if (this->cursor == 3) this->screen = POKENAV;
-			else if (this->cursor == 4) { this->save_requested = true; this->flash.clear(); }
+			else if (this->cursor == 4) {
+				// FLIEGEN: only meaningful once a party member knows FLY --
+				// mirrors the badge-free "does the team know the move"
+				// simplification Surf/Strength/Waterfall already use.
+				bool knows_fly = false;
+				if (this->team)
+					for (const Mon& m : *this->team)
+						if (std::find(m.moves.begin(), m.moves.end(), "FLY") != m.moves.end())
+							{ knows_fly = true; break; }
+				if (!knows_fly) { this->flash = "Kein POKéMON kennt FLIEGEN."; }
+				else {
+					this->fly_available.clear();
+					for (int i = 0; i < FLY_DESTINATIONS_N; ++i)
+						if (this->gs && this->gs->flag(FLY_DESTINATIONS[i].flag))
+							this->fly_available.push_back(i);
+					if (this->fly_available.empty())
+						this->flash = "Du kennst noch keinen Zielort.";
+					else { this->screen = FLY; this->fly_cursor = 0; this->flash.clear(); }
+				}
+			}
+			else if (this->cursor == 5) { this->save_requested = true; this->flash.clear(); }
 			else this->screen = CLOSED;
+		}
+	} else if (this->screen == FLY) {
+		int n = (int)this->fly_available.size();
+		if (b == BTN_UP && this->fly_cursor > 0) this->fly_cursor--;
+		else if (b == BTN_DOWN && this->fly_cursor + 1 < n) this->fly_cursor++;
+		else if (b == BTN_LEFT) this->screen = MAIN;
+		else if (b == BTN_CONFIRM && this->fly_cursor < n) {
+			const FlyDest& d = FLY_DESTINATIONS[this->fly_available[this->fly_cursor]];
+			this->fly_map = d.map; this->fly_x = d.x; this->fly_y = d.y;
+			this->fly_requested = true;
 		}
 	} else if (this->screen == BAG) {
 		auto items = bag_sorted();
@@ -299,14 +354,27 @@ void Menu::draw(sf::RenderTarget& target) {
 
 	if (this->screen == MAIN) {
 		text("MENÜ", x, y, 24, head_col); y += 44;
-		const char* opts[] = {"BEUTEL", "POKéMON", "PC-BOX", "POKéNAV", "SPEICHERN", "SCHLIESSEN"};
-		for (int i = 0; i < 6; ++i) {
+		const char* opts[] = {"BEUTEL", "POKéMON", "PC-BOX", "POKéNAV", "FLIEGEN", "SPEICHERN", "SCHLIESSEN"};
+		for (int i = 0; i < 7; ++i) {
 			bool sel = i == this->cursor;
 			if (sel) cursor_at(x, y + i * 38);
 			text(opts[i], x, y + i * 38, 22, sel ? head_col : body_col);
 		}
 		if (!this->flash.empty())
-			text(this->flash, x, y + 6 * 38 + 10, 16, sf::Color(30, 140, 60));
+			text(this->flash, x, y + 7 * 38 + 10, 16, sf::Color(30, 140, 60));
+	} else if (this->screen == FLY) {
+		text("FLIEGEN", x, y, 24, head_col); y += 44;
+		if (this->fly_available.empty()) {
+			text("(keine Ziele)", x, y, 20, muted_col);
+		} else {
+			for (int row = 0; row < (int)this->fly_available.size() && row < 10; ++row) {
+				const FlyDest& d = FLY_DESTINATIONS[this->fly_available[row]];
+				bool sel = row == this->fly_cursor;
+				float ry = y + row * 36;
+				if (sel) cursor_at(x, ry);
+				text(d.name, x, ry, 20, sel ? head_col : body_col);
+			}
+		}
 	} else if (this->screen == BAG) {
 		text("BEUTEL", x, y, 24, head_col); y += 44;
 		if (this->gs) {

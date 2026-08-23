@@ -252,3 +252,6 @@ signs
 14 16	POKéMON HERB SHOP “Bitter taste--better cure!”
 7 15	LAVARIDGE TOWN POKéMON GYM LEADER: FLANNERY “One with a fiery passion that burns!”
 13 8	LAVARIDGE TOWN“POKéMON CENTER HOT SPRINGS An excellent place for relaxing!”
+
+visit
+FLAG_VISITED_LAVARIDGE_TOWN

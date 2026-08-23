@@ -237,3 +237,6 @@ msgbox	Ich möchte mich ausruhen, deshalb speichere ich meinen Fortschritt.
 end
 signs
 11 9	OLDALE TOWN – „Wo die Dinge noch knapp beginnen.“
+
+visit
+FLAG_VISITED_OLDALE_TOWN

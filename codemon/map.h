@@ -99,6 +99,9 @@ private:
 	Coordinates dimensions;      // width, height in tiles
 	Coordinates start_pos;       // player spawn tile
 	std::string map_name;        // bare stem, e.g. "OldaleTown_PokemonCenter_1F"
+	std::string visit_flag_;     // pokeemerald's FLAG_VISITED_* this map sets
+	                             // unconditionally on entry (Fly destination
+	                             // gating); empty if this map doesn't have one
 
 	std::vector<int>  tile_map;  // width*height metatile ids
 	std::vector<char> solid;     // width*height passability (1 = blocked)
@@ -147,6 +150,9 @@ public:
 	// form used everywhere a map is referenced by name (warps, saves, ...).
 	const std::string& name() const { return map_name; }
 	bool ready() const;
+	// FLAG_VISITED_* this map sets unconditionally on entry, or "" if none
+	// (see main.cpp's load_session -- feeds the FLIEGEN destination list).
+	const std::string& visit_flag() const { return this->visit_flag_; }
 
 	// NPCs authored for this map.
 	const std::vector<NpcSpawn>& npcs() const;

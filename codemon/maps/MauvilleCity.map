@@ -358,3 +358,6 @@ signs
 11 15	“The play spot for all!” MAUVILLE GAME CORNER
 water
 368,392,393,400
+
+visit
+FLAG_VISITED_MAUVILLE_CITY

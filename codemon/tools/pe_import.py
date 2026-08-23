@@ -236,6 +236,31 @@ def combined_waterfall_ids(prim_path, sec_path):
     return falls
 
 
+def derive_visited_flag(map_dir_name, mapdir):
+    """This map's FLAG_VISITED_* (pokeemerald's MAP_SCRIPT_ON_TRANSITION sets
+    it unconditionally every time you step onto the map -- used by the FLIEGEN
+    destination list, see Menu.cpp), or "" if it doesn't have one. Rather than
+    tracing the OnTransition script's own call graph (some towns set it
+    directly, others through an unconditionally-called helper script, e.g.
+    SlateportCity_EventScript_EnterSlateport), derive the expected flag name
+    from the map's own CamelCase folder name (LittlerootTown ->
+    FLAG_VISITED_LITTLEROOT_TOWN) and just check that it's really set
+    *somewhere* in this map's own scripts.inc -- true for every canFly town/
+    city (see region_map.c's GetMapSecType), false for anything else."""
+    import re
+    words = re.findall(r"[A-Z][a-z0-9]*", map_dir_name)
+    if not words:
+        return ""
+    flag = "FLAG_VISITED_" + "_".join(w.upper() for w in words)
+    inc = os.path.join(mapdir, "scripts.inc")
+    if not os.path.isfile(inc):
+        return ""
+    text = open(inc, encoding="utf-8", errors="replace").read()
+    if re.search(r"\bsetflag\s+" + flag + r"\b", text):
+        return flag
+    return ""
+
+
 def combined_counter_ids(prim_path, sec_path):
     """Set of combined-sheet metatile ids that are MB_COUNTER: the raised
     shop/Pokemon-Center desk tile, impassable but "see-through" for talking
@@ -1652,6 +1677,12 @@ def cmd_world(src, limit=None):
         if used_waterfall:
             lines.append("waterfall")
             lines.append(",".join(str(g) for g in used_waterfall))
+        # This map's own FLAG_VISITED_* (see derive_visited_flag) -- feeds
+        # the FLIEGEN destination list.
+        visit_flag = derive_visited_flag(mname, mapdir)
+        if visit_flag:
+            lines.append("visit")
+            lines.append(visit_flag)
         # Shop/PC-counter metatile ids on this map (see combined_counter_ids):
         # impassable, but interact() should look one tile past them.
         used_counters = sorted(set(ids) & counter_ids)
