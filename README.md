@@ -332,6 +332,16 @@ has been verified either by an automated test or by headless screenshot
   straight to it, landing at the same tile as that town's own heal location.
   Gated on the team knowing FLY (badge check omitted, same simplification
   already used for Surf/Strength/Waterfall)
+* Scripted multi-NPC cutscenes: `applymovement`/`addobject`/`removeobject`/
+  `hideobject`/`showobject` targeting a specific object event by its
+  `LOCALID_*` name (not just "the NPC just talked to"), e.g. Petalburg Gym's
+  Wally tutorial battle
+* `multichoice`/`multichoicedefault` prompts: a real cursor-driven option
+  list (fishing quality, contest info, the Game Corner shop, the Trick
+  House's 15-question Mechadoll trivia puzzle, the Devon Corp fossil choice,
+  ...) — 55 option lists hand-resolved from pokeemerald's own C source
+  (`src/data/script_menu.h`/`strings.c`) for every already-imported
+  non-Battle-Frontier use
 * Using healing/revive/status-curing bag items (Potion family, soft drinks,
   berries, Revive/Max Revive, Antidote/Paralyze Heal/Awakening/Burn Heal/
   Ice Heal/Full Heal/Full Restore) on a chosen party member, with real
@@ -390,10 +400,7 @@ has been verified either by an automated test or by headless screenshot
 * Breeding/eggs, contests, secret bases, Battle Frontier (Trading — the 4
   fixed NPC in-game trades — now works; there's no real link-cable trading
   since there's no second player)
-* `multichoice` prompts (mostly Battle Frontier, out of scope anyway; the
-  option text itself lives in pokeemerald's C source, not any imported
-  script file, so each one needs its own hand transcription); door-open
-  animations (purely cosmetic, no gameplay effect either way)
+* Door-open animations (purely cosmetic, no gameplay effect either way)
 * A map editor / procedural map generator
 
 ### 🎯 Next-fix priority (walkthrough-ordered, per a Bulbapedia walkthrough audit)
@@ -427,12 +434,11 @@ hit:
      `bufferitemname` (found along the way, same missing-opcode class) —
      now correctly shows "PLAYER handed the ROOT FOSSIL to the DEVON
      RESEARCHER." and removes it from the bag.
-   - `multichoice` (115 files, ~90% Battle Frontier) — **not implemented**.
-     Its option text isn't in any script file pokeemerald ships per-map (it's
-     a fixed C array, `gMultichoiceLists`), so each of the ~15 non-Battle-
-     Frontier uses (e.g. the Latios/Latias roamer color choice on TV) needs
-     its own hand-transcribed option list, not a single generic fix — scoped
-     out for now, tracked below.
+   - `multichoice` (115 files, ~90% Battle Frontier) — at the time of this
+     audit, not implemented. Its option text isn't in any script file
+     pokeemerald ships per-map (it's a fixed C array, `gMultichoiceLists`),
+     so each non-Battle-Frontier use needs its own hand-transcribed option
+     list, not a single generic fix. **Since implemented** — see below.
    - `addobject`/`hideobject`/`showobject` (41/0/0 files) — at the time of
      this audit, not implemented, and bigger than expected: this engine had
      no LOCALID→object registry at all (`ScriptVM::resolve()` only knew
@@ -537,9 +543,23 @@ hit:
    `applymovement` walking him into place by LOCALID, no crash across the
    whole scripted sequence) with no regression on Cut (a tree still cut and
    stays gone).
-10. **`multichoice` support** — a real choice-menu UI (same block-and-resume
-    VM pattern as the party picker/Ja-Nein prompt) plus hand-transcribing
-    each non-Battle-Frontier option list's text from pokeemerald's C source.
+10. ~~`multichoice` support~~ — done. `MultiChoicePrompt` is a real
+    cursor-driven option list (same block-and-resume VM pattern as the party
+    picker/Ja-Nein prompt — a new `WAIT_MULTICHOICE` state, `wants_/
+    resolve_multichoice()`); the picked index lands in `VAR_RESULT`, same
+    contract as pokeemerald's own opcode. `multichoicedefault`'s extra
+    default-selected-index argument is honored too. The option text itself
+    isn't in any imported script file (it's `sMultichoiceLists[]`, a fixed C
+    array indexed by a `MULTI_*` id, in `src/data/script_menu.h`), so it's a
+    55-entry static table hand-resolved from that file plus the two places
+    its actual text lives (`src/strings.c`'s `gText_*` string literals,
+    `data/text/trick_house_mechadolls.inc`'s `.string` blocks) — covering
+    every `MULTI_*` id an already-imported non-Battle-Frontier map actually
+    references (fishing quality, contest info, the Game Corner shop, the
+    Trick House's 15-question Mechadoll trivia puzzle, the Devon Corp fossil
+    choice, ...). Battle Frontier's own ~100 uses are its own facility
+    flavour text, left unresolved (falls through as a no-op, same as before
+    this opcode existed) rather than transcribed sight unseen.
 
 ## To-do checklist
 
@@ -584,7 +604,9 @@ screenshot), not just written and assumed correct.
 - [x] Comparison `goto_if_ge/gt/lt/le`/`call_if_ge/gt/lt/le`,
       `checkitem`/`removeitem`/`bufferitemname`
 - [x] LOCALID→object registry + `addobject`/`hideobject`/`showobject`
-- [ ] `multichoice`, door animations (cosmetic only, see audit above)
+- [x] `multichoice`/`multichoicedefault` (real choice-menu UI, 55 resolved
+      option lists)
+- [ ] Door animations (cosmetic only, see audit above)
 
 **Audio**
 - [x] Step/bump/select SFX

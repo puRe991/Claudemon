@@ -71,6 +71,69 @@ static const TradeInfo INGAME_TRADES[4] = {
 	{"MEOWTH", "SKITTY"},    // BattleFrontier_Lounge6
 };
 
+// pokeemerald's sMultichoiceLists[] (src/data/script_menu.h), trimmed to the
+// lists actually referenced by an already-imported non-Battle-Frontier map's
+// `multichoice`/`multichoicedefault` (Battle Frontier's own ~100 uses are all
+// its own facility flavour text, out of scope -- see the README's audit).
+// Text resolved from src/strings.c and data/text/trick_house_mechadolls.inc.
+static const std::unordered_map<std::string, std::vector<std::string>> MULTICHOICE_LISTS = {
+	{"MULTI_WHERES_RAYQUAZA", {"CAVE OF ORIGIN", "MT. PYRE", "SKY PILLAR", "Don't remember"}},
+	{"MULTI_HOWS_FISHING", {"Excellent", "Not so good"}},
+	{"MULTI_BRINEY_ON_DEWFORD", {"PETALBURG", "SLATEPORT", "EXIT"}},
+	{"MULTI_GO_ON_REST_RETIRE", {"GO ON", "REST", "RETIRE"}},
+	{"MULTI_YESNO", {"YES", "NO"}},
+	{"MULTI_CHALLENGEINFO", {"CHALLENGE", "INFO", "EXIT"}},
+	{"MULTI_RIGHTLEFT", {"Right", "Left"}},
+	{"MULTI_ENTERINFO", {"ENTER", "INFO", "EXIT"}},
+	{"MULTI_CONTEST_INFO", {"What's a CONTEST?", "Types of CONTESTS", "Ranks", "CANCEL"}},
+	{"MULTI_CONTEST_RANK", {"NORMAL RANK", "SUPER RANK", "HYPER RANK", "MASTER RANK", "EXIT"}},
+	{"MULTI_CONTEST_TYPE", {"COOLNESS CONTEST", "BEAUTY CONTEST", "CUTENESS CONTEST", "SMARTNESS CONTEST", "TOUGHNESS CONTEST", "EXIT"}},
+	{"MULTI_FLOORS", {"5F", "4F", "3F", "2F", "1F", "EXIT"}},
+	{"MULTI_VIEWED_PAINTINGS", {"Saw it", "Not yet"}},
+	{"MULTI_TV_LATI", {"RED", "BLUE"}},
+	{"MULTI_BIKE", {"MACH", "ACRO"}},
+	{"MULTI_GAME_CORNER_TMS", {"TM32 - 1,500 COINS", "TM29 - 3,500 COINS", "TM35 - 4,000 COINS", "TM24 - 4,000 COINS", "TM13 - 4,000 COINS", "EXIT"}},
+	{"MULTI_GAME_CORNER_DOLLS", {"TREECKO DOLL 1,000 COINS", "TORCHIC DOLL 1,000 COINS", "MUDKIP DOLL 1,000 COINS", "EXIT"}},
+	{"MULTI_GAME_CORNER_COINS", {"50 COINS ¥1,000", "500 COINS ¥10,000", "EXIT"}},
+	{"MULTI_YESNOINFO_2", {"YES", "NO", "INFO"}},
+	{"MULTI_BRINEY_OFF_DEWFORD", {"DEWFORD", "EXIT"}},
+	{"MULTI_TENT", {"RED TENT", "BLUE TENT"}},
+	{"MULTI_FOSSIL", {"CLAW FOSSIL", "ROOT FOSSIL", "EXIT"}},
+	{"MULTI_STERN_DEEPSEA", {"DEEPSEATOOTH", "DEEPSEASCALE", "EXIT"}},
+	{"MULTI_SSTIDAL_SLATEPORT_NO_BF", {"LILYCOVE CITY", "EXIT"}},
+	{"MULTI_SSTIDAL_SLATEPORT_WITH_BF", {"LILYCOVE CITY", "BATTLE FRONTIER", "EXIT"}},
+	{"MULTI_MECHADOLL1_Q1", {"ODDISH", "POOCHYENA", "TAILLOW"}},
+	{"MULTI_MECHADOLL1_Q2", {"AZURILL", "LOTAD", "WINGULL"}},
+	{"MULTI_MECHADOLL1_Q3", {"DUSTOX", "ZUBAT", "NINCADA"}},
+	{"MULTI_MECHADOLL2_Q1", {"RALTS", "ZIGZAGOON", "SLAKOTH"}},
+	{"MULTI_MECHADOLL2_Q2", {"POOCHYENA", "SHROOMISH", "ZIGZAGOON"}},
+	{"MULTI_MECHADOLL2_Q3", {"POOCHYENA", "ZUBAT", "CARVANHA"}},
+	{"MULTI_MECHADOLL3_Q1", {"BURN HEAL", "HARBOR MAIL", "Same price"}},
+	{"MULTI_MECHADOLL3_Q2", {"¥60", "¥55", "Nothing"}},
+	{"MULTI_MECHADOLL3_Q3", {"They will cost more.", "They will cost less.", "Same price"}},
+	{"MULTI_MECHADOLL4_Q1", {"Male", "Female", "Neither"}},
+	{"MULTI_MECHADOLL4_Q2", {"Elderly men", "Elderly ladies", "Same number"}},
+	{"MULTI_MECHADOLL4_Q3", {"None", "1", "2"}},
+	{"MULTI_MECHADOLL5_Q1", {"2", "3", "4"}},
+	{"MULTI_MECHADOLL5_Q2", {"6", "7", "8"}},
+	{"MULTI_MECHADOLL5_Q3", {"6", "7", "8"}},
+	{"MULTI_SHARDS_R", {"RED SHARD", "EXIT"}},
+	{"MULTI_SHARDS_Y", {"YELLOW SHARD", "EXIT"}},
+	{"MULTI_SHARDS_RY", {"RED SHARD", "YELLOW SHARD", "EXIT"}},
+	{"MULTI_SHARDS_B", {"BLUE SHARD", "EXIT"}},
+	{"MULTI_SHARDS_RB", {"RED SHARD", "BLUE SHARD", "EXIT"}},
+	{"MULTI_SHARDS_YB", {"YELLOW SHARD", "BLUE SHARD", "EXIT"}},
+	{"MULTI_SHARDS_RYB", {"RED SHARD", "YELLOW SHARD", "BLUE SHARD", "EXIT"}},
+	{"MULTI_SHARDS_G", {"GREEN SHARD", "EXIT"}},
+	{"MULTI_SHARDS_RG", {"RED SHARD", "GREEN SHARD", "EXIT"}},
+	{"MULTI_SHARDS_YG", {"YELLOW SHARD", "GREEN SHARD", "EXIT"}},
+	{"MULTI_SHARDS_RYG", {"RED SHARD", "YELLOW SHARD", "GREEN SHARD", "EXIT"}},
+	{"MULTI_SHARDS_BG", {"BLUE SHARD", "GREEN SHARD", "EXIT"}},
+	{"MULTI_SHARDS_RBG", {"RED SHARD", "BLUE SHARD", "GREEN SHARD", "EXIT"}},
+	{"MULTI_SHARDS_YBG", {"YELLOW SHARD", "BLUE SHARD", "GREEN SHARD", "EXIT"}},
+	{"MULTI_SHARDS_RYBG", {"RED SHARD", "YELLOW SHARD", "BLUE SHARD", "GREEN SHARD", "EXIT"}},
+};
+
 int ScriptVM::value_of(const std::string& s) const {
 	if (s.empty()) return 0;
 	if (s == "TRUE") return 1;
@@ -165,6 +228,14 @@ void ScriptVM::resolve_starter(const std::string& species) {
 void ScriptVM::resolve_choose_party_mon(int idx) {
 	if (this->st != WAIT_CHOOSE_PARTY) return;
 	if (this->state) this->state->set_var("VAR_0x8004", idx < 0 ? 255 : idx);   // PARTY_NOTHING_CHOSEN
+	this->st = RUN;
+	this->pump();
+}
+
+void ScriptVM::resolve_multichoice(int idx) {
+	if (this->st != WAIT_MULTICHOICE) return;
+	if (this->state) this->state->set_var("VAR_RESULT", idx);
+	this->pending_multichoice_options.clear();
 	this->st = RUN;
 	this->pump();
 }
@@ -556,6 +627,25 @@ void ScriptVM::pump() {
 			this->pending_shop_label = arg(0);
 			this->st = WAIT_SHOP;
 			return;
+		} else if ((op == "multichoice" || op == "multichoicedefault") && argc >= 3) {
+			// "multichoice X, Y, LIST_ID, B_BOOL" / "multichoicedefault X, Y,
+			// LIST_ID, DEFAULT, B_BOOL" -- X/Y (screen position) and B_BOOL
+			// (whether pressing B cancels) don't apply to this engine's fixed
+			// on-screen list UI, which also has no cancel button; the picked
+			// index lands in VAR_RESULT (see resolve_multichoice()), same as
+			// pokeemerald's own contract for this opcode.
+			auto it = MULTICHOICE_LISTS.find(arg(2));
+			if (it != MULTICHOICE_LISTS.end() && !it->second.empty()) {
+				this->pending_multichoice_options = it->second;
+				int def = (op == "multichoicedefault" && argc >= 4) ? value_of(arg(3)) : 0;
+				this->pending_multichoice_default =
+					(def >= 0 && def < (int)it->second.size()) ? def : 0;
+				this->st = WAIT_MULTICHOICE;
+				return;
+			}
+			// Unknown list (mostly Battle Frontier facility text -- see the
+			// README's audit) -- fall through as a no-op, same as before
+			// this opcode existed at all.
 		} else if (op == "checkpartymove" && argc >= 1) {
 			// Field moves (Cut, Rock Smash, ...): find the first party mon
 			// that knows this move. VAR_RESULT becomes its party index, or

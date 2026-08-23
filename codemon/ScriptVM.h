@@ -105,9 +105,19 @@ public:
 	bool wants_choose_party_mon() const { return this->st == WAIT_CHOOSE_PARTY; }
 	void resolve_choose_party_mon(int idx);
 
+	// `multichoice`/`multichoicedefault`: a fixed option list (see
+	// MULTICHOICE_LISTS in ScriptVM.cpp) the player picks one of. Same story
+	// as ChoosePartyMon -- the VM can't drive a real cursor-driven menu
+	// itself, so the game loop shows one (MultiChoicePrompt in main.cpp) and
+	// calls resolve_multichoice() with the picked index.
+	bool wants_multichoice() const { return this->st == WAIT_MULTICHOICE; }
+	const std::vector<std::string>& multichoice_options() const { return this->pending_multichoice_options; }
+	int multichoice_default() const { return this->pending_multichoice_default; }
+	void resolve_multichoice(int idx);
+
 private:
 	enum State { IDLE, RUN, WAIT_MSG, WAIT_MOVE, WAIT_BATTLE, WAIT_STARTER, WAIT_YESNO,
-	              WAIT_SHOP, WAIT_HEALFX, WAIT_CHOOSE_PARTY };
+	              WAIT_SHOP, WAIT_HEALFX, WAIT_CHOOSE_PARTY, WAIT_MULTICHOICE };
 
 	Map* map; GameState* state; DialogBox* box; Battle* battle;
 	Audio* audio; Character* player; Character* owner;
@@ -139,6 +149,8 @@ private:
 	std::string warp_dest; int warp_x = -1, warp_y = -1;
 	bool pending_yesno = false;   // set by pump() until the msgbox closes
 	std::string pending_shop_label;
+	std::vector<std::string> pending_multichoice_options;
+	int pending_multichoice_default = 0;
 
 	// `bufferpartymonnick STR_VAR_n <idx>` / `buffermovename STR_VAR_n <move>`
 	// (field moves like Cut/Rock Smash): stashes the nickname/move name so a
