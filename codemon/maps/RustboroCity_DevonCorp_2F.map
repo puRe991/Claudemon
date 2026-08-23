@@ -92,7 +92,7 @@ goto RustboroCity_DevonCorp_2F_EventScript_GiveRootFossil
 end
 = RustboroCity_DevonCorp_2F_EventScript_GiveRootFossil
 bufferitemname STR_VAR_1 ITEM_ROOT_FOSSIL
-msgbox	Excellent! Let's do this right away.PLAYER handed the to the DEVON RESEARCHER.
+msgbox	Excellent! Let's do this right away.PLAYER handed the STR_VAR_1 to the DEVON RESEARCHER.
 removeitem ITEM_ROOT_FOSSIL
 setvar VAR_FOSSIL_RESURRECTION_STATE 1
 setvar VAR_WHICH_FOSSIL_REVIVED 1
@@ -119,7 +119,7 @@ goto RustboroCity_DevonCorp_2F_EventScript_GiveClawFossil
 end
 = RustboroCity_DevonCorp_2F_EventScript_GiveClawFossil
 bufferitemname STR_VAR_1 ITEM_CLAW_FOSSIL
-msgbox	Excellent! Let's do this right away.PLAYER handed the to the DEVON RESEARCHER.
+msgbox	Excellent! Let's do this right away.PLAYER handed the STR_VAR_1 to the DEVON RESEARCHER.
 removeitem ITEM_CLAW_FOSSIL
 setvar VAR_FOSSIL_RESURRECTION_STATE 1
 setvar VAR_WHICH_FOSSIL_REVIVED 2

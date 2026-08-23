@@ -277,6 +277,22 @@ void ScriptVM::pump() {
 			if (value_of(arg(0)) == value_of(arg(1))) jump(arg(2));
 		} else if (op == "goto_if_ne" && argc >= 3) {
 			if (value_of(arg(0)) != value_of(arg(1))) jump(arg(2));
+		} else if (op == "goto_if_ge" && argc >= 3) {
+			if (value_of(arg(0)) >= value_of(arg(1))) jump(arg(2));
+		} else if (op == "goto_if_gt" && argc >= 3) {
+			if (value_of(arg(0)) > value_of(arg(1))) jump(arg(2));
+		} else if (op == "goto_if_lt" && argc >= 3) {
+			if (value_of(arg(0)) < value_of(arg(1))) jump(arg(2));
+		} else if (op == "goto_if_le" && argc >= 3) {
+			if (value_of(arg(0)) <= value_of(arg(1))) jump(arg(2));
+		} else if (op == "checkitem" && argc >= 1) {
+			int qty = (argc >= 2) ? value_of(arg(1)) : 1;
+			this->state->set_var("VAR_RESULT", this->state->item_count(arg(0)) >= qty ? 1 : 0);
+		} else if (op == "removeitem" && argc >= 1) {
+			int qty = (argc >= 2) ? value_of(arg(1)) : 1;
+			bool ok = this->state->item_count(arg(0)) >= qty;
+			if (ok) this->state->take_item(arg(0), qty);
+			this->state->set_var("VAR_RESULT", ok ? 1 : 0);
 		} else if (op == "call" && argc >= 1) {
 			// A "call" that targets a script we don't have (most commonly a
 			// shared Common_EventScript_* helper the per-map importer never
@@ -295,6 +311,18 @@ void ScriptVM::pump() {
 				this->call_stack.push_back({this->cur, this->ip}); jump(arg(1)); }
 		} else if (op == "call_if_eq" && argc >= 3) {
 			if (value_of(arg(0)) == value_of(arg(1)) && this->map->has_script(arg(2))) {
+				this->call_stack.push_back({this->cur, this->ip}); jump(arg(2)); }
+		} else if (op == "call_if_ge" && argc >= 3) {
+			if (value_of(arg(0)) >= value_of(arg(1)) && this->map->has_script(arg(2))) {
+				this->call_stack.push_back({this->cur, this->ip}); jump(arg(2)); }
+		} else if (op == "call_if_gt" && argc >= 3) {
+			if (value_of(arg(0)) > value_of(arg(1)) && this->map->has_script(arg(2))) {
+				this->call_stack.push_back({this->cur, this->ip}); jump(arg(2)); }
+		} else if (op == "call_if_lt" && argc >= 3) {
+			if (value_of(arg(0)) < value_of(arg(1)) && this->map->has_script(arg(2))) {
+				this->call_stack.push_back({this->cur, this->ip}); jump(arg(2)); }
+		} else if (op == "call_if_le" && argc >= 3) {
+			if (value_of(arg(0)) <= value_of(arg(1)) && this->map->has_script(arg(2))) {
 				this->call_stack.push_back({this->cur, this->ip}); jump(arg(2)); }
 		} else if (op == "return") {
 			if (this->call_stack.empty()) { finish(); return; }
@@ -560,6 +588,11 @@ void ScriptVM::pump() {
 			// pokeemerald's own SPECIES_* constants, which don't exist here.
 			std::string sp = this->bdata ? this->bdata->species_by_id(value_of(arg(1))) : std::string();
 			this->str_vars[arg(0)] = nice_name(sp);
+		} else if (op == "bufferitemname" && argc >= 2) {
+			// STR_VAR_n <- an item's display name (the Devon Corp fossil
+			// hand-off's "PLAYER handed the {STR_VAR_1} to the DEVON
+			// RESEARCHER.", and similar item-name-in-a-sentence lines).
+			this->str_vars[arg(0)] = item_name(arg(1));
 		} else if (op == "removeobject" && argc >= 1) {
 			// A cut tree/smashed rock's own EventScript_*Down removes it for
 			// good: mark its FLAG_TEMP_*/FLAG_HIDE_* (so it stays gone across
