@@ -845,7 +845,8 @@ int main() {
         std::string ln;
         while (std::getline(ngf, ln))
             if (!ln.empty()) gs.set_flag(ln);
-        team.push_back(bdata.make_mon("TREECKO", 8));   // starter
+        // Story start: no starter yet -- team stays empty until the player
+        // actually picks one from Birch's bag on Route 101, same as pokeemerald.
         // Whiteout recovery point before the player has healed anywhere for
         // real: the story-start heal location itself.
         gs.last_heal_map = "LittlerootTown_BrendansHouse_2F";
@@ -892,19 +893,11 @@ int main() {
     shop.configure(&gs, &item_prices);
     HealFx healfx;
     healfx.load();
-    if (!resumed) {
-        // a few starting items so the bag is not empty
-        gs.give_item("ITEM_POTION", 5);
-        gs.give_item("ITEM_POKE_BALL", 10);
-        gs.give_item("ITEM_ANTIDOTE", 2);
-        gs.give_item("ITEM_TM19", 1);   // Giga Drain  (teachable in the bag)
-        gs.give_item("ITEM_TM31", 1);   // Brick Break
-        gs.give_item("ITEM_TM40", 1);   // Aerial Ace
-        gs.give_item("ITEM_HM01", 1);   // Cut (reusable HM)
-        gs.set_var("COINS", 50);
-    }
+    // Story-accurate new game: an empty bag (just the starting 3000 money,
+    // GameState's own default) and 0 Game Corner coins, same as pokeemerald --
+    // items, TMs and coins all come from actually playing the story.
     // demo hook: grant EXP to the starter to show level-ups / evolution
-    if (const char* xe = std::getenv("CODEMON_GRANT_EXP")) {
+    if (const char* xe = std::getenv("CODEMON_GRANT_EXP"); xe && !team.empty()) {
         std::vector<std::string> xm;
         bdata.grant_exp(team[0], atol(xe), xm);
         std::string joined;
@@ -1019,7 +1012,12 @@ int main() {
                                 on_map_change(sess->path);
                             } else if (sess->player->get_tile_x() != pbx ||
                                        sess->player->get_tile_y() != pby) {
-                                try_encounter(sess, battle, team[0], rng, force_enc);
+                                // No wild encounters before the player has a
+                                // Pokemon to send out (matches the story: you
+                                // can't be jumped in the grass while trailing
+                                // Birch with an empty team).
+                                if (!team.empty())
+                                    try_encounter(sess, battle, team[0], rng, force_enc);
                                 check_trigger(sess, vm, gs);
                             }
                         }
@@ -1031,6 +1029,7 @@ int main() {
                     // follow-up) continues.
                     if (starter.done()) {
                         if (vm.wants_starter()) vm.resolve_starter(starter.chosen());
+                        else if (team.empty()) team.push_back(bdata.make_mon(starter.chosen(), 5));
                         else team[0] = bdata.make_mon(starter.chosen(), 5);
                         starter.ack();
                     } else if (!starter.active() && vm.wants_starter()) {
@@ -1184,7 +1183,8 @@ int main() {
                             on_map_change(sess->path);
                         } else if (sess->player->get_tile_x() != pbx ||
                                    sess->player->get_tile_y() != pby) {
-                            try_encounter(sess, battle, team[0], rng, false);
+                            if (!team.empty())
+                                try_encounter(sess, battle, team[0], rng, false);
                             check_trigger(sess, vm, gs);
                         }
                     }
@@ -1193,7 +1193,8 @@ int main() {
         }
         if (starter.done()) {
             if (vm.wants_starter()) vm.resolve_starter(starter.chosen());
-            else team[0] = bdata.make_mon(starter.chosen(), 5);
+            else if (team.empty()) team.push_back(bdata.make_mon(starter.chosen(), 5));
+                        else team[0] = bdata.make_mon(starter.chosen(), 5);
             starter.ack();
         } else if (!starter.active() && vm.wants_starter()) {
             starter.open();

@@ -107,8 +107,13 @@ void ScriptVM::finish() {
 
 void ScriptVM::resolve_starter(const std::string& species) {
 	if (this->st != WAIT_STARTER) return;
-	if (this->bdata && this->team && !this->team->empty())
-		(*this->team)[0] = this->bdata->make_mon(species, 5);
+	if (this->bdata && this->team) {
+		// A fresh game's team is empty until this very moment (pokeemerald
+		// never gives you a Pokemon before you actually pick one from
+		// Birch's bag), so this is normally a push_back, not a replace.
+		if (this->team->empty()) this->team->push_back(this->bdata->make_mon(species, 5));
+		else (*this->team)[0] = this->bdata->make_mon(species, 5);
+	}
 	if (this->state) {
 		this->state->set_flag("FLAG_SYS_POKEMON_GET");
 		// pokeemerald's VAR_STARTER_MON (0=Treecko, 1=Torchic, 2=Mudkip):
