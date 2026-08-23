@@ -351,6 +351,21 @@ void Menu::draw(sf::RenderTarget& target) {
 		               : r > 0.2f ? sf::Color(230, 200, 60) : sf::Color(220, 70, 70));
 		target.draw(fg);
 	};
+	// Progress to next level, same light-blue bar as the battle HUD's.
+	auto exp_bar = [&](float bx, float by, const Mon& m) {
+		if (!this->bdata) return;
+		float w = 150;
+		std::string growth = this->bdata->growth_rate(m.species);
+		long floor_now = BattleData::exp_for_level(growth, m.level);
+		long floor_next = m.level < 100 ? BattleData::exp_for_level(growth, m.level + 1) : floor_now;
+		float r = floor_next > floor_now
+		          ? (float)(m.exp - floor_now) / (float)(floor_next - floor_now) : 1.f;
+		r = std::max(0.f, std::min(1.f, r));
+		sf::RectangleShape bg(sf::Vector2f(w, 5)); bg.setPosition(bx, by);
+		bg.setFillColor(sf::Color(190, 190, 190)); target.draw(bg);
+		sf::RectangleShape fg(sf::Vector2f(w * r, 5)); fg.setPosition(bx, by);
+		fg.setFillColor(sf::Color(88, 168, 240)); target.draw(fg);
+	};
 
 	if (this->screen == MAIN) {
 		text("MENÜ", x, y, 24, head_col); y += 44;
@@ -474,6 +489,7 @@ void Menu::draw(sf::RenderTarget& target) {
 					text(BattleData::status_name(m.status), x + 290, ry + 8, 15, sf::Color(190, 60, 60));
 				hp_bar(x + 66, ry + 34, m.hp, m.max_hp);
 				text(std::to_string(m.hp) + "/" + std::to_string(m.max_hp), x + 226, ry + 32, 16, body_col);
+				exp_bar(x + 66, ry + 52, m);
 				if (++row >= 6) break;
 			}
 		}

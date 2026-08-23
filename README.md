@@ -301,7 +301,11 @@ has been verified either by an automated test or by headless screenshot
   matched level like the original — no IVs/personality/held mail here,
   same as nothing else in this engine has those either)
 * EXP gain, all 6 species growth curves, level-up stat recalculation,
-  level-up movesets (411 learnsets), **level-up evolution** (172 paths)
+  level-up movesets (411 learnsets), **level-up evolution** (172 paths) —
+  including a real EXP bar (progress to next level, same growth-curve math
+  as the gain itself), shown under the active mon's HP bar in battle and
+  next to each party member in the POKéMON menu; EXP gain/level-up/move-
+  learned/evolution text already existed, just no visual bar before
 * TM/HM teaching from the bag, gated by real per-species learnsets (372
   entries); TMs consumed on use, HMs reusable (this was silently broken for
   *every* TM/HM the whole time before — see the fix note below)
@@ -349,6 +353,13 @@ has been verified either by an automated test or by headless screenshot
 * Shops (`pokemart`) and Ja/Nein prompts via the VM block-and-resume pattern
 * Story-accurate start (Brendan's House 2F, canonical heal-location tile,
   empty team/bag until the real story hands them over)
+* A real title screen at launch (real interactive play only — headless
+  screenshot tests and `CODEMON_MAP` demos still load straight into a map,
+  same as before): FORTSETZEN/NEUES SPIEL when a save exists, just NEUES
+  SPIEL otherwise. No licensed title logo art was importable (the intro
+  cutscene's own animated assets are all there, just no wordmark), so it's
+  text-only, styled like the rest of the UI. Previously the game skipped
+  straight into gameplay on launch with no menu at all
 * UI: start menu (Bag/Party/PC Box/PokéNav), map-name banner, HP bars,
   item/type/species icons, Pokémon Center heal (whole team) + its glowing-
   Pokéball/monitor animation

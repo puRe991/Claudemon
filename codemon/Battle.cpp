@@ -489,6 +489,27 @@ static void draw_hp_bar(sf::RenderTarget& t, float x, float y, float w, float h,
 	t.draw(fg);
 }
 
+// The player's own EXP bar (pokeemerald shows this only for the active
+// player mon, never the opponent's): a thin light-blue bar under the HP bar,
+// filled by progress from this level's own EXP floor to the next one's.
+static void draw_exp_bar(sf::RenderTarget& t, const BattleData& bdata,
+                         float x, float y, float w, float h, const Mon& mon) {
+	sf::RectangleShape bg(sf::Vector2f(w, h));
+	bg.setPosition(x, y); bg.setFillColor(sf::Color(60, 60, 60));
+	bg.setOutlineColor(sf::Color::White); bg.setOutlineThickness(1.f);
+	t.draw(bg);
+	std::string growth = bdata.growth_rate(mon.species);
+	long floor_now = BattleData::exp_for_level(growth, mon.level);
+	long floor_next = mon.level < 100 ? BattleData::exp_for_level(growth, mon.level + 1) : floor_now;
+	float r = floor_next > floor_now
+	          ? (float)(mon.exp - floor_now) / (float)(floor_next - floor_now) : 1.f;
+	r = std::max(0.f, std::min(1.f, r));
+	sf::RectangleShape fg(sf::Vector2f(std::max(0.f, (w - 2) * r), h - 2));
+	fg.setPosition(x + 1, y + 1);
+	fg.setFillColor(sf::Color(88, 168, 240));
+	t.draw(fg);
+}
+
 static void draw_status_badge(sf::RenderTarget& t, const sf::Font& font,
                               float x, float y, Status st) {
 	const char* label = BattleData::status_name(st);
@@ -572,6 +593,9 @@ void Battle::draw(sf::RenderTarget& target) {
 	}
 	draw_hp_bar(target, size.x - 264, size.y * 0.44f + 28, 240, 16,
 	            this->player->hp, this->player->max_hp);
+	if (this->data)
+		draw_exp_bar(target, *this->data, size.x - 264, size.y * 0.44f + 68, 240, 6,
+		             *this->player);
 
 	// bottom panel (pokeemerald's own textbox frame)
 	const float bh = 150.f, bm = 14.f;

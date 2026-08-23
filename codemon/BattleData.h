@@ -111,6 +111,11 @@ public:
 	// Total experience needed to be at `level` for a growth-rate name.
 	static long exp_for_level(const std::string& growth, int level);
 	int exp_yield(const std::string& species) const;
+	// This species' growth-rate curve name (for exp_for_level), defaulting
+	// to MEDIUM_FAST for an unknown species -- same fallback grant_exp uses.
+	// Lets UI code (the battle HUD's EXP bar, the party screen's) compute a
+	// mon's progress to next level without needing BattleData internals.
+	std::string growth_rate(const std::string& species) const;
 
 	// Recompute stats from base for the mon's current species+level; when
 	// keep_ratio the current HP is scaled to the new max, else the HP delta is

@@ -298,6 +298,11 @@ static std::string disp(const std::string& id) {
 	return o;
 }
 
+std::string BattleData::growth_rate(const std::string& species_name) const {
+	auto sp = species.find(species_name);
+	return sp == species.end() ? "MEDIUM_FAST" : sp->second.growth;
+}
+
 void BattleData::grant_exp(Mon& mon, long gained, std::vector<std::string>& msgs) const {
 	if (mon.fainted() || gained <= 0) return;
 	auto sp = species.find(mon.species);
