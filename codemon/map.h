@@ -109,6 +109,7 @@ private:
 	std::unordered_set<int> grass_ids;        // metatile ids that are tall grass
 	std::unordered_set<int> counter_ids;      // metatile ids that are shop/PC counters
 	std::unordered_set<int> water_ids;        // metatile ids that are surfable water
+	std::unordered_set<int> waterfall_ids;    // metatile ids that are MB_WATERFALL
 	std::vector<EncSlot> land_slots;          // land wild-encounter table
 	std::vector<EncSlot> water_slots;         // surf wild-encounter table
 
@@ -172,6 +173,9 @@ public:
 	// enterable with Surf -- the real games gate it via the player avatar's
 	// own movement check, not raw tile collision (see main.cpp's Surf gate).
 	bool is_water(int tile_x, int tile_y) const;
+	// MB_WATERFALL: surfable like water, but climbing it (moving north into
+	// one) also needs the Waterfall HM (see main.cpp's Waterfall gate).
+	bool is_waterfall(int tile_x, int tile_y) const;
 	// Does stepping on (x,y) trigger a wild encounter? (tall grass, the
 	// floor of a cave/indoor map that has encounters but no grass tiles, or
 	// surfable water -- reaching a water tile at all already implies

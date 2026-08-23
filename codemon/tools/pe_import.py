@@ -176,8 +176,9 @@ MB_COUNTER            = 128   # shop/PC-counter behavior (see combined_counter_i
 # MB_OCEAN_WATER, MB_NO_SURFACING, MB_SEAWEED, MB_SEAWEED_NO_SURFACING.
 # MB_WATERFALL (19) is surfable too but needs the separate Waterfall HM to
 # climb, so it's deliberately left out -- plain Surf shouldn't let the
-# player up a waterfall.
+# player up a waterfall. It gets its own id set below instead.
 MB_WATER_IDS          = {16, 17, 18, 20, 21, 25, 34, 42}
+MB_WATERFALL          = 19
 
 
 def _tileset_behaviors(ts_path):
@@ -217,6 +218,22 @@ def combined_water_ids(prim_path, sec_path):
             if b in MB_WATER_IDS:
                 water.add(NUM_METATILES_PRIMARY + i)
     return water
+
+
+def combined_waterfall_ids(prim_path, sec_path):
+    """Set of combined-sheet metatile ids that are MB_WATERFALL: surfable
+    like MB_WATER_IDS, but climbing them (moving north into one) needs the
+    Waterfall HM on top of Surf -- kept separate so the engine can gate just
+    that direction instead of blocking the tile outright."""
+    falls = set()
+    for i, b in enumerate(_tileset_behaviors(prim_path)):
+        if b == MB_WATERFALL:
+            falls.add(i)
+    if sec_path:
+        for i, b in enumerate(_tileset_behaviors(sec_path)):
+            if b == MB_WATERFALL:
+                falls.add(NUM_METATILES_PRIMARY + i)
+    return falls
 
 
 def combined_counter_ids(prim_path, sec_path):
@@ -1213,6 +1230,7 @@ def cmd_world(src, limit=None):
     grass_cache = {}   # (prim,sec) -> set of grass metatile ids
     counter_cache = {}   # (prim,sec) -> set of shop/PC-counter metatile ids
     water_cache = {}   # (prim,sec) -> set of surfable-water metatile ids
+    waterfall_cache = {}   # (prim,sec) -> set of MB_WATERFALL metatile ids
     catalog = []
     encounters = load_encounters(src)
     used_species = set()
@@ -1331,10 +1349,12 @@ def cmd_world(src, limit=None):
             grass_cache[key] = combined_grass_ids(prim_path, sec_path)
             counter_cache[key] = combined_counter_ids(prim_path, sec_path)
             water_cache[key] = combined_water_ids(prim_path, sec_path)
+            waterfall_cache[key] = combined_waterfall_ids(prim_path, sec_path)
         sheet_name = pair_cache[key]
         grass_ids = grass_cache.get(key, set())
         counter_ids = counter_cache.get(key, set())
         water_ids = water_cache.get(key, set())
+        waterfall_ids = waterfall_cache.get(key, set())
 
         w, h = layout["width"], layout["height"]
         try:
@@ -1626,6 +1646,12 @@ def cmd_world(src, limit=None):
         if used_water:
             lines.append("water")
             lines.append(",".join(str(g) for g in used_water))
+        # MB_WATERFALL metatile ids on this map: surfable like water, but
+        # climbing them (moving north into one) also needs the Waterfall HM.
+        used_waterfall = sorted(set(ids) & waterfall_ids)
+        if used_waterfall:
+            lines.append("waterfall")
+            lines.append(",".join(str(g) for g in used_waterfall))
         # Shop/PC-counter metatile ids on this map (see combined_counter_ids):
         # impassable, but interact() should look one tile past them.
         used_counters = sorted(set(ids) & counter_ids)

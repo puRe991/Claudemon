@@ -319,6 +319,13 @@ has been verified either by an automated test or by headless screenshot
   further in the same direction (checked for bounds/collision/water) instead
   of just blocking, gating every Trick House/Seafloor Cavern/Victory Road
   boulder puzzle
+* Waterfall: same water-tile infrastructure as Surf, plus its own
+  MB_WATERFALL metatile classification — climbing one (moving north into it
+  while already surfing) prompts the same Ja/Nein pattern; any other
+  direction/approach (floating down or across its base) stays ordinary open
+  water, matching pokeemerald's `IsPlayerSurfingNorth` check. Gates Route
+  119, Meteor Falls, Route 114, Victory Road B2F, the Ever Grande/Battle
+  Frontier/Safari Zone Southeast waterfalls
 * Using healing/revive/status-curing bag items (Potion family, soft drinks,
   berries, Revive/Max Revive, Antidote/Paralyze Heal/Awakening/Burn Heal/
   Ice Heal/Full Heal/Full Restore) on a chosen party member, with real
@@ -366,10 +373,10 @@ has been verified either by an automated test or by headless screenshot
 ### ❌ Not implemented yet
 
 * Gift/fossil Pokémon (`givemon`: Johto starters, Beldum, Castform, fossils)
-* HM field moves other than Cut/Rock Smash/Surf/Strength (Fly/Flash/
-  Waterfall/Dive) — Waterfall/Dive need their own walk-onto-special-tile
-  triggers (same shape as Surf, see above, but distinct metatile behaviors
-  and no assets/mechanic for Dive's underwater maps yet)
+* HM field moves other than Cut/Rock Smash/Surf/Strength/Waterfall (Fly/
+  Flash/Dive) — Dive needs its own walk-onto-special-tile trigger (same
+  shape as Surf/Waterfall, see above) and there's no assets/mechanic for its
+  underwater maps yet
 * Bike, day-night cycle, overworld weather, fishing, berry growing
 * Pokédex screen (no seen/caught tracking), party summary/stats screen,
   player naming/gender selection, options/settings screen
@@ -480,12 +487,21 @@ hit:
    `STR_VAR_n` placeholder `ScriptVM`'s msgbox substitution actually looks
    for, silently eating the Pokémon's name out of "X used STRENGTH!"-style
    lines.
-7. **A per-map LOCALID→object registry** — the biggest concrete gap the
+7. ~~Waterfall as a field move~~ — done: its own MB_WATERFALL metatile
+   classification (new `waterfall` map-file section, mirroring `water`),
+   gated on moving north into one while already surfing (pokeemerald's
+   `IsPlayerSurfingNorth` check) — any other direction is just ordinary open
+   water. Reused Surf's Ja/Nein-prompt plumbing directly (`needs_waterfall`/
+   `pending_waterfall` alongside the existing `needs_surf`/`pending_surf`).
+   Backfilled non-destructively into the 7 maps that actually have a
+   waterfall (Route 119, Meteor Falls, Route 114, Victory Road B2F, Ever
+   Grande City, Battle Frontier Outside East, Safari Zone Southeast).
+8. **A per-map LOCALID→object registry** — the biggest concrete gap the
    `goto_if`/`multichoice` audit above found: needed for
    `addobject`/`hideobject`/`showobject` to work at all, which blocks
    scripted mid-scene NPC spawns like Petalburg Gym's Wally tutorial
    cutscene.
-8. **`multichoice` support** — a real choice-menu UI (same block-and-resume
+9. **`multichoice` support** — a real choice-menu UI (same block-and-resume
    VM pattern as the party picker/Ja-Nein prompt) plus hand-transcribing
    each non-Battle-Frontier option list's text from pokeemerald's C source.
 
@@ -545,7 +561,8 @@ screenshot), not just written and assumed correct.
 - [x] Cut/Rock Smash field moves (badge-gated, real removeobject/text)
 - [x] Surf (real water-tile gate, Ja/Nein prompt, dismount, water encounters)
 - [x] Strength (native boulder-push collision mechanic, real activation text)
-- [ ] Remaining HM field moves (Fly/Flash/Waterfall/Dive)
+- [x] Waterfall (climbing gated on surfing north into it, real activation text)
+- [ ] Remaining HM field moves (Fly/Flash/Dive)
 - [x] Running Shoes (hold Shift, gated on FLAG_SYS_B_DASH, real 2x speed)
 - [ ] Bike
 - [ ] Day-night cycle, overworld weather

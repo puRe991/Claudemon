@@ -233,10 +233,14 @@ static bool team_knows_move(const std::vector<Mon>& team, const std::string& mov
 // (optional out): set
 // true instead of bumping when the *only* reason this step was refused is
 // unconfirmed water, so the caller knows to show that prompt (with the
-// player already faced towards it either way).
+// player already faced towards it either way). `waterfall_confirmed`/
+// `needs_waterfall` are the same pattern for climbing a waterfall (moving
+// north into an MB_WATERFALL tile while already surfing).
 static Session* player_step(Session* s, DIR dir, Audio* audio, GameState* gs,
-                            bool surf_confirmed = false, bool* needs_surf = nullptr) {
+                            bool surf_confirmed = false, bool* needs_surf = nullptr,
+                            bool waterfall_confirmed = false, bool* needs_waterfall = nullptr) {
     if (needs_surf) *needs_surf = false;
+    if (needs_waterfall) *needs_waterfall = false;
     bool can_surf = s->player->is_surfing() || surf_confirmed;
     int tx, ty;
     s->player->target_tile(dir, tx, ty);
@@ -311,10 +315,17 @@ static Session* player_step(Session* s, DIR dir, Audio* audio, GameState* gs,
         s->player->face(dir);
         return s;
     }
+    // Waterfall: like water, collision-passable already but gated -- and
+    // only when climbing (moving north into it) while already surfing,
+    // matching pokeemerald's IsPlayerSurfingNorth() check. Any other
+    // direction (floating down/across its base) is ordinary open water.
+    bool waterfall = dir == DIR::N && s->player->is_surfing() && s->map->is_waterfall(tx, ty);
+    bool can_waterfall = waterfall_confirmed;
     bool clear = (s->map->passable(tx, ty) || target_warp) && !blocked_by_actor;
-    if (!clear || (water && !can_surf)) {
+    if (!clear || (water && !can_surf) || (waterfall && !can_waterfall)) {
         s->player->face(dir);
         if (clear && water && needs_surf) *needs_surf = true;
+        else if (clear && waterfall && needs_waterfall) *needs_waterfall = true;
         else if (audio) audio->play_bump();
         return s;
     }
@@ -1155,6 +1166,7 @@ int main() {
         std::vector<char> walk = parse_walk(std::getenv("CODEMON_WALK"));
         sf::RenderTexture rt;
         bool pending_surf = false;   // Ja/Nein prompt is up for a Surf attempt
+        bool pending_waterfall = false;   // ... for a Waterfall climb attempt
         if (rt.create(win_w, win_h)) {
             for (int i = 0; i < frames; ++i) {
                 if (i > 0) {
@@ -1189,11 +1201,15 @@ int main() {
                             int pbx = sess->player->get_tile_x();
                             int pby = sess->player->get_tile_y();
                             Session* before = sess;
-                            bool needs_surf = false;
-                            sess = player_step(sess, char_to_dir(tok), nullptr, &gs, false, &needs_surf);
+                            bool needs_surf = false, needs_waterfall = false;
+                            sess = player_step(sess, char_to_dir(tok), nullptr, &gs, false, &needs_surf,
+                                               false, &needs_waterfall);
                             if (needs_surf && team_knows_move(team, "SURF")) {
                                 pending_surf = true;
                                 yesno.open("Das Wasser schimmert tiefblau... Möchtest du SURFER einsetzen?");
+                            } else if (needs_waterfall && team_knows_move(team, "WATERFALL")) {
+                                pending_waterfall = true;
+                                yesno.open("Ein gewaltiger Wasserfall stürzt herab... Möchtest du WASSERFALL einsetzen?");
                             }
                             if (sess != before) {
                                 vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player, &sess->actors);
@@ -1231,6 +1247,25 @@ int main() {
                             int pby = sess->player->get_tile_y();
                             Session* before = sess;
                             sess = player_step(sess, sess->player->get_facing(), nullptr, &gs, true);
+                            if (sess != before) {
+                                vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player, &sess->actors);
+                                run_load_triggers(sess->map, gs, vm);
+                                on_map_change(sess->path);
+                            } else if (sess->player->get_tile_x() != pbx ||
+                                       sess->player->get_tile_y() != pby) {
+                                if (!team.empty())
+                                    try_encounter(sess, battle, team[0], rng, force_enc);
+                                check_trigger(sess, vm, gs);
+                            }
+                        }
+                        yesno.ack();
+                    } else if (pending_waterfall && yesno.done()) {
+                        pending_waterfall = false;
+                        if (yesno.yes()) {
+                            int pbx = sess->player->get_tile_x();
+                            int pby = sess->player->get_tile_y();
+                            Session* before = sess;
+                            sess = player_step(sess, sess->player->get_facing(), nullptr, &gs, false, nullptr, true);
                             if (sess != before) {
                                 vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player, &sess->actors);
                                 run_load_triggers(sess->map, gs, vm);
@@ -1314,6 +1349,7 @@ int main() {
 
     sf::Clock clock; float npc_accum = 0.f; float move_cooldown = 0.f;
     bool pending_surf = false;   // Ja/Nein prompt is up for a Surf attempt
+    bool pending_waterfall = false;   // ... for a Waterfall climb attempt
     while (scr.get_window()->isOpen()) {
         handle_whiteout(&audio);
         sf::Event event;
@@ -1409,7 +1445,7 @@ int main() {
             bool ui_blocked = starter.active() || yesno.active() || picker.active() ||
                               shop.active() || battle.active() || games.active() ||
                               menu.active() || box.is_active() || vm.running() ||
-                              pending_surf;
+                              pending_surf || pending_waterfall;
             bool run_held = !ui_blocked && gs.flag("FLAG_SYS_B_DASH") &&
                             (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) ||
                              sf::Keyboard::isKeyPressed(sf::Keyboard::RShift));
@@ -1434,12 +1470,16 @@ int main() {
                     int pbx = sess->player->get_tile_x();
                     int pby = sess->player->get_tile_y();
                     Session* before = sess;
-                    bool needs_surf = false;
-                    sess = player_step(sess, held, &audio, &gs, false, &needs_surf);
+                    bool needs_surf = false, needs_waterfall = false;
+                    sess = player_step(sess, held, &audio, &gs, false, &needs_surf,
+                                       false, &needs_waterfall);
                     move_cooldown += interval;
                     if (needs_surf && team_knows_move(team, "SURF")) {
                         pending_surf = true;
                         yesno.open("Das Wasser schimmert tiefblau... Möchtest du SURFER einsetzen?");
+                    } else if (needs_waterfall && team_knows_move(team, "WATERFALL")) {
+                        pending_waterfall = true;
+                        yesno.open("Ein gewaltiger Wasserfall stürzt herab... Möchtest du WASSERFALL einsetzen?");
                     }
                     if (sess != before) {
                         vm.configure(sess->map, &gs, &box, &battle, &audio, sess->player, &sess->actors);
@@ -1469,6 +1509,25 @@ int main() {
                 int pby = sess->player->get_tile_y();
                 Session* before = sess;
                 sess = player_step(sess, sess->player->get_facing(), &audio, &gs, true);
+                if (sess != before) {
+                    vm.configure(sess->map, &gs, &box, &battle, &audio, sess->player, &sess->actors);
+                    run_load_triggers(sess->map, gs, vm);
+                    on_map_change(sess->path);
+                } else if (sess->player->get_tile_x() != pbx ||
+                           sess->player->get_tile_y() != pby) {
+                    if (!team.empty())
+                        try_encounter(sess, battle, team[0], rng, false);
+                    check_trigger(sess, vm, gs);
+                }
+            }
+            yesno.ack();
+        } else if (pending_waterfall && yesno.done()) {
+            pending_waterfall = false;
+            if (yesno.yes()) {
+                int pbx = sess->player->get_tile_x();
+                int pby = sess->player->get_tile_y();
+                Session* before = sess;
+                sess = player_step(sess, sess->player->get_facing(), &audio, &gs, false, nullptr, true);
                 if (sess != before) {
                     vm.configure(sess->map, &gs, &box, &battle, &audio, sess->player, &sess->actors);
                     run_load_triggers(sess->map, gs, vm);

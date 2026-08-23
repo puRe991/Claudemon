@@ -82,6 +82,7 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 		       s == "water" ||   // exact match: "water " (with a space) is the
 		                        // encounters block's own surf-slot sub-line
 		                        // prefix, not this section header
+		       s.rfind("waterfall", 0) == 0 ||
 		       s.rfind("counters", 0) == 0 ||
 		       s.rfind("encounters", 0) == 0 || s.rfind("objscripts", 0) == 0 ||
 		       s.rfind("triggers", 0) == 0 || s.rfind("movements", 0) == 0 ||
@@ -174,6 +175,14 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 				std::vector<int> g;
 				parse_int_row(rest[i], g);
 				for (int id : g) this->water_ids.insert(id);
+				++i;
+			}
+		} else if (head.rfind("waterfall", 0) == 0) {
+			// single line of comma-separated MB_WATERFALL metatile ids
+			if (++i < rest.size()) {
+				std::vector<int> g;
+				parse_int_row(rest[i], g);
+				for (int id : g) this->waterfall_ids.insert(id);
 				++i;
 			}
 		} else if (head.rfind("counters", 0) == 0) {
@@ -328,6 +337,12 @@ bool Map::is_water(int tile_x, int tile_y) const {
 	if (!in_bounds(tile_x, tile_y) || this->water_ids.empty()) return false;
 	int id = this->tile_map[this->index(tile_x, tile_y)];
 	return this->water_ids.count(id) > 0;
+}
+
+bool Map::is_waterfall(int tile_x, int tile_y) const {
+	if (!in_bounds(tile_x, tile_y) || this->waterfall_ids.empty()) return false;
+	int id = this->tile_map[this->index(tile_x, tile_y)];
+	return this->waterfall_ids.count(id) > 0;
 }
 
 bool Map::has_encounters() const {
