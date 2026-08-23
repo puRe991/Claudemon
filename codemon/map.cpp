@@ -76,6 +76,7 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 
 	auto is_keyword = [](const std::string& s) {
 		return s.rfind("collision", 0) == 0 || s.rfind("warps", 0) == 0 ||
+		       s.rfind("connections", 0) == 0 ||
 		       s.rfind("npcs", 0) == 0 || s.rfind("dialogs", 0) == 0 ||
 		       s.rfind("signs", 0) == 0 || s.rfind("grass", 0) == 0 ||
 		       s.rfind("counters", 0) == 0 ||
@@ -104,6 +105,18 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 				Warp wp;
 				if (!(ss >> wp.x >> wp.y >> wp.dest >> wp.dest_warp)) continue;
 				this->warp_list.push_back(wp);
+			}
+		} else if (head.rfind("connections", 0) == 0) {
+			// "<up|down|left|right> <offset> <dest_map_folder>"
+			for (++i; i < rest.size() && !is_keyword(rest[i]); ++i) {
+				if (rest[i].empty()) continue;
+				std::stringstream ss(rest[i]);
+				std::string dir_str;
+				Connection cn;
+				if (!(ss >> dir_str >> cn.offset >> cn.dest)) continue;
+				cn.dir = (dir_str == "up") ? DIR::N : (dir_str == "down") ? DIR::S :
+				         (dir_str == "left") ? DIR::W : (dir_str == "right") ? DIR::E : DIR::NONE;
+				if (cn.dir != DIR::NONE) this->connection_list.push_back(cn);
 			}
 		} else if (head.rfind("npcs", 0) == 0) {
 			// "<sheet_key> <x> <y> <S|N|E|W> <static|wander|pace_v|pace_h> [hide_flag]"
@@ -267,6 +280,13 @@ const Warp* Map::warp_at(int tile_x, int tile_y) const {
 const Warp* Map::warp_by_index(int idx) const {
 	if (idx < 0 || idx >= (int)this->warp_list.size()) return nullptr;
 	return &this->warp_list[idx];
+}
+
+const Connection* Map::connection_for(DIR dir) const {
+	for (const Connection& c : this->connection_list) {
+		if (c.dir == dir) return &c;
+	}
+	return nullptr;
 }
 
 const Sign* Map::sign_at(int tile_x, int tile_y) const {

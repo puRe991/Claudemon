@@ -42,6 +42,10 @@ collision
 1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
 1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
 1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
+connections
+up 0 Route103
+down 0 Route101
+left 0 Route102
 warps
 5 7 OldaleTown_House1 0
 15 16 OldaleTown_House2 0

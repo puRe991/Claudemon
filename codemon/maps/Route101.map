@@ -42,6 +42,9 @@ collision
 1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1
+connections
+up 0 OldaleTown
+down 0 LittlerootTown
 npcs
 people_youngster 16 8 S static 0
 people_prof_birch 9 13 S static FLAG_HIDE_ROUTE_101_BIRCH_ZIGZAGOON_BATTLE

@@ -82,6 +82,10 @@ collision
 1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1
 1,1,1,1,0,0,0,0,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1
 1,1,1,1,0,0,0,0,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1
+connections
+left 0 SafariZone_Northwest
+down 0 SafariZone_South
+right 0 SafariZone_Northeast
 npcs
 people_fisherman 22 9 S wander 0
 people_man_4 6 29 S wander 0

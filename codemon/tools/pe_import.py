@@ -1427,6 +1427,23 @@ def cmd_world(src, limit=None):
                 dwarp = 0
             warps.append((wx, wy, dest, dwarp))
 
+        # Connections: pokeemerald's seamless-scroll map edges (Route101's
+        # north edge continues into OldaleTown, etc.) -- "dive"/"emerge"
+        # connections aren't a walk-off-the-edge direction, so skip those.
+        connections = []
+        for cn in (mj.get("connections") or []):
+            direction = cn.get("direction")
+            if direction not in ("up", "down", "left", "right"):
+                continue
+            dest = id_to_folder.get(cn.get("map"))
+            if dest is None:
+                continue
+            try:
+                offset = int(cn.get("offset", 0))
+            except Exception:
+                offset = 0
+            connections.append((direction, offset, dest))
+
         out = os.path.join(maps_dir, mname + ".map")
         lines = [f"tileset {sheet_name}", f"{w} {h}", f"{sx} {sy}"]
         for y in range(h):
@@ -1434,6 +1451,10 @@ def cmd_world(src, limit=None):
         lines.append("collision")
         for y in range(h):
             lines.append(",".join(str(solid[y * w + x]) for x in range(w)))
+        if connections:
+            lines.append("connections")
+            for (direction, offset, dest) in connections:
+                lines.append(f"{direction} {offset} {dest}")
         if warps:
             lines.append("warps")
             for (x, y, dest, dw) in warps:

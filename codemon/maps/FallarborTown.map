@@ -42,6 +42,9 @@ collision
 0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1
 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
 1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1
+connections
+left 0 Route114
+right 0 Route113
 warps
 15 15 FallarborTown_Mart 0
 8 7 FallarborTown_BattleTentLobby 0

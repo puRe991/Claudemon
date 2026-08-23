@@ -34,6 +34,15 @@ struct Warp {
 	int dest_warp;          // warp index within the destination map
 };
 
+// A seamless map edge (pokeemerald's MapConnection): walking off this map's
+// `dir` edge continues into `dest`, landing on its opposite edge shifted by
+// `offset` tiles (see Map::connection_for for the exact placement math).
+struct Connection {
+	DIR dir;
+	int offset;
+	std::string dest;
+};
+
 // A readable sign (bg_event). `text` may contain U+001F page separators.
 struct Sign {
 	int x, y;
@@ -95,6 +104,7 @@ private:
 	std::vector<char> solid;     // width*height passability (1 = blocked)
 	std::vector<NpcSpawn> npc_spawns;
 	std::vector<Warp> warp_list;
+	std::vector<Connection> connection_list;
 	std::vector<Sign> sign_list;
 	std::unordered_set<int> grass_ids;        // metatile ids that are tall grass
 	std::unordered_set<int> counter_ids;      // metatile ids that are shop/PC counters
@@ -142,6 +152,10 @@ public:
 	const std::vector<Warp>& warps() const;
 	const Warp* warp_at(int tile_x, int tile_y) const;   // warp on this tile, or null
 	const Warp* warp_by_index(int idx) const;            // for arrival lookup
+
+	// Seamless map edge in `dir`, or null if this map's edge in that
+	// direction is just a wall (no connection authored there).
+	const Connection* connection_for(DIR dir) const;
 
 	// Signs authored for this map.
 	const Sign* sign_at(int tile_x, int tile_y) const;   // sign on this tile, or null

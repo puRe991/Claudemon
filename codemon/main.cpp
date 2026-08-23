@@ -219,6 +219,41 @@ static void tick_npcs(Session* s, std::mt19937& rng) {
 static Session* player_step(Session* s, DIR dir, Audio* audio, GameState* gs) {
     int tx, ty;
     s->player->target_tile(dir, tx, ty);
+
+    // Off this map's edge: pokeemerald maps aren't warps at their borders,
+    // they're stitched together into one seamless world via `connections`
+    // (Route101's north edge continues straight into OldaleTown, etc.). If
+    // this map's edge in `dir` has one, cross into it instead of just
+    // stopping at the boundary.
+    if (!s->map->in_bounds(tx, ty)) {
+        const Connection* cn = s->map->connection_for(dir);
+        if (cn) {
+            Session* ns = load_session("maps/" + cn->dest + ".map", -1, -1, gs);
+            if (ns->map->ready()) {
+                int nx = tx, ny = ty;
+                switch (dir) {
+                case DIR::N: nx = tx - cn->offset; ny = (int)ns->map->get_height() - 1; break;
+                case DIR::S: nx = tx - cn->offset; ny = 0; break;
+                case DIR::W: nx = (int)ns->map->get_width() - 1; ny = ty - cn->offset; break;
+                case DIR::E: nx = 0; ny = ty - cn->offset; break;
+                default: break;
+                }
+                if (ns->map->in_bounds(nx, ny) && ns->map->passable(nx, ny) &&
+                    !actor_at(ns->actors, ns->player, nx, ny)) {
+                    ns->player->set_tile(nx, ny);
+                    ns->player->set_facing(dir);
+                    free_session(s);
+                    if (audio) audio->play_step();
+                    return ns;
+                }
+            }
+            free_session(ns);
+        }
+        s->player->face(dir);
+        if (audio) audio->play_bump();
+        return s;
+    }
+
     // Warp/door tiles are impassable metatiles but can be walked onto: the warp
     // overrides collision (that is how doors work in pokeemerald).
     const Warp* target_warp = s->map->warp_at(tx, ty);

@@ -42,6 +42,9 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 1,0,0,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,0,1
 1,1,1,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,1,1
+connections
+up -80 Route116
+right 0 Route117
 warps
 3 7 VerdanturfTown_BattleTentLobby 0
 12 3 VerdanturfTown_Mart 0

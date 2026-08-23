@@ -82,6 +82,9 @@ collision
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+connections
+left 0 Route132
+right 0 Route131
 warps
 8 15 PacifidlogTown_PokemonCenter_1F 0
 16 13 PacifidlogTown_House1 0
