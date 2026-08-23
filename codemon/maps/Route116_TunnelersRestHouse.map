@@ -53,3 +53,6 @@ end
 = Route116_TunnelersRestHouse_EventScript_Tunneler1
 msgbox	That RUSTURF TUNNEL there…At first, we had a huge work crew boring through rock with the latest machinery. But, we had to stop.It turns out that we would have had a negative effect on wild POKéMON in the area.So, we've got nothing to do but loll around here doing nothing.
 end
+
+music
+MUS_RUSTBORO

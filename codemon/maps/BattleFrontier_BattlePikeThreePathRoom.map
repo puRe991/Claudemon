@@ -306,3 +306,6 @@ faceplayer
 msgbox	You are currently in the 1st room…
 goto BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge
 end
+
+music
+MUS_B_PIKE

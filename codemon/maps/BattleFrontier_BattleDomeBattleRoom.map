@@ -533,3 +533,6 @@ return
 goto_if_eq VAR_TEMP_D 0 Common_EventScript_NopReturn
 applymovement LOCALID_DOME_AUDIENCE_WALKING BattleFrontier_BattleDomeBattleRoom_Movement_AudienceMemberWalkToSeat
 return
+
+music
+MUS_B_DOME

@@ -262,3 +262,6 @@ return
 = Route110_TrickHouseEntrance_EventScript_FoundBeneathDesk
 msgbox	Hah? Grrr…How did you know I concealed myself beneath this desk? You're sharp!
 return
+
+music
+MUS_TRICK_HOUSE

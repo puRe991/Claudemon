@@ -90,3 +90,6 @@ end
 = AbandonedShip_Rooms_1F_EventScript_Gentleman
 msgbox	Ships of this sort are rare, so I'm taking a look around.Hmhm… There appear to be other cabins…
 end
+
+music
+MUS_ABANDONED_SHIP

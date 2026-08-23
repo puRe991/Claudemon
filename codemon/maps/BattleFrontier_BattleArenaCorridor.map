@@ -58,3 +58,6 @@ setvar VAR_0x8006 0
 warp BattleFrontier_BattleArenaBattleRoom 7 5
 waitstate
 end
+
+music
+MUS_B_ARENA

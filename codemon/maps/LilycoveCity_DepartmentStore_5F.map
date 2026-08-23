@@ -113,3 +113,6 @@ msgbox	I'm not big enough to raise POKéMON, so I'm getting a cute DOLL instead.
 end
 counters
 670,674,675,676,677
+
+music
+MUS_POKE_MART

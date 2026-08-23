@@ -353,3 +353,6 @@ goto BattleFrontier_BattleTowerBattleRoom_EventScript_BattleAnabelGold
 = BattleFrontier_EventScript_SetBrainObjectGfx
 frontier_setbrainobj
 return
+
+music
+MUS_B_TOWER

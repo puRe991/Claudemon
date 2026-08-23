@@ -160,3 +160,6 @@ return
 = RivalsHouse_2F_EventScript_MayWhereShouldIGoNext
 msgbox	MAY: Ich frag mich, wo ich als Nächstes POKéMON fangen sollte?Wär doch lustig, wenn wir uns dabei über den Weg laufen, PLAYER, oder?
 return
+
+music
+MUS_LITTLEROOT

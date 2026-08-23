@@ -18,10 +18,18 @@ members here. A small ring of sf::Sound voices lets a few effects overlap.
 class Audio
 {
 private:
-	sf::SoundBuffer step_buf, bump_buf, select_buf, cry_buf;
+	sf::SoundBuffer step_buf, bump_buf, select_buf;
+	// Cries get their own small ring of buffers (unlike step/bump/select,
+	// each cry is a *different* file loaded at play time, so two cries in
+	// quick succession -- a wild encounter announces both the wild mon's and
+	// the player's in the same breath -- must not reload the same buffer out
+	// from under a still-playing sf::Sound that references it).
+	std::vector<sf::SoundBuffer> cry_bufs;
+	size_t next_cry_buf = 0;
 	std::vector<sf::Sound> voices;   // simple polyphony pool
 	sf::Music music;
 	bool loaded;
+	std::string current_bgm;   // MUS_* id currently playing ("" = none)
 
 	sf::Sound& free_voice();
 
@@ -43,4 +51,16 @@ public:
 
 	// Stream a converted OGG music track if it exists; returns success.
 	bool play_music(const std::string& ogg_path, bool loop = true);
+
+	// Higher-level wrapper around play_music() for pokeemerald's own MUS_*
+	// ids (e.g. "MUS_LITTLEROOT", from Map::music()/the `playbgm` opcode):
+	// resolves to assets/sfx/music/<lowercased id>.ogg and starts it looping
+	// -- unless that exact track is already playing, so walking between two
+	// rooms sharing music (most Pokemon Center floors, ...) doesn't restart
+	// it from the top. An empty id (or one with no matching file) stops
+	// whatever's currently playing, same as pokeemerald's MUS_NONE.
+	void play_bgm(const std::string& mus_id, bool loop = true,
+	              const std::string& asset_dir = "assets");
+	void stop_music();
+	const std::string& current_music() const { return this->current_bgm; }
 };

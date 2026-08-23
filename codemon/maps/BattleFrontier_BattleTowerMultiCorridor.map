@@ -89,3 +89,6 @@ goto BattleFrontier_BattleTowerMultiCorridor_EventScript_WarpToLinkMultiBattleRo
 warp BattleFrontier_BattleTowerBattleRoom 4 8
 waitstate
 return
+
+music
+MUS_B_TOWER

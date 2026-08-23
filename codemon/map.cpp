@@ -84,6 +84,7 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 		                        // prefix, not this section header
 		       s.rfind("waterfall", 0) == 0 ||
 		       s.rfind("visit", 0) == 0 ||
+		       s.rfind("music", 0) == 0 ||
 		       s.rfind("counters", 0) == 0 ||
 		       s.rfind("encounters", 0) == 0 || s.rfind("objscripts", 0) == 0 ||
 		       s.rfind("triggers", 0) == 0 || s.rfind("movements", 0) == 0 ||
@@ -190,6 +191,9 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 		} else if (head.rfind("visit", 0) == 0) {
 			// single line: the FLAG_VISITED_* this map sets on entry
 			if (++i < rest.size()) { this->visit_flag_ = rest[i]; ++i; }
+		} else if (head.rfind("music", 0) == 0) {
+			// single line: this map's own MUS_* background music id
+			if (++i < rest.size()) { this->music_ = rest[i]; ++i; }
 		} else if (head.rfind("counters", 0) == 0) {
 			// single line of comma-separated shop/PC-counter metatile ids
 			if (++i < rest.size()) {

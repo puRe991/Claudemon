@@ -139,3 +139,6 @@ clearflag FLAG_DEFEATED_DEOXYS
 clearflag FLAG_DEFEATED_LUGIA
 clearflag FLAG_DEFEATED_HO_OH
 return
+
+music
+MUS_HALL_OF_FAME_ROOM

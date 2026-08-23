@@ -1,8 +1,10 @@
 #include "Audio.h"
+#include <cctype>
 
 Audio::Audio() : loaded(false) {
 	// A handful of voices so step/bump/cry can overlap without cutting out.
 	this->voices.resize(6);
+	this->cry_bufs.resize(3);
 }
 
 sf::Sound& Audio::free_voice() {
@@ -49,11 +51,13 @@ void Audio::play_select() {
 
 void Audio::play_cry(const std::string& name, const std::string& asset_dir) {
 	const std::string path = asset_dir + "/sfx/cries/" + name + ".wav";
-	if (!this->cry_buf.loadFromFile(path)) {
+	sf::SoundBuffer& buf = this->cry_bufs[this->next_cry_buf];
+	this->next_cry_buf = (this->next_cry_buf + 1) % this->cry_bufs.size();
+	if (!buf.loadFromFile(path)) {
 		return;
 	}
 	sf::Sound& v = free_voice();
-	v.setBuffer(this->cry_buf);
+	v.setBuffer(buf);
 	v.play();
 }
 
@@ -64,4 +68,27 @@ bool Audio::play_music(const std::string& ogg_path, bool loop) {
 	this->music.setLoop(loop);
 	this->music.play();
 	return true;
+}
+
+static std::string lower(const std::string& s) {
+	std::string o = s;
+	for (char& c : o) c = (char)std::tolower((unsigned char)c);
+	return o;
+}
+
+void Audio::play_bgm(const std::string& mus_id, bool loop, const std::string& asset_dir) {
+	if (mus_id.empty() || mus_id == "MUS_NONE") { stop_music(); return; }
+	if (mus_id == this->current_bgm && this->music.getStatus() == sf::Music::Playing) return;
+	if (play_music(asset_dir + "/sfx/music/" + lower(mus_id) + ".ogg", loop)) {
+		this->current_bgm = mus_id;
+	} else {
+		// Not converted (see assets/sfx/music/ -- needs fluidsynth/timidity
+		// + ffmpeg, see tools/pe_import.py's cmd_audio): leave whatever was
+		// playing alone rather than cutting it to silence over a missing file.
+	}
+}
+
+void Audio::stop_music() {
+	this->music.stop();
+	this->current_bgm.clear();
 }

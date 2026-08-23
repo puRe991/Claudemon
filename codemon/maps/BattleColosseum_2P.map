@@ -45,3 +45,6 @@ msgbox	Please take your place and start your battle.
 special Script_ClearHeldMovement
 closemessage
 end
+
+music
+MUS_EVER_GRANDE

@@ -37,3 +37,6 @@ releaseall
 warp BattleFrontier_BattlePikeLobby 5 6
 waitstate
 end
+
+music
+MUS_B_PIKE

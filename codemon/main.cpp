@@ -1301,9 +1301,10 @@ int main() {
     std::string banner = pretty_map(start_map);
     float banner_t = 2.2f, fade = 1.0f;
     sf::Font ban_font; ban_font.loadFromFile("assets/fonts/DejaVuSans.ttf");
-    auto on_map_change = [&](const std::string& path) {
+    auto on_map_change = [&](const std::string& path, Audio* aud) {
         banner = pretty_map(path); banner_t = 2.2f; fade = 1.0f;
         menu.set_location(banner);
+        if (aud) aud->play_bgm(sess->map->music());
     };
     // A script-driven `warp` (e.g. Route 101 Birch's bag sending the player
     // to his lab after picking a starter) swaps the session the same way
@@ -1320,7 +1321,7 @@ int main() {
         sess = ns;
         vm.configure(sess->map, &gs, &box, &battle, aud, sess->player, &sess->actors, &sess->localid_map);
         run_load_triggers(sess->map, gs, vm);
-        on_map_change(sess->path);
+        on_map_change(sess->path, aud);
     };
     // FLIEGEN: the menu can't touch the session either (same reasoning as
     // do_pending_warp above), so it just names a destination and the game
@@ -1337,7 +1338,7 @@ int main() {
         sess->player->face(DIR::S);
         vm.configure(sess->map, &gs, &box, &battle, aud, sess->player, &sess->actors, &sess->localid_map);
         run_load_triggers(sess->map, gs, vm);
-        on_map_change(sess->path);
+        on_map_change(sess->path, aud);
     };
     menu.set_location(banner);
 
@@ -1353,7 +1354,8 @@ int main() {
     // own scripted battles (trainerbattle/dowildbattle) itself, the same way.
     bool battle_was_active = false;
     auto handle_whiteout = [&](Audio* aud) {
-        if (battle_was_active && !battle.active() && !vm.running() && !battle.won()) {
+        bool battle_just_ended = battle_was_active && !battle.active() && !vm.running();
+        if (battle_just_ended && !battle.won()) {
             for (Mon& m : team) {
                 m.hp = m.max_hp;
                 m.status = Status::NONE; m.status_turns = 0; m.confusion_turns = 0;
@@ -1366,11 +1368,16 @@ int main() {
                     sess = ns;
                     vm.configure(sess->map, &gs, &box, &battle, aud, sess->player, &sess->actors, &sess->localid_map);
                     run_load_triggers(sess->map, gs, vm);
-                    on_map_change(sess->path);
+                    on_map_change(sess->path, aud);
                 } else {
                     free_session(ns);
                 }
             }
+        } else if (battle_just_ended && aud) {
+            // Won/fled/caught: same map, just resume its own music over the
+            // battle theme (a loss already resumed it via on_map_change
+            // above, whiteout warping to the last heal spot).
+            aud->play_bgm(sess->map->music());
         }
         battle_was_active = battle.active();
     };
@@ -1432,7 +1439,7 @@ int main() {
                             if (sess != before) {
                                 vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player, &sess->actors, &sess->localid_map);
     run_load_triggers(sess->map, gs, vm);
-                                on_map_change(sess->path);
+                                on_map_change(sess->path, nullptr);
                             } else if (sess->player->get_tile_x() != pbx ||
                                        sess->player->get_tile_y() != pby) {
                                 // No wild encounters before the player has a
@@ -1468,7 +1475,7 @@ int main() {
                             if (sess != before) {
                                 vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player, &sess->actors, &sess->localid_map);
                                 run_load_triggers(sess->map, gs, vm);
-                                on_map_change(sess->path);
+                                on_map_change(sess->path, nullptr);
                             } else if (sess->player->get_tile_x() != pbx ||
                                        sess->player->get_tile_y() != pby) {
                                 if (!team.empty())
@@ -1487,7 +1494,7 @@ int main() {
                             if (sess != before) {
                                 vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player, &sess->actors, &sess->localid_map);
                                 run_load_triggers(sess->map, gs, vm);
-                                on_map_change(sess->path);
+                                on_map_change(sess->path, nullptr);
                             } else if (sess->player->get_tile_x() != pbx ||
                                        sess->player->get_tile_y() != pby) {
                                 if (!team.empty())
@@ -1569,6 +1576,8 @@ int main() {
 
     // --- interactive game --------------------------------------------------
     Audio audio; audio.load("assets");
+    audio.play_bgm(sess->map->music());
+    battle.set_audio(&audio);
     vm.configure(sess->map, &gs, &box, &battle, &audio, sess->player, &sess->actors, &sess->localid_map);
     run_load_triggers(sess->map, gs, vm);
     Window scr(win_w, win_h, "Codemon!");
@@ -1719,7 +1728,7 @@ int main() {
                     if (sess != before) {
                         vm.configure(sess->map, &gs, &box, &battle, &audio, sess->player, &sess->actors, &sess->localid_map);
                         run_load_triggers(sess->map, gs, vm);
-                        on_map_change(sess->path);
+                        on_map_change(sess->path, &audio);
                     } else if (sess->player->get_tile_x() != pbx ||
                                sess->player->get_tile_y() != pby) {
                         if (!team.empty())
@@ -1747,7 +1756,7 @@ int main() {
                 if (sess != before) {
                     vm.configure(sess->map, &gs, &box, &battle, &audio, sess->player, &sess->actors, &sess->localid_map);
                     run_load_triggers(sess->map, gs, vm);
-                    on_map_change(sess->path);
+                    on_map_change(sess->path, &audio);
                 } else if (sess->player->get_tile_x() != pbx ||
                            sess->player->get_tile_y() != pby) {
                     if (!team.empty())
@@ -1766,7 +1775,7 @@ int main() {
                 if (sess != before) {
                     vm.configure(sess->map, &gs, &box, &battle, &audio, sess->player, &sess->actors, &sess->localid_map);
                     run_load_triggers(sess->map, gs, vm);
-                    on_map_change(sess->path);
+                    on_map_change(sess->path, &audio);
                 } else if (sess->player->get_tile_x() != pbx ||
                            sess->player->get_tile_y() != pby) {
                     if (!team.empty())

@@ -199,3 +199,6 @@ return
 = EverGrandeCity_ChampionsRoom_EventScript_PlayMayMusic
 playbgm MUS_ENCOUNTER_MAY FALSE
 return
+
+music
+MUS_VICTORY_ROAD

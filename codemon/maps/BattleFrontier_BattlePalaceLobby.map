@@ -310,3 +310,6 @@ goto BattleFrontier_BattlePalaceLobby_EventScript_Attendant
 end
 signs
 10 4	The BATTLE HALL rules are listed.
+
+music
+MUS_B_PALACE

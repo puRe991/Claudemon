@@ -45,3 +45,6 @@ warp VerdanturfTown_BattleTentBattleRoom 6 5
 waitstate
 releaseall
 end
+
+music
+MUS_B_TOWER_RS

@@ -87,3 +87,6 @@ end
 msgbox	What? No EGG should know any moves.
 releaseall
 end
+
+music
+MUS_LILYCOVE

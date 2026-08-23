@@ -67,3 +67,6 @@ waitmovement 0
 closedoor 37 3
 waitdooranim
 goto BattleFrontier_BattleDomeCorridor_EventScript_WarpToPreBattleRoom
+
+music
+MUS_B_DOME_LOBBY

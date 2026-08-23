@@ -126,3 +126,6 @@ return
 msgbox	Howdy! Did you swing by to grill me about the latest word? Oh, all right!
 goto BattleFrontier_Lounge2_EventScript_GiveAdvice
 end
+
+music
+MUS_B_TOWER_RS

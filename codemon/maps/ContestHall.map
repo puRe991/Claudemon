@@ -967,3 +967,6 @@ return
 = ContestHall_EventScript_GetNormalStringId
 setvar VAR_0x8009 STDSTRING_NORMAL
 return
+
+music
+MUS_CONTEST

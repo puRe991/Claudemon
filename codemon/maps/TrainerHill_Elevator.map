@@ -77,3 +77,6 @@ waitstate
 end
 = TrainerHill_Elevator_EventScript_Attendant
 end
+
+music
+MUS_B_TOWER_RS

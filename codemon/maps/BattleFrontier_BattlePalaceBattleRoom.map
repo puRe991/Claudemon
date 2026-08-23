@@ -323,3 +323,6 @@ waitmovement 0
 goto BattleFrontier_BattlePalaceBattleRoom_EventScript_NextOpponentEnter
 water
 368,384,385,393,400,402,408,410,550
+
+music
+MUS_B_PALACE

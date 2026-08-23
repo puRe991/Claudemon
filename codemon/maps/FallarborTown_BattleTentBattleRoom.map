@@ -172,3 +172,6 @@ applymovement LOCALID_FALLARBOR_TENT_BATTLE_PLAYER FallarborTown_BattleTentBattl
 waitmovement 0
 goto FallarborTown_BattleTentBattleRoom_EventScript_AskContinueChallenge
 end
+
+music
+MUS_B_TOWER_RS

@@ -106,6 +106,9 @@ private:
 	std::string visit_flag_;     // pokeemerald's FLAG_VISITED_* this map sets
 	                             // unconditionally on entry (Fly destination
 	                             // gating); empty if this map doesn't have one
+	std::string music_;          // this map's own background music (pokeemerald's
+	                             // MUS_* id, e.g. "MUS_LITTLEROOT"); empty if
+	                             // the map is silent (MUS_NONE) or wasn't tagged
 
 	std::vector<int>  tile_map;  // width*height metatile ids
 	std::vector<char> solid;     // width*height passability (1 = blocked)
@@ -157,6 +160,9 @@ public:
 	// FLAG_VISITED_* this map sets unconditionally on entry, or "" if none
 	// (see main.cpp's load_session -- feeds the FLIEGEN destination list).
 	const std::string& visit_flag() const { return this->visit_flag_; }
+	// This map's own MUS_* background music id, or "" if it's silent/
+	// untagged (see Audio::play_bgm, called on every map load in main.cpp).
+	const std::string& music() const { return this->music_; }
 
 	// NPCs authored for this map.
 	const std::vector<NpcSpawn>& npcs() const;

@@ -110,3 +110,6 @@ goto RustboroCity_Flat1_2F_EventScript_GivePhrase
 = RustboroCity_Flat1_2F_EventScript_WaldasMom
 msgbox	Oh, it's so hard every day…What's hard? You need to ask?It's trying to figure out what to make for meals every day.It really isn't easy coming up with meals every day.
 end
+
+music
+MUS_RUSTBORO

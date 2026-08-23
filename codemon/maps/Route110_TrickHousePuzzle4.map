@@ -135,3 +135,6 @@ end
 trainerbattle_single TRAINER_CORA Route110_TrickHousePuzzle4_Text_CoraIntro Route110_TrickHousePuzzle4_Text_CoraDefeat
 msgbox	Wouldn't you agree? You would go anywhere if TRAINERS were there.
 end
+
+music
+MUS_TRICK_HOUSE

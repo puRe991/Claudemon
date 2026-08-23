@@ -105,3 +105,6 @@ msgbox	KIRA: Oh, you make me so angry! I'm going to register you for that!
 register_matchcall TRAINER_KIRA_AND_DAN_1
 release
 end
+
+music
+MUS_ABANDONED_SHIP

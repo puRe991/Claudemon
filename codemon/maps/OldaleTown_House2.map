@@ -37,3 +37,6 @@ end
 = OldaleTown_House2_EventScript_Woman
 msgbox	Wenn POKéMON kämpfen, steigen sie irgendwann im Level auf und werden stärker.
 end
+
+music
+MUS_OLDALE

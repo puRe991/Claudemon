@@ -108,3 +108,6 @@ end
 msgbox	WALLY: Please watch me, PLAYER. I'm going to get stronger than you.When I do, I'm going to challenge you to another battle.
 release
 end
+
+music
+MUS_VERDANTURF

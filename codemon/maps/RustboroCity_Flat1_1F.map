@@ -38,3 +38,6 @@ end
 = RustboroCity_Flat1_1F_EventScript_Man
 msgbox	Every POKéMON has a special ability that it can use.
 end
+
+music
+MUS_RUSTBORO

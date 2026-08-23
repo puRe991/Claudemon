@@ -61,3 +61,6 @@ goto_if_eq VAR_RESULT 0 EventScript_BattleColosseum_4P_CancelSpotTrigger
 setvar VAR_0x8005 0
 special ColosseumPlayerSpotTriggered
 end
+
+music
+MUS_EVER_GRANDE

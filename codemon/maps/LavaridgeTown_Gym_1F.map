@@ -283,3 +283,6 @@ settrainerflag TRAINER_JOSH
 settrainerflag TRAINER_TOMMY
 settrainerflag TRAINER_MARC
 return
+
+music
+MUS_GYM

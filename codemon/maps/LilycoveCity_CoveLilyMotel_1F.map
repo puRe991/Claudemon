@@ -93,3 +93,6 @@ applymovement LOCALID_MOTEL_OWNER Common_Movement_FaceOriginalDirection
 waitmovement 0
 releaseall
 end
+
+music
+MUS_LILYCOVE

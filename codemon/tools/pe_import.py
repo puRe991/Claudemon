@@ -1687,6 +1687,18 @@ def cmd_world(src, limit=None):
         if visit_flag:
             lines.append("visit")
             lines.append(visit_flag)
+        # This map's own background music (Audio::play_bgm, called on every
+        # map load -- see main.cpp).
+        mus = mj.get("music") or ""
+        if mus == "MUS_ROUTE118":
+            # Not a real song -- a 0x7FFF sentinel meaning "pick
+            # MUS_ROUTE110/MUS_ROUTE119 by player x position" (see
+            # overworld.c's GetCurrLocationDefaultMusic); simplified to a
+            # static default matching most of the route.
+            mus = "MUS_ROUTE119"
+        if mus and mus != "MUS_NONE":
+            lines.append("music")
+            lines.append(mus)
         # Shop/PC-counter metatile ids on this map (see combined_counter_ids):
         # impassable, but interact() should look one tile past them.
         used_counters = sorted(set(ids) & counter_ids)
@@ -1820,7 +1832,37 @@ def have_synth():
     return None
 
 
-def cmd_audio(src, cry_limit=100000, songs=("mus_littleroot", "mus_route101", "mus_gsc_route38")):
+# Every map-BGM track actually referenced by an imported map's own "music"
+# field (data/maps/*/map.json), plus the handful of battle themes/victory
+# jingles this engine's Battle class plays (see main.cpp/Battle.cpp) --
+# MUS_NONE (silent maps) and MUS_ROUTE118 (not a real song: a 0x7FFF sentinel
+# meaning "pick MUS_ROUTE110/119 by player x position", both already covered)
+# are deliberately excluded.
+DEFAULT_SONGS = (
+    "mus_abandoned_ship", "mus_aqua_magma_hideout", "mus_birch_lab",
+    "mus_b_arena", "mus_b_dome", "mus_b_dome_lobby", "mus_b_factory",
+    "mus_b_frontier", "mus_b_palace", "mus_b_pike", "mus_b_pyramid",
+    "mus_b_tower", "mus_b_tower_rs", "mus_cave_of_origin", "mus_contest",
+    "mus_contest_lobby", "mus_dewford", "mus_ever_grande", "mus_fallarbor",
+    "mus_fortree", "mus_game_corner", "mus_gsc_pewter", "mus_gym",
+    "mus_hall_of_fame_room", "mus_lilycove", "mus_lilycove_museum",
+    "mus_littleroot", "mus_mt_chimney", "mus_mt_pyre", "mus_mt_pyre_exterior",
+    "mus_oceanic_museum", "mus_oldale", "mus_petalburg", "mus_petalburg_woods",
+    "mus_poke_center", "mus_poke_mart", "mus_rg_sevii_cave",
+    "mus_rg_sevii_route", "mus_route101", "mus_route104", "mus_route110",
+    "mus_route113", "mus_route119", "mus_route120", "mus_route122",
+    "mus_rustboro", "mus_safari_zone", "mus_sailing", "mus_school",
+    "mus_sealed_chamber", "mus_slateport", "mus_sootopolis", "mus_trick_house",
+    "mus_underwater", "mus_verdanturf", "mus_victory_road",
+    # battle themes (Battle::start_wild/start_trainer picks by opponent kind)
+    "mus_vs_wild", "mus_vs_trainer", "mus_vs_gym_leader", "mus_vs_champion",
+    "mus_vs_rival", "mus_vs_elite_four",
+    # victory jingles (played once on a won battle, then map music resumes)
+    "mus_victory_wild", "mus_victory_trainer",
+)
+
+
+def cmd_audio(src, cry_limit=100000, songs=DEFAULT_SONGS):
     cries_src = os.path.join(src, "sound", "direct_sound_samples", "cries")
     cries_dst = os.path.join(SFX_DIR, "cries")
     os.makedirs(cries_dst, exist_ok=True)
@@ -1837,34 +1879,49 @@ def cmd_audio(src, cry_limit=100000, songs=("mus_littleroot", "mus_route101", "m
     gen_blip(os.path.join(SFX_DIR, "select.wav"), freq=990, ms=60, kind="sine", vol=0.25)
     print("audio: generated step/bump/select blips")
 
-    # MIDI -> OGG when a synth exists; otherwise document the requirement
+    # MIDI -> OGG when a synth + ffmpeg exist; otherwise document the
+    # requirement. (Previously this rendered a real WAV but named it .ogg
+    # without ever actually encoding Ogg Vorbis -- fixed to genuinely
+    # transcode via ffmpeg, since a bare renamed WAV is both mislabeled and
+    # far larger than it needs to be across dozens of tracks.)
     synth = have_synth()
+    ffmpeg = shutil.which("ffmpeg")
     music_dst = os.path.join(SFX_DIR, "music")
     os.makedirs(music_dst, exist_ok=True)
     midi_dir = os.path.join(src, "sound", "songs", "midi")
     note = os.path.join(music_dst, "README.txt")
-    if synth:
+    if synth and ffmpeg:
+        sf2 = (next(iter(glob.glob("/usr/share/**/*.sf2", recursive=True)), None)
+               if synth == "fluidsynth" else None)
+        converted = 0
         for s in songs:
             mid = os.path.join(midi_dir, s + ".mid")
             if not os.path.exists(mid):
                 continue
             ogg = os.path.join(music_dst, s + ".ogg")
+            tmp_wav = ogg + ".tmp.wav"
             if synth == "fluidsynth":
-                sf2 = next(iter(glob.glob("/usr/share/**/*.sf2", recursive=True)), None)
                 if not sf2:
                     break
-                subprocess.run(["fluidsynth", "-ni", sf2, mid, "-F", ogg.replace(".ogg", ".wav"),
-                                "-r", "44100"], check=False)
+                subprocess.run(["fluidsynth", "-ni", sf2, mid, "-F", tmp_wav, "-r", "44100"],
+                                check=False, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
             else:
-                subprocess.run(["timidity", mid, "-Ow", "-o", ogg.replace(".ogg", ".wav")], check=False)
-        print(f"audio: converted music via {synth}")
+                subprocess.run(["timidity", mid, "-Ow", "-o", tmp_wav],
+                                check=False, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            if os.path.isfile(tmp_wav):
+                subprocess.run(["ffmpeg", "-y", "-i", tmp_wav, "-c:a", "libvorbis", "-q:a", "4", ogg],
+                                check=False, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                os.remove(tmp_wav)
+                if os.path.isfile(ogg):
+                    converted += 1
+        print(f"audio: converted {converted}/{len(songs)} music tracks via {synth} + ffmpeg")
     else:
         with open(note, "w") as f:
             f.write("pokeemerald music is stored as MIDI (.mid). SFML cannot play MIDI.\n"
-                    "Install fluidsynth (with a .sf2 soundfont) or timidity and re-run:\n"
+                    "Install fluidsynth (with a .sf2 soundfont) and ffmpeg, then re-run:\n"
                     "  python3 tools/pe_import.py audio --src /path/to/pokeemerald-master\n"
                     "to render the songs to OGG here.\n")
-        print("audio: no synth found -> MIDI not converted (see sfx/music/README.txt)")
+        print("audio: no synth/ffmpeg found -> MIDI not converted (see sfx/music/README.txt)")
 
 
 # --------------------------------------------------------------------------- #

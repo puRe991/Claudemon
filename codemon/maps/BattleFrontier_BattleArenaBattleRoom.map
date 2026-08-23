@@ -393,3 +393,6 @@ applymovement LOCALID_ARENA_BATTLE_OPPONENT BattleFrontier_BattleArenaBattleRoom
 waitmovement 0
 msgbox	I won't allow a halfhearted effort! Be ready for a thrashing!
 goto BattleFrontier_BattleArenaBattleRoom_EventScript_BattleGretaGold
+
+music
+MUS_B_ARENA

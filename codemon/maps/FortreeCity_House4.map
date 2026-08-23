@@ -80,3 +80,6 @@ end
 = FortreeCity_House4_EventScript_Woman
 msgbox	By being together with POKéMON, people make more and more friends.And that brings the world closer together. I think it's wonderful!
 end
+
+music
+MUS_FORTREE

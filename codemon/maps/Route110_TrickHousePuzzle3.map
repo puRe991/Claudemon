@@ -387,3 +387,6 @@ end
 trainerbattle_single TRAINER_JUSTIN Route110_TrickHousePuzzle3_Text_JustinIntro Route110_TrickHousePuzzle3_Text_JustinDefeat
 msgbox	It's full of doors here! It's too small and dark in here! Help!
 end
+
+music
+MUS_TRICK_HOUSE

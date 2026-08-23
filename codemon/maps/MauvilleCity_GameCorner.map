@@ -502,3 +502,6 @@ msgbox	COINS are needed to play here in the GAME CORNER.
 end
 counters
 588,591,597,598
+
+music
+MUS_GAME_CORNER

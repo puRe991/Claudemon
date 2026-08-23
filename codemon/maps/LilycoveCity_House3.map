@@ -120,3 +120,6 @@ case 1 LilycoveCity_House3_EventScript_WereMixingRecords
 case 2 LilycoveCity_House3_EventScript_WereBlendingBerries
 case 3 LilycoveCity_House3_EventScript_WereDoingContest
 end
+
+music
+MUS_LILYCOVE

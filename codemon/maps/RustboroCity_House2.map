@@ -39,3 +39,6 @@ end
 = RustboroCity_House2_EventScript_PokefanF
 msgbox	The TRAINER'S SCHOOL is excellent.If you study there, you could even become a GYM LEADER.
 end
+
+music
+MUS_RUSTBORO

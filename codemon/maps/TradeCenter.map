@@ -57,3 +57,6 @@ msgbox	Please take your seat and start your trade.
 special Script_ClearHeldMovement
 closemessage
 end
+
+music
+MUS_EVER_GRANDE

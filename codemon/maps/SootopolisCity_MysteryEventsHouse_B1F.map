@@ -69,3 +69,6 @@ msgbox	The match ended up a draw.
 return
 counters
 522,524
+
+music
+MUS_SOOTOPOLIS

@@ -237,3 +237,6 @@ closemessage
 call Route110_TrickHouseEnd_EventScript_TrickMasterExit
 release
 end
+
+music
+MUS_TRICK_HOUSE

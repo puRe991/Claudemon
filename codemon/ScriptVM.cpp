@@ -740,10 +740,18 @@ void ScriptVM::pump() {
 			this->healfx_timer = 0.f;
 			this->st = WAIT_HEALFX;
 			return;
+		} else if (op == "playbgm" && argc >= 1) {
+			if (this->audio) this->audio->play_bgm(arg(0));
+		} else if (op == "playmoncry" && argc >= 1) {
+			std::string sp = arg(0);
+			if (sp.rfind("SPECIES_", 0) == 0) sp = sp.substr(8);
+			std::string lower_sp;
+			for (char c : sp) lower_sp += (char)std::tolower((unsigned char)c);
+			if (this->audio) this->audio->play_cry(lower_sp);
 		} else if (op == "end") {
 			finish(); return;
 		}
-		// everything else (lock, release, playbgm, ...) is a no-op
+		// everything else (lock, release, playse, fadedefaultbgm, ...) is a no-op
 	}
 }
 

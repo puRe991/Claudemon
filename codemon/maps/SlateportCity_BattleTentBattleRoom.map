@@ -73,3 +73,6 @@ special LoadPlayerParty
 warp SlateportCity_BattleTentLobby 6 6
 waitstate
 @ forced stop
+
+music
+MUS_B_TOWER_RS

@@ -226,3 +226,6 @@ goto SlateportCity_BattleTentLobby_EventScript_CancelChallenge
 = SlateportCity_BattleTentLobby_EventScript_ExplainChallenge
 msgbox	Here at the SLATEPORT BATTLE TENT, we hold Battle Swap events using rental POKéMON.First, you will be loaned three POKéMON specifically for this event.Using the supplied rental POKéMON, you must conduct a SINGLE BATTLE.If you win, you are permitted to trade one of your rental POKéMON.Repeat this cycle of battling and trading--if you win three times in a row, you will earn a fine prize.If you want to interrupt your challenge, please save the game.If you don't save before interrupting, you will be disqualified.
 goto SlateportCity_BattleTentLobby_EventScript_AskEnterChallenge
+
+music
+MUS_B_TOWER_RS

@@ -272,3 +272,6 @@ lockall
 msgbox	To achieve a 3-win streak…The bonds that bind your heart with your POKéMON seem firm and true.
 goto VerdanturfTown_BattleTentLobby_EventScript_GivePrize
 end
+
+music
+MUS_B_TOWER_RS

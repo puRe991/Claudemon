@@ -151,3 +151,6 @@ removeobject VAR_LAST_TALKED
 fadescreenswapbuffers FADE_FROM_BLACK
 releaseall
 end
+
+music
+MUS_MT_CHIMNEY

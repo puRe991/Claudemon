@@ -67,3 +67,6 @@ end
 msgbox	That COIN CASE can be used at the GAME CORNER.
 release
 end
+
+music
+MUS_RUSTBORO

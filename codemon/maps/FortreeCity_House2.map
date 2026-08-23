@@ -93,3 +93,6 @@ return
 msgbox	HIDDEN POWER is a move that changes with the POKéMON.
 release
 end
+
+music
+MUS_FORTREE

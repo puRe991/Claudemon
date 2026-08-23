@@ -41,3 +41,6 @@ setvar VAR_RESULT UR_INTERACT_ATTENDANT
 waitstate
 release
 end
+
+music
+MUS_EVER_GRANDE

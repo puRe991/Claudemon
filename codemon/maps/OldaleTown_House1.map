@@ -33,3 +33,6 @@ scriptdefs
 = OldaleTown_House1_EventScript_Woman
 msgbox	Wenn ein POKéMON-Kampf beginnt, tritt zuerst das POKéMON an, das ganz links in der Liste steht.Wenn du also mehr POKéMON in deinem Team hast, versuch mal, ihre Reihenfolge zu ändern.Das könnte dir einen Vorteil verschaffen.
 end
+
+music
+MUS_OLDALE

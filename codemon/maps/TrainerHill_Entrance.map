@@ -361,3 +361,6 @@ msgbox	Thank you for playing!
 goto TrainerHill_Entrance_EventScript_AttendantEnd
 counters
 774,850
+
+music
+MUS_B_TOWER_RS

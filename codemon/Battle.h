@@ -7,6 +7,7 @@
 #include "BattleData.h"
 #include "GameState.h"
 #include "UiFrame.h"
+#include "Audio.h"
 
 /******************************************************************************
 Battle - a turn-based pokemon battle for wild encounters and trainer fights.
@@ -34,6 +35,7 @@ private:
 	BattleData* data;
 	std::mt19937* rng;
 	GameState* gs;
+	Audio* audio = nullptr;
 	std::vector<Mon>* team;
 	std::vector<Mon>* box;
 	int action_cursor;
@@ -101,6 +103,8 @@ public:
 	void configure(BattleData* d, std::mt19937* r);
 	// where caught pokemon go, and the bag for Poke Balls
 	void set_capture(GameState* g, std::vector<Mon>* team, std::vector<Mon>* box);
+	// Optional (headless tests run without one): battle music + cries.
+	void set_audio(Audio* a) { this->audio = a; }
 
 	bool start_wild(const std::string& species, int level, Mon* player_mon);
 	bool start_trainer(const std::string& trainer_id, const std::string& name,

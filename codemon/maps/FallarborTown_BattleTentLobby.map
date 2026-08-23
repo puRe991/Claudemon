@@ -250,3 +250,6 @@ lockall
 msgbox	How splendid! You have beaten three TRAINERS in succession!
 goto FallarborTown_BattleTentLobby_EventScript_GivePrize
 end
+
+music
+MUS_B_TOWER_RS

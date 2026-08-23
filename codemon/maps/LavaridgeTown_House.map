@@ -76,3 +76,6 @@ end
 = LavaridgeTown_House_EventScript_OldMan
 msgbox	My wife's warming an EGG in the hot springs. This is what she told me.She left two POKéMON with the DAY CARE. And they discovered that EGG!
 end
+
+music
+MUS_OLDALE

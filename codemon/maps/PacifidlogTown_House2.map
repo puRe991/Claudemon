@@ -113,3 +113,6 @@ return
 = PacifidlogTown_House2_EventScript_ClearReceivedFanClubTM
 clearflag FLAG_RECEIVED_FANCLUB_TM_THIS_WEEK
 return
+
+music
+MUS_LILYCOVE

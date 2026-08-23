@@ -50,3 +50,6 @@ end
 = RustboroCity_Flat2_2F_EventScript_OldMan
 msgbox	Way back in the old days, DEVON was just a teeny, tiny company.
 end
+
+music
+MUS_RUSTBORO

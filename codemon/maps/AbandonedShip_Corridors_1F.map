@@ -56,3 +56,6 @@ end
 = AbandonedShip_Corridors_1F_EventScript_Youngster
 msgbox	Isn't it fun here? I get excited just being here!
 end
+
+music
+MUS_ABANDONED_SHIP

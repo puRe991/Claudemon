@@ -40,3 +40,6 @@ return
 = SootopolisCity_House2_EventScript_KnowAboutOrbs
 msgbox	Yes, two orbs side by side…The sight of them together… It is somehow soothing…
 return
+
+music
+MUS_SOOTOPOLIS

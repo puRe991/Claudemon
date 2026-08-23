@@ -99,3 +99,6 @@ end
 = LilycoveCity_CoveLilyMotel_2F_EventScript_ShowMeCompletedDex
 msgbox	I'm the GAME DESIGNER.Oh, is that right? You're working on a POKéDEX?It's tough trying to complete it, but don't give up.If you do complete it, please come show me.
 return
+
+music
+MUS_LILYCOVE

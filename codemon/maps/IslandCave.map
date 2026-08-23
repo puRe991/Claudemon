@@ -103,3 +103,6 @@ end
 setflag FLAG_DEFEATED_REGICE
 goto Common_EventScript_RemoveStaticPokemon
 end
+
+music
+MUS_SEALED_CHAMBER

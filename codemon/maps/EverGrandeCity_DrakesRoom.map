@@ -124,3 +124,6 @@ return
 msgbox	You deserve every credit for coming this far as a TRAINER of POKéMON.You do seem to know what is needed.Yes, what a TRAINER needs is a virtuous heart.POKéMON touch the good hearts of TRAINERS and learn good from wrong.They touch the good hearts of TRAINERS and grow strong.Go! Go onwards! The CHAMPION is waiting!
 release
 end
+
+music
+MUS_VICTORY_ROAD

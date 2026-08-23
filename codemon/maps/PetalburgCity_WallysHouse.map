@@ -75,3 +75,6 @@ end
 msgbox	Oh? Du hast WALLY in EVER GRANDE CITY getroffen?Ach, PLAYER, sei nicht albern.Er mag ja gesünder geworden sein, aber so weit weg kann er unmöglich ganz allein hinkommen.
 release
 end
+
+music
+MUS_PETALBURG

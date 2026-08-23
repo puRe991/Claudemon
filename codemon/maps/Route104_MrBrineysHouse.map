@@ -98,3 +98,6 @@ msgboxyesno	Hm? You're PLAYER! You saved my darling PEEKO! We owe so much to you
 goto_if_eq VAR_RESULT NO Route104_MrBrineysHouse_EventScript_DeclineDeliverySailing
 goto Route104_MrBrineysHouse_EventScript_SailToDewford
 end
+
+music
+MUS_PETALBURG

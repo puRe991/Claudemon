@@ -43,8 +43,10 @@ independent C++ engine:
   and storage, item/type/species icons, an HP bar, a map-name banner on
   transitions, and a few overworld minigames (slots/roulette/blender/jump)
   using an in-game coin currency.
-* **Audio**: Pokémon cries and generated step/bump/select SFX, with MIDI
-  music converted to OGG when a synth is available.
+* **Audio**: Pokémon cries (wild encounters, trainer sends-out, switching),
+  per-map background music, and battle/victory themes, all converted from
+  the original MIDI to OGG and playing live, plus generated step/bump/select
+  SFX.
 
 Everything above is verified against the source data (not fabricated): the
 import pipeline is data-driven, and every feature has been checked with
@@ -157,7 +159,9 @@ the SFML-friendly replacement for the pokeemerald GBA build tools:
   the TM→move table, evolutions, and trainer parties.
 * **Audio** → Pokémon cries plus generated step/bump/select blips in
   `codemon/assets/sfx/`, played through the `Audio` class. MIDI music is
-  converted to OGG when a synth is installed (SFML can't play MIDI directly).
+  converted to OGG via fluidsynth/timidity + ffmpeg when installed (SFML
+  can't play MIDI directly); each map's own `MUS_*` id is carried through
+  into its `.map` file and resolved to `assets/sfx/music/<id>.ogg`.
 
 Re-run or extend the import with:
 
@@ -368,9 +372,11 @@ has been verified either by an automated test or by headless screenshot
 * Save/load: a SPEICHERN entry in the main menu writes the whole run (map,
   position, flags/vars, bag, money, party, PC box) to `savegame.dat`;
   starting the game resumes from it automatically
-* Audio: step/bump/select SFX play natively; cries and MIDI→OGG music exist
-  and work when called, but nothing in the game currently calls them yet
-  (see below)
+* Audio: step/bump/select SFX, per-map background music (switches on every
+  map transition/warp/fly), Pokémon cries (wild encounters, trainer
+  send-outs, mid-battle switches, `playmoncry` field scripts), battle/
+  victory themes (wild, trainer, gym leader/champion/rival/Elite Four
+  variants), and `playbgm` field-script music cues all play natively
 * `codemon_tests` / CTest for the display-independent core data structures
 
 ### ⚠️ Partial / simplified
@@ -385,10 +391,12 @@ has been verified either by an automated test or by headless screenshot
   catch rate or ball type (only `ITEM_POKE_BALL` exists functionally)
 * **Evolution**: level-up only; stone/trade/friendship evolutions are
   imported into data but never triggered in-game
-* **Audio**: the `Audio` class is fully functional, but nothing calls
-  `play_cry`/`play_music` yet, and `ScriptVM` never calls its `Audio*` for
-  `playbgm`/`playse`/`playmoncry` — so the game is currently silent beyond a
-  few UI blips
+* **Audio**: `playse` (one-off pokeemerald SE_* sound effects beyond
+  step/bump/select) is still a no-op — only the small hand-made SFX set was
+  imported, not every original SE_* WAV; `MUS_ROUTE118`'s real behavior
+  (dynamic pick between MUS_ROUTE110/MUS_ROUTE119 by player x position) is
+  simplified to a static MUS_ROUTE119 default; Battle Frontier's own
+  MUS_B_* tracks convert but that mode isn't implemented (see below)
 * **Text interpolation** (`bufferstring` family): the importer bakes static
   values into dialog at import time, but genuinely dynamic values (e.g.
   Birch's Pokédex-seen/caught rating) render with the number missing
@@ -621,9 +629,12 @@ screenshot), not just written and assumed correct.
 
 **Audio**
 - [x] Step/bump/select SFX
-- [x] `Audio` class supports cries + MIDI→OGG music (functional but unused)
-- [ ] Wire cries into send-out/level-up, music into `ScriptVM`'s `playbgm`/
-      `playse`/`playmoncry` opcodes and per-map track selection
+- [x] Per-map background music (58 tracks, plays on load/warp/fly/whiteout)
+- [x] Pokémon cries (wild encounters, trainer send-outs, mid-battle switches)
+- [x] Battle/victory themes (wild, trainer, gym leader/champion/rival/Elite
+      Four, wild/trainer victory jingles)
+- [x] `ScriptVM`'s `playbgm`/`playmoncry` opcodes (field-script music/cry cues)
+- [ ] `playse` (one-off SE_* sound effects beyond step/bump/select)
 
 **Overworld features**
 - [x] Overworld minigames (slots/roulette/blender/jump) with coin currency

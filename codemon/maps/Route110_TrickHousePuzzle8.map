@@ -84,3 +84,6 @@ end
 trainerbattle_single TRAINER_VINCENT Route110_TrickHousePuzzle8_Text_VincentIntro Route110_TrickHousePuzzle8_Text_VincentDefeat
 msgbox	You've beaten the POKéMON LEAGUE CHAMPION? That's too much!
 end
+
+music
+MUS_TRICK_HOUSE

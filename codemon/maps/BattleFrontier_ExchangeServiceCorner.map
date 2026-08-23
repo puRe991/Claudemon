@@ -435,3 +435,6 @@ goto BattleFrontier_ExchangeServiceCorner_EventScript_ChooseDecor1
 end
 counters
 902,1010
+
+music
+MUS_B_TOWER_RS

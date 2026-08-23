@@ -63,3 +63,6 @@ return
 warp BattleFrontier_BattleTowerCorridor 8 1
 waitstate
 return
+
+music
+MUS_B_TOWER

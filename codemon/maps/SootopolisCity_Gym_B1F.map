@@ -130,3 +130,6 @@ end
 trainerbattle_single TRAINER_ANDREA SootopolisCity_Gym_B1F_Text_AndreaIntro SootopolisCity_Gym_B1F_Text_AndreaDefeat
 msgbox	Watch what happens if you crack all the floor tiles.
 end
+
+music
+MUS_GYM

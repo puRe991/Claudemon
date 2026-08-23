@@ -122,3 +122,6 @@ return
 msgbox	Advance to the next room.And there, confirm the truly fearsome side of the POKéMON LEAGUE.
 release
 end
+
+music
+MUS_VICTORY_ROAD

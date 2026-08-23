@@ -57,6 +57,31 @@ void Battle::configure(BattleData* d, std::mt19937* r) {
 	this->frame.load();
 }
 
+static std::string lower(const std::string& s) {
+	std::string o = s;
+	for (char& c : o) c = (char)std::tolower((unsigned char)c);
+	return o;
+}
+
+// pokeemerald's own opponent-kind -> battle theme selection (src/pokemon.c's
+// GetTrainerBattleBGM_Internal), trimmed to what's actually reachable here:
+// gym leaders (goto_if... walkthrough content), the Champion, story rivals
+// (BRENDAN/MAY), the Elite Four, and everything else as a generic trainer.
+static std::string trainer_battle_music(const std::string& trainer_id) {
+	static const char* GYM_LEADERS[] = {"ROXANNE", "BRAWLY", "WATTSON", "FLANNERY",
+	                                    "NORMAN", "WINONA", "TATE_AND_LIZA", "JUAN"};
+	static const char* ELITE_FOUR[] = {"SIDNEY", "PHOEBE", "GLACIA", "DRAKE"};
+	if (trainer_id.find("WALLACE") != std::string::npos) return "MUS_VS_CHAMPION";
+	for (const char* n : ELITE_FOUR)
+		if (trainer_id.find(n) != std::string::npos) return "MUS_VS_ELITE_FOUR";
+	for (const char* n : GYM_LEADERS)
+		if (trainer_id.find(n) != std::string::npos) return "MUS_VS_GYM_LEADER";
+	if (trainer_id.find("BRENDAN") != std::string::npos ||
+	    trainer_id.find("MAY") != std::string::npos)
+		return "MUS_VS_RIVAL";
+	return "MUS_VS_TRAINER";
+}
+
 std::string Battle::nice(const std::string& id) {
 	std::string out; bool cap = true;
 	for (char c : id) {
@@ -101,6 +126,11 @@ bool Battle::start_wild(const std::string& species, int level, Mon* pm) {
 	queue("Wildes " + nice(species) + " taucht auf!");
 	queue("Los, " + nice(this->player->species) + "!");
 	show_messages(ACTION);
+	if (this->audio) {
+		this->audio->play_bgm("MUS_VS_WILD");
+		this->audio->play_cry(lower(this->enemy.species));
+		this->audio->play_cry(lower(this->player->species));
+	}
 	return true;
 }
 
@@ -132,6 +162,11 @@ bool Battle::start_trainer(const std::string& trainer_id, const std::string& nam
 	queue(this->enemy_title + " schickt " + nice(this->enemy.species) + "!");
 	queue("Los, " + nice(this->player->species) + "!");
 	show_messages(ACTION);
+	if (this->audio) {
+		this->audio->play_bgm(trainer_battle_music(trainer_id));
+		this->audio->play_cry(lower(this->enemy.species));
+		this->audio->play_cry(lower(this->player->species));
+	}
 	return true;
 }
 
@@ -270,6 +305,7 @@ void Battle::send_next_enemy() {
 	                                   this->party[this->party_idx].second);
 	load_sprites();
 	queue(this->enemy_title + " schickt " + nice(this->enemy.species) + "!");
+	if (this->audio) this->audio->play_cry(lower(this->enemy.species));
 }
 
 void Battle::handle_enemy_faint() {
@@ -289,6 +325,8 @@ void Battle::handle_enemy_faint() {
 	this->over = true; this->victory = true;
 	this->last_outcome = OUTCOME_WON;
 	show_messages(INACTIVE);
+	if (this->audio)
+		this->audio->play_bgm(this->is_trainer ? "MUS_VICTORY_TRAINER" : "MUS_VICTORY_WILD", false);
 }
 
 void Battle::resolve_turn(const std::string& player_move) {
@@ -416,6 +454,7 @@ void Battle::do_switch(int idx) {
 	this->prev_php = this->player->hp; this->shake_t = 0.f;
 	this->log.clear();
 	queue("Los, " + nice(this->player->species) + "!");
+	if (this->audio) this->audio->play_cry(lower(this->player->species));
 	if (was_forced) {
 		// the old mon's faint already used up this turn.
 		show_messages(ACTION);

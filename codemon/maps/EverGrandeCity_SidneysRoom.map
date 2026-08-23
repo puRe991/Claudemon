@@ -122,3 +122,6 @@ return
 msgbox	Well, listen to what this loser has to say.You've got what it takes to go far. Now, go on to the next room and enjoy your next battle!
 release
 end
+
+music
+MUS_VICTORY_ROAD

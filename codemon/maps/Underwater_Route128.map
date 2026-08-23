@@ -104,3 +104,6 @@ setflag FLAG_HIDDEN_ITEM_UNDERWATER_128_PROTEIN
 end
 = Underwater_Route128_HiddenItem_38_19_Taken
 end
+
+music
+MUS_UNDERWATER

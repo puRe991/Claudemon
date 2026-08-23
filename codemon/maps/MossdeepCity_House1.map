@@ -48,3 +48,6 @@ end
 msgbox	It doesn't appear to like or dislike any S.
 release
 end
+
+music
+MUS_RUSTBORO

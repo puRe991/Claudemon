@@ -33,3 +33,6 @@ setflag FLAG_ITEM_ABANDONED_SHIP_ROOMS_B1F_TM_ICE_BEAM
 end
 = AbandonedShip_Room_B1F_EventScript_ItemTMIceBeam_Taken
 end
+
+music
+MUS_ABANDONED_SHIP

@@ -39,3 +39,6 @@ applymovement LOCALID_TOWER_CORRIDOR_ATTENDANT BattleFrontier_BattleTowerCorrido
 applymovement LOCALID_PLAYER BattleFrontier_BattleTowerCorridor_Movement_PlayerWalkToFarDoor
 waitmovement 0
 goto BattleFrontier_BattleTowerCorridor_EventScript_WarpToBattleRoom
+
+music
+MUS_B_TOWER

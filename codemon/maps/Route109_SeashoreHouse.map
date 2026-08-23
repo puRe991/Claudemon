@@ -118,3 +118,6 @@ msgbox	You don't have the money.
 hidemoneybox
 release
 end
+
+music
+MUS_DEWFORD

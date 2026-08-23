@@ -471,3 +471,6 @@ end
 trainerbattle_single TRAINER_PRESTON MossdeepCity_Gym_Text_PrestonIntro MossdeepCity_Gym_Text_PrestonDefeat
 msgbox	The indecisive lose. That's my warning to you.
 end
+
+music
+MUS_GYM

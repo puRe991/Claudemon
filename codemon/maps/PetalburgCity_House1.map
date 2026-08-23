@@ -39,3 +39,6 @@ end
 = PetalburgCity_House1_EventScript_Woman
 msgbox	Seufz…Ich wünschte, ich könnte mit ein paar POKéMON auf Abenteuerreise gehen…Durch feuchtes Gras kriechen… Auf zerklüftete, felsige Berge klettern…Über tosende Meere fahren… Durch dunkle Höhlen wandern…Und manchmal sogar ein bisschen Heimweh bekommen…Es muss fantastisch sein, zu reisen!
 end
+
+music
+MUS_PETALBURG

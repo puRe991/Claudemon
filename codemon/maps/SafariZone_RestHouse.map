@@ -41,3 +41,6 @@ end
 = SafariZone_RestHouse_EventScript_Youngster
 msgbox	I don't have any S, but I caught a good number of POKéMON.You can improve your chances of making a catch by getting closer to them before throwing a SAFARI BALL.
 end
+
+music
+MUS_SAFARI_ZONE

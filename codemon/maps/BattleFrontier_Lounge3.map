@@ -210,3 +210,6 @@ waitmessage
 waitbuttonpress
 release
 end
+
+music
+MUS_B_TOWER_RS

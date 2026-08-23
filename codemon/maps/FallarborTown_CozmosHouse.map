@@ -87,3 +87,6 @@ return
 msgbox	PROF. COZMO: Oh, I can't believe it. This is really, really great!This is really going to help my research!
 release
 end
+
+music
+MUS_FALLARBOR
