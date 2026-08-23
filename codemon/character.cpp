@@ -2,11 +2,13 @@
 #include "character.h"
 
 Character::Character()
-	: tile(0, 0), facing(DIR::S), anim_phase(0), step_toggle(false),
+	: tile(0, 0), prev_tile(0, 0), move_t(1.f), animated(true),
+	  facing(DIR::S), anim_phase(0), step_toggle(false),
 	  frame_w(16), frame_h(32), loaded(false) {}
 
 Character::Character(int tile_x, int tile_y)
-	: tile(tile_x, tile_y), facing(DIR::S), anim_phase(0), step_toggle(false),
+	: tile(tile_x, tile_y), prev_tile(tile_x, tile_y), move_t(1.f), animated(true),
+	  facing(DIR::S), anim_phase(0), step_toggle(false),
 	  frame_w(16), frame_h(32), loaded(false) {}
 
 bool Character::load_sprite_sheet(const std::string& path) {
@@ -36,7 +38,11 @@ int Character::frame_for(DIR dir, int phase) const {
 Coordinates Character::get_tile() const { return this->tile; }
 int Character::get_tile_x() const { return (int)this->tile.get_x(); }
 int Character::get_tile_y() const { return (int)this->tile.get_y(); }
-void Character::set_tile(int x, int y) { this->tile = Coordinates(x, y); }
+void Character::set_tile(int x, int y) {
+	this->tile = Coordinates(x, y);
+	this->prev_tile = this->tile;
+	this->move_t = 1.f;   // teleport (warp/connection), never a slide
+}
 
 void Character::target_tile(DIR dir, int& out_x, int& out_y) const {
 	out_x = (int)this->tile.get_x();
@@ -58,9 +64,11 @@ void Character::face(DIR dir) { this->set_facing(dir); this->anim_phase = 0; }
 void Character::step(DIR dir) {
 	if (dir == DIR::NONE) return;
 	this->facing = dir;
+	if (this->animated) this->prev_tile = this->tile;
 	int tx, ty;
 	this->target_tile(dir, tx, ty);
 	this->tile = Coordinates(tx < 0 ? 0 : tx, ty < 0 ? 0 : ty);
+	this->move_t = this->animated ? 0.f : 1.f;
 	// alternate between the two walk frames each step
 	this->step_toggle = !this->step_toggle;
 	this->anim_phase = this->step_toggle ? 1 : 2;
@@ -68,8 +76,34 @@ void Character::step(DIR dir) {
 
 void Character::set_idle() { this->anim_phase = 0; }
 
+// Real Pokemon-game walk speed is ~2px/frame at 60fps for a 16px tile, i.e.
+// about 8 frames -- this just needs to be a bit under MOVE_INTERVAL (see
+// main.cpp) so one slide always finishes before the next one can start.
+static const float MOVE_DURATION = 0.13f;
+
+void Character::tick(float dt) {
+	if (this->move_t < 1.f) {
+		this->move_t += dt / MOVE_DURATION;
+		if (this->move_t > 1.f) this->move_t = 1.f;
+	}
+}
+
 /* Rendering */
 sf::Sprite* Character::get_current_sprite() { return &this->current_sprite; }
+
+float Character::interp_x(int tile_px) const {
+	float tx = (float)(this->tile.get_x() * tile_px);
+	if (this->move_t >= 1.f) return tx;
+	float fx = (float)(this->prev_tile.get_x() * tile_px);
+	return fx + (tx - fx) * this->move_t;
+}
+
+float Character::interp_y(int tile_px) const {
+	float ty = (float)(this->tile.get_y() * tile_px);
+	if (this->move_t >= 1.f) return ty;
+	float fy = (float)(this->prev_tile.get_y() * tile_px);
+	return fy + (ty - fy) * this->move_t;
+}
 
 void Character::update_sprite(int tile_px) {
 	int frame = this->frame_for(this->facing, this->anim_phase);
@@ -85,7 +119,7 @@ void Character::update_sprite(int tile_px) {
 	this->current_sprite.setTextureRect(rect);
 
 	// 16px-wide sprite sits on its tile; 32px height extends one tile upward.
-	float px = (float)(this->tile.get_x() * tile_px);
-	float py = (float)((int)this->tile.get_y() * tile_px - (this->frame_h - tile_px));
+	float px = this->interp_x(tile_px);
+	float py = this->interp_y(tile_px) - (float)(this->frame_h - tile_px);
 	this->current_sprite.setPosition(px, py);
 }

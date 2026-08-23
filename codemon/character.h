@@ -24,7 +24,15 @@ private:
 	sf::Texture sprite_sheet;
 	sf::Sprite  current_sprite;
 
-	Coordinates tile;          // position in map tiles
+	Coordinates tile;          // logical position in map tiles (authoritative
+	                           // for collision/warps/scripts -- updates the
+	                           // instant a step is taken)
+	Coordinates prev_tile;     // tile the current slide animation started from
+	float move_t;              // 0..1 slide progress from prev_tile to tile;
+	                           // >=1 means fully arrived (no animation pending)
+	bool animated;             // false -> step() snaps instantly, no slide
+	                           // (headless/screenshot mode: deterministic,
+	                           // frame-exact rendering, no real-time tick())
 	DIR facing;
 	int anim_phase;            // 0 = idle, 1 = step A, 2 = step B
 	bool step_toggle;          // alternates the two walk frames
@@ -45,7 +53,13 @@ public:
 	Coordinates get_tile() const;
 	int get_tile_x() const;
 	int get_tile_y() const;
-	void set_tile(int x, int y);
+	void set_tile(int x, int y);   // teleport (warp/connection): snaps, no slide
+
+	// Headless/screenshot mode wants exact, deterministic tile-snapped
+	// rendering (nothing calls tick(), so a pending slide would just freeze
+	// the sprite at its old tile forever); real interactive play wants the
+	// smooth slide. Defaults to animated.
+	void set_animated(bool a) { this->animated = a; }
 
 	// Where this character would end up after a step in `dir` (signed).
 	void target_tile(DIR dir, int& out_x, int& out_y) const;
@@ -56,10 +70,19 @@ public:
 	void face(DIR dir);            // just turn, no move
 	void step(DIR dir);            // turn, advance one tile, toggle walk frame
 	void set_idle();
+	// Advance the current slide animation by `dt` seconds. Interactive-loop
+	// only -- headless code never calls this (see `animated`/set_animated).
+	void tick(float dt);
+	bool is_moving() const { return this->move_t < 1.f; }
 
 	/* Rendering */
 	sf::Sprite* get_current_sprite();
 	// Recompute the source rectangle and on-screen position; tile_px is the
 	// map's metatile size (16).
 	void update_sprite(int tile_px);
+	// Interpolated on-screen pixel position of the tile origin (mid-slide
+	// while animating, else the same as tile*tile_px); the camera uses this
+	// too so it glides along with the sprite instead of snapping per tile.
+	float interp_x(int tile_px) const;
+	float interp_y(int tile_px) const;
 };

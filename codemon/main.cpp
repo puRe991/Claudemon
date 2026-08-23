@@ -28,8 +28,15 @@
 
 static const int SCALE = 3;
 static const float NPC_TICK = 0.45f;
+// Seconds between overworld steps while a direction is held (interactive
+// play only); Character::MOVE_DURATION is kept a little under this so one
+// slide always finishes before the next step is allowed to start.
+static const float MOVE_INTERVAL = 0.15f;
 // Fixed camera viewport in tiles (so the window size is independent of the map).
 static const int VIEW_TW = 16, VIEW_TH = 12;
+// Headless/screenshot mode wants exact, deterministic tile-snapped rendering
+// (see Character::set_animated) instead of the smooth interactive slide.
+static const bool g_headless = std::getenv("CODEMON_SCREENSHOT") != nullptr;
 static const char* PLAYER_SHEET = "assets/overworld/people_brendan_walking.png";
 
 // "maps/LittlerootTown.map" -> "Littleroot Town", "Route102" -> "Route 102".
@@ -68,16 +75,6 @@ static void draw_banner(sf::RenderTarget& target, const sf::Font& font,
     txt.setPosition(32, 24); txt.setFillColor(sf::Color(255, 255, 255, a));
     target.draw(txt);
     target.setView(saved);
-}
-
-static DIR convert_key_event(const sf::Event& e) {
-    switch (e.key.code) {
-    case sf::Keyboard::W: return DIR::N;
-    case sf::Keyboard::S: return DIR::S;
-    case sf::Keyboard::A: return DIR::W;
-    case sf::Keyboard::D: return DIR::E;
-    default:              return DIR::NONE;
-    }
 }
 
 struct Agent {
@@ -154,6 +151,7 @@ static Session* load_session(const std::string& path, int arr_x, int arr_y,
     s->player = new Character(px, py);
     s->player->load_sprite_sheet(PLAYER_SHEET);
     s->player->face(DIR::S);
+    s->player->set_animated(!g_headless);
 
     for (const NpcSpawn& sp : s->map->npcs()) {
         // pokeemerald FLAG_HIDE_*: this object doesn't exist yet/anymore
@@ -163,6 +161,7 @@ static Session* load_session(const std::string& path, int arr_x, int arr_y,
         if (!ch->load_sprite_sheet("assets/overworld/" + sp.sheet + ".png")) {
             delete ch; continue;
         }
+        ch->set_animated(!g_headless);
         ch->face(sp.facing);
         Agent ag; ag.ch = ch; ag.kind = sp.movement;
         ag.home_x = sp.x; ag.home_y = sp.y;
@@ -373,8 +372,8 @@ static sf::View camera_for(Session* s) {
     float vw = (float)(VIEW_TW * tp), vh = (float)(VIEW_TH * tp);
     float worldw = (float)(s->map->get_width() * tp);
     float worldh = (float)(s->map->get_height() * tp);
-    float cx = s->player->get_tile_x() * tp + tp * 0.5f;
-    float cy = s->player->get_tile_y() * tp + tp * 0.5f;
+    float cx = s->player->interp_x(tp) + tp * 0.5f;
+    float cy = s->player->interp_y(tp) + tp * 0.5f;
     // clamp so we never show outside the map (unless the map is smaller than view)
     if (worldw >= vw) cx = std::max(vw / 2, std::min(cx, worldw - vw / 2));
     else              cx = worldw / 2;
@@ -1097,7 +1096,7 @@ int main() {
     run_load_triggers(sess->map, gs, vm);
     Window scr(win_w, win_h, "Codemon!");
 
-    sf::Clock clock; float npc_accum = 0.f;
+    sf::Clock clock; float npc_accum = 0.f; float move_cooldown = 0.f;
     while (scr.get_window()->isOpen()) {
         handle_whiteout(&audio);
         sf::Event event;
@@ -1170,23 +1169,51 @@ int main() {
                            event.key.code == sf::Keyboard::Return) {
                     if (vm.running()) vm.on_key();           // advance a script message
                     else interact(sess, box, &audio, vm);    // talk / advance / dismiss
-                } else if (!box.is_active() && !vm.running()) {
-                    DIR dir = convert_key_event(event);
-                    if (dir != DIR::NONE) {
-                        int pbx = sess->player->get_tile_x();
-                        int pby = sess->player->get_tile_y();
-                        Session* before = sess;
-                        sess = player_step(sess, dir, &audio, &gs);
-                        if (sess != before) {
-                            vm.configure(sess->map, &gs, &box, &battle, &audio, sess->player, &sess->actors);
-    run_load_triggers(sess->map, gs, vm);
-                            on_map_change(sess->path);
-                        } else if (sess->player->get_tile_x() != pbx ||
-                                   sess->player->get_tile_y() != pby) {
-                            if (!team.empty())
-                                try_encounter(sess, battle, team[0], rng, false);
-                            check_trigger(sess, vm, gs);
-                        }
+                }
+            }
+        }
+        float dt = clock.restart().asSeconds();
+        for (Character* a : sess->actors) a->tick(dt);
+        // Overworld movement: polled every frame (not event-driven) so it
+        // runs at a steady, predictable cadence instead of the OS's key
+        // repeat timing -- that mismatch (a long initial delay, then an
+        // irregular repeat rate) was what made walking feel laggy/choppy.
+        // Tapping a new direction just turns to face it first, like the
+        // real games; holding it keeps stepping every MOVE_INTERVAL.
+        {
+            bool ui_blocked = starter.active() || yesno.active() || shop.active() ||
+                              battle.active() || games.active() || menu.active() ||
+                              box.is_active() || vm.running();
+            DIR held = DIR::NONE;
+            if (!ui_blocked) {
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) held = DIR::N;
+                else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) held = DIR::S;
+                else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) held = DIR::W;
+                else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) held = DIR::E;
+            }
+            if (held == DIR::NONE) {
+                if (!ui_blocked) sess->player->set_idle();
+                move_cooldown = 0.f;
+            } else if (sess->player->get_facing() != held) {
+                sess->player->face(held);
+                move_cooldown = MOVE_INTERVAL;
+            } else {
+                move_cooldown -= dt;
+                if (move_cooldown <= 0.f) {
+                    int pbx = sess->player->get_tile_x();
+                    int pby = sess->player->get_tile_y();
+                    Session* before = sess;
+                    sess = player_step(sess, held, &audio, &gs);
+                    move_cooldown += MOVE_INTERVAL;
+                    if (sess != before) {
+                        vm.configure(sess->map, &gs, &box, &battle, &audio, sess->player, &sess->actors);
+                        run_load_triggers(sess->map, gs, vm);
+                        on_map_change(sess->path);
+                    } else if (sess->player->get_tile_x() != pbx ||
+                               sess->player->get_tile_y() != pby) {
+                        if (!team.empty())
+                            try_encounter(sess, battle, team[0], rng, false);
+                        check_trigger(sess, vm, gs);
                     }
                 }
             }
@@ -1221,7 +1248,6 @@ int main() {
             menu.ack_save();
         }
         do_pending_warp(&audio);
-        float dt = clock.restart().asSeconds();
         healfx.tick(dt);
         if (vm.running()) vm.update(dt);
         battle.tick(dt);
