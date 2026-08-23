@@ -655,6 +655,84 @@ static std::string item_display_name(const std::string& item) {
     return out;
 }
 
+// `special ChoosePartyMon` (in-game trades: Rustboro/Fortree/Pacifidlog/
+// Battle Frontier Lounge NPCs offering to swap a mon): same story as
+// StarterSelect/YesNoPrompt above -- the VM can't drive a real party list
+// itself, so this shows one (plus a trailing "Abbrechen" row) and calls
+// ScriptVM::resolve_choose_party_mon() with the picked index, or -1.
+struct PartyPicker {
+    bool open_ = false, done_ = false;
+    int cursor = 0;
+    std::vector<Mon>* team = nullptr;
+    sf::Font font; bool font_ok = false;
+    UiFrame frame;
+    sf::Texture cursor_tex; bool cursor_ok = false;
+
+    void load() {
+        font_ok = font.loadFromFile("assets/fonts/DejaVuSans.ttf");
+        frame.load();
+        cursor_ok = cursor_tex.loadFromFile("assets/graphics/interface/arrow_cursor.png");
+        cursor_tex.setSmooth(false);
+    }
+    void configure(std::vector<Mon>* t) { team = t; }
+    void open() { open_ = true; done_ = false; cursor = 0; }
+    bool active() const { return open_; }
+    bool done() const { return done_; }
+    void ack() { done_ = false; }
+    int chosen() const {
+        int n = team ? (int)team->size() : 0;
+        return cursor < n ? cursor : -1;   // last row ("Abbrechen") -> -1
+    }
+
+    void input(BtnInput b) {
+        int rows = (team ? (int)team->size() : 0) + 1;
+        if (b == BTN_UP && cursor > 0) cursor--;
+        else if (b == BTN_DOWN && cursor < rows - 1) cursor++;
+        else if (b == BTN_CONFIRM) { done_ = true; open_ = false; }
+    }
+
+    void draw(sf::RenderTarget& target) {
+        if (!open_ || !font_ok) return;
+        sf::View saved = target.getView();
+        target.setView(target.getDefaultView());
+        sf::Vector2f size = target.getView().getSize();
+        int n_mons = team ? (int)team->size() : 0;
+        float w = 260.f, h = 50.f + (n_mons + 1) * 32.f;
+        float x = size.x * 0.5f - w / 2.f, y = size.y * 0.5f - h / 2.f;
+        frame.draw(target, x, y, w, h, 2.5f);
+        const sf::Color head_col(255, 232, 160), body_col(40, 40, 56), sel_col(24, 72, 160);
+        std::string title_s = "Waehle ein POKéMON";
+        sf::Text title(sf::String::fromUtf8(title_s.begin(), title_s.end()), font, 18);
+        title.setPosition(x + 14, y + 10);
+        title.setFillColor(head_col);
+        target.draw(title);
+        auto row = [&](int i, const std::string& label) {
+            bool sel = i == cursor;
+            float ry = y + 46.f + i * 32.f;
+            if (sel) {
+                if (cursor_ok) {
+                    sf::Sprite cs(cursor_tex);
+                    cs.setPosition(x + 10, ry - 2);
+                    target.draw(cs);
+                } else {
+                    sf::Text mark(">", font, 18);
+                    mark.setPosition(x + 12, ry - 2);
+                    mark.setFillColor(sel_col);
+                    target.draw(mark);
+                }
+            }
+            sf::Text t(label, font, 16);
+            t.setPosition(x + 36, ry);
+            t.setFillColor(sel ? sel_col : body_col);
+            target.draw(t);
+        };
+        for (int i = 0; i < n_mons; ++i)
+            row(i, item_display_name((*team)[i].species) + "  Lv" + std::to_string((*team)[i].level));
+        row(n_mons, "Abbrechen");
+        target.setView(saved);
+    }
+};
+
 // `pokemart <label>` (the mart buy screen): the VM can't drive a scrolling
 // item list + quantity stepper itself (same reason as StarterSelect and
 // YesNoPrompt above), so this shows a real shop UI built from the map's
@@ -891,6 +969,9 @@ int main() {
     if (std::getenv("CODEMON_CHOOSE_STARTER")) starter.open();
     YesNoPrompt yesno;
     yesno.load();
+    PartyPicker picker;
+    picker.load();
+    picker.configure(&team);
     std::unordered_map<std::string, int> item_prices;
     {
         std::ifstream pf("assets/items/prices.tsv");
@@ -995,6 +1076,8 @@ int main() {
                         if (tok) starter.input(token_btn(tok));
                     } else if (yesno.active()) {
                         if (tok) yesno.input(token_btn(tok));
+                    } else if (picker.active()) {
+                        if (tok) picker.input(token_btn(tok));
                     } else if (shop.active()) {
                         if (tok) shop.input(token_btn(tok));
                     } else if (battle.active()) {
@@ -1054,6 +1137,12 @@ int main() {
                     } else if (!yesno.active() && vm.wants_yesno()) {
                         yesno.open();
                     }
+                    if (picker.done()) {
+                        if (vm.wants_choose_party_mon()) vm.resolve_choose_party_mon(picker.chosen());
+                        picker.ack();
+                    } else if (!picker.active() && vm.wants_choose_party_mon()) {
+                        picker.open();
+                    }
                     if (shop.done()) {
                         vm.close_shop();
                         shop.ack();
@@ -1086,6 +1175,7 @@ int main() {
                     draw_banner(rt, ban_font, banner, banner_t);
                     menu.draw(rt);
                     if (yesno.active()) yesno.draw(rt);
+                    if (picker.active()) picker.draw(rt);
                     if (fade > 0.f) {
                         rt.setView(rt.getDefaultView());
                         sf::RectangleShape f(rt.getView().getSize());
@@ -1131,6 +1221,14 @@ int main() {
                     case sf::Keyboard::S: yesno.input(BTN_DOWN); break;
                     case sf::Keyboard::Space:
                     case sf::Keyboard::Return: yesno.input(BTN_CONFIRM); break;
+                    default: break;
+                    }
+                } else if (picker.active()) {
+                    switch (event.key.code) {
+                    case sf::Keyboard::W: picker.input(BTN_UP); break;
+                    case sf::Keyboard::S: picker.input(BTN_DOWN); break;
+                    case sf::Keyboard::Space:
+                    case sf::Keyboard::Return: picker.input(BTN_CONFIRM); break;
                     default: break;
                     }
                 } else if (shop.active()) {
@@ -1195,9 +1293,9 @@ int main() {
         // Tapping a new direction just turns to face it first, like the
         // real games; holding it keeps stepping every MOVE_INTERVAL.
         {
-            bool ui_blocked = starter.active() || yesno.active() || shop.active() ||
-                              battle.active() || games.active() || menu.active() ||
-                              box.is_active() || vm.running();
+            bool ui_blocked = starter.active() || yesno.active() || picker.active() ||
+                              shop.active() || battle.active() || games.active() ||
+                              menu.active() || box.is_active() || vm.running();
             bool run_held = !ui_blocked && gs.flag("FLAG_SYS_B_DASH") &&
                             (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) ||
                              sf::Keyboard::isKeyPressed(sf::Keyboard::RShift));
@@ -1251,6 +1349,12 @@ int main() {
         } else if (!yesno.active() && vm.wants_yesno()) {
             yesno.open();
         }
+        if (picker.done()) {
+            if (vm.wants_choose_party_mon()) vm.resolve_choose_party_mon(picker.chosen());
+            picker.ack();
+        } else if (!picker.active() && vm.wants_choose_party_mon()) {
+            picker.open();
+        }
         if (shop.done()) {
             vm.close_shop();
             shop.ack();
@@ -1293,6 +1397,7 @@ int main() {
             draw_banner(*scr.get_window(), ban_font, banner, banner_t);
             menu.draw(*scr.get_window());
             if (yesno.active()) yesno.draw(*scr.get_window());
+            if (picker.active()) picker.draw(*scr.get_window());
             if (fade > 0.f) {
                 sf::View sv = scr.get_window()->getView();
                 scr.get_window()->setView(scr.get_window()->getDefaultView());

@@ -294,6 +294,12 @@ has been verified either by an automated test or by headless screenshot
 * Running Shoes: once received (`FLAG_SYS_B_DASH`), holding Shift moves at
   the real games' exact 2x walk speed — the GBA's hold-B-to-run adapted to
   a PC control (there's no B button), same gated flag as the original
+* All 4 in-game trades (Rustboro/Fortree/Pacifidlog/Battle Frontier Lounge6
+  NPCs): a real party-list picker (`ChoosePartyMon`), species matching
+  (`GetTradeSpecies`/`GetInGameTradeSpeciesInfo`, own stable species-id
+  table in `BattleData`), and the swap itself (`CreateInGameTradePokemon`,
+  matched level like the original — no IVs/personality/held mail here,
+  same as nothing else in this engine has those either)
 * EXP gain, all 6 species growth curves, level-up stat recalculation,
   level-up movesets (411 learnsets), **level-up evolution** (172 paths)
 * TM/HM teaching from the bag, gated by real per-species learnsets (372
@@ -351,7 +357,9 @@ has been verified either by an automated test or by headless screenshot
 * Pokédex screen (no seen/caught tracking), party summary/stats screen,
   player naming/gender selection, options/settings screen
 * Multiple PC boxes (currently one unlimited list), item storage in the PC
-* Trading, breeding/eggs, contests, secret bases, Battle Frontier
+* Breeding/eggs, contests, secret bases, Battle Frontier (Trading — the 4
+  fixed NPC in-game trades — now works; there's no real link-cable trading
+  since there's no second player)
 * Comparison `goto_if_ge/gt/lt/le` opcodes, `multichoice` prompts,
   `checkitem`/`removeitem` result vars, NPC add/hide/move opcodes, door-open
   animations — all currently silent no-ops where scripts use them
@@ -372,9 +380,12 @@ hit:
 2. ~~Running Shoes' run mechanic~~ — done: gated on `FLAG_SYS_B_DASH`,
    holding Shift (the PC-appropriate stand-in for the GBA's B button) now
    moves at the real games' 2x walk speed.
-3. **Trading** — not implemented at all; blocks at least the Route 116
-   Trainer's School Seedot↔Ralts in-game trade, and any later trade-based
-   content/evolutions.
+3. ~~Trading~~ — done: all 4 fixed in-game trades (Rustboro's
+   Seedot↔Ralts, Fortree's Plusle↔Volbeat, Pacifidlog's Horsea↔Bagon,
+   Battle Frontier Lounge6's Meowth↔Skitty) work via a real party picker
+   and species matching. No real link-cable trading (no second player) --
+   trade evolutions (Kadabra, Machoke, Graveler, Haunter) still can't
+   happen, same as the rest of Evolution being level-up only.
 4. **`goto_if_ge/gt/lt/le` / `multichoice` no-ops** — need an actual audit
    (not yet done) of which dialogue/quest branches in the imported scripts
    use them, starting with the Rustboro→Rusturf Tunnel Team Aqua/Devon
@@ -408,6 +419,7 @@ screenshot), not just written and assumed correct.
 - [x] Whiteout on a lost battle (heal + warp to last heal location) instead
       of scripted trainer battles continuing their win dialogue on a loss
 - [ ] Double battles, EXP Share
+- [x] In-game trades (all 4 fixed NPC trades, real party picker)
 - [ ] Stone/trade/friendship evolution triggers
 - [ ] Ball-type-aware, catch-rate-aware capture formula
 
@@ -447,7 +459,7 @@ screenshot), not just written and assumed correct.
 - [ ] Multiple PC boxes, item storage in the PC
 
 **Out of scope for now (not silently faked, just not attempted)**
-- [ ] Trading, breeding/eggs
+- [ ] Breeding/eggs (link-cable trading N/A -- no second player)
 - [ ] Contests, secret bases
 - [ ] Battle Frontier
 - [ ] Map editor / procedural map generator

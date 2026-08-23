@@ -94,9 +94,16 @@ public:
 	// block-then-resume timer run for the same length of time.
 	static constexpr float HEALFX_DURATION = 1.5f;
 
+	// `special ChoosePartyMon` (in-game trades: offer up a party mon): same
+	// story as ChooseStarter -- the VM can't drive a real party-list picker
+	// itself, so the game loop shows one and calls resolve_choose_party_mon()
+	// with the chosen index, or -1 if the player backed out.
+	bool wants_choose_party_mon() const { return this->st == WAIT_CHOOSE_PARTY; }
+	void resolve_choose_party_mon(int idx);
+
 private:
 	enum State { IDLE, RUN, WAIT_MSG, WAIT_MOVE, WAIT_BATTLE, WAIT_STARTER, WAIT_YESNO,
-	              WAIT_SHOP, WAIT_HEALFX };
+	              WAIT_SHOP, WAIT_HEALFX, WAIT_CHOOSE_PARTY };
 
 	Map* map; GameState* state; DialogBox* box; Battle* battle;
 	Audio* audio; Character* player; Character* owner;

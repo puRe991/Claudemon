@@ -58,6 +58,18 @@ static int facing_to_dircode(DIR d) {
 	             case DIR::W: return 3; case DIR::E: return 4; default: return 1; }
 }
 
+// pokeemerald's sIngameTrades[] (src/data/trade.h), trimmed to what this
+// engine actually models (species + which species is wanted back -- no IVs/
+// personality/OT/held mail, none of which exist here, see BattleData::Mon).
+// Indices match the INGAME_TRADE_* constants in value_of() above.
+struct TradeInfo { const char* give; const char* want; };
+static const TradeInfo INGAME_TRADES[4] = {
+	{"SEEDOT", "RALTS"},     // RustboroCity_House1
+	{"PLUSLE", "VOLBEAT"},   // FortreeCity_House1
+	{"HORSEA", "BAGON"},     // PacifidlogTown_House3
+	{"MEOWTH", "SKITTY"},    // BattleFrontier_Lounge6
+};
+
 int ScriptVM::value_of(const std::string& s) const {
 	if (s.empty()) return 0;
 	if (s == "TRUE") return 1;
@@ -67,6 +79,11 @@ int ScriptVM::value_of(const std::string& s) const {
 	if (s == "YES") return 1;
 	if (s == "NO") return 0;
 	if (s == "PARTY_SIZE") return 6;   // pokeemerald's fixed party cap, not the current team size
+	if (s == "PARTY_NOTHING_CHOSEN") return 255;   // ChoosePartyMon: player backed out
+	if (s == "INGAME_TRADE_SEEDOT") return 0;
+	if (s == "INGAME_TRADE_PLUSLE") return 1;
+	if (s == "INGAME_TRADE_HORSEA") return 2;
+	if (s == "INGAME_TRADE_MEOWTH") return 3;
 	if (s == "DIR_SOUTH") return 1;
 	if (s == "DIR_NORTH") return 2;
 	if (s == "DIR_WEST")  return 3;
@@ -136,6 +153,13 @@ void ScriptVM::resolve_starter(const std::string& species) {
 		int idx = (species == "TORCHIC") ? 1 : (species == "MUDKIP") ? 2 : 0;
 		this->state->set_var("VAR_STARTER_MON", idx);
 	}
+	this->st = RUN;
+	this->pump();
+}
+
+void ScriptVM::resolve_choose_party_mon(int idx) {
+	if (this->st != WAIT_CHOOSE_PARTY) return;
+	if (this->state) this->state->set_var("VAR_0x8004", idx < 0 ? 255 : idx);   // PARTY_NOTHING_CHOSEN
 	this->st = RUN;
 	this->pump();
 }
@@ -396,6 +420,32 @@ void ScriptVM::pump() {
 			} else if (fn == "ChooseStarter") {
 				this->st = WAIT_STARTER;
 				return;
+			} else if (fn == "ChoosePartyMon") {
+				// In-game trades (Rustboro/Fortree/Pacifidlog/Battle Frontier
+				// Lounge NPCs): let the player pick which of their own mons
+				// to offer up. VAR_0x8004 gets the chosen party index (or
+				// PARTY_NOTHING_CHOSEN), matching pokeemerald's own contract
+				// for this special -- see resolve_choose_party_mon().
+				this->st = WAIT_CHOOSE_PARTY;
+				return;
+			} else if (fn == "CreateInGameTradePokemon" && this->bdata && this->team) {
+				// pokeemerald builds the incoming mon with the outgoing mon's
+				// level (see CreateInGameTradePokemonInternal) and otherwise
+				// its own fixed IVs/personality/held mail -- none of which
+				// this engine models (no IVs, no held items at all), so the
+				// species + matched level is the whole trade as far as any
+				// stat/ability difference a player could notice here.
+				int trade_idx = value_of("VAR_0x8004");
+				int party_idx = value_of("VAR_0x8005");
+				if (trade_idx >= 0 && trade_idx < 4 &&
+				    party_idx >= 0 && party_idx < (int)this->team->size()) {
+					int lvl = (*this->team)[party_idx].level;
+					(*this->team)[party_idx] = this->bdata->make_mon(INGAME_TRADES[trade_idx].give, lvl);
+				}
+			} else if (fn == "DoInGameTradeScene") {
+				// The real spinning-Pokeball trade cutscene has no equivalent
+				// here (no assets for it) -- the mon swap above is already
+				// the entire gameplay effect, so this is a pure no-op.
 			} else if (fn == "StartRegiBattle" || fn == "BattleSetup_StartLegendaryBattle") {
 				// The Regis/Rayquaza/Kyogre/Groudon scripts call one of these
 				// (with special fanfare in the real game) instead of a plain
@@ -417,10 +467,10 @@ void ScriptVM::pump() {
 		} else if (op == "specialvar" && argc >= 2) {
 			// specialvar VAR, Func: stores a native function's return value.
 			// Implement the ones with a clear, honest answer given what this
-			// engine actually models; everything else (contests, trading,
-			// breeding, the fan club, Trainer Hill, ...) defaults to 0/false
-			// since those systems don't exist here, so any script gated on
-			// them takes the "not available" branch instead of a fake one.
+			// engine actually models; everything else (contests, breeding,
+			// the fan club, Trainer Hill, ...) defaults to 0/false since
+			// those systems don't exist here, so any script gated on them
+			// takes the "not available" branch instead of a fake one.
 			const std::string& var = arg(0);
 			const std::string& fn = arg(1);
 			int result = 0;
@@ -437,6 +487,22 @@ void ScriptVM::pump() {
 					if (kv.second > 0 && kv.first.find("BERRY") != std::string::npos) { result = 1; break; }
 			} else if (fn == "PlayerNotAtTrainerHillEntrance") {
 				result = 1;   // Trainer Hill doesn't exist here, so never "at" it
+			} else if (fn == "GetInGameTradeSpeciesInfo" && this->bdata) {
+				// Also buffers STR_VAR_1/2 directly, matching pokeemerald's
+				// own GetInGameTradeSpeciesInfo (it does the same as a side
+				// effect) -- the very next line in every trade script is a
+				// msgboxyesno that uses both without a separate buffer call.
+				int trade_idx = value_of("VAR_0x8004");
+				if (trade_idx >= 0 && trade_idx < 4) {
+					const TradeInfo& t = INGAME_TRADES[trade_idx];
+					this->str_vars["STR_VAR_1"] = nice_name(t.want);
+					this->str_vars["STR_VAR_2"] = nice_name(t.give);
+					result = this->bdata->species_id(t.want);
+				}
+			} else if (fn == "GetTradeSpecies" && this->team) {
+				int party_idx = value_of("VAR_0x8005");
+				if (party_idx >= 0 && party_idx < (int)this->team->size())
+					result = this->bdata->species_id((*this->team)[party_idx].species);
 			}
 			// ShouldTryRematchBattle, ShouldShowBoxWasFullMessage (our PC box
 			// is a single unlimited list), GetPCBoxToSendMon (always box 0),
@@ -486,6 +552,14 @@ void ScriptVM::pump() {
 			std::string mv = arg(1);
 			if (mv.rfind("MOVE_", 0) == 0) mv = mv.substr(5);
 			this->str_vars[arg(0)] = nice_name(mv);
+		} else if (op == "bufferspeciesname" && argc >= 2) {
+			// STR_VAR_n <- the species name a numeric species id refers to
+			// (in-game trades' "that doesn't look like a X to me", ...); the
+			// id itself only ever comes from BattleData::species_id() (see
+			// GetTradeSpecies/GetInGameTradeSpeciesInfo below), never from
+			// pokeemerald's own SPECIES_* constants, which don't exist here.
+			std::string sp = this->bdata ? this->bdata->species_by_id(value_of(arg(1))) : std::string();
+			this->str_vars[arg(0)] = nice_name(sp);
 		} else if (op == "removeobject" && argc >= 1) {
 			// A cut tree/smashed rock's own EventScript_*Down removes it for
 			// good: mark its FLAG_TEMP_*/FLAG_HIDE_* (so it stays gone across

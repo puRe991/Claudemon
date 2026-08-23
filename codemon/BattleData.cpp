@@ -23,6 +23,8 @@ bool BattleData::load(const std::string& dir) {
 		s.t1 = c[7]; s.t2 = c[8];
 		if (c.size() >= 11) { s.growth = c[9]; s.exp_yield = std::stoi(c[10]); }
 		species[c[0]] = s;
+		species_index[c[0]] = (int)species_order.size();
+		species_order.push_back(c[0]);
 	}
 	std::ifstream mv(dir + "/moves.tsv");
 	while (std::getline(mv, line)) {
@@ -88,6 +90,15 @@ bool BattleData::load(const std::string& dir) {
 const MoveInfo* BattleData::move(const std::string& m) const {
 	auto it = moves.find(m);
 	return it == moves.end() ? nullptr : &it->second;
+}
+
+int BattleData::species_id(const std::string& name) const {
+	auto it = species_index.find(name);
+	return it == species_index.end() ? -1 : it->second;
+}
+
+std::string BattleData::species_by_id(int id) const {
+	return (id >= 0 && id < (int)species_order.size()) ? species_order[id] : std::string();
 }
 
 Mon BattleData::make_mon(const std::string& name, int level) const {

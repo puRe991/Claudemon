@@ -55,6 +55,8 @@ class BattleData
 {
 private:
 	std::unordered_map<std::string, SpeciesInfo> species;
+	std::vector<std::string> species_order;                       // load() file order, stable
+	std::unordered_map<std::string, int> species_index;            // name -> index into species_order
 	std::unordered_map<std::string, MoveInfo> moves;
 	std::unordered_map<std::string, std::vector<std::pair<int, std::string>>> learn;
 	std::unordered_map<std::string, std::vector<std::pair<std::string, int>>> trainers;
@@ -70,6 +72,14 @@ public:
 
 	bool has_species(const std::string& s) const { return species.count(s) > 0; }
 	const MoveInfo* move(const std::string& m) const;
+
+	// A stable-within-this-run numeric id for a species (pokeemerald's own
+	// SPECIES_* constants have no equivalent here since every species table
+	// is keyed by bare name) -- for opcodes like `bufferspeciesname` that
+	// pokeemerald passes/stores a species as a plain number (in-game trades'
+	// `GetTradeSpecies`/`GetInGameTradeSpeciesInfo`, ...). -1 if unknown.
+	int species_id(const std::string& name) const;
+	std::string species_by_id(int id) const;   // "" if out of range
 
 	// Build a level-scaled pokemon with its natural (level-up) moveset.
 	Mon make_mon(const std::string& species_name, int level) const;
