@@ -36,7 +36,9 @@ independent C++ engine:
   including cave/indoor floors that have encounters but no visible grass.
 * **Story-accurate start**: new games begin in the player's bedroom
   (Brendan's House 2F) at the canonical heal-location tile, not a guessed
-  spawn point.
+  spawn point, with an empty team and an empty bag (just the canonical 3000
+  money) — no Pokémon or items until the real story hands them over, same as
+  pokeemerald.
 * **UI**: a start menu with Bag, Party, PC Box and PokéNav screens, capture
   and storage, item/type/species icons, an HP bar, a map-name banner on
   transitions, and a few overworld minigames (slots/roulette/blender/jump)
@@ -245,6 +247,10 @@ has been verified either by an automated test or by headless screenshot
 
 * Map rendering, collision, warps/transitions, signs, coordinate triggers,
   NPC placement & movement types (static/wander/pace), load triggers
+* Seamless map connections (pokeemerald's edge-to-edge world stitching --
+  Route101's north edge continuing into Oldale Town, etc.), on top of
+  door/warp transitions; smooth per-tile sliding movement (camera included)
+  driven by steady per-frame input polling instead of OS key-repeat timing
 * Cooperative script VM (`ScriptVM`) running pokeemerald's real event
   scripts: dialog (multi-page), flags/vars, `goto`/`call` + `eq`/`ne`/`set`/
   `unset` conditionals, `switch`/`case`, movement scripts, `giveitem`/
@@ -287,7 +293,8 @@ has been verified either by an automated test or by headless screenshot
   Ice Heal/Full Heal/Full Restore) on a chosen party member, with real
   Gen-3 heal amounts and status-cure matching
 * Shops (`pokemart`) and Ja/Nein prompts via the VM block-and-resume pattern
-* Story-accurate start (Brendan's House 2F, canonical heal-location tile)
+* Story-accurate start (Brendan's House 2F, canonical heal-location tile,
+  empty team/bag until the real story hands them over)
 * UI: start menu (Bag/Party/PC Box/PokéNav), map-name banner, HP bars,
   item/type/species icons, Pokémon Center heal (whole team) + its glowing-
   Pokéball/monitor animation
@@ -351,6 +358,8 @@ screenshot), not just written and assumed correct.
 - [x] Asset importer fully data-driven (`tools/pe_import.py`), no
       compile-time hardcoding
 - [x] NPC behaviour, map transitions, warp fades
+- [x] Seamless map connections (edge-to-edge, not just door/warp tiles)
+- [x] Smooth sliding movement + camera, steady per-frame input polling
 - [x] Unit-testing harness wired into CTest
 
 **Battle & progression**
