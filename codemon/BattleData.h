@@ -63,7 +63,7 @@ private:
 	std::unordered_map<std::string, std::string> trainer_pics;   // TRAINER_X -> pic
 	std::unordered_map<std::string, std::vector<Evolution>> evos;
 	std::unordered_map<std::string, std::unordered_map<std::string, bool>> tm_learn;
-	std::unordered_map<std::string, std::string> tm_move;         // TM01 -> MOVE
+	std::unordered_map<std::string, std::string> tm_move;         // "HM01" -> "CUT"
 	bool loaded = false;
 
 public:
@@ -122,6 +122,11 @@ public:
 	void grant_exp(Mon& mon, long gained, std::vector<std::string>& msgs) const;
 
 	// TM support.
-	std::string tm_to_move(const std::string& tm) const;        // "TM01" -> move
+	// "CUT" -> "HM01" (the bag's TM/HM number label); "" if not a TM/HM
+	// move. The move itself comes straight off the bag item's own name
+	// (ITEM_TM_<move>/ITEM_HM_<move>, see Menu.cpp) -- this is only for
+	// display, matching the real games showing "TM01" rather than the
+	// move name in the bag list.
+	std::string move_to_tm_code(const std::string& move) const;
 	bool can_learn_tm(const std::string& species, const std::string& move) const;
 };

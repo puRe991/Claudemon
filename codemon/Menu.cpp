@@ -22,7 +22,7 @@ std::vector<std::pair<std::string, int>> Menu::bag_sorted() const {
 	return v;
 }
 
-// Is this bag item a TM or HM? (ITEM_TM01 / ITEM_HM03)
+// Is this bag item a TM or HM? (ITEM_TM_FOCUS_PUNCH / ITEM_HM_CUT)
 static bool is_machine(const std::string& item) {
 	return item.rfind("ITEM_TM", 0) == 0 || item.rfind("ITEM_HM", 0) == 0;
 }
@@ -212,9 +212,16 @@ void Menu::input(BtnInput b) {
 			if (this->bag_cursor < (int)items.size()) {
 				const std::string& item = items[this->bag_cursor].first;
 				if (is_machine(item) && this->bdata) {
-					std::string tm = item.substr(5);            // ITEM_TM09 -> TM09
-					std::string mv = this->bdata->tm_to_move(tm);
-					if (mv.empty()) this->flash = "Es passiert nichts.";
+					// pokeemerald's real ITEM_TM_*/ITEM_HM_* item constants
+					// are built directly from each TM/HM's move name (see
+					// include/item.h's ENUM_TM/ENUM_HM, and how
+					// tools/pe_import.py's parse_tm_moves() reads the same
+					// FOREACH_TM/FOREACH_HM move list) -- imported scripts
+					// use those literal names (`giveitem ITEM_HM_CUT`, not
+					// a numbered "ITEM_HM01"), so the move is just the item
+					// name with its 8-char "ITEM_TM_"/"ITEM_HM_" prefix cut.
+					std::string mv = item.size() > 8 ? item.substr(8) : std::string();
+					if (mv.empty() || !this->bdata->move(mv)) this->flash = "Es passiert nichts.";
 					else {
 						this->teach_item = item; this->teach_move = mv;
 						this->teach_cursor = 0; this->flash.clear();
@@ -318,8 +325,17 @@ void Menu::draw(sf::RenderTarget& target) {
 				const sf::Texture* ic = item_icon(kv.first);
 				if (ic) { sf::Sprite s(*ic); s.setPosition(x, ry - 4); target.draw(s); }
 				bool tm = is_machine(kv.first);
-				std::string label = tm ? kv.first.substr(5)               // ITEM_TM31 -> TM31
-				                       : pretty(kv.first, "ITEM_");
+				std::string label;
+				if (tm) {
+					// ITEM_TM_<move>/ITEM_HM_<move> -> the real games' "TM31"
+					// style bag label (see move_to_tm_code()); falls back to
+					// the move name itself if the code lookup ever misses.
+					std::string mv = kv.first.size() > 8 ? kv.first.substr(8) : std::string();
+					std::string code = this->bdata ? this->bdata->move_to_tm_code(mv) : std::string();
+					label = code.empty() ? pretty(mv, "") : code;
+				} else {
+					label = pretty(kv.first, "ITEM_");
+				}
 				text(label, x + 34, ry, 20,
 				     tm ? sf::Color(20, 130, 90) : body_col);
 				text("x" + std::to_string(kv.second),

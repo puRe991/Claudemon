@@ -339,9 +339,9 @@ void BattleData::grant_exp(Mon& mon, long gained, std::vector<std::string>& msgs
 	}
 }
 
-std::string BattleData::tm_to_move(const std::string& tm) const {
-	auto it = tm_move.find(tm);
-	return it == tm_move.end() ? std::string() : it->second;
+std::string BattleData::move_to_tm_code(const std::string& move) const {
+	for (const auto& kv : tm_move) if (kv.second == move) return kv.first;
+	return std::string();
 }
 
 bool BattleData::can_learn_tm(const std::string& sp, const std::string& mv) const {
