@@ -1237,6 +1237,15 @@ def cmd_world(src, limit=None):
         for fn in sorted(os.listdir(tdir)):
             if fn.endswith(".inc"):
                 global_texts.update(parse_text_file(os.path.join(tdir, fn)))
+    # data/scripts/*.inc also define their own inline `.string` text labels
+    # (e.g. field_move_scripts.inc's Text_WantToCut) alongside their script
+    # bodies -- parse_shared_script_file() below only extracts script bodies,
+    # so without this pass those labels would resolve to nothing and render
+    # as the raw label name instead of the actual message.
+    if os.path.isdir(sdir := os.path.join(src, "data", "scripts")):
+        for fn in sorted(os.listdir(sdir)):
+            if fn.endswith(".inc"):
+                global_texts.update(parse_text_file(os.path.join(sdir, fn)))
 
     # Shared scripts (data/scripts/*.inc): common NPCs like the player's mom,
     # the PC, Nurse Joy, move tutors etc. are defined once here and pointed

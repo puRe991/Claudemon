@@ -1,5 +1,6 @@
 #include "ScriptVM.h"
 #include <cctype>
+#include <algorithm>
 
 ScriptVM::ScriptVM()
 	: map(nullptr), state(nullptr), box(nullptr), battle(nullptr),
@@ -20,6 +21,18 @@ static std::string item_name(const std::string& item) {
 	if (s.rfind("ITEM_", 0) == 0) s = s.substr(5);
 	std::string out; bool cap = true;
 	for (char c : s) {
+		if (c == '_') { out += ' '; cap = true; }
+		else if (cap) { out += (char)std::toupper((unsigned char)c); cap = false; }
+		else out += (char)std::tolower((unsigned char)c);
+	}
+	return out;
+}
+
+// SPECIES_NAME / MOVE_NAME -> "Species Name" (same title-case scheme as
+// item_name() above; used for field-move messages like "Treecko used Cut!").
+static std::string nice_name(const std::string& id) {
+	std::string out; bool cap = true;
+	for (char c : id) {
 		if (c == '_') { out += ' '; cap = true; }
 		else if (cap) { out += (char)std::toupper((unsigned char)c); cap = false; }
 		else out += (char)std::tolower((unsigned char)c);
@@ -53,6 +66,7 @@ int ScriptVM::value_of(const std::string& s) const {
 	if (s == "FEMALE") return 1;
 	if (s == "YES") return 1;
 	if (s == "NO") return 0;
+	if (s == "PARTY_SIZE") return 6;   // pokeemerald's fixed party cap, not the current team size
 	if (s == "DIR_SOUTH") return 1;
 	if (s == "DIR_NORTH") return 2;
 	if (s == "DIR_WEST")  return 3;
@@ -174,7 +188,13 @@ void ScriptVM::pump() {
 			// MSGBOX_YESNO: once the text is dismissed, the player picks
 			// yes/no and the choice lands in VAR_RESULT.
 			this->pending_yesno = (op == "msgboxyesno");
-			this->box->open(this->owner ? std::string() : std::string(), in[1]);
+			std::string text = in[1];
+			for (const auto& kv : this->str_vars) {
+				size_t pos;
+				while ((pos = text.find(kv.first)) != std::string::npos)
+					text.replace(pos, kv.first.size(), kv.second);
+			}
+			this->box->open(this->owner ? std::string() : std::string(), text);
 			this->st = WAIT_MSG;
 			return;
 		} else if (op == "giveitem" && argc >= 1) {
@@ -437,6 +457,50 @@ void ScriptVM::pump() {
 			this->pending_shop_label = arg(0);
 			this->st = WAIT_SHOP;
 			return;
+		} else if (op == "checkpartymove" && argc >= 1) {
+			// Field moves (Cut, Rock Smash, ...): find the first party mon
+			// that knows this move. VAR_RESULT becomes its party index, or
+			// PARTY_SIZE (6, pokeemerald's fixed cap) if none do -- the
+			// scripts that use this always follow with
+			// `goto_if_eq VAR_RESULT PARTY_SIZE <cant-use-it label>`.
+			std::string mv = arg(0);
+			if (mv.rfind("MOVE_", 0) == 0) mv = mv.substr(5);
+			int found = 6;
+			if (this->team) {
+				for (size_t k = 0; k < this->team->size(); ++k) {
+					const std::vector<std::string>& mv_list = (*this->team)[k].moves;
+					if (std::find(mv_list.begin(), mv_list.end(), mv) != mv_list.end())
+						{ found = (int)k; break; }
+				}
+			}
+			this->state->set_var("VAR_RESULT", found);
+		} else if (op == "bufferpartymonnick" && argc >= 2) {
+			// STR_VAR_n <- the nickname of the party mon checkpartymove found
+			// (this engine has no separate nicknames, so the species name).
+			int idx = value_of(arg(1));
+			std::string nick;
+			if (this->team && idx >= 0 && idx < (int)this->team->size())
+				nick = nice_name((*this->team)[idx].species);
+			this->str_vars[arg(0)] = nick;
+		} else if (op == "buffermovename" && argc >= 2) {
+			std::string mv = arg(1);
+			if (mv.rfind("MOVE_", 0) == 0) mv = mv.substr(5);
+			this->str_vars[arg(0)] = nice_name(mv);
+		} else if (op == "removeobject" && argc >= 1) {
+			// A cut tree/smashed rock's own EventScript_*Down removes it for
+			// good: mark its FLAG_TEMP_*/FLAG_HIDE_* (so it stays gone across
+			// a map reload) and drop it from the live actor list right away
+			// (both rendering and collision walk `actors`, see main.cpp).
+			Character* ch = resolve(arg(0));
+			if (ch && ch != this->player) {
+				if (!ch->get_hide_flag().empty())
+					this->state->set_flag(ch->get_hide_flag());
+				ch->mark_removed();   // still-alive Agent entry stays uninteractable
+				if (this->actors) {
+					auto& a = *this->actors;
+					a.erase(std::remove(a.begin(), a.end(), ch), a.end());
+				}
+			}
 		} else if (op == "dofieldeffect" && argc >= 1 && arg(0) == "FLDEFF_POKECENTER_HEAL") {
 			// Real duration is however long CreateGlowingPokeballsEffect's
 			// place -> flash -> chime sequence takes; HEALFX_DURATION below

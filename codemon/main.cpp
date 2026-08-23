@@ -162,6 +162,7 @@ static Session* load_session(const std::string& path, int arr_x, int arr_y,
             delete ch; continue;
         }
         ch->set_animated(!g_headless);
+        ch->set_hide_flag(sp.hide_flag);
         ch->face(sp.facing);
         Agent ag; ag.ch = ch; ag.kind = sp.movement;
         ag.home_x = sp.x; ag.home_y = sp.y;
@@ -188,6 +189,7 @@ static bool try_step(Agent& ag, DIR dir, Map& map, std::vector<Character*>& acto
 static void tick_npcs(Session* s, std::mt19937& rng) {
     static const DIR dirs[4] = {DIR::N, DIR::S, DIR::E, DIR::W};
     for (Agent& ag : s->agents) {
+        if (ag.ch->is_removed()) continue;   // cut down / smashed this session
         switch (ag.kind) {
         case MOVE_WANDER: {
             DIR d = dirs[rng() % 4];
@@ -287,6 +289,7 @@ static bool talk_to_npc_at(Session* s, DialogBox& box, Audio* audio, ScriptVM& v
                            int tx, int ty) {
     for (size_t i = 0; i < s->agents.size(); ++i) {
         Agent& ag = s->agents[i];
+        if (ag.ch->is_removed()) continue;   // cut down / smashed this session
         if (ag.ch->get_tile_x() == tx && ag.ch->get_tile_y() == ty) {
             ag.ch->face(opposite(s->player->get_facing()));   // turn to the player
             if (audio) audio->play_select();
@@ -850,6 +853,13 @@ int main() {
         // real: the story-start heal location itself.
         gs.last_heal_map = "LittlerootTown_BrendansHouse_2F";
         gs.last_heal_x = 4; gs.last_heal_y = 2;
+    }
+    // CODEMON_START_X/Y (with CODEMON_MAP): land on a specific tile instead
+    // of the map's own default start position -- for headlessly reaching an
+    // object/NPC that isn't right next to the map's normal entrance.
+    if (map_env) {
+        if (const char* ex = std::getenv("CODEMON_START_X")) start_x = atoi(ex);
+        if (const char* ey = std::getenv("CODEMON_START_Y")) start_y = atoi(ey);
     }
     Session* sess = load_session(start_map, start_x, start_y, &gs);
 

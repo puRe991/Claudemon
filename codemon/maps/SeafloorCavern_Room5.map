@@ -102,9 +102,9 @@ goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CantSmashRock
 setfieldeffectargument 0 VAR_RESULT
 bufferpartymonnick STR_VAR_1 VAR_RESULT
 buffermovename STR_VAR_2 MOVE_ROCK_SMASH
-msgbox	Text_WantToSmash
+msgboxyesno	Dieser Felsen sieht zerbrechlich aus. Möchtest du ZERTRÜMMERER einsetzen?
 goto_if_eq VAR_RESULT NO EventScript_CancelSmash
-msgbox	Text_MonUsedFieldMove
+msgbox	STR_VAR_1 setzt STR_VAR_2 ein!
 closemessage
 dofieldeffect FLDEFF_USE_ROCK_SMASH
 waitstate
@@ -137,7 +137,7 @@ closemessage
 releaseall
 end
 = EventScript_CantSmashRock
-msgbox	Text_CantSmash
+msgbox	Das ist ein robuster Felsen, aber vielleicht kann ihn ein POKéMON zertrümmern.
 releaseall
 end
 encounters

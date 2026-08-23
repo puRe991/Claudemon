@@ -284,6 +284,12 @@ has been verified either by an automated test or by headless screenshot
   identical mechanic): pressing a switch actually shifts and re-faces every
   character standing on that color's arrow tiles, ported from pokeemerald's
   real metatile-driven algorithm
+* Cut as a real field move: a party member that knows it (taught via HM01)
+  can chop down any of the game's cuttable trees (`checkpartymove`,
+  `bufferpartymonnick`/`buffermovename` message interpolation,
+  `removeobject` permanently clearing the tree, gated on the first Badge,
+  same checks/messages as pokeemerald) — Rock Smash uses the identical
+  shared opcodes/script shape so it works the same way
 * EXP gain, all 6 species growth curves, level-up stat recalculation,
   level-up movesets (411 learnsets), **level-up evolution** (172 paths)
 * TM/HM teaching from the bag, gated by real per-species learnsets (372
@@ -335,8 +341,8 @@ has been verified either by an automated test or by headless screenshot
 ### ❌ Not implemented yet
 
 * Gift/fossil Pokémon (`givemon`: Johto starters, Beldum, Castform, fossils)
-* HM field moves (Cut/Surf/Fly/Strength/Flash/Rock Smash/Waterfall/Dive) —
-  water is currently just impassable terrain
+* HM field moves other than Cut/Rock Smash (Surf/Fly/Strength/Flash/
+  Waterfall/Dive) — water is currently just impassable terrain
 * Running/bike, day-night cycle, overworld weather, fishing, berry growing
 * Pokédex screen (no seen/caught tracking), party summary/stats screen,
   player naming/gender selection, options/settings screen
@@ -354,11 +360,11 @@ game and translated through Rustboro Gym; these are the *systemic* gaps
 found to actually block or break story progression, in the order they'd be
 hit:
 
-1. **Cut as a field move** — the single biggest blocker right after the
-   first Badge: Cutter's House already hands out HM01, but there's no HM
-   field-move system at all yet, so Cut trees are permanent walls (blocks
-   Route 116 / Rusturf Tunnel and other early routes). Surf/Rock Smash/
-   Strength/Waterfall/Fly/Dive matter later but aren't needed this early.
+1. ~~Cut as a field move~~ — done: `checkpartymove`/`bufferpartymonnick`/
+   `buffermovename`/`removeobject` implemented in `ScriptVM`, badge-gated
+   cuttable trees now work exactly like pokeemerald (Rock Smash rides along
+   for free, same shared opcodes/script shape). Surf/Strength/Waterfall/Fly/
+   Dive still aren't implemented but aren't needed this early.
 2. **Running Shoes' run mechanic** — the item is already given (Mom's scene
    in Littleroot) but holding B to move faster isn't implemented.
 3. **Trading** — not implemented at all; blocks at least the Route 116
@@ -419,7 +425,8 @@ screenshot), not just written and assumed correct.
 
 **Overworld features**
 - [x] Overworld minigames (slots/roulette/blender/jump) with coin currency
-- [ ] HM field moves (Cut/Surf/Fly/Strength/Flash/Rock Smash/Waterfall/Dive)
+- [x] Cut/Rock Smash field moves (badge-gated, real removeobject/text)
+- [ ] Remaining HM field moves (Surf/Fly/Strength/Flash/Waterfall/Dive)
 - [ ] Running/bike
 - [ ] Day-night cycle, overworld weather
 - [ ] Fishing, berry growing

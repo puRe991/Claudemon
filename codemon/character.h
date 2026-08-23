@@ -40,6 +40,16 @@ private:
 	int frame_w, frame_h;      // 16, 32
 	bool loaded;
 
+	std::string hide_flag;     // this NPC's pokeemerald FLAG_HIDE_*/FLAG_TEMP_*
+	                           // (empty for the player and permanent NPCs);
+	                           // `removeobject` (cut trees, ...) sets it so the
+	                           // object stays gone across a map reload.
+	bool removed = false;      // `removeobject` also sets this so the object's
+	                           // still-alive Agent entry (main.cpp's `agents`,
+	                           // separate from the `actors` render/collision
+	                           // list ScriptVM already drops it from) can't be
+	                           // interacted with again this same session.
+
 	int frame_for(DIR dir, int phase) const;
 
 public:
@@ -60,6 +70,11 @@ public:
 	// the sprite at its old tile forever); real interactive play wants the
 	// smooth slide. Defaults to animated.
 	void set_animated(bool a) { this->animated = a; }
+
+	void set_hide_flag(const std::string& f) { this->hide_flag = f; }
+	const std::string& get_hide_flag() const { return this->hide_flag; }
+	void mark_removed() { this->removed = true; }
+	bool is_removed() const { return this->removed; }
 
 	// Where this character would end up after a step in `dir` (signed).
 	void target_tile(DIR dir, int& out_x, int& out_y) const;

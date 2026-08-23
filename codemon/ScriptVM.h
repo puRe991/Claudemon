@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <deque>
+#include <unordered_map>
 #include "map.h"
 #include "character.h"
 #include "DialogBox.h"
@@ -126,6 +127,12 @@ private:
 	std::string warp_dest; int warp_x = -1, warp_y = -1;
 	bool pending_yesno = false;   // set by pump() until the msgbox closes
 	std::string pending_shop_label;
+
+	// `bufferpartymonnick STR_VAR_n <idx>` / `buffermovename STR_VAR_n <move>`
+	// (field moves like Cut/Rock Smash): stashes the nickname/move name so a
+	// following msgbox's "STR_VAR_1 used STR_VAR_2!"-style text can
+	// substitute the real values in (see pump()'s msgbox handling).
+	std::unordered_map<std::string, std::string> str_vars;
 
 	// `setwildbattle SPECIES, LEVEL`: pokeemerald stashes the species/level
 	// for a following `dowildbattle` (or the legendary-specific specials

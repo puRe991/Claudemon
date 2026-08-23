@@ -594,9 +594,9 @@ goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CheckTreeCantCut
 setfieldeffectargument 0 VAR_RESULT
 bufferpartymonnick STR_VAR_1 VAR_RESULT
 buffermovename STR_VAR_2 MOVE_CUT
-msgbox	Text_WantToCut
+msgboxyesno	Dieser Baum sieht so aus, als könnte man ihn mit ZERSCHNEIDER fällen! Möchtest du ZERSCHNEIDER einsetzen?
 goto_if_eq VAR_RESULT NO EventScript_CancelCut
-msgbox	Text_MonUsedFieldMove
+msgbox	STR_VAR_1 setzt STR_VAR_2 ein!
 closemessage
 dofieldeffect FLDEFF_USE_CUT_ON_TREE
 waitstate
@@ -621,7 +621,7 @@ closemessage
 releaseall
 end
 = EventScript_CheckTreeCantCut
-msgbox	Text_CantCut
+msgbox	Dieser Baum sieht so aus, als könnte man ihn mit ZERSCHNEIDER fällen!
 releaseall
 end
 = Route104_EventScript_ItemXAccuracy
