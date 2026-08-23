@@ -41,3 +41,5 @@ scriptdefs
 = Underwater_SeafloorCavern_EventScript_CheckStolenSub
 msgbox	“SUBMARINE EXPLORER 1” is painted on the hull.This is the submarine TEAM AQUA stole in SLATEPORT!TEAM AQUA must have gone ashore here.
 end
+water
+552,736,737,738,739,744,745,746,747

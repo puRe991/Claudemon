@@ -56,3 +56,5 @@ setflag FLAG_ITEM_SCORCHED_SLAB_TM_SUNNY_DAY
 end
 = ScorchedSlab_EventScript_ItemTMSunnyDay_Taken
 end
+water
+368,641,648,649,650,656,657,658

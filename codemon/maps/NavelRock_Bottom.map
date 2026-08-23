@@ -97,3 +97,5 @@ setflag FLAG_DEFEATED_LUGIA
 setvar VAR_0x8004 SPECIES_LUGIA
 goto Common_EventScript_LegendaryFlewAway
 end
+water
+327

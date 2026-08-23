@@ -218,10 +218,26 @@ static void tick_npcs(Session* s, std::mt19937& rng) {
     }
 }
 
+static bool team_knows_move(const std::vector<Mon>& team, const std::string& move) {
+    for (const Mon& m : team)
+        if (std::find(m.moves.begin(), m.moves.end(), move) != m.moves.end()) return true;
+    return false;
+}
+
 // Move the player one tile if possible; then, if the destination tile is a
 // warp, load the target map and place the player at the arrival warp. Returns
 // the (possibly new) session.
-static Session* player_step(Session* s, DIR dir, Audio* audio, GameState* gs) {
+// `surf_confirmed`: the caller already ran the Surf Ja/Nein prompt (see the
+// `pending_surf` handling below) and the player said yes -- treat the
+// target water tile as enterable and start surfing on it. `needs_surf`
+// (optional out): set
+// true instead of bumping when the *only* reason this step was refused is
+// unconfirmed water, so the caller knows to show that prompt (with the
+// player already faced towards it either way).
+static Session* player_step(Session* s, DIR dir, Audio* audio, GameState* gs,
+                            bool surf_confirmed = false, bool* needs_surf = nullptr) {
+    if (needs_surf) *needs_surf = false;
+    bool can_surf = s->player->is_surfing() || surf_confirmed;
     int tx, ty;
     s->player->target_tile(dir, tx, ty);
 
@@ -243,34 +259,51 @@ static Session* player_step(Session* s, DIR dir, Audio* audio, GameState* gs) {
                 case DIR::E: nx = 0; ny = ty - cn->offset; break;
                 default: break;
                 }
-                if (ns->map->in_bounds(nx, ny) && ns->map->passable(nx, ny) &&
-                    !actor_at(ns->actors, ns->player, nx, ny)) {
+                bool in_b = ns->map->in_bounds(nx, ny);
+                bool water = in_b && ns->map->is_water(nx, ny);
+                bool clear = in_b && ns->map->passable(nx, ny) &&
+                            !actor_at(ns->actors, ns->player, nx, ny);
+                if (clear && (!water || can_surf)) {
                     ns->player->set_tile(nx, ny);
                     ns->player->set_facing(dir);
+                    // Carry Surf across the map boundary if the new tile is
+                    // still water (Route 126/127/128's ocean chain, ...);
+                    // dismount right here if it's dry land on the other side.
+                    ns->player->set_surfing(can_surf && water);
                     free_session(s);
                     if (audio) audio->play_step();
                     return ns;
                 }
+                if (clear && water && needs_surf) *needs_surf = true;
             }
             free_session(ns);
         }
         s->player->face(dir);
-        if (audio) audio->play_bump();
+        if (audio && !(needs_surf && *needs_surf)) audio->play_bump();
         return s;
     }
 
     // Warp/door tiles are impassable metatiles but can be walked onto: the warp
-    // overrides collision (that is how doors work in pokeemerald).
+    // overrides collision (that is how doors work in pokeemerald). Surfable
+    // water is collision-passable already (see Map::is_water), but entering
+    // it still needs Surf, confirmed via the same Ja/Nein prompt as above.
     const Warp* target_warp = s->map->warp_at(tx, ty);
-    bool blocked = (!s->map->passable(tx, ty) && !target_warp) ||
-                   actor_at(s->actors, s->player, tx, ty);
-    if (blocked) {
+    bool water = s->map->is_water(tx, ty);
+    bool clear = (s->map->passable(tx, ty) || target_warp) &&
+                !actor_at(s->actors, s->player, tx, ty);
+    if (!clear || (water && !can_surf)) {
         s->player->face(dir);
-        if (audio) audio->play_bump();
+        if (clear && water && needs_surf) *needs_surf = true;
+        else if (audio) audio->play_bump();
         return s;
     }
     s->player->step(dir);
+    if (water) s->player->set_surfing(true);
     if (audio) audio->play_step();
+    // Reaching dry land automatically ends a Surf, same as the real games.
+    if (s->player->is_surfing() &&
+        !s->map->is_water(s->player->get_tile_x(), s->player->get_tile_y()))
+        s->player->set_surfing(false);
 
     const Warp* wp = s->map->warp_at(s->player->get_tile_x(), s->player->get_tile_y());
     if (wp && wp->dest != "-") {
@@ -369,7 +402,7 @@ static void try_encounter(Session* s, Battle& battle, Mon& party,
     if (!s->map->encounter_here(px, py)) return;
     if (!force && (rng() % 100) >= 22) return;                 // ~22% per step
     std::string sp; int level;
-    if (s->map->roll_encounter(rng, sp, level))                // real species + level
+    if (s->map->roll_encounter(rng, px, py, sp, level))         // real species + level
         battle.start_wild(sp, level, &party);
 }
 
@@ -590,6 +623,12 @@ struct YesNoPrompt {
     sf::Font font; bool font_ok = false;
     UiFrame frame;
     sf::Texture cursor_tex; bool cursor_ok = false;
+    // Set only by callers that aren't already showing their own question
+    // text via the message box first (VM-driven msgboxyesno flows do that
+    // via `box`, so leave this empty and get the plain corner prompt as
+    // before; the Surf gate below has no such preceding message, so it
+    // passes its own question straight into the prompt).
+    std::string prompt;
 
     bool load() {
         frame.load();
@@ -597,7 +636,7 @@ struct YesNoPrompt {
         cursor_tex.setSmooth(false);
         return font_ok = font.loadFromFile("assets/fonts/DejaVuSans.ttf");
     }
-    void open() { open_ = true; done_ = false; cursor = 0; }
+    void open(const std::string& p = "") { open_ = true; done_ = false; cursor = 0; prompt = p; }
     bool active() const { return open_; }
     bool done() const { return done_; }
     void ack() { done_ = false; }
@@ -616,8 +655,35 @@ struct YesNoPrompt {
         sf::Vector2f size = target.getView().getSize();
         float w = 132.f, h = 78.f;
         float x = size.x - w - 14.f, y = size.y - h - 100.f;
-        frame.draw(target, x, y, w, h, 2.5f);
         const sf::Color body_col(40, 40, 56), sel_col(24, 72, 160);
+        if (!prompt.empty()) {
+            // Crude greedy word-wrap (no per-glyph measurement, just a
+            // char-count budget tuned for this font/size/box width) -- the
+            // only prompt text this widget ever shows is the short, fixed
+            // Surf question, so this doesn't need to be a general wrapper.
+            std::vector<std::string> plines;
+            std::string cur;
+            std::stringstream ss(prompt);
+            std::string word;
+            while (ss >> word) {
+                if (!cur.empty() && cur.size() + 1 + word.size() > 38) {
+                    plines.push_back(cur); cur.clear();
+                }
+                if (!cur.empty()) cur += ' ';
+                cur += word;
+            }
+            if (!cur.empty()) plines.push_back(cur);
+            float pw = 340.f, ph = 34.f + plines.size() * 22.f;
+            float px = size.x - pw - 14.f, py = y - ph - 8.f;
+            frame.draw(target, px, py, pw, ph, 2.5f);
+            for (size_t li = 0; li < plines.size(); ++li) {
+                sf::Text t(sf::String::fromUtf8(plines[li].begin(), plines[li].end()), font, 15);
+                t.setPosition(px + 14, py + 14 + li * 22.f);
+                t.setFillColor(body_col);
+                target.draw(t);
+            }
+        }
+        frame.draw(target, x, y, w, h, 2.5f);
         const char* opts[2] = {"Ja", "Nein"};
         for (int i = 0; i < 2; ++i) {
             bool sel = i == cursor;
@@ -1067,6 +1133,7 @@ int main() {
         if (const char* fe = std::getenv("CODEMON_FRAMES")) frames = std::max(1, atoi(fe));
         std::vector<char> walk = parse_walk(std::getenv("CODEMON_WALK"));
         sf::RenderTexture rt;
+        bool pending_surf = false;   // Ja/Nein prompt is up for a Surf attempt
         if (rt.create(win_w, win_h)) {
             for (int i = 0; i < frames; ++i) {
                 if (i > 0) {
@@ -1101,7 +1168,12 @@ int main() {
                             int pbx = sess->player->get_tile_x();
                             int pby = sess->player->get_tile_y();
                             Session* before = sess;
-                            sess = player_step(sess, char_to_dir(tok), nullptr, &gs);
+                            bool needs_surf = false;
+                            sess = player_step(sess, char_to_dir(tok), nullptr, &gs, false, &needs_surf);
+                            if (needs_surf && team_knows_move(team, "SURF")) {
+                                pending_surf = true;
+                                yesno.open("Das Wasser schimmert tiefblau... Möchtest du SURFER einsetzen?");
+                            }
                             if (sess != before) {
                                 vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player, &sess->actors);
     run_load_triggers(sess->map, gs, vm);
@@ -1131,7 +1203,26 @@ int main() {
                     } else if (!starter.active() && vm.wants_starter()) {
                         starter.open();
                     }
-                    if (yesno.done()) {
+                    if (pending_surf && yesno.done()) {
+                        pending_surf = false;
+                        if (yesno.yes()) {
+                            int pbx = sess->player->get_tile_x();
+                            int pby = sess->player->get_tile_y();
+                            Session* before = sess;
+                            sess = player_step(sess, sess->player->get_facing(), nullptr, &gs, true);
+                            if (sess != before) {
+                                vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player, &sess->actors);
+                                run_load_triggers(sess->map, gs, vm);
+                                on_map_change(sess->path);
+                            } else if (sess->player->get_tile_x() != pbx ||
+                                       sess->player->get_tile_y() != pby) {
+                                if (!team.empty())
+                                    try_encounter(sess, battle, team[0], rng, force_enc);
+                                check_trigger(sess, vm, gs);
+                            }
+                        }
+                        yesno.ack();
+                    } else if (yesno.done()) {
                         if (vm.wants_yesno()) vm.resolve_yesno(yesno.yes());
                         yesno.ack();
                     } else if (!yesno.active() && vm.wants_yesno()) {
@@ -1201,6 +1292,7 @@ int main() {
     Window scr(win_w, win_h, "Codemon!");
 
     sf::Clock clock; float npc_accum = 0.f; float move_cooldown = 0.f;
+    bool pending_surf = false;   // Ja/Nein prompt is up for a Surf attempt
     while (scr.get_window()->isOpen()) {
         handle_whiteout(&audio);
         sf::Event event;
@@ -1295,7 +1387,8 @@ int main() {
         {
             bool ui_blocked = starter.active() || yesno.active() || picker.active() ||
                               shop.active() || battle.active() || games.active() ||
-                              menu.active() || box.is_active() || vm.running();
+                              menu.active() || box.is_active() || vm.running() ||
+                              pending_surf;
             bool run_held = !ui_blocked && gs.flag("FLAG_SYS_B_DASH") &&
                             (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) ||
                              sf::Keyboard::isKeyPressed(sf::Keyboard::RShift));
@@ -1320,8 +1413,13 @@ int main() {
                     int pbx = sess->player->get_tile_x();
                     int pby = sess->player->get_tile_y();
                     Session* before = sess;
-                    sess = player_step(sess, held, &audio, &gs);
+                    bool needs_surf = false;
+                    sess = player_step(sess, held, &audio, &gs, false, &needs_surf);
                     move_cooldown += interval;
+                    if (needs_surf && team_knows_move(team, "SURF")) {
+                        pending_surf = true;
+                        yesno.open("Das Wasser schimmert tiefblau... Möchtest du SURFER einsetzen?");
+                    }
                     if (sess != before) {
                         vm.configure(sess->map, &gs, &box, &battle, &audio, sess->player, &sess->actors);
                         run_load_triggers(sess->map, gs, vm);
@@ -1343,7 +1441,26 @@ int main() {
         } else if (!starter.active() && vm.wants_starter()) {
             starter.open();
         }
-        if (yesno.done()) {
+        if (pending_surf && yesno.done()) {
+            pending_surf = false;
+            if (yesno.yes()) {
+                int pbx = sess->player->get_tile_x();
+                int pby = sess->player->get_tile_y();
+                Session* before = sess;
+                sess = player_step(sess, sess->player->get_facing(), &audio, &gs, true);
+                if (sess != before) {
+                    vm.configure(sess->map, &gs, &box, &battle, &audio, sess->player, &sess->actors);
+                    run_load_triggers(sess->map, gs, vm);
+                    on_map_change(sess->path);
+                } else if (sess->player->get_tile_x() != pbx ||
+                           sess->player->get_tile_y() != pby) {
+                    if (!team.empty())
+                        try_encounter(sess, battle, team[0], rng, false);
+                    check_trigger(sess, vm, gs);
+                }
+            }
+            yesno.ack();
+        } else if (yesno.done()) {
             if (vm.wants_yesno()) vm.resolve_yesno(yesno.yes());
             yesno.ack();
         } else if (!yesno.active() && vm.wants_yesno()) {

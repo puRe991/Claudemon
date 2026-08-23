@@ -202,3 +202,5 @@ setflag FLAG_HIDDEN_ITEM_UNDERWATER_127_STAR_PIECE
 end
 = Underwater_Route127_HiddenItem_12_42_Taken
 end
+water
+632,633,634,640,642,648,649,650,681

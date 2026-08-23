@@ -105,3 +105,5 @@ setvar VAR_SHOULD_END_ABNORMAL_WEATHER 1
 setflag FLAG_DEFEATED_GROUDON
 goto Common_EventScript_RemoveStaticPokemon
 end
+water
+869,870,871,880,881,882,883

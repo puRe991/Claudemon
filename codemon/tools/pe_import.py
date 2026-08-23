@@ -170,6 +170,14 @@ NUM_METATILES_PRIMARY = 512   # metatile ids >= this are secondary
 NUM_PALS_PRIMARY      = 6     # palettes 0-5 primary, 6-15 secondary
 MB_TALL_GRASS         = 2     # metatile behavior for encounter grass
 MB_COUNTER            = 128   # shop/PC-counter behavior (see combined_counter_ids)
+# Surfable water behaviors (TILE_FLAG_SURFABLE in pokeemerald's own
+# src/metatile_behavior.c sTileBitAttributes[] table): MB_POND_WATER,
+# MB_INTERIOR_DEEP_WATER, MB_DEEP_WATER, MB_SOOTOPOLIS_DEEP_WATER,
+# MB_OCEAN_WATER, MB_NO_SURFACING, MB_SEAWEED, MB_SEAWEED_NO_SURFACING.
+# MB_WATERFALL (19) is surfable too but needs the separate Waterfall HM to
+# climb, so it's deliberately left out -- plain Surf shouldn't let the
+# player up a waterfall.
+MB_WATER_IDS          = {16, 17, 18, 20, 21, 25, 34, 42}
 
 
 def _tileset_behaviors(ts_path):
@@ -192,6 +200,23 @@ def combined_grass_ids(prim_path, sec_path):
             if b == MB_TALL_GRASS:
                 grass.add(NUM_METATILES_PRIMARY + i)
     return grass
+
+
+def combined_water_ids(prim_path, sec_path):
+    """Set of combined-sheet metatile ids that are surfable water (see
+    MB_WATER_IDS) -- these are almost always authored with collision=0 in
+    their own map's blockdata (pokeemerald blocks walking onto them via the
+    player avatar's own Surf check, not raw tile collision), so the engine
+    needs this list to gate entry itself."""
+    water = set()
+    for i, b in enumerate(_tileset_behaviors(prim_path)):
+        if b in MB_WATER_IDS:
+            water.add(i)
+    if sec_path:
+        for i, b in enumerate(_tileset_behaviors(sec_path)):
+            if b in MB_WATER_IDS:
+                water.add(NUM_METATILES_PRIMARY + i)
+    return water
 
 
 def combined_counter_ids(prim_path, sec_path):
@@ -1181,6 +1206,7 @@ def cmd_world(src, limit=None):
     pair_cache = {}    # (prim,sec) -> sheet name
     grass_cache = {}   # (prim,sec) -> set of grass metatile ids
     counter_cache = {}   # (prim,sec) -> set of shop/PC-counter metatile ids
+    water_cache = {}   # (prim,sec) -> set of surfable-water metatile ids
     catalog = []
     encounters = load_encounters(src)
     used_species = set()
@@ -1291,9 +1317,11 @@ def cmd_world(src, limit=None):
             pair_cache[key] = sheet_name
             grass_cache[key] = combined_grass_ids(prim_path, sec_path)
             counter_cache[key] = combined_counter_ids(prim_path, sec_path)
+            water_cache[key] = combined_water_ids(prim_path, sec_path)
         sheet_name = pair_cache[key]
         grass_ids = grass_cache.get(key, set())
         counter_ids = counter_cache.get(key, set())
+        water_ids = water_cache.get(key, set())
 
         w, h = layout["width"], layout["height"]
         try:
@@ -1579,6 +1607,12 @@ def cmd_world(src, limit=None):
         if used_grass:
             lines.append("grass")
             lines.append(",".join(str(g) for g in used_grass))
+        # Surfable-water metatile ids on this map (see combined_water_ids):
+        # collision-passable already, but only enterable with Surf.
+        used_water = sorted(set(ids) & water_ids)
+        if used_water:
+            lines.append("water")
+            lines.append(",".join(str(g) for g in used_water))
         # Shop/PC-counter metatile ids on this map (see combined_counter_ids):
         # impassable, but interact() should look one tile past them.
         used_counters = sorted(set(ids) & counter_ids)

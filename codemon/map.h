@@ -108,7 +108,9 @@ private:
 	std::vector<Sign> sign_list;
 	std::unordered_set<int> grass_ids;        // metatile ids that are tall grass
 	std::unordered_set<int> counter_ids;      // metatile ids that are shop/PC counters
+	std::unordered_set<int> water_ids;        // metatile ids that are surfable water
 	std::vector<EncSlot> land_slots;          // land wild-encounter table
+	std::vector<EncSlot> water_slots;         // surf wild-encounter table
 
 	std::map<std::string, std::vector<Instr>> script_defs;   // label -> instructions
 	std::map<std::string, std::vector<std::string>> move_defs; // label -> actions
@@ -166,12 +168,20 @@ public:
 	// tile past it for the clerk/nurse standing behind (pokeemerald's
 	// MB_COUNTER -- there's no way to stand adjacent to them otherwise).
 	bool is_counter(int tile_x, int tile_y) const;
-	// Does stepping on (x,y) trigger a wild encounter? (tall grass, or the
-	// floor of a cave/indoor map that has encounters but no grass tiles)
+	// Surfable water: collision-passable already (see `solid`), but only
+	// enterable with Surf -- the real games gate it via the player avatar's
+	// own movement check, not raw tile collision (see main.cpp's Surf gate).
+	bool is_water(int tile_x, int tile_y) const;
+	// Does stepping on (x,y) trigger a wild encounter? (tall grass, the
+	// floor of a cave/indoor map that has encounters but no grass tiles, or
+	// surfable water -- reaching a water tile at all already implies
+	// surfing, see main.cpp's Surf gate)
 	bool encounter_here(int tile_x, int tile_y) const;
 	bool has_encounters() const;
-	// Pick a wild pokemon by the land slot weights; fills species + level.
-	bool roll_encounter(std::mt19937& rng, std::string& species, int& level) const;
+	// Pick a wild pokemon by the land (or, on a water tile, surf) slot
+	// weights; fills species + level.
+	bool roll_encounter(std::mt19937& rng, int tile_x, int tile_y,
+	                    std::string& species, int& level) const;
 
 	// Event scripts.
 	bool has_script(const std::string& label) const;

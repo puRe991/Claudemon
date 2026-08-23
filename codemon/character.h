@@ -37,6 +37,9 @@ private:
 	                           // tick() slides at RUN_MOVE_DURATION instead
 	                           // of MOVE_DURATION, matching main.cpp's
 	                           // shortened RUN_MOVE_INTERVAL between steps.
+	bool surfing = false;      // true once the player has confirmed Surf onto
+	                           // water (main.cpp's Surf gate); dismounts
+	                           // automatically on reaching a non-water tile.
 	DIR facing;
 	int anim_phase;            // 0 = idle, 1 = step A, 2 = step B
 	bool step_toggle;          // alternates the two walk frames
@@ -79,6 +82,9 @@ public:
 	// Shift, gated on FLAG_SYS_B_DASH (see main.cpp). Only meaningful while
 	// animated -- headless mode never calls tick() so it has no effect there.
 	void set_running(bool r) { this->running = r; }
+
+	void set_surfing(bool s) { this->surfing = s; }
+	bool is_surfing() const { return this->surfing; }
 
 	void set_hide_flag(const std::string& f) { this->hide_flag = f; }
 	const std::string& get_hide_flag() const { return this->hide_flag; }

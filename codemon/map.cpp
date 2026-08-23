@@ -79,6 +79,9 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 		       s.rfind("connections", 0) == 0 ||
 		       s.rfind("npcs", 0) == 0 || s.rfind("dialogs", 0) == 0 ||
 		       s.rfind("signs", 0) == 0 || s.rfind("grass", 0) == 0 ||
+		       s == "water" ||   // exact match: "water " (with a space) is the
+		                        // encounters block's own surf-slot sub-line
+		                        // prefix, not this section header
 		       s.rfind("counters", 0) == 0 ||
 		       s.rfind("encounters", 0) == 0 || s.rfind("objscripts", 0) == 0 ||
 		       s.rfind("triggers", 0) == 0 || s.rfind("movements", 0) == 0 ||
@@ -165,6 +168,14 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 				for (int id : g) this->grass_ids.insert(id);
 				++i;
 			}
+		} else if (head == "water") {
+			// single line of comma-separated surfable-water metatile ids
+			if (++i < rest.size()) {
+				std::vector<int> g;
+				parse_int_row(rest[i], g);
+				for (int id : g) this->water_ids.insert(id);
+				++i;
+			}
 		} else if (head.rfind("counters", 0) == 0) {
 			// single line of comma-separated shop/PC-counter metatile ids
 			if (++i < rest.size()) {
@@ -174,11 +185,16 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 				++i;
 			}
 		} else if (head.rfind("encounters", 0) == 0) {
-			// lines like "land SP:min:max,SP:min:max,...". Only land triggers
-			// in tall grass; other types are parsed but ignored for now.
+			// lines like "land SP:min:max,SP:min:max,...". land triggers in
+			// tall grass, water on surfable water; fishing is parsed but
+			// ignored for now (no fishing rod item yet).
 			for (++i; i < rest.size() && !is_keyword(rest[i]); ++i) {
-				if (rest[i].rfind("land ", 0) != 0) continue;
-				std::stringstream ss(rest[i].substr(5));
+				std::vector<EncSlot>* slots = nullptr;
+				if (rest[i].rfind("land ", 0) == 0) slots = &this->land_slots;
+				else if (rest[i].rfind("water ", 0) == 0) slots = &this->water_slots;
+				else continue;
+				size_t prefix = rest[i].find(' ') + 1;
+				std::stringstream ss(rest[i].substr(prefix));
 				std::string entry;
 				while (std::getline(ss, entry, ',')) {
 					size_t a = entry.find(':'), b = entry.rfind(':');
@@ -187,7 +203,7 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 					s.species = entry.substr(0, a);
 					s.min_level = std::stoi(entry.substr(a + 1, b - a - 1));
 					s.max_level = std::stoi(entry.substr(b + 1));
-					this->land_slots.push_back(s);
+					slots->push_back(s);
 				}
 			}
 		} else if (head.rfind("objscripts", 0) == 0) {
@@ -308,9 +324,20 @@ bool Map::is_counter(int tile_x, int tile_y) const {
 	return this->counter_ids.count(id) > 0;
 }
 
-bool Map::has_encounters() const { return !this->land_slots.empty(); }
+bool Map::is_water(int tile_x, int tile_y) const {
+	if (!in_bounds(tile_x, tile_y) || this->water_ids.empty()) return false;
+	int id = this->tile_map[this->index(tile_x, tile_y)];
+	return this->water_ids.count(id) > 0;
+}
+
+bool Map::has_encounters() const {
+	return !this->land_slots.empty() || !this->water_slots.empty();
+}
 
 bool Map::encounter_here(int x, int y) const {
+	// Surfable water: reaching one at all already implies surfing (see
+	// main.cpp's Surf gate -- normal walking can never land on one).
+	if (!this->water_slots.empty() && is_water(x, y)) return true;
 	if (this->land_slots.empty()) return false;
 	if (is_grass(x, y)) return true;
 	// Cave / indoor encounter map: has land encounters but no tall-grass tiles
@@ -320,22 +347,29 @@ bool Map::encounter_here(int x, int y) const {
 	return false;
 }
 
-bool Map::roll_encounter(std::mt19937& rng, std::string& species, int& level) const {
-	if (this->land_slots.empty()) return false;
-	// Standard Gen-3 land slot rates (percent) for the 12 slots.
-	static const int RATE[12] = {20, 20, 10, 10, 10, 10, 5, 5, 5, 4, 1, 1};
-	int n = (int)this->land_slots.size();
+bool Map::roll_encounter(std::mt19937& rng, int tile_x, int tile_y,
+                         std::string& species, int& level) const {
+	const std::vector<EncSlot>* slotsp = &this->land_slots;
+	if (!this->water_slots.empty() && is_water(tile_x, tile_y)) slotsp = &this->water_slots;
+	const std::vector<EncSlot>& slots = *slotsp;
+	if (slots.empty()) return false;
+	// Standard Gen-3 slot rates (percent) for the 12 land / 5 water slots.
+	static const int LAND_RATE[12] = {20, 20, 10, 10, 10, 10, 5, 5, 5, 4, 1, 1};
+	static const int WATER_RATE[5] = {60, 30, 5, 4, 1};
+	const int* rate = (slotsp == &this->water_slots) ? WATER_RATE : LAND_RATE;
+	int rate_n = (slotsp == &this->water_slots) ? 5 : 12;
+	int n = (int)slots.size();
 	int total = 0;
-	for (int i = 0; i < n && i < 12; ++i) total += RATE[i];
+	for (int i = 0; i < n && i < rate_n; ++i) total += rate[i];
 	if (total <= 0) total = n;
 	int r = (int)(rng() % total);
 	int idx = 0;
 	for (int i = 0; i < n; ++i) {
-		int w = (i < 12) ? RATE[i] : 1;
+		int w = (i < rate_n) ? rate[i] : 1;
 		if (r < w) { idx = i; break; }
 		r -= w;
 	}
-	const EncSlot& s = this->land_slots[idx];
+	const EncSlot& s = slots[idx];
 	int lo = s.min_level, hi = s.max_level;
 	if (hi < lo) hi = lo;
 	level = lo + (int)(rng() % (hi - lo + 1));

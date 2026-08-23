@@ -193,3 +193,5 @@ waitmovement 0
 msgbox	Our HIDEOUT's secret?Well, let's just say… There's a submarine at the far end!But, by now… Kekekeke…
 release
 end
+water
+335,679,686,687

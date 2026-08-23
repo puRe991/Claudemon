@@ -303,7 +303,14 @@ has been verified either by an automated test or by headless screenshot
 * EXP gain, all 6 species growth curves, level-up stat recalculation,
   level-up movesets (411 learnsets), **level-up evolution** (172 paths)
 * TM/HM teaching from the bag, gated by real per-species learnsets (372
-  entries); TMs consumed on use, HMs reusable
+  entries); TMs consumed on use, HMs reusable (this was silently broken for
+  *every* TM/HM the whole time before — see the fix note below)
+* Surf: badge-gated water-tile classification (pokeemerald's own surfable
+  metatile behaviors), a held-Shift-style Ja/Nein prompt the first time you
+  approach open water, automatic dismount back on dry land, and its own
+  water wild-encounter table (5-slot Gen-3 rates) — without this, roughly
+  the entire back half of Hoenn (Mossdeep, Sootopolis, Ever Grande/the
+  Pokémon League itself) was unreachable
 * Using healing/revive/status-curing bag items (Potion family, soft drinks,
   berries, Revive/Max Revive, Antidote/Paralyze Heal/Awakening/Burn Heal/
   Ice Heal/Full Heal/Full Restore) on a chosen party member, with real
@@ -351,8 +358,11 @@ has been verified either by an automated test or by headless screenshot
 ### ❌ Not implemented yet
 
 * Gift/fossil Pokémon (`givemon`: Johto starters, Beldum, Castform, fossils)
-* HM field moves other than Cut/Rock Smash (Surf/Fly/Strength/Flash/
-  Waterfall/Dive) — water is currently just impassable terrain
+* HM field moves other than Cut/Rock Smash/Surf (Fly/Strength/Flash/
+  Waterfall/Dive) — Strength needs a real boulder-push mechanic, Waterfall/
+  Dive need their own walk-onto-special-tile triggers (same shape as Surf,
+  see above, but distinct metatile behaviors and no assets/mechanic for
+  Dive's underwater maps yet)
 * Bike, day-night cycle, overworld weather, fishing, berry growing
 * Pokédex screen (no seen/caught tracking), party summary/stats screen,
   player naming/gender selection, options/settings screen
@@ -416,11 +426,32 @@ hit:
    - `opendoor`/`closedoor`/`waitdooranim` — confirmed purely cosmetic
      (metatile swap + SFX; door tiles are already walkable independent of
      the animation), left as no-ops.
-5. **A per-map LOCALID→object registry** — the biggest concrete gap the
-   audit above found: needed for `addobject`/`hideobject`/`showobject` to
-   work at all, which blocks scripted mid-scene NPC spawns like Petalburg
-   Gym's Wally tutorial cutscene.
-6. **`multichoice` support** — a real choice-menu UI (same block-and-resume
+5. ~~Playthrough-blocker audit~~ — done, prompted by "can we actually finish
+   the game right now?". Two real blockers found and fixed:
+   - **TM/HM teaching was completely broken for every TM and HM in the
+     game**, Cut included — `Menu.cpp` assumed bag items were named like
+     `ITEM_HM03`, but pokeemerald's real item constants are descriptive
+     (`ITEM_HM_CUT`, `ITEM_TM_BULK_UP`, ...), so the derived move was
+     always garbage and teaching always silently failed ("Es passiert
+     nichts."). Fixed by reading the move straight off the item name
+     (pokeemerald builds those constants from the move name itself, so no
+     numeric code is even needed) — verified headlessly teaching both an
+     HM and a TM.
+   - **Surf didn't exist at all**, and worse, water wasn't even collision-
+     blocked, so the "back half" of Hoenn (everything past Lilycove --
+     Mossdeep, Sootopolis, and Ever Grande/the Pokémon League itself, all
+     only reachable over open water) was already walkable on foot with no
+     Surf check, animation, or encounters at all. Fixed: real surfable-
+     water metatile classification (mirroring how tall grass is already
+     classified), a gate that blocks entry without Surf and prompts for it
+     with the real games' own question text, automatic dismount back on
+     land, and a water wild-encounter table.
+6. **A per-map LOCALID→object registry** — the biggest concrete gap the
+   `goto_if`/`multichoice` audit above found: needed for
+   `addobject`/`hideobject`/`showobject` to work at all, which blocks
+   scripted mid-scene NPC spawns like Petalburg Gym's Wally tutorial
+   cutscene.
+7. **`multichoice` support** — a real choice-menu UI (same block-and-resume
    VM pattern as the party picker/Ja-Nein prompt) plus hand-transcribing
    each non-Battle-Frontier option list's text from pokeemerald's C source.
 
@@ -478,7 +509,8 @@ screenshot), not just written and assumed correct.
 **Overworld features**
 - [x] Overworld minigames (slots/roulette/blender/jump) with coin currency
 - [x] Cut/Rock Smash field moves (badge-gated, real removeobject/text)
-- [ ] Remaining HM field moves (Surf/Fly/Strength/Flash/Waterfall/Dive)
+- [x] Surf (real water-tile gate, Ja/Nein prompt, dismount, water encounters)
+- [ ] Remaining HM field moves (Fly/Strength/Flash/Waterfall/Dive)
 - [x] Running Shoes (hold Shift, gated on FLAG_SYS_B_DASH, real 2x speed)
 - [ ] Bike
 - [ ] Day-night cycle, overworld weather

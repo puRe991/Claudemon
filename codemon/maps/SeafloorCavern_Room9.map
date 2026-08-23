@@ -270,3 +270,5 @@ setflag FLAG_ITEM_SEAFLOOR_CAVERN_ROOM_9_TM_EARTHQUAKE
 end
 = SeafloorCavern_Room9_EventScript_ItemTMEarthquake_Taken
 end
+water
+334,335,368,641,648,649,650,656,657,658
