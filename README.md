@@ -1,4 +1,4 @@
-# Cod-é-mon - Pokemon clone 
+# Claudemon - Pokemon clone 
 
 #### Cliff's notes - Abstract :
 
@@ -6,22 +6,8 @@ Two Dimensional (2D) tile based game engine. Written, portably, in C++, _Cod-e-m
 The Monsta Engine and which _Cod-e-mon_ game built on it, leverages CMake for its build system. 
 The SFML (Super Fast Multi-Media) is used as the graphical interface library. 
 
-Note: Don't sue me nintendo buissness daddy.
 
-## Backstory 
-
-#### This part is 95% ok to skip, its mostly my rambling and what I read to remember why I started this
-
-In 2010 when I first began to learn to code in a systematic way, I had starry eyed dreams of becoming a video games programmer. <br>
-I think this is likely a natural pipeline into computer science for many. Game Dev seems like a lot of crunch for rarely enough pay to me now. <br> <br>
-Any-hoozles. <br> <br>
-As I had at that time already learned Basic, and was learning C in my highscool programming class I decided to try my hand at a pure C Pokemon clone. I submitted it as a summative project. It never ran to my satisfaction, and apparently it never ran at all on Mr. Krealman's PC. I got a good grade anyways somehow. (Thanks Mr.K) <br>
-It was a good piece of code for a highschooler, it had: <br>
-transitions, double buffering, a working (much to my astonishment) camera system, battles, et cetera. <br> <br>
-My issues was that it was never portable or reliable. Simply put t'was buggy as-all-get-out and the ammount of *ahem* assistance I recieved on the project made me feel like it was never truly my work. (Thanks Geoffrey S.)<br>
-Now as I finally finish my formal education and have amassed a decade or so of practical experience, let try our hand at reimplementing this solution. <br>
-
-#### TLDR: This is an exercise in catharsis aswell as a way for me to gauge my growth as a dev
+ 
 
 ## Exec. Summary: <br>
 ### Attempt to reimplement pokemon in C++ as an exercise
