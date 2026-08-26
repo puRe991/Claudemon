@@ -2,6 +2,7 @@
 #include <cmath>
 #include <cctype>
 #include <algorithm>
+#include <unordered_map>
 
 // Fainting cures every status condition (every generation's rule), so a
 // later Revive doesn't bring a mon back still nominally poisoned/asleep/...
@@ -117,6 +118,7 @@ bool Battle::start_wild(const std::string& species, int level, Mon* pm) {
 	this->enemy_title.clear();
 	this->party.clear(); this->party_idx = 0;
 	this->enemy = this->data->make_mon(species, level);
+	this->player_stages = StatStages(); this->enemy_stages = StatStages();
 	this->over = this->victory = false;
 	this->last_outcome = OUTCOME_NONE;
 	this->cursor = 0;
@@ -146,6 +148,7 @@ bool Battle::start_trainer(const std::string& trainer_id, const std::string& nam
 	this->enemy_title = name.empty() ? "TRAINER" : name;
 	this->party = pty; this->party_idx = 0;
 	this->enemy = this->data->make_mon(pty[0].first, pty[0].second);
+	this->player_stages = StatStages(); this->enemy_stages = StatStages();
 	this->over = this->victory = false;
 	this->last_outcome = OUTCOME_NONE;
 	this->cursor = 0;
@@ -175,15 +178,34 @@ std::string Battle::ai_move() const {
 	int best_dmg = -1;
 	for (const std::string& m : this->enemy.moves) {
 		std::mt19937 tmp(12345);
-		int d = this->data->damage(this->enemy, *this->player, m, tmp);
+		const MoveInfo* mi = this->data->move(m);
+		bool physical = mi && BattleData::is_physical(mi->type);
+		int d = this->data->damage(this->enemy, *this->player, m, tmp,
+		                           stage_mult(physical ? this->enemy_stages.atk : this->enemy_stages.spa),
+		                           stage_mult(physical ? this->player_stages.def : this->player_stages.spd));
 		if (d > best_dmg) { best_dmg = d; best = m; }
 	}
 	return best;
 }
 
-bool Battle::roll_accuracy(int accuracy) const {
+bool Battle::roll_accuracy(int accuracy, int acc_stage, int eva_stage) const {
 	if (accuracy <= 0) return true;   // 0 = never misses (pokeemerald convention)
-	return (int)((*this->rng)() % 100) < accuracy;
+	float chance = accuracy * acc_stage_mult(acc_stage - eva_stage);
+	return (int)((*this->rng)() % 100) < (int)chance;
+}
+
+// Gen-3 stat-stage multiplier tables (indexed by stage+6, so -6..+6 -> 0..12).
+float Battle::stage_mult(int stage) {
+	static const int num[13] = {2, 2, 2, 2, 2, 2, 2, 3, 4, 5, 6, 7, 8};
+	static const int den[13] = {8, 7, 6, 5, 4, 3, 2, 2, 2, 2, 2, 2, 2};
+	int i = std::clamp(stage, -6, 6) + 6;
+	return (float)num[i] / den[i];
+}
+float Battle::acc_stage_mult(int stage) {
+	static const int num[13] = {3, 3, 3, 3, 3, 3, 3, 4, 5, 6, 7, 8, 9};
+	static const int den[13] = {9, 8, 7, 6, 5, 4, 3, 3, 3, 3, 3, 3, 3};
+	int i = std::clamp(stage, -6, 6) + 6;
+	return (float)num[i] / den[i];
 }
 
 bool Battle::status_blocks_turn(Mon& m) {
@@ -253,6 +275,84 @@ void Battle::try_inflict_status(Mon& target, const std::string& effect) {
 	}
 }
 
+bool Battle::apply_stat_change(Mon& atk, Mon& def, const std::string& effect) {
+	struct Entry { char stat; int delta; bool self; };
+	static const std::unordered_map<std::string, Entry> tbl = {
+		{"ATTACK_UP",               {'A', +1, true}},
+		{"ATTACK_UP_2",             {'A', +2, true}},
+		{"ATTACK_UP_HIT",           {'A', +1, true}},
+		{"ATTACK_DOWN",             {'A', -1, false}},
+		{"ATTACK_DOWN_2",           {'A', -2, false}},
+		{"ATTACK_DOWN_HIT",         {'A', -1, false}},
+		{"DEFENSE_UP",              {'D', +1, true}},
+		{"DEFENSE_UP_2",            {'D', +2, true}},
+		{"DEFENSE_UP_HIT",          {'D', +1, true}},
+		{"DEFENSE_DOWN",            {'D', -1, false}},
+		{"DEFENSE_DOWN_2",          {'D', -2, false}},
+		{"DEFENSE_DOWN_HIT",        {'D', -1, false}},
+		{"DEFENSE_CURL",            {'D', +1, true}},
+		{"SPECIAL_ATTACK_UP",       {'S', +1, true}},
+		{"SPECIAL_ATTACK_UP_2",     {'S', +2, true}},
+		{"SPECIAL_ATTACK_DOWN_HIT", {'S', -1, false}},
+		{"SPECIAL_DEFENSE_UP_2",    {'F', +2, true}},
+		{"SPECIAL_DEFENSE_DOWN_2",  {'F', -2, false}},
+		{"SPECIAL_DEFENSE_DOWN_HIT",{'F', -1, false}},
+		{"SPEED_UP_2",              {'E', +2, true}},
+		{"SPEED_DOWN",              {'E', -1, false}},
+		{"SPEED_DOWN_2",            {'E', -2, false}},
+		{"SPEED_DOWN_HIT",          {'E', -1, false}},
+		{"ACCURACY_DOWN",           {'C', -1, false}},
+		{"ACCURACY_DOWN_HIT",       {'C', -1, false}},
+		{"EVASION_UP",              {'V', +1, true}},
+		{"EVASION_DOWN",            {'V', -1, false}},
+		{"MINIMIZE",                {'V', +1, true}},
+	};
+	auto apply_one = [&](Mon& target, char stat, int delta) {
+		StatStages& st = stages_for(target);
+		int* field; std::string name;
+		switch (stat) {
+			case 'A': field = &st.atk; name = "ANGRIFF"; break;
+			case 'D': field = &st.def; name = "VERTEIDIGUNG"; break;
+			case 'S': field = &st.spa; name = "SP. ANGRIFF"; break;
+			case 'F': field = &st.spd; name = "SP. VERTEIDIGUNG"; break;
+			case 'E': field = &st.spe; name = "INITIATIVE"; break;
+			case 'C': field = &st.acc; name = "GENAUIGKEIT"; break;
+			default:  field = &st.eva; name = "FLUCHT"; break;
+		}
+		int before = *field;
+		*field = std::clamp(*field + delta, -6, 6);
+		if (*field == before) {
+			queue(nice(target.species) + "s " + name +
+			      (delta > 0 ? " kann nicht weiter steigen!" : " kann nicht weiter sinken!"));
+		} else {
+			queue(nice(target.species) + "s " + name +
+			      (delta > 0 ? (delta >= 2 ? " stieg stark an!" : " stieg an!")
+			                 : (delta <= -2 ? " sank stark!" : " sank!")));
+		}
+	};
+
+	auto it = tbl.find(effect);
+	if (it != tbl.end()) { apply_one(it->second.self ? atk : def, it->second.stat, it->second.delta); return true; }
+	if (effect == "BULK_UP")      { apply_one(atk, 'A', +1); apply_one(atk, 'D', +1); return true; }
+	if (effect == "CALM_MIND")    { apply_one(atk, 'S', +1); apply_one(atk, 'F', +1); return true; }
+	if (effect == "DRAGON_DANCE") { apply_one(atk, 'A', +1); apply_one(atk, 'E', +1); return true; }
+	if (effect == "COSMIC_POWER") { apply_one(atk, 'D', +1); apply_one(atk, 'F', +1); return true; }
+	if (effect == "ALL_STATS_UP_HIT") {
+		apply_one(atk, 'A', +1); apply_one(atk, 'D', +1); apply_one(atk, 'S', +1);
+		apply_one(atk, 'F', +1); apply_one(atk, 'E', +1);
+		return true;
+	}
+	if (effect == "TICKLE")   { apply_one(def, 'A', -1); apply_one(def, 'D', -1); return true; }
+	if (effect == "SWAGGER")  { apply_one(def, 'A', +2); try_inflict_status(def, "CONFUSE"); return true; }
+	if (effect == "FLATTER") { apply_one(def, 'S', +1); try_inflict_status(def, "CONFUSE"); return true; }
+	if (effect == "HAZE") {
+		this->player_stages = StatStages(); this->enemy_stages = StatStages();
+		queue("Alle Statusveränderungen wurden aufgehoben!");
+		return true;
+	}
+	return false;
+}
+
 void Battle::apply_end_of_turn_effects() {
 	Mon* sides[2] = {this->player, &this->enemy};
 	for (Mon* m : sides) {
@@ -283,26 +383,34 @@ void Battle::do_move(Mon& atk, Mon& def, const std::string& mv,
 	queue(atk_name + " setzt " + nice(mv) + " ein!");
 	const MoveInfo* mi = this->data->move(mv);
 	if (!mi) return;
-	if (!roll_accuracy(mi->accuracy)) { queue("Der Angriff geht daneben!"); return; }
+	StatStages& atk_st = stages_for(atk);
+	StatStages& def_st = stages_for(def);
+	if (!roll_accuracy(mi->accuracy, atk_st.acc, def_st.eva)) {
+		queue("Der Angriff geht daneben!"); return;
+	}
 	float eff = BattleData::type_eff(mi->type, def.t1, def.t2);
 	if (eff == 0.f) { queue("Hat keine Wirkung auf " + nice(def.species) + " ..."); return; }
 	if (mi->power <= 0) {                      // pure status move: no damage model
-		try_inflict_status(def, mi->effect);
+		if (!apply_stat_change(atk, def, mi->effect)) try_inflict_status(def, mi->effect);
 		return;
 	}
-	int dmg = this->data->damage(atk, def, mv, *this->rng);
+	bool physical = BattleData::is_physical(mi->type);
+	int dmg = this->data->damage(atk, def, mv, *this->rng,
+	                             stage_mult(physical ? atk_st.atk : atk_st.spa),
+	                             stage_mult(physical ? def_st.def : def_st.spd));
 	deal_damage(def, dmg);
 	if (eff > 1.f) queue("Das ist sehr effektiv!");
 	else if (eff < 1.f) queue("Das ist nicht sehr effektiv ...");
 	if (def.fainted()) { queue(nice(def.species) + " wurde besiegt!"); return; }
 	if (mi->secondary_chance > 0 && roll_accuracy(mi->secondary_chance))
-		try_inflict_status(def, mi->effect);
+		if (!apply_stat_change(atk, def, mi->effect)) try_inflict_status(def, mi->effect);
 }
 
 void Battle::send_next_enemy() {
 	this->party_idx++;
 	this->enemy = this->data->make_mon(this->party[this->party_idx].first,
 	                                   this->party[this->party_idx].second);
+	this->enemy_stages = StatStages();
 	load_sprites();
 	queue(this->enemy_title + " schickt " + nice(this->enemy.species) + "!");
 	if (this->audio) this->audio->play_cry(lower(this->enemy.species));
@@ -331,9 +439,12 @@ void Battle::handle_enemy_faint() {
 
 void Battle::resolve_turn(const std::string& player_move) {
 	std::string enemy_move = ai_move();
-	// Paralysis quarters effective Speed for turn-order purposes (Gen-3).
-	auto eff_speed = [](const Mon& m) {
-		return m.status == Status::PARALYSIS ? std::max(1, m.spe / 4) : m.spe;
+	// Paralysis quarters effective Speed for turn-order purposes (Gen-3),
+	// on top of that side's own Speed stat stage.
+	auto eff_speed = [this](const Mon& m) {
+		float spe = m.spe * stage_mult((&m == this->player) ? this->player_stages.spe
+		                                                     : this->enemy_stages.spe);
+		return m.status == Status::PARALYSIS ? std::max(1.f, spe / 4.f) : spe;
 	};
 	bool player_first = eff_speed(*this->player) >= eff_speed(this->enemy);
 
@@ -450,6 +561,7 @@ void Battle::do_switch(int idx) {
 	bool was_forced = this->forced_switch;
 	this->active_idx = (size_t)idx;
 	this->player = &chosen;
+	this->player_stages = StatStages();
 	load_sprites();
 	this->prev_php = this->player->hp; this->shake_t = 0.f;
 	this->log.clear();

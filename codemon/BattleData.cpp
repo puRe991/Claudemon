@@ -229,11 +229,13 @@ float BattleData::type_eff(const std::string& a, const std::string& d1,
 }
 
 int BattleData::damage(const Mon& atk, const Mon& def,
-                       const std::string& move_name, std::mt19937& rng) const {
+                       const std::string& move_name, std::mt19937& rng,
+                       float atk_mult, float def_mult) const {
 	const MoveInfo* mi = move(move_name);
 	if (!mi || mi->power <= 0) return 0;
-	int A = is_physical(mi->type) ? atk.atk : atk.spa;
-	int D = is_physical(mi->type) ? def.def : def.spd;
+	int A = (int)((is_physical(mi->type) ? atk.atk : atk.spa) * atk_mult);
+	int D = (int)((is_physical(mi->type) ? def.def : def.spd) * def_mult);
+	if (A <= 0) A = 1;
 	if (D <= 0) D = 1;
 	int base = (((2 * atk.level) / 5 + 2) * mi->power * A / D) / 50 + 2;
 	float stab = (mi->type == atk.t1 || mi->type == atk.t2) ? 1.5f : 1.0f;

@@ -95,17 +95,22 @@ public:
 	// Is a move type physical (uses Atk/Def) in the Gen-3 split?
 	static bool is_physical(const std::string& type);
 	// Status condition a move's bare EFFECT_* suffix inflicts, or NONE if
-	// it isn't a status-inflicting effect (most aren't -- stat stages,
-	// weather etc. are out of scope and left alone).
+	// it isn't a status-inflicting effect (most aren't -- weather, stat
+	// stages (see Battle::apply_stat_change) etc. are handled elsewhere or
+	// out of scope).
 	static Status effect_status(const std::string& effect);
 	// EFFECT_CONFUSE / EFFECT_CONFUSE_HIT: the volatile confusion status
 	// (tracked separately from `status` since it can coexist with one).
 	static bool effect_confuses(const std::string& effect);
 	static const char* status_name(Status s);   // "PSN", "PAR", ... for the UI
 
-	// Damage of `attacker` using `move_name` against `defender`.
+	// Damage of `attacker` using `move_name` against `defender`. atk_mult/
+	// def_mult are the caller's own Gen-3 stat-stage multipliers (see
+	// Battle::stage_mult) applied to the attack/defense stat this move's
+	// physical/special split actually uses; both default to 1 (no stages).
 	int damage(const Mon& attacker, const Mon& defender,
-	           const std::string& move_name, std::mt19937& rng) const;
+	           const std::string& move_name, std::mt19937& rng,
+	           float atk_mult = 1.f, float def_mult = 1.f) const;
 
 	// --- progression -------------------------------------------------------
 	// Total experience needed to be at `level` for a growth-rate name.
