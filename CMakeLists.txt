@@ -109,13 +109,29 @@ endif()
 # POST_BUILD it only fires when the executable itself relinks, so re-running
 # the importer and rebuilding left the staged copy stale -- and the engine
 # tests read their maps from there, so they would test yesterday's data.
+#
+# The destination uses $<TARGET_FILE_DIR:codemon> rather than
+# CMAKE_CURRENT_BINARY_DIR: they're the same directory for a single-config
+# generator (Makefiles/Ninja), but a multi-config generator (Visual Studio,
+# used by the Windows CI build) actually puts codemon.exe in a per-config
+# subdirectory like build/Release -- CMAKE_CURRENT_BINARY_DIR is still just
+# build/, which would stage maps/assets next to nothing. That mismatch is
+# exactly what made the Windows build's own ctest run fail with "could not
+# load assets/battle" (and would have shipped a codemon.exe that can't find
+# its assets either).
 add_custom_target(stage_assets ALL
     COMMAND ${CMAKE_COMMAND} -E copy_directory
-            "${SRC_DIR}/maps"   "${CMAKE_CURRENT_BINARY_DIR}/maps"
+            "${SRC_DIR}/maps"   "$<TARGET_FILE_DIR:codemon>/maps"
     COMMAND ${CMAKE_COMMAND} -E copy_directory
-            "${SRC_DIR}/assets" "${CMAKE_CURRENT_BINARY_DIR}/assets"
+            "${SRC_DIR}/assets" "$<TARGET_FILE_DIR:codemon>/assets"
     COMMENT "Staging maps/ and assets/ next to the game binary")
-add_dependencies(codemon stage_assets)
+# stage_assets depends on codemon (not the other way around): it only needs
+# to know where codemon's binary ended up (to stage next to it), not to run
+# before codemon links -- declaring it the other way around would make
+# codemon depend on stage_assets while stage_assets's own command depends on
+# codemon's target file, an actual dependency cycle CMake refuses to
+# generate.
+add_dependencies(stage_assets codemon)
 
 if(WIN32)
     # SFML's audio module always dynamically loads OpenAL Soft's DLL at
