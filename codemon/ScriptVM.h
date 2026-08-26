@@ -147,6 +147,19 @@ private:
 	float move_timer;
 	float healfx_timer = 0.f;
 	std::string pending_win_script;  // trainerbattle's post-victory script label, if any
+	// The trainer currently being fought, so a win can mark them defeated (see
+	// trainer_flag below). Cleared once that happens.
+	std::string pending_trainer_id;
+
+	// pokeemerald tracks "this trainer has been beaten" in a dedicated flag
+	// array (TRAINER_FLAGS_START + trainerId). This engine has no fixed
+	// trainer-id numbering, so it derives a flag name from the TRAINER_*
+	// constant instead -- it lands in GameState's ordinary var map and so is
+	// persisted by the savegame like every other flag.
+	static std::string trainer_flag(const std::string& trainer_id) {
+		return "TRAINER_DEFEATED_" + trainer_id;
+	}
+	bool trainer_defeated(const std::string& trainer_id) const;
 
 	bool pending_warp = false;
 	std::string warp_dest; int warp_x = -1, warp_y = -1;

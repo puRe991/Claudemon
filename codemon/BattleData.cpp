@@ -294,10 +294,14 @@ int BattleData::damage(const Mon& atk, const Mon& def,
 	if (A <= 0) A = 1;
 	if (D <= 0) D = 1;
 	int base = (((2 * atk.level) / 5 + 2) * mi->power * A / D) / 50 + 2;
-	// Struggle bypasses type calculation entirely in the real games, STAB
-	// included, regardless of the user's own type.
-	float stab = (move_name != "STRUGGLE" && (mi->type == atk.t1 || mi->type == atk.t2)) ? 1.5f : 1.0f;
-	float eff = type_eff(mi->type, def.t1, def.t2);
+	// Struggle bypasses type calculation entirely in the real games -- STAB
+	// *and* the type chart, regardless of either side's types. It is data-typed
+	// NORMAL, so without this a Ghost defender would zero it out and a mon with
+	// no PP left could never damage (or take recoil from) one, leaving the
+	// battle unable to reach an end state.
+	bool is_struggle = (move_name == "STRUGGLE");
+	float stab = (!is_struggle && (mi->type == atk.t1 || mi->type == atk.t2)) ? 1.5f : 1.0f;
+	float eff = is_struggle ? 1.0f : type_eff(mi->type, def.t1, def.t2);
 	float roll = 0.85f + (rng() % 16) / 100.0f;      // 0.85 .. 1.00
 	// Burn halves physical damage output (Gen-3: applied to the attack
 	// stat, equivalent to halving the final physical hit).

@@ -611,13 +611,20 @@ void Battle::do_move(Mon& atk, Mon& def, const std::string& mv,
 	atk_mult *= weather_damage_mult(mi->type);
 	if (!is_struggle) atk_mult *= held_item_type_mult(atk, mi->type);
 	int dmg = this->data->damage(atk, def, mv, *this->rng, atk_mult, def_mult, crit);
+	// Recoil is a fraction of the HP *actually taken off*, not of the raw
+	// damage roll -- pokeemerald clamps gHpDealt to the target's remaining
+	// HP before computing `gBattleMoveDamage = gHpDealt / 4`. Using the raw
+	// roll let an overkill hit on a nearly-dead target recoil for a quarter
+	// of a number far bigger than that target's whole HP bar, which could
+	// faint the attacker outright.
+	int dealt = std::min(dmg, std::max(0, def.hp));
 	deal_damage(def, dmg);
 	check_pinch_berry(def);
 	if (crit) queue("Ein Volltreffer!");
 	if (eff > 1.f) queue("Das ist sehr effektiv!");
 	else if (eff < 1.f) queue("Das ist nicht sehr effektiv ...");
-	if (mi->effect == "RECOIL" && dmg > 0) {
-		deal_damage(atk, std::max(1, dmg / 4));
+	if (mi->effect == "RECOIL" && dealt > 0) {
+		deal_damage(atk, std::max(1, dealt / 4));
 		check_pinch_berry(atk);
 		queue(nice(atk.species) + " wird vom Rückstoß getroffen!");
 		if (atk.fainted()) queue(nice(atk.species) + " wurde besiegt!");

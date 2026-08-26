@@ -268,6 +268,11 @@ void ScriptVM::apply_move_action(Character* ch, const std::string& act) {
 	// "delay"/"end"/unknown: no positional change
 }
 
+bool ScriptVM::trainer_defeated(const std::string& trainer_id) const {
+	if (!this->state || trainer_id.empty()) return false;
+	return this->state->flag(trainer_flag(trainer_id));
+}
+
 void ScriptVM::pump() {
 	// Execute instructions until we hit a blocking op or the script ends.
 	int guard = 0;
@@ -493,6 +498,13 @@ void ScriptVM::pump() {
 				else if (this->pending_win_script.empty() && this->map->has_script(a))
 					this->pending_win_script = a;
 			}
+			// Already beaten: pokeemerald's trainerbattle skips the fight
+			// entirely and falls through to the instruction after it, which is
+			// that trainer's post-defeat line. Without this every trainer could
+			// be re-fought for unlimited EXP/prize money and their after-battle
+			// dialogue was unreachable.
+			if (trainer_defeated(tid)) continue;
+			this->pending_trainer_id = tid;
 			if (this->battle && this->bdata && this->team && !this->team->empty() &&
 			    this->battle->start_trainer(tid, name_from_trainer(tid), &(*this->team)[0])) {
 				this->st = WAIT_BATTLE;
@@ -501,6 +513,16 @@ void ScriptVM::pump() {
 			this->box->open(std::string(), "Ein TRAINER möchte kämpfen!");
 			this->st = WAIT_MSG;
 			return;
+		} else if (op == "settrainerflag" && argc >= 1) {
+			// Marks a trainer beaten without fighting them (story scripts use
+			// it to retire trainers, e.g. the Team Aqua/Magma grunts that leave).
+			if (this->state) this->state->set_flag(trainer_flag(arg(0)));
+		} else if (op == "cleartrainerflag" && argc >= 1) {
+			if (this->state) this->state->clear_flag(trainer_flag(arg(0)));
+		} else if ((op == "goto_if_defeated" || op == "goto_if_not_defeated") &&
+		           argc >= 2) {
+			bool beaten = trainer_defeated(arg(0));
+			if (beaten == (op == "goto_if_defeated")) { jump(arg(1)); continue; }
 		} else if (op == "setwildbattle" && argc >= 2) {
 			// Scripted wild battles (legendaries, Kecleon, the New Mauville
 			// Voltorb swarm): the species/level is set here, then a
@@ -812,6 +834,14 @@ void ScriptVM::update(float dt) {
 			bool won = this->battle && this->battle->won();
 			std::string ws = this->pending_win_script;
 			this->pending_win_script.clear();
+			// Winning marks that trainer beaten for good, so talking to them
+			// again replays their post-defeat line instead of re-fighting.
+			// A loss deliberately leaves the flag clear (real games let you
+			// retry after a whiteout).
+			std::string tid = this->pending_trainer_id;
+			this->pending_trainer_id.clear();
+			if (won && this->state && !tid.empty())
+				this->state->set_flag(trainer_flag(tid));
 			if (!won) {
 				// A lost battle (trainer or wild) never resumes the calling
 				// script -- on real hardware the overworld task is torn down

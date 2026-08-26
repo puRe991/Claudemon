@@ -190,7 +190,11 @@ bool SaveGame::load(const std::string& path, GameState& gs,
 		}
 	}
 
-	if (new_map.empty() || new_team.empty()) return false;
+	// An empty party is legitimate: a new game has none until Birch hands over
+	// the starter on Route 101, and SPEICHERN is offered from the first frame.
+	// The map line is the real integrity check -- also requiring a party here
+	// silently rejected those saves, dropping the player into a new game.
+	if (new_map.empty()) return false;
 
 	gs = new_gs;
 	team = new_team;
