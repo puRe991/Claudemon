@@ -52,6 +52,8 @@ collision
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 warps
 18 22 Route103 0
+mapsec
+6 8 1 1	ALTERING CAVE
 music
 MUS_RG_SEVII_CAVE
 encounters

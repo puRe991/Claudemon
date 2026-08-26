@@ -110,5 +110,7 @@ signs
 7 3	RUSTURF TUNNEL “Linking RUSTBORO and VERDANTURF“The tunnel project has been canceled.”
 visit
 FLAG_VISITED_VERDANTURF_TOWN
+mapsec
+4 6 1 1	VERDANTURF TOWN
 music
 MUS_VERDANTURF

@@ -729,5 +729,7 @@ goto_if_eq VAR_TEMP_1 1 Route110_TrickHousePuzzle5_EventScript_CorrectGoThrough
 setvar VAR_TEMP_9 0
 goto Route110_TrickHousePuzzle5_EventScript_Mechadoll1Activate
 end
+mapsec
+8 7 1 3	ROUTE 110
 music
 MUS_TRICK_HOUSE

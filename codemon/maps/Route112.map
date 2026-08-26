@@ -418,6 +418,8 @@ signs
 4 49	ROUTE 112 LAVARIDGE TOWN
 grass
 13,37
+mapsec
+6 3 2 1	ROUTE 112
 music
 MUS_ROUTE110
 encounters

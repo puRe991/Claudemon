@@ -120,6 +120,8 @@ msgbox	Playing with marine POKéMON is one of the pleasures of swimming!
 end
 water
 368,419,420,429,431,437,439,445,446,447
+mapsec
+6 14 2 1	ROUTE 108
 music
 MUS_ROUTE104
 encounters

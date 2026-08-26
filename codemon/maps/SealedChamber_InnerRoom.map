@@ -50,5 +50,7 @@ collision
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 warps
 10 19 SealedChamber_OuterRoom 0
+mapsec
+11 10 1 1	SEALED CHAMBER
 music
 MUS_SEALED_CHAMBER

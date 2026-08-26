@@ -122,5 +122,7 @@ return
 msgbox	Advance to the next room.And there, confirm the truly fearsome side of the POKéMON LEAGUE.
 release
 end
+mapsec
+27 8 1 2	EVER GRANDE CITY
 music
 MUS_VICTORY_ROAD

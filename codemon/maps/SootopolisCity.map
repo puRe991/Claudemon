@@ -895,6 +895,8 @@ dive
 654
 visit
 FLAG_VISITED_SOOTOPOLIS_CITY
+mapsec
+21 7 1 1	SOOTOPOLIS CITY
 music
 MUS_SOOTOPOLIS
 encounters

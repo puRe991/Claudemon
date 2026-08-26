@@ -1247,6 +1247,8 @@ signs
 24 116	TRAINER HILL ENTRANCE“Scale the heights, you hot-blooded TRAINERS!”
 water
 161,177,178,184,186,192,194,195,196
+mapsec
+8 0 1 6	ROUTE 111
 music
 MUS_ROUTE110
 encounters

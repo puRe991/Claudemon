@@ -56,6 +56,8 @@ pokemart VerdanturfTown_Mart_Pokemart
 msgbox	Please come again!
 release
 end
+mapsec
+4 6 1 1	VERDANTURF TOWN
 music
 MUS_POKE_MART
 counters

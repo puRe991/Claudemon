@@ -118,5 +118,7 @@ msgbox	You don't have the money.
 hidemoneybox
 release
 end
+mapsec
+8 12 1 3	ROUTE 109
 music
 MUS_DEWFORD

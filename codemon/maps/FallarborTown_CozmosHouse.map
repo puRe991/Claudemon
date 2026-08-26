@@ -87,5 +87,7 @@ return
 msgbox	PROF. COZMO: Oh, I can't believe it. This is really, really great!This is really going to help my research!
 release
 end
+mapsec
+3 0 1 1	FALLARBOR TOWN
 music
 MUS_FALLARBOR

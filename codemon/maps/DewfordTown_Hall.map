@@ -236,5 +236,7 @@ release
 end
 signs
 0 1	IDENTIFYING GOOD “STR_VAR_1” & BAD “STR_VAR_1”…THE LINK BETWEEN “STR_VAR_1” AND POKéMON…USEFUL “STR_VAR_1”…It's neatly jammed with books about “STR_VAR_1.”
+mapsec
+2 14 1 1	DEWFORD TOWN
 music
 MUS_DEWFORD

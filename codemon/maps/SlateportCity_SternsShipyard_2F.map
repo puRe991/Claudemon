@@ -51,6 +51,8 @@ end
 = SlateportCity_SternsShipyard_2F_EventScript_Scientist1
 msgbox	Designing a large ship is more like making a big building than putting together a transportation vehicle.
 end
+mapsec
+8 10 1 2	SLATEPORT CITY
 music
 MUS_SLATEPORT
 counters

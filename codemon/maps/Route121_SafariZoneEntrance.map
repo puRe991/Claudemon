@@ -134,6 +134,8 @@ end
 = Route121_SafariZoneEntrance_EventScript_WelcomeAttendant
 msgbox	Welcome to the SAFARI ZONE!Here, you may witness many kinds of POKéMON rarely seen in HOENN.And, you'll see them in their wild, untamed state in natural habitats.What's more, we've thrown open the gates to POKéMON TRAINERS.You're encouraged to catch POKéMON for keeps!Come in and enjoy the SAFARI ZONE!
 end
+mapsec
+14 3 4 1	ROUTE 121
 music
 MUS_FORTREE
 counters

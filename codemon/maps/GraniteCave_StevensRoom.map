@@ -89,6 +89,8 @@ return
 = GraniteCave_StevensRoom_EventScript_BagFull
 msgbox	Oh, your BAG is full… That's too bad, then.
 return
+mapsec
+1 13 1 1	GRANITE CAVE
 music
 MUS_PETALBURG_WOODS
 encounters

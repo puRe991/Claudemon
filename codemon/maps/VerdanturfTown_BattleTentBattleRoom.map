@@ -134,5 +134,7 @@ waitstate
 goto VerdanturfTown_BattleTentBattleRoom_EventScript_PauseChallenge
 grass
 13
+mapsec
+4 6 1 1	VERDANTURF TOWN
 music
 MUS_B_TOWER_RS

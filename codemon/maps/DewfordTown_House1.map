@@ -49,5 +49,7 @@ end
 = DewfordTown_House1_EventScript_Woman
 msgbox	I left the major port of SLATEPORT CITY when I married my husband here.Life goes by slowly on this little island. But being surrounded by the beautiful sea--that's happiness, too.
 end
+mapsec
+2 14 1 1	DEWFORD TOWN
 music
 MUS_DEWFORD

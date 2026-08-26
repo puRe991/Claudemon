@@ -1286,11 +1286,36 @@ def movement_token(mt):
     return "static", "S"
 
 
+def parse_region_map_sections(src):
+    """MAPSEC_X -> (x, y, width, height, display name), the region map's own
+    grid rectangle for that town/route (src/data/region_map/
+    region_map_sections.json -> gRegionMapEntries in the real game). x/y/width/
+    height are in the region map's own 28x15 grid coordinate space (0-based);
+    the PokeNav screen's map image (128x120px) is exactly that grid scaled
+    non-uniformly (128/28 horizontally, 120/15=8 vertically -- verified against
+    known town positions, e.g. Littleroot Town's (4,11) lands bottom-left and
+    Ever Grande City's (27,8) lands at the eastern edge, matching real Hoenn
+    geography)."""
+    p = os.path.join(src, "src", "data", "region_map", "region_map_sections.json")
+    if not os.path.isfile(p):
+        return {}
+    data = json.load(open(p))
+    out = {}
+    for s in data.get("map_sections", []):
+        mid = s.get("id", "")
+        if mid.startswith("MAPSEC_"):
+            mid = mid[len("MAPSEC_"):]
+        out[mid] = (s.get("x", 0), s.get("y", 0), s.get("width", 1),
+                    s.get("height", 1), s.get("name", ""))
+    return out
+
+
 def cmd_world(src, limit=None):
     layouts = json.load(open(os.path.join(src, "data", "layouts", "layouts.json")))
     by_id = {l["id"]: l for l in layouts["layouts"]}
     ow_index = json.load(open(os.path.join(OW_DIR, "index.json")))
     resolve = build_gfx_resolver(ow_index)
+    mapsecs = parse_region_map_sections(src)
 
     maps_dir = os.path.normpath(os.path.join(TOOLS_DIR, "..", "maps"))
     os.makedirs(maps_dir, exist_ok=True)
@@ -1772,6 +1797,19 @@ def cmd_world(src, limit=None):
         if visit_flag:
             lines.append("visit")
             lines.append(visit_flag)
+        # This map's own region-map grid rectangle (PokeNav's Town Map marker
+        # -- see Menu.cpp). Indoor maps carry the same section as their
+        # outdoor town (pokeemerald does too, e.g. every building in
+        # Littleroot is MAPSEC_LITTLEROOT_TOWN); Battle Frontier interiors and
+        # a few special-case maps use MAPSEC_NONE/_DYNAMIC, which aren't in
+        # the table, so they simply get no marker.
+        sec = (mj.get("region_map_section") or "")
+        if sec.startswith("MAPSEC_"):
+            sec = sec[len("MAPSEC_"):]
+        entry = mapsecs.get(sec)
+        if entry:
+            lines.append("mapsec")
+            lines.append(f"{entry[0]} {entry[1]} {entry[2]} {entry[3]}\t{entry[4]}")
         # This map's own background music (Audio::play_bgm, called on every
         # map load -- see main.cpp).
         mus = mj.get("music") or ""

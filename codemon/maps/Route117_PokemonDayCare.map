@@ -175,6 +175,8 @@ end
 msgbox	My husband was looking for you.
 release
 end
+mapsec
+5 6 3 1	ROUTE 117
 music
 MUS_RUSTBORO
 counters

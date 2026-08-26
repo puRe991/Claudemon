@@ -103,5 +103,7 @@ end
 setflag FLAG_DEFEATED_REGISTEEL
 goto Common_EventScript_RemoveStaticPokemon
 end
+mapsec
+13 2 1 1	ANCIENT TOMB
 music
 MUS_SEALED_CHAMBER

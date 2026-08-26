@@ -42,5 +42,7 @@ end
 = AbandonedShip_Rooms2_B1F_EventScript_Camper
 msgbox	This is a perfect place to go exploring! It's exciting here!I bet there're amazing treasures on board.
 end
+mapsec
+6 14 1 1	ABANDONED SHIP
 music
 MUS_ABANDONED_SHIP

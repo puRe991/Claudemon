@@ -106,3 +106,5 @@ goto CaveOfOrigin_B1F_EventScript_WheresRayquaza
 msgbox	WALLACE: The CAVE OF ORIGIN?But that's right here! I need you to do better than that!Please, I need you to think about where RAYQUAZA might be right now.
 waitmessage
 goto CaveOfOrigin_B1F_EventScript_WheresRayquaza
+mapsec
+21 7 1 1	CAVE OF ORIGIN

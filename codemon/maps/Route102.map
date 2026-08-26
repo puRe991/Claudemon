@@ -292,6 +292,8 @@ grass
 13,454,455
 water
 161,176,177,178,184,186,194
+mapsec
+2 9 2 1	ROUTE 102
 music
 MUS_ROUTE101
 encounters

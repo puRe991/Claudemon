@@ -74,6 +74,8 @@ setflag FLAG_ITEM_GRANITE_CAVE_B1F_POKE_BALL
 end
 = GraniteCave_B1F_EventScript_ItemPokeBall_Taken
 end
+mapsec
+1 13 1 1	GRANITE CAVE
 music
 MUS_PETALBURG_WOODS
 encounters

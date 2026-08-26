@@ -312,6 +312,8 @@ msgbox	If I'm all tensed up, I won't be able to give it my all.
 end
 water
 368,372,531,535,545,827,828,829
+mapsec
+24 10 2 1	ROUTE 129
 music
 MUS_ROUTE119
 encounters

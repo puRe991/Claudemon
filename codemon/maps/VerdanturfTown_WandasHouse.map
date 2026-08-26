@@ -108,5 +108,7 @@ end
 msgbox	WALLY: Please watch me, PLAYER. I'm going to get stronger than you.When I do, I'm going to challenge you to another battle.
 release
 end
+mapsec
+4 6 1 1	VERDANTURF TOWN
 music
 MUS_VERDANTURF

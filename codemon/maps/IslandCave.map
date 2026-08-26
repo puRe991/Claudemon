@@ -103,5 +103,7 @@ end
 setflag FLAG_DEFEATED_REGICE
 goto Common_EventScript_RemoveStaticPokemon
 end
+mapsec
+0 10 1 1	ISLAND CAVE
 music
 MUS_SEALED_CHAMBER

@@ -145,6 +145,8 @@ setflag FLAG_ITEM_FIERY_PATH_TM_TOXIC
 end
 = FieryPath_EventScript_ItemTMToxic_Taken
 end
+mapsec
+6 3 1 1	FIERY PATH
 music
 MUS_PETALBURG_WOODS
 encounters

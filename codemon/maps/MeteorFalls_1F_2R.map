@@ -136,6 +136,8 @@ release
 end
 water
 368,384,385,393,400,402,408,410
+mapsec
+0 3 1 1	METEOR FALLS
 music
 MUS_CAVE_OF_ORIGIN
 encounters

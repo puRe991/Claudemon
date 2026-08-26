@@ -63,6 +63,8 @@ end
 trainerbattle_single TRAINER_GRUNT_SEAFLOOR_CAVERN_3 SeafloorCavern_Room4_Text_Grunt3Intro SeafloorCavern_Room4_Text_Grunt3Defeat
 msgbox	I can't find the way out!I'm not afraid. Don't get me wrong!
 end
+mapsec
+24 9 1 1	SEAFLOOR CAVERN
 music
 MUS_MT_CHIMNEY
 encounters

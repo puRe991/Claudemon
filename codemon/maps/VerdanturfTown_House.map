@@ -39,5 +39,7 @@ end
 = VerdanturfTown_House_EventScript_Woman1
 msgbox	Far away, deep in EVER GRANDE CITY, is the POKéMON LEAGUE.The TRAINERS who gather there are all frighteningly well skilled.
 end
+mapsec
+4 6 1 1	VERDANTURF TOWN
 music
 MUS_VERDANTURF

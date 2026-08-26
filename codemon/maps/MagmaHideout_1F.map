@@ -147,6 +147,8 @@ end
 trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_1 MagmaHideout_1F_Text_Grunt1Intro MagmaHideout_1F_Text_Grunt1Defeat
 msgbox	Okay, I'll try to put a little more effort into things from now on…
 end
+mapsec
+6 3 1 1	MAGMA HIDEOUT
 music
 MUS_AQUA_MAGMA_HIDEOUT
 encounters

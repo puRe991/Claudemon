@@ -99,5 +99,7 @@ end
 msgbox	FOSSILS are so… Wonderful… It's so dreamy…
 release
 end
+mapsec
+1 0 2 3	ROUTE 114
 music
 MUS_FALLARBOR

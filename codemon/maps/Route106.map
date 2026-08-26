@@ -126,6 +126,8 @@ signs
 59 13	TRAINER TIPSAdvice on catching POKéMON with a ROD: Press the A Button if you get a bite.
 water
 283,285,291,293,368,370,372
+mapsec
+0 13 2 1	ROUTE 106
 music
 MUS_ROUTE104
 encounters

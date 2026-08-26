@@ -106,6 +106,8 @@ msgbox	Floating and being rocked by the waves--it's like sleeping in a plush, co
 end
 water
 285,293,368,370,372
+mapsec
+3 14 3 1	ROUTE 107
 music
 MUS_ROUTE104
 encounters

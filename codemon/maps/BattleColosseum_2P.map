@@ -45,5 +45,7 @@ msgbox	Please take your place and start your battle.
 special Script_ClearHeldMovement
 closemessage
 end
+mapsec
+0 0 1 1	
 music
 MUS_EVER_GRANDE

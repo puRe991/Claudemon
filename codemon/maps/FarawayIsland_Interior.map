@@ -140,5 +140,7 @@ return
 applymovement LOCALID_FARAWAY_ISLAND_MEW FarawayIsland_Interior_Movement_MewFloatUpNorth
 waitmovement 0
 return
+mapsec
+0 0 1 1	FARAWAY ISLAND
 music
 MUS_ABANDONED_SHIP

@@ -45,5 +45,7 @@ end
 = FortreeCity_House5_EventScript_PokefanF
 msgbox	The tree houses of FORTREE are great!I think it's the number one town for living together with POKéMON.
 end
+mapsec
+12 0 1 1	FORTREE CITY
 music
 MUS_FORTREE

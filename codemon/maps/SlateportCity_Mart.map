@@ -50,6 +50,8 @@ pokemart SlateportCity_Mart_Pokemart
 msgbox	Please come again!
 release
 end
+mapsec
+8 10 1 2	SLATEPORT CITY
 music
 MUS_POKE_MART
 counters

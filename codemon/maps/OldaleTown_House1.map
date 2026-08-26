@@ -33,5 +33,7 @@ scriptdefs
 = OldaleTown_House1_EventScript_Woman
 msgbox	When a POKéMON battle starts, the one at the left of the list goes out first.So, when you get more POKéMON in your party, try switching around the order of your POKéMON.It could give you an advantage.
 end
+mapsec
+4 9 1 1	OLDALE TOWN
 music
 MUS_OLDALE

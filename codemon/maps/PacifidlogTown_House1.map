@@ -39,5 +39,7 @@ end
 = PacifidlogTown_House1_EventScript_Man
 msgbox	In the HOENN region, there are three POKéMON that represent the power of rock, ice, and steel.Each of them is said to hide away deep inside caves.That's the story I heard when I was just a little kid.
 end
+mapsec
+17 10 1 1	PACIFIDLOG TOWN
 music
 MUS_LILYCOVE

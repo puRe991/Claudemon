@@ -146,5 +146,7 @@ end
 trainerbattle_single TRAINER_TED Route110_TrickHousePuzzle2_Text_TedIntro Route110_TrickHousePuzzle2_Text_TedDefeat
 msgbox	Can I get you to push all the buttons for me?
 end
+mapsec
+8 7 1 3	ROUTE 110
 music
 MUS_TRICK_HOUSE

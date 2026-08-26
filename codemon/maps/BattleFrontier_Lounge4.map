@@ -46,5 +46,7 @@ end
 = BattleFrontier_Lounge4_EventScript_Woman
 msgbox	I wonder if they'll be airing interviews with tough TRAINERS today?
 end
+mapsec
+22 12 1 1	BATTLE FRONTIER
 music
 MUS_B_TOWER_RS

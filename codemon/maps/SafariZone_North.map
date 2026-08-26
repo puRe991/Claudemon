@@ -170,6 +170,8 @@ msgbox	I'm on a mission to find WATER POKéMON you don't see in HOENN.Do you ha
 end
 grass
 13,454,455
+mapsec
+16 2 1 1	SAFARI ZONE
 music
 MUS_SAFARI_ZONE
 encounters

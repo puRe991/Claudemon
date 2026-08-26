@@ -97,5 +97,7 @@ goto TrainerHill_Roof_EventScript_CheckFinalTime
 msgbox	Perhaps it would please me more if you arrived zippier next time.Then, I should be pleased to form a tag team with you!Until we meet again, amigo!
 release
 end
+mapsec
+8 4 1 1	TRAINER HILL
 music
 MUS_B_TOWER_RS

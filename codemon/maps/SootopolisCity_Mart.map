@@ -68,6 +68,8 @@ pokemart SootopolisCity_Mart_Pokemart
 msgbox	Please come again!
 release
 end
+mapsec
+21 7 1 1	SOOTOPOLIS CITY
 music
 MUS_POKE_MART
 counters

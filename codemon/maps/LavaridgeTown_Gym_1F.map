@@ -283,5 +283,7 @@ settrainerflag TRAINER_JOSH
 settrainerflag TRAINER_TOMMY
 settrainerflag TRAINER_MARC
 return
+mapsec
+5 3 1 1	LAVARIDGE TOWN
 music
 MUS_GYM

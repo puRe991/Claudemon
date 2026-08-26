@@ -202,5 +202,7 @@ waitmovement 0
 call BattleFrontier_BattleFactoryBattleRoom_EventScript_ScientistsFaceBattle
 goto BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleOpponent
 end
+mapsec
+22 12 1 1	BATTLE FRONTIER
 music
 MUS_B_FACTORY

@@ -63,6 +63,8 @@ pokemart PetalburgCity_Mart_Pokemart_Expanded
 msgbox	Please come again!
 release
 end
+mapsec
+1 9 1 1	PETALBURG CITY
 music
 MUS_POKE_MART
 counters

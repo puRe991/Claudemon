@@ -488,6 +488,8 @@ signs
 29 10	TRAINER TIPSPOKéMON at the same level may not always have identical stats.POKéMON raised by TRAINERS are said to grow stronger than wild POKéMON.
 water
 283,285,291,293,299,300,301,325,326,368,370,372
+mapsec
+8 12 1 3	ROUTE 109
 music
 MUS_ROUTE104
 encounters

@@ -35,5 +35,7 @@ end
 = SootopolisCity_House7_EventScript_OldMan
 msgbox	An underwater volcano erupted and forced itself up from the depths.Its crater emerged from the sea and became filled with rainwater.That's how SOOTOPOLIS CITY came into being.
 end
+mapsec
+21 7 1 1	SOOTOPOLIS CITY
 music
 MUS_SOOTOPOLIS

@@ -47,5 +47,7 @@ divewarp
 SeafloorCavern_Entrance 10 17
 dive
 552,736,737,738,739,744,745,746,747
+mapsec
+24 9 1 1	UNDERWATER
 music
 MUS_UNDERWATER

@@ -433,6 +433,8 @@ setvar VAR_TEMP_2 EXCHANGE_CORNER_DECOR1_CLERK
 call BattleFrontier_ExchangeServiceCorner_EventScript_ClerkWelcome
 goto BattleFrontier_ExchangeServiceCorner_EventScript_ChooseDecor1
 end
+mapsec
+22 12 1 1	BATTLE FRONTIER
 music
 MUS_B_TOWER_RS
 counters

@@ -273,5 +273,7 @@ settrainerflag TRAINER_JOSH
 settrainerflag TRAINER_TOMMY
 settrainerflag TRAINER_MARC
 return
+mapsec
+21 7 1 1	SOOTOPOLIS CITY
 music
 MUS_GYM

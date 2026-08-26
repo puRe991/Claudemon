@@ -87,5 +87,7 @@ setvar VAR_0x8008 LOCALID_WINSTRATE_HOUSE_VIVI
 msgbox	Mommy is stronger than Daddy.I'm stronger than Mommy.And Grandma's stronger than me!But my big brother is even stronger than Grandma.
 goto Route111_WinstrateFamilysHouse_EventScript_FaceOriginalDirection
 end
+mapsec
+8 0 1 6	ROUTE 111
 music
 MUS_RUSTBORO

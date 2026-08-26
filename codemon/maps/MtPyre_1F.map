@@ -80,6 +80,8 @@ end
 msgbox	Have a POKéMON hold that CLEANSE TAG.It will help ward off wild POKéMON.
 release
 end
+mapsec
+16 4 1 1	MT. PYRE
 music
 MUS_MT_PYRE
 encounters

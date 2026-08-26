@@ -225,6 +225,8 @@ signs
 5 9	ROUTE 101 OLDALE TOWN
 grass
 13,454,455
+mapsec
+4 10 1 1	ROUTE 101
 music
 MUS_ROUTE101
 encounters

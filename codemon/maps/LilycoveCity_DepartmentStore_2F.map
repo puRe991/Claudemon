@@ -69,6 +69,8 @@ end
 = LilycoveCity_DepartmentStore_2F_EventScript_Cook
 msgbox	Learn to use items properly. That's basic, really.
 end
+mapsec
+18 3 2 1	LILYCOVE CITY
 music
 MUS_POKE_MART
 counters

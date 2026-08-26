@@ -500,6 +500,8 @@ end
 = MauvilleCity_GameCorner_EventScript_Woman2
 msgbox	COINS are needed to play here in the GAME CORNER.
 end
+mapsec
+8 6 2 1	MAUVILLE CITY
 music
 MUS_GAME_CORNER
 counters

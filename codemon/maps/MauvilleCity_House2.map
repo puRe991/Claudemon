@@ -67,5 +67,7 @@ end
 msgbox	That COIN CASE can be used at the GAME CORNER.
 release
 end
+mapsec
+8 6 2 1	MAUVILLE CITY
 music
 MUS_RUSTBORO

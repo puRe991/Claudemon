@@ -46,5 +46,7 @@ call BattleFrontier_BattlePike_EventScript_CloseCurtain
 warpsilent BattleFrontier_BattlePikeThreePathRoom 6 10
 waitstate
 end
+mapsec
+22 12 1 1	BATTLE FRONTIER
 music
 MUS_B_PIKE

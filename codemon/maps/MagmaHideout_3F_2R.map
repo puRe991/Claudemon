@@ -58,6 +58,8 @@ end
 trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_10 MagmaHideout_3F_2R_Text_Grunt10Intro MagmaHideout_3F_2R_Text_Grunt10Defeat
 msgbox	You know, losing to you cleared my mind.The next time I see our leader, I'm going to ask him about what we do.
 end
+mapsec
+6 3 1 1	MAGMA HIDEOUT
 music
 MUS_AQUA_MAGMA_HIDEOUT
 encounters

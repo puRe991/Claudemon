@@ -394,5 +394,7 @@ playse SE_SWITCH
 animateflash 0
 call DewfordTown_Gym_EventScript_SetFlashLevel
 return
+mapsec
+2 14 1 1	DEWFORD TOWN
 music
 MUS_GYM

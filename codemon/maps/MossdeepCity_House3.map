@@ -48,5 +48,7 @@ end
 msgbox	Go after the seafloor POKéMON with your SUPER ROD.
 release
 end
+mapsec
+24 5 2 1	MOSSDEEP CITY
 music
 MUS_RUSTBORO

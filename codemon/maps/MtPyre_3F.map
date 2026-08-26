@@ -83,6 +83,8 @@ end
 trainerbattle_single TRAINER_WILLIAM MtPyre_3F_Text_WilliamIntro MtPyre_3F_Text_WilliamDefeat
 msgbox	My psychic powers have surely grown several times, but…
 end
+mapsec
+16 4 1 1	MT. PYRE
 music
 MUS_MT_PYRE
 encounters

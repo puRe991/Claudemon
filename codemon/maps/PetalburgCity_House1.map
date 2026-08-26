@@ -39,5 +39,7 @@ end
 = PetalburgCity_House1_EventScript_Woman
 msgbox	Sigh…I wish I could go on an adventure with some POKéMON…Crawl through some damp grass… Climb rocky, rugged mountains…Cross the raging seas… Wander about in dark caves…And, sometimes, even get a little homesick…It must be fabulous to travel!
 end
+mapsec
+1 9 1 1	PETALBURG CITY
 music
 MUS_PETALBURG

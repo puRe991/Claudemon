@@ -64,3 +64,5 @@ goto_if_ne VAR_RESULT 2 BattleFrontier_BattlePyramidFloor_EventScript_UpdateLigh
 setvar VAR_TEMP_D 0
 releaseall
 end
+mapsec
+22 12 1 1	BATTLE FRONTIER

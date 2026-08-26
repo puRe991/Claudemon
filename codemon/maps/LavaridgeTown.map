@@ -254,5 +254,7 @@ signs
 13 8	LAVARIDGE TOWN“POKéMON CENTER HOT SPRINGS An excellent place for relaxing!”
 visit
 FLAG_VISITED_LAVARIDGE_TOWN
+mapsec
+5 3 1 1	LAVARIDGE TOWN
 music
 MUS_OLDALE

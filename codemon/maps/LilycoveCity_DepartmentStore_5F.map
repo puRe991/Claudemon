@@ -111,6 +111,8 @@ end
 = LilycoveCity_DepartmentStore_5F_EventScript_LittleGirl
 msgbox	I'm not big enough to raise POKéMON, so I'm getting a cute DOLL instead.
 end
+mapsec
+18 3 2 1	LILYCOVE CITY
 music
 MUS_POKE_MART
 counters

@@ -93,5 +93,7 @@ applymovement LOCALID_MOTEL_OWNER Common_Movement_FaceOriginalDirection
 waitmovement 0
 releaseall
 end
+mapsec
+18 3 2 1	LILYCOVE CITY
 music
 MUS_LILYCOVE

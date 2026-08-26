@@ -58,6 +58,8 @@ faceplayer
 msgbox	On CYCLING ROAD, you can go all out and cycle as fast as you'd like.It feels great to go that fast, but try not to crash into anyone!
 release
 end
+mapsec
+8 7 1 3	ROUTE 110
 music
 MUS_SLATEPORT
 counters

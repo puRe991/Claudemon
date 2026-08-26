@@ -240,5 +240,7 @@ msgbox	Here we conduct an event we call the Battle Choice.The Battle Choice rul
 goto BattleFrontier_BattlePikeLobby_EventScript_AskTakeChallenge
 signs
 1 3	The Battle Choice's rules are listed.
+mapsec
+22 12 1 1	BATTLE FRONTIER
 music
 MUS_B_PIKE

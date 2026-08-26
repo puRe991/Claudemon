@@ -69,6 +69,8 @@ goto CableClub_EventScript_MysteryGiftThankYou2
 msgbox	Thank you for accessing the MYSTERY GIFT System.
 release
 end
+mapsec
+24 5 2 1	MOSSDEEP CITY
 music
 MUS_POKE_CENTER
 counters

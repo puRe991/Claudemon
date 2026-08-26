@@ -94,6 +94,8 @@ end
 trainerbattle_single TRAINER_MARK MtPyre_2F_Text_MarkIntro MtPyre_2F_Text_MarkDefeat
 msgbox	People don't come here often, so I thought there'd be rare POKéMON.
 end
+mapsec
+16 4 1 1	MT. PYRE
 music
 MUS_MT_PYRE
 encounters

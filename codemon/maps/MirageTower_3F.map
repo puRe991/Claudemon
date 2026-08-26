@@ -94,6 +94,8 @@ end
 msgbox	It's a rugged rock, but a POKéMON may be able to smash it.
 releaseall
 end
+mapsec
+8 2 1 1	MIRAGE TOWER
 music
 MUS_MT_CHIMNEY
 encounters

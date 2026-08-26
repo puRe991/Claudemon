@@ -53,5 +53,7 @@ goto RustboroCity_House3_EventScript_Pekachu
 = RustboroCity_House3_EventScript_OldMan
 msgbox	For my own POKéMON, I give them perfectly suited nicknames!It's my expression of, uh… originality, yes, that's it!
 end
+mapsec
+0 5 1 2	RUSTBORO CITY
 music
 MUS_RUSTBORO

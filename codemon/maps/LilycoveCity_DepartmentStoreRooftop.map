@@ -99,5 +99,7 @@ end
 msgbox	Yes! I've been waiting a long time for this clear-out sale.They have items that you can only get here. I'm going to load up, that I am!
 release
 end
+mapsec
+18 3 2 1	LILYCOVE CITY
 music
 MUS_LILYCOVE

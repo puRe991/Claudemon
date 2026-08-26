@@ -107,5 +107,7 @@ goto Common_EventScript_RemoveStaticPokemon
 end
 water
 869,870,871,880,881,882,883
+mapsec
+0 0 1 1	TERRA CAVE
 music
 MUS_PETALBURG_WOODS

@@ -50,6 +50,8 @@ pokemart MauvilleCity_Mart_Pokemart
 msgbox	Please come again!
 release
 end
+mapsec
+8 6 2 1	MAUVILLE CITY
 music
 MUS_POKE_MART
 counters

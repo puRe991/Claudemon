@@ -37,5 +37,7 @@ end
 = OldaleTown_House2_EventScript_Woman
 msgbox	When POKéMON battle, they eventually level up and become stronger.
 end
+mapsec
+4 9 1 1	OLDALE TOWN
 music
 MUS_OLDALE

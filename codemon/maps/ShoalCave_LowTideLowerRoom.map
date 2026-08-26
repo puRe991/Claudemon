@@ -89,6 +89,8 @@ end
 msgbox	STRENGTH made it possible to move boulders around.
 releaseall
 end
+mapsec
+24 4 1 1	SHOAL CAVE
 music
 MUS_MT_PYRE
 encounters

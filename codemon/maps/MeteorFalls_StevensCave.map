@@ -102,6 +102,8 @@ waitmovement 0
 msgbox	STEVEN: Come to think of it, ever since our paths first crossed in GRANITE CAVE in DEWFORD, I had this feeling.I thought that you would eventually become the CHAMPION.My predictions usually come true.And where will you go from here?… … … … … … … … … … … …Fufufu, even I couldn't tell you that.
 release
 end
+mapsec
+0 3 1 1	METEOR FALLS
 music
 MUS_CAVE_OF_ORIGIN
 encounters

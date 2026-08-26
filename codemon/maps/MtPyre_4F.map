@@ -48,6 +48,8 @@ setflag FLAG_ITEM_MT_PYRE_4F_SEA_INCENSE
 end
 = MtPyre_4F_EventScript_ItemSeaIncense_Taken
 end
+mapsec
+16 4 1 1	MT. PYRE
 music
 MUS_MT_PYRE
 encounters

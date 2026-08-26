@@ -57,5 +57,7 @@ end
 = PacifidlogTown_House4_EventScript_Woman
 msgbox	People were saying they saw a POKéMON flying high above HOENN.Is it flying around all the time? Doesn't it need to rest somewhere?
 end
+mapsec
+17 10 1 1	PACIFIDLOG TOWN
 music
 MUS_LILYCOVE

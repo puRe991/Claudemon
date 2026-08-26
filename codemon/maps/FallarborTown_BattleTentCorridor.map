@@ -45,5 +45,7 @@ warp FallarborTown_BattleTentBattleRoom 4 4
 waitstate
 releaseall
 end
+mapsec
+3 0 1 1	FALLARBOR TOWN
 music
 MUS_B_TOWER_RS

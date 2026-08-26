@@ -43,6 +43,8 @@ collision
 warps
 16 1 MagmaHideout_1F 3
 16 13 MagmaHideout_3F_3R 0
+mapsec
+6 3 1 1	MAGMA HIDEOUT
 music
 MUS_AQUA_MAGMA_HIDEOUT
 encounters

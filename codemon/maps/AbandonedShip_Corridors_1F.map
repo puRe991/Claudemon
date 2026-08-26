@@ -56,5 +56,7 @@ end
 = AbandonedShip_Corridors_1F_EventScript_Youngster
 msgbox	Isn't it fun here? I get excited just being here!
 end
+mapsec
+6 14 1 1	ABANDONED SHIP
 music
 MUS_ABANDONED_SHIP

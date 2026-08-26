@@ -50,5 +50,7 @@ end
 msgbox	That HIDDEN MACHINE, or HM for short, is CUT.An HM move is one that can be used by POKéMON outside of battle.Any POKéMON that's learned CUT can chop down thin trees if the TRAINER has earned the STONE BADGE.And, unlike a TM, an HM can be used more than once.
 release
 end
+mapsec
+0 5 1 2	RUSTBORO CITY
 music
 MUS_RUSTBORO

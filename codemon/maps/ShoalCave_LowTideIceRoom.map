@@ -85,6 +85,8 @@ setflag FLAG_ITEM_SHOAL_CAVE_ICE_ROOM_TM_HAIL
 end
 = ShoalCave_LowTideIceRoom_EventScript_ItemTMHail_Taken
 end
+mapsec
+24 4 1 1	SHOAL CAVE
 music
 MUS_MT_PYRE
 encounters

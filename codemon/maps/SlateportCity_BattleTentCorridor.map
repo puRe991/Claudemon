@@ -128,5 +128,7 @@ playfanfare MUS_HEAL
 waitfanfare
 special HealPlayerParty
 goto SlateportCity_BattleTentCorridor_EventScript_AskReadyForOpponent
+mapsec
+8 10 1 2	SLATEPORT CITY
 music
 MUS_B_TOWER_RS

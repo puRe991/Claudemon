@@ -76,5 +76,7 @@ end
 msgbox	Hunh? There isn't a single move that I can teach an EGG.
 goto FallarborTown_MoveRelearnersHouse_EventScript_ChooseMon
 end
+mapsec
+3 0 1 1	FALLARBOR TOWN
 music
 MUS_FALLARBOR

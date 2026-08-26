@@ -146,5 +146,7 @@ end
 trainerbattle_single TRAINER_SALLY Route110_TrickHousePuzzle1_Text_SallyIntro Route110_TrickHousePuzzle1_Text_SallyDefeat
 msgbox	I never get tired of hacking and slashing!
 end
+mapsec
+8 7 1 3	ROUTE 110
 music
 MUS_TRICK_HOUSE

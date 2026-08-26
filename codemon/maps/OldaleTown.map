@@ -239,5 +239,7 @@ signs
 11 9	OLDALE TOWN “Where things start off scarce.”
 visit
 FLAG_VISITED_OLDALE_TOWN
+mapsec
+4 9 1 1	OLDALE TOWN
 music
 MUS_OLDALE

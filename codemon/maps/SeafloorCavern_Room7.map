@@ -57,6 +57,8 @@ warps
 5 1 SeafloorCavern_Room3 1
 water
 368,377,384,385,393,400,402,408,410
+mapsec
+24 9 1 1	SEAFLOOR CAVERN
 music
 MUS_MT_CHIMNEY
 encounters

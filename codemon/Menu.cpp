@@ -94,6 +94,12 @@ bool Menu::load_font(const std::string& path) {
 	this->frame.load();
 	this->cursor_ok = this->cursor_tex.loadFromFile("assets/graphics/interface/arrow_cursor.png");
 	this->cursor_tex.setSmooth(false);
+	this->region_map_ok = this->region_map_tex.loadFromFile("assets/graphics/pokenav/region_map/map.png");
+	this->region_map_tex.setSmooth(false);
+	this->marker_ok[0] = this->marker_tex[0].loadFromFile("assets/graphics/pokenav/region_map/brendan_icon.png");
+	this->marker_ok[1] = this->marker_tex[1].loadFromFile("assets/graphics/pokenav/region_map/may_icon.png");
+	this->marker_tex[0].setSmooth(false);
+	this->marker_tex[1].setSmooth(false);
 	return this->font_ok;
 }
 
@@ -675,6 +681,27 @@ void Menu::draw(sf::RenderTarget& target) {
 			y += 20;
 			text("Orden: " + std::to_string(got) + "/8", x, y, 14, muted_col);
 			y += 24;
+		}
+		if (this->region_map_ok) {
+			const float scale = 2.0f;
+			const float map_w = 128.f * scale, map_h = 120.f * scale;
+			sf::Sprite map_spr(this->region_map_tex);
+			map_spr.setPosition(x, y);
+			map_spr.setScale(scale, scale);
+			target.draw(map_spr);
+			if (this->has_mapsec) {
+				int gender = (this->gs && this->gs->female) ? 1 : 0;
+				if (this->marker_ok[gender]) {
+					float px_per_x = map_w / 28.f, px_per_y = map_h / 15.f;
+					float cx = (this->mapsec_x + this->mapsec_w / 2.0f) * px_per_x;
+					float cy = (this->mapsec_y + this->mapsec_h / 2.0f) * px_per_y;
+					sf::Sprite mk(this->marker_tex[gender]);
+					mk.setScale(scale, scale);
+					mk.setPosition(x + cx - 8.f * scale, y + cy - 8.f * scale);
+					target.draw(mk);
+				}
+			}
+			y += map_h + 16;
 		}
 		text("ZUSTAND", x, y, 18, head_col); y += 26;
 		if (this->team) {

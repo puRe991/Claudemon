@@ -53,5 +53,7 @@ end
 msgbox	TM31 contains BRICK BREAK! It's a move so horrible that I can't describe it.
 release
 end
+mapsec
+21 7 1 1	SOOTOPOLIS CITY
 music
 MUS_SOOTOPOLIS

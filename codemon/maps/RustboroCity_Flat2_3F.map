@@ -38,5 +38,7 @@ end
 = RustboroCity_Flat2_3F_EventScript_DevonEmployee
 msgbox	DEVON's PRESIDENT likes to collect rare stones.
 end
+mapsec
+0 5 1 2	RUSTBORO CITY
 music
 MUS_RUSTBORO

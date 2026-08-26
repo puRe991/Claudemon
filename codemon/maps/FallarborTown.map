@@ -108,5 +108,7 @@ signs
 3 7	MOVE TUTOR'S HOUSE “New moves taught to POKéMON.”
 visit
 FLAG_VISITED_FALLARBOR_TOWN
+mapsec
+3 0 1 1	FALLARBOR TOWN
 music
 MUS_FALLARBOR

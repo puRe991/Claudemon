@@ -108,6 +108,8 @@ waitmovement 0
 msgbox	DOCK: The ferry is finally ready!The new S.S. TIDAL is truly a marvel of technology!But, I get the feeling that we can make something even better.You know, there's never an end to technology's march.
 releaseall
 end
+mapsec
+8 10 1 2	SLATEPORT CITY
 music
 MUS_SLATEPORT
 counters

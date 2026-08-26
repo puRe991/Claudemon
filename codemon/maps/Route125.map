@@ -361,6 +361,8 @@ msgbox	Sound travels faster in water than it does through air.
 end
 water
 368,419,420,429,431,437,439,445,446,447,514,515,545,546,827,828,829
+mapsec
+24 3 2 2	ROUTE 125
 music
 MUS_ROUTE120
 encounters

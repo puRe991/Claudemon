@@ -109,6 +109,8 @@ divewarp
 Underwater_SeafloorCavern 6 5
 dive
 342,660
+mapsec
+24 9 1 1	SEAFLOOR CAVERN
 music
 MUS_MT_CHIMNEY
 encounters

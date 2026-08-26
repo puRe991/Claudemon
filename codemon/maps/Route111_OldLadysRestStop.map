@@ -47,5 +47,7 @@ msgboxyesno	Oh, dear, dear. Are your POKéMON still tired?You should take anoth
 goto_if_eq VAR_RESULT YES Route111_OldLadysRestStop_EventScript_Rest
 goto_if_eq VAR_RESULT NO Route111_OldLadysRestStop_EventScript_DeclineRest
 end
+mapsec
+8 0 1 6	ROUTE 111
 music
 MUS_RUSTBORO

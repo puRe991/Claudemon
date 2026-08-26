@@ -130,5 +130,7 @@ end
 = LilycoveCity_DepartmentStoreElevator_EventScript_SetFloor
 special SetDeptStoreFloor
 return
+mapsec
+18 3 2 1	LILYCOVE CITY
 music
 MUS_LILYCOVE

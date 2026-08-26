@@ -791,6 +791,8 @@ call Common_EventScript_BagIsFull
 msgbox	Please come back for your prize later on.
 release
 end
+mapsec
+18 3 2 1	LILYCOVE CITY
 music
 MUS_CONTEST_LOBBY
 counters

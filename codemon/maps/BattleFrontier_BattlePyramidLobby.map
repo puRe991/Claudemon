@@ -445,5 +445,7 @@ msgbox	The Battle Quest is a battling event in which you must explore the PYRAMI
 goto BattleFrontier_BattlePyramidLobby_EventScript_AskTakeChallenge
 signs
 1 12	The Battle Quest rules are listed.
+mapsec
+22 12 1 1	BATTLE FRONTIER
 music
 MUS_B_PYRAMID

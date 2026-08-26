@@ -113,5 +113,7 @@ return
 = PacifidlogTown_House2_EventScript_ClearReceivedFanClubTM
 clearflag FLAG_RECEIVED_FANCLUB_TM_THIS_WEEK
 return
+mapsec
+17 10 1 1	PACIFIDLOG TOWN
 music
 MUS_LILYCOVE

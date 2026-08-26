@@ -317,5 +317,7 @@ call_if_eq VAR_FOSSIL_RESURRECTION_STATE 1 RustboroCity_DevonCorp_2F_EventScript
 msgbox	We're developing a device for talking with POKéMON.But we haven't had much success…
 release
 end
+mapsec
+0 5 1 2	RUSTBORO CITY
 music
 MUS_RUSTBORO

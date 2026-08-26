@@ -406,5 +406,7 @@ end
 = SlateportCity_PokemonFanClub_EventScript_Man
 msgbox	If you keep letting a POKéMON faint in battle, it'll come to resent it.Soon, it will become less trusting of the TRAINER.In other words, it certainly won't like you very much.
 end
+mapsec
+8 10 1 2	SLATEPORT CITY
 music
 MUS_SLATEPORT

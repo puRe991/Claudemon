@@ -68,5 +68,7 @@ end
 = MossdeepCity_House2_EventScript_Man
 msgbox	My little sister exchanges MAIL with her boyfriend in FORTREE.I don't envy her one bit at all.
 end
+mapsec
+24 5 2 1	MOSSDEEP CITY
 music
 MUS_RUSTBORO

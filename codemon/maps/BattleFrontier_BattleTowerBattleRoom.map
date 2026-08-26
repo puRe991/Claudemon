@@ -353,5 +353,7 @@ goto BattleFrontier_BattleTowerBattleRoom_EventScript_BattleAnabelGold
 = BattleFrontier_EventScript_SetBrainObjectGfx
 frontier_setbrainobj
 return
+mapsec
+22 12 1 1	BATTLE FRONTIER
 music
 MUS_B_TOWER

@@ -236,6 +236,8 @@ end
 end
 water
 513,632,633,634,640,641,642,648,649,650,680,681,689
+mapsec
+20 6 3 3	UNDERWATER
 music
 MUS_UNDERWATER
 encounters

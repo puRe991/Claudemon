@@ -881,6 +881,8 @@ goto BattleFrontier_BattleTowerLobby_EventScript_AskEnterSinglesChallenge
 end
 signs
 2 1	The BATTLE TOWER rules are listed.
+mapsec
+22 12 1 1	BATTLE FRONTIER
 music
 MUS_B_TOWER
 counters

@@ -368,5 +368,7 @@ closemessage
 delay 16
 goto BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskReadyForHead
 end
+mapsec
+22 12 1 1	BATTLE FRONTIER
 music
 MUS_B_FACTORY

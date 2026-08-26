@@ -39,5 +39,7 @@ end
 = LilycoveCity_House4_EventScript_Man1
 msgbox	This planet's biggest mysteries are at the bottom of the sea.Somebody said that, but I don't know…
 end
+mapsec
+18 3 2 1	LILYCOVE CITY
 music
 MUS_LILYCOVE

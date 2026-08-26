@@ -88,6 +88,7 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 		                        // "dive <offset> <map>" line
 
 		       s.rfind("visit", 0) == 0 ||
+		       s.rfind("mapsec", 0) == 0 ||
 		       s.rfind("music", 0) == 0 ||
 		       s.rfind("counters", 0) == 0 ||
 		       s.rfind("encounters", 0) == 0 || s.rfind("objscripts", 0) == 0 ||
@@ -189,6 +190,18 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 				std::vector<int> g;
 				parse_int_row(rest[i], g);
 				for (int id : g) this->water_ids.insert(id);
+				++i;
+			}
+		} else if (head.rfind("mapsec", 0) == 0) {
+			// "<x> <y> <w> <h>\t<display name>"
+			if (++i < rest.size()) {
+				std::stringstream ss(rest[i]);
+				ss >> this->mapsec_x_ >> this->mapsec_y_ >> this->mapsec_w_ >> this->mapsec_h_;
+				std::string rest_of_line;
+				std::getline(ss, rest_of_line);
+				size_t tab = rest_of_line.find('\t');
+				this->mapsec_name_ = (tab != std::string::npos)
+					? rest_of_line.substr(tab + 1) : std::string();
 				++i;
 			}
 		} else if (head.rfind("divewarp", 0) == 0) {

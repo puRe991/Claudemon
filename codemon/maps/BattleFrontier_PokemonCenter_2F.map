@@ -62,6 +62,8 @@ goto CableClub_EventScript_MysteryGiftThankYou2
 msgbox	Thank you for accessing the MYSTERY GIFT System.
 release
 end
+mapsec
+22 12 1 1	BATTLE FRONTIER
 music
 MUS_POKE_CENTER
 counters

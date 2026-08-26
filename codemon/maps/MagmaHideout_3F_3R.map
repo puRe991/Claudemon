@@ -65,6 +65,8 @@ setflag FLAG_ITEM_MAGMA_HIDEOUT_3F_3R_ECAPE_ROPE
 end
 = MagmaHideout_3F_3R_EventScript_ItemEscapeRope_Taken
 end
+mapsec
+6 3 1 1	MAGMA HIDEOUT
 music
 MUS_AQUA_MAGMA_HIDEOUT
 encounters

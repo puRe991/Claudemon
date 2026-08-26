@@ -102,5 +102,7 @@ warps
 7 1 Underwater_Route134 0
 divewarp
 Route134 60 31
+mapsec
+11 10 1 1	UNDERWATER
 music
 MUS_UNDERWATER

@@ -534,5 +534,7 @@ end
 msgbox	Don't push yourself too hard, dear. You can always come home.Go for it, honey!
 release
 end
+mapsec
+4 11 1 1	LITTLEROOT TOWN
 music
 MUS_LITTLEROOT

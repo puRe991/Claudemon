@@ -116,6 +116,8 @@ end
 trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_4 MagmaHideout_2F_1R_Text_Grunt4Intro MagmaHideout_2F_1R_Text_Grunt4Defeat
 msgbox	I've already lost.Do I really need to keep running around in a circle?
 end
+mapsec
+6 3 1 1	MAGMA HIDEOUT
 music
 MUS_AQUA_MAGMA_HIDEOUT
 encounters

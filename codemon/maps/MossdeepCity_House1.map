@@ -48,5 +48,7 @@ end
 msgbox	It doesn't appear to like or dislike any S.
 release
 end
+mapsec
+24 5 2 1	MOSSDEEP CITY
 music
 MUS_RUSTBORO

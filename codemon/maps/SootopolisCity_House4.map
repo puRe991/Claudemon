@@ -47,5 +47,7 @@ end
 = SootopolisCity_House4_EventScript_Man
 msgbox	Listen up, and I'll tell you something good.There's supposed to be an ancient ruin in the sea around here.There could be treasures just waiting to be discovered down there.
 end
+mapsec
+21 7 1 1	SOOTOPOLIS CITY
 music
 MUS_SOOTOPOLIS

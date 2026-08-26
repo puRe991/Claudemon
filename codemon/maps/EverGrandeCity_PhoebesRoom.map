@@ -122,5 +122,7 @@ return
 msgbox	There's a definite bond between you and your POKéMON, too.I didn't recognize it, so it's only natural that I lost.Yup, I'd like to see how far your bond will carry you.Go ahead, move on to the next room.
 release
 end
+mapsec
+27 8 1 2	EVER GRANDE CITY
 music
 MUS_VICTORY_ROAD

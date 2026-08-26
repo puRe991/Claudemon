@@ -37,5 +37,7 @@ end
 = SlateportCity_House_EventScript_PokefanM
 msgbox	My POKéMON has a HASTY nature.It has higher SPEED compared to my other POKéMON.Maybe their nature has something to do with the stat gains of POKéMON.
 end
+mapsec
+8 10 1 2	SLATEPORT CITY
 music
 MUS_SLATEPORT

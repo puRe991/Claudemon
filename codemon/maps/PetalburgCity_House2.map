@@ -37,5 +37,7 @@ end
 = PetalburgCity_House2_EventScript_Woman
 msgbox	NORMAN became our town's new GYM LEADER.I think he called his family over from somewhere far away.
 end
+mapsec
+1 9 1 1	PETALBURG CITY
 music
 MUS_PETALBURG

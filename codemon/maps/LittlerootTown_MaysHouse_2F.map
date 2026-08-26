@@ -160,5 +160,7 @@ return
 = RivalsHouse_2F_EventScript_MayWhereShouldIGoNext
 msgbox	MAY: I wonder where I should go catch some POKéMON next?Wouldn't it be funny if we ran into each other, PLAYER?
 return
+mapsec
+4 11 1 1	LITTLEROOT TOWN
 music
 MUS_LITTLEROOT

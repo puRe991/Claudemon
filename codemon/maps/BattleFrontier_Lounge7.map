@@ -287,5 +287,7 @@ end
 = BattleFrontier_Lounge7_EventScript_Sailor
 msgbox	Those ladies, the way they bad-mouth each other, you probably think that they don't get along.But if that were true, they wouldn't stay out here together, would they?
 end
+mapsec
+22 12 1 1	BATTLE FRONTIER
 music
 MUS_B_TOWER_RS

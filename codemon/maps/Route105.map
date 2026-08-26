@@ -446,6 +446,8 @@ msgbox	If you are drowning, the signal is to wave one arm toward the beach.
 end
 water
 283,285,291,293,299,300,301,325,326,368,370,372
+mapsec
+0 10 1 3	ROUTE 105
 music
 MUS_ROUTE104
 encounters

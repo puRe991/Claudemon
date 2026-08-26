@@ -273,5 +273,7 @@ msgbox	In the BATTLE ARENA, we undertake the Set KO Tourney.All participants en
 goto BattleFrontier_BattleArenaLobby_EventScript_AskTakeChallenge
 signs
 1 7	The Set KO Tourney's rules are listed.
+mapsec
+22 12 1 1	BATTLE FRONTIER
 music
 MUS_B_ARENA

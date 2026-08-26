@@ -58,11 +58,28 @@ private:
 	UiFrame frame;
 	sf::Texture cursor_tex; bool cursor_ok;
 
+	// PokeNav Town Map (drawn inline in the POKENAV screen): the real Hoenn
+	// map image plus the player's gendered marker icon (pokeemerald's own
+	// brendan_icon.png/may_icon.png).
+	sf::Texture region_map_tex; bool region_map_ok = false;
+	sf::Texture marker_tex[2]; bool marker_ok[2] = {false, false};   // 0=Brendan, 1=May
+	// Current map's region-map grid rectangle, set by main.cpp's set_mapsec()
+	// on every map load/warp (mirrors set_location() below). has_mapsec false
+	// means this map isn't on the region map at all (Battle Frontier
+	// interiors, ...), so no marker is drawn.
+	bool has_mapsec = false;
+	int mapsec_x = 0, mapsec_y = 0, mapsec_w = 1, mapsec_h = 1;
+
 public:
 	Menu();
 	void configure(GameState* g, std::vector<Mon>* team, std::vector<Mon>* box,
 	               BattleData* bd = nullptr);
 	void set_location(const std::string& loc) { this->location = loc; }
+	void set_mapsec(bool has, int x, int y, int w, int h) {
+		this->has_mapsec = has;
+		this->mapsec_x = x; this->mapsec_y = y;
+		this->mapsec_w = w > 0 ? w : 1; this->mapsec_h = h > 0 ? h : 1;
+	}
 	bool load_font(const std::string& path = "assets/fonts/DejaVuSans.ttf");
 
 	bool active() const { return screen != CLOSED; }

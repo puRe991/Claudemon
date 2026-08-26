@@ -124,5 +124,7 @@ setflag FLAG_DEFEATED_HO_OH
 setvar VAR_0x8004 SPECIES_HO_OH
 goto Common_EventScript_LegendaryFlewAway
 end
+mapsec
+0 0 1 1	NAVEL ROCK
 music
 MUS_RG_SEVII_CAVE

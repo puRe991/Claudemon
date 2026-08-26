@@ -1638,6 +1638,8 @@ int main() {
     auto on_map_change = [&](const std::string& path, Audio* aud) {
         banner = pretty_map(path); banner_t = 2.2f; fade = 1.0f;
         menu.set_location(banner);
+        menu.set_mapsec(sess->map->has_mapsec(), sess->map->mapsec_x(),
+                         sess->map->mapsec_y(), sess->map->mapsec_w(), sess->map->mapsec_h());
         if (aud) aud->play_bgm(sess->map->music());
     };
     // A script-driven `warp` (e.g. Route 101 Birch's bag sending the player
@@ -1677,6 +1679,8 @@ int main() {
         on_map_change(sess->path, aud);
     };
     menu.set_location(banner);
+    menu.set_mapsec(sess->map->has_mapsec(), sess->map->mapsec_x(),
+                     sess->map->mapsec_y(), sess->map->mapsec_w(), sess->map->mapsec_h());
 
     // Map a walk token to a battle button (for scripted battle demos).
     auto token_btn = [](char t) -> BtnInput {

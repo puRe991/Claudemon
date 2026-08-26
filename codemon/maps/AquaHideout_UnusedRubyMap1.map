@@ -64,6 +64,8 @@ collision
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 water
 384,385,393,400,402
+mapsec
+19 3 1 1	AQUA HIDEOUT
 music
 MUS_AQUA_MAGMA_HIDEOUT
 counters

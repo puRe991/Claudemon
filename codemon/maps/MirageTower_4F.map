@@ -134,6 +134,8 @@ end
 msgbox	PLAYER left the ROOT FOSSIL alone.
 release
 end
+mapsec
+8 2 1 1	MIRAGE TOWER
 music
 MUS_MT_CHIMNEY
 encounters

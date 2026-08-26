@@ -89,6 +89,8 @@ warps
 22 29 MtPyre_1F 0
 water
 368,370,372,376,377,544,552,553,560,561,568,569
+mapsec
+16 4 1 2	ROUTE 122
 music
 MUS_ROUTE122
 encounters

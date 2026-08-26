@@ -117,6 +117,8 @@ end
 msgbox	RYDEL: Good, good! I'm happy that you like it!
 release
 end
+mapsec
+8 6 2 1	MAUVILLE CITY
 music
 MUS_RUSTBORO
 counters

@@ -297,6 +297,8 @@ goto MossdeepCity_SpaceCenter_2F_EventScript_Grunt6
 msgbox	I wish ordinary people could go into space one day…
 release
 end
+mapsec
+24 5 2 1	MOSSDEEP CITY
 music
 MUS_RUSTBORO
 counters

@@ -352,5 +352,7 @@ goto BattleFrontier_BattleDomeLobby_EventScript_AttendantWelcome
 end
 signs
 15 10	The Battle Tournament rules are listed.
+mapsec
+22 12 1 1	BATTLE FRONTIER
 music
 MUS_B_DOME_LOBBY

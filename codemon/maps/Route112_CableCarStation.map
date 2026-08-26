@@ -78,6 +78,8 @@ special CableCarWarp
 special CableCar
 release
 end
+mapsec
+6 3 2 1	ROUTE 112
 music
 MUS_ROUTE110
 counters

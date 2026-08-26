@@ -99,6 +99,8 @@ setflag FLAG_ITEM_SHOAL_CAVE_INNER_ROOM_RARE_CANDY
 end
 = ShoalCave_LowTideInnerRoom_EventScript_ItemRareCandy_Taken
 end
+mapsec
+24 4 1 1	SHOAL CAVE
 music
 MUS_MT_PYRE
 encounters

@@ -97,6 +97,8 @@ pokemartdecoration2 Route104_PrettyPetalFlowerShop_Pokemart_Plants
 msgbox	Please come again!
 release
 end
+mapsec
+0 7 1 3	ROUTE 104
 music
 MUS_PETALBURG
 counters

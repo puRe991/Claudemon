@@ -251,6 +251,8 @@ return
 = MossdeepCity_SpaceCenter_1F_EventScript_NoLaunchesYetMagma
 msgbox	I know that things are a little haywire right now, but…The rocket's launch is imminent!
 return
+mapsec
+24 5 2 1	MOSSDEEP CITY
 music
 MUS_RUSTBORO
 counters

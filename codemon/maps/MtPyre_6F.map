@@ -72,6 +72,8 @@ msgbox	Fufufu… I lost the match, but… I have this little ability…Without 
 register_matchcall TRAINER_VALERIE_1
 release
 end
+mapsec
+16 4 1 1	MT. PYRE
 music
 MUS_MT_PYRE
 encounters

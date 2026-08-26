@@ -75,5 +75,7 @@ end
 msgbox	Oh? You met WALLY in EVER GRANDE CITY?Oh, PLAYER, don't be silly.He may have gotten healthy, but he can't go somewhere far away like that all by himself.
 release
 end
+mapsec
+1 9 1 1	PETALBURG CITY
 music
 MUS_PETALBURG

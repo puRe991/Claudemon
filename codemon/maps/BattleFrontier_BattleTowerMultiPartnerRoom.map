@@ -150,5 +150,7 @@ end
 frontier_set FRONTIER_DATA_RECORD_DISABLED TRUE
 goto BattleFrontier_BattleTower_EventScript_WarpToLobbyLost
 end
+mapsec
+22 12 1 1	BATTLE FRONTIER
 music
 MUS_B_TOWER

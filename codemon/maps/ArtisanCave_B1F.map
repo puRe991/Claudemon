@@ -158,6 +158,8 @@ setflag FLAG_ITEM_ARTISAN_CAVE_B1F_HP_UP
 end
 = ArtisanCave_B1F_EventScript_ItemHPUp_Taken
 end
+mapsec
+22 12 1 1	ARTISAN CAVE
 music
 MUS_PETALBURG_WOODS
 encounters

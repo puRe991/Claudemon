@@ -151,6 +151,8 @@ end
 msgbox	STRENGTH made it possible to move boulders around.
 releaseall
 end
+mapsec
+24 9 1 1	SEAFLOOR CAVERN
 music
 MUS_MT_CHIMNEY
 encounters

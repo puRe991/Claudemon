@@ -72,5 +72,7 @@ end
 msgbox	Any POKéMON can be cute if you raise it with care and kindness.
 release
 end
+mapsec
+0 5 1 2	RUSTBORO CITY
 music
 MUS_RUSTBORO

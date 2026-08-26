@@ -79,5 +79,7 @@ end
 msgbox	Now, now. That is merely an EGG!
 release
 end
+mapsec
+8 10 1 2	SLATEPORT CITY
 music
 MUS_SLATEPORT

@@ -161,6 +161,8 @@ end
 = LilycoveCity_DepartmentStore_1F_EventScript_Greeter
 msgbox	Welcome to LILYCOVE DEPARTMENT STORE.
 end
+mapsec
+18 3 2 1	LILYCOVE CITY
 music
 MUS_LILYCOVE
 counters

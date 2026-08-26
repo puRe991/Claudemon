@@ -131,6 +131,8 @@ return
 msgbox	When I was young, I traveled the world as a POKéMON TRAINER.Now that I've become an old buzzard, my only amusement is watching young TRAINERS battle.
 release
 end
+mapsec
+21 7 1 1	SOOTOPOLIS CITY
 music
 MUS_SOOTOPOLIS
 counters

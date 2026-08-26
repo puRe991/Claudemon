@@ -58,6 +58,8 @@ end
 = FortreeCity_DecorationShop_EventScript_PokefanM
 msgbox	Merchandise you buy here is sent to your own PC.That's fantastic! I wish they could also deliver me home like that.
 end
+mapsec
+12 0 1 1	FORTREE CITY
 music
 MUS_FORTREE
 counters

@@ -142,6 +142,8 @@ releaseall
 end
 water
 640,641,642,648,649,650,657,658,659
+mapsec
+24 9 1 1	SEAFLOOR CAVERN
 music
 MUS_MT_CHIMNEY
 encounters

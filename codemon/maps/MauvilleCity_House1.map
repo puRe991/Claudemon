@@ -43,5 +43,7 @@ end
 msgbox	Oh, yes, if you smash a rock, a POKéMON could come flying out of hiding.Woohoo!
 release
 end
+mapsec
+8 6 2 1	MAUVILLE CITY
 music
 MUS_RUSTBORO

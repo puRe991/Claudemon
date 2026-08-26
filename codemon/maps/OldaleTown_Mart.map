@@ -65,6 +65,8 @@ pokemart OldaleTown_Mart_Pokemart_Expanded
 msgbox	Please come again!
 release
 end
+mapsec
+4 9 1 1	OLDALE TOWN
 music
 MUS_POKE_MART
 counters

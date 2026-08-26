@@ -494,6 +494,33 @@ static void test_dive_reaches_sootopolis() {
     CHECK(soot.divewarp_dest() == "Underwater_SootopolisCity");
 }
 
+static void test_region_map_sections() {
+    std::printf("[map] PokeNav region map sections\n");
+    // The importer used to drop region_map_sections.json entirely, so every
+    // map had no mapsec data and the POKENAV screen couldn't place a marker
+    // anywhere -- the region map was completely missing. Pin real grid
+    // rectangles (28x15 logical grid, pokeemerald's region_map.c) for a few
+    // known towns, including an indoor map that must inherit its outdoor
+    // town's section rather than having none.
+    Map littleroot("maps/LittlerootTown.map");
+    CHECK(littleroot.has_mapsec());
+    CHECK(littleroot.mapsec_x() == 4 && littleroot.mapsec_y() == 11);
+    CHECK(littleroot.mapsec_name() == "LITTLEROOT TOWN");
+
+    Map littleroot_house("maps/LittlerootTown_BrendansHouse_2F.map");
+    CHECK(littleroot_house.has_mapsec());
+    CHECK(littleroot_house.mapsec_x() == 4 && littleroot_house.mapsec_y() == 11);
+
+    Map soot("maps/SootopolisCity.map");
+    CHECK(soot.has_mapsec());
+    CHECK(soot.mapsec_x() == 21 && soot.mapsec_y() == 7);
+
+    Map ever_grande("maps/EverGrandeCity.map");
+    CHECK(ever_grande.has_mapsec());
+    CHECK(ever_grande.mapsec_x() == 27 && ever_grande.mapsec_y() == 8);
+    CHECK(ever_grande.mapsec_w() == 1 && ever_grande.mapsec_h() == 2);
+}
+
 // --------------------------------------------------------------------- main --
 
 int main() {
@@ -522,6 +549,7 @@ int main() {
         test_trainer_sight();
         test_sight_only_while_undefeated(bd);
         test_dive_reaches_sootopolis();
+        test_region_map_sections();
     } else {
         std::printf("[skip] no DISPLAY: Map/ScriptVM/Battle tests need a GL "
                     "context (run under xvfb-run to include them)\n");

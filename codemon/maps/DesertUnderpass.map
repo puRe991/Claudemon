@@ -78,6 +78,8 @@ giveitem ITEM_CLAW_FOSSIL
 removeobject LOCALID_UNDERPASS_FOSSIL
 release
 end
+mapsec
+2 0 1 1	DESERT UNDERPASS
 music
 MUS_MT_CHIMNEY
 encounters

@@ -168,6 +168,8 @@ msgboxyesno	I'm delighted to see you, PLAYER! You want the usual, am I right?
 goto_if_eq VAR_RESULT YES EventScript_PkmnCenterNurse_GoldCardHealPkmn
 msgbox	We hope to see you again!
 return
+mapsec
+18 3 2 1	LILYCOVE CITY
 music
 MUS_POKE_CENTER
 counters

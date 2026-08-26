@@ -270,6 +270,8 @@ water
 283,293,368,560,561
 visit
 FLAG_VISITED_DEWFORD_TOWN
+mapsec
+2 14 1 1	DEWFORD TOWN
 music
 MUS_DEWFORD
 encounters

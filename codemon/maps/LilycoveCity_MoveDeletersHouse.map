@@ -87,5 +87,7 @@ end
 msgbox	What? No EGG should know any moves.
 releaseall
 end
+mapsec
+18 3 2 1	LILYCOVE CITY
 music
 MUS_LILYCOVE

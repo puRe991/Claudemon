@@ -184,5 +184,7 @@ end
 trainerbattle_single TRAINER_JOSHUA Route110_TrickHousePuzzle7_Text_JoshuaIntro Route110_TrickHousePuzzle7_Text_JoshuaDefeat
 msgbox	I wish I could appear and disappear as if I were smoke, too.
 end
+mapsec
+8 7 1 3	ROUTE 110
 music
 MUS_TRICK_HOUSE

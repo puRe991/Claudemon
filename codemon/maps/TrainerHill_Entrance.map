@@ -359,6 +359,8 @@ end
 = TrainerHill_Entrance_EventScript_ThanksForPlaying
 msgbox	Thank you for playing!
 goto TrainerHill_Entrance_EventScript_AttendantEnd
+mapsec
+8 4 1 1	TRAINER HILL
 music
 MUS_B_TOWER_RS
 counters

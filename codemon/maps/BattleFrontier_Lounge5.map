@@ -70,5 +70,7 @@ end
 msgbox	Boo! Cheapie!
 release
 end
+mapsec
+22 12 1 1	BATTLE FRONTIER
 music
 MUS_B_TOWER_RS

@@ -128,6 +128,11 @@ private:
 	std::string visit_flag_;     // pokeemerald's FLAG_VISITED_* this map sets
 	                             // unconditionally on entry (Fly destination
 	                             // gating); empty if this map doesn't have one
+	// Region map (PokeNav Town Map) grid rectangle -- see Menu.cpp's marker
+	// drawing. mapsec_w_ <= 0 means this map has none (Battle Frontier
+	// interiors, a few special-case maps).
+	int mapsec_x_ = 0, mapsec_y_ = 0, mapsec_w_ = 0, mapsec_h_ = 0;
+	std::string mapsec_name_;
 	std::string music_;          // this map's own background music (pokeemerald's
 	                             // MUS_* id, e.g. "MUS_LITTLEROOT"); empty if
 	                             // the map is silent (MUS_NONE) or wasn't tagged
@@ -235,6 +240,15 @@ public:
 	const std::string& divewarp_dest() const { return this->divewarp_dest_; }
 	int divewarp_x() const { return this->divewarp_x_; }
 	int divewarp_y() const { return this->divewarp_y_; }
+	// This map's region-map (PokeNav Town Map) grid rectangle, e.g. Littleroot
+	// Town's (4,11,1,1). has_mapsec() is false for the handful of maps with
+	// none (Battle Frontier interiors, MAPSEC_NONE/_DYNAMIC).
+	bool has_mapsec() const { return this->mapsec_w_ > 0; }
+	int mapsec_x() const { return this->mapsec_x_; }
+	int mapsec_y() const { return this->mapsec_y_; }
+	int mapsec_w() const { return this->mapsec_w_; }
+	int mapsec_h() const { return this->mapsec_h_; }
+	const std::string& mapsec_name() const { return this->mapsec_name_; }
 	// Does stepping on (x,y) trigger a wild encounter? (tall grass, the
 	// floor of a cave/indoor map that has encounters but no grass tiles, or
 	// surfable water -- reaching a water tile at all already implies

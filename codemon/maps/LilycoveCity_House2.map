@@ -43,5 +43,7 @@ end
 msgbox	Yawn…Sleep is essential for good health… Sleep and regain health…
 release
 end
+mapsec
+18 3 2 1	LILYCOVE CITY
 music
 MUS_LILYCOVE

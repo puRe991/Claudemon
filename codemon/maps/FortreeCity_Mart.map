@@ -56,6 +56,8 @@ pokemart FortreeCity_Mart_Pokemart
 msgbox	Please come again!
 release
 end
+mapsec
+12 0 1 1	FORTREE CITY
 music
 MUS_POKE_MART
 counters

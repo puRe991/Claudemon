@@ -238,5 +238,7 @@ return
 = BattleFrontier_BattleDomePreBattleRoom_EventScript_Round1Complete
 msgbox	All 1st-round matches have been completed.These are the teams that advanced!
 return
+mapsec
+22 12 1 1	BATTLE FRONTIER
 music
 MUS_B_DOME

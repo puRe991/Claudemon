@@ -786,6 +786,8 @@ signs
 29 10	TRAINER TIPSYour BAG has several POCKETS.Items you obtain are automatically placed in the appropriate POCKETS.No TRAINER can afford to be without a BAG of their own.
 grass
 13,454,455
+mapsec
+1 5 4 1	ROUTE 116
 music
 MUS_ROUTE104
 encounters

@@ -78,6 +78,8 @@ special CableCarWarp
 special CableCar
 release
 end
+mapsec
+6 2 1 1	MT. CHIMNEY
 music
 MUS_ROUTE110
 counters

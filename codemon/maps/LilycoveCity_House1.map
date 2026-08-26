@@ -45,5 +45,7 @@ end
 = LilycoveCity_House1_EventScript_ExpertM
 msgbox	POKéMON are partners to people. They aren't our tools.Unfortunately, there are some people who fail to understand that…
 end
+mapsec
+18 3 2 1	LILYCOVE CITY
 music
 MUS_LILYCOVE

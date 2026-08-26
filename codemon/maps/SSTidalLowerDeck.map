@@ -57,5 +57,7 @@ end
 trainerbattle_single TRAINER_PHILLIP SSTidalLowerDeck_Text_PhillipIntro SSTidalLowerDeck_Text_PhillipDefeat
 msgbox	We're the CLEANUP BROTHERS!The old one dumps the detergent, and the young one does the scrubbing!
 end
+mapsec
+0 0 1 1	
 music
 MUS_SAILING

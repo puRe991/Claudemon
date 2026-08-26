@@ -270,5 +270,7 @@ goto Route124_DivingTreasureHuntersHouse_EventScript_CheckPlayerHasShard
 end
 signs
 7 1	Wanted itemTrade item RED SHARDFIRE STONEWanted itemTrade item YELLOW SHARDTHUNDERSTONEWanted itemTrade item BLUE SHARDWATER STONEWanted itemTrade item GREEN SHARDLEAF STONE
+mapsec
+20 3 4 3	ROUTE 124
 music
 MUS_LILYCOVE

@@ -48,5 +48,7 @@ end
 msgbox	Oh! Oh my! I can see MIRAGE ISLAND today!
 release
 end
+mapsec
+17 10 1 1	PACIFIDLOG TOWN
 music
 MUS_LILYCOVE

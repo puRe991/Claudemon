@@ -122,5 +122,7 @@ return
 msgbox	Well, listen to what this loser has to say.You've got what it takes to go far. Now, go on to the next room and enjoy your next battle!
 release
 end
+mapsec
+27 8 1 2	EVER GRANDE CITY
 music
 MUS_VICTORY_ROAD

@@ -66,6 +66,8 @@ pokemart RustboroCity_Mart_Pokemart_Basic
 msgbox	Please come again!
 release
 end
+mapsec
+0 5 1 2	RUSTBORO CITY
 music
 MUS_POKE_MART
 counters

@@ -75,5 +75,7 @@ end
 = PacifidlogTown_House3_EventScript_Girl
 msgbox	Is that a POKéDEX?Did you get to meet a lot of different POKéMON?I wish I was like you.
 end
+mapsec
+17 10 1 1	PACIFIDLOG TOWN
 music
 MUS_LILYCOVE

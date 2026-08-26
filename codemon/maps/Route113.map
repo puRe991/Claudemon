@@ -217,6 +217,8 @@ signs
 12 9	ROUTE 113 FALLARBOR TOWN
 58 4	TRAINER TIPSYou may register one of the KEY ITEMS in your BAG as SELECT.Simply press SELECT to use the registered item conveniently.
 31 5	GLASS WORKSHOP “Turning Volcanic Ash into Glass Items”
+mapsec
+4 0 4 1	ROUTE 113
 music
 MUS_ROUTE113
 encounters

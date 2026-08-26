@@ -184,6 +184,8 @@ end
 trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_11 MagmaHideout_4F_Text_Grunt11Intro MagmaHideout_4F_Text_Grunt11Defeat
 msgbox	I wonder if GROUDON even has a tail?
 end
+mapsec
+6 3 1 1	MAGMA HIDEOUT
 music
 MUS_AQUA_MAGMA_HIDEOUT
 encounters

@@ -137,5 +137,7 @@ end
 msgbox	I'm done for today. Come again another day.Let flowers fill the world!
 release
 end
+mapsec
+12 6 5 1	ROUTE 123
 music
 MUS_RUSTBORO

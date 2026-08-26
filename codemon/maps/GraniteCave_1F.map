@@ -67,6 +67,8 @@ end
 msgbox	Teach that hidden move FLASH to a POKéMON and use it.It lights up even the inky darkness of caves.But, to use it, you need the GYM BADGE from DEWFORD's POKéMON GYM.
 release
 end
+mapsec
+1 13 1 1	GRANITE CAVE
 music
 MUS_PETALBURG_WOODS
 encounters

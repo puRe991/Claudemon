@@ -160,6 +160,8 @@ setflag FLAG_ITEM_GRANITE_CAVE_B2F_REPEL
 end
 = GraniteCave_B2F_EventScript_ItemRepel_Taken
 end
+mapsec
+1 13 1 1	GRANITE CAVE
 music
 MUS_PETALBURG_WOODS
 encounters

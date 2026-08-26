@@ -69,6 +69,8 @@ end
 = LilycoveCity_DepartmentStore_4F_EventScript_Gentleman
 msgbox	Hmm…An attacking move… Or a defensive move…It's no easy matter to decide which TM moves should be taught to POKéMON…
 end
+mapsec
+18 3 2 1	LILYCOVE CITY
 music
 MUS_POKE_MART
 counters

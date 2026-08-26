@@ -419,6 +419,8 @@ signs
 11 8	TRAINER TIPSIn addition to Hit Points (HP), POKéMON have Power Points (PP) that are used to make moves during battle.If a POKéMON runs out of PP, it must be taken to a POKéMON CENTER.
 grass
 13,454,455
+mapsec
+0 8 1 1	PETALBURG WOODS
 music
 MUS_PETALBURG_WOODS
 encounters

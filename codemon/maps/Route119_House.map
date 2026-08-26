@@ -60,5 +60,7 @@ end
 = Route119_House_EventScript_Woman
 msgbox	I heard about a cave called the CAVE OF ORIGIN.People rumor that the spirits of POKéMON are revived there. Could something like that really happen?
 end
+mapsec
+11 0 1 6	ROUTE 119
 music
 MUS_RUSTBORO

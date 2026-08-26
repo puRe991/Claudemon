@@ -47,6 +47,8 @@ setflag FLAG_ITEM_MT_PYRE_5F_LAX_INCENSE
 end
 = MtPyre_5F_EventScript_ItemLaxIncense_Taken
 end
+mapsec
+16 4 1 1	MT. PYRE
 music
 MUS_MT_PYRE
 encounters

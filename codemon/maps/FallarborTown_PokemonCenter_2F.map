@@ -62,6 +62,8 @@ goto CableClub_EventScript_MysteryGiftThankYou2
 msgbox	Thank you for accessing the MYSTERY GIFT System.
 release
 end
+mapsec
+3 0 1 1	FALLARBOR TOWN
 music
 MUS_POKE_CENTER
 counters

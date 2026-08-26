@@ -142,5 +142,7 @@ signs
 26 10	FORTREE CITY POKéMON GYM LEADER: WINONA“The bird user taking flight into the world.”
 visit
 FLAG_VISITED_FORTREE_CITY
+mapsec
+12 0 1 1	FORTREE CITY
 music
 MUS_FORTREE

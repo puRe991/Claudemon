@@ -47,6 +47,8 @@ setflag FLAG_ITEM_SHOAL_CAVE_STAIRS_ROOM_ICE_HEAL
 end
 = ShoalCave_LowTideStairsRoom_EventScript_ItemIceHeal_Taken
 end
+mapsec
+24 4 1 1	SHOAL CAVE
 music
 MUS_MT_PYRE
 encounters
