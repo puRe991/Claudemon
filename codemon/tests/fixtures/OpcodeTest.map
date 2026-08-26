@@ -1,0 +1,58 @@
+tileset general__petalburg
+4 4
+1 1
+0 0 0 0
+0 0 0 0
+0 0 0 0
+0 0 0 0
+scriptdefs
+= Test_Arithmetic
+setvar VAR_COUNTER 500
+subvar VAR_COUNTER 120
+addvar VAR_COUNTER 20
+end
+= Test_Money
+addmoney 500
+removemoney 200
+checkmoney 5000
+end
+= Test_MoneyEnough
+checkmoney 100
+end
+= Test_Coins
+addcoins 90
+removecoins 40
+checkcoins VAR_COIN_OUT
+end
+= Test_CallIfNe
+setvar VAR_FLAGGED 0
+call_if_ne VAR_INPUT 1 Test_CallIfNeTarget
+end
+= Test_CallIfNeTarget
+setvar VAR_FLAGGED 1
+return
+= Test_PartySize
+getpartysize
+end
+= Test_ItemSpace
+checkitemspace ITEM_POTION 1
+end
+= Test_AddItem
+additem ITEM_POTION 3
+end
+= Test_GiveMon
+givemon SPECIES_BELDUM 5
+end
+= Test_TrainerFlagSet
+settrainerflag TRAINER_ALLEN
+end
+= Test_TrainerFlagBranch
+setvar VAR_BRANCH 0
+goto_if_defeated TRAINER_ALLEN Test_TrainerFlagBranchDefeated
+end
+= Test_TrainerFlagBranchDefeated
+setvar VAR_BRANCH 1
+end
+= Test_Random
+random 100
+end

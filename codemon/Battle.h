@@ -186,6 +186,22 @@ public:
 	bool won() const { return victory; }
 	Outcome outcome() const { return last_outcome; }
 
+	// Which sub-screen the battle is currently showing. Exposed so a headless
+	// driver (the engine tests, a CODEMON_WALK script) can step the menus off
+	// the real state instead of guessing how many presses a message queue
+	// needs -- miscounting there silently re-enters the move menu and picks a
+	// different move than intended.
+	enum Screen { SCR_INACTIVE, SCR_MESSAGE, SCR_ACTION, SCR_MOVE, SCR_SWITCH };
+	Screen screen() const {
+		switch (phase) {
+			case MSG:    return SCR_MESSAGE;
+			case ACTION: return SCR_ACTION;
+			case MOVE:   return SCR_MOVE;
+			case SWITCH: return SCR_SWITCH;
+			default:     return SCR_INACTIVE;
+		}
+	}
+
 	void input(BtnInput b);
 	void tick(float dt);          // drives the hit shake animation
 	void draw(sf::RenderTarget& target);

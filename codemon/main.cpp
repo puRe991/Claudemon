@@ -68,7 +68,7 @@ static void draw_banner(sf::RenderTarget& target, const sf::Font& font,
     if (t <= 0.f || name.empty()) return;
     sf::View saved = target.getView();
     target.setView(target.getDefaultView());
-    sf::Vector2f size = target.getView().getSize();
+
     sf::Uint8 a = (sf::Uint8)(std::min(1.f, t) * 235);
     sf::RectangleShape box(sf::Vector2f(280, 46));
     box.setPosition(18, 14);
@@ -1495,7 +1495,7 @@ int main() {
     battle.configure(&bdata, &rng);
     battle.set_capture(&gs, &team, &pc_box);
     ScriptVM vm;
-    vm.set_battle_data(&bdata, &team, &rng);
+    vm.set_battle_data(&bdata, &team, &rng, &pc_box);
     vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player, &sess->actors, &sess->localid_map);
     run_load_triggers(sess->map, gs, vm);
     check_trigger(sess, vm, gs);

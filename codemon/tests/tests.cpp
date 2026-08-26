@@ -1,15 +1,15 @@
 // ---------------------------------------------------------------------------
 // Headless unit tests for the Monsta engine core logic.
 //
-// Deliberately exercises only the parts that do NOT need a graphics context /
-// display: Coordinates, Tile and the hand-rolled Linked_list. The window,
-// map-rendering and sprite loading paths require an OpenGL context and are
-// covered by actually running the game.
+// Covers the small value types the game is built out of -- Coordinates, Tile
+// and the DIR enum -- none of which need a graphics context.
+//
+// The game logic proper (BattleData, SaveGame, ScriptVM, Battle) lives in
+// engine_tests.cpp; this file deliberately stays tiny.
 // ---------------------------------------------------------------------------
 #include "Coordinates.h"
 #include "Tile.h"
 #include "direction.h"
-#include "data_structures.h"
 
 #include <cstdio>
 #include <cstdlib>
@@ -66,32 +66,11 @@ static void test_direction() {
     CHECK(DIR::E != DIR::NONE);
 }
 
-static void test_linked_list() {
-    std::printf("[linked_list]\n");
-    Linked_list list;
-    CHECK(list.get_head() == nullptr);
-    CHECK(list.get_tail() == nullptr);
-
-    int a = 11;
-    int b = 22;
-
-    CHECK(list.add_node(&a) == true);
-    CHECK(list.get_head() != nullptr);
-    CHECK(list.get_head() == list.get_tail());
-    CHECK(list.get_head()->get_data() == &a);
-
-    CHECK(list.add_node(&b) == true);
-    // New nodes are inserted at the head.
-    CHECK(list.get_head()->get_data() == &b);
-    CHECK(list.get_head()->get_next()->get_data() == &a);
-}
-
 int main() {
     std::printf("Running Monsta engine core tests...\n");
     test_coordinates();
     test_tile();
     test_direction();
-    test_linked_list();
 
     if (failures == 0) {
         std::printf("OK: all core tests passed.\n");

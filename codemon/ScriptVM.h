@@ -50,8 +50,11 @@ public:
 	// HealPlayerParty` can actually heal all of it, not only team[0]. `rng`
 	// is the same shared, seeded generator main() hands to Battle -- needed
 	// for make_mon()'s IV/nature roll (givemon, in-game trades, starters).
-	void set_battle_data(BattleData* bd, std::vector<Mon>* team, std::mt19937* rng) {
-		this->bdata = bd; this->team = team; this->rng = rng;
+	// `pc` is the PC box, where `givemon` puts a gift mon when the party is
+	// already full (optional: without it a full party just refuses the gift).
+	void set_battle_data(BattleData* bd, std::vector<Mon>* team, std::mt19937* rng,
+	                     std::vector<Mon>* pc = nullptr) {
+		this->bdata = bd; this->team = team; this->rng = rng; this->pc_box = pc;
 	}
 
 	// Begin running `label`; owner is the interacted NPC (for LOCALID + face).
@@ -125,6 +128,7 @@ private:
 	Map* map; GameState* state; DialogBox* box; Battle* battle;
 	Audio* audio; Character* player; Character* owner;
 	BattleData* bdata; std::vector<Mon>* team; std::mt19937* rng = nullptr;
+	std::vector<Mon>* pc_box = nullptr;   // givemon overflow when the party is full
 	std::vector<Character*>* actors = nullptr;
 	const std::unordered_map<std::string, Character*>* localid_map = nullptr;
 

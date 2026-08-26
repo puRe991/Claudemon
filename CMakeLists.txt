@@ -2,8 +2,9 @@
 # Cod-e-mon / Monsta engine build script
 #
 # Portable CMake build for the SFML 2.x based tile game. Produces the game
-# executable `codemon` and a headless unit-test binary `codemon_tests` that is
-# wired into CTest so the core logic can be verified without a display.
+# executable `codemon` plus two CTest binaries: `codemon_tests` (small value
+# types, no display needed) and `codemon_engine_tests` (BattleData/SaveGame
+# always, plus ScriptVM/Battle when a display is available).
 #
 #   cmake -S . -B build
 #   cmake --build build
@@ -87,8 +88,7 @@ set(ENGINE_SOURCES
     "${SRC_DIR}/ScriptVM.cpp"
     "${SRC_DIR}/Menu.cpp"
     "${SRC_DIR}/Minigame.cpp"
-    "${SRC_DIR}/SaveGame.cpp"
-    "${SRC_DIR}/data_structures.cpp")
+    "${SRC_DIR}/SaveGame.cpp")
 
 add_library(monsta_engine STATIC ${ENGINE_SOURCES})
 target_include_directories(monsta_engine PUBLIC "${SRC_DIR}")
@@ -137,3 +137,20 @@ add_executable(codemon_tests "${SRC_DIR}/tests/tests.cpp")
 target_link_libraries(codemon_tests PRIVATE monsta_engine)
 
 add_test(NAME core_logic COMMAND codemon_tests)
+
+# Regression tests for the real game logic (BattleData/SaveGame/ScriptVM/
+# Battle). These read the imported battle tables and a fixture map, so they run
+# from the staged asset tree next to the game binary; the graphics-dependent
+# half skips itself when there is no display (see has_display() in the source).
+add_executable(codemon_engine_tests "${SRC_DIR}/tests/engine_tests.cpp")
+target_link_libraries(codemon_engine_tests PRIVATE monsta_engine)
+add_dependencies(codemon_engine_tests codemon)   # for the staged maps/ + assets/
+add_custom_command(TARGET codemon_engine_tests POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+            "${SRC_DIR}/tests/fixtures"
+            "$<TARGET_FILE_DIR:codemon_engine_tests>/tests/fixtures"
+    COMMENT "Staging test fixtures next to the test binary")
+
+add_test(NAME engine_logic COMMAND codemon_engine_tests)
+set_tests_properties(engine_logic PROPERTIES
+    WORKING_DIRECTORY "$<TARGET_FILE_DIR:codemon_engine_tests>")

@@ -58,7 +58,7 @@ bool BattleData::load(const std::string& dir) {
 	while (std::getline(mv, line)) {
 		auto c = split(line, '\t');
 		if (c.size() < 4) continue;
-		MoveInfo mi{std::stoi(c[1]), c[2], std::stoi(c[3])};
+		MoveInfo mi{std::stoi(c[1]), c[2], std::stoi(c[3]), "", 0, 20};
 		if (c.size() >= 6) { mi.effect = c[4]; mi.secondary_chance = std::stoi(c[5]); }
 		if (c.size() >= 7) mi.pp = std::stoi(c[6]);
 		moves[c[0]] = mi;

@@ -7,10 +7,10 @@
 /******************************************************************************
 Character - a tile-positioned actor drawn from a pokeemerald overworld sheet.
 
-The imported walking sheets (assets/overworld/*.png) are a single row of nine
+The imported walking sheets (assets/overworld/<sheet>.png) are a single row of nine
 16x32 frames:
     0 face S   1 face N   2 face W
-    3,4 walk S   5,6 walk N   7,8 walk W
+    3-4 walk S   5-6 walk N   7-8 walk W
 East reuses the West frames mirrored horizontally. The sprite is 32px tall but
 occupies one 16px tile, so it is drawn shifted up by (frame_h - tile) px, giving
 the classic overworld "feet on the tile" look.

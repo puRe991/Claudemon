@@ -363,6 +363,45 @@ void ScriptVM::pump() {
 			this->state->set_var(arg(0), value_of(arg(1)));
 		} else if (op == "addvar" && argc >= 2) {
 			this->state->set_var(arg(0), value_of(arg(0)) + value_of(arg(1)));
+		} else if (op == "subvar" && argc >= 2) {
+			this->state->set_var(arg(0), value_of(arg(0)) - value_of(arg(1)));
+		} else if (op == "random" && argc >= 1) {
+			// gSpecialVar_Result = Random() % max. Uses the shared seeded RNG
+			// so headless runs stay reproducible, like every other roll here.
+			int max = value_of(arg(0));
+			int r = (max > 0 && this->rng) ? (int)((*this->rng)() % (unsigned)max) : 0;
+			this->state->set_var("VAR_RESULT", r);
+		} else if (op == "getpartysize") {
+			this->state->set_var("VAR_RESULT", this->team ? (int)this->team->size() : 0);
+		} else if (op == "checkmoney" && argc >= 1) {
+			this->state->set_var("VAR_RESULT", this->state->money >= value_of(arg(0)) ? 1 : 0);
+		} else if (op == "removemoney" && argc >= 1) {
+			this->state->money = std::max(0, this->state->money - value_of(arg(0)));
+		} else if (op == "addmoney" && argc >= 1) {
+			this->state->money += value_of(arg(0));
+		} else if (op == "checkcoins" && argc >= 1) {
+			// Writes the coin count into the *named var*, not VAR_RESULT.
+			this->state->set_var(arg(0), this->state->get_var("COINS"));
+		} else if (op == "addcoins" && argc >= 1) {
+			this->state->set_var("COINS", this->state->get_var("COINS") + value_of(arg(0)));
+		} else if (op == "removecoins" && argc >= 1) {
+			this->state->set_var("COINS",
+				std::max(0, this->state->get_var("COINS") - value_of(arg(0))));
+		} else if (op == "additem" && argc >= 1) {
+			// Same effect as giveitem minus the "received" message box (scripts
+			// that use it print their own), so it must not block.
+			this->state->give_item(arg(0), (argc >= 2) ? value_of(arg(1)) : 1);
+			this->state->set_var("VAR_RESULT", 1);
+		} else if (op == "checkitemspace" && argc >= 1) {
+			// This engine's bag is an unbounded map, so there is always room.
+			this->state->set_var("VAR_RESULT", 1);
+		} else if (op == "setrespawn" && argc >= 1) {
+			// pokeemerald maps a HEAL_LOCATION_* id to a map+tile. This engine
+			// updates last_heal_* natively whenever the player actually heals
+			// at a Pokemon Center (see main.cpp), which covers every respawn
+			// point the story sets -- so record the id for scripts that read it
+			// back rather than inventing a heal-location table.
+			this->state->set_var("VAR_LAST_RESPAWN", value_of(arg(0)));
 		} else if (op == "goto" && argc >= 1) {
 			jump(arg(0));
 		} else if (op == "goto_if_set" && argc >= 2) {
@@ -407,6 +446,9 @@ void ScriptVM::pump() {
 				this->call_stack.push_back({this->cur, this->ip}); jump(arg(1)); }
 		} else if (op == "call_if_eq" && argc >= 3) {
 			if (value_of(arg(0)) == value_of(arg(1)) && this->map->has_script(arg(2))) {
+				this->call_stack.push_back({this->cur, this->ip}); jump(arg(2)); }
+		} else if (op == "call_if_ne" && argc >= 3) {
+			if (value_of(arg(0)) != value_of(arg(1)) && this->map->has_script(arg(2))) {
 				this->call_stack.push_back({this->cur, this->ip}); jump(arg(2)); }
 		} else if (op == "call_if_ge" && argc >= 3) {
 			if (value_of(arg(0)) >= value_of(arg(1)) && this->map->has_script(arg(2))) {
@@ -523,6 +565,28 @@ void ScriptVM::pump() {
 		           argc >= 2) {
 			bool beaten = trainer_defeated(arg(0));
 			if (beaten == (op == "goto_if_defeated")) { jump(arg(1)); continue; }
+		} else if ((op == "givemon" || op == "giveegg") && argc >= 1) {
+			// givemon SPECIES, level[, heldItem] -- the Johto starters, Beldum,
+			// Castform, the revived fossils, Wally's Ralts, ... Real result
+			// codes: 0 = added to the party, 1 = sent to the PC, 2 = no room.
+			// giveegg has no level argument (an egg hatches at 5 here, since
+			// this engine has no egg/hatching state to model).
+			std::string sp = arg(0);
+			if (sp.rfind("SPECIES_", 0) == 0) sp = sp.substr(8);
+			int lv = (op == "givemon" && argc >= 2) ? value_of(arg(1)) : 5;
+			int result = 2;
+			if (this->bdata && this->team) {
+				Mon m = this->bdata->make_mon(sp, lv, this->rng);
+				if (op == "givemon" && argc >= 3) {
+					std::string it = arg(2);
+					if (it.rfind("ITEM_", 0) == 0) it = it.substr(5);
+					if (it != "NONE") m.held_item = it;
+				}
+				if (this->team->size() < 6) { this->team->push_back(m); result = 0; }
+				else if (this->pc_box) { this->pc_box->push_back(m); result = 1; }
+				if (result != 2 && this->state) this->state->mark_caught(m.species);
+			}
+			this->state->set_var("VAR_RESULT", result);
 		} else if (op == "setwildbattle" && argc >= 2) {
 			// Scripted wild battles (legendaries, Kecleon, the New Mauville
 			// Voltorb swarm): the species/level is set here, then a
@@ -761,6 +825,40 @@ void ScriptVM::pump() {
 			if (ch && ch != this->player && this->actors) {
 				auto& a = *this->actors;
 				if (std::find(a.begin(), a.end(), ch) == a.end()) a.push_back(ch);
+			}
+		} else if ((op == "setobjectxy" || op == "setobjectxyperm") && argc >= 3) {
+			// Teleport an object to a tile. pokeemerald's ...perm variant also
+			// rewrites the saved template so the move survives a map reload;
+			// this engine rebuilds actors from the map file on every load and
+			// has no per-object save state, so both do the same thing and the
+			// perm variant simply doesn't persist across a reload.
+			Character* ch = resolve(arg(0));
+			if (ch) ch->set_tile(value_of(arg(1)), value_of(arg(2)));
+		} else if ((op == "turnobject" || op == "turnvobject") && argc >= 2) {
+			// turnvobject addresses a "virtual object" (a camera-only cutscene
+			// sprite this engine never creates), so resolve() falls back to the
+			// script owner there -- harmless, and turnobject itself is exact.
+			Character* ch = resolve(arg(0));
+			if (ch) {
+				const std::string& d = arg(1);
+				if      (d == "DIR_NORTH") ch->face(DIR::N);
+				else if (d == "DIR_SOUTH") ch->face(DIR::S);
+				else if (d == "DIR_EAST")  ch->face(DIR::E);
+				else if (d == "DIR_WEST")  ch->face(DIR::W);
+			}
+		} else if ((op == "hideobjectat" || op == "showobjectat") && argc >= 1) {
+			// Same as hide/showobject with an explicit map argument. Only one
+			// map is live at a time here, so the map argument is redundant:
+			// resolve() already scopes the LOCALID to the current map, and an
+			// id belonging to some other map simply won't resolve.
+			Character* ch = resolve(arg(0));
+			if (ch && ch != this->player && this->actors) {
+				auto& a = *this->actors;
+				if (op == "showobjectat") {
+					if (std::find(a.begin(), a.end(), ch) == a.end()) a.push_back(ch);
+				} else {
+					a.erase(std::remove(a.begin(), a.end(), ch), a.end());
+				}
 			}
 		} else if ((op == "hideobject" || op == "showobject") && argc >= 1) {
 			// No separate "present but invisible" state in this engine --
