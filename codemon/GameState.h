@@ -44,6 +44,16 @@ public:
 	std::string last_heal_map;
 	int last_heal_x = -1, last_heal_y = -1;
 
+	// Player identity, chosen once via GenderSelect/NameEntry at the start of
+	// a new game (see main.cpp): `female` drives checkplayergender and which
+	// overworld sprite sheet loads; player_name/rival_name replace the
+	// literal "PLAYER"/"RIVAL" tokens dialogue text carries (pe_import.py
+	// turns pokeemerald's {PLAYER}/{RIVAL} escape codes into those literal
+	// words on import; ScriptVM substitutes them back at msgbox time).
+	bool female = false;
+	std::string player_name = "BRENDAN";
+	std::string rival_name = "MAY";
+
 	void give_item(const std::string& item, int amount) { bag[item] += amount; }
 	// Remove up to `amount` of an item; erases the entry when it hits zero.
 	void take_item(const std::string& item, int amount) {

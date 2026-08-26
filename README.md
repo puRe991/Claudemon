@@ -364,6 +364,17 @@ has been verified either by an automated test or by headless screenshot
   cutscene's own animated assets are all there, just no wordmark), so it's
   text-only, styled like the rest of the UI. Previously the game skipped
   straight into gameplay on launch with no menu at all
+* Player identity, chosen once at the start of a brand new game (skipped
+  when continuing a save): a GenderSelect screen (Brendan/May portraits,
+  real games' own character-select convention) picks the overworld sprite
+  sheet and `checkplayergender`'s answer, then a grid-driven NameEntry
+  screen (A-Z + DEL/OK, WASD-navigated like every other menu here rather
+  than free keyboard typing) names yourself and your rival. Both names
+  replace the literal "PLAYER"/"RIVAL" tokens dialogue text carries --
+  pe_import.py turns pokeemerald's `{PLAYER}`/`{RIVAL}` escape codes into
+  those literal words on import (137 map files use one), and previously
+  they were never substituted back out, so dialogue really did say
+  "PLAYER inserted and turned the KEY." verbatim
 * UI: start menu (Pokédex/Bag/Party/PC Box/PokéNav), map-name banner, HP
   bars, item/type/species icons, Pokémon Center heal (whole team) + its
   glowing-Pokéball/monitor animation
@@ -492,7 +503,7 @@ has been verified either by an automated test or by headless screenshot
   shape as Surf/Waterfall, see above) and there's no assets/mechanic for its
   underwater maps yet
 * Bike, day-night cycle, overworld weather, fishing, berry growing
-* Player naming/gender selection, options/settings screen
+* Options/settings screen
 * Multiple PC boxes (currently one unlimited list), item storage in the PC
 * Breeding/eggs, contests, secret bases, Battle Frontier (Trading — the 4
   fixed NPC in-game trades — now works; there's no real link-cable trading
@@ -748,7 +759,9 @@ screenshot), not just written and assumed correct.
 - [x] Pokémon Center full-team heal + animation
 - [x] Pokédex screen (real seen/caught tracking, persisted)
 - [x] Party member summary screen (stats, nature/ability, moves)
-- [ ] Player naming / gender selection
+- [x] Player naming / gender selection (GenderSelect + grid NameEntry, once
+      at the start of a new game); fixes dialogue's "PLAYER"/"RIVAL" tokens
+      never being substituted
 - [ ] Options/settings screen
 - [ ] Multiple PC boxes, item storage in the PC
 

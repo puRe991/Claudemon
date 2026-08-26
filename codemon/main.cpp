@@ -1167,6 +1167,219 @@ struct TitleScreen {
     }
 };
 
+/******************************************************************************
+GenderSelect - the "who are you" screen shown once at the start of a brand
+new game: Brendan (boy) or May (girl), same portraits real Emerald uses on
+its own character-select screen. Determines the overworld sprite sheet and
+`checkplayergender`'s answer. Self-contained blocking run(), same shape as
+TitleScreen -- this runs before the main session/window even exist.
+*****************************************************************************/
+struct GenderSelect {
+    sf::Font font; bool font_ok = false;
+    UiFrame frame;
+    sf::Texture cursor_tex; bool cursor_ok = false;
+    sf::Texture portrait[2]; bool portrait_ok[2] = {false, false};   // 0=Brendan, 1=May
+
+    void load() {
+        font_ok = font.loadFromFile("assets/fonts/DejaVuSans.ttf");
+        frame.load();
+        cursor_ok = cursor_tex.loadFromFile("assets/graphics/interface/arrow_cursor.png");
+        cursor_tex.setSmooth(false);
+        portrait_ok[0] = portrait[0].loadFromFile("assets/trainers/brendan.png");
+        portrait_ok[1] = portrait[1].loadFromFile("assets/trainers/may.png");
+    }
+
+    void draw(sf::RenderTarget& w, int cursor) {
+        sf::Vector2f size = w.getView().getSize();
+        w.clear(sf::Color(24, 60, 40));
+        const sf::Color head_col(255, 232, 160), body_col(40, 40, 56);
+        if (font_ok) {
+            std::string title_s = "Bist du ein Junge oder ein Mädchen?";
+            sf::Text title(sf::String::fromUtf8(title_s.begin(), title_s.end()), font, 22);
+            sf::FloatRect tb = title.getLocalBounds();
+            title.setPosition(size.x / 2.f - tb.width / 2.f - tb.left, size.y * 0.18f);
+            title.setFillColor(head_col);
+            w.draw(title);
+        }
+        static const char* NAMES[2] = {"JUNGE", "MÄDCHEN"};
+        const float card_w = 160.f, card_h = 200.f, sprite_px = 64.f * 2.f;
+        for (int i = 0; i < 2; ++i) {
+            float cx = size.x * (0.32f + 0.36f * i);
+            float card_top = size.y * 0.32f;
+            sf::FloatRect card(cx - card_w / 2.f, card_top, card_w, card_h);
+            bool sel = i == cursor;
+            if (frame.ready()) frame.draw(w, card.left, card.top, card.width, card.height, 2.f);
+            float sx = cx - sprite_px / 2.f, sy = card_top + 14.f;
+            if (sel) {
+                if (cursor_ok) {
+                    sf::Sprite cs(cursor_tex);
+                    cs.setPosition(card.left - 22.f, sy + sprite_px * 0.35f);
+                    w.draw(cs);
+                } else if (font_ok) {
+                    sf::Text mark(">", font, 22);
+                    mark.setPosition(card.left - 18.f, sy + sprite_px * 0.3f);
+                    mark.setFillColor(head_col);
+                    w.draw(mark);
+                }
+            }
+            if (portrait_ok[i]) {
+                sf::Sprite s(portrait[i]);
+                s.setScale(2.f, 2.f);
+                s.setPosition(sx, sy);
+                w.draw(s);
+            }
+            if (font_ok) {
+                std::string name_s = NAMES[i];
+                sf::Text label(sf::String::fromUtf8(name_s.begin(), name_s.end()), font, 16);
+                sf::FloatRect lb = label.getLocalBounds();
+                label.setPosition(cx - lb.width / 2.f, sy + sprite_px + 10.f);
+                label.setFillColor(sel ? sf::Color(24, 72, 160) : body_col);
+                w.draw(label);
+            }
+        }
+        if (font_ok) {
+            std::string hint_s = "[A/D] wählen   [SPACE] bestätigen";
+            sf::Text hint(sf::String::fromUtf8(hint_s.begin(), hint_s.end()), font, 14);
+            sf::FloatRect hb = hint.getLocalBounds();
+            hint.setPosition(size.x / 2.f - hb.width / 2.f, size.y - 40);
+            hint.setFillColor(sf::Color(230, 230, 230));
+            w.draw(hint);
+        }
+    }
+
+    // Blocks until the player picks Brendan (false) or May (true).
+    bool run(sf::RenderWindow& w) {
+        int cursor = 0;
+        while (w.isOpen()) {
+            sf::Event event;
+            while (w.pollEvent(event)) {
+                if (event.type == sf::Event::Closed) { w.close(); std::exit(0); }
+                if (event.type != sf::Event::KeyPressed) continue;
+                if (event.key.code == sf::Keyboard::A && cursor > 0) cursor--;
+                else if (event.key.code == sf::Keyboard::D && cursor < 1) cursor++;
+                else if (event.key.code == sf::Keyboard::Space || event.key.code == sf::Keyboard::Return)
+                    return cursor == 1;
+            }
+            draw(w, cursor);
+            w.display();
+        }
+        std::exit(0);
+    }
+};
+
+/******************************************************************************
+NameEntry - the on-screen letter-grid naming keyboard real Gen-3 games use
+(A-Z plus DEL/OK), reused both for the player's own name and their rival's.
+Grid-driven like every other menu in this engine (WASD + confirm), not free
+keyboard typing, to stay consistent with the rest of the UI. Self-contained
+blocking run(), same shape as TitleScreen/GenderSelect.
+*****************************************************************************/
+struct NameEntry {
+    static constexpr int COLS = 7, ROWS = 4, MAX_LEN = 7;
+    // 26 letters + DEL + OK, row-major, filling exactly COLS*ROWS cells.
+    static constexpr const char* CELLS[COLS * ROWS] = {
+        "A","B","C","D","E","F","G",
+        "H","I","J","K","L","M","N",
+        "O","P","Q","R","S","T","U",
+        "V","W","X","Y","Z","DEL","OK",
+    };
+    sf::Font font; bool font_ok = false;
+    UiFrame frame;
+    sf::Texture cursor_tex; bool cursor_ok = false;
+
+    void load() {
+        font_ok = font.loadFromFile("assets/fonts/DejaVuSans.ttf");
+        frame.load();
+        cursor_ok = cursor_tex.loadFromFile("assets/graphics/interface/arrow_cursor.png");
+        cursor_tex.setSmooth(false);
+    }
+
+    void draw(sf::RenderTarget& w, const std::string& title, const std::string& name, int cur_r, int cur_c) {
+        sf::Vector2f size = w.getView().getSize();
+        w.clear(sf::Color(24, 60, 40));
+        const sf::Color head_col(255, 232, 160), body_col(40, 40, 56);
+        if (!font_ok) return;
+        sf::Text title_t(sf::String::fromUtf8(title.begin(), title.end()), font, 20);
+        sf::FloatRect tb = title_t.getLocalBounds();
+        title_t.setPosition(size.x / 2.f - tb.width / 2.f - tb.left, size.y * 0.08f);
+        title_t.setFillColor(head_col);
+        w.draw(title_t);
+
+        // Typed-so-far preview, with a blinking-style underline cursor cell.
+        float name_bar_w = 260.f, name_bar_h = 40.f;
+        float name_bar_x = size.x / 2.f - name_bar_w / 2.f, name_bar_y = size.y * 0.17f;
+        if (frame.ready()) frame.draw(w, name_bar_x, name_bar_y, name_bar_w, name_bar_h, 2.f);
+        std::string shown = name.empty() ? "_" : name;
+        sf::Text name_t(sf::String::fromUtf8(shown.begin(), shown.end()), font, 22);
+        name_t.setPosition(name_bar_x + 16, name_bar_y + 6);
+        name_t.setFillColor(body_col);
+        w.draw(name_t);
+
+        float grid_w = 420.f, grid_h = 220.f;
+        float grid_x = size.x / 2.f - grid_w / 2.f, grid_y = size.y * 0.36f;
+        // A light panel behind the grid, same as every other bordered card in
+        // this UI -- without it, body_col's dark navy letters are unreadable
+        // straight against the dark green screen background.
+        if (frame.ready()) frame.draw(w, grid_x, grid_y, grid_w, grid_h, 2.f);
+        float cell_w = grid_w / COLS, cell_h = grid_h / ROWS;
+        for (int r = 0; r < ROWS; ++r) {
+            for (int c = 0; c < COLS; ++c) {
+                const char* label = CELLS[r * COLS + c];
+                float cx = grid_x + c * cell_w, cy = grid_y + r * cell_h;
+                bool sel = r == cur_r && c == cur_c;
+                if (sel) {
+                    sf::RectangleShape hl(sf::Vector2f(cell_w - 4.f, cell_h - 4.f));
+                    hl.setPosition(cx + 2.f, cy + 2.f);
+                    hl.setFillColor(sf::Color(24, 72, 160, 90));
+                    w.draw(hl);
+                }
+                sf::Text t(label, font, 16);
+                sf::FloatRect lb = t.getLocalBounds();
+                t.setPosition(cx + cell_w / 2.f - lb.width / 2.f - lb.left,
+                               cy + cell_h / 2.f - lb.height / 2.f - lb.top);
+                t.setFillColor(sel ? sf::Color(24, 72, 160) : body_col);
+                w.draw(t);
+            }
+        }
+        std::string hint_s = "[WASD] wählen  [SPACE] bestätigen  [BACKSPACE] löschen";
+        sf::Text hint(sf::String::fromUtf8(hint_s.begin(), hint_s.end()), font, 13);
+        sf::FloatRect hb = hint.getLocalBounds();
+        hint.setPosition(size.x / 2.f - hb.width / 2.f, size.y - 34);
+        hint.setFillColor(sf::Color(230, 230, 230));
+        w.draw(hint);
+    }
+
+    // Blocks until "OK" is confirmed with a non-empty name. `def` pre-fills
+    // the name (real games start blank, but a sane default keeps this
+    // skippable-feeling and gives something sensible if the window closes).
+    std::string run(sf::RenderWindow& w, const std::string& title, const std::string& def) {
+        std::string name = def.substr(0, MAX_LEN);
+        int cur_r = 0, cur_c = 0;
+        while (w.isOpen()) {
+            sf::Event event;
+            while (w.pollEvent(event)) {
+                if (event.type == sf::Event::Closed) { w.close(); std::exit(0); }
+                if (event.type != sf::Event::KeyPressed) continue;
+                if (event.key.code == sf::Keyboard::W && cur_r > 0) cur_r--;
+                else if (event.key.code == sf::Keyboard::S && cur_r < ROWS - 1) cur_r++;
+                else if (event.key.code == sf::Keyboard::A && cur_c > 0) cur_c--;
+                else if (event.key.code == sf::Keyboard::D && cur_c < COLS - 1) cur_c++;
+                else if (event.key.code == sf::Keyboard::BackSpace) {
+                    if (!name.empty()) name.pop_back();
+                } else if (event.key.code == sf::Keyboard::Space || event.key.code == sf::Keyboard::Return) {
+                    std::string cell = CELLS[cur_r * COLS + cur_c];
+                    if (cell == "DEL") { if (!name.empty()) name.pop_back(); }
+                    else if (cell == "OK") { if (!name.empty()) return name; }
+                    else if ((int)name.size() < MAX_LEN) name += cell;
+                }
+            }
+            draw(w, title, name, cur_r, cur_c);
+            w.display();
+        }
+        std::exit(0);
+    }
+};
+
 int main() {
     const char* map_env = std::getenv("CODEMON_MAP");
     std::mt19937 rng(1234);
@@ -1244,6 +1457,23 @@ int main() {
         bool wants_continue = title.run(titlewin, resumed);
         titlewin.close();
         if (!wants_continue && resumed) { start_new_game(); resumed = false; }
+
+        // A brand new game (not a loaded save) still needs a player before
+        // it can begin: who you are (GenderSelect) and your/your rival's
+        // name (NameEntry), matching real Emerald's own character-select +
+        // naming-screen intro. Skipped entirely when continuing a save.
+        if (!resumed) {
+            sf::RenderWindow setupwin(sf::VideoMode(VIEW_TW * 16 * SCALE, VIEW_TH * 16 * SCALE),
+                                      "Codemon!");
+            GenderSelect gender_ui; gender_ui.load();
+            gs.female = gender_ui.run(setupwin);
+            PLAYER_SHEET = gs.female ? "assets/overworld/people_may_walking.png"
+                                     : "assets/overworld/people_brendan_walking.png";
+            NameEntry name_ui; name_ui.load();
+            gs.player_name = name_ui.run(setupwin, "Wie heisst du?", gs.female ? "MAY" : "BRENDAN");
+            gs.rival_name = name_ui.run(setupwin, "Wie heisst dein Rivale?", gs.female ? "BRENDAN" : "MAY");
+            setupwin.close();
+        }
     }
 
     // CODEMON_START_X/Y (with CODEMON_MAP): land on a specific tile instead

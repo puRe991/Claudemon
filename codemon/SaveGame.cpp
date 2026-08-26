@@ -85,6 +85,7 @@ bool SaveGame::save(const std::string& path, const GameState& gs,
 	f << "pos\t" << player_x << '\t' << player_y << '\n';
 	f << "money\t" << gs.money << '\n';
 	f << "heal\t" << gs.last_heal_map << '\t' << gs.last_heal_x << '\t' << gs.last_heal_y << '\n';
+	f << "player\t" << (gs.female ? 1 : 0) << '\t' << gs.player_name << '\t' << gs.rival_name << '\n';
 
 	f << "vars\t" << gs.all_vars().size() << '\n';
 	for (const auto& kv : gs.all_vars()) f << kv.first << '\t' << kv.second << '\n';
@@ -144,6 +145,10 @@ bool SaveGame::load(const std::string& path, GameState& gs,
 			new_gs.last_heal_map = parts[1];
 			new_gs.last_heal_x = std::atoi(parts[2].c_str());
 			new_gs.last_heal_y = std::atoi(parts[3].c_str());
+		} else if (key == "player" && parts.size() >= 4) {
+			new_gs.female = parts[1] != "0";
+			new_gs.player_name = parts[2];
+			new_gs.rival_name = parts[3];
 		} else if (key == "vars" && parts.size() >= 2) {
 			int n = std::atoi(parts[1].c_str());
 			for (int i = 0; i < n && std::getline(f, line); ++i) {

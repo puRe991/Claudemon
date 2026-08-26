@@ -290,10 +290,24 @@ void ScriptVM::pump() {
 			// yes/no and the choice lands in VAR_RESULT.
 			this->pending_yesno = (op == "msgboxyesno");
 			std::string text = in[1];
-			for (const auto& kv : this->str_vars) {
-				size_t pos;
-				while ((pos = text.find(kv.first)) != std::string::npos)
-					text.replace(pos, kv.first.size(), kv.second);
+			// Advances past each replacement instead of restarting the
+			// search from 0 -- otherwise a value that contains its own
+			// token (e.g. a player naming themselves "PLAYER") would match
+			// forever and hang here.
+			auto sub = [&](const std::string& tok, const std::string& val) {
+				size_t pos = 0;
+				while ((pos = text.find(tok, pos)) != std::string::npos) {
+					text.replace(pos, tok.size(), val);
+					pos += val.size();
+				}
+			};
+			for (const auto& kv : this->str_vars) sub(kv.first, kv.second);
+			// pe_import.py turns pokeemerald's {PLAYER}/{RIVAL} escape codes
+			// into these literal tokens on import (see _clean_dialog); swap
+			// in the chosen names the same way STR_VAR_n is substituted above.
+			if (this->state) {
+				sub("PLAYER", this->state->player_name);
+				sub("RIVAL", this->state->rival_name);
 			}
 			this->box->open(this->owner ? std::string() : std::string(), text);
 			this->st = WAIT_MSG;
@@ -501,7 +515,8 @@ void ScriptVM::pump() {
 		} else if (op == "dowildbattle") {
 			if (start_pending_wild_battle()) return;
 		} else if (op == "checkplayergender") {
-			this->state->set_var("VAR_RESULT", 0);   // treat player as male
+			// Real pokeemerald MALE=0/FEMALE=1, from the GenderSelect choice.
+			this->state->set_var("VAR_RESULT", this->state->female ? 1 : 0);
 		} else if (op == "special" || op == "special2") {
 			// special <Func> ; special2 <var> <Func>. Implement the few that
 			// have a clear overworld effect; the rest are safely ignored.
