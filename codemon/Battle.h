@@ -89,6 +89,22 @@ private:
 	// messages. False if `effect` isn't a stat-stage effect at all, so the
 	// caller falls through to try_inflict_status for status/confusion.
 	bool apply_stat_change(Mon& atk, Mon& def, const std::string& effect);
+
+	// --- weather ---------------------------------------------------------
+	// Gen-3 battle weather: RAIN_DANCE/SUNNY_DAY/SANDSTORM/HAIL, 5 turns,
+	// the latest move overwrites whatever was active. Never carries over
+	// between battles.
+	enum Weather { WEATHER_NONE, WEATHER_RAIN, WEATHER_SUN, WEATHER_SANDSTORM, WEATHER_HAIL };
+	Weather weather = WEATHER_NONE;
+	int weather_turns = 0;
+	// Sets weather from a move's effect string; false if `effect` isn't one
+	// of the four weather-setting effects.
+	bool apply_weather_effect(const std::string& effect);
+	// Water/Fire damage multiplier for the current weather (1.5x/0.5x in
+	// rain/sun, 1 otherwise) -- folded into the attacker's own stage
+	// multiplier before calling BattleData::damage().
+	float weather_damage_mult(const std::string& move_type) const;
+
 	// Gen-3 critical-hit roll: stage 0 (1/16) bumped +1 by a HIGH_CRITICAL
 	// move, +2 by a prior Focus Energy (StatStages::crit) -- stage 4+ caps
 	// at 1/2. A crit ignores the attacker's own negative stage and the

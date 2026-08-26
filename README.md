@@ -390,15 +390,22 @@ has been verified either by an automated test or by headless screenshot
 * Move priority brackets (Quick Attack/Mach Punch/Extreme Speed act before
   Speed is even checked, Vital Throw always goes last), verified against a
   much faster opponent
+* Battle weather (Rain Dance/Sunny Day/Sandstorm/Hail, 5 turns, the latest
+  overwrites any previous one): Rain/Sun give Water/Fire moves their real
+  1.5x/0.5x swing, Sandstorm/Hail chip 1/16 max HP a turn from anything not
+  Rock/Ground/Steel or Ice respectively, clearing with its own message on
+  expiry -- never carries over between battles
 * `codemon_tests` / CTest for the display-independent core data structures
 
 ### ⚠️ Partial / simplified
 
-* **Battle system** is a simplified 1v1 damage calculator: no weather, no
-  abilities, no held items, no IV/EV/natures, no PP/Struggle, no doubles,
-  no EXP Share (status conditions, accuracy, stat stages, critical hits,
-  move priority, mid-battle switching and faint recovery are implemented,
-  see above)
+* **Battle system** is a simplified 1v1 damage calculator: no abilities
+  (blocked on missing source data -- species.tsv has no ability column and
+  the original pokeemerald source isn't available in this environment to
+  re-extract it), no held items, no IV/EV/natures, no PP/Struggle, no
+  doubles, no EXP Share (status conditions, accuracy, stat stages,
+  critical hits, move priority, weather, mid-battle switching and faint
+  recovery are implemented, see above)
 * **Catch mechanic** is a flat approximate formula, independent of species
   catch rate or ball type (only `ITEM_POKE_BALL` exists functionally)
 * **Evolution**: level-up only; stone/trade/friendship evolutions are
@@ -617,7 +624,10 @@ screenshot), not just written and assumed correct.
 - [x] Move priority (Quick Attack/Mach Punch/Extreme Speed, Vital Throw)
 - [x] Stat-stage changes from status moves (-6..+6, all seven stats,
       compound effects like Bulk Up/Calm Mind/Haze included)
-- [ ] Weather, abilities, held items, IV/EV/natures, PP/Struggle
+- [x] Weather (Rain/Sun damage swing, Sandstorm/Hail chip damage, 5-turn
+      duration)
+- [ ] Abilities (blocked -- no per-species ability data imported), held
+      items, IV/EV/natures, PP/Struggle
 - [x] Switching Pokémon mid-battle / surviving a faint with a healthy party
 - [x] Whiteout on a lost battle (heal + warp to last heal location) instead
       of scripted trainer battles continuing their win dialogue on a loss

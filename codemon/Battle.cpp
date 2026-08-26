@@ -119,6 +119,7 @@ bool Battle::start_wild(const std::string& species, int level, Mon* pm) {
 	this->party.clear(); this->party_idx = 0;
 	this->enemy = this->data->make_mon(species, level);
 	this->player_stages = StatStages(); this->enemy_stages = StatStages();
+	this->weather = WEATHER_NONE; this->weather_turns = 0;
 	this->over = this->victory = false;
 	this->last_outcome = OUTCOME_NONE;
 	this->cursor = 0;
@@ -149,6 +150,7 @@ bool Battle::start_trainer(const std::string& trainer_id, const std::string& nam
 	this->party = pty; this->party_idx = 0;
 	this->enemy = this->data->make_mon(pty[0].first, pty[0].second);
 	this->player_stages = StatStages(); this->enemy_stages = StatStages();
+	this->weather = WEATHER_NONE; this->weather_turns = 0;
 	this->over = this->victory = false;
 	this->last_outcome = OUTCOME_NONE;
 	this->cursor = 0;
@@ -359,6 +361,36 @@ bool Battle::apply_stat_change(Mon& atk, Mon& def, const std::string& effect) {
 	return false;
 }
 
+bool Battle::apply_weather_effect(const std::string& effect) {
+	if (effect == "RAIN_DANCE") {
+		this->weather = WEATHER_RAIN; this->weather_turns = 5;
+		queue("Es fängt an zu regnen!");
+	} else if (effect == "SUNNY_DAY") {
+		this->weather = WEATHER_SUN; this->weather_turns = 5;
+		queue("Das Sonnenlicht wird grell!");
+	} else if (effect == "SANDSTORM") {
+		this->weather = WEATHER_SANDSTORM; this->weather_turns = 5;
+		queue("Ein Sandsturm zieht auf!");
+	} else if (effect == "HAIL") {
+		this->weather = WEATHER_HAIL; this->weather_turns = 5;
+		queue("Es beginnt zu hageln!");
+	} else {
+		return false;
+	}
+	return true;
+}
+
+float Battle::weather_damage_mult(const std::string& move_type) const {
+	if (this->weather == WEATHER_RAIN) {
+		if (move_type == "WATER") return 1.5f;
+		if (move_type == "FIRE") return 0.5f;
+	} else if (this->weather == WEATHER_SUN) {
+		if (move_type == "FIRE") return 1.5f;
+		if (move_type == "WATER") return 0.5f;
+	}
+	return 1.f;
+}
+
 // Gen-3 crit-stage odds: 0 -> 1/16, 1 -> 1/8, 2 -> 1/4, 3 -> 1/3, 4+ -> 1/2.
 bool Battle::roll_critical(const std::string& move_effect, int crit_stage) const {
 	static const int denom[5] = {16, 8, 4, 3, 2};
@@ -377,6 +409,30 @@ int Battle::move_priority(const std::string& mv) const {
 
 void Battle::apply_end_of_turn_effects() {
 	Mon* sides[2] = {this->player, &this->enemy};
+
+	// Sandstorm/Hail chip damage, then weather's own countdown/expiry.
+	if (this->weather == WEATHER_SANDSTORM || this->weather == WEATHER_HAIL) {
+		for (Mon* m : sides) {
+			if (!m || m->fainted()) continue;
+			bool immune = this->weather == WEATHER_SANDSTORM
+				? (m->t1 == "ROCK" || m->t2 == "ROCK" || m->t1 == "GROUND" || m->t2 == "GROUND" ||
+				   m->t1 == "STEEL" || m->t2 == "STEEL")
+				: (m->t1 == "ICE" || m->t2 == "ICE");
+			if (immune) continue;
+			deal_damage(*m, std::max(1, m->max_hp / 16));
+			queue(nice(m->species) + (this->weather == WEATHER_SANDSTORM
+			      ? " wird vom Sandsturm getroffen!" : " wird vom Hagel getroffen!"));
+			if (m->fainted()) queue(nice(m->species) + " wurde besiegt!");
+		}
+	}
+	if (this->weather != WEATHER_NONE && --this->weather_turns <= 0) {
+		static const char* clear_msg[] = {"", "Der Regen hört auf.",
+		                                  "Das grelle Sonnenlicht lässt nach.",
+		                                  "Der Sandsturm legt sich.", "Der Hagelsturm hört auf."};
+		queue(clear_msg[this->weather]);
+		this->weather = WEATHER_NONE;
+	}
+
 	for (Mon* m : sides) {
 		if (!m || m->fainted() || m->status == Status::NONE) continue;
 		int dmg = 0;
@@ -413,7 +469,9 @@ void Battle::do_move(Mon& atk, Mon& def, const std::string& mv,
 	float eff = BattleData::type_eff(mi->type, def.t1, def.t2);
 	if (eff == 0.f) { queue("Hat keine Wirkung auf " + nice(def.species) + " ..."); return; }
 	if (mi->power <= 0) {                      // pure status move: no damage model
-		if (!apply_stat_change(atk, def, mi->effect)) try_inflict_status(def, mi->effect);
+		if (!apply_weather_effect(mi->effect) &&
+		    !apply_stat_change(atk, def, mi->effect))
+			try_inflict_status(def, mi->effect);
 		return;
 	}
 	bool physical = BattleData::is_physical(mi->type);
@@ -422,8 +480,10 @@ void Battle::do_move(Mon& atk, Mon& def, const std::string& mv,
 	float def_mult = stage_mult(physical ? def_st.def : def_st.spd);
 	// A crit ignores the attacker's own stat drop and the defender's own
 	// stat boost (real games' rule) -- clamp each multiplier back to at
-	// least/most neutral rather than dropping it outright.
+	// least/most neutral rather than dropping it outright. Weather is its
+	// own multiplier, layered on after, so a crit never cancels it out.
 	if (crit) { atk_mult = std::max(atk_mult, 1.f); def_mult = std::min(def_mult, 1.f); }
+	atk_mult *= weather_damage_mult(mi->type);
 	int dmg = this->data->damage(atk, def, mv, *this->rng, atk_mult, def_mult, crit);
 	deal_damage(def, dmg);
 	if (crit) queue("Ein Volltreffer!");
