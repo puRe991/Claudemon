@@ -399,15 +399,20 @@ has been verified either by an automated test or by headless screenshot
 
 ### ⚠️ Partial / simplified
 
-* **Battle system** is a simplified 1v1 damage calculator: no abilities
-  (blocked on missing source data -- species.tsv has no ability column and
-  the original pokeemerald source isn't available in this environment to
-  re-extract it), no held items, no IV/EV/natures, no PP/Struggle, no
-  doubles, no EXP Share (status conditions, accuracy, stat stages,
-  critical hits, move priority, weather, mid-battle switching and faint
-  recovery are implemented, see above)
-* **Catch mechanic** is a flat approximate formula, independent of species
-  catch rate or ball type (only `ITEM_POKE_BALL` exists functionally)
+* **Battle system** is a simplified 1v1 damage calculator: no abilities,
+  held items, IV/EV/natures, or PP/Struggle yet -- all of this data exists
+  in the real pokeemerald source (species_info.h's `.abilities`/
+  `.itemCommon`/`.itemRare`), it's just not been imported/wired up yet;
+  see `codemon/tools/pe_import.py`'s usage note for how to point the
+  importer at a pokeemerald checkout (no doubles, no EXP Share either;
+  status conditions, accuracy, stat stages, critical hits, move priority,
+  weather, mid-battle switching and faint recovery are implemented, see
+  above)
+* **Catch mechanic**: `ITEM_POKE_BALL` is the only ball that functionally
+  exists (no ball-type bonus), but the odds themselves are the real Gen-3
+  formula now -- each species' actual catch rate, current/max HP, and a
+  sleep/freeze/other-status bonus, verified against known values (a
+  full-HP Magikarp catches ~1/3 of the time, a full-HP Registeel ~1/255)
 * **Evolution**: level-up only; stone/trade/friendship evolutions are
   imported into data but never triggered in-game
 * **Audio**: `playse` (one-off pokeemerald SE_* sound effects beyond
@@ -626,15 +631,17 @@ screenshot), not just written and assumed correct.
       compound effects like Bulk Up/Calm Mind/Haze included)
 - [x] Weather (Rain/Sun damage swing, Sandstorm/Hail chip damage, 5-turn
       duration)
-- [ ] Abilities (blocked -- no per-species ability data imported), held
-      items, IV/EV/natures, PP/Struggle
+- [ ] Abilities, held items, IV/EV/natures, PP/Struggle (pokeemerald
+      source has all this data now -- not yet imported/wired up)
 - [x] Switching Pokémon mid-battle / surviving a faint with a healthy party
 - [x] Whiteout on a lost battle (heal + warp to last heal location) instead
       of scripted trainer battles continuing their win dialogue on a loss
 - [ ] Double battles, EXP Share
 - [x] In-game trades (all 4 fixed NPC trades, real party picker)
 - [ ] Stone/trade/friendship evolution triggers
-- [ ] Ball-type-aware, catch-rate-aware capture formula
+- [x] Catch-rate-aware capture formula (real Gen-3 formula, each species'
+      actual catch rate + HP + status bonus)
+- [ ] Ball-type awareness (only `ITEM_POKE_BALL` functionally exists)
 
 **Core loop**
 - [x] Save/load system

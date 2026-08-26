@@ -321,7 +321,7 @@ def _strip_species(s):
 
 
 def parse_species_info(src):
-    """[SPECIES_X] -> (hp,atk,def,spa,spd,spe,type1,type2,growthRate,expYield)."""
+    """[SPECIES_X] -> (hp,atk,def,spa,spd,spe,type1,type2,growthRate,expYield,catchRate)."""
     import re
     txt = open(os.path.join(src, "src/data/pokemon/species_info.h"),
                encoding="utf-8", errors="replace").read()
@@ -339,7 +339,7 @@ def parse_species_info(src):
             continue
         out[name] = (g("baseHP"), g("baseAttack"), g("baseDefense"),
                      g("baseSpAttack"), g("baseSpDefense"), g("baseSpeed"),
-                     t1, t2, growth, g("expYield", "50"))
+                     t1, t2, growth, g("expYield", "50"), g("catchRate", "45"))
     return out
 
 

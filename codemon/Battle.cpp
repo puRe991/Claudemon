@@ -689,9 +689,21 @@ void Battle::throw_ball() {
 	this->gs->give_item("ITEM_POKE_BALL", -1);
 	this->log.clear();
 	queue("Du hast einen POKéBALL geworfen!");
-	float ratio = this->enemy.max_hp > 0 ? 1.f - (float)this->enemy.hp / this->enemy.max_hp : 0.f;
-	int chance = 35 + (int)(ratio * 55.f);        // 35%..90%, better when weakened
-	if ((int)((*this->rng)() % 100) < chance) {
+	// Real Gen-3 catch formula (ball bonus is 1.0 -- only the Poke Ball is
+	// functionally implemented): a = (3*maxHP - 2*hp) * catchRate / (3*maxHP),
+	// scaled by a status bonus (2x asleep/frozen, 1.5x any other status).
+	// The classic 4-shake check's aggregate success probability collapses to
+	// exactly a/255 (each shake succeeds at (a/255)^(1/4); four independent
+	// successes multiply back to a/255), so a single roll against that is
+	// mathematically equivalent without needing to simulate the shake UI.
+	int species_catch_rate = this->data->catch_rate(this->enemy.species);
+	long a = this->enemy.max_hp > 0
+		? ((3L * this->enemy.max_hp - 2L * this->enemy.hp) * species_catch_rate) / (3L * this->enemy.max_hp)
+		: 0;
+	float status_bonus = (this->enemy.status == Status::SLEEP || this->enemy.status == Status::FREEZE) ? 2.f
+	                    : this->enemy.status != Status::NONE ? 1.5f : 1.f;
+	float p = std::min(1.f, (float)a * status_bonus / 255.f);
+	if ((*this->rng)() % 65536 < (unsigned)(p * 65536.f)) {
 		queue("Erwischt! " + nice(this->enemy.species) + " wurde gefangen!");
 		Mon caught = this->data->make_mon(this->enemy.species, this->enemy.level);
 		if (this->team && this->team->size() < 6) this->team->push_back(caught);

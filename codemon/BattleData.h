@@ -14,6 +14,7 @@ struct SpeciesInfo {
 	std::string t1, t2;
 	std::string growth = "MEDIUM_FAST";
 	int exp_yield = 50;
+	int catch_rate = 45;   // pokeemerald's real per-species catchRate (3..255)
 };
 
 // A level-up / stone / trade evolution rule.
@@ -123,6 +124,10 @@ public:
 	// Lets UI code (the battle HUD's EXP bar, the party screen's) compute a
 	// mon's progress to next level without needing BattleData internals.
 	std::string growth_rate(const std::string& species) const;
+	// pokeemerald's real per-species catch rate (3 for legendaries like
+	// Mewtwo/Registeel up to 255 for Magikarp/Rattata); 45 for an unknown
+	// species (the same default most early/mid-tier Pokemon actually have).
+	int catch_rate(const std::string& species) const;
 
 	// Recompute stats from base for the mon's current species+level; when
 	// keep_ratio the current HP is scaled to the new max, else the HP delta is
