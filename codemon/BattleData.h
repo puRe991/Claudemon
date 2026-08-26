@@ -15,6 +15,11 @@ struct SpeciesInfo {
 	std::string growth = "MEDIUM_FAST";
 	int exp_yield = 50;
 	int catch_rate = 45;   // pokeemerald's real per-species catchRate (3..255)
+	// pokeemerald's real .abilities -- a species with only one ability has
+	// ability2 == "NONE". Individual pokemon in the real games pick between
+	// the two based on a personality-value bit; this engine always uses
+	// ability1, a documented simplification (see Mon::ability).
+	std::string ability1 = "NONE", ability2 = "NONE";
 };
 
 // A level-up / stone / trade evolution rule.
@@ -128,6 +133,11 @@ public:
 	// Mewtwo/Registeel up to 255 for Magikarp/Rattata); 45 for an unknown
 	// species (the same default most early/mid-tier Pokemon actually have).
 	int catch_rate(const std::string& species) const;
+	// This species' real pokeemerald ability (always ability1 -- a real
+	// individual picks between ability1/ability2 off a personality-value
+	// bit, which this engine doesn't model; "NONE" for both an unknown
+	// species and one whose sole ability slot genuinely is empty).
+	std::string ability(const std::string& species) const;
 
 	// Recompute stats from base for the mon's current species+level; when
 	// keep_ratio the current HP is scaled to the new max, else the HP delta is

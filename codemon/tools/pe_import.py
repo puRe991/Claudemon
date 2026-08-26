@@ -321,7 +321,8 @@ def _strip_species(s):
 
 
 def parse_species_info(src):
-    """[SPECIES_X] -> (hp,atk,def,spa,spd,spe,type1,type2,growthRate,expYield,catchRate)."""
+    """[SPECIES_X] -> (hp,atk,def,spa,spd,spe,type1,type2,growthRate,expYield,
+    catchRate,ability1,ability2)."""
     import re
     txt = open(os.path.join(src, "src/data/pokemon/species_info.h"),
                encoding="utf-8", errors="replace").read()
@@ -335,11 +336,14 @@ def parse_species_info(src):
         t1, t2 = (tm.group(1), tm.group(2)) if tm else ("NORMAL", "NORMAL")
         gr = re.search(r"\.growthRate\s*=\s*GROWTH_(\w+)", body)
         growth = gr.group(1) if gr else "MEDIUM_FAST"
+        am = re.search(r"\.abilities\s*=\s*\{\s*ABILITY_(\w+?)\s*,\s*ABILITY_(\w+?)\s*\}", body)
+        a1, a2 = (am.group(1), am.group(2)) if am else ("NONE", "NONE")
         if name in ("NONE",):
             continue
         out[name] = (g("baseHP"), g("baseAttack"), g("baseDefense"),
                      g("baseSpAttack"), g("baseSpDefense"), g("baseSpeed"),
-                     t1, t2, growth, g("expYield", "50"), g("catchRate", "45"))
+                     t1, t2, growth, g("expYield", "50"), g("catchRate", "45"),
+                     a1, a2)
     return out
 
 

@@ -127,7 +127,9 @@ bool Battle::start_wild(const std::string& species, int level, Mon* pm) {
 	this->prev_ehp = this->enemy.hp; this->prev_php = this->player->hp; this->shake_t = 0.f;
 	this->log.clear();
 	queue("Wildes " + nice(species) + " taucht auf!");
+	on_switch_in(this->enemy);
 	queue("Los, " + nice(this->player->species) + "!");
+	on_switch_in(*this->player);
 	show_messages(ACTION);
 	if (this->audio) {
 		this->audio->play_bgm("MUS_VS_WILD");
@@ -165,7 +167,9 @@ bool Battle::start_trainer(const std::string& trainer_id, const std::string& nam
 	this->log.clear();
 	queue(this->enemy_title + " möchte kämpfen!");
 	queue(this->enemy_title + " schickt " + nice(this->enemy.species) + "!");
+	on_switch_in(this->enemy);
 	queue("Los, " + nice(this->player->species) + "!");
+	on_switch_in(*this->player);
 	show_messages(ACTION);
 	if (this->audio) {
 		this->audio->play_bgm(trainer_battle_music(trainer_id));
@@ -249,7 +253,9 @@ bool Battle::status_blocks_turn(Mon& m) {
 }
 
 void Battle::try_inflict_status(Mon& target, const std::string& effect) {
+	std::string ab = this->data->ability(target.species);
 	if (BattleData::effect_confuses(effect)) {
+		if (ab == "OWN_TEMPO") return;
 		if (target.confusion_turns <= 0) {
 			target.confusion_turns = 2 + (int)((*this->rng)() % 3);   // 2-4 turns
 			queue(nice(target.species) + " ist jetzt verwirrt!");
@@ -264,6 +270,12 @@ void Battle::try_inflict_status(Mon& target, const std::string& effect) {
 	     target.t1 == "STEEL" || target.t2 == "STEEL")) return;
 	if (st == Status::BURN && (target.t1 == "FIRE" || target.t2 == "FIRE")) return;
 	if (st == Status::FREEZE && (target.t1 == "ICE" || target.t2 == "ICE")) return;
+	// Ability-based status immunities.
+	if ((st == Status::SLEEP) && (ab == "INSOMNIA" || ab == "VITAL_SPIRIT")) return;
+	if ((st == Status::POISON || st == Status::TOXIC) && ab == "IMMUNITY") return;
+	if (st == Status::PARALYSIS && ab == "LIMBER") return;
+	if (st == Status::BURN && ab == "WATER_VEIL") return;
+	if (st == Status::FREEZE && ab == "MAGMA_ARMOR") return;
 	target.status = st;
 	target.status_turns = (st == Status::SLEEP) ? 1 + (int)((*this->rng)() % 3) : 0;
 	switch (st) {
@@ -391,6 +403,28 @@ float Battle::weather_damage_mult(const std::string& move_type) const {
 	return 1.f;
 }
 
+void Battle::on_switch_in(Mon& incoming) {
+	std::string ab = this->data->ability(incoming.species);
+	Mon& other = (&incoming == this->player) ? this->enemy : *this->player;
+	if (ab == "INTIMIDATE") {
+		StatStages& ost = stages_for(other);
+		int before = ost.atk;
+		ost.atk = std::clamp(ost.atk - 1, -6, 6);
+		queue(nice(incoming.species) + " schüchtert " + nice(other.species) + " ein!");
+		queue(nice(other.species) + "s ANGRIFF " +
+		      (ost.atk == before ? "kann nicht weiter sinken!" : "sank!"));
+	} else if (ab == "DRIZZLE") {
+		this->weather = WEATHER_RAIN; this->weather_turns = 127;
+		queue(nice(incoming.species) + " lässt es regnen!");
+	} else if (ab == "DROUGHT") {
+		this->weather = WEATHER_SUN; this->weather_turns = 127;
+		queue(nice(incoming.species) + " lässt die Sonne scheinen!");
+	} else if (ab == "SAND_STREAM") {
+		this->weather = WEATHER_SANDSTORM; this->weather_turns = 127;
+		queue(nice(incoming.species) + " wirbelt einen Sandsturm auf!");
+	}
+}
+
 // Gen-3 crit-stage odds: 0 -> 1/16, 1 -> 1/8, 2 -> 1/4, 3 -> 1/3, 4+ -> 1/2.
 bool Battle::roll_critical(const std::string& move_effect, int crit_stage) const {
 	static const int denom[5] = {16, 8, 4, 3, 2};
@@ -467,12 +501,19 @@ void Battle::do_move(Mon& atk, Mon& def, const std::string& mv,
 		queue("Der Angriff geht daneben!"); return;
 	}
 	float eff = BattleData::type_eff(mi->type, def.t1, def.t2);
+	std::string def_ability = this->data->ability(def.species);
+	if (mi->type == "GROUND" && def_ability == "LEVITATE") eff = 0.f;
 	if (eff == 0.f) { queue("Hat keine Wirkung auf " + nice(def.species) + " ..."); return; }
 	if (mi->power <= 0) {                      // pure status move: no damage model
 		if (!apply_weather_effect(mi->effect) &&
 		    !apply_stat_change(atk, def, mi->effect))
 			try_inflict_status(def, mi->effect);
 		return;
+	}
+	// Wonder Guard: a damaging move that isn't super effective does nothing
+	// (status moves aren't affected -- Shedinja can still be poisoned).
+	if (def_ability == "WONDER_GUARD" && eff <= 1.f) {
+		queue("Hat keine Wirkung auf " + nice(def.species) + " ..."); return;
 	}
 	bool physical = BattleData::is_physical(mi->type);
 	bool crit = roll_critical(mi->effect, atk_st.crit);
@@ -501,6 +542,7 @@ void Battle::send_next_enemy() {
 	this->enemy_stages = StatStages();
 	load_sprites();
 	queue(this->enemy_title + " schickt " + nice(this->enemy.species) + "!");
+	on_switch_in(this->enemy);
 	if (this->audio) this->audio->play_cry(lower(this->enemy.species));
 }
 
@@ -658,6 +700,7 @@ void Battle::do_switch(int idx) {
 	this->prev_php = this->player->hp; this->shake_t = 0.f;
 	this->log.clear();
 	queue("Los, " + nice(this->player->species) + "!");
+	on_switch_in(*this->player);
 	if (this->audio) this->audio->play_cry(lower(this->player->species));
 	if (was_forced) {
 		// the old mon's faint already used up this turn.

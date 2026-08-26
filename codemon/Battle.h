@@ -105,6 +105,15 @@ private:
 	// multiplier before calling BattleData::damage().
 	float weather_damage_mult(const std::string& move_type) const;
 
+	// --- abilities (a hand-picked, commonly-relevant subset -- not all 77
+	// Gen-3 abilities, see README) ------------------------------------------
+	// Fires whenever `incoming` becomes the active mon on its side (battle
+	// start, a trainer's next mon, or the player switching): Intimidate
+	// drops the opposing side's Attack a stage, Drizzle/Drought/Sand Stream
+	// set their weather (a long, not-quite-infinite duration, since this
+	// engine has no separate "ability weather never expires" concept).
+	void on_switch_in(Mon& incoming);
+
 	// Gen-3 critical-hit roll: stage 0 (1/16) bumped +1 by a HIGH_CRITICAL
 	// move, +2 by a prior Focus Energy (StatStages::crit) -- stage 4+ caps
 	// at 1/2. A crit ignores the attacker's own negative stage and the

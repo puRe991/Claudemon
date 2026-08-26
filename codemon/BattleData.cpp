@@ -23,6 +23,7 @@ bool BattleData::load(const std::string& dir) {
 		s.t1 = c[7]; s.t2 = c[8];
 		if (c.size() >= 11) { s.growth = c[9]; s.exp_yield = std::stoi(c[10]); }
 		if (c.size() >= 12) s.catch_rate = std::stoi(c[11]);
+		if (c.size() >= 14) { s.ability1 = c[12]; s.ability2 = c[13]; }
 		species[c[0]] = s;
 		species_index[c[0]] = (int)species_order.size();
 		species_order.push_back(c[0]);
@@ -309,6 +310,11 @@ std::string BattleData::growth_rate(const std::string& species_name) const {
 int BattleData::catch_rate(const std::string& species_name) const {
 	auto sp = species.find(species_name);
 	return sp == species.end() ? 45 : sp->second.catch_rate;
+}
+
+std::string BattleData::ability(const std::string& species_name) const {
+	auto sp = species.find(species_name);
+	return sp == species.end() ? "NONE" : sp->second.ability1;
 }
 
 void BattleData::grant_exp(Mon& mon, long gained, std::vector<std::string>& msgs) const {

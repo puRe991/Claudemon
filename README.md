@@ -395,19 +395,28 @@ has been verified either by an automated test or by headless screenshot
   1.5x/0.5x swing, Sandstorm/Hail chip 1/16 max HP a turn from anything not
   Rock/Ground/Steel or Ice respectively, clearing with its own message on
   expiry -- never carries over between battles
+* Every species' real ability (pokeemerald's `.abilities`, always slot 1 --
+  this engine doesn't model the personality-value bit that picks between
+  two in the real games) and a hand-picked subset of the ones that matter
+  in ordinary play: Intimidate (drops the opposing side's Attack a stage
+  on switch-in), Drizzle/Drought/Sand Stream (set their weather on
+  switch-in), Levitate (immune to Ground moves), Wonder Guard (only a
+  super-effective hit does anything), and the status-immunity abilities
+  (Insomnia/Vital Spirit, Immunity, Limber, Water Veil, Magma Armor, Own
+  Tempo) -- the other ~65 Gen-3 abilities are recognized in the data but
+  have no effect yet
 * `codemon_tests` / CTest for the display-independent core data structures
 
 ### ⚠️ Partial / simplified
 
-* **Battle system** is a simplified 1v1 damage calculator: no abilities,
-  held items, IV/EV/natures, or PP/Struggle yet -- all of this data exists
-  in the real pokeemerald source (species_info.h's `.abilities`/
-  `.itemCommon`/`.itemRare`), it's just not been imported/wired up yet;
-  see `codemon/tools/pe_import.py`'s usage note for how to point the
-  importer at a pokeemerald checkout (no doubles, no EXP Share either;
-  status conditions, accuracy, stat stages, critical hits, move priority,
-  weather, mid-battle switching and faint recovery are implemented, see
-  above)
+* **Battle system** is a simplified 1v1 damage calculator: no held items,
+  IV/EV/natures, or PP/Struggle yet -- pokeemerald's source has all this
+  data (species_info.h's `.itemCommon`/`.itemRare`), just not imported/
+  wired up yet; see `codemon/tools/pe_import.py`'s usage note for how to
+  point the importer at a pokeemerald checkout (no doubles, no EXP Share
+  either; status conditions, accuracy, stat stages, critical hits, move
+  priority, weather, a real per-species catch formula, and a starter set
+  of abilities are implemented, see above)
 * **Catch mechanic**: `ITEM_POKE_BALL` is the only ball that functionally
   exists (no ball-type bonus), but the odds themselves are the real Gen-3
   formula now -- each species' actual catch rate, current/max HP, and a
@@ -631,8 +640,11 @@ screenshot), not just written and assumed correct.
       compound effects like Bulk Up/Calm Mind/Haze included)
 - [x] Weather (Rain/Sun damage swing, Sandstorm/Hail chip damage, 5-turn
       duration)
-- [ ] Abilities, held items, IV/EV/natures, PP/Struggle (pokeemerald
-      source has all this data now -- not yet imported/wired up)
+- [x] Abilities (real per-species data, ~12 implemented: Intimidate,
+      Drizzle/Drought/Sand Stream, Levitate, Wonder Guard, the status
+      immunities -- the other ~65 are recognized but inert)
+- [ ] Held items, IV/EV/natures, PP/Struggle (pokeemerald source has all
+      this data now -- not yet imported/wired up)
 - [x] Switching Pokémon mid-battle / surviving a faint with a healthy party
 - [x] Whiteout on a lost battle (heal + warp to last heal location) instead
       of scripted trainer battles continuing their win dialogue on a loss
