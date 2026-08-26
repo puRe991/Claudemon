@@ -487,6 +487,7 @@ def parse_trainers(src):
         if mons:
             parties[m.group(1)] = mons
     trainers = {}
+    items = {}
     ttxt = open(os.path.join(src, "src/data/trainers.h"),
                 encoding="utf-8", errors="replace").read()
     for m in re.finditer(r"\[TRAINER_(\w+)\]\s*=\s*\{(.*?)\n    \}", ttxt, re.S):
@@ -495,7 +496,17 @@ def parse_trainers(src):
             pm = re.search(r"TRAINER_PARTY\((\w+)\)", m.group(2))
         if pm and pm.group(1) in parties:
             trainers["TRAINER_" + m.group(1)] = parties[pm.group(1)]
-    return trainers
+        # .items = {ITEM_HYPER_POTION, ITEM_NONE, ...}: the real trainer AI's
+        # own healing-item pool (Full Restore/Hyper Potion/...), distinct
+        # from a mon's held item. Only ~140 trainers (mostly Gym Leaders,
+        # rivals, Elite Four) carry any.
+        im = re.search(r"\.items\s*=\s*\{([^}]*)\}", m.group(2))
+        if im:
+            its = [t.strip() for t in im.group(1).split(",")]
+            its = [t for t in its if t and t != "ITEM_NONE"]
+            if its:
+                items["TRAINER_" + m.group(1)] = its
+    return trainers, items
 
 
 def cmd_battle(src, starters=("TREECKO", "TORCHIC", "MUDKIP", "PIKACHU")):
@@ -504,7 +515,7 @@ def cmd_battle(src, starters=("TREECKO", "TORCHIC", "MUDKIP", "PIKACHU")):
     species = parse_species_info(src)
     moves = parse_moves(src)
     learn = parse_learnsets(src)
-    trainers = parse_trainers(src)
+    trainers, trainer_items = parse_trainers(src)
 
     with open(os.path.join(out, "species.tsv"), "w") as f:
         for name, s in sorted(species.items()):
@@ -531,6 +542,9 @@ def cmd_battle(src, starters=("TREECKO", "TORCHIC", "MUDKIP", "PIKACHU")):
     with open(os.path.join(out, "trainers.tsv"), "w") as f:
         for name, party in sorted(trainers.items()):
             f.write(name + "\t" + ",".join(f"{sp}:{lv}" for sp, lv in party) + "\n")
+    with open(os.path.join(out, "trainer_items.tsv"), "w") as f:
+        for name, its in sorted(trainer_items.items()):
+            f.write(name + "\t" + ",".join(its) + "\n")
     prices = parse_item_prices(src)
     with open(os.path.join(ASSETS_DIR, "items", "prices.tsv"), "w") as f:
         for name, price in sorted(prices.items()):
@@ -541,7 +555,8 @@ def cmd_battle(src, starters=("TREECKO", "TORCHIC", "MUDKIP", "PIKACHU")):
     nf = sum(1 for sp in species if import_pokemon_front(sp, src))
     nb = sum(1 for sp in starters if import_pokemon_back(sp, src))
     print(f"battle: {len(species)} species, {len(moves)} moves, "
-          f"{len(learn)} learnsets, {len(trainers)} trainers, "
+          f"{len(learn)} learnsets, {len(trainers)} trainers "
+          f"({len(trainer_items)} carry AI items), "
           f"{sum(1 for p in prices.values() if p > 0)} priced items; "
           f"{nf} front + {nb} back sprites -> {os.path.relpath(out)}")
 

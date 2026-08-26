@@ -515,6 +515,13 @@ has been verified either by an automated test or by headless screenshot
   symbols undefined, matching this repo's default build config) instead of
   leaking the raw `#ifdef`/`#else`/`#endif` lines into the exported script
   and including both branches' instructions back to back
+* **Trainer AI items**: a trainer's own real `.items` field (Full Restore/
+  Hyper Potion/.../Full Heal, ~141 trainers -- mostly Gym Leaders, rivals,
+  the Elite Four) is imported and actually used: at <=50% HP (or any status
+  with nothing better to do) the AI heals/cures instead of attacking, once
+  per item, same as the real games. `ai_move()` also now weighs a move's
+  accuracy against its damage (a 120-power/70%-accuracy move no longer
+  automatically beats a slightly weaker move that reliably lands)
 * `codemon_tests` / CTest for the display-independent core data structures
 
 ### ⚠️ Partial / simplified
@@ -555,6 +562,14 @@ has been verified either by an automated test or by headless screenshot
 * **PC item storage / multiple PC boxes**: `checkpcitem` and
   `bufferboxname` honestly read as "nothing there" -- there is only one
   unlimited party-mon box, no separate item storage
+* **Trainer AI switching**: a trainer's bench mons are only ever species+level
+  (regenerated fresh via `make_mon` the moment they're sent out), not
+  persistent `Mon`s with tracked HP/status -- there's nothing to switch
+  *back to*. A trainer's party is always sent out in a fixed order, same as
+  before; only the *active* mon's own turn (attack, or an item, see above)
+  is AI-decided. Revive is a real item but isn't handled by the item-use AI
+  either, for the same reason (it only matters exactly at the moment of a
+  faint, a separate codepath this engine doesn't have)
 
 ### ❌ Not implemented yet
 
@@ -793,6 +808,10 @@ screenshot), not just written and assumed correct.
       `setdynamicwarp` (fixes the intro moving-truck exit, a real dead end)
 - [x] Importer resolves `#ifdef UBFIX`/`#ifdef BUGFIX`/`#ifndef BUGFIX`
       conditionals in source scripts instead of exporting both branches
+- [x] Trainer AI uses its own real item pool (Full Restore/Hyper Potion/...,
+      ~141 trainers) and weighs accuracy, not just raw damage, picking a move
+- [ ] Trainer AI switching mid-battle (see scope note above -- bench mons
+      have no persistent state to switch back to)
 - [ ] Door animations (cosmetic only, see audit above)
 
 **Audio**

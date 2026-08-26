@@ -405,6 +405,39 @@ static void test_recoil_uses_hp_actually_dealt(BattleData& bd) {
     CHECK(team[0].hp > team[0].max_hp / 2);
 }
 
+static void test_trainer_ai_uses_item(BattleData& bd) {
+    std::printf("[battle] trainer AI heals with its own item pool\n");
+    // Trainer AI item use was completely unimplemented -- a Gym Leader whose
+    // real .items field carries a Full Restore/Hyper Potion just kept
+    // attacking forever, even at 1 HP. TRAINER_ALBERT carries exactly one
+    // ITEM_FULL_RESTORE (real pokeemerald data, see trainer_items.tsv).
+    // A weak, bulky attacker chips MAGNETON (98 max HP) down ~7-8 HP/hit --
+    // crosses the 50% threshold around the 7th hit, well before the ~13
+    // needed to faint it, so the AI gets a real chance to use its item.
+    std::mt19937 rng(42);
+    GameState gs;
+    std::vector<Mon> team, box;
+    team.reserve(6);
+    team.push_back(bd.make_mon("MAGIKARP", 100, &rng));
+    team[0].moves = {"TACKLE"};
+    bd.restore_pp(team[0]);
+    team[0].max_hp = team[0].hp = 999;   // never faints to Magneton's/Muk's counterattacks
+    team[0].def = team[0].spd = 999;
+
+    Battle battle;
+    battle.configure(&bd, &rng);
+    battle.set_capture(&gs, &team, &box);
+    CHECK(battle.start_trainer("TRAINER_ALBERT", "Albert", &team[0]));
+    CHECK(battle.enemy_items_left() == 1);
+    for (int i = 0; i < 20000 && battle.active(); ++i) battle.input(BTN_CONFIRM);
+
+    CHECK(!battle.active());
+    CHECK(battle.won());
+    // The one Full Restore must have actually been spent by the time both
+    // of Albert's mons are down -- not just carried the whole fight.
+    CHECK(battle.enemy_items_left() == 0);
+}
+
 static void test_wild_battle_capture(BattleData& bd) {
     std::printf("[battle] capture moves the mon into the party\n");
     std::mt19937 rng(3);
@@ -613,6 +646,7 @@ int main() {
         test_script_trainer_flags(bd);
         test_recoil_uses_hp_actually_dealt(bd);
         test_wild_battle_capture(bd);
+        test_trainer_ai_uses_item(bd);
         test_trainer_sight();
         test_sight_only_while_undefeated(bd);
         test_dive_reaches_sootopolis();

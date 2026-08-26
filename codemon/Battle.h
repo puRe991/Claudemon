@@ -49,6 +49,16 @@ private:
 	std::string enemy_title;     // "" for wild, trainer display name otherwise
 	std::vector<std::pair<std::string, int>> party;   // remaining trainer mons
 	size_t party_idx;
+	// The trainer's own AI healing-item pool for this battle (real
+	// pokeemerald `.items` field, see BattleData::trainer_items) -- consumed
+	// as used, resets fresh on the next start_trainer() call. Empty for wild
+	// battles and the ~80% of trainers who don't carry any.
+	std::vector<std::string> enemy_items;
+	// If the active enemy mon is hurting enough and the trainer still has a
+	// usable item, use it instead of attacking this turn (queues the
+	// message, heals/cures, removes the item from the pool). Returns false
+	// (does nothing) for wild battles, an empty pool, or a mon that's fine.
+	bool try_use_enemy_item();
 
 	int switch_cursor;            // selected row in the SWITCH party list
 	bool forced_switch;           // true when the active mon just fainted (no cancel)
@@ -185,6 +195,14 @@ public:
 	bool active() const { return phase != INACTIVE; }
 	bool won() const { return victory; }
 	Outcome outcome() const { return last_outcome; }
+
+	// Introspection for headless drivers/tests -- there's no other way to
+	// observe the enemy mon's live state (it's not the caller's Mon like
+	// `player` is).
+	int enemy_hp() const { return this->enemy.hp; }
+	int enemy_max_hp() const { return this->enemy.max_hp; }
+	Status enemy_status() const { return this->enemy.status; }
+	size_t enemy_items_left() const { return this->enemy_items.size(); }
 
 	// Which sub-screen the battle is currently showing. Exposed so a headless
 	// driver (the engine tests, a CODEMON_WALK script) can step the menus off

@@ -83,6 +83,10 @@ private:
 	std::unordered_map<std::string, std::vector<std::pair<int, std::string>>> learn;
 	std::unordered_map<std::string, std::vector<std::pair<std::string, int>>> trainers;
 	std::unordered_map<std::string, std::string> trainer_pics;   // TRAINER_X -> pic
+	// TRAINER_X -> the trainer's own AI healing-item pool (Full Restore/
+	// Hyper Potion/...; real pokeemerald's trainers.h `.items` field, not a
+	// mon's held item). Only Gym Leaders/rivals/Elite Four etc. carry any.
+	std::unordered_map<std::string, std::vector<std::string>> trainer_items_;
 	std::unordered_map<std::string, std::vector<Evolution>> evos;
 	std::unordered_map<std::string, std::unordered_map<std::string, bool>> tm_learn;
 	std::unordered_map<std::string, std::string> tm_move;         // "HM01" -> "CUT"
@@ -117,6 +121,9 @@ public:
 	std::vector<std::pair<std::string, int>> trainer_party(const std::string& t) const;
 	// Trainer's front-pic file stem (e.g. "hiker"), or "" if unknown.
 	std::string trainer_pic(const std::string& t) const;
+	// Trainer's own AI healing-item pool (ITEM_* ids, real pokeemerald
+	// order), or empty for the ~80% of trainers who don't carry any.
+	const std::vector<std::string>& trainer_items(const std::string& t) const;
 
 	// Type effectiveness multiplier of an attacking type vs a defender's types.
 	static float type_eff(const std::string& atk,

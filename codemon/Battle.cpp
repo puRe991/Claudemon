@@ -3,6 +3,7 @@
 #include <cctype>
 #include <algorithm>
 #include <unordered_map>
+#include <climits>
 
 // Fainting cures every status condition (every generation's rule), so a
 // later Revive doesn't bring a mon back still nominally poisoned/asleep/...
@@ -123,6 +124,7 @@ bool Battle::start_wild(const std::string& species, int level, Mon* pm) {
 	this->is_trainer = false;
 	this->enemy_title.clear();
 	this->party.clear(); this->party_idx = 0;
+	this->enemy_items.clear();   // wild Pokemon never carry items
 	this->enemy = this->data->make_mon(species, level, this->rng);
 	if (this->gs) this->gs->mark_seen(this->enemy.species);
 	this->player_stages = StatStages(); this->enemy_stages = StatStages();
@@ -157,6 +159,7 @@ bool Battle::start_trainer(const std::string& trainer_id, const std::string& nam
 	this->is_trainer = true;
 	this->enemy_title = name.empty() ? "TRAINER" : name;
 	this->party = pty; this->party_idx = 0;
+	this->enemy_items = this->data->trainer_items(trainer_id);
 	this->enemy = this->data->make_mon(pty[0].first, pty[0].second, this->rng);
 	if (this->gs) this->gs->mark_seen(this->enemy.species);
 	this->player_stages = StatStages(); this->enemy_stages = StatStages();
@@ -187,10 +190,64 @@ bool Battle::start_trainer(const std::string& trainer_id, const std::string& nam
 	return true;
 }
 
+bool Battle::try_use_enemy_item() {
+	if (!this->is_trainer || this->enemy_items.empty() || this->enemy.fainted())
+		return false;
+	// Gen-3 potion family + Full Restore/Full Heal -- the common trainer AI
+	// item set. Max Potion and Full Restore heal to full; Full Restore and
+	// Full Heal also cure a status. (Revive isn't handled here -- it only
+	// matters on a faint, a different codepath from "attack or heal".)
+	static const std::unordered_map<std::string, int> heal_amount = {
+		{"ITEM_POTION", 20}, {"ITEM_SUPER_POTION", 50},
+		{"ITEM_HYPER_POTION", 200}, {"ITEM_MAX_POTION", 9999},
+		{"ITEM_FULL_RESTORE", 9999},
+	};
+	int missing = this->enemy.max_hp - this->enemy.hp;
+	bool hurting = this->enemy.max_hp > 0 && this->enemy.hp * 2 <= this->enemy.max_hp;   // <=50%
+	bool statused = this->enemy.status != Status::NONE;
+	if (!hurting && !statused) return false;
+
+	// Pick the trainer's own first item (array order, same as real AI) that
+	// actually helps right now: a potion when hurting (prefer the smallest
+	// one that still covers the missing HP, so a Hyper Potion isn't wasted
+	// on a scratch when a Potion would do), or Full Heal/Full Restore for a
+	// pure status problem.
+	int best_idx = -1; int best_over = INT_MAX;
+	for (size_t i = 0; i < this->enemy_items.size(); ++i) {
+		const std::string& it = this->enemy_items[i];
+		auto h = heal_amount.find(it);
+		if (h != heal_amount.end()) {
+			if (!hurting) continue;
+			int over = h->second - missing;
+			if (over >= 0 && over < best_over) { best_over = over; best_idx = (int)i; }
+		} else if (it == "ITEM_FULL_HEAL" && statused && !hurting) {
+			best_idx = (int)i; break;   // nothing to weigh, take it
+		}
+	}
+	if (best_idx < 0) return false;
+
+	std::string item = this->enemy_items[(size_t)best_idx];
+	this->enemy_items.erase(this->enemy_items.begin() + best_idx);
+	this->log.clear();
+	queue(this->enemy_title + " setzte " + nice(item.substr(5)) + " ein!");
+	auto h = heal_amount.find(item);
+	if (h != heal_amount.end()) {
+		this->enemy.hp = std::min(this->enemy.max_hp, this->enemy.hp + h->second);
+		queue(nice(this->enemy.species) + "s KP wurden aufgefüllt!");
+	}
+	if (item == "ITEM_FULL_RESTORE" || item == "ITEM_FULL_HEAL") {
+		if (statused) {
+			this->enemy.status = Status::NONE;
+			queue(nice(this->enemy.species) + " wurde geheilt!");
+		}
+	}
+	return true;
+}
+
 std::string Battle::ai_move() const {
 	if (out_of_pp(this->enemy)) return "STRUGGLE";
 	std::string best = this->enemy.moves.empty() ? "TACKLE" : this->enemy.moves[0];
-	int best_dmg = -1;
+	float best_expected = -1.f;
 	for (size_t i = 0; i < this->enemy.moves.size(); ++i) {
 		if (i < this->enemy.pp.size() && this->enemy.pp[i] <= 0) continue;   // out of PP
 		const std::string& m = this->enemy.moves[i];
@@ -200,7 +257,14 @@ std::string Battle::ai_move() const {
 		int d = this->data->damage(this->enemy, *this->player, m, tmp,
 		                           stage_mult(physical ? this->enemy_stages.atk : this->enemy_stages.spa),
 		                           stage_mult(physical ? this->player_stages.def : this->player_stages.spd));
-		if (d > best_dmg) { best_dmg = d; best = m; }
+		// Weight by accuracy so a big-power-but-unreliable move (e.g. a 120
+		// power / 70% hit move) doesn't automatically beat a slightly weaker
+		// move that actually lands -- matches AI_SCRIPT_CHECK_VIABILITY's
+		// real intent (real pokeemerald AI penalizes low accuracy similarly)
+		// without needing that script's full point system.
+		float acc = (mi && mi->accuracy > 0) ? mi->accuracy / 100.f : 1.f;
+		float expected = d * acc;
+		if (expected > best_expected) { best_expected = expected; best = m; }
 	}
 	return best;
 }
@@ -668,6 +732,15 @@ void Battle::handle_enemy_faint() {
 }
 
 void Battle::resolve_turn(const std::string& player_move) {
+	if (try_use_enemy_item()) {
+		// Item use takes the trainer's whole turn -- the player still acts.
+		do_move(*this->player, this->enemy, player_move, nice(this->player->species));
+		apply_end_of_turn_effects();
+		if (this->player->fainted()) { handle_player_faint(); return; }
+		if (this->enemy.fainted()) { handle_enemy_faint(); return; }
+		show_messages(ACTION);
+		return;
+	}
 	std::string enemy_move = ai_move();
 	// Paralysis quarters effective Speed for turn-order purposes (Gen-3),
 	// on top of that side's own Speed stat stage.
@@ -827,6 +900,7 @@ void Battle::do_switch(int idx) {
 }
 
 void Battle::enemy_turn_after() {
+	if (try_use_enemy_item()) { show_messages(ACTION); return; }
 	std::string em = ai_move();
 	do_move(this->enemy, *this->player, em, nice(this->enemy.species));
 	apply_end_of_turn_effects();
