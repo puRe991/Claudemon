@@ -3,6 +3,8 @@
 #include <vector>
 #include <algorithm>
 #include <cstdio>
+#include <fstream>
+#include <sstream>
 
 Menu::Menu() : font_ok(false), screen(CLOSED), cursor(0),
                bag_cursor(0), teach_cursor(0), use_cursor(0), fly_cursor(0),
@@ -100,7 +102,39 @@ bool Menu::load_font(const std::string& path) {
 	this->marker_ok[1] = this->marker_tex[1].loadFromFile("assets/graphics/pokenav/region_map/may_icon.png");
 	this->marker_tex[0].setSmooth(false);
 	this->marker_tex[1].setSmooth(false);
+	this->map_sections.clear();
+	std::ifstream secf("assets/pokenav/region_map_sections.tsv");
+	std::string secline;
+	while (std::getline(secf, secline)) {
+		std::stringstream ss(secline);
+		std::string id, xs, ys, ws, hs, name;
+		if (!std::getline(ss, id, '\t')) continue;
+		if (!std::getline(ss, xs, '\t')) continue;
+		if (!std::getline(ss, ys, '\t')) continue;
+		if (!std::getline(ss, ws, '\t')) continue;
+		if (!std::getline(ss, hs, '\t')) continue;
+		std::getline(ss, name);   // rest of the line (name may contain spaces)
+		MapSecEntry e;
+		e.x = std::atoi(xs.c_str()); e.y = std::atoi(ys.c_str());
+		e.w = std::atoi(ws.c_str()); e.h = std::atoi(hs.c_str());
+		e.name = name;
+		this->map_sections.push_back(e);
+	}
 	return this->font_ok;
+}
+
+// Real pokeemerald's GetMapSecIdAt / region_map.c uses the same "which
+// rectangle contains this grid cell" lookup; a handful of unused/FRLG-only
+// entries sit at (0,0) with no real rectangle -- skip those explicitly so a
+// cursor near the map's own corner doesn't wrongly report one of them.
+std::string Menu::map_section_at(int grid_x, int grid_y) const {
+	for (const MapSecEntry& e : this->map_sections) {
+		if (e.x == 0 && e.y == 0) continue;
+		if (grid_x >= e.x && grid_x < e.x + e.w &&
+		    grid_y >= e.y && grid_y < e.y + e.h)
+			return e.name;
+	}
+	return std::string();
 }
 
 static std::string pretty(const std::string& id, const std::string& prefix) {
@@ -235,7 +269,15 @@ void Menu::input(BtnInput b) {
 			else if (this->cursor == 1) { this->screen = BAG; this->bag_cursor = 0; this->flash.clear(); }
 			else if (this->cursor == 2) this->screen = PARTY;
 			else if (this->cursor == 3) this->screen = PC;
-			else if (this->cursor == 4) this->screen = POKENAV;
+			else if (this->cursor == 4) {
+				this->screen = POKENAV;
+				// Open centered on the player's own location, same as the
+				// real games' region map.
+				if (this->has_mapsec) {
+					this->map_cur_x = this->mapsec_x + this->mapsec_w / 2;
+					this->map_cur_y = this->mapsec_y + this->mapsec_h / 2;
+				}
+			}
 			else if (this->cursor == 5) {
 				// FLIEGEN: only meaningful once a party member knows FLY --
 				// mirrors the badge-free "does the team know the move"
@@ -265,6 +307,16 @@ void Menu::input(BtnInput b) {
 		if (b == BTN_UP && this->dex_cursor > 0) this->dex_cursor--;
 		else if (b == BTN_DOWN && this->dex_cursor + 1 < n) this->dex_cursor++;
 		else if (b == BTN_LEFT || b == BTN_CONFIRM) this->screen = MAIN;
+	} else if (this->screen == POKENAV) {
+		// Real PokeNav's region map: moves a cursor tile by tile over the
+		// 28x15 grid, naming whatever section it's currently over -- it
+		// doesn't fly you anywhere itself (that's the FLY move's own
+		// screen, a separate destination list below). [SPACE] exits.
+		if (b == BTN_UP && this->map_cur_y > 0) this->map_cur_y--;
+		else if (b == BTN_DOWN && this->map_cur_y < 14) this->map_cur_y++;
+		else if (b == BTN_LEFT && this->map_cur_x > 0) this->map_cur_x--;
+		else if (b == BTN_RIGHT && this->map_cur_x < 27) this->map_cur_x++;
+		else if (b == BTN_CONFIRM) this->screen = MAIN;
 	} else if (this->screen == FLY) {
 		int n = (int)this->fly_available.size();
 		if (b == BTN_UP && this->fly_cursor > 0) this->fly_cursor--;
@@ -339,7 +391,7 @@ void Menu::input(BtnInput b) {
 			else this->gs->frame_type = (this->gs->frame_type + 1) % 20;
 		}
 	} else if (b == BTN_CONFIRM || b == BTN_LEFT) {
-		this->screen = MAIN;   // back from PC / POKENAV
+		this->screen = MAIN;   // back from PC
 	}
 }
 
@@ -661,10 +713,40 @@ void Menu::draw(sf::RenderTarget& target) {
 	} else if (this->screen == POKENAV) {
 		text("POKéNAV", x, y, 24, head_col); y += 36;
 		text("Ort:  " + (this->location.empty() ? "---" : this->location),
-		     x, y, 20, sf::Color(150, 110, 20)); y += 26;
-		text("Region: HOENN   Team: " +
-		     std::to_string(this->team ? (int)this->team->size() : 0) + "/6",
-		     x, y, 16, muted_col); y += 26;
+		     x, y, 20, sf::Color(150, 110, 20)); y += 30;
+		if (this->region_map_ok) {
+			const float scale = 2.8f;
+			const float map_w = 128.f * scale, map_h = 120.f * scale;
+			sf::Sprite map_spr(this->region_map_tex);
+			map_spr.setPosition(x, y);
+			map_spr.setScale(scale, scale);
+			target.draw(map_spr);
+			float px_per_x = map_w / 28.f, px_per_y = map_h / 15.f;
+			if (this->has_mapsec) {
+				int gender = (this->gs && this->gs->female) ? 1 : 0;
+				if (this->marker_ok[gender]) {
+					float cx = (this->mapsec_x + this->mapsec_w / 2.0f) * px_per_x;
+					float cy = (this->mapsec_y + this->mapsec_h / 2.0f) * px_per_y;
+					sf::Sprite mk(this->marker_tex[gender]);
+					mk.setScale(scale, scale);
+					mk.setPosition(x + cx - 8.f * scale, y + cy - 8.f * scale);
+					target.draw(mk);
+				}
+			}
+			// The moving cursor (see Menu::input()): a bright outline over
+			// whichever grid cell it's currently on, same idea as the real
+			// games' blinking selection box.
+			sf::RectangleShape cur_box(sf::Vector2f(px_per_x, px_per_y));
+			cur_box.setPosition(x + this->map_cur_x * px_per_x, y + this->map_cur_y * px_per_y);
+			cur_box.setFillColor(sf::Color(255, 240, 60, 90));
+			cur_box.setOutlineColor(sf::Color(255, 240, 60, 230));
+			cur_box.setOutlineThickness(-2.f);   // inward, so it stays inside the cell at this scale
+			target.draw(cur_box);
+			y += map_h + 14;
+			std::string secname = map_section_at(this->map_cur_x, this->map_cur_y);
+			text(secname.empty() ? "OFFENES MEER" : secname, x, y, 20, head_col);
+			y += 30;
+		}
 		{
 			static const char* names[8] = {"STEIN", "FAUST", "DYNAMO", "HITZE",
 			                               "BALANCE", "FEDER", "GEIST", "REGEN"};
@@ -680,48 +762,6 @@ void Menu::draw(sf::RenderTarget& target) {
 			}
 			y += 20;
 			text("Orden: " + std::to_string(got) + "/8", x, y, 14, muted_col);
-			y += 24;
-		}
-		if (this->region_map_ok) {
-			const float scale = 2.0f;
-			const float map_w = 128.f * scale, map_h = 120.f * scale;
-			sf::Sprite map_spr(this->region_map_tex);
-			map_spr.setPosition(x, y);
-			map_spr.setScale(scale, scale);
-			target.draw(map_spr);
-			if (this->has_mapsec) {
-				int gender = (this->gs && this->gs->female) ? 1 : 0;
-				if (this->marker_ok[gender]) {
-					float px_per_x = map_w / 28.f, px_per_y = map_h / 15.f;
-					float cx = (this->mapsec_x + this->mapsec_w / 2.0f) * px_per_x;
-					float cy = (this->mapsec_y + this->mapsec_h / 2.0f) * px_per_y;
-					sf::Sprite mk(this->marker_tex[gender]);
-					mk.setScale(scale, scale);
-					mk.setPosition(x + cx - 8.f * scale, y + cy - 8.f * scale);
-					target.draw(mk);
-				}
-			}
-			y += map_h + 16;
-		}
-		text("ZUSTAND", x, y, 18, head_col); y += 26;
-		if (this->team) {
-			int row = 0;
-			for (const Mon& m : *this->team) {
-				float ry = y + row * 58;
-				text(pretty(m.species, "") + " Lv" + std::to_string(m.level), x, ry, 18, body_col);
-				// type icons
-				float tx2 = x + 200;
-				for (const std::string& tp : {m.t1, m.t2}) {
-					if (tp == m.t2 && m.t2 == m.t1) break;
-					const sf::Texture* ti = type_icon(tp);
-					if (ti) { sf::Sprite s(*ti); s.setPosition(tx2, ry - 2); target.draw(s); tx2 += 44; }
-				}
-				text("KP " + std::to_string(m.max_hp) + "  ANG " + std::to_string(m.atk) +
-				     "  VER " + std::to_string(m.def), x, ry + 24, 15, muted_col);
-				text("SA " + std::to_string(m.spa) + "  SV " + std::to_string(m.spd) +
-				     "  INI " + std::to_string(m.spe), x, ry + 40, 15, muted_col);
-				if (++row >= 4) break;
-			}
 		}
 	}
 	if (this->screen == BAG)
@@ -732,6 +772,9 @@ void Menu::draw(sf::RenderTarget& target) {
 		text("[SPACE] benutzen   [A] zurück", x, panel.getPosition().y + panel.getSize().y - 34, 16, muted_col);
 	else if (this->screen == OPTIONS)
 		text("[SPACE]/[D] ändern   [A] zurück", x, panel.getPosition().y + panel.getSize().y - 34, 16, muted_col);
+	else if (this->screen == POKENAV)
+		text("Pfeiltasten: Karte erkunden   [SPACE] zurück",
+		     x, panel.getPosition().y + panel.getSize().y - 34, 16, muted_col);
 	else if (this->screen != MAIN)
 		text("[SPACE] zurück", x, panel.getPosition().y + panel.getSize().y - 34, 16, muted_col);
 	target.setView(saved);

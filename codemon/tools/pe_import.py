@@ -1377,6 +1377,15 @@ def cmd_world(src, limit=None):
     ow_index = json.load(open(os.path.join(OW_DIR, "index.json")))
     resolve = build_gfx_resolver(ow_index)
     mapsecs = parse_region_map_sections(src)
+    # The full table (all ~213 sections, not just the one each map belongs
+    # to): needed for a cursor-driven region-map screen that can name
+    # whatever grid tile the cursor is currently over, not just the player's
+    # own location.
+    secs_dir = os.path.join(ASSETS_DIR, "pokenav")
+    os.makedirs(secs_dir, exist_ok=True)
+    with open(os.path.join(secs_dir, "region_map_sections.tsv"), "w") as f:
+        for mid, (sx, sy, sw, sh, name) in sorted(mapsecs.items()):
+            f.write(f"{mid}\t{sx}\t{sy}\t{sw}\t{sh}\t{name}\n")
 
     maps_dir = os.path.normpath(os.path.join(TOOLS_DIR, "..", "maps"))
     os.makedirs(maps_dir, exist_ok=True)

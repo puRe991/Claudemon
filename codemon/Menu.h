@@ -70,6 +70,17 @@ private:
 	bool has_mapsec = false;
 	int mapsec_x = 0, mapsec_y = 0, mapsec_w = 1, mapsec_h = 1;
 
+	// The full region-map section table (all ~213 MAPSEC_* entries, real
+	// pokeemerald region_map_sections.json via pe_import.py), for the
+	// POKENAV map screen's moving cursor to name whatever grid cell it's
+	// currently over -- not just the player's own location above.
+	struct MapSecEntry { int x, y, w, h; std::string name; };
+	std::vector<MapSecEntry> map_sections;
+	std::string map_section_at(int grid_x, int grid_y) const;
+	// Cursor position on that 28x15 grid; reset to the player's own location
+	// each time POKENAV opens (see Menu::input()'s MAIN handler).
+	int map_cur_x = 14, map_cur_y = 7;
+
 public:
 	Menu();
 	void configure(GameState* g, std::vector<Mon>* team, std::vector<Mon>* box,

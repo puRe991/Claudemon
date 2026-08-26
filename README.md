@@ -490,17 +490,24 @@ has been verified either by an automated test or by headless screenshot
   Shards, Nuggets, Quick Claw, King's Rock, ...) are recognized in the
   data but have no effect yet (no turn-order-roll or flinch mechanic to
   hook them into)
-* **PokeNav region map**: the POKéNAV screen now draws the real Hoenn town
-  map image (`assets/graphics/pokenav/region_map/map.png`, the genuine
-  unused pokeemerald asset) with the player's gendered marker icon
-  (`brendan_icon.png`/`may_icon.png`) placed on it. The importer reads
-  `src/data/region_map/region_map_sections.json` and stamps each map's
-  `MAPSEC_*` grid rectangle (28x15 logical grid) into a new `mapsec` map
-  section; indoor maps correctly inherit their outdoor town's section.
-  Grid-to-pixel uses the map image's actual 128x120 size (128/28 horizontal,
-  120/15 vertical), calibrated and verified against known real-world town
-  positions (Littleroot, Ever Grande, Sootopolis, Fallarbor, Pacifidlog,
-  Mossdeep all land in geographically correct spots)
+* **PokeNav region map**: the POKéNAV screen draws the real Hoenn town map
+  image (`assets/graphics/pokenav/region_map/map.png`, the genuine unused
+  pokeemerald asset), the player's gendered marker icon
+  (`brendan_icon.png`/`may_icon.png`), and a real moving cursor -- arrow
+  keys walk it tile by tile over the region map's 28x15 grid, naming
+  whichever section it's currently over (the importer now also dumps the
+  *full* 213-entry `region_map_sections.json` table to
+  `assets/pokenav/region_map_sections.tsv`, not just the current map's own
+  section, precisely so the cursor can name any cell, not only where the
+  player is standing). Matches the real games' PokeNav map screen: it's a
+  browsable view, not a destination picker -- it doesn't fly you anywhere
+  itself (see below). Per-map `mapsec` grid rectangles (28x15 logical grid,
+  `src/data/region_map/region_map_sections.json`) come from the same
+  importer pass; indoor maps correctly inherit their outdoor town's
+  section. Grid-to-pixel uses the map image's actual 128x120 size (128/28
+  horizontal, 120/15 vertical), calibrated and verified against known
+  real-world town positions (Littleroot, Ever Grande, Sootopolis,
+  Fallarbor, Pacifidlog, Mossdeep all land in geographically correct spots)
 * **More script opcodes**: `bufferstring`/`buffernumberstring` (dynamic
   values -- Birch's Pokédex-seen/caught rating and similar -- now actually
   render instead of leaving the number/word out); `bufferleadmonspeciesname`;
@@ -842,7 +849,8 @@ screenshot), not just written and assumed correct.
 **UI**
 - [x] Start menu: Pokédex, Bag, Party, PC Box, PokéNav
 - [x] PokéNav region map (real Hoenn town map image + gendered player
-      marker, positioned from imported `region_map_sections.json` data)
+      marker + a real moving cursor that names any section it's over,
+      positioned from imported `region_map_sections.json` data)
 - [x] Pokémon Center full-team heal + animation
 - [x] Pokédex screen (real seen/caught tracking, persisted)
 - [x] Party member summary screen (stats, nature/ability, moves)
