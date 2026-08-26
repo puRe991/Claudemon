@@ -382,15 +382,23 @@ has been verified either by an automated test or by headless screenshot
   Bulk Up, Calm Mind, Haze, ~50 in total) actually raises/lowers the right
   stat now, with the real "won't go any higher!" cap message; stages reset
   whenever a side's active mon changes, same as the real games
+* Critical hits (Gen-3 stage odds: 1/16 base, 1/8 for a HIGH_CRITICAL move
+  like Slash/Cross Chop, +2 stages from Focus Energy, capping at 1/2),
+  ignoring the attacker's own stat drop and the defender's own boost the
+  same way the real games do; verified over 1000+ simulated hits landing
+  at ~12.5% for a high-crit move (expected 1/8)
+* Move priority brackets (Quick Attack/Mach Punch/Extreme Speed act before
+  Speed is even checked, Vital Throw always goes last), verified against a
+  much faster opponent
 * `codemon_tests` / CTest for the display-independent core data structures
 
 ### ⚠️ Partial / simplified
 
-* **Battle system** is a simplified 1v1 damage calculator: no critical hits,
-  no move priority, no weather, no abilities, no held items, no IV/EV/
-  natures, no PP/Struggle, no doubles, no EXP Share (status conditions,
-  accuracy, stat stages, mid-battle switching and faint recovery are
-  implemented, see above)
+* **Battle system** is a simplified 1v1 damage calculator: no weather, no
+  abilities, no held items, no IV/EV/natures, no PP/Struggle, no doubles,
+  no EXP Share (status conditions, accuracy, stat stages, critical hits,
+  move priority, mid-battle switching and faint recovery are implemented,
+  see above)
 * **Catch mechanic** is a flat approximate formula, independent of species
   catch rate or ball type (only `ITEM_POKE_BALL` exists functionally)
 * **Evolution**: level-up only; stone/trade/friendship evolutions are
@@ -605,7 +613,8 @@ screenshot), not just written and assumed correct.
 - [x] TM/HM teaching gated by real learnsets
 - [x] Status conditions (paralysis/burn/poison/toxic/sleep/freeze/confusion)
       + a real per-move accuracy roll
-- [ ] Critical hits, move priority
+- [x] Critical hits (Gen-3 stage odds, Focus Energy, real ignore-stages rule)
+- [x] Move priority (Quick Attack/Mach Punch/Extreme Speed, Vital Throw)
 - [x] Stat-stage changes from status moves (-6..+6, all seven stats,
       compound effects like Bulk Up/Calm Mind/Haze included)
 - [ ] Weather, abilities, held items, IV/EV/natures, PP/Struggle

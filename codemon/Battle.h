@@ -76,7 +76,7 @@ private:
 	// Gen-3 in-battle stat stages (-6..+6), reset whenever that side's active
 	// mon changes (a fresh wild/trainer battle, a trainer's next mon, or the
 	// player switching) -- never persisted on Mon itself, same as real games.
-	struct StatStages { int atk = 0, def = 0, spa = 0, spd = 0, spe = 0, acc = 0, eva = 0; };
+	struct StatStages { int atk = 0, def = 0, spa = 0, spd = 0, spe = 0, acc = 0, eva = 0, crit = 0; };
 	StatStages player_stages, enemy_stages;
 	StatStages& stages_for(Mon& m) { return &m == this->player ? this->player_stages : this->enemy_stages; }
 	// -6..+6 -> Gen-3 multiplier (2/8 .. 8/2 for atk/def/spa/spd/spe, 3/9..9/3
@@ -89,6 +89,14 @@ private:
 	// messages. False if `effect` isn't a stat-stage effect at all, so the
 	// caller falls through to try_inflict_status for status/confusion.
 	bool apply_stat_change(Mon& atk, Mon& def, const std::string& effect);
+	// Gen-3 critical-hit roll: stage 0 (1/16) bumped +1 by a HIGH_CRITICAL
+	// move, +2 by a prior Focus Energy (StatStages::crit) -- stage 4+ caps
+	// at 1/2. A crit ignores the attacker's own negative stage and the
+	// defender's positive stage (real games' rule), applied by the caller.
+	bool roll_critical(const std::string& move_effect, int crit_stage) const;
+	// This move's Gen-3 turn-order priority bracket (+1 Quick Attack-effect
+	// moves, -1 Vital Throw, 0 everything else) -- resolved before Speed.
+	int move_priority(const std::string& mv) const;
 
 	const sf::Texture* type_icon(const std::string& type);
 	void load_sprites();

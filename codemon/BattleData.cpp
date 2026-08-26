@@ -230,7 +230,7 @@ float BattleData::type_eff(const std::string& a, const std::string& d1,
 
 int BattleData::damage(const Mon& atk, const Mon& def,
                        const std::string& move_name, std::mt19937& rng,
-                       float atk_mult, float def_mult) const {
+                       float atk_mult, float def_mult, bool crit) const {
 	const MoveInfo* mi = move(move_name);
 	if (!mi || mi->power <= 0) return 0;
 	int A = (int)((is_physical(mi->type) ? atk.atk : atk.spa) * atk_mult);
@@ -244,7 +244,7 @@ int BattleData::damage(const Mon& atk, const Mon& def,
 	// Burn halves physical damage output (Gen-3: applied to the attack
 	// stat, equivalent to halving the final physical hit).
 	float burn = (atk.status == Status::BURN && is_physical(mi->type)) ? 0.5f : 1.0f;
-	int dmg = (int)(base * stab * eff * roll * burn);
+	int dmg = (int)(base * stab * eff * roll * burn * (crit ? 2.f : 1.f));
 	return std::max(eff > 0.f ? 1 : 0, dmg);
 }
 

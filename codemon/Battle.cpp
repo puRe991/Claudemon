@@ -350,7 +350,29 @@ bool Battle::apply_stat_change(Mon& atk, Mon& def, const std::string& effect) {
 		queue("Alle Statusveränderungen wurden aufgehoben!");
 		return true;
 	}
+	if (effect == "FOCUS_ENERGY") {
+		StatStages& st = stages_for(atk);
+		st.crit = std::min(st.crit + 2, 4);
+		queue(nice(atk.species) + " ist jetzt kampfbereit!");
+		return true;
+	}
 	return false;
+}
+
+// Gen-3 crit-stage odds: 0 -> 1/16, 1 -> 1/8, 2 -> 1/4, 3 -> 1/3, 4+ -> 1/2.
+bool Battle::roll_critical(const std::string& move_effect, int crit_stage) const {
+	static const int denom[5] = {16, 8, 4, 3, 2};
+	int stage = crit_stage + (move_effect == "HIGH_CRITICAL" ? 1 : 0);
+	int d = denom[std::clamp(stage, 0, 4)];
+	return (int)((*this->rng)() % d) == 0;
+}
+
+int Battle::move_priority(const std::string& mv) const {
+	const MoveInfo* mi = this->data->move(mv);
+	if (!mi) return 0;
+	if (mi->effect == "QUICK_ATTACK") return 1;    // also Mach Punch/Extreme Speed
+	if (mi->effect == "VITAL_THROW") return -1;
+	return 0;
 }
 
 void Battle::apply_end_of_turn_effects() {
@@ -395,10 +417,16 @@ void Battle::do_move(Mon& atk, Mon& def, const std::string& mv,
 		return;
 	}
 	bool physical = BattleData::is_physical(mi->type);
-	int dmg = this->data->damage(atk, def, mv, *this->rng,
-	                             stage_mult(physical ? atk_st.atk : atk_st.spa),
-	                             stage_mult(physical ? def_st.def : def_st.spd));
+	bool crit = roll_critical(mi->effect, atk_st.crit);
+	float atk_mult = stage_mult(physical ? atk_st.atk : atk_st.spa);
+	float def_mult = stage_mult(physical ? def_st.def : def_st.spd);
+	// A crit ignores the attacker's own stat drop and the defender's own
+	// stat boost (real games' rule) -- clamp each multiplier back to at
+	// least/most neutral rather than dropping it outright.
+	if (crit) { atk_mult = std::max(atk_mult, 1.f); def_mult = std::min(def_mult, 1.f); }
+	int dmg = this->data->damage(atk, def, mv, *this->rng, atk_mult, def_mult, crit);
 	deal_damage(def, dmg);
+	if (crit) queue("Ein Volltreffer!");
 	if (eff > 1.f) queue("Das ist sehr effektiv!");
 	else if (eff < 1.f) queue("Das ist nicht sehr effektiv ...");
 	if (def.fainted()) { queue(nice(def.species) + " wurde besiegt!"); return; }
@@ -446,7 +474,11 @@ void Battle::resolve_turn(const std::string& player_move) {
 		                                                     : this->enemy_stages.spe);
 		return m.status == Status::PARALYSIS ? std::max(1.f, spe / 4.f) : spe;
 	};
-	bool player_first = eff_speed(*this->player) >= eff_speed(this->enemy);
+	// Priority moves (Quick Attack, ...) act before Speed is ever consulted;
+	// only a tie there falls back to Speed.
+	int pp = move_priority(player_move), pe = move_priority(enemy_move);
+	bool player_first = pp != pe ? pp > pe
+	                             : eff_speed(*this->player) >= eff_speed(this->enemy);
 
 	Mon* first = player_first ? this->player : &this->enemy;
 	Mon* second = player_first ? &this->enemy : this->player;

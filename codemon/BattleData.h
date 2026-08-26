@@ -108,9 +108,11 @@ public:
 	// def_mult are the caller's own Gen-3 stat-stage multipliers (see
 	// Battle::stage_mult) applied to the attack/defense stat this move's
 	// physical/special split actually uses; both default to 1 (no stages).
+	// `crit` doubles the result (the caller is expected to have already
+	// picked atk_mult/def_mult per the real games' crit-ignores-stages rule).
 	int damage(const Mon& attacker, const Mon& defender,
 	           const std::string& move_name, std::mt19937& rng,
-	           float atk_mult = 1.f, float def_mult = 1.f) const;
+	           float atk_mult = 1.f, float def_mult = 1.f, bool crit = false) const;
 
 	// --- progression -------------------------------------------------------
 	// Total experience needed to be at `level` for a growth-rate name.
