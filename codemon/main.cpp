@@ -1265,6 +1265,7 @@ int main() {
     vm.set_battle_data(&bdata, &team);
     vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player, &sess->actors, &sess->localid_map);
     run_load_triggers(sess->map, gs, vm);
+    check_trigger(sess, vm, gs);
     if (const char* ts = std::getenv("CODEMON_TEST_SCRIPT")) vm.start(ts, sess->player);
     Menu menu;
     menu.load_font();
@@ -1334,6 +1335,7 @@ int main() {
         sess = ns;
         vm.configure(sess->map, &gs, &box, &battle, aud, sess->player, &sess->actors, &sess->localid_map);
         run_load_triggers(sess->map, gs, vm);
+        check_trigger(sess, vm, gs);
         on_map_change(sess->path, aud);
     };
     // FLIEGEN: the menu can't touch the session either (same reasoning as
@@ -1351,6 +1353,7 @@ int main() {
         sess->player->face(DIR::S);
         vm.configure(sess->map, &gs, &box, &battle, aud, sess->player, &sess->actors, &sess->localid_map);
         run_load_triggers(sess->map, gs, vm);
+        check_trigger(sess, vm, gs);
         on_map_change(sess->path, aud);
     };
     menu.set_location(banner);
@@ -1381,6 +1384,7 @@ int main() {
                     sess = ns;
                     vm.configure(sess->map, &gs, &box, &battle, aud, sess->player, &sess->actors, &sess->localid_map);
                     run_load_triggers(sess->map, gs, vm);
+                    check_trigger(sess, vm, gs);
                     on_map_change(sess->path, aud);
                 } else {
                     free_session(ns);
@@ -1452,6 +1456,7 @@ int main() {
                             if (sess != before) {
                                 vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player, &sess->actors, &sess->localid_map);
     run_load_triggers(sess->map, gs, vm);
+    check_trigger(sess, vm, gs);
                                 on_map_change(sess->path, nullptr);
                             } else if (sess->player->get_tile_x() != pbx ||
                                        sess->player->get_tile_y() != pby) {
@@ -1488,6 +1493,7 @@ int main() {
                             if (sess != before) {
                                 vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player, &sess->actors, &sess->localid_map);
                                 run_load_triggers(sess->map, gs, vm);
+                                check_trigger(sess, vm, gs);
                                 on_map_change(sess->path, nullptr);
                             } else if (sess->player->get_tile_x() != pbx ||
                                        sess->player->get_tile_y() != pby) {
@@ -1507,6 +1513,7 @@ int main() {
                             if (sess != before) {
                                 vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player, &sess->actors, &sess->localid_map);
                                 run_load_triggers(sess->map, gs, vm);
+                                check_trigger(sess, vm, gs);
                                 on_map_change(sess->path, nullptr);
                             } else if (sess->player->get_tile_x() != pbx ||
                                        sess->player->get_tile_y() != pby) {
@@ -1748,6 +1755,7 @@ int main() {
                     if (sess != before) {
                         vm.configure(sess->map, &gs, &box, &battle, &audio, sess->player, &sess->actors, &sess->localid_map);
                         run_load_triggers(sess->map, gs, vm);
+                        check_trigger(sess, vm, gs);
                         on_map_change(sess->path, &audio);
                     } else if (sess->player->get_tile_x() != pbx ||
                                sess->player->get_tile_y() != pby) {
@@ -1776,6 +1784,7 @@ int main() {
                 if (sess != before) {
                     vm.configure(sess->map, &gs, &box, &battle, &audio, sess->player, &sess->actors, &sess->localid_map);
                     run_load_triggers(sess->map, gs, vm);
+                    check_trigger(sess, vm, gs);
                     on_map_change(sess->path, &audio);
                 } else if (sess->player->get_tile_x() != pbx ||
                            sess->player->get_tile_y() != pby) {
@@ -1795,6 +1804,7 @@ int main() {
                 if (sess != before) {
                     vm.configure(sess->map, &gs, &box, &battle, &audio, sess->player, &sess->actors, &sess->localid_map);
                     run_load_triggers(sess->map, gs, vm);
+                    check_trigger(sess, vm, gs);
                     on_map_change(sess->path, &audio);
                 } else if (sess->player->get_tile_x() != pbx ||
                            sess->player->get_tile_y() != pby) {
