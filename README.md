@@ -377,16 +377,20 @@ has been verified either by an automated test or by headless screenshot
   send-outs, mid-battle switches, `playmoncry` field scripts), battle/
   victory themes (wild, trainer, gym leader/champion/rival/Elite Four
   variants), and `playbgm` field-script music cues all play natively
+* Gen-3 in-battle stat stages (-6..+6, Attack/Defense/Sp.Atk/Sp.Def/Speed/
+  accuracy/evasion): every stat-changing move (Growl, Leer, Swords Dance,
+  Bulk Up, Calm Mind, Haze, ~50 in total) actually raises/lowers the right
+  stat now, with the real "won't go any higher!" cap message; stages reset
+  whenever a side's active mon changes, same as the real games
 * `codemon_tests` / CTest for the display-independent core data structures
 
 ### ⚠️ Partial / simplified
 
 * **Battle system** is a simplified 1v1 damage calculator: no critical hits,
-  no evasion (no stat stages at all, so status moves like Growl/Swords
-  Dance do nothing but print text), no move priority, no weather, no
-  abilities, no held items, no IV/EV/natures, no PP/Struggle, no doubles, no
-  EXP Share (status conditions, accuracy, mid-battle switching and faint
-  recovery are implemented, see above)
+  no move priority, no weather, no abilities, no held items, no IV/EV/
+  natures, no PP/Struggle, no doubles, no EXP Share (status conditions,
+  accuracy, stat stages, mid-battle switching and faint recovery are
+  implemented, see above)
 * **Catch mechanic** is a flat approximate formula, independent of species
   catch rate or ball type (only `ITEM_POKE_BALL` exists functionally)
 * **Evolution**: level-up only; stone/trade/friendship evolutions are
@@ -601,8 +605,9 @@ screenshot), not just written and assumed correct.
 - [x] TM/HM teaching gated by real learnsets
 - [x] Status conditions (paralysis/burn/poison/toxic/sleep/freeze/confusion)
       + a real per-move accuracy roll
-- [ ] Critical hits, evasion, move priority
-- [ ] Stat-stage changes from status moves
+- [ ] Critical hits, move priority
+- [x] Stat-stage changes from status moves (-6..+6, all seven stats,
+      compound effects like Bulk Up/Calm Mind/Haze included)
 - [ ] Weather, abilities, held items, IV/EV/natures, PP/Struggle
 - [x] Switching Pokémon mid-battle / surviving a faint with a healthy party
 - [x] Whiteout on a lost battle (heal + warp to last heal location) instead
@@ -658,8 +663,11 @@ screenshot), not just written and assumed correct.
 - [ ] Options/settings screen
 - [ ] Multiple PC boxes, item storage in the PC
 
+**Contests & Battle Frontier** (brought into scope; previously deferred)
+- [ ] Contests (Cool/Beauty/Cute/Smart/Tough, judging, Contest Hall NPCs)
+- [ ] Secret bases
+- [ ] Battle Frontier (Tower/Dome/Palace/Arena/Factory/Pike/Pyramid)
+
 **Out of scope for now (not silently faked, just not attempted)**
 - [ ] Breeding/eggs (link-cable trading N/A -- no second player)
-- [ ] Contests, secret bases
-- [ ] Battle Frontier
 - [ ] Map editor / procedural map generator
