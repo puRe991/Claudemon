@@ -117,7 +117,7 @@ bool Battle::start_wild(const std::string& species, int level, Mon* pm) {
 	this->is_trainer = false;
 	this->enemy_title.clear();
 	this->party.clear(); this->party_idx = 0;
-	this->enemy = this->data->make_mon(species, level);
+	this->enemy = this->data->make_mon(species, level, this->rng);
 	this->player_stages = StatStages(); this->enemy_stages = StatStages();
 	this->weather = WEATHER_NONE; this->weather_turns = 0;
 	this->over = this->victory = false;
@@ -150,7 +150,7 @@ bool Battle::start_trainer(const std::string& trainer_id, const std::string& nam
 	this->is_trainer = true;
 	this->enemy_title = name.empty() ? "TRAINER" : name;
 	this->party = pty; this->party_idx = 0;
-	this->enemy = this->data->make_mon(pty[0].first, pty[0].second);
+	this->enemy = this->data->make_mon(pty[0].first, pty[0].second, this->rng);
 	this->player_stages = StatStages(); this->enemy_stages = StatStages();
 	this->weather = WEATHER_NONE; this->weather_turns = 0;
 	this->over = this->victory = false;
@@ -538,7 +538,7 @@ void Battle::do_move(Mon& atk, Mon& def, const std::string& mv,
 void Battle::send_next_enemy() {
 	this->party_idx++;
 	this->enemy = this->data->make_mon(this->party[this->party_idx].first,
-	                                   this->party[this->party_idx].second);
+	                                   this->party[this->party_idx].second, this->rng);
 	this->enemy_stages = StatStages();
 	load_sprites();
 	queue(this->enemy_title + " schickt " + nice(this->enemy.species) + "!");
@@ -748,7 +748,16 @@ void Battle::throw_ball() {
 	float p = std::min(1.f, (float)a * status_bonus / 255.f);
 	if ((*this->rng)() % 65536 < (unsigned)(p * 65536.f)) {
 		queue("Erwischt! " + nice(this->enemy.species) + " wurde gefangen!");
+		// Reuse the encounter's own already-rolled IVs/nature rather than
+		// generating new ones -- they were "always" this individual's real
+		// values, same as a wild Pokemon's stats not changing at the moment
+		// you catch it.
 		Mon caught = this->data->make_mon(this->enemy.species, this->enemy.level);
+		caught.iv_hp = this->enemy.iv_hp; caught.iv_atk = this->enemy.iv_atk;
+		caught.iv_def = this->enemy.iv_def; caught.iv_spa = this->enemy.iv_spa;
+		caught.iv_spd = this->enemy.iv_spd; caught.iv_spe = this->enemy.iv_spe;
+		caught.nature = this->enemy.nature;
+		this->data->recompute_stats(caught, false);
 		if (this->team && this->team->size() < 6) this->team->push_back(caught);
 		else if (this->box) { this->box->push_back(caught);
 			queue(nice(this->enemy.species) + " wurde zur PC-BOX geschickt."); }

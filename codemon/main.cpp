@@ -1262,7 +1262,7 @@ int main() {
     battle.configure(&bdata, &rng);
     battle.set_capture(&gs, &team, &pc_box);
     ScriptVM vm;
-    vm.set_battle_data(&bdata, &team);
+    vm.set_battle_data(&bdata, &team, &rng);
     vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player, &sess->actors, &sess->localid_map);
     run_load_triggers(sess->map, gs, vm);
     check_trigger(sess, vm, gs);
@@ -1477,8 +1477,8 @@ int main() {
                     // follow-up) continues.
                     if (starter.done()) {
                         if (vm.wants_starter()) vm.resolve_starter(starter.chosen());
-                        else if (team.empty()) team.push_back(bdata.make_mon(starter.chosen(), 5));
-                        else team[0] = bdata.make_mon(starter.chosen(), 5);
+                        else if (team.empty()) team.push_back(bdata.make_mon(starter.chosen(), 5, &rng));
+                        else team[0] = bdata.make_mon(starter.chosen(), 5, &rng);
                         starter.ack();
                     } else if (!starter.active() && vm.wants_starter()) {
                         starter.open();
@@ -1768,8 +1768,8 @@ int main() {
         }
         if (starter.done()) {
             if (vm.wants_starter()) vm.resolve_starter(starter.chosen());
-            else if (team.empty()) team.push_back(bdata.make_mon(starter.chosen(), 5));
-                        else team[0] = bdata.make_mon(starter.chosen(), 5);
+            else if (team.empty()) team.push_back(bdata.make_mon(starter.chosen(), 5, &rng));
+                        else team[0] = bdata.make_mon(starter.chosen(), 5, &rng);
             starter.ack();
         } else if (!starter.active() && vm.wants_starter()) {
             starter.open();

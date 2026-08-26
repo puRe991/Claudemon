@@ -54,6 +54,13 @@ struct Mon {
 	Status status = Status::NONE;
 	int status_turns = 0;       // SLEEP: turns left asleep; TOXIC: turns badly poisoned so far
 	int confusion_turns = 0;    // 0 = not confused
+	// Individual variation (real Gen-3 mechanics): IVs 0..31 per stat (EVs
+	// are always 0 here -- this engine doesn't track battling-based EV gain,
+	// same simplification as the rest of the "no EVs" scope) and one of 25
+	// natures, both rolled once in make_mon() and kept for this mon's whole
+	// life (persisted to the savegame, unlike a battle's stat stages).
+	int iv_hp = 15, iv_atk = 15, iv_def = 15, iv_spa = 15, iv_spd = 15, iv_spe = 15;
+	std::string nature = "HARDY";
 	bool fainted() const { return hp <= 0; }
 };
 
@@ -87,8 +94,11 @@ public:
 	int species_id(const std::string& name) const;
 	std::string species_by_id(int id) const;   // "" if out of range
 
-	// Build a level-scaled pokemon with its natural (level-up) moveset.
-	Mon make_mon(const std::string& species_name, int level) const;
+	// Build a level-scaled pokemon with its natural (level-up) moveset, real
+	// IVs (0..31 per stat) and a random nature when `rng` is given -- nullptr
+	// falls back to neutral IVs (15)/nature (Hardy), for callers without one
+	// handy rather than a hard dependency.
+	Mon make_mon(const std::string& species_name, int level, std::mt19937* rng = nullptr) const;
 
 	// Trainer's party, or empty if unknown.
 	std::vector<std::pair<std::string, int>> trainer_party(const std::string& t) const;

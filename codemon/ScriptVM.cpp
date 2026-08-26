@@ -210,8 +210,8 @@ void ScriptVM::resolve_starter(const std::string& species) {
 		// A fresh game's team is empty until this very moment (pokeemerald
 		// never gives you a Pokemon before you actually pick one from
 		// Birch's bag), so this is normally a push_back, not a replace.
-		if (this->team->empty()) this->team->push_back(this->bdata->make_mon(species, 5));
-		else (*this->team)[0] = this->bdata->make_mon(species, 5);
+		if (this->team->empty()) this->team->push_back(this->bdata->make_mon(species, 5, this->rng));
+		else (*this->team)[0] = this->bdata->make_mon(species, 5, this->rng);
 	}
 	if (this->state) {
 		this->state->set_flag("FLAG_SYS_POKEMON_GET");
@@ -544,7 +544,7 @@ void ScriptVM::pump() {
 				if (trade_idx >= 0 && trade_idx < 4 &&
 				    party_idx >= 0 && party_idx < (int)this->team->size()) {
 					int lvl = (*this->team)[party_idx].level;
-					(*this->team)[party_idx] = this->bdata->make_mon(INGAME_TRADES[trade_idx].give, lvl);
+					(*this->team)[party_idx] = this->bdata->make_mon(INGAME_TRADES[trade_idx].give, lvl, this->rng);
 				}
 			} else if (fn == "DoInGameTradeScene") {
 				// The real spinning-Pokeball trade cutscene has no equivalent

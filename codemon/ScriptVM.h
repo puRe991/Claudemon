@@ -3,6 +3,7 @@
 #include <vector>
 #include <deque>
 #include <unordered_map>
+#include <random>
 #include "map.h"
 #include "character.h"
 #include "DialogBox.h"
@@ -46,9 +47,11 @@ public:
 
 	// Battle hooks for trainerbattle (set once at startup). `team` is the
 	// player's whole party (not just the lead mon) so `special
-	// HealPlayerParty` can actually heal all of it, not only team[0].
-	void set_battle_data(BattleData* bd, std::vector<Mon>* team) {
-		this->bdata = bd; this->team = team;
+	// HealPlayerParty` can actually heal all of it, not only team[0]. `rng`
+	// is the same shared, seeded generator main() hands to Battle -- needed
+	// for make_mon()'s IV/nature roll (givemon, in-game trades, starters).
+	void set_battle_data(BattleData* bd, std::vector<Mon>* team, std::mt19937* rng) {
+		this->bdata = bd; this->team = team; this->rng = rng;
 	}
 
 	// Begin running `label`; owner is the interacted NPC (for LOCALID + face).
@@ -121,7 +124,7 @@ private:
 
 	Map* map; GameState* state; DialogBox* box; Battle* battle;
 	Audio* audio; Character* player; Character* owner;
-	BattleData* bdata; std::vector<Mon>* team;
+	BattleData* bdata; std::vector<Mon>* team; std::mt19937* rng = nullptr;
 	std::vector<Character*>* actors = nullptr;
 	const std::unordered_map<std::string, Character*>* localid_map = nullptr;
 

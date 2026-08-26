@@ -10,6 +10,31 @@ static std::vector<std::string> split(const std::string& s, char d) {
 	return out;
 }
 
+// pokeemerald's real gNatureStatTable (src/pokemon.c): -1/0/+1 per stat,
+// Attack/Defense/Speed/Sp.Atk/Sp.Def order, five neutral natures included.
+struct NatureRow { const char* name; int atk, def, spe, spa, spd; };
+static const NatureRow NATURES[25] = {
+	{"HARDY", 0, 0, 0, 0, 0}, {"LONELY", +1, -1, 0, 0, 0}, {"BRAVE", +1, 0, -1, 0, 0},
+	{"ADAMANT", +1, 0, 0, -1, 0}, {"NAUGHTY", +1, 0, 0, 0, -1}, {"BOLD", -1, +1, 0, 0, 0},
+	{"DOCILE", 0, 0, 0, 0, 0}, {"RELAXED", 0, +1, -1, 0, 0}, {"IMPISH", 0, +1, 0, -1, 0},
+	{"LAX", 0, +1, 0, 0, -1}, {"TIMID", -1, 0, +1, 0, 0}, {"HASTY", 0, -1, +1, 0, 0},
+	{"SERIOUS", 0, 0, 0, 0, 0}, {"JOLLY", 0, 0, +1, -1, 0}, {"NAIVE", 0, 0, +1, 0, -1},
+	{"MODEST", -1, 0, 0, +1, 0}, {"MILD", 0, -1, 0, +1, 0}, {"QUIET", 0, 0, -1, +1, 0},
+	{"BASHFUL", 0, 0, 0, 0, 0}, {"RASH", 0, 0, 0, +1, -1}, {"CALM", -1, 0, 0, 0, +1},
+	{"GENTLE", 0, -1, 0, 0, +1}, {"SASSY", 0, 0, -1, 0, +1}, {"CAREFUL", 0, 0, 0, -1, +1},
+	{"QUIRKY", 0, 0, 0, 0, 0},
+};
+static const NatureRow* nature_row(const std::string& n) {
+	for (const NatureRow& r : NATURES) if (n == r.name) return &r;
+	return &NATURES[0];   // Hardy (neutral) for an unrecognized name
+}
+// -1/0/+1 -> the real 0.9/1.0/1.1 multiplier.
+static float nature_mult(int delta) { return 1.f + delta * 0.1f; }
+// Gen-3 non-HP stat: floor(floor((2*base+iv)*level/100 + 5) * natureMult).
+static int calc_stat(int base, int iv, int level, float mult) {
+	return (int)(((2 * base + iv) * level / 100 + 5) * mult);
+}
+
 bool BattleData::load(const std::string& dir) {
 	std::ifstream sp(dir + "/species.tsv");
 	if (!sp.is_open()) return false;
@@ -103,15 +128,24 @@ std::string BattleData::species_by_id(int id) const {
 	return (id >= 0 && id < (int)species_order.size()) ? species_order[id] : std::string();
 }
 
-Mon BattleData::make_mon(const std::string& name, int level) const {
+Mon BattleData::make_mon(const std::string& name, int level, std::mt19937* rng) const {
 	Mon mon; mon.species = name; mon.level = std::max(1, level);
+	if (rng) {
+		auto roll_iv = [&]() { return (int)((*rng)() % 32); };
+		mon.iv_hp = roll_iv(); mon.iv_atk = roll_iv(); mon.iv_def = roll_iv();
+		mon.iv_spa = roll_iv(); mon.iv_spd = roll_iv(); mon.iv_spe = roll_iv();
+		mon.nature = NATURES[(*rng)() % 25].name;
+	}
 	auto it = species.find(name);
 	if (it == species.end()) { mon.max_hp = mon.hp = 10 + level; return mon; }
 	const SpeciesInfo& s = it->second;
-	auto stat = [&](int base) { return (2 * base * mon.level) / 100 + 5; };
-	mon.max_hp = mon.hp = (2 * s.hp * mon.level) / 100 + mon.level + 10;
-	mon.atk = stat(s.atk); mon.def = stat(s.def);
-	mon.spa = stat(s.spa); mon.spd = stat(s.spd); mon.spe = stat(s.spe);
+	const NatureRow* nr = nature_row(mon.nature);
+	mon.max_hp = mon.hp = (2 * s.hp + mon.iv_hp) * mon.level / 100 + mon.level + 10;
+	mon.atk = calc_stat(s.atk, mon.iv_atk, mon.level, nature_mult(nr->atk));
+	mon.def = calc_stat(s.def, mon.iv_def, mon.level, nature_mult(nr->def));
+	mon.spa = calc_stat(s.spa, mon.iv_spa, mon.level, nature_mult(nr->spa));
+	mon.spd = calc_stat(s.spd, mon.iv_spd, mon.level, nature_mult(nr->spd));
+	mon.spe = calc_stat(s.spe, mon.iv_spe, mon.level, nature_mult(nr->spe));
 	mon.t1 = s.t1; mon.t2 = s.t2;
 	mon.exp = exp_for_level(s.growth, mon.level);
 
@@ -280,8 +314,8 @@ void BattleData::recompute_stats(Mon& mon, bool keep_ratio) const {
 	auto it = species.find(mon.species);
 	if (it == species.end()) return;
 	const SpeciesInfo& s = it->second;
-	auto stat = [&](int base) { return (2 * base * mon.level) / 100 + 5; };
-	int new_max = (2 * s.hp * mon.level) / 100 + mon.level + 10;
+	const NatureRow* nr = nature_row(mon.nature);
+	int new_max = (2 * s.hp + mon.iv_hp) * mon.level / 100 + mon.level + 10;
 	if (keep_ratio) {
 		float r = mon.max_hp > 0 ? (float)mon.hp / mon.max_hp : 1.f;
 		mon.hp = std::max(1, (int)(new_max * r));
@@ -289,8 +323,11 @@ void BattleData::recompute_stats(Mon& mon, bool keep_ratio) const {
 		mon.hp += (new_max - mon.max_hp);      // level-up: gain the delta
 	}
 	mon.max_hp = new_max;
-	mon.atk = stat(s.atk); mon.def = stat(s.def);
-	mon.spa = stat(s.spa); mon.spd = stat(s.spd); mon.spe = stat(s.spe);
+	mon.atk = calc_stat(s.atk, mon.iv_atk, mon.level, nature_mult(nr->atk));
+	mon.def = calc_stat(s.def, mon.iv_def, mon.level, nature_mult(nr->def));
+	mon.spa = calc_stat(s.spa, mon.iv_spa, mon.level, nature_mult(nr->spa));
+	mon.spd = calc_stat(s.spd, mon.iv_spd, mon.level, nature_mult(nr->spd));
+	mon.spe = calc_stat(s.spe, mon.iv_spe, mon.level, nature_mult(nr->spe));
 	mon.t1 = s.t1; mon.t2 = s.t2;
 }
 
