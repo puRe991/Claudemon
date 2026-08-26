@@ -49,6 +49,7 @@ bool BattleData::load(const std::string& dir) {
 		if (c.size() >= 11) { s.growth = c[9]; s.exp_yield = std::stoi(c[10]); }
 		if (c.size() >= 12) s.catch_rate = std::stoi(c[11]);
 		if (c.size() >= 14) { s.ability1 = c[12]; s.ability2 = c[13]; }
+		if (c.size() >= 16) { s.item_common = c[14]; s.item_rare = c[15]; }
 		species[c[0]] = s;
 		species_index[c[0]] = (int)species_order.size();
 		species_order.push_back(c[0]);
@@ -149,6 +150,20 @@ Mon BattleData::make_mon(const std::string& name, int level, std::mt19937* rng) 
 	mon.spe = calc_stat(s.spe, mon.iv_spe, mon.level, nature_mult(nr->spe));
 	mon.t1 = s.t1; mon.t2 = s.t2;
 	mon.exp = exp_for_level(s.growth, mon.level);
+	if (rng) {
+		// Real pokeemerald wild-item roll (TryGenerateWildHeldItem, simplified:
+		// no Compound Eyes / Altering Cave special cases): a species whose
+		// common and rare items are the same non-NONE item always holds it,
+		// otherwise 45% nothing / 50% common / 5% rare.
+		if (s.item_common == s.item_rare && s.item_common != "NONE") {
+			mon.held_item = s.item_common;
+		} else {
+			int rnd = (int)((*rng)() % 100);
+			if (rnd < 45) mon.held_item = "NONE";
+			else if (rnd < 95) mon.held_item = s.item_common;
+			else mon.held_item = s.item_rare;
+		}
+	}
 
 	// natural moveset: the last (up to) 4 moves learned by this level
 	auto li = learn.find(name);
@@ -397,9 +412,9 @@ void BattleData::grant_exp(Mon& mon, long gained, std::vector<std::string>& msgs
 				}
 			}
 		}
-		// level-up evolution
+		// level-up evolution -- Everstone blocks it, same as the real games.
 		auto ei = evos.find(mon.species);
-		if (ei != evos.end()) {
+		if (ei != evos.end() && mon.held_item != "EVERSTONE") {
 			for (const Evolution& e : ei->second) {
 				if (e.method.rfind("LEVEL", 0) == 0 &&
 				    mon.level >= std::atoi(e.param.c_str())) {

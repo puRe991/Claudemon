@@ -158,6 +158,18 @@ private:
 	// True if every one of m's moves is at 0 PP (Struggle time).
 	static bool out_of_pp(const Mon& m);
 
+	// --- held items (a hand-picked subset -- see README) --------------------
+	// Cures a just-inflicted status/confusion via a held status berry
+	// (Cheri/Chesto/Pecha/Rawst/Aspear/Persim/Lum), consuming it and queuing
+	// a message. Called right after try_inflict_status sets the status.
+	void check_status_berry(Mon& m);
+	// Heals via a held Oran/Sitrus berry once HP drops to <=50% max, then
+	// consumes it. Called after every deal_damage() on that mon.
+	void check_pinch_berry(Mon& m);
+	// +10% damage for one held type-boosting item (Mystic Water and the
+	// rest of the real Gen-3 set), folded in alongside weather/STAB.
+	static float held_item_type_mult(const Mon& atk, const std::string& move_type);
+
 public:
 	Battle();
 	void configure(BattleData* d, std::mt19937* r);

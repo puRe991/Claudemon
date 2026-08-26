@@ -435,25 +435,41 @@ has been verified either by an automated test or by headless screenshot
   attacker, applied even if that same hit faints the target. PP is
   restored to max on every full heal (Pokémon Center, whiteout recovery)
   and persisted with the rest of the mon in the savegame
+* Wild held items (pokeemerald's `.itemCommon`/`.itemRare`, e.g. Pikachu's
+  Oran Berry / Light Ball): rolled once in `make_mon()` using the real
+  odds (a species whose common and rare item are the same always holds it;
+  otherwise 45% nothing / 50% common / 5% rare, verified over 5000 rolls),
+  kept for that individual's whole life like IVs/nature, and shown on the
+  party summary screen. A hand-picked subset of items that matter in
+  ordinary play actually do something: status-curing berries (Cheri/
+  Chesto/Pecha/Rawst/Aspear/Persim cure their one status or confusion, Lum
+  cures anything), Oran/Sitrus (heal at <=50% HP), Leftovers (heal 1/16
+  max HP every end of turn), the real Gen-3 type-boosting items (+10%
+  damage for their one type, e.g. Black Belt for Fighting moves), and
+  Everstone (blocks level-up evolution) -- the rest (evolution stones,
+  Shards, Nuggets, Quick Claw, King's Rock, ...) are recognized in the
+  data but have no effect yet (no turn-order-roll or flinch mechanic to
+  hook them into)
 * `codemon_tests` / CTest for the display-independent core data structures
 
 ### ⚠️ Partial / simplified
 
-* **Battle system** is a simplified 1v1 damage calculator: no held items or
-  EVs yet -- pokeemerald's source has the held-item data too
-  (species_info.h's `.itemCommon`/`.itemRare`), just not imported/wired up
-  yet; see `codemon/tools/pe_import.py`'s usage note for how to point the
+* **Battle system** is a simplified 1v1 damage calculator: no EVs tracked
+  yet (no battling-based EV gain), and only a hand-picked subset of held
+  items actually does anything (see above); see
+  `codemon/tools/pe_import.py`'s usage note for how to point the
   importer at a pokeemerald checkout (no doubles, no EXP Share either;
   status conditions, accuracy, stat stages, critical hits, move priority,
-  weather, IVs/natures, PP/Struggle/recoil, a real per-species catch
-  formula, and a starter set of abilities are implemented, see above)
+  weather, IVs/natures, PP/Struggle/recoil, held items, a real per-species
+  catch formula, and a starter set of abilities are implemented, see above)
 * **Catch mechanic**: `ITEM_POKE_BALL` is the only ball that functionally
   exists (no ball-type bonus), but the odds themselves are the real Gen-3
   formula now -- each species' actual catch rate, current/max HP, and a
   sleep/freeze/other-status bonus, verified against known values (a
   full-HP Magikarp catches ~1/3 of the time, a full-HP Registeel ~1/255)
-* **Evolution**: level-up only; stone/trade/friendship evolutions are
-  imported into data but never triggered in-game
+* **Evolution**: level-up only (an Everstone blocks it, same as the real
+  games); stone/trade/friendship evolutions are imported into data but
+  never triggered in-game
 * **Audio**: `playse` (one-off pokeemerald SE_* sound effects beyond
   step/bump/select) is still a no-op — only the small hand-made SFX set was
   imported, not every original SE_* WAV; `MUS_ROUTE118`'s real behavior
@@ -677,8 +693,9 @@ screenshot), not just written and assumed correct.
 - [x] PP (real per-move values), decremented on use, forced Struggle at 0 PP
       (bypasses the type chart/STAB entirely, real engine special case),
       recoil (Take Down/Submission/Struggle deal 1/4 back to the attacker)
-- [ ] Held items, EVs (pokeemerald source has the held-item data now -- not
-      yet imported/wired up)
+- [x] Held items (real per-species odds), a curated subset with real effects:
+      status/pinch berries, Leftovers, type-boost items, Everstone
+- [ ] EVs (no battling-based EV gain tracked)
 - [x] Switching Pokémon mid-battle / surviving a faint with a healthy party
 - [x] Whiteout on a lost battle (heal + warp to last heal location) instead
       of scripted trainer battles continuing their win dialogue on a loss

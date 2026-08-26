@@ -291,7 +291,6 @@ static Session* player_step(Session* s, DIR dir, Audio* audio, GameState* gs,
                     // dismount right here if it's dry land on the other side.
                     ns->player->set_surfing(can_surf && water);
                     free_session(s);
-                    if (audio) audio->play_step();
                     return ns;
                 }
                 if (clear && water && needs_surf) *needs_surf = true;
@@ -324,7 +323,6 @@ static Session* player_step(Session* s, DIR dir, Audio* audio, GameState* gs,
             if (s->map->in_bounds(bx, by) && s->map->passable(bx, by) &&
                 !s->map->is_water(bx, by) && !actor_at(s->actors, ag.ch, bx, by)) {
                 ag.ch->step(dir);
-                if (audio) audio->play_step();
             } else if (audio) audio->play_bump();
             break;
         }
@@ -347,7 +345,6 @@ static Session* player_step(Session* s, DIR dir, Audio* audio, GameState* gs,
     }
     s->player->step(dir);
     if (water) s->player->set_surfing(true);
-    if (audio) audio->play_step();
     // Reaching dry land automatically ends a Surf, same as the real games.
     if (s->player->is_surfing() &&
         !s->map->is_water(s->player->get_tile_x(), s->player->get_tile_y()))

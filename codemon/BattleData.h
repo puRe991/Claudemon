@@ -20,6 +20,9 @@ struct SpeciesInfo {
 	// the two based on a personality-value bit; this engine always uses
 	// ability1, a documented simplification (see Mon::ability).
 	std::string ability1 = "NONE", ability2 = "NONE";
+	// pokeemerald's real .itemCommon/.itemRare -- the wild held-item pool
+	// rolled once per individual in make_mon() (see Mon::held_item).
+	std::string item_common = "NONE", item_rare = "NONE";
 };
 
 // A level-up / stone / trade evolution rule.
@@ -63,6 +66,10 @@ struct Mon {
 	// life (persisted to the savegame, unlike a battle's stat stages).
 	int iv_hp = 15, iv_atk = 15, iv_def = 15, iv_spa = 15, iv_spd = 15, iv_spe = 15;
 	std::string nature = "HARDY";
+	// Real per-species wild held-item roll (pokeemerald's 45% none / 50%
+	// common / 5% rare split, see make_mon()), kept for this individual's
+	// whole life like IVs/nature. "NONE" if it isn't holding anything.
+	std::string held_item = "NONE";
 	bool fainted() const { return hp <= 0; }
 };
 

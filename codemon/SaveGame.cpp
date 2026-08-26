@@ -19,7 +19,7 @@ void write_mon(std::ofstream& f, const Mon& m) {
 		if (i) f << ',';
 		f << m.pp[i];
 	}
-	f << '\n';
+	f << '\t' << m.held_item << '\n';
 }
 
 // Splits on '\t'; returns false if the line doesn't have enough fields.
@@ -63,6 +63,7 @@ bool read_mon(const std::string& line, Mon& m) {
 		std::stringstream ps(f[23]);
 		while (std::getline(ps, tok, ',')) if (!tok.empty()) m.pp.push_back(std::atoi(tok.c_str()));
 	}
+	if (f.size() >= 25) m.held_item = f[24];
 	return true;
 }
 

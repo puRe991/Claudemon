@@ -571,7 +571,10 @@ void Menu::draw(sf::RenderTarget& target) {
 			std::string ab = this->bdata ? this->bdata->ability(m->species) : "";
 			text("Wesen: " + pretty(m->nature, "") + "   Fähigkeit: " +
 			     (ab.empty() || ab == "NONE" ? "---" : pretty(ab, "")), x, y, 16, muted_col);
-			y += 30;
+			y += 20;
+			text("Hält: " + (m->held_item.empty() || m->held_item == "NONE"
+			     ? std::string("---") : pretty(m->held_item, "")), x, y, 16, muted_col);
+			y += 10;
 			// Nature-boosted stat in a warm color, lowered in a cool one (real
 			// games' own summary-screen convention), neutral otherwise.
 			auto stat_col = [&](char stat) -> sf::Color {

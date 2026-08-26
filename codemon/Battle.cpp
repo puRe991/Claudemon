@@ -246,6 +246,7 @@ bool Battle::status_blocks_turn(Mon& m) {
 			int dmg = std::max(1, (((2 * m.level) / 5 + 2) * 40 * m.atk /
 			                       std::max(1, m.def)) / 50 + 2);
 			deal_damage(m, dmg);
+			check_pinch_berry(m);
 			queue(name + " verletzt sich selbst vor Verwirrung!");
 			return true;
 		}
@@ -264,6 +265,7 @@ void Battle::try_inflict_status(Mon& target, const std::string& effect) {
 		if (target.confusion_turns <= 0) {
 			target.confusion_turns = 2 + (int)((*this->rng)() % 3);   // 2-4 turns
 			queue(nice(target.species) + " ist jetzt verwirrt!");
+			check_status_berry(target);
 		}
 		return;
 	}
@@ -292,6 +294,47 @@ void Battle::try_inflict_status(Mon& target, const std::string& effect) {
 		case Status::FREEZE:    queue(nice(target.species) + " wurde eingefroren!"); break;
 		default: break;
 	}
+	check_status_berry(target);
+}
+
+void Battle::check_status_berry(Mon& m) {
+	const std::string& item = m.held_item;
+	bool matches = (item == "LUM_BERRY" && (m.status != Status::NONE || m.confusion_turns > 0)) ||
+	               (item == "CHERI_BERRY" && m.status == Status::PARALYSIS) ||
+	               (item == "CHESTO_BERRY" && m.status == Status::SLEEP) ||
+	               (item == "PECHA_BERRY" && (m.status == Status::POISON || m.status == Status::TOXIC)) ||
+	               (item == "RAWST_BERRY" && m.status == Status::BURN) ||
+	               (item == "ASPEAR_BERRY" && m.status == Status::FREEZE) ||
+	               (item == "PERSIM_BERRY" && m.confusion_turns > 0);
+	if (!matches) return;
+	m.status = Status::NONE; m.status_turns = 0; m.confusion_turns = 0;
+	queue(nice(m.species) + " wird durch " + nice(item) + " geheilt!");
+	m.held_item = "NONE";
+}
+
+void Battle::check_pinch_berry(Mon& m) {
+	if (m.fainted() || m.hp * 2 > m.max_hp) return;   // only below/at 50% HP
+	int heal = 0;
+	if (m.held_item == "ORAN_BERRY") heal = 10;
+	else if (m.held_item == "SITRUS_BERRY") heal = std::max(1, m.max_hp / 8);
+	else return;
+	m.hp = std::min(m.max_hp, m.hp + heal);
+	queue(nice(m.species) + " isst " + nice(m.held_item) + " und erholt sich!");
+	m.held_item = "NONE";
+}
+
+float Battle::held_item_type_mult(const Mon& atk, const std::string& move_type) {
+	// Real Gen-3 type-boosting held items (+10% damage for their one type).
+	static const std::unordered_map<std::string, std::string> tbl = {
+		{"MYSTIC_WATER", "WATER"}, {"CHARCOAL", "FIRE"}, {"MAGNET", "ELECTRIC"},
+		{"MIRACLE_SEED", "GRASS"}, {"NEVER_MELT_ICE", "ICE"}, {"BLACK_BELT", "FIGHTING"},
+		{"POISON_BARB", "POISON"}, {"SOFT_SAND", "GROUND"}, {"SHARP_BEAK", "FLYING"},
+		{"TWISTED_SPOON", "PSYCHIC"}, {"SILVER_POWDER", "BUG"}, {"HARD_STONE", "ROCK"},
+		{"SPELL_TAG", "GHOST"}, {"DRAGON_FANG", "DRAGON"}, {"BLACKGLASSES", "DARK"},
+		{"METAL_COAT", "STEEL"},
+	};
+	auto it = tbl.find(atk.held_item);
+	return (it != tbl.end() && it->second == move_type) ? 1.1f : 1.f;
 }
 
 bool Battle::apply_stat_change(Mon& atk, Mon& def, const std::string& effect) {
@@ -459,6 +502,7 @@ void Battle::apply_end_of_turn_effects() {
 				: (m->t1 == "ICE" || m->t2 == "ICE");
 			if (immune) continue;
 			deal_damage(*m, std::max(1, m->max_hp / 16));
+			check_pinch_berry(*m);
 			queue(nice(m->species) + (this->weather == WEATHER_SANDSTORM
 			      ? " wird vom Sandsturm getroffen!" : " wird vom Hagel getroffen!"));
 			if (m->fainted()) queue(nice(m->species) + " wurde besiegt!");
@@ -489,8 +533,17 @@ void Battle::apply_end_of_turn_effects() {
 		}
 		if (!msg) continue;
 		deal_damage(*m, dmg);
+		check_pinch_berry(*m);
 		queue(nice(m->species) + msg);
 		if (m->fainted()) queue(nice(m->species) + " wurde besiegt!");
+	}
+
+	// Leftovers: heal 1/16 max HP at the very end of the turn.
+	for (Mon* m : sides) {
+		if (!m || m->fainted() || m->held_item != "LEFTOVERS") continue;
+		if (m->hp >= m->max_hp) continue;
+		m->hp = std::min(m->max_hp, m->hp + std::max(1, m->max_hp / 16));
+		queue(nice(m->species) + " erholt sich durch sein Leftovers!");
 	}
 }
 
@@ -550,13 +603,16 @@ void Battle::do_move(Mon& atk, Mon& def, const std::string& mv,
 	// own multiplier, layered on after, so a crit never cancels it out.
 	if (crit) { atk_mult = std::max(atk_mult, 1.f); def_mult = std::min(def_mult, 1.f); }
 	atk_mult *= weather_damage_mult(mi->type);
+	if (!is_struggle) atk_mult *= held_item_type_mult(atk, mi->type);
 	int dmg = this->data->damage(atk, def, mv, *this->rng, atk_mult, def_mult, crit);
 	deal_damage(def, dmg);
+	check_pinch_berry(def);
 	if (crit) queue("Ein Volltreffer!");
 	if (eff > 1.f) queue("Das ist sehr effektiv!");
 	else if (eff < 1.f) queue("Das ist nicht sehr effektiv ...");
 	if (mi->effect == "RECOIL" && dmg > 0) {
 		deal_damage(atk, std::max(1, dmg / 4));
+		check_pinch_berry(atk);
 		queue(nice(atk.species) + " wird vom Rückstoß getroffen!");
 		if (atk.fainted()) queue(nice(atk.species) + " wurde besiegt!");
 	}
