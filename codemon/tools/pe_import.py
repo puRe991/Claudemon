@@ -400,12 +400,12 @@ def parse_tm_moves(src):
 
 
 def parse_moves(src):
-    """[MOVE_X] -> (power, type, accuracy, effect, secondary_chance).
+    """[MOVE_X] -> (power, type, accuracy, effect, secondary_chance, pp).
 
-    `effect` is the bare EFFECT_* suffix (e.g. "SLEEP", "PARALYZE_HIT") --
-    Battle.cpp maps the handful that inflict a status condition to it; every
-    other effect (stat stages, weather, ...) is left alone, matching this
-    engine's documented scope (status conditions only, no stat stages)."""
+    `effect` is the bare EFFECT_* suffix (e.g. "SLEEP", "PARALYZE_HIT",
+    "ATTACK_UP_2", "RAIN_DANCE") -- Battle.cpp's apply_stat_change/
+    apply_weather_effect/try_inflict_status resolve the ones it implements
+    directly off this string; an effect none of those recognize is a no-op."""
     import re
     txt = open(os.path.join(src, "src/data/battle_moves.h"),
                encoding="utf-8", errors="replace").read()
@@ -417,13 +417,15 @@ def parse_moves(src):
         ac = re.search(r"\.accuracy\s*=\s*([0-9]+)", body)
         ef = re.search(r"\.effect\s*=\s*EFFECT_(\w+)", body)
         sc = re.search(r"\.secondaryEffectChance\s*=\s*([0-9]+)", body)
+        pp = re.search(r"\.pp\s*=\s*([0-9]+)", body)
         if name == "NONE":
             continue
         out[name] = (int(pw.group(1)) if pw else 0,
                      ty.group(1) if ty else "NORMAL",
                      int(ac.group(1)) if ac else 100,
                      ef.group(1) if ef else "",
-                     int(sc.group(1)) if sc else 0)
+                     int(sc.group(1)) if sc else 0,
+                     int(pp.group(1)) if pp else 20)
     return out
 
 
@@ -498,8 +500,8 @@ def cmd_battle(src, starters=("TREECKO", "TORCHIC", "MUDKIP", "PIKACHU")):
         for tm, mv in sorted(tmm.items()):
             f.write(f"{tm}\t{mv}\n")
     with open(os.path.join(out, "moves.tsv"), "w") as f:
-        for name, (p, t, a, ef, sc) in sorted(moves.items()):
-            f.write(f"{name}\t{p}\t{t}\t{a}\t{ef}\t{sc}\n")
+        for name, (p, t, a, ef, sc, pp) in sorted(moves.items()):
+            f.write(f"{name}\t{p}\t{t}\t{a}\t{ef}\t{sc}\t{pp}\n")
     with open(os.path.join(out, "learnsets.tsv"), "w") as f:
         for name, ms in sorted(learn.items()):
             f.write(name + "\t" + ",".join(f"{lv}:{mv}" for lv, mv in ms) + "\n")

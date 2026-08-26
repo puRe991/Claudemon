@@ -40,6 +40,7 @@ struct MoveInfo {
 	int accuracy;               // 0 = never misses (Swift, self-target moves, ...)
 	std::string effect;         // bare EFFECT_* suffix, e.g. "SLEEP", "BURN_HIT"
 	int secondary_chance = 0;   // % chance an EFFECT_*_HIT's secondary status lands
+	int pp = 20;                // pokeemerald's real per-move max PP
 };
 
 // A battle-ready pokemon with computed stats and up to four moves.
@@ -50,6 +51,7 @@ struct Mon {
 	int atk = 1, def = 1, spa = 1, spd = 1, spe = 1;
 	std::string t1 = "NORMAL", t2 = "NORMAL";
 	std::vector<std::string> moves;
+	std::vector<int> pp;         // current PP, parallel to `moves` (max PP on learn)
 	long exp = 0;
 	Status status = Status::NONE;
 	int status_turns = 0;       // SLEEP: turns left asleep; TOXIC: turns badly poisoned so far
@@ -157,6 +159,8 @@ public:
 	// keep_ratio the current HP is scaled to the new max, else the HP delta is
 	// added (level-up behaviour).
 	void recompute_stats(Mon& mon, bool keep_ratio) const;
+	// Restore every move's PP to max (Pokémon Center full heal).
+	void restore_pp(Mon& mon) const;
 
 	// Grant experience; applies level-ups (stat gains, level-up moves learned,
 	// evolutions). Any player-facing lines are appended to `msgs`.

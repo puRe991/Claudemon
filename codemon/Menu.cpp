@@ -165,8 +165,11 @@ void Menu::teach_selected() {
 		this->flash = pretty(m.species, "") + " kennt " + mv_disp + " bereits.";
 		return;
 	}
-	if (m.moves.size() < 4) m.moves.push_back(this->teach_move);
-	else m.moves[0] = this->teach_move;   // overwrite the oldest move
+	const MoveInfo* mi = this->bdata->move(this->teach_move);
+	int new_pp = mi ? mi->pp : 20;
+	if (m.moves.size() < 4) { m.moves.push_back(this->teach_move); m.pp.push_back(new_pp); }
+	else { m.moves[0] = this->teach_move;   // overwrite the oldest move
+		if (!m.pp.empty()) m.pp[0] = new_pp; else m.pp.push_back(new_pp); }
 	if (!is_hm(this->teach_item) && this->gs) this->gs->take_item(this->teach_item, 1);
 	this->flash = pretty(m.species, "") + " erlernt " + mv_disp + "!";
 	this->screen = BAG;

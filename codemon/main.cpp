@@ -1189,6 +1189,11 @@ int main() {
     bool resumed = false;
     if (!map_env && !std::getenv("CODEMON_NO_SAVE")) {
         resumed = SaveGame::load(SAVE_PATH, gs, team, pc_box, start_map, start_x, start_y);
+        // A save written before PP tracking existed has no `pp` field at all
+        // for its party/box mons -- give them full PP rather than leaving
+        // the vector empty (which would read as "0 PP, can't move").
+        for (Mon& m : team) if (m.pp.size() != m.moves.size()) bdata.restore_pp(m);
+        for (Mon& m : pc_box) if (m.pp.size() != m.moves.size()) bdata.restore_pp(m);
     }
     // Story start: the player wakes up in their bedroom on Brendan's House 2F
     // (heal location HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F, tile
@@ -1375,6 +1380,7 @@ int main() {
             for (Mon& m : team) {
                 m.hp = m.max_hp;
                 m.status = Status::NONE; m.status_turns = 0; m.confusion_turns = 0;
+                bdata.restore_pp(m);
             }
             if (!gs.last_heal_map.empty()) {
                 Session* ns = load_session("maps/" + gs.last_heal_map + ".map",

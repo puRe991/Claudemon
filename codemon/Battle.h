@@ -151,6 +151,13 @@ private:
 	// End-of-turn poison/burn/toxic damage for both sides.
 	void apply_end_of_turn_effects();
 
+	// --- PP / Struggle -------------------------------------------------------
+	// Decrements m's PP for `mv` if it's one of its own known moves (a no-op
+	// for Struggle, which isn't in anyone's movelist and has unlimited use).
+	static void consume_pp(Mon& m, const std::string& mv);
+	// True if every one of m's moves is at 0 PP (Struggle time).
+	static bool out_of_pp(const Mon& m);
+
 public:
 	Battle();
 	void configure(BattleData* d, std::mt19937* r);

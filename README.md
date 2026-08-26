@@ -423,18 +423,30 @@ has been verified either by an automated test or by headless screenshot
   identical. A caught wild Pokémon keeps the IVs/nature it already had
   during the encounter rather than rolling new ones. EVs are still always
   0 (no battling-based EV gain tracked)
+* Real per-move PP (pokeemerald's `.pp`), shown in the move menu and
+  decremented on every use (even a miss; not when the turn itself is
+  blocked by sleep/paralysis/confusion self-hit). Picking a move at 0 PP
+  in the menu is blocked with a message instead of resolving the turn; once
+  every move is at 0 PP the game skips the move menu entirely and forces
+  Struggle, same as the real games -- including Struggle's real hardcoded
+  behavior of bypassing the type chart and STAB entirely (it's typed
+  NORMAL in the data but the actual C engine special-cases it). Recoil
+  (Take Down, Submission, Struggle) deals `max(1, dmg/4)` back to the
+  attacker, applied even if that same hit faints the target. PP is
+  restored to max on every full heal (Pokémon Center, whiteout recovery)
+  and persisted with the rest of the mon in the savegame
 * `codemon_tests` / CTest for the display-independent core data structures
 
 ### ⚠️ Partial / simplified
 
-* **Battle system** is a simplified 1v1 damage calculator: no held items,
-  EVs, or PP/Struggle yet -- pokeemerald's source has the held-item data
-  too (species_info.h's `.itemCommon`/`.itemRare`), just not imported/
-  wired up yet; see `codemon/tools/pe_import.py`'s usage note for how to
-  point the importer at a pokeemerald checkout (no doubles, no EXP Share
-  either; status conditions, accuracy, stat stages, critical hits, move
-  priority, weather, IVs/natures, a real per-species catch formula, and a
-  starter set of abilities are implemented, see above)
+* **Battle system** is a simplified 1v1 damage calculator: no held items or
+  EVs yet -- pokeemerald's source has the held-item data too
+  (species_info.h's `.itemCommon`/`.itemRare`), just not imported/wired up
+  yet; see `codemon/tools/pe_import.py`'s usage note for how to point the
+  importer at a pokeemerald checkout (no doubles, no EXP Share either;
+  status conditions, accuracy, stat stages, critical hits, move priority,
+  weather, IVs/natures, PP/Struggle/recoil, a real per-species catch
+  formula, and a starter set of abilities are implemented, see above)
 * **Catch mechanic**: `ITEM_POKE_BALL` is the only ball that functionally
   exists (no ball-type bonus), but the odds themselves are the real Gen-3
   formula now -- each species' actual catch rate, current/max HP, and a
@@ -662,8 +674,11 @@ screenshot), not just written and assumed correct.
       immunities -- the other ~65 are recognized but inert)
 - [x] IVs (0..31/stat) and natures (real Gen-3 stat formula), rolled once
       per individual and persisted with the mon
-- [ ] Held items, EVs, PP/Struggle (pokeemerald source has the held-item
-      data now -- not yet imported/wired up)
+- [x] PP (real per-move values), decremented on use, forced Struggle at 0 PP
+      (bypasses the type chart/STAB entirely, real engine special case),
+      recoil (Take Down/Submission/Struggle deal 1/4 back to the attacker)
+- [ ] Held items, EVs (pokeemerald source has the held-item data now -- not
+      yet imported/wired up)
 - [x] Switching Pokémon mid-battle / surviving a faint with a healthy party
 - [x] Whiteout on a lost battle (heal + warp to last heal location) instead
       of scripted trainer battles continuing their win dialogue on a loss

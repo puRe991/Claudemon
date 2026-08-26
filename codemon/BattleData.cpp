@@ -59,6 +59,7 @@ bool BattleData::load(const std::string& dir) {
 		if (c.size() < 4) continue;
 		MoveInfo mi{std::stoi(c[1]), c[2], std::stoi(c[3])};
 		if (c.size() >= 6) { mi.effect = c[4]; mi.secondary_chance = std::stoi(c[5]); }
+		if (c.size() >= 7) mi.pp = std::stoi(c[6]);
 		moves[c[0]] = mi;
 	}
 	std::ifstream ls(dir + "/learnsets.tsv");
@@ -161,6 +162,10 @@ Mon BattleData::make_mon(const std::string& name, int level, std::mt19937* rng) 
 	bool has_dmg = false;
 	for (auto& m : mon.moves) { const MoveInfo* mi = move(m); if (mi && mi->power > 0) has_dmg = true; }
 	if (mon.moves.empty() || !has_dmg) mon.moves.push_back("TACKLE");
+	for (const std::string& m : mon.moves) {
+		const MoveInfo* mi = move(m);
+		mon.pp.push_back(mi ? mi->pp : 20);
+	}
 	return mon;
 }
 
@@ -274,7 +279,9 @@ int BattleData::damage(const Mon& atk, const Mon& def,
 	if (A <= 0) A = 1;
 	if (D <= 0) D = 1;
 	int base = (((2 * atk.level) / 5 + 2) * mi->power * A / D) / 50 + 2;
-	float stab = (mi->type == atk.t1 || mi->type == atk.t2) ? 1.5f : 1.0f;
+	// Struggle bypasses type calculation entirely in the real games, STAB
+	// included, regardless of the user's own type.
+	float stab = (move_name != "STRUGGLE" && (mi->type == atk.t1 || mi->type == atk.t2)) ? 1.5f : 1.0f;
 	float eff = type_eff(mi->type, def.t1, def.t2);
 	float roll = 0.85f + (rng() % 16) / 100.0f;      // 0.85 .. 1.00
 	// Burn halves physical damage output (Gen-3: applied to the attack
@@ -331,6 +338,14 @@ void BattleData::recompute_stats(Mon& mon, bool keep_ratio) const {
 	mon.t1 = s.t1; mon.t2 = s.t2;
 }
 
+void BattleData::restore_pp(Mon& mon) const {
+	mon.pp.resize(mon.moves.size());
+	for (size_t i = 0; i < mon.moves.size(); ++i) {
+		const MoveInfo* mi = move(mon.moves[i]);
+		mon.pp[i] = mi ? mi->pp : 20;
+	}
+}
+
 static std::string disp(const std::string& id) {
 	std::string o; bool cap = true;
 	for (char c : id) { if (c == '_') { o += ' '; cap = true; }
@@ -368,13 +383,17 @@ void BattleData::grant_exp(Mon& mon, long gained, std::vector<std::string>& msgs
 		auto li = learn.find(mon.species);
 		if (li != learn.end()) {
 			for (auto& lv : li->second) if (lv.first == mon.level) {
+				const MoveInfo* nmi = move(lv.second);
+				int new_pp = nmi ? nmi->pp : 20;
 				if (mon.moves.size() < 4) {
 					mon.moves.push_back(lv.second);
+					mon.pp.push_back(new_pp);
 					msgs.push_back(disp(mon.species) + " erlernt " + disp(lv.second) + "!");
 				} else {
 					msgs.push_back(disp(mon.species) + " erlernt " + disp(lv.second) +
 					               " (vergisst " + disp(mon.moves[0]) + ")");
 					mon.moves[0] = lv.second;
+					if (!mon.pp.empty()) mon.pp[0] = new_pp; else mon.pp.push_back(new_pp);
 				}
 			}
 		}

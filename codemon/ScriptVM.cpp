@@ -510,6 +510,7 @@ void ScriptVM::pump() {
 				for (Mon& m : *this->team) {
 					m.hp = m.max_hp;
 					m.status = Status::NONE; m.status_turns = 0; m.confusion_turns = 0;
+					if (this->bdata) this->bdata->restore_pp(m);
 				}
 				// Pokemon Center heals also mark this as the whiteout recovery
 				// point (pokeemerald's lastHealLocation), read back if a later
@@ -809,6 +810,7 @@ void ScriptVM::update(float dt) {
 					for (Mon& m : *this->team) {
 						m.hp = m.max_hp;
 						m.status = Status::NONE; m.status_turns = 0; m.confusion_turns = 0;
+						if (this->bdata) this->bdata->restore_pp(m);
 					}
 				if (this->state && !this->state->last_heal_map.empty()) {
 					this->warp_dest = this->state->last_heal_map;

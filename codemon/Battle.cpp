@@ -182,9 +182,12 @@ bool Battle::start_trainer(const std::string& trainer_id, const std::string& nam
 }
 
 std::string Battle::ai_move() const {
+	if (out_of_pp(this->enemy)) return "STRUGGLE";
 	std::string best = this->enemy.moves.empty() ? "TACKLE" : this->enemy.moves[0];
 	int best_dmg = -1;
-	for (const std::string& m : this->enemy.moves) {
+	for (size_t i = 0; i < this->enemy.moves.size(); ++i) {
+		if (i < this->enemy.pp.size() && this->enemy.pp[i] <= 0) continue;   // out of PP
+		const std::string& m = this->enemy.moves[i];
 		std::mt19937 tmp(12345);
 		const MoveInfo* mi = this->data->move(m);
 		bool physical = mi && BattleData::is_physical(mi->type);
@@ -491,9 +494,25 @@ void Battle::apply_end_of_turn_effects() {
 	}
 }
 
+void Battle::consume_pp(Mon& m, const std::string& mv) {
+	for (size_t i = 0; i < m.moves.size(); ++i) {
+		if (m.moves[i] != mv) continue;
+		if (i < m.pp.size() && m.pp[i] > 0) m.pp[i]--;
+		return;
+	}
+}
+
+bool Battle::out_of_pp(const Mon& m) {
+	if (m.moves.empty()) return true;
+	for (size_t i = 0; i < m.moves.size(); ++i)
+		if (i >= m.pp.size() || m.pp[i] > 0) return false;   // missing pp entry reads as "has PP"
+	return true;
+}
+
 void Battle::do_move(Mon& atk, Mon& def, const std::string& mv,
                      const std::string& atk_name) {
 	if (status_blocks_turn(atk)) return;
+	consume_pp(atk, mv);
 	queue(atk_name + " setzt " + nice(mv) + " ein!");
 	const MoveInfo* mi = this->data->move(mv);
 	if (!mi) return;
@@ -502,9 +521,13 @@ void Battle::do_move(Mon& atk, Mon& def, const std::string& mv,
 	if (!roll_accuracy(mi->accuracy, atk_st.acc, def_st.eva)) {
 		queue("Der Angriff geht daneben!"); return;
 	}
-	float eff = BattleData::type_eff(mi->type, def.t1, def.t2);
+	// Struggle bypasses the type chart entirely in real pokeemerald (always
+	// neutral, no immunities, no STAB) -- it's the only way to act at 0 PP,
+	// so it can't be blocked by a Ghost/Steel/etc immunity or Wonder Guard.
+	bool is_struggle = (mv == "STRUGGLE");
+	float eff = is_struggle ? 1.f : BattleData::type_eff(mi->type, def.t1, def.t2);
 	std::string def_ability = this->data->ability(def.species);
-	if (mi->type == "GROUND" && def_ability == "LEVITATE") eff = 0.f;
+	if (!is_struggle && mi->type == "GROUND" && def_ability == "LEVITATE") eff = 0.f;
 	if (eff == 0.f) { queue("Hat keine Wirkung auf " + nice(def.species) + " ..."); return; }
 	if (mi->power <= 0) {                      // pure status move: no damage model
 		if (!apply_weather_effect(mi->effect) &&
@@ -514,7 +537,7 @@ void Battle::do_move(Mon& atk, Mon& def, const std::string& mv,
 	}
 	// Wonder Guard: a damaging move that isn't super effective does nothing
 	// (status moves aren't affected -- Shedinja can still be poisoned).
-	if (def_ability == "WONDER_GUARD" && eff <= 1.f) {
+	if (!is_struggle && def_ability == "WONDER_GUARD" && eff <= 1.f) {
 		queue("Hat keine Wirkung auf " + nice(def.species) + " ..."); return;
 	}
 	bool physical = BattleData::is_physical(mi->type);
@@ -532,6 +555,11 @@ void Battle::do_move(Mon& atk, Mon& def, const std::string& mv,
 	if (crit) queue("Ein Volltreffer!");
 	if (eff > 1.f) queue("Das ist sehr effektiv!");
 	else if (eff < 1.f) queue("Das ist nicht sehr effektiv ...");
+	if (mi->effect == "RECOIL" && dmg > 0) {
+		deal_damage(atk, std::max(1, dmg / 4));
+		queue(nice(atk.species) + " wird vom Rückstoß getroffen!");
+		if (atk.fainted()) queue(nice(atk.species) + " wurde besiegt!");
+	}
 	if (def.fainted()) { queue(nice(def.species) + " wurde besiegt!"); return; }
 	if (mi->secondary_chance > 0 && roll_accuracy(mi->secondary_chance))
 		if (!apply_stat_change(atk, def, mi->effect)) try_inflict_status(def, mi->effect);
@@ -627,7 +655,12 @@ void Battle::input(BtnInput b) {
 		if (b == BTN_UP && this->action_cursor > 0) this->action_cursor--;
 		else if (b == BTN_DOWN && this->action_cursor < 3) this->action_cursor++;
 		else if (b == BTN_CONFIRM) {
-			if (this->action_cursor == 0) { this->cursor = 0; this->phase = MOVE; }
+			if (this->action_cursor == 0) {
+				// Every move out of PP: pokeemerald skips the move menu
+				// entirely and just uses Struggle.
+				if (out_of_pp(*this->player)) resolve_turn("STRUGGLE");
+				else { this->cursor = 0; this->phase = MOVE; }
+			}
 			else if (this->action_cursor == 1) open_switch();
 			else if (this->action_cursor == 2) throw_ball();
 			else flee();
@@ -641,7 +674,17 @@ void Battle::input(BtnInput b) {
 		else if (b == BTN_RIGHT && (this->cursor % 2) == 0 && this->cursor + 1 < n) this->cursor++;
 		else if (b == BTN_UP   && this->cursor >= 2) this->cursor -= 2;
 		else if (b == BTN_DOWN && this->cursor + 2 < n) this->cursor += 2;
-		else if (b == BTN_CONFIRM) resolve_turn(this->player->moves[this->cursor]);
+		else if (b == BTN_CONFIRM) {
+			bool has_pp = this->cursor >= (int)this->player->pp.size() ||
+			             this->player->pp[this->cursor] > 0;
+			if (!has_pp) {
+				this->log.clear();
+				queue("Kein PP mehr für " + nice(this->player->moves[this->cursor]) + "!");
+				show_messages(MOVE);
+			} else {
+				resolve_turn(this->player->moves[this->cursor]);
+			}
+		}
 		return;
 	}
 	if (this->phase == SWITCH) {
@@ -962,11 +1005,21 @@ void Battle::draw(sf::RenderTarget& target) {
 			float mx = size.x * 0.42f + (i % 2) * (size.x * 0.27f);
 			float my = ty + 34 + (i / 2) * 40;
 			bool sel = (int)i == this->cursor;
+			bool no_pp = i < this->player->pp.size() && this->player->pp[i] <= 0;
 			if (sel) cursor_at(mx, my);
 			sf::Text m(nice(this->player->moves[i]), this->font, 20);
 			m.setPosition(mx, my);
-			m.setFillColor(sel ? head_col : body_col);
+			m.setFillColor(no_pp ? dis_col : sel ? head_col : body_col);
 			target.draw(m);
+			if (i < this->player->pp.size()) {
+				const MoveInfo* pmi = this->data->move(this->player->moves[i]);
+				int max_pp = pmi ? pmi->pp : this->player->pp[i];
+				sf::Text pp(std::to_string(this->player->pp[i]) + "/" + std::to_string(max_pp),
+				            this->font, 14);
+				pp.setPosition(mx, my + 20);
+				pp.setFillColor(no_pp ? sf::Color(190, 90, 90) : muted_col);
+				target.draw(pp);
+			}
 			// type badge next to the move
 			const MoveInfo* mi = this->data->move(this->player->moves[i]);
 			if (mi) {

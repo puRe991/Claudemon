@@ -14,7 +14,12 @@ void write_mon(std::ofstream& f, const Mon& m) {
 	}
 	f << '\t' << (int)m.status << '\t' << m.status_turns << '\t' << m.confusion_turns << '\t'
 	  << m.nature << '\t' << m.iv_hp << '\t' << m.iv_atk << '\t' << m.iv_def << '\t'
-	  << m.iv_spa << '\t' << m.iv_spd << '\t' << m.iv_spe << '\n';
+	  << m.iv_spa << '\t' << m.iv_spd << '\t' << m.iv_spe << '\t';
+	for (size_t i = 0; i < m.pp.size(); ++i) {
+		if (i) f << ',';
+		f << m.pp[i];
+	}
+	f << '\n';
 }
 
 // Splits on '\t'; returns false if the line doesn't have enough fields.
@@ -52,6 +57,11 @@ bool read_mon(const std::string& line, Mon& m) {
 		m.iv_spa = std::atoi(f[20].c_str());
 		m.iv_spd = std::atoi(f[21].c_str());
 		m.iv_spe = std::atoi(f[22].c_str());
+	}
+	if (f.size() >= 24) {
+		m.pp.clear();
+		std::stringstream ps(f[23]);
+		while (std::getline(ps, tok, ',')) if (!tok.empty()) m.pp.push_back(std::atoi(tok.c_str()));
 	}
 	return true;
 }
