@@ -1043,7 +1043,7 @@ import re as _re
 # parsing happens, so it's ready by the time _parse_script_lines needs it.
 _WARP_DEST = {}
 _WARP_OPS = {"warp", "warpdoor", "warphole", "warpsilent", "warpspinenter",
-             "warpteleport", "warpmossdeepgym", "warpwhitefade"}
+             "warpteleport", "warpmossdeepgym", "warpwhitefade", "setdynamicwarp"}
 
 
 def _translate_warp_args(op, args):
@@ -1106,6 +1106,45 @@ def parse_shared_script_file(path, texts):
     return _parse_script_lines(lines, texts)
 
 
+def _strip_fix_conditionals(lines):
+    """Resolve `#ifdef UBFIX`/`#ifdef BUGFIX`/`#ifndef BUGFIX` (+ #else/#endif)
+    the way a normal, un-patched build actually compiles: include/config.h
+    leaves both symbols undefined (BUGFIX is commented out entirely; UBFIX
+    only exists under `#if MODERN || defined(BUGFIX)`, and this repo doesn't
+    build MODERN). Without this, both branches of a handful of real scripts
+    (a Mossdeep Space Center grunt's stairs-approach direction, a Lilycove
+    Museum state var, a couple more) got exported and ran back-to-back --
+    duplicate `case` labels, both branches' effects firing -- instead of just
+    the one branch the real game actually ships. Every symbol is treated as
+    undefined (not just these two), which is the same "no fix flags on"
+    assumption. Non-nested only (true of every real use found), but a nested
+    block degrades safely: the outer branch decision still applies to
+    everything inside it."""
+    out = []
+    # Stack of (taking_this_branch: bool, seen_else: bool)
+    stack = []
+    for ln in lines:
+        s = ln.strip()
+        m_ifdef = _re.match(r"^#ifdef\s+(\w+)", s)
+        m_ifndef = _re.match(r"^#ifndef\s+(\w+)", s)
+        if m_ifdef:
+            stack.append([False, False])   # symbol undefined -> #ifdef branch off
+            continue
+        if m_ifndef:
+            stack.append([True, False])    # symbol undefined -> #ifndef branch on
+            continue
+        if s == "#else" and stack:
+            stack[-1][0] = not stack[-1][0]
+            stack[-1][1] = True
+            continue
+        if s == "#endif" and stack:
+            stack.pop()
+            continue
+        if all(taking for taking, _ in stack):
+            out.append(ln)
+    return out
+
+
 def _parse_script_lines(lines, texts):
     """Parse scripts.inc-formatted lines into executable scripts + movement
     templates + pokemart item lists.
@@ -1117,6 +1156,7 @@ def _parse_script_lines(lines, texts):
       movements[label] = list of compact actions (up/down/left/right/face_*/...)
       shops[label]     = list of ITEM_* ids a `pokemart <label>` sells
     """
+    lines = _strip_fix_conditionals(lines)
     scripts, movements, shops = {}, {}, {}
     i, n = 0, len(lines)
     while i < n:
@@ -1144,6 +1184,12 @@ def _parse_script_lines(lines, texts):
                     # enough that we can't safely tack a marker onto it.
                     is_yesno = op == "msgbox" and len(args) > 1 and args[1] == "MSGBOX_YESNO"
                     body.append(["msgboxyesno" if is_yesno else "msgbox", texts[args[0]]])
+                elif op == "bufferstring" and len(args) >= 2 and args[1] in texts:
+                    # `bufferstring STR_VAR_n <text label>` names a text
+                    # label (not inline text), same as msgbox's arg[0] --
+                    # resolve it here too so ScriptVM just gets a plain
+                    # string to stash, no text-label lookup of its own.
+                    body.append(["bufferstring", args[0], texts[args[1]]])
                 elif op == "message":
                     # pokeemerald's low-level "message TEXT; waitmessage;
                     # waitbuttonpress" is the same on-screen effect as the
@@ -1743,6 +1789,8 @@ def cmd_world(src, limit=None):
                 for instr in body:
                     if instr[0] in ("msgbox", "msgboxyesno") and len(instr) >= 2:
                         lines.append(instr[0] + "\t" + instr[1])
+                    elif instr[0] == "bufferstring" and len(instr) >= 3:
+                        lines.append(instr[0] + " " + instr[1] + "\t" + instr[2])
                     else:
                         lines.append(" ".join(instr))
         if signs:

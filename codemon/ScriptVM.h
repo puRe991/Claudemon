@@ -127,6 +127,14 @@ public:
 	int multichoice_default() const { return this->pending_multichoice_default; }
 	void resolve_multichoice(int idx);
 
+	// `bufferstring`/`buffernumberstring`/`bufferspeciesname`/... park their
+	// result here (see str_vars below); "" for a name that was never set.
+	const std::string& str_var(const std::string& name) const {
+		static const std::string empty;
+		auto it = this->str_vars.find(name);
+		return it == this->str_vars.end() ? empty : it->second;
+	}
+
 private:
 	enum State { IDLE, RUN, WAIT_MSG, WAIT_MOVE, WAIT_BATTLE, WAIT_STARTER, WAIT_YESNO,
 	              WAIT_SHOP, WAIT_HEALFX, WAIT_CHOOSE_PARTY, WAIT_MULTICHOICE };

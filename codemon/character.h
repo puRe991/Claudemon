@@ -51,6 +51,11 @@ private:
 	                           // (empty for the player and permanent NPCs);
 	                           // `removeobject` (cut trees, ...) sets it so the
 	                           // object stays gone across a map reload.
+	// Runtime movement behaviour, mirrors map.h's MoveKind (0=static,
+	// 1=wander, 2=pace vertical, 3=pace horizontal) without needing map.h's
+	// full include here. Initialized from the NpcSpawn this object was built
+	// from; `setobjectmovementtype` (ScriptVM) can change it live.
+	int move_kind = 0;
 	bool removed = false;      // `removeobject` also sets this so the object's
 	                           // still-alive Agent entry (main.cpp's `agents`,
 	                           // separate from the `actors` render/collision
@@ -90,6 +95,9 @@ public:
 	const std::string& get_hide_flag() const { return this->hide_flag; }
 	void mark_removed() { this->removed = true; }
 	bool is_removed() const { return this->removed; }
+
+	void set_move_kind(int k) { this->move_kind = k; }
+	int get_move_kind() const { return this->move_kind; }
 
 	// Where this character would end up after a step in `dir` (signed).
 	void target_tile(DIR dir, int& out_x, int& out_y) const;

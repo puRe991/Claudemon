@@ -501,6 +501,20 @@ has been verified either by an automated test or by headless screenshot
   120/15 vertical), calibrated and verified against known real-world town
   positions (Littleroot, Ever Grande, Sootopolis, Fallarbor, Pacifidlog,
   Mossdeep all land in geographically correct spots)
+* **More script opcodes**: `bufferstring`/`buffernumberstring` (dynamic
+  values -- Birch's Pokédex-seen/caught rating and similar -- now actually
+  render instead of leaving the number/word out); `bufferleadmonspeciesname`;
+  `getplayerxy`; `hideplayer`/`showplayer`; `setobjectmovementtype`
+  (an NPC's behaviour can now change at runtime, not just at map load);
+  `setdynamicwarp` (`WARP_ID_DYNAMIC` tiles resolve to whatever a script set
+  last -- this is what gets the player out of the intro moving truck and
+  drives the Lilycove department store elevator; the truck's own exit tiles
+  used to just silently do nothing, a genuine dead end)
+* **Importer**: `#ifdef UBFIX`/`#ifdef BUGFIX`/`#ifndef BUGFIX` (+ `#else`/
+  `#endif`) conditionals in source scripts are now actually resolved (both
+  symbols undefined, matching this repo's default build config) instead of
+  leaking the raw `#ifdef`/`#else`/`#endif` lines into the exported script
+  and including both branches' instructions back to back
 * `codemon_tests` / CTest for the display-independent core data structures
 
 ### ⚠️ Partial / simplified
@@ -527,13 +541,20 @@ has been verified either by an automated test or by headless screenshot
   (dynamic pick between MUS_ROUTE110/MUS_ROUTE119 by player x position) is
   simplified to a static MUS_ROUTE119 default; Battle Frontier's own
   MUS_B_* tracks convert but that mode isn't implemented (see below)
-* **Text interpolation** (`bufferstring` family): the importer bakes static
-  values into dialog at import time, but genuinely dynamic values (e.g.
-  Birch's Pokédex-seen/caught rating) render with the number missing
 * **`specialvar` opcode**: `GetBattleOutcome` and `PlayerHasBerries` return
   real answers; everything else (`ShouldTryRematchBattle`, Pokérus, trading,
   breeding, contests, the fan club, Trainer Hill, ...) honestly returns
   0/false since those systems don't exist here, rather than faking one
+  (this also means `gotobeatenscript` -- gated on `ShouldTryGetTrainerScript`
+  -- never actually branches; not a missed opcode, a consequence of that
+  same honesty)
+* **`setobjectsubpriority`/`resetobjectsubpriority`**: real opcodes,
+  intentional no-ops -- they're a draw-order tiebreak for two objects
+  sharing a tile, and this engine already sorts every actor by tile-y every
+  frame, which already gives the right order for every real use of them
+* **PC item storage / multiple PC boxes**: `checkpcitem` and
+  `bufferboxname` honestly read as "nothing there" -- there is only one
+  unlimited party-mon box, no separate item storage
 
 ### ❌ Not implemented yet
 
@@ -767,6 +788,11 @@ screenshot), not just written and assumed correct.
 - [x] LOCALID→object registry + `addobject`/`hideobject`/`showobject`
 - [x] `multichoice`/`multichoicedefault` (real choice-menu UI, 55 resolved
       option lists)
+- [x] `bufferstring`/`buffernumberstring`/`bufferleadmonspeciesname`,
+      `getplayerxy`, `hideplayer`/`showplayer`, `setobjectmovementtype`,
+      `setdynamicwarp` (fixes the intro moving-truck exit, a real dead end)
+- [x] Importer resolves `#ifdef UBFIX`/`#ifdef BUGFIX`/`#ifndef BUGFIX`
+      conditionals in source scripts instead of exporting both branches
 - [ ] Door animations (cosmetic only, see audit above)
 
 **Audio**

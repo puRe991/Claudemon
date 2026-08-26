@@ -83,7 +83,6 @@ static void draw_banner(sf::RenderTarget& target, const sf::Font& font,
 
 struct Agent {
     Character* ch;
-    MoveKind kind;
     DIR pace_dir;
     int home_x, home_y;
     std::string sheet;    // for deriving a speaker name
@@ -192,7 +191,8 @@ static Session* load_session(const std::string& path, int arr_x, int arr_y,
         ch->set_animated(!g_headless);
         ch->set_hide_flag(sp.hide_flag);
         ch->face(sp.facing);
-        Agent ag; ag.ch = ch; ag.kind = sp.movement;
+        ch->set_move_kind((int)sp.movement);
+        Agent ag; ag.ch = ch;
         ag.home_x = sp.x; ag.home_y = sp.y;
         ag.pace_dir = (sp.movement == MOVE_PACE_H) ? DIR::E : DIR::N;
         ag.sheet = sp.sheet; ag.dialog = sp.dialog;
@@ -220,7 +220,9 @@ static void tick_npcs(Session* s, std::mt19937& rng) {
     static const DIR dirs[4] = {DIR::N, DIR::S, DIR::E, DIR::W};
     for (Agent& ag : s->agents) {
         if (ag.ch->is_removed()) continue;   // cut down / smashed this session
-        switch (ag.kind) {
+        // Read from the Character, not ag.kind -- `setobjectmovementtype`
+        // (ScriptVM) can change it live and only has the Character*.
+        switch ((MoveKind)ag.ch->get_move_kind()) {
         case MOVE_WANDER: {
             DIR d = dirs[rng() % 4];
             int tx, ty; ag.ch->target_tile(d, tx, ty);
@@ -414,6 +416,19 @@ static Session* player_step(Session* s, DIR dir, Audio* audio, GameState* gs,
             return ns;
         }
         free_session(ns);   // destination not available; stay put
+    } else if (wp && wp->dest == "-" && !gs->dynamic_warp_map.empty()) {
+        // WARP_ID_DYNAMIC (real pokeemerald): this warp tile's destination
+        // isn't fixed in the map data -- it's whatever the last `setdynamicwarp`
+        // recorded (the intro moving truck's exit, the department store
+        // elevator's floor select). Landing spot is the exact x/y that
+        // recorded, not another warp's arrival tile.
+        Session* ns = load_session("maps/" + gs->dynamic_warp_map + ".map", -1, -1, gs);
+        if (ns->map->ready()) {
+            ns->player->set_tile(gs->dynamic_warp_x, gs->dynamic_warp_y);
+            free_session(s);
+            return ns;
+        }
+        free_session(ns);
     }
     return s;
 }

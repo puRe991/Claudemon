@@ -63,6 +63,16 @@ public:
 	bool battle_scene_on = true;    // Battle::tick() skips the hit-shake/flash animation when off
 	int frame_type = 0;             // 0-based index into text_window/1..20.png (see UiFrame::load_type)
 
+	// `setdynamicwarp MAP x y` (script): records a destination for the next
+	// step onto a WARP_ID_DYNAMIC tile (dest "-" in the .map file) -- used by
+	// e.g. the intro moving-truck's exit and the Lilycove department store
+	// elevator, where the same physical warp tile has to go somewhere
+	// different depending on prior script state. Not part of the save file
+	// (matches pokeemerald: it's a plain global, re-set by script before
+	// every use, never read across a save/load boundary).
+	std::string dynamic_warp_map;
+	int dynamic_warp_x = -1, dynamic_warp_y = -1;
+
 	void give_item(const std::string& item, int amount) { bag[item] += amount; }
 	// Remove up to `amount` of an item; erases the entry when it hits zero.
 	void take_item(const std::string& item, int amount) {

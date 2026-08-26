@@ -744,6 +744,10 @@ void ScriptVM::pump() {
 			this->warp_y = (argc >= 3) ? value_of(arg(2)) : -1;
 			this->pending_warp = true;
 			finish(); return;
+		} else if (op == "setdynamicwarp" && argc >= 3) {
+			this->state->dynamic_warp_map = arg(0);
+			this->state->dynamic_warp_x = value_of(arg(1));
+			this->state->dynamic_warp_y = value_of(arg(2));
 		} else if (op == "pokemart" && argc >= 1) {
 			this->pending_shop_label = arg(0);
 			this->st = WAIT_SHOP;
@@ -888,6 +892,73 @@ void ScriptVM::pump() {
 					a.erase(std::remove(a.begin(), a.end(), ch), a.end());
 				}
 			}
+		} else if (op == "hideplayer" || op == "showplayer") {
+			// Same actor-list trick as hide/showobject above, just for the
+			// player sprite itself (ferry/cutscene intros that want the
+			// player invisible for a moment -- Slateport/Lilycove Harbor,
+			// Littleroot's opening scene, the Mossdeep Game Corner slots).
+			// A fresh Character is built on every map load, so this never
+			// needs to persist across a warp.
+			if (this->player && this->actors) {
+				auto& a = *this->actors;
+				if (op == "showplayer") {
+					if (std::find(a.begin(), a.end(), this->player) == a.end())
+						a.push_back(this->player);
+				} else {
+					a.erase(std::remove(a.begin(), a.end(), this->player), a.end());
+				}
+			}
+		} else if (op == "getplayerxy" && argc >= 2) {
+			if (this->player) {
+				this->state->set_var(arg(0), this->player->get_tile_x());
+				this->state->set_var(arg(1), this->player->get_tile_y());
+			}
+		} else if (op == "copyobjectxytoperm" && argc >= 1) {
+			// Real pokeemerald rewrites the object's template so its position
+			// survives a map reload; this engine (see setobjectxyperm above)
+			// always rebuilds objects from the map file on load and keeps no
+			// per-object save state, so there is nothing to copy into --
+			// consciously a no-op, not a missed opcode.
+		} else if ((op == "setobjectsubpriority" || op == "resetobjectsubpriority")) {
+			// Draw-order tiebreak for two objects sharing a tile (e.g. Mr.
+			// Briney's boat under a bridge). This engine always sorts actors
+			// by tile-y (see draw_scene in main.cpp), which already gives the
+			// correct order for every real use of this opcode; there's no
+			// separate z-layer to set.
+		} else if (op == "setobjectmovementtype" && argc >= 2) {
+			// Matches map.h's MoveKind (0=static,1=wander,2=pace-v,3=pace-h);
+			// a MOVEMENT_TYPE_FACE_* also turns the object immediately, same
+			// as the object actually facing that way from the start.
+			Character* ch = resolve(arg(0));
+			const std::string& mt = arg(1);
+			if (ch) {
+				if (mt == "MOVEMENT_TYPE_WANDER_AROUND") ch->set_move_kind(1);
+				else if (mt == "MOVEMENT_TYPE_WALK_UP_AND_DOWN") ch->set_move_kind(2);
+				else if (mt == "MOVEMENT_TYPE_WALK_LEFT_AND_RIGHT") ch->set_move_kind(3);
+				else ch->set_move_kind(0);
+				if      (mt == "MOVEMENT_TYPE_FACE_UP")    ch->face(DIR::N);
+				else if (mt == "MOVEMENT_TYPE_FACE_DOWN")  ch->face(DIR::S);
+				else if (mt == "MOVEMENT_TYPE_FACE_LEFT")  ch->face(DIR::W);
+				else if (mt == "MOVEMENT_TYPE_FACE_RIGHT") ch->face(DIR::E);
+			}
+		} else if (op == "bufferstring" && argc >= 2) {
+			// arg(1) is already the resolved text (pe_import.py substitutes
+			// the text-label argument at import time); {PLAYER}/{RIVAL}
+			// literal tokens still need the same swap msgbox does.
+			std::string txt = arg(1);
+			auto sub = [&](const std::string& from, const std::string& to) {
+				size_t p;
+				while ((p = txt.find(from)) != std::string::npos) txt.replace(p, from.size(), to);
+			};
+			sub("PLAYER", this->state->player_name);
+			sub("RIVAL", this->state->rival_name);
+			this->str_vars[arg(0)] = txt;
+		} else if (op == "buffernumberstring" && argc >= 2) {
+			this->str_vars[arg(0)] = std::to_string(value_of(arg(1)));
+		} else if (op == "bufferleadmonspeciesname" && argc >= 1) {
+			const std::string& sp = (this->team && !this->team->empty())
+				? (*this->team)[0].species : std::string();
+			this->str_vars[arg(0)] = nice_name(sp);
 		} else if (op == "dofieldeffect" && argc >= 1 && arg(0) == "FLDEFF_POKECENTER_HEAL") {
 			// Real duration is however long CreateGlowingPokeballsEffect's
 			// place -> flash -> chime sequence takes; HEALFX_DURATION below

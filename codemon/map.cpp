@@ -326,6 +326,14 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 					} else if (l.rfind("msgboxyesno\t", 0) == 0) {
 						instr.push_back("msgboxyesno");
 						instr.push_back(l.substr(12));   // text (may contain \x1f)
+					} else if (l.rfind("bufferstring ", 0) == 0) {
+						// "bufferstring <STR_VAR_n>\t<text>"
+						size_t tab = l.find('\t');
+						instr.push_back("bufferstring");
+						if (tab != std::string::npos) {
+							instr.push_back(l.substr(13, tab - 13));
+							instr.push_back(l.substr(tab + 1));
+						}
 					} else {
 						std::stringstream ss(l);
 						std::string tok;

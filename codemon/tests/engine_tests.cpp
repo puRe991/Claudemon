@@ -214,17 +214,19 @@ struct VmHarness {
     DialogBox box;
     Battle battle;
     Character player;
+    std::vector<Character*> actors;
     ScriptVM vm;
     std::mt19937 rng;
 
-    explicit VmHarness(BattleData& b)
-        : bd(b), map("tests/fixtures/OpcodeTest.map"), player(1, 1), rng(7) {
+    explicit VmHarness(BattleData& b, const std::string& map_path = "tests/fixtures/OpcodeTest.map")
+        : bd(b), map(map_path), player(1, 1), rng(7) {
         team.reserve(6);
         box.load_font();
         battle.configure(&bd, &rng);
         battle.set_capture(&gs, &team, &pc_box);
         vm.set_battle_data(&bd, &team, &rng, &pc_box);
-        vm.configure(&map, &gs, &box, &battle, nullptr, &player);
+        actors.push_back(&player);
+        vm.configure(&map, &gs, &box, &battle, nullptr, &player, &actors);
     }
     void run(const std::string& label) {
         vm.start(label, nullptr);
@@ -284,6 +286,51 @@ static void test_script_opcodes(BattleData& bd) {
         h.run("Test_Random");
         int r = h.gs.get_var("VAR_RESULT");
         CHECK(r >= 0 && r < 100);
+    }
+}
+
+static void test_script_text_and_objects(BattleData& bd) {
+    std::printf("[scriptvm] bufferstring / getplayerxy / object movement type\n");
+    {   // bufferstring's text-label argument used to leak into the exported
+        // script as a raw pokeemerald label (e.g. "BerryTree_Text_
+        // CareAdverbGood") instead of the actual string -- the importer now
+        // resolves it at import time, same as msgbox.
+        VmHarness h(bd);
+        h.run("Test_BufferString");
+        CHECK(h.vm.str_var("STR_VAR_1") == "prettily");
+    }
+    {   // buffernumberstring was a pure no-op -- Birch's Pokedex-seen/caught
+        // rating and every other "shows a live number in dialog" line
+        // rendered with the number silently missing.
+        VmHarness h(bd);
+        h.run("Test_BufferNumberString");
+        CHECK(h.vm.str_var("STR_VAR_2") == "42");
+    }
+    {   VmHarness h(bd);
+        h.run("Test_GetPlayerXY");
+        CHECK(h.gs.get_var("VAR_TEMP_1") == 1);   // VmHarness starts the player at (1,1)
+        CHECK(h.gs.get_var("VAR_TEMP_2") == 1);
+    }
+    {   // setobjectmovementtype was completely unimplemented; an NPC whose
+        // behaviour a script changes at runtime (e.g. Battle Dome audience
+        // switching from walking to wandering) just kept its original,
+        // map-file-authored movement forever.
+        VmHarness h(bd);
+        CHECK(h.player.get_move_kind() == 0);
+        h.run("Test_ObjectMovement");
+        CHECK(h.player.get_move_kind() == 1);   // MOVE_WANDER
+    }
+    {   // hideplayer/showplayer: the player Character has to actually leave/
+        // rejoin the drawn+collidable actor list, not just get a flag no one
+        // reads.
+        VmHarness h(bd);
+        CHECK(h.actors.size() == 1);
+        h.run("Test_HidePlayer");
+        CHECK(h.actors.empty());
+    }
+    {   VmHarness h(bd);
+        h.run("Test_ShowPlayer");
+        CHECK(h.actors.size() == 1);
     }
 }
 
@@ -494,6 +541,25 @@ static void test_dive_reaches_sootopolis() {
     CHECK(soot.divewarp_dest() == "Underwater_SootopolisCity");
 }
 
+static void test_dynamic_warp_out_of_truck(BattleData& bd) {
+    std::printf("[map] setdynamicwarp gets the player out of the intro truck\n");
+    // InsideOfTruck's own exit tiles (x=4, y=1..3) carry dest "-" in the map
+    // data -- pokeemerald resolves them at runtime via a `setdynamicwarp`
+    // the intro script runs first (SetIntroFlagsFemale here). Before this
+    // was wired up, warp_at() would already find the tile but its dest was
+    // always "-", so stepping on it silently did nothing -- the player could
+    // never leave the truck at all.
+    Map truck("maps/InsideOfTruck.map");
+    const Warp* exit_warp = truck.warp_at(4, 1);
+    CHECK(exit_warp != nullptr);
+    CHECK(exit_warp->dest == "-");
+
+    VmHarness h(bd, "maps/InsideOfTruck.map");
+    h.run("InsideOfTruck_EventScript_SetIntroFlagsFemale");
+    CHECK(h.gs.dynamic_warp_map == "LittlerootTown");
+    CHECK(h.gs.dynamic_warp_x == 12 && h.gs.dynamic_warp_y == 10);
+}
+
 static void test_region_map_sections() {
     std::printf("[map] PokeNav region map sections\n");
     // The importer used to drop region_map_sections.json entirely, so every
@@ -542,6 +608,7 @@ int main() {
 
     if (has_display()) {
         test_script_opcodes(bd);
+        test_script_text_and_objects(bd);
         test_script_items_and_gifts(bd);
         test_script_trainer_flags(bd);
         test_recoil_uses_hp_actually_dealt(bd);
@@ -549,6 +616,7 @@ int main() {
         test_trainer_sight();
         test_sight_only_while_undefeated(bd);
         test_dive_reaches_sootopolis();
+        test_dynamic_warp_out_of_truck(bd);
         test_region_map_sections();
     } else {
         std::printf("[skip] no DISPLAY: Map/ScriptVM/Battle tests need a GL "

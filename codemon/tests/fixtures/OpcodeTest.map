@@ -56,3 +56,23 @@ end
 = Test_Random
 random 100
 end
+= Test_BufferString
+bufferstring STR_VAR_1	prettily
+end
+= Test_BufferNumberString
+setvar VAR_RESULT 42
+buffernumberstring STR_VAR_2 VAR_RESULT
+end
+= Test_GetPlayerXY
+getplayerxy VAR_TEMP_1 VAR_TEMP_2
+end
+= Test_ObjectMovement
+setobjectmovementtype LOCALID_PLAYER MOVEMENT_TYPE_WANDER_AROUND
+end
+= Test_HidePlayer
+hideplayer
+end
+= Test_ShowPlayer
+hideplayer
+showplayer
+end

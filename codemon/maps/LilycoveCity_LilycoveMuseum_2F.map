@@ -68,11 +68,7 @@ waitmovement 0
 applymovement LOCALID_PLAYER LilycoveCity_LilycoveMuseum_2F_Movement_PlayerWalkInPlaceLeft
 waitmovement 0
 msgbox	I beg your pardon. I didn't intend to monopolize the conversation.Now, as you are young, and yet obviously well traveled…You must encounter lively POKéMON and works of art depicting them.If you were to come across such a painting, may we ask you to obtain the artist's permission to exhibit it here?
-#ifdef UBFIX
-setvar VAR_LILYCOVE_MUSEUM_2F_STATE 1
-#else
 copyvar VAR_LILYCOVE_MUSEUM_2F_STATE 1 warn=FALSE
-#endif
 releaseall
 end
 = LilycoveCity_LilycoveMuseum_2F_EventScript_RichBoy
