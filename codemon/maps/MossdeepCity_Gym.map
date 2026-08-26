@@ -90,7 +90,7 @@ warps
 13 32 MossdeepCity_Gym 13
 21 10 MossdeepCity_Gym 12
 npcs
-people_man_1 23 7 S static 0
+people_gym_leaders_tate 23 7 S static 0
 people_psychic_m 1 30 S static 0
 people_psychic_m 5 20 N static 0
 people_lass 4 29 N static 0
@@ -98,7 +98,7 @@ people_lass 4 23 N static 0
 people_psychic_m 6 9 S static 0
 people_lass 6 3 S static 0
 people_man_2 5 33 S static 0
-people_man_1 24 7 S static 0
+people_gym_leaders_liza 24 7 S static 0
 misc_statue 2 30 S static 0
 misc_statue 1 29 S static 0
 misc_statue 4 30 S static 0

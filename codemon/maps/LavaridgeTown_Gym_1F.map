@@ -68,7 +68,7 @@ warps
 13 17 LavaridgeTown_Gym_B1F 22
 12 12 LavaridgeTown_Gym_B1F 23
 npcs
-people_man_1 13 9 S static 0
+people_gym_leaders_flannery 13 9 S static 0
 people_man_5 3 14 S static 0 LOCALID_COLE
 people_man_3 2 15 S static 0 LOCALID_GERALD
 people_man_5 3 10 S static 0 LOCALID_AXLE

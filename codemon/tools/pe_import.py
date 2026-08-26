@@ -849,6 +849,20 @@ def build_gfx_resolver(ow_index):
         leaf = name.split("_")[-1]
         if leaf in local:
             return local[leaf]
+        # a numbered variant (OBJ_EVENT_GFX_VIGOROTH_1/_2, .../_ZIGZAGOON_1, a
+        # duplicate NPC reusing the same graphic) falls back to the un-numbered
+        # base name.
+        if leaf.isdigit():
+            base = name.rsplit("_", 1)[0].split("_")[-1]
+            if base in local:
+                return local[base]
+        # categorized sheets (people_gym_leaders_roxanne, people_elite_four_sidney,
+        # ...) are keyed here by their full "gym_leaders_roxanne" remainder, but
+        # the graphics_id is often just the character's bare name ("roxanne") --
+        # match a sheet key ending in "_<name>".
+        for key, sheet in local.items():
+            if key.endswith("_" + name):
+                return sheet
         return FALLBACK_SHEET if FALLBACK_SHEET in ow_index else None
     return resolve
 
