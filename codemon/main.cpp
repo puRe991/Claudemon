@@ -1208,6 +1208,11 @@ int main() {
         std::string ln;
         while (std::getline(ngf, ln))
             if (!ln.empty()) gs.set_flag(ln);
+        // pokeemerald sets this in InsideOfTruck's gender-branch script
+        // (SetIntroFlagsMale), which we skip by starting straight in the
+        // bedroom -- without it, Littleroot's SS Ticket/Hall of Fame scenes
+        // can't tell the player picked the boy's house.
+        gs.set_var("VAR_LITTLEROOT_HOUSES_STATE_BRENDAN", 1);
         // Story start: no starter yet -- team stays empty until the player
         // actually picks one from Birch's bag on Route 101, same as pokeemerald.
         // Whiteout recovery point before the player has healed anywhere for
