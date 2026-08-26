@@ -25,20 +25,20 @@ warps
 10 8 SlateportCity 7
 6 1 SlateportCity_OceanicMuseum_2F 0
 npcs
-people_beauty 7 7 E static 0
-people_team_aqua_aqua_member_m 18 5 N static FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_AQUA_GRUNTS
-people_team_aqua_aqua_member_m 12 2 N static FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_AQUA_GRUNTS
-people_team_aqua_aqua_member_m 2 8 N static FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_AQUA_GRUNTS
-people_team_aqua_aqua_member_f 3 4 W static FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_AQUA_GRUNTS
-people_team_aqua_aqua_member_m 14 4 E static FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_AQUA_GRUNTS
-people_beauty 12 7 W static 0
-people_team_aqua_aqua_member_m 8 3 S static FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_AQUA_GRUNTS
-people_woman_5 4 2 S static FLAG_HIDE_SLATEPORT_MUSEUM_POPULATION
-people_maniac 10 2 N static FLAG_HIDE_SLATEPORT_MUSEUM_POPULATION
-people_pokefan_m 17 7 E static FLAG_HIDE_SLATEPORT_MUSEUM_POPULATION
-people_little_girl 18 8 N static FLAG_HIDE_SLATEPORT_MUSEUM_POPULATION
-people_team_aqua_aqua_member_m 9 4 W pace_h FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_FAMILIAR_AQUA_GRUNT LOCALID_OCEANIC_MUSEUM_FAMILIAR_GRUNT
-people_reporter_m 7 4 S static FLAG_HIDE_SLATEPORT_MUSEUM_POPULATION
+people_beauty 7 7 E static 0 - 0
+people_team_aqua_aqua_member_m 18 5 N static FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_AQUA_GRUNTS - 0
+people_team_aqua_aqua_member_m 12 2 N static FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_AQUA_GRUNTS - 0
+people_team_aqua_aqua_member_m 2 8 N static FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_AQUA_GRUNTS - 0
+people_team_aqua_aqua_member_f 3 4 W static FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_AQUA_GRUNTS - 0
+people_team_aqua_aqua_member_m 14 4 E static FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_AQUA_GRUNTS - 0
+people_beauty 12 7 W static 0 - 0
+people_team_aqua_aqua_member_m 8 3 S static FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_AQUA_GRUNTS - 0
+people_woman_5 4 2 S static FLAG_HIDE_SLATEPORT_MUSEUM_POPULATION - 0
+people_maniac 10 2 N static FLAG_HIDE_SLATEPORT_MUSEUM_POPULATION - 0
+people_pokefan_m 17 7 E static FLAG_HIDE_SLATEPORT_MUSEUM_POPULATION - 0
+people_little_girl 18 8 N static FLAG_HIDE_SLATEPORT_MUSEUM_POPULATION - 0
+people_team_aqua_aqua_member_m 9 4 W pace_h FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_FAMILIAR_AQUA_GRUNT LOCALID_OCEANIC_MUSEUM_FAMILIAR_GRUNT 0
+people_reporter_m 7 4 S static FLAG_HIDE_SLATEPORT_MUSEUM_POPULATION - 0
 dialogs
 0	Please enjoy yourself.
 1	If I ripped off the stuff here, would it make me rich?
@@ -175,7 +175,7 @@ setvar VAR_0x8005 TVSHOW_FAN_CLUB_LETTER
 special InterviewBefore
 goto_if_eq VAR_RESULT TRUE SlateportCity_PokemonFanClub_EventScript_AlreadyInterviewed2
 copyvar VAR_0x8009 VAR_0x8006
-msgboxyesno	Hi, you seem to be very close to your .Do you know what? I'm a TV reporter.I travel around interviewing people about POKéMON.I'm wondering if you'd be willing to tell me a little about your ?
+msgboxyesno	Hi, you seem to be very close to your STR_VAR_1.Do you know what? I'm a TV reporter.I travel around interviewing people about POKéMON.I'm wondering if you'd be willing to tell me a little about your STR_VAR_1?
 goto_if_eq VAR_RESULT YES SlateportCity_PokemonFanClub_EventScript_AcceptInterview2
 goto_if_eq VAR_RESULT NO SlateportCity_PokemonFanClub_EventScript_DeclineInterview2
 end
@@ -184,7 +184,7 @@ msgbox	Oh, okay…Well, if you get the urge to tell me about POKéMON, I'll be 
 release
 end
 = SlateportCity_PokemonFanClub_EventScript_AcceptInterview2
-msgbox	Wow, thank you!Okay, then, please tell me anything you'd like about your .
+msgbox	Wow, thank you!Okay, then, please tell me anything you'd like about your STR_VAR_1.
 setvar VAR_0x8004 EASY_CHAT_TYPE_INTERVIEW
 copyvar VAR_0x8005 VAR_0x8009
 setvar VAR_0x8006 EASY_CHAT_PERSON_REPORTER_FEMALE
@@ -195,7 +195,7 @@ goto_if_eq VAR_RESULT 1 SlateportCity_PokemonFanClub_EventScript_SubmitResponse2
 goto_if_eq VAR_RESULT 0 SlateportCity_PokemonFanClub_EventScript_DeclineInterview2
 end
 = SlateportCity_PokemonFanClub_EventScript_SubmitResponse2
-msgbox	Wow… That's an interesting account.You really are tight with , aren't you?I get the feeling that your account will make a great TV story.I promise that I'll turn this into an entertaining show. Keep your eyes out for it.Okay, that's all. Bye-bye!
+msgbox	Wow… That's an interesting account.You really are tight with STR_VAR_1, aren't you?I get the feeling that your account will make a great TV story.I promise that I'll turn this into an entertaining show. Keep your eyes out for it.Okay, that's all. Bye-bye!
 setvar VAR_0x8005 TVSHOW_FAN_CLUB_LETTER
 goto Interview_EventScript_EndInterview
 end
@@ -306,8 +306,7 @@ signs
 3 1	It's a fossil with wavy ridges on it.“Soil on the ocean floor gets scoured by the tide.“The flowing seawater marks the soil with small ridges and valleys.“If this soil becomes fossilized, it is called a ripple mark.”
 16 1	A strange machine is rotating under a glass dome.Maybe it's for measuring the depth of something…
 17 1	A strange machine is rotating under a glass dome.Maybe it's for measuring the depth of something…
-counters
-563,574,584,585
-
 music
 MUS_OCEANIC_MUSEUM
+counters
+563,574,584,585

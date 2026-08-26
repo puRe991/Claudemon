@@ -26,9 +26,9 @@ warps
 0 9 BattleFrontier_BattlePalaceCorridor 2
 1 9 BattleFrontier_BattlePalaceCorridor 2
 npcs
-people_expert_m 1 4 E static 0 LOCALID_PALACE_BATTLE_ATTENDANT
-pokemon_dusclops 13 1 S static 0
-pokemon_azurill 13 1 S static 0
+people_expert_m 1 4 E static 0 LOCALID_PALACE_BATTLE_ATTENDANT 0
+pokemon_dusclops 13 1 S static 0 LOCALID_PALACE_DUSCLOPS 0
+pokemon_azurill 13 1 S static 0 LOCALID_PALACE_AZURILL 0
 onload
 VAR_TEMP_0 0 BattleFrontier_BattlePalaceBattleRoom_EventScript_EnterRoom
 movements
@@ -323,6 +323,5 @@ waitmovement 0
 goto BattleFrontier_BattlePalaceBattleRoom_EventScript_NextOpponentEnter
 water
 368,384,385,393,400,402,408,410,550
-
 music
 MUS_B_PALACE

@@ -170,18 +170,18 @@ right 40 MossdeepCity
 warps
 70 48 Route124_DivingTreasureHuntersHouse 0
 npcs
-people_swimmer_m 34 25 S static 0
-people_swimmer_m 61 74 S static 0
-people_swimmer_f 49 45 S static 0
-people_swimmer_f 7 23 S static 0
-people_swimmer_m 58 58 S static 0
-misc_item_ball 28 12 S static FLAG_ITEM_ROUTE_124_RED_SHARD
-misc_item_ball 31 53 S static FLAG_ITEM_ROUTE_124_BLUE_SHARD
-misc_item_ball 58 11 S static FLAG_ITEM_ROUTE_124_YELLOW_SHARD
-people_swimmer_f 18 44 S static 0
-people_tuber_m_swimming 17 44 S static 0
-people_swimmer_m 7 29 N static 0
-people_swimmer_f 69 74 S static 0
+people_swimmer_m 34 25 S static 0 - 3
+people_swimmer_m 61 74 S static 0 - 7
+people_swimmer_f 49 45 S static 0 - 3
+people_swimmer_f 7 23 S static 0 - 5
+people_swimmer_m 58 58 S static 0 - 2
+misc_item_ball 28 12 S static FLAG_ITEM_ROUTE_124_RED_SHARD - 0
+misc_item_ball 31 53 S static FLAG_ITEM_ROUTE_124_BLUE_SHARD - 0
+misc_item_ball 58 11 S static FLAG_ITEM_ROUTE_124_YELLOW_SHARD - 0
+people_swimmer_f 18 44 S static 0 - 1
+people_tuber_m_swimming 17 44 S static 0 - 1
+people_swimmer_m 7 29 N static 0 - 5
+people_swimmer_f 69 74 S static 0 - 7
 objscripts
 0 Route124_EventScript_Spencer
 1 Route124_EventScript_Roland
@@ -293,11 +293,10 @@ msgbox	Many people lose their bearings at sea.If you're that sort, you should r
 end
 signs
 73 48	HUNTER'S HOUSE
+water
+334,335,368,370,372,419,420,429,431,437,439,445,446,447,514,515,531,545,546,827,828,829
+music
+MUS_ROUTE120
 encounters
 water TENTACOOL:5:35,WINGULL:10:30,WINGULL:15:25,PELIPPER:25:30,PELIPPER:25:30
 fishing MAGIKARP:5:10,TENTACOOL:5:10,MAGIKARP:10:30,TENTACOOL:10:30,WAILMER:10:30,SHARPEDO:30:35,WAILMER:30:35,WAILMER:25:30,WAILMER:35:40,WAILMER:40:45
-water
-334,335,368,370,372,419,420,429,431,437,439,445,446,447,514,515,531,545,546,827,828,829
-
-music
-MUS_ROUTE120

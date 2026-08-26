@@ -89,12 +89,12 @@ right 0 SafariZone_Southeast
 warps
 32 33 Route121_SafariZoneEntrance 0
 npcs
-people_camper 32 34 S static 0 LOCALID_SAFARI_EXIT_ATTENDANT
-people_boy_1 26 28 S wander 0
-people_man_4 16 6 S static 0
-people_youngster 15 31 S wander 0
-people_camper 36 16 W static FLAG_HIDE_SAFARI_ZONE_SOUTH_CONSTRUCTION_WORKERS
-people_camper 36 17 W static FLAG_HIDE_SAFARI_ZONE_SOUTH_CONSTRUCTION_WORKERS
+people_camper 32 34 S static 0 LOCALID_SAFARI_EXIT_ATTENDANT 0
+people_boy_1 26 28 S wander 0 - 0
+people_man_4 16 6 S static 0 - 0
+people_youngster 15 31 S wander 0 - 0
+people_camper 36 16 W static FLAG_HIDE_SAFARI_ZONE_SOUTH_CONSTRUCTION_WORKERS - 0
+people_camper 36 17 W static FLAG_HIDE_SAFARI_ZONE_SOUTH_CONSTRUCTION_WORKERS - 0
 objscripts
 0 SafariZone_South_EventScript_ExitAttendant
 1 SafariZone_South_EventScript_Boy
@@ -141,7 +141,7 @@ end
 lock
 faceplayer
 goto_if_unset FLAG_GOOD_LUCK_SAFARI_ZONE SafariZone_South_EventScript_GoodLuck
-msgbox	You still have time left. Would you like to exit the SAFARI ZONE now?
+msgboxyesno	You still have time left. Would you like to exit the SAFARI ZONE now?
 goto_if_eq VAR_RESULT YES SafariZone_South_EventScript_ExitEarly
 msgbox	Please enjoy the rest of your wild adventure!
 release
@@ -180,8 +180,7 @@ release
 end
 grass
 13,454,455
-encounters
-land ODDISH:25:25,ODDISH:27:27,GIRAFARIG:25:25,GIRAFARIG:27:27,NATU:25:25,DODUO:25:25,GLOOM:25:25,WOBBUFFET:27:27,PIKACHU:25:25,WOBBUFFET:27:27,PIKACHU:27:27,WOBBUFFET:29:29
-
 music
 MUS_SAFARI_ZONE
+encounters
+land ODDISH:25:25,ODDISH:27:27,GIRAFARIG:25:25,GIRAFARIG:27:27,NATU:25:25,DODUO:25:25,GLOOM:25:25,WOBBUFFET:27:27,PIKACHU:25:25,WOBBUFFET:27:27,PIKACHU:27:27,WOBBUFFET:29:29

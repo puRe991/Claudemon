@@ -68,12 +68,12 @@ warps
 13 17 LavaridgeTown_Gym_B1F 22
 12 12 LavaridgeTown_Gym_B1F 23
 npcs
-people_gym_leaders_flannery 13 9 S static 0
-people_man_5 3 14 S static 0 LOCALID_COLE
-people_man_3 2 15 S static 0 LOCALID_GERALD
-people_man_5 3 10 S static 0 LOCALID_AXLE
-people_girl_3 5 2 S static 0 LOCALID_DANIELLE
-people_man_2 12 16 E static 0
+people_gym_leaders_flannery 13 9 S static 0 - 0
+people_man_5 3 14 S static 0 LOCALID_COLE 1
+people_man_3 2 15 S static 0 LOCALID_GERALD 1
+people_man_5 3 10 S static 0 LOCALID_AXLE 1
+people_girl_3 5 2 S static 0 LOCALID_DANIELLE 1
+people_man_2 12 16 E static 0 - 0
 dialogs
 0	Your power reminds me of someone…Oh! I know! You battle like NORMAN, the GYM LEADER of PETALBURG.
 1	Being buried in hot sand promotes circulation.It's effective for healing pain in your joints.
@@ -283,6 +283,5 @@ settrainerflag TRAINER_JOSH
 settrainerflag TRAINER_TOMMY
 settrainerflag TRAINER_MARC
 return
-
 music
 MUS_GYM

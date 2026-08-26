@@ -23,7 +23,7 @@ warps
 6 7 Route110 1
 5 2 Route110_TrickHousePuzzle1 0
 npcs
-people_man_1 6 2 W static FLAG_HIDE_TRICK_HOUSE_ENTRANCE_MAN LOCALID_TRICK_MASTER
+people_man_1 6 2 W static FLAG_HIDE_TRICK_HOUSE_ENTRANCE_MAN LOCALID_TRICK_MASTER 0
 objscripts
 0 Route110_TrickHouseEntrance_EventScript_TrickMaster
 triggers
@@ -262,6 +262,5 @@ return
 = Route110_TrickHouseEntrance_EventScript_FoundBeneathDesk
 msgbox	Hah? Grrr…How did you know I concealed myself beneath this desk? You're sharp!
 return
-
 music
 MUS_TRICK_HOUSE

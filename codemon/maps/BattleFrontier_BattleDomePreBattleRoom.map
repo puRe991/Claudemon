@@ -22,7 +22,7 @@ warps
 6 8 BattleFrontier_OutsideWest 1
 7 8 BattleFrontier_OutsideWest 1
 npcs
-people_teala 5 2 S static 0 LOCALID_DOME_PRE_BATTLE_ATTENDANT
+people_teala 5 2 S static 0 LOCALID_DOME_PRE_BATTLE_ATTENDANT 0
 onload
 VAR_TEMP_0 0 BattleFrontier_BattleDomePreBattleRoom_EventScript_EnterRoom
 movements
@@ -238,6 +238,5 @@ return
 = BattleFrontier_BattleDomePreBattleRoom_EventScript_Round1Complete
 msgbox	All 1st-round matches have been completed.These are the teams that advanced!
 return
-
 music
 MUS_B_DOME

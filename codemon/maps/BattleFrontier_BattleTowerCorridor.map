@@ -13,7 +13,7 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
 npcs
-people_teala 9 2 W static 0 LOCALID_TOWER_CORRIDOR_ATTENDANT
+people_teala 9 2 W static 0 LOCALID_TOWER_CORRIDOR_ATTENDANT 0
 onload
 VAR_TEMP_0 0 BattleFrontier_BattleTowerCorridor_EventScript_EnterCorridor
 movements
@@ -39,6 +39,5 @@ applymovement LOCALID_TOWER_CORRIDOR_ATTENDANT BattleFrontier_BattleTowerCorrido
 applymovement LOCALID_PLAYER BattleFrontier_BattleTowerCorridor_Movement_PlayerWalkToFarDoor
 waitmovement 0
 goto BattleFrontier_BattleTowerCorridor_EventScript_WarpToBattleRoom
-
 music
 MUS_B_TOWER

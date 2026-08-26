@@ -20,9 +20,9 @@ warps
 3 6 SootopolisCity 7
 4 6 SootopolisCity 7
 npcs
-people_man_1 2 4 E static 0
-people_woman_4 5 2 N static 0
-pokemon_azumarill 2 3 S static 0
+people_man_1 2 4 E static 0 - 0
+people_woman_4 5 2 N static 0 - 0
+pokemon_azumarill 2 3 S static 0 - 0
 dialogs
 0	Listen up, and I'll tell you something good.There's supposed to be an ancient ruin in the sea around here.There could be treasures just waiting to be discovered down there.
 1	Ancient treasures…It would be nice if they existed, but even if they didn't, it would be so beautiful to take an underwater stroll with my POKéMON.
@@ -47,6 +47,5 @@ end
 = SootopolisCity_House4_EventScript_Man
 msgbox	Listen up, and I'll tell you something good.There's supposed to be an ancient ruin in the sea around here.There could be treasures just waiting to be discovered down there.
 end
-
 music
 MUS_SOOTOPOLIS

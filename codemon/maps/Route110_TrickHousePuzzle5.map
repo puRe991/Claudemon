@@ -51,11 +51,11 @@ warps
 1 21 Route110_TrickHouseEntrance 2
 13 1 Route110_TrickHouseEnd 0
 npcs
-people_man_1 6 17 W static 0 LOCALID_MECHADOLL_1
-people_man_1 0 7 E static 0 LOCALID_MECHADOLL_2
-people_man_1 14 10 W static 0 LOCALID_MECHADOLL_3
-people_man_1 14 19 W static 0 LOCALID_MECHADOLL_4
-people_man_1 10 4 E static 0 LOCALID_MECHADOLL_5
+people_man_1 6 17 W static 0 LOCALID_MECHADOLL_1 0
+people_man_1 0 7 E static 0 LOCALID_MECHADOLL_2 0
+people_man_1 14 10 W static 0 LOCALID_MECHADOLL_3 0
+people_man_1 14 19 W static 0 LOCALID_MECHADOLL_4 0
+people_man_1 10 4 E static 0 LOCALID_MECHADOLL_5 0
 objscripts
 0 Route110_TrickHousePuzzle5_EventScript_Mechadoll1
 1 Route110_TrickHousePuzzle5_EventScript_Mechadoll2
@@ -729,6 +729,5 @@ goto_if_eq VAR_TEMP_1 1 Route110_TrickHousePuzzle5_EventScript_CorrectGoThrough
 setvar VAR_TEMP_9 0
 goto Route110_TrickHousePuzzle5_EventScript_Mechadoll1Activate
 end
-
 music
 MUS_TRICK_HOUSE

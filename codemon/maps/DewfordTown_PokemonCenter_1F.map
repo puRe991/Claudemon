@@ -25,9 +25,9 @@ warps
 6 8 DewfordTown 1
 1 6 DewfordTown_PokemonCenter_2F 0
 npcs
-people_nurse 7 2 S static 0 LOCALID_DEWFORD_NURSE
-people_pokefan_f 10 6 E static 0
-people_man_3 5 5 S wander 0
+people_nurse 7 2 S static 0 LOCALID_DEWFORD_NURSE 0
+people_pokefan_f 10 6 E static 0 - 0
+people_man_3 5 5 S wander 0 - 0
 dialogs
 1	There's a stone cavern at the edge of town.I've heard you can find rare stones there.
 2	Even if a POKéMON faints and can't battle, it can still use a move learned from a HIDDEN MACHINE (HM).
@@ -108,7 +108,7 @@ return
 goto_if_set FLAG_NURSE_UNION_ROOM_REMINDER EventScript_PkmnCenterNurse_ReturnPkmn
 msgbox	Thank you for waiting.We've restored your POKéMON to full health.
 setflag FLAG_NURSE_UNION_ROOM_REMINDER
-msgbox	It appears as if is playing right now. Go for it!
+msgbox	It appears as if STR_VAR_1 is playing right now. Go for it!
 waitmessage
 applymovement VAR_0x800B Movement_PkmnCenterNurse_Bow
 waitmovement 0
@@ -160,8 +160,7 @@ msgboxyesno	I'm delighted to see you, PLAYER! You want the usual, am I right?
 goto_if_eq VAR_RESULT YES EventScript_PkmnCenterNurse_GoldCardHealPkmn
 msgbox	We hope to see you again!
 return
-counters
-517
-
 music
 MUS_POKE_CENTER
+counters
+517

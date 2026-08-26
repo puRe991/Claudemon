@@ -30,12 +30,12 @@ warps
 9 11 BattleFrontier_OutsideWest 2
 10 11 BattleFrontier_OutsideWest 2
 npcs
-people_scientist_1 4 7 S static 0 LOCALID_FACTORY_ATTENDANT_SINGLES
-people_woman_1 3 11 S wander 0
-people_camper 14 11 S static 0
-people_picnicker 13 11 E static 0
-people_fat_man 6 10 S static 0
-people_scientist_1 14 7 S static 0 LOCALID_FACTORY_ATTENDANT_DOUBLES
+people_scientist_1 4 7 S static 0 LOCALID_FACTORY_ATTENDANT_SINGLES 0
+people_woman_1 3 11 S wander 0 - 0
+people_camper 14 11 S static 0 - 0
+people_picnicker 13 11 E static 0 - 0
+people_fat_man 6 10 S static 0 - 0
+people_scientist_1 14 7 S static 0 LOCALID_FACTORY_ATTENDANT_DOUBLES 0
 dialogs
 1	Hi! You, there!Are you thinking that the events here are easy since you don't need to have a raised team of POKéMON?I wouldn't be too sure about winning that easily.If you don't have thorough knowledge about POKéMON and their moves, it will be tough to keep winning.
 2	I swapped for a weak POKéMON… I thought it was a good kind to have…They wiped the floor with us…
@@ -99,7 +99,7 @@ goto BattleFrontier_BattleFactoryLobby_EventScript_GiveBattlePoints
 = BattleFrontier_BattleFactoryLobby_EventScript_GiveBattlePoints
 msgbox	In recognition of your wealth of knowledge and keen intelligence, we award you these Battle Point(s).
 frontier_givepoints
-msgbox	PLAYER obtained Battle Point(s).
+msgbox	PLAYER obtained STR_VAR_1 Battle Point(s).
 msgbox	Let me exchange your POKéMON for our rental POKéMON.I need to save the battle data, so please wait.
 waitmessage
 frontier_checkairshow
@@ -264,8 +264,7 @@ goto BattleFrontier_BattleFactoryLobby_EventScript_Attendant
 end
 signs
 9 4	The Battle Swap rules are listed.
-counters
-528,529,530,531
-
 music
 MUS_B_FACTORY
+counters
+528,529,530,531

@@ -32,8 +32,8 @@ warps
 0 2 AbandonedShip_Corridors_1F 10
 8 2 AbandonedShip_Corridors_1F 9
 npcs
-people_tuber_m 2 8 S wander 0
-people_sailor 9 6 W pace_h 0
+people_tuber_m 2 8 S wander 0 - 0
+people_sailor 9 6 W pace_h 0 - 4
 dialogs
 0	Yay! It's a ship!
 1	The ship's bottom has sunk into the depths.If a POKéMON knew how to go underwater, we might make some progress…
@@ -50,6 +50,5 @@ msgbox	Yay! It's a ship!
 end
 signs
 11 4	PLAYER inserted and turned the STORAGE KEY.The inserted KEY stuck fast, but the door opened.
-
 music
 MUS_ABANDONED_SHIP

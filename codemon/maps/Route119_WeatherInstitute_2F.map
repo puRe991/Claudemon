@@ -27,14 +27,14 @@ collision
 warps
 17 1 Route119_WeatherInstitute_1F 2
 npcs
-people_team_aqua_aqua_member_m 15 6 E static FLAG_HIDE_ROUTE_119_TEAM_AQUA LOCALID_WEATHER_INSTITUTE_2F_GRUNT_1
-people_team_aqua_aqua_member_m 10 8 S static FLAG_HIDE_ROUTE_119_TEAM_AQUA LOCALID_WEATHER_INSTITUTE_2F_GRUNT_2
-people_team_aqua_aqua_member_f 4 6 E static FLAG_HIDE_ROUTE_119_TEAM_AQUA LOCALID_WEATHER_INSTITUTE_2F_SHELLY
-people_man_4 0 6 E static FLAG_HIDE_WEATHER_INSTITUTE_2F_WORKERS
-people_scientist_1 18 6 S static 0 LOCALID_WEATHER_INSTITUTE_2F_SCIENTIST
-people_man_4 1 7 E static FLAG_HIDE_WEATHER_INSTITUTE_2F_WORKERS
-people_team_aqua_aqua_member_m 16 6 W static FLAG_HIDE_WEATHER_INSTITUTE_2F_AQUA_GRUNT_M LOCALID_WEATHER_INSTITUTE_2F_GRUNT_3
-people_team_aqua_aqua_member_f 19 6 W static FLAG_HIDE_ROUTE_119_TEAM_AQUA LOCALID_WEATHER_INSTITUTE_2F_GRUNT_4
+people_team_aqua_aqua_member_m 15 6 E static FLAG_HIDE_ROUTE_119_TEAM_AQUA LOCALID_WEATHER_INSTITUTE_2F_GRUNT_1 4
+people_team_aqua_aqua_member_m 10 8 S static FLAG_HIDE_ROUTE_119_TEAM_AQUA LOCALID_WEATHER_INSTITUTE_2F_GRUNT_2 2
+people_team_aqua_aqua_member_f 4 6 E static FLAG_HIDE_ROUTE_119_TEAM_AQUA LOCALID_WEATHER_INSTITUTE_2F_SHELLY 0
+people_man_4 0 6 E static FLAG_HIDE_WEATHER_INSTITUTE_2F_WORKERS - 0
+people_scientist_1 18 6 S static 0 LOCALID_WEATHER_INSTITUTE_2F_SCIENTIST 0
+people_man_4 1 7 E static FLAG_HIDE_WEATHER_INSTITUTE_2F_WORKERS - 0
+people_team_aqua_aqua_member_m 16 6 W static FLAG_HIDE_WEATHER_INSTITUTE_2F_AQUA_GRUNT_M LOCALID_WEATHER_INSTITUTE_2F_GRUNT_3 0
+people_team_aqua_aqua_member_f 19 6 W static FLAG_HIDE_ROUTE_119_TEAM_AQUA LOCALID_WEATHER_INSTITUTE_2F_GRUNT_4 3
 dialogs
 0	If the POKéMON they made here can control the weather freely, then we of TEAM AQUA definitely need it!
 1	You don't have any idea what we of TEAM AQUA are working towards! You stay out of our way!
@@ -78,7 +78,7 @@ release
 end
 = Route119_WeatherInstitute_2F_EventScript_ReceiveCastformPC
 call Route119_WeatherInstitute_2F_EventScript_ReceivedCastformFanfare
-msgboxyesno	Do you want to give a nickname to this ?
+msgboxyesno	Do you want to give a nickname to this STR_VAR_1?
 goto_if_eq VAR_RESULT NO Route119_WeatherInstitute_2F_EventScript_SendCastformToPC
 call Common_EventScript_NameReceivedBoxMon
 goto Route119_WeatherInstitute_2F_EventScript_SendCastformToPC
@@ -101,22 +101,22 @@ return
 = EventScript_TransferredLanettesPC
 specialvar VAR_RESULT ShouldShowBoxWasFullMessage
 goto_if_eq VAR_RESULT TRUE EventScript_LanettesPCBoxFull
-msgbox	was transferred to LANETTE'S PC.It was placed in BOX “.”
+msgbox	STR_VAR_2 was transferred to LANETTE'S PC.It was placed in BOX “STR_VAR_1.”
 return
 = EventScript_LanettesPCBoxFull
 specialvar VAR_RESULT GetPCBoxToSendMon
 bufferboxname STR_VAR_3 VAR_RESULT
-msgbox	BOX “” on LANETTE'S PC was full.was transferred to BOX “.”
+msgbox	BOX “STR_VAR_3” on LANETTE'S PC was full.STR_VAR_2 was transferred to BOX “STR_VAR_1.”
 return
 = EventScript_TransferredSomeonesPC
 specialvar VAR_RESULT ShouldShowBoxWasFullMessage
 goto_if_eq VAR_RESULT TRUE EventScript_SomeonesPCBoxFull
-msgbox	was transferred to SOMEONE'S PC.It was placed in BOX “.”
+msgbox	STR_VAR_2 was transferred to SOMEONE'S PC.It was placed in BOX “STR_VAR_1.”
 return
 = EventScript_SomeonesPCBoxFull
 specialvar VAR_RESULT GetPCBoxToSendMon
 bufferboxname STR_VAR_3 VAR_RESULT
-msgbox	BOX “” on SOMEONE'S PC was full.was transferred to BOX “.”
+msgbox	BOX “STR_VAR_3” on SOMEONE'S PC was full.STR_VAR_2 was transferred to BOX “STR_VAR_1.”
 return
 = Common_EventScript_NameReceivedBoxMon
 fadescreen FADE_TO_BLACK
@@ -133,7 +133,7 @@ bufferspeciesname STR_VAR_1 SPECIES_CASTFORM
 return
 = Route119_WeatherInstitute_2F_EventScript_ReceiveCastformParty
 call Route119_WeatherInstitute_2F_EventScript_ReceivedCastformFanfare
-msgboxyesno	Do you want to give a nickname to this ?
+msgboxyesno	Do you want to give a nickname to this STR_VAR_1?
 goto_if_eq VAR_RESULT NO Route119_WeatherInstitute_2F_EventScript_ExplainCastform
 call Common_EventScript_GetGiftMonPartySlot
 call Common_EventScript_NameReceivedPartyMon
@@ -157,11 +157,11 @@ goto_if_eq VAR_0x8004 2 Route119_WeatherInstitute_2F_EventScript_NoAbnormalWeath
 call_if_unset FLAG_TEMP_2 Route119_WeatherInstitute_2F_EventScript_CreateAbnormalWeather
 specialvar VAR_RESULT GetAbnormalWeatherMapNameAndType
 goto_if_eq VAR_RESULT 1 Route119_WeatherInstitute_2F_EventScript_KyogreWeather
-msgbox	I track weather patterns over the HOENN region.Presently, a drought has been recorded in .Could that mean, somewhere near …
+msgbox	I track weather patterns over the HOENN region.Presently, a drought has been recorded in STR_VAR_1.Could that mean, somewhere near STR_VAR_1…
 release
 end
 = Route119_WeatherInstitute_2F_EventScript_KyogreWeather
-msgbox	I track weather patterns over the HOENN region.Presently, heavy rainfall has been recorded over .Could that mean, somewhere near …
+msgbox	I track weather patterns over the HOENN region.Presently, heavy rainfall has been recorded over STR_VAR_1.Could that mean, somewhere near STR_VAR_1…
 release
 end
 = Route119_WeatherInstitute_2F_EventScript_CreateAbnormalWeather
@@ -218,6 +218,5 @@ end
 trainerbattle_single TRAINER_GRUNT_WEATHER_INST_2 Route119_WeatherInstitute_2F_Text_Grunt2Intro Route119_WeatherInstitute_2F_Text_Grunt2Defeat
 msgbox	If the POKéMON they made here can control the weather freely, then we of TEAM AQUA definitely need it!
 end
-
 music
 MUS_RUSTBORO

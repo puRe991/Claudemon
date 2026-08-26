@@ -24,8 +24,8 @@ warps
 3 1 RustboroCity_Flat2_1F 2
 1 1 RustboroCity_Flat2_3F 0
 npcs
-people_old_man 11 4 E static 0
-people_ninja_boy 7 3 S wander 0
+people_old_man 11 4 E static 0 - 0
+people_ninja_boy 7 3 S wander 0 - 0
 dialogs
 0	Way back in the old days, DEVON was just a teeny, tiny company.
 1	My daddy's working at the CORPORATION.My daddy made this! But I can't use it, so you can have it.
@@ -50,6 +50,5 @@ end
 = RustboroCity_Flat2_2F_EventScript_OldMan
 msgbox	Way back in the old days, DEVON was just a teeny, tiny company.
 end
-
 music
 MUS_RUSTBORO

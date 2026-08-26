@@ -110,6 +110,5 @@ return
 = BattleFrontier_BattlePikeRoom_EventScript_DisableHealing
 pike_nohealing TRUE
 return
-
 music
 MUS_B_PIKE

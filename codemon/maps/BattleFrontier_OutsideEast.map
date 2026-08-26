@@ -164,32 +164,32 @@ warps
 3 51 BattleFrontier_PokemonCenter_1F 0
 28 7 ArtisanCave_1F 0
 npcs
-people_ninja_boy 20 17 W pace_h 0
-people_man_3 42 15 S wander 0
-people_hiker 53 6 S static 0
-people_hex_maniac 54 16 S wander 0
-people_black_belt 37 32 N static 0
-people_cook 41 56 W static 0
-people_expert_f 8 46 S static 0
-people_running_triathlete_m 34 41 S static 0
-people_rich_boy 45 47 S static 0
-people_cycling_triathlete_f 59 35 S static 0
-people_twin 18 40 S static 0
-people_man_1 17 40 E static 0
-people_man_1 40 56 S static 0
-pokemon_sudowoodo 54 62 S static FLAG_HIDE_BATTLE_FRONTIER_SUDOWOODO LOCALID_FRONTIER_SUDOWOODO
-people_maniac 42 34 S static 0
-people_girl_3 51 53 S wander 0
-people_psychic_m 62 18 S static 0
-people_man_3 11 21 S static 0
-people_woman_5 10 21 E static 0
-people_woman_5 16 30 S wander 0
-people_black_belt 33 14 N static 0
-people_maniac 54 31 W static 0
-people_woman_4 54 32 N static 0
-people_old_woman 58 55 S static 0
-people_gentleman 48 41 N static 0
-people_camper 29 14 N static 0
+people_ninja_boy 20 17 W pace_h 0 - 0
+people_man_3 42 15 S wander 0 - 0
+people_hiker 53 6 S static 0 - 0
+people_hex_maniac 54 16 S wander 0 - 0
+people_black_belt 37 32 N static 0 - 0
+people_cook 41 56 W static 0 - 0
+people_expert_f 8 46 S static 0 - 0
+people_running_triathlete_m 34 41 S static 0 - 0
+people_rich_boy 45 47 S static 0 - 0
+people_cycling_triathlete_f 59 35 S static 0 - 0
+people_twin 18 40 S static 0 - 0
+people_man_1 17 40 E static 0 - 0
+pokemon_zigzagoon 40 56 S static 0 - 0
+pokemon_sudowoodo 54 62 S static FLAG_HIDE_BATTLE_FRONTIER_SUDOWOODO LOCALID_FRONTIER_SUDOWOODO 0
+people_maniac 42 34 S static 0 - 0
+people_girl_3 51 53 S wander 0 - 0
+people_psychic_m 62 18 S static 0 - 0
+people_man_3 11 21 S static 0 - 0
+people_woman_5 10 21 E static 0 - 0
+people_woman_5 16 30 S wander 0 - 0
+people_black_belt 33 14 N static 0 - 0
+people_maniac 54 31 W static 0 - 0
+people_woman_4 54 32 N static 0 - 0
+people_old_woman 58 55 S static 0 - 0
+people_gentleman 48 41 N static 0 - 0
+people_camper 29 14 N static 0 - 0
 dialogs
 0	Wow! It's huge!The BATTLE TOWER feels special. It's different from the others.
 1	My grand ambition is to conquer both the BATTLE FRONTIER and the POKéMON LEAGUE.And if my dream comes true…I… I'm going to ask MIMI next door if she will be friends with me!
@@ -363,6 +363,5 @@ water
 193,368,370,372,377,384,385,393,394,400,402,408,410,502,503,988
 waterfall
 179,185,187,188
-
 music
 MUS_B_FRONTIER

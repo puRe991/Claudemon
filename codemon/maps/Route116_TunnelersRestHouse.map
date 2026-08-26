@@ -24,9 +24,9 @@ warps
 4 8 Route116 1
 5 8 Route116 1
 npcs
-people_pokefan_m 6 5 E static 0
-people_pokefan_m 3 6 S static 0
-people_pokefan_m 7 2 N static 0
+people_pokefan_m 6 5 E static 0 - 0
+people_pokefan_m 3 6 S static 0 - 0
+people_pokefan_m 7 2 N static 0 - 0
 dialogs
 0	That RUSTURF TUNNEL there…At first, we had a huge work crew boring through rock with the latest machinery. But, we had to stop.It turns out that we would have had a negative effect on wild POKéMON in the area.So, we've got nothing to do but loll around here doing nothing.
 1	To get to VERDANTURF without using this TUNNEL, you'd have to cross the sea to DEWFORD, sail on to SLATEPORT, then travel through MAUVILLE.
@@ -53,6 +53,5 @@ end
 = Route116_TunnelersRestHouse_EventScript_Tunneler1
 msgbox	That RUSTURF TUNNEL there…At first, we had a huge work crew boring through rock with the latest machinery. But, we had to stop.It turns out that we would have had a negative effect on wild POKéMON in the area.So, we've got nothing to do but loll around here doing nothing.
 end
-
 music
 MUS_RUSTBORO

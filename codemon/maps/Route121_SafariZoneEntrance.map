@@ -36,9 +36,9 @@ warps
 14 13 Route121 0
 15 13 Route121 0
 npcs
-people_picnicker 17 9 W static 0
-people_camper 10 2 S static 0
-people_camper 8 2 S static 0
+people_picnicker 17 9 W static 0 - 0
+people_camper 10 2 S static 0 - 0
+people_camper 8 2 S static 0 - 0
 objscripts
 0 Route121_SafariZoneEntrance_EventScript_WelcomeAttendant
 1 Route121_SafariZoneEntrance_EventScript_InfoAttendant
@@ -64,7 +64,7 @@ lockall
 applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
 waitmovement 0
 showmoneybox 0 0
-msgbox	Welcome to the SAFARI ZONE!All you can catch for just ¥500! Would you like to play a SAFARI Game?
+msgboxyesno	Welcome to the SAFARI ZONE!All you can catch for just ¥500! Would you like to play a SAFARI Game?
 goto_if_eq VAR_RESULT YES Route121_SafariZoneEntrance_EventScript_TryEnterSafariZone
 msgbox	Okay. Please play another time!
 goto Route121_SafariZoneEntrance_EventScript_MovePlayerBackFromCounter
@@ -122,7 +122,7 @@ end
 = Route121_SafariZoneEntrance_EventScript_InfoAttendant
 lock
 faceplayer
-msgbox	Welcome to the SAFARI ZONE! Is it your first time here?
+msgboxyesno	Welcome to the SAFARI ZONE! Is it your first time here?
 goto_if_eq VAR_RESULT YES Route121_SafariZoneEntrance_EventScript_FirstTimeInfo
 msgbox	Come in and enjoy the SAFARI ZONE!
 release
@@ -134,8 +134,7 @@ end
 = Route121_SafariZoneEntrance_EventScript_WelcomeAttendant
 msgbox	Welcome to the SAFARI ZONE!Here, you may witness many kinds of POKéMON rarely seen in HOENN.And, you'll see them in their wild, untamed state in natural habitats.What's more, we've thrown open the gates to POKéMON TRAINERS.You're encouraged to catch POKéMON for keeps!Come in and enjoy the SAFARI ZONE!
 end
-counters
-672,673,680,681,720
-
 music
 MUS_FORTREE
+counters
+672,673,680,681,720

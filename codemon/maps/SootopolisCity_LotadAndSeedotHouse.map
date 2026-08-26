@@ -20,8 +20,8 @@ warps
 3 6 SootopolisCity 11
 4 6 SootopolisCity 11
 npcs
-people_fisherman 2 4 E static 0
-people_hiker 5 4 W static 0
+people_fisherman 2 4 E static 0 - 0
+people_hiker 5 4 W static 0 - 0
 dialogs
 0	Do you know the POKéMON LOTAD? It's rarely seen in SOOTOPOLIS.I love, I mean love, big LOTAD!My big brother says that SEEDOT is bigger.But that's wrong! Everyone knows that LOTAD is a lot bigger.Hunh? Do you have a LOTAD? P-p-please show me!
 1	Do you know the POKéMON SEEDOT? It's hardly ever seen in SOOTOPOLIS.Anyway, I love big SEEDOT. The bigger the better.But my younger brother, he says that LOTAD is bigger.That's silly. SEEDOT has to be bigger than that!Huh? Do you have a SEEDOT with you? P-p-please, show me!
@@ -44,7 +44,7 @@ goto_if_eq VAR_RESULT COMPARE_SIZE_LARGER SootopolisCity_LotadAndSeedotHouse_Eve
 release
 end
 = SootopolisCity_LotadAndSeedotHouse_EventScript_BigSeedot
-msgbox	inches! Oh, my gosh, this is a big one!It might even beat the big LOTAD my younger brother saw!Thanks for showing me. This is my thanks!
+msgbox	STR_VAR_2 inches! Oh, my gosh, this is a big one!It might even beat the big LOTAD my younger brother saw!Thanks for showing me. This is my thanks!
 giveitem ITEM_ELIXIR
 goto_if_eq VAR_RESULT FALSE SootopolisCity_LotadAndSeedotHouse_EventScript_NoRoomForElixir1
 closemessage
@@ -55,7 +55,7 @@ msgbox	Hunh? Your BAG is crammed full.
 release
 end
 = SootopolisCity_LotadAndSeedotHouse_EventScript_SmallSeedot
-msgbox	inches, is it?Hmm… I've seen a bigger SEEDOT than this one.
+msgbox	STR_VAR_2 inches, is it?Hmm… I've seen a bigger SEEDOT than this one.
 release
 end
 = SootopolisCity_LotadAndSeedotHouse_EventScript_NotSeedot
@@ -81,7 +81,7 @@ goto_if_eq VAR_RESULT COMPARE_SIZE_LARGER SootopolisCity_LotadAndSeedotHouse_Eve
 release
 end
 = SootopolisCity_LotadAndSeedotHouse_EventScript_BigLotad
-msgbox	inches! Wow, that is big!It might be even bigger than the huge SEEDOT my big brother saw.Thanks for showing me! This is my thanks!
+msgbox	STR_VAR_2 inches! Wow, that is big!It might be even bigger than the huge SEEDOT my big brother saw.Thanks for showing me! This is my thanks!
 giveitem ITEM_ELIXIR
 goto_if_eq VAR_RESULT FALSE SootopolisCity_LotadAndSeedotHouse_EventScript_NoRoomForElixir2
 closemessage
@@ -92,7 +92,7 @@ msgbox	Hunh? Your BAG is crammed full.
 release
 end
 = SootopolisCity_LotadAndSeedotHouse_EventScript_SmallLotad
-msgbox	inches?Hmm… I've seen a bigger LOTAD than this one here.
+msgbox	STR_VAR_2 inches?Hmm… I've seen a bigger LOTAD than this one here.
 release
 end
 = SootopolisCity_LotadAndSeedotHouse_EventScript_NotLotad
@@ -104,8 +104,7 @@ msgbox	Don't you have a big LOTAD? How disappointing…If you get a big LOTAD, 
 release
 end
 signs
-5 1	The biggest SEEDOT in history! 's -inch giant!A SEEDOT bigger than a LOTAD always wanted!
-2 1	The biggest LOTAD in history! 's -inch colossus!A LOTAD bigger than a SEEDOT always wanted!
-
+5 1	The biggest SEEDOT in history! STR_VAR_2's STR_VAR_3-inch giant!A SEEDOT bigger than a LOTAD always wanted!
+2 1	The biggest LOTAD in history! STR_VAR_2's STR_VAR_3-inch colossus!A LOTAD bigger than a SEEDOT always wanted!
 music
 MUS_SOOTOPOLIS

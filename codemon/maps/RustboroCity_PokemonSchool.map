@@ -28,13 +28,13 @@ warps
 5 10 RustboroCity 4
 6 10 RustboroCity 4
 npcs
-people_gameboy_kid 8 6 E static 0
-people_gameboy_kid 9 6 W static 0
-people_rich_boy 3 8 N static 0
-people_lass 10 8 N static 0
-people_school_kid_m 3 6 S static 0
-people_gentleman 5 3 S static 0
-people_scott 0 10 N static FLAG_HIDE_RUSTBORO_CITY_POKEMON_SCHOOL_SCOTT
+people_gameboy_kid 8 6 E static 0 - 0
+people_gameboy_kid 9 6 W static 0 - 0
+people_rich_boy 3 8 N static 0 - 0
+people_lass 10 8 N static 0 - 0
+people_school_kid_m 3 6 S static 0 - 0
+people_gentleman 5 3 S static 0 - 0
+people_scott 0 10 N static FLAG_HIDE_RUSTBORO_CITY_POKEMON_SCHOOL_SCOTT - 0
 dialogs
 0	I'm trading POKéMON with my friend right now.
 1	I always wanted a SEEDOT, and I'm finally getting one!
@@ -140,6 +140,5 @@ signs
 6 2	The blackboard lists status changes that may affect POKéMON in battle.
 7 2	The blackboard lists status changes that may affect POKéMON in battle.
 3 5	It's this student's notebook…POKéMON are to be caught using POKé BALLS.Up to six POKéMON can accompany a TRAINER.A TRAINER is someone who catches POKéMON, raises them, and battles with them.A TRAINER's mission is to defeat the strong TRAINERS who await challengers in POKéMON GYMS.
-
 music
 MUS_SCHOOL

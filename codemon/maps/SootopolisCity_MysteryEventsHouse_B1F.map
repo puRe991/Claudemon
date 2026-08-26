@@ -67,8 +67,7 @@ return
 setvar VAR_SOOTOPOLIS_MYSTERY_EVENTS_STATE 3
 msgbox	The match ended up a draw.
 return
-counters
-522,524
-
 music
 MUS_SOOTOPOLIS
+counters
+522,524

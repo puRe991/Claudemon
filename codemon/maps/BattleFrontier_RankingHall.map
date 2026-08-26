@@ -36,9 +36,9 @@ warps
 26 14 BattleFrontier_OutsideEast 4
 27 14 BattleFrontier_OutsideEast 4
 npcs
-people_teala 24 13 S static 0
-people_ninja_boy 4 10 S wander 0
-people_boy_3 44 11 S wander 0
+people_teala 24 13 S static 0 - 0
+people_ninja_boy 4 10 S wander 0 - 0
+people_boy_3 44 11 S wander 0 - 0
 dialogs
 0	This is the RANKING HALL.This is where we recognize the immortal TRAINERS who left great records in BATTLE FRONTIER events.
 1	Hi, is your name on this list?
@@ -69,6 +69,5 @@ end
 signs
 16 8	BATTLE DOME, BATTLE PIKE, and BATTLE FACTORY Records
 36 8	BATTLE PALACE, BATTLE ARENA, and BATTLE PYRAMID Records
-
 music
 MUS_LILYCOVE_MUSEUM

@@ -23,7 +23,7 @@ warps
 4 7 SootopolisCity 12
 3 1 SootopolisCity_MysteryEventsHouse_B1F 0
 npcs
-people_old_man 6 4 E static 0 LOCALID_MYSTERY_EVENTS_OLD_MAN
+people_old_man 6 4 E static 0 LOCALID_MYSTERY_EVENTS_OLD_MAN 0
 dialogs
 0	When I was young, I traveled the world as a POKéMON TRAINER.Now that I've become an old buzzard, my only amusement is watching young TRAINERS battle.
 objscripts
@@ -79,7 +79,7 @@ end
 = SootopolisCity_MysteryEventsHouse_1F_EventScript_TrainerVisiting
 special SavePlayerParty
 special BufferEReaderTrainerName
-msgboxyesno	A TRAINER named is visiting my home.Would you like to challenge ?
+msgboxyesno	A TRAINER named STR_VAR_1 is visiting my home.Would you like to challenge STR_VAR_1?
 goto_if_eq VAR_RESULT NO SootopolisCity_MysteryEventsHouse_1F_EventScript_DeclineBattle
 call SootopolisCity_MysteryEventsHouse_1F_EventScript_ChooseParty
 goto_if_eq VAR_RESULT 0 SootopolisCity_MysteryEventsHouse_1F_EventScript_DeclineBattle
@@ -131,8 +131,7 @@ return
 msgbox	When I was young, I traveled the world as a POKéMON TRAINER.Now that I've become an old buzzard, my only amusement is watching young TRAINERS battle.
 release
 end
-counters
-576,578
-
 music
 MUS_SOOTOPOLIS
+counters
+576,578

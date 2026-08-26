@@ -23,8 +23,8 @@ warps
 13 1 AbandonedShip_Corridors_B1F 3
 22 1 AbandonedShip_Corridors_B1F 4
 npcs
-people_fat_man 25 6 W static 0
-misc_item_ball 6 7 S static FLAG_ITEM_ABANDONED_SHIP_ROOMS_B1F_ESCAPE_ROPE
+people_fat_man 25 6 W static 0 - 0
+misc_item_ball 6 7 S static FLAG_ITEM_ABANDONED_SHIP_ROOMS_B1F_ESCAPE_ROPE - 0
 dialogs
 0	Urrrrppp…I'm getting queasy just being aboard this ship…It's not even moving, but…
 objscripts
@@ -41,11 +41,10 @@ end
 = AbandonedShip_Rooms_B1F_EventScript_FatMan
 msgbox	Urrrrppp…I'm getting queasy just being aboard this ship…It's not even moving, but…
 end
+water
+327,342,368,384,385,393,400,402
+music
+MUS_ABANDONED_SHIP
 encounters
 water TENTACOOL:5:35,TENTACOOL:5:35,TENTACOOL:5:35,TENTACOOL:5:35,TENTACRUEL:30:35
 fishing MAGIKARP:5:10,TENTACOOL:5:10,MAGIKARP:10:30,TENTACOOL:10:30,TENTACOOL:10:30,TENTACOOL:25:30,TENTACOOL:30:35,TENTACRUEL:30:35,TENTACRUEL:25:30,TENTACRUEL:20:25
-water
-327,342,368,384,385,393,400,402
-
-music
-MUS_ABANDONED_SHIP

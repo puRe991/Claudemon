@@ -24,12 +24,12 @@ warps
 14 1 RustboroCity_DevonCorp_1F 2
 2 1 RustboroCity_DevonCorp_3F 0
 npcs
-people_scientist_1 6 5 N static 0
-people_scientist_1 1 5 E static 0
-people_scientist_1 2 6 S static 0
-people_scientist_1 10 5 N static 0
-people_scientist_1 14 8 N static 0 LOCALID_FOSSIL_SCIENTIST
-people_scientist_1 14 5 N static 0
+people_scientist_1 6 5 N static 0 - 0
+people_scientist_1 1 5 E static 0 - 0
+people_scientist_1 2 6 S static 0 - 0
+people_scientist_1 10 5 N static 0 - 0
+people_scientist_1 14 8 N static 0 LOCALID_FOSSIL_SCIENTIST 0
+people_scientist_1 14 5 N static 0 - 0
 dialogs
 0	We're developing a device for talking with POKéMON.But we haven't had much success…
 1	I'm developing new kinds of POKé BALLS…But I haven't made much headway…
@@ -152,7 +152,7 @@ goto_if_eq VAR_WHICH_FOSSIL_REVIVED 2 RustboroCity_DevonCorp_2F_EventScript_Anor
 end
 = RustboroCity_DevonCorp_2F_EventScript_AnorithReady
 bufferspeciesname STR_VAR_2 SPECIES_ANORITH
-msgbox	Thanks for waiting!Your fossilized POKéMON has been brought back to life!The fossil was an ancient POKéMON. , it was!
+msgbox	Thanks for waiting!Your fossilized POKéMON has been brought back to life!The fossil was an ancient POKéMON. STR_VAR_2, it was!
 goto RustboroCity_DevonCorp_2F_EventScript_ReceiveAnorith
 end
 = RustboroCity_DevonCorp_2F_EventScript_ReceiveAnorith
@@ -168,7 +168,7 @@ release
 end
 = RustboroCity_DevonCorp_2F_EventScript_ReceiveAnorithPC
 call RustboroCity_DevonCorp_2F_EventScript_ReceivedAnorithFanfare
-msgboxyesno	Do you want to give a nickname to this ?
+msgboxyesno	Do you want to give a nickname to this STR_VAR_1?
 goto_if_eq VAR_RESULT NO RustboroCity_DevonCorp_2F_EventScript_TransferAnorithToPC
 call Common_EventScript_NameReceivedBoxMon
 goto RustboroCity_DevonCorp_2F_EventScript_TransferAnorithToPC
@@ -191,22 +191,22 @@ return
 = EventScript_TransferredLanettesPC
 specialvar VAR_RESULT ShouldShowBoxWasFullMessage
 goto_if_eq VAR_RESULT TRUE EventScript_LanettesPCBoxFull
-msgbox	was transferred to LANETTE'S PC.It was placed in BOX “.”
+msgbox	STR_VAR_2 was transferred to LANETTE'S PC.It was placed in BOX “STR_VAR_1.”
 return
 = EventScript_LanettesPCBoxFull
 specialvar VAR_RESULT GetPCBoxToSendMon
 bufferboxname STR_VAR_3 VAR_RESULT
-msgbox	BOX “” on LANETTE'S PC was full.was transferred to BOX “.”
+msgbox	BOX “STR_VAR_3” on LANETTE'S PC was full.STR_VAR_2 was transferred to BOX “STR_VAR_1.”
 return
 = EventScript_TransferredSomeonesPC
 specialvar VAR_RESULT ShouldShowBoxWasFullMessage
 goto_if_eq VAR_RESULT TRUE EventScript_SomeonesPCBoxFull
-msgbox	was transferred to SOMEONE'S PC.It was placed in BOX “.”
+msgbox	STR_VAR_2 was transferred to SOMEONE'S PC.It was placed in BOX “STR_VAR_1.”
 return
 = EventScript_SomeonesPCBoxFull
 specialvar VAR_RESULT GetPCBoxToSendMon
 bufferboxname STR_VAR_3 VAR_RESULT
-msgbox	BOX “” on SOMEONE'S PC was full.was transferred to BOX “.”
+msgbox	BOX “STR_VAR_3” on SOMEONE'S PC was full.STR_VAR_2 was transferred to BOX “STR_VAR_1.”
 return
 = Common_EventScript_NameReceivedBoxMon
 fadescreen FADE_TO_BLACK
@@ -217,14 +217,14 @@ return
 = RustboroCity_DevonCorp_2F_EventScript_ReceivedAnorithFanfare
 bufferspeciesname STR_VAR_2 SPECIES_ANORITH
 playfanfare MUS_OBTAIN_ITEM
-msgbox	PLAYER received from the DEVON RESEARCHER.
+msgbox	PLAYER received STR_VAR_2 from the DEVON RESEARCHER.
 waitmessage
 waitfanfare
 bufferspeciesname STR_VAR_1 SPECIES_ANORITH
 return
 = RustboroCity_DevonCorp_2F_EventScript_ReceiveAnorithParty
 call RustboroCity_DevonCorp_2F_EventScript_ReceivedAnorithFanfare
-msgboxyesno	Do you want to give a nickname to this ?
+msgboxyesno	Do you want to give a nickname to this STR_VAR_1?
 goto_if_eq VAR_RESULT NO RustboroCity_DevonCorp_2F_EventScript_FinishReceivingAnorith
 call Common_EventScript_GetGiftMonPartySlot
 call Common_EventScript_NameReceivedPartyMon
@@ -237,7 +237,7 @@ copyvar VAR_0x8004 VAR_RESULT
 return
 = RustboroCity_DevonCorp_2F_EventScript_LileepReady
 bufferspeciesname STR_VAR_2 SPECIES_LILEEP
-msgbox	Thanks for waiting!Your fossilized POKéMON has been brought back to life!The fossil was an ancient POKéMON. , it was!
+msgbox	Thanks for waiting!Your fossilized POKéMON has been brought back to life!The fossil was an ancient POKéMON. STR_VAR_2, it was!
 goto RustboroCity_DevonCorp_2F_EventScript_ReceiveLileep
 end
 = RustboroCity_DevonCorp_2F_EventScript_ReceiveLileep
@@ -249,7 +249,7 @@ goto Common_EventScript_NoMoreRoomForPokemon
 end
 = RustboroCity_DevonCorp_2F_EventScript_ReceiveLileepPC
 call RustboroCity_DevonCorp_2F_EventScript_ReceivedLileepFanfare
-msgboxyesno	Do you want to give a nickname to this ?
+msgboxyesno	Do you want to give a nickname to this STR_VAR_1?
 goto_if_eq VAR_RESULT NO RustboroCity_DevonCorp_2F_EventScript_TransferLileepToPC
 call Common_EventScript_NameReceivedBoxMon
 goto RustboroCity_DevonCorp_2F_EventScript_TransferLileepToPC
@@ -266,14 +266,14 @@ end
 = RustboroCity_DevonCorp_2F_EventScript_ReceivedLileepFanfare
 bufferspeciesname STR_VAR_2 SPECIES_LILEEP
 playfanfare MUS_OBTAIN_ITEM
-msgbox	PLAYER received from the DEVON RESEARCHER.
+msgbox	PLAYER received STR_VAR_2 from the DEVON RESEARCHER.
 waitmessage
 waitfanfare
 bufferspeciesname STR_VAR_1 SPECIES_LILEEP
 return
 = RustboroCity_DevonCorp_2F_EventScript_ReceiveLileepParty
 call RustboroCity_DevonCorp_2F_EventScript_ReceivedLileepFanfare
-msgboxyesno	Do you want to give a nickname to this ?
+msgboxyesno	Do you want to give a nickname to this STR_VAR_1?
 goto_if_eq VAR_RESULT NO RustboroCity_DevonCorp_2F_EventScript_FinishReceivingLileep
 call Common_EventScript_GetGiftMonPartySlot
 call Common_EventScript_NameReceivedPartyMon
@@ -317,6 +317,5 @@ call_if_eq VAR_FOSSIL_RESURRECTION_STATE 1 RustboroCity_DevonCorp_2F_EventScript
 msgbox	We're developing a device for talking with POKéMON.But we haven't had much success…
 release
 end
-
 music
 MUS_RUSTBORO

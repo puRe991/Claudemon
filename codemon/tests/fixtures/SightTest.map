@@ -1,0 +1,24 @@
+tileset general__petalburg
+8 8
+1 7
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+npcs
+people_youngster 1 1 S static - - 3
+people_lass 5 1 S static - - 0
+objscripts
+0 Sight_TrainerScript
+1 Sight_PlainScript
+scriptdefs
+= Sight_TrainerScript
+trainerbattle_single TRAINER_ALLEN Sight_Intro Sight_Defeat
+end
+= Sight_PlainScript
+setvar VAR_PLAIN_RAN 1
+end

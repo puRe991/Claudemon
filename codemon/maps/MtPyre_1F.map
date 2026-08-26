@@ -48,9 +48,9 @@ warps
 11 1 MtPyre_2F 0
 20 9 MtPyre_2F 4
 npcs
-people_old_woman 21 2 S static 0
-people_pokefan_f 17 8 N static 0
-people_man_4 13 10 W static 0
+people_old_woman 21 2 S static 0 - 0
+people_pokefan_f 17 8 N static 0 - 0
+people_man_4 13 10 W static 0 - 0
 dialogs
 0	All sorts of beings wander the slopes of MT. PYRE…There is no telling what may happen. Take this. It's for your own good.
 1	Did you come to pay your respect to the spirits of departed POKéMON?You must care for your POKéMON a lot.
@@ -80,8 +80,7 @@ end
 msgbox	Have a POKéMON hold that CLEANSE TAG.It will help ward off wild POKéMON.
 release
 end
-encounters
-land SHUPPET:27:27,SHUPPET:28:28,SHUPPET:26:26,SHUPPET:25:25,SHUPPET:29:29,SHUPPET:24:24,SHUPPET:23:23,SHUPPET:22:22,SHUPPET:29:29,SHUPPET:24:24,SHUPPET:29:29,SHUPPET:24:24
-
 music
 MUS_MT_PYRE
+encounters
+land SHUPPET:27:27,SHUPPET:28:28,SHUPPET:26:26,SHUPPET:25:25,SHUPPET:29:29,SHUPPET:24:24,SHUPPET:23:23,SHUPPET:22:22,SHUPPET:29:29,SHUPPET:24:24,SHUPPET:29:29,SHUPPET:24:24

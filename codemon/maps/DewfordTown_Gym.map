@@ -62,14 +62,14 @@ warps
 5 27 DewfordTown 2
 6 27 DewfordTown 2
 npcs
-people_gym_leaders_brawly 4 3 S static 0
-people_black_belt 2 18 N static 0
-people_girl_3 15 3 S static 0
-people_girl_3 12 25 N static 0
-people_man_2 5 24 S static 0
-people_black_belt 7 8 E static 0
-people_girl_3 16 9 S static 0
-people_sailor 14 12 E static 0
+people_gym_leaders_brawly 4 3 S static 0 - 0
+people_black_belt 2 18 N static 0 - 3
+people_girl_3 15 3 S static 0 - 3
+people_girl_3 12 25 N static 0 - 2
+people_man_2 5 24 S static 0 - 0
+people_black_belt 7 8 E static 0 - 3
+people_girl_3 16 9 S static 0 - 3
+people_sailor 14 12 E static 0 - 2
 dialogs
 0	I can see your talent becoming a giant wave to cause a storm of astonishment among TRAINERS one day!
 1	Your skill overcame my strength! Your technique is commendable!
@@ -394,6 +394,5 @@ playse SE_SWITCH
 animateflash 0
 call DewfordTown_Gym_EventScript_SetFlashLevel
 return
-
 music
 MUS_GYM

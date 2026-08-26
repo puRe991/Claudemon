@@ -25,9 +25,9 @@ collision
 warps
 1 4 MirageTower_3F 1
 npcs
-misc_fossil 5 4 S static FLAG_HIDE_MIRAGE_TOWER_ROOT_FOSSIL LOCALID_MIRAGE_ROOT_FOSSIL
-misc_fossil 7 4 S static FLAG_HIDE_MIRAGE_TOWER_CLAW_FOSSIL LOCALID_MIRAGE_CLAW_FOSSIL
-misc_breakable_rock 6 7 S static FLAG_TEMP_11
+misc_fossil 5 4 S static FLAG_HIDE_MIRAGE_TOWER_ROOT_FOSSIL LOCALID_MIRAGE_ROOT_FOSSIL 0
+misc_fossil 7 4 S static FLAG_HIDE_MIRAGE_TOWER_CLAW_FOSSIL LOCALID_MIRAGE_CLAW_FOSSIL 0
+misc_breakable_rock 6 7 S static FLAG_TEMP_11 - 0
 dialogs
 0	You found the ROOT FOSSIL.If this FOSSIL is taken, the ground around it will likely crumble away…Take the ROOT FOSSIL anyway?
 1	You found the CLAW FOSSIL.If this FOSSIL is taken, the ground around it will likely crumble away…Take the CLAW FOSSIL anyway?
@@ -46,9 +46,9 @@ goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CantSmashRock
 setfieldeffectargument 0 VAR_RESULT
 bufferpartymonnick STR_VAR_1 VAR_RESULT
 buffermovename STR_VAR_2 MOVE_ROCK_SMASH
-msgboxyesno	Dieser Felsen sieht zerbrechlich aus. Möchtest du ZERTRÜMMERER einsetzen?
+msgboxyesno	This rock appears to be breakable. Would you like to use ROCK SMASH?
 goto_if_eq VAR_RESULT NO EventScript_CancelSmash
-msgbox	STR_VAR_1 setzt STR_VAR_2 ein!
+msgbox	STR_VAR_1 used STR_VAR_2!
 closemessage
 dofieldeffect FLDEFF_USE_ROCK_SMASH
 waitstate
@@ -81,7 +81,7 @@ closemessage
 releaseall
 end
 = EventScript_CantSmashRock
-msgbox	Das ist ein robuster Felsen, aber vielleicht kann ihn ein POKéMON zertrümmern.
+msgbox	It's a rugged rock, but a POKéMON may be able to smash it.
 releaseall
 end
 = MirageTower_4F_EventScript_ClawFossil
@@ -134,8 +134,7 @@ end
 msgbox	PLAYER left the ROOT FOSSIL alone.
 release
 end
-encounters
-land SANDSHREW:21:21,TRAPINCH:21:21,SANDSHREW:20:20,TRAPINCH:20:20,SANDSHREW:20:20,TRAPINCH:20:20,SANDSHREW:22:22,TRAPINCH:22:22,SANDSHREW:23:23,TRAPINCH:23:23,SANDSHREW:24:24,TRAPINCH:24:24
-
 music
 MUS_MT_CHIMNEY
+encounters
+land SANDSHREW:21:21,TRAPINCH:21:21,SANDSHREW:20:20,TRAPINCH:20:20,SANDSHREW:20:20,TRAPINCH:20:20,SANDSHREW:22:22,TRAPINCH:22:22,SANDSHREW:23:23,TRAPINCH:23:23,SANDSHREW:24:24,TRAPINCH:24:24

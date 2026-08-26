@@ -22,7 +22,7 @@ warps
 3 7 Route111 2
 4 7 Route111 2
 npcs
-people_expert_f 6 3 W static 0
+people_expert_f 6 3 W static 0 - 0
 dialogs
 0	Oh, dear, dear. Aren't your POKéMON exhausted?If you'd like, rest up here. That's a fine idea! You should do that.
 objscripts
@@ -47,6 +47,5 @@ msgboxyesno	Oh, dear, dear. Are your POKéMON still tired?You should take anoth
 goto_if_eq VAR_RESULT YES Route111_OldLadysRestStop_EventScript_Rest
 goto_if_eq VAR_RESULT NO Route111_OldLadysRestStop_EventScript_DeclineRest
 end
-
 music
 MUS_RUSTBORO

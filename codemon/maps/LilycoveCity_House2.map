@@ -22,7 +22,7 @@ warps
 2 7 LilycoveCity 9
 3 7 LilycoveCity 9
 npcs
-people_fat_man 0 4 S static 0
+people_fat_man 0 4 S static 0 - 0
 dialogs
 0	Huh? What? What's that?I'm not near awake yet… You can have this…
 objscripts
@@ -43,6 +43,5 @@ end
 msgbox	Yawn…Sleep is essential for good health… Sleep and regain health…
 release
 end
-
 music
 MUS_LILYCOVE

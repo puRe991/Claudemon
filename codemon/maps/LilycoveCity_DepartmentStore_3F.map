@@ -23,11 +23,11 @@ warps
 16 1 LilycoveCity_DepartmentStore_4F 0
 2 1 LilycoveCity_DepartmentStoreElevator 0
 npcs
-people_running_triathlete_m 0 5 S wander 0
-people_pokefan_m 7 7 S wander 0
-people_woman_5 13 5 S wander 0
-people_woman_3 8 2 S static 0
-people_woman_3 10 2 S static 0
+people_running_triathlete_m 0 5 S wander 0 - 0
+people_pokefan_m 7 7 S wander 0 - 0
+people_woman_5 13 5 S wander 0 - 0
+people_woman_3 8 2 S static 0 - 0
+people_woman_3 10 2 S static 0 - 0
 dialogs
 0	For quickly toughening up POKéMON, items are the best.PROTEIN boosts ATTACK, and CALCIUM raises SP. ATK.
 1	I want my POKéMON to have more endurance.I'm trying to decide whether to raise DEFENSE with IRON, or SP. DEF with ZINC.
@@ -69,8 +69,7 @@ end
 = LilycoveCity_DepartmentStore_3F_EventScript_TriathleteM
 msgbox	For quickly toughening up POKéMON, items are the best.PROTEIN boosts ATTACK, and CALCIUM raises SP. ATK.
 end
-counters
-674,676,677
-
 music
 MUS_POKE_MART
+counters
+674,676,677

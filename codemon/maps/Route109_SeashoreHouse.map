@@ -26,10 +26,10 @@ warps
 6 9 Route109 0
 7 9 Route109 0
 npcs
-people_pokefan_m 6 2 S static 0
-people_sailor 2 3 S static 0
-people_tuber_m 14 9 W static 0
-people_beauty 10 5 W pace_h 0
+people_pokefan_m 6 2 S static 0 - 0
+people_sailor 2 3 S static 0 - 2
+people_tuber_m 14 9 W static 0 - 2
+people_beauty 10 5 W pace_h 0 - 2
 dialogs
 0	I'm the owner of the SEASHORE HOUSE. But you can call me MR. SEA!What I love above all is to see hot POKéMON battles.Let me see that your heart burns hot!If you can defeat all the TRAINERS here, I'll reward your efforts.
 1	Whenever I'm in SLATEPORT, I enjoy hot battles and ice-cold SODA POP!
@@ -118,6 +118,5 @@ msgbox	You don't have the money.
 hidemoneybox
 release
 end
-
 music
 MUS_DEWFORD

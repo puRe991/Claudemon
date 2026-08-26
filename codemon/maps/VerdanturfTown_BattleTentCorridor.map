@@ -19,7 +19,7 @@ collision
 0,0,0,0,0
 0,0,0,0,0
 npcs
-people_expert_m 2 6 N static 0 LOCALID_VERDANTURF_TENT_CORRIDOR_ATTENDANT
+people_expert_m 2 6 N static 0 LOCALID_VERDANTURF_TENT_CORRIDOR_ATTENDANT 0
 onload
 VAR_TEMP_0 0 VerdanturfTown_BattleTentCorridor_EventScript_EnterCorridor
 movements
@@ -45,6 +45,5 @@ warp VerdanturfTown_BattleTentBattleRoom 6 5
 waitstate
 releaseall
 end
-
 music
 MUS_B_TOWER_RS

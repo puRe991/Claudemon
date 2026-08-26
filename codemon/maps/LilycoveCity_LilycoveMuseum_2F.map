@@ -31,10 +31,10 @@ collision
 warps
 13 1 LilycoveCity_LilycoveMuseum_1F 2
 npcs
-people_gentleman 10 8 N static 0 LOCALID_MUSEUM_2F_CURATOR
-people_girl_2 19 10 S wander FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_2
-people_expert_m 7 3 S wander FLAG_HIDE_LILYCOVE_MUSEUM_TOURISTS
-people_rich_boy 14 6 S wander FLAG_HIDE_LILYCOVE_MUSEUM_TOURISTS
+people_gentleman 10 8 N static 0 LOCALID_MUSEUM_2F_CURATOR 0
+people_girl_2 19 10 S wander FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_2 - 0
+people_expert_m 7 3 S wander FLAG_HIDE_LILYCOVE_MUSEUM_TOURISTS - 0
+people_rich_boy 14 6 S wander FLAG_HIDE_LILYCOVE_MUSEUM_TOURISTS - 0
 dialogs
 0	I wish to fill this exhibit hall with modern and vibrant paintings of POKéMON.
 1	I've been away awhile, so the new paintings up here surprised me.I wish someone would paint my POKéMON this pretty.
@@ -137,8 +137,7 @@ signs
 18 6	It's a picture frame with blue-colored adornments.
 6 10	It's a picture frame with green-colored adornments.
 7 10	It's a picture frame with green-colored adornments.
-counters
-646
-
 music
 MUS_LILYCOVE_MUSEUM
+counters
+646

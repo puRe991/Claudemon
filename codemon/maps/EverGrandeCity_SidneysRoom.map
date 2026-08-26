@@ -34,7 +34,7 @@ warps
 6 13 EverGrandeCity_Hall5 1
 6 2 EverGrandeCity_Hall1 0
 npcs
-people_elite_four_sidney 6 5 S static 0
+people_elite_four_sidney 6 5 S static 0 - 0
 dialogs
 0	Welcome, challenger! I'm SIDNEY of the ELITE FOUR.I like that look you're giving me. I guess you'll give me a good match. That's good! Looking real good!All right! You and me, let's enjoy a battle that can only be staged here in the POKéMON LEAGUE!
 objscripts
@@ -122,6 +122,5 @@ return
 msgbox	Well, listen to what this loser has to say.You've got what it takes to go far. Now, go on to the next room and enjoy your next battle!
 release
 end
-
 music
 MUS_VICTORY_ROAD

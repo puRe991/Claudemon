@@ -77,15 +77,15 @@ warps
 45 17 AquaHideout_B1F 17
 48 17 AquaHideout_B1F 19
 npcs
-people_team_aqua_aqua_member_m 28 16 S static FLAG_HIDE_AQUA_HIDEOUT_GRUNTS
-people_team_aqua_aqua_member_m 6 6 W static FLAG_HIDE_AQUA_HIDEOUT_GRUNTS
-misc_item_ball 29 12 S static FLAG_ITEM_AQUA_HIDEOUT_B1F_MAX_ELIXIR
-people_team_aqua_aqua_member_f 20 18 S static FLAG_HIDE_AQUA_HIDEOUT_GRUNTS
-misc_item_ball 15 9 S static FLAG_ITEM_AQUA_HIDEOUT_B1F_MASTER_BALL
-misc_item_ball 16 9 S static FLAG_HIDE_AQUA_HIDEOUT_B1F_ELECTRODE_1
-misc_item_ball 15 10 S static FLAG_ITEM_AQUA_HIDEOUT_B1F_NUGGET
-misc_item_ball 16 10 S static FLAG_HIDE_AQUA_HIDEOUT_B1F_ELECTRODE_2
-people_team_aqua_aqua_member_f 28 21 N static FLAG_HIDE_AQUA_HIDEOUT_GRUNTS
+people_team_aqua_aqua_member_m 28 16 S static FLAG_HIDE_AQUA_HIDEOUT_GRUNTS - 4
+people_team_aqua_aqua_member_m 6 6 W static FLAG_HIDE_AQUA_HIDEOUT_GRUNTS - 5
+misc_item_ball 29 12 S static FLAG_ITEM_AQUA_HIDEOUT_B1F_MAX_ELIXIR - 0
+people_team_aqua_aqua_member_f 20 18 S static FLAG_HIDE_AQUA_HIDEOUT_GRUNTS - 4
+misc_item_ball 15 9 S static FLAG_ITEM_AQUA_HIDEOUT_B1F_MASTER_BALL - 0
+misc_item_ball 16 9 S static FLAG_HIDE_AQUA_HIDEOUT_B1F_ELECTRODE_1 - 0
+misc_item_ball 15 10 S static FLAG_ITEM_AQUA_HIDEOUT_B1F_NUGGET - 0
+misc_item_ball 16 10 S static FLAG_HIDE_AQUA_HIDEOUT_B1F_ELECTRODE_2 - 0
+people_team_aqua_aqua_member_f 28 21 N static FLAG_HIDE_AQUA_HIDEOUT_GRUNTS - 4
 dialogs
 0	Our HIDEOUT's secret?Well, let's just say… There's a submarine at the far end!But, by now… Kekekeke…
 1	Humph! This was supposed to happen!My mission was to just hold you up!
@@ -195,6 +195,5 @@ release
 end
 water
 335,679,686,687
-
 music
 MUS_AQUA_MAGMA_HIDEOUT

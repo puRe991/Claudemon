@@ -19,10 +19,10 @@ collision
 1,0,0,0,0,0,0,0
 1,1,1,0,1,1,0,0
 npcs
-people_boy_3 2 1 S static 0
-people_pokefan_f 5 6 S static 0
-people_fat_man 2 6 S static 0
-people_twin 5 1 S static 0
-misc_item_ball 6 5 S static 0
-misc_item_ball 7 0 S static 0
-misc_item_ball 0 2 S static 0
+people_boy_3 2 1 S static 0 - 5
+people_pokefan_f 5 6 S static 0 - 5
+people_fat_man 2 6 S static 0 - 5
+people_twin 5 1 S static 0 - 5
+misc_item_ball 6 5 S static 0 - 0
+misc_item_ball 7 0 S static 0 - 0
+misc_item_ball 0 2 S static 0 - 0

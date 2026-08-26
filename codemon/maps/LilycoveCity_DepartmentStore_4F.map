@@ -23,11 +23,11 @@ warps
 13 1 LilycoveCity_DepartmentStore_5F 0
 2 1 LilycoveCity_DepartmentStoreElevator 0
 npcs
-people_gentleman 0 2 S wander 0
-people_woman_2 6 2 S wander 0
-people_youngster 13 4 S wander 0
-people_woman_3 7 6 N static 0
-people_woman_3 9 6 N static 0
+people_gentleman 0 2 S wander 0 - 0
+people_woman_2 6 2 S wander 0 - 0
+people_youngster 13 4 S wander 0 - 0
+people_woman_3 7 6 N static 0 - 0
+people_woman_3 9 6 N static 0 - 0
 dialogs
 0	Hmm…An attacking move… Or a defensive move…It's no easy matter to decide which TM moves should be taught to POKéMON…
 1	There are so many different kinds of TM moves.A catalog I read said there are fifty different kinds.
@@ -69,8 +69,7 @@ end
 = LilycoveCity_DepartmentStore_4F_EventScript_Gentleman
 msgbox	Hmm…An attacking move… Or a defensive move…It's no easy matter to decide which TM moves should be taught to POKéMON…
 end
-counters
-670,675,676
-
 music
 MUS_POKE_MART
+counters
+670,675,676

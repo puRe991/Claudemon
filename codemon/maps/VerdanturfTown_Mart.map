@@ -22,10 +22,10 @@ warps
 3 7 VerdanturfTown 1
 4 7 VerdanturfTown 1
 npcs
-people_mart_employee 1 3 E static 0 LOCALID_VERDANTURF_MART_CLERK
-people_boy_2 5 4 E static 0
-people_expert_f 8 5 W static 0
-people_lass 3 2 W static 0
+people_mart_employee 1 3 E static 0 LOCALID_VERDANTURF_MART_CLERK 0
+people_boy_2 5 4 E static 0 - 0
+people_expert_f 8 5 W static 0 - 0
+people_lass 3 2 W static 0 - 0
 dialogs
 1	For any POKéMON match, X SPECIAL is crucial.It jacks up the power of some moves even though it's only for one battle.
 2	They don't seem to sell any winning strategy guides for the BATTLE TENT…It seems one must rely on one's own wits after all…
@@ -56,8 +56,7 @@ pokemart VerdanturfTown_Mart_Pokemart
 msgbox	Please come again!
 release
 end
-counters
-562,570,577
-
 music
 MUS_POKE_MART
+counters
+562,570,577

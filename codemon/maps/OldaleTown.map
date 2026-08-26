@@ -52,14 +52,14 @@ warps
 6 16 OldaleTown_PokemonCenter_1F 0
 14 6 OldaleTown_Mart 0
 npcs
-people_girl_3 16 11 W static 0
-people_mart_employee 13 7 S static 0 LOCALID_OLDALE_MART_EMPLOYEE
-people_maniac 8 9 E static 0 LOCALID_FOOTPRINTS_MAN
-people_may_walking 11 19 N static FLAG_HIDE_OLDALE_TOWN_RIVAL LOCALID_OLDALE_RIVAL
+people_girl_3 16 11 W static 0 - 0
+people_mart_employee 13 7 S static 0 LOCALID_OLDALE_MART_EMPLOYEE 0
+people_maniac 8 9 E static 0 LOCALID_FOOTPRINTS_MAN 0
+people_may_walking 11 19 N static FLAG_HIDE_OLDALE_TOWN_RIVAL LOCALID_OLDALE_RIVAL 0
 dialogs
-0	Ich möchte mich ausruhen, deshalb speichere ich meinen Fortschritt.
-1	Hi! Ich arbeite in einem POKéMON MART.Kannst du kurz mit mir kommen?
-2	Ich hab gerade die Fußspuren eines seltenen POKéMON entdeckt!Warte, bis ich sie fertig gezeichnet habe, okay?
+0	I want to take a rest, so I'm saving my progress.
+1	Hi! I work at a POKéMON MART.Can I get you to come with me?
+2	I just discovered the footprints of a rare POKéMON!Wait until I finish sketching them, okay?
 objscripts
 0 OldaleTown_EventScript_Girl
 1 OldaleTown_EventScript_MartEmployee
@@ -104,7 +104,7 @@ goto_if_eq VAR_RESULT MALE OldaleTown_EventScript_ShowMayMessage
 goto_if_eq VAR_RESULT FEMALE OldaleTown_EventScript_ShowBrendanMessage
 end
 = OldaleTown_EventScript_ShowBrendanMessage
-msgbox	BRENDAN: Ich mach mich jetzt auf den Weg zurück zum LABOR meines Dads. PLAYER, du solltest dich auch beeilen.
+msgbox	BRENDAN: I'm heading back to my dad's LAB now. PLAYER, you should hustle back, too.
 goto OldaleTown_EventScript_RivalFinish
 end
 = OldaleTown_EventScript_RivalFinish
@@ -129,7 +129,7 @@ applymovement LOCALID_OLDALE_RIVAL OldaleTown_Movement_RivalExit
 waitmovement 0
 return
 = OldaleTown_EventScript_ShowMayMessage
-msgbox	MAY: PLAYER! Hier drüben! Lass uns schnell nach Hause gehen!
+msgbox	MAY: PLAYER! Over here! Let's hurry home!
 goto OldaleTown_EventScript_RivalFinish
 end
 = OldaleTown_EventScript_RivalTrigger2
@@ -155,7 +155,7 @@ lockall
 applymovement LOCALID_PLAYER OldaleTown_Movement_PlayerStepBack
 applymovement LOCALID_FOOTPRINTS_MAN OldaleTown_Movement_BackUp
 waitmovement 0
-msgbox	Aaaaah! Warte! Bitte komm hier nicht rein.Ich hab gerade die Fußspuren eines seltenen POKéMON entdeckt!Warte, bis ich sie fertig gezeichnet habe, okay?
+msgbox	Aaaaah! Wait! Please don't come in here.I just discovered the footprints of a rare POKéMON!Wait until I finish sketching them, okay?
 closemessage
 applymovement LOCALID_FOOTPRINTS_MAN OldaleTown_Movement_ReturnToOriginalPosition
 waitmovement 0
@@ -172,14 +172,14 @@ end
 lock
 faceplayer
 goto_if_set FLAG_ADVENTURE_STARTED OldaleTown_EventScript_NotBlockingPath
-msgbox	Ich hab gerade die Fußspuren eines seltenen POKéMON entdeckt!Warte, bis ich sie fertig gezeichnet habe, okay?
+msgbox	I just discovered the footprints of a rare POKéMON!Wait until I finish sketching them, okay?
 closemessage
 applymovement LOCALID_FOOTPRINTS_MAN Common_Movement_FaceOriginalDirection
 waitmovement 0
 release
 end
 = OldaleTown_EventScript_NotBlockingPath
-msgbox	Ich hab die Fußspuren des seltenen POKéMON fertig gezeichnet.Aber es stellte sich heraus, dass es nur meine eigenen Fußspuren waren…
+msgbox	I finished sketching the footprints of a rare POKéMON.But it turns out they were only my own footprints…
 release
 end
 = OldaleTown_EventScript_MartEmployee
@@ -189,7 +189,7 @@ goto_if_set FLAG_RECEIVED_POTION_OLDALE OldaleTown_EventScript_ExplainPotion
 goto_if_set FLAG_TEMP_1 OldaleTown_EventScript_ExplainPotion
 setflag FLAG_TEMP_1
 playbgm MUS_FOLLOW_ME FALSE
-msgbox	Hi! Ich arbeite in einem POKéMON MART.Kannst du kurz mit mir kommen?
+msgbox	Hi! I work at a POKéMON MART.Can I get you to come with me?
 closemessage
 switch VAR_FACING
 case DIR_SOUTH OldaleTown_EventScript_GoToMartSouth
@@ -203,16 +203,16 @@ waitmovement 0
 goto OldaleTown_EventScript_ExplainPokemonMart
 end
 = OldaleTown_EventScript_ExplainPokemonMart
-msgbox	Das hier ist ein POKéMON MART. Halt einfach nach unserem blauen Dach Ausschau.Wir verkaufen allerlei Waren, unter anderem POKé BALLS zum Fangen von POKéMON.Hier, das hier möchte ich dir als Werbegeschenk mitgeben.
+msgbox	This is a POKéMON MART. Just look for our blue roof.We sell a variety of goods including POKé BALLS for catching POKéMON.Here, I'd like you to have this as a promotional item.
 giveitem ITEM_POTION
 goto_if_eq VAR_RESULT FALSE OldaleTown_EventScript_BagIsFull
-msgbox	Ein POTION kann man jederzeit einsetzen, daher ist es in manchen Situationen sogar nützlicher als ein POKéMON CENTER.
+msgbox	A POTION can be used anytime, so it's even more useful than a POKéMON CENTER in certain situations.
 setflag FLAG_RECEIVED_POTION_OLDALE
 fadedefaultbgm
 release
 end
 = OldaleTown_EventScript_BagIsFull
-msgbox	Schade! Die BAG ist voll…
+msgbox	Too bad! The BAG is full…
 fadedefaultbgm
 release
 end
@@ -229,15 +229,14 @@ waitmovement 0
 goto OldaleTown_EventScript_ExplainPokemonMart
 end
 = OldaleTown_EventScript_ExplainPotion
-msgbox	Ein POTION kann man jederzeit einsetzen, daher ist es in manchen Situationen sogar nützlicher als ein POKéMON CENTER.
+msgbox	A POTION can be used anytime, so it's even more useful than a POKéMON CENTER in certain situations.
 release
 end
 = OldaleTown_EventScript_Girl
-msgbox	Ich möchte mich ausruhen, deshalb speichere ich meinen Fortschritt.
+msgbox	I want to take a rest, so I'm saving my progress.
 end
 signs
-11 9	OLDALE TOWN – „Wo die Dinge noch knapp beginnen.“
-
+11 9	OLDALE TOWN “Where things start off scarce.”
 visit
 FLAG_VISITED_OLDALE_TOWN
 music

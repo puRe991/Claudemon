@@ -48,11 +48,11 @@ down 60 DewfordTown
 warps
 48 16 GraniteCave_1F 0
 npcs
-people_swimmer_m 18 5 W pace_h 0
-people_swimmer_f 29 10 S static 0
-people_fisherman 51 14 E static 0
-people_fisherman 65 14 S static 0
-misc_item_ball 29 14 S static FLAG_ITEM_ROUTE_106_PROTEIN
+people_swimmer_m 18 5 W pace_h 0 - 3
+people_swimmer_f 29 10 S static 0 - 3
+people_fisherman 51 14 E static 0 - 4
+people_fisherman 65 14 S static 0 - 3
+misc_item_ball 29 14 S static FLAG_ITEM_ROUTE_106_PROTEIN - 0
 objscripts
 0 Route106_EventScript_Douglas
 1 Route106_EventScript_Kyla
@@ -124,11 +124,10 @@ msgbox	I wouldn't lose in a swim race…
 end
 signs
 59 13	TRAINER TIPSAdvice on catching POKéMON with a ROD: Press the A Button if you get a bite.
+water
+283,285,291,293,368,370,372
+music
+MUS_ROUTE104
 encounters
 water TENTACOOL:5:35,WINGULL:10:30,WINGULL:15:25,PELIPPER:25:30,PELIPPER:25:30
 fishing MAGIKARP:5:10,TENTACOOL:5:10,MAGIKARP:10:30,TENTACOOL:10:30,WAILMER:10:30,WAILMER:25:30,WAILMER:30:35,WAILMER:20:25,WAILMER:35:40,WAILMER:40:45
-water
-283,285,291,293,368,370,372
-
-music
-MUS_ROUTE104

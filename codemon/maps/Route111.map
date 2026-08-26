@@ -293,51 +293,51 @@ warps
 19 58 MirageTower_1F 0
 31 113 TrainerHill_Entrance 0
 npcs
-people_man_1 13 114 S static FLAG_HIDE_ROUTE_111_VICTOR_WINSTRATE LOCALID_ROUTE111_VICTOR
-people_pokefan_f 13 113 S static FLAG_HIDE_ROUTE_111_VICTORIA_WINSTRATE
-people_lass 13 113 S static FLAG_HIDE_ROUTE_111_VIVI_WINSTRATE
-people_expert_f 13 113 S static FLAG_HIDE_ROUTE_111_VICKY_WINSTRATE
-people_picnicker 28 51 S static 0
-people_man_1 22 5 S static 0
-people_man_1 23 5 S static 0
-people_man_3 8 91 S wander 0
-people_camper 29 37 S static 0
-people_hiker 27 69 S static 0
-people_camper 21 47 W static 0
-people_picnicker 32 66 S static 0
-people_cameraman 14 86 S static FLAG_HIDE_ROUTE_111_GABBY_AND_TY_1
-people_reporter_f 13 86 S static FLAG_HIDE_ROUTE_111_GABBY_AND_TY_1
-misc_breakable_rock 18 101 S static FLAG_TEMP_11
-misc_breakable_rock 19 100 S static FLAG_TEMP_12
-people_girl_1 23 8 S wander 0
-misc_item_ball 33 104 S static FLAG_ITEM_ROUTE_111_TM_SANDSTORM
-people_man_1 18 5 S static 0
-people_man_1 19 5 S static 0
-people_reporter_f 13 86 S static FLAG_HIDE_ROUTE_111_GABBY_AND_TY_2
-people_cameraman 14 86 S static FLAG_HIDE_ROUTE_111_GABBY_AND_TY_2
-people_reporter_f 13 86 S static FLAG_HIDE_ROUTE_111_GABBY_AND_TY_3
-people_cameraman 14 86 S static FLAG_HIDE_ROUTE_111_GABBY_AND_TY_3
-misc_item_ball 12 54 S static FLAG_ITEM_ROUTE_111_STARDUST
-misc_item_ball 3 114 S static FLAG_ITEM_ROUTE_111_HP_UP
-misc_cuttable_tree 22 21 S static FLAG_TEMP_13
-people_picnicker 10 82 W pace_h 0
-people_camper 11 71 W pace_h 0
-people_black_belt 32 29 S static 0
-people_woman_5 11 11 N static 0
-people_man_3 9 27 S static 0
-people_boy_1 13 20 N static FLAG_HIDE_ROUTE_111_SECRET_POWER_MAN
-people_man_4 20 114 S wander 0
-people_camper 26 132 W static 0
-people_woman_2 20 132 E static 0
-people_picnicker 19 121 N static 0
-people_man_5 16 119 E static 0
-people_hiker 29 77 W pace_h 0
-people_picnicker 22 77 E static 0
-people_camper 37 77 W static 0
-misc_item_ball 19 118 S static FLAG_ITEM_ROUTE_111_ELIXIR
-people_hiker 14 56 S static 0
-misc_fossil 20 53 S static FLAG_HIDE_ROUTE_111_DESERT_FOSSIL
-people_fat_man 19 101 N static FLAG_HIDE_ROUTE_111_ROCK_SMASH_TIP_GUY LOCALID_ROUTE111_ROCK_SMASH_MAN
+people_man_1 13 114 S static FLAG_HIDE_ROUTE_111_VICTOR_WINSTRATE LOCALID_ROUTE111_VICTOR 0
+people_pokefan_f 13 113 S static FLAG_HIDE_ROUTE_111_VICTORIA_WINSTRATE LOCALID_ROUTE111_VICTORIA 0
+people_lass 13 113 S static FLAG_HIDE_ROUTE_111_VIVI_WINSTRATE LOCALID_ROUTE111_VIVI 0
+people_expert_f 13 113 S static FLAG_HIDE_ROUTE_111_VICKY_WINSTRATE LOCALID_ROUTE111_VICKY 0
+people_picnicker 28 51 S static 0 - 3
+people_man_1 22 5 S static 0 - 0
+people_man_1 23 5 S static 0 - 0
+people_man_3 8 91 S wander 0 - 0
+people_camper 29 37 S static 0 - 3
+people_hiker 27 69 S static 0 - 2
+people_camper 21 47 W static 0 - 4
+people_picnicker 32 66 S static 0 - 3
+people_cameraman 14 86 S static FLAG_HIDE_ROUTE_111_GABBY_AND_TY_1 LOCALID_ROUTE111_TY_1 0
+people_reporter_f 13 86 S static FLAG_HIDE_ROUTE_111_GABBY_AND_TY_1 LOCALID_ROUTE111_GABBY_1 0
+misc_breakable_rock 18 101 S static FLAG_TEMP_11 - 0
+misc_breakable_rock 19 100 S static FLAG_TEMP_12 - 0
+people_girl_1 23 8 S wander 0 - 0
+misc_item_ball 33 104 S static FLAG_ITEM_ROUTE_111_TM_SANDSTORM - 0
+people_man_1 18 5 S static 0 - 0
+people_man_1 19 5 S static 0 - 0
+people_reporter_f 13 86 S static FLAG_HIDE_ROUTE_111_GABBY_AND_TY_2 LOCALID_ROUTE111_GABBY_2 0
+people_cameraman 14 86 S static FLAG_HIDE_ROUTE_111_GABBY_AND_TY_2 LOCALID_ROUTE111_TY_2 0
+people_reporter_f 13 86 S static FLAG_HIDE_ROUTE_111_GABBY_AND_TY_3 LOCALID_ROUTE111_GABBY_3 0
+people_cameraman 14 86 S static FLAG_HIDE_ROUTE_111_GABBY_AND_TY_3 LOCALID_ROUTE111_TY_3 0
+misc_item_ball 12 54 S static FLAG_ITEM_ROUTE_111_STARDUST - 0
+misc_item_ball 3 114 S static FLAG_ITEM_ROUTE_111_HP_UP - 0
+misc_cuttable_tree 22 21 S static FLAG_TEMP_13 - 0
+people_picnicker 10 82 W pace_h 0 - 2
+people_camper 11 71 W pace_h 0 - 3
+people_black_belt 32 29 S static 0 - 2
+people_woman_5 11 11 N static 0 - 4
+people_man_3 9 27 S static 0 - 3
+people_boy_1 13 20 N static FLAG_HIDE_ROUTE_111_SECRET_POWER_MAN - 0
+people_man_4 20 114 S wander 0 - 0
+people_camper 26 132 W static 0 - 5
+people_woman_2 20 132 E static 0 - 5
+people_picnicker 19 121 N static 0 - 2
+people_man_5 16 119 E static 0 - 3
+people_hiker 29 77 W pace_h 0 - 7
+people_picnicker 22 77 E static 0 - 6
+people_camper 37 77 W static 0 - 7
+misc_item_ball 19 118 S static FLAG_ITEM_ROUTE_111_ELIXIR - 0
+people_hiker 14 56 S static 0 - 0
+misc_fossil 20 53 S static FLAG_HIDE_ROUTE_111_DESERT_FOSSIL - 0
+people_fat_man 19 101 N static FLAG_HIDE_ROUTE_111_ROCK_SMASH_TIP_GUY LOCALID_ROUTE111_ROCK_SMASH_MAN 0
 dialogs
 0	Hello! I take it you're a traveler.How's this? What do you say to taking on our family of four in a series of POKéMON battles?
 7	If you don't raise your POKéMON some more, it could be tough to keep winning up through the ranks.I've heard the POKéMON LEAGUE's ELITE FOUR are far stronger than any GYM LEADER.
@@ -658,7 +658,7 @@ end
 = Route111_EventScript_SecretPowerMan
 lock
 faceplayer
-msgbox	What's that? What am I doing?I'm thinking about making my own room here using a POKéMON move.I know! I'll give you this TM. Will you use it to make your own room?
+msgboxyesno	What's that? What am I doing?I'm thinking about making my own room here using a POKéMON move.I know! I'll give you this TM. Will you use it to make your own room?
 goto_if_eq VAR_RESULT YES Route111_EventScript_GiveSecretPower
 msgbox	Oh, you don't want this? If you change your mind, tell me, okay?
 release
@@ -744,9 +744,9 @@ goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CheckTreeCantCut
 setfieldeffectargument 0 VAR_RESULT
 bufferpartymonnick STR_VAR_1 VAR_RESULT
 buffermovename STR_VAR_2 MOVE_CUT
-msgboxyesno	Dieser Baum sieht so aus, als könnte man ihn mit ZERSCHNEIDER fällen! Möchtest du ZERSCHNEIDER einsetzen?
+msgboxyesno	This tree looks like it can be CUT down!Would you like to CUT it?
 goto_if_eq VAR_RESULT NO EventScript_CancelCut
-msgbox	STR_VAR_1 setzt STR_VAR_2 ein!
+msgbox	STR_VAR_1 used STR_VAR_2!
 closemessage
 dofieldeffect FLDEFF_USE_CUT_ON_TREE
 waitstate
@@ -771,7 +771,7 @@ closemessage
 releaseall
 end
 = EventScript_CheckTreeCantCut
-msgbox	Dieser Baum sieht so aus, als könnte man ihn mit ZERSCHNEIDER fällen!
+msgbox	This tree looks like it can be CUT down!
 releaseall
 end
 = Route111_EventScript_ItemHPUp
@@ -802,7 +802,7 @@ call_if_eq VAR_FACING DIR_EAST GabbyAndTy_EventScript_FacePlayerEast
 goto_if_set FLAG_TEMP_SKIP_GABBY_INTERVIEW GabbyAndTy_EventScript_KeepingAnEyeOutForYou
 specialvar VAR_RESULT GabbyAndTyGetLastQuote
 goto_if_eq VAR_RESULT 0 GabbyAndTy_EventScript_DidntInterviewLastTime
-msgbox	GABBY: “!”Remember? That's the quote you gave us as the battle clincher last time.I never, ever forget stuff like that!
+msgbox	GABBY: “STR_VAR_1!”Remember? That's the quote you gave us as the battle clincher last time.I never, ever forget stuff like that!
 specialvar VAR_RESULT GabbyAndTyGetLastBattleTrivia
 switch VAR_RESULT
 case 0 GabbyAndTy_EventScript_RequestInterviewNoTrivia
@@ -902,7 +902,7 @@ buffernumberstring STR_VAR_2 VAR_0x8006
 lock
 faceplayer
 special ObjectEventInteractionGetBerryCountString
-msgbox	You found STR_VAR_2 STR_VAR_1!Do you want to pick the STR_VAR_1?
+msgboxyesno	You found STR_VAR_2 STR_VAR_1!Do you want to pick the STR_VAR_1?
 goto_if_eq VAR_RESULT YES BerryTree_EventScript_PickBerry
 goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPickingBerry
 goto BerryTree_EventScript_PickBerry
@@ -961,7 +961,7 @@ goto BerryTree_EventScript_CheckBerryFullyGrown
 checkitem ITEM_WAILMER_PAIL
 goto_if_eq VAR_RESULT FALSE BerryTree_EventScript_DontWater
 special ObjectEventInteractionGetBerryName
-msgbox	Want to water the STR_VAR_1 with the WAILMER PAIL?
+msgboxyesno	Want to water the STR_VAR_1 with the WAILMER PAIL?
 goto_if_eq VAR_RESULT YES BerryTree_EventScript_WaterBerry
 goto_if_eq VAR_RESULT NO BerryTree_EventScript_DontWater
 goto BerryTree_EventScript_DontWater
@@ -1011,7 +1011,7 @@ waitbuttonpress
 release
 end
 = BerryTree_EventScript_WantToPlant
-msgbox	It's soft, loamy soil. Want to plant a BERRY?
+msgboxyesno	It's soft, loamy soil. Want to plant a BERRY?
 goto_if_eq VAR_RESULT YES BerryTree_EventScript_ChooseBerryToPlant
 goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPlanting
 end
@@ -1057,9 +1057,9 @@ goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CantSmashRock
 setfieldeffectargument 0 VAR_RESULT
 bufferpartymonnick STR_VAR_1 VAR_RESULT
 buffermovename STR_VAR_2 MOVE_ROCK_SMASH
-msgboxyesno	Dieser Felsen sieht zerbrechlich aus. Möchtest du ZERTRÜMMERER einsetzen?
+msgboxyesno	This rock appears to be breakable. Would you like to use ROCK SMASH?
 goto_if_eq VAR_RESULT NO EventScript_CancelSmash
-msgbox	STR_VAR_1 setzt STR_VAR_2 ein!
+msgbox	STR_VAR_1 used STR_VAR_2!
 closemessage
 dofieldeffect FLDEFF_USE_ROCK_SMASH
 waitstate
@@ -1092,7 +1092,7 @@ closemessage
 releaseall
 end
 = EventScript_CantSmashRock
-msgbox	Das ist ein robuster Felsen, aber vielleicht kann ihn ein POKéMON zertrümmern.
+msgbox	It's a rugged rock, but a POKéMON may be able to smash it.
 releaseall
 end
 = GabbyAndTy_EventScript_GabbyBattle1
@@ -1245,13 +1245,12 @@ signs
 25 19	OLD LADY'S REST STOP “Come in and rest your tired bones.”
 7 84	TRAINER TIPSOne of the indicators of a POKéMON's powerfulness is SP. ATK. It stands for “SPECIAL ATTACK.”Likewise, SP. DEF stands for “SPECIAL DEFENSE.”
 24 116	TRAINER HILL ENTRANCE“Scale the heights, you hot-blooded TRAINERS!”
+water
+161,177,178,184,186,192,194,195,196
+music
+MUS_ROUTE110
 encounters
 land SANDSHREW:20:20,TRAPINCH:20:20,SANDSHREW:21:21,TRAPINCH:21:21,BALTOY:19:19,BALTOY:21:21,SANDSHREW:19:19,TRAPINCH:19:19,BALTOY:20:20,CACNEA:20:20,CACNEA:22:22,CACNEA:22:22
 water MARILL:20:30,MARILL:10:20,MARILL:30:35,MARILL:5:10,GOLDEEN:20:30
 fishing MAGIKARP:5:10,GOLDEEN:5:10,MAGIKARP:10:30,GOLDEEN:10:30,BARBOACH:10:30,BARBOACH:25:30,BARBOACH:30:35,BARBOACH:20:25,BARBOACH:35:40,BARBOACH:40:45
 rock GEODUDE:10:15,GEODUDE:5:10,GEODUDE:15:20,GEODUDE:15:20,GEODUDE:15:20
-water
-161,177,178,184,186,192,194,195,196
-
-music
-MUS_ROUTE110

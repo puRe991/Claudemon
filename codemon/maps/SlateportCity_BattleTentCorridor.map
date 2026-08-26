@@ -19,7 +19,7 @@ collision
 0,0,0,0,0
 0,0,0,0,0
 npcs
-people_scientist_1 2 6 N static 0 LOCALID_SLATEPORT_TENT_CORRIDOR_ATTENDANT
+people_scientist_1 2 6 N static 0 LOCALID_SLATEPORT_TENT_CORRIDOR_ATTENDANT 0
 onload
 VAR_TEMP_0 0 SlateportCity_BattleTentCorridor_EventScript_EnterCorridor
 movements
@@ -128,6 +128,5 @@ playfanfare MUS_HEAL
 waitfanfare
 special HealPlayerParty
 goto SlateportCity_BattleTentCorridor_EventScript_AskReadyForOpponent
-
 music
 MUS_B_TOWER_RS

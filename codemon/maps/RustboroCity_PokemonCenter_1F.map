@@ -25,10 +25,10 @@ warps
 6 8 RustboroCity 3
 1 6 RustboroCity_PokemonCenter_2F 0
 npcs
-people_nurse 7 2 S static 0 LOCALID_RUSTBORO_NURSE
-people_man_1 11 2 W static 0
-people_boy_1 3 4 S wander 0
-people_girl_3 10 6 E static 0
+people_nurse 7 2 S static 0 LOCALID_RUSTBORO_NURSE 0
+people_man_1 11 2 W static 0 - 0
+people_boy_1 3 4 S wander 0 - 0
+people_girl_3 10 6 E static 0 - 0
 dialogs
 1	My POKéMON has a NAIVE nature, and my friend's has a JOLLY nature.It's fascinating how POKéMON have personalities!
 2	Just like people, there are male and female POKéMON.But no one seems to have any idea how they're different.
@@ -114,7 +114,7 @@ return
 goto_if_set FLAG_NURSE_UNION_ROOM_REMINDER EventScript_PkmnCenterNurse_ReturnPkmn
 msgbox	Thank you for waiting.We've restored your POKéMON to full health.
 setflag FLAG_NURSE_UNION_ROOM_REMINDER
-msgbox	It appears as if is playing right now. Go for it!
+msgbox	It appears as if STR_VAR_1 is playing right now. Go for it!
 waitmessage
 applymovement VAR_0x800B Movement_PkmnCenterNurse_Bow
 waitmovement 0
@@ -166,8 +166,7 @@ msgboxyesno	I'm delighted to see you, PLAYER! You want the usual, am I right?
 goto_if_eq VAR_RESULT YES EventScript_PkmnCenterNurse_GoldCardHealPkmn
 msgbox	We hope to see you again!
 return
-counters
-517
-
 music
 MUS_POKE_CENTER
+counters
+517

@@ -168,14 +168,14 @@ down 0 Route106
 warps
 9 20 IslandCave 0
 npcs
-people_swimmer_m 19 60 E static 0
-people_swimmer_m 27 36 W pace_h 0
-people_swimmer_f 8 45 S pace_v 0
-people_swimmer_f 19 9 S static 0
-misc_item_ball 8 73 S static FLAG_ITEM_ROUTE_105_IRON
-people_hiker 17 48 S static 0
-people_man_5 4 54 S static 0
-people_hiker 4 58 N static 0
+people_swimmer_m 19 60 E static 0 - 6
+people_swimmer_m 27 36 W pace_h 0 - 3
+people_swimmer_f 8 45 S pace_v 0 - 3
+people_swimmer_f 19 9 S static 0 - 3
+misc_item_ball 8 73 S static FLAG_ITEM_ROUTE_105_IRON - 0
+people_hiker 17 48 S static 0 - 3
+people_man_5 4 54 S static 0 - 2
+people_hiker 4 58 N static 0 - 4
 objscripts
 0 Route105_EventScript_Luis
 1 Route105_EventScript_Dominik
@@ -443,11 +443,10 @@ end
 trainerbattle_single TRAINER_LUIS Route105_Text_LuisIntro Route105_Text_LuisDefeated
 msgbox	If you are drowning, the signal is to wave one arm toward the beach.
 end
+water
+283,285,291,293,299,300,301,325,326,368,370,372
+music
+MUS_ROUTE104
 encounters
 water TENTACOOL:5:35,WINGULL:10:30,WINGULL:15:25,PELIPPER:25:30,PELIPPER:25:30
 fishing MAGIKARP:5:10,TENTACOOL:5:10,MAGIKARP:10:30,TENTACOOL:10:30,WAILMER:10:30,WAILMER:25:30,WAILMER:30:35,WAILMER:20:25,WAILMER:35:40,WAILMER:40:45
-water
-283,285,291,293,299,300,301,325,326,368,370,372
-
-music
-MUS_ROUTE104

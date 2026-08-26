@@ -72,9 +72,9 @@ warps
 7 20 MeteorFalls_B1F_1R 1
 21 23 MeteorFalls_B1F_1R 2
 npcs
-people_man_3 13 2 S static 0
-people_expert_m 6 12 S static 0
-people_expert_f 7 12 S static 0
+people_man_3 13 2 S static 0 - 1
+people_expert_m 6 12 S static 0 - 1
+people_expert_f 7 12 S static 0 - 1
 dialogs
 0	The road ahead remains long and harsh.When will my POKéMON and I become the best?
 1	JOHN: We've been married for fifty years.Come to think of it, I've yet to beat my dear wife in a battle.
@@ -134,12 +134,11 @@ msgbox	I want to know more about your power. Let me register you in my POKéNAV.
 register_matchcall TRAINER_NICOLAS_1
 release
 end
+water
+368,384,385,393,400,402,408,410
+music
+MUS_CAVE_OF_ORIGIN
 encounters
 land GOLBAT:33:33,GOLBAT:35:35,GOLBAT:33:33,SOLROCK:35:35,SOLROCK:33:33,SOLROCK:37:37,GOLBAT:35:35,SOLROCK:39:39,GOLBAT:38:38,GOLBAT:40:40,GOLBAT:38:38,GOLBAT:40:40
 water GOLBAT:30:35,GOLBAT:30:35,SOLROCK:25:35,SOLROCK:15:25,SOLROCK:5:15
 fishing MAGIKARP:5:10,GOLDEEN:5:10,MAGIKARP:10:30,GOLDEEN:10:30,BARBOACH:10:30,BARBOACH:25:30,BARBOACH:30:35,WHISCASH:30:35,WHISCASH:35:40,WHISCASH:40:45
-water
-368,384,385,393,400,402,408,410
-
-music
-MUS_CAVE_OF_ORIGIN

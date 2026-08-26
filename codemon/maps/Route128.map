@@ -87,16 +87,16 @@ up 0 Route127
 down 0 Route129
 right -40 EverGrandeCity
 npcs
-people_swimmer_m 35 33 S static 0
-people_swimmer_f 78 24 S static 0
-people_steven 40 22 S static FLAG_HIDE_ROUTE_128_STEVEN LOCALID_ROUTE128_STEVEN
-people_team_aqua_archie 37 22 W static FLAG_HIDE_ROUTE_128_ARCHIE LOCALID_ROUTE128_ARCHIE
-people_team_magma_maxie 38 21 N static FLAG_HIDE_ROUTE_128_MAXIE LOCALID_ROUTE128_MAXIE
-people_fisherman 63 28 N static 0
-people_man_3 47 9 E static 0
-people_woman_5 24 8 S static 0
-people_swimmer_f 101 29 S pace_v 0
-people_swimmer_m 101 22 S static 0
+people_swimmer_m 35 33 S static 0 - 3
+people_swimmer_f 78 24 S static 0 - 7
+people_steven 40 22 S static FLAG_HIDE_ROUTE_128_STEVEN LOCALID_ROUTE128_STEVEN 0
+people_team_aqua_archie 37 22 W static FLAG_HIDE_ROUTE_128_ARCHIE LOCALID_ROUTE128_ARCHIE 0
+people_team_magma_maxie 38 21 N static FLAG_HIDE_ROUTE_128_MAXIE LOCALID_ROUTE128_MAXIE 0
+people_fisherman 63 28 N static 0 - 0
+people_man_3 47 9 E static 0 - 3
+people_woman_5 24 8 S static 0 - 3
+people_swimmer_f 101 29 S pace_v 0 - 4
+people_swimmer_m 101 22 S static 0 - 4
 objscripts
 0 Route128_EventScript_Isaiah
 1 Route128_EventScript_Katelyn
@@ -270,11 +270,10 @@ msgbox	I know I'm not good now, but I think I can win eventually.Please registe
 register_matchcall TRAINER_ISAIAH_1
 release
 end
+water
+334,368,372,419,420,429,431,437,439,445,446,447,528,529,531,532,533,535,542,543,545,547,564,571,572,575,578,579,580,586,587,588,591,592,593,594,595,596,597,598,599,602,603,604,605,607,827,828,829
+music
+MUS_ROUTE120
 encounters
 water TENTACOOL:5:35,WINGULL:10:30,WINGULL:15:25,PELIPPER:25:30,PELIPPER:25:30
 fishing MAGIKARP:5:10,TENTACOOL:5:10,MAGIKARP:10:30,LUVDISC:10:30,WAILMER:10:30,LUVDISC:30:35,WAILMER:30:35,CORSOLA:30:35,WAILMER:35:40,WAILMER:40:45
-water
-334,368,372,419,420,429,431,437,439,445,446,447,528,529,531,532,533,535,542,543,545,547,564,571,572,575,578,579,580,586,587,588,591,592,593,594,595,596,597,598,599,602,603,604,605,607,827,828,829
-
-music
-MUS_ROUTE120

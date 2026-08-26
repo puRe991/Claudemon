@@ -35,9 +35,9 @@ collision
 warps
 3 1 SlateportCity_SternsShipyard_1F 2
 npcs
-people_scientist_1 10 7 N static 0
-people_scientist_1 8 4 E static 0
-people_scientist_1 0 9 N static 0
+people_scientist_1 10 7 N static 0 - 0
+people_scientist_1 8 4 E static 0 - 0
+people_scientist_1 0 9 N static 0 - 0
 dialogs
 1	Designing a large ship is more like making a big building than putting together a transportation vehicle.
 2	Don't you think it's strange that a ship made of heavy iron floats?It floats because of a principle called buoyancy.
@@ -51,8 +51,7 @@ end
 = SlateportCity_SternsShipyard_2F_EventScript_Scientist1
 msgbox	Designing a large ship is more like making a big building than putting together a transportation vehicle.
 end
-counters
-537
-
 music
 MUS_SLATEPORT
+counters
+537

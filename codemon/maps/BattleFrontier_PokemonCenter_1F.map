@@ -25,11 +25,11 @@ warps
 6 8 BattleFrontier_OutsideEast 12
 1 6 BattleFrontier_PokemonCenter_2F 0
 npcs
-people_nurse 7 2 S static 0 LOCALID_FRONTIER_NURSE
-people_school_kid_m 4 5 W pace_h 0
-people_man_3 11 4 S static 0
-people_picnicker 2 3 W static 0
-pokemon_skitty 1 3 E static 0
+people_nurse 7 2 S static 0 LOCALID_FRONTIER_NURSE 0
+people_school_kid_m 4 5 W pace_h 0 - 0
+people_man_3 11 4 S static 0 - 0
+people_picnicker 2 3 W static 0 - 0
+pokemon_skitty 1 3 E static 0 - 0
 dialogs
 1	There was someone here using a POKéMON I've never seen before.I never learned about it at TRAINER'S SCHOOL at least.I wonder where you can catch POKéMON like that.
 2	Okay! Next stop, the BATTLE ARENA! I'd better get the right POKéMON from the PC Storage System.
@@ -126,7 +126,7 @@ return
 goto_if_set FLAG_NURSE_UNION_ROOM_REMINDER EventScript_PkmnCenterNurse_ReturnPkmn
 msgbox	Thank you for waiting.We've restored your POKéMON to full health.
 setflag FLAG_NURSE_UNION_ROOM_REMINDER
-msgbox	It appears as if is playing right now. Go for it!
+msgbox	It appears as if STR_VAR_1 is playing right now. Go for it!
 waitmessage
 applymovement VAR_0x800B Movement_PkmnCenterNurse_Bow
 waitmovement 0
@@ -178,8 +178,7 @@ msgboxyesno	I'm delighted to see you, PLAYER! You want the usual, am I right?
 goto_if_eq VAR_RESULT YES EventScript_PkmnCenterNurse_GoldCardHealPkmn
 msgbox	We hope to see you again!
 return
-counters
-517
-
 music
 MUS_POKE_CENTER
+counters
+517

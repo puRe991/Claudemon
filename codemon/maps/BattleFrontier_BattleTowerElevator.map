@@ -17,7 +17,7 @@ collision
 0,0,0,0,0
 0,0,0,0,0
 npcs
-people_teala 1 5 N static 0 LOCALID_TOWER_ELEVATOR_ATTENDANT
+people_teala 1 5 N static 0 LOCALID_TOWER_ELEVATOR_ATTENDANT 0
 onload
 VAR_TEMP_0 0 BattleFrontier_BattleTowerElevator_EventScript_EnterElevator
 movements
@@ -63,6 +63,5 @@ return
 warp BattleFrontier_BattleTowerCorridor 8 1
 waitstate
 return
-
 music
 MUS_B_TOWER

@@ -44,6 +44,12 @@ static std::string nice_name(const std::string& id) {
 static std::string name_from_trainer(const std::string& tid) {
 	std::string s = tid;
 	if (s.rfind("TRAINER_", 0) == 0) s = s.substr(8);
+	// Rematch trainers are numbered TRAINER_CALVIN_1 .. _5 in pokeemerald; the
+	// number is table bookkeeping, not part of the name, and reading it out as
+	// "Calvin 1" in the battle intro looks like a bug.
+	if (s.size() > 2 && s[s.size() - 2] == '_' &&
+	    s[s.size() - 1] >= '1' && s[s.size() - 1] <= '5')
+		s = s.substr(0, s.size() - 2);
 	std::string out; bool cap = true;
 	for (char c : s) {
 		if (c == '_') { out += ' '; cap = true; }
@@ -266,6 +272,16 @@ void ScriptVM::apply_move_action(Character* ch, const std::string& act) {
 	else if (act == "face_left")  ch->face(DIR::W);
 	else if (act == "face_right") ch->face(DIR::E);
 	// "delay"/"end"/unknown: no positional change
+}
+
+bool ScriptVM::script_has_pending_trainer(const std::string& label) const {
+	if (!this->map || !this->map->has_script(label)) return false;
+	for (const Instr& in : this->map->script(label)) {
+		if (in.empty() || in[0].rfind("trainerbattle", 0) != 0) continue;
+		for (size_t k = 1; k < in.size(); ++k)
+			if (in[k].rfind("TRAINER_", 0) == 0) return !trainer_defeated(in[k]);
+	}
+	return false;
 }
 
 bool ScriptVM::trainer_defeated(const std::string& trainer_id) const {

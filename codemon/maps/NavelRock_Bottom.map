@@ -49,7 +49,7 @@ collision
 warps
 14 19 NavelRock_Down11 0
 npcs
-pokemon_lugia 11 13 S static FLAG_HIDE_LUGIA LOCALID_NAVEL_ROCK_LUGIA
+pokemon_lugia 11 13 S static FLAG_HIDE_LUGIA LOCALID_NAVEL_ROCK_LUGIA 0
 objscripts
 0 NavelRock_Bottom_EventScript_Lugia
 scriptdefs
@@ -99,6 +99,5 @@ goto Common_EventScript_LegendaryFlewAway
 end
 water
 327
-
 music
 MUS_RG_SEVII_CAVE

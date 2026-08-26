@@ -22,12 +22,12 @@ warps
 3 7 LilycoveCity 10
 4 7 LilycoveCity 10
 npcs
-people_gameboy_kid 3 4 S static 0
-people_pokefan_f 7 4 W static 0
-people_gameboy_kid 1 4 S static 0
-people_gameboy_kid 2 5 N static 0
-people_gameboy_kid 2 3 S static 0
-people_man_1 7 5 W static 0
+people_gameboy_kid 3 4 S static 0 - 0
+people_pokefan_f 7 4 W static 0 - 0
+people_gameboy_kid 1 4 S static 0 - 0
+people_gameboy_kid 2 5 N static 0 - 0
+people_gameboy_kid 2 3 S static 0 - 0
+people_man_1 7 5 W static 0 - 0
 dialogs
 1	Oh, my, my! Are you traveling alone? But you're so young! Good for you!I'm sure my kids could learn a thing or two from you!Me? I'm a master of S.If I get serious just a little, why, I can concoct great S.Would you like to learn from me, a master of S?
 5	When my wife gave birth to quadruplets, you bet I was shocked.But, now, seeing them play together, it makes me happy.
@@ -120,6 +120,5 @@ case 1 LilycoveCity_House3_EventScript_WereMixingRecords
 case 2 LilycoveCity_House3_EventScript_WereBlendingBerries
 case 3 LilycoveCity_House3_EventScript_WereDoingContest
 end
-
 music
 MUS_LILYCOVE

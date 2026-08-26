@@ -172,33 +172,33 @@ warps
 6 46 TerraCave_Entrance 0
 7 4 TerraCave_Entrance 0
 npcs
-people_man_1 31 43 S static 0
-people_man_1 31 44 S static 0
-people_hiker 15 65 E static 0
-people_hiker 30 72 W static 0
-people_camper 22 50 E static 0
-people_picnicker 19 35 S static 0
-people_maniac 20 56 N static 0
-people_man_1 31 45 S static 0
-misc_item_ball 7 6 S static FLAG_ITEM_ROUTE_114_RARE_CANDY
-misc_item_ball 11 37 S static FLAG_ITEM_ROUTE_114_PROTEIN
-misc_breakable_rock 12 43 S static FLAG_TEMP_11
-people_gentleman 19 11 E static 0
-pokemon_poochyena 19 12 E static 0
-people_man_4 27 42 S wander 0
-people_fisherman 25 6 S static 0
-people_fisherman 19 26 W static 0
-people_man_5 30 58 S static 0
-misc_breakable_rock 29 53 S static FLAG_TEMP_12
-misc_breakable_rock 30 54 S static FLAG_TEMP_13
-misc_breakable_rock 22 69 S static FLAG_TEMP_14
-misc_breakable_rock 11 64 S static FLAG_TEMP_15
-people_lass 24 44 S static 0
-people_lass 23 44 S static 0
-people_picnicker 28 20 N static 0
-people_picnicker 26 72 S static 0
-misc_item_ball 31 19 S static FLAG_ITEM_ROUTE_114_ENERGY_POWDER
-people_fisherman 28 16 S static 0
+people_man_1 31 43 S static 0 - 0
+people_man_1 31 44 S static 0 - 0
+people_hiker 15 65 E static 0 - 6
+people_hiker 30 72 W static 0 - 4
+people_camper 22 50 E static 0 - 3
+people_picnicker 19 35 S static 0 - 3
+people_maniac 20 56 N static 0 - 3
+people_man_1 31 45 S static 0 - 0
+misc_item_ball 7 6 S static FLAG_ITEM_ROUTE_114_RARE_CANDY - 0
+misc_item_ball 11 37 S static FLAG_ITEM_ROUTE_114_PROTEIN - 0
+misc_breakable_rock 12 43 S static FLAG_TEMP_11 - 0
+people_gentleman 19 11 E static 0 - 0
+pokemon_poochyena 19 12 E static 0 - 0
+people_man_4 27 42 S wander 0 - 0
+people_fisherman 25 6 S static 0 - 0
+people_fisherman 19 26 W static 0 - 0
+people_man_5 30 58 S static 0 - 3
+misc_breakable_rock 29 53 S static FLAG_TEMP_12 - 0
+misc_breakable_rock 30 54 S static FLAG_TEMP_13 - 0
+misc_breakable_rock 22 69 S static FLAG_TEMP_14 - 0
+misc_breakable_rock 11 64 S static FLAG_TEMP_15 - 0
+people_lass 24 44 S static 0 - 1
+people_lass 23 44 S static 0 - 1
+people_picnicker 28 20 N static 0 - 3
+people_picnicker 26 72 S static 0 - 4
+misc_item_ball 31 19 S static FLAG_ITEM_ROUTE_114_ENERGY_POWDER - 0
+people_fisherman 28 16 S static 0 - 3
 dialogs
 11	All my POKéMON does is ROAR… No one dares to come near me…Sigh… If you would, please take this TM away…
 12	Bow! Bowwow!
@@ -476,9 +476,9 @@ goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CantSmashRock
 setfieldeffectargument 0 VAR_RESULT
 bufferpartymonnick STR_VAR_1 VAR_RESULT
 buffermovename STR_VAR_2 MOVE_ROCK_SMASH
-msgboxyesno	Dieser Felsen sieht zerbrechlich aus. Möchtest du ZERTRÜMMERER einsetzen?
+msgboxyesno	This rock appears to be breakable. Would you like to use ROCK SMASH?
 goto_if_eq VAR_RESULT NO EventScript_CancelSmash
-msgbox	STR_VAR_1 setzt STR_VAR_2 ein!
+msgbox	STR_VAR_1 used STR_VAR_2!
 closemessage
 dofieldeffect FLDEFF_USE_ROCK_SMASH
 waitstate
@@ -511,7 +511,7 @@ closemessage
 releaseall
 end
 = EventScript_CantSmashRock
-msgbox	Das ist ein robuster Felsen, aber vielleicht kann ihn ein POKéMON zertrümmern.
+msgbox	It's a rugged rock, but a POKéMON may be able to smash it.
 releaseall
 end
 = Route114_EventScript_Bernie
@@ -613,7 +613,7 @@ buffernumberstring STR_VAR_2 VAR_0x8006
 lock
 faceplayer
 special ObjectEventInteractionGetBerryCountString
-msgbox	You found STR_VAR_2 STR_VAR_1!Do you want to pick the STR_VAR_1?
+msgboxyesno	You found STR_VAR_2 STR_VAR_1!Do you want to pick the STR_VAR_1?
 goto_if_eq VAR_RESULT YES BerryTree_EventScript_PickBerry
 goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPickingBerry
 goto BerryTree_EventScript_PickBerry
@@ -672,7 +672,7 @@ goto BerryTree_EventScript_CheckBerryFullyGrown
 checkitem ITEM_WAILMER_PAIL
 goto_if_eq VAR_RESULT FALSE BerryTree_EventScript_DontWater
 special ObjectEventInteractionGetBerryName
-msgbox	Want to water the STR_VAR_1 with the WAILMER PAIL?
+msgboxyesno	Want to water the STR_VAR_1 with the WAILMER PAIL?
 goto_if_eq VAR_RESULT YES BerryTree_EventScript_WaterBerry
 goto_if_eq VAR_RESULT NO BerryTree_EventScript_DontWater
 goto BerryTree_EventScript_DontWater
@@ -722,7 +722,7 @@ waitbuttonpress
 release
 end
 = BerryTree_EventScript_WantToPlant
-msgbox	It's soft, loamy soil. Want to plant a BERRY?
+msgboxyesno	It's soft, loamy soil. Want to plant a BERRY?
 goto_if_eq VAR_RESULT YES BerryTree_EventScript_ChooseBerryToPlant
 goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPlanting
 end
@@ -793,15 +793,14 @@ signs
 25 38	LANETTE'S HOUSE
 grass
 13
+water
+44,52,60,368,376,377,384,385,393,400,402,408,410,716,717
+waterfall
+179,185,187,188
+music
+MUS_ROUTE110
 encounters
 land SWABLU:16:16,LOTAD:16:16,SWABLU:17:17,SWABLU:15:15,LOTAD:15:15,LOMBRE:16:16,LOMBRE:16:16,LOMBRE:18:18,SEVIPER:17:17,SEVIPER:15:15,SEVIPER:17:17,NUZLEAF:15:15
 water MARILL:20:30,MARILL:10:20,MARILL:30:35,MARILL:5:10,GOLDEEN:20:30
 fishing MAGIKARP:5:10,GOLDEEN:5:10,MAGIKARP:10:30,GOLDEEN:10:30,BARBOACH:10:30,BARBOACH:25:30,BARBOACH:30:35,BARBOACH:20:25,BARBOACH:35:40,BARBOACH:40:45
 rock GEODUDE:10:15,GEODUDE:5:10,GEODUDE:15:20,GEODUDE:15:20,GEODUDE:15:20
-water
-44,52,60,368,376,377,384,385,393,400,402,408,410,716,717
-waterfall
-179,185,187,188
-
-music
-MUS_ROUTE110

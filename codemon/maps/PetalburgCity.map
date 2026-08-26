@@ -73,20 +73,20 @@ warps
 20 24 PetalburgCity_House2 0
 25 12 PetalburgCity_Mart 0
 npcs
-people_woman_4 16 18 S wander FLAG_HIDE_PETALBURG_CITY_WALLYS_MOM
-people_wally 15 10 N static FLAG_HIDE_PETALBURG_CITY_WALLY
-people_boy_1 8 22 S static 0 LOCALID_PETALBURG_BOY
-people_gentleman 20 10 S wander 0
-people_pokefan_m 15 10 N static FLAG_HIDE_PETALBURG_CITY_WALLYS_DAD
-misc_item_ball 19 2 S static FLAG_ITEM_PETALBURG_CITY_MAX_REVIVE
-misc_item_ball 3 28 S static FLAG_ITEM_PETALBURG_CITY_ETHER
-people_boy_2 12 15 S static 0 LOCALID_GYM_BOY
-people_scott 13 12 S static FLAG_HIDE_PETALBURG_CITY_SCOTT LOCALID_PETALBURG_SCOTT
+people_woman_4 16 18 S wander FLAG_HIDE_PETALBURG_CITY_WALLYS_MOM - 0
+people_wally 15 10 N static FLAG_HIDE_PETALBURG_CITY_WALLY LOCALID_PETALBURG_WALLY 0
+people_boy_1 8 22 S static 0 LOCALID_PETALBURG_BOY 0
+people_gentleman 20 10 S wander 0 - 0
+people_pokefan_m 15 10 N static FLAG_HIDE_PETALBURG_CITY_WALLYS_DAD LOCALID_PETALBURG_WALLYS_DAD 0
+misc_item_ball 19 2 S static FLAG_ITEM_PETALBURG_CITY_MAX_REVIVE - 0
+misc_item_ball 3 28 S static FLAG_ITEM_PETALBURG_CITY_ETHER - 0
+people_boy_2 12 15 S static 0 LOCALID_GYM_BOY 0
+people_scott 13 12 S static FLAG_HIDE_PETALBURG_CITY_SCOTT LOCALID_PETALBURG_SCOTT 0
 dialogs
-0	Wo ist bloß unser WALLY hin?Wir müssen ganz bald nach VERDANTURF TOWN aufbrechen…
-2	Mein Gesicht spiegelt sich im Wasser.Es ist ein strahlendes Grinsen voller Hoffnung…Oder vielleicht ist es ein stiller, ernster Blick, der mit der Angst ringt…Was siehst du in deinem eigenen Gesicht widergespiegelt?
-3	Nehmen wir an, du hast sechs POKéMON. Wenn du dann noch eins fängst…Wird es automatisch über eine PC-Verbindung in eine STORAGE BOX geschickt.
-7	Hiya! Bist du vielleicht… ein Anfänger-TRAINER?Weißt du, was POKéMON TRAINER machen, wenn sie eine neue Stadt erreichen?Sie schauen sich zuerst an, was für eine GYM es in der Stadt gibt.
+0	Where has our WALLY gone?We have to leave for VERDANTURF TOWN very soon…
+2	My face is reflected in the water.It's a shining grin full of hope…Or it could be a look of somber silence struggling with fear…What do you see reflected in your face?
+3	Let's say you have six POKéMON. If you catch another one…It is automatically sent to a STORAGE BOX over a PC connection.
+7	Hiya! Are you maybe… A rookie TRAINER?Do you know what POKéMON TRAINERS do when they reach a new town?They first check what kind of GYM is in the town.
 objscripts
 0 PetalburgCity_EventScript_WallysMom
 2 PetalburgCity_EventScript_Boy
@@ -177,12 +177,12 @@ special LoadWallyZigzagoon
 applymovement LOCALID_PETALBURG_WALLY PetalburgCity_Movement_WallyTutorialWally
 applymovement LOCALID_PLAYER PetalburgCity_Movement_WallyTutorialPlayer
 waitmovement 0
-msgbox	WALLY: PLAYER… POKéMON verstecken sich doch in so hohem Gras, oder?Schau mir bitte zu, ob ich eins richtig fangen kann.…Whoa!
+msgbox	WALLY: PLAYER… POKéMON hide in tall grass like this, don't they?Please watch me and see if I can catch one properly.…Whoa!
 special StartWallyTutorialBattle
-msgbox	WALLY: Ich hab's geschafft… Das ist mein… Mein POKéMON!
+msgbox	WALLY: I did it… It's my… My POKéMON!
 applymovement LOCALID_PETALBURG_WALLY Common_Movement_WalkInPlaceFasterLeft MAP_PETALBURG_CITY
 waitmovement LOCALID_PETALBURG_WALLY MAP_PETALBURG_CITY
-msgbox	PLAYER, danke dir! Lass uns zurück zur GYM gehen!
+msgbox	PLAYER, thank you! Let's go back to the GYM!
 closemessage
 clearflag FLAG_HIDE_MAP_NAME_POPUP
 setvar VAR_PETALBURG_CITY_STATE 3
@@ -221,17 +221,17 @@ waitmovement 0
 applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterRight
 waitmovement 0
 setvar VAR_SCOTT_STATE 1
-msgbox	Entschuldige!Lass mich raten, so wie du gekleidet bist, bist du ein POKéMON TRAINER, oder?
+msgbox	Excuse me!Let me guess, from the way you're dressed, are you a POKéMON TRAINER?
 closemessage
 applymovement LOCALID_PETALBURG_SCOTT Common_Movement_WalkInPlaceFasterRight
 waitmovement 0
 delay 30
-msgbox	… … … … … …Na, vielleicht auch nicht. Deine Kleidung ist gar nicht so schmutzig.Entweder bist du ein Anfänger-TRAINER, oder vielleicht bist du einfach ein ganz normales Kind.
+msgbox	… … … … … …Well, maybe not. Your clothes aren't all that dirty.You're either a rookie TRAINER, or maybe you're just an ordinary kid.
 closemessage
 applymovement LOCALID_PETALBURG_SCOTT Common_Movement_WalkInPlaceFasterLeft
 waitmovement 0
 delay 30
-msgbox	Ich durchstreife das Land auf der Suche nach talentierten TRAINERN.Es tut mir leid, dass ich deine Zeit in Anspruch genommen habe.
+msgbox	I'm roaming the land in search of talented TRAINERS.I'm sorry to have taken your time.
 closemessage
 call_if_eq VAR_0x8008 0 PetalburgCity_EventScript_ScottExit0
 call_if_eq VAR_0x8008 1 PetalburgCity_EventScript_ScottExit1
@@ -300,17 +300,17 @@ call_if_eq VAR_0x8008 0 PetalburgCity_EventScript_BoyApproachPlayer0
 call_if_eq VAR_0x8008 1 PetalburgCity_EventScript_BoyApproachPlayer1
 call_if_eq VAR_0x8008 2 PetalburgCity_EventScript_BoyApproachPlayer2
 call_if_eq VAR_0x8008 3 PetalburgCity_EventScript_BoyApproachPlayer3
-msgbox	Hiya! Bist du vielleicht… ein Anfänger-TRAINER?Weißt du, was POKéMON TRAINER machen, wenn sie eine neue Stadt erreichen?Sie schauen sich zuerst an, was für eine GYM es in der Stadt gibt.
+msgbox	Hiya! Are you maybe… A rookie TRAINER?Do you know what POKéMON TRAINERS do when they reach a new town?They first check what kind of GYM is in the town.
 closemessage
 call_if_eq VAR_0x8008 0 PetalburgCity_EventScript_LeadPlayerToGym0
 call_if_eq VAR_0x8008 1 PetalburgCity_EventScript_LeadPlayerToGym1
 call_if_eq VAR_0x8008 2 PetalburgCity_EventScript_LeadPlayerToGym2
 call_if_eq VAR_0x8008 3 PetalburgCity_EventScript_LeadPlayerToGym3
-msgbox	Siehst du? Das hier ist die GYM von PETALBURG CITY.
+msgbox	See? This is PETALBURG CITY's GYM.
 applymovement LOCALID_GYM_BOY Common_Movement_WalkInPlaceFasterRight
 applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterRight
 waitmovement 0
-msgbox	Das ist das Schild der GYM. Halt danach Ausschau, wann immer du eine GYM suchst.
+msgbox	This is the GYM's sign. Look for it whenever you're looking for a GYM.
 closemessage
 applymovement LOCALID_GYM_BOY PetalburgCity_Movement_BoyWalkAway
 waitmovement 0
@@ -383,7 +383,7 @@ setvar VAR_0x8008 0
 goto PetalburgCity_EventScript_ShowGymToPlayer
 end
 = PetalburgCity_EventScript_GymBoy
-msgbox	Hiya! Bist du vielleicht… ein Anfänger-TRAINER?Weißt du, was POKéMON TRAINER machen, wenn sie eine neue Stadt erreichen?Sie schauen sich zuerst an, was für eine GYM es in der Stadt gibt.
+msgbox	Hiya! Are you maybe… A rookie TRAINER?Do you know what POKéMON TRAINERS do when they reach a new town?They first check what kind of GYM is in the town.
 end
 = PetalburgCity_EventScript_ItemEther
 goto_if_set FLAG_ITEM_PETALBURG_CITY_ETHER PetalburgCity_EventScript_ItemEther_Taken
@@ -400,31 +400,30 @@ end
 = PetalburgCity_EventScript_ItemMaxRevive_Taken
 end
 = PetalburgCity_EventScript_Gentleman
-msgbox	Nehmen wir an, du hast sechs POKéMON. Wenn du dann noch eins fängst…Wird es automatisch über eine PC-Verbindung in eine STORAGE BOX geschickt.
+msgbox	Let's say you have six POKéMON. If you catch another one…It is automatically sent to a STORAGE BOX over a PC connection.
 end
 = PetalburgCity_EventScript_Boy
 lock
 faceplayer
-msgbox	Mein Gesicht spiegelt sich im Wasser.Es ist ein strahlendes Grinsen voller Hoffnung…Oder vielleicht ist es ein stiller, ernster Blick, der mit der Angst ringt…Was siehst du in deinem eigenen Gesicht widergespiegelt?
+msgbox	My face is reflected in the water.It's a shining grin full of hope…Or it could be a look of somber silence struggling with fear…What do you see reflected in your face?
 closemessage
 applymovement LOCALID_PETALBURG_BOY Common_Movement_FaceOriginalDirection
 waitmovement 0
 release
 end
 = PetalburgCity_EventScript_WallysMom
-msgbox	Wo ist bloß unser WALLY hin?Wir müssen ganz bald nach VERDANTURF TOWN aufbrechen…
+msgbox	Where has our WALLY gone?We have to leave for VERDANTURF TOWN very soon…
 end
 signs
-17 10	PETALBURG CITY POKéMON GYM LEADER: NORMAN – „Ein Mann auf der Suche nach Stärke!“
-17 16	PETALBURG CITY – „Wo Menschen mit der Natur verschmelzen.“
+17 10	PETALBURG CITY POKéMON GYM LEADER: NORMAN “A man in pursuit of power!”
+17 16	PETALBURG CITY “Where people mingle with nature.”
 8 9	WALLY'S HOUSE
-encounters
-water MARILL:20:30,MARILL:10:20,MARILL:30:35,MARILL:5:10,MARILL:5:10
-fishing MAGIKARP:5:10,GOLDEEN:5:10,MAGIKARP:10:30,GOLDEEN:10:30,CORPHISH:10:30,CORPHISH:25:30,CORPHISH:30:35,CORPHISH:20:25,CORPHISH:35:40,CORPHISH:40:45
 water
 161,176,177,178,184,186,192,194,510,511
-
 visit
 FLAG_VISITED_PETALBURG_CITY
 music
 MUS_PETALBURG
+encounters
+water MARILL:20:30,MARILL:10:20,MARILL:30:35,MARILL:5:10,MARILL:5:10
+fishing MAGIKARP:5:10,GOLDEEN:5:10,MAGIKARP:10:30,GOLDEEN:10:30,CORPHISH:10:30,CORPHISH:25:30,CORPHISH:30:35,CORPHISH:20:25,CORPHISH:35:40,CORPHISH:40:45

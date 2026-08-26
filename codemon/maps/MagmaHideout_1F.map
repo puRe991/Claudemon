@@ -84,12 +84,12 @@ warps
 31 3 MagmaHideout_2F_2R 1
 20 22 MagmaHideout_2F_3R 0
 npcs
-people_team_magma_magma_member_m 4 5 E static FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS
-misc_item_ball 3 20 S static FLAG_ITEM_MAGMA_HIDEOUT_1F_RARE_CANDY
-people_team_magma_magma_member_m 30 20 W static FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS
-misc_pushable_boulder 5 22 S static FLAG_TEMP_11
-misc_pushable_boulder 7 22 S static FLAG_TEMP_12
-misc_pushable_boulder 6 23 S static FLAG_TEMP_13
+people_team_magma_magma_member_m 4 5 E static FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS - 2
+misc_item_ball 3 20 S static FLAG_ITEM_MAGMA_HIDEOUT_1F_RARE_CANDY - 0
+people_team_magma_magma_member_m 30 20 W static FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS - 4
+misc_pushable_boulder 5 22 S static FLAG_TEMP_11 - 0
+misc_pushable_boulder 7 22 S static FLAG_TEMP_12 - 0
+misc_pushable_boulder 6 23 S static FLAG_TEMP_13 - 0
 dialogs
 0	Okay, I'll try to put a little more effort into things from now on…
 2	I won't tell you after all. You'll find out when you get there!It'd be better if you saved surprises to the end, don't you think?
@@ -108,7 +108,7 @@ goto_if_set FLAG_SYS_USE_STRENGTH EventScript_CheckActivatedBoulder
 checkpartymove MOVE_STRENGTH
 goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CantStrength
 setfieldeffectargument 0 VAR_RESULT
-msgbox	It's a big boulder, but a POKéMON may be able to push it aside.Would you like to use STRENGTH?
+msgboxyesno	It's a big boulder, but a POKéMON may be able to push it aside.Would you like to use STRENGTH?
 goto_if_eq VAR_RESULT NO EventScript_CancelStrength
 closemessage
 dofieldeffect FLDEFF_USE_STRENGTH
@@ -147,8 +147,7 @@ end
 trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_1 MagmaHideout_1F_Text_Grunt1Intro MagmaHideout_1F_Text_Grunt1Defeat
 msgbox	Okay, I'll try to put a little more effort into things from now on…
 end
-encounters
-land GEODUDE:27:27,TORKOAL:28:28,GEODUDE:28:28,TORKOAL:30:30,GEODUDE:29:29,GEODUDE:30:30,GEODUDE:30:30,GRAVELER:30:30,GRAVELER:30:30,GRAVELER:31:31,GRAVELER:32:32,GRAVELER:33:33
-
 music
 MUS_AQUA_MAGMA_HIDEOUT
+encounters
+land GEODUDE:27:27,TORKOAL:28:28,GEODUDE:28:28,TORKOAL:30:30,GEODUDE:29:29,GEODUDE:30:30,GEODUDE:30:30,GRAVELER:30:30,GRAVELER:30:30,GRAVELER:31:31,GRAVELER:32:32,GRAVELER:33:33

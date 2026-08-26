@@ -25,9 +25,9 @@ collision
 warps
 4 9 BattleFrontier_OutsideEast 10
 npcs
-people_ninja_boy 4 5 S wander 0
-people_man_3 8 7 W static 0
-people_woman_5 8 4 W static 0
+people_ninja_boy 4 5 S wander 0 - 0
+people_man_3 8 7 W static 0 - 0
+people_woman_5 8 4 W static 0 - 0
 dialogs
 0	At the BATTLE TOWER, an older girl told me that I have a lot of talent for battling!I like POKéMON CONTESTS more!But I'm no good at CONTESTS!I guess having talent and liking something aren't the same.
 1	What a TRAINER needs…Knowledge… Strategy… Luck… Guts… Spirit… Bravery… And ability…Well, I'm all set in every way! I'll be unstoppable at every building!Huh? POKéMON? What's that?
@@ -46,6 +46,5 @@ end
 = BattleFrontier_Lounge8_EventScript_NinjaBoy
 msgbox	At the BATTLE TOWER, an older girl told me that I have a lot of talent for battling!I like POKéMON CONTESTS more!But I'm no good at CONTESTS!I guess having talent and liking something aren't the same.
 end
-
 music
 MUS_B_TOWER_RS

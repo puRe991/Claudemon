@@ -166,15 +166,15 @@ connections
 up 0 Route124
 right 0 Route127
 npcs
-people_swimmer_m 51 65 S static 0
-people_swimmer_m 56 22 S static 0
-people_swimmer_f 63 43 S static 0
-people_swimmer_f 9 48 N static 0
-misc_item_ball 14 1 S static FLAG_ITEM_ROUTE_126_GREEN_SHARD
-people_swimmer_f 15 66 S static 0
-people_swimmer_m 7 66 S static 0
-people_swimmer_f 64 5 S static 0
-people_swimmer_m 56 5 S static 0
+people_swimmer_m 51 65 S static 0 - 3
+people_swimmer_m 56 22 S static 0 - 3
+people_swimmer_f 63 43 S static 0 - 3
+people_swimmer_f 9 48 N static 0 - 3
+misc_item_ball 14 1 S static FLAG_ITEM_ROUTE_126_GREEN_SHARD - 0
+people_swimmer_f 15 66 S static 0 - 7
+people_swimmer_m 7 66 S static 0 - 7
+people_swimmer_f 64 5 S static 0 - 7
+people_swimmer_m 56 5 S static 0 - 7
 objscripts
 0 Route126_EventScript_Barry
 1 Route126_EventScript_Dean
@@ -239,11 +239,10 @@ end
 trainerbattle_single TRAINER_BARRY Route126_Text_BarryIntro Route126_Text_BarryDefeat
 msgbox	Thanks to my daily swimming routine… Look! Feast your eyes on this physique!
 end
+water
+334,335,368,419,437,445,446,513,518,519,522,523,524,525,526,527,530,531,532,533,534,535,538,539,540,541,542,543,544,545,546,547,559,613,614,621,622,623,627,628,629,631,634,636,638,639,642,645,649,650,652,653,654,655,705,712,713,720,721,728,729,827,828,829
+music
+MUS_ROUTE120
 encounters
 water TENTACOOL:5:35,WINGULL:10:30,WINGULL:15:25,PELIPPER:25:30,PELIPPER:25:30
 fishing MAGIKARP:5:10,TENTACOOL:5:10,MAGIKARP:10:30,TENTACOOL:10:30,WAILMER:10:30,SHARPEDO:30:35,WAILMER:30:35,WAILMER:25:30,WAILMER:35:40,WAILMER:40:45
-water
-334,335,368,419,437,445,446,513,518,519,522,523,524,525,526,527,530,531,532,533,534,535,538,539,540,541,542,543,544,545,546,547,559,613,614,621,622,623,627,628,629,631,634,636,638,639,642,645,649,650,652,653,654,655,705,712,713,720,721,728,729,827,828,829
-
-music
-MUS_ROUTE120

@@ -101,28 +101,28 @@ warps
 12 32 LilycoveCity_Harbor 0
 12 5 LilycoveCity_LilycoveMuseum_1F 1
 npcs
-people_sailor 32 20 S wander 0
-people_girl_1 15 18 S wander 0
-people_man_1 28 28 S static 0
-people_rich_boy 21 15 S wander 0
-people_man_2 16 9 S wander 0
-people_woman_2 35 27 S wander 0
-people_expert_m 35 37 S static 0
-people_expert_f 34 37 S static 0
-people_expert_m 57 17 S static 0
-people_team_aqua_aqua_member_m 73 15 E static FLAG_HIDE_LILYCOVE_CITY_AQUA_GRUNTS
-misc_item_ball 61 36 S static FLAG_ITEM_LILYCOVE_CITY_MAX_REPEL
-people_team_aqua_aqua_member_m 43 18 S wander FLAG_HIDE_LILYCOVE_CITY_AQUA_GRUNTS
-people_team_aqua_aqua_member_m 46 12 W static FLAG_HIDE_LILYCOVE_CITY_AQUA_GRUNTS
-people_team_aqua_aqua_member_m 45 12 E static FLAG_HIDE_LILYCOVE_CITY_AQUA_GRUNTS
-people_team_aqua_aqua_member_m 38 9 W static FLAG_HIDE_LILYCOVE_CITY_AQUA_GRUNTS
-people_gentleman 50 7 S wander 0
-people_may_walking 27 7 S static FLAG_HIDE_LILYCOVE_CITY_RIVAL
-people_school_kid_m 16 23 E static 0
-people_woman_3 41 25 W static 0 LOCALID_LILYCOVE_WOMAN_1
-people_man_2 40 25 E static 0 LOCALID_LILYCOVE_MAN_1
-people_sailor 16 34 S static 0
-people_fat_man 16 35 N static 0
+people_sailor 32 20 S wander 0 - 0
+people_girl_1 15 18 S wander 0 - 0
+people_man_1 28 28 S static 0 - 0
+people_rich_boy 21 15 S wander 0 - 0
+people_man_2 16 9 S wander 0 - 0
+people_woman_2 35 27 S wander 0 - 0
+people_expert_m 35 37 S static 0 - 0
+people_expert_f 34 37 S static 0 - 0
+people_expert_m 57 17 S static 0 - 0
+people_team_aqua_aqua_member_m 73 15 E static FLAG_HIDE_LILYCOVE_CITY_AQUA_GRUNTS - 0
+misc_item_ball 61 36 S static FLAG_ITEM_LILYCOVE_CITY_MAX_REPEL - 0
+people_team_aqua_aqua_member_m 43 18 S wander FLAG_HIDE_LILYCOVE_CITY_AQUA_GRUNTS - 0
+people_team_aqua_aqua_member_m 46 12 W static FLAG_HIDE_LILYCOVE_CITY_AQUA_GRUNTS - 0
+people_team_aqua_aqua_member_m 45 12 E static FLAG_HIDE_LILYCOVE_CITY_AQUA_GRUNTS - 0
+people_team_aqua_aqua_member_m 38 9 W static FLAG_HIDE_LILYCOVE_CITY_AQUA_GRUNTS - 0
+people_gentleman 50 7 S wander 0 - 0
+people_may_walking 27 7 S static FLAG_HIDE_LILYCOVE_CITY_RIVAL - 0
+people_school_kid_m 16 23 E static 0 - 0
+people_woman_3 41 25 W static 0 LOCALID_LILYCOVE_WOMAN_1 0
+people_man_2 40 25 E static 0 LOCALID_LILYCOVE_MAN_1 0
+people_sailor 16 34 S static 0 - 0
+people_fat_man 16 35 N static 0 - 0
 dialogs
 0	TEAM AQUA's been training their WAILMER in the cove.We SAILORS can't get our boats out to sea with them in the way!
 1	Have you seen that strange cave in the cove at the edge of town?
@@ -487,13 +487,12 @@ signs
 6 30	LILYCOVE CITY HARBOR“The ferry S.S. TIDAL is under construction in SLATEPORT CITY.“Service is scheduled to begin shortly.”
 36 14	POKéMON TRAINER FAN CLUBThe names of TRAINERS are scribbled all over the sign…
 34 6	MOVE DELETER'S HOUSE“Unwanted POKéMON moves deleted.”
-encounters
-water TENTACOOL:5:35,WINGULL:10:30,WINGULL:15:25,PELIPPER:25:30,PELIPPER:25:30
-fishing MAGIKARP:5:10,TENTACOOL:5:10,MAGIKARP:10:30,TENTACOOL:10:30,WAILMER:10:30,WAILMER:25:30,WAILMER:30:35,STARYU:25:30,WAILMER:35:40,WAILMER:40:45
 water
 368,370,372,377,384,385,393,400,402,408,410,420,429,431,437,439,445,446,447,578,715
-
 visit
 FLAG_VISITED_LILYCOVE_CITY
 music
 MUS_LILYCOVE
+encounters
+water TENTACOOL:5:35,WINGULL:10:30,WINGULL:15:25,PELIPPER:25:30,PELIPPER:25:30
+fishing MAGIKARP:5:10,TENTACOOL:5:10,MAGIKARP:10:30,TENTACOOL:10:30,WAILMER:10:30,WAILMER:25:30,WAILMER:30:35,STARYU:25:30,WAILMER:35:40,WAILMER:40:45

@@ -22,21 +22,20 @@ warps
 3 7 OldaleTown 1
 4 7 OldaleTown 1
 npcs
-people_pokefan_f 4 4 E static 0
-people_school_kid_m 7 4 W static 0
+people_pokefan_f 4 4 E static 0 - 0
+people_school_kid_m 7 4 W static 0 - 0
 dialogs
-0	Wenn POKéMON kämpfen, steigen sie irgendwann im Level auf und werden stärker.
-1	Wenn deine POKéMON stärker werden, kannst du dich immer weiter von hier entfernen.
+0	When POKéMON battle, they eventually level up and become stronger.
+1	If the POKéMON with you become stronger, you'll be able to go farther away from here.
 objscripts
 0 OldaleTown_House2_EventScript_Woman
 1 OldaleTown_House2_EventScript_Man
 scriptdefs
 = OldaleTown_House2_EventScript_Man
-msgbox	Wenn deine POKéMON stärker werden, kannst du dich immer weiter von hier entfernen.
+msgbox	If the POKéMON with you become stronger, you'll be able to go farther away from here.
 end
 = OldaleTown_House2_EventScript_Woman
-msgbox	Wenn POKéMON kämpfen, steigen sie irgendwann im Level auf und werden stärker.
+msgbox	When POKéMON battle, they eventually level up and become stronger.
 end
-
 music
 MUS_OLDALE

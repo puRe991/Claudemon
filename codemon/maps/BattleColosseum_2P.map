@@ -24,7 +24,7 @@ warps
 6 8 - 0
 7 8 - 0
 npcs
-people_link_receptionist 9 3 W static 0
+people_link_receptionist 9 3 W static 0 - 0
 objscripts
 0 BattleColosseum_2P_EventScript_Attendant
 triggers
@@ -45,6 +45,5 @@ msgbox	Please take your place and start your battle.
 special Script_ClearHeldMovement
 closemessage
 end
-
 music
 MUS_EVER_GRANDE

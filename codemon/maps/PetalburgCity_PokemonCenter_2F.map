@@ -27,10 +27,10 @@ warps
 5 1 UnionRoom 0
 9 1 TradeCenter 0
 npcs
-people_teala 6 2 S static 0
-people_teala 2 2 S static 0
-people_teala 10 2 S static 0
-people_man_1 1 2 S static FLAG_HIDE_POKEMON_CENTER_2F_MYSTERY_GIFT_MAN
+people_teala 6 2 S static 0 - 0
+people_teala 2 2 S static 0 - 0
+people_teala 10 2 S static 0 - 0
+people_man_1 1 2 S static FLAG_HIDE_POKEMON_CENTER_2F_MYSTERY_GIFT_MAN - 0
 objscripts
 3 CableClub_EventScript_MysteryGiftMan
 scriptdefs
@@ -49,11 +49,11 @@ end
 checkitem ITEM_EON_TICKET
 goto_if_eq VAR_RESULT TRUE CableClub_EventScript_TryWonderCardScript
 goto_if_set FLAG_ENABLE_SHIP_SOUTHERN_ISLAND CableClub_EventScript_TryWonderCardScript
-msgbox	Danke, dass du das MYSTERY EVENT System nutzt.Du musst PLAYER sein. Hier ist ein Ticket für dich.
+msgbox	Thank you for using the MYSTERY EVENT System.You must be PLAYER. There is a ticket here for you.
 giveitem ITEM_EON_TICKET
 setflag FLAG_ENABLE_SHIP_SOUTHERN_ISLAND
 setvar VAR_DISTRIBUTE_EON_TICKET 0
-msgbox	Es sieht so aus, als wäre es für den Hafen von LILYCOVE CITY gedacht.Warum probierst du es nicht einfach aus und schaust, worum es geht?
+msgbox	It appears to be for use at the LILYCOVE CITY port.Why not give it a try and see what it is about?
 release
 end
 @ Unused?
@@ -62,8 +62,7 @@ goto CableClub_EventScript_MysteryGiftThankYou2
 msgbox	Thank you for accessing the MYSTERY GIFT System.
 release
 end
-counters
-725,726,727,736
-
 music
 MUS_POKE_CENTER
+counters
+725,726,727,736

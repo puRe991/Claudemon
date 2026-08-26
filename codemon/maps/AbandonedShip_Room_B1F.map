@@ -22,7 +22,7 @@ warps
 4 7 AbandonedShip_Corridors_B1F 5
 5 7 AbandonedShip_Corridors_B1F 5
 npcs
-misc_item_ball 4 4 S static FLAG_ITEM_ABANDONED_SHIP_ROOMS_B1F_TM_ICE_BEAM
+misc_item_ball 4 4 S static FLAG_ITEM_ABANDONED_SHIP_ROOMS_B1F_TM_ICE_BEAM - 0
 objscripts
 0 AbandonedShip_Room_B1F_EventScript_ItemTMIceBeam
 scriptdefs
@@ -33,6 +33,5 @@ setflag FLAG_ITEM_ABANDONED_SHIP_ROOMS_B1F_TM_ICE_BEAM
 end
 = AbandonedShip_Room_B1F_EventScript_ItemTMIceBeam_Taken
 end
-
 music
 MUS_ABANDONED_SHIP

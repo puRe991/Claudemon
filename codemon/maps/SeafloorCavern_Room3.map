@@ -41,15 +41,15 @@ warps
 9 13 SeafloorCavern_Room7 1
 4 15 SeafloorCavern_Room6 1
 npcs
-misc_pushable_boulder 13 10 S static FLAG_TEMP_12
-misc_pushable_boulder 11 10 S static FLAG_TEMP_14
-misc_pushable_boulder 12 9 S static FLAG_TEMP_15
-misc_pushable_boulder 12 7 S static FLAG_TEMP_16
-misc_pushable_boulder 11 8 S static FLAG_TEMP_17
-misc_pushable_boulder 12 11 S static FLAG_TEMP_18
-misc_pushable_boulder 13 8 S static FLAG_TEMP_19
-people_team_aqua_aqua_member_f 9 5 W static FLAG_HIDE_SEAFLOOR_CAVERN_AQUA_GRUNTS
-people_team_aqua_aqua_member_m 5 5 E static FLAG_HIDE_SEAFLOOR_CAVERN_AQUA_GRUNTS
+misc_pushable_boulder 13 10 S static FLAG_TEMP_12 - 0
+misc_pushable_boulder 11 10 S static FLAG_TEMP_14 - 0
+misc_pushable_boulder 12 9 S static FLAG_TEMP_15 - 0
+misc_pushable_boulder 12 7 S static FLAG_TEMP_16 - 0
+misc_pushable_boulder 11 8 S static FLAG_TEMP_17 - 0
+misc_pushable_boulder 12 11 S static FLAG_TEMP_18 - 0
+misc_pushable_boulder 13 8 S static FLAG_TEMP_19 - 0
+people_team_aqua_aqua_member_f 9 5 W static FLAG_HIDE_SEAFLOOR_CAVERN_AQUA_GRUNTS - 6
+people_team_aqua_aqua_member_m 5 5 E static FLAG_HIDE_SEAFLOOR_CAVERN_AQUA_GRUNTS - 4
 dialogs
 7	Ahahahaha! You're so darn strong.It's terribly disappointing that you're not a TEAM AQUA member.You could have enjoyed the fabulous world our BOSS has promised as one of us…
 8	You know, we don't dare question the motives of our leader.But here you are, just some punk, going up against our BOSS.Maybe… You must be something…
@@ -79,7 +79,7 @@ goto_if_set FLAG_SYS_USE_STRENGTH EventScript_CheckActivatedBoulder
 checkpartymove MOVE_STRENGTH
 goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CantStrength
 setfieldeffectargument 0 VAR_RESULT
-msgbox	It's a big boulder, but a POKéMON may be able to push it aside.Would you like to use STRENGTH?
+msgboxyesno	It's a big boulder, but a POKéMON may be able to push it aside.Would you like to use STRENGTH?
 goto_if_eq VAR_RESULT NO EventScript_CancelStrength
 closemessage
 dofieldeffect FLDEFF_USE_STRENGTH
@@ -103,8 +103,7 @@ end
 msgbox	STRENGTH made it possible to move boulders around.
 releaseall
 end
-encounters
-land ZUBAT:30:30,ZUBAT:31:31,ZUBAT:32:32,ZUBAT:33:33,ZUBAT:28:28,ZUBAT:29:29,ZUBAT:34:34,ZUBAT:35:35,GOLBAT:34:34,GOLBAT:35:35,GOLBAT:33:33,GOLBAT:36:36
-
 music
 MUS_MT_CHIMNEY
+encounters
+land ZUBAT:30:30,ZUBAT:31:31,ZUBAT:32:32,ZUBAT:33:33,ZUBAT:28:28,ZUBAT:29:29,ZUBAT:34:34,ZUBAT:35:35,GOLBAT:34:34,GOLBAT:35:35,GOLBAT:33:33,GOLBAT:36:36

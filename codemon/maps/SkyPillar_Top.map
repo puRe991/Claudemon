@@ -53,8 +53,8 @@ collision
 warps
 16 14 SkyPillar_5F 1
 npcs
-pokemon_rayquaza 14 7 S static FLAG_HIDE_SKY_PILLAR_TOP_RAYQUAZA LOCALID_RAYQUAZA_SLEEPING
-pokemon_rayquaza_still 14 6 S static FLAG_HIDE_SKY_PILLAR_TOP_RAYQUAZA_STILL
+pokemon_rayquaza 14 7 S static FLAG_HIDE_SKY_PILLAR_TOP_RAYQUAZA LOCALID_RAYQUAZA_SLEEPING 0
+pokemon_rayquaza_still 14 6 S static FLAG_HIDE_SKY_PILLAR_TOP_RAYQUAZA_STILL - 0
 objscripts
 1 SkyPillar_Top_EventScript_Rayquaza
 triggers
@@ -151,6 +151,5 @@ removeobject VAR_LAST_TALKED
 fadescreenswapbuffers FADE_FROM_BLACK
 releaseall
 end
-
 music
 MUS_MT_CHIMNEY

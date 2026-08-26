@@ -25,9 +25,9 @@ warps
 6 8 RustboroCity 6
 14 1 RustboroCity_DevonCorp_2F 0
 npcs
-people_devon_employee 2 6 S wander 0
-people_devon_employee 15 5 S wander 0 LOCALID_DEVON_CORP_STAIR_GUARD
-people_woman_3 5 3 S static 0
+people_devon_employee 2 6 S wander 0 - 0
+people_devon_employee 15 5 S wander 0 LOCALID_DEVON_CORP_STAIR_GUARD 0
+people_woman_3 5 3 S static 0 - 0
 dialogs
 0	Hey, those RUNNING SHOES! They're one of our products!It makes me happy when I see someone using something we made.
 1	I'm sorry, only authorized people are allowed to enter here.
@@ -90,8 +90,7 @@ end
 signs
 3 2	Prototypes and test products fill the glass display case.There's a panel with a description…“In addition to industrial products, DEVON now markets sundries and pharmaceuticals for better lifestyles.“Recently, DEVON has begun marketing tools for POKéMON TRAINERS, including POKé BALLS and POKéNAV systems.”
 8 2	Samples of rocks and metal are displayed in the glass case.There's a panel with some writing on it…“DEVON CORPORATION got its start as a producer of stones from quarries.“The company also produced iron from filings in the sand.“From that humble start as a producer of raw materials, DEVON developed.“DEVON is now a manufacturer of a wide range of industrial products.”
-counters
-910,911,924
-
 music
 MUS_RUSTBORO
+counters
+910,911,924

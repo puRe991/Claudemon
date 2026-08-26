@@ -49,35 +49,35 @@ right -10 LilycoveCity
 warps
 37 5 Route121_SafariZoneEntrance 2
 npcs
-people_woman_3 29 14 E static 0
-people_man_1 14 2 S static 0
-people_man_1 15 2 S static 0
-people_man_1 16 2 S static 0
-people_man_1 17 2 S static 0
-people_man_1 64 14 S static 0
-people_man_1 65 14 S static 0
-people_man_1 66 14 S static 0
-people_man_1 67 14 S static 0
-people_lass 39 9 S static 0
-people_lass 40 9 S static 0
-people_team_aqua_aqua_member_m 30 8 N static FLAG_HIDE_ROUTE_121_TEAM_AQUA_GRUNTS LOCALID_ROUTE121_GRUNT_1
-people_team_aqua_aqua_member_m 30 7 E static FLAG_HIDE_ROUTE_121_TEAM_AQUA_GRUNTS LOCALID_ROUTE121_GRUNT_2
-people_team_aqua_aqua_member_m 31 7 W static FLAG_HIDE_ROUTE_121_TEAM_AQUA_GRUNTS LOCALID_ROUTE121_GRUNT_3
-misc_cuttable_tree 32 5 S static FLAG_TEMP_11
-misc_cuttable_tree 65 4 S static FLAG_TEMP_12
-people_pokefan_f 63 5 W static 0
-people_gentleman 55 8 W static 0
-people_hex_maniac 11 11 N static 0
-people_beauty 22 5 S static 0
-misc_item_ball 55 10 S static FLAG_ITEM_ROUTE_121_CARBOS
-misc_cuttable_tree 26 12 S static FLAG_TEMP_13
-people_maniac 11 6 S static 0
-people_man_4 59 8 S static 0
-people_woman_2 59 13 N static 0
-people_man_3 65 9 S static 0
-people_woman_5 72 9 S static 0
-misc_item_ball 60 10 S static FLAG_ITEM_ROUTE_121_REVIVE
-misc_item_ball 38 13 S static FLAG_ITEM_ROUTE_121_ZINC
+people_woman_3 29 14 E static 0 - 0
+people_man_1 14 2 S static 0 - 0
+people_man_1 15 2 S static 0 - 0
+people_man_1 16 2 S static 0 - 0
+people_man_1 17 2 S static 0 - 0
+people_man_1 64 14 S static 0 - 0
+people_man_1 65 14 S static 0 - 0
+people_man_1 66 14 S static 0 - 0
+people_man_1 67 14 S static 0 - 0
+people_lass 39 9 S static 0 - 1
+people_lass 40 9 S static 0 - 1
+people_team_aqua_aqua_member_m 30 8 N static FLAG_HIDE_ROUTE_121_TEAM_AQUA_GRUNTS LOCALID_ROUTE121_GRUNT_1 0
+people_team_aqua_aqua_member_m 30 7 E static FLAG_HIDE_ROUTE_121_TEAM_AQUA_GRUNTS LOCALID_ROUTE121_GRUNT_2 0
+people_team_aqua_aqua_member_m 31 7 W static FLAG_HIDE_ROUTE_121_TEAM_AQUA_GRUNTS LOCALID_ROUTE121_GRUNT_3 0
+misc_cuttable_tree 32 5 S static FLAG_TEMP_11 - 0
+misc_cuttable_tree 65 4 S static FLAG_TEMP_12 - 0
+people_pokefan_f 63 5 W static 0 - 4
+people_gentleman 55 8 W static 0 - 3
+people_hex_maniac 11 11 N static 0 - 4
+people_beauty 22 5 S static 0 - 4
+misc_item_ball 55 10 S static FLAG_ITEM_ROUTE_121_CARBOS - 0
+misc_cuttable_tree 26 12 S static FLAG_TEMP_13 - 0
+people_maniac 11 6 S static 0 - 3
+people_man_4 59 8 S static 0 - 4
+people_woman_2 59 13 N static 0 - 4
+people_man_3 65 9 S static 0 - 6
+people_woman_5 72 9 S static 0 - 6
+misc_item_ball 60 10 S static FLAG_ITEM_ROUTE_121_REVIVE - 0
+misc_item_ball 38 13 S static FLAG_ITEM_ROUTE_121_ZINC - 0
 dialogs
 0	Ahead looms MT. PYRE…It is a natural monument to the spirits of departed POKéMON…
 objscripts
@@ -225,9 +225,9 @@ goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CheckTreeCantCut
 setfieldeffectargument 0 VAR_RESULT
 bufferpartymonnick STR_VAR_1 VAR_RESULT
 buffermovename STR_VAR_2 MOVE_CUT
-msgboxyesno	Dieser Baum sieht so aus, als könnte man ihn mit ZERSCHNEIDER fällen! Möchtest du ZERSCHNEIDER einsetzen?
+msgboxyesno	This tree looks like it can be CUT down!Would you like to CUT it?
 goto_if_eq VAR_RESULT NO EventScript_CancelCut
-msgbox	STR_VAR_1 setzt STR_VAR_2 ein!
+msgbox	STR_VAR_1 used STR_VAR_2!
 closemessage
 dofieldeffect FLDEFF_USE_CUT_ON_TREE
 waitstate
@@ -252,7 +252,7 @@ closemessage
 releaseall
 end
 = EventScript_CheckTreeCantCut
-msgbox	Dieser Baum sieht so aus, als könnte man ihn mit ZERSCHNEIDER fällen!
+msgbox	This tree looks like it can be CUT down!
 releaseall
 end
 = Route121_EventScript_ItemCarbos
@@ -330,7 +330,7 @@ buffernumberstring STR_VAR_2 VAR_0x8006
 lock
 faceplayer
 special ObjectEventInteractionGetBerryCountString
-msgbox	You found STR_VAR_2 STR_VAR_1!Do you want to pick the STR_VAR_1?
+msgboxyesno	You found STR_VAR_2 STR_VAR_1!Do you want to pick the STR_VAR_1?
 goto_if_eq VAR_RESULT YES BerryTree_EventScript_PickBerry
 goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPickingBerry
 goto BerryTree_EventScript_PickBerry
@@ -389,7 +389,7 @@ goto BerryTree_EventScript_CheckBerryFullyGrown
 checkitem ITEM_WAILMER_PAIL
 goto_if_eq VAR_RESULT FALSE BerryTree_EventScript_DontWater
 special ObjectEventInteractionGetBerryName
-msgbox	Want to water the STR_VAR_1 with the WAILMER PAIL?
+msgboxyesno	Want to water the STR_VAR_1 with the WAILMER PAIL?
 goto_if_eq VAR_RESULT YES BerryTree_EventScript_WaterBerry
 goto_if_eq VAR_RESULT NO BerryTree_EventScript_DontWater
 goto BerryTree_EventScript_DontWater
@@ -439,7 +439,7 @@ waitbuttonpress
 release
 end
 = BerryTree_EventScript_WantToPlant
-msgbox	It's soft, loamy soil. Want to plant a BERRY?
+msgboxyesno	It's soft, loamy soil. Want to plant a BERRY?
 goto_if_eq VAR_RESULT YES BerryTree_EventScript_ChooseBerryToPlant
 goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPlanting
 end
@@ -478,12 +478,11 @@ signs
 39 6	“Filled with rare POKéMON!” SAFARI ZONE
 grass
 13,454,455
+water
+368,384,385,393,400,402,408,410
+music
+MUS_ROUTE120
 encounters
 land POOCHYENA:26:26,SHUPPET:26:26,MIGHTYENA:26:26,SHUPPET:28:28,MIGHTYENA:28:28,ODDISH:26:26,ODDISH:28:28,GLOOM:28:28,WINGULL:26:26,WINGULL:27:27,WINGULL:28:28,KECLEON:25:25
 water TENTACOOL:5:35,WINGULL:10:30,WINGULL:15:25,PELIPPER:25:30,PELIPPER:25:30
 fishing MAGIKARP:5:10,TENTACOOL:5:10,MAGIKARP:10:30,TENTACOOL:10:30,WAILMER:10:30,WAILMER:25:30,WAILMER:30:35,WAILMER:20:25,WAILMER:35:40,WAILMER:40:45
-water
-368,384,385,393,400,402,408,410
-
-music
-MUS_ROUTE120

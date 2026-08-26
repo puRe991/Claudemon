@@ -23,8 +23,8 @@ warps
 7 7 RustboroCity 1
 2 1 RustboroCity_Flat1_2F 0
 npcs
-people_man_3 9 4 E static 0
-people_woman_5 12 4 W static 0
+people_man_3 9 4 E static 0 - 0
+people_woman_5 12 4 W static 0 - 0
 dialogs
 0	Every POKéMON has a special ability that it can use.
 1	POKéMON are such strange creatures.
@@ -38,6 +38,5 @@ end
 = RustboroCity_Flat1_1F_EventScript_Man
 msgbox	Every POKéMON has a special ability that it can use.
 end
-
 music
 MUS_RUSTBORO

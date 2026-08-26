@@ -28,7 +28,7 @@ warps
 11 9 - 0
 10 9 - 0
 npcs
-people_link_receptionist 10 5 S static 0
+people_link_receptionist 10 5 S static 0 - 0
 objscripts
 0 RecordCorner_EventScript_Attendant
 triggers
@@ -44,7 +44,7 @@ goto_if_ne VAR_TEMP_RECORD_MIX_GIFT_ITEM ITEM_NONE RecordCorner_EventScript_Rece
 end
 = RecordCorner_EventScript_ReceivedGiftItem
 bufferitemname STR_VAR_2 VAR_TEMP_RECORD_MIX_GIFT_ITEM
-msgbox	sent over one .
+msgbox	STR_VAR_1 sent over one STR_VAR_2.
 waitmessage
 waitbuttonpress
 releaseall
@@ -81,8 +81,7 @@ waitbuttonpress
 special Script_ClearHeldMovement
 closemessage
 end
-counters
-704,707,713,714
-
 music
 MUS_EVER_GRANDE
+counters
+704,707,713,714

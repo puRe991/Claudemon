@@ -49,8 +49,8 @@ collision
 1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 npcs
-people_hiker 17 11 S static 0 LOCALID_PYRAMID_TOP_ATTENDANT
-people_man_1 17 7 N static 0 LOCALID_BRANDON
+people_hiker 17 11 S static 0 LOCALID_PYRAMID_TOP_ATTENDANT 0
+people_frontier_brains_brandon 17 7 N static 0 LOCALID_BRANDON 0
 dialogs
 0	It is a delight to see you here! You have reached the summit of the BATTLE PYRAMID!Above here is the PYRAMID's lookout point.It is a place open only to those who have conquered the PYRAMID.Now, please! Up you go!
 objscripts

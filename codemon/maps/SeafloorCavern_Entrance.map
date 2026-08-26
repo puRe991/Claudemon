@@ -46,7 +46,7 @@ warps
 10 18 Underwater_Route128 0
 10 1 SeafloorCavern_Room1 0
 npcs
-people_team_aqua_aqua_member_m 10 2 N static FLAG_HIDE_SEAFLOOR_CAVERN_ENTRANCE_AQUA_GRUNT LOCALID_SEAFLOOR_CAVERN_ENTRANCE_GRUNT
+people_team_aqua_aqua_member_m 10 2 N static FLAG_HIDE_SEAFLOOR_CAVERN_ENTRANCE_AQUA_GRUNT LOCALID_SEAFLOOR_CAVERN_ENTRANCE_GRUNT 0
 dialogs
 0	Hey! I remember your face!If you're here, it must mean that you're about to mess with us again!A punk like you, do you really think you can take on TEAM AQUA?I'd say you're too early by about a trillion years!You're a perfect fit for the likes of TEAM MAGMA!Speaking of TEAM MAGMA, I hear they were spotted near MOSSDEEP.That bunch of goons, they sure don't look good near the sea!
 objscripts
@@ -103,11 +103,10 @@ applymovement LOCALID_SEAFLOOR_CAVERN_ENTRANCE_GRUNT Common_Movement_WalkInPlace
 waitmovement 0
 releaseall
 end
+water
+342,368,419,420,437,439,445,446,447,660
+music
+MUS_MT_CHIMNEY
 encounters
 water TENTACOOL:5:35,ZUBAT:5:35,ZUBAT:30:35,GOLBAT:30:35,GOLBAT:30:35
 fishing MAGIKARP:5:10,TENTACOOL:5:10,MAGIKARP:10:30,TENTACOOL:10:30,WAILMER:10:30,WAILMER:25:30,WAILMER:30:35,WAILMER:20:25,WAILMER:35:40,WAILMER:40:45
-water
-342,368,419,420,437,439,445,446,447,660
-
-music
-MUS_MT_CHIMNEY

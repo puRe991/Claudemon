@@ -24,7 +24,7 @@ warps
 3 8 Route124 0
 4 8 Route124 0
 npcs
-people_man_5 5 4 W static 0
+people_man_5 5 4 W static 0 - 0
 dialogs
 0	I'm the DIVING TREASURE HUNTER!I'm the awesome dude who makes deep-sea dives to gather treasures resting at the bottom.
 objscripts
@@ -88,7 +88,7 @@ goto Route124_DivingTreasureHuntersHouse_EventScript_TryTradeShard
 = Route124_DivingTreasureHuntersHouse_EventScript_TryTradeShard
 bufferitemname STR_VAR_1 VAR_0x8008
 bufferitemname STR_VAR_2 VAR_0x8009
-msgboxyesno	You'll trade your for my , then?
+msgboxyesno	You'll trade your STR_VAR_1 for my STR_VAR_2, then?
 goto_if_eq VAR_RESULT NO Route124_DivingTreasureHuntersHouse_EventScript_DeclineTrade
 checkitemspace VAR_0x8009
 goto_if_eq VAR_RESULT TRUE Route124_DivingTreasureHuntersHouse_EventScript_TradeShard
@@ -270,6 +270,5 @@ goto Route124_DivingTreasureHuntersHouse_EventScript_CheckPlayerHasShard
 end
 signs
 7 1	Wanted itemTrade item RED SHARDFIRE STONEWanted itemTrade item YELLOW SHARDTHUNDERSTONEWanted itemTrade item BLUE SHARDWATER STONEWanted itemTrade item GREEN SHARDLEAF STONE
-
 music
 MUS_LILYCOVE

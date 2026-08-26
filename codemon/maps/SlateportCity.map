@@ -139,41 +139,41 @@ warps
 40 7 SlateportCity_Harbor 2
 21 44 SlateportCity_House 0
 npcs
-people_fat_man 21 11 S wander 0 LOCALID_SLATEPORT_FAT_MAN
-people_man_1 34 29 S wander 0 LOCALID_SLATEPORT_MAN_1
-people_rich_boy 5 13 S wander 0 LOCALID_SLATEPORT_RICH_BOY
-people_woman_4 26 29 S static 0
-people_team_aqua_aqua_member_f 31 27 N static FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA LOCALID_SLATEPORT_GRUNT_1
-people_cook 5 43 S static 0 LOCALID_SLATEPORT_COOK
-people_old_woman 20 37 S static 0 LOCALID_SLATEPORT_OLD_WOMAN
-people_girl_1 8 42 S wander 0 LOCALID_SLATEPORT_GIRL
-people_cameraman 29 13 W static FLAG_HIDE_SLATEPORT_CITY_GABBY_AND_TY LOCALID_SLATEPORT_TY
-people_reporter_f 28 14 N static FLAG_HIDE_SLATEPORT_CITY_GABBY_AND_TY LOCALID_SLATEPORT_GABBY
-people_scientist_1 28 13 E static FLAG_HIDE_SLATEPORT_CITY_CAPTAIN_STERN LOCALID_SLATEPORT_CAPT_STERN
-people_sailor 37 41 E static 0
-people_sailor 28 46 S wander 0
-people_pokefan_f 9 50 S wander 0
-people_man_3 16 46 S wander 0
-people_maniac 8 24 S wander 0
-people_woman_5 15 31 S static 0
-people_team_aqua_aqua_member_m 30 27 E static FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA LOCALID_SLATEPORT_GRUNT_2
-people_team_aqua_aqua_member_m 29 27 E static FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA LOCALID_SLATEPORT_GRUNT_3
-people_mart_employee 6 38 E static 0
-people_mart_employee 5 51 S static 0
-people_man_5 34 51 S static 0
-people_woman_5 4 47 S static 0
-people_mart_employee 11 47 S static FLAG_HIDE_SLATEPORT_CITY_TM_SALESMAN
-people_pokefan_m 5 47 S static 0 LOCALID_SLATEPORT_ENERGY_GURU
-people_team_aqua_aqua_member_m 22 27 E static FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA LOCALID_SLATEPORT_GRUNT_4
-people_team_aqua_aqua_member_m 23 27 N static FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA LOCALID_SLATEPORT_GRUNT_5
-people_team_aqua_aqua_member_m 24 27 E static FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA LOCALID_SLATEPORT_GRUNT_6
-people_team_aqua_aqua_member_m 21 26 E static FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA LOCALID_SLATEPORT_GRUNT_7
-people_team_aqua_aqua_member_m 20 26 E static FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA LOCALID_SLATEPORT_GRUNT_8
-people_team_aqua_aqua_member_m 26 27 N static FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA LOCALID_SLATEPORT_GRUNT_9
-people_team_aqua_aqua_member_m 28 27 N static FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA
-people_team_aqua_aqua_member_m 25 27 N static FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA LOCALID_SLATEPORT_GRUNT_11
-people_pokefan_f 11 37 W static 0
-people_scott 10 12 S static FLAG_HIDE_SLATEPORT_CITY_SCOTT LOCALID_SLATEPORT_SCOTT
+people_fat_man 21 11 S wander 0 LOCALID_SLATEPORT_FAT_MAN 0
+people_man_1 34 29 S wander 0 LOCALID_SLATEPORT_MAN_1 0
+people_rich_boy 5 13 S wander 0 LOCALID_SLATEPORT_RICH_BOY 0
+people_woman_4 26 29 S static 0 - 0
+people_team_aqua_aqua_member_f 31 27 N static FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA LOCALID_SLATEPORT_GRUNT_1 0
+people_cook 5 43 S static 0 LOCALID_SLATEPORT_COOK 0
+people_old_woman 20 37 S static 0 LOCALID_SLATEPORT_OLD_WOMAN 0
+people_girl_1 8 42 S wander 0 LOCALID_SLATEPORT_GIRL 0
+people_cameraman 29 13 W static FLAG_HIDE_SLATEPORT_CITY_GABBY_AND_TY LOCALID_SLATEPORT_TY 0
+people_reporter_f 28 14 N static FLAG_HIDE_SLATEPORT_CITY_GABBY_AND_TY LOCALID_SLATEPORT_GABBY 0
+people_scientist_1 28 13 E static FLAG_HIDE_SLATEPORT_CITY_CAPTAIN_STERN LOCALID_SLATEPORT_CAPT_STERN 0
+people_sailor 37 41 E static 0 - 0
+people_sailor 28 46 S wander 0 - 0
+people_pokefan_f 9 50 S wander 0 - 0
+people_man_3 16 46 S wander 0 - 0
+people_maniac 8 24 S wander 0 - 0
+people_woman_5 15 31 S static 0 - 0
+people_team_aqua_aqua_member_m 30 27 E static FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA LOCALID_SLATEPORT_GRUNT_2 0
+people_team_aqua_aqua_member_m 29 27 E static FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA LOCALID_SLATEPORT_GRUNT_3 0
+people_mart_employee 6 38 E static 0 - 0
+people_mart_employee 5 51 S static 0 - 0
+people_man_5 34 51 S static 0 - 0
+people_woman_5 4 47 S static 0 - 0
+people_mart_employee 11 47 S static FLAG_HIDE_SLATEPORT_CITY_TM_SALESMAN - 0
+people_pokefan_m 5 47 S static 0 LOCALID_SLATEPORT_ENERGY_GURU 0
+people_team_aqua_aqua_member_m 22 27 E static FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA LOCALID_SLATEPORT_GRUNT_4 0
+people_team_aqua_aqua_member_m 23 27 N static FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA LOCALID_SLATEPORT_GRUNT_5 0
+people_team_aqua_aqua_member_m 24 27 E static FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA LOCALID_SLATEPORT_GRUNT_6 0
+people_team_aqua_aqua_member_m 21 26 E static FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA LOCALID_SLATEPORT_GRUNT_7 0
+people_team_aqua_aqua_member_m 20 26 E static FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA LOCALID_SLATEPORT_GRUNT_8 0
+people_team_aqua_aqua_member_m 26 27 N static FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA LOCALID_SLATEPORT_GRUNT_9 0
+people_team_aqua_aqua_member_m 28 27 N static FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA - 0
+people_team_aqua_aqua_member_m 25 27 N static FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA LOCALID_SLATEPORT_GRUNT_11 0
+people_pokefan_f 11 37 W static 0 - 0
+people_scott 10 12 S static FLAG_HIDE_SLATEPORT_CITY_SCOTT LOCALID_SLATEPORT_SCOTT 0
 dialogs
 0	Whew… I'm just bushed…I hiked over from MAUVILLE CITY. But, boy, this city's huge.If I'd known this, I would've ridden my BIKE here.
 1	STERN, the fellow who built the MUSEUM, also happens to be the leader of an undersea exploration team.So, everyone calls him CAPT. STERN.
@@ -195,7 +195,7 @@ dialogs
 17	TEAM AQUA has a policy of assembling and dispersing at the operation site.
 18	Our BOSS is brilliant.What would he want to do with a MUSEUM now?
 21	The light of the lighthouse reaches dozens of miles away.I wonder if it doesn't startle POKéMON in the sea.
-22	Oh? Your …
+22	Oh? Your STR_VAR_1…
 25	What's the new scheme, I wonder?Our BOSS is scary when he's mad, so I'd better not screw things up…
 26	If there's something we need in the MUSEUM, we should take it all!
 27	Hey, you there! Don't butt in!
@@ -384,7 +384,7 @@ setvar VAR_0x8009 3000
 goto SlateportCity_EventScript_TryBuyBerryPowderItem
 end
 = SlateportCity_EventScript_TryBuyBerryPowderItem
-msgboxyesno	Okay, you want to exchange your BERRY POWDER for one ?
+msgboxyesno	Okay, you want to exchange your BERRY POWDER for one STR_VAR_1?
 goto_if_eq VAR_RESULT NO SlateportCity_EventScript_ChooseBerryPowderItem
 copyvar VAR_0x8004 VAR_0x8009
 specialvar VAR_RESULT HasEnoughBerryPowder
@@ -584,7 +584,7 @@ end
 lock
 faceplayer
 bufferleadmonspeciesname STR_VAR_1
-msgbox	Oh? Your …
+msgbox	Oh? Your STR_VAR_1…
 specialvar VAR_RESULT LeadMonHasEffortRibbon
 call_if_eq VAR_RESULT TRUE SlateportCity_EventScript_MonHasEffortRibbon
 specialvar VAR_RESULT Special_AreLeadMonEVsMaxedOut
@@ -593,7 +593,7 @@ msgbox	Went for it stupendously!As its reward, please give it this EFFORT RIBBO
 playfanfare MUS_OBTAIN_ITEM
 msgbox	PLAYER received the EFFORT RIBBON.
 waitfanfare
-msgbox	PLAYER put the EFFORT RIBBON on .
+msgbox	PLAYER put the EFFORT RIBBON on STR_VAR_1.
 special GiveLeadMonEffortRibbon
 release
 end
@@ -602,7 +602,7 @@ msgbox	You have to go for it a little harder.If you do, I'll give your POKéMON
 release
 end
 = SlateportCity_EventScript_MonHasEffortRibbon
-msgbox	Oh! Your , that EFFORT RIBBON looks good on it!
+msgbox	Oh! Your STR_VAR_1, that EFFORT RIBBON looks good on it!
 release
 end
 = SlateportCity_EventScript_Man3
@@ -835,13 +835,12 @@ signs
 8 26	POKéMON FAN CLUB “Calling all fans of POKéMON!”
 7 13	BATTLE TENT SLATEPORT SITE “Find it! The ultimate POKéMON!”
 23 38	STERN'S SHIPYARD“Wanted: A sailor capable of sailing in all currents.”
-encounters
-water TENTACOOL:5:35,WINGULL:10:30,WINGULL:15:25,PELIPPER:25:30,PELIPPER:25:30
-fishing MAGIKARP:5:10,TENTACOOL:5:10,MAGIKARP:10:30,TENTACOOL:10:30,WAILMER:10:30,WAILMER:25:30,WAILMER:30:35,WAILMER:20:25,WAILMER:35:40,WAILMER:40:45
 water
 285,291,293,299,300,301,325,326,368,376,377,392,393,394,400,402,408,410
-
 visit
 FLAG_VISITED_SLATEPORT_CITY
 music
 MUS_SLATEPORT
+encounters
+water TENTACOOL:5:35,WINGULL:10:30,WINGULL:15:25,PELIPPER:25:30,PELIPPER:25:30
+fishing MAGIKARP:5:10,TENTACOOL:5:10,MAGIKARP:10:30,TENTACOOL:10:30,WAILMER:10:30,WAILMER:25:30,WAILMER:30:35,WAILMER:20:25,WAILMER:35:40,WAILMER:40:45

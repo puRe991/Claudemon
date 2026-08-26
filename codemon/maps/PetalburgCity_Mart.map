@@ -22,14 +22,14 @@ warps
 3 7 PetalburgCity 5
 4 7 PetalburgCity 5
 npcs
-people_mart_employee 1 3 E static 0 LOCALID_PETALBURG_MART_CLERK
-people_man_1 9 4 E static 0
-people_boy_1 6 3 S static 0
-people_woman_2 5 5 E static 0
+people_mart_employee 1 3 E static 0 LOCALID_PETALBURG_MART_CLERK 0
+people_man_1 9 4 E static 0 - 0
+people_boy_1 6 3 S static 0 - 0
+people_woman_2 5 5 E static 0 - 0
 dialogs
-1	Hast du ein paar ANTIDOTES dabei?Wenn du mit einem vergifteten POKéMON herumläufst, verliert es so lange HP, bis es besiegt wird. Nimm ein paar ANTIDOTES mit.
-2	Benutzt du REPEL? Es hält POKéMON fern, also nützlich, wenn du es eilig hast.
-3	Auch wenn ein POKéMON jetzt schwach ist, wird es stärker werden.Das Wichtigste ist Liebe! Liebe zu deinem POKéMON!
+1	Do you have any ANTIDOTES with you?If you walk around with a poisoned POKéMON, it will lose HP until it faints. Take some ANTIDOTES with you.
+2	Do you use REPEL? It keeps POKéMON away, so it's useful when you're in a hurry.
+3	Even if a POKéMON is weak now, it will grow stronger.The most important thing is love! Love for your POKéMON!
 objscripts
 0 PetalburgCity_Mart_EventScript_Clerk
 1 PetalburgCity_Mart_EventScript_Man
@@ -40,31 +40,30 @@ PetalburgCity_Mart_Pokemart_Basic	ITEM_POKE_BALL,ITEM_POTION,ITEM_ANTIDOTE,ITEM_
 PetalburgCity_Mart_Pokemart_Expanded	ITEM_POKE_BALL,ITEM_GREAT_BALL,ITEM_POTION,ITEM_SUPER_POTION,ITEM_ANTIDOTE,ITEM_PARALYZE_HEAL,ITEM_AWAKENING,ITEM_ESCAPE_ROPE,ITEM_REPEL,ITEM_X_SPEED,ITEM_X_ATTACK,ITEM_X_DEFEND,ITEM_ORANGE_MAIL
 scriptdefs
 = PetalburgCity_Mart_EventScript_Woman
-msgbox	Auch wenn ein POKéMON jetzt schwach ist, wird es stärker werden.Das Wichtigste ist Liebe! Liebe zu deinem POKéMON!
+msgbox	Even if a POKéMON is weak now, it will grow stronger.The most important thing is love! Love for your POKéMON!
 end
 = PetalburgCity_Mart_EventScript_Boy
-msgbox	Benutzt du REPEL? Es hält POKéMON fern, also nützlich, wenn du es eilig hast.
+msgbox	Do you use REPEL? It keeps POKéMON away, so it's useful when you're in a hurry.
 end
 = PetalburgCity_Mart_EventScript_Man
-msgbox	Hast du ein paar ANTIDOTES dabei?Wenn du mit einem vergifteten POKéMON herumläufst, verliert es so lange HP, bis es besiegt wird. Nimm ein paar ANTIDOTES mit.
+msgbox	Do you have any ANTIDOTES with you?If you walk around with a poisoned POKéMON, it will lose HP until it faints. Take some ANTIDOTES with you.
 end
 = PetalburgCity_Mart_EventScript_Clerk
 lock
 faceplayer
-msgbox	Willkommen!Wie kann ich dir helfen?
+msgbox	Welcome!How may I serve you?
 waitmessage
 goto_if_set FLAG_PETALBURG_MART_EXPANDED_ITEMS PetalburgCity_Mart_EventScript_ExpandedItems
 pokemart PetalburgCity_Mart_Pokemart_Basic
-msgbox	Bitte komm wieder!
+msgbox	Please come again!
 release
 end
 = PetalburgCity_Mart_EventScript_ExpandedItems
 pokemart PetalburgCity_Mart_Pokemart_Expanded
-msgbox	Bitte komm wieder!
+msgbox	Please come again!
 release
 end
-counters
-562,570,577
-
 music
 MUS_POKE_MART
+counters
+562,570,577

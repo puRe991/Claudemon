@@ -24,9 +24,9 @@ warps
 3 8 SafariZone_Southwest 0
 4 8 SafariZone_Southwest 0
 npcs
-people_youngster 7 4 E static 0
-people_psychic_m 8 4 W static 0
-people_fat_man 2 5 E static 0
+people_youngster 7 4 E static 0 - 0
+people_psychic_m 8 4 W static 0 - 0
+people_fat_man 2 5 E static 0 - 0
 objscripts
 0 SafariZone_RestHouse_EventScript_Youngster
 1 SafariZone_RestHouse_EventScript_PsychicM
@@ -41,6 +41,5 @@ end
 = SafariZone_RestHouse_EventScript_Youngster
 msgbox	I don't have any S, but I caught a good number of POKéMON.You can improve your chances of making a catch by getting closer to them before throwing a SAFARI BALL.
 end
-
 music
 MUS_SAFARI_ZONE

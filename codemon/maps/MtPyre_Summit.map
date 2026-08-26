@@ -81,14 +81,14 @@ warps
 23 31 MtPyre_Exterior 1
 24 31 MtPyre_Exterior 1
 npcs
-people_old_man 22 5 S static 0
-people_team_aqua_archie 23 6 N static FLAG_HIDE_MT_PYRE_SUMMIT_ARCHIE
-people_expert_f 23 5 S static 0 LOCALID_MT_PYRE_SUMMIT_OLD_LADY
-people_team_aqua_aqua_member_m 21 15 E static FLAG_HIDE_MT_PYRE_SUMMIT_TEAM_AQUA LOCALID_MT_PYRE_SUMMIT_GRUNT_1
-people_team_aqua_aqua_member_m 25 18 W static FLAG_HIDE_MT_PYRE_SUMMIT_TEAM_AQUA LOCALID_MT_PYRE_SUMMIT_GRUNT_2
-people_team_aqua_aqua_member_m 21 11 E static FLAG_HIDE_MT_PYRE_SUMMIT_TEAM_AQUA LOCALID_MT_PYRE_SUMMIT_GRUNT_3
-people_team_aqua_aqua_member_f 25 11 W static FLAG_HIDE_MT_PYRE_SUMMIT_TEAM_AQUA LOCALID_MT_PYRE_SUMMIT_GRUNT_4
-people_team_magma_maxie 23 6 N static FLAG_HIDE_MT_PYRE_SUMMIT_MAXIE
+people_old_man 22 5 S static 0 - 0
+people_team_aqua_archie 23 6 N static FLAG_HIDE_MT_PYRE_SUMMIT_ARCHIE LOCALID_MT_PYRE_SUMMIT_ARCHIE 0
+people_expert_f 23 5 S static 0 LOCALID_MT_PYRE_SUMMIT_OLD_LADY 0
+people_team_aqua_aqua_member_m 21 15 E static FLAG_HIDE_MT_PYRE_SUMMIT_TEAM_AQUA LOCALID_MT_PYRE_SUMMIT_GRUNT_1 3
+people_team_aqua_aqua_member_m 25 18 W static FLAG_HIDE_MT_PYRE_SUMMIT_TEAM_AQUA LOCALID_MT_PYRE_SUMMIT_GRUNT_2 3
+people_team_aqua_aqua_member_m 21 11 E static FLAG_HIDE_MT_PYRE_SUMMIT_TEAM_AQUA LOCALID_MT_PYRE_SUMMIT_GRUNT_3 3
+people_team_aqua_aqua_member_f 25 11 W static FLAG_HIDE_MT_PYRE_SUMMIT_TEAM_AQUA LOCALID_MT_PYRE_SUMMIT_GRUNT_4 3
+people_team_magma_maxie 23 6 N static FLAG_HIDE_MT_PYRE_SUMMIT_MAXIE LOCALID_MT_PYRE_SUMMIT_MAXIE 0
 dialogs
 0	MT. PYRE is where we calm the spirits of POKéMON that have passed on…This is a high place where one can see all of HOENN…The disembodied spirits of POKéMON must find solace here…Is it coincidence that you are here…Will you hear out my tale? A tale long told in the HOENN region?
 2	The BLUE ORB and RED ORB taken by those sinister men…They must never be apart… I fear something terrible will happen…
@@ -397,10 +397,9 @@ msgbox	It happened long, long ago…The world was wracked by a ferocious clash 
 return
 grass
 13
-encounters
-land SHUPPET:28:28,SHUPPET:29:29,SHUPPET:27:27,SHUPPET:26:26,SHUPPET:30:30,SHUPPET:25:25,SHUPPET:24:24,DUSKULL:28:28,DUSKULL:26:26,DUSKULL:30:30,CHIMECHO:28:28,CHIMECHO:28:28
 water
 161,833,834,835
-
 music
 MUS_MT_PYRE_EXTERIOR
+encounters
+land SHUPPET:28:28,SHUPPET:29:29,SHUPPET:27:27,SHUPPET:26:26,SHUPPET:30:30,SHUPPET:25:25,SHUPPET:24:24,DUSKULL:28:28,DUSKULL:26:26,DUSKULL:30:30,CHIMECHO:28:28,CHIMECHO:28:28

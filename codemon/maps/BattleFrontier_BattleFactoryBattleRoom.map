@@ -27,12 +27,12 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0
 npcs
-people_scientist_1 0 6 S static 0 LOCALID_FACTORY_BATTLE_SCIENTIST_1
-people_scientist_1 0 4 S static 0 LOCALID_FACTORY_BATTLE_SCIENTIST_2
-people_scientist_1 0 8 S static 0 LOCALID_FACTORY_BATTLE_SCIENTIST_3
-people_scientist_1 12 4 S static 0 LOCALID_FACTORY_BATTLE_SCIENTIST_4
-people_scientist_1 12 6 S static 0 LOCALID_FACTORY_BATTLE_SCIENTIST_5
-people_scientist_1 12 8 S static 0 LOCALID_FACTORY_BATTLE_SCIENTIST_6
+people_scientist_1 0 6 S static 0 LOCALID_FACTORY_BATTLE_SCIENTIST_1 0
+people_scientist_1 0 4 S static 0 LOCALID_FACTORY_BATTLE_SCIENTIST_2 0
+people_scientist_1 0 8 S static 0 LOCALID_FACTORY_BATTLE_SCIENTIST_3 0
+people_scientist_1 12 4 S static 0 LOCALID_FACTORY_BATTLE_SCIENTIST_4 0
+people_scientist_1 12 6 S static 0 LOCALID_FACTORY_BATTLE_SCIENTIST_5 0
+people_scientist_1 12 8 S static 0 LOCALID_FACTORY_BATTLE_SCIENTIST_6 0
 onload
 VAR_TEMP_0 0 BattleFrontier_BattleFactoryBattleRoom_EventScript_EnterRoom
 movements
@@ -202,6 +202,5 @@ waitmovement 0
 call BattleFrontier_BattleFactoryBattleRoom_EventScript_ScientistsFaceBattle
 goto BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleOpponent
 end
-
 music
 MUS_B_FACTORY

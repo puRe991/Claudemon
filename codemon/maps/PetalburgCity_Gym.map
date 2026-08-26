@@ -266,27 +266,27 @@ warps
 7 7 PetalburgCity_Gym 33
 6 7 PetalburgCity_Gym 33
 npcs
-people_gym_leaders_norman 4 2 S static FLAG_HIDE_PETALBURG_GYM_NORMAN LOCALID_PETALBURG_GYM_NORMAN
-people_woman_5 4 94 S static 0
-people_man_3 4 81 S static 0
-people_man_3 4 42 S static 0
-people_woman_5 4 55 S static 0
-people_man_3 4 68 S static 0
-people_woman_5 4 16 S static 0
-people_man_3 4 29 S static 0
-people_man_2 3 109 S static FLAG_HIDE_PETALBURG_GYM_GREETER
-people_wally 4 111 N static FLAG_HIDE_PETALBURG_GYM_WALLY LOCALID_PETALBURG_GYM_WALLY
-people_pokefan_m 1 7 N static FLAG_HIDE_PETALBURG_GYM_WALLYS_DAD LOCALID_PETALBURG_GYM_WALLYS_DAD
+people_gym_leaders_norman 4 2 S static FLAG_HIDE_PETALBURG_GYM_NORMAN LOCALID_PETALBURG_GYM_NORMAN 0
+people_woman_5 4 94 S static 0 - 0
+people_man_3 4 81 S static 0 - 0
+people_man_3 4 42 S static 0 - 0
+people_woman_5 4 55 S static 0 - 0
+people_man_3 4 68 S static 0 - 0
+people_woman_5 4 16 S static 0 - 0
+people_man_3 4 29 S static 0 - 0
+people_man_2 3 109 S static FLAG_HIDE_PETALBURG_GYM_GREETER - 0
+people_wally 4 111 N static FLAG_HIDE_PETALBURG_GYM_WALLY LOCALID_PETALBURG_GYM_WALLY 0
+people_pokefan_m 1 7 N static FLAG_HIDE_PETALBURG_GYM_WALLYS_DAD LOCALID_PETALBURG_GYM_WALLYS_DAD 0
 dialogs
-0	DAD: Hm?Na, wenn das nicht PLAYER ist! Also bist du mit dem Umzug fertig?Ich bin überrascht, dass du es allein hierher geschafft hast.Oh, ich sehe. Du hast dein POKéMON dabei.Hm… Dann wirst du wohl auch ein TRAINER wie ich, PLAYER.Das sind großartige Neuigkeiten! Ich freu mich schon drauf!
-1	Es warten noch stärkere TRAINER auf dich.Links ist der DEFENSE ROOM, rechts der RECOVERY ROOM.In beiden Fällen wird die ANGRIFFSKRAFT deiner POKéMON auf die Probe gestellt.
-2	Geh weiter in den nächsten Raum, wo eine neue Herausforderung auf dich wartet.Links ist der CONFUSION ROOM.Die rechte Tür führt zum DEFENSE ROOM.
-3	Der nächste Raum ist der STRENGTH ROOM. Kannst du roher Gewalt standhalten?
-4	Ich glaube, du hast mir hier eine wertvolle Lektion erteilt.Jetzt geh weiter! Die linke Tür führt zum STRENGTH ROOM.Die rechte Tür öffnet sich zum ONE-HIT KO ROOM.In beiden warten TRAINER, die sich auf Offensive verstehen.
-5	Ich hätte von dem Kind unseres LEADERS nichts Geringeres erwarten sollen.Nein, warte! Die Fähigkeiten eines TRAINERS erwirbt man sich nur durch Anstrengung.Ich hab verloren, weil meine eigene Anstrengung nicht ausgereicht hat.Geh weiter! Als Nächstes kommt der ONE-HIT KO ROOM.
-6	Die Art, wie du deine POKéMON einsetzt… Das erinnert an den Stil deines Vaters.Geh weiter durch! Der GYM LEADER, dein Vater, wartet schon!
-7	Dein Vater ist wirklich stark. Er ist ein TRAINER, den ich respektiere.Und ich spüre bei dir das gleiche Leuchten wie bei deinem Vater.Ich hoffe, ihr liefert euch einen großartigen Kampf, du und dein Vater!
-8	Hey, wie läuft's, angehender CHAMPION PLAYER?Die Türen in dieser GYM öffnen sich, wenn du die wartenden TRAINER besiegst.Hoppla! Die Türen in diesem Raum stehen schon offen, also greif mich bloß nicht an!Die TRAINER der PETALBURG GYM benutzen alle möglichen Items.Die Tür links führt zum SPEED ROOM.Die Tür rechts führt zum ACCURACY ROOM.Der Name des Raums steht auf der Tür, also wähl sorgfältig.Sobald du dich für eine Tür entschieden hast… Na dann, los geht's!
+0	DAD: Hm?Well, if it isn't PLAYER! So you're all finished moving in?I'm surprised that you managed to get here by yourself.Oh, I see. You're with your POKéMON.Hm… Then I guess you're going to become a TRAINER like me, PLAYER.That's great news! I'll be looking forward to it!
+1	There are some even stronger TRAINERS waiting for you.The left is the DEFENSE ROOM, and the right is the RECOVERY ROOM.Your POKéMON's ATTACK power will be on trial either way.
+2	Go on to the next room where a new challenge awaits you.At the left is the CONFUSION ROOM.The right door leads to the DEFENSE ROOM.
+3	The next room is the STRENGTH ROOM. Can you withstand brute force?
+4	I think you've taught me a valuable lesson here.Now, go on! The left door goes to the STRENGTH ROOM.The right door opens to the ONE-HIT KO ROOM.Both of them have TRAINERS who are skilled at offense.
+5	I should have expected no less from our LEADER's kid.No, wait! A TRAINER's abilities are earned only through effort.I lost because my own efforts weren't enough.Go on! The ONE-HIT KO ROOM is next.
+6	The way you use your POKéMON… It's like your father's style.Go on through! The GYM LEADER, your father, is waiting!
+7	Your father really is strong. He's a TRAINER worth my respect.And, I sense the same glow coming from you as your father.I hope that you'll stage a terrific battle with your father!
+8	Hey, how's it going, CHAMPION- bound PLAYER?The doors in this GYM open when you beat the awaiting TRAINERS.Whoops! The doors in this room are already open, so don't attack me!The TRAINERS of PETALBURG GYM use all kinds of items.The door at the left leads to the SPEED ROOM.The door at the right leads to the ACCURACY ROOM.The room's name will be on the door, so choose carefully.Once you've chosen the door… Well, hey, go for it!
 objscripts
 0 PetalburgCity_Gym_EventScript_Norman
 1 PetalburgCity_Gym_EventScript_Mary
@@ -330,8 +330,8 @@ PetalburgCity_Gym_Movement_WallysDadExitWest	down,down,left,left,left,left,down,
 scriptdefs
 = PetalburgCity_Gym_EventScript_ReturnFromWallyTutorial
 lockall
-msgbox	DAD: Na, hat's geklappt?
-msgbox	WALLY: Danke, ja, es hat geklappt. Hier hast du dein POKéMON zurück.PLAYER, danke, dass du mich begleitet hast.Ihr beide seid der Grund, warum ich mein POKéMON fangen konnte.Ich verspreche, ich werde mich wirklich gut um es kümmern.Oh! Meine Mom wartet auf mich, ich muss los!Tschüss, PLAYER!
+msgbox	DAD: So, did it work out?
+msgbox	WALLY: Thank you, yes, it did. Here's your POKéMON back.PLAYER, thank you for coming along with me.You two are why I was able to catch my POKéMON.I promise I'll take really good care of it.Oh! My mom's waiting for me, so I have to go!Bye, PLAYER!
 closemessage
 applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterDown
 applymovement LOCALID_PETALBURG_GYM_WALLY PetalburgCity_Gym_Movement_WallyExitGym
@@ -342,7 +342,7 @@ setflag FLAG_HIDE_PETALBURG_CITY_WALLY
 delay 30
 applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
 waitmovement 0
-msgbox	DAD: Also…PLAYER, wenn du ein starker TRAINER werden willst, hier mein Rat.Mach dich auf nach RUSTBORO CITY, jenseits dieser Stadt.Dort solltest du die GYM LEADER ROXANNE herausfordern.Danach geh weiter zu anderen POKéMON GYMS und besiege ihre LEADER.Sammle ihre BADGES, verstanden?Natürlich bin auch ich ein GYM LEADER. Wir werden eines Tages gegeneinander kämpfen, PLAYER.Aber das erst, wenn du stärker geworden bist.
+msgbox	DAD: Now…PLAYER, if you want to become a strong TRAINER, here's my advice.Head for RUSTBORO CITY beyond this town.There, you should challenge the GYM LEADER, ROXANNE.After her, go on to other POKéMON GYMS and defeat their LEADERS.Collect BADGES from them, understood?Of course, I'm a GYM LEADER, too. We'll battle one day, PLAYER.But that's only after you become stronger.
 setvar VAR_PETALBURG_GYM_STATE 2
 releaseall
 end
@@ -350,20 +350,20 @@ end
 lock
 faceplayer
 goto_if_set FLAG_DEFEATED_PETALBURG_GYM PetalburgCity_Gym_EventScript_GymGuidePostVictory
-msgbox	Hey, wie läuft's, angehender CHAMPION PLAYER?Die Türen in dieser GYM öffnen sich, wenn du die wartenden TRAINER besiegst.Hoppla! Die Türen in diesem Raum stehen schon offen, also greif mich bloß nicht an!Die TRAINER der PETALBURG GYM benutzen alle möglichen Items.Die Tür links führt zum SPEED ROOM.Die Tür rechts führt zum ACCURACY ROOM.Der Name des Raums steht auf der Tür, also wähl sorgfältig.Sobald du dich für eine Tür entschieden hast… Na dann, los geht's!
+msgbox	Hey, how's it going, CHAMPION- bound PLAYER?The doors in this GYM open when you beat the awaiting TRAINERS.Whoops! The doors in this room are already open, so don't attack me!The TRAINERS of PETALBURG GYM use all kinds of items.The door at the left leads to the SPEED ROOM.The door at the right leads to the ACCURACY ROOM.The room's name will be on the door, so choose carefully.Once you've chosen the door… Well, hey, go for it!
 release
 end
 = PetalburgCity_Gym_EventScript_GymGuidePostVictory
-msgbox	PLAYER! Whoa! Du hast sogar deinen eigenen Vater besiegt!Mann, whoa! Was für eine verblüffende Wendung!
+msgbox	PLAYER! Whoa! You've overcome even your own father!Like, whoa! What a stunning turn of events!
 release
 end
 = PetalburgCity_Gym_EventScript_Berke
 trainerbattle_single TRAINER_BERKE PetalburgCity_Gym_Text_BerkeIntro PetalburgCity_Gym_Text_BerkeDefeat PetalburgCity_Gym_EventScript_SlideOpenOHKORoomDoors
 goto_if_set FLAG_DEFEATED_PETALBURG_GYM PetalburgCity_Gym_EventScript_BerkePostBadge
-msgbox	Dein Vater ist wirklich stark. Er ist ein TRAINER, den ich respektiere.Und ich spüre bei dir das gleiche Leuchten wie bei deinem Vater.Ich hoffe, ihr liefert euch einen großartigen Kampf, du und dein Vater!
+msgbox	Your father really is strong. He's a TRAINER worth my respect.And, I sense the same glow coming from you as your father.I hope that you'll stage a terrific battle with your father!
 end
 = PetalburgCity_Gym_EventScript_BerkePostBadge
-msgbox	Seit dein Dad LEADER geworden ist, sind die TRAINER von PETALBURG CITY viel härter geworden.
+msgbox	Since your dad became the LEADER, the TRAINERS of PETALBURG CITY have become a lot tougher.
 end
 = PetalburgCity_Gym_EventScript_SlideOpenOHKORoomDoors
 setvar VAR_0x8005 0
@@ -390,10 +390,10 @@ return
 = PetalburgCity_Gym_EventScript_Jody
 trainerbattle_single TRAINER_JODY PetalburgCity_Gym_Text_JodyIntro PetalburgCity_Gym_Text_JodyDefeat PetalburgCity_Gym_EventScript_SlideOpenStrengthRoomDoors
 goto_if_set FLAG_DEFEATED_PETALBURG_GYM PetalburgCity_Gym_EventScript_JodyPostBadge
-msgbox	Die Art, wie du deine POKéMON einsetzt… Das erinnert an den Stil deines Vaters.Geh weiter durch! Der GYM LEADER, dein Vater, wartet schon!
+msgbox	The way you use your POKéMON… It's like your father's style.Go on through! The GYM LEADER, your father, is waiting!
 end
 = PetalburgCity_Gym_EventScript_JodyPostBadge
-msgbox	Klar, es ist gut, seine POKéMON stärker zu machen.Aber was entscheidet über den Sieger?Nun, es sind die Gefühle, die TRAINER für ihre POKéMON hegen.
+msgbox	Sure, it's fine to make your POKéMON stronger.But what decides the winner?Why, it's the feelings TRAINERS have for their POKéMON.
 end
 @ VAR_0x8004 below is the room number
 @ VAR_0x8005 below is 0 when the door should be slid open and 1 when it should be unlocked immediately
@@ -429,10 +429,10 @@ return
 = PetalburgCity_Gym_EventScript_George
 trainerbattle_single TRAINER_GEORGE PetalburgCity_Gym_Text_GeorgeIntro PetalburgCity_Gym_Text_GeorgeDefeat PetalburgCity_Gym_EventScript_SlideOpenRecoveryRoomDoors
 goto_if_set FLAG_DEFEATED_PETALBURG_GYM PetalburgCity_Gym_EventScript_GeorgePostBadge
-msgbox	Ich hätte von dem Kind unseres LEADERS nichts Geringeres erwarten sollen.Nein, warte! Die Fähigkeiten eines TRAINERS erwirbt man sich nur durch Anstrengung.Ich hab verloren, weil meine eigene Anstrengung nicht ausgereicht hat.Geh weiter! Als Nächstes kommt der ONE-HIT KO ROOM.
+msgbox	I should have expected no less from our LEADER's kid.No, wait! A TRAINER's abilities are earned only through effort.I lost because my own efforts weren't enough.Go on! The ONE-HIT KO ROOM is next.
 end
 = PetalburgCity_Gym_EventScript_GeorgePostBadge
-msgbox	Ich werde weiter an GYMS trainieren. Eines Tages werde ich LEADER.
+msgbox	I'm going to keep training at GYMS. One day, I'll become a LEADER.
 end
 = PetalburgCity_Gym_EventScript_SlideOpenRecoveryRoomDoors
 setvar VAR_0x8005 0
@@ -453,10 +453,10 @@ return
 = PetalburgCity_Gym_EventScript_Alexia
 trainerbattle_single TRAINER_ALEXIA PetalburgCity_Gym_Text_AlexiaIntro PetalburgCity_Gym_Text_AlexiaDefeat PetalburgCity_Gym_EventScript_SlideOpenDefenseRoomDoors
 goto_if_set FLAG_DEFEATED_PETALBURG_GYM PetalburgCity_Gym_EventScript_AlexiaPostBadge
-msgbox	Ich glaube, du hast mir hier eine wertvolle Lektion erteilt.Jetzt geh weiter! Die linke Tür führt zum STRENGTH ROOM.Die rechte Tür öffnet sich zum ONE-HIT KO ROOM.In beiden warten TRAINER, die sich auf Offensive verstehen.
+msgbox	I think you've taught me a valuable lesson here.Now, go on! The left door goes to the STRENGTH ROOM.The right door opens to the ONE-HIT KO ROOM.Both of them have TRAINERS who are skilled at offense.
 end
 = PetalburgCity_Gym_EventScript_AlexiaPostBadge
-msgbox	Hi! Hast du schon mal SURFEN ausprobiert?
+msgbox	Hi! Have you tried using SURF?
 end
 = PetalburgCity_Gym_EventScript_SlideOpenDefenseRoomDoors
 setvar VAR_0x8005 0
@@ -479,10 +479,10 @@ return
 = PetalburgCity_Gym_EventScript_Parker
 trainerbattle_single TRAINER_PARKER PetalburgCity_Gym_Text_ParkerIntro PetalburgCity_Gym_Text_ParkerDefeat PetalburgCity_Gym_EventScript_SlideOpenConfusionRoomDoors
 goto_if_set FLAG_DEFEATED_PETALBURG_GYM PetalburgCity_Gym_EventScript_ParkerPostBadge
-msgbox	Der nächste Raum ist der STRENGTH ROOM. Kannst du roher Gewalt standhalten?
+msgbox	The next room is the STRENGTH ROOM. Can you withstand brute force?
 end
 = PetalburgCity_Gym_EventScript_ParkerPostBadge
-msgbox	Seit du unseren LEADER besiegt hast, ist das Training viel härter geworden.
+msgbox	After you beat our LEADER, the training has become a lot tougher.
 end
 = PetalburgCity_Gym_EventScript_SlideOpenConfusionRoomDoors
 setvar VAR_0x8005 0
@@ -503,10 +503,10 @@ return
 = PetalburgCity_Gym_EventScript_Randall
 trainerbattle_single TRAINER_RANDALL PetalburgCity_Gym_Text_RandallIntro PetalburgCity_Gym_Text_RandallDefeat PetalburgCity_Gym_EventScript_SlideOpenSpeedRoomDoors
 goto_if_set FLAG_DEFEATED_PETALBURG_GYM PetalburgCity_Gym_EventScript_RandallPostBadge
-msgbox	Geh weiter in den nächsten Raum, wo eine neue Herausforderung auf dich wartet.Links ist der CONFUSION ROOM.Die rechte Tür führt zum DEFENSE ROOM.
+msgbox	Go on to the next room where a new challenge awaits you.At the left is the CONFUSION ROOM.The right door leads to the DEFENSE ROOM.
 end
 = PetalburgCity_Gym_EventScript_RandallPostBadge
-msgbox	Egal, wen du besiegst und gegen wen du verlierst, du scheust dich nie davor, dich selbst und deine POKéMON zu trainieren.Genau darum geht es, glaube ich, wenn man GYM LEADER ist.
+msgbox	Whomever you beat, and whomever you may lose to, you never shirk from training yourself and your POKéMON.That's what I think being a GYM LEADER is all about.
 end
 = PetalburgCity_Gym_EventScript_SlideOpenSpeedRoomDoors
 setvar VAR_0x8005 0
@@ -529,10 +529,10 @@ return
 = PetalburgCity_Gym_EventScript_Mary
 trainerbattle_single TRAINER_MARY PetalburgCity_Gym_Text_MaryIntro PetalburgCity_Gym_Text_MaryDefeat PetalburgCity_Gym_EventScript_SlideOpenAccuracyRoomDoors
 goto_if_set FLAG_DEFEATED_PETALBURG_GYM PetalburgCity_Gym_EventScript_MaryPostBadge
-msgbox	Es warten noch stärkere TRAINER auf dich.Links ist der DEFENSE ROOM, rechts der RECOVERY ROOM.In beiden Fällen wird die ANGRIFFSKRAFT deiner POKéMON auf die Probe gestellt.
+msgbox	There are some even stronger TRAINERS waiting for you.The left is the DEFENSE ROOM, and the right is the RECOVERY ROOM.Your POKéMON's ATTACK power will be on trial either way.
 end
 = PetalburgCity_Gym_EventScript_MaryPostBadge
-msgbox	Weißt du, wonach wir als TRAINER eigentlich streben?Wir bemühen uns darum, Seelenverwandte unserer POKéMON zu werden.
+msgbox	Do you know what we're trying to achieve as TRAINERS?We're striving to become soul mates with our POKéMON.
 end
 = PetalburgCity_Gym_EventScript_SlideOpenAccuracyRoomDoors
 setvar VAR_0x8005 0
@@ -563,7 +563,7 @@ case 5 PetalburgCity_Gym_EventScript_NormanThreeBadges
 case 6 PetalburgCity_Gym_EventScript_NormanBattle
 case 7 PetalburgCity_Gym_EventScript_NormanPostBattle
 case 8 PetalburgCity_Gym_EventScript_NormanRematch
-msgbox	DAD: Hm?Na, wenn das nicht PLAYER ist! Also bist du mit dem Umzug fertig?Ich bin überrascht, dass du es allein hierher geschafft hast.Oh, ich sehe. Du hast dein POKéMON dabei.Hm… Dann wirst du wohl auch ein TRAINER wie ich, PLAYER.Das sind großartige Neuigkeiten! Ich freu mich schon drauf!
+msgbox	DAD: Hm?Well, if it isn't PLAYER! So you're all finished moving in?I'm surprised that you managed to get here by yourself.Oh, I see. You're with your POKéMON.Hm… Then I guess you're going to become a TRAINER like me, PLAYER.That's great news! I'll be looking forward to it!
 closemessage
 switch VAR_FACING
 case DIR_SOUTH PetalburgCity_Gym_EventScript_BeginWallyTutorialSouth
@@ -582,22 +582,22 @@ call_if_eq VAR_0x8008 0 PetalburgCity_Gym_EventScript_WallyArriveSouth
 call_if_eq VAR_0x8008 1 PetalburgCity_Gym_EventScript_WallyArriveNorth
 call_if_eq VAR_0x8008 2 PetalburgCity_Gym_EventScript_WallyArriveWestEast
 call_if_eq VAR_0x8008 3 PetalburgCity_Gym_EventScript_WallyArriveWestEast
-msgbox	Ähm… Ich… ich würde gerne ein POKéMON bekommen, bitte…
-msgbox	DAD: Hm? Du bist… Äh… Ach, richtig. Du bist WALLY, oder?
-msgbox	WALLY: Ich werde bei meinen Verwandten in VERDANTURF TOWN wohnen.Ich dachte, ich wäre allein einsam, deshalb wollte ich ein POKéMON mitnehmen.Aber ich hab noch nie ein POKéMON gefangen. Ich weiß nicht, wie das geht…
-msgbox	DAD: Hm. Verstehe.
+msgbox	Um… I… I'd like to get a POKéMON, please…
+msgbox	DAD: Hm? You're… Uh… Oh, right. You're WALLY, right?
+msgbox	WALLY: I'm going to go stay with my relatives in VERDANTURF TOWN.I thought I would be lonely by myself, so I wanted to take a POKéMON along.But I've never caught a POKéMON before. I don't know how…
+msgbox	DAD: Hm. I see.
 call_if_eq VAR_0x8008 0 PetalburgCity_Gym_EventScript_NormanAddressPlayerSouth
 call_if_eq VAR_0x8008 1 PetalburgCity_Gym_EventScript_NormanAddressPlayerNorth
 call_if_eq VAR_0x8008 2 PetalburgCity_Gym_EventScript_NormanAddressPlayerWest
 call_if_eq VAR_0x8008 3 PetalburgCity_Gym_EventScript_NormanAddressPlayerEast
-msgbox	DAD: PLAYER, du hast das gehört, oder?Geh mit WALLY mit und sorg dafür, dass er sicher ein POKéMON fängt.
+msgbox	DAD: PLAYER, you heard that, right?Go with WALLY and make sure that he safely catches a POKéMON.
 call_if_eq VAR_0x8008 0 PetalburgCity_Gym_EventScript_NormanAddressWallySouth
 call_if_eq VAR_0x8008 1 PetalburgCity_Gym_EventScript_NormanAddressWallyNorth
 call_if_eq VAR_0x8008 2 PetalburgCity_Gym_EventScript_NormanAddressWallyWest
 call_if_eq VAR_0x8008 3 PetalburgCity_Gym_EventScript_NormanAddressWallyEast
-msgbox	WALLY, hier, ich leih dir mein POKéMON.WALLY hat ein ZIGZAGOON erhalten!
-msgbox	WALLY: Oh, wow! Ein POKéMON!DAD: Hm. Ich geb dir auch noch einen POKé BALL. Los geht's!WALLY hat einen POKé BALL erhalten!
-msgbox	WALLY: Oh, wow! Danke dir!
+msgbox	WALLY, here, I'll loan you my POKéMON.WALLY received a ZIGZAGOON!
+msgbox	WALLY: Oh, wow! A POKéMON!DAD: Hm. I'll give you a POKé BALL, too. Go for it!WALLY received a POKé BALL!
+msgbox	WALLY: Oh, wow! Thank you!
 call_if_eq VAR_0x8008 0 PetalburgCity_Gym_EventScript_NormanFaceDoorSouth
 call_if_eq VAR_0x8008 1 PetalburgCity_Gym_EventScript_NormanFaceDoorNorth
 call_if_eq VAR_0x8008 2 PetalburgCity_Gym_EventScript_NormanFaceDoorWest
@@ -606,7 +606,7 @@ call_if_eq VAR_0x8008 0 PetalburgCity_Gym_EventScript_WallyFacePlayer
 call_if_eq VAR_0x8008 1 PetalburgCity_Gym_EventScript_WallyFaceDown
 call_if_eq VAR_0x8008 2 PetalburgCity_Gym_EventScript_WallyFacePlayer
 call_if_eq VAR_0x8008 3 PetalburgCity_Gym_EventScript_WallyFacePlayer
-msgbox	PLAYER… Würdest du wirklich mit mir kommen?
+msgbox	PLAYER… Would you really come with me?
 closemessage
 setflag FLAG_DONT_TRANSITION_MUSIC
 playbgm MUS_FOLLOW_ME FALSE
@@ -734,18 +734,18 @@ goto PetalburgCity_Gym_EventScript_BeginWallyTutorial
 end
 = PetalburgCity_Gym_EventScript_NormanRematch
 trainerbattle_rematch_double TRAINER_NORMAN_1 PetalburgCity_Gym_Text_NormanPreRematch PetalburgCity_Gym_Text_NormanRematchDefeat PetalburgCity_Gym_Text_NormanRematchNeedTwoMons
-msgbox	DAD: PLAYER… Was ist dein Traum?Mein Traum… Hahaha… Der ist eigentlich schon in Erfüllung gegangen.
+msgbox	DAD: PLAYER… What is your dream?My dream… Hahaha… It has already come true, actually.
 end
 = PetalburgCity_Gym_EventScript_NormanPostBattle
 call PetalburgCity_Gym_EventScript_ShouldGiveEnigmaBerry
 goto_if_eq VAR_RESULT TRUE PetalburgCity_Gym_EventScript_GiveEnigmaBerry
 goto_if_unset FLAG_RECEIVED_TM_FACADE PetalburgCity_Gym_EventScript_GiveFacade2
 goto_if_set FLAG_SYS_GAME_CLEAR PetalburgCity_Gym_EventScript_NoAmountOfTrainingIsEnough
-msgbox	DAD: PLAYER, du solltest ab und zu deine Mutter besuchen.Ich bleibe hier und verdopple mein Training.Es würde mich als TRAINER stören, meine Niederlage gegen dich nicht zu rächen, PLAYER!
+msgbox	DAD: PLAYER, you should go visit your mother every so often.I'm going to stay here and redouble my training.It would bother me as a TRAINER to not avenge my loss to you, PLAYER!
 release
 end
 = PetalburgCity_Gym_EventScript_NoAmountOfTrainingIsEnough
-msgbox	DAD: PLAYER, wie läuft's so?Die Welt der POKéMON ist tiefgründig.Ich glaube ehrlich, kein Training der Welt wäre je genug.
+msgbox	DAD: PLAYER, how are things going?The world of POKéMON is deep.I honestly think that no amount of training would ever be enough.
 release
 end
 = PetalburgCity_Gym_EventScript_GiveFacade2
@@ -756,7 +756,7 @@ end
 giveitem ITEM_TM_FACADE
 goto_if_eq VAR_RESULT FALSE Common_EventScript_BagIsFull
 setflag FLAG_RECEIVED_TM_FACADE
-msgbox	DAD: TM42 enthält FACADE.Es verdoppelt die Stärke von Attacken, wenn das POKéMON vergiftet, paralysiert oder verbrannt ist.Damit lässt sich eine schlechte Situation vielleicht sogar in einen Vorteil verwandeln.
+msgbox	DAD: TM42 contains FACADE.It doubles the power of moves if the POKéMON is poisoned, paralyzed, or burned.It might be able to turn a bad situation into an advantage.
 return
 = PetalburgCity_Gym_EventScript_GiveEnigmaBerry
 giveitem ITEM_ENIGMA_BERRY
@@ -772,19 +772,19 @@ goto_if_eq VAR_RESULT TRUE PetalburgCity_Gym_EventScript_DontGiveEnigmaBerry
 checkpcitem ITEM_ENIGMA_BERRY
 goto_if_eq VAR_RESULT TRUE PetalburgCity_Gym_EventScript_DontGiveEnigmaBerry
 goto_if_eq VAR_ENIGMA_BERRY_AVAILABLE 0 PetalburgCity_Gym_EventScript_DontGiveEnigmaBerry
-msgbox	DAD: Hi, PLAYER!Ich hab gerade eine sehr seltene BERRY bekommen. Die möchte ich dir geben.
+msgbox	DAD: Hi, PLAYER!I just received a very rare BERRY. I'd like you to have it.
 setvar VAR_RESULT TRUE
 return
 = PetalburgCity_Gym_EventScript_DontGiveEnigmaBerry
 setvar VAR_RESULT FALSE
 return
 = PetalburgCity_Gym_EventScript_NormanBattle
-msgbox	DAD: Hm… Du hast also tatsächlich vier GYM BADGES.Gut, wie versprochen, werden wir einen POKéMON-Kampf austragen.PLAYER…Ich bin so glücklich, dass ich einen richtigen Kampf mit meinem eigenen Kind austragen kann.Aber ein Kampf ist ein Kampf!Ich werde als GYM LEADER alles in meiner Macht Stehende tun, um zu gewinnen.PLAYER, du gibst besser auch dein Bestes!
+msgbox	DAD: Hm… So, you did get four GYM BADGES.Fine, as I promised, we will have a POKéMON battle.PLAYER…I'm so happy that I can have a real battle with my own child.But, a battle is a battle!I will do everything in my power as a GYM LEADER to win.PLAYER, you'd better give it your best shot, too!
 trainerbattle_no_intro TRAINER_NORMAN_1 PetalburgCity_Gym_Text_NormanDefeat
-msgbox	PLAYER hat das BALANCE BADGE von DAD erhalten!
+msgbox	PLAYER received the BALANCE BADGE from DAD!
 waitmessage
 call Common_EventScript_PlayGymBadgeFanfare
-msgbox	DAD: Mit diesem BADGE steigt die VERTEIDIGUNG all deiner POKéMON.POKéMON, die die HM-Attacke SURFEN kennen, können sich über Wasser fortbewegen.Das ist mein Geschenk an dich. PLAYER, ich bin sicher, du weißt es richtig einzusetzen.
+msgbox	DAD: With that BADGE, the DEFENSE of all your POKéMON will increase.POKéMON that know the HM move SURF will be able to travel over water.This is my gift to you. PLAYER, I'm sure you can use it correctly.
 setflag FLAG_DEFEATED_PETALBURG_GYM
 setvar VAR_PETALBURG_GYM_STATE 7
 setflag FLAG_BADGE05_GET
@@ -799,7 +799,7 @@ call PetalburgCity_Gym_EventScript_UnlockAllDoors
 special DrawWholeMapView
 call PetalburgCity_Gym_EventScript_GiveFacade
 delay 30
-msgbox	DAD: Als GYM LEADER kann ich gar nicht in Worte fassen, wie sehr mich das ärgert…Aber als Vater macht es mich sowohl glücklich als auch ein bisschen traurig. Merkwürdig…
+msgbox	DAD: As the GYM LEADER, I can't express how upset I am…But as a father, it makes me both happy and a little sad. It's odd…
 closemessage
 delay 40
 playse SE_DOOR
@@ -825,13 +825,13 @@ delay 10
 call_if_eq VAR_0x8008 1 PetalburgCity_Gym_EventScript_WallysDadApproachPlayerNorth
 call_if_eq VAR_0x8008 2 PetalburgCity_Gym_EventScript_WallysDadApproachPlayerEast
 call_if_eq VAR_0x8008 3 PetalburgCity_Gym_EventScript_WallysDadApproachPlayerWest
-msgbox	Ah, da bist du ja, PLAYER!Bitte komm mit mir. Ich hab etwas, das ich dir geben möchte.
+msgbox	Ah, there you are, PLAYER!Please come with me. I have something I want you to have.
 closemessage
 delay 20
 call_if_eq VAR_0x8008 1 PetalburgCity_Gym_EventScript_WallysDadFaceNormanNorth
 call_if_eq VAR_0x8008 2 PetalburgCity_Gym_EventScript_WallysDadFaceNormanEast
 call_if_eq VAR_0x8008 3 PetalburgCity_Gym_EventScript_WallysDadFaceNormanWest
-msgbox	NORMAN, das macht dir doch nichts aus, oder?Lass mich deinen PLAYER für ein, zwei Minuten ausleihen.
+msgbox	NORMAN, you don't mind, do you?Let me borrow your PLAYER for a minute or two.
 closemessage
 setflag FLAG_DONT_TRANSITION_MUSIC
 playbgm MUS_FOLLOW_ME FALSE
@@ -996,34 +996,33 @@ settrainerflag TRAINER_TOMMY
 settrainerflag TRAINER_MARC
 return
 = PetalburgCity_Gym_EventScript_NormanThreeBadges
-msgbox	DAD: Hm… PLAYER, du bist stärker geworden.Das erkenne ich an der Anzahl der BADGES, die du dir verdient hast.
+msgbox	DAD: Hm… PLAYER, you have gotten stronger.I can tell by the number of BADGES that you've earned.
 release
 end
 = PetalburgCity_Gym_EventScript_NormanTwoBadges
-msgbox	DAD: Hm… PLAYER, du bist stärker geworden.Das erkenne ich an der Anzahl der BADGES, die du dir verdient hast.
+msgbox	DAD: Hm… PLAYER, you have gotten stronger.I can tell by the number of BADGES that you've earned.
 release
 end
 = PetalburgCity_Gym_EventScript_NormanOneBadge
-msgbox	DAD: Verstehe… Du hast also den GYM LEADER in RUSTBORO CITY besiegt.Aber es gibt noch viele weitere TRAINER, die stärker sind als du, PLAYER.Jenseits des Meeres, in DEWFORD TOWN, gibt es einen GYM LEADER namens BRAWLY.Den solltest du herausfordern.
+msgbox	DAD: I see… So, you've beaten the GYM LEADER in RUSTBORO CITY.But there are many more TRAINERS who are stronger than you, PLAYER.Across the sea in DEWFORD TOWN is a GYM LEADER named BRAWLY.You should go challenge him.
 release
 end
 = PetalburgCity_Gym_EventScript_NormanNoBadges
-msgbox	DAD: Hm? Gehst du nicht zur POKéMON GYM in RUSTBORO CITY?Für mich ist es keine Herausforderung, gegen einen unerfahrenen TRAINER zu kämpfen.PLAYER, ich möchte, dass du mich herausforderst, wenn du viel stärker geworden bist.Ich kämpfe gegen dich, PLAYER, wenn du mir vier GYM BADGES zeigen kannst, okay?
+msgbox	DAD: Hm? Aren't you going to the POKéMON GYM in RUSTBORO CITY?There's no challenge for me to battle a greenhorn TRAINER.PLAYER, I want you to challenge me when you become a lot stronger.I'll battle you, PLAYER, when you can show me four GYM BADGES, okay?
 release
 end
 signs
-1 105	„SPEED ROOM“, steht auf dem Schild.Möchtest du hindurchgehen?
-7 105	„ACCURACY ROOM“, steht auf dem Schild.Möchtest du hindurchgehen?
-1 79	„CONFUSION ROOM“, steht auf dem Schild.Möchtest du hindurchgehen?
-7 79	„DEFENSE ROOM“, steht auf dem Schild.Möchtest du hindurchgehen?
-1 92	„DEFENSE ROOM“, steht auf dem Schild.Möchtest du hindurchgehen?
-7 92	„RECOVERY ROOM“, steht auf dem Schild.Möchtest du hindurchgehen?
-7 40	„STRENGTH ROOM“, steht auf dem Schild.Möchtest du hindurchgehen?
-1 53	„STRENGTH ROOM“, steht auf dem Schild.Möchtest du hindurchgehen?
-7 53	„ONE-HIT KO ROOM“, steht auf dem Schild.Möchtest du hindurchgehen?
-1 66	„ONE-HIT KO ROOM“, steht auf dem Schild.Möchtest du hindurchgehen?
-7 14	„GYM LEADER'S ROOM„Sieh selbst, welche POKéMON auf dich warten!“, steht auf dem Schild.Möchtest du hindurchgehen?
-1 27	„GYM LEADER'S ROOM„Sieh selbst, welche POKéMON auf dich warten!“, steht auf dem Schild.Möchtest du hindurchgehen?
-
+1 105	“SPEED ROOM,” the sign says.Do you want to go through?
+7 105	“ACCURACY ROOM,” the sign says.Do you want to go through?
+1 79	“CONFUSION ROOM,” the sign says.Do you want to go through?
+7 79	“DEFENSE ROOM,” the sign says.Do you want to go through?
+1 92	“DEFENSE ROOM,” the sign says.Do you want to go through?
+7 92	“RECOVERY ROOM,” the sign says.Do you want to go through?
+7 40	“STRENGTH ROOM,” the sign says.Do you want to go through?
+1 53	“STRENGTH ROOM,” the sign says.Do you want to go through?
+7 53	“ONE-HIT KO ROOM,” the sign says.Do you want to go through?
+1 66	“ONE-HIT KO ROOM,” the sign says.Do you want to go through?
+7 14	“GYM LEADER'S ROOM“See for yourself what POKéMON await you!” the sign says.Do you want to go through?
+1 27	“GYM LEADER'S ROOM“See for yourself what POKéMON await you!” the sign says.Do you want to go through?
 music
 MUS_GYM

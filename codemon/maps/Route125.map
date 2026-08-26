@@ -88,16 +88,16 @@ left 0 Route124
 warps
 22 19 ShoalCave_LowTideEntranceRoom 0
 npcs
-people_swimmer_m 7 31 S static 0
-people_swimmer_m 45 9 E static 0
-people_swimmer_f 38 24 S static 0
-people_swimmer_f 30 28 S static 0
-people_sailor 21 30 S static 0
-people_lass 17 19 S static 0
-people_lass 18 19 S static 0
-people_man_5 43 19 S static 0
-people_expert_m 48 19 W pace_h 0
-misc_item_ball 46 17 S static FLAG_ITEM_ROUTE_125_BIG_PEARL
+people_swimmer_m 7 31 S static 0 - 2
+people_swimmer_m 45 9 E static 0 - 2
+people_swimmer_f 38 24 S static 0 - 3
+people_swimmer_f 30 28 S static 0 - 3
+people_sailor 21 30 S static 0 - 2
+people_lass 17 19 S static 0 - 1
+people_lass 18 19 S static 0 - 1
+people_man_5 43 19 S static 0 - 3
+people_expert_m 48 19 W pace_h 0 - 3
+misc_item_ball 46 17 S static FLAG_ITEM_ROUTE_125_BIG_PEARL - 0
 objscripts
 0 Route125_EventScript_Nolen
 1 Route125_EventScript_Stan
@@ -358,11 +358,10 @@ end
 trainerbattle_single TRAINER_NOLEN Route125_Text_NolenIntro Route125_Text_NolenDefeat
 msgbox	Sound travels faster in water than it does through air.
 end
+water
+368,419,420,429,431,437,439,445,446,447,514,515,545,546,827,828,829
+music
+MUS_ROUTE120
 encounters
 water TENTACOOL:5:35,WINGULL:10:30,WINGULL:15:25,PELIPPER:25:30,PELIPPER:25:30
 fishing MAGIKARP:5:10,TENTACOOL:5:10,MAGIKARP:10:30,TENTACOOL:10:30,WAILMER:10:30,SHARPEDO:30:35,WAILMER:30:35,WAILMER:25:30,WAILMER:35:40,WAILMER:40:45
-water
-368,419,420,429,431,437,439,445,446,447,514,515,545,546,827,828,829
-
-music
-MUS_ROUTE120

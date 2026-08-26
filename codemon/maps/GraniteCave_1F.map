@@ -38,8 +38,8 @@ warps
 17 11 GraniteCave_B1F 1
 5 10 GraniteCave_StevensRoom 0
 npcs
-people_hiker 36 9 S static 0
-misc_item_ball 17 7 S static FLAG_ITEM_GRANITE_CAVE_1F_ESCAPE_ROPE
+people_hiker 36 9 S static 0 - 0
+misc_item_ball 17 7 S static FLAG_ITEM_GRANITE_CAVE_1F_ESCAPE_ROPE - 0
 dialogs
 0	Hey, you. It gets awfully dark ahead. It'll be tough trying to explore.That guy who came by earlier… STEVEN, I think it was.He knew how to use FLASH, so he ought to be all right, but…Well, for us HIKERS, helping out those that we meet is our motto.Here you go, I'll pass this on to you.
 objscripts
@@ -67,8 +67,7 @@ end
 msgbox	Teach that hidden move FLASH to a POKéMON and use it.It lights up even the inky darkness of caves.But, to use it, you need the GYM BADGE from DEWFORD's POKéMON GYM.
 release
 end
-encounters
-land ZUBAT:7:7,MAKUHITA:8:8,MAKUHITA:7:7,ZUBAT:8:8,MAKUHITA:9:9,ABRA:8:8,MAKUHITA:10:10,MAKUHITA:6:6,GEODUDE:7:7,GEODUDE:8:8,GEODUDE:6:6,GEODUDE:9:9
-
 music
 MUS_PETALBURG_WOODS
+encounters
+land ZUBAT:7:7,MAKUHITA:8:8,MAKUHITA:7:7,ZUBAT:8:8,MAKUHITA:9:9,ABRA:8:8,MAKUHITA:10:10,MAKUHITA:6:6,GEODUDE:7:7,GEODUDE:8:8,GEODUDE:6:6,GEODUDE:9:9

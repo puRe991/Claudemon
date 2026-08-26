@@ -32,14 +32,14 @@ warps
 6 1 SeafloorCavern_Room6 0
 11 1 SeafloorCavern_Room7 0
 npcs
-misc_pushable_boulder 13 3 S static FLAG_TEMP_12
-misc_pushable_boulder 10 3 S static FLAG_TEMP_13
-misc_pushable_boulder 13 5 S static FLAG_TEMP_11
-misc_pushable_boulder 4 5 S static FLAG_TEMP_15
-misc_pushable_boulder 7 4 S static FLAG_TEMP_16
-misc_breakable_rock 8 7 S static FLAG_TEMP_18
-misc_breakable_rock 9 3 S static FLAG_TEMP_19
-misc_pushable_boulder 4 8 S static FLAG_TEMP_17
+misc_pushable_boulder 13 3 S static FLAG_TEMP_12 - 0
+misc_pushable_boulder 10 3 S static FLAG_TEMP_13 - 0
+misc_pushable_boulder 13 5 S static FLAG_TEMP_11 - 0
+misc_pushable_boulder 4 5 S static FLAG_TEMP_15 - 0
+misc_pushable_boulder 7 4 S static FLAG_TEMP_16 - 0
+misc_breakable_rock 8 7 S static FLAG_TEMP_18 - 0
+misc_breakable_rock 9 3 S static FLAG_TEMP_19 - 0
+misc_pushable_boulder 4 8 S static FLAG_TEMP_17 - 0
 objscripts
 0 EventScript_StrengthBoulder
 1 EventScript_StrengthBoulder
@@ -59,7 +59,7 @@ goto_if_set FLAG_SYS_USE_STRENGTH EventScript_CheckActivatedBoulder
 checkpartymove MOVE_STRENGTH
 goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CantStrength
 setfieldeffectargument 0 VAR_RESULT
-msgbox	It's a big boulder, but a POKéMON may be able to push it aside.Would you like to use STRENGTH?
+msgboxyesno	It's a big boulder, but a POKéMON may be able to push it aside.Would you like to use STRENGTH?
 goto_if_eq VAR_RESULT NO EventScript_CancelStrength
 closemessage
 dofieldeffect FLDEFF_USE_STRENGTH
@@ -91,9 +91,9 @@ goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CantSmashRock
 setfieldeffectargument 0 VAR_RESULT
 bufferpartymonnick STR_VAR_1 VAR_RESULT
 buffermovename STR_VAR_2 MOVE_ROCK_SMASH
-msgboxyesno	Dieser Felsen sieht zerbrechlich aus. Möchtest du ZERTRÜMMERER einsetzen?
+msgboxyesno	This rock appears to be breakable. Would you like to use ROCK SMASH?
 goto_if_eq VAR_RESULT NO EventScript_CancelSmash
-msgbox	STR_VAR_1 setzt STR_VAR_2 ein!
+msgbox	STR_VAR_1 used STR_VAR_2!
 closemessage
 dofieldeffect FLDEFF_USE_ROCK_SMASH
 waitstate
@@ -126,11 +126,10 @@ closemessage
 releaseall
 end
 = EventScript_CantSmashRock
-msgbox	Das ist ein robuster Felsen, aber vielleicht kann ihn ein POKéMON zertrümmern.
+msgbox	It's a rugged rock, but a POKéMON may be able to smash it.
 releaseall
 end
-encounters
-land ZUBAT:30:30,ZUBAT:31:31,ZUBAT:32:32,ZUBAT:33:33,ZUBAT:28:28,ZUBAT:29:29,ZUBAT:34:34,ZUBAT:35:35,GOLBAT:34:34,GOLBAT:35:35,GOLBAT:33:33,GOLBAT:36:36
-
 music
 MUS_MT_CHIMNEY
+encounters
+land ZUBAT:30:30,ZUBAT:31:31,ZUBAT:32:32,ZUBAT:33:33,ZUBAT:28:28,ZUBAT:29:29,ZUBAT:34:34,ZUBAT:35:35,GOLBAT:34:34,GOLBAT:35:35,GOLBAT:33:33,GOLBAT:36:36

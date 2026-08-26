@@ -22,7 +22,7 @@ warps
 3 7 SlateportCity 6
 4 7 SlateportCity 6
 npcs
-people_expert_m 7 5 S static 0
+people_expert_m 7 5 S static 0 - 0
 dialogs
 0	Hi, hi! I'm the NAME RATER! I'm the fortune-teller of names!I shall be pleased to rate your POKéMON's nickname.
 objscripts
@@ -54,7 +54,7 @@ goto_if_eq VAR_RESULT TRUE SlateportCity_NameRatersHouse_EventScript_PlayerNotMo
 specialvar VAR_RESULT MonOTNameNotPlayer
 special BufferMonNickname
 goto_if_eq VAR_RESULT TRUE SlateportCity_NameRatersHouse_EventScript_PlayerNotMonsOT
-msgboxyesno	Hmmm… , is it? That is quite a fine name you bestowed.But! What say you, if I were to suggest a slightly better name?
+msgboxyesno	Hmmm… STR_VAR_1, is it? That is quite a fine name you bestowed.But! What say you, if I were to suggest a slightly better name?
 goto_if_eq VAR_RESULT YES SlateportCity_NameRatersHouse_EventScript_ChangeNickname
 goto_if_eq VAR_RESULT NO SlateportCity_NameRatersHouse_EventScript_DeclineNameRate
 end
@@ -64,21 +64,20 @@ call Common_EventScript_NameReceivedPartyMon
 specialvar VAR_RESULT TryPutNameRaterShowOnTheAir
 special BufferMonNickname
 goto_if_eq VAR_RESULT TRUE SlateportCity_NameRatersHouse_EventScript_NewNameDifferent
-msgbox	Done! From now on, this POKéMON shall be known as !It looks no different from before, and yet, this is vastly superior!How fortunate for you!
+msgbox	Done! From now on, this POKéMON shall be known as STR_VAR_1!It looks no different from before, and yet, this is vastly superior!How fortunate for you!
 release
 end
 = SlateportCity_NameRatersHouse_EventScript_NewNameDifferent
-msgbox	Done! From now on, this POKéMON shall be known as !It is a better name than before! How fortunate for you!
+msgbox	Done! From now on, this POKéMON shall be known as STR_VAR_1!It is a better name than before! How fortunate for you!
 release
 end
 = SlateportCity_NameRatersHouse_EventScript_PlayerNotMonsOT
-msgbox	Hmmm… it is!This is a magnificent nickname! It is impeccably beyond reproach!You'll do well to cherish your now and beyond.
+msgbox	Hmmm… STR_VAR_1 it is!This is a magnificent nickname! It is impeccably beyond reproach!You'll do well to cherish your STR_VAR_1 now and beyond.
 release
 end
 = SlateportCity_NameRatersHouse_EventScript_CantRateEgg
 msgbox	Now, now. That is merely an EGG!
 release
 end
-
 music
 MUS_SLATEPORT

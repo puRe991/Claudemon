@@ -48,13 +48,13 @@ warps
 4 20 MauvilleCity 0
 5 20 MauvilleCity 0
 npcs
-people_gym_leaders_wattson 5 2 S static FLAG_HIDE_MAUVILLE_GYM_WATTSON
-people_man_5 7 8 S static 0
-people_girl_3 1 16 N static 0
-people_youngster 5 10 W static 0
-people_man_5 1 13 S static 0
-people_man_2 7 20 W static 0
-people_maniac 7 10 N static 0
+people_gym_leaders_wattson 5 2 S static FLAG_HIDE_MAUVILLE_GYM_WATTSON - 0
+people_man_5 7 8 S static 0 - 1
+people_girl_3 1 16 N static 0 - 2
+people_youngster 5 10 W static 0 - 2
+people_man_5 1 13 S static 0 - 2
+people_man_2 7 20 W static 0 - 0
+people_maniac 7 10 N static 0 - 1
 dialogs
 0	I swell with optimism, seeing a promising young TRAINER like you!
 1	WATTSON, our GYM LEADER, has been around for a long, long time.He was battling even before your daddy was born, that tough coot.
@@ -301,6 +301,5 @@ settrainerflag TRAINER_JOSH
 settrainerflag TRAINER_TOMMY
 settrainerflag TRAINER_MARC
 return
-
 music
 MUS_GYM

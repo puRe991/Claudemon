@@ -22,11 +22,11 @@ warps
 1 7 BattleFrontier_OutsideWest 3
 2 7 BattleFrontier_OutsideWest 3
 npcs
-people_maniac 8 4 E static 0
-people_maniac 10 4 W static 0
-people_maniac 10 3 W static 0
-people_running_triathlete_f 4 6 S wander 0
-people_maniac 10 5 W static 0
+people_maniac 8 4 E static 0 - 0
+people_maniac 10 4 W static 0 - 0
+people_maniac 10 3 W static 0 - 0
+people_running_triathlete_f 4 6 S wander 0 - 0
+people_maniac 10 5 W static 0 - 0
 dialogs
 0	Howdy! When it comes to news about the BATTLE FRONTIER, I'm no. 1.You can think of me as the FRONTIER MANIAC.Just checking, but you are a TRAINER, isn't that right?I'll happily share the hottest news I gathered about the BATTLE FRONTIER.
 1	What amazing news-gathering power! My mentor's like none other!
@@ -87,10 +87,10 @@ waitbuttonpress
 release
 end
 = BattleFrontier_Lounge2_EventScript_FacilityNews
-msgbox	Let's see now…It sounds like the is the hottest place going.
+msgbox	Let's see now…It sounds like the STR_VAR_1 is the hottest place going.
 return
 = BattleFrontier_Lounge2_EventScript_BattleTowerNews
-msgbox	Let's see now…It sounds like BATTLE TOWER is the hottest.
+msgbox	Let's see now…It sounds like BATTLE TOWER STR_VAR_1 is the hottest.
 return
 = BattleFrontier_Lounge2_EventScript_BufferBattlePyramid
 bufferstdstring STR_VAR_1 STDSTRING_BATTLE_PYRAMID
@@ -126,6 +126,5 @@ return
 msgbox	Howdy! Did you swing by to grill me about the latest word? Oh, all right!
 goto BattleFrontier_Lounge2_EventScript_GiveAdvice
 end
-
 music
 MUS_B_TOWER_RS

@@ -25,15 +25,15 @@ warps
 6 8 PetalburgCity 3
 1 6 PetalburgCity_PokemonCenter_2F 0
 npcs
-people_nurse 7 2 S static 0 LOCALID_PETALBURG_NURSE
-people_man_4 11 2 S static 0
-people_fat_man 2 3 S static 0
-people_youngster 9 6 S wander 0
-people_woman_5 5 4 S static 0
+people_nurse 7 2 S static 0 LOCALID_PETALBURG_NURSE 0
+people_man_4 11 2 S static 0 - 0
+people_fat_man 2 3 S static 0 - 0
+people_youngster 9 6 S wander 0 - 0
+people_woman_5 5 4 S static 0 - 0
 dialogs
-2	Dieses PC-basierte POKéMON-Lagersystem…Wer auch immer das entwickelt hat, muss so etwas wie ein wissenschaftliches Genie sein!
-3	Als mein POKéMON eine ORAN BERRY gegessen hat, hat es HP zurückgewonnen!
-4	Es gibt viele Typen von POKéMON.Alle Typen haben ihre Stärken und Schwächen gegenüber anderen Typen.Je nach Typ der POKéMON kann ein Kampf leicht oder schwer sein.
+2	That PC-based POKéMON Storage System…Whoever made it must be some kind of a scientific wizard!
+3	When my POKéMON ate an ORAN BERRY, it regained HP!
+4	There are many types of POKéMON.All types have their strengths and weaknesses against other types.Depending on the types of POKéMON, a battle could be easy or hard.
 objscripts
 0 PetalburgCity_PokemonCenter_1F_EventScript_Nurse
 1 ProfileMan_EventScript_Man
@@ -50,7 +50,7 @@ scriptdefs
 = PetalburgCity_PokemonCenter_1F_EventScript_Woman
 lock
 faceplayer
-msgbox	Es gibt viele Typen von POKéMON.Alle Typen haben ihre Stärken und Schwächen gegenüber anderen Typen.Je nach Typ der POKéMON kann ein Kampf leicht oder schwer sein.
+msgbox	There are many types of POKéMON.All types have their strengths and weaknesses against other types.Depending on the types of POKéMON, a battle could be easy or hard.
 specialvar VAR_RESULT IsStarterInParty
 goto_if_eq VAR_RESULT TRUE PetalburgCity_PokemonCenter_1F_EventScript_SayStarterTypeInfo
 release
@@ -62,19 +62,19 @@ call_if_eq VAR_STARTER_MON 2 PetalburgCity_PokemonCenter_1F_EventScript_SayMudki
 release
 end
 = PetalburgCity_PokemonCenter_1F_EventScript_SayMudkipType
-msgbox	Zum Beispiel ist dein MUDKIP ein WASSER-Typ.Er ist stark gegen den FEUER-Typ.Aber er ist schwach gegen PFLANZEN- und ELEKTRO-POKéMON.
+msgbox	For example, your MUDKIP is a WATER type.It's strong against the FIRE type.But, it's weak against GRASS-type and ELECTRIC-type POKéMON.
 return
 = PetalburgCity_PokemonCenter_1F_EventScript_SayTorchicType
-msgbox	Zum Beispiel ist dein TORCHIC ein FEUER-Typ.Er ist stark gegen die PFLANZEN- und KÄFER-Typen.Aber er ist schwach gegen WASSER-POKéMON.
+msgbox	For example, your TORCHIC is a FIRE type.It's strong against the GRASS and BUG types.But, it's weak against WATER-type POKéMON.
 return
 = PetalburgCity_PokemonCenter_1F_EventScript_SayTreeckoType
-msgbox	Zum Beispiel ist dein TREECKO ein PFLANZEN-Typ.Er ist stark gegen die WASSER- und BODEN-Typen.Aber er ist schwach gegen FEUER-POKéMON.
+msgbox	For example, your TREECKO is a GRASS type.It's strong against the WATER and GROUND types.But, it's weak against FIRE-type POKéMON.
 return
 = PetalburgCity_PokemonCenter_1F_EventScript_Youngster
-msgbox	Als mein POKéMON eine ORAN BERRY gegessen hat, hat es HP zurückgewonnen!
+msgbox	When my POKéMON ate an ORAN BERRY, it regained HP!
 end
 = PetalburgCity_PokemonCenter_1F_EventScript_FatMan
-msgbox	Dieses PC-basierte POKéMON-Lagersystem…Wer auch immer das entwickelt hat, muss so etwas wie ein wissenschaftliches Genie sein!
+msgbox	That PC-based POKéMON Storage System…Whoever made it must be some kind of a scientific wizard!
 end
 = ProfileMan_EventScript_Man
 lock
@@ -175,7 +175,7 @@ goto_if_eq VAR_RESULT YES EventScript_PkmnCenterNurse_HealPkmn
 goto_if_eq VAR_RESULT NO EventScript_PkmnCenterNurse_Goodbye
 end
 = EventScript_PkmnCenterNurse_Goodbye
-msgbox	Wir hoffen, dich bald wiederzusehen!
+msgbox	We hope to see you again!
 return
 @ VAR_0x8004 is 1 when player has Gold Card; jumps are identical
 goto EventScript_PkmnCenterNurse_HealPkmn
@@ -200,28 +200,28 @@ end
 goto EventScript_PkmnCenterNurse_ReturnPkmn
 = EventScript_PkmnCenterNurse_ReturnPkmn
 goto_if_eq VAR_0x8004 1 EventScript_PkmnCenterNurse_ReturnPkmn2
-msgbox	Danke für deine Geduld.Wir haben deine POKéMON vollständig geheilt.
+msgbox	Thank you for waiting.We've restored your POKéMON to full health.
 waitmessage
 applymovement VAR_0x800B Movement_PkmnCenterNurse_Bow
 waitmovement 0
-msgbox	Wir hoffen, dich bald wiederzusehen!
+msgbox	We hope to see you again!
 return
 = EventScript_PkmnCenterNurse_ReturnPkmn2
-msgbox	Danke für deine Geduld.
+msgbox	Thank you for waiting.
 waitmessage
 applymovement VAR_0x800B Movement_PkmnCenterNurse_Bow
 waitmovement 0
-msgbox	Wir hoffen, dich bald wiederzusehen!
+msgbox	We hope to see you again!
 return
 = EventScript_PkmnCenterNurse_PlayerWaitingInUnionRoom
 goto_if_set FLAG_NURSE_UNION_ROOM_REMINDER EventScript_PkmnCenterNurse_ReturnPkmn
-msgbox	Danke für deine Geduld.Wir haben deine POKéMON vollständig geheilt.
+msgbox	Thank you for waiting.We've restored your POKéMON to full health.
 setflag FLAG_NURSE_UNION_ROOM_REMINDER
-msgbox	Es sieht so aus, als würde  gerade spielen. Auf geht's!
+msgbox	It appears as if STR_VAR_1 is playing right now. Go for it!
 waitmessage
 applymovement VAR_0x800B Movement_PkmnCenterNurse_Bow
 waitmovement 0
-msgbox	Wir hoffen, dich bald wiederzusehen!
+msgbox	We hope to see you again!
 return
 = EventScript_PkmnCenterNurse_CheckPokerus
 specialvar VAR_RESULT IsPokerusInParty
@@ -242,15 +242,15 @@ waitmovement 0
 special HealPlayerParty
 return
 = EventScript_PkmnCenterNurse_IllTakeYourPkmn2
-msgbox	Okay, ich nehme deine POKéMON kurz mit.
+msgbox	Okay, I'll take your POKéMON for a few seconds.
 return
 = EventScript_PkmnCenterNurse_IllTakeYourPkmn
-msgbox	Okay, ich nehme deine POKéMON kurz mit.
+msgbox	Okay, I'll take your POKéMON for a few seconds.
 return
 = EventScript_PkmnCenterNurse_GoldCard
 goto_if_set FLAG_NURSE_MENTIONS_GOLD_CARD EventScript_PkmnCenterNurse_AskForUsual
 setflag FLAG_NURSE_MENTIONS_GOLD_CARD
-msgbox	Hallo, und willkommen im POKéMON CENTER.Wir heilen deine erschöpften POKéMON vollständig.Möchtest du…
+msgbox	Hello, and welcome to the POKéMON CENTER.We restore your tired POKéMON to full health.Would you like to…
 playse SE_PIN
 applymovement VAR_0x800B Common_Movement_ExclamationMark
 waitmovement 0
@@ -258,7 +258,7 @@ applymovement VAR_0x800B Common_Movement_Delay48
 waitmovement 0
 msgboxyesno	Th-that card… Could it be… The GOLD CARD?!Oh, the gold color is brilliant! The four stars seem to sparkle!I've seen several TRAINERS with a SILVER CARD before, but, PLAYER, you're the first TRAINER I've ever seen with a GOLD CARD!Okay, PLAYER, please allow me the honor of resting your POKéMON!
 goto_if_eq VAR_RESULT YES EventScript_PkmnCenterNurse_GoldCardHealPkmn
-msgbox	Wir hoffen, dich bald wiederzusehen!
+msgbox	We hope to see you again!
 return
 = EventScript_PkmnCenterNurse_GoldCardHealPkmn
 setvar VAR_0x8004 1
@@ -267,10 +267,9 @@ end
 = EventScript_PkmnCenterNurse_AskForUsual
 msgboxyesno	I'm delighted to see you, PLAYER! You want the usual, am I right?
 goto_if_eq VAR_RESULT YES EventScript_PkmnCenterNurse_GoldCardHealPkmn
-msgbox	Wir hoffen, dich bald wiederzusehen!
+msgbox	We hope to see you again!
 return
-counters
-517
-
 music
 MUS_POKE_CENTER
+counters
+517

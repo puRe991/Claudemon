@@ -34,18 +34,18 @@ warps
 5 2 SeafloorCavern_Room9 0
 5 12 SeafloorCavern_Room3 0
 npcs
-misc_pushable_boulder 4 7 S static FLAG_TEMP_11
-misc_pushable_boulder 5 7 S static FLAG_TEMP_12
-misc_pushable_boulder 6 7 S static FLAG_TEMP_13
-misc_pushable_boulder 3 6 S static FLAG_TEMP_14
-misc_pushable_boulder 7 6 S static FLAG_TEMP_15
-misc_pushable_boulder 4 5 S static FLAG_TEMP_16
-misc_pushable_boulder 5 5 S static FLAG_TEMP_17
-misc_pushable_boulder 6 5 S static FLAG_TEMP_18
-misc_pushable_boulder 3 4 S static FLAG_TEMP_19
-misc_pushable_boulder 4 4 S static FLAG_TEMP_1A
-misc_pushable_boulder 6 4 S static FLAG_TEMP_1B
-misc_pushable_boulder 7 4 S static FLAG_TEMP_1C
+misc_pushable_boulder 4 7 S static FLAG_TEMP_11 - 0
+misc_pushable_boulder 5 7 S static FLAG_TEMP_12 - 0
+misc_pushable_boulder 6 7 S static FLAG_TEMP_13 - 0
+misc_pushable_boulder 3 6 S static FLAG_TEMP_14 - 0
+misc_pushable_boulder 7 6 S static FLAG_TEMP_15 - 0
+misc_pushable_boulder 4 5 S static FLAG_TEMP_16 - 0
+misc_pushable_boulder 5 5 S static FLAG_TEMP_17 - 0
+misc_pushable_boulder 6 5 S static FLAG_TEMP_18 - 0
+misc_pushable_boulder 3 4 S static FLAG_TEMP_19 - 0
+misc_pushable_boulder 4 4 S static FLAG_TEMP_1A - 0
+misc_pushable_boulder 6 4 S static FLAG_TEMP_1B - 0
+misc_pushable_boulder 7 4 S static FLAG_TEMP_1C - 0
 objscripts
 0 EventScript_StrengthBoulder
 1 EventScript_StrengthBoulder
@@ -67,7 +67,7 @@ goto_if_set FLAG_SYS_USE_STRENGTH EventScript_CheckActivatedBoulder
 checkpartymove MOVE_STRENGTH
 goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CantStrength
 setfieldeffectargument 0 VAR_RESULT
-msgbox	It's a big boulder, but a POKéMON may be able to push it aside.Would you like to use STRENGTH?
+msgboxyesno	It's a big boulder, but a POKéMON may be able to push it aside.Would you like to use STRENGTH?
 goto_if_eq VAR_RESULT NO EventScript_CancelStrength
 closemessage
 dofieldeffect FLDEFF_USE_STRENGTH
@@ -91,8 +91,7 @@ end
 msgbox	STRENGTH made it possible to move boulders around.
 releaseall
 end
-encounters
-land ZUBAT:30:30,ZUBAT:31:31,ZUBAT:32:32,ZUBAT:33:33,ZUBAT:28:28,ZUBAT:29:29,ZUBAT:34:34,ZUBAT:35:35,GOLBAT:34:34,GOLBAT:35:35,GOLBAT:33:33,GOLBAT:36:36
-
 music
 MUS_MT_CHIMNEY
+encounters
+land ZUBAT:30:30,ZUBAT:31:31,ZUBAT:32:32,ZUBAT:33:33,ZUBAT:28:28,ZUBAT:29:29,ZUBAT:34:34,ZUBAT:35:35,GOLBAT:34:34,GOLBAT:35:35,GOLBAT:33:33,GOLBAT:36:36

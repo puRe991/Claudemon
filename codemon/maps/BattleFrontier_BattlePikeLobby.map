@@ -33,10 +33,10 @@ warps
 4 12 BattleFrontier_OutsideWest 0
 6 12 BattleFrontier_OutsideWest 0
 npcs
-people_link_receptionist 5 5 S static 0 LOCALID_PIKE_LOBBY_ATTENDANT
-people_hiker 10 9 N static 0
-people_twin 0 5 W static 0
-people_beauty 8 9 S wander 0
+people_link_receptionist 5 5 S static 0 LOCALID_PIKE_LOBBY_ATTENDANT 0
+people_hiker 10 9 N static 0 - 0
+people_twin 0 5 W static 0 - 0
+people_beauty 8 9 S wander 0 - 0
 dialogs
 0	Where the luck of TRAINERS is put to the test…Welcome to the BATTLE PIKE…I am your guide to the BATTLE PIKE…
 1	Arrgh! I blew my chance! I was one room away from the goal!In this place, you'd better watch out for poison, freezing, and so on.
@@ -84,7 +84,7 @@ goto BattleFrontier_BattlePikeLobby_EventScript_GiveBattlePoints
 = BattleFrontier_BattlePikeLobby_EventScript_GiveBattlePoints
 msgbox	In recognition of your amazing luck, we award you these Battle Point(s)…
 frontier_givepoints
-msgbox	PLAYER obtained Battle Point(s).
+msgbox	PLAYER obtained STR_VAR_1 Battle Point(s).
 frontier_checkairshow
 pike_get PIKE_DATA_TOTAL_STREAKS
 addvar VAR_RESULT 1
@@ -230,16 +230,15 @@ case FRONTIER_LVL_50 BattleFrontier_BattlePikeLobby_EventScript_NotEnoughValidMo
 case FRONTIER_LVL_OPEN BattleFrontier_BattlePikeLobby_EventScript_NotEnoughValidMonsLvOpen
 goto BattleFrontier_BattlePikeLobby_EventScript_NotEnoughValidMonsLv50
 = BattleFrontier_BattlePikeLobby_EventScript_NotEnoughValidMonsLv50
-msgbox	I beg your pardon, but…You do not have three eligible POKéMON for the Battle Choice event.You must have three different POKéMON of Level 50 or less to enter.They also must be holding different kinds of items.EGGS ineligible.Please come see me when you are ready…
+msgbox	I beg your pardon, but…You do not have three eligible POKéMON for the Battle Choice event.You must have three different POKéMON of Level 50 or less to enter.They also must be holding different kinds of items.EGGSSTR_VAR_1 ineligible.Please come see me when you are ready…
 goto BattleFrontier_BattlePikeLobby_EventScript_EndCancelChallenge
 = BattleFrontier_BattlePikeLobby_EventScript_NotEnoughValidMonsLvOpen
-msgbox	I beg your pardon, but…You do not have three eligible POKéMON for the Battle Choice event.You must have three different POKéMON to enter.They also must be holding different kinds of items.EGGS ineligible.Please come see me when you are ready…
+msgbox	I beg your pardon, but…You do not have three eligible POKéMON for the Battle Choice event.You must have three different POKéMON to enter.They also must be holding different kinds of items.EGGSSTR_VAR_1 ineligible.Please come see me when you are ready…
 goto BattleFrontier_BattlePikeLobby_EventScript_EndCancelChallenge
 = BattleFrontier_BattlePikeLobby_EventScript_ExplainChallenge
 msgbox	Here we conduct an event we call the Battle Choice.The Battle Choice rules are very simple…Choose one of three paths and make your way to the goal room at the end of the BATTLE PIKE. It's that simple.However, what happens on the chosen path depends entirely on the luck of the challenger…If you reach the goal, you will be rewarded with Battle Points.If you want to interrupt your challenge, please have a word with our staff in the big rooms on the way.If you don't save before interrupting, you will be disqualified.
 goto BattleFrontier_BattlePikeLobby_EventScript_AskTakeChallenge
 signs
 1 3	The Battle Choice's rules are listed.
-
 music
 MUS_B_PIKE

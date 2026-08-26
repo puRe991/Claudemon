@@ -24,8 +24,8 @@ warps
 5 8 BattleFrontier_BattleTowerLobby 2
 6 8 BattleFrontier_BattleTowerLobby 2
 npcs
-people_teala 1 7 E static 0 LOCALID_TOWER_BATTLE_ATTENDANT_1
-people_teala 4 8 N static 0 LOCALID_TOWER_BATTLE_ATTENDANT_2
+people_teala 1 7 E static 0 LOCALID_TOWER_BATTLE_ATTENDANT_1 0
+people_teala 4 8 N static 0 LOCALID_TOWER_BATTLE_ATTENDANT_2 0
 onload
 VAR_TEMP_0 0 BattleFrontier_BattleTowerBattleRoom_EventScript_EnterRoom
 movements
@@ -353,6 +353,5 @@ goto BattleFrontier_BattleTowerBattleRoom_EventScript_BattleAnabelGold
 = BattleFrontier_EventScript_SetBrainObjectGfx
 frontier_setbrainobj
 return
-
 music
 MUS_B_TOWER

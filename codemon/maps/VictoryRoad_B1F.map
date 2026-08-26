@@ -73,27 +73,27 @@ warps
 20 21 VictoryRoad_1F 2
 5 26 VictoryRoad_B2F 3
 npcs
-misc_pushable_boulder 20 5 S static FLAG_TEMP_13
-misc_pushable_boulder 21 4 S static FLAG_TEMP_14
-misc_pushable_boulder 4 7 S static FLAG_TEMP_11
-misc_pushable_boulder 9 10 S static FLAG_TEMP_12
-misc_pushable_boulder 20 26 S static FLAG_TEMP_17
-misc_pushable_boulder 21 25 S static FLAG_TEMP_16
-misc_pushable_boulder 35 6 S static FLAG_TEMP_1E
-misc_breakable_rock 19 5 S static FLAG_TEMP_19
-misc_breakable_rock 20 4 S static FLAG_TEMP_1A
-misc_breakable_rock 18 12 S static FLAG_TEMP_1B
-misc_breakable_rock 20 25 S static FLAG_TEMP_1C
-misc_breakable_rock 21 26 S static FLAG_TEMP_1D
-misc_pushable_boulder 34 4 S static FLAG_TEMP_1F
-people_man_3 37 12 W static 0
-people_woman_5 26 16 N static 0
-people_woman_5 5 21 W static 0
-misc_breakable_rock 34 3 S static FLAG_TEMP_15
-misc_item_ball 42 8 S static FLAG_ITEM_VICTORY_ROAD_B1F_TM_PSYCHIC
-misc_item_ball 32 3 S static FLAG_ITEM_VICTORY_ROAD_B1F_FULL_RESTORE
-people_man_3 14 16 S static 0
-people_woman_5 14 20 S static 0
+misc_pushable_boulder 20 5 S static FLAG_TEMP_13 - 0
+misc_pushable_boulder 21 4 S static FLAG_TEMP_14 - 0
+misc_pushable_boulder 4 7 S static FLAG_TEMP_11 - 0
+misc_pushable_boulder 9 10 S static FLAG_TEMP_12 - 0
+misc_pushable_boulder 20 26 S static FLAG_TEMP_17 - 0
+misc_pushable_boulder 21 25 S static FLAG_TEMP_16 - 0
+misc_pushable_boulder 35 6 S static FLAG_TEMP_1E - 0
+misc_breakable_rock 19 5 S static FLAG_TEMP_19 - 0
+misc_breakable_rock 20 4 S static FLAG_TEMP_1A - 0
+misc_breakable_rock 18 12 S static FLAG_TEMP_1B - 0
+misc_breakable_rock 20 25 S static FLAG_TEMP_1C - 0
+misc_breakable_rock 21 26 S static FLAG_TEMP_1D - 0
+misc_pushable_boulder 34 4 S static FLAG_TEMP_1F - 0
+people_man_3 37 12 W static 0 - 3
+people_woman_5 26 16 N static 0 - 4
+people_woman_5 5 21 W static 0 - 2
+misc_breakable_rock 34 3 S static FLAG_TEMP_15 - 0
+misc_item_ball 42 8 S static FLAG_ITEM_VICTORY_ROAD_B1F_TM_PSYCHIC - 0
+misc_item_ball 32 3 S static FLAG_ITEM_VICTORY_ROAD_B1F_FULL_RESTORE - 0
+people_man_3 14 16 S static 0 - 4
+people_woman_5 14 20 S static 0 - 3
 dialogs
 13	The POKéMON LEAGUE became distant again… What a letdown…
 14	By being together all the time, trust grows between POKéMON and TRAINERS.
@@ -155,9 +155,9 @@ goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CantSmashRock
 setfieldeffectargument 0 VAR_RESULT
 bufferpartymonnick STR_VAR_1 VAR_RESULT
 buffermovename STR_VAR_2 MOVE_ROCK_SMASH
-msgboxyesno	Dieser Felsen sieht zerbrechlich aus. Möchtest du ZERTRÜMMERER einsetzen?
+msgboxyesno	This rock appears to be breakable. Would you like to use ROCK SMASH?
 goto_if_eq VAR_RESULT NO EventScript_CancelSmash
-msgbox	STR_VAR_1 setzt STR_VAR_2 ein!
+msgbox	STR_VAR_1 used STR_VAR_2!
 closemessage
 dofieldeffect FLDEFF_USE_ROCK_SMASH
 waitstate
@@ -190,7 +190,7 @@ closemessage
 releaseall
 end
 = EventScript_CantSmashRock
-msgbox	Das ist ein robuster Felsen, aber vielleicht kann ihn ein POKéMON zertrümmern.
+msgbox	It's a rugged rock, but a POKéMON may be able to smash it.
 releaseall
 end
 = VictoryRoad_B1F_EventScript_Michelle
@@ -212,7 +212,7 @@ goto_if_set FLAG_SYS_USE_STRENGTH EventScript_CheckActivatedBoulder
 checkpartymove MOVE_STRENGTH
 goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CantStrength
 setfieldeffectargument 0 VAR_RESULT
-msgbox	It's a big boulder, but a POKéMON may be able to push it aside.Would you like to use STRENGTH?
+msgboxyesno	It's a big boulder, but a POKéMON may be able to push it aside.Would you like to use STRENGTH?
 goto_if_eq VAR_RESULT NO EventScript_CancelStrength
 closemessage
 dofieldeffect FLDEFF_USE_STRENGTH
@@ -236,9 +236,8 @@ end
 msgbox	STRENGTH made it possible to move boulders around.
 releaseall
 end
+music
+MUS_VICTORY_ROAD
 encounters
 land GOLBAT:40:40,HARIYAMA:40:40,LAIRON:40:40,LAIRON:40:40,GOLBAT:38:38,HARIYAMA:38:38,GOLBAT:42:42,HARIYAMA:42:42,LAIRON:42:42,MAWILE:38:38,LAIRON:42:42,MAWILE:38:38
 rock GRAVELER:30:40,GEODUDE:30:40,GRAVELER:35:40,GRAVELER:35:40,GRAVELER:35:40
-
-music
-MUS_VICTORY_ROAD

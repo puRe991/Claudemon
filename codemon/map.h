@@ -4,6 +4,7 @@
 #include <unordered_set>
 #include <unordered_map>
 #include <map>
+#include <functional>
 #include <random>
 
 #include "Tileset.h"
@@ -27,7 +28,28 @@ struct NpcSpawn {
 	// addresses it by name (`applymovement`/`addobject`/`removeobject`/...)
 	// -- most NPCs don't have one. See main.cpp's Session::localid_map.
 	std::string local_id;
+	// Trainer sight range in tiles (pokeemerald's trainer_sight_or_berry_tree_id
+	// on a TRAINER_TYPE_* object event). 0 = not a trainer / never challenges
+	// on sight. A trainer spots the player along its own facing direction only,
+	// up to this many tiles, with nothing solid in between.
+	int sight = 0;
 };
+
+class Map;   // for trainer_can_see below
+
+// Line-of-sight test for a trainer challenging the player on sight
+// (pokeemerald's GetTrainerApproachDistance, src/trainer_see.c): the player
+// must be straight along `facing`, between 1 and `range` tiles away, with
+// every tile in between passable and free of other actors. `blocked` is asked
+// about each intervening tile so the caller can report NPCs standing in the
+// way without this needing to know about Character at all.
+//
+// Real TRAINER_TYPE_SEE_ALL_DIRECTIONS trainers also watch sideways; this
+// models the ordinary single-direction case, which covers nearly every
+// trainer in the game.
+bool trainer_can_see(const Map& map, int tx, int ty, DIR facing, int range,
+                     int px, int py,
+                     const std::function<bool(int, int)>& blocked);
 
 // One warp/transition as authored in the map file's `warps` section. Stepping
 // onto (x,y) sends the player to `dest` map, arriving at that map's warp

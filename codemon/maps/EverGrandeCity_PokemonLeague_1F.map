@@ -33,10 +33,10 @@ warps
 10 1 EverGrandeCity_Hall5 0
 1 7 EverGrandeCity_PokemonLeague_2F 0
 npcs
-people_nurse 3 2 S static 0 LOCALID_LEAGUE_NURSE
-people_mart_employee 16 2 S static 0
-people_man_3 8 2 S static 0 LOCALID_LEAGUE_GUARD_1
-people_man_3 11 2 S static 0 LOCALID_LEAGUE_GUARD_2
+people_nurse 3 2 S static 0 LOCALID_LEAGUE_NURSE 0
+people_mart_employee 16 2 S static 0 - 0
+people_man_3 8 2 S static 0 LOCALID_LEAGUE_GUARD_1 0
+people_man_3 11 2 S static 0 LOCALID_LEAGUE_GUARD_2 0
 objscripts
 0 EverGrandeCity_PokemonLeague_1F_EventScript_Nurse
 1 EverGrandeCity_PokemonLeague_1F_EventScript_Clerk
@@ -173,7 +173,7 @@ return
 goto_if_set FLAG_NURSE_UNION_ROOM_REMINDER EventScript_PkmnCenterNurse_ReturnPkmn
 msgbox	Thank you for waiting.We've restored your POKéMON to full health.
 setflag FLAG_NURSE_UNION_ROOM_REMINDER
-msgbox	It appears as if is playing right now. Go for it!
+msgbox	It appears as if STR_VAR_1 is playing right now. Go for it!
 waitmessage
 applymovement VAR_0x800B Movement_PkmnCenterNurse_Bow
 waitmovement 0
@@ -225,8 +225,7 @@ msgboxyesno	I'm delighted to see you, PLAYER! You want the usual, am I right?
 goto_if_eq VAR_RESULT YES EventScript_PkmnCenterNurse_GoldCardHealPkmn
 msgbox	We hope to see you again!
 return
-counters
-517
-
 music
 MUS_POKE_CENTER
+counters
+517

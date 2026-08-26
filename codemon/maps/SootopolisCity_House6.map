@@ -20,7 +20,7 @@ warps
 3 6 SootopolisCity 9
 4 6 SootopolisCity 9
 npcs
-people_woman_2 4 3 S wander 0
+people_woman_2 4 3 S wander 0 - 0
 dialogs
 0	Hello! You're our first guest in a good while.You've brightened up my day, so I'll give you a big WAILMER DOLL.
 objscripts
@@ -40,7 +40,7 @@ release
 end
 = SootopolisCity_House6_EventScript_NoRoomForWailmerDoll
 bufferdecorationname STR_VAR_2 DECOR_WAILMER_DOLL
-msgbox	Too bad! There's no room left for another …
+msgbox	Too bad! There's no room left for another STR_VAR_2…
 msgbox	Oh, you want it, but not right now? Okay, then I'll hold it for you.
 release
 end
@@ -52,6 +52,5 @@ end
 msgbox	I love plush DOLLS!
 release
 end
-
 music
 MUS_SOOTOPOLIS

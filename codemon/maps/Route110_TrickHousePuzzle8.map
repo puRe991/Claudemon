@@ -51,10 +51,10 @@ warps
 1 21 Route110_TrickHouseEntrance 2
 13 1 Route110_TrickHouseEnd 0
 npcs
-people_man_3 1 10 N static 0
-people_man_3 4 2 E static 0
-people_woman_5 8 17 W static 0
-misc_item_ball 2 2 S static FLAG_ITEM_TRICK_HOUSE_PUZZLE_8_BEAD_MAIL
+people_man_3 1 10 N static 0 - 1
+people_man_3 4 2 E static 0 - 1
+people_woman_5 8 17 W static 0 - 1
+misc_item_ball 2 2 S static FLAG_ITEM_TRICK_HOUSE_PUZZLE_8_BEAD_MAIL - 0
 dialogs
 0	You've beaten the POKéMON LEAGUE CHAMPION? That's too much!
 1	Seeing someone like you should please the TRICK MASTER.
@@ -84,6 +84,5 @@ end
 trainerbattle_single TRAINER_VINCENT Route110_TrickHousePuzzle8_Text_VincentIntro Route110_TrickHousePuzzle8_Text_VincentDefeat
 msgbox	You've beaten the POKéMON LEAGUE CHAMPION? That's too much!
 end
-
 music
 MUS_TRICK_HOUSE

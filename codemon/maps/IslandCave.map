@@ -73,7 +73,7 @@ warps
 8 20 IslandCave 2
 8 11 IslandCave 1
 npcs
-people_man_1 8 7 S static FLAG_HIDE_REGICE
+people_man_1 8 7 S static FLAG_HIDE_REGICE - 0
 objscripts
 0 IslandCave_EventScript_Regice
 scriptdefs
@@ -103,6 +103,5 @@ end
 setflag FLAG_DEFEATED_REGICE
 goto Common_EventScript_RemoveStaticPokemon
 end
-
 music
 MUS_SEALED_CHAMBER

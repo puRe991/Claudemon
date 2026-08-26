@@ -20,7 +20,7 @@ warps
 6 8 BattleFrontier_OutsideWest 1
 7 8 BattleFrontier_OutsideWest 1
 npcs
-people_teala 23 5 S static 0 LOCALID_DOME_CORRIDOR_ATTENDANT
+people_teala 23 5 S static 0 LOCALID_DOME_CORRIDOR_ATTENDANT 0
 onload
 VAR_TEMP_0 0 BattleFrontier_BattleDomeCorridor_EventScript_EnterCorridor
 movements
@@ -67,6 +67,5 @@ waitmovement 0
 closedoor 37 3
 waitdooranim
 goto BattleFrontier_BattleDomeCorridor_EventScript_WarpToPreBattleRoom
-
 music
 MUS_B_DOME_LOBBY

@@ -31,7 +31,7 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 npcs
-people_black_belt 9 12 S static 0 LOCALID_ARENA_CORRIDOR_ATTENDANT
+people_black_belt 9 12 S static 0 LOCALID_ARENA_CORRIDOR_ATTENDANT 0
 onload
 VAR_TEMP_0 0 BattleFrontier_BattleArenaCorridor_EventScript_WalkToBattleRoom
 movements
@@ -58,6 +58,5 @@ setvar VAR_0x8006 0
 warp BattleFrontier_BattleArenaBattleRoom 7 5
 waitstate
 end
-
 music
 MUS_B_ARENA

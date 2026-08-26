@@ -33,7 +33,7 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
 npcs
-people_teala 11 2 S static 0 LOCALID_TOWER_PARTNER_ROOM_ATTENDANT
+people_teala 11 2 S static 0 LOCALID_TOWER_PARTNER_ROOM_ATTENDANT 0
 dialogs
 0	Then, please find a partner from the TRAINERS gathered here.
 objscripts
@@ -150,6 +150,5 @@ end
 frontier_set FRONTIER_DATA_RECORD_DISABLED TRUE
 goto BattleFrontier_BattleTower_EventScript_WarpToLobbyLost
 end
-
 music
 MUS_B_TOWER

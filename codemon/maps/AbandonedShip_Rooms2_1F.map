@@ -41,11 +41,11 @@ warps
 5 16 AbandonedShip_Corridors_1F 8
 4 1 AbandonedShip_Corridors_1F 11
 npcs
-people_man_4 7 13 S static 0
-people_woman_4 6 13 S static 0
-misc_item_ball 4 4 S static FLAG_ITEM_ABANDONED_SHIP_ROOMS_2_1F_REVIVE
-people_hiker 3 2 E static 0
-people_tuber_f 7 2 W static 0
+people_man_4 7 13 S static 0 - 1
+people_woman_4 6 13 S static 0 - 1
+misc_item_ball 4 4 S static FLAG_ITEM_ABANDONED_SHIP_ROOMS_2_1F_REVIVE - 0
+people_hiker 3 2 E static 0 - 3
+people_tuber_f 7 2 W static 0 - 3
 dialogs
 0	DAN: We can't find any treasures… I wonder if someone got them already?
 1	KIRA: Where could the treasures be?I've already decided what I'm buying when we find the treasures!
@@ -105,6 +105,5 @@ msgbox	KIRA: Oh, you make me so angry! I'm going to register you for that!
 register_matchcall TRAINER_KIRA_AND_DAN_1
 release
 end
-
 music
 MUS_ABANDONED_SHIP

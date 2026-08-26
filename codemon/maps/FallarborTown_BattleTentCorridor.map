@@ -19,7 +19,7 @@ collision
 0,0,0,0,0
 0,0,0,0,0
 npcs
-people_black_belt 2 6 N static 0 LOCALID_FALLARBOR_TENT_CORRIDOR_ATTENDANT
+people_black_belt 2 6 N static 0 LOCALID_FALLARBOR_TENT_CORRIDOR_ATTENDANT 0
 onload
 VAR_TEMP_0 0 FallarborTown_BattleTentCorridor_EventScript_EnterCorridor
 movements
@@ -45,6 +45,5 @@ warp FallarborTown_BattleTentBattleRoom 4 4
 waitstate
 releaseall
 end
-
 music
 MUS_B_TOWER_RS

@@ -24,8 +24,8 @@ warps
 3 8 LilycoveCity 8
 4 8 LilycoveCity 8
 npcs
-people_expert_m 4 5 W static 0
-pokemon_kecleon 4 4 S static 0
+people_expert_m 4 5 W static 0 - 0
+pokemon_kecleon 4 4 S static 0 - 0
 dialogs
 0	POKéMON are partners to people. They aren't our tools.Unfortunately, there are some people who fail to understand that…
 1	KECLEON: Ruroro?
@@ -45,6 +45,5 @@ end
 = LilycoveCity_House1_EventScript_ExpertM
 msgbox	POKéMON are partners to people. They aren't our tools.Unfortunately, there are some people who fail to understand that…
 end
-
 music
 MUS_LILYCOVE

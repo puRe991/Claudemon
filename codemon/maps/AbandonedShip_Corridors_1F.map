@@ -40,8 +40,8 @@ warps
 5 2 AbandonedShip_Corridors_B1F 6
 3 3 AbandonedShip_Rooms2_1F 2
 npcs
-people_youngster 17 7 S wander 0
-people_tuber_m 5 10 S static 0
+people_youngster 17 7 S wander 0 - 0
+people_tuber_m 5 10 S static 0 - 3
 dialogs
 0	Isn't it fun here? I get excited just being here!
 1	It's not easy throwing POKé BALLS while hanging on to an inner tube!
@@ -56,6 +56,5 @@ end
 = AbandonedShip_Corridors_1F_EventScript_Youngster
 msgbox	Isn't it fun here? I get excited just being here!
 end
-
 music
 MUS_ABANDONED_SHIP

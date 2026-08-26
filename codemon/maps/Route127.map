@@ -167,17 +167,17 @@ up 0 MossdeepCity
 down 0 Route128
 left 0 Route126
 npcs
-people_swimmer_m 45 42 W pace_h 0
-people_swimmer_f 18 68 W pace_h 0
-misc_item_ball 14 6 S static FLAG_ITEM_ROUTE_127_ZINC
-misc_item_ball 64 39 S static FLAG_ITEM_ROUTE_127_CARBOS
-people_fisherman 42 21 W static 0
-people_fisherman 64 19 E static 0
-people_fisherman 54 14 N static 0
-people_man_5 15 23 W static 0
-people_black_belt 63 63 S static 0
-people_woman_5 12 23 E static 0
-misc_item_ball 13 20 S static FLAG_ITEM_ROUTE_127_RARE_CANDY
+people_swimmer_m 45 42 W pace_h 0 - 2
+people_swimmer_f 18 68 W pace_h 0 - 4
+misc_item_ball 14 6 S static FLAG_ITEM_ROUTE_127_ZINC - 0
+misc_item_ball 64 39 S static FLAG_ITEM_ROUTE_127_CARBOS - 0
+people_fisherman 42 21 W static 0 - 0
+people_fisherman 64 19 E static 0 - 0
+people_fisherman 54 14 N static 0 - 0
+people_man_5 15 23 W static 0 - 2
+people_black_belt 63 63 S static 0 - 3
+people_woman_5 12 23 E static 0 - 2
+misc_item_ball 13 20 S static FLAG_ITEM_ROUTE_127_RARE_CANDY - 0
 objscripts
 0 Route127_EventScript_Camden
 1 Route127_EventScript_Donny
@@ -449,11 +449,10 @@ end
 trainerbattle_single TRAINER_CAMDEN Route127_Text_CamdenIntro Route127_Text_CamdenDefeat
 msgbox	A well-played match leaves me feeling refreshed and serene.
 end
+water
+334,335,368,370,372,419,420,429,431,437,439,445,446,447,518,519,520,521,523,525,526,527,528,529,531,532,533,535,536,537,541,543,545,546,547,553,560,561,562,564,568,569,570,571,572,574,575,576,577,578,579,580,583,585,586,587,588,589,591,592,593,594,595,596,597,598,599,601,602,604,605,606,607,608,609,827,828,829
+music
+MUS_ROUTE120
 encounters
 water TENTACOOL:5:35,WINGULL:10:30,WINGULL:15:25,PELIPPER:25:30,PELIPPER:25:30
 fishing MAGIKARP:5:10,TENTACOOL:5:10,MAGIKARP:10:30,TENTACOOL:10:30,WAILMER:10:30,SHARPEDO:30:35,WAILMER:30:35,WAILMER:25:30,WAILMER:35:40,WAILMER:40:45
-water
-334,335,368,370,372,419,420,429,431,437,439,445,446,447,518,519,520,521,523,525,526,527,528,529,531,532,533,535,536,537,541,543,545,546,547,553,560,561,562,564,568,569,570,571,572,574,575,576,577,578,579,580,583,585,586,587,588,589,591,592,593,594,595,596,597,598,599,601,602,604,605,606,607,608,609,827,828,829
-
-music
-MUS_ROUTE120

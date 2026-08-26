@@ -85,10 +85,10 @@ warps
 8 2 MagmaHideout_1F 1
 17 33 MagmaHideout_3F_1R 2
 npcs
-people_team_magma_magma_member_m 18 19 S static FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS
-people_team_magma_magma_member_m 12 14 S static FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS
-people_team_magma_magma_member_f 8 8 E static FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS
-people_team_magma_magma_member_m 21 11 N static FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS
+people_team_magma_magma_member_m 18 19 S static FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS - 1
+people_team_magma_magma_member_m 12 14 S static FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS - 3
+people_team_magma_magma_member_f 8 8 E static FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS - 7
+people_team_magma_magma_member_m 21 11 N static FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS - 3
 dialogs
 0	I've already lost.Do I really need to keep running around in a circle?
 1	Actually, I'm no expert at battling…
@@ -116,8 +116,7 @@ end
 trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_4 MagmaHideout_2F_1R_Text_Grunt4Intro MagmaHideout_2F_1R_Text_Grunt4Defeat
 msgbox	I've already lost.Do I really need to keep running around in a circle?
 end
-encounters
-land GEODUDE:27:27,TORKOAL:28:28,GEODUDE:28:28,TORKOAL:30:30,GEODUDE:29:29,GEODUDE:30:30,GEODUDE:30:30,GRAVELER:30:30,GRAVELER:30:30,GRAVELER:31:31,GRAVELER:32:32,GRAVELER:33:33
-
 music
 MUS_AQUA_MAGMA_HIDEOUT
+encounters
+land GEODUDE:27:27,TORKOAL:28:28,GEODUDE:28:28,TORKOAL:30:30,GEODUDE:29:29,GEODUDE:30:30,GEODUDE:30:30,GRAVELER:30:30,GRAVELER:30:30,GRAVELER:31:31,GRAVELER:32:32,GRAVELER:33:33

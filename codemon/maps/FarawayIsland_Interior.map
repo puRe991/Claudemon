@@ -58,7 +58,7 @@ warps
 12 19 FarawayIsland_Entrance 0
 13 19 FarawayIsland_Entrance 1
 npcs
-pokemon_mew 13 17 S static FLAG_HIDE_MEW LOCALID_FARAWAY_ISLAND_MEW
+pokemon_mew 13 17 S static FLAG_HIDE_MEW LOCALID_FARAWAY_ISLAND_MEW 0
 objscripts
 0 FarawayIsland_Interior_EventScript_Mew
 onload
@@ -140,6 +140,5 @@ return
 applymovement LOCALID_FARAWAY_ISLAND_MEW FarawayIsland_Interior_Movement_MewFloatUpNorth
 waitmovement 0
 return
-
 music
 MUS_ABANDONED_SHIP

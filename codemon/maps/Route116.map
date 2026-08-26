@@ -52,34 +52,34 @@ warps
 59 13 TerraCave_Entrance 0
 79 6 TerraCave_Entrance 0
 npcs
-people_man_1 18 2 S static 0
-people_man_1 19 2 S static 0
-people_youngster 12 7 S static 0
-misc_cuttable_tree 21 6 S static FLAG_TEMP_11
-misc_cuttable_tree 32 10 S static FLAG_TEMP_12
-people_bug_catcher 13 17 S static 0
-misc_item_ball 19 6 S static FLAG_ITEM_ROUTE_116_ETHER
-misc_item_ball 10 17 S static FLAG_ITEM_ROUTE_116_REPEL
-people_man_1 20 2 S static 0
-people_man_1 21 2 S static 0
-people_expert_m 46 9 S static FLAG_HIDE_ROUTE_116_MR_BRINEY LOCALID_ROUTE116_BRINEY
-misc_cuttable_tree 28 11 S static FLAG_TEMP_13
-people_hiker 36 17 S static 0
-misc_cuttable_tree 24 9 S static FLAG_TEMP_14
-misc_item_ball 80 8 S static FLAG_ITEM_ROUTE_116_HP_UP
-people_lass 26 6 E static 0
-people_girl_3 22 16 S static 0
-people_school_kid_m 28 8 N static 0
-people_man_2 46 11 S static FLAG_HIDE_ROUTE_116_DEVON_EMPLOYEE
-misc_item_ball 55 12 S static FLAG_ITEM_ROUTE_116_X_SPECIAL
-people_black_belt 38 9 E static FLAG_HIDE_ROUTE_116_WANDAS_BOYFRIEND LOCALID_ROUTE116_WANDAS_BF
-people_maniac 74 13 S static FLAG_HIDE_ROUTE_116_DROPPED_GLASSES_MAN
-people_woman_2 33 8 N static 0
-people_boy_2 33 5 S static 0
-misc_item_ball 34 7 S static FLAG_ITEM_ROUTE_116_POTION
-misc_cuttable_tree 30 5 S static FLAG_TEMP_15
-people_youngster 36 13 S static 0
-people_hiker 42 13 W static 0
+people_man_1 18 2 S static 0 - 0
+people_man_1 19 2 S static 0 - 0
+people_youngster 12 7 S static 0 - 3
+misc_cuttable_tree 21 6 S static FLAG_TEMP_11 - 0
+misc_cuttable_tree 32 10 S static FLAG_TEMP_12 - 0
+people_bug_catcher 13 17 S static 0 - 2
+misc_item_ball 19 6 S static FLAG_ITEM_ROUTE_116_ETHER - 0
+misc_item_ball 10 17 S static FLAG_ITEM_ROUTE_116_REPEL - 0
+people_man_1 20 2 S static 0 - 0
+people_man_1 21 2 S static 0 - 0
+people_expert_m 46 9 S static FLAG_HIDE_ROUTE_116_MR_BRINEY LOCALID_ROUTE116_BRINEY 0
+misc_cuttable_tree 28 11 S static FLAG_TEMP_13 - 0
+people_hiker 36 17 S static 0 - 3
+misc_cuttable_tree 24 9 S static FLAG_TEMP_14 - 0
+misc_item_ball 80 8 S static FLAG_ITEM_ROUTE_116_HP_UP - 0
+people_lass 26 6 E static 0 - 2
+people_girl_3 22 16 S static 0 - 3
+people_school_kid_m 28 8 N static 0 - 4
+people_man_2 46 11 S static FLAG_HIDE_ROUTE_116_DEVON_EMPLOYEE - 0
+misc_item_ball 55 12 S static FLAG_ITEM_ROUTE_116_X_SPECIAL - 0
+people_black_belt 38 9 E static FLAG_HIDE_ROUTE_116_WANDAS_BOYFRIEND LOCALID_ROUTE116_WANDAS_BF 0
+people_maniac 74 13 S static FLAG_HIDE_ROUTE_116_DROPPED_GLASSES_MAN - 0
+people_woman_2 33 8 N static 0 - 1
+people_boy_2 33 5 S static 0 - 2
+misc_item_ball 34 7 S static FLAG_ITEM_ROUTE_116_POTION - 0
+misc_cuttable_tree 30 5 S static FLAG_TEMP_15 - 0
+people_youngster 36 13 S static 0 - 5
+people_hiker 42 13 W static 0 - 5
 dialogs
 10	Ohhh, what am I to do?We were on our walk, PEEKO and I, when we were jumped by an odd thug…The scoundrel made off with my darling PEEKO!Wrrrooooooaaaar! PEEKO!
 18	Oh! It's you!You're that person who not only helped me in PETALBURG WOODS, but also got back my stolen package and then even graciously delivered it to SLATEPORT!CAPT. STERN informed us that the package arrived, too!I thank you very, very much!Why, if I were a rain cloud, I would shower you with gratitude and hail you as a hero!For you, the most wonderful TRAINER, I bear good news!Recently, our company developed a new kind of POKé BALL.As a token of our appreciation, this is our gift to our wonderful TRAINER!
@@ -357,9 +357,9 @@ goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CheckTreeCantCut
 setfieldeffectargument 0 VAR_RESULT
 bufferpartymonnick STR_VAR_1 VAR_RESULT
 buffermovename STR_VAR_2 MOVE_CUT
-msgboxyesno	Dieser Baum sieht so aus, als könnte man ihn mit ZERSCHNEIDER fällen! Möchtest du ZERSCHNEIDER einsetzen?
+msgboxyesno	This tree looks like it can be CUT down!Would you like to CUT it?
 goto_if_eq VAR_RESULT NO EventScript_CancelCut
-msgbox	STR_VAR_1 setzt STR_VAR_2 ein!
+msgbox	STR_VAR_1 used STR_VAR_2!
 closemessage
 dofieldeffect FLDEFF_USE_CUT_ON_TREE
 waitstate
@@ -384,7 +384,7 @@ closemessage
 releaseall
 end
 = EventScript_CheckTreeCantCut
-msgbox	Dieser Baum sieht so aus, als könnte man ihn mit ZERSCHNEIDER fällen!
+msgbox	This tree looks like it can be CUT down!
 releaseall
 end
 = Route116_EventScript_ItemPotion
@@ -616,7 +616,7 @@ buffernumberstring STR_VAR_2 VAR_0x8006
 lock
 faceplayer
 special ObjectEventInteractionGetBerryCountString
-msgbox	You found STR_VAR_2 STR_VAR_1!Do you want to pick the STR_VAR_1?
+msgboxyesno	You found STR_VAR_2 STR_VAR_1!Do you want to pick the STR_VAR_1?
 goto_if_eq VAR_RESULT YES BerryTree_EventScript_PickBerry
 goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPickingBerry
 goto BerryTree_EventScript_PickBerry
@@ -675,7 +675,7 @@ goto BerryTree_EventScript_CheckBerryFullyGrown
 checkitem ITEM_WAILMER_PAIL
 goto_if_eq VAR_RESULT FALSE BerryTree_EventScript_DontWater
 special ObjectEventInteractionGetBerryName
-msgbox	Want to water the STR_VAR_1 with the WAILMER PAIL?
+msgboxyesno	Want to water the STR_VAR_1 with the WAILMER PAIL?
 goto_if_eq VAR_RESULT YES BerryTree_EventScript_WaterBerry
 goto_if_eq VAR_RESULT NO BerryTree_EventScript_DontWater
 goto BerryTree_EventScript_DontWater
@@ -725,7 +725,7 @@ waitbuttonpress
 release
 end
 = BerryTree_EventScript_WantToPlant
-msgbox	It's soft, loamy soil. Want to plant a BERRY?
+msgboxyesno	It's soft, loamy soil. Want to plant a BERRY?
 goto_if_eq VAR_RESULT YES BerryTree_EventScript_ChooseBerryToPlant
 goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPlanting
 end
@@ -786,8 +786,7 @@ signs
 29 10	TRAINER TIPSYour BAG has several POCKETS.Items you obtain are automatically placed in the appropriate POCKETS.No TRAINER can afford to be without a BAG of their own.
 grass
 13,454,455
-encounters
-land POOCHYENA:6:6,WHISMUR:6:6,NINCADA:6:6,ABRA:7:7,NINCADA:7:7,TAILLOW:6:6,TAILLOW:7:7,TAILLOW:8:8,POOCHYENA:7:7,POOCHYENA:8:8,SKITTY:7:7,SKITTY:8:8
-
 music
 MUS_ROUTE104
+encounters
+land POOCHYENA:6:6,WHISMUR:6:6,NINCADA:6:6,ABRA:7:7,NINCADA:7:7,TAILLOW:6:6,TAILLOW:7:7,TAILLOW:8:8,POOCHYENA:7:7,POOCHYENA:8:8,SKITTY:7:7,SKITTY:8:8

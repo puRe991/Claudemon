@@ -56,17 +56,17 @@ warps
 8 13 MauvilleCity_GameCorner 0
 19 14 MauvilleCity_House2 0
 npcs
-people_boy_3 29 16 S wander 0
-people_rich_boy 24 10 S wander 0
-people_maniac 14 11 E static 0
-people_woman_4 18 6 S static 0
-people_school_kid_m 17 14 S static 0
-people_wally 8 6 N static FLAG_HIDE_MAUVILLE_CITY_WALLY LOCALID_MAUVILLE_WALLY
-people_pokefan_m 9 6 W static FLAG_HIDE_MAUVILLE_CITY_WALLYS_UNCLE LOCALID_MAUVILLE_WALLYS_UNCLE
-people_man_1 29 9 S static FLAG_HIDE_MAUVILLE_CITY_WATTSON
-misc_item_ball 28 19 S static FLAG_ITEM_MAUVILLE_CITY_X_SPEED
-people_fat_man 13 7 W static 0
-people_scott 12 14 N static FLAG_HIDE_MAUVILLE_CITY_SCOTT LOCALID_MAUVILLE_SCOTT
+people_boy_3 29 16 S wander 0 - 0
+people_rich_boy 24 10 S wander 0 - 0
+people_maniac 14 11 E static 0 - 0
+people_woman_4 18 6 S static 0 - 0
+people_school_kid_m 17 14 S static 0 - 0
+people_wally 8 6 N static FLAG_HIDE_MAUVILLE_CITY_WALLY LOCALID_MAUVILLE_WALLY 0
+people_pokefan_m 9 6 W static FLAG_HIDE_MAUVILLE_CITY_WALLYS_UNCLE LOCALID_MAUVILLE_WALLYS_UNCLE 0
+people_gym_leaders_wattson 29 9 S static FLAG_HIDE_MAUVILLE_CITY_WATTSON - 0
+misc_item_ball 28 19 S static FLAG_ITEM_MAUVILLE_CITY_X_SPEED - 0
+people_fat_man 13 7 W static 0 - 0
+people_scott 12 14 N static FLAG_HIDE_MAUVILLE_CITY_SCOTT LOCALID_MAUVILLE_SCOTT 0
 dialogs
 0	You know, it's cool to have POKéMON battles and stuff…But if your POKéMON gets hurt, you have to nurse it back to health.
 1	Even if you're riding a BIKE, wild POKéMON could jump you.
@@ -358,7 +358,6 @@ signs
 11 15	“The play spot for all!” MAUVILLE GAME CORNER
 water
 368,392,393,400
-
 visit
 FLAG_VISITED_MAUVILLE_CITY
 music

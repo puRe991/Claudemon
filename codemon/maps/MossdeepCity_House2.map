@@ -24,9 +24,9 @@ warps
 3 8 MossdeepCity 3
 4 8 MossdeepCity 3
 npcs
-people_man_4 6 6 W static 0
-people_twin 4 4 S static 0
-pokemon_wingull 4 5 N static FLAG_HIDE_MOSSDEEP_CITY_HOUSE_2_WINGULL LOCALID_MOSSDEEP_HOUSE_WINGULL
+people_man_4 6 6 W static 0 - 0
+people_twin 4 4 S static 0 - 0
+pokemon_wingull 4 5 N static FLAG_HIDE_MOSSDEEP_CITY_HOUSE_2_WINGULL LOCALID_MOSSDEEP_HOUSE_WINGULL 0
 dialogs
 0	My little sister exchanges MAIL with her boyfriend in FORTREE.I don't envy her one bit at all.
 1	Even though I can't see my friend in FORTREE, my POKéMON carries MAIL back and forth for us.I'm not lonesome, even though we're apart.
@@ -68,6 +68,5 @@ end
 = MossdeepCity_House2_EventScript_Man
 msgbox	My little sister exchanges MAIL with her boyfriend in FORTREE.I don't envy her one bit at all.
 end
-
 music
 MUS_RUSTBORO

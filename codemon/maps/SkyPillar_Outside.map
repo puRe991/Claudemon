@@ -52,7 +52,7 @@ warps
 17 13 SkyPillar_Entrance 1
 14 5 SkyPillar_1F 0
 npcs
-people_wallace 13 7 S static FLAG_HIDE_SKY_PILLAR_WALLACE LOCALID_SKY_PILLAR_WALLACE
+people_wallace 13 7 S static FLAG_HIDE_SKY_PILLAR_WALLACE LOCALID_SKY_PILLAR_WALLACE 0
 objscripts
 0 SkyPillar_Outside_EventScript_Wallace
 onload
@@ -124,6 +124,5 @@ end
 end
 water
 368,370,372,376,377,384,385,393,400,402,408,410
-
 music
 MUS_MT_CHIMNEY

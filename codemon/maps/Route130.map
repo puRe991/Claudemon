@@ -86,10 +86,10 @@ connections
 left 0 Route131
 right 0 Route129
 npcs
-people_swimmer_m 70 21 S static 0
-people_swimmer_f 7 21 S static 0
-people_man_1 52 9 S static FLAG_TEMP_HIDE_MIRAGE_ISLAND_BERRY_TREE
-people_swimmer_m 7 30 S pace_v 0
+people_swimmer_m 70 21 S static 0 - 3
+people_swimmer_f 7 21 S static 0 - 5
+people_man_1 52 9 S static FLAG_TEMP_HIDE_MIRAGE_ISLAND_BERRY_TREE - 0
+people_swimmer_m 7 30 S pace_v 0 - 5
 objscripts
 0 Route130_EventScript_Rodney
 1 Route130_EventScript_Katie
@@ -116,7 +116,7 @@ buffernumberstring STR_VAR_2 VAR_0x8006
 lock
 faceplayer
 special ObjectEventInteractionGetBerryCountString
-msgbox	You found STR_VAR_2 STR_VAR_1!Do you want to pick the STR_VAR_1?
+msgboxyesno	You found STR_VAR_2 STR_VAR_1!Do you want to pick the STR_VAR_1?
 goto_if_eq VAR_RESULT YES BerryTree_EventScript_PickBerry
 goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPickingBerry
 goto BerryTree_EventScript_PickBerry
@@ -175,7 +175,7 @@ goto BerryTree_EventScript_CheckBerryFullyGrown
 checkitem ITEM_WAILMER_PAIL
 goto_if_eq VAR_RESULT FALSE BerryTree_EventScript_DontWater
 special ObjectEventInteractionGetBerryName
-msgbox	Want to water the STR_VAR_1 with the WAILMER PAIL?
+msgboxyesno	Want to water the STR_VAR_1 with the WAILMER PAIL?
 goto_if_eq VAR_RESULT YES BerryTree_EventScript_WaterBerry
 goto_if_eq VAR_RESULT NO BerryTree_EventScript_DontWater
 goto BerryTree_EventScript_DontWater
@@ -225,7 +225,7 @@ waitbuttonpress
 release
 end
 = BerryTree_EventScript_WantToPlant
-msgbox	It's soft, loamy soil. Want to plant a BERRY?
+msgboxyesno	It's soft, loamy soil. Want to plant a BERRY?
 goto_if_eq VAR_RESULT YES BerryTree_EventScript_ChooseBerryToPlant
 goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPlanting
 end
@@ -264,12 +264,11 @@ end
 trainerbattle_single TRAINER_RODNEY Route130_Text_RodneyIntro Route130_Text_RodneyDefeat
 msgbox	Your eyes have that look of someone who's experienced harsh challenges and won. It suits you well!
 end
+water
+368,370
+music
+MUS_ROUTE119
 encounters
 land WYNAUT:30:30,WYNAUT:35:35,WYNAUT:25:25,WYNAUT:40:40,WYNAUT:20:20,WYNAUT:45:45,WYNAUT:15:15,WYNAUT:50:50,WYNAUT:10:10,WYNAUT:5:5,WYNAUT:10:10,WYNAUT:5:5
 water TENTACOOL:5:35,WINGULL:10:30,WINGULL:15:25,PELIPPER:25:30,PELIPPER:25:30
 fishing MAGIKARP:5:10,TENTACOOL:5:10,MAGIKARP:10:30,TENTACOOL:10:30,WAILMER:10:30,SHARPEDO:30:35,WAILMER:30:35,WAILMER:25:30,WAILMER:35:40,WAILMER:40:45
-water
-368,370
-
-music
-MUS_ROUTE119

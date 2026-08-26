@@ -98,23 +98,23 @@ warps
 64 15 MossdeepCity_SpaceCenter_1F 0
 36 24 MossdeepCity_GameCorner_1F 0
 npcs
-people_sailor 38 12 S wander 0
-people_expert_m 50 34 S wander 0
-people_pokefan_f 32 12 S wander 0
-people_ninja_boy 26 21 S wander 0
-people_girl_1 45 18 W static 0
-misc_item_ball 62 35 S static FLAG_ITEM_MOSSDEEP_CITY_NET_BALL
-people_man_1 55 5 N static 0
-people_woman_1 56 21 E static 0
-people_boy_2 23 13 S wander 0
-people_team_magma_magma_member_m 44 23 S static FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA LOCALID_MOSSDEEP_GRUNT_1
-people_team_magma_magma_member_m 44 24 N static FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA LOCALID_MOSSDEEP_GRUNT_2
-people_team_magma_magma_member_m 44 25 S static FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA LOCALID_MOSSDEEP_GRUNT_3
-people_team_magma_magma_member_m 44 26 N static FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA LOCALID_MOSSDEEP_GRUNT_4
-people_team_magma_maxie 45 25 W static FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA LOCALID_MOSSDEEP_MAXIE
-people_black_belt 19 25 S static 0
-people_scott 61 29 S static FLAG_HIDE_MOSSDEEP_CITY_SCOTT LOCALID_MOSSDEEP_SCOTT
-people_black_belt 31 29 S static 0
+people_sailor 38 12 S wander 0 - 0
+people_expert_m 50 34 S wander 0 - 0
+people_pokefan_f 32 12 S wander 0 - 0
+people_ninja_boy 26 21 S wander 0 - 0
+people_girl_1 45 18 W static 0 - 0
+misc_item_ball 62 35 S static FLAG_ITEM_MOSSDEEP_CITY_NET_BALL - 0
+people_man_1 55 5 N static 0 - 0
+people_woman_1 56 21 E static 0 - 0
+people_boy_2 23 13 S wander 0 - 0
+people_team_magma_magma_member_m 44 23 S static FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA LOCALID_MOSSDEEP_GRUNT_1 0
+people_team_magma_magma_member_m 44 24 N static FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA LOCALID_MOSSDEEP_GRUNT_2 0
+people_team_magma_magma_member_m 44 25 S static FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA LOCALID_MOSSDEEP_GRUNT_3 0
+people_team_magma_magma_member_m 44 26 N static FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA LOCALID_MOSSDEEP_GRUNT_4 0
+people_team_magma_maxie 45 25 W static FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA LOCALID_MOSSDEEP_MAXIE 0
+people_black_belt 19 25 S static 0 - 0
+people_scott 61 29 S static FLAG_HIDE_MOSSDEEP_CITY_SCOTT LOCALID_MOSSDEEP_SCOTT 0
+people_black_belt 31 29 S static 0 - 0
 dialogs
 0	I heard from a SAILOR buddy that TEAM AQUA set up shop in LILYCOVE.I also heard that someone came along and wiped the floor with them!But MOSSDEEP here's been targeted by that TEAM MAGMA.If you want to know what they're up to, go visit the SPACE CENTER.
 1	All life needs the sea to live, even though it makes its home on the land.Life, having run its course, becomes soil and returns to the land.And the sea is always connected to the land.Yes, like the very shoreline here.
@@ -321,13 +321,12 @@ signs
 34 9	MOSSDEEP CITY POKéMON GYM LEADERS: LIZA & TATE“The mystic combination!”
 66 16	MOSSDEEP SPACE CENTER “The closest place to space.”
 57 21	It's a white rock.
-encounters
-water TENTACOOL:5:35,WINGULL:10:30,WINGULL:15:25,PELIPPER:25:30,PELIPPER:25:30
-fishing MAGIKARP:5:10,TENTACOOL:5:10,MAGIKARP:10:30,TENTACOOL:10:30,WAILMER:10:30,SHARPEDO:30:35,WAILMER:30:35,WAILMER:25:30,WAILMER:35:40,WAILMER:40:45
 water
 368,370,372,419,420,429,431,437,439,445,446,447,701,827,829,855
-
 visit
 FLAG_VISITED_MOSSDEEP_CITY
 music
 MUS_RUSTBORO
+encounters
+water TENTACOOL:5:35,WINGULL:10:30,WINGULL:15:25,PELIPPER:25:30,PELIPPER:25:30
+fishing MAGIKARP:5:10,TENTACOOL:5:10,MAGIKARP:10:30,TENTACOOL:10:30,WAILMER:10:30,SHARPEDO:30:35,WAILMER:30:35,WAILMER:25:30,WAILMER:35:40,WAILMER:40:45

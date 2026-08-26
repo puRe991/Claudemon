@@ -30,7 +30,7 @@ warps
 7 11 - 0
 8 11 - 0
 npcs
-people_nurse 3 2 S static 0
+people_nurse 3 2 S static 0 - 0
 objscripts
 0 UnionRoom_EventScript_Attendant
 scriptdefs
@@ -41,6 +41,5 @@ setvar VAR_RESULT UR_INTERACT_ATTENDANT
 waitstate
 release
 end
-
 music
 MUS_EVER_GRANDE

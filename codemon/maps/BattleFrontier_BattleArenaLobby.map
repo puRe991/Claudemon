@@ -31,11 +31,11 @@ collision
 warps
 7 12 BattleFrontier_OutsideEast 1
 npcs
-people_black_belt 7 7 S static 0 LOCALID_ARENA_ATTENDANT
-people_woman_5 2 10 S wander 0
-people_man_5 14 11 W static 0
-people_camper 14 12 W static 0
-people_youngster 14 10 W static 0
+people_black_belt 7 7 S static 0 LOCALID_ARENA_ATTENDANT 0
+people_woman_5 2 10 S wander 0 - 0
+people_man_5 14 11 W static 0 - 0
+people_camper 14 12 W static 0 - 0
+people_youngster 14 10 W static 0 - 0
 dialogs
 0	Where the battling spirit of TRAINERS is put to the test!I welcome you to the BATTLE ARENA!I am your guide to the Set KO Tourney!
 1	In the BATTLE ARENA, the order of POKéMON is totally important.For example, if your first POKéMON has certain type disadvantages, try making your second POKéMON one with moves that are super effective against the first one.I think that will be a good way of making an effective team.
@@ -104,7 +104,7 @@ goto BattleFrontier_BattleArenaLobby_EventScript_GiveBattlePoints
 = BattleFrontier_BattleArenaLobby_EventScript_GiveBattlePoints
 msgbox	My dear challenger, in recognition of your indefatigable spirit, please accept these Battle Point(s).
 frontier_givepoints
-msgbox	PLAYER obtained Battle Point(s).
+msgbox	PLAYER obtained STR_VAR_1 Battle Point(s).
 msgbox	Your achievement will be recorded. Please wait while I save the game.
 waitmessage
 call BattleFrontier_BattleArenaLobby_EventScript_SaveAfterChallenge
@@ -263,16 +263,15 @@ case FRONTIER_LVL_50 BattleFrontier_BattleArenaLobby_EventScript_NotEnoughValidM
 case FRONTIER_LVL_OPEN BattleFrontier_BattleArenaLobby_EventScript_NotEnoughValidMonsLvOpen
 goto BattleFrontier_BattleArenaLobby_EventScript_NotEnoughValidMonsLv50
 = BattleFrontier_BattleArenaLobby_EventScript_NotEnoughValidMonsLv50
-msgbox	My dear challenger!You do not have the three POKéMON required for entry.To qualify, you must bring three different kinds of POKéMON.The three different POKéMON must all be Level 50 or lower.They also must not hold the same kinds of items.EGGS ineligible.When you have made your preparations, please do return.
+msgbox	My dear challenger!You do not have the three POKéMON required for entry.To qualify, you must bring three different kinds of POKéMON.The three different POKéMON must all be Level 50 or lower.They also must not hold the same kinds of items.EGGSSTR_VAR_1 ineligible.When you have made your preparations, please do return.
 goto BattleFrontier_BattleArenaLobby_EventScript_EndCancelChallenge
 = BattleFrontier_BattleArenaLobby_EventScript_NotEnoughValidMonsLvOpen
-msgbox	My dear challenger!You do not have the three POKéMON required for entry.To qualify, you must bring three different kinds of POKéMON.They also must not hold the same kinds of items.EGGS ineligible.When you have made your preparations, please do return.
+msgbox	My dear challenger!You do not have the three POKéMON required for entry.To qualify, you must bring three different kinds of POKéMON.They also must not hold the same kinds of items.EGGSSTR_VAR_1 ineligible.When you have made your preparations, please do return.
 goto BattleFrontier_BattleArenaLobby_EventScript_EndCancelChallenge
 = BattleFrontier_BattleArenaLobby_EventScript_ExplainChallenge
 msgbox	In the BATTLE ARENA, we undertake the Set KO Tourney.All participants enter with a team of three POKéMON.The three POKéMON must be lined up in the order in which they are to appear.During battle, the POKéMON will appear one at a time in the preset order.Once a POKéMON enters battle, it must remain out until the match is decided.If a match remains undecided in three turns, it goes to judging.If you wish to interrupt your challenge, please save the game.If you don't save, you will not be able to continue with your challenge.If you pull off the feat of beating seven TRAINERS in succession, we will present you with Battle Points.
 goto BattleFrontier_BattleArenaLobby_EventScript_AskTakeChallenge
 signs
 1 7	The Set KO Tourney's rules are listed.
-
 music
 MUS_B_ARENA

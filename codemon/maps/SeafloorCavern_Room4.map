@@ -46,8 +46,8 @@ warps
 9 10 SeafloorCavern_Room5 2
 10 15 SeafloorCavern_Entrance 1
 npcs
-people_team_aqua_aqua_member_m 5 8 S static FLAG_HIDE_SEAFLOOR_CAVERN_AQUA_GRUNTS
-people_team_aqua_aqua_member_f 5 12 N static FLAG_HIDE_SEAFLOOR_CAVERN_AQUA_GRUNTS
+people_team_aqua_aqua_member_m 5 8 S static FLAG_HIDE_SEAFLOOR_CAVERN_AQUA_GRUNTS - 3
+people_team_aqua_aqua_member_f 5 12 N static FLAG_HIDE_SEAFLOOR_CAVERN_AQUA_GRUNTS - 3
 dialogs
 0	I can't find the way out!I'm not afraid. Don't get me wrong!
 1	My partner forgot the map in that submarine!How's that for being useless?
@@ -63,8 +63,7 @@ end
 trainerbattle_single TRAINER_GRUNT_SEAFLOOR_CAVERN_3 SeafloorCavern_Room4_Text_Grunt3Intro SeafloorCavern_Room4_Text_Grunt3Defeat
 msgbox	I can't find the way out!I'm not afraid. Don't get me wrong!
 end
-encounters
-land ZUBAT:30:30,ZUBAT:31:31,ZUBAT:32:32,ZUBAT:33:33,ZUBAT:28:28,ZUBAT:29:29,ZUBAT:34:34,ZUBAT:35:35,GOLBAT:34:34,GOLBAT:35:35,GOLBAT:33:33,GOLBAT:36:36
-
 music
 MUS_MT_CHIMNEY
+encounters
+land ZUBAT:30:30,ZUBAT:31:31,ZUBAT:32:32,ZUBAT:33:33,ZUBAT:28:28,ZUBAT:29:29,ZUBAT:34:34,ZUBAT:35:35,GOLBAT:34:34,GOLBAT:35:35,GOLBAT:33:33,GOLBAT:36:36

@@ -21,7 +21,7 @@ collision
 1,0,0,0,0,0,0,0,0,0
 1,0,0,0,0,0,0,0,0,0
 npcs
-people_scientist_1 1 4 E static 0
+people_scientist_1 1 4 E static 0 - 0
 onload
 VAR_TEMP_0 0 SlateportCity_BattleTentBattleRoom_EventScript_EnterRoom
 movements
@@ -73,6 +73,5 @@ special LoadPlayerParty
 warp SlateportCity_BattleTentLobby 6 6
 waitstate
 @ forced stop
-
 music
 MUS_B_TOWER_RS

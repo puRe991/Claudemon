@@ -25,11 +25,11 @@ collision
 warps
 4 9 BattleFrontier_OutsideEast 9
 npcs
-people_hiker 4 6 N static 0
-people_fat_man 4 4 S static 0
-people_woman_2 3 5 E static 0
-people_pokefan_f 5 5 W static 0
-people_man_3 0 6 S wander 0
+people_hiker 4 6 N static 0 - 0
+people_fat_man 4 4 S static 0 - 0
+people_woman_2 3 5 E static 0 - 0
+people_pokefan_f 5 5 W static 0 - 0
+people_man_3 0 6 S wander 0 - 0
 dialogs
 0	…Huh? You look to me like a tough TRAINER.Heheh… Listen, I have this proposition.We have a little group going here, and we play a little game with what goes on in the BATTLE FRONTIER.The rules are really simple.First, we pick one of the facilities in the BATTLE FRONTIER.Then, we each pick a different TRAINER who's taking that facility's challenge, and bet with our Battle Points.The guy who bet on the TRAINER with the best record takes all the Battle Points in the pool.Sounds simple, huh? So, anyway…
 1	That TRAINER…He's good, but he gets rattled too easily to survive the BATTLE DOME…
@@ -186,7 +186,7 @@ msgbox	Oh, yes! Hello there, champ!I knew you could! I knew you would! We're bo
 call_if_eq VAR_FRONTIER_GAMBLER_AMOUNT_BET FRONTIER_GAMBLER_BET_5 BattleFrontier_Lounge3_EventScript_RewardBet5
 call_if_eq VAR_FRONTIER_GAMBLER_AMOUNT_BET FRONTIER_GAMBLER_BET_10 BattleFrontier_Lounge3_EventScript_RewardBet10
 call_if_eq VAR_FRONTIER_GAMBLER_AMOUNT_BET FRONTIER_GAMBLER_BET_15 BattleFrontier_Lounge3_EventScript_RewardBet15
-msgbox	PLAYER obtained Battle Points.
+msgbox	PLAYER obtained STR_VAR_1 Battle Points.
 special GiveFrontierBattlePoints
 msgbox	If you're up for another challenge, please do think of me!
 setvar VAR_FRONTIER_GAMBLER_STATE FRONTIER_GAMBLER_WAITING
@@ -210,6 +210,5 @@ waitmessage
 waitbuttonpress
 release
 end
-
 music
 MUS_B_TOWER_RS

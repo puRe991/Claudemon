@@ -54,10 +54,10 @@ warps
 1 14 VerdanturfTown_FriendshipRatersHouse 0
 17 15 VerdanturfTown_House 0
 npcs
-people_man_2 4 17 S wander 0
-people_twin 9 2 W static 0 LOCALID_VERDANTURF_TWIN
-people_boy_1 7 11 S wander 0
-people_camper 7 6 S wander 0
+people_man_2 4 17 S wander 0 - 0
+people_twin 9 2 W static 0 LOCALID_VERDANTURF_TWIN 0
+people_boy_1 7 11 S wander 0 - 0
+people_camper 7 6 S wander 0 - 0
 dialogs
 0	The way the winds blow, volcanic ash is never blown in this direction.The air is clean and delicious here. Living here should do wonders for even frail and sickly people.
 1	My papa told me.He says this tunnel is full of timid POKéMON.They get all scared of loud noise and make a big uproar.So they had to stop the big tunnel project.But there's one man. He's trying to dig the tunnel by himself!
@@ -108,7 +108,6 @@ signs
 7 14	WANDA'S HOUSE
 1 8	BATTLE TENT VERDANTURF SITE “Feast Your Eyes on Battles!”
 7 3	RUSTURF TUNNEL “Linking RUSTBORO and VERDANTURF“The tunnel project has been canceled.”
-
 visit
 FLAG_VISITED_VERDANTURF_TOWN
 music

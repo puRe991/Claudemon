@@ -22,9 +22,9 @@ warps
 3 7 MossdeepCity 6
 4 7 MossdeepCity 6
 npcs
-people_steven 9 6 E static FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_STEVEN LOCALID_STEVENS_HOUSE_STEVEN
-misc_item_ball 4 3 S static FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_BELDUM_POKEBALL LOCALID_STEVENS_HOUSE_BALL
-people_ninja_boy 6 4 S static FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_INVISIBLE_NINJA_BOY
+people_steven 9 6 E static FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_STEVEN LOCALID_STEVENS_HOUSE_STEVEN 0
+misc_item_ball 4 3 S static FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_BELDUM_POKEBALL LOCALID_STEVENS_HOUSE_BALL 0
+people_ninja_boy 6 4 S static FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_INVISIBLE_NINJA_BOY - 0
 dialogs
 0	STEVEN: Apparently, there's an underwater cavern between MOSSDEEP and SOOTOPOLIS.You know, the one that CAPT. STERN found in his submarine.
 1	PLAYER checked the POKé BALL.It contained the POKéMON BELDUM.Take the POKé BALL?
@@ -97,7 +97,7 @@ release
 end
 = MossdeepCity_StevensHouse_EventScript_SendBeldumPC
 call MossdeepCity_StevensHouse_EventScript_ReceivedBeldumFanfare
-msgboxyesno	Do you want to give a nickname to this ?
+msgboxyesno	Do you want to give a nickname to this STR_VAR_1?
 goto_if_eq VAR_RESULT NO MossdeepCity_StevensHouse_EventScript_BeldumTransferredToPC
 call Common_EventScript_NameReceivedBoxMon
 goto MossdeepCity_StevensHouse_EventScript_BeldumTransferredToPC
@@ -120,22 +120,22 @@ return
 = EventScript_TransferredLanettesPC
 specialvar VAR_RESULT ShouldShowBoxWasFullMessage
 goto_if_eq VAR_RESULT TRUE EventScript_LanettesPCBoxFull
-msgbox	was transferred to LANETTE'S PC.It was placed in BOX “.”
+msgbox	STR_VAR_2 was transferred to LANETTE'S PC.It was placed in BOX “STR_VAR_1.”
 return
 = EventScript_LanettesPCBoxFull
 specialvar VAR_RESULT GetPCBoxToSendMon
 bufferboxname STR_VAR_3 VAR_RESULT
-msgbox	BOX “” on LANETTE'S PC was full.was transferred to BOX “.”
+msgbox	BOX “STR_VAR_3” on LANETTE'S PC was full.STR_VAR_2 was transferred to BOX “STR_VAR_1.”
 return
 = EventScript_TransferredSomeonesPC
 specialvar VAR_RESULT ShouldShowBoxWasFullMessage
 goto_if_eq VAR_RESULT TRUE EventScript_SomeonesPCBoxFull
-msgbox	was transferred to SOMEONE'S PC.It was placed in BOX “.”
+msgbox	STR_VAR_2 was transferred to SOMEONE'S PC.It was placed in BOX “STR_VAR_1.”
 return
 = EventScript_SomeonesPCBoxFull
 specialvar VAR_RESULT GetPCBoxToSendMon
 bufferboxname STR_VAR_3 VAR_RESULT
-msgbox	BOX “” on SOMEONE'S PC was full.was transferred to BOX “.”
+msgbox	BOX “STR_VAR_3” on SOMEONE'S PC was full.STR_VAR_2 was transferred to BOX “STR_VAR_1.”
 return
 = Common_EventScript_NameReceivedBoxMon
 fadescreen FADE_TO_BLACK
@@ -154,7 +154,7 @@ bufferspeciesname STR_VAR_1 SPECIES_BELDUM
 return
 = MossdeepCity_StevensHouse_EventScript_SendBeldumParty
 call MossdeepCity_StevensHouse_EventScript_ReceivedBeldumFanfare
-msgboxyesno	Do you want to give a nickname to this ?
+msgboxyesno	Do you want to give a nickname to this STR_VAR_1?
 goto_if_eq VAR_RESULT NO MossdeepCity_StevensHouse_EventScript_ReceivedBeldum
 call Common_EventScript_GetGiftMonPartySlot
 call Common_EventScript_NameReceivedPartyMon
@@ -177,6 +177,5 @@ signs
 1 1	It's a collection of rare rocks and stones assembled by STEVEN.
 10 4	It's a collection of rare rocks and stones assembled by STEVEN.
 10 6	It's a collection of rare rocks and stones assembled by STEVEN.
-
 music
 MUS_RUSTBORO

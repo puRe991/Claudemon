@@ -36,7 +36,7 @@ warps
 3 12 ShoalCave_LowTideInnerRoom 1
 7 4 ShoalCave_LowTideInnerRoom 2
 npcs
-misc_item_ball 13 12 S static FLAG_ITEM_SHOAL_CAVE_STAIRS_ROOM_ICE_HEAL
+misc_item_ball 13 12 S static FLAG_ITEM_SHOAL_CAVE_STAIRS_ROOM_ICE_HEAL - 0
 objscripts
 0 ShoalCave_LowTideStairsRoom_EventScript_ItemIceHeal
 scriptdefs
@@ -47,8 +47,7 @@ setflag FLAG_ITEM_SHOAL_CAVE_STAIRS_ROOM_ICE_HEAL
 end
 = ShoalCave_LowTideStairsRoom_EventScript_ItemIceHeal_Taken
 end
-encounters
-land ZUBAT:26:26,SPHEAL:26:26,ZUBAT:28:28,SPHEAL:28:28,ZUBAT:30:30,SPHEAL:30:30,ZUBAT:32:32,SPHEAL:32:32,GOLBAT:32:32,SPHEAL:32:32,GOLBAT:32:32,SPHEAL:32:32
-
 music
 MUS_MT_PYRE
+encounters
+land ZUBAT:26:26,SPHEAL:26:26,ZUBAT:28:28,SPHEAL:28:28,ZUBAT:30:30,SPHEAL:30:30,ZUBAT:32:32,SPHEAL:32:32,GOLBAT:32:32,SPHEAL:32:32,GOLBAT:32:32,SPHEAL:32:32

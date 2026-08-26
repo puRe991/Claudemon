@@ -52,15 +52,15 @@ warps
 17 14 DewfordTown_House1 0
 8 8 DewfordTown_House2 0
 npcs
-people_woman_2 7 12 S wander 0
-people_expert_m 12 9 W static FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN LOCALID_DEWFORD_BRINEY
-people_fisherman 12 14 S wander 0
-misc_mr_brineys_boat 12 8 S static FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN LOCALID_DEWFORD_BOAT
-people_boy_1 1 6 S static 0
+people_woman_2 7 12 S wander 0 - 0
+people_expert_m 12 9 W static FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN LOCALID_DEWFORD_BRINEY 0
+people_fisherman 12 14 S wander 0 - 0
+misc_mr_brineys_boat 12 8 S static FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN LOCALID_DEWFORD_BOAT 0
+people_boy_1 1 6 S static 0 - 0
 dialogs
 0	DEWFORD is a tiny island community. If something gets trendy here, everyone picks up on it right away.
 2	This is a renowned fishing spot. Are you getting the itch to fish?
-4	I like what's hip, happening, and trendy. I'm always checking it out.Listen, have you heard about this new “”?That's right! Of course you know!I mean, sheesh, “”… It's the hottest thing in cool!Wherever you're from, “” is the biggest happening thing, right?
+4	I like what's hip, happening, and trendy. I'm always checking it out.Listen, have you heard about this new “STR_VAR_1”?That's right! Of course you know!I mean, sheesh, “STR_VAR_1”… It's the hottest thing in cool!Wherever you're from, “STR_VAR_1” is the biggest happening thing, right?
 objscripts
 0 DewfordTown_EventScript_Woman
 1 DewfordTown_EventScript_Briney
@@ -79,7 +79,7 @@ scriptdefs
 lock
 faceplayer
 call Common_EventScript_BufferTrendyPhrase
-msgboxyesno	I like what's hip, happening, and trendy. I'm always checking it out.Listen, have you heard about this new “”?That's right! Of course you know!I mean, sheesh, “”… It's the hottest thing in cool!Wherever you're from, “” is the biggest happening thing, right?
+msgboxyesno	I like what's hip, happening, and trendy. I'm always checking it out.Listen, have you heard about this new “STR_VAR_1”?That's right! Of course you know!I mean, sheesh, “STR_VAR_1”… It's the hottest thing in cool!Wherever you're from, “STR_VAR_1” is the biggest happening thing, right?
 goto_if_eq VAR_RESULT YES DewfordTown_EventScript_ConfirmTrendyPhrase
 goto_if_eq VAR_RESULT NO DewfordTown_EventScript_RejectTrendyPhrase
 end
@@ -99,15 +99,15 @@ end
 = DewfordTown_EventScript_GiveNewTrendyPhrase
 incrementgamestat GAME_STAT_STARTED_TRENDS
 goto_if_eq VAR_0x8004 FALSE DewfordTown_EventScript_PhraseNotTrendyEnough
-msgbox	Hunh? “”?… ……Uh… Yeah! That's right! Yeah, I knew that! Knew it all along!Of course I know about that! “,” right?Yeah, that's it, it's there! Isn't “” the coolest, or what?It's the hippest thing in hip. You think I'd not know about it?“”… It's, like, so five minutes ago.Now, “” is what's vital and in tune with the times!
+msgbox	Hunh? “STR_VAR_2”?… ……Uh… Yeah! That's right! Yeah, I knew that! Knew it all along!Of course I know about that! “STR_VAR_2,” right?Yeah, that's it, it's there! Isn't “STR_VAR_2” the coolest, or what?It's the hippest thing in hip. You think I'd not know about it?“STR_VAR_1”… It's, like, so five minutes ago.Now, “STR_VAR_2” is what's vital and in tune with the times!
 release
 end
 = DewfordTown_EventScript_PhraseNotTrendyEnough
-msgbox	Hmm… “,” huh?But personally, I think “” is what's real in cool.
+msgbox	Hmm… “STR_VAR_2,” huh?But personally, I think “STR_VAR_1” is what's real in cool.
 release
 end
 = DewfordTown_EventScript_ConfirmTrendyPhrase
-msgbox	Yeah, absolutely right!“” is the definition of “in” right now.
+msgbox	Yeah, absolutely right!“STR_VAR_1” is the definition of “in” right now.
 release
 end
 = DewfordTown_EventScript_OldRodFisherman
@@ -266,13 +266,12 @@ signs
 10 10	DEWFORD TOWN “A tiny island in the blue sea.”
 11 16	DEWFORD TOWN POKéMON GYM LEADER: BRAWLY “A big wave in fighting!”
 2 4	DEWFORD HALL “Everyone's information exchange!”
-encounters
-water TENTACOOL:5:35,WINGULL:10:30,WINGULL:15:25,PELIPPER:25:30,PELIPPER:25:30
-fishing MAGIKARP:5:10,TENTACOOL:5:10,MAGIKARP:10:30,TENTACOOL:10:30,WAILMER:10:30,WAILMER:25:30,WAILMER:30:35,WAILMER:20:25,WAILMER:35:40,WAILMER:40:45
 water
 283,293,368,560,561
-
 visit
 FLAG_VISITED_DEWFORD_TOWN
 music
 MUS_DEWFORD
+encounters
+water TENTACOOL:5:35,WINGULL:10:30,WINGULL:15:25,PELIPPER:25:30,PELIPPER:25:30
+fishing MAGIKARP:5:10,TENTACOOL:5:10,MAGIKARP:10:30,TENTACOOL:10:30,WAILMER:10:30,WAILMER:25:30,WAILMER:30:35,WAILMER:20:25,WAILMER:35:40,WAILMER:40:45

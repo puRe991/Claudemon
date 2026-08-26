@@ -24,7 +24,7 @@ warps
 2 8 Route117 0
 3 8 Route117 0
 npcs
-people_old_woman 2 2 S static 0 LOCALID_DAYCARE_LADY
+people_old_woman 2 2 S static 0 LOCALID_DAYCARE_LADY 0
 objscripts
 0 Route117_PokemonDayCare_EventScript_DaycareWoman
 movements
@@ -37,7 +37,7 @@ specialvar VAR_RESULT GetDaycareState
 goto_if_eq VAR_RESULT DAYCARE_EGG_WAITING Route117_PokemonDayCare_EventScript_EggWaiting
 goto_if_eq VAR_RESULT DAYCARE_ONE_MON Route117_PokemonDayCare_EventScript_OneMonInDaycare
 goto_if_eq VAR_RESULT DAYCARE_TWO_MONS Route117_PokemonDayCare_EventScript_TwoMonsInDaycare
-msgbox	I'm the DAY-CARE LADY.We can raise POKéMON for you.Would you like us to raise one?
+msgboxyesno	I'm the DAY-CARE LADY.We can raise POKéMON for you.Would you like us to raise one?
 goto_if_eq VAR_RESULT YES Route117_PokemonDayCare_EventScript_GiveMonToRaise
 msgbox	Oh, fine, then. Come again.
 release
@@ -65,7 +65,7 @@ goto_if_eq VAR_RESULT DAYCARE_ONE_MON Route117_PokemonDayCare_EventScript_CanRai
 release
 end
 = Route117_PokemonDayCare_EventScript_CanRaiseOneMore
-msgbox	We can raise two of your POKéMON. Would you like us to raise one more?
+msgboxyesno	We can raise two of your POKéMON. Would you like us to raise one more?
 goto_if_eq VAR_RESULT YES Route117_PokemonDayCare_EventScript_GiveMonToRaise
 goto Route117_PokemonDayCare_EventScript_ComeAgain
 end
@@ -91,7 +91,7 @@ setvar VAR_0x8004 0
 call Route117_PokemonDayCare_EventScript_DisplayLevelsGained
 setvar VAR_0x8004 1
 call Route117_PokemonDayCare_EventScript_DisplayLevelsGained
-msgbox	Will you take your POKéMON back?
+msgboxyesno	Will you take your POKéMON back?
 goto_if_eq VAR_RESULT YES Route117_PokemonDayCare_EventScript_TryRetrieveMon
 msgbox	Fine. Come again.
 release
@@ -120,7 +120,7 @@ goto Route117_PokemonDayCare_EventScript_CostPrompt
 end
 = Route117_PokemonDayCare_EventScript_CostPrompt
 special GetDaycareCostAndPrepareString
-msgbox	If you want your STR_VAR_1 back, it will cost ¥STR_VAR_2.
+msgboxyesno	If you want your STR_VAR_1 back, it will cost ¥STR_VAR_2.
 goto_if_eq VAR_RESULT YES Route117_PokemonDayCare_EventScript_CheckEnoughMoney
 goto Route117_PokemonDayCare_EventScript_ComeAgain
 end
@@ -146,7 +146,7 @@ goto_if_eq VAR_RESULT DAYCARE_ONE_MON Route117_PokemonDayCare_EventScript_AskRet
 goto Route117_PokemonDayCare_EventScript_ComeAgain
 end
 = Route117_PokemonDayCare_EventScript_AskRetrieveOtherMon
-msgbox	Will you take back the other one, too?
+msgboxyesno	Will you take back the other one, too?
 goto_if_eq VAR_RESULT YES Route117_PokemonDayCare_EventScript_TryRetrieveMon
 goto Route117_PokemonDayCare_EventScript_ComeAgain
 end
@@ -165,9 +165,9 @@ return
 msgbox	Ah, it's you! Good to see you. Your POKéMON can only be doing good!
 setvar VAR_0x8004 0
 call Route117_PokemonDayCare_EventScript_DisplayLevelsGained
-msgbox	We can raise two of your POKéMON. Would you like us to raise one more?
+msgboxyesno	We can raise two of your POKéMON. Would you like us to raise one more?
 goto_if_eq VAR_RESULT YES Route117_PokemonDayCare_EventScript_GiveMonToRaise
-msgbox	Will you take your POKéMON back?
+msgboxyesno	Will you take your POKéMON back?
 goto_if_eq VAR_RESULT YES Route117_PokemonDayCare_EventScript_TryRetrieveMon
 goto Route117_PokemonDayCare_EventScript_ComeAgain
 end
@@ -175,8 +175,7 @@ end
 msgbox	My husband was looking for you.
 release
 end
-counters
-539,544,545,558
-
 music
 MUS_RUSTBORO
+counters
+539,544,545,558

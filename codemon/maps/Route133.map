@@ -86,16 +86,16 @@ connections
 left 0 Route134
 right 0 Route132
 npcs
-people_swimmer_m 68 27 S pace_v 0
-people_swimmer_f 13 3 S static 0
-people_swimmer_f 68 28 S static 0
-misc_item_ball 53 12 S static FLAG_ITEM_ROUTE_133_BIG_PEARL
-misc_item_ball 8 10 S static FLAG_ITEM_ROUTE_133_STAR_PIECE
-people_man_5 7 14 S static 0
-people_man_3 37 15 S static 0
-people_expert_f 56 11 S static 0
-people_expert_m 56 15 S static 0
-misc_item_ball 48 28 S static FLAG_ITEM_ROUTE_133_MAX_REVIVE
+people_swimmer_m 68 27 S pace_v 0 - 3
+people_swimmer_f 13 3 S static 0 - 3
+people_swimmer_f 68 28 S static 0 - 3
+misc_item_ball 53 12 S static FLAG_ITEM_ROUTE_133_BIG_PEARL - 0
+misc_item_ball 8 10 S static FLAG_ITEM_ROUTE_133_STAR_PIECE - 0
+people_man_5 7 14 S static 0 - 2
+people_man_3 37 15 S static 0 - 4
+people_expert_f 56 11 S static 0 - 3
+people_expert_m 56 15 S static 0 - 3
+misc_item_ball 48 28 S static FLAG_ITEM_ROUTE_133_MAX_REVIVE - 0
 objscripts
 0 Route133_EventScript_Franklin
 1 Route133_EventScript_Linda
@@ -157,11 +157,10 @@ end
 trainerbattle_single TRAINER_FRANKLIN Route133_Text_FranklinIntro Route133_Text_FranklinDefeat
 msgbox	It's just my luck that a tough TRAINER like you would drift here… I must be cursed…
 end
+water
+335,368,372,419,420,429,445,446,447
+music
+MUS_ROUTE119
 encounters
 water TENTACOOL:5:35,WINGULL:10:30,WINGULL:15:25,PELIPPER:25:30,PELIPPER:25:30
 fishing MAGIKARP:5:10,TENTACOOL:5:10,MAGIKARP:10:30,TENTACOOL:10:30,WAILMER:10:30,SHARPEDO:30:35,WAILMER:30:35,HORSEA:25:30,WAILMER:35:40,WAILMER:40:45
-water
-335,368,372,419,420,429,445,446,447
-
-music
-MUS_ROUTE119

@@ -24,9 +24,9 @@ warps
 4 8 PacifidlogTown 4
 5 8 PacifidlogTown 4
 npcs
-people_woman_2 3 4 S static 0
-people_little_girl 7 5 S wander 0
-people_boy_1 7 4 S wander 0
+people_woman_2 3 4 S static 0 - 0
+people_little_girl 7 5 S wander 0 - 0
+people_boy_1 7 4 S wander 0 - 0
 dialogs
 0	People were saying they saw a POKéMON flying high above HOENN.Is it flying around all the time? Doesn't it need to rest somewhere?
 1	A sky POKéMON! A sky POKéMON!
@@ -57,6 +57,5 @@ end
 = PacifidlogTown_House4_EventScript_Woman
 msgbox	People were saying they saw a POKéMON flying high above HOENN.Is it flying around all the time? Doesn't it need to rest somewhere?
 end
-
 music
 MUS_LILYCOVE

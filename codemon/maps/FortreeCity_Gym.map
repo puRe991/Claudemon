@@ -56,14 +56,14 @@ warps
 15 24 FortreeCity 2
 16 24 FortreeCity 2
 npcs
-people_gym_leaders_winona 15 2 S static 0
-people_man_5 4 14 S static 0
-people_camper 10 10 W static 0
-people_picnicker 5 17 W static 0
-people_man_5 9 8 S static 0
-people_man_2 15 21 S static 0
-people_man_5 4 23 E static 0
-people_man_5 1 10 N static 0
+people_gym_leaders_winona 15 2 S static 0 - 0
+people_man_5 4 14 S static 0 - 3
+people_camper 10 10 W static 0 - 2
+people_picnicker 5 17 W static 0 - 1
+people_man_5 9 8 S static 0 - 2
+people_man_2 15 21 S static 0 - 0
+people_man_5 4 23 E static 0 - 1
+people_man_5 1 10 N static 0 - 3
 dialogs
 0	Though I fell to you, I will remain devoted to BIRD POKéMON.
 1	A TRAINER has to be smart to keep up with unexpected turns of events.Do you have the smarts to get to our LEADER?
@@ -249,6 +249,5 @@ settrainerflag TRAINER_JOSH
 settrainerflag TRAINER_TOMMY
 settrainerflag TRAINER_MARC
 return
-
 music
 MUS_GYM

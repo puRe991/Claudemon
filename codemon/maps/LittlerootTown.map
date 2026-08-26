@@ -49,18 +49,18 @@ warps
 5 8 LittlerootTown_BrendansHouse_1F 1
 7 16 LittlerootTown_ProfessorBirchsLab 0
 npcs
-people_twin 16 10 S wander 0 LOCALID_LITTLEROOT_TWIN
-people_fat_man 12 13 S wander FLAG_HIDE_LITTLEROOT_TOWN_FAT_MAN
-people_boy_2 14 17 S wander 0
-people_mom 5 8 N static FLAG_HIDE_LITTLEROOT_TOWN_MOM_OUTSIDE LOCALID_LITTLEROOT_MOM
-misc_truck 2 10 E static FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_TRUCK
-misc_truck 11 10 E static FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_TRUCK
-people_may_walking 13 10 N static FLAG_HIDE_LITTLEROOT_TOWN_RIVAL LOCALID_LITTLEROOT_RIVAL
-people_prof_birch 14 10 N static FLAG_HIDE_LITTLEROOT_TOWN_BIRCH LOCALID_LITTLEROOT_BIRCH
+people_twin 16 10 S wander 0 LOCALID_LITTLEROOT_TWIN 0
+people_fat_man 12 13 S wander FLAG_HIDE_LITTLEROOT_TOWN_FAT_MAN - 0
+people_boy_2 14 17 S wander 0 - 0
+people_mom 5 8 N static FLAG_HIDE_LITTLEROOT_TOWN_MOM_OUTSIDE LOCALID_LITTLEROOT_MOM 0
+misc_truck 2 10 E static FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_TRUCK - 0
+misc_truck 11 10 E static FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_TRUCK - 0
+people_may_walking 13 10 N static FLAG_HIDE_LITTLEROOT_TOWN_RIVAL LOCALID_LITTLEROOT_RIVAL 0
+people_prof_birch 14 10 N static FLAG_HIDE_LITTLEROOT_TOWN_BIRCH LOCALID_LITTLEROOT_BIRCH 0
 dialogs
-0	Ähm, ähm, ähm!Wenn du nach draußen gehst und ins Gras trittst, springen wilde POKéMON hervor!
-1	Wenn du einen PC benutzt, kannst du Items und POKéMON aufbewahren.Die Kraft der Wissenschaft ist wirklich erstaunlich!
-2	PROF. BIRCH verbringt Tage in seinem LABOR mit Forschung und zieht dann plötzlich raus in die Wildnis, um noch mehr zu erforschen…Wann ist PROF. BIRCH eigentlich mal zu Hause?
+0	Um, um, um!If you go outside and go in the grass, wild POKéMON will jump out!
+1	If you use a PC, you can store items and POKéMON.The power of science is staggering!
+2	PROF. BIRCH spends days in his LAB studying, then he'll suddenly go out in the wild to do more research…When does PROF. BIRCH spend time at home?
 objscripts
 0 LittlerootTown_EventScript_Twin
 1 LittlerootTown_EventScript_FatMan
@@ -128,7 +128,7 @@ playse SE_PIN
 applymovement LOCALID_LITTLEROOT_BIRCH Common_Movement_ExclamationMark
 waitmovement 0
 delay 80
-msgbox	PROF. BIRCH: Na, na, PLAYER! Das hast du draußen gut gemacht!Ich wusste, dass etwas Besonderes an dir dran ist, als ich dich zum ersten Mal sah, aber das hier hätte ich nicht erwartet.Ach ja. Hast du den POKéDEX noch, den ich dir gegeben habe?Ich möchte dir etwas zeigen. Komm mit zu meinem LABOR.
+msgbox	PROF. BIRCH: Well, well, PLAYER! That was good work out there!I knew there was something special about you when I first saw you, but I never expected this.Oh, yes. Do you still have the POKéDEX I gave you?I have something to show you. Let's go to my LAB.
 closemessage
 clearflag FLAG_HIDE_LITTLEROOT_TOWN_RIVAL
 clearflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCH
@@ -163,7 +163,7 @@ waitdooranim
 delay 10
 applymovement LOCALID_LITTLEROOT_MOM LittlerootTown_Movement_MomApproachPlayerAtTruck
 waitmovement 0
-msgbox	MOM: PLAYER, wir sind da, Schatz!Das war bestimmt anstrengend, mit unseren ganzen Sachen im Umzugswagen mitzufahren.So, das hier ist LITTLEROOT TOWN.Wie gefällt es dir? Das ist jetzt unser neues Zuhause!Es wirkt idyllisch, aber es scheint sich auch gut hier leben zu lassen, findest du nicht?Und du bekommst dein eigenes Zimmer, PLAYER! Lass uns reingehen.
+msgbox	MOM: PLAYER, we're here, honey!It must be tiring riding with our things in the moving truck.Well, this is LITTLEROOT TOWN.How do you like it? This is our new home!It has a quaint feel, but it seems to be an easy place to live, don't you think?And, you get your own room, PLAYER! Let's go inside.
 closemessage
 applymovement LOCALID_LITTLEROOT_MOM LittlerootTown_Movement_MomApproachDoor
 applymovement LOCALID_PLAYER LittlerootTown_Movement_PlayerApproachDoor
@@ -204,7 +204,7 @@ call_if_eq VAR_RESULT FEMALE LittlerootTown_EventScript_MomNoticePlayerFemale
 checkplayergender
 call_if_eq VAR_RESULT MALE LittlerootTown_EventScript_SetHomeDoorCoordsMale
 call_if_eq VAR_RESULT FEMALE LittlerootTown_EventScript_SetHomeDoorCoordsFemale
-msgbox	MOM: Warte, PLAYER!
+msgbox	MOM: Wait, PLAYER!
 closemessage
 checkplayergender
 call_if_eq VAR_RESULT MALE LittlerootTown_EventScript_MomApproachPlayerMale
@@ -334,13 +334,13 @@ closedoor VAR_0x8009 VAR_0x800A
 waitdooranim
 return
 = LittlerootTown_EventScript_GiveRunningShoes
-msgbox	MOM: PLAYER! PLAYER! Hast du dich schon bei PROF. BIRCH vorgestellt?Oh! Was für ein niedliches POKéMON! Das hast du von PROF. BIRCH bekommen. Wie schön!Du kommst ganz nach deinem Vater. Ihr passt gut zusammen, du und dein POKéMON!Hier, Schatz! Wenn du schon auf Abenteuer gehst, dann zieh diese RUNNING SHOES an.Damit kommst du ordentlich in Schwung!
+msgbox	MOM: PLAYER! PLAYER! Did you introduce yourself to PROF. BIRCH?Oh! What an adorable POKéMON! You got it from PROF. BIRCH. How nice!You're your father's child, all right. You look good together with POKéMON!Here, honey! If you're going out on an adventure, wear these RUNNING SHOES.They'll put a zip in your step!
 playfanfare MUS_OBTAIN_ITEM
-msgbox	PLAYER hat die Schuhe gegen die RUNNING SHOES getauscht.
+msgbox	PLAYER switched shoes with the RUNNING SHOES.
 waitfanfare
 setflag FLAG_RECEIVED_RUNNING_SHOES
-msgbox	MOM: PLAYER, zu den Schuhen gab es eine Anleitung.„Drücke die B-Taste, während du die RUNNING SHOES trägst, um extra schnell zu rennen!„Zieh die RUNNING SHOES an und flitz durch die freie Natur!“
-msgbox	… … … … … … … … … … … … … … … …Dass du jetzt dein ganz eigenes POKéMON hast… Dein Vater wird überglücklich sein.…Aber bitte sei vorsichtig. Wenn irgendwas ist, kannst du jederzeit nach Hause kommen.Los, hol sie dir, Schatz!
+msgbox	MOM: PLAYER, those shoes came with instructions.“Press the B Button while wearing these RUNNING SHOES to run extra-fast!“Slip on these RUNNING SHOES and race in the great outdoors!”
+msgbox	… … … … … … … … … … … … … … … …To think that you have your very own POKéMON now… Your father will be overjoyed.…But please be careful. If anything happens, you can come home.Go on, go get them, honey!
 closemessage
 delay 30
 return
@@ -469,7 +469,7 @@ waitmovement 0
 applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterLeft
 waitmovement 0
 special GetPlayerBigGuyGirlString
-msgbox	Ähm, hi!Da draußen sind gruselige POKéMON! Ich kann ihre Schreie hören!Ich würde ja gern nachsehen, was los ist, aber ich habe keine eigenen POKéMON…Kannst du für mich nachsehen, was da vor sich geht?
+msgbox	Um, hi!There are scary POKéMON outside! I can hear their cries!I want to go see what's going on, but I don't have any POKéMON…Can you go see what's happening for me?
 closemessage
 applymovement LOCALID_LITTLEROOT_TWIN Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -486,12 +486,12 @@ waitmovement 0
 releaseall
 end
 = LittlerootTown_EventScript_DangerousWithoutPokemon
-msgbox	Ähm, ähm, ähm!Wenn du nach draußen gehst und ins Gras trittst, springen wilde POKéMON hervor!
+msgbox	Um, um, um!If you go outside and go in the grass, wild POKéMON will jump out!
 closemessage
 applymovement LOCALID_LITTLEROOT_TWIN LittlerootTown_Movement_TwinPushPlayerFromRoute
 applymovement LOCALID_PLAYER LittlerootTown_Movement_PushPlayerBackFromRoute
 waitmovement 0
-msgbox	Es ist gefährlich, wenn man keine eigenen POKéMON hat.
+msgbox	It's dangerous if you don't have your own POKéMON.
 closemessage
 return
 = LittlerootTown_EventScript_NeedPokemonTriggerLeft
@@ -522,10 +522,10 @@ waitdooranim
 goto LittlerootTown_EventScript_SetReceivedRunningShoes
 end
 = LittlerootTown_EventScript_Boy
-msgbox	PROF. BIRCH verbringt Tage in seinem LABOR mit Forschung und zieht dann plötzlich raus in die Wildnis, um noch mehr zu erforschen…Wann ist PROF. BIRCH eigentlich mal zu Hause?
+msgbox	PROF. BIRCH spends days in his LAB studying, then he'll suddenly go out in the wild to do more research…When does PROF. BIRCH spend time at home?
 end
 = LittlerootTown_EventScript_FatMan
-msgbox	Wenn du einen PC benutzt, kannst du Items und POKéMON aufbewahren.Die Kraft der Wissenschaft ist wirklich erstaunlich!
+msgbox	If you use a PC, you can store items and POKéMON.The power of science is staggering!
 end
 = LittlerootTown_EventScript_Twin
 lock
@@ -533,12 +533,12 @@ faceplayer
 goto_if_set FLAG_ADVENTURE_STARTED LittlerootTown_EventScript_GoodLuck
 goto_if_set FLAG_RESCUED_BIRCH LittlerootTown_EventScript_YouSavedBirch
 goto_if_ne VAR_LITTLEROOT_TOWN_STATE 0 LittlerootTown_EventScript_GoSaveBirch
-msgbox	Ähm, ähm, ähm!Wenn du nach draußen gehst und ins Gras trittst, springen wilde POKéMON hervor!
+msgbox	Um, um, um!If you go outside and go in the grass, wild POKéMON will jump out!
 release
 end
 = LittlerootTown_EventScript_GoSaveBirch
 special GetPlayerBigGuyGirlString
-msgbox	Ähm, hi!Da draußen sind gruselige POKéMON! Ich kann ihre Schreie hören!Ich würde ja gern nachsehen, was los ist, aber ich habe keine eigenen POKéMON…Kannst du für mich nachsehen, was da vor sich geht?
+msgbox	Um, hi!There are scary POKéMON outside! I can hear their cries!I want to go see what's going on, but I don't have any POKéMON…Can you go see what's happening for me?
 closemessage
 applymovement LOCALID_LITTLEROOT_TWIN Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -547,17 +547,16 @@ release
 end
 = LittlerootTown_EventScript_YouSavedBirch
 special GetPlayerBigGuyGirlString
-msgbox	Du hast PROF. BIRCH gerettet! Ich bin so froh!
+msgbox	You saved PROF. BIRCH! I'm so glad!
 release
 end
 = LittlerootTown_EventScript_GoodLuck
-msgbox	Willst du POKéMON fangen? Viel Glück!
+msgbox	Are you going to catch POKéMON? Good luck!
 release
 end
 signs
-15 13	LITTLEROOT TOWN – „Eine Stadt, die durch keine Farbe zu trüben ist.“
-6 17	PROF. BIRCHS POKéMON-LABOR
-
+15 13	LITTLEROOT TOWN “A town that can't be shaded any hue.”
+6 17	PROF. BIRCH'S POKéMON LAB
 visit
 FLAG_VISITED_LITTLEROOT_TOWN
 music

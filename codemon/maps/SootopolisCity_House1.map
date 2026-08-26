@@ -20,8 +20,8 @@ warps
 3 6 SootopolisCity 4
 4 6 SootopolisCity 4
 npcs
-people_black_belt 2 4 E static 0
-pokemon_kecleon 2 3 S static 0
+people_black_belt 2 4 E static 0 - 0
+pokemon_kecleon 2 3 S static 0 - 0
 dialogs
 0	For thirty years I've remained in SOOTOPOLIS honing my skills.I developed a shattering TM. I bequeath it to you!
 1	KECLEON: Puu puhyaah.
@@ -53,6 +53,5 @@ end
 msgbox	TM31 contains BRICK BREAK! It's a move so horrible that I can't describe it.
 release
 end
-
 music
 MUS_SOOTOPOLIS

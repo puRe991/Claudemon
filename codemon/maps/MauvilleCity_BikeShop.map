@@ -24,8 +24,8 @@ warps
 3 8 MauvilleCity 2
 4 8 MauvilleCity 2
 npcs
-people_man_2 2 5 W static 0
-people_man_5 7 6 S wander 0
+people_man_2 2 5 W static 0 - 0
+people_man_5 7 6 S wander 0 - 0
 dialogs
 0	Well, well, what have we here? A most energetic customer!Me? You may call me RYDEL. I'm the owner of this cycle shop.
 1	I'm learning about BIKES while I work here.If you need advice on how to ride your BIKE, there're a couple handbooks in the back.
@@ -117,8 +117,7 @@ end
 msgbox	RYDEL: Good, good! I'm happy that you like it!
 release
 end
-counters
-540,541,542
-
 music
 MUS_RUSTBORO
+counters
+540,541,542

@@ -88,6 +88,13 @@ struct Agent {
     int home_x, home_y;
     std::string sheet;    // for deriving a speaker name
     std::string dialog;
+    // Index into Map::npcs() this agent was built from. Not the same as the
+    // agent's own index: flag-hidden objects and sprites that fail to load are
+    // skipped, which shifts everything after them -- looking a script up by the
+    // agent index handed later NPCs somebody else's script.
+    int npc_index = -1;
+    // Trainer sight range in tiles (0 = not a trainer), copied from NpcSpawn.
+    int sight = 0;
 };
 
 // "people_old_man" / "people_brendan_walking" -> "Old Man" / "Brendan"
@@ -168,7 +175,9 @@ static Session* load_session(const std::string& path, int arr_x, int arr_y,
     s->player->face(DIR::S);
     s->player->set_animated(!g_headless);
 
+    int npc_idx = -1;
     for (const NpcSpawn& sp : s->map->npcs()) {
+        ++npc_idx;
         // pokeemerald FLAG_HIDE_*: this object doesn't exist yet/anymore
         // (not met, already given away, story hasn't reached it, ...) --
         // skip it entirely, UNLESS a script might still `addobject` it later
@@ -187,6 +196,7 @@ static Session* load_session(const std::string& path, int arr_x, int arr_y,
         ag.home_x = sp.x; ag.home_y = sp.y;
         ag.pace_dir = (sp.movement == MOVE_PACE_H) ? DIR::E : DIR::N;
         ag.sheet = sp.sheet; ag.dialog = sp.dialog;
+        ag.npc_index = npc_idx; ag.sight = sp.sight;
         s->agents.push_back(ag);
         s->npc_chars.push_back(ch);
         if (!sp.local_id.empty()) s->localid_map[sp.local_id] = ch;
@@ -375,7 +385,7 @@ static bool talk_to_npc_at(Session* s, DialogBox& box, Audio* audio, ScriptVM& v
         if (ag.ch->get_tile_x() == tx && ag.ch->get_tile_y() == ty) {
             ag.ch->face(opposite(s->player->get_facing()));   // turn to the player
             if (audio) audio->play_select();
-            std::string label = s->map->npc_script((int)i);
+            std::string label = s->map->npc_script(ag.npc_index);
             if (!label.empty() && s->map->has_script(label)) {
                 vm.start(label, ag.ch);                        // run its event script
             } else {
@@ -429,14 +439,47 @@ static void run_load_triggers(Map* map, GameState& gs, ScriptVM& vm) {
 
 // After a real step, run a coord_event trigger if the player is on one and its
 // variable condition matches.
+// A trainer challenges the player the moment they step into its line of sight
+// (pokeemerald's GetTrainerApproachDistance in trainer_see.c): straight along
+// the direction the trainer is facing, 1..sight tiles away, on the same row or
+// column, with nothing solid in between. Real TRAINER_TYPE_SEE_ALL_DIRECTIONS
+// trainers also look sideways; this models the ordinary one-direction case that
+// covers nearly every trainer in the game.
+static bool check_trainer_sight(Session* s, ScriptVM& vm) {
+    const int px = s->player->get_tile_x(), py = s->player->get_tile_y();
+    for (Agent& ag : s->agents) {
+        if (ag.sight <= 0 || ag.ch->is_removed()) continue;
+        // Only actually spawned NPCs can see (a flag-hidden trainer isn't there).
+        if (std::find(s->actors.begin(), s->actors.end(), ag.ch) == s->actors.end()) continue;
+
+        const bool spotted = trainer_can_see(
+            *s->map, ag.ch->get_tile_x(), ag.ch->get_tile_y(),
+            ag.ch->get_facing(), ag.sight, px, py,
+            [&](int cx, int cy) { return actor_at(s->actors, s->player, cx, cy); });
+        if (!spotted) continue;
+
+        const std::string label = s->map->npc_script(ag.npc_index);
+        if (!vm.script_has_pending_trainer(label)) continue;   // already beaten
+        // No re-facing needed: the trainer is already looking down the ray it
+        // just spotted the player on.
+        vm.start(label, ag.ch);
+        return true;
+    }
+    return false;
+}
+
 static void check_trigger(Session* s, ScriptVM& vm, GameState& gs) {
     if (vm.running()) return;
     const ScriptTrigger* t = s->map->trigger_at(s->player->get_tile_x(),
                                                 s->player->get_tile_y());
-    if (!t || !s->map->has_script(t->label)) return;
-    int want = (!t->val.empty() && (std::isdigit((unsigned char)t->val[0])))
-                   ? std::atoi(t->val.c_str()) : gs.get_var(t->val);
-    if (gs.get_var(t->var) == want) vm.start(t->label, nullptr);
+    if (t && s->map->has_script(t->label)) {
+        int want = (!t->val.empty() && (std::isdigit((unsigned char)t->val[0])))
+                       ? std::atoi(t->val.c_str()) : gs.get_var(t->val);
+        if (gs.get_var(t->var) == want) { vm.start(t->label, nullptr); return; }
+    }
+    // Coord events win over a trainer standing in the same spot, matching
+    // pokeemerald's own order in field_control_avatar.c.
+    check_trainer_sight(s, vm);
 }
 
 // After a real step, maybe start a wild encounter if standing in tall grass.

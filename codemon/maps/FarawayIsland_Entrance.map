@@ -98,8 +98,8 @@ warps
 22 7 FarawayIsland_Interior 0
 23 7 FarawayIsland_Interior 1
 npcs
-people_sailor 13 39 N static 0 LOCALID_FARAWAY_ISLAND_SAILOR
-misc_ss_tidal 13 41 E static 0 LOCALID_FARAWAY_ISLAND_SS_TIDAL
+people_sailor 13 39 N static 0 LOCALID_FARAWAY_ISLAND_SAILOR 0
+misc_ss_tidal 13 41 E static 0 LOCALID_FARAWAY_ISLAND_SS_TIDAL 0
 objscripts
 0 FarawayIsland_Entrance_EventScript_Sailor
 triggers
@@ -140,6 +140,5 @@ release
 end
 water
 368,369,370,384,393,400,402,408,410,671
-
 music
 MUS_ABANDONED_SHIP

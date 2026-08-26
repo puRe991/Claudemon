@@ -18,8 +18,8 @@ warps
 3 5 FortreeCity 4
 4 5 FortreeCity 4
 npcs
-people_expert_f 2 3 S wander 0
-people_expert_m 6 3 W static 0
+people_expert_f 2 3 S wander 0 - 0
+people_expert_m 6 3 W static 0 - 0
 dialogs
 0	Let this old woman see if your hidden power has awoken…I hold a coin in my hand.Now, tell me, have I palmed it in the right hand? Or in the left?
 objscripts
@@ -93,6 +93,5 @@ return
 msgbox	HIDDEN POWER is a move that changes with the POKéMON.
 release
 end
-
 music
 MUS_FORTREE

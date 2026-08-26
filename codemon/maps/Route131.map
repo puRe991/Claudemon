@@ -88,14 +88,14 @@ right 0 Route130
 warps
 36 6 SkyPillar_Entrance 0
 npcs
-people_swimmer_m 41 32 S static 0
-people_swimmer_m 18 19 W pace_h 0
-people_swimmer_f 10 22 S static 0
-people_swimmer_f 31 25 S static 0
-people_swimmer_f 9 16 S static 0
-people_tuber_m_swimming 8 16 S static 0
-people_swimmer_m 52 20 S static 0
-people_swimmer_f 52 27 S pace_v 0
+people_swimmer_m 41 32 S static 0 - 3
+people_swimmer_m 18 19 W pace_h 0 - 4
+people_swimmer_f 10 22 S static 0 - 4
+people_swimmer_f 31 25 S static 0 - 3
+people_swimmer_f 9 16 S static 0 - 1
+people_tuber_m_swimming 8 16 S static 0 - 1
+people_swimmer_m 52 20 S static 0 - 5
+people_swimmer_f 52 27 S pace_v 0 - 5
 objscripts
 0 Route131_EventScript_Richard
 1 Route131_EventScript_Herman
@@ -138,11 +138,10 @@ end
 trainerbattle_single TRAINER_RICHARD Route131_Text_RichardIntro Route131_Text_RichardDefeat
 msgbox	Gasp… Gasp… I'm wiped out…The going's easy. It's the leaving that's the hard part.Will I have any energy left to make the return trip?
 end
+water
+335,342,368,372,384,393,400,408
+music
+MUS_ROUTE119
 encounters
 water TENTACOOL:5:35,WINGULL:10:30,WINGULL:15:25,PELIPPER:25:30,PELIPPER:25:30
 fishing MAGIKARP:5:10,TENTACOOL:5:10,MAGIKARP:10:30,TENTACOOL:10:30,WAILMER:10:30,SHARPEDO:30:35,WAILMER:30:35,WAILMER:25:30,WAILMER:35:40,WAILMER:40:45
-water
-335,342,368,372,384,393,400,408
-
-music
-MUS_ROUTE119

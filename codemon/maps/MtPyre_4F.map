@@ -36,8 +36,8 @@ warps
 9 10 MtPyre_3F 2
 2 12 MtPyre_3F 3
 npcs
-people_hex_maniac 11 7 S static 0
-misc_item_ball 3 11 S static FLAG_ITEM_MT_PYRE_4F_SEA_INCENSE
+people_hex_maniac 11 7 S static 0 - 2
+misc_item_ball 3 11 S static FLAG_ITEM_MT_PYRE_4F_SEA_INCENSE - 0
 objscripts
 1 MtPyre_4F_EventScript_ItemSeaIncense
 scriptdefs
@@ -48,8 +48,7 @@ setflag FLAG_ITEM_MT_PYRE_4F_SEA_INCENSE
 end
 = MtPyre_4F_EventScript_ItemSeaIncense_Taken
 end
-encounters
-land SHUPPET:27:27,SHUPPET:28:28,SHUPPET:26:26,SHUPPET:25:25,SHUPPET:29:29,SHUPPET:24:24,SHUPPET:23:23,SHUPPET:22:22,DUSKULL:27:27,DUSKULL:27:27,DUSKULL:25:25,DUSKULL:29:29
-
 music
 MUS_MT_PYRE
+encounters
+land SHUPPET:27:27,SHUPPET:28:28,SHUPPET:26:26,SHUPPET:25:25,SHUPPET:29:29,SHUPPET:24:24,SHUPPET:23:23,SHUPPET:22:22,DUSKULL:27:27,DUSKULL:27:27,DUSKULL:25:25,DUSKULL:29:29

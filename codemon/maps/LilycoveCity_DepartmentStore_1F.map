@@ -24,12 +24,12 @@ warps
 16 1 LilycoveCity_DepartmentStore_2F 0
 2 1 LilycoveCity_DepartmentStoreElevator 0
 npcs
-people_beauty 8 2 S static 0
-people_beauty 10 2 S static 0 LOCALID_LOTTERY_CLERK
-people_pokefan_f 14 5 S wander 0
-people_little_girl 4 4 S wander 0
-people_pokefan_m 3 6 S static 0
-pokemon_azumarill 2 6 S static 0
+people_beauty 8 2 S static 0 - 0
+people_beauty 10 2 S static 0 LOCALID_LOTTERY_CLERK 0
+people_pokefan_f 14 5 S wander 0 - 0
+people_little_girl 4 4 S wander 0 - 0
+people_pokefan_m 3 6 S static 0 - 0
+pokemon_azumarill 2 6 S static 0 - 0
 dialogs
 0	Welcome to LILYCOVE DEPARTMENT STORE.
 2	Whenever I come to the DEPARTMENT STORE, I always end up buying all sorts of things because it's so fun.
@@ -79,7 +79,7 @@ waitmessage
 special RetrieveLotteryNumber
 copyvar VAR_0x8008 VAR_RESULT
 special BufferLottoTicketNumber
-msgbox	The LOTO TICKET number is .I need to run a check on this number to see if it matches any of your POKéMON's ID numbers. Please wait.
+msgbox	The LOTO TICKET number is STR_VAR_1.I need to run a check on this number to see if it matches any of your POKéMON's ID numbers. Please wait.
 applymovement LOCALID_LOTTERY_CLERK Common_Movement_WalkInPlaceFasterRight
 waitmovement 0
 playse SE_PC_ON
@@ -118,22 +118,22 @@ msgbox	Oh? You seem to have no room for this.Please make room in your BAG and l
 release
 end
 = LilycoveCity_DepartmentStore_1F_EventScript_FullMatch
-msgbox	Oh, my goodness, all five digits matched!You've won the jackpot prize! You've won the !
+msgbox	Oh, my goodness, all five digits matched!You've won the jackpot prize! You've won the STR_VAR_1!
 return
 = LilycoveCity_DepartmentStore_1F_EventScript_FourDigitMatch
-msgbox	Four digits matched, so you win the first prize! You've won the !
+msgbox	Four digits matched, so you win the first prize! You've won the STR_VAR_1!
 return
 = LilycoveCity_DepartmentStore_1F_EventScript_ThreeDigitMatch
-msgbox	Three digits matched, so you win the second prize! You've won the !
+msgbox	Three digits matched, so you win the second prize! You've won the STR_VAR_1!
 return
 = LilycoveCity_DepartmentStore_1F_EventScript_TwoDigitMatch
-msgbox	Two digits matched, so you win the third prize! You've won the !
+msgbox	Two digits matched, so you win the third prize! You've won the STR_VAR_1!
 return
 = LilycoveCity_DepartmentStore_1F_EventScript_TicketMatchPCMon
-msgbox	Congratulations!The ID number of your PC-boxed matches your LOTO TICKET's number!
+msgbox	Congratulations!The ID number of your PC-boxed STR_VAR_1 matches your LOTO TICKET's number!
 return
 = LilycoveCity_DepartmentStore_1F_EventScript_TicketMatchPartyMon
-msgbox	Congratulations!The ID number of your team's matches your LOTO TICKET's number!
+msgbox	Congratulations!The ID number of your team's STR_VAR_1 matches your LOTO TICKET's number!
 return
 = LilycoveCity_DepartmentStore_1F_EventScript_NoMatch
 msgbox	I'm sorry. None of the numbers matched.
@@ -161,8 +161,7 @@ end
 = LilycoveCity_DepartmentStore_1F_EventScript_Greeter
 msgbox	Welcome to LILYCOVE DEPARTMENT STORE.
 end
-counters
-672,673,676,677
-
 music
 MUS_LILYCOVE
+counters
+672,673,676,677

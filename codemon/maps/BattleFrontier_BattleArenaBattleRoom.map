@@ -25,13 +25,13 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 npcs
-people_black_belt 5 3 S static 0 LOCALID_ARENA_BATTLE_BLACK_BELT_1
-people_black_belt 10 3 S static 0 LOCALID_ARENA_BATTLE_BLACK_BELT_2
-people_black_belt 5 9 N static 0 LOCALID_ARENA_BATTLE_BLACK_BELT_3
-people_black_belt 10 9 N static 0 LOCALID_ARENA_BATTLE_BLACK_BELT_4
-people_black_belt 4 5 E static 0 LOCALID_ARENA_BATTLE_ATTENDANT
-people_black_belt 11 5 W static 0
-people_black_belt 7 4 S static 0 LOCALID_ARENA_BATTLE_ANNOUNCER
+people_black_belt 5 3 S static 0 LOCALID_ARENA_BATTLE_BLACK_BELT_1 0
+people_black_belt 10 3 S static 0 LOCALID_ARENA_BATTLE_BLACK_BELT_2 0
+people_black_belt 5 9 N static 0 LOCALID_ARENA_BATTLE_BLACK_BELT_3 0
+people_black_belt 10 9 N static 0 LOCALID_ARENA_BATTLE_BLACK_BELT_4 0
+people_black_belt 4 5 E static 0 LOCALID_ARENA_BATTLE_ATTENDANT 0
+people_black_belt 11 5 W static 0 - 0
+people_black_belt 7 4 S static 0 LOCALID_ARENA_BATTLE_ANNOUNCER 0
 onload
 VAR_TEMP_0 0 BattleFrontier_BattleArenaBattleRoom_EventScript_EnterRoom
 movements
@@ -150,7 +150,7 @@ playse SE_M_BELLY_DRUM
 waitse
 waitmovement 0
 arena_gettrainername
-msgbox	REFEREE: TRAINER ! Step forward, please!
+msgbox	REFEREE: TRAINER STR_VAR_1! Step forward, please!
 closemessage
 applymovement LOCALID_ARENA_BATTLE_OPPONENT BattleFrontier_BattleArenaBattleRoom_Movement_OpponentStepForward
 waitmovement 0
@@ -180,7 +180,7 @@ playse SE_M_SNORE
 waitse
 waitmovement 0
 arena_gettrainername
-msgbox	REFEREE: The winner is !
+msgbox	REFEREE: The winner is STR_VAR_1!
 goto BattleFrontier_BattleArenaBattleRoom_EventScript_WarpToLobbyLost
 = BattleFrontier_BattleArenaBattleRoom_EventScript_WarpToLobbyLost
 frontier_set FRONTIER_DATA_CHALLENGE_STATUS CHALLENGE_STATUS_LOST
@@ -393,6 +393,5 @@ applymovement LOCALID_ARENA_BATTLE_OPPONENT BattleFrontier_BattleArenaBattleRoom
 waitmovement 0
 msgbox	I won't allow a halfhearted effort! Be ready for a thrashing!
 goto BattleFrontier_BattleArenaBattleRoom_EventScript_BattleGretaGold
-
 music
 MUS_B_ARENA

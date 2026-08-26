@@ -52,15 +52,15 @@ warps
 16 15 LavaridgeTown_House 0
 9 2 LavaridgeTown_PokemonCenter_1F 3
 npcs
-people_expert_f 8 7 S static 0
-people_expert_m 5 1 S static 0
-people_old_man 5 8 S static 0
-people_twin 10 13 S wander 0
-people_hot_springs_old_woman 4 4 S static 0
-people_hot_springs_old_woman 5 4 S static 0
-people_may_walking 6 16 W static FLAG_HIDE_LAVARIDGE_TOWN_RIVAL_ON_BIKE LOCALID_LAVARIDGE_RIVAL_ON_BIKE
-people_may_walking 12 15 S static FLAG_HIDE_LAVARIDGE_TOWN_RIVAL LOCALID_LAVARIDGE_RIVAL
-people_expert_f 4 7 S static 0
+people_expert_f 8 7 S static 0 - 0
+people_expert_m 5 1 S static 0 - 0
+people_old_man 5 8 S static 0 - 0
+people_twin 10 13 S wander 0 - 0
+people_hot_springs_old_woman 4 4 S static 0 - 0
+people_hot_springs_old_woman 5 4 S static 0 - 0
+people_may_walking 6 16 W static FLAG_HIDE_LAVARIDGE_TOWN_RIVAL_ON_BIKE LOCALID_LAVARIDGE_RIVAL_ON_BIKE 0
+people_may_walking 12 15 S static FLAG_HIDE_LAVARIDGE_TOWN_RIVAL LOCALID_LAVARIDGE_RIVAL 0
+people_expert_f 4 7 S static 0 - 0
 dialogs
 0	Oh, you like hot springs, do you?That's surprising for one as young as you.
 1	We draw as much hot water as we need, and yet the hot springs never run dry.Isn't it magical?These hot springs appear near active volcanoes. Veins of water under the ground are heated by magma to well up as hot springs.
@@ -252,7 +252,6 @@ signs
 14 16	POKéMON HERB SHOP “Bitter taste--better cure!”
 7 15	LAVARIDGE TOWN POKéMON GYM LEADER: FLANNERY “One with a fiery passion that burns!”
 13 8	LAVARIDGE TOWN“POKéMON CENTER HOT SPRINGS An excellent place for relaxing!”
-
 visit
 FLAG_VISITED_LAVARIDGE_TOWN
 music

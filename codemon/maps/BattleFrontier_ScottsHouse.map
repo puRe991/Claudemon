@@ -22,7 +22,7 @@ warps
 2 7 BattleFrontier_OutsideWest 5
 3 7 BattleFrontier_OutsideWest 5
 npcs
-people_scott 2 3 S static 0 LOCALID_SCOTTS_HOUSE_SCOTT
+people_scott 2 3 S static 0 LOCALID_SCOTTS_HOUSE_SCOTT 0
 objscripts
 0 BattleFrontier_ScottsHouse_EventScript_Scott
 movements
@@ -168,7 +168,7 @@ goto BattleFrontier_ScottsHouse_EventScript_GiveBattlePoints
 end
 = BattleFrontier_ScottsHouse_EventScript_GiveBattlePoints
 special GiveFrontierBattlePoints
-msgbox	PLAYER obtained Battle Point(s).
+msgbox	PLAYER obtained STR_VAR_1 Battle Point(s).
 msgbox	SCOTT: You can check your Battle Points on your FRONTIER PASS.The more success you have here at the BATTLE FRONTIER, the more Battle Points you will collect.Use your Battle Points the way you see fit, like trading them for items.
 setflag FLAG_SCOTT_GIVES_BATTLE_POINTS
 setflag FLAG_TEMP_2
@@ -213,6 +213,5 @@ end
 msgbox	I must say I have the gift of knowing a good TRAINER when I see one.I'm so glad I had the foresight to bring you here!
 release
 end
-
 music
 MUS_B_TOWER_RS

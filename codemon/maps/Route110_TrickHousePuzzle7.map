@@ -61,15 +61,15 @@ warps
 1 3 Route110_TrickHousePuzzle7 12
 8 12 Route110_TrickHousePuzzle7 11
 npcs
-people_psychic_m 9 20 E static 0
-people_lass 10 2 N static 0
-people_hex_maniac 8 17 W static 0
-misc_item_ball 5 12 S static FLAG_ITEM_TRICK_HOUSE_PUZZLE_7_TROPIC_MAIL
-people_psychic_m 9 2 S static 0
-people_lass 8 13 N static 0
-people_gentleman 9 12 W static 0
-misc_statue 4 17 S static 0
-misc_statue 4 6 S static 0
+people_psychic_m 9 20 E static 0 - 1
+people_lass 10 2 N static 0 - 1
+people_hex_maniac 8 17 W static 0 - 1
+misc_item_ball 5 12 S static FLAG_ITEM_TRICK_HOUSE_PUZZLE_7_TROPIC_MAIL - 0
+people_psychic_m 9 2 S static 0 - 1
+people_lass 8 13 N static 0 - 1
+people_gentleman 9 12 W static 0 - 1
+misc_statue 4 17 S static 0 - 0
+misc_statue 4 6 S static 0 - 0
 dialogs
 0	I wish I could appear and disappear as if I were smoke, too.
 1	You're solving all the puzzles in the TRICK HOUSE. That's the feeling I get.
@@ -184,6 +184,5 @@ end
 trainerbattle_single TRAINER_JOSHUA Route110_TrickHousePuzzle7_Text_JoshuaIntro Route110_TrickHousePuzzle7_Text_JoshuaDefeat
 msgbox	I wish I could appear and disappear as if I were smoke, too.
 end
-
 music
 MUS_TRICK_HOUSE

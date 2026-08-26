@@ -61,15 +61,15 @@ warps
 12 3 GraniteCave_B1F 5
 29 2 GraniteCave_B1F 6
 npcs
-misc_item_ball 4 4 S static FLAG_ITEM_GRANITE_CAVE_B2F_REPEL
-misc_item_ball 29 4 S static FLAG_ITEM_GRANITE_CAVE_B2F_RARE_CANDY
-misc_breakable_rock 5 14 S static FLAG_TEMP_11
-misc_breakable_rock 3 14 S static FLAG_TEMP_12
-misc_breakable_rock 2 16 S static FLAG_TEMP_13
-misc_breakable_rock 7 12 S static FLAG_TEMP_14
-misc_breakable_rock 4 22 S static FLAG_TEMP_15
-misc_breakable_rock 6 22 S static FLAG_TEMP_16
-misc_breakable_rock 3 21 S static FLAG_TEMP_17
+misc_item_ball 4 4 S static FLAG_ITEM_GRANITE_CAVE_B2F_REPEL - 0
+misc_item_ball 29 4 S static FLAG_ITEM_GRANITE_CAVE_B2F_RARE_CANDY - 0
+misc_breakable_rock 5 14 S static FLAG_TEMP_11 - 0
+misc_breakable_rock 3 14 S static FLAG_TEMP_12 - 0
+misc_breakable_rock 2 16 S static FLAG_TEMP_13 - 0
+misc_breakable_rock 7 12 S static FLAG_TEMP_14 - 0
+misc_breakable_rock 4 22 S static FLAG_TEMP_15 - 0
+misc_breakable_rock 6 22 S static FLAG_TEMP_16 - 0
+misc_breakable_rock 3 21 S static FLAG_TEMP_17 - 0
 objscripts
 0 GraniteCave_B2F_EventScript_ItemRepel
 1 GraniteCave_B2F_EventScript_ItemRareCandy
@@ -108,9 +108,9 @@ goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CantSmashRock
 setfieldeffectargument 0 VAR_RESULT
 bufferpartymonnick STR_VAR_1 VAR_RESULT
 buffermovename STR_VAR_2 MOVE_ROCK_SMASH
-msgboxyesno	Dieser Felsen sieht zerbrechlich aus. Möchtest du ZERTRÜMMERER einsetzen?
+msgboxyesno	This rock appears to be breakable. Would you like to use ROCK SMASH?
 goto_if_eq VAR_RESULT NO EventScript_CancelSmash
-msgbox	STR_VAR_1 setzt STR_VAR_2 ein!
+msgbox	STR_VAR_1 used STR_VAR_2!
 closemessage
 dofieldeffect FLDEFF_USE_ROCK_SMASH
 waitstate
@@ -143,7 +143,7 @@ closemessage
 releaseall
 end
 = EventScript_CantSmashRock
-msgbox	Das ist ein robuster Felsen, aber vielleicht kann ihn ein POKéMON zertrümmern.
+msgbox	It's a rugged rock, but a POKéMON may be able to smash it.
 releaseall
 end
 = GraniteCave_B2F_EventScript_ItemRareCandy
@@ -160,9 +160,8 @@ setflag FLAG_ITEM_GRANITE_CAVE_B2F_REPEL
 end
 = GraniteCave_B2F_EventScript_ItemRepel_Taken
 end
+music
+MUS_PETALBURG_WOODS
 encounters
 land ZUBAT:10:10,ARON:11:11,ARON:10:10,ZUBAT:11:11,ARON:12:12,ABRA:10:10,SABLEYE:10:10,SABLEYE:11:11,SABLEYE:12:12,SABLEYE:10:10,SABLEYE:12:12,SABLEYE:10:10
 rock GEODUDE:10:15,NOSEPASS:10:20,GEODUDE:5:10,GEODUDE:15:20,GEODUDE:15:20
-
-music
-MUS_PETALBURG_WOODS

@@ -36,8 +36,8 @@ warps
 19 11 ShoalCave_LowTideInnerRoom 5
 28 11 ShoalCave_LowTideIceRoom 0
 npcs
-misc_pushable_boulder 25 3 S static FLAG_TEMP_11
-people_black_belt 11 4 S wander 0
+misc_pushable_boulder 25 3 S static FLAG_TEMP_11 - 0
+people_black_belt 11 4 S wander 0 - 0
 dialogs
 1	The penetrating cold around these parts is an impediment to training.But with focus, one can overcome!With this FOCUS BAND, buckle down and withstand the cold!
 objscripts
@@ -65,7 +65,7 @@ goto_if_set FLAG_SYS_USE_STRENGTH EventScript_CheckActivatedBoulder
 checkpartymove MOVE_STRENGTH
 goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CantStrength
 setfieldeffectargument 0 VAR_RESULT
-msgbox	It's a big boulder, but a POKéMON may be able to push it aside.Would you like to use STRENGTH?
+msgboxyesno	It's a big boulder, but a POKéMON may be able to push it aside.Would you like to use STRENGTH?
 goto_if_eq VAR_RESULT NO EventScript_CancelStrength
 closemessage
 dofieldeffect FLDEFF_USE_STRENGTH
@@ -89,8 +89,7 @@ end
 msgbox	STRENGTH made it possible to move boulders around.
 releaseall
 end
-encounters
-land ZUBAT:26:26,SPHEAL:26:26,ZUBAT:28:28,SPHEAL:28:28,ZUBAT:30:30,SPHEAL:30:30,ZUBAT:32:32,SPHEAL:32:32,GOLBAT:32:32,SPHEAL:32:32,GOLBAT:32:32,SPHEAL:32:32
-
 music
 MUS_MT_PYRE
+encounters
+land ZUBAT:26:26,SPHEAL:26:26,ZUBAT:28:28,SPHEAL:28:28,ZUBAT:30:30,SPHEAL:30:30,ZUBAT:32:32,SPHEAL:32:32,GOLBAT:32:32,SPHEAL:32:32,GOLBAT:32:32,SPHEAL:32:32

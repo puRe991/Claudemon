@@ -52,10 +52,10 @@ warps
 6 17 FallarborTown_CozmosHouse 0
 1 6 FallarborTown_MoveRelearnersHouse 0
 npcs
-people_girl_1 8 11 S static 0
-people_expert_m 11 9 S wander 0
-people_gentleman 11 15 S wander 0
-pokemon_azurill 8 12 S static FLAG_HIDE_FALLARBOR_AZURILL
+people_girl_1 8 11 S static 0 - 0
+people_expert_m 11 9 S wander 0 - 0
+people_gentleman 11 15 S wander 0 - 0
+pokemon_azurill 8 12 S static FLAG_HIDE_FALLARBOR_AZURILL - 0
 dialogs
 0	See! Take a look! This is my precious AZURILL!It's slick and smooth and plushy, too!
 1	Something's happening, and I don't like it!I've seen shady characters wandering in and out of PROF. COZMO's home…
@@ -106,7 +106,6 @@ signs
 6 8	BATTLE TENT FALLARBOR SITE “May the Greatest Teams Gather!”
 10 11	FALLARBOR TOWN “A farm community with small gardens.”
 3 7	MOVE TUTOR'S HOUSE “New moves taught to POKéMON.”
-
 visit
 FLAG_VISITED_FALLARBOR_TOWN
 music

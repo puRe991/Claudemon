@@ -21,8 +21,8 @@ collision
 0,0,0,0,0,0,0,0,0,0
 1,0,0,0,0,0,0,0,0,1
 npcs
-people_teala 1 4 E static 0 LOCALID_TOWER_MULTI_BATTLE_ATTENDANT_1
-people_teala 1 5 E static 0 LOCALID_TOWER_MULTI_BATTLE_ATTENDANT_2
+people_teala 1 4 E static 0 LOCALID_TOWER_MULTI_BATTLE_ATTENDANT_1 0
+people_teala 1 5 E static 0 LOCALID_TOWER_MULTI_BATTLE_ATTENDANT_2 0
 onload
 VAR_TEMP_0 0 BattleFrontier_BattleTowerMultiBattleRoom_EventScript_EnterRoom
 movements
@@ -340,6 +340,5 @@ msgbox	The 3rd set of opponents is next. Are you ready?
 waitmessage
 goto BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponentsLink
 end
-
 music
 MUS_B_TOWER

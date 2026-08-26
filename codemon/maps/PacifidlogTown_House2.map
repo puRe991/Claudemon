@@ -24,9 +24,9 @@ warps
 4 8 PacifidlogTown 2
 5 8 PacifidlogTown 2
 npcs
-people_gentleman 3 5 S static 0
-pokemon_azurill 8 6 S static 0
-pokemon_azurill 1 7 S static 0
+people_gentleman 3 5 S static 0 - 0
+pokemon_azurill 8 6 S static 0 - 0
+pokemon_azurill 1 7 S static 0 - 0
 dialogs
 1	AZURILL: Rurii.
 2	AZURILL: Rururi!
@@ -102,7 +102,7 @@ return
 = PacifidlogTown_House2_EventScript_ComeBackInXDays
 specialvar VAR_RESULT GetDaysUntilPacifidlogTMAvailable
 buffernumberstring STR_VAR_1 VAR_RESULT
-msgbox	Oh, yes. In about or so days, I should be getting a good TM or two.You should come see me then. I'll give you a TM that's suitable for your POKéMON.
+msgbox	Oh, yes. In about STR_VAR_1 or so days, I should be getting a good TM or two.You should come see me then. I'll give you a TM that's suitable for your POKéMON.
 release
 end
 = PacifidlogTown_House2_EventScript_UpdateFanClubTMFlag
@@ -113,6 +113,5 @@ return
 = PacifidlogTown_House2_EventScript_ClearReceivedFanClubTM
 clearflag FLAG_RECEIVED_FANCLUB_TM_THIS_WEEK
 return
-
 music
 MUS_LILYCOVE

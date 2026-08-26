@@ -25,9 +25,9 @@ collision
 warps
 4 9 BattleFrontier_OutsideWest 6
 npcs
-people_woman_3 4 4 N static 0
-people_cook 6 6 S wander 0
-people_man_3 0 5 E static 0
+people_woman_3 4 4 N static 0 - 0
+people_cook 6 6 S wander 0 - 0
+people_man_3 0 5 E static 0 - 0
 dialogs
 0	I wonder if they'll be airing interviews with tough TRAINERS today?
 1	If I opened a restaurant here, it'd make money for sure.
@@ -46,6 +46,5 @@ end
 = BattleFrontier_Lounge4_EventScript_Woman
 msgbox	I wonder if they'll be airing interviews with tough TRAINERS today?
 end
-
 music
 MUS_B_TOWER_RS

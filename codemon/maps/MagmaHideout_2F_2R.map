@@ -62,12 +62,12 @@ warps
 10 22 MagmaHideout_2F_1R 0
 36 4 MagmaHideout_1F 2
 npcs
-people_team_magma_magma_member_m 29 8 W static FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS
-people_team_magma_magma_member_m 25 11 E static FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS
-misc_item_ball 21 7 S static FLAG_ITEM_MAGMA_HIDEOUT_2F_2R_MAX_ELIXIR
-people_team_magma_magma_member_m 8 9 S static FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS
-people_team_magma_magma_member_f 7 13 E static FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS
-misc_item_ball 14 6 S static FLAG_ITEM_MAGMA_HIDEOUT_2F_2R_FULL_RESTORE
+people_team_magma_magma_member_m 29 8 W static FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS - 7
+people_team_magma_magma_member_m 25 11 E static FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS - 2
+misc_item_ball 21 7 S static FLAG_ITEM_MAGMA_HIDEOUT_2F_2R_MAX_ELIXIR - 0
+people_team_magma_magma_member_m 8 9 S static FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS - 4
+people_team_magma_magma_member_f 7 13 E static FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS - 1
+misc_item_ball 14 6 S static FLAG_ITEM_MAGMA_HIDEOUT_2F_2R_FULL_RESTORE - 0
 dialogs
 0	I'm getting this feeling that our plan is going to end in failure…
 1	You just happened to win this time, but that doesn't matter.TEAM MAGMA's goal is about to be reached!
@@ -111,8 +111,7 @@ end
 trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_8 MagmaHideout_2F_2R_Text_Grunt8Intro MagmaHideout_2F_2R_Text_Grunt8Defeat
 msgbox	I'm getting this feeling that our plan is going to end in failure…
 end
-encounters
-land GEODUDE:27:27,TORKOAL:28:28,GEODUDE:28:28,TORKOAL:30:30,GEODUDE:29:29,GEODUDE:30:30,GEODUDE:30:30,GRAVELER:30:30,GRAVELER:30:30,GRAVELER:31:31,GRAVELER:32:32,GRAVELER:33:33
-
 music
 MUS_AQUA_MAGMA_HIDEOUT
+encounters
+land GEODUDE:27:27,TORKOAL:28:28,GEODUDE:28:28,TORKOAL:30:30,GEODUDE:29:29,GEODUDE:30:30,GEODUDE:30:30,GRAVELER:30:30,GRAVELER:30:30,GRAVELER:31:31,GRAVELER:32:32,GRAVELER:33:33

@@ -25,9 +25,9 @@ collision
 warps
 4 9 BattleFrontier_OutsideEast 8
 npcs
-people_beauty 2 4 E static 0
+people_beauty 2 4 E static 0 - 0
 dialogs
-0	My POKéMON is a . Do you know it? It's quite cute and rather nice.This little one, I could trade with pride!Would you like to trade me a for my ?
+0	My POKéMON is a STR_VAR_2. Do you know it? It's quite cute and rather nice.This little one, I could trade with pride!Would you like to trade me a STR_VAR_1 for my STR_VAR_2?
 objscripts
 0 BattleFrontier_Lounge6_EventScript_Trader
 scriptdefs
@@ -69,6 +69,5 @@ end
 msgbox	Giggle! A SKITTY is so much cuter than I had imagined. I'm delighted!
 release
 end
-
 music
 MUS_B_TOWER_RS

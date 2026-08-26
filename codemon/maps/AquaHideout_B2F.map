@@ -62,12 +62,12 @@ warps
 31 17 AquaHideout_B2F 4
 32 20 AquaHideout_B1F 4
 npcs
-people_team_aqua_aqua_member_m 23 19 W static FLAG_HIDE_AQUA_HIDEOUT_GRUNTS LOCALID_AQUA_HIDEOUT_MATT
-people_team_aqua_aqua_member_m 23 10 S static FLAG_HIDE_AQUA_HIDEOUT_GRUNTS
-misc_item_ball 3 13 S static FLAG_ITEM_AQUA_HIDEOUT_B2F_NEST_BALL
-misc_submarine_shadow 19 20 W static FLAG_HIDE_AQUA_HIDEOUT_B2F_SUBMARINE_SHADOW LOCALID_AQUA_HIDEOUT_SUBMARINE
-people_team_aqua_aqua_member_f 7 5 E static FLAG_HIDE_AQUA_HIDEOUT_GRUNTS
-people_team_aqua_aqua_member_m 13 5 W static FLAG_HIDE_AQUA_HIDEOUT_GRUNTS
+people_team_aqua_aqua_member_m 23 19 W static FLAG_HIDE_AQUA_HIDEOUT_GRUNTS LOCALID_AQUA_HIDEOUT_MATT 0
+people_team_aqua_aqua_member_m 23 10 S static FLAG_HIDE_AQUA_HIDEOUT_GRUNTS - 3
+misc_item_ball 3 13 S static FLAG_ITEM_AQUA_HIDEOUT_B2F_NEST_BALL - 0
+misc_submarine_shadow 19 20 W static FLAG_HIDE_AQUA_HIDEOUT_B2F_SUBMARINE_SHADOW LOCALID_AQUA_HIDEOUT_SUBMARINE 0
+people_team_aqua_aqua_member_f 7 5 E static FLAG_HIDE_AQUA_HIDEOUT_GRUNTS - 5
+people_team_aqua_aqua_member_m 13 5 W static FLAG_HIDE_AQUA_HIDEOUT_GRUNTS - 5
 dialogs
 0	Hehehe!Our BOSS has already gone on his way to some cave under the sea!If you're going to give chase, you'd better search the big, wide sea beyond LILYCOVE.But will you find it then? Hehehe!
 1	BOSS… Is this good enough?
@@ -149,10 +149,9 @@ setflag FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE
 setflag FLAG_HIDE_LILYCOVE_CITY_AQUA_GRUNTS
 release
 end
-counters
-537
 water
 327,342,368,384,385,393,400,402,410
-
 music
 MUS_AQUA_MAGMA_HIDEOUT
+counters
+537

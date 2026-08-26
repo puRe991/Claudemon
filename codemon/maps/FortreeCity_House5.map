@@ -18,9 +18,9 @@ warps
 3 5 FortreeCity 7
 4 5 FortreeCity 7
 npcs
-people_pokefan_f 6 4 S static 0
-people_man_1 6 3 S static 0
-people_man_1 2 4 E static 0
+people_pokefan_f 6 4 S static 0 - 0
+pokemon_zigzagoon 6 3 S static 0 - 0
+people_man_1 2 4 E static 0 - 0
 dialogs
 0	The tree houses of FORTREE are great!I think it's the number one town for living together with POKéMON.
 1	ZIGZAGOON: Bufuu!
@@ -45,6 +45,5 @@ end
 = FortreeCity_House5_EventScript_PokefanF
 msgbox	The tree houses of FORTREE are great!I think it's the number one town for living together with POKéMON.
 end
-
 music
 MUS_FORTREE

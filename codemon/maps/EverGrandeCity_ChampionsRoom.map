@@ -32,9 +32,9 @@ warps
 6 12 EverGrandeCity_Hall4 1
 6 2 EverGrandeCity_HallOfFame 0
 npcs
-people_wallace 6 5 S static 0 LOCALID_CHAMPIONS_ROOM_WALLACE
-people_may_walking 6 12 N static FLAG_HIDE_CHAMPIONS_ROOM_RIVAL
-people_prof_birch 6 12 N static FLAG_HIDE_CHAMPIONS_ROOM_BIRCH
+people_wallace 6 5 S static 0 LOCALID_CHAMPIONS_ROOM_WALLACE 0
+people_may_walking 6 12 N static FLAG_HIDE_CHAMPIONS_ROOM_RIVAL LOCALID_CHAMPIONS_ROOM_RIVAL 0
+people_prof_birch 6 12 N static FLAG_HIDE_CHAMPIONS_ROOM_BIRCH LOCALID_CHAMPIONS_ROOM_BIRCH 0
 onload
 VAR_TEMP_1 0 EverGrandeCity_ChampionsRoom_EventScript_EnterRoom
 movements
@@ -154,7 +154,7 @@ copyvar VAR_0x8009 VAR_0x8006
 copyvar VAR_0x800A VAR_RESULT
 buffernumberstring STR_VAR_1 VAR_0x8008  @ Num Hoenn seen
 buffernumberstring STR_VAR_2 VAR_0x8009  @ Num Hoenn caught
-msgbox	Hmhm…So, you've seen POKéMON, and you've caught POKéMON…
+msgbox	Hmhm…So, you've seen STR_VAR_1 POKéMON, and you've caught STR_VAR_2 POKéMON…
 call ProfBirch_EventScript_ShowRatingMessage
 goto_if_eq VAR_0x800A 0 Common_EventScript_NopReturn  @ National dex not enabled
 setvar VAR_0x8004 1
@@ -163,7 +163,7 @@ copyvar VAR_0x8008 VAR_0x8005
 copyvar VAR_0x8009 VAR_0x8006
 buffernumberstring STR_VAR_1 VAR_0x8008  @ Num National seen
 buffernumberstring STR_VAR_2 VAR_0x8009  @ Num National caught
-msgbox	Hmhm… On a nationwide basis…You've seen POKéMON, and you've caught POKéMON…
+msgbox	Hmhm… On a nationwide basis…You've seen STR_VAR_1 POKéMON, and you've caught STR_VAR_2 POKéMON…
 return
 = ProfBirch_EventScript_ShowRatingMessage
 copyvar VAR_0x8004 VAR_0x8009
@@ -199,6 +199,5 @@ return
 = EverGrandeCity_ChampionsRoom_EventScript_PlayMayMusic
 playbgm MUS_ENCOUNTER_MAY FALSE
 return
-
 music
 MUS_VICTORY_ROAD

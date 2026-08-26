@@ -125,7 +125,7 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 				if (cn.dir != DIR::NONE) this->connection_list.push_back(cn);
 			}
 		} else if (head.rfind("npcs", 0) == 0) {
-			// "<sheet_key> <x> <y> <S|N|E|W> <static|wander|pace_v|pace_h> [hide_flag] [local_id]"
+			// "<sheet_key> <x> <y> <S|N|E|W> <static|wander|pace_v|pace_h> [hide_flag] [local_id] [sight]"
 			for (++i; i < rest.size() && !is_keyword(rest[i]); ++i) {
 				if (rest[i].empty()) continue;
 				std::stringstream ss(rest[i]);
@@ -139,6 +139,8 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 				             (move == "pace_h") ? MOVE_PACE_H : MOVE_STATIC;
 				if (ss >> flag && flag != "-") n.hide_flag = flag;
 				if (ss >> lid && lid != "-") n.local_id = lid;
+				int sight = 0;
+				if (ss >> sight && sight > 0) n.sight = sight;
 				this->npc_spawns.push_back(n);
 			}
 		} else if (head.rfind("dialogs", 0) == 0) {
@@ -493,3 +495,29 @@ unsigned int Map::get_width() const { return this->dimensions.get_x(); }
 unsigned int Map::get_height() const { return this->dimensions.get_y(); }
 int Map::get_tile_size() const { return this->tile_px; }
 Coordinates Map::get_start_pos() const { return this->start_pos; }
+
+bool trainer_can_see(const Map& map, int tx, int ty, DIR facing, int range,
+                     int px, int py,
+                     const std::function<bool(int, int)>& blocked) {
+	if (range <= 0) return false;
+	int dx = 0, dy = 0;
+	switch (facing) {
+		case DIR::N: dy = -1; break;
+		case DIR::S: dy = +1; break;
+		case DIR::W: dx = -1; break;
+		case DIR::E: dx = +1; break;
+		default: return false;
+	}
+	// Off the ray entirely: the player has to share the trainer's row/column.
+	if (dx == 0 && px != tx) return false;
+	if (dy == 0 && py != ty) return false;
+	for (int step = 1; step <= range; ++step) {
+		const int cx = tx + dx * step, cy = ty + dy * step;
+		if (cx == px && cy == py) return true;
+		// A wall (or somebody standing there) breaks the line of sight before
+		// it ever reaches the player.
+		if (!map.in_bounds(cx, cy) || !map.passable(cx, cy)) return false;
+		if (blocked && blocked(cx, cy)) return false;
+	}
+	return false;
+}

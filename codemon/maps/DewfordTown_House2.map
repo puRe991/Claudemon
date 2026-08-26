@@ -24,8 +24,8 @@ warps
 3 8 DewfordTown 4
 4 8 DewfordTown 4
 npcs
-people_man_3 6 5 E static 0
-people_boy_2 2 3 S static 0
+people_man_3 6 5 E static 0 - 0
+people_boy_2 2 3 S static 0 - 0
 dialogs
 0	Gorge your eyes on this!It's a SILK SCARF. It's right at the cutting edge of fashion, yeah!Oh, I can see your eyes twinkling! You appreciate my dazzling style!Oh, you're a delight! Here you go. I want you to have it!
 1	Wow, you bothered to cross the sea to visit DEWFORD?Did you maybe come here because you heard about BRAWLY?He's so cool… Everyone idolizes him.
@@ -54,6 +54,5 @@ end
 msgbox	The SILK SCARF raises the power of NORMAL-type moves.It's a marvelous SCARF that will go with almost all POKéMON!
 release
 end
-
 music
 MUS_DEWFORD

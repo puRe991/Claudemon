@@ -38,7 +38,7 @@ warps
 9 5 TrainerHill_4F 1
 15 5 TrainerHill_Elevator 1
 npcs
-people_gentleman 12 7 S static 0
+people_gentleman 12 7 S static 0 - 0
 objscripts
 0 TrainerHill_Roof_EventScript_Owner
 scriptdefs
@@ -65,7 +65,7 @@ goto TrainerHill_Roof_EventScript_ReceivePrize
 = TrainerHill_Roof_EventScript_ReceivePrize
 msgbox	For a marvelous someone like you, I have the most marvelous gift!
 playfanfare MUS_LEVEL_UP
-msgbox	Obtained the !
+msgbox	Obtained the STR_VAR_2!
 waitfanfare
 waitmessage
 goto TrainerHill_Roof_EventScript_CheckFinalTime
@@ -97,6 +97,5 @@ goto TrainerHill_Roof_EventScript_CheckFinalTime
 msgbox	Perhaps it would please me more if you arrived zippier next time.Then, I should be pleased to form a tag team with you!Until we meet again, amigo!
 release
 end
-
 music
 MUS_B_TOWER_RS

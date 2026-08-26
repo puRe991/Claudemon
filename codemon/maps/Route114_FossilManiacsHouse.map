@@ -23,7 +23,7 @@ warps
 5 7 Route114 1
 4 1 Route114_FossilManiacsTunnel 0
 npcs
-people_ninja_boy 3 2 S static 0
+people_ninja_boy 3 2 S static 0 - 0
 dialogs
 0	My big brother's the FOSSIL MANIAC… He's a nice guy who loves FOSSILS…He loves digging holes, too… He dug this hole by himself…You can have this, so you can DIG holes just like my big brother…
 objscripts
@@ -48,6 +48,5 @@ signs
 6 3	Rocks in peculiar shapes fill the display case…
 7 2	THE COMPOSITION OF STRATA… HOW RAIN SHAPES THE LAND… STONES, SOIL, AND ROCK…It's crammed with books.
 8 2	THE COMPOSITION OF STRATA… HOW RAIN SHAPES THE LAND… STONES, SOIL, AND ROCK…It's crammed with books.
-
 music
 MUS_FALLARBOR

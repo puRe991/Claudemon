@@ -140,35 +140,35 @@ warps
 5 51 RustboroCity_Flat2_1F 0
 26 46 RustboroCity_House3 0
 npcs
-people_woman_5 22 34 S wander 0
-people_fat_man 19 13 S static 0
-people_ninja_boy 25 37 N static 0
-people_twin 21 46 S wander 0
-people_boy_2 12 45 S static 0
-people_man_3 26 23 S static 0
-people_little_boy 24 51 E static 0 LOCALID_RUSTBORO_LITTLE_BOY
-people_little_girl 25 51 W static 0 LOCALID_RUSTBORO_LITTLE_GIRL
-people_man_2 30 10 E static FLAG_HIDE_RUSTBORO_CITY_DEVON_EMPLOYEE_1 LOCALID_RUSTBORO_DEVON_EMPLOYEE
-people_team_aqua_aqua_member_m 13 21 E static FLAG_HIDE_RUSTBORO_CITY_AQUA_GRUNT LOCALID_RUSTBORO_GRUNT
-people_devon_employee 13 34 S wander 0
-misc_item_ball 36 51 S static FLAG_ITEM_RUSTBORO_CITY_X_DEFEND
-people_man_4 19 27 S static 0
-people_may_walking 16 50 S static FLAG_HIDE_RUSTBORO_CITY_RIVAL LOCALID_RUSTBORO_RIVAL
-people_scientist_1 11 15 S static FLAG_HIDE_RUSTBORO_CITY_SCIENTIST LOCALID_RUSTBORO_SCIENTIST
-people_boy_1 31 36 S static 0
+people_woman_5 22 34 S wander 0 - 0
+people_fat_man 19 13 S static 0 - 0
+people_ninja_boy 25 37 N static 0 - 0
+people_twin 21 46 S wander 0 - 0
+people_boy_2 12 45 S static 0 - 0
+people_man_3 26 23 S static 0 - 0
+people_little_boy 24 51 E static 0 LOCALID_RUSTBORO_LITTLE_BOY 0
+people_little_girl 25 51 W static 0 LOCALID_RUSTBORO_LITTLE_GIRL 0
+people_man_2 30 10 E static FLAG_HIDE_RUSTBORO_CITY_DEVON_EMPLOYEE_1 LOCALID_RUSTBORO_DEVON_EMPLOYEE 0
+people_team_aqua_aqua_member_m 13 21 E static FLAG_HIDE_RUSTBORO_CITY_AQUA_GRUNT LOCALID_RUSTBORO_GRUNT 0
+people_devon_employee 13 34 S wander 0 - 0
+misc_item_ball 36 51 S static FLAG_ITEM_RUSTBORO_CITY_X_DEFEND - 0
+people_man_4 19 27 S static 0 - 0
+people_may_walking 16 50 S static FLAG_HIDE_RUSTBORO_CITY_RIVAL LOCALID_RUSTBORO_RIVAL 0
+people_scientist_1 11 15 S static FLAG_HIDE_RUSTBORO_CITY_SCIENTIST LOCALID_RUSTBORO_SCIENTIST 0
+people_boy_1 31 36 S static 0 - 0
 dialogs
-0	Ich hab den GYM LEADER herausgefordert, aber…Es wird nicht leicht, mit meinem FEUER-POKéMON zu gewinnen…FEUER-POKéMON haben es schwer gegen GESTEIN-POKéMON…
-1	Die DEVON CORPORATION… Wir sagen alle nur kurz DEVON dazu.Diese Firma stellt alle möglichen praktischen Produkte her.
-2	POKéMON TRAINER'S SCHOOL!Wenn ich auf diese Schule gehe, kann ich dann leicht seltene POKéMON fangen?
-3	Wow, du hast auch POKéMON dabei.Wenn ich größer bin, werde ich auch mit POKéMON umherreisen.
-4	Der alte Seemann MR. BRINEY lebt in einer Hütte am Meer.Er geht ab und zu im Tunnel spazieren.
-5	Hast du die POKéMON GYM schon herausgefordert?Wenn man dieses glänzende GYM BADGE erst mal in der Hand hält, fangen TRAINER wohl an zu verstehen, was von ihnen erwartet wird.
-6	Wenn ein POKéMON in Kämpfen Erfahrung sammelt, kann sich manchmal auch sein Aussehen verändern.
-7	Ein POKéMON verändert seine Gestalt? Wenn eins das täte, wäre ich geschockt!
-8	Diese zwielichtige Gestalt, ich glaube, er ist da drüben in Richtung Tunnel abgehauen.
-10	Oh? Wer magst du denn sein? Ein neues Gesicht hier in der Gegend.Bist du gerade an die POKéMON TRAINER'S SCHOOL gewechselt?
-12	Ein POKéMON, das man im Tausch von jemandem bekommt, wächst schnell.Aber wenn du bestimmte GYM BADGES nicht hast, gehorcht es dir vielleicht nicht…
-15	Wusstest du das schon?Du kannst auch einen 2-gegen-2-Kampf bestreiten, ohne mit einem anderen TRAINER unterwegs zu sein.Wenn sich die Blicke von zwei TRAINERN mit dir kreuzen, während du zwei oder mehr POKéMON hast, fordern dich beide heraus.Wär's nicht cool, wenn du zwei TRAINER ganz allein besiegen könntest?
+0	I challenged the GYM LEADER, but…It's not going to be easy winning with my FIRE-type POKéMON…FIRE-type POKéMON don't match up well against ROCK-type POKéMON…
+1	The DEVON CORPORATION… We all just shorten it to DEVON.That company makes all sorts of convenient products.
+2	POKéMON TRAINER'S SCHOOL!If I go to this school, will I be able to catch rare POKéMON easily?
+3	Wow, you have POKéMON with you, too.When I get bigger, I'm going to go places with POKéMON, too.
+4	The old sailor MR. BRINEY lives in a cottage by the sea.He goes for walks in the tunnel every so often.
+5	Have you taken the POKéMON GYM challenge?When you get that shiny GYM BADGE in hand, I guess TRAINERS begin to realize what is required of them.
+6	If a POKéMON gains experience in battles, it can sometimes change in the way it looks.
+7	A POKéMON changes shape? If one did that, I would be shocked!
+8	That shady character, I think he took off towards the tunnel over there.
+10	Oh? Who might you be? You're a new face around these parts.Have you just transferred into the POKéMON TRAINER'S SCHOOL?
+12	A POKéMON you get in a trade from someone grows fast.But if you don't have certain GYM BADGES, it may not obey you…
+15	Did you know this?You can have a 2-on-2 battle even if you're not with another TRAINER.If you catch the eyes of two TRAINERS when you have two or more POKéMON, they'll both challenge you.Don't you think it'd be cool if you could beat two TRAINERS by yourself?
 objscripts
 0 RustboroCity_EventScript_Woman
 1 RustboroCity_EventScript_FatMan
@@ -260,7 +260,7 @@ applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
 waitmovement 0
 applymovement LOCALID_RUSTBORO_SCIENTIST RustboroCity_Movement_ScientistWalkInPlaceDown
 waitmovement 0
-msgbox	Ich hab an einer Zusatzfunktion für den POKéNAV gearbeitet…Und sie ist großartig geworden!PLAYER, darf ich mal deinen POKéNAV sehen? Den, den dir unser PRESIDENT gegeben hat?
+msgbox	I've been developing an added feature for the POKéNAV…And it turned out great!PLAYER, may I see that POKéNAV? The one our PRESIDENT gave you?
 closemessage
 setflag FLAG_HAS_MATCH_CALL
 applymovement LOCALID_RUSTBORO_SCIENTIST Common_Movement_WalkInPlaceFasterLeft
@@ -275,7 +275,7 @@ playse SE_CLICK
 delay 20
 applymovement LOCALID_RUSTBORO_SCIENTIST Common_Movement_WalkInPlaceFasterDown
 waitmovement 0
-msgbox	Bitte sehr, PLAYER!Ich hab eine neue Funktion namens MATCH CALL zu deinem POKéNAV hinzugefügt.Mit der MATCH CALL Funktion kannst du mit Leuten chatten, die in deinem POKéNAV registriert sind.PLAYER, unser PRESIDENT STONE sollte in deinem POKéNAV registriert sein.Probier es doch mal aus. Bitte ruf unseren PRESIDENT an.
+msgbox	There you go, PLAYER!I added a new feature named MATCH CALL to your POKéNAV.Using the MATCH CALL feature, you can chat with people who have been registered in your POKéNAV.PLAYER, our PRESIDENT STONE should be registered in your POKéNAV.Test it out. Please give our PRESIDENT a call.
 closemessage
 delay 20
 goto RustboroCity_EventScript_MatchCallTutorial
@@ -293,7 +293,7 @@ case 7 RustboroCity_EventScript_PleaseSelectPokenav
 case MULTI_B_PRESSED RustboroCity_EventScript_PleaseSelectPokenav
 special OpenPokenavForTutorial
 delay 20
-msgbox	Okay, ich sollte besser zurück an die Arbeit. Pass auf dich auf, PLAYER!
+msgbox	Okay, I'd better get back to work. Please take care, PLAYER!
 closemessage
 applymovement LOCALID_RUSTBORO_SCIENTIST RustboroCity_Movement_ScientistLeave
 waitmovement 0
@@ -305,7 +305,7 @@ clearflag FLAG_HIDE_MAP_NAME_POPUP
 releaseall
 end
 = RustboroCity_EventScript_PleaseSelectPokenav
-msgbox	Bitte wähle den POKéNAV aus.
+msgbox	Please select the POKéNAV.
 closemessage
 delay 10
 goto RustboroCity_EventScript_MatchCallTutorial
@@ -333,11 +333,11 @@ end
 goto_if_set FLAG_DEFEATED_RIVAL_RUSTBORO RustboroCity_EventScript_BrendanBrineyHint
 goto_if_set FLAG_MET_RIVAL_RUSTBORO RustboroCity_EventScript_BrendanAskToBattle
 setflag FLAG_MET_RIVAL_RUSTBORO
-msgbox	BRENDAN: Oh, hey, PLAYER!Du hast dir die MATCH CALL Funktion auf deinen POKéNAV packen lassen! Cool!Lass uns uns gegenseitig registrieren, damit wir jederzeit Kontakt aufnehmen können!… … … … … …
+msgbox	BRENDAN: Oh, hey, PLAYER!You had a MATCH CALL feature put on your POKéNAV! Cool!Let's register each other so we can get in touch anytime!… … … … … …
 closemessage
 delay 30
 playfanfare MUS_REGISTER_MATCH_CALL
-msgbox	BRENDAN wurde im POKéNAV registriert.
+msgbox	Registered BRENDAN in the POKéNAV.
 waitfanfare
 closemessage
 delay 30
@@ -346,7 +346,7 @@ setvar VAR_RUSTBORO_CITY_STATE 8
 setvar VAR_ROUTE104_STATE 2
 msgboxyesno	BRENDAN: By the way, PLAYER, I walked by MR. BRINEY in PETALBURG WOODS.I bet he was on his way home to his cottage by the sea.PLAYER, how's your POKéDEX? Have you filled in any pages yet?Mine rules.Want to have a battle to test how far you've progressed?
 goto_if_eq VAR_RESULT YES RustboroCity_EventScript_BattleBrendan
-msgbox	BRENDAN: Was ist los? Hast du kein Vertrauen in deine POKéMON?
+msgbox	BRENDAN: What's the matter? Don't have any confidence in your POKéMON?
 call RustboroCity_EventScript_RestoreBgm
 releaseall
 end
@@ -355,7 +355,7 @@ savebgm MUS_DUMMY
 fadedefaultbgm
 return
 = RustboroCity_EventScript_BattleBrendan
-msgbox	BRENDAN: Ich weiß, du bist gerade erst TRAINER geworden, aber ich werde nicht nachlässig sein!
+msgbox	BRENDAN: I know you just became a TRAINER, but I won't go easy!
 switch VAR_STARTER_MON
 case 0 RustboroCity_EventScript_BattleBrendanTreecko
 case 1 RustboroCity_EventScript_BattleBrendanTorchic
@@ -367,7 +367,7 @@ setflag FLAG_DEFEATED_RIVAL_RUSTBORO
 goto RustboroCity_EventScript_BrendanBrineyHint
 end
 = RustboroCity_EventScript_BrendanBrineyHint
-msgbox	BRENDAN: Übrigens, kennst du MR. BRINEY? Den Kerl, an dem ich gerade vorbeigelaufen bin?Ich wette, du wusstest das nicht, weil du gerade erst hierher gezogen bist, PLAYER, aber MR. BRINEY war einst ein großer Seemann.
+msgbox	BRENDAN: By the way, you know MR. BRINEY? The guy I just passed?I bet you didn't know this, since you just moved here, PLAYER, but MR. BRINEY was once a great sailor.
 call_if_eq VAR_0x8008 0 RustboroCity_EventScript_RestoreBgm
 releaseall
 end
@@ -384,18 +384,18 @@ end
 = RustboroCity_EventScript_BrendanAskToBattle
 msgboxyesno	BRENDAN: What's up? Want to have a battle with me?
 goto_if_eq VAR_RESULT YES RustboroCity_EventScript_BattleBrendan
-msgbox	BRENDAN: Was ist los? Hast du kein Vertrauen in deine POKéMON?
+msgbox	BRENDAN: What's the matter? Don't have any confidence in your POKéMON?
 releaseall
 end
 = RustboroCity_EventScript_MayEncounter
 goto_if_set FLAG_DEFEATED_RIVAL_RUSTBORO RustboroCity_EventScript_MayBrineyHint
 goto_if_set FLAG_MET_RIVAL_RUSTBORO RustboroCity_EventScript_MayAskToBattle
 setflag FLAG_MET_RIVAL_RUSTBORO
-msgbox	MAY: Oh, hi, PLAYER!Du hast dir die MATCH CALL Funktion auf deinen POKéNAV packen lassen!Lass uns uns gegenseitig registrieren, damit wir jederzeit Kontakt aufnehmen können!… … … … … …
+msgbox	MAY: Oh, hi, PLAYER!You had a MATCH CALL feature put on your POKéNAV!Let's register each other so we can contact one another anytime!… … … … … …
 closemessage
 delay 30
 playfanfare MUS_REGISTER_MATCH_CALL
-msgbox	MAY wurde im POKéNAV registriert.
+msgbox	Registered MAY in the POKéNAV.
 waitfanfare
 closemessage
 delay 30
@@ -405,12 +405,12 @@ setvar VAR_ROUTE104_STATE 2
 setvar VAR_0x8008 0
 msgboxyesno	MAY: Oh, by the way, I passed MR. BRINEY in PETALBURG WOODS.I guess he's on his way home to his cottage by the sea.How's your POKéDEX coming along, PLAYER? Mine's looking pretty decent!So… How about a little battle?
 goto_if_eq VAR_RESULT YES RustboroCity_EventScript_BattleMay
-msgbox	MAY: Oh, was ist los?Hast du deine POKéMON nicht besonders viel gefangen oder trainiert?Das ist nicht besonders gut für einen TRAINER!
+msgbox	MAY: Oh, what's the matter?Haven't you caught or raised your POKéMON very much?That's not very good for a TRAINER!
 call RustboroCity_EventScript_RestoreBgm
 releaseall
 end
 = RustboroCity_EventScript_BattleMay
-msgbox	MAY: Du bist gerade erst TRAINER geworden, PLAYER. Ich werde nicht verlieren!
+msgbox	MAY: You just became a TRAINER, PLAYER. I'm not going to lose!
 switch VAR_STARTER_MON
 case 0 RustboroCity_EventScript_BattleMayTreecko
 case 1 RustboroCity_EventScript_BattleMayTorchic
@@ -422,7 +422,7 @@ setflag FLAG_DEFEATED_RIVAL_RUSTBORO
 goto RustboroCity_EventScript_MayBrineyHint
 end
 = RustboroCity_EventScript_MayBrineyHint
-msgbox	MAY: Oh, übrigens, MR. BRINEY, an dem ich gerade vorbeigelaufen bin…PLAYER, du bist gerade erst hierher gezogen, also weißt du das vielleicht nicht, aber MR. BRINEY war einst ein hochgeachteter Seefahrer.
+msgbox	MAY: Oh, by the way, MR. BRINEY, who I just passed…PLAYER, you just moved here so you might not know this, but MR. BRINEY was once a revered seafarer.
 call_if_eq VAR_0x8008 0 RustboroCity_EventScript_RestoreBgm
 releaseall
 end
@@ -440,7 +440,7 @@ end
 setvar VAR_0x8008 1
 msgboxyesno	MAY: So, what do you think? How about a little battle here?
 goto_if_eq VAR_RESULT YES RustboroCity_EventScript_BattleMay
-msgbox	MAY: Oh, was ist los?Hast du deine POKéMON nicht besonders viel gefangen oder trainiert?Das ist nicht besonders gut für einen TRAINER!
+msgbox	MAY: Oh, what's the matter?Haven't you caught or raised your POKéMON very much?That's not very good for a TRAINER!
 releaseall
 end
 = RustboroCity_EventScript_PlayRivalMusic
@@ -570,10 +570,10 @@ call_if_eq VAR_TEMP_1 1 RustboroCity_EventScript_EmployeeFacePlayerLeft2
 call_if_eq VAR_TEMP_1 2 RustboroCity_EventScript_EmployeeFacePlayerDown2
 call_if_eq VAR_TEMP_1 3 RustboroCity_EventScript_EmployeeApproachPlayerDown2
 call_if_eq VAR_TEMP_1 4 RustboroCity_EventScript_EmployeeFacePlayerRight
-msgbox	Oh! Wie ist es gelaufen? Die DEVON GOODS?Du hast es geschafft! Du hast sie zurückbekommen!Du bist wirklich ein großartiger TRAINER!Ich weiß! Als Dank geb ich dir noch einen GREAT BALL!
+msgbox	Oh! How did it go? The DEVON GOODS?You did! You got them back!You really are a great TRAINER!I know! As my thanks, I'll give you another GREAT BALL!
 giveitem ITEM_GREAT_BALL
 call_if_eq VAR_RESULT FALSE RustboroCity_EventScript_BagFull
-msgbox	Entschuldige bitte! Bitte komm mit mir mit!
+msgbox	Excuse me, please! Please come with me!
 closemessage
 setflag FLAG_RETURNED_DEVON_GOODS
 setflag FLAG_HIDE_RUSTBORO_CITY_DEVON_EMPLOYEE_1
@@ -584,7 +584,7 @@ waitstate
 releaseall
 end
 = RustboroCity_EventScript_BagFull
-msgbox	Du bist voll bepackt mit Items. Ich kann dir diesen GREAT BALL nicht geben.
+msgbox	You're loaded with items. I can't give you this GREAT BALL.
 return
 = RustboroCity_EventScript_EmployeeFacePlayerRight
 applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_WalkInPlaceFasterLeft
@@ -669,7 +669,7 @@ call_if_eq VAR_TEMP_1 3 RustboroCity_EventScript_EmployeeApproachPlayerDown1
 setflag FLAG_INTERACTED_WITH_DEVON_EMPLOYEE_GOODS_STOLEN
 setvar VAR_RUSTBORO_CITY_STATE 3
 copyobjectxytoperm LOCALID_RUSTBORO_DEVON_EMPLOYEE
-msgbox	Oh, du bist es!Du bist doch dieser fantastische TRAINER, der mir in PETALBURG WOODS geholfen hat!Hilf mir! Ich wurde von TEAM AQUA bestohlen! Ich muss die DEVON GOODS zurückbekommen!Wenn nicht… krieg ich echt ernsthafte Probleme.
+msgbox	Oh, it's you!You're that fantastic TRAINER who helped me in PETALBURG WOODS!Help me! I was robbed by TEAM AQUA! I have to get the DEVON GOODS back!If I don't… I'm going to be in serious trouble.
 releaseall
 end
 @ The below movement scripts are either partially or fully duplicated by the movement scripts when the player returns the goods
@@ -743,7 +743,7 @@ setvar VAR_0x8004 4
 goto RustboroCity_EventScript_StolenGoodsScene
 end
 = RustboroCity_EventScript_StolenGoodsScene
-msgbox	Aus dem Weg! Verschwinde!
+msgbox	Get out! Out of the way!
 closemessage
 playbgm MUS_ENCOUNTER_AQUA FALSE
 addobject LOCALID_RUSTBORO_GRUNT
@@ -753,7 +753,7 @@ waitmovement 0
 removeobject LOCALID_RUSTBORO_GRUNT
 applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE RustboroCity_Movement_EmployeeChaseGrunt1
 waitmovement 0
-msgbox	Warte! Bitteeee!Nimm mir nicht meine GOODS weg!
+msgbox	Wait! Pleeeaaase!Don't take my GOODS!
 closemessage
 applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE RustboroCity_Movement_EmployeeChaseGrunt2
 waitmovement 0
@@ -775,12 +775,12 @@ end
 @ Unused
 goto RustboroCity_EventScript_ShadyCharacterTookOff
 = RustboroCity_EventScript_ShadyCharacterTookOff
-msgbox	Diese zwielichtige Gestalt, ich glaube, er ist da drüben in Richtung Tunnel abgehauen.
+msgbox	That shady character, I think he took off towards the tunnel over there.
 return
 @ Unused
 goto RustboroCity_EventScript_YouGotItThankYou
 = RustboroCity_EventScript_YouGotItThankYou
-msgbox	Oh! Wie ist es gelaufen? Die DEVON GOODS?Du hast es geschafft! Du hast sie zurückbekommen!Du bist wirklich ein großartiger TRAINER!Ich weiß! Als Dank geb ich dir noch einen GREAT BALL!
+msgbox	Oh! How did it go? The DEVON GOODS?You did! You got them back!You really are a great TRAINER!I know! As my thanks, I'll give you another GREAT BALL!
 return
 @ Unknown unused employee movements. Based on the differences in movement theyre for approaching an object (probably the player) in different positions
 goto RustboroCity_EventScript_EmployeeApproachUp
@@ -820,7 +820,7 @@ goto RustboroCity_EventScript_DevonEmployee1
 lock
 faceplayer
 goto_if_set FLAG_RECOVERED_DEVON_GOODS RustboroCity_EventScript_ReturnGoodsSpokeToEmployee
-msgbox	Diese zwielichtige Gestalt, ich glaube, er ist da drüben in Richtung Tunnel abgehauen.
+msgbox	That shady character, I think he took off towards the tunnel over there.
 release
 end
 = RustboroCity_EventScript_ReturnGoodsSpokeToEmployee
@@ -857,7 +857,7 @@ setvar VAR_0x8004 0
 goto RustboroCity_EventScript_StolenGoodsScene
 end
 = RustboroCity_EventScript_Boy1
-msgbox	Wusstest du das schon?Du kannst auch einen 2-gegen-2-Kampf bestreiten, ohne mit einem anderen TRAINER unterwegs zu sein.Wenn sich die Blicke von zwei TRAINERN mit dir kreuzen, während du zwei oder mehr POKéMON hast, fordern dich beide heraus.Wär's nicht cool, wenn du zwei TRAINER ganz allein besiegen könntest?
+msgbox	Did you know this?You can have a 2-on-2 battle even if you're not with another TRAINER.If you catch the eyes of two TRAINERS when you have two or more POKéMON, they'll both challenge you.Don't you think it'd be cool if you could beat two TRAINERS by yourself?
 end
 = RustboroCity_EventScript_Rival
 lockall
@@ -868,7 +868,7 @@ goto RustboroCity_EventScript_RivalEncounter
 = RustboroCity_EventScript_Man2
 lock
 faceplayer
-msgbox	Ein POKéMON, das man im Tausch von jemandem bekommt, wächst schnell.Aber wenn du bestimmte GYM BADGES nicht hast, gehorcht es dir vielleicht nicht…
+msgbox	A POKéMON you get in a trade from someone grows fast.But if you don't have certain GYM BADGES, it may not obey you…
 release
 end
 = RustboroCity_EventScript_ItemXDefend
@@ -881,13 +881,13 @@ end
 = RustboroCity_EventScript_DevonEmployee2
 lock
 faceplayer
-msgbox	Oh? Wer magst du denn sein? Ein neues Gesicht hier in der Gegend.Bist du gerade an die POKéMON TRAINER'S SCHOOL gewechselt?
+msgbox	Oh? Who might you be? You're a new face around these parts.Have you just transferred into the POKéMON TRAINER'S SCHOOL?
 release
 end
 = RustboroCity_EventScript_LittleGirl
 lock
 faceplayer
-msgbox	Ein POKéMON verändert seine Gestalt? Wenn eins das täte, wäre ich geschockt!
+msgbox	A POKéMON changes shape? If one did that, I would be shocked!
 applymovement LOCALID_RUSTBORO_LITTLE_GIRL Common_Movement_FaceOriginalDirection
 waitmovement 0
 release
@@ -895,7 +895,7 @@ end
 = RustboroCity_EventScript_LittleBoy
 lock
 faceplayer
-msgbox	Wenn ein POKéMON in Kämpfen Erfahrung sammelt, kann sich manchmal auch sein Aussehen verändern.
+msgbox	If a POKéMON gains experience in battles, it can sometimes change in the way it looks.
 applymovement LOCALID_RUSTBORO_LITTLE_BOY Common_Movement_FaceOriginalDirection
 waitmovement 0
 release
@@ -904,54 +904,53 @@ end
 lock
 faceplayer
 goto_if_set FLAG_BADGE01_GET RustboroCity_EventScript_Man1HaveBadge
-msgbox	Hast du die POKéMON GYM schon herausgefordert?Wenn man dieses glänzende GYM BADGE erst mal in der Hand hält, fangen TRAINER wohl an zu verstehen, was von ihnen erwartet wird.
+msgbox	Have you taken the POKéMON GYM challenge?When you get that shiny GYM BADGE in hand, I guess TRAINERS begin to realize what is required of them.
 release
 end
 = RustboroCity_EventScript_Man1HaveBadge
-msgbox	Hey, das ist RUSTBOROS GYM BADGE!Von allen POKéMON GYM BADGES ist das von RUSTBORO das coolste, würde ich sagen.
+msgbox	Hey, that's RUSTBORO's GYM BADGE!Out of all the POKéMON GYM BADGES, RUSTBORO's is the coolest, I'd say.
 release
 end
 = RustboroCity_EventScript_Boy2
 lock
 faceplayer
 goto_if_set FLAG_RECEIVED_POKENAV RustboroCity_EventScript_Boy2BrineyLeftTunnel
-msgbox	Der alte Seemann MR. BRINEY lebt in einer Hütte am Meer.Er geht ab und zu im Tunnel spazieren.
+msgbox	The old sailor MR. BRINEY lives in a cottage by the sea.He goes for walks in the tunnel every so often.
 release
 end
 = RustboroCity_EventScript_Boy2BrineyLeftTunnel
-msgbox	Der alte Seemann MR. BRINEY lebt in einer Hütte am Meer.Er sagte, er wolle in SLATEPORT für sein Haustier PEEKO einkaufen gehen.Der alte Seebär muss diese PEEKO wirklich sehr lieben.
+msgbox	The old sailor MR. BRINEY lives in a cottage by the sea.He said he was going shopping in SLATEPORT for his pet, PEEKO.That old sea dog, he must really love that PEEKO.
 release
 end
 = RustboroCity_EventScript_Twin
-msgbox	Wow, du hast auch POKéMON dabei.Wenn ich größer bin, werde ich auch mit POKéMON umherreisen.
+msgbox	Wow, you have POKéMON with you, too.When I get bigger, I'm going to go places with POKéMON, too.
 end
 = RustboroCity_EventScript_NinjaBoy
-msgbox	POKéMON TRAINER'S SCHOOL!Wenn ich auf diese Schule gehe, kann ich dann leicht seltene POKéMON fangen?
+msgbox	POKéMON TRAINER'S SCHOOL!If I go to this school, will I be able to catch rare POKéMON easily?
 end
 = RustboroCity_EventScript_FatMan
 lock
 faceplayer
 goto_if_set FLAG_DEVON_GOODS_STOLEN RustboroCity_EventScript_FatManSawGrunt
-msgbox	Die DEVON CORPORATION… Wir sagen alle nur kurz DEVON dazu.Diese Firma stellt alle möglichen praktischen Produkte her.
+msgbox	The DEVON CORPORATION… We all just shorten it to DEVON.That company makes all sorts of convenient products.
 release
 end
 = RustboroCity_EventScript_FatManSawGrunt
-msgbox	Hm? Ein hinterhältig aussehender Mann?Wenn ich so darüber nachdenke, ja, ein zwielichtig aussehender Typ ist um die Ecke gebogen.
+msgbox	Hm? A sneaky-looking man?Come to think of it, yes, a shady- looking guy went around the corner.
 release
 end
 = RustboroCity_EventScript_Woman
-msgbox	Ich hab den GYM LEADER herausgefordert, aber…Es wird nicht leicht, mit meinem FEUER-POKéMON zu gewinnen…FEUER-POKéMON haben es schwer gegen GESTEIN-POKéMON…
+msgbox	I challenged the GYM LEADER, but…It's not going to be easy winning with my FIRE-type POKéMON…FIRE-type POKéMON don't match up well against ROCK-type POKéMON…
 end
 signs
-23 19	RUSTBORO CITY POKéMON GYM LEADER: ROXANNE„Die gesteinsliebende Musterschülerin!“
-25 35	POKéMON TRAINER'S SCHOOL„Wir bringen dir alles über POKéMON bei!“
-19 49	RUSTBORO CITY„Die Stadt, die die Verschmelzung von Natur und Wissenschaft erforscht.“
-17 20	DEVON CORPORATION„Für alle Bedürfnisse des täglichen Lebens – wir stellen alles her.“
-30 8	„Zeitsparender Tunnel steht kurz vor der Fertigstellung!“…So steht es auf dem Schild, aber es ist auch ein großes „X“ in roter Farbe darübergemalt…
+23 19	RUSTBORO CITY POKéMON GYM LEADER: ROXANNE“The ROCK-loving honors student!”
+25 35	POKéMON TRAINER'S SCHOOL“We'll teach you anything about POKéMON!”
+19 49	RUSTBORO CITY“The city probing the integration of nature and science.”
+17 20	DEVON CORPORATION“For all your living needs, we make it all.”
+30 8	“Timesaving tunnel nearing completion!”…Is what it says on the sign, but there's also a big “X” splashed across it in red paint…
 12 38	CUTTER'S HOUSE
 water
 368
-
 visit
 FLAG_VISITED_RUSTBORO_CITY
 music

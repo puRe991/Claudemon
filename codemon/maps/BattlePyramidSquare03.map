@@ -19,10 +19,10 @@ collision
 0,1,1,1,1,1,1,0
 0,1,0,0,0,0,0,0
 npcs
-people_boy_1 2 1 S static 0
-people_little_boy 6 1 S static 0
-people_fisherman 6 4 S static 0
-people_man_3 3 4 S static 0
-misc_item_ball 4 2 S static 0
-misc_item_ball 0 3 S static 0
-misc_item_ball 2 7 S static 0
+people_boy_1 2 1 S static 0 - 5
+people_little_boy 6 1 S static 0 - 4
+people_fisherman 6 4 S static 0 - 3
+people_man_3 3 4 S static 0 - 4
+misc_item_ball 4 2 S static 0 - 0
+misc_item_ball 0 3 S static 0 - 0
+misc_item_ball 2 7 S static 0 - 0

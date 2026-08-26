@@ -90,42 +90,42 @@ warps
 13 32 MossdeepCity_Gym 13
 21 10 MossdeepCity_Gym 12
 npcs
-people_gym_leaders_tate 23 7 S static 0
-people_psychic_m 1 30 S static 0
-people_psychic_m 5 20 N static 0
-people_lass 4 29 N static 0
-people_lass 4 23 N static 0
-people_psychic_m 6 9 S static 0
-people_lass 6 3 S static 0
-people_man_2 5 33 S static 0
-people_gym_leaders_liza 24 7 S static 0
-misc_statue 2 30 S static 0
-misc_statue 1 29 S static 0
-misc_statue 4 30 S static 0
-misc_statue 5 29 S static 0
-misc_statue 5 21 S static 0
-misc_statue 7 9 S static 0
-misc_statue 10 8 S static 0
-people_gentleman 9 8 N static 0
-people_hex_maniac 7 5 E static 0
-misc_statue 6 6 S static 0
-misc_statue 12 5 S static 0
-misc_statue 11 5 S static 0
-misc_statue 11 34 S static 0
-misc_statue 12 33 S static 0
-misc_statue 12 34 S static 0
-people_gentleman 22 25 N static 0
-misc_statue 23 26 S static 0
-people_lass 25 25 W static 0
-people_hex_maniac 22 23 S static 0
-misc_statue 21 23 S static 0
-misc_statue 21 22 S static 0
-misc_statue 22 22 S static 0
-people_psychic_m 25 22 N static 0
-misc_statue 24 22 S static 0
-misc_statue 24 23 S static 0
-misc_statue 6 5 S static 0
-misc_statue 23 25 S static 0
+people_gym_leaders_tate 23 7 S static 0 - 0
+people_psychic_m 1 30 S static 0 - 1
+people_psychic_m 5 20 N static 0 - 1
+people_lass 4 29 N static 0 - 1
+people_lass 4 23 N static 0 - 1
+people_psychic_m 6 9 S static 0 - 1
+people_lass 6 3 S static 0 - 1
+people_man_2 5 33 S static 0 - 0
+people_gym_leaders_liza 24 7 S static 0 - 0
+misc_statue 2 30 S static 0 - 0
+misc_statue 1 29 S static 0 - 0
+misc_statue 4 30 S static 0 - 0
+misc_statue 5 29 S static 0 - 0
+misc_statue 5 21 S static 0 - 0
+misc_statue 7 9 S static 0 - 0
+misc_statue 10 8 S static 0 - 0
+people_gentleman 9 8 N static 0 - 1
+people_hex_maniac 7 5 E static 0 - 1
+misc_statue 6 6 S static 0 - 0
+misc_statue 12 5 S static 0 - 0
+misc_statue 11 5 S static 0 - 0
+misc_statue 11 34 S static 0 - 0
+misc_statue 12 33 S static 0 - 0
+misc_statue 12 34 S static 0 - 0
+people_gentleman 22 25 N static 0 - 1
+misc_statue 23 26 S static 0 - 0
+people_lass 25 25 W static 0 - 1
+people_hex_maniac 22 23 S static 0 - 1
+misc_statue 21 23 S static 0 - 0
+misc_statue 21 22 S static 0 - 0
+misc_statue 22 22 S static 0 - 0
+people_psychic_m 25 22 N static 0 - 1
+misc_statue 24 22 S static 0 - 0
+misc_statue 24 23 S static 0 - 0
+misc_statue 6 5 S static 0 - 0
+misc_statue 23 25 S static 0 - 0
 dialogs
 0	TATE: Looks like the bond between you and your POKéMON is far stronger than the bond that we share as twins.LIZA: You will become even stronger! We've battled you, so we know.
 1	The indecisive lose. That's my warning to you.
@@ -471,6 +471,5 @@ end
 trainerbattle_single TRAINER_PRESTON MossdeepCity_Gym_Text_PrestonIntro MossdeepCity_Gym_Text_PrestonDefeat
 msgbox	The indecisive lose. That's my warning to you.
 end
-
 music
 MUS_GYM

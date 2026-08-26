@@ -19,7 +19,7 @@ collision
 0,0,0,0,1,0,0,0,1,0,0,0,0,0
 0,0,1,0,0,0,0,0,0,0,1,0,0,0
 npcs
-people_link_receptionist 6 6 S static 0 LOCALID_PIKE_CORRIDOR_ATTENDANT
+people_link_receptionist 6 6 S static 0 LOCALID_PIKE_CORRIDOR_ATTENDANT 0
 onload
 VAR_TEMP_0 0 BattleFrontier_BattlePikeCorridor_EventScript_EnterCorridor
 movements
@@ -46,6 +46,5 @@ call BattleFrontier_BattlePike_EventScript_CloseCurtain
 warpsilent BattleFrontier_BattlePikeThreePathRoom 6 10
 waitstate
 end
-
 music
 MUS_B_PIKE

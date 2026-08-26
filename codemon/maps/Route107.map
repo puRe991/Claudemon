@@ -46,13 +46,13 @@ connections
 left 0 DewfordTown
 right 0 Route108
 npcs
-people_swimmer_m 41 10 S static 0
-people_swimmer_m 23 11 S static 0
-people_swimmer_f 16 7 S static 0
-people_swimmer_f 50 11 S static 0
-people_swimmer_f 33 4 S static 0
-people_tuber_m_swimming 32 4 S static 0
-people_swimmer_m 50 5 S static 0
+people_swimmer_m 41 10 S static 0 - 3
+people_swimmer_m 23 11 S static 0 - 2
+people_swimmer_f 16 7 S static 0 - 5
+people_swimmer_f 50 11 S static 0 - 5
+people_swimmer_f 33 4 S static 0 - 1
+people_tuber_m_swimming 32 4 S static 0 - 1
+people_swimmer_m 50 5 S static 0 - 5
 objscripts
 0 Route107_EventScript_Darrin
 1 Route107_EventScript_Tony
@@ -104,11 +104,10 @@ end
 trainerbattle_single TRAINER_DARRIN Route107_Text_DarrinIntro Route107_Text_DarrinDefeated
 msgbox	Floating and being rocked by the waves--it's like sleeping in a plush, comfy bed.
 end
+water
+285,293,368,370,372
+music
+MUS_ROUTE104
 encounters
 water TENTACOOL:5:35,WINGULL:10:30,WINGULL:15:25,PELIPPER:25:30,PELIPPER:25:30
 fishing MAGIKARP:5:10,TENTACOOL:5:10,MAGIKARP:10:30,TENTACOOL:10:30,WAILMER:10:30,WAILMER:25:30,WAILMER:30:35,WAILMER:20:25,WAILMER:35:40,WAILMER:40:45
-water
-285,293,368,370,372
-
-music
-MUS_ROUTE104

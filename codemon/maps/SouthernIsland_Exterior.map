@@ -66,8 +66,8 @@ warps
 14 5 SouthernIsland_Interior 0
 15 5 SouthernIsland_Interior 1
 npcs
-people_sailor 13 23 N static 0 LOCALID_SOUTHERN_ISLAND_SAILOR
-misc_ss_tidal 13 25 E static 0 LOCALID_SOUTHERN_ISLAND_SS_TIDAL
+people_sailor 13 23 N static 0 LOCALID_SOUTHERN_ISLAND_SAILOR 0
+misc_ss_tidal 13 25 E static 0 LOCALID_SOUTHERN_ISLAND_SS_TIDAL 0
 objscripts
 0 SouthernIsland_Exterior_EventScript_Sailor
 movements
@@ -96,6 +96,5 @@ release
 end
 water
 368,369,384,385,393,400,402,408,410,671
-
 music
 MUS_ABANDONED_SHIP

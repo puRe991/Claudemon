@@ -19,10 +19,10 @@ collision
 0,0,0,0,0,0,0,0
 1,1,1,1,1,1,1,0
 npcs
-people_woman_1 7 5 W static 0
-people_woman_1 0 5 E static 0
-people_woman_1 3 0 S static 0
-people_woman_1 3 3 N static 0
-misc_item_ball 7 2 S static 0
-misc_item_ball 0 3 S static 0
-misc_item_ball 7 7 S static 0
+people_woman_1 7 5 W static 0 - 7
+people_woman_1 0 5 E static 0 - 7
+people_woman_1 3 0 S static 0 - 6
+people_woman_1 3 3 N static 0 - 3
+misc_item_ball 7 2 S static 0 - 0
+misc_item_ball 0 3 S static 0 - 0
+misc_item_ball 7 7 S static 0 - 0

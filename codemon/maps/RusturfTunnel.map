@@ -55,16 +55,16 @@ warps
 29 16 VerdanturfTown 4
 18 20 Route116 2
 npcs
-people_black_belt 23 5 E static FLAG_HIDE_RUSTURF_TUNNEL_WANDAS_BOYFRIEND LOCALID_RUSTURF_TUNNEL_WANDAS_BF
-misc_breakable_rock 24 5 S static FLAG_HIDE_RUSTURF_TUNNEL_ROCK_1
-misc_item_ball 3 1 S static FLAG_ITEM_RUSTURF_TUNNEL_POKE_BALL
-misc_item_ball 30 2 S static FLAG_ITEM_RUSTURF_TUNNEL_MAX_ETHER
-people_expert_m 5 4 E static FLAG_HIDE_RUSTURF_TUNNEL_BRINEY LOCALID_RUSTURF_TUNNEL_BRINEY
-people_team_aqua_aqua_member_m 14 5 W static FLAG_HIDE_RUSTURF_TUNNEL_AQUA_GRUNT LOCALID_RUSTURF_TUNNEL_GRUNT
-pokemon_wingull 14 4 W static FLAG_HIDE_RUSTURF_TUNNEL_PEEKO LOCALID_RUSTURF_TUNNEL_PEEKO
-misc_breakable_rock 24 4 S static FLAG_HIDE_RUSTURF_TUNNEL_ROCK_2
-people_hiker 32 13 W static 0
-people_woman_2 25 4 W static FLAG_HIDE_RUSTURF_TUNNEL_WANDA LOCALID_RUSTURF_TUNNEL_WANDA
+people_black_belt 23 5 E static FLAG_HIDE_RUSTURF_TUNNEL_WANDAS_BOYFRIEND LOCALID_RUSTURF_TUNNEL_WANDAS_BF 0
+misc_breakable_rock 24 5 S static FLAG_HIDE_RUSTURF_TUNNEL_ROCK_1 - 0
+misc_item_ball 3 1 S static FLAG_ITEM_RUSTURF_TUNNEL_POKE_BALL - 0
+misc_item_ball 30 2 S static FLAG_ITEM_RUSTURF_TUNNEL_MAX_ETHER - 0
+people_expert_m 5 4 E static FLAG_HIDE_RUSTURF_TUNNEL_BRINEY LOCALID_RUSTURF_TUNNEL_BRINEY 0
+people_team_aqua_aqua_member_m 14 5 W static FLAG_HIDE_RUSTURF_TUNNEL_AQUA_GRUNT LOCALID_RUSTURF_TUNNEL_GRUNT 0
+pokemon_wingull 14 4 W static FLAG_HIDE_RUSTURF_TUNNEL_PEEKO LOCALID_RUSTURF_TUNNEL_PEEKO 0
+misc_breakable_rock 24 4 S static FLAG_HIDE_RUSTURF_TUNNEL_ROCK_2 - 0
+people_hiker 32 13 W static 0 - 3
+people_woman_2 25 4 W static FLAG_HIDE_RUSTURF_TUNNEL_WANDA LOCALID_RUSTURF_TUNNEL_WANDA 0
 dialogs
 0	… …Why can't they keep digging? Is the bedrock too hard?My beloved awaits me in VERDANTURF TOWN just beyond here…If RUSTBORO and VERDANTURF were joined by this tunnel, I could visit her every day…But this… What am I to do?
 5	Grah, keelhaul it all!That hostage POKéMON turned out to be worthless!And to think I made a getaway… In this tunnel to nowhere!Hey! You! So you want to battle me?
@@ -239,9 +239,9 @@ goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CantSmashRock
 setfieldeffectargument 0 VAR_RESULT
 bufferpartymonnick STR_VAR_1 VAR_RESULT
 buffermovename STR_VAR_2 MOVE_ROCK_SMASH
-msgboxyesno	Dieser Felsen sieht zerbrechlich aus. Möchtest du ZERTRÜMMERER einsetzen?
+msgboxyesno	This rock appears to be breakable. Would you like to use ROCK SMASH?
 goto_if_eq VAR_RESULT NO EventScript_CancelSmash
-msgbox	STR_VAR_1 setzt STR_VAR_2 ein!
+msgbox	STR_VAR_1 used STR_VAR_2!
 closemessage
 dofieldeffect FLDEFF_USE_ROCK_SMASH
 waitstate
@@ -274,7 +274,7 @@ closemessage
 releaseall
 end
 = EventScript_CantSmashRock
-msgbox	Das ist ein robuster Felsen, aber vielleicht kann ihn ein POKéMON zertrümmern.
+msgbox	It's a rugged rock, but a POKéMON may be able to smash it.
 releaseall
 end
 = RusturfTunnel_EventScript_Peeko
@@ -361,8 +361,7 @@ applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
 waitmovement 0
 release
 end
-encounters
-land WHISMUR:6:6,WHISMUR:7:7,WHISMUR:6:6,WHISMUR:6:6,WHISMUR:7:7,WHISMUR:7:7,WHISMUR:5:5,WHISMUR:8:8,WHISMUR:5:5,WHISMUR:8:8,WHISMUR:5:5,WHISMUR:8:8
-
 music
 MUS_PETALBURG_WOODS
+encounters
+land WHISMUR:6:6,WHISMUR:7:7,WHISMUR:6:6,WHISMUR:6:6,WHISMUR:7:7,WHISMUR:7:7,WHISMUR:5:5,WHISMUR:8:8,WHISMUR:5:5,WHISMUR:8:8,WHISMUR:5:5,WHISMUR:8:8

@@ -51,20 +51,20 @@ warps
 1 21 Route110_TrickHouseEntrance 2
 13 1 Route110_TrickHouseEnd 0
 npcs
-people_girl_3 2 2 S static 0
-people_girl_3 14 7 W static 0
-people_black_belt 2 14 E static 0
-misc_item_ball 2 5 S static FLAG_ITEM_TRICK_HOUSE_PUZZLE_4_MECH_MAIL
-misc_pushable_boulder 13 3 S static FLAG_TEMP_11
-misc_pushable_boulder 12 5 S static FLAG_TEMP_12
-misc_pushable_boulder 5 16 S static FLAG_TEMP_13
-misc_pushable_boulder 4 6 S static FLAG_TEMP_14
-misc_pushable_boulder 12 2 S static FLAG_TEMP_15
-misc_pushable_boulder 5 7 S static FLAG_TEMP_16
-misc_pushable_boulder 9 3 S static FLAG_TEMP_17
-misc_pushable_boulder 10 12 S static FLAG_TEMP_18
-misc_pushable_boulder 14 2 S static FLAG_TEMP_19
-misc_pushable_boulder 10 15 S static FLAG_TEMP_1A
+people_girl_3 2 2 S static 0 - 1
+people_girl_3 14 7 W static 0 - 2
+people_black_belt 2 14 E static 0 - 2
+misc_item_ball 2 5 S static FLAG_ITEM_TRICK_HOUSE_PUZZLE_4_MECH_MAIL - 0
+misc_pushable_boulder 13 3 S static FLAG_TEMP_11 - 0
+misc_pushable_boulder 12 5 S static FLAG_TEMP_12 - 0
+misc_pushable_boulder 5 16 S static FLAG_TEMP_13 - 0
+misc_pushable_boulder 4 6 S static FLAG_TEMP_14 - 0
+misc_pushable_boulder 12 2 S static FLAG_TEMP_15 - 0
+misc_pushable_boulder 5 7 S static FLAG_TEMP_16 - 0
+misc_pushable_boulder 9 3 S static FLAG_TEMP_17 - 0
+misc_pushable_boulder 10 12 S static FLAG_TEMP_18 - 0
+misc_pushable_boulder 14 2 S static FLAG_TEMP_19 - 0
+misc_pushable_boulder 10 15 S static FLAG_TEMP_1A - 0
 dialogs
 0	Wouldn't you agree? You would go anywhere if TRAINERS were there.
 1	Has anyone made it to the end?
@@ -92,7 +92,7 @@ goto_if_set FLAG_SYS_USE_STRENGTH EventScript_CheckActivatedBoulder
 checkpartymove MOVE_STRENGTH
 goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CantStrength
 setfieldeffectargument 0 VAR_RESULT
-msgbox	It's a big boulder, but a POKéMON may be able to push it aside.Would you like to use STRENGTH?
+msgboxyesno	It's a big boulder, but a POKéMON may be able to push it aside.Would you like to use STRENGTH?
 goto_if_eq VAR_RESULT NO EventScript_CancelStrength
 closemessage
 dofieldeffect FLDEFF_USE_STRENGTH
@@ -135,6 +135,5 @@ end
 trainerbattle_single TRAINER_CORA Route110_TrickHousePuzzle4_Text_CoraIntro Route110_TrickHousePuzzle4_Text_CoraDefeat
 msgbox	Wouldn't you agree? You would go anywhere if TRAINERS were there.
 end
-
 music
 MUS_TRICK_HOUSE

@@ -28,15 +28,15 @@ warps
 6 10 SlateportCity 4
 7 10 SlateportCity 4
 npcs
-people_man_1 11 4 S static 0
-people_twin 1 5 S wander 0
-people_reporter_f 11 5 N static 0
-people_woman_4 6 2 S static 0
-people_gentleman 6 5 S static 0
-people_man_1 3 9 S static 0
-pokemon_skitty 8 3 S static 0
-pokemon_azumarill 10 8 S static 0
-people_man_4 11 8 W static 0
+people_man_1 11 4 S static 0 - 0
+people_twin 1 5 S wander 0 - 0
+people_reporter_f 11 5 N static 0 - 0
+people_woman_4 6 2 S static 0 - 0
+people_gentleman 6 5 S static 0 - 0
+pokemon_zigzagoon 3 9 S static 0 - 0
+pokemon_skitty 8 3 S static 0 - 0
+pokemon_azumarill 10 8 S static 0 - 0
+people_man_4 11 8 W static 0 - 0
 dialogs
 0	If you keep letting a POKéMON faint in battle, it'll come to resent it.Soon, it will become less trusting of the TRAINER.In other words, it certainly won't like you very much.
 1	Do POKéMON enjoy having items used on them?Mine acted really happy when I gave it some PROTEIN.
@@ -164,7 +164,7 @@ end
 = SlateportCity_PokemonFanClub_EventScript_GiveYellowScarf
 checkitemspace ITEM_YELLOW_SCARF
 goto_if_eq VAR_RESULT FALSE SlateportCity_PokemonFanClub_EventScript_NoRoomForScarf
-msgbox	Your , it is growing in a most impressive manner! It is one fine specimen!But! If you were to give it this, it would grow even better! Indeed!
+msgbox	Your STR_VAR_1, it is growing in a most impressive manner! It is one fine specimen!But! If you were to give it this, it would grow even better! Indeed!
 setflag FLAG_RECEIVED_YELLOW_SCARF
 giveitem ITEM_YELLOW_SCARF
 msgbox	Let a POKéMON hold that YELLOW SCARF.It will bolster your POKéMON's toughness so much more!
@@ -177,7 +177,7 @@ end
 = SlateportCity_PokemonFanClub_EventScript_GiveGreenScarf
 checkitemspace ITEM_GREEN_SCARF
 goto_if_eq VAR_RESULT FALSE SlateportCity_PokemonFanClub_EventScript_NoRoomForScarf
-msgbox	Your , it is growing in a most impressive manner! It is one fine specimen!But! If you were to give it this, it would grow even better! Indeed!
+msgbox	Your STR_VAR_1, it is growing in a most impressive manner! It is one fine specimen!But! If you were to give it this, it would grow even better! Indeed!
 setflag FLAG_RECEIVED_GREEN_SCARF
 giveitem ITEM_GREEN_SCARF
 msgbox	Let a POKéMON hold that GREEN SCARF.That will enhance the smartness of POKéMON!
@@ -186,7 +186,7 @@ end
 = SlateportCity_PokemonFanClub_EventScript_GivePinkScarf
 checkitemspace ITEM_PINK_SCARF
 goto_if_eq VAR_RESULT FALSE SlateportCity_PokemonFanClub_EventScript_NoRoomForScarf
-msgbox	Your , it is growing in a most impressive manner! It is one fine specimen!But! If you were to give it this, it would grow even better! Indeed!
+msgbox	Your STR_VAR_1, it is growing in a most impressive manner! It is one fine specimen!But! If you were to give it this, it would grow even better! Indeed!
 setflag FLAG_RECEIVED_PINK_SCARF
 giveitem ITEM_PINK_SCARF
 msgbox	Let a POKéMON hold that PINK SCARF.It will draw out the cuteness of the POKéMON some more!
@@ -195,7 +195,7 @@ end
 = SlateportCity_PokemonFanClub_EventScript_GiveBlueScarf
 checkitemspace ITEM_BLUE_SCARF
 goto_if_eq VAR_RESULT FALSE SlateportCity_PokemonFanClub_EventScript_NoRoomForScarf
-msgbox	Your , it is growing in a most impressive manner! It is one fine specimen!But! If you were to give it this, it would grow even better! Indeed!
+msgbox	Your STR_VAR_1, it is growing in a most impressive manner! It is one fine specimen!But! If you were to give it this, it would grow even better! Indeed!
 setflag FLAG_RECEIVED_BLUE_SCARF
 giveitem ITEM_BLUE_SCARF
 msgbox	Let a POKéMON hold that BLUE SCARF.Its beauty will be accentuated much more than now!
@@ -204,7 +204,7 @@ end
 = SlateportCity_PokemonFanClub_EventScript_GiveRedScarf
 checkitemspace ITEM_RED_SCARF
 goto_if_eq VAR_RESULT FALSE SlateportCity_PokemonFanClub_EventScript_NoRoomForScarf
-msgbox	Your , it is growing in a most impressive manner! It is one fine specimen!But! If you were to give it this, it would grow even better! Indeed!
+msgbox	Your STR_VAR_1, it is growing in a most impressive manner! It is one fine specimen!But! If you were to give it this, it would grow even better! Indeed!
 setflag FLAG_RECEIVED_RED_SCARF
 giveitem ITEM_RED_SCARF
 msgbox	Let a POKéMON hold that RED SCARF.Everyone will recognize the coolness of that POKéMON!
@@ -308,7 +308,7 @@ setvar VAR_0x8005 TVSHOW_PKMN_FAN_CLUB_OPINIONS
 special InterviewBefore
 goto_if_eq VAR_RESULT TRUE SlateportCity_PokemonFanClub_EventScript_AlreadyInterviewed
 copyvar VAR_0x8009 VAR_0x8006
-msgboxyesno	Wow!It's plain to see that you lavish your love on your .Okay, it's named .Can I ask you a favor?I'm a TV reporter, and I'm running a survey on POKéMON.Would you be willing to answer a few simple questions for me?
+msgboxyesno	Wow!It's plain to see that you lavish your love on your STR_VAR_1.Okay, it's named STR_VAR_2.Can I ask you a favor?I'm a TV reporter, and I'm running a survey on POKéMON.Would you be willing to answer a few simple questions for me?
 goto_if_eq VAR_RESULT YES SlateportCity_PokemonFanClub_EventScript_AcceptInterview
 goto_if_eq VAR_RESULT NO SlateportCity_PokemonFanClub_EventScript_DeclineInterview
 end
@@ -326,7 +326,7 @@ case 1 SlateportCity_PokemonFanClub_EventScript_RandomQuestion2
 case 2 SlateportCity_PokemonFanClub_EventScript_RandomQuestion3
 end
 = SlateportCity_PokemonFanClub_EventScript_RandomQuestion3
-msgbox	This question also relates to your beloved .What was it about that attracted you?
+msgbox	This question also relates to your beloved STR_VAR_1.What was it about STR_VAR_1 that attracted you?
 goto SlateportCity_PokemonFanClub_EventScript_ContinueInterview
 end
 = SlateportCity_PokemonFanClub_EventScript_ContinueInterview
@@ -360,7 +360,7 @@ setvar VAR_0x8005 TVSHOW_FAN_CLUB_LETTER
 special InterviewBefore
 goto_if_eq VAR_RESULT TRUE SlateportCity_PokemonFanClub_EventScript_AlreadyInterviewed2
 copyvar VAR_0x8009 VAR_0x8006
-msgboxyesno	Hi, you seem to be very close to your .Do you know what? I'm a TV reporter.I travel around interviewing people about POKéMON.I'm wondering if you'd be willing to tell me a little about your ?
+msgboxyesno	Hi, you seem to be very close to your STR_VAR_1.Do you know what? I'm a TV reporter.I travel around interviewing people about POKéMON.I'm wondering if you'd be willing to tell me a little about your STR_VAR_1?
 goto_if_eq VAR_RESULT YES SlateportCity_PokemonFanClub_EventScript_AcceptInterview2
 goto_if_eq VAR_RESULT NO SlateportCity_PokemonFanClub_EventScript_DeclineInterview2
 end
@@ -369,7 +369,7 @@ msgbox	Oh, okay…Well, if you get the urge to tell me about POKéMON, I'll be 
 release
 end
 = SlateportCity_PokemonFanClub_EventScript_AcceptInterview2
-msgbox	Wow, thank you!Okay, then, please tell me anything you'd like about your .
+msgbox	Wow, thank you!Okay, then, please tell me anything you'd like about your STR_VAR_1.
 setvar VAR_0x8004 EASY_CHAT_TYPE_INTERVIEW
 copyvar VAR_0x8005 VAR_0x8009
 setvar VAR_0x8006 EASY_CHAT_PERSON_REPORTER_FEMALE
@@ -380,7 +380,7 @@ goto_if_eq VAR_RESULT 1 SlateportCity_PokemonFanClub_EventScript_SubmitResponse2
 goto_if_eq VAR_RESULT 0 SlateportCity_PokemonFanClub_EventScript_DeclineInterview2
 end
 = SlateportCity_PokemonFanClub_EventScript_SubmitResponse2
-msgbox	Wow… That's an interesting account.You really are tight with , aren't you?I get the feeling that your account will make a great TV story.I promise that I'll turn this into an entertaining show. Keep your eyes out for it.Okay, that's all. Bye-bye!
+msgbox	Wow… That's an interesting account.You really are tight with STR_VAR_1, aren't you?I get the feeling that your account will make a great TV story.I promise that I'll turn this into an entertaining show. Keep your eyes out for it.Okay, that's all. Bye-bye!
 setvar VAR_0x8005 TVSHOW_FAN_CLUB_LETTER
 goto Interview_EventScript_EndInterview
 end
@@ -389,11 +389,11 @@ msgbox	I enjoy this job--you get to learn about POKéMON by doing interviews.
 release
 end
 = SlateportCity_PokemonFanClub_EventScript_RandomQuestion2
-msgbox	Your is cared for lovingly.If you were to liken it to something that you like, what would it be?
+msgbox	Your STR_VAR_1 is cared for lovingly.If you were to liken it to something that you like, what would it be?
 goto SlateportCity_PokemonFanClub_EventScript_ContinueInterview
 end
 = SlateportCity_PokemonFanClub_EventScript_RandomQuestion1
-msgbox	When you first met , what did you feel?How would you describe your feelings at the time?
+msgbox	When you first met STR_VAR_1, what did you feel?How would you describe your feelings at the time?
 goto SlateportCity_PokemonFanClub_EventScript_ContinueInterview
 end
 = SlateportCity_PokemonFanClub_EventScript_AlreadyInterviewed
@@ -406,6 +406,5 @@ end
 = SlateportCity_PokemonFanClub_EventScript_Man
 msgbox	If you keep letting a POKéMON faint in battle, it'll come to resent it.Soon, it will become less trusting of the TRAINER.In other words, it certainly won't like you very much.
 end
-
 music
 MUS_SLATEPORT

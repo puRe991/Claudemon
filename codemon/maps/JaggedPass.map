@@ -101,13 +101,13 @@ warps
 14 5 MtChimney 3
 16 18 MagmaHideout_1F 0
 npcs
-people_hiker 10 8 E static 0
-people_camper 16 35 W pace_h 0
-misc_item_ball 23 24 S static FLAG_ITEM_JAGGED_PASS_BURN_HEAL
-people_picnicker 9 21 S static 0
-people_team_magma_magma_member_m 16 19 N static FLAG_HIDE_JAGGED_PASS_MAGMA_GUARD LOCALID_MAGMA_HIDEOUT_GUARD
-people_picnicker 14 25 E static 0
-people_cycling_triathlete_m 18 25 W static 0
+people_hiker 10 8 E static 0 - 3
+people_camper 16 35 W pace_h 0 - 4
+misc_item_ball 23 24 S static FLAG_ITEM_JAGGED_PASS_BURN_HEAL - 0
+people_picnicker 9 21 S static 0 - 3
+people_team_magma_magma_member_m 16 19 N static FLAG_HIDE_JAGGED_PASS_MAGMA_GUARD LOCALID_MAGMA_HIDEOUT_GUARD 0
+people_picnicker 14 25 E static 0 - 3
+people_cycling_triathlete_m 18 25 W static 0 - 3
 dialogs
 0	Yes, I did lose at POKéMON…But, when it comes to the love of the mountains, I have you beat!
 1	If I had an ACRO BIKE, I'd be able to jump ledges.
@@ -259,8 +259,7 @@ msgbox	Yes, I did lose at POKéMON…But, when it comes to the love of the moun
 end
 grass
 518
-encounters
-land NUMEL:21:21,NUMEL:21:21,MACHOP:21:21,NUMEL:20:20,SPOINK:20:20,MACHOP:20:20,SPOINK:21:21,MACHOP:22:22,NUMEL:22:22,SPOINK:22:22,NUMEL:22:22,SPOINK:22:22
-
 music
 MUS_PETALBURG_WOODS
+encounters
+land NUMEL:21:21,NUMEL:21:21,MACHOP:21:21,NUMEL:20:20,SPOINK:20:20,MACHOP:20:20,SPOINK:21:21,MACHOP:22:22,NUMEL:22:22,SPOINK:22:22,NUMEL:22:22,SPOINK:22:22

@@ -24,8 +24,8 @@ warps
 13 7 AbandonedShip_Corridors_B1F 0
 14 7 AbandonedShip_Corridors_B1F 0
 npcs
-people_camper 3 4 S wander 0
-misc_item_ball 13 3 S static FLAG_ITEM_ABANDONED_SHIP_ROOMS_2_B1F_DIVE_BALL
+people_camper 3 4 S wander 0 - 0
+misc_item_ball 13 3 S static FLAG_ITEM_ABANDONED_SHIP_ROOMS_2_B1F_DIVE_BALL - 0
 dialogs
 0	This is a perfect place to go exploring! It's exciting here!I bet there're amazing treasures on board.
 objscripts
@@ -42,6 +42,5 @@ end
 = AbandonedShip_Rooms2_B1F_EventScript_Camper
 msgbox	This is a perfect place to go exploring! It's exciting here!I bet there're amazing treasures on board.
 end
-
 music
 MUS_ABANDONED_SHIP

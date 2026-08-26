@@ -1498,7 +1498,18 @@ def cmd_world(src, limit=None):
             # script via applymovement/addobject/removeobject/...) carry this;
             # most NPCs don't and get "-" (see Session::localid_map).
             local_id = oe.get("local_id") or "-"
-            npcs.append((sheet, x, y, face, move, dlg, scr, hide_flag, local_id))
+            # Trainers challenge the player on sight. `trainer_sight_or_berry_
+            # tree_id` is overloaded in pokeemerald: for a TRAINER_TYPE_* object
+            # it is the sight range in tiles, for a berry tree it is the tree id
+            # -- so only read it when this really is a trainer.
+            ttype = (oe.get("trainer_type") or "0")
+            sight = 0
+            if ttype not in ("0", "TRAINER_TYPE_NONE"):
+                try:
+                    sight = int(str(oe.get("trainer_sight_or_berry_tree_id") or 0), 0)
+                except ValueError:
+                    sight = 0
+            npcs.append((sheet, x, y, face, move, dlg, scr, hide_flag, local_id, sight))
 
         # Signs (readable bg_events) share the same script->text resolution.
         signs = []
@@ -1585,7 +1596,7 @@ def cmd_world(src, limit=None):
         if npcs:
             lines.append("npcs")
             for n in npcs:
-                lines.append(f"{n[0]} {n[1]} {n[2]} {n[3]} {n[4]} {n[7]} {n[8]}")
+                lines.append(f"{n[0]} {n[1]} {n[2]} {n[3]} {n[4]} {n[7]} {n[8]} {n[9]}")
             # dialog lines are tab-separated (text has spaces): "<index>\t<text>"
             dlg_lines = [(i, n[5]) for i, n in enumerate(npcs) if n[5]]
             if dlg_lines:

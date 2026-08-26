@@ -23,19 +23,19 @@ collision
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 npcs
-people_reporter_m 5 4 S static 0 LOCALID_DOME_ANNOUNCER
-people_twin 7 2 S static 0 LOCALID_DOME_AUDIENCE_TWIN
-people_boy_1 9 2 S static 0
-people_boy_2 11 2 S static 0
-people_ninja_boy 16 2 S static 0
-people_man_1 4 2 S static 0 LOCALID_DOME_AUDIENCE_WALKING
-people_expert_m 16 1 S static 0
-people_camper 8 1 S static 0
-people_man_2 0 4 S static 0 LOCALID_DOME_REFEREE
-people_fat_man 12 1 S static 0
-people_girl_2 13 2 S static 0
-people_girl_1 10 2 S static 0
-people_woman_3 14 2 S static 0
+people_reporter_m 5 4 S static 0 LOCALID_DOME_ANNOUNCER 0
+people_twin 7 2 S static 0 LOCALID_DOME_AUDIENCE_TWIN 0
+people_boy_1 9 2 S static 0 - 0
+people_boy_2 11 2 S static 0 - 0
+people_ninja_boy 16 2 S static 0 - 0
+people_man_1 4 2 S static 0 LOCALID_DOME_AUDIENCE_WALKING 0
+people_expert_m 16 1 S static 0 - 0
+people_camper 8 1 S static 0 - 0
+people_man_2 0 4 S static 0 LOCALID_DOME_REFEREE 0
+people_fat_man 12 1 S static 0 - 0
+people_girl_2 13 2 S static 0 - 0
+people_girl_1 10 2 S static 0 - 0
+people_woman_3 14 2 S static 0 - 0
 onload
 VAR_TEMP_0 0 BattleFrontier_BattleDomeBattleRoom_EventScript_EnterRoom
 movements
@@ -81,7 +81,7 @@ goto_if_ne VAR_TEMP_E FRONTIER_BRAIN_NOT_READY BattleFrontier_BattleDomeBattleRo
 goto BattleFrontier_BattleDomeBattleRoom_EventScript_BattleOpponent
 = BattleFrontier_BattleDomeBattleRoom_EventScript_BattleOpponent
 dome_getopponentname
-msgbox	match!PLAYER versus !Let the battle begin!
+msgbox	STR_VAR_1 match!PLAYER versus STR_VAR_2!Let the battle begin!
 closemessage
 applymovement LOCALID_DOME_PLAYER BattleFrontier_BattleDomeBattleRoom_Movement_PlayerStepForward
 applymovement LOCALID_DOME_OPPONENT BattleFrontier_BattleDomeBattleRoom_Movement_OpponentStepForward
@@ -226,12 +226,12 @@ waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_OpponentWonDraw
 frontier_gettrainername STR_VAR_1
-msgbox	The REFEREES have reached a decision!The winner is… Oh, my goodness! The winner is ! Congratulations!
+msgbox	The REFEREES have reached a decision!The winner is… Oh, my goodness! The winner is STR_VAR_1! Congratulations!
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_OpponentWon
 frontier_gettrainername STR_VAR_2
-msgbox	is the winner! Congratulations!
+msgbox	STR_VAR_2 is the winner! Congratulations!
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_DefeatedOpponent
@@ -533,6 +533,5 @@ return
 goto_if_eq VAR_TEMP_D 0 Common_EventScript_NopReturn
 applymovement LOCALID_DOME_AUDIENCE_WALKING BattleFrontier_BattleDomeBattleRoom_Movement_AudienceMemberWalkToSeat
 return
-
 music
 MUS_B_DOME

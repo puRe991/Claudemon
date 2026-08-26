@@ -32,31 +32,31 @@ warps
 9 1 LilycoveCity_ContestHall 0
 21 1 LilycoveCity_ContestHall 1
 npcs
-people_teala 14 2 S static 0 LOCALID_CONTEST_LOBBY_RECEPTIONIST
-people_teala 15 2 S static 0 LOCALID_CONTEST_LOBBY_LINK_RECEPTIONIST
-people_man_4 26 9 E static 0 LOCALID_CONTEST_LOBBY_BLENDER_2_LEADER
-people_artist 9 1 S static FLAG_HIDE_LILYCOVE_CONTEST_HALL_CONTEST_ATTENDANT_1 LOCALID_CONTEST_LOBBY_ARTIST
-people_black_belt 18 8 S wander 0
-people_girl_2 4 9 S wander 0
-people_artist 3 4 S wander 0
-people_reporter_m 13 10 E static FLAG_HIDE_LILYCOVE_CONTEST_HALL_REPORTER
-people_boy_1 23 8 S static 0 LOCALID_CONTEST_LOBBY_BLENDER_3_PARTICIPANT_1
-people_twin 28 9 W static 0 LOCALID_CONTEST_LOBBY_BLENDER_2_PARTICIPANT
-people_artist 21 1 S static FLAG_HIDE_LILYCOVE_CONTEST_HALL_CONTEST_ATTENDANT_2 LOCALID_CONTEST_LOBBY_LINK_ARTIST
-people_fisherman 5 6 S wander 0
-people_fat_man 0 8 E static 0
-people_ninja_boy 8 7 S wander 0
-people_pokefan_f 22 9 E static 0 LOCALID_CONTEST_LOBBY_BLENDER_3_LEADER
-people_expert_m 26 5 E static FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER_REPLACEMENT LOCALID_BLEND_MASTER
-people_girl_1 24 9 W static 0 LOCALID_CONTEST_LOBBY_BLENDER_3_PARTICIPANT_2
-people_man_5 27 3 S static FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER
-people_camper 28 3 S static FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER
-people_little_girl 28 7 N static FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER
-people_scientist_2 26 7 N static FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER
-people_woman_1 27 7 N static FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER
-people_ninja_boy 26 3 S static FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER
-people_old_man 26 5 E static FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER LOCALID_BLEND_MASTER
-people_little_girl 9 10 E static 0
+people_teala 14 2 S static 0 LOCALID_CONTEST_LOBBY_RECEPTIONIST 0
+people_teala 15 2 S static 0 LOCALID_CONTEST_LOBBY_LINK_RECEPTIONIST 0
+people_man_4 26 9 E static 0 LOCALID_CONTEST_LOBBY_BLENDER_2_LEADER 0
+people_artist 9 1 S static FLAG_HIDE_LILYCOVE_CONTEST_HALL_CONTEST_ATTENDANT_1 LOCALID_CONTEST_LOBBY_ARTIST 0
+people_black_belt 18 8 S wander 0 - 0
+people_girl_2 4 9 S wander 0 - 0
+people_artist 3 4 S wander 0 - 0
+people_reporter_m 13 10 E static FLAG_HIDE_LILYCOVE_CONTEST_HALL_REPORTER - 0
+people_boy_1 23 8 S static 0 LOCALID_CONTEST_LOBBY_BLENDER_3_PARTICIPANT_1 0
+people_twin 28 9 W static 0 LOCALID_CONTEST_LOBBY_BLENDER_2_PARTICIPANT 0
+people_artist 21 1 S static FLAG_HIDE_LILYCOVE_CONTEST_HALL_CONTEST_ATTENDANT_2 LOCALID_CONTEST_LOBBY_LINK_ARTIST 0
+people_fisherman 5 6 S wander 0 - 0
+people_fat_man 0 8 E static 0 - 0
+people_ninja_boy 8 7 S wander 0 - 0
+people_pokefan_f 22 9 E static 0 LOCALID_CONTEST_LOBBY_BLENDER_3_LEADER 0
+people_expert_m 26 5 E static FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER_REPLACEMENT LOCALID_BLEND_MASTER 0
+people_girl_1 24 9 W static 0 LOCALID_CONTEST_LOBBY_BLENDER_3_PARTICIPANT_2 0
+people_man_5 27 3 S static FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER - 0
+people_camper 28 3 S static FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER - 0
+people_little_girl 28 7 N static FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER - 0
+people_scientist_2 26 7 N static FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER - 0
+people_woman_1 27 7 N static FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER - 0
+people_ninja_boy 26 3 S static FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER - 0
+people_old_man 26 5 E static FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER - 0
+people_little_girl 9 10 E static 0 - 0
 dialogs
 4	Hoo, boy… Master Rank CONTESTS, here I come.The world will know that my dearest POKéMON is the cutest being in all existence. The time has come! Uheheheh.
 5	You can see a whole variety of POKéMON here.That's why I make this place a regular part of my daily stroll.
@@ -219,7 +219,7 @@ msgbox	Oh, that's right!As a memento of me painting your POKéMON, please take 
 playfanfare MUS_OBTAIN_ITEM
 msgbox	PLAYER received a RIBBON.
 waitfanfare
-msgbox	PLAYER put the RIBBON on .
+msgbox	PLAYER put the RIBBON on STR_VAR_1.
 msgbox	Okay, see you!
 closemessage
 return
@@ -283,7 +283,7 @@ msgbox	Oh, that's right!As a memento of me painting your POKéMON, please take 
 playfanfare MUS_OBTAIN_ITEM
 msgbox	PLAYER received a RIBBON.
 waitfanfare
-msgbox	PLAYER put the RIBBON on .
+msgbox	PLAYER put the RIBBON on STR_VAR_1.
 msgbox	Okay, see you!
 closemessage
 return
@@ -398,7 +398,7 @@ end
 = LilycoveCity_ContestLobby_EventScript_SubmitResponse
 setvar VAR_0x8004 24
 special SetContestCategoryStringVarForInterview
-msgbox	Ah, I see. That's a very edifying comment.You get a good feel for what the CONTEST was like.I've got one last question.When you hear the word “,” what image do you get?
+msgbox	Ah, I see. That's a very edifying comment.You get a good feel for what the CONTEST was like.I've got one last question.When you hear the word “STR_VAR_2,” what image do you get?
 setvar VAR_0x8004 EASY_CHAT_TYPE_CONTEST_INTERVIEW
 copyvar VAR_0x8005 VAR_0x8009
 setvar VAR_0x8006 1
@@ -406,7 +406,7 @@ call Common_ShowEasyChatScreen
 lock
 faceplayer
 goto_if_eq VAR_RESULT 0 LilycoveCity_ContestLobby_EventScript_DeclineInterview
-msgbox	I see!So that's how you imagine the concept of “” to be.Thank you! You've given me some good ideas.I think I can write a good story on POKéMON CONTESTS now.Maybe, just maybe, this story will even make it to television. I hope you'll look forward to it!
+msgbox	I see!So that's how you imagine the concept of “STR_VAR_2” to be.Thank you! You've given me some good ideas.I think I can write a good story on POKéMON CONTESTS now.Maybe, just maybe, this story will even make it to television. I hope you'll look forward to it!
 setflag FLAG_TEMP_2
 setvar VAR_0x8005 TVSHOW_BRAVO_TRAINER_POKEMON_PROFILE
 goto Interview_EventScript_EndInterview
@@ -423,7 +423,7 @@ setvar VAR_0x8005 TVSHOW_FAN_CLUB_LETTER
 special InterviewBefore
 goto_if_eq VAR_RESULT TRUE SlateportCity_PokemonFanClub_EventScript_AlreadyInterviewed2
 copyvar VAR_0x8009 VAR_0x8006
-msgboxyesno	Hi, you seem to be very close to your .Do you know what? I'm a TV reporter.I travel around interviewing people about POKéMON.I'm wondering if you'd be willing to tell me a little about your ?
+msgboxyesno	Hi, you seem to be very close to your STR_VAR_1.Do you know what? I'm a TV reporter.I travel around interviewing people about POKéMON.I'm wondering if you'd be willing to tell me a little about your STR_VAR_1?
 goto_if_eq VAR_RESULT YES SlateportCity_PokemonFanClub_EventScript_AcceptInterview2
 goto_if_eq VAR_RESULT NO SlateportCity_PokemonFanClub_EventScript_DeclineInterview2
 end
@@ -432,7 +432,7 @@ msgbox	Oh, okay…Well, if you get the urge to tell me about POKéMON, I'll be 
 release
 end
 = SlateportCity_PokemonFanClub_EventScript_AcceptInterview2
-msgbox	Wow, thank you!Okay, then, please tell me anything you'd like about your .
+msgbox	Wow, thank you!Okay, then, please tell me anything you'd like about your STR_VAR_1.
 setvar VAR_0x8004 EASY_CHAT_TYPE_INTERVIEW
 copyvar VAR_0x8005 VAR_0x8009
 setvar VAR_0x8006 EASY_CHAT_PERSON_REPORTER_FEMALE
@@ -443,7 +443,7 @@ goto_if_eq VAR_RESULT 1 SlateportCity_PokemonFanClub_EventScript_SubmitResponse2
 goto_if_eq VAR_RESULT 0 SlateportCity_PokemonFanClub_EventScript_DeclineInterview2
 end
 = SlateportCity_PokemonFanClub_EventScript_SubmitResponse2
-msgbox	Wow… That's an interesting account.You really are tight with , aren't you?I get the feeling that your account will make a great TV story.I promise that I'll turn this into an entertaining show. Keep your eyes out for it.Okay, that's all. Bye-bye!
+msgbox	Wow… That's an interesting account.You really are tight with STR_VAR_1, aren't you?I get the feeling that your account will make a great TV story.I promise that I'll turn this into an entertaining show. Keep your eyes out for it.Okay, that's all. Bye-bye!
 setvar VAR_0x8005 TVSHOW_FAN_CLUB_LETTER
 goto Interview_EventScript_EndInterview
 end
@@ -513,7 +513,7 @@ msgbox	This is a CONTEST for two to four players linked using a Wireless Adapter
 goto LilycoveCity_ContestLobby_EventScript_LinkContestInfo
 end
 = LilycoveCity_ContestLobby_EventScript_TryEnterLinkContest
-msgbox	Before entering a CONTEST, your progress will be saved.
+msgboxyesno	Before entering a CONTEST, your progress will be saved.
 goto_if_eq VAR_RESULT NO LilycoveCity_ContestLobby_EventScript_CancelLinkContest
 call Common_EventScript_SaveGame
 goto_if_eq VAR_RESULT FALSE LilycoveCity_ContestLobby_EventScript_CancelLinkContest
@@ -735,7 +735,7 @@ goto LilycoveCity_ContestLobby_EventScript_ChooseContestMon
 release
 end
 = LilycoveCity_ContestLobby_EventScript_ConfirmEntryAlreadyWon
-msgbox	Oh, but that RIBBON…Your POKéMON has won this CONTEST before, hasn't it?Would you like to enter it in this CONTEST anyway?
+msgboxyesno	Oh, but that RIBBON…Your POKéMON has won this CONTEST before, hasn't it?Would you like to enter it in this CONTEST anyway?
 switch VAR_RESULT
 case NO LilycoveCity_ContestLobby_EventScript_ChooseContestMon
 case YES LilycoveCity_ContestLobby_EventScript_EnterMon
@@ -748,7 +748,7 @@ end
 @ Unused
 goto LilycoveCity_ContestLobby_EventScript_ConfirmEntry
 = LilycoveCity_ContestLobby_EventScript_ConfirmEntry
-msgbox	Is that your CONTEST POKéMON?
+msgboxyesno	Is that your CONTEST POKéMON?
 switch VAR_RESULT
 case NO LilycoveCity_ContestLobby_EventScript_ChooseContestMon
 case YES LilycoveCity_ContestLobby_EventScript_EnterMon
@@ -791,8 +791,7 @@ call Common_EventScript_BagIsFull
 msgbox	Please come back for your prize later on.
 release
 end
-counters
-678,694,720,729,735
-
 music
 MUS_CONTEST_LOBBY
+counters
+678,694,720,729,735

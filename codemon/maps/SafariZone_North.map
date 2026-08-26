@@ -87,15 +87,15 @@ left 0 SafariZone_Northwest
 down 0 SafariZone_South
 right 0 SafariZone_Northeast
 npcs
-people_fisherman 22 9 S wander 0
-people_man_4 6 29 S wander 0
-misc_breakable_rock 25 10 S static FLAG_TEMP_11
-misc_breakable_rock 25 13 S static FLAG_TEMP_12
-misc_breakable_rock 28 14 S static FLAG_TEMP_13
-misc_breakable_rock 23 6 S static FLAG_TEMP_14
-misc_breakable_rock 20 7 S static FLAG_TEMP_15
-misc_breakable_rock 27 7 S static FLAG_TEMP_16
-misc_item_ball 7 6 S static FLAG_ITEM_SAFARI_ZONE_NORTH_CALCIUM
+people_fisherman 22 9 S wander 0 - 0
+people_man_4 6 29 S wander 0 - 0
+misc_breakable_rock 25 10 S static FLAG_TEMP_11 - 0
+misc_breakable_rock 25 13 S static FLAG_TEMP_12 - 0
+misc_breakable_rock 28 14 S static FLAG_TEMP_13 - 0
+misc_breakable_rock 23 6 S static FLAG_TEMP_14 - 0
+misc_breakable_rock 20 7 S static FLAG_TEMP_15 - 0
+misc_breakable_rock 27 7 S static FLAG_TEMP_16 - 0
+misc_item_ball 7 6 S static FLAG_ITEM_SAFARI_ZONE_NORTH_CALCIUM - 0
 objscripts
 0 SafariZone_North_EventScript_Fisherman
 1 SafariZone_North_EventScript_Man
@@ -124,9 +124,9 @@ goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CantSmashRock
 setfieldeffectargument 0 VAR_RESULT
 bufferpartymonnick STR_VAR_1 VAR_RESULT
 buffermovename STR_VAR_2 MOVE_ROCK_SMASH
-msgboxyesno	Dieser Felsen sieht zerbrechlich aus. Möchtest du ZERTRÜMMERER einsetzen?
+msgboxyesno	This rock appears to be breakable. Would you like to use ROCK SMASH?
 goto_if_eq VAR_RESULT NO EventScript_CancelSmash
-msgbox	STR_VAR_1 setzt STR_VAR_2 ein!
+msgbox	STR_VAR_1 used STR_VAR_2!
 closemessage
 dofieldeffect FLDEFF_USE_ROCK_SMASH
 waitstate
@@ -159,7 +159,7 @@ closemessage
 releaseall
 end
 = EventScript_CantSmashRock
-msgbox	Das ist ein robuster Felsen, aber vielleicht kann ihn ein POKéMON zertrümmern.
+msgbox	It's a rugged rock, but a POKéMON may be able to smash it.
 releaseall
 end
 = SafariZone_North_EventScript_Man
@@ -170,9 +170,8 @@ msgbox	I'm on a mission to find WATER POKéMON you don't see in HOENN.Do you ha
 end
 grass
 13,454,455
+music
+MUS_SAFARI_ZONE
 encounters
 land PHANPY:27:27,ODDISH:27:27,PHANPY:29:29,ODDISH:29:29,NATU:27:27,GLOOM:29:29,GLOOM:31:31,NATU:29:29,XATU:29:29,HERACROSS:27:27,XATU:31:31,HERACROSS:29:29
 rock GEODUDE:10:15,GEODUDE:5:10,GEODUDE:15:20,GEODUDE:20:25,GEODUDE:25:30
-
-music
-MUS_SAFARI_ZONE

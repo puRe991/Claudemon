@@ -392,6 +392,70 @@ static void test_wild_battle_capture(BattleData& bd) {
     CHECK(gs.item_count("ITEM_POKE_BALL") < 50);
 }
 
+// ------------------------------------------------------------ trainer sight --
+
+static void test_trainer_sight() {
+    std::printf("[map] trainer line of sight\n");
+    // Trainers never challenged the player at all: the engine had no sight
+    // check and the importer never read pokeemerald's
+    // trainer_sight_or_berry_tree_id, so every trainer had to be walked up to
+    // and talked to. 8x8 open fixture map, trainer at (1,1) facing south.
+    Map map("tests/fixtures/SightTest.map");
+    auto clear = std::function<bool(int, int)>();   // nothing in the way
+
+    // Straight ahead, within range.
+    CHECK(trainer_can_see(map, 1, 1, DIR::S, 3, 1, 2, clear));
+    CHECK(trainer_can_see(map, 1, 1, DIR::S, 3, 1, 4, clear));
+    // One tile past the range.
+    CHECK(!trainer_can_see(map, 1, 1, DIR::S, 3, 1, 5, clear));
+    // Behind, and off to the side: never seen.
+    CHECK(!trainer_can_see(map, 1, 1, DIR::S, 3, 1, 0, clear));
+    CHECK(!trainer_can_see(map, 1, 1, DIR::S, 3, 2, 2, clear));
+    // Facing away from the player.
+    CHECK(!trainer_can_see(map, 1, 1, DIR::N, 3, 1, 2, clear));
+    // Standing on the trainer's own tile is not "ahead of" it.
+    CHECK(!trainer_can_see(map, 1, 1, DIR::S, 3, 1, 1, clear));
+    // A sight range of 0 (an ordinary, non-trainer NPC) never triggers.
+    CHECK(!trainer_can_see(map, 1, 1, DIR::S, 0, 1, 2, clear));
+
+    // Someone standing in between breaks the line of sight.
+    auto blocked_at_2 = std::function<bool(int, int)>(
+        [](int x, int y) { return x == 1 && y == 2; });
+    CHECK(!trainer_can_see(map, 1, 1, DIR::S, 3, 1, 3, blocked_at_2));
+    // ... but a blocker *behind* the player is irrelevant.
+    auto blocked_at_4 = std::function<bool(int, int)>(
+        [](int x, int y) { return x == 1 && y == 4; });
+    CHECK(trainer_can_see(map, 1, 1, DIR::S, 3, 1, 3, blocked_at_4));
+
+    // The other three directions.
+    CHECK(trainer_can_see(map, 5, 5, DIR::N, 2, 5, 3, clear));
+    CHECK(trainer_can_see(map, 5, 5, DIR::W, 2, 3, 5, clear));
+    CHECK(trainer_can_see(map, 3, 3, DIR::E, 2, 5, 3, clear));
+}
+
+static void test_sight_only_while_undefeated(BattleData& bd) {
+    std::printf("[scriptvm] a beaten trainer stops challenging on sight\n");
+    Map map("tests/fixtures/SightTest.map");
+    GameState gs;
+    std::vector<Mon> team, pc;
+    team.reserve(6);
+    DialogBox dbox; dbox.load_font();
+    std::mt19937 rng(3);
+    Battle battle; battle.configure(&bd, &rng); battle.set_capture(&gs, &team, &pc);
+    Character player(1, 7);
+    ScriptVM vm;
+    vm.set_battle_data(&bd, &team, &rng, &pc);
+    vm.configure(&map, &gs, &dbox, &battle, nullptr, &player);
+
+    // npc 0's script fights TRAINER_ALLEN; npc 1's script has no battle at all.
+    CHECK(vm.script_has_pending_trainer("Sight_TrainerScript"));
+    CHECK(!vm.script_has_pending_trainer("Sight_PlainScript"));
+    CHECK(!vm.script_has_pending_trainer("NoSuchScript"));
+
+    gs.set_flag("TRAINER_DEFEATED_TRAINER_ALLEN");
+    CHECK(!vm.script_has_pending_trainer("Sight_TrainerScript"));
+}
+
 // --------------------------------------------------------------------- main --
 
 int main() {
@@ -417,6 +481,8 @@ int main() {
         test_script_trainer_flags(bd);
         test_recoil_uses_hp_actually_dealt(bd);
         test_wild_battle_capture(bd);
+        test_trainer_sight();
+        test_sight_only_while_undefeated(bd);
     } else {
         std::printf("[skip] no DISPLAY: Map/ScriptVM/Battle tests need a GL "
                     "context (run under xvfb-run to include them)\n");

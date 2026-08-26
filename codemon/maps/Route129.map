@@ -86,11 +86,11 @@ connections
 up 0 Route128
 left 0 Route130
 npcs
-people_swimmer_m 28 16 S static 0
-people_swimmer_f 10 14 S static 0
-people_swimmer_f 13 22 S static 0
-people_swimmer_m 35 9 S static 0
-people_swimmer_m 13 27 S static 0
+people_swimmer_m 28 16 S static 0 - 3
+people_swimmer_f 10 14 S static 0 - 2
+people_swimmer_f 13 22 S static 0 - 5
+people_swimmer_m 35 9 S static 0 - 2
+people_swimmer_m 13 27 S static 0 - 5
 objscripts
 0 Route129_EventScript_Chase
 1 Route129_EventScript_Allison
@@ -309,11 +309,10 @@ end
 trainerbattle_single TRAINER_CHASE Route129_Text_ChaseIntro Route129_Text_ChaseDefeat
 msgbox	If I'm all tensed up, I won't be able to give it my all.
 end
+water
+368,372,531,535,545,827,828,829
+music
+MUS_ROUTE119
 encounters
 water TENTACOOL:5:35,WINGULL:10:30,WINGULL:15:25,PELIPPER:25:30,WAILORD:25:30
 fishing MAGIKARP:5:10,TENTACOOL:5:10,MAGIKARP:10:30,TENTACOOL:10:30,WAILMER:10:30,SHARPEDO:30:35,WAILMER:30:35,WAILMER:25:30,WAILMER:35:40,WAILMER:40:45
-water
-368,372,531,535,545,827,828,829
-
-music
-MUS_ROUTE119

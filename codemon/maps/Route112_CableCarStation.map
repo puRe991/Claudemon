@@ -30,8 +30,8 @@ warps
 6 11 Route112 0
 7 11 Route112 1
 npcs
-people_beauty 6 6 S static 0 LOCALID_ROUTE112_CABLE_CAR_ATTENDANT
-misc_cable_car 6 3 S static 0
+people_beauty 6 6 S static 0 LOCALID_ROUTE112_CABLE_CAR_ATTENDANT 0
+misc_cable_car 6 3 S static 0 - 0
 dialogs
 0	The CABLE CAR is ready to go up. Would you like to be on it?
 objscripts
@@ -78,8 +78,7 @@ special CableCarWarp
 special CableCar
 release
 end
-counters
-537
-
 music
 MUS_ROUTE110
+counters
+537

@@ -24,8 +24,8 @@ warps
 4 8 PacifidlogTown 1
 5 8 PacifidlogTown 1
 npcs
-people_man_5 3 5 S static 0
-people_woman_4 6 4 W static 0
+people_man_5 3 5 S static 0 - 0
+people_woman_4 6 4 W static 0 - 0
 dialogs
 0	In the HOENN region, there are three POKéMON that represent the power of rock, ice, and steel.Each of them is said to hide away deep inside caves.That's the story I heard when I was just a little kid.
 1	“Six dots open three doors.”Grandpa used to say that, but I don't know what he meant.
@@ -39,6 +39,5 @@ end
 = PacifidlogTown_House1_EventScript_Man
 msgbox	In the HOENN region, there are three POKéMON that represent the power of rock, ice, and steel.Each of them is said to hide away deep inside caves.That's the story I heard when I was just a little kid.
 end
-
 music
 MUS_LILYCOVE

@@ -86,16 +86,16 @@ connections
 left 0 Route133
 right 0 PacifidlogTown
 npcs
-people_swimmer_m 40 13 S static 0
-people_swimmer_f 10 6 S static 0
-misc_item_ball 10 11 S static FLAG_ITEM_ROUTE_132_RARE_CANDY
-people_black_belt 9 15 S static 0
-people_fisherman 49 28 E static 0
-people_expert_m 33 26 S static 0
-people_woman_5 33 31 S pace_v 0
-people_expert_f 21 30 N static 0
-people_man_3 21 25 S static 0
-misc_item_ball 20 27 S static FLAG_ITEM_ROUTE_132_PROTEIN
+people_swimmer_m 40 13 S static 0 - 2
+people_swimmer_f 10 6 S static 0 - 2
+misc_item_ball 10 11 S static FLAG_ITEM_ROUTE_132_RARE_CANDY - 0
+people_black_belt 9 15 S static 0 - 4
+people_fisherman 49 28 E static 0 - 1
+people_expert_m 33 26 S static 0 - 4
+people_woman_5 33 31 S pace_v 0 - 4
+people_expert_f 21 30 N static 0 - 4
+people_man_3 21 25 S static 0 - 4
+misc_item_ball 20 27 S static FLAG_ITEM_ROUTE_132_PROTEIN - 0
 objscripts
 0 Route132_EventScript_Gilbert
 1 Route132_EventScript_Dana
@@ -154,11 +154,10 @@ end
 trainerbattle_single TRAINER_GILBERT Route132_Text_GilbertIntro Route132_Text_GilbertDefeat
 msgbox	TRAINERS travel the fields and mountains, so they must be fit, too.
 end
+water
+335,368,370,372,385,393,402,410,419,420,431,437,439,445,446,447
+music
+MUS_ROUTE119
 encounters
 water TENTACOOL:5:35,WINGULL:10:30,WINGULL:15:25,PELIPPER:25:30,PELIPPER:25:30
 fishing MAGIKARP:5:10,TENTACOOL:5:10,MAGIKARP:10:30,TENTACOOL:10:30,WAILMER:10:30,SHARPEDO:30:35,WAILMER:30:35,HORSEA:25:30,WAILMER:35:40,WAILMER:40:45
-water
-335,368,370,372,385,393,402,410,419,420,431,437,439,445,446,447
-
-music
-MUS_ROUTE119

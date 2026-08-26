@@ -52,29 +52,29 @@ right -60 Route110
 warps
 45 6 AlteringCave 0
 npcs
-people_man_3 49 12 W static 0
-people_may_walking 10 3 E static FLAG_HIDE_ROUTE_103_RIVAL LOCALID_ROUTE103_RIVAL
-people_woman_2 71 11 S static 0
-people_twin 65 12 S static 0
-people_twin 64 12 S static 0
-people_fisherman 50 8 S static 0
-people_man_1 58 5 S static 0
-people_man_1 59 5 S static 0
-people_man_1 60 5 S static 0
-people_boy_1 20 10 S wander 0
-people_prof_birch 7 3 S wander FLAG_HIDE_ROUTE_103_BIRCH
-people_pokefan_m 56 13 E static 0
-misc_item_ball 50 5 S static FLAG_ITEM_ROUTE_103_GUARD_SPEC
-misc_cuttable_tree 67 7 S static FLAG_TEMP_12
-misc_cuttable_tree 72 8 S static FLAG_TEMP_13
-people_black_belt 67 5 S static 0
-people_man_5 67 9 N static 0
-people_swimmer_f 36 6 S static 0
-people_swimmer_m 36 13 S pace_v 0
-misc_item_ball 64 7 S static FLAG_ITEM_ROUTE_103_PP_UP
+people_man_3 49 12 W static 0 - 0
+people_may_walking 10 3 E static FLAG_HIDE_ROUTE_103_RIVAL LOCALID_ROUTE103_RIVAL 0
+people_woman_2 71 11 S static 0 - 3
+people_twin 65 12 S static 0 - 1
+people_twin 64 12 S static 0 - 1
+people_fisherman 50 8 S static 0 - 3
+people_man_1 58 5 S static 0 - 0
+people_man_1 59 5 S static 0 - 0
+people_man_1 60 5 S static 0 - 0
+people_boy_1 20 10 S wander 0 - 0
+people_prof_birch 7 3 S wander FLAG_HIDE_ROUTE_103_BIRCH - 0
+people_pokefan_m 56 13 E static 0 - 5
+misc_item_ball 50 5 S static FLAG_ITEM_ROUTE_103_GUARD_SPEC - 0
+misc_cuttable_tree 67 7 S static FLAG_TEMP_12 - 0
+misc_cuttable_tree 72 8 S static FLAG_TEMP_13 - 0
+people_black_belt 67 5 S static 0 - 2
+people_man_5 67 9 N static 0 - 2
+people_swimmer_f 36 6 S static 0 - 5
+people_swimmer_m 36 13 S pace_v 0 - 5
+misc_item_ball 64 7 S static FLAG_ITEM_ROUTE_103_PP_UP - 0
 dialogs
-0	Wenn du von hier aus über das Meer fährst, ist das eine Abkürzung nach OLDALE TOWN.Fufufu, praktisch, oder?
-9	Mein POKéMON ist wahnsinnig erschöpft… Ich hätte ein POTION mitnehmen sollen…
+0	If you cross the sea from here, it'll be a shortcut to OLDALE TOWN.Fufufu, that's useful, isn't it?
+9	My POKéMON is staggeringly tired… I should have brought a POTION…
 objscripts
 0 Route103_EventScript_Man
 1 Route103_EventScript_Rival
@@ -117,19 +117,19 @@ end
 end
 = Route103_EventScript_Pete
 trainerbattle_single TRAINER_PETE Route103_Text_PeteIntro Route103_Text_PeteDefeated
-msgbox	Oh, jetzt verstehe ich, worauf du hinauswillst.Wenn ich so ein vertrauenswürdiges POKéMON hätte, würde ich damit auch gerne SURFEN wollen!
+msgbox	Oh, I understand where you're coming from now.If I had a POKéMON that trusty, I'd want to SURF on it, too!
 end
 = Route103_EventScript_Isabelle
 trainerbattle_single TRAINER_ISABELLE Route103_Text_IsabelleIntro Route103_Text_IsabelleDefeated
-msgbox	Ich bin kein guter Schwimmer, deshalb hab ich geübt… Entschuldige, dass ich fast in dich reingekracht wäre.
+msgbox	I'm a poor swimmer so I was practicing… Sorry for almost crashing into you.
 end
 = Route103_EventScript_Marcos
 trainerbattle_single TRAINER_MARCOS Route103_Text_MarcosIntro Route103_Text_MarcosDefeated
-msgbox	Ich hab an einem Ort Gitarre gespielt, wo kaum jemand war, aber trotzdem haben sich viele Fans versammelt.Heh, vielleicht sollte ich Profi werden.
+msgbox	I was playing my guitar where few people were around, but a lot of fans have gathered.Heh, maybe I should turn pro.
 end
 = Route103_EventScript_Rhett
 trainerbattle_single TRAINER_RHETT Route103_Text_RhettIntro Route103_Text_RhettDefeated
-msgbox	Magst du es so eng wie hier?
+msgbox	Do you like cramped quarters like this?
 end
 = EventScript_CutTree
 lockall
@@ -139,9 +139,9 @@ goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CheckTreeCantCut
 setfieldeffectargument 0 VAR_RESULT
 bufferpartymonnick STR_VAR_1 VAR_RESULT
 buffermovename STR_VAR_2 MOVE_CUT
-msgboxyesno	Dieser Baum sieht so aus, als könnte man ihn mit ZERSCHNEIDER fällen! Möchtest du ZERSCHNEIDER einsetzen?
+msgboxyesno	This tree looks like it can be CUT down!Would you like to CUT it?
 goto_if_eq VAR_RESULT NO EventScript_CancelCut
-msgbox	STR_VAR_1 setzt STR_VAR_2 ein!
+msgbox	STR_VAR_1 used STR_VAR_2!
 closemessage
 dofieldeffect FLDEFF_USE_CUT_ON_TREE
 waitstate
@@ -166,7 +166,7 @@ closemessage
 releaseall
 end
 = EventScript_CheckTreeCantCut
-msgbox	Dieser Baum sieht so aus, als könnte man ihn mit ZERSCHNEIDER fällen!
+msgbox	This tree looks like it can be CUT down!
 releaseall
 end
 = Route103_EventScript_ItemGuardSpec
@@ -180,17 +180,17 @@ end
 trainerbattle_single TRAINER_MIGUEL_1 Route103_Text_MiguelIntro Route103_Text_MiguelDefeated Route102_EventScript_MiguelRegisterMatchCallAfterBattle
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route103_EventScript_MiguelRematch
-msgbox	Mein entzückendes POKéMON sieht sogar besiegt noch süß aus!
+msgbox	My delightful POKéMON looks darling even when it's fainted!
 release
 end
 = Route103_EventScript_MiguelRematch
 trainerbattle_rematch TRAINER_MIGUEL_1 Route103_Text_MiguelRematchIntro Route103_Text_MiguelRematchDefeated
-msgbox	Je mehr Zeit ich mit ihm verbringe, desto liebenswerter wird mein POKéMON.
+msgbox	The more I spend time with it, the more adorable my POKéMON becomes.
 end
 = Route102_EventScript_MiguelRegisterMatchCallAfterBattle
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Ich werde dich wieder herlocken, damit du dir mein entzückendes POKéMON ansiehst!
+msgbox	I'll get you to come out and look in on my delightful POKéMON again!
 register_matchcall TRAINER_MIGUEL_1
 release
 end
@@ -214,7 +214,7 @@ copyvar VAR_0x8009 VAR_0x8006
 copyvar VAR_0x800A VAR_RESULT
 buffernumberstring STR_VAR_1 VAR_0x8008  @ Num Hoenn seen
 buffernumberstring STR_VAR_2 VAR_0x8009  @ Num Hoenn caught
-msgbox	Hmhm…Also, du hast POKéMON gesehen, und du hast POKéMON gefangen…
+msgbox	Hmhm…So, you've seen STR_VAR_1 POKéMON, and you've caught STR_VAR_2 POKéMON…
 call ProfBirch_EventScript_ShowRatingMessage
 goto_if_eq VAR_0x800A 0 Common_EventScript_NopReturn  @ National dex not enabled
 setvar VAR_0x8004 1
@@ -223,7 +223,7 @@ copyvar VAR_0x8008 VAR_0x8005
 copyvar VAR_0x8009 VAR_0x8006
 buffernumberstring STR_VAR_1 VAR_0x8008  @ Num National seen
 buffernumberstring STR_VAR_2 VAR_0x8009  @ Num National caught
-msgbox	Hmhm… Landesweit gesehen…Du hast POKéMON gesehen, und du hast POKéMON gefangen…
+msgbox	Hmhm… On a nationwide basis…You've seen STR_VAR_1 POKéMON, and you've caught STR_VAR_2 POKéMON…
 return
 = ProfBirch_EventScript_ShowRatingMessage
 copyvar VAR_0x8004 VAR_0x8009
@@ -232,11 +232,11 @@ waitmessage
 waitbuttonpress
 return
 = ProfBirch_EventScript_DeclineRating
-msgbox	Hm? Oh, du hast noch nicht genug POKéMON gefangen, damit sich das lohnt.
+msgbox	Hm? Oh, you haven't caught enough POKéMON to make it worthwhile.
 release
 end
 = Route103_EventScript_Boy
-msgbox	Mein POKéMON ist wahnsinnig erschöpft… Ich hätte ein POTION mitnehmen sollen…
+msgbox	My POKéMON is staggeringly tired… I should have brought a POTION…
 end
 = BerryTreeScript
 special ObjectEventInteractionGetBerryTreeData
@@ -254,7 +254,7 @@ buffernumberstring STR_VAR_2 VAR_0x8006
 lock
 faceplayer
 special ObjectEventInteractionGetBerryCountString
-msgbox	You found STR_VAR_2 STR_VAR_1!Do you want to pick the STR_VAR_1?
+msgboxyesno	You found STR_VAR_2 STR_VAR_1!Do you want to pick the STR_VAR_1?
 goto_if_eq VAR_RESULT YES BerryTree_EventScript_PickBerry
 goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPickingBerry
 goto BerryTree_EventScript_PickBerry
@@ -313,7 +313,7 @@ goto BerryTree_EventScript_CheckBerryFullyGrown
 checkitem ITEM_WAILMER_PAIL
 goto_if_eq VAR_RESULT FALSE BerryTree_EventScript_DontWater
 special ObjectEventInteractionGetBerryName
-msgbox	Want to water the STR_VAR_1 with the WAILMER PAIL?
+msgboxyesno	Want to water the STR_VAR_1 with the WAILMER PAIL?
 goto_if_eq VAR_RESULT YES BerryTree_EventScript_WaterBerry
 goto_if_eq VAR_RESULT NO BerryTree_EventScript_DontWater
 goto BerryTree_EventScript_DontWater
@@ -363,7 +363,7 @@ waitbuttonpress
 release
 end
 = BerryTree_EventScript_WantToPlant
-msgbox	It's soft, loamy soil. Want to plant a BERRY?
+msgboxyesno	It's soft, loamy soil. Want to plant a BERRY?
 goto_if_eq VAR_RESULT YES BerryTree_EventScript_ChooseBerryToPlant
 goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPlanting
 end
@@ -396,20 +396,20 @@ releaseall
 end
 = Route103_EventScript_Andrew
 trainerbattle_single TRAINER_ANDREW Route103_Text_AndrewIntro Route103_Text_AndrewDefeated
-msgbox	Argh, ich koche immer noch vor Wut… Grrrrr…
+msgbox	Gah, I'm still boiling mad… Grrrrr…
 end
 = Route103_EventScript_Amy
 trainerbattle_double TRAINER_AMY_AND_LIV_1 Route103_Text_AmyIntro Route103_Text_AmyDefeated Route103_Text_AmyNotEnoughPokemon Route102_EventScript_AmyRegisterMatchCallAfterBattle
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route102_EventScript_AmyRematch
-msgbox	AMY: Man muss an ganz schön viele Dinge denken, wenn man gegen zwei TRAINER kämpft.
+msgbox	AMY: You have to think about all kinds of things when you're battling against two TRAINERS.
 end
 = Route102_EventScript_AmyRematch
 trainerbattle_rematch_double TRAINER_AMY_AND_LIV_1 Route103_Text_AmyRematchIntro Route103_Text_AmyRematchDefeated Route103_Text_AmyRematchNotEnoughPokemon
-msgbox	AMY: Man muss an ganz schön viele Dinge denken, wenn man gegen zwei TRAINER kämpft.
+msgbox	AMY: You have to think about all kinds of things when you're battling against two TRAINERS.
 end
 = Route102_EventScript_AmyRegisterMatchCallAfterBattle
-msgbox	LIV: Ehrlich, wir sind viel besser… Das stimmt wirklich! Wir zeigen es dir beim nächsten Mal!
+msgbox	LIV: Really, we're a lot better… It's true! We'll show you next time!
 register_matchcall TRAINER_AMY_AND_LIV_1
 release
 end
@@ -417,20 +417,20 @@ end
 trainerbattle_double TRAINER_AMY_AND_LIV_1 Route103_Text_LivIntro Route103_Text_LivDefeated Route103_Text_LivNotEnoughPokemon Route102_EventScript_LivRegisterMatchCallAfterBattle
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route102_EventScript_LivRematch
-msgbox	LIV: Meine große Schwester und ich harmonieren perfekt…Aber trotzdem haben wir verloren…
+msgbox	LIV: We work perfectly together, me and my big sister…But we still lost…
 end
 = Route102_EventScript_LivRematch
 trainerbattle_rematch_double TRAINER_AMY_AND_LIV_1 Route103_Text_LivRematchIntro Route103_Text_LivRematchDefeated Route103_Text_LivRematchNotEnoughPokemon
-msgbox	LIV: Meine große Schwester und ich harmonieren perfekt…Aber warum haben wir nur schon wieder verloren?
+msgbox	LIV: We work perfectly together, me and my big sister…But why did we lose again?
 end
 = Route102_EventScript_LivRegisterMatchCallAfterBattle
-msgbox	LIV: Ehrlich, wir sind viel besser… Das stimmt wirklich! Wir zeigen es dir beim nächsten Mal!
+msgbox	LIV: Really, we're a lot better… It's true! We'll show you next time!
 register_matchcall TRAINER_AMY_AND_LIV_1
 release
 end
 = Route103_EventScript_Daisy
 trainerbattle_single TRAINER_DAISY Route103_Text_DaisyIntro Route103_Text_DaisyDefeated
-msgbox	Aromatherapie ist eine Form der seelischen Heilung, die mit Düften arbeitet.
+msgbox	Aromatherapy is a form of mental healing that works with fragrances.
 end
 = Route103_EventScript_Rival
 lockall
@@ -439,7 +439,7 @@ goto_if_eq VAR_RESULT MALE Route103_EventScript_RivalMay
 goto_if_eq VAR_RESULT FEMALE Route103_EventScript_RivalBrendan
 end
 = Route103_EventScript_RivalBrendan
-msgbox	BRENDAN: Okay, also dieses hier und jenes dort leben also auf ROUTE 103…
+msgbox	BRENDAN: Okay, so it's this one and that one that live on ROUTE 103…
 closemessage
 playbgm MUS_ENCOUNTER_BRENDAN TRUE
 applymovement LOCALID_ROUTE103_RIVAL Common_Movement_FacePlayer
@@ -448,7 +448,7 @@ applymovement LOCALID_ROUTE103_RIVAL Common_Movement_ExclamationMark
 waitmovement 0
 applymovement LOCALID_ROUTE103_RIVAL Common_Movement_Delay48
 waitmovement 0
-msgbox	Hey, das ist ja PLAYER!…Ach ja, Dad hat dir ein POKéMON gegeben.Wo wir schon mal hier sind, wie wär's mit einem kleinen Kampf?Ich zeig dir, was es bedeutet, ein TRAINER zu sein!
+msgbox	Hey, it's PLAYER!…Oh, yeah, Dad gave you a POKéMON.Since we're here, how about a little battle?I'll teach you what being a TRAINER's about!
 switch VAR_STARTER_MON
 case 0 Route103_EventScript_StartBrendanBattleTreecko
 case 1 Route103_EventScript_StartBrendanBattleTorchic
@@ -459,7 +459,7 @@ trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_103_MUDKIP Route103_Text_BrendanDef
 goto Route103_EventScript_AfterBrendanBattle
 end
 = Route103_EventScript_AfterBrendanBattle
-msgbox	BRENDAN: Ich glaube, ich versteh's. Ich glaub, ich weiß jetzt, warum mein Dad ein Auge auf dich geworfen hat.Schau, dein POKéMON mag dich schon, obwohl du es gerade erst bekommen hast.PLAYER, ich hab das Gefühl, du könntest mit jedem POKéMON mühelos Freundschaft schließen.Wir sollten zurück zum LABOR.
+msgbox	BRENDAN: I think I get it. I think I know why my dad has his eye out for you now.Look, your POKéMON already likes you, even though you just got it.PLAYER, I get the feeling that you could befriend any POKéMON with ease.We should head back to the LAB.
 goto Route103_EventScript_RivalExit
 end
 = Route103_EventScript_RivalExit
@@ -516,7 +516,7 @@ trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_103_TREECKO Route103_Text_BrendanDe
 goto Route103_EventScript_AfterBrendanBattle
 end
 = Route103_EventScript_RivalMay
-msgbox	MAY: Mal sehen… Die POKéMON, die man auf ROUTE 103 findet, sind unter anderem…
+msgbox	MAY: Let's see… The POKéMON found on ROUTE 103 include…
 closemessage
 playbgm MUS_ENCOUNTER_MAY TRUE
 applymovement LOCALID_ROUTE103_RIVAL Common_Movement_FacePlayer
@@ -525,7 +525,7 @@ applymovement LOCALID_ROUTE103_RIVAL Common_Movement_ExclamationMark
 waitmovement 0
 applymovement LOCALID_ROUTE103_RIVAL Common_Movement_Delay48
 waitmovement 0
-msgbox	Oh, hi, PLAYER!…Achso, verstehe, mein Dad hat dir ein POKéMON geschenkt.Wo wir schon mal hier sind, lass uns einen kurzen Kampf machen!Ich geb dir einen kleinen Vorgeschmack darauf, wie es ist, ein TRAINER zu sein.
+msgbox	Oh, hi, PLAYER!…Oh, I see, my dad gave you a POKéMON as a gift.Since we're here, let's have a quick battle!I'll give you a taste of what being a TRAINER is like.
 switch VAR_STARTER_MON
 case 0 Route103_EventScript_StartMayBattleTreecko
 case 1 Route103_EventScript_StartMayBattleTorchic
@@ -536,7 +536,7 @@ trainerbattle_no_intro TRAINER_MAY_ROUTE_103_MUDKIP Route103_Text_MayDefeated
 goto Route103_EventScript_AfterMayBattle
 end
 = Route103_EventScript_AfterMayBattle
-msgbox	MAY: Ich glaub, ich weiß jetzt, warum mein Dad ein Auge auf dich geworfen hat.Ich meine, du hast das POKéMON gerade erst bekommen, aber es mag dich schon.Du könntest wohl mit jeder Art von POKéMON leicht Freundschaft schließen.Na dann, Zeit, zurück zum LABOR zu gehen.
+msgbox	MAY: I think I know why my dad has an eye out for you now.I mean, you just got that POKéMON, but it already likes you.You might be able to befriend any kind of POKéMON easily.Well, it's time to head back to the LAB.
 goto Route103_EventScript_RivalExit
 end
 = Route103_EventScript_StartMayBattleTorchic
@@ -548,18 +548,17 @@ trainerbattle_no_intro TRAINER_MAY_ROUTE_103_TREECKO Route103_Text_MayDefeated
 goto Route103_EventScript_AfterMayBattle
 end
 = Route103_EventScript_Man
-msgbox	Wenn du von hier aus über das Meer fährst, ist das eine Abkürzung nach OLDALE TOWN.Fufufu, praktisch, oder?
+msgbox	If you cross the sea from here, it'll be a shortcut to OLDALE TOWN.Fufufu, that's useful, isn't it?
 end
 signs
 11 9	ROUTE 103 OLDALE TOWN
 grass
 13,454,455
+water
+368,376,377,385,392,393,394,400,402,403,408,410
+music
+MUS_ROUTE101
 encounters
 land POOCHYENA:2:2,POOCHYENA:3:3,POOCHYENA:3:3,POOCHYENA:4:4,WINGULL:2:2,ZIGZAGOON:3:3,ZIGZAGOON:3:3,ZIGZAGOON:4:4,WINGULL:3:3,WINGULL:3:3,WINGULL:2:2,WINGULL:4:4
 water TENTACOOL:5:35,WINGULL:10:30,WINGULL:15:25,PELIPPER:25:30,PELIPPER:25:30
 fishing MAGIKARP:5:10,TENTACOOL:5:10,MAGIKARP:10:30,TENTACOOL:10:30,WAILMER:10:30,SHARPEDO:30:35,WAILMER:30:35,WAILMER:25:30,WAILMER:35:40,WAILMER:40:45
-water
-368,376,377,385,392,393,394,400,402,403,408,410
-
-music
-MUS_ROUTE101

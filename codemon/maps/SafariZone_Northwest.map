@@ -86,8 +86,8 @@ connections
 right 0 SafariZone_North
 down 0 SafariZone_Southwest
 npcs
-people_man_1 8 8 S static 0
-misc_item_ball 33 7 S static FLAG_ITEM_SAFARI_ZONE_NORTH_WEST_TM_SOLAR_BEAM
+people_man_1 8 8 S static 0 - 0
+misc_item_ball 33 7 S static FLAG_ITEM_SAFARI_ZONE_NORTH_WEST_TM_SOLAR_BEAM - 0
 objscripts
 0 SafariZone_Northwest_EventScript_Man
 1 SafariZone_Northwest_EventScript_ItemTMSolarBeam
@@ -104,12 +104,11 @@ msgbox	Gasp… Gasp… I…made it out here…but…I'm exhausted… I don't ha
 end
 grass
 13,454,455
+water
+161,176,177,178,184,186,194
+music
+MUS_SAFARI_ZONE
 encounters
 land RHYHORN:27:27,ODDISH:27:27,RHYHORN:29:29,ODDISH:29:29,DODUO:27:27,GLOOM:29:29,GLOOM:31:31,DODUO:29:29,DODRIO:29:29,PINSIR:27:27,DODRIO:31:31,PINSIR:29:29
 water PSYDUCK:20:30,PSYDUCK:20:30,PSYDUCK:30:35,GOLDUCK:30:35,GOLDUCK:25:40
 fishing MAGIKARP:5:10,GOLDEEN:5:10,MAGIKARP:10:30,GOLDEEN:10:25,GOLDEEN:10:30,GOLDEEN:25:30,GOLDEEN:30:35,SEAKING:30:35,SEAKING:35:40,SEAKING:25:30
-water
-161,176,177,178,184,186,194
-
-music
-MUS_SAFARI_ZONE

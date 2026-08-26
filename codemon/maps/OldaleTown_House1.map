@@ -24,15 +24,14 @@ warps
 3 8 OldaleTown 0
 4 8 OldaleTown 0
 npcs
-people_woman_2 6 4 S wander 0
+people_woman_2 6 4 S wander 0 - 0
 dialogs
-0	Wenn ein POKéMON-Kampf beginnt, tritt zuerst das POKéMON an, das ganz links in der Liste steht.Wenn du also mehr POKéMON in deinem Team hast, versuch mal, ihre Reihenfolge zu ändern.Das könnte dir einen Vorteil verschaffen.
+0	When a POKéMON battle starts, the one at the left of the list goes out first.So, when you get more POKéMON in your party, try switching around the order of your POKéMON.It could give you an advantage.
 objscripts
 0 OldaleTown_House1_EventScript_Woman
 scriptdefs
 = OldaleTown_House1_EventScript_Woman
-msgbox	Wenn ein POKéMON-Kampf beginnt, tritt zuerst das POKéMON an, das ganz links in der Liste steht.Wenn du also mehr POKéMON in deinem Team hast, versuch mal, ihre Reihenfolge zu ändern.Das könnte dir einen Vorteil verschaffen.
+msgbox	When a POKéMON battle starts, the one at the left of the list goes out first.So, when you get more POKéMON in your party, try switching around the order of your POKéMON.It could give you an advantage.
 end
-
 music
 MUS_OLDALE

@@ -86,17 +86,17 @@ connections
 left 0 SlateportCity
 right 0 Route133
 npcs
-people_swimmer_m 49 9 S static 0
-people_swimmer_f 58 7 S static 0
-people_man_3 41 23 E static 0
-people_man_5 24 23 S static 0
-people_black_belt 49 16 W pace_h 0
-people_woman_5 43 23 W static 0
-people_sailor 24 30 S pace_v 0
-people_girl_3 50 16 S static 0
-people_sailor 63 14 S static 0
-misc_item_ball 50 17 S static FLAG_ITEM_ROUTE_134_CARBOS
-misc_item_ball 22 27 S static FLAG_ITEM_ROUTE_134_STAR_PIECE
+people_swimmer_m 49 9 S static 0 - 2
+people_swimmer_f 58 7 S static 0 - 3
+people_man_3 41 23 E static 0 - 2
+people_man_5 24 23 S static 0 - 6
+people_black_belt 49 16 W pace_h 0 - 5
+people_woman_5 43 23 W static 0 - 2
+people_sailor 24 30 S pace_v 0 - 6
+people_girl_3 50 16 S static 0 - 5
+people_sailor 63 14 S static 0 - 3
+misc_item_ball 50 17 S static FLAG_ITEM_ROUTE_134_CARBOS - 0
+misc_item_ball 22 27 S static FLAG_ITEM_ROUTE_134_STAR_PIECE - 0
 objscripts
 0 Route134_EventScript_Jack
 1 Route134_EventScript_Laurel
@@ -160,11 +160,10 @@ end
 trainerbattle_single TRAINER_JACK Route134_Text_JackIntro Route134_Text_JackDefeat
 msgbox	I think POKéMON enjoy the fast-running currents around these parts.
 end
+water
+327,342,368,370,372,437,445,446,447
+music
+MUS_ROUTE119
 encounters
 water TENTACOOL:5:35,WINGULL:10:30,WINGULL:15:25,PELIPPER:25:30,PELIPPER:25:30
 fishing MAGIKARP:5:10,TENTACOOL:5:10,MAGIKARP:10:30,TENTACOOL:10:30,WAILMER:10:30,SHARPEDO:30:35,WAILMER:30:35,HORSEA:25:30,WAILMER:35:40,WAILMER:40:45
-water
-327,342,368,370,372,437,445,446,447
-
-music
-MUS_ROUTE119

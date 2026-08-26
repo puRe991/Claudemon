@@ -48,13 +48,13 @@ right -40 Route109
 warps
 29 6 AbandonedShip_Deck 0
 npcs
-people_swimmer_m 52 13 S static 0
-people_swimmer_f 35 12 S static 0
-people_swimmer_m 13 13 S static 0
-people_swimmer_f 8 7 S static 0
-people_woman_5 41 5 E static 0
-people_sailor 43 5 W static 0
-misc_item_ball 42 4 S static FLAG_ITEM_ROUTE_108_STAR_PIECE
+people_swimmer_m 52 13 S static 0 - 3
+people_swimmer_f 35 12 S static 0 - 3
+people_swimmer_m 13 13 S static 0 - 3
+people_swimmer_f 8 7 S static 0 - 3
+people_woman_5 41 5 E static 0 - 1
+people_sailor 43 5 W static 0 - 1
+misc_item_ball 42 4 S static FLAG_ITEM_ROUTE_108_STAR_PIECE - 0
 objscripts
 0 Route108_EventScript_Jerome
 1 Route108_EventScript_Tara
@@ -118,11 +118,10 @@ end
 trainerbattle_single TRAINER_JEROME Route108_Text_JeromeIntro Route108_Text_JeromeDefeated
 msgbox	Playing with marine POKéMON is one of the pleasures of swimming!
 end
+water
+368,419,420,429,431,437,439,445,446,447
+music
+MUS_ROUTE104
 encounters
 water TENTACOOL:5:35,WINGULL:10:30,WINGULL:15:25,PELIPPER:25:30,PELIPPER:25:30
 fishing MAGIKARP:5:10,TENTACOOL:5:10,MAGIKARP:10:30,TENTACOOL:10:30,WAILMER:10:30,WAILMER:25:30,WAILMER:30:35,WAILMER:20:25,WAILMER:35:40,WAILMER:40:45
-water
-368,419,420,429,431,437,439,445,446,447
-
-music
-MUS_ROUTE104

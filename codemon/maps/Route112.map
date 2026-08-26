@@ -134,20 +134,20 @@ warps
 11 36 FieryPath 0
 22 10 FieryPath 1
 npcs
-people_team_magma_magma_member_m 26 30 N static FLAG_HIDE_ROUTE_112_TEAM_MAGMA LOCALID_ROUTE112_GRUNT_1
-people_hiker 24 34 W pace_h 0
-people_camper 29 49 S static 0
-people_picnicker 22 46 S static 0
-people_hiker 15 40 S static 0
-people_team_magma_magma_member_m 27 30 N static FLAG_HIDE_ROUTE_112_TEAM_MAGMA LOCALID_ROUTE112_GRUNT_2
-people_man_1 27 6 S static 0
-people_man_1 28 6 S static 0
-people_man_1 29 6 S static 0
-people_man_1 30 6 S static 0
-people_hiker 8 50 S static 0
-misc_item_ball 14 43 S static FLAG_ITEM_ROUTE_112_NUGGET
-people_man_5 31 7 S static 0
-people_woman_2 31 11 S static 0
+people_team_magma_magma_member_m 26 30 N static FLAG_HIDE_ROUTE_112_TEAM_MAGMA LOCALID_ROUTE112_GRUNT_1 0
+people_hiker 24 34 W pace_h 0 - 2
+people_camper 29 49 S static 0 - 3
+people_picnicker 22 46 S static 0 - 3
+people_hiker 15 40 S static 0 - 3
+people_team_magma_magma_member_m 27 30 N static FLAG_HIDE_ROUTE_112_TEAM_MAGMA LOCALID_ROUTE112_GRUNT_2 0
+people_man_1 27 6 S static 0 - 0
+people_man_1 28 6 S static 0 - 0
+people_man_1 29 6 S static 0 - 0
+people_man_1 30 6 S static 0 - 0
+people_hiker 8 50 S static 0 - 0
+misc_item_ball 14 43 S static FLAG_ITEM_ROUTE_112_NUGGET - 0
+people_man_5 31 7 S static 0 - 3
+people_woman_2 31 11 S static 0 - 3
 dialogs
 0	Hey, man, is our leader really going to awaken that thing?
 5	Hey, man, is our leader really going to awaken that thing?
@@ -206,7 +206,7 @@ buffernumberstring STR_VAR_2 VAR_0x8006
 lock
 faceplayer
 special ObjectEventInteractionGetBerryCountString
-msgbox	You found STR_VAR_2 STR_VAR_1!Do you want to pick the STR_VAR_1?
+msgboxyesno	You found STR_VAR_2 STR_VAR_1!Do you want to pick the STR_VAR_1?
 goto_if_eq VAR_RESULT YES BerryTree_EventScript_PickBerry
 goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPickingBerry
 goto BerryTree_EventScript_PickBerry
@@ -265,7 +265,7 @@ goto BerryTree_EventScript_CheckBerryFullyGrown
 checkitem ITEM_WAILMER_PAIL
 goto_if_eq VAR_RESULT FALSE BerryTree_EventScript_DontWater
 special ObjectEventInteractionGetBerryName
-msgbox	Want to water the STR_VAR_1 with the WAILMER PAIL?
+msgboxyesno	Want to water the STR_VAR_1 with the WAILMER PAIL?
 goto_if_eq VAR_RESULT YES BerryTree_EventScript_WaterBerry
 goto_if_eq VAR_RESULT NO BerryTree_EventScript_DontWater
 goto BerryTree_EventScript_DontWater
@@ -315,7 +315,7 @@ waitbuttonpress
 release
 end
 = BerryTree_EventScript_WantToPlant
-msgbox	It's soft, loamy soil. Want to plant a BERRY?
+msgboxyesno	It's soft, loamy soil. Want to plant a BERRY?
 goto_if_eq VAR_RESULT YES BerryTree_EventScript_ChooseBerryToPlant
 goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPlanting
 end
@@ -418,8 +418,7 @@ signs
 4 49	ROUTE 112 LAVARIDGE TOWN
 grass
 13,37
-encounters
-land NUMEL:15:15,NUMEL:15:15,MARILL:15:15,NUMEL:14:14,NUMEL:14:14,MARILL:14:14,NUMEL:16:16,MARILL:16:16,NUMEL:16:16,NUMEL:16:16,NUMEL:16:16,NUMEL:16:16
-
 music
 MUS_ROUTE110
+encounters
+land NUMEL:15:15,NUMEL:15:15,MARILL:15:15,NUMEL:14:14,NUMEL:14:14,MARILL:14:14,NUMEL:16:16,MARILL:16:16,NUMEL:16:16,NUMEL:16:16,NUMEL:16:16,NUMEL:16:16

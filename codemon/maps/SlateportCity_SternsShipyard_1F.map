@@ -37,10 +37,10 @@ warps
 3 14 SlateportCity 2
 3 1 SlateportCity_SternsShipyard_2F 0
 npcs
-people_man_1 5 5 S static 0 LOCALID_DOCK
-people_scientist_1 10 7 N static 0
-people_scientist_1 18 8 S wander 0
-people_expert_m 12 11 S wander FLAG_HIDE_SLATEPORT_CITY_STERNS_SHIPYARD_MR_BRINEY
+people_man_1 5 5 S static 0 LOCALID_DOCK 0
+people_scientist_1 10 7 N static 0 - 0
+people_scientist_1 18 8 S wander 0 - 0
+people_expert_m 12 11 S wander FLAG_HIDE_SLATEPORT_CITY_STERNS_SHIPYARD_MR_BRINEY - 0
 dialogs
 0	Umm… If this goes here, and that goes over there…Then where does this thing go? And what about that doohickey?Aaargh! I can't make heads or tails of this!
 1	The seasons, the weather, where the moon sits in the sky…These and other conditions make the sea change its expression.That's right! The sea is like a living thing!
@@ -108,8 +108,7 @@ waitmovement 0
 msgbox	DOCK: The ferry is finally ready!The new S.S. TIDAL is truly a marvel of technology!But, I get the feeling that we can make something even better.You know, there's never an end to technology's march.
 releaseall
 end
-counters
-537
-
 music
 MUS_SLATEPORT
+counters
+537

@@ -18,9 +18,9 @@ warps
 3 5 FortreeCity 6
 4 5 FortreeCity 6
 npcs
-people_woman_4 6 4 S wander 0
-people_boy_3 1 3 S static 0
-pokemon_wingull 2 3 S static FLAG_HIDE_FORTREE_CITY_HOUSE_4_WINGULL LOCALID_FORTREE_HOUSE_WINGULL
+people_woman_4 6 4 S wander 0 - 0
+people_boy_3 1 3 S static 0 - 0
+pokemon_wingull 2 3 S static FLAG_HIDE_FORTREE_CITY_HOUSE_4_WINGULL LOCALID_FORTREE_HOUSE_WINGULL 0
 dialogs
 0	By being together with POKéMON, people make more and more friends.And that brings the world closer together. I think it's wonderful!
 1	There! Go, BIRD POKéMON!
@@ -80,6 +80,5 @@ end
 = FortreeCity_House4_EventScript_Woman
 msgbox	By being together with POKéMON, people make more and more friends.And that brings the world closer together. I think it's wonderful!
 end
-
 music
 MUS_FORTREE

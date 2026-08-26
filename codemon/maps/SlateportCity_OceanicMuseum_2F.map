@@ -23,13 +23,13 @@ collision
 warps
 6 1 SlateportCity_OceanicMuseum_1F 2
 npcs
-people_scientist_1 13 6 S static FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_CAPTAIN_STERN LOCALID_OCEANIC_MUSEUM_2F_CAPT_STERN
-people_team_aqua_archie 6 1 S static FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_ARCHIE
-people_team_aqua_aqua_member_m 6 1 S static FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_AQUA_GRUNT_1
-people_team_aqua_aqua_member_m 6 1 S static FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_AQUA_GRUNT_2
-people_old_man 12 7 E static FLAG_HIDE_SLATEPORT_MUSEUM_POPULATION
-people_pokefan_f 9 6 S static FLAG_HIDE_SLATEPORT_MUSEUM_POPULATION
-people_ninja_boy 1 3 E static FLAG_HIDE_SLATEPORT_MUSEUM_POPULATION
+people_scientist_1 13 6 S static FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_CAPTAIN_STERN LOCALID_OCEANIC_MUSEUM_2F_CAPT_STERN 0
+people_team_aqua_archie 6 1 S static FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_ARCHIE LOCALID_OCEANIC_MUSEUM_2F_ARCHIE 0
+people_team_aqua_aqua_member_m 6 1 S static FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_AQUA_GRUNT_1 LOCALID_OCEANIC_MUSEUM_2F_GRUNT_1 0
+people_team_aqua_aqua_member_m 6 1 S static FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_AQUA_GRUNT_2 LOCALID_OCEANIC_MUSEUM_2F_GRUNT_2 0
+people_old_man 12 7 E static FLAG_HIDE_SLATEPORT_MUSEUM_POPULATION - 0
+people_pokefan_f 9 6 S static FLAG_HIDE_SLATEPORT_MUSEUM_POPULATION - 0
+people_ninja_boy 1 3 E static FLAG_HIDE_SLATEPORT_MUSEUM_POPULATION - 0
 dialogs
 0	Yes? If you're looking for STERN, that would be me.Ah! Those must be the parts I ordered from MR. STONE of DEVON.Thank you! That's great! We can prepare for our expedition now.
 4	I saw a model of a ship here.It reminded me of the ABANDONED SHIP near DEWFORD TOWN…
@@ -197,8 +197,7 @@ signs
 13 1	A rubber ball is expanding and shrinking.“In the sea, the weight of water itself exerts pressure.“In shallow water, the pressure is not very heavy.“However, in extremely deep water, the pressure can reach even tens of thousands of tons on a small area.”
 3 7	“THE FERRY S.S. TIDAL“A scale replica of the ship under construction at STERN'S SHIPYARD.”
 4 7	“THE FERRY S.S. TIDAL“A scale replica of the ship under construction at STERN'S SHIPYARD.”
-counters
-563
-
 music
 MUS_OCEANIC_MUSEUM
+counters
+563

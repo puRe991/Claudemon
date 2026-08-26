@@ -24,7 +24,7 @@ warps
 3 8 MauvilleCity 6
 4 8 MauvilleCity 6
 npcs
-people_woman_3 4 5 W static 0
+people_woman_3 4 5 W static 0 - 0
 dialogs
 0	If I had a BIKE, it'd be easy to cycle to SLATEPORT for some shopping.I'd be able to buy HARBOR MAIL at the POKéMON MART in SLATEPORT…
 objscripts
@@ -67,6 +67,5 @@ end
 msgbox	That COIN CASE can be used at the GAME CORNER.
 release
 end
-
 music
 MUS_RUSTBORO

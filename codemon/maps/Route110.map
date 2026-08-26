@@ -214,42 +214,42 @@ warps
 16 88 Route110_SeasideCyclingRoadSouthEntrance 0
 19 88 Route110_SeasideCyclingRoadSouthEntrance 2
 npcs
-people_camper 17 90 S static 0
-people_cycling_triathlete_m 29 79 S static 0
-people_expert_f 14 69 S wander 0
-people_cycling_triathlete_m 9 57 S wander 0
-people_expert_m 10 11 S wander 0
-people_cycling_triathlete_f 27 24 S wander 0
-people_boy_3 15 7 S wander 0
-people_cycling_triathlete_f 16 73 S static 0
-people_cycling_triathlete_m 19 31 S static 0
-people_cycling_triathlete_f 30 31 W static 0
-people_cycling_triathlete_m 16 55 S static 0
-people_psychic_m 3 39 E static 0
-people_lass 33 15 W static 0
-people_maniac 34 40 S static 0
-people_fisherman 10 19 S static 0
-people_man_1 5 11 S static 0
-people_man_1 6 11 S static 0
-people_man_1 7 11 S static 0
-misc_item_ball 30 69 S static FLAG_ITEM_ROUTE_110_DIRE_HIT
-misc_item_ball 26 47 S static FLAG_ITEM_ROUTE_110_RARE_CANDY
-people_cycling_triathlete_m 27 92 S static 0 LOCALID_CHALLENGE_BIKER
-people_team_aqua_aqua_member_m 7 83 N static FLAG_HIDE_ROUTE_110_TEAM_AQUA
-people_team_aqua_aqua_member_m 8 83 N static FLAG_HIDE_ROUTE_110_TEAM_AQUA
-people_team_aqua_aqua_member_m 9 83 N static FLAG_HIDE_ROUTE_110_TEAM_AQUA
-people_team_aqua_aqua_member_m 10 83 N static FLAG_HIDE_ROUTE_110_TEAM_AQUA
-people_team_aqua_aqua_member_m 8 82 S static FLAG_HIDE_ROUTE_110_TEAM_AQUA
-people_cycling_triathlete_m 21 78 S static 0
-people_may_walking 34 54 W pace_h FLAG_HIDE_ROUTE_110_RIVAL
-people_may_walking 34 54 S static FLAG_HIDE_ROUTE_110_RIVAL_ON_BIKE
-people_youngster 33 69 W pace_h 0
-people_pokefan_f 10 76 W static 0
-people_pokefan_m 7 76 E static 0
-people_cycling_triathlete_f 10 39 W static 0
-people_man_5 36 40 S static 0
-misc_item_ball 6 38 S static FLAG_ITEM_ROUTE_110_ELIXIR
-people_prof_birch 9 79 S static FLAG_HIDE_ROUTE_110_BIRCH LOCALID_ROUTE110_BIRCH
+people_camper 17 90 S static 0 - 0
+people_cycling_triathlete_m 29 79 S static 0 - 0
+people_expert_f 14 69 S wander 0 - 0
+people_cycling_triathlete_m 9 57 S wander 0 - 0
+people_expert_m 10 11 S wander 0 - 0
+people_cycling_triathlete_f 27 24 S wander 0 - 0
+people_boy_3 15 7 S wander 0 - 0
+people_cycling_triathlete_f 16 73 S static 0 - 3
+people_cycling_triathlete_m 19 31 S static 0 - 3
+people_cycling_triathlete_f 30 31 W static 0 - 4
+people_cycling_triathlete_m 16 55 S static 0 - 3
+people_psychic_m 3 39 E static 0 - 6
+people_lass 33 15 W static 0 - 1
+people_maniac 34 40 S static 0 - 4
+people_fisherman 10 19 S static 0 - 1
+people_man_1 5 11 S static 0 - 0
+people_man_1 6 11 S static 0 - 0
+people_man_1 7 11 S static 0 - 0
+misc_item_ball 30 69 S static FLAG_ITEM_ROUTE_110_DIRE_HIT - 0
+misc_item_ball 26 47 S static FLAG_ITEM_ROUTE_110_RARE_CANDY - 0
+people_cycling_triathlete_m 27 92 S static 0 LOCALID_CHALLENGE_BIKER 0
+people_team_aqua_aqua_member_m 7 83 N static FLAG_HIDE_ROUTE_110_TEAM_AQUA - 0
+people_team_aqua_aqua_member_m 8 83 N static FLAG_HIDE_ROUTE_110_TEAM_AQUA - 0
+people_team_aqua_aqua_member_m 9 83 N static FLAG_HIDE_ROUTE_110_TEAM_AQUA - 0
+people_team_aqua_aqua_member_m 10 83 N static FLAG_HIDE_ROUTE_110_TEAM_AQUA - 0
+people_team_aqua_aqua_member_m 8 82 S static FLAG_HIDE_ROUTE_110_TEAM_AQUA - 0
+people_cycling_triathlete_m 21 78 S static 0 - 2
+people_may_walking 34 54 W pace_h FLAG_HIDE_ROUTE_110_RIVAL LOCALID_ROUTE110_RIVAL 0
+people_may_walking 34 54 S static FLAG_HIDE_ROUTE_110_RIVAL_ON_BIKE LOCALID_ROUTE110_RIVAL_ON_BIKE 0
+people_youngster 33 69 W pace_h 0 - 3
+people_pokefan_f 10 76 W static 0 - 2
+people_pokefan_m 7 76 E static 0 - 2
+people_cycling_triathlete_f 10 39 W static 0 - 6
+people_man_5 36 40 S static 0 - 3
+misc_item_ball 6 38 S static FLAG_ITEM_ROUTE_110_ELIXIR - 0
+people_prof_birch 9 79 S static FLAG_HIDE_ROUTE_110_BIRCH LOCALID_ROUTE110_BIRCH 0
 dialogs
 0	Which should I choose?Make a beeline for MAUVILLE on CYCLING ROAD, or take the low road and look for POKéMON?
 1	Learning techniques will make BIKE riding even more fun.There are some places that you can reach only by using a BIKE technique.
@@ -611,7 +611,7 @@ releaseall
 end
 = Route110_EventScript_CyclingChallengeResults
 special FinishCyclingRoadChallenge
-msgbox	Number of collisions: … … !Total time: … … !
+msgbox	Number of collisions: … … STR_VAR_1!Total time: … … STR_VAR_2!
 switch VAR_RESULT
 case 10 Route110_EventScript_ChallengeReactionBest
 case 9 Route110_EventScript_ChallengeReactionGood
@@ -774,7 +774,7 @@ buffernumberstring STR_VAR_2 VAR_0x8006
 lock
 faceplayer
 special ObjectEventInteractionGetBerryCountString
-msgbox	You found STR_VAR_2 STR_VAR_1!Do you want to pick the STR_VAR_1?
+msgboxyesno	You found STR_VAR_2 STR_VAR_1!Do you want to pick the STR_VAR_1?
 goto_if_eq VAR_RESULT YES BerryTree_EventScript_PickBerry
 goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPickingBerry
 goto BerryTree_EventScript_PickBerry
@@ -833,7 +833,7 @@ goto BerryTree_EventScript_CheckBerryFullyGrown
 checkitem ITEM_WAILMER_PAIL
 goto_if_eq VAR_RESULT FALSE BerryTree_EventScript_DontWater
 special ObjectEventInteractionGetBerryName
-msgbox	Want to water the STR_VAR_1 with the WAILMER PAIL?
+msgboxyesno	Want to water the STR_VAR_1 with the WAILMER PAIL?
 goto_if_eq VAR_RESULT YES BerryTree_EventScript_WaterBerry
 goto_if_eq VAR_RESULT NO BerryTree_EventScript_DontWater
 goto BerryTree_EventScript_DontWater
@@ -883,7 +883,7 @@ waitbuttonpress
 release
 end
 = BerryTree_EventScript_WantToPlant
-msgbox	It's soft, loamy soil. Want to plant a BERRY?
+msgboxyesno	It's soft, loamy soil. Want to plant a BERRY?
 goto_if_eq VAR_RESULT YES BerryTree_EventScript_ChooseBerryToPlant
 goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPlanting
 end
@@ -1019,16 +1019,15 @@ signs
 33 39	TRAINER TIPSThe foe can be made helpless by paralyzing it or causing it to sleep.It is an important technique for POKéMON battles.
 37 70	TRAINER TIPSThe items in the BAG can be reorganized by pressing SELECT.
 8 67	“Three steps and two steps to reach the wondrous TRICK HOUSE.”
-32 93	THE BEST RECORD TO DATE…No. of collisions:Elapsed time:
+32 93	THE BEST RECORD TO DATE…No. of collisions: STR_VAR_1Elapsed time: STR_VAR_2
 13 16	SEASIDE CYCLING ROAD
 grass
 13
+water
+368,369,372,376,377,392,393,394,400,402,408,410,613,619,620,621,743,752,753,754,755,756,776,780,782,783,784,785,786,787,788,791,796,797,798,799,804,805,806,807,808,809,810,811,816,817,818,819,828,829,831,836,837,838,839,840,841,842,843,847,909
+music
+MUS_ROUTE110
 encounters
 land POOCHYENA:12:12,ELECTRIKE:12:12,GULPIN:12:12,ELECTRIKE:13:13,MINUN:13:13,ODDISH:13:13,MINUN:13:13,GULPIN:13:13,WINGULL:12:12,WINGULL:12:12,PLUSLE:12:12,PLUSLE:13:13
 water TENTACOOL:5:35,WINGULL:10:30,WINGULL:15:25,PELIPPER:25:30,PELIPPER:25:30
 fishing MAGIKARP:5:10,TENTACOOL:5:10,MAGIKARP:10:30,TENTACOOL:10:30,WAILMER:10:30,WAILMER:25:30,WAILMER:30:35,WAILMER:20:25,WAILMER:35:40,WAILMER:40:45
-water
-368,369,372,376,377,392,393,394,400,402,408,410,613,619,620,621,743,752,753,754,755,756,776,780,782,783,784,785,786,787,788,791,796,797,798,799,804,805,806,807,808,809,810,811,816,817,818,819,828,829,831,836,837,838,839,840,841,842,843,847,909
-
-music
-MUS_ROUTE110

@@ -39,7 +39,7 @@ collision
 warps
 7 11 EverGrandeCity_ChampionsRoom 1
 npcs
-people_wallace 6 16 N static 0 LOCALID_HALL_OF_FAME_WALLACE
+people_wallace 6 16 N static 0 LOCALID_HALL_OF_FAME_WALLACE 0
 onload
 VAR_TEMP_1 0 EverGrandeCity_HallOfFame_EventScript_EnterHallOfFame
 movements
@@ -139,6 +139,5 @@ clearflag FLAG_DEFEATED_DEOXYS
 clearflag FLAG_DEFEATED_LUGIA
 clearflag FLAG_DEFEATED_HO_OH
 return
-
 music
 MUS_HALL_OF_FAME_ROOM

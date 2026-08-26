@@ -36,10 +36,10 @@ warps
 10 12 MtPyre_2F 2
 6 12 MtPyre_2F 3
 npcs
-people_psychic_m 1 4 S static 0
-people_lass 11 4 S static 0
-misc_item_ball 0 7 S static FLAG_ITEM_MT_PYRE_3F_SUPER_REPEL
-people_woman_2 6 4 W pace_h 0
+people_psychic_m 1 4 S static 0 - 4
+people_lass 11 4 S static 0 - 4
+misc_item_ball 0 7 S static FLAG_ITEM_MT_PYRE_3F_SUPER_REPEL - 0
+people_woman_2 6 4 W pace_h 0 - 4
 dialogs
 0	My psychic powers have surely grown several times, but…
 1	This means my training is still not enough…I've got to keep working toward the summit…Go, me!
@@ -83,8 +83,7 @@ end
 trainerbattle_single TRAINER_WILLIAM MtPyre_3F_Text_WilliamIntro MtPyre_3F_Text_WilliamDefeat
 msgbox	My psychic powers have surely grown several times, but…
 end
-encounters
-land SHUPPET:27:27,SHUPPET:28:28,SHUPPET:26:26,SHUPPET:25:25,SHUPPET:29:29,SHUPPET:24:24,SHUPPET:23:23,SHUPPET:22:22,SHUPPET:29:29,SHUPPET:24:24,SHUPPET:29:29,SHUPPET:24:24
-
 music
 MUS_MT_PYRE
+encounters
+land SHUPPET:27:27,SHUPPET:28:28,SHUPPET:26:26,SHUPPET:25:25,SHUPPET:29:29,SHUPPET:24:24,SHUPPET:23:23,SHUPPET:22:22,SHUPPET:29:29,SHUPPET:24:24,SHUPPET:29:29,SHUPPET:24:24

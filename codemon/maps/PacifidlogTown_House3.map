@@ -24,11 +24,11 @@ warps
 4 8 PacifidlogTown 3
 5 8 PacifidlogTown 3
 npcs
-people_girl_2 3 5 S static 0
-people_man_3 4 2 E static 0
+people_girl_2 3 5 S static 0 - 0
+people_man_3 4 2 E static 0 - 0
 dialogs
 0	Is that a POKéDEX?Did you get to meet a lot of different POKéMON?I wish I was like you.
-1	Check out this !It's the that I caught yesterday to celebrate my birthday!Oh, I can see that you want it! After all, it's priceless!I'll tell you what. I might be willing to trade it for a .
+1	Check out this STR_VAR_2!It's the STR_VAR_2 that I caught yesterday to celebrate my birthday!Oh, I can see that you want it! After all, it's priceless!I'll tell you what. I might be willing to trade it for a STR_VAR_1.
 objscripts
 0 PacifidlogTown_House3_EventScript_Girl
 1 PacifidlogTown_House3_EventScript_Trader
@@ -75,6 +75,5 @@ end
 = PacifidlogTown_House3_EventScript_Girl
 msgbox	Is that a POKéDEX?Did you get to meet a lot of different POKéMON?I wish I was like you.
 end
-
 music
 MUS_LILYCOVE

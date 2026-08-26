@@ -33,7 +33,7 @@ collision
 warps
 7 3 GraniteCave_1F 3
 npcs
-people_steven 7 8 S static FLAG_HIDE_GRANITE_CAVE_STEVEN LOCALID_GRANITE_CAVE_STEVEN
+people_steven 7 8 S static FLAG_HIDE_GRANITE_CAVE_STEVEN LOCALID_GRANITE_CAVE_STEVEN 0
 dialogs
 0	My name is STEVEN.I'm interested in rare stones, so I travel here and there.Oh? A LETTER for me?
 objscripts
@@ -89,8 +89,7 @@ return
 = GraniteCave_StevensRoom_EventScript_BagFull
 msgbox	Oh, your BAG is full… That's too bad, then.
 return
-encounters
-land ZUBAT:7:7,MAKUHITA:8:8,MAKUHITA:7:7,ZUBAT:8:8,MAKUHITA:9:9,ABRA:8:8,MAKUHITA:10:10,MAKUHITA:6:6,ARON:7:7,ARON:8:8,ARON:7:7,ARON:8:8
-
 music
 MUS_PETALBURG_WOODS
+encounters
+land ZUBAT:7:7,MAKUHITA:8:8,MAKUHITA:7:7,ZUBAT:8:8,MAKUHITA:9:9,ABRA:8:8,MAKUHITA:10:10,MAKUHITA:6:6,ARON:7:7,ARON:8:8,ARON:7:7,ARON:8:8

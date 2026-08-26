@@ -24,7 +24,7 @@ warps
 5 8 - 0
 6 8 - 0
 npcs
-people_link_receptionist 9 6 W static 0
+people_link_receptionist 9 6 W static 0 - 0
 objscripts
 0 TradeCenter_EventScript_Attendant
 triggers
@@ -57,6 +57,5 @@ msgbox	Please take your seat and start your trade.
 special Script_ClearHeldMovement
 closemessage
 end
-
 music
 MUS_EVER_GRANDE

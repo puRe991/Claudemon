@@ -99,15 +99,15 @@ warps
 42 38 VictoryRoad_B1F 2
 9 14 VictoryRoad_B1F 4
 npcs
-people_man_3 33 22 S static 0
-people_woman_5 6 15 W static 0
-people_man_3 27 34 S static 0
-people_wally 12 25 S static FLAG_HIDE_VICTORY_ROAD_ENTRANCE_WALLY LOCALID_VICTORY_ROAD_ENTRANCE_WALLY
-misc_item_ball 40 26 S static FLAG_ITEM_VICTORY_ROAD_1F_MAX_ELIXIR
-misc_item_ball 37 39 S static FLAG_ITEM_VICTORY_ROAD_1F_PP_UP
-people_wally 31 9 S static FLAG_HIDE_VICTORY_ROAD_EXIT_WALLY
-people_woman_5 29 17 E static 0
-people_man_3 32 17 W static 0
+people_man_3 33 22 S static 0 - 3
+people_woman_5 6 15 W static 0 - 4
+people_man_3 27 34 S static 0 - 3
+people_wally 12 25 S static FLAG_HIDE_VICTORY_ROAD_ENTRANCE_WALLY LOCALID_VICTORY_ROAD_ENTRANCE_WALLY 0
+misc_item_ball 40 26 S static FLAG_ITEM_VICTORY_ROAD_1F_MAX_ELIXIR - 0
+misc_item_ball 37 39 S static FLAG_ITEM_VICTORY_ROAD_1F_PP_UP - 0
+people_wally 31 9 S static FLAG_HIDE_VICTORY_ROAD_EXIT_WALLY - 0
+people_woman_5 29 17 E static 0 - 2
+people_man_3 32 17 W static 0 - 2
 dialogs
 0	You've made it this far. Keep the momentum going and become the CHAMPION! If anyone can, it's you!
 1	You seem to have the potential for becoming the CHAMPION.
@@ -219,8 +219,7 @@ end
 trainerbattle_single TRAINER_EDGAR VictoryRoad_1F_Text_EdgarIntro VictoryRoad_1F_Text_EdgarDefeat
 msgbox	You've made it this far. Keep the momentum going and become the CHAMPION! If anyone can, it's you!
 end
-encounters
-land GOLBAT:40:40,HARIYAMA:40:40,LAIRON:40:40,LOUDRED:40:40,ZUBAT:36:36,MAKUHITA:36:36,GOLBAT:38:38,HARIYAMA:38:38,ARON:36:36,WHISMUR:36:36,ARON:36:36,WHISMUR:36:36
-
 music
 MUS_VICTORY_ROAD
+encounters
+land GOLBAT:40:40,HARIYAMA:40:40,LAIRON:40:40,LOUDRED:40:40,ZUBAT:36:36,MAKUHITA:36:36,GOLBAT:38:38,HARIYAMA:38:38,ARON:36:36,WHISMUR:36:36,ARON:36:36,WHISMUR:36:36

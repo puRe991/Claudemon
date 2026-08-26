@@ -19,22 +19,22 @@ collision
 0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0
 npcs
-people_ninja_boy 0 0 S static 0
-people_brendan_walking 1 0 S static 0
-people_brendan_walking 2 0 S static 0
-people_brendan_walking 3 0 S static 0
-people_brendan_walking 4 0 S static 0
-people_brendan_walking 5 0 S static 0
-people_brendan_walking 6 0 S static 0
-people_brendan_walking 7 0 S static 0
-people_brendan_walking 0 1 S static 0
-people_brendan_walking 1 1 S static 0
-people_brendan_walking 3 1 S static 0
-people_brendan_walking 4 1 S static 0
-people_brendan_walking 5 1 S static 0
-people_brendan_walking 6 1 S static 0
-people_brendan_walking 7 1 S static 0
-people_brendan_walking 2 1 S static 0
+people_ninja_boy 0 0 S static 0 - 0
+people_brendan_walking 1 0 S static 0 - 0
+people_brendan_walking 2 0 S static 0 - 0
+people_brendan_walking 3 0 S static 0 - 0
+people_brendan_walking 4 0 S static 0 - 0
+people_brendan_walking 5 0 S static 0 - 0
+people_brendan_walking 6 0 S static 0 - 0
+people_brendan_walking 7 0 S static 0 - 0
+people_brendan_walking 0 1 S static 0 - 0
+people_brendan_walking 1 1 S static 0 - 0
+people_brendan_walking 3 1 S static 0 - 0
+people_brendan_walking 4 1 S static 0 - 0
+people_brendan_walking 5 1 S static 0 - 0
+people_brendan_walking 6 1 S static 0 - 0
+people_brendan_walking 7 1 S static 0 - 0
+people_brendan_walking 2 1 S static 0 - 0
 onload
 VAR_TEMP_D 1 BattleFrontier_BattlePyramidFloor_EventScript_UpdateLight
 VAR_TEMP_PLAYING_PYRAMID_MUSIC 0 BattleFrontier_BattlePyramidFloor_EventScript_PlayPyramidMusic

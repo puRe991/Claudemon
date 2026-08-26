@@ -31,8 +31,8 @@ collision
 warps
 8 2 BirthIsland_Exterior 0
 npcs
-people_sailor 8 5 N static 0 LOCALID_BIRTH_ISLAND_SAILOR
-misc_ss_tidal 8 7 E static 0 LOCALID_BIRTH_ISLAND_SS_TIDAL
+people_sailor 8 5 N static 0 LOCALID_BIRTH_ISLAND_SAILOR 0
+misc_ss_tidal 8 7 E static 0 LOCALID_BIRTH_ISLAND_SS_TIDAL 0
 objscripts
 0 BirthIsland_Harbor_EventScript_Sailor
 movements
@@ -59,7 +59,7 @@ end
 msgbox	Aye, right, as you like, then.
 release
 end
-counters
-933
 water
 368,384,385,393,408,410
+counters
+933

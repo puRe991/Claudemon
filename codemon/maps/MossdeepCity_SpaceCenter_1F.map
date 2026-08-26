@@ -27,17 +27,17 @@ warps
 8 9 MossdeepCity 8
 13 1 MossdeepCity_SpaceCenter_2F 0
 npcs
-people_scientist_1 7 2 N static 0 LOCALID_SPACE_CENTER_1F_SCIENTIST_1
-people_scientist_1 2 2 N static 0 LOCALID_SPACE_CENTER_1F_SCIENTIST_2
-people_sailor 6 6 W static 0 LOCALID_SPACE_CENTER_1F_SAILOR
-people_old_man 10 2 N static 0 LOCALID_SPACE_CENTER_1F_OLD_MAN
-people_woman_4 14 7 S wander 0 LOCALID_SPACE_CENTER_1F_WOMAN
-people_team_magma_magma_member_f 12 9 W static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA
-people_team_magma_magma_member_m 11 6 W static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA
-people_team_magma_magma_member_m 10 2 S static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA LOCALID_SPACE_CENTER_1F_OLD_MAN
-people_team_magma_magma_member_m 13 2 S static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA LOCALID_SPACE_CENTER_1F_STAIR_GRUNT
-people_ninja_boy 2 5 S static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_MAGMA_NOTE
-people_steven 1 4 S static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_STEVEN
+people_scientist_1 7 2 N static 0 LOCALID_SPACE_CENTER_1F_SCIENTIST_1 0
+people_scientist_1 2 2 N static 0 LOCALID_SPACE_CENTER_1F_SCIENTIST_2 0
+people_sailor 6 6 W static 0 LOCALID_SPACE_CENTER_1F_SAILOR 0
+people_old_man 10 2 N static 0 LOCALID_SPACE_CENTER_1F_OLD_MAN 0
+people_woman_4 14 7 S wander 0 LOCALID_SPACE_CENTER_1F_WOMAN 0
+people_team_magma_magma_member_f 12 9 W static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA - 2
+people_team_magma_magma_member_m 11 6 W static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA - 2
+people_team_magma_magma_member_m 10 2 S static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA - 2
+people_team_magma_magma_member_m 13 2 S static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA LOCALID_SPACE_CENTER_1F_STAIR_GRUNT 0
+people_ninja_boy 2 5 S static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_MAGMA_NOTE - 0
+people_steven 1 4 S static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_STEVEN - 0
 dialogs
 1	A rocket launch demands perfection. Not even a 1% margin of error is allowed.Even if it's 99% okay, the whole thing is useless if 1% happens to be no good.Despite that, we never stop trying. Why? It's a dream that never ends.
 2	I was taking a stroll down the beach when I found this.It's not anything I need, so you can have it.
@@ -229,7 +229,7 @@ waitmovement 0
 release
 end
 = MossdeepCity_SpaceCenter_1F_EventScript_ShowLaunchNumber
-msgbox	The rocket launched safely! That's successful launch no. !
+msgbox	The rocket launched safely! That's successful launch no. STR_VAR_1!
 return
 = MossdeepCity_SpaceCenter_1F_EventScript_NoLaunchesYet
 msgbox	The rocket's launch is imminent!
@@ -246,13 +246,12 @@ waitmovement 0
 release
 end
 = MossdeepCity_SpaceCenter_1F_EventScript_ShowLaunchNumberMagma
-msgbox	I know that things are a little haywire right now, but…The rocket launched safely! That's successful launch no. !
+msgbox	I know that things are a little haywire right now, but…The rocket launched safely! That's successful launch no. STR_VAR_1!
 return
 = MossdeepCity_SpaceCenter_1F_EventScript_NoLaunchesYetMagma
 msgbox	I know that things are a little haywire right now, but…The rocket's launch is imminent!
 return
-counters
-537
-
 music
 MUS_RUSTBORO
+counters
+537

@@ -20,8 +20,8 @@ warps
 3 6 SootopolisCity 10
 4 6 SootopolisCity 10
 npcs
-people_old_man 5 3 W static 0
-people_pokefan_f 1 4 S wander 0
+people_old_man 5 3 W static 0 - 0
+people_pokefan_f 1 4 S wander 0 - 0
 dialogs
 0	An underwater volcano erupted and forced itself up from the depths.Its crater emerged from the sea and became filled with rainwater.That's how SOOTOPOLIS CITY came into being.
 1	The cave that links SOOTOPOLIS and the outside world…It seems as if the cave was made to keep something from getting out.Or am I just imagining things?
@@ -35,6 +35,5 @@ end
 = SootopolisCity_House7_EventScript_OldMan
 msgbox	An underwater volcano erupted and forced itself up from the depths.Its crater emerged from the sea and became filled with rainwater.That's how SOOTOPOLIS CITY came into being.
 end
-
 music
 MUS_SOOTOPOLIS

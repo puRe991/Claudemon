@@ -41,10 +41,10 @@ collision
 warps
 7 17 BattleFrontier_OutsideEast 3
 npcs
-people_hiker 7 12 S static 0 LOCALID_PYRAMID_LOBBY_ATTENDANT
-people_hex_maniac 14 13 W static 0 LOCALID_PYRAMID_LOBBY_HINT_GIVER
-people_woman_3 2 15 S wander 0
-people_fat_man 12 16 S wander 0
+people_hiker 7 12 S static 0 LOCALID_PYRAMID_LOBBY_ATTENDANT 0
+people_hex_maniac 14 13 W static 0 LOCALID_PYRAMID_LOBBY_HINT_GIVER 0
+people_woman_3 2 15 S wander 0 - 0
+people_fat_man 12 16 S wander 0 - 0
 dialogs
 0	Where the courage of TRAINERS is put to the test!Welcome to the BATTLE PYRAMID!I am your guide to the Battle Quest.
 1	Welcome…I shall be pleased to tell you what misfortunes await in the PYRAMID…
@@ -109,7 +109,7 @@ playse SE_EXP_MAX
 waitse
 msgbox	Young explorer! In commendation of your courage, we give you these Battle Point(s)!
 frontier_givepoints
-msgbox	PLAYER obtained Battle Point(s).
+msgbox	PLAYER obtained STR_VAR_1 Battle Point(s).
 msgbox	I must record your results. Please wait.
 waitmessage
 pyramid_setprize
@@ -435,16 +435,15 @@ case FRONTIER_LVL_50 BattleFrontier_BattlePyramidLobby_EventScript_NotEnoughVali
 case FRONTIER_LVL_OPEN BattleFrontier_BattlePyramidLobby_EventScript_NotEnoughValidMonsLvOpen
 goto BattleFrontier_BattlePyramidLobby_EventScript_NotEnoughValidMonsLv50
 = BattleFrontier_BattlePyramidLobby_EventScript_NotEnoughValidMonsLv50
-msgbox	A slight problem, adventurer!You seem to not have the three POKéMON qualified for the challenge.The three POKéMON must be different and each no higher than Level 50.Please also remember to take all items from your POKéMON.EGGS ineligible.When you are ready, please have a word with me.
+msgbox	A slight problem, adventurer!You seem to not have the three POKéMON qualified for the challenge.The three POKéMON must be different and each no higher than Level 50.Please also remember to take all items from your POKéMON.EGGSSTR_VAR_1 ineligible.When you are ready, please have a word with me.
 goto BattleFrontier_BattlePyramidLobby_EventScript_EndCancelChallenge
 = BattleFrontier_BattlePyramidLobby_EventScript_NotEnoughValidMonsLvOpen
-msgbox	A slight problem, adventurer!You seem to not have the three POKéMON qualified for the challenge.Please also remember to take all items from your POKéMON.EGGS ineligible.When you are ready, please have a word with me.
+msgbox	A slight problem, adventurer!You seem to not have the three POKéMON qualified for the challenge.Please also remember to take all items from your POKéMON.EGGSSTR_VAR_1 ineligible.When you are ready, please have a word with me.
 goto BattleFrontier_BattlePyramidLobby_EventScript_EndCancelChallenge
 = BattleFrontier_BattlePyramidLobby_EventScript_ExplainChallenge
 msgbox	The Battle Quest is a battling event in which you must explore the PYRAMID and try to reach the top.In the PYRAMID are seven floors of mazes, all of them filled with not only skilled TRAINERS but also wild POKéMON.You must enter with three POKéMON, none of them holding an item.On your ascent, you will be provided with a BATTLE BAG for items.If you fail in your challenge, any item placed in the BATTLE BAG disappears.If you want to interrupt your challenge, you must select “REST” and save the game.If you don't save before interrupting, you will be disqualified.
 goto BattleFrontier_BattlePyramidLobby_EventScript_AskTakeChallenge
 signs
 1 12	The Battle Quest rules are listed.
-
 music
 MUS_B_PYRAMID

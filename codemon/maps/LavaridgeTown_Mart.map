@@ -22,9 +22,9 @@ warps
 3 7 LavaridgeTown 2
 4 7 LavaridgeTown 2
 npcs
-people_mart_employee 1 3 E static 0 LOCALID_LAVARIDGE_MART_CLERK
-people_expert_m 4 2 S static 0
-people_old_woman 9 5 E static 0
+people_mart_employee 1 3 E static 0 LOCALID_LAVARIDGE_MART_CLERK 0
+people_expert_m 4 2 S static 0 - 0
+people_old_woman 9 5 E static 0 - 0
 dialogs
 1	Use X SPEED to add to a POKéMON's SPEED in battle.That will help it get in the first strike--a decided advantage!
 2	On MT. CHIMNEY's peak, there's a local specialty that you can buy only there.Give it to a POKéMON--it will be elated.
@@ -50,8 +50,7 @@ pokemart LavaridgeTown_Mart_Pokemart
 msgbox	Please come again!
 release
 end
-counters
-562,570,577
-
 music
 MUS_POKE_MART
+counters
+562,570,577

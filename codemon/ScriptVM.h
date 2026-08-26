@@ -60,6 +60,12 @@ public:
 	// Begin running `label`; owner is the interacted NPC (for LOCALID + face).
 	void start(const std::string& label, Character* owner);
 
+	// True if `label` is a trainer's battle script whose trainer has not been
+	// beaten yet. Drives the on-sight challenge in main.cpp: a trainer only
+	// spots the player while they still owe them a battle -- afterwards
+	// walking back through their line of sight must do nothing at all.
+	bool script_has_pending_trainer(const std::string& label) const;
+
 	bool running() const;           // a script is active (input/NPCs frozen)
 	bool waiting_message() const;    // blocked on the dialog box
 	void on_key();                   // player pressed the advance key

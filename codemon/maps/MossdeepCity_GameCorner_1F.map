@@ -27,8 +27,8 @@ warps
 6 9 MossdeepCity 9
 2 0 MossdeepCity_GameCorner_B1F 0
 npcs
-people_expert_m 6 2 S static 0
-people_man_4 4 2 S static 0
+people_expert_m 6 2 S static 0 - 0
+people_man_4 4 2 S static 0 - 0
 objscripts
 0 MossdeepCity_GameCorner_1F_EventScript_OldMan
 1 MossdeepCity_GameCorner_1F_EventScript_InfoMan
@@ -246,8 +246,7 @@ release
 end
 signs
 3 0	The door appears to be locked.
-counters
-547,548,549,550
-
 music
 MUS_RUSTBORO
+counters
+547,548,549,550
