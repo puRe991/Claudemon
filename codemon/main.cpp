@@ -1213,6 +1213,14 @@ int main() {
         // bedroom -- without it, Littleroot's SS Ticket/Hall of Fame scenes
         // can't tell the player picked the boy's house.
         gs.set_var("VAR_LITTLEROOT_HOUSES_STATE_BRENDAN", 1);
+        // In real pokeemerald VAR_LITTLEROOT_TOWN_STATE only reaches 1 by
+        // visiting the rival's house and finding their poke ball on day 1 --
+        // the one and only way LittlerootTown's Route 101 warning-kid trigger
+        // ever lets the player through to the Birch-rescue scene. Skipping
+        // straight to "wake up on day 2" like above must carry that forward
+        // too, or the kid pushes the player back forever with no way to
+        // proceed.
+        gs.set_var("VAR_LITTLEROOT_TOWN_STATE", 1);
         // Story start: no starter yet -- team stays empty until the player
         // actually picks one from Birch's bag on Route 101, same as pokeemerald.
         // Whiteout recovery point before the player has healed anywhere for
