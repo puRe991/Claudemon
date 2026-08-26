@@ -1578,8 +1578,15 @@ int main() {
     Audio audio; audio.load("assets");
     audio.play_bgm(sess->map->music());
     battle.set_audio(&audio);
+    // Re-attach the real Audio* now that it exists -- run_load_triggers()
+    // already ran once for this starting session above (nullptr Audio), and
+    // must NOT run again here: it isn't idempotent for every onload script
+    // (only ones that fully complete before their first blocking op are),
+    // so calling it twice in a row can silently double a `giveitem`/`setvar`
+    // that comes before a script's first msgbox/movement wait -- invisible
+    // to the player (they only ever see the one on-screen dialogue) but
+    // repeating on every single launch while the guard condition still holds.
     vm.configure(sess->map, &gs, &box, &battle, &audio, sess->player, &sess->actors, &sess->localid_map);
-    run_load_triggers(sess->map, gs, vm);
     Window scr(win_w, win_h, "Codemon!");
 
     sf::Clock clock; float npc_accum = 0.f; float move_cooldown = 0.f;
