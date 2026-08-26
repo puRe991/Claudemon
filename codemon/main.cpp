@@ -1479,6 +1479,7 @@ int main() {
                         if (vm.wants_starter()) vm.resolve_starter(starter.chosen());
                         else if (team.empty()) team.push_back(bdata.make_mon(starter.chosen(), 5, &rng));
                         else team[0] = bdata.make_mon(starter.chosen(), 5, &rng);
+                        gs.mark_caught(starter.chosen());
                         starter.ack();
                     } else if (!starter.active() && vm.wants_starter()) {
                         starter.open();
@@ -1770,6 +1771,7 @@ int main() {
             if (vm.wants_starter()) vm.resolve_starter(starter.chosen());
             else if (team.empty()) team.push_back(bdata.make_mon(starter.chosen(), 5, &rng));
                         else team[0] = bdata.make_mon(starter.chosen(), 5, &rng);
+            gs.mark_caught(starter.chosen());
             starter.ack();
         } else if (!starter.active() && vm.wants_starter()) {
             starter.open();

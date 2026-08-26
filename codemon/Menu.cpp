@@ -2,6 +2,7 @@
 #include <cctype>
 #include <vector>
 #include <algorithm>
+#include <cstdio>
 
 Menu::Menu() : font_ok(false), screen(CLOSED), cursor(0),
                bag_cursor(0), teach_cursor(0), use_cursor(0), fly_cursor(0),
@@ -219,13 +220,14 @@ void Menu::use_selected() {
 void Menu::input(BtnInput b) {
 	if (this->screen == MAIN) {
 		if (b == BTN_UP && this->cursor > 0) this->cursor--;
-		else if (b == BTN_DOWN && this->cursor < 6) this->cursor++;
+		else if (b == BTN_DOWN && this->cursor < 7) this->cursor++;
 		else if (b == BTN_CONFIRM) {
-			if (this->cursor == 0) { this->screen = BAG; this->bag_cursor = 0; this->flash.clear(); }
-			else if (this->cursor == 1) this->screen = PARTY;
-			else if (this->cursor == 2) this->screen = PC;
-			else if (this->cursor == 3) this->screen = POKENAV;
-			else if (this->cursor == 4) {
+			if (this->cursor == 0) { this->screen = POKEDEX; this->flash.clear(); }
+			else if (this->cursor == 1) { this->screen = BAG; this->bag_cursor = 0; this->flash.clear(); }
+			else if (this->cursor == 2) this->screen = PARTY;
+			else if (this->cursor == 3) this->screen = PC;
+			else if (this->cursor == 4) this->screen = POKENAV;
+			else if (this->cursor == 5) {
 				// FLIEGEN: only meaningful once a party member knows FLY --
 				// mirrors the badge-free "does the team know the move"
 				// simplification Surf/Strength/Waterfall already use.
@@ -245,9 +247,14 @@ void Menu::input(BtnInput b) {
 					else { this->screen = FLY; this->fly_cursor = 0; this->flash.clear(); }
 				}
 			}
-			else if (this->cursor == 5) { this->save_requested = true; this->flash.clear(); }
+			else if (this->cursor == 6) { this->save_requested = true; this->flash.clear(); }
 			else this->screen = CLOSED;
 		}
+	} else if (this->screen == POKEDEX) {
+		int n = this->bdata ? this->bdata->species_count() : 0;
+		if (b == BTN_UP && this->dex_cursor > 0) this->dex_cursor--;
+		else if (b == BTN_DOWN && this->dex_cursor + 1 < n) this->dex_cursor++;
+		else if (b == BTN_LEFT || b == BTN_CONFIRM) this->screen = MAIN;
 	} else if (this->screen == FLY) {
 		int n = (int)this->fly_available.size();
 		if (b == BTN_UP && this->fly_cursor > 0) this->fly_cursor--;
@@ -369,14 +376,49 @@ void Menu::draw(sf::RenderTarget& target) {
 
 	if (this->screen == MAIN) {
 		text("MENÜ", x, y, 24, head_col); y += 44;
-		const char* opts[] = {"BEUTEL", "POKéMON", "PC-BOX", "POKéNAV", "FLIEGEN", "SPEICHERN", "SCHLIESSEN"};
-		for (int i = 0; i < 7; ++i) {
+		const char* opts[] = {"POKéDEX", "BEUTEL", "POKéMON", "PC-BOX", "POKéNAV",
+		                      "FLIEGEN", "SPEICHERN", "SCHLIESSEN"};
+		for (int i = 0; i < 8; ++i) {
 			bool sel = i == this->cursor;
 			if (sel) cursor_at(x, y + i * 38);
 			text(opts[i], x, y + i * 38, 22, sel ? head_col : body_col);
 		}
 		if (!this->flash.empty())
-			text(this->flash, x, y + 7 * 38 + 10, 16, sf::Color(30, 140, 60));
+			text(this->flash, x, y + 8 * 38 + 10, 16, sf::Color(30, 140, 60));
+	} else if (this->screen == POKEDEX) {
+		int total = this->bdata ? this->bdata->species_count() : 0;
+		int seen = 0, caught = 0;
+		if (this->gs)
+			for (int i = 0; i < total; ++i) {
+				const std::string sp = this->bdata->species_by_id(i);
+				if (this->gs->is_caught(sp)) ++caught;
+				else if (this->gs->is_seen(sp)) ++seen;
+			}
+		text("POKéDEX", x, y, 24, head_col); y += 36;
+		text("Gesehen: " + std::to_string(seen + caught) +
+		     "   Gefangen: " + std::to_string(caught), x, y, 16, muted_col);
+		y += 34;
+		const int rows = 10;
+		int first = std::max(0, std::min(this->dex_cursor - rows / 2, std::max(0, total - rows)));
+		for (int row = 0; row < rows && first + row < total; ++row) {
+			int idx = first + row;
+			std::string sp = this->bdata->species_by_id(idx);
+			bool is_caught = this->gs && this->gs->is_caught(sp);
+			bool is_seen = is_caught || (this->gs && this->gs->is_seen(sp));
+			float ry = y + row * 34;
+			bool sel = idx == this->dex_cursor;
+			if (sel) cursor_at(x, ry);
+			char num[16]; std::snprintf(num, sizeof(num), "#%03d", idx + 1);
+			text(num, x, ry, 18, muted_col);
+			if (is_seen) {
+				const sf::Texture* ic = mon_icon(sp);
+				if (ic) { sf::Sprite s(*ic); s.setScale(0.5f, 0.5f); s.setPosition(x + 56, ry - 8); target.draw(s); }
+				text(pretty(sp, ""), x + 96, ry, 20, is_caught ? body_col : muted_col);
+				if (is_caught) text("●", x + 300, ry, 18, sf::Color(30, 140, 60));
+			} else {
+				text("? ? ? ? ?", x + 96, ry, 20, muted_col);
+			}
+		}
 	} else if (this->screen == FLY) {
 		text("FLIEGEN", x, y, 24, head_col); y += 44;
 		if (this->fly_available.empty()) {

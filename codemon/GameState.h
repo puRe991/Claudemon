@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <unordered_map>
+#include <unordered_set>
 
 /******************************************************************************
 GameState - persistent flags, variables and bag shared across maps.
@@ -56,4 +57,18 @@ public:
 		return it == bag.end() ? 0 : it->second;
 	}
 	const std::unordered_map<std::string, int>& bag_items() const { return bag; }
+
+	// Pokédex seen/caught (pokeemerald's per-species dex flags).
+	void mark_seen(const std::string& species) { pokedex_seen.insert(species); }
+	void mark_caught(const std::string& species) { pokedex_caught.insert(species); }
+	bool is_caught(const std::string& species) const { return pokedex_caught.count(species) > 0; }
+	bool is_seen(const std::string& species) const {
+		return is_caught(species) || pokedex_seen.count(species) > 0;
+	}
+	// For SaveGame: every seen (not-yet-caught) and every caught species.
+	const std::unordered_set<std::string>& pokedex_seen_set() const { return pokedex_seen; }
+	const std::unordered_set<std::string>& pokedex_caught_set() const { return pokedex_caught; }
+
+private:
+	std::unordered_set<std::string> pokedex_seen, pokedex_caught;
 };

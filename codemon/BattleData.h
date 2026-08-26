@@ -93,6 +93,10 @@ public:
 	// `GetTradeSpecies`/`GetInGameTradeSpeciesInfo`, ...). -1 if unknown.
 	int species_id(const std::string& name) const;
 	std::string species_by_id(int id) const;   // "" if out of range
+	// Total imported species -- the Pokédex screen walks 0..species_count()-1
+	// via species_by_id(). This is species.tsv's own (alphabetical) order,
+	// not the real games' curated Hoenn Dex numbering (not imported).
+	int species_count() const { return (int)species_order.size(); }
 
 	// Build a level-scaled pokemon with its natural (level-up) moveset, real
 	// IVs (0..31 per stat) and a random nature when `rng` is given -- nullptr

@@ -118,6 +118,7 @@ bool Battle::start_wild(const std::string& species, int level, Mon* pm) {
 	this->enemy_title.clear();
 	this->party.clear(); this->party_idx = 0;
 	this->enemy = this->data->make_mon(species, level, this->rng);
+	if (this->gs) this->gs->mark_seen(this->enemy.species);
 	this->player_stages = StatStages(); this->enemy_stages = StatStages();
 	this->weather = WEATHER_NONE; this->weather_turns = 0;
 	this->over = this->victory = false;
@@ -151,6 +152,7 @@ bool Battle::start_trainer(const std::string& trainer_id, const std::string& nam
 	this->enemy_title = name.empty() ? "TRAINER" : name;
 	this->party = pty; this->party_idx = 0;
 	this->enemy = this->data->make_mon(pty[0].first, pty[0].second, this->rng);
+	if (this->gs) this->gs->mark_seen(this->enemy.species);
 	this->player_stages = StatStages(); this->enemy_stages = StatStages();
 	this->weather = WEATHER_NONE; this->weather_turns = 0;
 	this->over = this->victory = false;
@@ -539,6 +541,7 @@ void Battle::send_next_enemy() {
 	this->party_idx++;
 	this->enemy = this->data->make_mon(this->party[this->party_idx].first,
 	                                   this->party[this->party_idx].second, this->rng);
+	if (this->gs) this->gs->mark_seen(this->enemy.species);
 	this->enemy_stages = StatStages();
 	load_sprites();
 	queue(this->enemy_title + " schickt " + nice(this->enemy.species) + "!");
@@ -748,6 +751,7 @@ void Battle::throw_ball() {
 	float p = std::min(1.f, (float)a * status_bonus / 255.f);
 	if ((*this->rng)() % 65536 < (unsigned)(p * 65536.f)) {
 		queue("Erwischt! " + nice(this->enemy.species) + " wurde gefangen!");
+		if (this->gs) this->gs->mark_caught(this->enemy.species);
 		// Reuse the encounter's own already-rolled IVs/nature rather than
 		// generating new ones -- they were "always" this individual's real
 		// values, same as a wild Pokemon's stats not changing at the moment

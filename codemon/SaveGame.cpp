@@ -81,6 +81,13 @@ bool SaveGame::save(const std::string& path, const GameState& gs,
 	f << "bag\t" << gs.bag_items().size() << '\n';
 	for (const auto& kv : gs.bag_items()) f << kv.first << '\t' << kv.second << '\n';
 
+	// Pokédex: every species that's at least been seen, flagged S (seen
+	// only) or C (caught) -- one section covers both rather than needing
+	// two, since a caught species is also seen.
+	f << "dex\t" << (gs.pokedex_seen_set().size() + gs.pokedex_caught_set().size()) << '\n';
+	for (const std::string& sp : gs.pokedex_seen_set()) f << sp << "\tS\n";
+	for (const std::string& sp : gs.pokedex_caught_set()) f << sp << "\tC\n";
+
 	f << "team\t" << team.size() << '\n';
 	for (const Mon& m : team) write_mon(f, m);
 
@@ -137,6 +144,14 @@ bool SaveGame::load(const std::string& path, GameState& gs,
 			for (int i = 0; i < n && std::getline(f, line); ++i) {
 				auto kv = split_tab(line);
 				if (kv.size() >= 2) new_gs.give_item(kv[0], std::atoi(kv[1].c_str()));
+			}
+		} else if (key == "dex" && parts.size() >= 2) {
+			int n = std::atoi(parts[1].c_str());
+			for (int i = 0; i < n && std::getline(f, line); ++i) {
+				auto kv = split_tab(line);
+				if (kv.size() < 2) continue;
+				if (kv[1] == "C") new_gs.mark_caught(kv[0]);
+				else new_gs.mark_seen(kv[0]);
 			}
 		} else if (key == "team" && parts.size() >= 2) {
 			int n = std::atoi(parts[1].c_str());

@@ -215,6 +215,7 @@ void ScriptVM::resolve_starter(const std::string& species) {
 	}
 	if (this->state) {
 		this->state->set_flag("FLAG_SYS_POKEMON_GET");
+		this->state->mark_caught(species);
 		// pokeemerald's VAR_STARTER_MON (0=Treecko, 1=Torchic, 2=Mudkip):
 		// the Route 103 rival battle switches on this to field the right
 		// counter-type starter against whichever one the player picked.
@@ -535,16 +536,18 @@ void ScriptVM::pump() {
 			} else if (fn == "CreateInGameTradePokemon" && this->bdata && this->team) {
 				// pokeemerald builds the incoming mon with the outgoing mon's
 				// level (see CreateInGameTradePokemonInternal) and otherwise
-				// its own fixed IVs/personality/held mail -- none of which
-				// this engine models (no IVs, no held items at all), so the
-				// species + matched level is the whole trade as far as any
-				// stat/ability difference a player could notice here.
+				// its own fixed personality/held mail -- neither of which
+				// this engine models (no held items at all), so real
+				// IVs/nature (rolled fresh, same as any other make_mon())
+				// and the matched level are the trade's whole gameplay
+				// effect here.
 				int trade_idx = value_of("VAR_0x8004");
 				int party_idx = value_of("VAR_0x8005");
 				if (trade_idx >= 0 && trade_idx < 4 &&
 				    party_idx >= 0 && party_idx < (int)this->team->size()) {
 					int lvl = (*this->team)[party_idx].level;
 					(*this->team)[party_idx] = this->bdata->make_mon(INGAME_TRADES[trade_idx].give, lvl, this->rng);
+					if (this->state) this->state->mark_caught(INGAME_TRADES[trade_idx].give);
 				}
 			} else if (fn == "DoInGameTradeScene") {
 				// The real spinning-Pokeball trade cutscene has no equivalent

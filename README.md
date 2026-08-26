@@ -364,9 +364,16 @@ has been verified either by an automated test or by headless screenshot
   cutscene's own animated assets are all there, just no wordmark), so it's
   text-only, styled like the rest of the UI. Previously the game skipped
   straight into gameplay on launch with no menu at all
-* UI: start menu (Bag/Party/PC Box/PokéNav), map-name banner, HP bars,
-  item/type/species icons, Pokémon Center heal (whole team) + its glowing-
-  Pokéball/monitor animation
+* UI: start menu (Pokédex/Bag/Party/PC Box/PokéNav), map-name banner, HP
+  bars, item/type/species icons, Pokémon Center heal (whole team) + its
+  glowing-Pokéball/monitor animation
+* Pokédex: real seen/caught tracking (a species is "seen" from any battle
+  encounter, wild or trainer, "caught" from a successful catch, a starter
+  pick, or an in-game trade), persisted with the save; a scrollable list
+  screen showing name/icon for a seen species and "? ? ? ? ?" for an
+  unseen one, plus a live Gesehen/Gefangen count -- species order is
+  species.tsv's own (alphabetical) order, not the real games' curated
+  Hoenn Dex numbering (not imported)
 * Overworld minigames: Slot Machine, Roulette, Berry Blender, Pokémon Jump
   (real gameplay, not stubs), with an in-game coin currency
 * Save/load: a SPEICHERN entry in the main menu writes the whole run (map,
@@ -454,8 +461,8 @@ has been verified either by an automated test or by headless screenshot
   shape as Surf/Waterfall, see above) and there's no assets/mechanic for its
   underwater maps yet
 * Bike, day-night cycle, overworld weather, fishing, berry growing
-* Pokédex screen (no seen/caught tracking), party summary/stats screen,
-  player naming/gender selection, options/settings screen
+* Party summary/stats screen, player naming/gender selection,
+  options/settings screen
 * Multiple PC boxes (currently one unlimited list), item storage in the PC
 * Breeding/eggs, contests, secret bases, Battle Frontier (Trading — the 4
   fixed NPC in-game trades — now works; there's no real link-cable trading
@@ -703,9 +710,9 @@ screenshot), not just written and assumed correct.
 - [ ] Fishing, berry growing
 
 **UI**
-- [x] Start menu: Bag, Party, PC Box, PokéNav
+- [x] Start menu: Pokédex, Bag, Party, PC Box, PokéNav
 - [x] Pokémon Center full-team heal + animation
-- [ ] Pokédex screen (seen/caught tracking)
+- [x] Pokédex screen (real seen/caught tracking, persisted)
 - [ ] Party member summary/stats screen
 - [ ] Player naming / gender selection
 - [ ] Options/settings screen
