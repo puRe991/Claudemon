@@ -54,6 +54,15 @@ public:
 	std::string player_name = "BRENDAN";
 	std::string rival_name = "MAY";
 
+	// Options screen (a curated subset of pokeemerald's real SaveBlock2
+	// options, see the OPTIONS screen in Menu.cpp/main.cpp and README for
+	// what's simplified/skipped -- Text Speed and Battle Style aren't
+	// implemented, there's no typewriter text-reveal or switch-prompt
+	// mechanic in this engine to hook them into).
+	bool sound_on = true;           // Audio::set_muted(!sound_on)
+	bool battle_scene_on = true;    // Battle::tick() skips the hit-shake/flash animation when off
+	int frame_type = 0;             // 0-based index into text_window/1..20.png (see UiFrame::load_type)
+
 	void give_item(const std::string& item, int amount) { bag[item] += amount; }
 	// Remove up to `amount` of an item; erases the entry when it hits zero.
 	void take_item(const std::string& item, int amount) {

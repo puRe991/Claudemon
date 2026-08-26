@@ -375,6 +375,16 @@ has been verified either by an automated test or by headless screenshot
   those literal words on import (137 map files use one), and previously
   they were never substituted back out, so dialogue really did say
   "PLAYER inserted and turned the KEY." verbatim
+* An OPTIONS screen in the start menu (a curated subset of the real
+  games' SaveBlock2 options -- Text Speed and Battle Style aren't
+  implemented, see below): Ton (Sound) mutes SFX/cries and drops the
+  current/future music track's volume to 0 without stopping the stream
+  (so unmuting picks back up mid-track); Kampfszene (Battle Scene) skips
+  the hit-shake/flash animation on a damaging hit, HP still updates
+  instantly; Rahmenart (Frame Type) cycles through all 20 real alternate
+  window-border designs (`assets/graphics/text_window/1..20.png`),
+  applied live to the start menu and every dialogue box. All three
+  persist in the savegame
 * UI: start menu (Pokédex/Bag/Party/PC Box/PokéNav), map-name banner, HP
   bars, item/type/species icons, Pokémon Center heal (whole team) + its
   glowing-Pokéball/monitor animation
@@ -503,7 +513,6 @@ has been verified either by an automated test or by headless screenshot
   shape as Surf/Waterfall, see above) and there's no assets/mechanic for its
   underwater maps yet
 * Bike, day-night cycle, overworld weather, fishing, berry growing
-* Options/settings screen
 * Multiple PC boxes (currently one unlimited list), item storage in the PC
 * Breeding/eggs, contests, secret bases, Battle Frontier (Trading — the 4
   fixed NPC in-game trades — now works; there's no real link-cable trading
@@ -762,7 +771,9 @@ screenshot), not just written and assumed correct.
 - [x] Player naming / gender selection (GenderSelect + grid NameEntry, once
       at the start of a new game); fixes dialogue's "PLAYER"/"RIVAL" tokens
       never being substituted
-- [ ] Options/settings screen
+- [x] Options/settings screen (Ton/Kampfszene/Rahmenart -- Text Speed and
+      Battle Style aren't implemented, no typewriter-text or switch-prompt
+      mechanic to hook them into)
 - [ ] Multiple PC boxes, item storage in the PC
 
 **Contests & Battle Frontier** (brought into scope; previously deferred)

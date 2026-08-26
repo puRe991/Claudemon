@@ -3,6 +3,7 @@
 #include <vector>
 #include "SFML/Graphics.hpp"
 #include "UiFrame.h"
+#include "GameState.h"
 
 /******************************************************************************
 DialogBox - a bottom text box for NPC dialog.
@@ -25,10 +26,13 @@ private:
 	std::string wrap(const std::string& s, unsigned int px_width,
 	                 unsigned int char_size) const;
 	UiFrame frame;
+	GameState* gs = nullptr;   // for the Options screen's Rahmenart (Frame Type) setting
 
 public:
 	DialogBox();
 	bool load_font(const std::string& path = "assets/fonts/DejaVuSans.ttf");
+	// Optional: without it, draw() always uses the default frame (type 0).
+	void configure(GameState* g) { this->gs = g; }
 
 	// `line` may contain U+001F separators to split it into pages.
 	void open(const std::string& who, const std::string& line);

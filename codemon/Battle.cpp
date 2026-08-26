@@ -27,9 +27,15 @@ void Battle::set_capture(GameState* g, std::vector<Mon>* t, std::vector<Mon>* b)
 
 void Battle::tick(float dt) {
 	if (this->phase == INACTIVE) return;
+	// Options screen's "Kampfszene" (Battle Scene) setting: off skips the
+	// hit-shake/flash animation entirely -- HP still updates instantly,
+	// just without the animated flourish, same idea as the real games'
+	// "BATTLE SCENE: OFF" (though real Emerald also skips move animations
+	// this engine doesn't have in the first place).
+	bool scene_on = !this->gs || this->gs->battle_scene_on;
 	// start a shake on whichever side just lost HP
-	if (this->enemy.hp < this->prev_ehp) { this->shake_t = 0.3f; this->shake_side = 1; }
-	else if (this->player && this->player->hp < this->prev_php) { this->shake_t = 0.3f; this->shake_side = 2; }
+	if (scene_on && this->enemy.hp < this->prev_ehp) { this->shake_t = 0.3f; this->shake_side = 1; }
+	else if (scene_on && this->player && this->player->hp < this->prev_php) { this->shake_t = 0.3f; this->shake_side = 2; }
 	this->prev_ehp = this->enemy.hp;
 	this->prev_php = this->player ? this->player->hp : 0;
 	if (this->shake_t > 0.f) this->shake_t -= dt;

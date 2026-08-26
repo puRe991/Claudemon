@@ -30,6 +30,7 @@ private:
 	sf::Music music;
 	bool loaded;
 	std::string current_bgm;   // MUS_* id currently playing ("" = none)
+	bool muted = false;
 
 	sf::Sound& free_voice();
 
@@ -41,6 +42,13 @@ public:
 	bool load(const std::string& asset_dir = "assets");
 
 	bool is_loaded() const;
+
+	// The Options screen's "Ton" (Sound) setting: SFX/cries stop playing at
+	// all, and the current/future music track's volume drops to 0 -- but
+	// music keeps streaming rather than stopping, so unmuting picks back up
+	// mid-track instead of restarting it.
+	void set_muted(bool m) { this->muted = m; this->music.setVolume(m ? 0.f : 100.f); }
+	bool is_muted() const { return this->muted; }
 
 	void play_step();
 	void play_bump();

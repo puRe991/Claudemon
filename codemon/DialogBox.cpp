@@ -71,8 +71,10 @@ void DialogBox::draw(sf::RenderTarget& target) {
 	const float box_x = margin, box_y = size.y - box_h - margin;
 	const float box_w = size.x - 2 * margin;
 
-	// pokeemerald's own textbox frame (assets/graphics/text_window/1.png);
-	// falls back to a flat panel if it failed to load.
+	// pokeemerald's own textbox frame (assets/graphics/text_window/1.png by
+	// default, or whichever the Options screen's Rahmenart picked); falls
+	// back to a flat panel if it failed to load.
+	this->frame.load_type(this->gs ? this->gs->frame_type : 0);
 	if (this->frame.ready()) {
 		this->frame.draw(target, box_x, box_y, box_w, box_h, 3.f);
 	} else {

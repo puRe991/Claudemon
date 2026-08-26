@@ -223,7 +223,7 @@ void Menu::use_selected() {
 void Menu::input(BtnInput b) {
 	if (this->screen == MAIN) {
 		if (b == BTN_UP && this->cursor > 0) this->cursor--;
-		else if (b == BTN_DOWN && this->cursor < 7) this->cursor++;
+		else if (b == BTN_DOWN && this->cursor < 8) this->cursor++;
 		else if (b == BTN_CONFIRM) {
 			if (this->cursor == 0) { this->screen = POKEDEX; this->flash.clear(); }
 			else if (this->cursor == 1) { this->screen = BAG; this->bag_cursor = 0; this->flash.clear(); }
@@ -250,7 +250,8 @@ void Menu::input(BtnInput b) {
 					else { this->screen = FLY; this->fly_cursor = 0; this->flash.clear(); }
 				}
 			}
-			else if (this->cursor == 6) { this->save_requested = true; this->flash.clear(); }
+			else if (this->cursor == 6) { this->screen = OPTIONS; this->options_cursor = 0; }
+			else if (this->cursor == 7) { this->save_requested = true; this->flash.clear(); }
 			else this->screen = CLOSED;
 		}
 	} else if (this->screen == POKEDEX) {
@@ -321,6 +322,16 @@ void Menu::input(BtnInput b) {
 		else if (b == BTN_CONFIRM && this->party_cursor < n) this->screen = SUMMARY;
 	} else if (this->screen == SUMMARY) {
 		if (b == BTN_LEFT || b == BTN_CONFIRM) this->screen = PARTY;
+	} else if (this->screen == OPTIONS) {
+		if (b == BTN_UP && this->options_cursor > 0) this->options_cursor--;
+		else if (b == BTN_DOWN && this->options_cursor < 2) this->options_cursor++;
+		else if (b == BTN_LEFT) this->screen = MAIN;
+		else if (b == BTN_CONFIRM || b == BTN_RIGHT) {
+			if (!this->gs) { /* nothing to toggle without a GameState */ }
+			else if (this->options_cursor == 0) this->gs->sound_on = !this->gs->sound_on;
+			else if (this->options_cursor == 1) this->gs->battle_scene_on = !this->gs->battle_scene_on;
+			else this->gs->frame_type = (this->gs->frame_type + 1) % 20;
+		}
 	} else if (b == BTN_CONFIRM || b == BTN_LEFT) {
 		this->screen = MAIN;   // back from PC / POKENAV
 	}
@@ -336,6 +347,7 @@ void Menu::draw(sf::RenderTarget& target) {
 	const sf::Color head_col(24, 72, 160), body_col(40, 40, 56), muted_col(100, 100, 112);
 
 	sf::FloatRect panel_rect(size.x * 0.45f - 20, 20, size.x * 0.55f, size.y - 40);
+	this->frame.load_type(this->gs ? this->gs->frame_type : 0);   // Options: Rahmenart
 	if (this->frame.ready()) {
 		this->frame.draw(target, panel_rect.left, panel_rect.top,
 		                 panel_rect.width, panel_rect.height, 3.f);
@@ -388,14 +400,14 @@ void Menu::draw(sf::RenderTarget& target) {
 	if (this->screen == MAIN) {
 		text("MENÜ", x, y, 24, head_col); y += 44;
 		const char* opts[] = {"POKéDEX", "BEUTEL", "POKéMON", "PC-BOX", "POKéNAV",
-		                      "FLIEGEN", "SPEICHERN", "SCHLIESSEN"};
-		for (int i = 0; i < 8; ++i) {
+		                      "FLIEGEN", "OPTIONEN", "SPEICHERN", "SCHLIESSEN"};
+		for (int i = 0; i < 9; ++i) {
 			bool sel = i == this->cursor;
 			if (sel) cursor_at(x, y + i * 38);
 			text(opts[i], x, y + i * 38, 22, sel ? head_col : body_col);
 		}
 		if (!this->flash.empty())
-			text(this->flash, x, y + 8 * 38 + 10, 16, sf::Color(30, 140, 60));
+			text(this->flash, x, y + 9 * 38 + 10, 16, sf::Color(30, 140, 60));
 	} else if (this->screen == POKEDEX) {
 		int total = this->bdata ? this->bdata->species_count() : 0;
 		int seen = 0, caught = 0;
@@ -607,6 +619,23 @@ void Menu::draw(sf::RenderTarget& target) {
 			for (size_t i = 0; i < m->moves.size(); ++i)
 				text(pretty(m->moves[i], ""), x + (i % 2) * 170, y + (i / 2) * 26, 16, body_col);
 		}
+	} else if (this->screen == OPTIONS) {
+		text("OPTIONEN", x, y, 24, head_col); y += 44;
+		bool sound_on = !this->gs || this->gs->sound_on;
+		bool scene_on = !this->gs || this->gs->battle_scene_on;
+		int ft = this->gs ? this->gs->frame_type : 0;
+		struct Row { const char* label; std::string value; };
+		Row rows[] = {
+			{"TON", sound_on ? "AN" : "AUS"},
+			{"KAMPFSZENE", scene_on ? "AN" : "AUS"},
+			{"RAHMENART", std::to_string(ft + 1) + "/20"},
+		};
+		for (int i = 0; i < 3; ++i) {
+			bool sel = i == this->options_cursor;
+			if (sel) cursor_at(x, y + i * 40);
+			text(rows[i].label, x, y + i * 40, 20, sel ? head_col : body_col);
+			text(rows[i].value, x + 220, y + i * 40, 20, sel ? head_col : body_col);
+		}
 	} else if (this->screen == PC) {
 		text("PC-BOX", x, y, 24, head_col); y += 40;
 		text("Aufbewahrt: " + std::to_string(this->box ? (int)this->box->size() : 0), x, y, 18, muted_col);
@@ -674,6 +703,8 @@ void Menu::draw(sf::RenderTarget& target) {
 		text("[SPACE] lehren   [A] zurück", x, panel.getPosition().y + panel.getSize().y - 34, 16, muted_col);
 	else if (this->screen == USE_ITEM)
 		text("[SPACE] benutzen   [A] zurück", x, panel.getPosition().y + panel.getSize().y - 34, 16, muted_col);
+	else if (this->screen == OPTIONS)
+		text("[SPACE]/[D] ändern   [A] zurück", x, panel.getPosition().y + panel.getSize().y - 34, 16, muted_col);
 	else if (this->screen != MAIN)
 		text("[SPACE] zurück", x, panel.getPosition().y + panel.getSize().y - 34, 16, muted_col);
 	target.setView(saved);

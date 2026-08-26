@@ -29,27 +29,28 @@ bool Audio::load(const std::string& asset_dir) {
 bool Audio::is_loaded() const { return this->loaded; }
 
 void Audio::play_step() {
-	if (!this->loaded) return;
+	if (!this->loaded || this->muted) return;
 	sf::Sound& v = free_voice();
 	v.setBuffer(this->step_buf);
 	v.play();
 }
 
 void Audio::play_bump() {
-	if (!this->loaded) return;
+	if (!this->loaded || this->muted) return;
 	sf::Sound& v = free_voice();
 	v.setBuffer(this->bump_buf);
 	v.play();
 }
 
 void Audio::play_select() {
-	if (!this->loaded) return;
+	if (!this->loaded || this->muted) return;
 	sf::Sound& v = free_voice();
 	v.setBuffer(this->select_buf);
 	v.play();
 }
 
 void Audio::play_cry(const std::string& name, const std::string& asset_dir) {
+	if (this->muted) return;
 	const std::string path = asset_dir + "/sfx/cries/" + name + ".wav";
 	sf::SoundBuffer& buf = this->cry_bufs[this->next_cry_buf];
 	this->next_cry_buf = (this->next_cry_buf + 1) % this->cry_bufs.size();
@@ -66,6 +67,7 @@ bool Audio::play_music(const std::string& ogg_path, bool loop) {
 		return false;
 	}
 	this->music.setLoop(loop);
+	this->music.setVolume(this->muted ? 0.f : 100.f);
 	this->music.play();
 	return true;
 }

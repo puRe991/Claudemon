@@ -1,5 +1,7 @@
 #pragma once
 #include "SFML/Graphics.hpp"
+#include <algorithm>
+#include <string>
 
 /******************************************************************************
 UiFrame - pokeemerald's authentic 9-slice window border (assets/graphics/
@@ -12,6 +14,7 @@ class UiFrame
 private:
 	sf::Texture tex;
 	bool ok;
+	int loaded_type = -1;   // which of the 20 real frames is currently loaded, -1 = none yet
 
 public:
 	UiFrame() : ok(false) {}
@@ -22,6 +25,19 @@ public:
 		return this->ok;
 	}
 	bool ready() const { return this->ok; }
+
+	// The real games' Options "Rahmenart" (Frame Type) setting: 20 real
+	// alternate window-border designs (assets/graphics/text_window/1..20.png,
+	// all the same 24x24 9-slice layout as the default). `type` is 0-based
+	// (0 -> 1.png, ..., 19 -> 20.png), clamped into range. Only reloads the
+	// texture when the type actually changes, so calling this every frame
+	// (as DialogBox/Menu do, to track a live Options change) is cheap.
+	bool load_type(int type) {
+		type = std::max(0, std::min(19, type));
+		if (type == this->loaded_type) return this->ok;
+		this->loaded_type = type;
+		return load("assets/graphics/text_window/" + std::to_string(type + 1) + ".png");
+	}
 
 	// Draw the frame so its outer edge covers [x,y,w,h] in the target's
 	// current coordinate space. `scale` multiplies the native 8px tile size.

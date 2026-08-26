@@ -1490,6 +1490,7 @@ int main() {
 
     DialogBox box;
     box.load_font();
+    box.configure(&gs);
     Battle battle;
     battle.configure(&bdata, &rng);
     battle.set_capture(&gs, &team, &pc_box);
@@ -1927,6 +1928,10 @@ int main() {
                     case sf::Keyboard::M: menu.close(); break;
                     default: break;
                     }
+                    // The OPTIONS screen's "Ton" row toggles gs.sound_on
+                    // directly; sync Audio's live mute state right after
+                    // any menu input that could have flipped it.
+                    audio.set_muted(!gs.sound_on);
                 } else if (event.key.code == sf::Keyboard::M &&
                            !box.is_active() && !vm.running()) {
                     menu.open();
