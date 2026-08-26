@@ -165,6 +165,7 @@ collision
 connections
 up 0 Route124
 right 0 Route127
+dive 0 Underwater_Route126
 npcs
 people_swimmer_m 51 65 S static 0 - 3
 people_swimmer_m 56 22 S static 0 - 3
@@ -241,6 +242,8 @@ msgbox	Thanks to my daily swimming routine… Look! Feast your eyes on this phys
 end
 water
 334,335,368,419,437,445,446,513,518,519,522,523,524,525,526,527,530,531,532,533,534,535,538,539,540,541,542,543,544,545,546,547,559,613,614,621,622,623,627,628,629,631,634,636,638,639,642,645,649,650,652,653,654,655,705,712,713,720,721,728,729,827,828,829
+dive
+334,335,513,534
 music
 MUS_ROUTE120
 encounters

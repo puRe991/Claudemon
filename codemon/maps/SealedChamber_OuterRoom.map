@@ -52,5 +52,9 @@ warps
 10 2 SealedChamber_InnerRoom 0
 water
 327,342,384,385,393,400,402
+divewarp
+Underwater_SealedChamber 12 44
+dive
+327,342
 music
 MUS_SEALED_CHAMBER

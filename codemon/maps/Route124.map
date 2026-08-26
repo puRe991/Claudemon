@@ -167,6 +167,7 @@ down 0 Route126
 left 10 LilycoveCity
 right 0 Route125
 right 40 MossdeepCity
+dive 0 Underwater_Route124
 warps
 70 48 Route124_DivingTreasureHuntersHouse 0
 npcs
@@ -295,6 +296,8 @@ signs
 73 48	HUNTER'S HOUSE
 water
 334,335,368,370,372,419,420,429,431,437,439,445,446,447,514,515,531,545,546,827,828,829
+dive
+334,335
 music
 MUS_ROUTE120
 encounters

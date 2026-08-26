@@ -104,12 +104,18 @@ endif()
 # The game loads its assets through paths that are relative to the working
 # directory (e.g. "maps/map_00.txt", "assets/Red_player.png"). Copy them next
 # to the built binary so `./build/codemon` runs from the build tree.
-add_custom_command(TARGET codemon POST_BUILD
+#
+# This is its own always-run target rather than a POST_BUILD on codemon: as a
+# POST_BUILD it only fires when the executable itself relinks, so re-running
+# the importer and rebuilding left the staged copy stale -- and the engine
+# tests read their maps from there, so they would test yesterday's data.
+add_custom_target(stage_assets ALL
     COMMAND ${CMAKE_COMMAND} -E copy_directory
-            "${SRC_DIR}/maps"   "$<TARGET_FILE_DIR:codemon>/maps"
+            "${SRC_DIR}/maps"   "${CMAKE_CURRENT_BINARY_DIR}/maps"
     COMMAND ${CMAKE_COMMAND} -E copy_directory
-            "${SRC_DIR}/assets" "$<TARGET_FILE_DIR:codemon>/assets"
+            "${SRC_DIR}/assets" "${CMAKE_CURRENT_BINARY_DIR}/assets"
     COMMENT "Staging maps/ and assets/ next to the game binary")
+add_dependencies(codemon stage_assets)
 
 if(WIN32)
     # SFML's audio module always dynamically loads OpenAL Soft's DLL at
@@ -144,7 +150,7 @@ add_test(NAME core_logic COMMAND codemon_tests)
 # half skips itself when there is no display (see has_display() in the source).
 add_executable(codemon_engine_tests "${SRC_DIR}/tests/engine_tests.cpp")
 target_link_libraries(codemon_engine_tests PRIVATE monsta_engine)
-add_dependencies(codemon_engine_tests codemon)   # for the staged maps/ + assets/
+add_dependencies(codemon_engine_tests stage_assets)   # reads the staged maps/ + assets/
 add_custom_command(TARGET codemon_engine_tests POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
             "${SRC_DIR}/tests/fixtures"

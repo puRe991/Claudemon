@@ -99,5 +99,7 @@ goto Common_EventScript_LegendaryFlewAway
 end
 water
 327
+dive
+327
 music
 MUS_RG_SEVII_CAVE

@@ -340,6 +340,25 @@ has been verified either by an automated test or by headless screenshot
   straight to it, landing at the same tile as that town's own heal location.
   Gated on the team knowing FLY (badge check omitted, same simplification
   already used for Surf/Strength/Waterfall)
+* Dive: pressing A while surfing over deep water (pokeemerald's own
+  `MetatileBehavior_IsDiveable` metatiles) drops to the underwater map
+  hanging off that map's `dive` connection, at the same tile; pressing A
+  underwater surfaces again. Maps without such a connection use their
+  `setdivewarp` target instead, which brings its own arrival tile. Gated on
+  the 7th badge *and* a party member knowing the move — deliberately
+  stricter than the badge-free convention the other HMs use here, since
+  `FLAG_BADGE07_GET` is exactly what the real check reads.
+  **This is what makes Sootopolis City reachable at all**: it has no land
+  route, no warp and no map connection from outside, so surfacing out of
+  `Underwater_SootopolisCity` is the only entrance. Without Dive the 8th
+  gym, the Cave of Origin and the whole endgame were cut off, and the 14
+  imported `Underwater_*` maps were unreachable dead weight
+* Trainers challenge the player on sight, along their own facing direction
+  up to their real per-trainer range, with walls and other NPCs breaking
+  the line of sight (pokeemerald's `GetTrainerApproachDistance`). 530
+  trainers across the 489 maps carry a range; previously every one of them
+  had to be walked up to and talked to. A trainer only watches while the
+  player still owes them a battle
 * Scripted multi-NPC cutscenes: `applymovement`/`addobject`/`removeobject`/
   `hideobject`/`showobject` targeting a specific object event by its
   `LOCALID_*` name (not just "the NPC just talked to"), e.g. Petalburg Gym's
@@ -507,11 +526,8 @@ has been verified either by an automated test or by headless screenshot
 
 ### ❌ Not implemented yet
 
-* Gift/fossil Pokémon (`givemon`: Johto starters, Beldum, Castform, fossils)
-* HM field moves other than Cut/Rock Smash/Surf/Strength/Waterfall/Fly
-  (Flash/Dive) — Dive needs its own walk-onto-special-tile trigger (same
-  shape as Surf/Waterfall, see above) and there's no assets/mechanic for its
-  underwater maps yet
+* Flash (the dark-cave maps render fully lit instead, so they're passable —
+  easier than the original rather than blocked)
 * Bike, day-night cycle, overworld weather, fishing, berry growing
 * Multiple PC boxes (currently one unlimited list), item storage in the PC
 * Breeding/eggs, contests, secret bases, Battle Frontier (Trading — the 4
@@ -732,7 +748,8 @@ screenshot), not just written and assumed correct.
 - [x] `specialvar` opcode — `GetBattleOutcome`/`PlayerHasBerries` real,
       the rest honestly default to 0/false (see above)
 - [x] Scripted legendary/static encounters (`setwildbattle`/`dowildbattle`)
-- [ ] Gift/fossil Pokémon (`givemon`)
+- [x] Gift/fossil Pokémon (`givemon`/`giveegg`: Johto starters, Beldum,
+      Castform, the revived fossils; overflows to the PC when the party is full)
 - [x] Mossdeep Gym rotating-tile puzzle (also covers Trick House Puzzle #7)
 - [x] Comparison `goto_if_ge/gt/lt/le`/`call_if_ge/gt/lt/le`,
       `checkitem`/`removeitem`/`bufferitemname`
@@ -757,7 +774,10 @@ screenshot), not just written and assumed correct.
 - [x] Strength (native boulder-push collision mechanic, real activation text)
 - [x] Waterfall (climbing gated on surfing north into it, real activation text)
 - [x] Fly (FLIEGEN menu entry, visited-town tracking, real arrival tiles)
-- [ ] Remaining HM field moves (Flash/Dive)
+- [x] Dive (deep-water metatiles, dive/emerge connections and `setdivewarp`)
+      — unblocks Sootopolis City, which had no other way in
+- [x] Trainers challenge the player on sight (real per-trainer sight ranges)
+- [ ] Flash (dark caves render lit, so they're passable anyway)
 - [x] Running Shoes (hold Shift, gated on FLAG_SYS_B_DASH, real 2x speed)
 - [ ] Bike
 - [ ] Day-night cycle, overworld weather

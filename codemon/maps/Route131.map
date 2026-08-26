@@ -140,6 +140,8 @@ msgbox	Gasp… Gasp… I'm wiped out…The going's easy. It's the leaving that'
 end
 water
 335,342,368,372,384,393,400,408
+dive
+335,342
 music
 MUS_ROUTE119
 encounters

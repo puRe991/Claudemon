@@ -456,6 +456,44 @@ static void test_sight_only_while_undefeated(BattleData& bd) {
     CHECK(!vm.script_has_pending_trainer("Sight_TrainerScript"));
 }
 
+// ----------------------------------------------------------------- dive/map --
+
+static void test_dive_reaches_sootopolis() {
+    std::printf("[map] Dive route into Sootopolis City\n");
+    // Sootopolis City has no land route, no warp and no map connection from
+    // outside -- surfacing out of Underwater_SootopolisCity is the only way
+    // in. Dive was entirely unimplemented (the engine never even mentioned
+    // it), so the 8th gym, the Cave of Origin and the endgame were cut off
+    // and the 14 imported Underwater_* maps were unreachable dead weight.
+    //
+    // Walks the actual chain the player has to take:
+    //   Route126 --dive--> Underwater_Route126 --warp--> Underwater_Sootopolis
+    //            --setdivewarp--> SootopolisCity
+    Map route126("maps/Route126.map");
+    CHECK(route126.dive_dest() == "Underwater_Route126");
+    // The dive has to be startable somewhere on the map, not just declared.
+    bool any_diveable = false;
+    for (unsigned y = 0; y < route126.get_height() && !any_diveable; ++y)
+        for (unsigned x = 0; x < route126.get_width(); ++x)
+            if (route126.is_diveable((int)x, (int)y)) { any_diveable = true; break; }
+    CHECK(any_diveable);
+
+    Map uw126("maps/Underwater_Route126.map");
+    CHECK(uw126.emerge_dest() == "Route126");           // and back up again
+    bool warps_to_uw_sootopolis = false;
+    for (const Warp& w : uw126.warps())
+        if (w.dest == "Underwater_SootopolisCity") warps_to_uw_sootopolis = true;
+    CHECK(warps_to_uw_sootopolis);
+
+    Map uw_soot("maps/Underwater_SootopolisCity.map");
+    CHECK(uw_soot.divewarp_dest() == "SootopolisCity");
+    CHECK(uw_soot.divewarp_x() == 29 && uw_soot.divewarp_y() == 53);
+
+    // The return trip: Sootopolis dives back down to its own underwater map.
+    Map soot("maps/SootopolisCity.map");
+    CHECK(soot.divewarp_dest() == "Underwater_SootopolisCity");
+}
+
 // --------------------------------------------------------------------- main --
 
 int main() {
@@ -483,6 +521,7 @@ int main() {
         test_wild_battle_capture(bd);
         test_trainer_sight();
         test_sight_only_while_undefeated(bd);
+        test_dive_reaches_sootopolis();
     } else {
         std::printf("[skip] no DISPLAY: Map/ScriptVM/Battle tests need a GL "
                     "context (run under xvfb-run to include them)\n");

@@ -164,6 +164,7 @@ collision
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 connections
 down 0 Underwater_Route126
+emerge 0 Route124
 triggers
 42 51 0 0 Underwater_Route124_HiddenItem_42_51
 14 40 0 0 Underwater_Route124_HiddenItem_14_40

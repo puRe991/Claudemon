@@ -43,6 +43,10 @@ msgbox	Urrrrppp…I'm getting queasy just being aboard this ship…It's not ev
 end
 water
 327,342,368,384,385,393,400,402
+divewarp
+AbandonedShip_Underwater2 17 4
+dive
+327,342
 music
 MUS_ABANDONED_SHIP
 encounters

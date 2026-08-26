@@ -162,6 +162,10 @@ msgbox	I think POKéMON enjoy the fast-running currents around these parts.
 end
 water
 327,342,368,370,372,437,445,446,447
+divewarp
+Underwater_Route134 8 6
+dive
+327,342
 music
 MUS_ROUTE119
 encounters

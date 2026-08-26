@@ -85,6 +85,7 @@ collision
 connections
 down 0 MossdeepCity
 left 0 Route124
+dive 0 Underwater_Route125
 warps
 22 19 ShoalCave_LowTideEntranceRoom 0
 npcs

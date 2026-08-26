@@ -889,6 +889,10 @@ signs
 41 37	SOOTOPOLIS CITY“The mystical city where history slumbers.”
 water
 152,154,176,177,178,184,186,192,194,195,196,203,204,617,633,642,643,644,645,646,647,653,654,655
+divewarp
+Underwater_SootopolisCity 9 6
+dive
+654
 visit
 FLAG_VISITED_SOOTOPOLIS_CITY
 music

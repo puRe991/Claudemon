@@ -165,6 +165,7 @@ collision
 connections
 up 0 Route104
 down 0 Route106
+dive 0 Underwater_Route105
 warps
 9 20 IslandCave 0
 npcs

@@ -43,5 +43,9 @@ msgbox	“SUBMARINE EXPLORER 1” is painted on the hull.This is the submarine 
 end
 water
 552,736,737,738,739,744,745,746,747
+divewarp
+SeafloorCavern_Entrance 10 17
+dive
+552,736,737,738,739,744,745,746,747
 music
 MUS_UNDERWATER

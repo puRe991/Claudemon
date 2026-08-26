@@ -156,6 +156,8 @@ msgbox	TRAINERS travel the fields and mountains, so they must be fit, too.
 end
 water
 335,368,370,372,385,393,402,410,419,420,431,437,439,445,446,447
+dive
+335
 music
 MUS_ROUTE119
 encounters

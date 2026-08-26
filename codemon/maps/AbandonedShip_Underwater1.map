@@ -23,5 +23,9 @@ warps
 4 7 AbandonedShip_Underwater2 0
 water
 713,719,720,721,722,723,751,759,760,761,762
+divewarp
+AbandonedShip_HiddenFloorCorridors 0 10
+dive
+713,722,723
 music
 MUS_UNDERWATER

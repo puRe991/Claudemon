@@ -50,5 +50,7 @@ msgbox	Yay! It's a ship!
 end
 signs
 11 4	PLAYER inserted and turned the STORAGE KEY.The inserted KEY stuck fast, but the door opened.
+divewarp
+AbandonedShip_Underwater1 5 4
 music
 MUS_ABANDONED_SHIP

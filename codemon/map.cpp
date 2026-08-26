@@ -83,6 +83,10 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 		                        // encounters block's own surf-slot sub-line
 		                        // prefix, not this section header
 		       s.rfind("waterfall", 0) == 0 ||
+		       s.rfind("divewarp", 0) == 0 ||
+		       s == "dive" ||   // exact: the connections block also has a
+		                        // "dive <offset> <map>" line
+
 		       s.rfind("visit", 0) == 0 ||
 		       s.rfind("music", 0) == 0 ||
 		       s.rfind("counters", 0) == 0 ||
@@ -120,6 +124,11 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 				std::string dir_str;
 				Connection cn;
 				if (!(ss >> dir_str >> cn.offset >> cn.dest)) continue;
+				// "dive"/"emerge" are vertical links for the Dive HM, not
+				// walk-off-the-edge directions, so they get their own slots
+				// instead of a DIR (see dive_dest/emerge_dest).
+				if (dir_str == "dive")        { this->dive_dest_ = cn.dest; continue; }
+				else if (dir_str == "emerge") { this->emerge_dest_ = cn.dest; continue; }
 				cn.dir = (dir_str == "up") ? DIR::N : (dir_str == "down") ? DIR::S :
 				         (dir_str == "left") ? DIR::W : (dir_str == "right") ? DIR::E : DIR::NONE;
 				if (cn.dir != DIR::NONE) this->connection_list.push_back(cn);
@@ -180,6 +189,21 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 				std::vector<int> g;
 				parse_int_row(rest[i], g);
 				for (int id : g) this->water_ids.insert(id);
+				++i;
+			}
+		} else if (head.rfind("divewarp", 0) == 0) {
+			// "<dest_map> <x> <y>"
+			if (++i < rest.size()) {
+				std::stringstream ss(rest[i]);
+				ss >> this->divewarp_dest_ >> this->divewarp_x_ >> this->divewarp_y_;
+				++i;
+			}
+		} else if (head == "dive") {
+			// single line of comma-separated diveable deep-water metatile ids
+			if (++i < rest.size()) {
+				std::vector<int> g;
+				parse_int_row(rest[i], g);
+				for (int id : g) this->dive_ids.insert(id);
 				++i;
 			}
 		} else if (head.rfind("waterfall", 0) == 0) {
@@ -348,6 +372,11 @@ bool Map::is_water(int tile_x, int tile_y) const {
 	if (!in_bounds(tile_x, tile_y) || this->water_ids.empty()) return false;
 	int id = this->tile_map[this->index(tile_x, tile_y)];
 	return this->water_ids.count(id) > 0;
+}
+
+bool Map::is_diveable(int tile_x, int tile_y) const {
+	if (!in_bounds(tile_x, tile_y) || this->dive_ids.empty()) return false;
+	return this->dive_ids.count(this->tile_map[index(tile_x, tile_y)]) > 0;
 }
 
 bool Map::is_waterfall(int tile_x, int tile_y) const {

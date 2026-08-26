@@ -159,6 +159,8 @@ msgbox	It's just my luck that a tough TRAINER like you would drift here… I mus
 end
 water
 335,368,372,419,420,429,445,446,447
+dive
+335
 music
 MUS_ROUTE119
 encounters

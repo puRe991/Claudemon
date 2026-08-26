@@ -27,7 +27,7 @@ Usage:
 
 Only dependency: Pillow (pip install Pillow).
 """
-import argparse, json, os, shutil, struct, subprocess, sys, wave, math, glob
+import argparse, json, os, re, shutil, struct, subprocess, sys, wave, math, glob
 
 from PIL import Image
 
@@ -179,6 +179,10 @@ MB_COUNTER            = 128   # shop/PC-counter behavior (see combined_counter_i
 # player up a waterfall. It gets its own id set below instead.
 MB_WATER_IDS          = {16, 17, 18, 20, 21, 25, 34, 42}
 MB_WATERFALL          = 19
+# Deep water you can Dive into (pokeemerald's MetatileBehavior_IsDiveable):
+# MB_INTERIOR_DEEP_WATER, MB_DEEP_WATER, MB_SOOTOPOLIS_DEEP_WATER. All three
+# are surfable water as well, so this is a subset of MB_WATER_IDS.
+MB_DIVE_IDS           = {17, 18, 20}
 
 
 def _tileset_behaviors(ts_path):
@@ -218,6 +222,21 @@ def combined_water_ids(prim_path, sec_path):
             if b in MB_WATER_IDS:
                 water.add(NUM_METATILES_PRIMARY + i)
     return water
+
+
+def combined_dive_ids(prim_path, sec_path):
+    """Set of combined-sheet metatile ids that can be Dived into (see
+    MB_DIVE_IDS): ordinary surfable water that additionally has an underwater
+    map hanging off this map's `dive` connection."""
+    dive = set()
+    for i, b in enumerate(_tileset_behaviors(prim_path)):
+        if b in MB_DIVE_IDS:
+            dive.add(i)
+    if sec_path:
+        for i, b in enumerate(_tileset_behaviors(sec_path)):
+            if b in MB_DIVE_IDS:
+                dive.add(NUM_METATILES_PRIMARY + i)
+    return dive
 
 
 def combined_waterfall_ids(prim_path, sec_path):
@@ -1280,6 +1299,7 @@ def cmd_world(src, limit=None):
     counter_cache = {}   # (prim,sec) -> set of shop/PC-counter metatile ids
     water_cache = {}   # (prim,sec) -> set of surfable-water metatile ids
     waterfall_cache = {}   # (prim,sec) -> set of MB_WATERFALL metatile ids
+    dive_cache = {}    # (prim,sec) -> set of diveable deep-water metatile ids
     catalog = []
     encounters = load_encounters(src)
     used_species = set()
@@ -1399,11 +1419,13 @@ def cmd_world(src, limit=None):
             counter_cache[key] = combined_counter_ids(prim_path, sec_path)
             water_cache[key] = combined_water_ids(prim_path, sec_path)
             waterfall_cache[key] = combined_waterfall_ids(prim_path, sec_path)
+            dive_cache[key] = combined_dive_ids(prim_path, sec_path)
         sheet_name = pair_cache[key]
         grass_ids = grass_cache.get(key, set())
         counter_ids = counter_cache.get(key, set())
         water_ids = water_cache.get(key, set())
         waterfall_ids = waterfall_cache.get(key, set())
+        dive_ids = dive_cache.get(key, set())
 
         w, h = layout["width"], layout["height"]
         try:
@@ -1567,7 +1589,10 @@ def cmd_world(src, limit=None):
         connections = []
         for cn in (mj.get("connections") or []):
             direction = cn.get("direction")
-            if direction not in ("up", "down", "left", "right"):
+            # "dive"/"emerge" are vertical map links used by the Dive HM
+            # rather than walk-off-the-edge directions, but the engine wants
+            # them (see Map::dive_dest/emerge_dest), so let them through.
+            if direction not in ("up", "down", "left", "right", "dive", "emerge"):
                 continue
             dest = id_to_folder.get(cn.get("map"))
             if dest is None:
@@ -1712,6 +1737,31 @@ def cmd_world(src, limit=None):
             lines.append(",".join(str(g) for g in used_water))
         # MB_WATERFALL metatile ids on this map: surfable like water, but
         # climbing them (moving north into one) also needs the Waterfall HM.
+        # Diveable deep-water metatile ids on this map: surfable like the
+        # rest, but standing on one with a `dive` connection present lets the
+        # Dive HM take the player to the underwater map below.
+        # pokeemerald's `setdivewarp MAP_X, x, y` (an ON_RESUME map script):
+        # a fixed dive/emerge destination for maps that have no dive/emerge
+        # *connection*. Sootopolis City is the important one -- it has no land
+        # route, warp or connection from outside, so surfacing out of
+        # Underwater_SootopolisCity is the only way in. A couple of maps set it
+        # twice under different conditions; the first is the default one.
+        dive_warp = None
+        sinc = os.path.join(mapdir, "scripts.inc")
+        if os.path.isfile(sinc):
+            m = re.search(r"setdivewarp\s+(MAP_\w+)\s*,\s*(\d+)\s*,\s*(\d+)",
+                          open(sinc, encoding="utf-8", errors="replace").read())
+            if m:
+                folder = id_to_folder.get(m.group(1))
+                if folder:
+                    dive_warp = (folder, int(m.group(2)), int(m.group(3)))
+        if dive_warp:
+            lines.append("divewarp")
+            lines.append(f"{dive_warp[0]} {dive_warp[1]} {dive_warp[2]}")
+        used_dive = sorted(set(ids) & dive_ids)
+        if used_dive:
+            lines.append("dive")
+            lines.append(",".join(str(g) for g in used_dive))
         used_waterfall = sorted(set(ids) & waterfall_ids)
         if used_waterfall:
             lines.append("waterfall")

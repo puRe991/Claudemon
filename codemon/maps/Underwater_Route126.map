@@ -165,6 +165,7 @@ collision
 connections
 up 0 Underwater_Route124
 right 0 Underwater_Route127
+emerge 0 Route126
 warps
 45 65 Underwater_SootopolisCity 0
 triggers

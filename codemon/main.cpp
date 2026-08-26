@@ -250,6 +250,50 @@ static bool team_knows_move(const std::vector<Mon>& team, const std::string& mov
     return false;
 }
 
+// Dive/emerge (pokeemerald's TrySetDiveWarp, src/field_control_avatar.c):
+// pressing A while surfing over deep water that has an underwater map below it
+// takes the player down; pressing A on an underwater map surfaces again. Both
+// keep the player's exact x/y -- the two maps are the same size and lie on top
+// of each other -- so no arrival tile is needed.
+//
+// Sootopolis City has no land route, no warp and no map connection from
+// outside: diving in Route 126 and surfacing inside it is the only way in, so
+// without this the 8th gym, the Cave of Origin and the story's whole endgame
+// were unreachable.
+//
+// Returned string is the destination map name, or "" if diving isn't possible
+// here. Gated on the 7th badge like the real game, plus a party member that
+// actually knows the move (this engine's badge-free HM convention for the
+// others is deliberately tightened here, since FLAG_BADGE07_GET is exactly
+// what the real check uses).
+static std::string dive_target(Session* s, const std::vector<Mon>& team,
+                               const GameState& gs, int& out_x, int& out_y) {
+    out_x = out_y = -1;   // -1/-1 = keep the player's current tile
+    if (!gs.flag("FLAG_BADGE07_GET") || !team_knows_move(team, "DIVE"))
+        return std::string();
+    if (!s->map->emerge_dest().empty()) return s->map->emerge_dest();   // surfacing
+    // A fixed setdivewarp overrides both, and brings its own arrival tile. It
+    // works in both directions: Sootopolis City sets one pointing down, and
+    // Underwater_SootopolisCity sets one pointing back up.
+    if (!s->map->divewarp_dest().empty()) {
+        const bool on_water = s->player->is_surfing();
+        const bool diveable_here =
+            s->map->is_diveable(s->player->get_tile_x(), s->player->get_tile_y());
+        // Underwater maps have no diveable tiles of their own -- being there at
+        // all is enough to surface; on the surface the player has to be over
+        // deep water.
+        if (!on_water || diveable_here || s->map->dive_dest().empty()) {
+            out_x = s->map->divewarp_x();
+            out_y = s->map->divewarp_y();
+            return s->map->divewarp_dest();
+        }
+    }
+    if (s->player->is_surfing() &&
+        s->map->is_diveable(s->player->get_tile_x(), s->player->get_tile_y()))
+        return s->map->dive_dest();
+    return std::string();
+}
+
 // Move the player one tile if possible; then, if the destination tile is a
 // warp, load the target map and place the player at the arrival warp. Returns
 // the (possibly new) session.
@@ -1890,6 +1934,8 @@ int main() {
     sf::Clock clock; float npc_accum = 0.f; float move_cooldown = 0.f;
     bool pending_surf = false;   // Ja/Nein prompt is up for a Surf attempt
     bool pending_waterfall = false;   // ... for a Waterfall climb attempt
+    std::string pending_dive;         // ... for a Dive/emerge attempt
+    int pending_dive_x = -1, pending_dive_y = -1;   // -1 = keep the current tile
     while (scr.get_window()->isOpen()) {
         handle_whiteout(&audio);
         sf::Event event;
@@ -1980,8 +2026,20 @@ int main() {
                     menu.open();
                 } else if (event.key.code == sf::Keyboard::Space ||
                            event.key.code == sf::Keyboard::Return) {
-                    if (vm.running()) vm.on_key();           // advance a script message
-                    else interact(sess, box, &audio, vm);    // talk / advance / dismiss
+                    if (vm.running()) { vm.on_key(); }       // advance a script message
+                    else {
+                        int dvx = -1, dvy = -1;
+                        std::string dive_to = dive_target(sess, team, gs, dvx, dvy);
+                        if (!dive_to.empty() && !box.is_active()) {
+                            pending_dive = dive_to;
+                            pending_dive_x = dvx; pending_dive_y = dvy;
+                            yesno.open(sess->map->emerge_dest().empty()
+                                ? "Das Wasser ist hier tiefblau... Möchtest du TAUCHEN einsetzen?"
+                                : "Über dir schimmert Licht... Möchtest du auftauchen?");
+                        } else {
+                            interact(sess, box, &audio, vm);  // talk / advance / dismiss
+                        }
+                    }
                 }
             }
         }
@@ -1998,7 +2056,8 @@ int main() {
                               multichoice.active() ||
                               shop.active() || battle.active() || games.active() ||
                               menu.active() || box.is_active() || vm.running() ||
-                              pending_surf || pending_waterfall;
+                              pending_surf || pending_waterfall ||
+                              !pending_dive.empty();
             bool run_held = !ui_blocked && gs.flag("FLAG_SYS_B_DASH") &&
                             (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) ||
                              sf::Keyboard::isKeyPressed(sf::Keyboard::RShift));
@@ -2057,7 +2116,39 @@ int main() {
         } else if (!starter.active() && vm.wants_starter()) {
             starter.open();
         }
-        if (pending_surf && yesno.done()) {
+        if (!pending_dive.empty() && yesno.done()) {
+            std::string dest = pending_dive;
+            pending_dive.clear();
+            if (yesno.yes()) {
+                // Same tile on the map above/below -- the pair is aligned.
+                const int ax = (pending_dive_x >= 0) ? pending_dive_x
+                                                     : sess->player->get_tile_x();
+                const int ay = (pending_dive_y >= 0) ? pending_dive_y
+                                                     : sess->player->get_tile_y();
+                Session* ns = load_session("maps/" + dest + ".map", ax, ay, &gs);
+                if (ns->map->ready()) {
+                    // Underwater and open sea both count as being on the
+                    // water, so surfacing onto ocean keeps the player surfing
+                    // rather than stranding them on a tile they can't stand on.
+                    // A setdivewarp can also land on dry ground (the Abandoned
+                    // Ship's flooded rooms), where surfing must end.
+                    ns->player->set_surfing(
+                        ns->map->is_water(ax, ay) || !ns->map->emerge_dest().empty()
+                        || !ns->map->dive_dest().empty());
+                    ns->player->face(sess->player->get_facing());
+                    free_session(sess);
+                    sess = ns;
+                    vm.configure(sess->map, &gs, &box, &battle, &audio, sess->player,
+                                 &sess->actors, &sess->localid_map);
+                    run_load_triggers(sess->map, gs, vm);
+                    check_trigger(sess, vm, gs);
+                    on_map_change(sess->path, &audio);
+                } else {
+                    free_session(ns);
+                }
+            }
+            yesno.ack();
+        } else if (pending_surf && yesno.done()) {
             pending_surf = false;
             if (yesno.yes()) {
                 int pbx = sess->player->get_tile_x();

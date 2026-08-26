@@ -85,6 +85,7 @@ collision
 connections
 up 0 Route128
 left 0 Route130
+dive 0 Underwater_Route129
 npcs
 people_swimmer_m 28 16 S static 0 - 3
 people_swimmer_f 10 14 S static 0 - 2

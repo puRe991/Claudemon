@@ -142,6 +142,11 @@ private:
 	std::unordered_set<int> counter_ids;      // metatile ids that are shop/PC counters
 	std::unordered_set<int> water_ids;        // metatile ids that are surfable water
 	std::unordered_set<int> waterfall_ids;    // metatile ids that are MB_WATERFALL
+	std::unordered_set<int> dive_ids;         // deep-water metatile ids you can Dive into
+	std::string dive_dest_;                   // underwater map below this one ("" = none)
+	std::string emerge_dest_;                 // surface map above this one ("" = none)
+	std::string divewarp_dest_;               // fixed setdivewarp target ("" = none)
+	int divewarp_x_ = -1, divewarp_y_ = -1;
 	std::vector<EncSlot> land_slots;          // land wild-encounter table
 	std::vector<EncSlot> water_slots;         // surf wild-encounter table
 
@@ -214,6 +219,22 @@ public:
 	// MB_WATERFALL: surfable like water, but climbing it (moving north into
 	// one) also needs the Waterfall HM (see main.cpp's Waterfall gate).
 	bool is_waterfall(int tile_x, int tile_y) const;
+	// Deep water the Dive HM can take the player under (pokeemerald's
+	// MetatileBehavior_IsDiveable). Only meaningful together with dive_dest().
+	bool is_diveable(int tile_x, int tile_y) const;
+	// pokeemerald's "dive"/"emerge" map connections: the underwater map below
+	// this one, and the surface map above it. Empty when this map has none.
+	// Diving and surfacing keep the player's x/y, so no arrival tile is stored.
+	const std::string& dive_dest() const { return this->dive_dest_; }
+	const std::string& emerge_dest() const { return this->emerge_dest_; }
+	// pokeemerald's `setdivewarp MAP, x, y`: a fixed dive/emerge destination
+	// for maps that have no dive/emerge *connection*, with its own arrival
+	// tile rather than keeping the player's. Sootopolis City is reached this
+	// way and no other -- it has no land route, warp or connection from
+	// outside. Returns "" when this map doesn't set one.
+	const std::string& divewarp_dest() const { return this->divewarp_dest_; }
+	int divewarp_x() const { return this->divewarp_x_; }
+	int divewarp_y() const { return this->divewarp_y_; }
 	// Does stepping on (x,y) trigger a wild encounter? (tall grass, the
 	// floor of a cave/indoor map that has encounters but no grass tiles, or
 	// surfable water -- reaching a water tile at all already implies
