@@ -374,6 +374,9 @@ has been verified either by an automated test or by headless screenshot
   unseen one, plus a live Gesehen/Gefangen count -- species order is
   species.tsv's own (alphabetical) order, not the real games' curated
   Hoenn Dex numbering (not imported)
+* Party summary screen (select a party member to see it): type icon(s),
+  HP/EXP bars, nature and ability, all five non-HP stats with the real
+  games' own red/blue boosted/lowered-by-nature coloring, and its moves
 * Overworld minigames: Slot Machine, Roulette, Berry Blender, Pokémon Jump
   (real gameplay, not stubs), with an in-game coin currency
 * Save/load: a SPEICHERN entry in the main menu writes the whole run (map,
@@ -461,8 +464,7 @@ has been verified either by an automated test or by headless screenshot
   shape as Surf/Waterfall, see above) and there's no assets/mechanic for its
   underwater maps yet
 * Bike, day-night cycle, overworld weather, fishing, berry growing
-* Party summary/stats screen, player naming/gender selection,
-  options/settings screen
+* Player naming/gender selection, options/settings screen
 * Multiple PC boxes (currently one unlimited list), item storage in the PC
 * Breeding/eggs, contests, secret bases, Battle Frontier (Trading — the 4
   fixed NPC in-game trades — now works; there's no real link-cable trading
@@ -713,7 +715,7 @@ screenshot), not just written and assumed correct.
 - [x] Start menu: Pokédex, Bag, Party, PC Box, PokéNav
 - [x] Pokémon Center full-team heal + animation
 - [x] Pokédex screen (real seen/caught tracking, persisted)
-- [ ] Party member summary/stats screen
+- [x] Party member summary screen (stats, nature/ability, moves)
 - [ ] Player naming / gender selection
 - [ ] Options/settings screen
 - [ ] Multiple PC boxes, item storage in the PC

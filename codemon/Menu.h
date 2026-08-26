@@ -15,7 +15,7 @@ Menu - the overworld start menu with a Bag (item icons + counts) and a Pokemon
 class Menu
 {
 private:
-	enum Screen { CLOSED, MAIN, BAG, PARTY, PC, POKENAV, TEACH, USE_ITEM, FLY, POKEDEX };
+	enum Screen { CLOSED, MAIN, BAG, PARTY, PC, POKENAV, TEACH, USE_ITEM, FLY, POKEDEX, SUMMARY };
 	sf::Font font; bool font_ok;
 	Screen screen;
 	int cursor;
@@ -27,6 +27,7 @@ private:
 	std::string use_item;   // ITEM_POTION / ITEM_REVIVE / ... pending use
 	int fly_cursor;         // selected destination in the FLY screen
 	int dex_cursor = 0;     // selected species (absolute index) in the POKEDEX screen
+	int party_cursor = 0;   // selected party member in the PARTY/SUMMARY screens
 	// Visited-town destinations available right now (filtered from the fixed
 	// FLY_DESTINATIONS table by GameState::flag() each time FLY opens).
 	std::vector<int> fly_available;

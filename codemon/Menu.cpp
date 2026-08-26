@@ -310,8 +310,16 @@ void Menu::input(BtnInput b) {
 		else if (b == BTN_DOWN && this->use_cursor + 1 < n) this->use_cursor++;
 		else if (b == BTN_LEFT) { this->screen = BAG; this->flash.clear(); }
 		else if (b == BTN_CONFIRM) this->use_selected();
+	} else if (this->screen == PARTY) {
+		int n = this->team ? (int)this->team->size() : 0;
+		if (b == BTN_UP && this->party_cursor > 0) this->party_cursor--;
+		else if (b == BTN_DOWN && this->party_cursor + 1 < n) this->party_cursor++;
+		else if (b == BTN_LEFT) this->screen = MAIN;
+		else if (b == BTN_CONFIRM && this->party_cursor < n) this->screen = SUMMARY;
+	} else if (this->screen == SUMMARY) {
+		if (b == BTN_LEFT || b == BTN_CONFIRM) this->screen = PARTY;
 	} else if (b == BTN_CONFIRM || b == BTN_LEFT) {
-		this->screen = MAIN;   // back from PARTY / PC / POKENAV
+		this->screen = MAIN;   // back from PC / POKENAV
 	}
 }
 
@@ -524,6 +532,7 @@ void Menu::draw(sf::RenderTarget& target) {
 			int row = 0;
 			for (const Mon& m : *this->team) {
 				float ry = y + row * 72;
+				if (row == this->party_cursor) cursor_at(x - 12, ry + 6);
 				const sf::Texture* ic = mon_icon(m.species);
 				if (ic) { sf::Sprite s(*ic); s.setScale(0.9f, 0.9f); s.setPosition(x, ry); target.draw(s); }
 				text(pretty(m.species, "") + "  Lv" + std::to_string(m.level), x + 66, ry + 6, 20, body_col);
@@ -534,6 +543,63 @@ void Menu::draw(sf::RenderTarget& target) {
 				exp_bar(x + 66, ry + 52, m);
 				if (++row >= 6) break;
 			}
+		}
+	} else if (this->screen == SUMMARY) {
+		const Mon* m = (this->team && this->party_cursor < (int)this->team->size())
+			? &(*this->team)[this->party_cursor] : nullptr;
+		if (!m) { text("POKéMON", x, y, 24, head_col); }
+		else {
+			const sf::Texture* ic = mon_icon(m->species);
+			if (ic) { sf::Sprite s(*ic); s.setScale(1.3f, 1.3f); s.setPosition(x, y); target.draw(s); }
+			text(pretty(m->species, "") + "  Lv" + std::to_string(m->level), x + 100, y + 10, 22, head_col);
+			const sf::Texture* t1 = type_icon(m->t1);
+			float tx = x + 100;
+			if (t1) { sf::Sprite s(*t1); s.setPosition(tx, y + 42); target.draw(s); tx += 60; }
+			if (m->t2 != m->t1) {
+				const sf::Texture* t2 = type_icon(m->t2);
+				if (t2) { sf::Sprite s(*t2); s.setPosition(tx, y + 42); target.draw(s); }
+			}
+			y += 90;
+			hp_bar(x, y, m->hp, m->max_hp);
+			text(std::to_string(m->hp) + "/" + std::to_string(m->max_hp), x + 160, y - 4, 18, body_col);
+			y += 22;
+			exp_bar(x, y, *m);
+			y += 30;
+			std::string ab = this->bdata ? this->bdata->ability(m->species) : "";
+			text("Wesen: " + pretty(m->nature, "") + "   Fähigkeit: " +
+			     (ab.empty() || ab == "NONE" ? "---" : pretty(ab, "")), x, y, 16, muted_col);
+			y += 30;
+			// Nature-boosted stat in a warm color, lowered in a cool one (real
+			// games' own summary-screen convention), neutral otherwise.
+			auto stat_col = [&](char stat) -> sf::Color {
+				static const std::map<std::string, std::pair<char,char>> nat = {
+					{"LONELY",{'A','D'}}, {"BRAVE",{'A','E'}}, {"ADAMANT",{'A','S'}}, {"NAUGHTY",{'A','F'}},
+					{"BOLD",{'D','A'}}, {"RELAXED",{'D','E'}}, {"IMPISH",{'D','S'}}, {"LAX",{'D','F'}},
+					{"TIMID",{'E','A'}}, {"HASTY",{'E','D'}}, {"JOLLY",{'E','S'}}, {"NAIVE",{'E','F'}},
+					{"MODEST",{'S','A'}}, {"MILD",{'S','D'}}, {"QUIET",{'S','E'}}, {"RASH",{'S','F'}},
+					{"CALM",{'F','A'}}, {"GENTLE",{'F','D'}}, {"SASSY",{'F','E'}}, {"CAREFUL",{'F','S'}},
+				};
+				auto it = nat.find(m->nature);
+				if (it == nat.end()) return body_col;
+				if (it->second.first == stat) return sf::Color(200, 60, 50);    // boosted
+				if (it->second.second == stat) return sf::Color(60, 100, 200);  // lowered
+				return body_col;
+			};
+			struct StatRow { const char* label; int val; char key; };
+			StatRow rows[] = {
+				{"ANGRIFF", m->atk, 'A'}, {"VERTEIDIGUNG", m->def, 'D'},
+				{"SP. ANGRIFF", m->spa, 'S'}, {"SP. VERTEIDIGUNG", m->spd, 'F'},
+				{"INITIATIVE", m->spe, 'E'},
+			};
+			for (const StatRow& r : rows) {
+				text(r.label, x, y, 16, muted_col);
+				text(std::to_string(r.val), x + 190, y, 16, stat_col(r.key));
+				y += 24;
+			}
+			y += 10;
+			text("Attacken:", x, y, 16, muted_col); y += 24;
+			for (size_t i = 0; i < m->moves.size(); ++i)
+				text(pretty(m->moves[i], ""), x + (i % 2) * 170, y + (i / 2) * 26, 16, body_col);
 		}
 	} else if (this->screen == PC) {
 		text("PC-BOX", x, y, 24, head_col); y += 40;
