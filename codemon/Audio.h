@@ -30,7 +30,23 @@ private:
 	sf::Music music;
 	bool loaded;
 	std::string current_bgm;   // MUS_* id currently playing ("" = none)
+	// The last MUS_* id play_bgm() tried, whether or not its .ogg actually
+	// existed -- remembered so a caller that asks for the same missing track
+	// on every frame/tick (a cutscene's playbgm, a per-frame "ensure this
+	// map's music" call, ...) doesn't retry openFromFile() and re-log an
+	// SFML error every single time; only a *different* id is worth retrying.
+	std::string last_attempted_bgm;
 	bool muted = false;
+	// Set once a play() call demonstrably didn't start (no audio device at
+	// all -- missing/broken hardware, no driver, ...). SFML's loadFromFile()
+	// still reports success in that case (it only decodes the file; the
+	// underlying OpenAL buffer/source calls fail silently into its own error
+	// log), so this is the only reliable signal. Once false, every playback
+	// method short-circuits instead of retrying OpenAL every call -- without
+	// it, a stuck sf::Music imposes a background streaming thread that spins
+	// retrying its broken source as fast as the CPU allows, which is real,
+	// severe stutter, not just log noise.
+	bool device_ok = true;
 
 	sf::Sound& free_voice();
 
