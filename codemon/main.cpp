@@ -1040,7 +1040,7 @@ struct MultiChoicePrompt {
 struct DebugMenu {
     enum Action {
         HEAL_TEAM, ADD_MONEY, ALL_BADGES, GIVE_STARTER, TEACH_HMS,
-        GIVE_ITEMS, SKIP_SCRIPT, CLOSE, COUNT
+        GIVE_ITEMS, GIVE_XP, SKIP_SCRIPT, CLOSE, COUNT
     };
     bool open_ = false;
     int cursor = 0;
@@ -1066,6 +1066,7 @@ struct DebugMenu {
         case GIVE_STARTER: return "Starter-Pokemon waehlen";
         case TEACH_HMS:    return "Alle Hm-Attacken lehren (Leadmon)";
         case GIVE_ITEMS:   return "99x Poke Ball / Trank / Rare Candy";
+        case GIVE_XP:      return "+1000 EP fuer das ganze Team";
         case SKIP_SCRIPT:  return "Laufendes Skript/Dialog abbrechen";
         case CLOSE:        return "Schliessen";
         default: return "";
@@ -2199,6 +2200,12 @@ int main() {
                             gs.give_item("ITEM_POTION", 99);
                             gs.give_item("ITEM_RARE_CANDY", 99);
                             break;
+                        case DebugMenu::GIVE_XP: {
+                            std::vector<std::string> xm;   // level-up/evolution
+                            for (Mon& m : team)             // text, unused here
+                                bdata.grant_exp(m, 1000, xm);
+                            break;
+                        }
                         case DebugMenu::SKIP_SCRIPT:
                             if (vm.running()) vm.abort();
                             if (box.is_active()) box.close();
@@ -2218,6 +2225,7 @@ int main() {
                     case sf::Keyboard::D: battle.input(BTN_RIGHT); break;
                     case sf::Keyboard::Space:
                     case sf::Keyboard::Return: battle.input(BTN_CONFIRM); break;
+                    case sf::Keyboard::BackSpace: battle.input(BTN_CANCEL); break;
                     default: break;
                     }
                 } else if (games.active()) {

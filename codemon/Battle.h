@@ -20,7 +20,7 @@ log and a 2x2 move menu, and resolves turns with the BattleData damage model
 Input is fed one button at a time; the game loop draws it and reads active().
 The player's Mon is mutated in place so HP carries across battles.
 *****************************************************************************/
-enum BtnInput { BTN_UP, BTN_DOWN, BTN_LEFT, BTN_RIGHT, BTN_CONFIRM };
+enum BtnInput { BTN_UP, BTN_DOWN, BTN_LEFT, BTN_RIGHT, BTN_CONFIRM, BTN_CANCEL };
 
 class Battle
 {

@@ -812,6 +812,7 @@ void Battle::input(BtnInput b) {
 	if (this->phase == MOVE) {
 		int n = (int)this->player->moves.size();
 		if (n <= 0) return;
+		if (b == BTN_CANCEL) { this->phase = ACTION; return; }
 		if (b == BTN_LEFT  && (this->cursor % 2) == 1) this->cursor--;
 		else if (b == BTN_RIGHT && (this->cursor % 2) == 0 && this->cursor + 1 < n) this->cursor++;
 		else if (b == BTN_UP   && this->cursor >= 2) this->cursor -= 2;
@@ -833,7 +834,7 @@ void Battle::input(BtnInput b) {
 		int n = this->team ? (int)this->team->size() : 0;
 		if (b == BTN_UP && this->switch_cursor > 0) this->switch_cursor--;
 		else if (b == BTN_DOWN && this->switch_cursor + 1 < n) this->switch_cursor++;
-		else if (b == BTN_LEFT && !this->forced_switch) this->phase = ACTION;
+		else if ((b == BTN_LEFT || b == BTN_CANCEL) && !this->forced_switch) this->phase = ACTION;
 		else if (b == BTN_CONFIRM) do_switch(this->switch_cursor);
 	}
 }
