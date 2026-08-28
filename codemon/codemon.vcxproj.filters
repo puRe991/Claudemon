@@ -29,9 +29,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-    <ClInclude Include="data_structures.h">
-=======
     <ClInclude Include="character.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -39,7 +36,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Tile.h">
->>>>>>> 058ad7da46f5823deab6ba62e1972d7ba5c9fa8e
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

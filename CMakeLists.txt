@@ -36,10 +36,13 @@ endif()
 # is 64-bit only, though -- for a 32-bit (Win32) build, there's nothing to
 # point SFML_DIR at, so CODEMON_FETCH_SFML instead pulls SFML's source via
 # FetchContent and builds it as part of this project (SFML's own CMake uses
-# its bundled extlibs on Windows, so this needs no extra dependencies).
+# its bundled extlibs on Windows, so this needs no extra dependencies). The
+# Windows launcher also turns this on automatically as a fallback if linking
+# the bundled MSVC libraries fails.
 option(CODEMON_FETCH_SFML "Build SFML from source via FetchContent instead of using a bundled/system install (needed for 32-bit Windows, which has no bundled SFML)" OFF)
 
 if(CODEMON_FETCH_SFML)
+    message(STATUS "SFML: building from source via FetchContent")
     include(FetchContent)
     set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
     set(SFML_USE_STATIC_STD_LIBS ON CACHE BOOL "" FORCE)
@@ -63,6 +66,8 @@ elseif(WIN32 AND NOT DEFINED SFML_DIR AND NOT DEFINED ENV{SFML_DIR})
 endif()
 
 if(NOT CODEMON_FETCH_SFML)
+    # audio is required unconditionally: the engine's Audio class (cries,
+    # music, SFX) links sfml-audio regardless of how SFML was obtained.
     set(SFML_COMPONENTS graphics window system audio)
     if(WIN32)
         # sfml-main provides the WinMain -> main shim used by the VS project.
@@ -77,6 +82,7 @@ set(SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/codemon")
 set(ENGINE_SOURCES
     "${SRC_DIR}/Coordinates.cpp"
     "${SRC_DIR}/Tile.cpp"
+    "${SRC_DIR}/TileMap.cpp"
     "${SRC_DIR}/Tileset.cpp"
     "${SRC_DIR}/Window.cpp"
     "${SRC_DIR}/character.cpp"
@@ -89,7 +95,10 @@ set(ENGINE_SOURCES
     "${SRC_DIR}/ScriptVM.cpp"
     "${SRC_DIR}/Menu.cpp"
     "${SRC_DIR}/Minigame.cpp"
-    "${SRC_DIR}/SaveGame.cpp")
+    "${SRC_DIR}/SaveGame.cpp"
+    "${SRC_DIR}/view_utils.cpp"
+    "${SRC_DIR}/MenuModel.cpp"
+    "${SRC_DIR}/MainMenu.cpp")
 
 add_library(monsta_engine STATIC ${ENGINE_SOURCES})
 target_include_directories(monsta_engine PUBLIC "${SRC_DIR}")
@@ -169,6 +178,42 @@ add_custom_command(TARGET codemon_editor POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
             "${SRC_DIR}/region" "$<TARGET_FILE_DIR:codemon_editor>/region"
     COMMENT "Staging region/ next to the editor binary")
+
+# --- Map editor (Dear ImGui) ------------------------------------------------
+# Optional so lean/cross builds (e.g. the Win32 game package) can skip pulling
+# ImGui. Fetches Dear ImGui + ImGui-SFML and reuses the SFML resolved above.
+option(CODEMON_BUILD_EDITOR "Build the ImGui-based map editor" ON)
+
+if(CODEMON_BUILD_EDITOR)
+    include(FetchContent)
+
+    # Dear ImGui ships no CMakeLists; ImGui-SFML compiles it from IMGUI_DIR.
+    FetchContent_Declare(imgui
+        GIT_REPOSITORY https://github.com/ocornut/imgui.git
+        GIT_TAG        v1.90.9)
+    FetchContent_GetProperties(imgui)
+    if(NOT imgui_POPULATED)
+        FetchContent_Populate(imgui)
+    endif()
+    set(IMGUI_DIR "${imgui_SOURCE_DIR}")
+
+    set(IMGUI_SFML_FIND_SFML OFF)   # reuse the SFML targets resolved above
+    set(IMGUI_SFML_IMGUI_DEMO OFF)
+    FetchContent_Declare(imgui-sfml
+        GIT_REPOSITORY https://github.com/SFML/imgui-sfml.git
+        GIT_TAG        v2.6)
+    FetchContent_MakeAvailable(imgui-sfml)
+
+    add_executable(codemon_editor_imgui "${CMAKE_CURRENT_SOURCE_DIR}/editor/editor_main.cpp")
+    target_link_libraries(codemon_editor_imgui PRIVATE monsta_engine ImGui-SFML::ImGui-SFML)
+
+    add_custom_command(TARGET codemon_editor_imgui POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+                "${SRC_DIR}/maps"   "$<TARGET_FILE_DIR:codemon_editor_imgui>/maps"
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+                "${SRC_DIR}/assets" "$<TARGET_FILE_DIR:codemon_editor_imgui>/assets"
+        COMMENT "Staging maps/ and assets/ next to the editor binary")
+endif()
 
 # --- Tests ------------------------------------------------------------------
 enable_testing()

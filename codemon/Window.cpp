@@ -6,9 +6,11 @@ Window::Window(int width, int height, std::string text) {
     this->px_height = height;
     this->px_width = width;
     this->display_text = text;
+    this->fullscreen = false;
 
-    //Create Window for the game to take place in; then store  it as a pointer. 
+    //Create Window for the game to take place in; then store  it as a pointer.
     this->win_obj = new sf::RenderWindow(sf::VideoMode(width, height), this->display_text);
+    this->win_obj->setFramerateLimit(60);
 }
 
 //Returns openess of windows
@@ -56,10 +58,45 @@ void Window::clear() {
      this->win_obj->draw(*sprite);
  }
 
+ void Window::draw(const sf::Drawable& drawable) {
+     this->win_obj->draw(drawable);
+ }
+
  bool Window::get_event(sf::Event* event) {
     return this->win_obj->pollEvent(*event);
 }
 
  void Window::display() {
     this->win_obj->display();
+}
+
+sf::Vector2u Window::get_size() {
+    return this->win_obj->getSize();
+}
+
+void Window::set_view(const sf::View& view) {
+    this->win_obj->setView(view);
+}
+
+void Window::recreate(bool fullscreen) {
+    if (this->win_obj) {
+        this->win_obj->close();
+        delete this->win_obj;
+        this->win_obj = nullptr;
+    }
+
+    if (fullscreen) {
+        this->win_obj = new sf::RenderWindow(
+            sf::VideoMode::getDesktopMode(), this->display_text, sf::Style::Fullscreen);
+    } else {
+        this->win_obj = new sf::RenderWindow(
+            sf::VideoMode(this->px_width, this->px_height), this->display_text, sf::Style::Default);
+    }
+
+    this->fullscreen = fullscreen;
+    this->win_obj->setFramerateLimit(60);
+}
+
+bool Window::is_fullscreen() {
+    return this->fullscreen;
 }
