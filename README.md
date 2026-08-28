@@ -1,19 +1,27 @@
 # Pokémon-Klon
 
-Eine portabel in C++ geschriebene, kachelbasierte 2D-Spiel-Engine mit einem darauf aufbauenden Spiel im Stil von Pokémon Emerald (**Cod-e-mon**). Beide Projekte können mittels Cross-Compilation für Unix (macOS, Debian-basierte Linux-Systeme) und Windows 8+ erstellt werden. Als Build-System wird CMake verwendet, für Grafik, Audio und Fensterverwaltung kommt SFML (Simple and Fast Multimedia Library) zum Einsatz.
+Eine portabel in C++ geschriebene, kachelbasierte 2D-Spiel-Engine mit einem darauf aufbauenden Spiel im Stil von Pokémon Emerald. Projekt können mittels Cross-Compilation für Unix (macOS, Debian-basierte Linux-Systeme) und Windows 8+ erstellt werden. Als Build-System wird CMake verwendet, für Grafik, Audio und Fensterverwaltung kommt SFML (Simple and Fast Multimedia Library) zum Einsatz.
 
 ## Was tatsächlich enthalten ist
 
 Dies ist keine Tech-Demo mit Platzhaltergrafiken – die Welt, die Pokémon und die Spielmechaniken werden aus einem echten **pokeemerald**-Checkout (Pokémon-Emerald-Decompilation) über `codemon/tools/pe_import.py` importiert und anschließend von einer unabhängigen C++-Engine ausgeführt:
 
 ✅ **489 Karten**, gerendert aus den originalen Tilesets, mit echter Kollisionslogik, Warps/Übergängen (Überblendungen zwischen Karten), Schildern und NPCs exakt an den Positionen des Spiels.
+
 ✅ Eine kooperative Script-VM**, die die originalen Event-Skripte von pokeemerald ausführt – NPC-Dialoge (mehrseitig, durch `\x1f` getrennt), Bewegungsskripte, Koordinaten-Trigger sowie Flags/Variablen – sodass NPCs und Story-Events wie im Original funktionieren.
+
 ✅ **Ein vollständiges rundenbasiertes Kampfsystem**: 385 Arten mit echten Basiswerten, Typen und Wachstumsverläufen; 354 Attacken mit Stärke/Typ/Genauigkeit; eine Effektivitätstabelle mit 17 Typen; STAB; physisch/spezial abhängig vom Attackentyp; wilde Begegnungen und 854 Trainerkämpfe mit echten Teams.
+
 ✅ **Fortschrittssystem**: EP-Gewinn und 6 artspezifische Wachstumsverläufe, Neuberechnung der Werte beim Levelaufstieg, Erlernen der korrekten Attacken auf den richtigen Leveln (411 Lernsets) und 172 Entwicklungswege – alles aus den Quelldaten übernommen und nicht geraten.
+
 ✅ **TM/HM-Lernen**: Über den Beutel können gehaltene TMs oder HMs jedem Teammitglied beigebracht werden, sofern die jeweilige Art den Move laut echtem TM/HM-Lernset lernen kann (372 Einträge). TMs werden bei der Verwendung verbraucht, HMs sind wiederverwendbar – genau wie in Gen III.
+
 ✅ **Wilde Begegnungen**, die pro Karte mit `wild_encounters.json` von pokeemerald übereinstimmen – Pokémon, Levelbereiche und Gen-3-Slot-Gewichtung (20/20/10/10/…) – einschließlich Höhlen-/Innenraumböden, auf denen Begegnungen stattfinden, obwohl kein sichtbares Gras vorhanden ist.
+
 ✅ **Storygetreuer Spielstart**: Neue Spiele beginnen im Schlafzimmer des Spielers (Brendans Haus 2F) auf dem kanonischen Heilpunkt, nicht an einem geratenen Spawnpunkt. Das Team und der Beutel sind leer (lediglich die kanonischen 3000 Geld sind vorhanden) – Pokémon und Items erhält der Spieler erst dann, wenn die echte Story sie übergibt.
+
 ✅ **Benutzeroberfläche**: Startmenü mit Beutel, Team, PC-Box und PokéNav, Fangen und Lagern von Pokémon, Item-/Typ-/Arten-Symbole, KP-Balken, Kartenname beim Übergang sowie einige Overworld-Minispiele (Spielautomat/Roulette/Beerenmixer/Pokémon-Sprung) mit einer spielinternen Münzwährung.
+
 ✅ **Audio**: Pokémon-Rufe (wilde Begegnungen, Trainer schicken Pokémon heraus, Wechsel), Karten-Hintergrundmusik sowie Kampf-/Siegesmusik. Die Musik wird von MIDI nach OGG konvertiert und während des Spiels abgespielt. Zusätzlich gibt es generierte Schritt-/Anstoß-/Auswahl-SFX.
 
 Alles oben Genannte wurde anhand der Quelldaten überprüft und ist nicht frei erfunden: Die Import-Pipeline ist datengetrieben und jede Funktion wurde per Headless-Rendering (`CODEMON_SCREENSHOT=...`) gegen das tatsächliche Verhalten von pokeemerald für die jeweilige Karte/Art/Trainer überprüft.
@@ -38,13 +46,19 @@ Alles oben Genannte wurde anhand der Quelldaten überprüft und ist nicht frei e
 #### Ohne besondere Reihenfolge, jederzeit änderbar – je nach Lust und Laune
 
 > ✅ Originale Karten
+
 > ✅ * Einfache Übergänge zwischen Karten – „einfach“ bedeutet ohne wahrnehmbare Ladezeiten.
+
 > ✅ erledigt – Warp-Überblendung, Kartenname
+
 > > * Übergangsanimationen: Wipes
+
 > >   ✅ Fade erledigt; Wipes noch nicht
 
-✅ Wilde Codemon-Gebiete
+✅ Wilde Gebiete
+
 ✅ Kampfsystem erledigt – rundenbasiert, Trainer + wild, Fangen
+
 ✅ erledigt – EP, Level, Entwicklung, TM-/Level-Up-Attacken
 
 
@@ -55,12 +69,12 @@ Alles oben Genannte wurde anhand der Quelldaten überprüft und ist nicht frei e
 > Allgemeine Ziele
 >
 > > * Keine Algorithmen mit einer Laufzeit oberhalb von n·log(n)
-> > * Unit-Test-Testsuite ✅ `codemon_tests`, in CTest eingebunden
+> > * Unit-Test-Testsuite `codemon_tests`, in CTest eingebunden
 > > * Schön wäre es, wenn die Testsuite zusätzlich automatisch die Laufzeit jedes wichtigen Algorithmus messen würde. Noch nicht umgesetzt.
 
 ## Sprites
 
-✅ Die Pokémon-Sprite-Grafiken werden aus [PokeAPI/sprites](https://github.com/PokeAPI/sprites) als Git-Submodul unter `sprites/` eingebunden. Klone das Projekt inklusive Submodulen:
+Die Pokémon-Sprite-Grafiken werden aus [PokeAPI/sprites](https://github.com/PokeAPI/sprites) als Git-Submodul unter `sprites/` eingebunden. Klone das Projekt inklusive Submodulen:
 
 ```sh
 git clone --recurse-submodules <repo-url>
@@ -73,9 +87,13 @@ git submodule update --init --depth 1 sprites
 ✅ Die Overworld, das Kampfsystem und die Pokémon-Daten basieren vollständig auf den Quelldateien von **pokeemerald** und werden durch `codemon/tools/pe_import.py` in eine für die Engine geeignete Form importiert (siehe `codemon/tools/README.md`). Dieses Skript ersetzt die GBA-Build-Tools von pokeemerald auf SFML-kompatible Weise:
 
 ✅ **Tilesets** → vollständig eingefärbte 16×16-Metatile-Sheets in `codemon/assets/tilesets/` (Paletten und Metatile-Ebenen werden bereits beim Import aufgelöst, sodass die Engine nur noch aus dem Sheet lesen muss – keine Palettenberechnung zur Laufzeit).
+
 ✅ **Karten** → `codemon/maps/*.map`: Metatiles, Kollision, Warps, NPCs (mit Dialog- und Bewegungsskripten), Schilder, Koordinaten-Trigger und Wildbegegnungstabellen – eine Datei pro pokeemerald-Karte.
+
 ✅ **Charaktere/NPCs** → jedes Overworld-Laufsprite in `codemon/assets/overworld/` (16×32, 9-Frame-Layout). Spieler und NPCs verwenden dieselbe `Character`-Klasse; für die Laufrichtung nach Osten werden die westlichen Frames gespiegelt.
+
 ✅ **Kampfdaten** → `codemon/assets/battle/*.tsv`: Pokémon-Arten (Werte, Typen, Wachstumsverlauf, EP-Ausbeute), Attacken, Level-Up-Lernsets, TM/HM-Lernsets und TM→Attacke-Tabelle, Entwicklungen und Trainerteams.
+
 ✅ **Audio** → Pokémon-Rufe sowie generierte Schritt-/Anstoß-/Auswahl-Sounds in `codemon/assets/sfx/`, abgespielt über die `Audio`-Klasse. MIDI-Musik wird bei installiertem fluidsynth/timidity + ffmpeg in OGG konvertiert (SFML kann MIDI nicht direkt abspielen). Die jeweilige `MUS_*`-ID der Karte wird in deren `.map`-Datei übernommen und auf `assets/sfx/music/<id>.ogg` aufgelöst.
 
 Import erneut ausführen oder erweitern:
@@ -236,80 +254,141 @@ Dies ist keine Wunschliste: Alles, was als erledigt markiert ist, wurde entweder
 ### ✅ Was funktioniert
 
 ✅ * Kartenrendering, Kollision, Warps/Übergänge, Schilder, Koordinaten-Trigger, NPC-Positionierung und Bewegungstypen (statisch/umherwandern/auf und ab) sowie Lade-Trigger
+
 ✅ * Nahtlose Kartenverbindungen (das Edge-to-Edge-World-Stitching von pokeemerald – beispielsweise die nördliche Kante von Route 101, die direkt in Oldale Town übergeht) zusätzlich zu Tür-/Warp-Übergängen; flüssige kachelweise Bewegung inklusive Kamera, gesteuert durch kontinuierliches Frame-für-Frame-Input statt durch das Key-Repeat-Verhalten des Betriebssystems
+
 ✅ * Kooperative Script-VM (`ScriptVM`) mit den echten pokeemerald-Event-Skripten: Dialoge (mehrseitig), Flags/Variablen, `goto`/`call` + `eq`/`ne`/`set`/`unset`-Bedingungen, `switch`/`case`, Bewegungsskripte, `giveitem`/`finditem`, `setmetatile`
+
 ✅ * Rundenbasierte Kämpfe: 385 Arten, 354 Attacken, 17-Typen-Effektivität, STAB, physisch/spezial, Genauigkeitswurf bei jeder Attacke, echte Wildbegegnungen und 854 Trainerkämpfe mit echten Teams sowie Trainer-Rückkämpfe
+
 ✅ * Statusbedingungen: Schlaf, Gift, Toxin, Verbrennung, Paralyse, Einfrieren und Verwirrung. Die Effekte basieren auf den echten pokeemerald-Daten von Attacken wie Toxin, Donnerwelle, Schlafpuder, Irrlicht und Konfusstrahl einschließlich prozentualer Sekundäreffekte bei Attacken wie Bodycheck, Eisstrahl, Flammenwurf und Giftstachel. Enthalten sind echte Zugblockierungen, End-of-Turn-Schaden, die auf ein Viertel reduzierte Initiative bei Paralyse, halbierter physischer Schaden durch Verbrennung und Gen-3-Typimmunitäten.
+
 ✅ * Pokémon-Wechsel während des Kampfes über die POKéMON-Option im Aktionsmenü sowie das Fortsetzen des Kampfes nach einer Ohnmacht durch Wechsel auf ein gesundes Teammitglied. Der Kampf endet erst, wenn das gesamte Team besiegt ist.
+
 ✅ * Korrekte Sieg-/Niederlagenlogik bei skriptgesteuerten Trainerkämpfen (Arenaleiter, Top Vier, Champion und normale Trainer): Bei einer Niederlage wird nicht mehr das nachfolgende „Sieg“-Skript ausgeführt. Stattdessen wird das Team geheilt und der Spieler zum zuletzt besuchten Pokémon-Center zurückgesetzt – wie im Original.
-✅ [ ]* Fangmechanik mit angenäherter Wahrscheinlichkeit; aktuell nur der Pokéball
+
+[ ]* Fangmechanik mit angenäherter Wahrscheinlichkeit; aktuell nur der Pokéball
+
 ✅ * Skriptgesteuerte legendäre/statische Begegnungen (Regirock/Regice/Registeel, Rayquaza, Kyogre/Groudon, Kecleon, Voltorb-Schwarm in Neu Malvenfroh) über `setwildbattle`/`dowildbattle`, inklusive echter WON/LOST/RAN/CAUGHT-Ergebnisse, auf die Skripte mit `specialvar VAR_RESULT GetBattleOutcome` reagieren können
+
 ✅ * Drehkachel-Puzzle in der Arena von Moosbach City sowie das identische Mechanik-Puzzle Nr. 7 im Rätselhaus: Beim Betätigen eines Schalters werden alle Charaktere auf den entsprechenden Pfeilkacheln tatsächlich verschoben und neu ausgerichtet. Die Mechanik basiert auf dem echten Metatile-Algorithmus von pokeemerald.
+
 ✅ * Zerschneider als echte Feldattacke: Ein Teammitglied mit Zerschneider kann die schneidbaren Bäume beseitigen. `checkpartymove`, `bufferpartymonnick`/`buffermovename`, `removeobject` sowie die zugehörige Textinterpolation funktionieren; die Nutzung ist am ersten Orden gebunden. Gesteinshieb verwendet dieselben gemeinsamen Opcodes und funktioniert entsprechend.
+
 * Turbotreter: Sobald erhalten (`FLAG_SYS_B_DASH`), bewegt sich der Spieler bei gedrückter Shift-Taste mit der echten 2×-Geschwindigkeit des Originals.
+
 ✅ * Alle 4 Ingame-Tauschaktionen (Graphitport? etc.) mit echtem Team-Picker (`ChoosePartyMon`), Art-Abgleich (`GetTradeSpecies`/`GetInGameTradeSpeciesInfo`) und Tauschvorgang (`CreateInGameTradePokemon`). Das Level wird wie im Original angepasst. IVs, Persönlichkeit und getragene Post werden nicht berücksichtigt, da diese Systeme auch an anderer Stelle nicht modelliert sind.
+
 ✅ * EP-Gewinn, alle 6 Wachstumsverläufe, Neuberechnung der Werte beim Levelaufstieg, Level-Up-Lernsets (411) und **Level-Up-Entwicklung** (172 Wege), einschließlich einer echten EP-Leiste. Diese zeigt den Fortschritt zum nächsten Level im Kampf unter dem KP-Balken und neben jedem Teammitglied im POKéMON-Menü.
+
 ✅ * TM/HM-Lernen aus dem Beutel anhand der echten artspezifischen Lernsets (372 Einträge). TMs werden verbraucht, HMs wiederverwendet.
+
 ✅ * Surfen: ordenabhängige Klassifizierung von Wassertiles anhand des ursprünglichen Metatile-Verhaltens, eine Ja/Nein-Abfrage beim ersten Betreten von Wasser, automatisches Absteigen an Land sowie eigene Wasser-Begegnungstabelle. Dadurch sind die hinteren Bereiche Hoenns wie Moosbach, Seegrasulb City und die Pokémon-Liga erreichbar.
+
 ✅ * Stärke: Die Aktivierung verwendet die vorhandene `checkpartymove`/Ja-Nein/`setflag`-Struktur. Zusätzlich schiebt eine neue native Mechanik in `player_step()` Felsbrocken wie `TryPushBoulder` aus pokeemerald.
+
 ✅ * Kaskade: eigene `MB_WATERFALL`-Metatile-Klassifizierung. Kaskadieren wird nur beim Surfen nach Norden in einen Wasserfall angeboten, entsprechend `IsPlayerSurfingNorth`.
+
 ✅ * Fliegen: Das Startmenü besitzt einen FLIEGEN-Eintrag mit allen bereits besuchten Städten/Orten. Nach Auswahl wird direkt zur jeweiligen Stadt teleportiert und am entsprechenden Heilpunkt angekommen. Die Besuchsflags werden auf Basis der echten pokeemerald-Logik gesetzt.
+
 * Tauchen: Mit `A` kann auf tiefem Wasser während des Surfens getaucht werden. Unter Wasser kann mit `A` wieder aufgetaucht werden. Die Funktion berücksichtigt echte Dive-Verbindungen und `setdivewarp`. Die Nutzung erfordert den siebten Orden und ein Pokémon mit Taucher.
+
 * **Dadurch wird Sootopolis City überhaupt erst erreichbar**: Die Stadt besitzt keinen Landweg, keinen normalen Warp und keine Kartenverbindung von außen. Ohne Tauchen wären die achte Arena, die Höhle des Ursprungs und der gesamte Endbereich abgeschnitten.
+
 ✅ * Trainer fordern den Spieler automatisch heraus, wenn er in deren Blickrichtung innerhalb ihrer echten Reichweite steht. Wände und NPCs blockieren die Sichtlinie. 530 Trainer auf den 489 Karten besitzen eine Reichweite.
+
 ✅ **Work in Progress** Skriptgesteuerte Cutscenes mit mehreren NPCs: `applymovement`/`addobject`/`removeobject`/`hideobject`/`showobject` können gezielt ein Objekt anhand seines `LOCALID_*`-Namens ansprechen, beispielsweise Wallys Tutorialkampf in der Arena von Petalburg City.
+
 * `multichoice`/`multichoicedefault`: echte cursorbasierte Auswahlmenüs für Angelqualität, Wettbewerbsinformationen, den Game-Corner-Shop, das 15-Fragen-Rätsel des Rätselhauses, Fossilauswahl bei Devon usw. 55 Optionslisten wurden aus dem ursprünglichen C-Code aufgelöst.
+
 ✅ * Heil-, Beleuchtungs- und Statusheilitems können auf ausgewählte Teammitglieder angewendet werden, mit echten Gen-3-Heilwerten und Statusheilungen.
+
 ✅ * Pokémon-Markt (`pokemart`) und Ja/Nein-Abfragen über das Block-and-Resume-Muster der VM
+
 ✅ * Storygetreuer Spielstart in Brendans Haus 2F auf dem kanonischen Heilpunkt
+
 ✅ * Echtes Titelmenü beim Start. Wenn ein Spielstand vorhanden ist, erscheinen FORTSETZEN/NEUES SPIEL, ansonsten nur NEUES SPIEL. Da kein lizenziertes Titel-Logo importiert werden konnte, wird ein textbasiertes Logo verwendet.
+
 ✅ * Spielerauswahl beim Start eines neuen Spiels: Geschlecht auswählen, anschließend Spieler- und Rivalennamen über ein Raster eingeben. Die `{PLAYER}`-/`{RIVAL}`-Platzhalter aus den Originalskripten werden korrekt ersetzt.
+
 ✅ * OPTIONS-Menü mit:
 
   ✅ * **Ton** – schaltet Soundeffekte/Pokémon-Rufe stumm und setzt die Lautstärke der aktuellen/zukünftigen Musik auf 0, ohne den Stream zu stoppen.
+  
   ✅ * **Kampfszene** – überspringt Treffer-Wackeln/Flash, während KP sofort aktualisiert werden.
+  
   ✅ * **Rahmenart** – schaltet durch alle 20 originalen alternativen Fensterrahmen (`assets/graphics/text_window/1..20.png`).
 
   Alle drei Optionen werden im Spielstand gespeichert.
 ✅ **Work in progress** Benutzeroberfläche mit Startmenü, Pokédex, Beutel, Team, PC-Box, PokéNav, Kartenname, KP-Balken, Item-/Typ-/Arten-Symbolen und Pokémon-Center-Heilanimation
+
 ✅**Work in progress** Pokédex mit echter Gesehen-/Gefangen-Verfolgung, gespeichert im Spielstand. Pokémon werden durch Kämpfe, Fangen, Starterwahl oder Ingame-Tausch als gesehen/ gefangen registriert.
+
 ✅ * Team-Übersichtsseite mit Typen, KP-/EP-Balken, Wesen, Fähigkeit, fünf Nicht-KP-Werten mit den echten Gen-3-Farbmarkierungen sowie Attacken
+
 ✅ * Overworld-Minispiele: Spielautomat, Roulette, Beerenmixer und Pokémon-Sprung mit Münzwährung
+
 ✅ * Speichern/Laden: `SPEICHERN` im Hauptmenü speichert Karte, Position, Flags/Variablen, Beutel, Geld, Team und PC-Box in `savegame.dat`.
+
 ✅ * Audio: Schritt-/Anstoß-/Auswahl-SFX, 58 Karten-Musikstücke, Pokémon-Rufe, Kampf-/Siegesthemen sowie `playbgm`-/`playmoncry`-Unterstützung
+
 ✅ * Gen-3-Kampfstatuswerte (-6 bis +6) für Angriff, Verteidigung, Spezial-Angriff, Spezial-Verteidigung, Initiative, Genauigkeit und Fluchtwert. Statusattacken wie Heuler, Kreideschrei, Schwerttanz, Protzer, Gedankengut und Haze verändern die korrekten Werte.
+
 ✅ * Kritische Treffer mit Gen-3-Wahrscheinlichkeiten, Fokusenergie und korrekter Behandlung von Statuswertsenkungen/-steigerungen. Über 1000 simulierte Treffer wurden zur Überprüfung verwendet.
+
 ✅ * Priorität von Attacken wie Ruckzuckhieb, Tempohieb, Turbotempo und Überwurf
+
 ✅ **Animation Work in progress** Wetter: Regentanz, Sonnentag, Sandsturm und Hagel für 5 Runden, inklusive Schadensmodifikatoren und Ende-Meldungen
+
 ✅* Echte Fähigkeiten aus den Pokémon-Daten sowie ein ausgewählter Satz funktionierender Fähigkeiten, darunter Bedroher, Niesel, Dürre, Sandsturm, Schwebe, Wunderwache und Statusimmunitäten
+
 ✅ * Echte IVs (0–31 pro Wert) und Wesen. Jeder einzelne Mon erhält seine Werte einmalig und behält sie dauerhaft. EVs werden noch nicht gesammelt.
+
 ✅ * Echte PP pro Attacke, PP-Verbrauch auch bei Fehlschlägen, Erzwingen von Verzweifler bei 0 PP sowie Rückstoßschaden. PP wird bei vollständiger Heilung wiederhergestellt.
+
 ✅ * Getragene Items bei wilden Pokémon mit echten Wahrscheinlichkeiten. Ein ausgewählter Teil der Items besitzt echte Effekte, darunter Statusbeeren, Oran-/Sitrusbeere, Überreste, Typverstärker und Ewigstein.
+
 ✅ * **PokéNav-Regionkarte** mit echter Hoenn-Karte, geschlechtsspezifischem Spieler-Marker, beweglichem Cursor und importierten Regionsdaten. Der Cursor kann über die 28×15-Rasterkarte bewegt werden und zeigt den Namen des jeweiligen Bereichs.
+
 * Weitere Script-Opcodes wie `bufferstring`, `buffernumberstring`, `bufferleadmonspeciesname`, `getplayerxy`, `hideplayer`, `showplayer`, `setobjectmovementtype` und `setdynamicwarp`
 * Der Importer verarbeitet `#ifdef UBFIX`, `#ifdef BUGFIX`, `#ifndef BUGFIX`, `#else` und `#endif` korrekt, anstatt beide Script-Zweige gleichzeitig zu exportieren.
+
 ✅ * Trainer-KI verwendet die echten Trainer-Items (Full Restore, Hypertrank usw.) und kann bei niedrigem KP-Stand Items einsetzen. Zusätzlich berücksichtigt `ai_move()` die Genauigkeit einer Attacke und nicht nur deren Schaden.
+
 ✅ * `codemon_tests` / CTest für die anzeigefreien Kern-Datenstrukturen
 
 ### ⚠️ Teilweise / vereinfacht
 
 * **Kampfsystem** ist ein vereinfachter 1-gegen-1-Schadensrechner. EVs werden noch nicht gesammelt und nur ein ausgewählter Teil der getragenen Items besitzt tatsächlich Effekte. Doppelkampf und EP-Teiler fehlen.
+
 * **Fangmechanik**: Funktional existiert aktuell nur `ITEM_POKE_BALL` ohne unterschiedliche Ball-Boni. Die Fangwahrscheinlichkeit selbst verwendet jedoch die echte Gen-3-Formel einschließlich artspezifischer Fangrate, aktuellen/maximalen KP und Statusbonus.
+
 * **Entwicklung**: Nur Level-Up-Entwicklungen werden ausgelöst. Stein-, Tausch- und Freundschaftsentwicklungen sind zwar in den Daten enthalten, werden aber noch nicht im Spiel ausgelöst.
+
 * **Audio**: `playse` für einzelne originale `SE_*`-Effekte ist noch ein No-op. Nur das kleine Set eigener SFX wurde importiert. `MUS_ROUTE118` verwendet vereinfacht immer `MUS_ROUTE119`. Battle-Frontier-Musik wird zwar konvertiert, der Modus selbst ist noch nicht implementiert.
+
 * **`specialvar`**: `GetBattleOutcome` und `PlayerHasBerries` liefern echte Ergebnisse. Andere Systeme wie Rückkämpfe, Pokérus, Trading, Zucht, Wettbewerbe, Fanclub und Trainer Hill liefern aktuell ehrlich `0/false`, weil diese Systeme noch nicht existieren.
+
 * **`setobjectsubpriority`/`resetobjectsubpriority`**: echte Opcodes, aber bewusst No-ops. Die Engine sortiert Objekte bereits pro Frame nach ihrer Y-Position, wodurch die erforderliche Zeichenreihenfolge in den realen Anwendungsfällen korrekt ist.
+
 * **PC-Itemlager / mehrere PC-Boxen**: `checkpcitem` und `bufferboxname` liefern aktuell nichts. Es gibt nur eine unbegrenzte Liste für Pokémon.
+
 * **Trainer-KI-Wechsel**: Pokémon auf der Bank bestehen nur aus Art + Level und werden beim Aussenden neu erzeugt. Es gibt daher keinen persistenten Zustand, zu dem zurückgewechselt werden könnte. Die Reihenfolge der Trainer-Pokémon bleibt fest.
 
 ### ❌ Noch nicht implementiert
 
 * ❌ Blitz (dunkle Höhlen werden stattdessen vollständig beleuchtet dargestellt)
+
 * ❌ Fahrrad, Tag-/Nacht-Zyklus, Wetter in der Overworld, Angeln, Beerenanbau
+
 * ❌ Mehrere PC-Boxen und Itemlagerung im PC
+
 * ❌ Zucht/Eier, Wettbewerbe, Geheimbasen, Battle Frontier
+
 * ❌ Tausch
+
 * ❌ Türöffnungsanimationen (rein kosmetisch)
+
 * ❌ Karteneditor / prozeduraler Kartengenerator
 
 ### 🎯 Priorität der nächsten Fehlerbehebungen
@@ -317,8 +396,11 @@ Dies ist keine Wunschliste: Alles, was als erledigt markiert ist, wurde entweder
 Die Storyinhalte selbst (Dialoge, Skripte, Karten) sind für das gesamte Spiel importiert und bis zur Arena von Metarost City übersetzt. Die folgenden systemischen Lücken wurden bei einem Walkthrough-Audit als tatsächliche Blockaden der Story identifiziert:
 
 ✅ 1. ~~Zerschneider als Feldattacke~~ – erledigt. `checkpartymove`/`bufferpartymonnick`/`buffermovename`/`removeobject` sind in `ScriptVM` implementiert. Schneidbare Bäume funktionieren mit Ordenvoraussetzung.
+
 ✅ 2. ~~Turbotreter~~ – erledigt. `FLAG_SYS_B_DASH` wird verwendet und Shift entspricht auf dem PC der B-Taste des GBA.
+
 ✅ 3. ~~Tausch~~ – erledigt. Alle vier festen Ingame-Tauschaktionen funktionieren über einen echten Team-Picker und Artenabgleich. Ein echter Link-Tausch ist weiterhin nicht möglich. Tauschentwicklungen wie Kadabra, Maschock, Georok und Alpollo können daher noch nicht ausgelöst werden.
+
 ✅ 4. ~~`goto_if_ge/gt/lt/le` / `multichoice`-Audit~~ – erledigt.
 
    * `goto_if_ge/gt/lt/le` und `call_if_ge/gt/lt/le` wurden implementiert.
@@ -327,14 +409,21 @@ Die Storyinhalte selbst (Dialoge, Skripte, Karten) sind für das gesamte Spiel i
    * `multichoice` wurde implementiert. Die 55 relevanten Optionslisten wurden aus den Originaldaten rekonstruiert.
    * `addobject`/`hideobject`/`showobject` wurden implementiert, einschließlich einer `LOCALID`-Objektverwaltung.
    * `opendoor`/`closedoor`/`waitdooranim` bleiben No-ops, da sie nur kosmetische Auswirkungen haben.
+   
 ✅ 5. ~~Playthrough-Blocker-Audit~~ – erledigt. Zwei tatsächliche Blocker wurden gefunden und behoben:
 
    ✅ * **TM/HM-Lernen war für sämtliche TMs und HMs kaputt**, einschließlich Zerschneider. Die Ursache war eine falsche Annahme über die Benennung der Item-Konstanten. Behoben durch direkte Ableitung der Attacke aus dem Itemnamen.
+   
    ✅ * **Surfen fehlte vollständig**, während Wasser nicht korrekt blockiert wurde. Dadurch konnte der hintere Teil Hoenns zu Fuß betreten werden. Eine echte Wasserklassifizierung, Surf-Abfrage, automatische Landung und Wasser-Begegnungstabelle wurden hinzugefügt.
+   
 ✅ 6. ~~Stärke als Feldattacke~~ – erledigt. Das Verschieben von Felsbrocken wurde als native Kollisionsmechanik in `player_step()` implementiert.
+
 ✅ 7. ~~Kaskade als Feldattacke~~ – erledigt. Eigene `MB_WATERFALL`-Klassifizierung und Surf-/Kaskade-Abfrage implementiert.
+
 ✅ 8. ~~Fliegen als Feldattacke~~ – erledigt. Aufgrund fehlender Infrastruktur für eine echte Regionkarten-Fly-Oberfläche wurde es als Liste besuchter Städte im Startmenü umgesetzt.
+
 ✅ 9. ~~`LOCALID`→Objektverwaltung pro Karte~~ – erledigt. `NpcSpawn` speichert die `LOCALID_*`, `Session::localid_map` löst diese auf und `ScriptVM` kann Objekte gezielt verwalten.
+
 ✅ 10. ~~`multichoice`-Unterstützung~~ – erledigt. `MultiChoicePrompt` besitzt einen echten Cursor, speichert die Auswahl in `VAR_RESULT` und unterstützt `multichoicedefault`. Battle-Frontier-spezifische Texte bleiben teilweise offen.
 
 ## To-do-Checkliste
@@ -344,107 +433,181 @@ Alles, was unten abgehakt ist, wurde durch einen Test oder Headless-Screenshot �
 **Grundlagen**
 
 * ✅ Kollision (pro Kachel, bei Bewegung geprüft)
-* ✅ Begrenzungsprüfung (`Map::in_bounds` / `Map::passable`)
+
+* ✅ Begrenzungsprüfung (`Map::in_bounds` / `Map::passable`
+)
 * ✅ Vollständig datengetriebener Asset-Importer (`tools/pe_import.py`)
+
 * ✅ Keine Compile-Time-Hardcodierung
+
 * ✅ NPC-Verhalten, Kartenübergänge und Warp-Überblendungen
+
 * ✅ Nahtlose Kartenverbindungen
+
 * ✅❌ **Work in progress** Flüssige Bewegung + Kamera
+
 * ✅ Unit-Test-Framework in CTest integriert
 
 **Kampf & Fortschritt**
 
 * ✅ Rundenbasiertes Kampfsystem (Trainer + wild, Fangen)
+
 * ✅ RPG-Fortschritt (EP, Level, Level-Up-Entwicklung, Level-Up-Attacken)
+
 * ✅ TM/HM-Lernen anhand echter Lernsets
+
 * ✅ Statusbedingungen + echte Genauigkeitswürfe
+
 * ✅ Kritische Treffer
+
 * ✅ Attackenpriorität
+
 * ✅ Statuswertänderungen (-6 bis +6, alle sieben Werte)
+
 * ❌Wetter
+
 * ✅ Fähigkeiten
+
 * ✅ IVs und Wesen
+
 * ✅ PP und Verzweifler
+
 * ✅ Rückstoß
+
 * ✅ Getragene Items
+
 * ❌ EVs
+
 * ✅ Pokémon-Wechsel während des Kampfes
+
 * ✅ Niederlage/Whiteout
+
 * ❌ Doppelkampf, 
+
 * ✅ EP-Teiler
+
 * ✅ Ingame-Tauschaktionen
+
 * ❌ Stein-/Tausch-/Freundschaftsentwicklungen
+
 * ✅ Fangformel
+
 * ❌ Unterschiedliche Pokébälle
 
 **Kernspiel**
 
 * ✅ Speichern/Laden
+
 * ✅ Heil-, Wiederbelebungs- und Statusitems
+
 * ✅ `specialvar`
+
 * ✅ Legendäre/statische Begegnungen
+
 * ✅ Geschenk-/Fossil-Pokémon
+
 * ✅ Moosbach-Gym-Drehkachel-Puzzle
+
 * ✅ Vergleichs-Opcodes
+
 * ✅ `checkitem`/`removeitem`/`bufferitemname`
+
 * ✅ `LOCALID`→Objektverwaltung
+
 * ✅ `multichoice`/`multichoicedefault`
+
 * ✅ `bufferstring`/`buffernumberstring`/`bufferleadmonspeciesname`
+
 * ✅ `getplayerxy`
+
 * ✅ `hideplayer`/`showplayer`
+
 * ✅ `setobjectmovementtype`
+
 * ✅ `setdynamicwarp`
+
 * ✅ Verarbeitung der `#ifdef`-/`#ifndef`-Bedingungen
+
 * ✅ Trainer-KI-Items
+
 * ❌ Trainer-KI: Pokémon-Wechsel
+
 * ❌ Türanimationen
 
 **Audio**
 
 * ✅❌ **Work in Progress** (Aktuell deaktiviert) Schritt-/Anstoß-/Auswahl-SFX
+
 * ✅ Karten-Hintergrundmusik (58 Tracks)
+
 * ✅ Pokémon-Rufe
+
 * ✅ Kampf-/Siegesmusik
+
 * ✅ `playbgm`/`playmoncry`
+
 * ❌ `playse`
 
 **Overworld-Funktionen**
 
 * ✅ Overworld-Minispiele
+
 * ✅ Zerschneider/Gesteinshieb
+
 * ✅❌ **Test Fehlen** Surfen
+
 * ✅ Stärke
+
 * ✅ Kaskade
+
 * ✅ Fliegen
+
 * ✅❌ **Tests Fehlen** Tauchen
+
 * ❌ schaltet Sootopolis City frei, die ansonsten keinen Zugang besitzt
+
 * ✅ Trainer fordern den Spieler automatisch heraus
+
 * ❌ Blitz
+
 * ✅ Turbotreter
+
 * ❌ Fahrrad
+
 * ❌ Tag-/Nacht-Zyklus und Overworld-Wetter
+
 * ❌ Angeln und Beerenanbau
 
 **UI**
 
 * ✅ Startmenü: Pokédex, Beutel, Team, PC-Box, PokéNav
+
 * ✅ PokéNav-Regionkarte mit echter Hoenn-Karte und Spieler-Marker
+
 * ✅ Pokémon-Center-Heilung des gesamten Teams + Animation
+
 * ✅ **Work in progress** Pokédex mit Gesehen-/Gefangen-Tracking
+
 * ✅ Team-Mitglied-Übersicht
+
 * ✅ Spielername / Geschlechtsauswahl
+
 * ✅ Options-/Einstellungsmenü
+
 * ❌ Mehrere PC-Boxen / Itemlagerung im PC
 
 **Wettbewerbe & Battle Frontier**
 
 * ❌ Wettbewerbe (Cool/Beauty/Cute/Smart/Tough, Bewertung, Wettbewerbs-Hallen-NPCs)
+
 * ❌ Geheimbasen
+
 * ❌ Battle Frontier (Tower/Dome/Palace/Arena/Factory/Pike/Pyramid)
 
 **Derzeit außerhalb des Umfangs**
 
 * ❌ Zucht/Eier (Tausch aktuell noch nicht möglich)
+
 * ❌ Karteneditor (`codemon_editor`, siehe `codemon/editor/README.md`) – bearbeitet den manuell erstellten Kartensatz `codemon/region/`, nicht die importierten pokeemerald-Karten
 
 ## ++ QoL ++
