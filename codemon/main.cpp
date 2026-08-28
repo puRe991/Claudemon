@@ -1485,9 +1485,13 @@ struct EarlyAccessNotice {
     void run(sf::RenderWindow& w) {
         DialogBox box;
         box.load_font();
-        box.open("", "Dies ist eine Early-Access-Version.\x1f"
-                      "Es können noch verschiedene Bugs auftreten, "
-                      "und nicht alles ist bereits perfekt dem Original nachgestellt.");
+        box.open("", "OH! Willkommen in der Welt der POKéMON!\x1f"
+                      "Dieses Abenteuer befindet sich noch in der EARLY-ACCESS-Phase, "
+                      "so wie ein frisch geschlüpftes POKéMON, das noch wachsen muss!\x1f"
+                      "Auf deiner Reise können dir noch wilde BUGS begegnen, und nicht "
+                      "jeder Winkel dieser Welt ist bereits perfekt erforscht.\x1f"
+                      "Aber keine Sorge! Mit etwas Geduld wird auch diese Reise Schritt "
+                      "für Schritt ihr großes Ziel erreichen!");
         while (w.isOpen() && box.is_active()) {
             sf::Event event;
             while (w.pollEvent(event)) {

@@ -32,10 +32,10 @@ MainMenu::MainMenu(float virtual_w, float virtual_h)
 	  m_loaded(false), m_screen(Screen::Title), m_time(0.f)
 {
 	// "Continue" is disabled until there is a save system to load from.
-	this->m_menu.add_item("NEW GAME", MenuAction::NewGame,  true);
-	this->m_menu.add_item("CONTINUE", MenuAction::Continue, false);
-	this->m_menu.add_item("OPTIONS",  MenuAction::Options,  true);
-	this->m_menu.add_item("QUIT",     MenuAction::Quit,     true);
+	this->m_menu.add_item("NEUES SPIEL", MenuAction::NewGame,  true);
+	this->m_menu.add_item("FORTSETZEN",  MenuAction::Continue, false);
+	this->m_menu.add_item("OPTIONEN",    MenuAction::Options,  true);
+	this->m_menu.add_item("BEENDEN",     MenuAction::Quit,     true);
 }
 
 bool MainMenu::load(const std::string& font_path)
@@ -166,11 +166,11 @@ void MainMenu::draw_title_screen(sf::RenderTarget& target)
 	draw_pokeball(target, cx, this->m_vh * 0.18f, this->m_vh * 0.09f);
 
 	this->draw_text(target, "CODEMON", 40, cx, this->m_vh * 0.40f, kTitle, true);
-	this->draw_text(target, "A MONSTA ENGINE GAME", 10, cx, this->m_vh * 0.40f + 44.f, kSubtitle);
+	this->draw_text(target, "EIN MONSTA-ENGINE-SPIEL", 10, cx, this->m_vh * 0.40f + 44.f, kSubtitle);
 
 	// Blinking prompt: on for ~0.6s, off for ~0.4s.
 	if (std::fmod(this->m_time, 1.0f) < 0.6f) {
-		this->draw_text(target, "PRESS ENTER", 14, cx, this->m_vh * 0.78f, kSubtitle);
+		this->draw_text(target, "ENTER DRÜCKEN", 14, cx, this->m_vh * 0.78f, kSubtitle);
 	}
 }
 
@@ -225,14 +225,14 @@ void MainMenu::draw_options_screen(sf::RenderTarget& target)
 {
 	const float cx = this->m_vw / 2.f;
 
-	this->draw_text(target, "CONTROLS", 24, cx, this->m_vh * 0.13f, kTitle, true);
+	this->draw_text(target, "STEUERUNG", 24, cx, this->m_vh * 0.13f, kTitle, true);
 
 	struct Row { const char* left; const char* right; };
 	const Row rows[] = {
-		{ "MOVE",       "W A S D" },
-		{ "CONFIRM",    "ENTER"   },
-		{ "BACK",       "ESC"     },
-		{ "FULLSCREEN", "F11"     },
+		{ "BEWEGEN",    "W A S D" },
+		{ "BESTÄTIGEN", "ENTER"   },
+		{ "ZURÜCK",     "ESC"     },
+		{ "VOLLBILD",   "F11"     },
 	};
 	const int row_count = sizeof(rows) / sizeof(rows[0]);
 
