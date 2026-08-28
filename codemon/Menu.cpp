@@ -711,11 +711,26 @@ void Menu::draw(sf::RenderTarget& target) {
 			text("(keine POKéMON aufbewahrt)", x, y, 20, muted_col);
 		}
 	} else if (this->screen == POKENAV) {
-		text("POKéNAV", x, y, 24, head_col); y += 36;
-		text("Ort:  " + (this->location.empty() ? "---" : this->location),
-		     x, y, 20, sf::Color(150, 110, 20)); y += 30;
+		// Real PokeNav's "Hoenn Map Full View" is its own dark navy GBA
+		// screen, not a page inside the light Bag/Party-style frame -- cover
+		// the generic frame just drawn above with that look instead.
+		const sf::Color nav_bg(16, 24, 64), nav_border(120, 180, 232);
+		const sf::Color nav_head(232, 240, 255), nav_muted(160, 190, 224);
+		sf::RectangleShape nav_panel(sf::Vector2f(panel_rect.width, panel_rect.height));
+		nav_panel.setPosition(panel_rect.left, panel_rect.top);
+		nav_panel.setFillColor(nav_bg);
+		nav_panel.setOutlineColor(nav_border);
+		nav_panel.setOutlineThickness(3.f);
+		target.draw(nav_panel);
+
+		text("KARTE HOENN GANZ", x, y, 20, nav_head); y += 26;
+		if (!this->location.empty()) { text(this->location, x, y, 13, nav_muted); y += 20; }
+		else y += 6;
 		if (this->region_map_ok) {
-			const float scale = 2.8f;
+			// Fit the map to the panel width instead of a fixed scale, so it
+			// reads closer to how the original fills nearly the whole GBA
+			// screen rather than sitting small inside a big white sub-panel.
+			const float scale = (panel_rect.width - 48.f) / 128.f;
 			const float map_w = 128.f * scale, map_h = 120.f * scale;
 			sf::Sprite map_spr(this->region_map_tex);
 			map_spr.setPosition(x, y);
@@ -742,26 +757,37 @@ void Menu::draw(sf::RenderTarget& target) {
 			cur_box.setOutlineColor(sf::Color(255, 240, 60, 230));
 			cur_box.setOutlineThickness(-2.f);   // inward, so it stays inside the cell at this scale
 			target.draw(cur_box);
-			y += map_h + 14;
+			y += map_h + 10;
+			// Location name box, same idea as the real screen's bottom bar
+			// naming the section the cursor/marker is over.
+			sf::RectangleShape loc_box(sf::Vector2f(panel_rect.width - 2.f * (x - panel_rect.left), 26));
+			loc_box.setPosition(x, y);
+			loc_box.setFillColor(sf::Color(8, 14, 44));
+			loc_box.setOutlineColor(nav_border); loc_box.setOutlineThickness(1.f);
+			target.draw(loc_box);
 			std::string secname = map_section_at(this->map_cur_x, this->map_cur_y);
-			text(secname.empty() ? "OFFENES MEER" : secname, x, y, 20, head_col);
-			y += 30;
+			text(secname.empty() ? "OFFENES MEER" : secname, x + 8, y + 3, 18, nav_head);
+			y += 36;
 		}
 		{
 			static const char* names[8] = {"STEIN", "FAUST", "DYNAMO", "HITZE",
 			                               "BALANCE", "FEDER", "GEIST", "REGEN"};
 			int got = 0;
+			// Spread over the panel's own width (not a fixed pixel step) so
+			// all 8 names fit regardless of window size, instead of running
+			// off the right edge.
+			float slot = (panel_rect.width - 2.f * (x - panel_rect.left)) / 8.f;
 			float bx = x;
 			for (int i = 0; i < 8; ++i) {
 				bool have = this->gs && this->gs->flag(
 					"FLAG_BADGE0" + std::to_string(i + 1) + "_GET");
 				if (have) ++got;
-				text(names[i], bx, y, 12,
-				     have ? sf::Color(190, 140, 10) : sf::Color(170, 170, 170));
-				bx += 62;
+				text(names[i], bx, y, 9,
+				     have ? sf::Color(255, 210, 90) : nav_muted);
+				bx += slot;
 			}
 			y += 20;
-			text("Orden: " + std::to_string(got) + "/8", x, y, 14, muted_col);
+			text("Orden: " + std::to_string(got) + "/8", x, y, 14, nav_muted);
 		}
 	}
 	if (this->screen == BAG)
@@ -774,7 +800,7 @@ void Menu::draw(sf::RenderTarget& target) {
 		text("[SPACE]/[D] ändern   [A] zurück", x, panel.getPosition().y + panel.getSize().y - 34, 16, muted_col);
 	else if (this->screen == POKENAV)
 		text("Pfeiltasten: Karte erkunden   [SPACE] zurück",
-		     x, panel.getPosition().y + panel.getSize().y - 34, 16, muted_col);
+		     x, panel.getPosition().y + panel.getSize().y - 34, 16, sf::Color(160, 190, 224));
 	else if (this->screen != MAIN)
 		text("[SPACE] zurück", x, panel.getPosition().y + panel.getSize().y - 34, 16, muted_col);
 	target.setView(saved);
