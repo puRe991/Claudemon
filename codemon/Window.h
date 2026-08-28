@@ -32,6 +32,12 @@ public:
     sf::RenderWindow* get_window();
     void close();
 
+    // Point the camera at world coordinate (center_x, center_y) and show a
+    // view_w x view_h window of the world scaled to fill the screen. Everything
+    // drawn afterwards is in world (map pixel) coordinates, so the view
+    // scrolls the map under a fixed screen. Call once per frame.
+    void set_camera(float center_x, float center_y, float view_w, float view_h);
+
     void clear();
 
     void draw(Character* ch_1);

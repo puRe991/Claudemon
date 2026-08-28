@@ -35,6 +35,14 @@ void Window::close() {
     this->win_obj->close();
 }
 
+void Window::set_camera(float center_x, float center_y,
+                        float view_w, float view_h) {
+    sf::View view;
+    view.setSize(view_w, view_h);
+    view.setCenter(center_x, center_y);
+    this->win_obj->setView(view);
+}
+
 void Window::clear() {
     this->win_obj->clear(sf::Color::Black);
 }

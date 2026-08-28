@@ -4,10 +4,46 @@
 class Tile
 {
 public:
-	// Legacy named ids kept for the unit tests. A tile now stores an
-	// arbitrary metatile id (an index into a Tileset sheet), so `data` is an
-	// int and these enum values just seed the two original demo tiles.
-	enum tile { long_grass = 1, short_grass = 0 };
+	// A tile stores an arbitrary metatile id (an index into a Tileset sheet
+	// for pokeemerald-imported maps, or a row in the legacy tile sheet for
+	// hand-authored region maps), so `data` is a plain int. The named ids
+	// below just seed the original demo tiles and the region vocabulary.
+	//
+	// Terrain vocabulary for the region.
+	//
+	// short_grass (0) and long_grass (1) keep their original ids so the
+	// legacy map_00 tile sheet and the existing tests stay valid. The higher
+	// ids give the region maps enough distinct terrain to express every
+	// described landscape: coastal villages, forests, mountains, cave systems,
+	// water routes, cities and building interiors. Each id is an index into a
+	// tile sheet row (see Map::render_map), so keep new tiles contiguous.
+	enum tile {
+		short_grass = 0,   // open, walkable grass / plains
+		long_grass  = 1,   // tall wild grass (encounters)
+		path        = 2,   // roads, town paths, dirt routes
+		water       = 3,   // sea, rivers, lakes
+		sand        = 4,   // beaches, coastlines
+		tree        = 5,   // forest trees / town foliage (blocking)
+		rock        = 6,   // mountain walls, boulders (blocking)
+		flower      = 7,   // flowerbeds, gardens
+		building    = 8,   // town building footprints (blocking)
+		floor       = 9,   // interior floor
+		wall        = 10,  // interior wall (blocking)
+		cave_floor  = 11,  // cave / tunnel floor
+		cave_wall   = 12,  // cave / tunnel wall (blocking)
+		ledge       = 13,  // one-way ledges / cliffs
+		bridge      = 14,  // bridges over water
+		stairs      = 15,  // stairs between cave/building levels
+		warp        = 16,  // doors, cave mouths, area transitions
+		sign        = 17,  // signs / points of interest
+		ice         = 18,  // frozen cave floor (Seafoam)
+		lava        = 19,  // volcanic terrain (Cinnabar)
+		deep_water  = 20,  // open ocean / sea routes
+		roof_green  = 21,  // building roof (house style A) - blocking
+		roof_purple = 22,  // building roof (house style B) - blocking
+		roof_red    = 23,  // building roof (lab / civic) - blocking
+		wall_window = 24   // building front wall with a window - blocking
+	};
 
 	/* Constructors */
 	Tile();

@@ -81,6 +81,7 @@ set(ENGINE_SOURCES
     "${SRC_DIR}/Window.cpp"
     "${SRC_DIR}/character.cpp"
     "${SRC_DIR}/map.cpp"
+    "${SRC_DIR}/Region.cpp"
     "${SRC_DIR}/Audio.cpp"
     "${SRC_DIR}/DialogBox.cpp"
     "${SRC_DIR}/BattleData.cpp"
@@ -124,7 +125,9 @@ add_custom_target(stage_assets ALL
             "${SRC_DIR}/maps"   "$<TARGET_FILE_DIR:codemon>/maps"
     COMMAND ${CMAKE_COMMAND} -E copy_directory
             "${SRC_DIR}/assets" "$<TARGET_FILE_DIR:codemon>/assets"
-    COMMENT "Staging maps/ and assets/ next to the game binary")
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+            "${SRC_DIR}/region" "$<TARGET_FILE_DIR:codemon>/region"
+    COMMENT "Staging maps/, assets/ and region/ next to the game binary")
 # stage_assets depends on codemon (not the other way around): it only needs
 # to know where codemon's binary ended up (to stage next to it), not to run
 # before codemon links -- declaring it the other way around would make
@@ -152,11 +155,31 @@ if(WIN32)
         COMMENT "Staging openal32.dll next to the game binary")
 endif()
 
+# --- External map editor ----------------------------------------------------
+# A standalone tool (separate from the game) for painting the .map files.
+add_executable(codemon_editor "${SRC_DIR}/editor/editor.cpp")
+target_link_libraries(codemon_editor PRIVATE monsta_engine)
+if(WIN32)
+    target_link_libraries(codemon_editor PRIVATE sfml-main)
+endif()
+
+# The editor reads/writes region/ (tile sheet + maps) relative to the working
+# directory; stage it next to the editor binary too.
+add_custom_command(TARGET codemon_editor POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+            "${SRC_DIR}/region" "$<TARGET_FILE_DIR:codemon_editor>/region"
+    COMMENT "Staging region/ next to the editor binary")
+
 # --- Tests ------------------------------------------------------------------
 enable_testing()
 
 add_executable(codemon_tests "${SRC_DIR}/tests/tests.cpp")
 target_link_libraries(codemon_tests PRIVATE monsta_engine)
+
+# Point the tests at the in-tree region manifest so they can validate the
+# region structure no matter where CTest launches them from.
+target_compile_definitions(codemon_tests PRIVATE
+    REGION_MANIFEST_PATH="${SRC_DIR}/region/kanto.region")
 
 add_test(NAME core_logic COMMAND codemon_tests)
 
@@ -176,3 +199,6 @@ add_custom_command(TARGET codemon_engine_tests POST_BUILD
 add_test(NAME engine_logic COMMAND codemon_engine_tests)
 set_tests_properties(engine_logic PROPERTIES
     WORKING_DIRECTORY "$<TARGET_FILE_DIR:codemon_engine_tests>")
+
+# Headless round-trip test of the editor's map load/save (no display needed).
+add_test(NAME editor_selftest COMMAND codemon_editor --selftest)

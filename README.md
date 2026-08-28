@@ -174,7 +174,40 @@ Licensing note: the imported graphics/audio/text remain Nintendo/Game Freak
 property and are for non-commercial fan use only — see
 `codemon/assets/CREDITS.md`.
 
-## Building & running
+## The Region
+
+The game world is a data-driven **region** under [`codemon/region/`](codemon/region/):
+a manifest (`kanto.region`) plus one map file per area, wiring ~30 areas
+(coastal village → cities → forests → caves → industry → islands → a monumental
+mountain complex) into one connected, two-way-traversable world.
+
+The `Region` class (`codemon/Region.h`) loads the manifest headlessly (no SFML),
+and `main.cpp` walks the player from area to area through **warp** tiles. See
+[`codemon/region/README.md`](codemon/region/README.md) for the geography, the
+area list, the connection graph and the file formats. Regenerate the data with
+`python3 codemon/tools/gen_region.py`.
+
+## Art & audio
+
+Terrain tiles (`region/region_tiles.png`) and the player trainer
+(`assets/Red_player.png`) are derived from **scarloxy's "MyPixelWorld Special
+Packs #01"** (CC-BY 4.0); the source art lives in `assets/art/` and the derived
+sheets are rebuilt with `python3 codemon/tools/build_tiles.py`. The game plays
+short **original** placeholder sound effects from `assets/sfx/` (a bump when a
+move is blocked, a blip on area transitions), regenerated with
+`python3 codemon/tools/make_sfx.py`; drop your own licensed audio in with the
+same names to replace them. See [`codemon/assets/CREDITS.md`](codemon/assets/CREDITS.md)
+for attribution and for why the other requested packs are not bundled.
+
+## Map editor
+
+A standalone external editor, `codemon_editor`, paints the region's `.map`
+files against the real terrain sheet (WYSIWYG with the game). Build it with the
+same CMake, then from the build directory run `./codemon_editor
+region/maps/<area>.map` — left-click the palette to pick a tile, drag to paint,
+`S` to save. See [`codemon/editor/README.md`](codemon/editor/README.md).
+
+## Building & Running
 
 The project builds with CMake and needs a system install of **SFML 2.5+**.
 
@@ -237,7 +270,7 @@ script, e.g. a legendary encounter, without navigating to it in-world).
 ## Testing
 
 `codemon_tests` exercises the display-independent core logic (`Coordinates`,
-`Tile`, the hand-rolled `Linked_list`) and is wired into CTest.
+`Tile`, the `Region` manifest/warp graph) and is wired into CTest.
 
 ## Project status
 
@@ -869,4 +902,7 @@ screenshot), not just written and assumed correct.
 
 **Out of scope for now (not silently faked, just not attempted)**
 - [ ] Breeding/eggs (link-cable trading N/A -- no second player)
-- [ ] Map editor / procedural map generator
+- [x] Map editor (`codemon_editor`, see `codemon/editor/README.md`) —
+      paints the hand-authored `codemon/region/` map set, not the imported
+      pokeemerald maps
+- [ ] Procedural map generator
