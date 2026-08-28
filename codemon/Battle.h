@@ -3,6 +3,7 @@
 #include <vector>
 #include <map>
 #include <random>
+#include <algorithm>
 #include "SFML/Graphics.hpp"
 #include "BattleData.h"
 #include "GameState.h"
@@ -31,6 +32,9 @@ public:
 
 private:
 	enum Phase { INACTIVE, MSG, ACTION, MOVE, SWITCH };
+	// Simplified flat rate standing in for pokeemerald's per-trainer-class
+	// money field (not imported -- trainers.tsv only carries id + party).
+	static const int PRIZE_MONEY_PER_LEVEL = 20;
 
 	BattleData* data;
 	std::mt19937* rng;
@@ -195,6 +199,17 @@ public:
 	bool active() const { return phase != INACTIVE; }
 	bool won() const { return victory; }
 	Outcome outcome() const { return last_outcome; }
+
+	// Prize money for beating this trainer (0 for a wild battle). Real
+	// pokeemerald pays trainerClass.money * the last Pokemon's level; this
+	// engine has no imported trainer-class data, so it approximates with a
+	// flat per-level rate against the trainer's highest-level Pokemon.
+	int prize_money() const {
+		if (!this->is_trainer || this->party.empty()) return 0;
+		int highest = 0;
+		for (const auto& p : this->party) highest = std::max(highest, p.second);
+		return highest * PRIZE_MONEY_PER_LEVEL;
+	}
 
 	// Introspection for headless drivers/tests -- there's no other way to
 	// observe the enemy mon's live state (it's not the caller's Mon like

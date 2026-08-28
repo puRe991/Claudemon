@@ -358,6 +358,24 @@ static Session* player_step(Session* s, DIR dir, Audio* audio, GameState* gs,
         return s;
     }
 
+    // One-way ledges (pokeemerald's MB_JUMP_*): crossable only in their own
+    // direction, where stepping onto one hops two tiles in a single motion;
+    // from any other side (including trying to climb back up it) it's solid,
+    // regardless of the raw collision layer.
+    DIR ledge = s->map->ledge_dir(tx, ty);
+    if (ledge != DIR::NONE) {
+        s->player->face(dir);
+        if (ledge != dir) { if (audio) audio->play_bump(); return s; }
+        int lx, ly;
+        Character tmp(tx, ty);
+        tmp.target_tile(dir, lx, ly);
+        bool land_clear = s->map->in_bounds(lx, ly) && s->map->passable(lx, ly) &&
+                          !s->map->is_water(lx, ly) && !actor_at(s->actors, s->player, lx, ly);
+        if (!land_clear) { if (audio) audio->play_bump(); return s; }
+        s->player->jump(dir);
+        return s;
+    }
+
     // Warp/door tiles are impassable metatiles but can be walked onto: the warp
     // overrides collision (that is how doors work in pokeemerald). Surfable
     // water is collision-passable already (see Map::is_water), but entering
@@ -1370,6 +1388,34 @@ struct GenderSelect {
 };
 
 /******************************************************************************
+EarlyAccessNotice - a one-shot disclaimer shown right after character
+creation on a brand new game, using the same DialogBox the overworld uses for
+NPC text so it looks consistent with the rest of the UI. Self-contained
+blocking run(), same shape as TitleScreen/GenderSelect/NameEntry.
+*****************************************************************************/
+struct EarlyAccessNotice {
+    void run(sf::RenderWindow& w) {
+        DialogBox box;
+        box.load_font();
+        box.open("", "Dies ist eine Early-Access-Version.\x1f"
+                      "Es können noch verschiedene Bugs auftreten, "
+                      "und nicht alles ist bereits perfekt dem Original nachgestellt.");
+        while (w.isOpen() && box.is_active()) {
+            sf::Event event;
+            while (w.pollEvent(event)) {
+                if (event.type == sf::Event::Closed) { w.close(); std::exit(0); }
+                if (event.type != sf::Event::KeyPressed) continue;
+                if (event.key.code == sf::Keyboard::Space || event.key.code == sf::Keyboard::Return)
+                    box.advance();
+            }
+            w.clear(sf::Color(24, 60, 40));
+            box.draw(w);
+            w.display();
+        }
+    }
+};
+
+/******************************************************************************
 NameEntry - the on-screen letter-grid naming keyboard real Gen-3 games use
 (A-Z plus DEL/OK), reused both for the player's own name and their rival's.
 Grid-driven like every other menu in this engine (WASD + confirm), not free
@@ -1507,15 +1553,19 @@ int main() {
         for (Mon& m : team) if (m.pp.size() != m.moves.size()) bdata.restore_pp(m);
         for (Mon& m : pc_box) if (m.pp.size() != m.moves.size()) bdata.restore_pp(m);
     }
-    // Story start: the player wakes up in their bedroom on Brendan's House 2F
-    // (heal location HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F, tile
-    // 4,2), then walks downstairs and out into Littleroot Town. Factored into
-    // a lambda so "NEUES SPIEL" on the title screen below can also run it
-    // even when a save was already loaded (discarding it, same as any other
-    // save file that's simply never opened again).
+    // Story start: the player rides in on the moving truck (InsideOfTruck),
+    // which is where pokeemerald's own new-game intro begins -- its own
+    // imported script (checkplayergender + SetIntroFlagsMale/Female) hides
+    // the unused house's occupants, sets the respawn point and points the
+    // truck's WARP_ID_DYNAMIC exit at the right house, all keyed off
+    // gs.female (see below). Walking to the exit door then drops the player
+    // right outside their house in Littleroot Town, same as real Emerald.
+    // Factored into a lambda so "NEUES SPIEL" on the title screen below can
+    // also run it even when a save was already loaded (discarding it, same
+    // as any other save file that's simply never opened again).
     auto start_new_game = [&]() {
         gs = GameState(); team.clear(); pc_box.clear();
-        start_map = map_env ? map_env : "maps/LittlerootTown_BrendansHouse_2F.map";
+        start_map = map_env ? map_env : "maps/InsideOfTruck.map";
         start_x = start_y = -1;
         // New-game default world state: every NPC/item hidden until its own
         // story beat unlocks it (data/scripts/new_game.inc in pokeemerald),
@@ -1525,11 +1575,6 @@ int main() {
         std::string ln;
         while (std::getline(ngf, ln))
             if (!ln.empty()) gs.set_flag(ln);
-        // pokeemerald sets this in InsideOfTruck's gender-branch script
-        // (SetIntroFlagsMale), which we skip by starting straight in the
-        // bedroom -- without it, Littleroot's SS Ticket/Hall of Fame scenes
-        // can't tell the player picked the boy's house.
-        gs.set_var("VAR_LITTLEROOT_HOUSES_STATE_BRENDAN", 1);
         // In real pokeemerald VAR_LITTLEROOT_TOWN_STATE only reaches 1 by
         // visiting the rival's house and finding their poke ball on day 1 --
         // the one and only way LittlerootTown's Route 101 warning-kid trigger
@@ -1541,7 +1586,10 @@ int main() {
         // Story start: no starter yet -- team stays empty until the player
         // actually picks one from Birch's bag on Route 101, same as pokeemerald.
         // Whiteout recovery point before the player has healed anywhere for
-        // real: the story-start heal location itself.
+        // real: default to Brendan's House 2F until the truck's own script
+        // (which runs setrespawn once gender is known) picks the right one
+        // below -- there's no battle before then, so this default is never
+        // actually read as a whiteout target.
         gs.last_heal_map = "LittlerootTown_BrendansHouse_2F";
         gs.last_heal_x = 4; gs.last_heal_y = 2;
     };
@@ -1574,7 +1622,16 @@ int main() {
             NameEntry name_ui; name_ui.load();
             gs.player_name = name_ui.run(setupwin, "Wie heisst du?", gs.female ? "MAY" : "BRENDAN");
             gs.rival_name = name_ui.run(setupwin, "Wie heisst dein Rivale?", gs.female ? "BRENDAN" : "MAY");
+            EarlyAccessNotice().run(setupwin);
             setupwin.close();
+            // Now that gender is known, point the pre-battle whiteout target
+            // at the matching house (InsideOfTruck's own script sets the
+            // *dynamic warp* target the same way, but never touches
+            // last_heal_* -- see setrespawn's comment in ScriptVM.cpp).
+            if (gs.female) {
+                gs.last_heal_map = "LittlerootTown_MaysHouse_2F";
+                gs.last_heal_x = 4; gs.last_heal_y = 2;
+            }
         }
     }
 

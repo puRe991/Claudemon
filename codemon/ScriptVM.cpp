@@ -1,5 +1,6 @@
 #include "ScriptVM.h"
 #include <cctype>
+#include <cstdio>
 #include <algorithm>
 
 ScriptVM::ScriptVM()
@@ -1027,6 +1028,9 @@ void ScriptVM::update(float dt) {
 			this->pending_trainer_id.clear();
 			if (won && this->state && !tid.empty())
 				this->state->set_flag(trainer_flag(tid));
+			int prize = (won && this->battle) ? this->battle->prize_money() : 0;
+			if (won && prize > 0 && this->state)
+				this->state->money += prize;
 			if (!won) {
 				// A lost battle (trainer or wild) never resumes the calling
 				// script -- on real hardware the overworld task is torn down
@@ -1051,8 +1055,20 @@ void ScriptVM::update(float dt) {
 				finish();
 				return;
 			}
-			this->st = RUN;
 			if (!ws.empty()) jump(ws);
+			if (prize > 0) {
+				// Show the payout, then resume exactly where the trainer's own
+				// win script would have (jump() above only moved cur/ip; the
+				// script doesn't actually execute until pump()/on_key() runs it).
+				char buf[64];
+				std::snprintf(buf, sizeof(buf), "%d", prize);
+				this->box->open(std::string(),
+				                 "PLAYER kassierte $" + std::string(buf) +
+				                 " als Preisgeld!");
+				this->st = WAIT_MSG;
+				return;
+			}
+			this->st = RUN;
 			this->pump();
 		}
 		return;

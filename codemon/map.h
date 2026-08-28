@@ -148,6 +148,7 @@ private:
 	std::unordered_set<int> water_ids;        // metatile ids that are surfable water
 	std::unordered_set<int> waterfall_ids;    // metatile ids that are MB_WATERFALL
 	std::unordered_set<int> dive_ids;         // deep-water metatile ids you can Dive into
+	std::unordered_map<int, DIR> ledge_ids;   // MB_JUMP_* metatile id -> the one direction it can be crossed in
 	std::string dive_dest_;                   // underwater map below this one ("" = none)
 	std::string emerge_dest_;                 // surface map above this one ("" = none)
 	std::string divewarp_dest_;               // fixed setdivewarp target ("" = none)
@@ -224,6 +225,11 @@ public:
 	// MB_WATERFALL: surfable like water, but climbing it (moving north into
 	// one) also needs the Waterfall HM (see main.cpp's Waterfall gate).
 	bool is_waterfall(int tile_x, int tile_y) const;
+	// MB_JUMP_*: a one-way ledge. Returns the single direction it can be
+	// crossed in (DIR::NONE if this tile isn't a ledge) -- stepping onto it
+	// from that direction hops two tiles instead of one; from any other
+	// direction (including trying to climb back up it) it's solid.
+	DIR ledge_dir(int tile_x, int tile_y) const;
 	// Deep water the Dive HM can take the player under (pokeemerald's
 	// MetatileBehavior_IsDiveable). Only meaningful together with dive_dest().
 	bool is_diveable(int tile_x, int tile_y) const;

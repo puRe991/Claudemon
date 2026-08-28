@@ -83,6 +83,7 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 		                        // encounters block's own surf-slot sub-line
 		                        // prefix, not this section header
 		       s.rfind("waterfall", 0) == 0 ||
+		       s.rfind("ledges", 0) == 0 ||
 		       s.rfind("divewarp", 0) == 0 ||
 		       s == "dive" ||   // exact: the connections block also has a
 		                        // "dive <offset> <map>" line
@@ -226,6 +227,21 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 				parse_int_row(rest[i], g);
 				for (int id : g) this->waterfall_ids.insert(id);
 				++i;
+			}
+		} else if (head.rfind("ledges", 0) == 0) {
+			// one line per direction: "<south|north|west|east> <comma-ids>"
+			for (++i; i < rest.size() && !is_keyword(rest[i]); ++i) {
+				if (rest[i].empty()) continue;
+				std::stringstream ss(rest[i]);
+				std::string dir_str, ids_str;
+				if (!(ss >> dir_str)) continue;
+				std::getline(ss, ids_str);
+				DIR d = (dir_str == "south") ? DIR::S : (dir_str == "north") ? DIR::N :
+				        (dir_str == "west")  ? DIR::W : (dir_str == "east")  ? DIR::E : DIR::NONE;
+				if (d == DIR::NONE) continue;
+				std::vector<int> g;
+				parse_int_row(ids_str, g);
+				for (int id : g) this->ledge_ids[id] = d;
 			}
 		} else if (head.rfind("visit", 0) == 0) {
 			// single line: the FLAG_VISITED_* this map sets on entry
@@ -398,6 +414,13 @@ bool Map::is_water(int tile_x, int tile_y) const {
 bool Map::is_diveable(int tile_x, int tile_y) const {
 	if (!in_bounds(tile_x, tile_y) || this->dive_ids.empty()) return false;
 	return this->dive_ids.count(this->tile_map[index(tile_x, tile_y)]) > 0;
+}
+
+DIR Map::ledge_dir(int tile_x, int tile_y) const {
+	if (!in_bounds(tile_x, tile_y) || this->ledge_ids.empty()) return DIR::NONE;
+	int id = this->tile_map[this->index(tile_x, tile_y)];
+	auto it = this->ledge_ids.find(id);
+	return it == this->ledge_ids.end() ? DIR::NONE : it->second;
 }
 
 bool Map::is_waterfall(int tile_x, int tile_y) const {

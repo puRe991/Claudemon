@@ -107,6 +107,11 @@ public:
 	void set_facing(DIR dir);
 	void face(DIR dir);            // just turn, no move
 	void step(DIR dir);            // turn, advance one tile, toggle walk frame
+	// Ledge hop (pokeemerald's DoLedgeJump): slide two tiles in `dir` in one
+	// continuous animation instead of a normal one-tile step. Bypasses
+	// collision on the tile jumped over -- the caller (player_step in
+	// main.cpp) has already verified the landing tile is clear.
+	void jump(DIR dir);
 	void set_idle();
 	// Advance the current slide animation by `dt` seconds. Interactive-loop
 	// only -- headless code never calls this (see `animated`/set_animated).

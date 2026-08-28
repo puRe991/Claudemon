@@ -74,6 +74,26 @@ void Character::step(DIR dir) {
 	this->anim_phase = this->step_toggle ? 1 : 2;
 }
 
+void Character::jump(DIR dir) {
+	if (dir == DIR::NONE) return;
+	this->facing = dir;
+	if (this->animated) this->prev_tile = this->tile;
+	int mx, my;   // the tile jumped over
+	this->target_tile(dir, mx, my);
+	int lx = mx, ly = my;
+	switch (dir) {
+	case DIR::N: ly -= 1; break;
+	case DIR::S: ly += 1; break;
+	case DIR::E: lx += 1; break;
+	case DIR::W: lx -= 1; break;
+	default: break;
+	}
+	this->tile = Coordinates(lx < 0 ? 0 : lx, ly < 0 ? 0 : ly);
+	this->move_t = this->animated ? 0.f : 1.f;
+	this->step_toggle = !this->step_toggle;
+	this->anim_phase = this->step_toggle ? 1 : 2;
+}
+
 void Character::set_idle() { this->anim_phase = 0; }
 
 // Real Pokemon-game walk speed is ~2px/frame at 60fps for a 16px tile, i.e.
