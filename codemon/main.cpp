@@ -1031,6 +1031,93 @@ struct MultiChoicePrompt {
     }
 };
 
+// DebugMenu - a developer cheat menu (toggle with H), for testing without
+// playing through the whole story: heal, money, badges, HMs, a starter,
+// common items, and skipping whatever script/dialog is currently running.
+// Same list-driven shape as MultiChoicePrompt, but with a fixed action list
+// dispatched by index in the main loop below instead of a caller-supplied
+// options vector.
+struct DebugMenu {
+    enum Action {
+        HEAL_TEAM, ADD_MONEY, ALL_BADGES, GIVE_STARTER, TEACH_HMS,
+        GIVE_ITEMS, SKIP_SCRIPT, CLOSE, COUNT
+    };
+    bool open_ = false;
+    int cursor = 0;
+    sf::Font font; bool font_ok = false;
+    UiFrame frame;
+    sf::Texture cursor_tex; bool cursor_ok = false;
+
+    void load() {
+        font_ok = font.loadFromFile("assets/fonts/DejaVuSans.ttf");
+        frame.load();
+        cursor_ok = cursor_tex.loadFromFile("assets/graphics/interface/arrow_cursor.png");
+        cursor_tex.setSmooth(false);
+    }
+    bool active() const { return open_; }
+    void open() { open_ = true; cursor = 0; }
+    void close() { open_ = false; }
+
+    static const char* label(int i) {
+        switch (i) {
+        case HEAL_TEAM:    return "Team komplett heilen";
+        case ADD_MONEY:    return "+50.000 Geld";
+        case ALL_BADGES:   return "Alle 8 Orden geben";
+        case GIVE_STARTER: return "Starter-Pokemon waehlen";
+        case TEACH_HMS:    return "Alle Hm-Attacken lehren (Leadmon)";
+        case GIVE_ITEMS:   return "99x Poke Ball / Trank / Rare Candy";
+        case SKIP_SCRIPT:  return "Laufendes Skript/Dialog abbrechen";
+        case CLOSE:        return "Schliessen";
+        default: return "";
+        }
+    }
+
+    // Returns the chosen action, or -1 if just navigating/still open.
+    int input(BtnInput b) {
+        if (b == BTN_UP && cursor > 0) cursor--;
+        else if (b == BTN_DOWN && cursor + 1 < COUNT) cursor++;
+        else if (b == BTN_CONFIRM) { open_ = false; return cursor; }
+        return -1;
+    }
+
+    void draw(sf::RenderTarget& target) {
+        if (!open_ || !font_ok) return;
+        sf::View saved = target.getView();
+        target.setView(target.getDefaultView());
+        sf::Vector2f size = target.getView().getSize();
+        float w = 340.f, h = 30.f + COUNT * 30.f;
+        float x = size.x * 0.5f - w / 2.f, y = size.y * 0.5f - h / 2.f;
+        frame.draw(target, x, y, w, h, 2.5f);
+        std::string title_s = "DEBUG-MENUE";
+        sf::Text title(sf::String::fromUtf8(title_s.begin(), title_s.end()), font, 16);
+        title.setPosition(x + 12, y + 6); title.setFillColor(sf::Color(150, 40, 40));
+        target.draw(title);
+        const sf::Color body_col(40, 40, 56), sel_col(24, 72, 160);
+        for (int i = 0; i < COUNT; ++i) {
+            bool sel = i == cursor;
+            float ry = y + 34.f + i * 30.f;
+            if (sel) {
+                if (cursor_ok) {
+                    sf::Sprite cs(cursor_tex);
+                    cs.setPosition(x + 10, ry - 2);
+                    target.draw(cs);
+                } else {
+                    sf::Text mark(">", font, 16);
+                    mark.setPosition(x + 12, ry - 2);
+                    mark.setFillColor(sel_col);
+                    target.draw(mark);
+                }
+            }
+            std::string s = label(i);
+            sf::Text t(sf::String::fromUtf8(s.begin(), s.end()), font, 15);
+            t.setPosition(x + 36, ry);
+            t.setFillColor(sel ? sel_col : body_col);
+            target.draw(t);
+        }
+        target.setView(saved);
+    }
+};
+
 // `pokemart <label>` (the mart buy screen): the VM can't drive a scrolling
 // item list + quantity stepper itself (same reason as StarterSelect and
 // YesNoPrompt above), so this shows a real shop UI built from the map's
@@ -1690,6 +1777,8 @@ int main() {
     shop.configure(&gs, &item_prices);
     HealFx healfx;
     healfx.load();
+    DebugMenu debugmenu;
+    debugmenu.load();
     // Story-accurate new game: an empty bag (just the starting 3000 money,
     // GameState's own default) and 0 Game Corner coins, same as pokeemerald --
     // items, TMs and coins all come from actually playing the story.
@@ -2059,6 +2148,68 @@ int main() {
                     case sf::Keyboard::Return: shop.input(BTN_CONFIRM); break;
                     default: break;
                     }
+                } else if (debugmenu.active()) {
+                    int action = -1;
+                    switch (event.key.code) {
+                    case sf::Keyboard::W: debugmenu.input(BTN_UP); break;
+                    case sf::Keyboard::S: debugmenu.input(BTN_DOWN); break;
+                    case sf::Keyboard::Space:
+                    case sf::Keyboard::Return: action = debugmenu.input(BTN_CONFIRM); break;
+                    case sf::Keyboard::H: debugmenu.close(); break;
+                    default: break;
+                    }
+                    if (action >= 0) {
+                        switch (action) {
+                        case DebugMenu::HEAL_TEAM:
+                            for (Mon& m : team) {
+                                m.hp = m.max_hp;
+                                m.status = Status::NONE; m.status_turns = 0; m.confusion_turns = 0;
+                                bdata.restore_pp(m);
+                            }
+                            break;
+                        case DebugMenu::ADD_MONEY:
+                            gs.money += 50000;
+                            break;
+                        case DebugMenu::ALL_BADGES:
+                            for (int i = 1; i <= 8; ++i)
+                                gs.set_flag("FLAG_BADGE0" + std::to_string(i) + "_GET");
+                            break;
+                        case DebugMenu::GIVE_STARTER:
+                            starter.open();
+                            break;
+                        case DebugMenu::TEACH_HMS:
+                            if (!team.empty()) {
+                                Mon& m = team[0];
+                                static const char* HMS[] = {
+                                    "CUT", "SURF", "STRENGTH", "WATERFALL",
+                                    "FLY", "DIVE", "ROCK_SMASH"};
+                                for (const char* mv : HMS) {
+                                    if (m.moves.size() >= 4) break;
+                                    if (std::find(m.moves.begin(), m.moves.end(), mv) != m.moves.end())
+                                        continue;
+                                    const MoveInfo* mi = bdata.move(mv);
+                                    m.moves.push_back(mv);
+                                    m.pp.push_back(mi ? mi->pp : 20);
+                                }
+                                gs.set_flag("FLAG_SYS_USE_STRENGTH");
+                            }
+                            break;
+                        case DebugMenu::GIVE_ITEMS:
+                            gs.give_item("ITEM_POKE_BALL", 99);
+                            gs.give_item("ITEM_POTION", 99);
+                            gs.give_item("ITEM_RARE_CANDY", 99);
+                            break;
+                        case DebugMenu::SKIP_SCRIPT:
+                            if (vm.running()) vm.abort();
+                            if (box.is_active()) box.close();
+                            break;
+                        default: break;   // CLOSE: nothing else to do
+                        }
+                    }
+                } else if (event.key.code == sf::Keyboard::H &&
+                           !box.is_active() && !vm.running() && !menu.active() &&
+                           !battle.active() && !shop.active() && !games.active()) {
+                    debugmenu.open();
                 } else if (battle.active()) {
                     switch (event.key.code) {
                     case sf::Keyboard::W: battle.input(BTN_UP); break;
@@ -2131,7 +2282,8 @@ int main() {
             bool ui_blocked = starter.active() || yesno.active() || picker.active() ||
                               multichoice.active() ||
                               shop.active() || battle.active() || games.active() ||
-                              menu.active() || box.is_active() || vm.running() ||
+                              menu.active() || debugmenu.active() ||
+                              box.is_active() || vm.running() ||
                               pending_surf || pending_waterfall ||
                               !pending_dive.empty();
             bool run_held = !ui_blocked && gs.flag("FLAG_SYS_B_DASH") &&
@@ -2327,6 +2479,7 @@ int main() {
             if (yesno.active()) yesno.draw(*scr.get_window());
             if (picker.active()) picker.draw(*scr.get_window());
             if (multichoice.active()) multichoice.draw(*scr.get_window());
+            if (debugmenu.active()) debugmenu.draw(*scr.get_window());
             if (fade > 0.f) {
                 sf::View sv = scr.get_window()->getView();
                 scr.get_window()->setView(scr.get_window()->getDefaultView());

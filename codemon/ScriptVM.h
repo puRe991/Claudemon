@@ -70,6 +70,9 @@ public:
 	bool waiting_message() const;    // blocked on the dialog box
 	void on_key();                   // player pressed the advance key
 	void update(float dt);           // advance timers / movement
+	// Force-stop whatever script is currently running (debug menu only --
+	// real play always lets a script run to its own `end`/`release`).
+	void abort() { finish(); }
 
 	// `special ChooseStarter` (Route 101 Birch's bag): the VM can't drive a
 	// multi-frame UI itself, so it blocks here and the game loop shows the

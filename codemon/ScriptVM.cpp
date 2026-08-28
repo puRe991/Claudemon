@@ -809,6 +809,14 @@ void ScriptVM::pump() {
 			// pokeemerald's own SPECIES_* constants, which don't exist here.
 			std::string sp = this->bdata ? this->bdata->species_by_id(value_of(arg(1))) : std::string();
 			this->str_vars[arg(0)] = nice_name(sp);
+		} else if (op == "bufferboxname" && argc >= 2) {
+			// STR_VAR_n <- "BOX <n>" for the PC box a mon was (or would be)
+			// transferred to. This engine has only one unlimited PC box (see
+			// README), so the index is always 0 -- always reads "BOX 1"
+			// rather than a real box number, but that's still real text
+			// instead of a bare "STR_VAR_n" token in the transfer message.
+			int idx = value_of(arg(1));
+			this->str_vars[arg(0)] = "BOX " + std::to_string(idx + 1);
 		} else if (op == "bufferitemname" && argc >= 2) {
 			// STR_VAR_n <- an item's display name (the Devon Corp fossil
 			// hand-off's "PLAYER handed the {STR_VAR_1} to the DEVON
