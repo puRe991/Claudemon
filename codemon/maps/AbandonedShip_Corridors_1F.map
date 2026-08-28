@@ -1,0 +1,62 @@
+tileset general__inside_ship
+18 12
+9 6
+520,521,520,680,681,680,520,513,521,520,680,681,521,520,680,520,521,520
+528,529,528,688,689,688,528,513,529,528,688,689,529,528,688,528,529,528
+515,515,515,515,515,522,523,513,685,515,515,515,515,515,515,515,522,523
+515,514,536,538,540,514,531,513,515,514,536,538,539,537,538,540,514,531
+685,514,560,561,562,516,514,513,515,514,560,561,561,561,561,562,516,514
+515,514,560,561,562,516,514,513,515,514,560,561,561,561,561,562,516,514
+515,514,560,561,562,516,514,513,515,514,560,561,561,561,561,562,516,514
+515,514,560,561,562,516,514,513,515,514,560,561,561,561,561,562,516,514
+685,514,549,547,550,516,514,513,515,514,549,686,548,546,547,550,516,514
+515,514,557,555,558,516,514,513,515,514,557,694,556,554,555,558,516,684
+515,514,517,518,518,519,514,513,515,514,517,518,518,518,518,518,519,514
+667,668,514,514,514,514,514,513,667,668,514,514,514,514,514,514,514,514
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,1
+0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0
+1,0,1,1,1,0,0,1,0,0,1,1,1,1,1,1,0,0
+0,0,1,1,1,0,0,1,0,0,1,1,1,1,1,1,0,0
+0,0,1,1,1,0,0,1,0,0,1,1,1,1,1,1,0,0
+0,0,1,1,1,0,0,1,0,0,1,1,1,1,1,1,0,0
+1,0,1,1,1,0,0,1,0,0,1,0,1,1,1,1,0,0
+0,0,1,1,1,0,0,1,0,0,1,0,1,1,1,1,0,1
+0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0
+warps
+9 11 AbandonedShip_Deck 2
+8 11 AbandonedShip_Deck 2
+0 11 AbandonedShip_Deck 3
+1 11 AbandonedShip_Deck 3
+11 9 AbandonedShip_Rooms_1F 0
+14 9 AbandonedShip_Rooms_1F 3
+11 3 AbandonedShip_Rooms_1F 2
+14 3 AbandonedShip_Rooms_1F 4
+3 9 AbandonedShip_Rooms2_1F 0
+16 2 AbandonedShip_Corridors_B1F 7
+5 2 AbandonedShip_Corridors_B1F 6
+3 3 AbandonedShip_Rooms2_1F 2
+npcs
+people_youngster 17 7 S wander 0 - 0
+people_tuber_m 5 10 S static 0 - 3
+dialogs
+0	Isn't it fun here? I get excited just being here!
+1	It's not easy throwing POKé BALLS while hanging on to an inner tube!
+objscripts
+0 AbandonedShip_Corridors_1F_EventScript_Youngster
+1 AbandonedShip_Corridors_1F_EventScript_Charlie
+scriptdefs
+= AbandonedShip_Corridors_1F_EventScript_Charlie
+trainerbattle_single TRAINER_CHARLIE AbandonedShip_Corridors_1F_Text_CharlieIntro AbandonedShip_Corridors_1F_Text_CharlieDefeat
+msgbox	It's not easy throwing POKé BALLS while hanging on to an inner tube!
+end
+= AbandonedShip_Corridors_1F_EventScript_Youngster
+msgbox	Isn't it fun here? I get excited just being here!
+end
+mapsec
+6 14 1 1	ABANDONED SHIP
+music
+MUS_ABANDONED_SHIP

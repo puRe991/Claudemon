@@ -1,0 +1,374 @@
+tileset building__battle_factory
+17 14
+8 7
+538,765,766,767,538,789,790,791,538,816,817,765,538,741,742,743,538
+538,773,774,775,538,797,798,799,538,773,578,773,538,749,750,751,538
+538,594,782,783,538,805,806,807,538,586,594,594,538,757,758,759,538
+538,573,574,575,538,813,814,815,538,781,815,815,538,573,574,575,538
+538,605,606,607,538,554,555,556,538,554,555,556,538,833,834,835,538
+532,591,589,590,532,562,563,564,532,562,563,564,532,836,837,838,532
+595,604,597,598,595,515,516,515,595,515,516,515,595,840,841,842,595
+608,609,610,611,612,514,513,514,513,514,513,514,513,514,722,723,580
+616,617,618,619,620,513,514,513,514,534,535,819,514,513,730,731,588
+515,516,515,516,515,514,513,514,513,534,535,534,535,820,515,516,515
+592,593,517,534,535,534,535,819,514,534,535,534,535,819,517,592,593
+600,601,525,534,535,602,603,820,513,550,551,534,535,820,525,600,601
+516,515,516,550,551,819,514,513,514,513,514,550,551,819,516,515,516
+513,514,513,514,513,514,513,514,521,522,513,514,513,514,513,514,513
+collision
+1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1
+1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1
+1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1
+1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1
+1,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,1
+1,0,0,0,1,1,0,1,1,1,0,1,1,0,0,0,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+npcs
+people_scientist_1 8 12 N static 0 LOCALID_FACTORY_PRE_BATTLE_ATTENDANT 0
+onload
+VAR_TEMP_0 0 BattleFrontier_BattleFactoryPreBattleRoom_EventScript_EnterRoom
+movements
+BattleFrontier_BattleFactoryPreBattleRoom_Movement_AttendantEnterRoom	up,up,up,up,up,face_down,end
+BattleFrontier_BattleFactoryPreBattleRoom_Movement_AttendantMoveToReceiveCall	left,left,left,end
+BattleFrontier_BattleFactoryPreBattleRoom_Movement_AttendantReturnToPlayer	right,right,right,face_down,end
+BattleFrontier_BattleFactoryPreBattleRoom_Movement_GuideWalkToBattleRoomLv50	left,left,up,up,delay,end
+BattleFrontier_BattleFactoryPreBattleRoom_Movement_GuideWalkToBattleRoomLvOpen	right,right,up,up,delay,end
+BattleFrontier_BattleFactoryPreBattleRoom_Movement_PlayerEnterRoom	up,up,up,up,up,end
+BattleFrontier_BattleFactoryPreBattleRoom_Movement_PlayerWalkToBattleRoomLv50	up,left,left,up,up,end
+BattleFrontier_BattleFactoryPreBattleRoom_Movement_PlayerWalkToBattleRoomLvOpen	up,right,right,up,up,end
+scriptdefs
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_EnterRoom
+goto_if_eq VAR_0x8006 1 BattleFrontier_BattleFactoryPreBattleRoom_EventScript_ReturnToRoomFromBattle
+setvar VAR_TEMP_0 1
+applymovement LOCALID_FACTORY_PRE_BATTLE_ATTENDANT BattleFrontier_BattleFactoryPreBattleRoom_Movement_AttendantEnterRoom
+applymovement LOCALID_PLAYER BattleFrontier_BattleFactoryPreBattleRoom_Movement_PlayerEnterRoom
+waitmovement 0
+goto_if_eq VAR_0x8006 2 BattleFrontier_BattleFactoryPreBattleRoom_EventScript_ResumeChallenge
+factory_generaterentalmons
+factory_generateopponentmons
+factory_getopponentmontype
+setorcopyvar VAR_0x8005 VAR_RESULT
+factory_getopponentstyle
+setorcopyvar VAR_0x8006 VAR_RESULT
+call BattleFrontier_BattleFactoryPreBattleRoom_EventScript_CommentOnOpponentType
+call BattleFrontier_BattleFactoryPreBattleRoom_EventScript_CommentOnOpponentStyle
+msgbox	First, we will hold your POKéMON for safekeeping.You may then choose from our selection of POKéMON.
+fadescreen FADE_TO_BLACK
+factory_setswapped
+factory_rentmons
+waitstate
+goto BattleFrontier_BattleFactoryPreBattleRoom_EventScript_EnterBattleRoom
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_EnterBattleRoom
+msgbox	Right this way, please!
+closemessage
+call BattleFrontier_EventScript_GetLvlMode
+call_if_eq VAR_RESULT FRONTIER_LVL_50 BattleFrontier_BattleFactoryPreBattleRoom_EventScript_WalkToBattleRoomLv50
+call_if_eq VAR_RESULT FRONTIER_LVL_OPEN BattleFrontier_BattleFactoryPreBattleRoom_EventScript_WalkToBattleRoomLvOpen
+waitmovement 0
+warp BattleFrontier_BattleFactoryBattleRoom 6 11
+waitstate
+end
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_WalkToBattleRoomLvOpen
+applymovement LOCALID_FACTORY_PRE_BATTLE_ATTENDANT BattleFrontier_BattleFactoryPreBattleRoom_Movement_GuideWalkToBattleRoomLvOpen
+applymovement LOCALID_PLAYER BattleFrontier_BattleFactoryPreBattleRoom_Movement_PlayerWalkToBattleRoomLvOpen
+return
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_WalkToBattleRoomLv50
+applymovement LOCALID_FACTORY_PRE_BATTLE_ATTENDANT BattleFrontier_BattleFactoryPreBattleRoom_Movement_GuideWalkToBattleRoomLv50
+applymovement LOCALID_PLAYER BattleFrontier_BattleFactoryPreBattleRoom_Movement_PlayerWalkToBattleRoomLv50
+return
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_CommentOnOpponentStyle
+call_if_eq VAR_0x8006 FACTORY_STYLE_NONE BattleFrontier_BattleFactoryPreBattleRoom_EventScript_StyleUnrestrained
+call_if_eq VAR_0x8006 FACTORY_STYLE_PREPARATION BattleFrontier_BattleFactoryPreBattleRoom_EventScript_StyleTotalPreparation
+call_if_eq VAR_0x8006 FACTORY_STYLE_SLOW_STEADY BattleFrontier_BattleFactoryPreBattleRoom_EventScript_StyleSlowAndSteady
+call_if_eq VAR_0x8006 FACTORY_STYLE_ENDURANCE BattleFrontier_BattleFactoryPreBattleRoom_EventScript_StyleEndurance
+call_if_eq VAR_0x8006 FACTORY_STYLE_HIGH_RISK BattleFrontier_BattleFactoryPreBattleRoom_EventScript_StyleHighRisk
+call_if_eq VAR_0x8006 FACTORY_STYLE_WEAKENING BattleFrontier_BattleFactoryPreBattleRoom_EventScript_StyleWeakenFoe
+call_if_eq VAR_0x8006 FACTORY_STYLE_UNPREDICTABLE BattleFrontier_BattleFactoryPreBattleRoom_EventScript_StyleImpossibleToPredict
+call_if_eq VAR_0x8006 FACTORY_STYLE_WEATHER BattleFrontier_BattleFactoryPreBattleRoom_EventScript_StyleDependsOnFlow
+call_if_eq VAR_0x8006 FACTORY_NUM_STYLES BattleFrontier_BattleFactoryPreBattleRoom_EventScript_StyleFlexible
+return
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_StyleFlexible
+msgbox	The favorite battle style appears to be flexibly adaptable to the situation.
+return
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_StyleDependsOnFlow
+msgbox	The favorite battle style appears to depend on the battle's flow.
+return
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_StyleImpossibleToPredict
+msgbox	The favorite battle style appears to be impossible to predict.
+return
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_StyleWeakenFoe
+msgbox	The favorite battle style appears to be weakening the foe to start.
+return
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_StyleHighRisk
+msgbox	The favorite battle style appears to be high risk, high return.
+return
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_StyleEndurance
+msgbox	The favorite battle style appears to be one of endurance.
+return
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_StyleSlowAndSteady
+msgbox	The favorite battle style appears to be slow and steady.
+return
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_StyleTotalPreparation
+msgbox	The favorite battle style appears to be one based on total preparation.
+return
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_StyleUnrestrained
+msgbox	The favorite battle style appears to be free-spirited and unrestrained.
+return
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_CommentOnOpponentType
+msgbox	I've conducted a little investigation about your upcoming opponent.
+call_if_eq VAR_0x8005 TYPE_NORMAL BattleFrontier_BattleFactoryPreBattleRoom_EventScript_OpponentUsesNormal
+call_if_eq VAR_0x8005 TYPE_FIGHTING BattleFrontier_BattleFactoryPreBattleRoom_EventScript_OpponentUsesFighting
+call_if_eq VAR_0x8005 TYPE_FLYING BattleFrontier_BattleFactoryPreBattleRoom_EventScript_OpponentUsesFlying
+call_if_eq VAR_0x8005 TYPE_POISON BattleFrontier_BattleFactoryPreBattleRoom_EventScript_OpponentUsesPoison
+call_if_eq VAR_0x8005 TYPE_GROUND BattleFrontier_BattleFactoryPreBattleRoom_EventScript_OpponentUsesGround
+call_if_eq VAR_0x8005 TYPE_ROCK BattleFrontier_BattleFactoryPreBattleRoom_EventScript_OpponentUsesRock
+call_if_eq VAR_0x8005 TYPE_BUG BattleFrontier_BattleFactoryPreBattleRoom_EventScript_OpponentUsesBug
+call_if_eq VAR_0x8005 TYPE_GHOST BattleFrontier_BattleFactoryPreBattleRoom_EventScript_OpponentUsesGhost
+call_if_eq VAR_0x8005 TYPE_STEEL BattleFrontier_BattleFactoryPreBattleRoom_EventScript_OpponentUsesSteel
+call_if_eq VAR_0x8005 TYPE_FIRE BattleFrontier_BattleFactoryPreBattleRoom_EventScript_OpponentUsesFire
+call_if_eq VAR_0x8005 TYPE_WATER BattleFrontier_BattleFactoryPreBattleRoom_EventScript_OpponentUsesWater
+call_if_eq VAR_0x8005 TYPE_GRASS BattleFrontier_BattleFactoryPreBattleRoom_EventScript_OpponentUsesGrass
+call_if_eq VAR_0x8005 TYPE_ELECTRIC BattleFrontier_BattleFactoryPreBattleRoom_EventScript_OpponentUsesElectric
+call_if_eq VAR_0x8005 TYPE_PSYCHIC BattleFrontier_BattleFactoryPreBattleRoom_EventScript_OpponentUsesPsychic
+call_if_eq VAR_0x8005 TYPE_ICE BattleFrontier_BattleFactoryPreBattleRoom_EventScript_OpponentUsesIce
+call_if_eq VAR_0x8005 TYPE_DRAGON BattleFrontier_BattleFactoryPreBattleRoom_EventScript_OpponentUsesDragon
+call_if_eq VAR_0x8005 TYPE_DARK BattleFrontier_BattleFactoryPreBattleRoom_EventScript_OpponentUsesDark
+call_if_eq VAR_0x8005 NUMBER_OF_MON_TYPES BattleFrontier_BattleFactoryPreBattleRoom_EventScript_OpponentHasNoMostCommonType
+return
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_OpponentHasNoMostCommonType
+msgbox	The TRAINER appears to have no clear favorites when it comes to type.
+return
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_OpponentUsesDark
+msgbox	The TRAINER is apparently skilled in the handling of the DARK type.
+return
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_OpponentUsesDragon
+msgbox	The TRAINER is apparently skilled in the handling of the DRAGON type.
+return
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_OpponentUsesIce
+msgbox	The TRAINER is apparently skilled in the handling of the ICE type.
+return
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_OpponentUsesPsychic
+msgbox	The TRAINER is apparently skilled in the handling of the PSYCHIC type.
+return
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_OpponentUsesElectric
+msgbox	The TRAINER is apparently skilled in the handling of the ELECTRIC type.
+return
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_OpponentUsesGrass
+msgbox	The TRAINER is apparently skilled in the handling of the GRASS type.
+return
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_OpponentUsesWater
+msgbox	The TRAINER is apparently skilled in the handling of the WATER type.
+return
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_OpponentUsesFire
+msgbox	The TRAINER is apparently skilled in the handling of the FIRE type.
+return
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_OpponentUsesSteel
+msgbox	The TRAINER is apparently skilled in the handling of the STEEL type.
+return
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_OpponentUsesGhost
+msgbox	The TRAINER is apparently skilled in the handling of the GHOST type.
+return
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_OpponentUsesBug
+msgbox	The TRAINER is apparently skilled in the handling of the BUG type.
+return
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_OpponentUsesRock
+msgbox	The TRAINER is apparently skilled in the handling of the ROCK type.
+return
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_OpponentUsesGround
+msgbox	The TRAINER is apparently skilled in the handling of the GROUND type.
+return
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_OpponentUsesPoison
+msgbox	The TRAINER is apparently skilled in the handling of the POISON type.
+return
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_OpponentUsesFlying
+msgbox	The TRAINER is apparently skilled in the handling of the FLYING type.
+return
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_OpponentUsesFighting
+msgbox	The TRAINER is apparently skilled in the handling of the FIGHTING type.
+return
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_OpponentUsesNormal
+msgbox	The TRAINER is apparently skilled in the handling of the NORMAL type.
+return
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_ResumeChallenge
+special SavePlayerParty
+factory_setparties 0
+frontier_set FRONTIER_DATA_RECORD_DISABLED TRUE
+special CalculatePlayerPartyCount
+goto BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskReadyForOpponent
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskReadyForOpponent
+frontier_getbrainstatus
+goto_if_ne VAR_RESULT FRONTIER_BRAIN_NOT_READY BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskReadyForHead
+goto BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskReadyForRegularOpponent
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskReadyForRegularOpponent
+frontier_get FRONTIER_DATA_BATTLE_NUM
+call_if_eq VAR_RESULT 1 BattleFrontier_BattleFactoryPreBattleRoom_EventScript_ReadyFor2ndOpponent
+call_if_eq VAR_RESULT 2 BattleFrontier_BattleFactoryPreBattleRoom_EventScript_ReadyFor3rdOpponent
+call_if_eq VAR_RESULT 3 BattleFrontier_BattleFactoryPreBattleRoom_EventScript_ReadyFor4thOpponent
+call_if_eq VAR_RESULT 4 BattleFrontier_BattleFactoryPreBattleRoom_EventScript_ReadyFor5thOpponent
+call_if_eq VAR_RESULT 5 BattleFrontier_BattleFactoryPreBattleRoom_EventScript_ReadyFor6thOpponent
+call_if_eq VAR_RESULT 6 BattleFrontier_BattleFactoryPreBattleRoom_EventScript_ReadyFor7thOpponent
+call BattleFrontier_EventScript_GetCantRecordBattle
+goto_if_eq VAR_RESULT TRUE BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskReadyForOpponentNoRecord
+multichoice 19 4 MULTI_GO_ON_RECORD_REST_RETIRE TRUE
+switch VAR_RESULT
+case 0 BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskSwapMon
+case 1 BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskRecordBattle
+case 2 BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskPauseChallenge
+case 3 BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskRetireChallenge
+case MULTI_B_PRESSED BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskReadyForOpponent
+goto BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskReadyForOpponentNoRecord
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskReadyForOpponentNoRecord
+multichoice 20 6 MULTI_GO_ON_REST_RETIRE TRUE
+switch VAR_RESULT
+case 0 BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskSwapMon
+case 1 BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskPauseChallenge
+case 2 BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskRetireChallenge
+case MULTI_B_PRESSED BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskReadyForOpponent
+goto BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskRecordBattle
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskRecordBattle
+msgbox	Would you like to record your latest battle on your FRONTIER PASS?
+waitmessage
+multichoicedefault 20 8 MULTI_YESNO 1 FALSE
+switch VAR_RESULT
+case 1 BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskReadyForOpponent
+case 0 BattleFrontier_BattleFactoryPreBattleRoom_EventScript_RecordBattle
+case MULTI_B_PRESSED BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskReadyForOpponent
+goto BattleFrontier_BattleFactoryPreBattleRoom_EventScript_RecordBattle
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_RecordBattle
+call BattleFrontier_EventScript_SaveBattle
+goto BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskReadyForOpponent
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskRetireChallenge
+msgbox	Would you like to retire from your Battle Swap challenge?
+waitmessage
+multichoicedefault 20 8 MULTI_YESNO 1 FALSE
+switch VAR_RESULT
+case 1 BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskReadyForOpponent
+case 0 BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobbyLost
+case MULTI_B_PRESSED BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskReadyForOpponent
+goto BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskSwapMon
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskSwapMon
+factory_generateopponentmons
+factory_getopponentmontype
+setorcopyvar VAR_0x8005 VAR_RESULT
+factory_getopponentstyle
+setorcopyvar VAR_0x8006 VAR_RESULT
+call BattleFrontier_BattleFactoryPreBattleRoom_EventScript_CommentOnOpponentType
+call BattleFrontier_BattleFactoryPreBattleRoom_EventScript_CommentOnOpponentStyle
+msgboxyesno	Before starting the battle, would you like to swap a POKéMON?
+switch VAR_RESULT
+case NO BattleFrontier_BattleFactoryPreBattleRoom_EventScript_EnterBattleRoom
+case YES BattleFrontier_BattleFactoryPreBattleRoom_EventScript_SwapMons
+case MULTI_B_PRESSED BattleFrontier_BattleFactoryPreBattleRoom_EventScript_EnterBattleRoom
+goto BattleFrontier_BattleFactoryPreBattleRoom_EventScript_SwapMons
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_SwapMons
+fadescreen FADE_TO_BLACK
+factory_swapmons
+waitstate
+goto_if_eq VAR_RESULT TRUE BattleFrontier_BattleFactoryPreBattleRoom_EventScript_EnterBattleRoom  @ Did player keep current pokemon
+factory_setswapped
+msgbox	Thank you! Your POKéMON swap is complete.
+goto BattleFrontier_BattleFactoryPreBattleRoom_EventScript_EnterBattleRoom
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskPauseChallenge
+msgboxyesno	Would you like to save and quit the game?
+switch VAR_RESULT
+case NO BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskReadyForOpponent
+case YES BattleFrontier_BattleFactoryPreBattleRoom_EventScript_PauseChallenge
+case MULTI_B_PRESSED BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskReadyForOpponent
+goto BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskRetireChallenge
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_PauseChallenge
+msgbox	I am saving your data. Please wait.
+waitmessage
+factory_save CHALLENGE_STATUS_PAUSED
+playse SE_SAVE
+waitse
+fadescreen FADE_TO_BLACK
+frontier_reset
+end
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_ReadyFor7thOpponent
+msgbox	Finally, the 7th match is next! Are you ready?
+waitmessage
+return
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_ReadyFor6thOpponent
+msgbox	The 6th match is next! Are you ready?
+waitmessage
+return
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_ReadyFor5thOpponent
+msgbox	The 5th match is next! Are you ready?
+waitmessage
+return
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_ReadyFor4thOpponent
+msgbox	The 4th match is next! Are you ready?
+waitmessage
+return
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_ReadyFor3rdOpponent
+msgbox	The 3rd match is next! Are you ready?
+waitmessage
+return
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_ReadyFor2ndOpponent
+msgbox	The 2nd match is next! Are you ready?
+waitmessage
+return
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskReadyForHead
+msgbox	The FACTORY HEAD is demanding you. Are you prepared to face him?
+waitmessage
+call BattleFrontier_EventScript_GetCantRecordBattle
+goto_if_eq VAR_RESULT TRUE BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskReadyForHeadNoRecord
+multichoice 19 4 MULTI_GO_ON_RECORD_REST_RETIRE TRUE
+switch VAR_RESULT
+case 0 BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskSwapBeforeHead
+case 1 BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskRecordBattle
+case 2 BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskPauseChallenge
+case 3 BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskRetireChallenge
+case MULTI_B_PRESSED BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskReadyForHead
+goto BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskReadyForHeadNoRecord
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskReadyForHeadNoRecord
+multichoice 20 6 MULTI_GO_ON_REST_RETIRE TRUE
+switch VAR_RESULT
+case 0 BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskSwapBeforeHead
+case 1 BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskPauseChallenge
+case 2 BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskRetireChallenge
+case MULTI_B_PRESSED BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskReadyForHead
+goto BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskSwapBeforeHead
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskSwapBeforeHead
+msgbox	I'm terribly sorry, but I can't tell you anything about the FACTORY HEAD.
+msgboxyesno	Before starting the battle, would you like to swap a POKéMON?
+switch VAR_RESULT
+case NO BattleFrontier_BattleFactoryPreBattleRoom_EventScript_EnterBattleRoom
+case YES BattleFrontier_BattleFactoryPreBattleRoom_EventScript_SwapMons
+case MULTI_B_PRESSED BattleFrontier_BattleFactoryPreBattleRoom_EventScript_EnterBattleRoom
+goto BattleFrontier_BattleFactoryPreBattleRoom_EventScript_WalkToBattleRoomLv50
+= BattleFrontier_BattleFactoryPreBattleRoom_EventScript_ReturnToRoomFromBattle
+factory_setopponentmons
+factory_resethelditems
+msgbox	Thank you for competing! Let us restore your POKéMON!
+playfanfare MUS_HEAL
+waitfanfare
+special HealPlayerParty
+frontier_getbrainstatus
+goto_if_eq VAR_RESULT FRONTIER_BRAIN_NOT_READY BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskReadyForRegularOpponent
+playse SE_POKENAV_CALL
+waitse
+msgbox	Excuse me! Excuse me, please! May I get you to wait a few moments?
+closemessage
+applymovement LOCALID_FACTORY_PRE_BATTLE_ATTENDANT BattleFrontier_BattleFactoryPreBattleRoom_Movement_AttendantMoveToReceiveCall
+waitmovement 0
+msgbox	…Uh-huh? What?! …Whoa! Understood, sir! Will do!
+closemessage
+applymovement LOCALID_FACTORY_PRE_BATTLE_ATTENDANT BattleFrontier_BattleFactoryPreBattleRoom_Movement_AttendantReturnToPlayer
+waitmovement 0
+msgbox	Oh, my… Sorry to keep you waiting!I have a message from this facility's boss, the FACTORY HEAD.He says, “We're going to do it! Come here right now!”
+closemessage
+delay 16
+goto BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskReadyForHead
+end
+mapsec
+22 12 1 1	BATTLE FRONTIER
+music
+MUS_B_FACTORY

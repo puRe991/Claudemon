@@ -1,0 +1,431 @@
+tileset general__petalburg
+30 30
+20 17
+468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469
+476,477,476,477,597,590,589,590,589,590,598,498,499,498,499,498,499,498,499,485,484,485,484,485,484,485,476,477,476,477
+468,469,468,469,580,8,9,9,9,10,582,468,469,468,469,468,469,468,469,1,1,1,176,177,177,178,468,469,468,469
+476,477,476,477,588,16,17,17,17,18,588,486,485,484,485,484,485,484,487,176,177,177,192,161,161,186,476,477,476,477
+468,469,468,469,596,24,11,25,11,26,588,575,426,427,427,427,427,428,575,184,161,161,161,161,161,186,468,469,468,469
+476,477,476,477,4,32,19,33,19,34,588,588,434,435,435,435,435,436,588,184,161,161,161,161,161,186,476,477,476,477
+468,469,468,469,4,4,280,282,4,4,588,588,440,441,442,435,443,444,588,184,161,161,161,161,161,186,468,469,468,469
+476,477,476,477,4,4,288,290,4,4,588,588,448,449,450,453,451,452,588,184,161,161,161,161,161,186,476,477,476,477
+468,469,468,469,1,1,288,290,1,572,614,588,456,457,458,461,459,460,588,184,161,161,161,161,161,186,468,469,468,469
+476,477,484,487,1,1,288,290,3,612,613,596,1,1,280,281,282,304,596,2,2,2,2,2,592,593,600,601,476,477
+468,469,1,1,1,1,288,290,1,1,1,1,1,1,288,289,290,305,1,1,1,1,1,1,48,49,50,51,468,469
+486,487,1,1,1,1,288,290,1,1,1,1,1,1,288,289,290,1,1,1,1,1,1,1,56,57,58,59,476,477
+1,1,280,281,281,281,289,289,281,281,281,281,281,281,289,289,290,1,1,1,1,1,1,1,96,65,66,67,468,469
+462,463,296,297,297,297,297,594,595,297,297,297,297,297,297,289,290,1,1,72,73,74,75,1,1,280,282,1,476,477
+468,471,176,177,177,177,178,470,471,1,1,1,1,1,1,288,290,1,1,80,81,82,83,1,1,288,290,1,468,469
+476,477,184,161,161,161,186,476,477,1,1,1,1,1,1,288,290,1,1,88,89,90,91,1,1,288,290,1,486,485
+468,469,184,161,161,161,186,468,469,8,9,9,10,1,1,288,290,3,1,96,97,98,99,1,1,288,290,1,1,1
+476,477,184,161,161,161,186,476,477,16,17,17,18,1,1,288,289,281,281,281,281,281,281,281,281,289,289,282,1,1
+468,469,184,161,161,161,186,468,469,24,25,11,26,1,1,288,289,297,297,297,297,297,297,297,297,297,297,298,1,1
+476,477,184,161,161,161,186,486,487,32,33,19,34,1,1,288,290,1,1,1,1,1,1,1,1,1,462,463,462,463
+468,469,184,161,161,161,186,1,1,1,513,1,1,1,1,288,290,1,572,573,573,573,573,573,573,574,470,469,468,469
+476,477,184,161,161,161,186,1,1,1,1,1,1,1,1,288,290,1,580,8,9,9,10,581,581,582,476,477,476,477
+468,469,184,161,161,161,186,1,1,1,1,1,1,1,1,288,290,1,588,16,17,17,18,7,7,588,468,469,468,469
+476,477,184,161,161,161,194,177,177,177,177,178,462,463,1,288,290,1,596,24,25,11,26,7,7,588,476,477,476,477
+468,469,184,161,161,161,161,161,161,161,161,186,470,471,4,288,290,4,1,32,33,19,34,4,4,588,468,469,468,469
+476,477,184,161,161,161,161,161,161,161,161,186,476,477,1,288,289,281,281,281,281,282,1,4,4,588,476,477,476,477
+468,469,184,161,161,161,161,161,161,161,161,186,468,469,4,296,297,297,297,297,297,298,1,1,1,596,468,469,468,469
+476,477,184,161,161,510,511,510,511,510,511,186,476,477,462,463,462,463,462,463,462,463,462,463,462,463,476,477,476,477
+468,469,2,2,2,508,509,508,509,508,509,2,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469
+476,477,462,463,462,499,498,499,498,499,498,463,476,477,476,477,476,477,476,477,476,477,476,477,476,477,476,477,476,477
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1
+1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1
+1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1
+1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1
+1,1,1,1,0,0,0,0,0,0,1,1,0,0,1,1,1,0,1,0,0,0,0,0,0,0,1,1,1,1
+1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,1,1
+1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,1,1,1,1
+1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,1,1
+1,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,1,1
+1,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,0,1,1,1,1,0,0,0,0,0,0,0
+1,1,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
+1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,1,1,1,1,0,0,1,1,1,1,1
+1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1
+1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1
+1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
+1,1,0,0,0,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,0,0,0,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+connections
+left -50 Route104
+right 10 Route102
+warps
+10 19 PetalburgCity_House1 0
+7 5 PetalburgCity_WallysHouse 0
+15 8 PetalburgCity_Gym 0
+20 16 PetalburgCity_PokemonCenter_1F 0
+20 24 PetalburgCity_House2 0
+25 12 PetalburgCity_Mart 0
+npcs
+people_woman_4 16 18 S wander FLAG_HIDE_PETALBURG_CITY_WALLYS_MOM - 0
+people_wally 15 10 N static FLAG_HIDE_PETALBURG_CITY_WALLY LOCALID_PETALBURG_WALLY 0
+people_boy_1 8 22 S static 0 LOCALID_PETALBURG_BOY 0
+people_gentleman 20 10 S wander 0 - 0
+people_pokefan_m 15 10 N static FLAG_HIDE_PETALBURG_CITY_WALLYS_DAD LOCALID_PETALBURG_WALLYS_DAD 0
+misc_item_ball 19 2 S static FLAG_ITEM_PETALBURG_CITY_MAX_REVIVE - 0
+misc_item_ball 3 28 S static FLAG_ITEM_PETALBURG_CITY_ETHER - 0
+people_boy_2 12 15 S static 0 LOCALID_GYM_BOY 0
+people_scott 13 12 S static FLAG_HIDE_PETALBURG_CITY_SCOTT LOCALID_PETALBURG_SCOTT 0
+dialogs
+0	Where has our WALLY gone?We have to leave for VERDANTURF TOWN very soon…
+2	My face is reflected in the water.It's a shining grin full of hope…Or it could be a look of somber silence struggling with fear…What do you see reflected in your face?
+3	Let's say you have six POKéMON. If you catch another one…It is automatically sent to a STORAGE BOX over a PC connection.
+7	Hiya! Are you maybe… A rookie TRAINER?Do you know what POKéMON TRAINERS do when they reach a new town?They first check what kind of GYM is in the town.
+objscripts
+0 PetalburgCity_EventScript_WallysMom
+2 PetalburgCity_EventScript_Boy
+3 PetalburgCity_EventScript_Gentleman
+5 PetalburgCity_EventScript_ItemMaxRevive
+6 PetalburgCity_EventScript_ItemEther
+7 PetalburgCity_EventScript_GymBoy
+triggers
+8 10 VAR_PETALBURG_CITY_STATE 0 PetalburgCity_EventScript_ShowGymToPlayer0
+8 11 VAR_PETALBURG_CITY_STATE 0 PetalburgCity_EventScript_ShowGymToPlayer1
+8 12 VAR_PETALBURG_CITY_STATE 0 PetalburgCity_EventScript_ShowGymToPlayer2
+8 13 VAR_PETALBURG_CITY_STATE 0 PetalburgCity_EventScript_ShowGymToPlayer3
+4 10 VAR_SCOTT_PETALBURG_ENCOUNTER 0 PetalburgCity_EventScript_Scott0
+4 11 VAR_SCOTT_PETALBURG_ENCOUNTER 0 PetalburgCity_EventScript_Scott1
+4 12 VAR_SCOTT_PETALBURG_ENCOUNTER 0 PetalburgCity_EventScript_Scott2
+4 13 VAR_SCOTT_PETALBURG_ENCOUNTER 0 PetalburgCity_EventScript_Scott3
+11 29 0 0 PetalburgCity_HiddenItem_11_29
+onload
+VAR_PETALBURG_CITY_STATE 2 PetalburgCity_EventScript_WallyTutorial
+VAR_PETALBURG_CITY_STATE 4 PetalburgCity_EventScript_WalkToWallyHouse
+movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
+Common_Movement_FaceOriginalDirection	face_down,end
+Common_Movement_FacePlayer	face_down,end
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
+PetalburgCity_Movement_BoyApproachPlayer0	right,right,right,delay,end
+PetalburgCity_Movement_BoyApproachPlayer1	right,right,end
+PetalburgCity_Movement_BoyApproachPlayer2	right,right,right,delay,end
+PetalburgCity_Movement_BoyApproachPlayer3	down,right,right,right,delay,end
+PetalburgCity_Movement_BoyWalkAway	down,left,left,left,left,left,left,left,left,left,left,left,end
+PetalburgCity_Movement_BoyWalkToGym0	right,right,right,right,right,right,right,up,right,delay,end
+PetalburgCity_Movement_BoyWalkToGym1	down,right,right,right,right,right,right,right,right,up,up,right,delay,end
+PetalburgCity_Movement_BoyWalkToGym2	right,right,right,right,right,right,right,up,right,delay,end
+PetalburgCity_Movement_BoyWalkToGym3	right,right,right,right,right,right,right,up,up,right,delay,end
+PetalburgCity_Movement_PlayerWalkToGym0	down,right,right,right,right,right,right,right,up,end
+PetalburgCity_Movement_PlayerWalkToGym1	delay,delay,down,right,right,right,right,right,right,right,up,up,end
+PetalburgCity_Movement_PlayerWalkToGym2	up,right,right,right,right,right,right,right,up,end
+PetalburgCity_Movement_PlayerWalkToGym3	up,right,right,right,right,right,right,right,up,up,end
+PetalburgCity_Movement_PlayerWatchScottExit0	delay,delay,delay,delay,delay,delay,end
+PetalburgCity_Movement_PlayerWatchScottExit1	delay,delay,delay,delay,delay,end
+PetalburgCity_Movement_PlayerWatchScottExit2	delay,delay,delay,delay,delay,end
+PetalburgCity_Movement_PlayerWatchScottExit3	delay,delay,delay,delay,delay,end
+PetalburgCity_Movement_ScottApproachPlayer	left,left,left,left,end
+PetalburgCity_Movement_ScottExit0	down,down,left,left,left,left,left,left,left,left,left,left,left,end
+PetalburgCity_Movement_ScottExit1	down,left,left,left,left,left,left,left,left,left,left,left,end
+PetalburgCity_Movement_ScottExit2	down,left,left,left,left,left,left,left,left,left,left,left,end
+PetalburgCity_Movement_ScottExit3	up,left,left,left,left,left,left,left,left,left,left,left,end
+PetalburgCity_Movement_ScottStartWalkLeft	left,left,left,left,end
+PetalburgCity_Movement_WalkInsideHousePlayer	up,up,end
+PetalburgCity_Movement_WalkInsideHouseWallysDad	up,delay,end
+PetalburgCity_Movement_WalkToWallyHousePlayer	delay,down,down,down,left,left,left,left,left,left,left,left,up,up,up,up,up,end
+PetalburgCity_Movement_WalkToWallyHouseWallysDad	delay,down,down,left,left,left,left,left,left,left,left,up,up,up,up,up,up,end
+PetalburgCity_Movement_WallyTutorialPlayer	delay,down,down,down,down,down,down,down,down,right,right,right,right,right,right,right,right,right,right,right,right,right,right,right,right,right,right,right,right,up,up,delay,end
+PetalburgCity_Movement_WallyTutorialWally	delay,down,down,down,down,down,down,down,right,right,right,right,right,right,right,right,right,right,right,right,right,right,right,right,right,right,right,right,up,up,right,delay,delay,delay,delay,delay,end
+scriptdefs
+= PetalburgCity_EventScript_WalkToWallyHouse
+lockall
+setflag FLAG_HIDE_MAP_NAME_POPUP
+applymovement LOCALID_PETALBURG_WALLYS_DAD PetalburgCity_Movement_WalkToWallyHouseWallysDad
+applymovement LOCALID_PLAYER PetalburgCity_Movement_WalkToWallyHousePlayer
+waitmovement 0
+setvar VAR_0x8004 7
+setvar VAR_0x8005 5
+opendoor VAR_0x8004 VAR_0x8005
+waitdooranim
+applymovement LOCALID_PETALBURG_WALLYS_DAD PetalburgCity_Movement_WalkInsideHouseWallysDad
+applymovement LOCALID_PLAYER PetalburgCity_Movement_WalkInsideHousePlayer
+waitmovement 0
+setflag FLAG_HIDE_PETALBURG_CITY_WALLYS_DAD
+hideobjectat LOCALID_PLAYER MAP_PETALBURG_CITY
+closedoor VAR_0x8004 VAR_0x8005
+waitdooranim
+clearflag FLAG_HIDE_MAP_NAME_POPUP
+fadedefaultbgm
+clearflag FLAG_DONT_TRANSITION_MUSIC
+warp PetalburgCity_WallysHouse 2 4
+waitstate
+releaseall
+end
+= PetalburgCity_EventScript_WallyTutorial
+lockall
+special SavePlayerParty
+special LoadWallyZigzagoon
+applymovement LOCALID_PETALBURG_WALLY PetalburgCity_Movement_WallyTutorialWally
+applymovement LOCALID_PLAYER PetalburgCity_Movement_WallyTutorialPlayer
+waitmovement 0
+msgbox	WALLY: PLAYER… POKéMON hide in tall grass like this, don't they?Please watch me and see if I can catch one properly.…Whoa!
+special StartWallyTutorialBattle
+msgbox	WALLY: I did it… It's my… My POKéMON!
+applymovement LOCALID_PETALBURG_WALLY Common_Movement_WalkInPlaceFasterLeft MAP_PETALBURG_CITY
+waitmovement LOCALID_PETALBURG_WALLY MAP_PETALBURG_CITY
+msgbox	PLAYER, thank you! Let's go back to the GYM!
+closemessage
+clearflag FLAG_HIDE_MAP_NAME_POPUP
+setvar VAR_PETALBURG_CITY_STATE 3
+fadedefaultbgm
+clearflag FLAG_DONT_TRANSITION_MUSIC
+special LoadPlayerParty
+setvar VAR_PETALBURG_GYM_STATE 1
+warp PetalburgCity_Gym 4 108
+waitstate
+releaseall
+end
+= PetalburgCity_HiddenItem_11_29
+goto_if_set FLAG_HIDDEN_ITEM_PETALBURG_CITY_RARE_CANDY PetalburgCity_HiddenItem_11_29_Taken
+finditem ITEM_RARE_CANDY
+setflag FLAG_HIDDEN_ITEM_PETALBURG_CITY_RARE_CANDY
+end
+= PetalburgCity_HiddenItem_11_29_Taken
+end
+= PetalburgCity_EventScript_Scott3
+lockall
+addobject LOCALID_PETALBURG_SCOTT
+setvar VAR_0x8008 3
+setobjectxy LOCALID_PETALBURG_SCOTT 13 13
+goto PetalburgCity_EventScript_Scott
+end
+= PetalburgCity_EventScript_Scott
+applymovement LOCALID_PETALBURG_SCOTT PetalburgCity_Movement_ScottStartWalkLeft
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_PETALBURG_SCOTT Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_PETALBURG_SCOTT Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_PETALBURG_SCOTT PetalburgCity_Movement_ScottApproachPlayer
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+setvar VAR_SCOTT_STATE 1
+msgbox	Excuse me!Let me guess, from the way you're dressed, are you a POKéMON TRAINER?
+closemessage
+applymovement LOCALID_PETALBURG_SCOTT Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+delay 30
+msgbox	… … … … … …Well, maybe not. Your clothes aren't all that dirty.You're either a rookie TRAINER, or maybe you're just an ordinary kid.
+closemessage
+applymovement LOCALID_PETALBURG_SCOTT Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+delay 30
+msgbox	I'm roaming the land in search of talented TRAINERS.I'm sorry to have taken your time.
+closemessage
+call_if_eq VAR_0x8008 0 PetalburgCity_EventScript_ScottExit0
+call_if_eq VAR_0x8008 1 PetalburgCity_EventScript_ScottExit1
+call_if_eq VAR_0x8008 2 PetalburgCity_EventScript_ScottExit2
+call_if_eq VAR_0x8008 3 PetalburgCity_EventScript_ScottExit3
+setvar VAR_SCOTT_PETALBURG_ENCOUNTER 1
+removeobject LOCALID_PETALBURG_SCOTT
+releaseall
+end
+= PetalburgCity_EventScript_ScottExit3
+applymovement LOCALID_PLAYER PetalburgCity_Movement_PlayerWatchScottExit3
+applymovement LOCALID_PETALBURG_SCOTT PetalburgCity_Movement_ScottExit3
+waitmovement 0
+return
+= PetalburgCity_EventScript_ScottExit2
+applymovement LOCALID_PLAYER PetalburgCity_Movement_PlayerWatchScottExit2
+applymovement LOCALID_PETALBURG_SCOTT PetalburgCity_Movement_ScottExit2
+waitmovement 0
+return
+= PetalburgCity_EventScript_ScottExit1
+applymovement LOCALID_PLAYER PetalburgCity_Movement_PlayerWatchScottExit1
+applymovement LOCALID_PETALBURG_SCOTT PetalburgCity_Movement_ScottExit1
+waitmovement 0
+return
+= PetalburgCity_EventScript_ScottExit0
+applymovement LOCALID_PLAYER PetalburgCity_Movement_PlayerWatchScottExit0
+applymovement LOCALID_PETALBURG_SCOTT PetalburgCity_Movement_ScottExit0
+waitmovement 0
+return
+= PetalburgCity_EventScript_Scott2
+lockall
+addobject LOCALID_PETALBURG_SCOTT
+setvar VAR_0x8008 2
+setobjectxy LOCALID_PETALBURG_SCOTT 13 12
+goto PetalburgCity_EventScript_Scott
+end
+= PetalburgCity_EventScript_Scott1
+lockall
+addobject LOCALID_PETALBURG_SCOTT
+setvar VAR_0x8008 1
+setobjectxy LOCALID_PETALBURG_SCOTT 13 11
+goto PetalburgCity_EventScript_Scott
+end
+= PetalburgCity_EventScript_Scott0
+lockall
+addobject LOCALID_PETALBURG_SCOTT
+setvar VAR_0x8008 0
+setobjectxy LOCALID_PETALBURG_SCOTT 13 10
+goto PetalburgCity_EventScript_Scott
+end
+= PetalburgCity_EventScript_ShowGymToPlayer3
+lockall
+setvar VAR_0x8008 3
+goto PetalburgCity_EventScript_ShowGymToPlayer
+end
+= PetalburgCity_EventScript_ShowGymToPlayer
+applymovement LOCALID_GYM_BOY Common_Movement_FacePlayer
+waitmovement 0
+playbgm MUS_FOLLOW_ME FALSE
+playse SE_PIN
+applymovement LOCALID_GYM_BOY Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_GYM_BOY Common_Movement_Delay48
+waitmovement 0
+call_if_eq VAR_0x8008 0 PetalburgCity_EventScript_BoyApproachPlayer0
+call_if_eq VAR_0x8008 1 PetalburgCity_EventScript_BoyApproachPlayer1
+call_if_eq VAR_0x8008 2 PetalburgCity_EventScript_BoyApproachPlayer2
+call_if_eq VAR_0x8008 3 PetalburgCity_EventScript_BoyApproachPlayer3
+msgbox	Hiya! Are you maybe… A rookie TRAINER?Do you know what POKéMON TRAINERS do when they reach a new town?They first check what kind of GYM is in the town.
+closemessage
+call_if_eq VAR_0x8008 0 PetalburgCity_EventScript_LeadPlayerToGym0
+call_if_eq VAR_0x8008 1 PetalburgCity_EventScript_LeadPlayerToGym1
+call_if_eq VAR_0x8008 2 PetalburgCity_EventScript_LeadPlayerToGym2
+call_if_eq VAR_0x8008 3 PetalburgCity_EventScript_LeadPlayerToGym3
+msgbox	See? This is PETALBURG CITY's GYM.
+applymovement LOCALID_GYM_BOY Common_Movement_WalkInPlaceFasterRight
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+msgbox	This is the GYM's sign. Look for it whenever you're looking for a GYM.
+closemessage
+applymovement LOCALID_GYM_BOY PetalburgCity_Movement_BoyWalkAway
+waitmovement 0
+fadedefaultbgm
+releaseall
+end
+= PetalburgCity_EventScript_LeadPlayerToGym3
+applymovement LOCALID_GYM_BOY PetalburgCity_Movement_BoyWalkToGym3
+applymovement LOCALID_PLAYER PetalburgCity_Movement_PlayerWalkToGym3
+waitmovement 0
+return
+@ Unused
+goto PetalburgCity_Movement_Delay48
+= PetalburgCity_Movement_Delay48
+delay_16
+delay_16
+delay_16
+step_end
+goto PetalburgCity_EventScript_Scott0
+= PetalburgCity_EventScript_LeadPlayerToGym2
+applymovement LOCALID_GYM_BOY PetalburgCity_Movement_BoyWalkToGym2
+applymovement LOCALID_PLAYER PetalburgCity_Movement_PlayerWalkToGym2
+waitmovement 0
+return
+= PetalburgCity_EventScript_LeadPlayerToGym1
+applymovement LOCALID_GYM_BOY PetalburgCity_Movement_BoyWalkToGym1
+applymovement LOCALID_PLAYER PetalburgCity_Movement_PlayerWalkToGym1
+waitmovement 0
+return
+= PetalburgCity_EventScript_LeadPlayerToGym0
+applymovement LOCALID_GYM_BOY PetalburgCity_Movement_BoyWalkToGym0
+applymovement LOCALID_PLAYER PetalburgCity_Movement_PlayerWalkToGym0
+waitmovement 0
+return
+= PetalburgCity_EventScript_BoyApproachPlayer3
+applymovement LOCALID_GYM_BOY PetalburgCity_Movement_BoyApproachPlayer3
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+return
+= PetalburgCity_EventScript_BoyApproachPlayer2
+applymovement LOCALID_GYM_BOY PetalburgCity_Movement_BoyApproachPlayer2
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+return
+= PetalburgCity_EventScript_BoyApproachPlayer1
+applymovement LOCALID_GYM_BOY PetalburgCity_Movement_BoyApproachPlayer1
+waitmovement 0
+return
+= PetalburgCity_EventScript_BoyApproachPlayer0
+applymovement LOCALID_GYM_BOY PetalburgCity_Movement_BoyApproachPlayer0
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+return
+= PetalburgCity_EventScript_ShowGymToPlayer2
+lockall
+setvar VAR_0x8008 2
+goto PetalburgCity_EventScript_ShowGymToPlayer
+end
+= PetalburgCity_EventScript_ShowGymToPlayer1
+lockall
+setvar VAR_0x8008 1
+goto PetalburgCity_EventScript_ShowGymToPlayer
+end
+= PetalburgCity_EventScript_ShowGymToPlayer0
+lockall
+setvar VAR_0x8008 0
+goto PetalburgCity_EventScript_ShowGymToPlayer
+end
+= PetalburgCity_EventScript_GymBoy
+msgbox	Hiya! Are you maybe… A rookie TRAINER?Do you know what POKéMON TRAINERS do when they reach a new town?They first check what kind of GYM is in the town.
+end
+= PetalburgCity_EventScript_ItemEther
+goto_if_set FLAG_ITEM_PETALBURG_CITY_ETHER PetalburgCity_EventScript_ItemEther_Taken
+finditem ITEM_ETHER
+setflag FLAG_ITEM_PETALBURG_CITY_ETHER
+end
+= PetalburgCity_EventScript_ItemEther_Taken
+end
+= PetalburgCity_EventScript_ItemMaxRevive
+goto_if_set FLAG_ITEM_PETALBURG_CITY_MAX_REVIVE PetalburgCity_EventScript_ItemMaxRevive_Taken
+finditem ITEM_MAX_REVIVE
+setflag FLAG_ITEM_PETALBURG_CITY_MAX_REVIVE
+end
+= PetalburgCity_EventScript_ItemMaxRevive_Taken
+end
+= PetalburgCity_EventScript_Gentleman
+msgbox	Let's say you have six POKéMON. If you catch another one…It is automatically sent to a STORAGE BOX over a PC connection.
+end
+= PetalburgCity_EventScript_Boy
+lock
+faceplayer
+msgbox	My face is reflected in the water.It's a shining grin full of hope…Or it could be a look of somber silence struggling with fear…What do you see reflected in your face?
+closemessage
+applymovement LOCALID_PETALBURG_BOY Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= PetalburgCity_EventScript_WallysMom
+msgbox	Where has our WALLY gone?We have to leave for VERDANTURF TOWN very soon…
+end
+signs
+17 10	PETALBURG CITY POKéMON GYM LEADER: NORMAN “A man in pursuit of power!”
+17 16	PETALBURG CITY “Where people mingle with nature.”
+8 9	WALLY'S HOUSE
+water
+161,176,177,178,184,186,192,194,510,511
+visit
+FLAG_VISITED_PETALBURG_CITY
+mapsec
+1 9 1 1	PETALBURG CITY
+music
+MUS_PETALBURG
+encounters
+water MARILL:20:30,MARILL:10:20,MARILL:30:35,MARILL:5:10,MARILL:5:10
+fishing MAGIKARP:5:10,GOLDEEN:5:10,MAGIKARP:10:30,GOLDEEN:10:30,CORPHISH:10:30,CORPHISH:25:30,CORPHISH:30:35,CORPHISH:20:25,CORPHISH:35:40,CORPHISH:40:45

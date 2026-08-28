@@ -1,0 +1,69 @@
+tileset general__island_harbor
+17 13
+6 4
+513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513
+933,533,524,533,524,533,524,517,518,519,524,533,524,533,524,533,933
+941,541,532,541,532,541,532,525,526,527,532,541,532,541,532,541,941
+536,929,929,929,929,929,929,929,929,929,929,929,929,929,929,929,536
+543,543,543,543,543,961,928,928,928,928,928,965,543,543,543,543,543
+393,393,393,393,385,554,555,568,569,570,555,558,384,393,393,393,393
+368,368,368,368,410,393,393,576,577,578,393,393,408,368,368,368,368
+368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368
+368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368
+368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368
+368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368
+368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368
+962,962,962,962,962,962,962,962,962,962,962,962,962,962,962,962,963
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+8 2 NavelRock_Exterior 0
+npcs
+people_sailor 8 5 N static 0 LOCALID_NAVEL_ROCK_SAILOR 0
+misc_ss_tidal 8 7 E static 0 LOCALID_NAVEL_ROCK_SS_TIDAL 0
+objscripts
+0 NavelRock_Harbor_EventScript_Sailor
+movements
+Common_Movement_WalkInPlaceFasterDown	delay,end
+scriptdefs
+= NavelRock_Harbor_EventScript_Sailor
+lock
+faceplayer
+msgboxyesno	Did… Did you hear that? That low growling from deep in there.Are you sure it's safe? Do you think we should leave?
+goto_if_eq VAR_RESULT NO NavelRock_Harbor_EventScript_AsYouLike
+msgbox	Aye, right, then! Sail home we will!
+closemessage
+applymovement VAR_LAST_TALKED Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+delay 30
+hideobjectat LOCALID_NAVEL_ROCK_SAILOR MAP_NAVEL_ROCK_HARBOR
+setvar VAR_0x8004 LOCALID_NAVEL_ROCK_SS_TIDAL
+call Common_EventScript_FerryDepartIsland
+warp LilycoveCity_Harbor 8 11
+waitstate
+release
+end
+= NavelRock_Harbor_EventScript_AsYouLike
+msgbox	Aye, right, as you like, then.
+release
+end
+water
+368,384,385,393,408,410
+mapsec
+0 0 1 1	NAVEL ROCK
+music
+MUS_RG_SEVII_ROUTE
+counters
+933

@@ -1,0 +1,441 @@
+tileset building__battle_frontier
+15 11
+7 5
+736,737,738,736,737,738,736,737,738,736,737,738,736,737,760
+744,745,746,752,761,762,776,777,778,763,764,754,744,745,4
+954,960,961,902,765,766,784,785,786,779,780,902,954,960,951
+910,953,952,902,773,774,952,953,952,787,788,902,972,953,952
+918,952,953,902,973,952,953,952,953,952,953,902,973,952,953
+926,953,952,902,934,979,980,979,980,979,980,902,972,953,952
+973,952,953,1016,1010,1010,1010,1010,1010,1010,1010,1020,973,952,953
+910,953,952,961,960,961,960,961,960,961,960,961,981,953,952
+926,952,953,952,953,952,953,952,953,952,953,952,953,952,953
+1,973,952,953,952,953,877,878,879,953,952,953,952,953,1
+1,1,973,952,953,952,885,886,887,952,953,952,953,1,1
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,1,1,1,1,1,1,1,1,1,0,0,0
+0,0,0,1,1,1,0,0,0,1,1,1,0,0,0
+0,0,0,1,0,0,0,0,0,0,0,1,0,0,0
+0,0,0,1,0,0,0,0,0,0,0,1,0,0,0
+0,0,0,1,1,1,1,1,1,1,1,1,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+1,1,0,0,0,0,0,0,0,0,0,0,0,1,1
+warps
+7 10 BattleFrontier_OutsideEast 6
+6 10 BattleFrontier_OutsideEast 6
+8 10 BattleFrontier_OutsideEast 6
+npcs
+people_teala 4 4 W static 0 - 0
+people_rich_boy 0 5 E static 0 - 0
+people_pokefan_f 0 4 S static 0 - 0
+people_sailor 14 6 S wander 0 - 0
+people_man_5 1 9 S wander 0 - 0
+people_teala 5 5 S static 0 - 0
+people_teala 9 5 S static 0 - 0
+people_teala 10 4 E static 0 - 0
+people_girl_1 12 10 S wander 0 - 0
+dialogs
+1	Oh, they're so nice! I wish I had them! Cute cushions! Big plush DOLLS! Little plush DOLLS! I wish I had them all!
+2	Leave it to your mommy!If it's anything you want, I'll go through anything to get it, honey!
+3	If I can get hold of the items here, my POKéMON will get tougher.You bet they will! No question about it!
+4	Hah? What are you gawking at?I don't like you staring at my plush doll like that.If you want it, go get one yourself! Isn't that right, SMOOCHUM?
+8	Did you know?If you stretch your record at any of the BATTLE facilities, they start giving you more and more Battle Points.
+objscripts
+0 BattleFrontier_ExchangeServiceCorner_EventScript_DecorClerk1
+1 BattleFrontier_ExchangeServiceCorner_EventScript_RichBoy
+2 BattleFrontier_ExchangeServiceCorner_EventScript_PokefanF
+3 BattleFrontier_ExchangeServiceCorner_EventScript_Sailor
+4 BattleFrontier_ExchangeServiceCorner_EventScript_Man
+5 BattleFrontier_ExchangeServiceCorner_EventScript_DecorClerk2
+6 BattleFrontier_ExchangeServiceCorner_EventScript_VitaminClerk
+7 BattleFrontier_ExchangeServiceCorner_EventScript_HoldItemClerk
+8 BattleFrontier_ExchangeServiceCorner_EventScript_Girl
+scriptdefs
+= BattleFrontier_ExchangeServiceCorner_EventScript_Girl
+msgbox	Did you know?If you stretch your record at any of the BATTLE facilities, they start giving you more and more Battle Points.
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_HoldItemClerk
+lock
+faceplayer
+setvar VAR_TEMP_2 EXCHANGE_CORNER_HOLD_ITEM_CLERK
+call BattleFrontier_ExchangeServiceCorner_EventScript_ClerkWelcome
+goto BattleFrontier_ExchangeServiceCorner_EventScript_ChooseHoldItem
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_ChooseHoldItem
+setvar VAR_0x8004 SCROLL_MULTI_BF_EXCHANGE_CORNER_HOLD_ITEM_VENDOR
+special ShowFrontierExchangeCornerItemIconWindow
+special ShowScrollableMultichoice
+special CloseFrontierExchangeCornerItemIconWindow
+switch VAR_RESULT
+case 0 BattleFrontier_ExchangeServiceCorner_EventScript_Leftovers
+case 1 BattleFrontier_ExchangeServiceCorner_EventScript_WhiteHerb
+case 2 BattleFrontier_ExchangeServiceCorner_EventScript_QuickClaw
+case 3 BattleFrontier_ExchangeServiceCorner_EventScript_MentalHerb
+case 4 BattleFrontier_ExchangeServiceCorner_EventScript_Brightpowder
+case 5 BattleFrontier_ExchangeServiceCorner_EventScript_ChoiceBand
+case 6 BattleFrontier_ExchangeServiceCorner_EventScript_KingsRock
+case 7 BattleFrontier_ExchangeServiceCorner_EventScript_FocusBand
+case 8 BattleFrontier_ExchangeServiceCorner_EventScript_ScopeLens
+case 9 BattleFrontier_ExchangeServiceCorner_EventScript_ClerkGoodbye
+case MULTI_B_PRESSED BattleFrontier_ExchangeServiceCorner_EventScript_ClerkGoodbye
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_ClerkGoodbye
+msgbox	Thank you very much.Please visit us when you have saved up Battle Points.
+special CloseBattlePointsWindow
+release
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_ScopeLens
+msgboxyesno	You've chosen the SCOPE LENS. Is that correct?
+goto_if_eq VAR_RESULT NO BattleFrontier_ExchangeServiceCorner_EventScript_ChooseHoldItem
+setvar VAR_0x8008 64
+setvar VAR_0x8009 ITEM_SCOPE_LENS
+goto BattleFrontier_ExchangeServiceCorner_EventScript_TryPurchasePrize
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_TryPurchasePrize
+specialvar VAR_TEMP_1 GetFrontierBattlePoints
+goto_if_ge VAR_TEMP_1 VAR_0x8008 BattleFrontier_ExchangeServiceCorner_EventScript_TryGivePrize
+msgbox	I'm so sorry… You don't have enough Battle Points…
+goto_if_eq VAR_TEMP_2 EXCHANGE_CORNER_DECOR1_CLERK BattleFrontier_ExchangeServiceCorner_EventScript_ChooseDecor1
+goto_if_eq VAR_TEMP_2 EXCHANGE_CORNER_DECOR2_CLERK BattleFrontier_ExchangeServiceCorner_EventScript_ChooseDecor2
+goto_if_eq VAR_TEMP_2 EXCHANGE_CORNER_VITAMIN_CLERK BattleFrontier_ExchangeServiceCorner_EventScript_ChooseVitamin
+goto BattleFrontier_ExchangeServiceCorner_EventScript_ChooseHoldItem
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_ChooseVitamin
+setvar VAR_0x8004 SCROLL_MULTI_BF_EXCHANGE_CORNER_VITAMIN_VENDOR
+special ShowFrontierExchangeCornerItemIconWindow
+special ShowScrollableMultichoice
+special CloseFrontierExchangeCornerItemIconWindow
+switch VAR_RESULT
+case 0 BattleFrontier_ExchangeServiceCorner_EventScript_Protein
+case 1 BattleFrontier_ExchangeServiceCorner_EventScript_Calcium
+case 2 BattleFrontier_ExchangeServiceCorner_EventScript_Iron
+case 3 BattleFrontier_ExchangeServiceCorner_EventScript_Zinc
+case 4 BattleFrontier_ExchangeServiceCorner_EventScript_Carbos
+case 5 BattleFrontier_ExchangeServiceCorner_EventScript_HPUp
+case 6 BattleFrontier_ExchangeServiceCorner_EventScript_ClerkGoodbye
+case MULTI_B_PRESSED BattleFrontier_ExchangeServiceCorner_EventScript_ClerkGoodbye
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_HPUp
+msgboxyesno	You've chosen the HP UP. Is that correct?
+goto_if_eq VAR_RESULT NO BattleFrontier_ExchangeServiceCorner_EventScript_ChooseVitamin
+setvar VAR_0x8008 1
+setvar VAR_0x8009 ITEM_HP_UP
+goto BattleFrontier_ExchangeServiceCorner_EventScript_TryPurchasePrize
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_Carbos
+msgboxyesno	You've chosen the CARBOS. Is that correct?
+goto_if_eq VAR_RESULT NO BattleFrontier_ExchangeServiceCorner_EventScript_ChooseVitamin
+setvar VAR_0x8008 1
+setvar VAR_0x8009 ITEM_CARBOS
+goto BattleFrontier_ExchangeServiceCorner_EventScript_TryPurchasePrize
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_Zinc
+msgboxyesno	You've chosen the ZINC. Is that correct?
+goto_if_eq VAR_RESULT NO BattleFrontier_ExchangeServiceCorner_EventScript_ChooseVitamin
+setvar VAR_0x8008 1
+setvar VAR_0x8009 ITEM_ZINC
+goto BattleFrontier_ExchangeServiceCorner_EventScript_TryPurchasePrize
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_Iron
+msgboxyesno	You've chosen the IRON. Is that correct?
+goto_if_eq VAR_RESULT NO BattleFrontier_ExchangeServiceCorner_EventScript_ChooseVitamin
+setvar VAR_0x8008 1
+setvar VAR_0x8009 ITEM_IRON
+goto BattleFrontier_ExchangeServiceCorner_EventScript_TryPurchasePrize
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_Calcium
+msgboxyesno	You've chosen the CALCIUM. Is that correct?
+goto_if_eq VAR_RESULT NO BattleFrontier_ExchangeServiceCorner_EventScript_ChooseVitamin
+setvar VAR_0x8008 1
+setvar VAR_0x8009 ITEM_CALCIUM
+goto BattleFrontier_ExchangeServiceCorner_EventScript_TryPurchasePrize
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_Protein
+msgboxyesno	You've chosen the PROTEIN. Is that correct?
+goto_if_eq VAR_RESULT NO BattleFrontier_ExchangeServiceCorner_EventScript_ChooseVitamin
+setvar VAR_0x8008 1
+setvar VAR_0x8009 ITEM_PROTEIN
+goto BattleFrontier_ExchangeServiceCorner_EventScript_TryPurchasePrize
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_ChooseDecor2
+setvar VAR_0x8004 SCROLL_MULTI_BF_EXCHANGE_CORNER_DECOR_VENDOR_2
+special ShowFrontierExchangeCornerItemIconWindow
+special ShowScrollableMultichoice
+special CloseFrontierExchangeCornerItemIconWindow
+switch VAR_RESULT
+case 0 BattleFrontier_ExchangeServiceCorner_EventScript_LaprasDoll
+case 1 BattleFrontier_ExchangeServiceCorner_EventScript_SnorlaxDoll
+case 2 BattleFrontier_ExchangeServiceCorner_EventScript_VenusaurDoll
+case 3 BattleFrontier_ExchangeServiceCorner_EventScript_CharizardDoll
+case 4 BattleFrontier_ExchangeServiceCorner_EventScript_BlastoiseDoll
+case 5 BattleFrontier_ExchangeServiceCorner_EventScript_ClerkGoodbye
+case MULTI_B_PRESSED BattleFrontier_ExchangeServiceCorner_EventScript_ClerkGoodbye
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_BlastoiseDoll
+msgboxyesno	You've chosen the BLASTOISE DOLL. Is that correct?
+goto_if_eq VAR_RESULT NO BattleFrontier_ExchangeServiceCorner_EventScript_ChooseDecor2
+setvar VAR_0x8008 256
+setvar VAR_0x8009 DECOR_BLASTOISE_DOLL
+goto BattleFrontier_ExchangeServiceCorner_EventScript_TryPurchasePrize
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_CharizardDoll
+msgboxyesno	You've chosen the CHARIZARD DOLL. Is that correct?
+goto_if_eq VAR_RESULT NO BattleFrontier_ExchangeServiceCorner_EventScript_ChooseDecor2
+setvar VAR_0x8008 256
+setvar VAR_0x8009 DECOR_CHARIZARD_DOLL
+goto BattleFrontier_ExchangeServiceCorner_EventScript_TryPurchasePrize
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_VenusaurDoll
+msgboxyesno	You've chosen the VENUSAUR DOLL. Is that correct?
+goto_if_eq VAR_RESULT NO BattleFrontier_ExchangeServiceCorner_EventScript_ChooseDecor2
+setvar VAR_0x8008 256
+setvar VAR_0x8009 DECOR_VENUSAUR_DOLL
+goto BattleFrontier_ExchangeServiceCorner_EventScript_TryPurchasePrize
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_SnorlaxDoll
+msgboxyesno	You've chosen the SNORLAX DOLL. Is that correct?
+goto_if_eq VAR_RESULT NO BattleFrontier_ExchangeServiceCorner_EventScript_ChooseDecor2
+setvar VAR_0x8008 128
+setvar VAR_0x8009 DECOR_SNORLAX_DOLL
+goto BattleFrontier_ExchangeServiceCorner_EventScript_TryPurchasePrize
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_LaprasDoll
+msgboxyesno	You've chosen the LAPRAS DOLL. Is that correct?
+goto_if_eq VAR_RESULT NO BattleFrontier_ExchangeServiceCorner_EventScript_ChooseDecor2
+setvar VAR_0x8008 128
+setvar VAR_0x8009 DECOR_LAPRAS_DOLL
+goto BattleFrontier_ExchangeServiceCorner_EventScript_TryPurchasePrize
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_ChooseDecor1
+setvar VAR_0x8004 SCROLL_MULTI_BF_EXCHANGE_CORNER_DECOR_VENDOR_1
+special ShowFrontierExchangeCornerItemIconWindow
+special ShowScrollableMultichoice
+special CloseFrontierExchangeCornerItemIconWindow
+switch VAR_RESULT
+case 0 BattleFrontier_ExchangeServiceCorner_EventScript_KissPoster
+case 1 BattleFrontier_ExchangeServiceCorner_EventScript_KissCushion
+case 2 BattleFrontier_ExchangeServiceCorner_EventScript_SmoochumDoll
+case 3 BattleFrontier_ExchangeServiceCorner_EventScript_TogepiDoll
+case 4 BattleFrontier_ExchangeServiceCorner_EventScript_MeowthDoll
+case 5 BattleFrontier_ExchangeServiceCorner_EventScript_ClefairyDoll
+case 6 BattleFrontier_ExchangeServiceCorner_EventScript_DittoDoll
+case 7 BattleFrontier_ExchangeServiceCorner_EventScript_CyndaquilDoll
+case 8 BattleFrontier_ExchangeServiceCorner_EventScript_ChikoritaDoll
+case 9 BattleFrontier_ExchangeServiceCorner_EventScript_TotodileDoll
+case 10 BattleFrontier_ExchangeServiceCorner_EventScript_ClerkGoodbye
+case MULTI_B_PRESSED BattleFrontier_ExchangeServiceCorner_EventScript_ClerkGoodbye
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_TotodileDoll
+msgboxyesno	You've chosen the TOTODILE DOLL. Is that correct?
+goto_if_eq VAR_RESULT NO BattleFrontier_ExchangeServiceCorner_EventScript_ChooseDecor1
+setvar VAR_0x8008 80
+setvar VAR_0x8009 DECOR_TOTODILE_DOLL
+goto BattleFrontier_ExchangeServiceCorner_EventScript_TryPurchasePrize
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_ChikoritaDoll
+msgboxyesno	You've chosen the CHIKORITA DOLL. Is that correct?
+goto_if_eq VAR_RESULT NO BattleFrontier_ExchangeServiceCorner_EventScript_ChooseDecor1
+setvar VAR_0x8008 80
+setvar VAR_0x8009 DECOR_CHIKORITA_DOLL
+goto BattleFrontier_ExchangeServiceCorner_EventScript_TryPurchasePrize
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_CyndaquilDoll
+msgboxyesno	You've chosen the CYNDAQUIL DOLL. Is that correct?
+goto_if_eq VAR_RESULT NO BattleFrontier_ExchangeServiceCorner_EventScript_ChooseDecor1
+setvar VAR_0x8008 80
+setvar VAR_0x8009 DECOR_CYNDAQUIL_DOLL
+goto BattleFrontier_ExchangeServiceCorner_EventScript_TryPurchasePrize
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_DittoDoll
+msgboxyesno	You've chosen the DITTO DOLL. Is that correct?
+goto_if_eq VAR_RESULT NO BattleFrontier_ExchangeServiceCorner_EventScript_ChooseDecor1
+setvar VAR_0x8008 48
+setvar VAR_0x8009 DECOR_DITTO_DOLL
+goto BattleFrontier_ExchangeServiceCorner_EventScript_TryPurchasePrize
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_ClefairyDoll
+msgboxyesno	You've chosen the CLEFAIRY DOLL. Is that correct?
+goto_if_eq VAR_RESULT NO BattleFrontier_ExchangeServiceCorner_EventScript_ChooseDecor1
+setvar VAR_0x8008 48
+setvar VAR_0x8009 DECOR_CLEFAIRY_DOLL
+goto BattleFrontier_ExchangeServiceCorner_EventScript_TryPurchasePrize
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_MeowthDoll
+msgboxyesno	You've chosen the MEOWTH DOLL. Is that correct?
+goto_if_eq VAR_RESULT NO BattleFrontier_ExchangeServiceCorner_EventScript_ChooseDecor1
+setvar VAR_0x8008 48
+setvar VAR_0x8009 DECOR_MEOWTH_DOLL
+goto BattleFrontier_ExchangeServiceCorner_EventScript_TryPurchasePrize
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_TogepiDoll
+msgboxyesno	You've chosen the TOGEPI DOLL. Is that correct?
+goto_if_eq VAR_RESULT NO BattleFrontier_ExchangeServiceCorner_EventScript_ChooseDecor1
+setvar VAR_0x8008 48
+setvar VAR_0x8009 DECOR_TOGEPI_DOLL
+goto BattleFrontier_ExchangeServiceCorner_EventScript_TryPurchasePrize
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_SmoochumDoll
+msgboxyesno	You've chosen the SMOOCHUM DOLL. Is that correct?
+goto_if_eq VAR_RESULT NO BattleFrontier_ExchangeServiceCorner_EventScript_ChooseDecor1
+setvar VAR_0x8008 32
+setvar VAR_0x8009 DECOR_SMOOCHUM_DOLL
+goto BattleFrontier_ExchangeServiceCorner_EventScript_TryPurchasePrize
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_KissCushion
+msgboxyesno	You've chosen the KISS CUSHION. Is that correct?
+goto_if_eq VAR_RESULT NO BattleFrontier_ExchangeServiceCorner_EventScript_ChooseDecor1
+setvar VAR_0x8008 32
+setvar VAR_0x8009 DECOR_KISS_CUSHION
+goto BattleFrontier_ExchangeServiceCorner_EventScript_TryPurchasePrize
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_KissPoster
+msgboxyesno	You've chosen the KISS POSTER. Is that correct?
+goto_if_eq VAR_RESULT NO BattleFrontier_ExchangeServiceCorner_EventScript_ChooseDecor1
+setvar VAR_0x8008 16
+setvar VAR_0x8009 DECOR_KISS_POSTER
+goto BattleFrontier_ExchangeServiceCorner_EventScript_TryPurchasePrize
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_TryGivePrize
+goto_if_eq VAR_TEMP_2 EXCHANGE_CORNER_DECOR1_CLERK BattleFrontier_ExchangeServiceCorner_EventScript_TryGiveDecor
+goto_if_eq VAR_TEMP_2 EXCHANGE_CORNER_DECOR2_CLERK BattleFrontier_ExchangeServiceCorner_EventScript_TryGiveDecor
+goto BattleFrontier_ExchangeServiceCorner_EventScript_TryGiveItem
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_TryGiveItem
+checkitemspace VAR_0x8009
+goto_if_eq VAR_RESULT FALSE BattleFrontier_ExchangeServiceCorner_EventScript_BagFull
+copyvar VAR_0x8004 VAR_0x8008
+special TakeFrontierBattlePoints
+additem VAR_0x8009
+special UpdateBattlePointsWindow
+playse SE_SHOP
+msgbox	Here is your prize!
+goto_if_eq VAR_TEMP_2 EXCHANGE_CORNER_VITAMIN_CLERK BattleFrontier_ExchangeServiceCorner_EventScript_ChooseVitamin
+goto BattleFrontier_ExchangeServiceCorner_EventScript_ChooseHoldItem
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_BagFull
+msgbox	I'm so sorry… You don't have space to hold it…
+special CloseBattlePointsWindow
+release
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_TryGiveDecor
+checkdecorspace VAR_0x8009
+goto_if_eq VAR_RESULT FALSE BattleFrontier_ExchangeServiceCorner_EventScript_NoRoomForDecor
+copyvar VAR_0x8004 VAR_0x8008
+special TakeFrontierBattlePoints
+adddecoration VAR_0x8009
+special UpdateBattlePointsWindow
+playse SE_SHOP
+msgbox	Thank you! We'll send it to your PC at home.
+goto_if_eq VAR_TEMP_2 EXCHANGE_CORNER_DECOR1_CLERK BattleFrontier_ExchangeServiceCorner_EventScript_ChooseDecor1
+goto BattleFrontier_ExchangeServiceCorner_EventScript_ChooseDecor2
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_NoRoomForDecor
+msgbox	I'm so sorry… Your PC appears to be full…
+special CloseBattlePointsWindow
+release
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_FocusBand
+msgboxyesno	You've chosen the FOCUS BAND. Is that correct?
+goto_if_eq VAR_RESULT NO BattleFrontier_ExchangeServiceCorner_EventScript_ChooseHoldItem
+setvar VAR_0x8008 64
+setvar VAR_0x8009 ITEM_FOCUS_BAND
+goto BattleFrontier_ExchangeServiceCorner_EventScript_TryPurchasePrize
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_KingsRock
+msgboxyesno	You've chosen the KING'S ROCK. Is that correct?
+goto_if_eq VAR_RESULT NO BattleFrontier_ExchangeServiceCorner_EventScript_ChooseHoldItem
+setvar VAR_0x8008 64
+setvar VAR_0x8009 ITEM_KINGS_ROCK
+goto BattleFrontier_ExchangeServiceCorner_EventScript_TryPurchasePrize
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_ChoiceBand
+msgboxyesno	You've chosen the CHOICE BAND. Is that correct?
+goto_if_eq VAR_RESULT NO BattleFrontier_ExchangeServiceCorner_EventScript_ChooseHoldItem
+setvar VAR_0x8008 64
+setvar VAR_0x8009 ITEM_CHOICE_BAND
+goto BattleFrontier_ExchangeServiceCorner_EventScript_TryPurchasePrize
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_Brightpowder
+msgboxyesno	You've chosen the BRIGHTPOWDER. Is that correct?
+goto_if_eq VAR_RESULT NO BattleFrontier_ExchangeServiceCorner_EventScript_ChooseHoldItem
+setvar VAR_0x8008 64
+setvar VAR_0x8009 ITEM_BRIGHT_POWDER
+goto BattleFrontier_ExchangeServiceCorner_EventScript_TryPurchasePrize
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_MentalHerb
+msgboxyesno	You've chosen the MENTAL HERB. Is that correct?
+goto_if_eq VAR_RESULT NO BattleFrontier_ExchangeServiceCorner_EventScript_ChooseHoldItem
+setvar VAR_0x8008 48
+setvar VAR_0x8009 ITEM_MENTAL_HERB
+goto BattleFrontier_ExchangeServiceCorner_EventScript_TryPurchasePrize
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_QuickClaw
+msgboxyesno	You've chosen the QUICK CLAW. Is that correct?
+goto_if_eq VAR_RESULT NO BattleFrontier_ExchangeServiceCorner_EventScript_ChooseHoldItem
+setvar VAR_0x8008 48
+setvar VAR_0x8009 ITEM_QUICK_CLAW
+goto BattleFrontier_ExchangeServiceCorner_EventScript_TryPurchasePrize
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_WhiteHerb
+msgboxyesno	You've chosen the WHITE HERB. Is that correct?
+goto_if_eq VAR_RESULT NO BattleFrontier_ExchangeServiceCorner_EventScript_ChooseHoldItem
+setvar VAR_0x8008 48
+setvar VAR_0x8009 ITEM_WHITE_HERB
+goto BattleFrontier_ExchangeServiceCorner_EventScript_TryPurchasePrize
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_Leftovers
+msgboxyesno	You've chosen the LEFTOVERS. Is that correct?
+goto_if_eq VAR_RESULT NO BattleFrontier_ExchangeServiceCorner_EventScript_ChooseHoldItem
+setvar VAR_0x8008 48
+setvar VAR_0x8009 ITEM_LEFTOVERS
+goto BattleFrontier_ExchangeServiceCorner_EventScript_TryPurchasePrize
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_ClerkWelcome
+msgbox	Hello, this is the EXCHANGE SERVICE CORNER.We exchange the Battle Points you have collected for lovely prizes.Please choose a prize from this list.
+special ShowBattlePointsWindow
+return
+= BattleFrontier_ExchangeServiceCorner_EventScript_VitaminClerk
+lock
+faceplayer
+setvar VAR_TEMP_2 EXCHANGE_CORNER_VITAMIN_CLERK
+call BattleFrontier_ExchangeServiceCorner_EventScript_ClerkWelcome
+goto BattleFrontier_ExchangeServiceCorner_EventScript_ChooseVitamin
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_DecorClerk2
+lock
+faceplayer
+setvar VAR_TEMP_2 EXCHANGE_CORNER_DECOR2_CLERK
+call BattleFrontier_ExchangeServiceCorner_EventScript_ClerkWelcome
+goto BattleFrontier_ExchangeServiceCorner_EventScript_ChooseDecor2
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_Man
+msgbox	Hah? What are you gawking at?I don't like you staring at my plush doll like that.If you want it, go get one yourself! Isn't that right, SMOOCHUM?
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_Sailor
+msgbox	If I can get hold of the items here, my POKéMON will get tougher.You bet they will! No question about it!
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_PokefanF
+lock
+msgbox	Leave it to your mommy!If it's anything you want, I'll go through anything to get it, honey!
+release
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_RichBoy
+msgbox	Oh, they're so nice! I wish I had them! Cute cushions! Big plush DOLLS! Little plush DOLLS! I wish I had them all!
+end
+= BattleFrontier_ExchangeServiceCorner_EventScript_DecorClerk1
+lock
+faceplayer
+setvar VAR_TEMP_2 EXCHANGE_CORNER_DECOR1_CLERK
+call BattleFrontier_ExchangeServiceCorner_EventScript_ClerkWelcome
+goto BattleFrontier_ExchangeServiceCorner_EventScript_ChooseDecor1
+end
+mapsec
+22 12 1 1	BATTLE FRONTIER
+music
+MUS_B_TOWER_RS
+counters
+902,1010

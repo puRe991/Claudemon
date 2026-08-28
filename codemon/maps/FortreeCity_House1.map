@@ -1,0 +1,87 @@
+tileset building__generic_building
+8 6
+5 2
+968,969,969,958,959,969,969,970
+976,992,977,958,959,977,977,978
+984,1000,988,958,959,987,985,986
+985,985,988,966,967,987,985,985
+985,985,985,985,985,985,985,985
+972,985,985,980,981,985,985,973
+collision
+1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1
+0,0,0,1,1,0,0,0
+0,0,0,1,1,0,0,0
+0,0,0,0,0,0,0,0
+1,0,0,0,0,0,0,1
+warps
+3 5 FortreeCity 1
+4 5 FortreeCity 1
+npcs
+people_ninja_boy 1 3 E static 0 - 0
+pokemon_zigzagoon 2 3 W static 0 - 0
+people_expert_f 7 4 S static 0 - 0
+dialogs
+0	Wrooooaaar! I need it! I have to get me a STR_VAR_1! I'll do anything for it!…Uh… Did you hear that? My shout from the bottom of my heart?Having heard that, you will trade your STR_VAR_1 for my STR_VAR_2, won't you?
+1	ZIGZAGOON: Gumomoh?
+2	Trading POKéMON with others…It's as if you're trading your own memories with other people.
+objscripts
+0 FortreeCity_House1_EventScript_Trader
+1 FortreeCity_House1_EventScript_Zigzagoon
+2 FortreeCity_House1_EventScript_ExpertF
+scriptdefs
+= FortreeCity_House1_EventScript_ExpertF
+msgbox	Trading POKéMON with others…It's as if you're trading your own memories with other people.
+end
+= FortreeCity_House1_EventScript_Zigzagoon
+lock
+faceplayer
+waitse
+playmoncry SPECIES_ZIGZAGOON CRY_MODE_NORMAL
+msgbox	ZIGZAGOON: Gumomoh?
+waitmoncry
+release
+end
+= FortreeCity_House1_EventScript_Trader
+lock
+faceplayer
+goto_if_set FLAG_FORTREE_NPC_TRADE_COMPLETED FortreeCity_House1_EventScript_TradeCompleted
+setvar VAR_0x8008 INGAME_TRADE_PLUSLE
+copyvar VAR_0x8004 VAR_0x8008
+specialvar VAR_RESULT GetInGameTradeSpeciesInfo
+copyvar VAR_0x8009 VAR_RESULT
+msgboxyesno	Wrooooaaar! I need it! I have to get me a STR_VAR_1! I'll do anything for it!…Uh… Did you hear that? My shout from the bottom of my heart?Having heard that, you will trade your STR_VAR_1 for my STR_VAR_2, won't you?
+goto_if_eq VAR_RESULT NO FortreeCity_House1_EventScript_DeclineTrade
+special ChoosePartyMon
+copyvar VAR_0x800A VAR_0x8004
+goto_if_eq VAR_0x8004 PARTY_NOTHING_CHOSEN FortreeCity_House1_EventScript_DeclineTrade
+copyvar VAR_0x8005 VAR_0x800A
+specialvar VAR_RESULT GetTradeSpecies
+copyvar VAR_0x800B VAR_RESULT
+goto_if_ne VAR_RESULT VAR_0x8009 FortreeCity_House1_EventScript_NotRequestedMon
+copyvar VAR_0x8004 VAR_0x8008
+copyvar VAR_0x8005 VAR_0x800A
+special CreateInGameTradePokemon
+special DoInGameTradeScene
+bufferspeciesname STR_VAR_1 VAR_0x8009
+msgbox	Oh, yeah, right on!STR_VAR_1, welcome! STR_VAR_2, you take care!
+setflag FLAG_FORTREE_NPC_TRADE_COMPLETED
+release
+end
+= FortreeCity_House1_EventScript_NotRequestedMon
+bufferspeciesname STR_VAR_1 VAR_0x8009
+msgbox	Uh, no, I don't think so. That isn't a STR_VAR_1.
+release
+end
+= FortreeCity_House1_EventScript_DeclineTrade
+msgbox	No? You won't trade me? Even after I bared my heart to you?
+release
+end
+= FortreeCity_House1_EventScript_TradeCompleted
+msgbox	I'm going to make VOLBEAT super strong from this moment on!I hope you do the same with PLUSLE!
+release
+end
+mapsec
+12 0 1 1	FORTREE CITY
+music
+MUS_FORTREE

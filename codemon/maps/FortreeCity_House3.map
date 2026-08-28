@@ -1,0 +1,39 @@
+tileset building__generic_building
+8 6
+5 2
+968,969,969,958,959,969,969,970
+976,992,977,958,959,977,977,978
+984,1000,988,958,959,987,985,986
+985,985,988,966,967,987,985,985
+985,985,985,985,985,985,985,985
+972,985,985,980,981,985,985,973
+collision
+1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1
+0,0,0,1,1,0,0,0
+0,0,0,1,1,0,0,0
+0,0,0,0,0,0,0,0
+1,0,0,0,0,0,0,1
+warps
+3 5 FortreeCity 5
+4 5 FortreeCity 5
+npcs
+people_maniac 0 3 E static 0 - 0
+people_school_kid_m 5 4 S wander 0 - 0
+dialogs
+0	While speaking about POKéDEXES, I remembered something.I met this TRAINER, STEVEN, when I was searching for rare stones.Hoo, boy, he had some amazing POKéMON with him.They weren't just rare, they were trained to terrifying extremes!He might even be stronger than the GYM LEADER in this town…
+1	What's that thing you have there?… … … … … …Oh, it's called a POKéDEX? It's really awesome!
+objscripts
+0 FortreeCity_House3_EventScript_Maniac
+1 FortreeCity_House3_EventScript_SchoolKidM
+scriptdefs
+= FortreeCity_House3_EventScript_SchoolKidM
+msgbox	What's that thing you have there?… … … … … …Oh, it's called a POKéDEX? It's really awesome!
+end
+= FortreeCity_House3_EventScript_Maniac
+msgbox	While speaking about POKéDEXES, I remembered something.I met this TRAINER, STEVEN, when I was searching for rare stones.Hoo, boy, he had some amazing POKéMON with him.They weren't just rare, they were trained to terrifying extremes!He might even be stronger than the GYM LEADER in this town…
+end
+mapsec
+12 0 1 1	FORTREE CITY
+music
+MUS_FORTREE

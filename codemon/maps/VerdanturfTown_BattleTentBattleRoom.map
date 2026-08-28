@@ -1,0 +1,140 @@
+tileset general__battle_tent
+13 9
+6 4
+517,517,517,517,517,517,517,517,517,517,581,582,583
+525,525,525,525,525,525,525,525,525,525,589,590,591
+13,1,13,1,1,1,1,1,1,1,1,1,4
+1,1,1,200,688,689,690,691,692,693,202,1,1
+1,13,1,208,696,697,698,699,700,701,210,1,4
+1,1,1,208,704,705,706,707,708,709,210,1,1
+1,13,1,208,712,713,714,715,716,717,210,1,1
+1,1,1,216,720,721,722,723,724,725,218,1,1
+1,558,559,1,13,1,1,1,1,4,1,1,13
+collision
+0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0
+npcs
+people_expert_m 2 4 E static 0 LOCALID_VERDANTURF_TENT_BATTLE_ATTENDANT 0
+onload
+VAR_TEMP_0 0 VerdanturfTown_BattleTentBattleRoom_EventScript_EnterRoom
+movements
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
+VerdanturfTown_BattleTentBattleRoom_Movement_OpponentEnter	down,down,down,down,face_left,end
+VerdanturfTown_BattleTentBattleRoom_Movement_OpponentExit	up,up,up,up,end
+VerdanturfTown_BattleTentBattleRoom_Movement_PlayerEnter	delay,up,up,up,face_right,end
+scriptdefs
+= VerdanturfTown_BattleTentBattleRoom_EventScript_EnterRoom
+showobjectat LOCALID_VERDANTURF_TENT_BATTLE_PLAYER MAP_VERDANTURF_TOWN_BATTLE_TENT_BATTLE_ROOM
+applymovement LOCALID_VERDANTURF_TENT_BATTLE_PLAYER VerdanturfTown_BattleTentBattleRoom_Movement_PlayerEnter
+waitmovement 0
+frontier_get FRONTIER_DATA_BATTLE_NUM
+goto_if_ne VAR_RESULT 0 VerdanturfTown_BattleTentBattleRoom_EventScript_AskContinueChallenge
+goto VerdanturfTown_BattleTentBattleRoom_EventScript_NextOpponentEnter
+= VerdanturfTown_BattleTentBattleRoom_EventScript_NextOpponentEnter
+tower_setopponent
+addobject LOCALID_VERDANTURF_TENT_BATTLE_OPPONENT
+applymovement LOCALID_VERDANTURF_TENT_BATTLE_OPPONENT VerdanturfTown_BattleTentBattleRoom_Movement_OpponentEnter
+waitmovement 0
+battletent_getopponentintro
+msgbox	gStringVar4
+waitmessage
+call BattleFrontier_BattlePalaceBattleRoom_EventScript_DoPalaceBattle
+switch VAR_RESULT
+case 1 VerdanturfTown_BattleTentBattleRoom_EventScript_DefeatedOpponent
+goto VerdanturfTown_BattleTentBattleRoom_EventScript_WarpToLobbyLost
+= VerdanturfTown_BattleTentBattleRoom_EventScript_WarpToLobbyLost
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS CHALLENGE_STATUS_LOST
+special LoadPlayerParty
+warp VerdanturfTown_BattleTentLobby 6 6
+waitstate
+goto VerdanturfTown_BattleTentBattleRoom_EventScript_DefeatedOpponent
+= VerdanturfTown_BattleTentBattleRoom_EventScript_DefeatedOpponent
+frontier_get FRONTIER_DATA_BATTLE_NUM
+addvar VAR_RESULT 1
+frontier_set FRONTIER_DATA_BATTLE_NUM VAR_RESULT
+switch VAR_RESULT
+case 3 VerdanturfTown_BattleTentBattleRoom_EventScript_WarpToLobbyWon
+applymovement LOCALID_VERDANTURF_TENT_BATTLE_OPPONENT VerdanturfTown_BattleTentBattleRoom_Movement_OpponentExit
+waitmovement 0
+removeobject LOCALID_VERDANTURF_TENT_BATTLE_OPPONENT
+applymovement LOCALID_VERDANTURF_TENT_BATTLE_ATTENDANT Common_Movement_WalkInPlaceFasterDown
+applymovement LOCALID_VERDANTURF_TENT_BATTLE_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+msgbox	Excellent… Let me restore your POKéMON.
+special LoadPlayerParty
+special SavePlayerParty
+frontier_setpartyorder FRONTIER_PARTY_SIZE
+playfanfare MUS_HEAL
+waitfanfare
+special HealPlayerParty
+goto VerdanturfTown_BattleTentBattleRoom_EventScript_AskContinueChallenge
+= VerdanturfTown_BattleTentBattleRoom_EventScript_AskContinueChallenge
+frontier_get FRONTIER_DATA_BATTLE_NUM
+call_if_eq VAR_RESULT 1 VerdanturfTown_BattleTentBattleRoom_EventScript_ReadyFor2ndOpponent
+call_if_eq VAR_RESULT 2 VerdanturfTown_BattleTentBattleRoom_EventScript_ReadyFor3rdOpponent
+multichoice 20 6 MULTI_GO_ON_REST_RETIRE TRUE
+switch VAR_RESULT
+case 0 VerdanturfTown_BattleTentBattleRoom_EventScript_ContinueChallenge
+case 1 VerdanturfTown_BattleTentBattleRoom_EventScript_AskPauseChallenge
+case 2 VerdanturfTown_BattleTentBattleRoom_EventScript_AskRetireChallenge
+goto VerdanturfTown_BattleTentBattleRoom_EventScript_AskPauseChallenge
+= VerdanturfTown_BattleTentBattleRoom_EventScript_AskPauseChallenge
+msgboxyesno	Would you like to save and quit the game?
+switch VAR_RESULT
+case NO VerdanturfTown_BattleTentBattleRoom_EventScript_AskContinueChallenge
+case YES VerdanturfTown_BattleTentBattleRoom_EventScript_PauseChallenge
+case MULTI_B_PRESSED VerdanturfTown_BattleTentBattleRoom_EventScript_AskContinueChallenge
+goto VerdanturfTown_BattleTentBattleRoom_EventScript_AskRetireChallenge
+= VerdanturfTown_BattleTentBattleRoom_EventScript_AskRetireChallenge
+msgbox	Do you wish to quit your challenge?
+waitmessage
+multichoicedefault 20 8 MULTI_YESNO 1 FALSE
+switch VAR_RESULT
+case 1 VerdanturfTown_BattleTentBattleRoom_EventScript_AskContinueChallenge
+case 0 VerdanturfTown_BattleTentBattleRoom_EventScript_WarpToLobbyLost
+case MULTI_B_PRESSED VerdanturfTown_BattleTentBattleRoom_EventScript_AskContinueChallenge
+goto VerdanturfTown_BattleTentBattleRoom_EventScript_ContinueChallenge
+= VerdanturfTown_BattleTentBattleRoom_EventScript_ContinueChallenge
+applymovement LOCALID_VERDANTURF_TENT_BATTLE_ATTENDANT Common_Movement_WalkInPlaceFasterRight
+applymovement LOCALID_VERDANTURF_TENT_BATTLE_PLAYER Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+closemessage
+goto VerdanturfTown_BattleTentBattleRoom_EventScript_NextOpponentEnter
+= VerdanturfTown_BattleTentBattleRoom_EventScript_PauseChallenge
+msgbox	Saving the data. Have patience…
+waitmessage
+verdanturftent_save CHALLENGE_STATUS_PAUSED
+playse SE_SAVE
+waitse
+fadescreen FADE_TO_BLACK
+frontier_reset
+end
+= VerdanturfTown_BattleTentBattleRoom_EventScript_ReadyFor3rdOpponent
+msgbox	The 3rd opponent is next. Are you prepared?
+waitmessage
+return
+= VerdanturfTown_BattleTentBattleRoom_EventScript_ReadyFor2ndOpponent
+msgbox	The 2nd opponent is next. Are you prepared?
+waitmessage
+return
+= VerdanturfTown_BattleTentBattleRoom_EventScript_WarpToLobbyWon
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS CHALLENGE_STATUS_WON
+special LoadPlayerParty
+warp VerdanturfTown_BattleTentLobby 6 6
+waitstate
+goto VerdanturfTown_BattleTentBattleRoom_EventScript_PauseChallenge
+grass
+13
+mapsec
+4 6 1 1	VERDANTURF TOWN
+music
+MUS_B_TOWER_RS

@@ -1,0 +1,128 @@
+tileset building__elite_four
+13 14
+6 7
+527,519,527,519,527,520,520,520,519,527,519,527,519
+517,516,517,516,517,513,514,515,516,517,516,517,516
+525,524,525,524,525,521,522,523,524,525,524,525,524
+530,530,530,530,530,552,552,552,530,530,530,530,530
+574,534,556,556,528,531,531,531,532,556,556,535,533
+541,542,556,556,536,537,538,539,540,556,556,543,541
+549,550,556,556,544,545,546,547,548,556,556,551,549
+575,570,556,556,536,553,554,555,540,556,556,551,575
+557,558,556,556,536,561,562,563,540,556,556,559,557
+573,566,556,556,568,571,571,571,572,556,556,567,565
+569,529,529,529,529,529,529,529,529,529,529,529,529
+519,527,519,527,520,520,520,520,520,519,527,519,527
+725,726,725,726,741,556,556,556,727,725,726,725,726
+840,841,840,841,742,564,564,564,735,840,841,840,841
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,0,0,0,0,0,0,0,0,0,1,1
+1,1,0,0,0,0,0,0,0,0,0,1,1
+1,1,0,0,0,0,0,0,0,0,0,1,1
+1,1,0,0,0,0,0,0,0,0,0,1,1
+1,1,0,0,0,0,0,0,0,0,0,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,1,1,1,0,0,0,1,1,1,1,1
+1,1,1,1,1,0,0,0,1,1,1,1,1
+warps
+6 13 EverGrandeCity_Hall5 1
+6 2 EverGrandeCity_Hall1 0
+npcs
+people_elite_four_sidney 6 5 S static 0 - 0
+dialogs
+0	Welcome, challenger! I'm SIDNEY of the ELITE FOUR.I like that look you're giving me. I guess you'll give me a good match. That's good! Looking real good!All right! You and me, let's enjoy a battle that can only be staged here in the POKéMON LEAGUE!
+objscripts
+0 EverGrandeCity_SidneysRoom_EventScript_Sidney
+onload
+VAR_ELITE_4_STATE 0 EverGrandeCity_SidneysRoom_EventScript_WalkInCloseDoor
+movements
+Common_Movement_Delay32	delay,delay,end
+Common_Movement_WalkUp6	up,up,up,up,up,up,end
+scriptdefs
+= EverGrandeCity_SidneysRoom_EventScript_WalkInCloseDoor
+lockall
+call PokemonLeague_EliteFour_EventScript_WalkInCloseDoor
+setvar VAR_ELITE_4_STATE 1
+releaseall
+end
+= PokemonLeague_EliteFour_EventScript_WalkInCloseDoor
+applymovement LOCALID_PLAYER Common_Movement_WalkUp6
+waitmovement 0
+playse SE_TRUCK_DOOR
+setmetatile 5 12 METATILE_EliteFour_EntryDoor_ClosedTop TRUE
+setmetatile 6 12 METATILE_EliteFour_EntryDoor_ClosedTop TRUE
+setmetatile 7 12 METATILE_EliteFour_EntryDoor_ClosedTop TRUE
+setmetatile 5 13 METATILE_EliteFour_EntryDoor_ClosedBottom TRUE
+setmetatile 6 13 METATILE_EliteFour_EntryDoor_ClosedBottom TRUE
+setmetatile 7 13 METATILE_EliteFour_EntryDoor_ClosedBottom TRUE
+special DrawWholeMapView
+return
+@ Essentially unused only necessary when re-entering an Elite Four room after defeating the member which isnt normally possible
+goto PokemonLeague_EliteFour_EventScript_ResetAdvanceToNextRoom
+= PokemonLeague_EliteFour_EventScript_ResetAdvanceToNextRoom
+setmetatile 6 1 METATILE_EliteFour_OpenDoor_Frame FALSE
+setmetatile 6 2 METATILE_EliteFour_OpenDoor_Opening FALSE
+setmetatile 5 12 METATILE_EliteFour_EntryDoor_ClosedTop TRUE
+setmetatile 6 12 METATILE_EliteFour_EntryDoor_ClosedTop TRUE
+setmetatile 7 12 METATILE_EliteFour_EntryDoor_ClosedTop TRUE
+setmetatile 5 13 METATILE_EliteFour_EntryDoor_ClosedBottom TRUE
+setmetatile 6 13 METATILE_EliteFour_EntryDoor_ClosedBottom TRUE
+setmetatile 7 13 METATILE_EliteFour_EntryDoor_ClosedBottom TRUE
+setmetatile 0 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 1 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+setmetatile 2 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 3 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+setmetatile 4 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 8 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+setmetatile 9 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 10 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+setmetatile 11 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 12 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+return
+= EverGrandeCity_SidneysRoom_EventScript_Sidney
+lock
+faceplayer
+goto_if_set FLAG_DEFEATED_ELITE_4_SIDNEY EverGrandeCity_SidneysRoom_EventScript_PostBattleSpeech
+playbgm MUS_ENCOUNTER_ELITE_FOUR FALSE
+msgbox	Welcome, challenger! I'm SIDNEY of the ELITE FOUR.I like that look you're giving me. I guess you'll give me a good match. That's good! Looking real good!All right! You and me, let's enjoy a battle that can only be staged here in the POKéMON LEAGUE!
+trainerbattle_no_intro TRAINER_SIDNEY EverGrandeCity_SidneysRoom_Text_Defeat
+goto EverGrandeCity_SidneysRoom_EventScript_Defeated
+end
+= EverGrandeCity_SidneysRoom_EventScript_Defeated
+setflag FLAG_DEFEATED_ELITE_4_SIDNEY
+call PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles
+msgbox	Well, listen to what this loser has to say.You've got what it takes to go far. Now, go on to the next room and enjoy your next battle!
+release
+end
+= PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles
+applymovement LOCALID_PLAYER Common_Movement_Delay32
+waitmovement 0
+playse SE_DOOR
+setmetatile 6 1 METATILE_EliteFour_OpenDoor_Frame FALSE
+setmetatile 6 2 METATILE_EliteFour_OpenDoor_Opening FALSE
+setmetatile 0 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 1 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+setmetatile 2 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 3 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+setmetatile 4 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 8 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+setmetatile 9 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 10 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+setmetatile 11 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 12 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+special DrawWholeMapView
+return
+= EverGrandeCity_SidneysRoom_EventScript_PostBattleSpeech
+msgbox	Well, listen to what this loser has to say.You've got what it takes to go far. Now, go on to the next room and enjoy your next battle!
+release
+end
+mapsec
+27 8 1 2	EVER GRANDE CITY
+music
+MUS_VICTORY_ROAD

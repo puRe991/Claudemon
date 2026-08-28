@@ -1,0 +1,85 @@
+tileset building__generic_building
+10 8
+5 4
+517,517,517,518,517,517,518,517,622,623
+616,617,525,526,525,525,526,525,630,631
+624,625,548,548,548,548,548,548,638,639
+602,603,547,547,547,547,547,547,547,556
+610,611,547,547,547,547,547,547,588,589
+569,547,547,547,547,547,547,555,596,597
+569,547,547,547,547,547,547,547,547,547
+569,547,547,520,521,547,547,547,547,547
+collision
+1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0
+1,1,0,0,0,0,0,0,0,0
+1,1,0,0,0,0,0,0,1,1
+0,0,0,0,0,0,0,0,1,1
+0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+warps
+3 7 SlateportCity 6
+4 7 SlateportCity 6
+npcs
+people_expert_m 7 5 S static 0 - 0
+dialogs
+0	Hi, hi! I'm the NAME RATER! I'm the fortune-teller of names!I shall be pleased to rate your POKéMON's nickname.
+objscripts
+0 SlateportCity_NameRatersHouse_EventScript_NameRater
+scriptdefs
+= SlateportCity_NameRatersHouse_EventScript_NameRater
+lock
+faceplayer
+msgboxyesno	Hi, hi! I'm the NAME RATER! I'm the fortune-teller of names!I shall be pleased to rate your POKéMON's nickname.
+goto_if_eq VAR_RESULT YES SlateportCity_NameRatersHouse_EventScript_ChooseMonToRate
+goto_if_eq VAR_RESULT NO SlateportCity_NameRatersHouse_EventScript_DeclineNameRate
+end
+= SlateportCity_NameRatersHouse_EventScript_DeclineNameRate
+msgbox	I see. Do come visit again.
+release
+end
+= SlateportCity_NameRatersHouse_EventScript_ChooseMonToRate
+msgbox	Which POKéMON's nickname should I critique?
+special ChoosePartyMon
+goto_if_ne VAR_0x8004 PARTY_NOTHING_CHOSEN SlateportCity_NameRatersHouse_EventScript_RateMonNickname
+goto_if_eq VAR_0x8004 PARTY_NOTHING_CHOSEN SlateportCity_NameRatersHouse_EventScript_DeclineNameRate
+end
+= SlateportCity_NameRatersHouse_EventScript_RateMonNickname
+specialvar VAR_RESULT ScriptGetPartyMonSpecies
+goto_if_eq VAR_RESULT SPECIES_EGG SlateportCity_NameRatersHouse_EventScript_CantRateEgg
+special BufferMonNickname
+special IsMonOTIDNotPlayers
+goto_if_eq VAR_RESULT TRUE SlateportCity_NameRatersHouse_EventScript_PlayerNotMonsOT
+specialvar VAR_RESULT MonOTNameNotPlayer
+special BufferMonNickname
+goto_if_eq VAR_RESULT TRUE SlateportCity_NameRatersHouse_EventScript_PlayerNotMonsOT
+msgboxyesno	Hmmm… STR_VAR_1, is it? That is quite a fine name you bestowed.But! What say you, if I were to suggest a slightly better name?
+goto_if_eq VAR_RESULT YES SlateportCity_NameRatersHouse_EventScript_ChangeNickname
+goto_if_eq VAR_RESULT NO SlateportCity_NameRatersHouse_EventScript_DeclineNameRate
+end
+= SlateportCity_NameRatersHouse_EventScript_ChangeNickname
+msgbox	Ah, good. Then, what shall the new nickname be?
+call Common_EventScript_NameReceivedPartyMon
+specialvar VAR_RESULT TryPutNameRaterShowOnTheAir
+special BufferMonNickname
+goto_if_eq VAR_RESULT TRUE SlateportCity_NameRatersHouse_EventScript_NewNameDifferent
+msgbox	Done! From now on, this POKéMON shall be known as STR_VAR_1!It looks no different from before, and yet, this is vastly superior!How fortunate for you!
+release
+end
+= SlateportCity_NameRatersHouse_EventScript_NewNameDifferent
+msgbox	Done! From now on, this POKéMON shall be known as STR_VAR_1!It is a better name than before! How fortunate for you!
+release
+end
+= SlateportCity_NameRatersHouse_EventScript_PlayerNotMonsOT
+msgbox	Hmmm… STR_VAR_1 it is!This is a magnificent nickname! It is impeccably beyond reproach!You'll do well to cherish your STR_VAR_1 now and beyond.
+release
+end
+= SlateportCity_NameRatersHouse_EventScript_CantRateEgg
+msgbox	Now, now. That is merely an EGG!
+release
+end
+mapsec
+8 10 1 2	SLATEPORT CITY
+music
+MUS_SLATEPORT

@@ -1,0 +1,219 @@
+tileset building__battle_frontier
+6 8
+3 4
+955,956,955,956,955,956
+963,964,963,964,963,964
+976,971,970,971,970,971
+978,968,969,968,969,991
+977,969,968,969,968,988
+978,968,969,968,969,996
+977,969,968,969,968,969
+1,977,949,950,969,1
+collision
+1,1,1,1,1,1
+1,1,1,1,1,1
+0,0,0,0,0,0
+0,0,0,0,0,0
+0,0,0,0,0,0
+0,0,0,0,0,1
+0,0,0,0,0,0
+1,0,0,0,0,1
+warps
+2 7 BattleFrontier_OutsideWest 5
+3 7 BattleFrontier_OutsideWest 5
+npcs
+people_scott 2 3 S static 0 LOCALID_SCOTTS_HOUSE_SCOTT 0
+objscripts
+0 BattleFrontier_ScottsHouse_EventScript_Scott
+movements
+Common_Movement_FacePlayer	face_down,end
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
+scriptdefs
+= BattleFrontier_ScottsHouse_EventScript_Scott
+lock
+faceplayer
+goto_if_set FLAG_TEMP_4 BattleFrontier_ScottsHouse_EventScript_GivenBerry
+goto_if_set FLAG_TEMP_3 BattleFrontier_ScottsHouse_EventScript_GivenShield
+goto_if_set FLAG_TEMP_2 BattleFrontier_ScottsHouse_EventScript_GivenBattlePoints
+goto BattleFrontier_ScottsHouse_EventScript_CheckGiveItems
+end
+= BattleFrontier_ScottsHouse_EventScript_CheckGiveItems
+goto_if_unset FLAG_SCOTT_GIVES_BATTLE_POINTS BattleFrontier_ScottsHouse_EventScript_WelcomeToFrontier
+goto_if_unset FLAG_COLLECTED_ALL_SILVER_SYMBOLS BattleFrontier_ScottsHouse_EventScript_CheckSilverSymbols
+goto_if_unset FLAG_COLLECTED_ALL_GOLD_SYMBOLS BattleFrontier_ScottsHouse_EventScript_CheckGoldSymbols
+goto BattleFrontier_ScottsHouse_EventScript_CheckGiveShield
+end
+= BattleFrontier_ScottsHouse_EventScript_CheckGiveShield
+goto_if_unset FLAG_RECEIVED_SILVER_SHIELD BattleFrontier_ScottsHouse_EventScript_CheckGiveSilverShield
+goto_if_unset FLAG_RECEIVED_GOLD_SHIELD BattleFrontier_ScottsHouse_EventScript_CheckGiveGoldShield
+goto BattleFrontier_ScottsHouse_EventScript_RandomComment
+end
+= BattleFrontier_ScottsHouse_EventScript_RandomComment
+random 3
+goto_if_eq VAR_RESULT 1 BattleFrontier_ScottsHouse_EventScript_FrontierBrainComment
+goto_if_eq VAR_RESULT 2 BattleFrontier_ScottsHouse_EventScript_ArtisanCaveComment
+msgbox	SCOTT: Every TRAINER is an individual. They all lead lives of their own.But when they're in a battle, it doesn't matter who they are.They're all the same!I love the purity of battle, where everyone is equal.That's why I go everywhere seeking TRAINERS who are serious about battling, and invite them here.
+release
+end
+= BattleFrontier_ScottsHouse_EventScript_ArtisanCaveComment
+msgbox	SCOTT: You don't just train for battle, right?I think I remember you working on a POKéDEX as well.Well, guess what?You may run into wild POKéMON in the BATTLE FRONTIER somewhere… Fufufu!
+release
+end
+= BattleFrontier_ScottsHouse_EventScript_FrontierBrainComment
+msgbox	SCOTT: Have you met any of the FRONTIER BRAINS?Better yet, have you obtained any symbols from them?I handpicked the FRONTIER BRAINS as the toughest TRAINERS anywhere.But I'm sure that seeing how tough you are will startle even them!
+release
+end
+= BattleFrontier_ScottsHouse_EventScript_CheckGiveGoldShield
+setvar VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES
+frontier_set FRONTIER_DATA_LVL_MODE FRONTIER_LVL_50
+tower_get TOWER_DATA_WIN_STREAK
+goto_if_ge VAR_RESULT 100 BattleFrontier_ScottsHouse_EventScript_GiveGoldShield
+frontier_set FRONTIER_DATA_LVL_MODE FRONTIER_LVL_OPEN
+tower_get TOWER_DATA_WIN_STREAK
+goto_if_ge VAR_RESULT 100 BattleFrontier_ScottsHouse_EventScript_GiveGoldShield
+goto BattleFrontier_ScottsHouse_EventScript_RandomComment
+end
+= BattleFrontier_ScottsHouse_EventScript_GiveGoldShield
+msgbox	SCOTT: Oh, my! I heard about you! How you overwhelmed the BATTLE TOWER! You beat over 100 TRAINERS in a row?That's ridiculously spectacular! You've got to have this!
+givedecoration DECOR_GOLD_SHIELD
+goto_if_eq VAR_RESULT FALSE BattleFrontier_ScottsHouse_EventScript_NoRoomForShield
+setflag FLAG_RECEIVED_GOLD_SHIELD
+setflag FLAG_TEMP_3
+goto BattleFrontier_ScottsHouse_EventScript_GivenShield
+end
+= BattleFrontier_ScottsHouse_EventScript_GivenShield
+msgbox	I'll be expecting to hear even greater things about you now!
+release
+end
+= BattleFrontier_ScottsHouse_EventScript_NoRoomForShield
+msgbox	Oops, well, if you have too much stuff, come back for this later.
+release
+end
+= BattleFrontier_ScottsHouse_EventScript_CheckGiveSilverShield
+setvar VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES
+frontier_set FRONTIER_DATA_LVL_MODE FRONTIER_LVL_50
+tower_get TOWER_DATA_WIN_STREAK
+goto_if_ge VAR_RESULT 50 BattleFrontier_ScottsHouse_EventScript_GiveSilverShield
+frontier_set FRONTIER_DATA_LVL_MODE FRONTIER_LVL_OPEN
+tower_get TOWER_DATA_WIN_STREAK
+goto_if_ge VAR_RESULT 50 BattleFrontier_ScottsHouse_EventScript_GiveSilverShield
+goto BattleFrontier_ScottsHouse_EventScript_RandomComment
+end
+= BattleFrontier_ScottsHouse_EventScript_GiveSilverShield
+msgbox	SCOTT: Oh, I heard about you! How you ruled the BATTLE TOWER! You beat over 50 TRAINERS in a row?That's fantastic! I want you to have this!
+givedecoration DECOR_SILVER_SHIELD
+goto_if_eq VAR_RESULT FALSE BattleFrontier_ScottsHouse_EventScript_NoRoomForShield
+setflag FLAG_RECEIVED_SILVER_SHIELD
+setflag FLAG_TEMP_3
+goto BattleFrontier_ScottsHouse_EventScript_GivenShield
+end
+= BattleFrontier_ScottsHouse_EventScript_CheckGoldSymbols
+goto_if_unset FLAG_SYS_TOWER_GOLD BattleFrontier_ScottsHouse_EventScript_CheckGiveShield
+goto_if_unset FLAG_SYS_DOME_GOLD BattleFrontier_ScottsHouse_EventScript_CheckGiveShield
+goto_if_unset FLAG_SYS_PALACE_GOLD BattleFrontier_ScottsHouse_EventScript_CheckGiveShield
+goto_if_unset FLAG_SYS_ARENA_GOLD BattleFrontier_ScottsHouse_EventScript_CheckGiveShield
+goto_if_unset FLAG_SYS_FACTORY_GOLD BattleFrontier_ScottsHouse_EventScript_CheckGiveShield
+goto_if_unset FLAG_SYS_PIKE_GOLD BattleFrontier_ScottsHouse_EventScript_CheckGiveShield
+goto_if_unset FLAG_SYS_PYRAMID_GOLD BattleFrontier_ScottsHouse_EventScript_CheckGiveShield
+msgbox	SCOTT: I hope you're enjoying everything in the BATTLE FRONTIER.…Wait a second… Oh, my disbelieving eyes!Your FRONTIER PASS! You've gathered up the full set of gold symbols!That's more than stupendous! You're incredible, just as I suspected!… … … … … …PLAYER, you've got to accept this!I think you will be able to appreciate the value of my gift!
+giveitem ITEM_STARF_BERRY
+goto_if_eq VAR_RESULT FALSE BattleFrontier_ScottsHouse_EventScript_BerryPocketFull
+setflag FLAG_COLLECTED_ALL_GOLD_SYMBOLS
+setflag FLAG_TEMP_4
+release
+end
+= BattleFrontier_ScottsHouse_EventScript_BerryPocketFull
+msgbox	Your BERRY POCKET seems to be stuffed.
+release
+end
+= BattleFrontier_ScottsHouse_EventScript_CheckSilverSymbols
+goto_if_unset FLAG_SYS_TOWER_SILVER BattleFrontier_ScottsHouse_EventScript_CheckGiveShield
+goto_if_unset FLAG_SYS_DOME_SILVER BattleFrontier_ScottsHouse_EventScript_CheckGiveShield
+goto_if_unset FLAG_SYS_PALACE_SILVER BattleFrontier_ScottsHouse_EventScript_CheckGiveShield
+goto_if_unset FLAG_SYS_ARENA_SILVER BattleFrontier_ScottsHouse_EventScript_CheckGiveShield
+goto_if_unset FLAG_SYS_FACTORY_SILVER BattleFrontier_ScottsHouse_EventScript_CheckGiveShield
+goto_if_unset FLAG_SYS_PIKE_SILVER BattleFrontier_ScottsHouse_EventScript_CheckGiveShield
+goto_if_unset FLAG_SYS_PYRAMID_SILVER BattleFrontier_ScottsHouse_EventScript_CheckGiveShield
+msgbox	SCOTT: Are you enjoying things in the BATTLE FRONTIER?…Wait a second… Oh!Your FRONTIER PASS! You've collected the full set of silver symbols!That's more than impressive! You are tough, just as I suspected!Normally, I wouldn't do something like this, but this is a special time!I want you to have this. I'm sure you can put it to proper use.
+giveitem ITEM_LANSAT_BERRY
+goto_if_eq VAR_RESULT FALSE BattleFrontier_ScottsHouse_EventScript_BerryPocketFull
+setflag FLAG_COLLECTED_ALL_SILVER_SYMBOLS
+setflag FLAG_TEMP_4
+release
+end
+= BattleFrontier_ScottsHouse_EventScript_WelcomeToFrontier
+msgbox	SCOTT: Well, hello and welcome! Heheh… Sorry about the cramped space.Anyway, PLAYER, let me formally welcome you to the BATTLE FRONTIER.This is my dream come true. It took me years and years, but I've finally given shape to my dream.
+closemessage
+delay 30
+call_if_eq VAR_FACING DIR_NORTH BattleFrontier_ScottsHouse_EventScript_ScottFaceAwayNorth
+call_if_eq VAR_FACING DIR_SOUTH BattleFrontier_ScottsHouse_EventScript_ScottFaceAwaySouth
+call_if_eq VAR_FACING DIR_EAST BattleFrontier_ScottsHouse_EventScript_ScottFaceAwayEast
+call_if_eq VAR_FACING DIR_WEST BattleFrontier_ScottsHouse_EventScript_ScottFaceAwayWest
+msgbox	On reflection, it was a terribly long journey…I left home alone on a quest to find strong TRAINERS.No one can imagine how much effort or time it took to make this real.
+applymovement LOCALID_SCOTTS_HOUSE_SCOTT Common_Movement_FacePlayer
+waitmovement 0
+msgbox	But that's all in the past. No point dwelling on that!All I want for you is to enjoy battling to your heart's content here.PLAYER, I want you to have this as a memento for all the time our paths crossed on our journeys.
+goto_if_eq VAR_SCOTT_STATE 13 BattleFrontier_ScottsHouse_EventScript_Give4BattlePoints
+goto_if_ge VAR_SCOTT_STATE 9 BattleFrontier_ScottsHouse_EventScript_Give3BattlePoints
+goto_if_ge VAR_SCOTT_STATE 6 BattleFrontier_ScottsHouse_EventScript_Give2BattlePoints
+goto BattleFrontier_ScottsHouse_EventScript_Give1BattlePoint
+end
+= BattleFrontier_ScottsHouse_EventScript_Give1BattlePoint
+buffernumberstring STR_VAR_1 1
+setvar VAR_0x8004 1
+goto BattleFrontier_ScottsHouse_EventScript_GiveBattlePoints
+end
+= BattleFrontier_ScottsHouse_EventScript_GiveBattlePoints
+special GiveFrontierBattlePoints
+msgbox	PLAYER obtained STR_VAR_1 Battle Point(s).
+msgbox	SCOTT: You can check your Battle Points on your FRONTIER PASS.The more success you have here at the BATTLE FRONTIER, the more Battle Points you will collect.Use your Battle Points the way you see fit, like trading them for items.
+setflag FLAG_SCOTT_GIVES_BATTLE_POINTS
+setflag FLAG_TEMP_2
+release
+end
+= BattleFrontier_ScottsHouse_EventScript_Give2BattlePoints
+buffernumberstring STR_VAR_1 2
+setvar VAR_0x8004 2
+goto BattleFrontier_ScottsHouse_EventScript_GiveBattlePoints
+end
+= BattleFrontier_ScottsHouse_EventScript_Give3BattlePoints
+buffernumberstring STR_VAR_1 3
+setvar VAR_0x8004 3
+goto BattleFrontier_ScottsHouse_EventScript_GiveBattlePoints
+end
+= BattleFrontier_ScottsHouse_EventScript_Give4BattlePoints
+buffernumberstring STR_VAR_1 4
+setvar VAR_0x8004 4
+goto BattleFrontier_ScottsHouse_EventScript_GiveBattlePoints
+end
+= BattleFrontier_ScottsHouse_EventScript_ScottFaceAwayWest
+applymovement LOCALID_SCOTTS_HOUSE_SCOTT Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+return
+= BattleFrontier_ScottsHouse_EventScript_ScottFaceAwayEast
+applymovement LOCALID_SCOTTS_HOUSE_SCOTT Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+return
+= BattleFrontier_ScottsHouse_EventScript_ScottFaceAwaySouth
+applymovement LOCALID_SCOTTS_HOUSE_SCOTT Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+return
+= BattleFrontier_ScottsHouse_EventScript_ScottFaceAwayNorth
+applymovement LOCALID_SCOTTS_HOUSE_SCOTT Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+return
+= BattleFrontier_ScottsHouse_EventScript_GivenBattlePoints
+msgbox	I'm expecting great things from you!
+release
+end
+= BattleFrontier_ScottsHouse_EventScript_GivenBerry
+msgbox	I must say I have the gift of knowing a good TRAINER when I see one.I'm so glad I had the foresight to bring you here!
+release
+end
+mapsec
+22 12 1 1	BATTLE FRONTIER
+music
+MUS_B_TOWER_RS

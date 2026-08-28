@@ -1,0 +1,99 @@
+tileset building__generic_building
+8 6
+5 2
+968,969,969,958,959,969,971,970
+976,995,996,958,959,977,542,978
+984,1003,1004,958,959,987,979,986
+985,985,988,966,967,987,985,985
+985,985,985,985,985,985,985,985
+972,985,985,980,981,985,985,973
+collision
+1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1
+0,1,1,1,1,0,0,0
+0,0,0,1,1,0,0,0
+0,0,0,0,0,0,0,0
+1,0,0,0,0,0,0,1
+warps
+3 5 FortreeCity 4
+4 5 FortreeCity 4
+npcs
+people_expert_f 2 3 S wander 0 - 0
+people_expert_m 6 3 W static 0 - 0
+dialogs
+0	Let this old woman see if your hidden power has awoken…I hold a coin in my hand.Now, tell me, have I palmed it in the right hand? Or in the left?
+objscripts
+0 FortreeCity_House2_EventScript_HiddenPowerGiver
+1 FortreeCity_House2_EventScript_SleepTalkTutor
+scriptdefs
+= FortreeCity_House2_EventScript_SleepTalkTutor
+lock
+faceplayer
+goto_if_set FLAG_MOVE_TUTOR_TAUGHT_SLEEP_TALK MoveTutor_EventScript_SleepTalkTaught
+msgboxyesno	Humph! My wife relies on HIDDEN POWER to stay awake.She should just take a nap like I do, and SLEEP TALK.I can teach your POKéMON how to SLEEP TALK instead. Interested?
+goto_if_eq VAR_RESULT NO MoveTutor_EventScript_SleepTalkDeclined
+call MoveTutor_EventScript_CanOnlyBeLearnedOnce
+goto_if_eq VAR_RESULT NO MoveTutor_EventScript_SleepTalkDeclined
+msgbox	Ah, an appreciative child! Which POKéMON should I teach?
+setvar VAR_0x8005 TUTOR_MOVE_SLEEP_TALK
+call MoveTutor_EventScript_OpenPartyMenu
+goto_if_eq VAR_RESULT 0 MoveTutor_EventScript_SleepTalkDeclined
+setflag FLAG_MOVE_TUTOR_TAUGHT_SLEEP_TALK
+goto MoveTutor_EventScript_SleepTalkTaught
+end
+= MoveTutor_EventScript_SleepTalkTaught
+msgbox	I've never once gotten my wife's coin trick right.I would be happy if I got it right even as I SLEEP TALK…
+release
+end
+= MoveTutor_EventScript_SleepTalkDeclined
+msgbox	Oh, fine, fine. You want to stay awake with HIDDEN POWER, too…
+release
+end
+= MoveTutor_EventScript_OpenPartyMenu
+special ChooseMonForMoveTutor
+lock
+faceplayer
+return
+= MoveTutor_EventScript_CanOnlyBeLearnedOnce
+msgboxyesno	This move can be learned only once. Is that okay?
+return
+= FortreeCity_House2_EventScript_HiddenPowerGiver
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_TM_HIDDEN_POWER FortreeCity_House2_EventScript_ExplainHiddenPower
+call_if_unset FLAG_MET_HIDDEN_POWER_GIVER FortreeCity_House2_EventScript_Greeting
+msgbox	Let this old woman see if your hidden power has awoken…I hold a coin in my hand.Now, tell me, have I palmed it in the right hand? Or in the left?
+multichoice 21 8 MULTI_RIGHTLEFT TRUE
+switch VAR_RESULT
+case 1 FortreeCity_House2_EventScript_WrongGuess
+msgbox	Oh! Yes, correct!We shall try again.In which hand have I palmed the coin? The right or left?
+multichoice 21 8 MULTI_RIGHTLEFT TRUE
+switch VAR_RESULT
+case 1 FortreeCity_House2_EventScript_WrongGuess
+msgbox	Oh! Yes, correct!We shall try again.In which hand have I palmed the coin? The right or left?
+multichoice 21 8 MULTI_RIGHTLEFT TRUE
+switch VAR_RESULT
+case 0 FortreeCity_House2_EventScript_WrongGuess
+msgbox	Oh! Splendid! Your hidden power has awoken!Here, take this and awaken the hidden power of your POKéMON.
+giveitem ITEM_TM_HIDDEN_POWER
+goto_if_eq VAR_RESULT 0 Common_EventScript_ShowBagIsFull
+setflag FLAG_RECEIVED_TM_HIDDEN_POWER
+msgbox	HIDDEN POWER is a move that changes with the POKéMON.
+release
+end
+= FortreeCity_House2_EventScript_WrongGuess
+msgbox	No, too bad. You guessed wrong.
+release
+end
+= FortreeCity_House2_EventScript_Greeting
+msgbox	People… POKéMON…Their hidden powers are aroused by living in natural environments…
+setflag FLAG_MET_HIDDEN_POWER_GIVER
+return
+= FortreeCity_House2_EventScript_ExplainHiddenPower
+msgbox	HIDDEN POWER is a move that changes with the POKéMON.
+release
+end
+mapsec
+12 0 1 1	FORTREE CITY
+music
+MUS_FORTREE

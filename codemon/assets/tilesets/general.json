@@ -1,0 +1,7 @@
+{
+  "name": "general",
+  "metatile_size": 16,
+  "cols": 16,
+  "count": 512,
+  "sheet": "general.png"
+}

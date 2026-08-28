@@ -1,0 +1,148 @@
+tileset general__fortree
+40 20
+5 7
+199,199,199,199,198,199,198,199,198,199,199,199,199,198,198,198,198,198,199,199,198,198,198,199,199,199,199,199,198,198,198,548,549,550,198,199,199,199,199,199
+199,584,585,586,198,199,198,199,198,548,549,550,198,198,198,554,548,549,550,198,198,198,198,198,548,549,550,198,198,198,555,556,557,558,559,199,199,199,199,199
+198,592,593,594,23,23,23,23,555,556,557,558,559,554,554,555,556,557,558,559,198,198,198,555,556,557,558,559,198,198,563,564,565,566,567,199,199,199,199,199
+199,580,604,580,72,73,74,75,563,564,565,566,567,198,198,563,564,565,566,567,199,554,554,563,564,565,566,567,198,554,563,572,574,574,567,199,199,199,199,199
+199,198,199,199,80,81,82,83,563,572,573,574,575,598,598,571,572,574,574,575,598,598,598,571,572,573,574,575,598,598,571,572,574,574,567,199,199,199,199,199
+23,199,199,198,88,89,90,91,579,582,581,582,583,580,580,579,582,582,582,583,580,580,580,579,582,581,582,583,580,580,579,582,581,582,583,199,199,199,199,199
+1,23,23,23,96,97,98,99,198,199,589,199,584,585,586,199,199,199,199,199,199,199,199,199,199,589,199,199,584,585,586,199,589,199,199,199,199,23,23,23
+1,1,1,1,1,600,601,601,595,595,609,199,592,593,594,199,199,199,199,611,612,612,612,612,613,609,199,199,592,593,594,199,609,595,595,595,23,1,1,1
+1,1,1,1,1,608,609,609,609,609,609,199,199,577,199,199,199,199,199,434,435,435,435,435,436,609,595,199,199,577,199,199,609,609,609,610,1,1,1,1
+1,1,1,1,1,616,3,609,609,609,609,199,199,627,198,198,199,199,595,440,441,442,435,443,444,608,597,199,199,627,198,199,609,609,609,618,1,1,1,1
+14,1,1,1,1,1,1,616,609,609,609,199,199,198,198,198,199,199,1,448,449,450,453,451,452,608,605,199,198,198,554,595,609,609,618,15,15,15,15,15
+198,14,14,40,41,41,43,1,608,609,587,548,549,550,554,554,199,199,14,456,457,458,461,459,460,608,609,199,198,198,199,609,609,609,15,198,548,549,550,198
+198,198,198,48,49,50,51,1,608,587,555,556,557,558,559,199,199,199,199,14,600,601,601,601,601,609,587,199,554,199,595,609,609,609,199,555,556,557,558,559
+198,198,198,56,57,58,59,1,608,198,563,564,565,566,567,198,199,199,199,199,587,587,587,587,587,587,199,199,199,199,1,616,617,617,199,563,564,565,566,567
+198,198,198,96,65,66,67,600,609,198,563,572,573,574,575,598,598,598,598,598,598,598,598,598,598,598,598,598,598,598,590,590,590,590,598,571,572,574,574,567
+198,198,198,14,1,1,600,609,609,595,579,582,581,582,583,580,580,580,580,580,580,580,580,580,580,580,580,580,580,580,1,1,600,601,580,579,582,581,582,583
+198,198,198,198,600,601,609,609,609,609,595,595,589,198,584,585,586,198,198,198,198,198,198,198,198,199,199,199,199,199,588,601,609,609,595,595,595,589,199,199
+198,198,198,198,587,587,609,609,609,609,609,609,609,198,592,593,594,198,198,198,198,198,198,198,198,199,199,584,585,586,199,587,609,609,609,609,609,609,199,199
+198,198,198,198,198,198,587,587,587,609,609,609,609,198,580,604,580,198,198,198,198,198,198,198,198,198,199,592,593,594,199,199,587,587,609,609,609,587,199,199
+199,554,554,198,198,198,198,198,198,587,587,587,587,198,198,199,199,554,199,198,198,198,198,198,198,198,199,580,604,580,199,199,199,199,587,587,587,199,199,199
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,0,0,0,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,1,1,1,1,1,1,1
+0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,1,1,1,1,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0
+1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,1,1,1,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,1
+1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,1,1,1,1,1,1
+1,1,1,1,1,1,1,0,0,1,1,1,0,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,0,1,1
+1,1,1,1,1,1,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+1,1,1,0,0,0,0,0,0,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,0,1,1
+1,1,1,1,0,0,0,0,0,0,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,0,1,1
+1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1
+1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1
+1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1
+connections
+left 0 Route119
+right 0 Route120
+warps
+5 6 FortreeCity_PokemonCenter_1F 0
+10 3 FortreeCity_House1 0
+22 11 FortreeCity_Gym 0
+4 14 FortreeCity_Mart 0
+17 3 FortreeCity_House2 0
+25 3 FortreeCity_House3 0
+32 2 FortreeCity_House4 0
+12 13 FortreeCity_House5 0
+37 13 FortreeCity_DecorationShop 0
+npcs
+people_man_2 31 3 S static 0 - 0
+people_girl_1 32 16 S wander 0 - 0
+people_woman_5 32 10 S wander 0 - 0
+people_boy_1 11 14 S static 0 - 0
+people_old_man 8 10 S static 0 - 0
+people_gameboy_kid 9 16 S static 0 - 0
+pokemon_kecleon 25 8 S static FLAG_HIDE_FORTREE_CITY_KECLEON - 0
+dialogs
+0	No one believes me, but I saw this gigantic POKéMON in the sky.It seemed to squirm as it flew toward ROUTE 131.By the way… Sniff… Um… You, uh…smell singed.Were you at a volcano or something?
+1	The ground absorbs rainwater, and trees grow by drinking that water…Our FORTREE CITY exists because there's both water and soil.
+2	I want to go to the POKéMON GYM, but something's blocking the way.After all the bother I went through training on ROUTE 120…
+3	Living on top of trees is okay.But sometimes BUG POKéMON come in through windows. It can be really startling.
+4	The CITY consists of homes built on trees.Perhaps because of that lifestyle, everyone is healthy and lively.Why, even myself--I feel as if I've grown thirty years younger.
+5	There are POKéMON that evolve when you trade them! That's what I heard.
+6	Something unseeable is in the way.
+objscripts
+0 FortreeCity_EventScript_Man
+1 FortreeCity_EventScript_Girl
+2 FortreeCity_EventScript_Woman
+3 FortreeCity_EventScript_Boy
+4 FortreeCity_EventScript_OldMan
+5 FortreeCity_EventScript_GameboyKid
+6 FortreeCity_EventScript_Kecleon
+movements
+FortreeCity_Movement_KecleonFlee	right,end
+Movement_KecleonAppears	delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,end
+scriptdefs
+= FortreeCity_EventScript_Kecleon
+lock
+faceplayer
+checkitem ITEM_DEVON_SCOPE
+goto_if_eq VAR_RESULT TRUE FortreeCity_EventScript_AskUseDevonScope
+msgbox	Something unseeable is in the way.
+release
+end
+= FortreeCity_EventScript_AskUseDevonScope
+msgboxyesno	Something unseeable is in the way.Want to use the DEVON SCOPE?
+goto_if_eq VAR_RESULT YES FortreeCity_EventScript_UseDevonScope
+release
+end
+= FortreeCity_EventScript_UseDevonScope
+msgbox	PLAYER used the DEVON SCOPE.An invisible POKéMON became completely visible!The startled POKéMON fled!
+closemessage
+applymovement VAR_LAST_TALKED Movement_KecleonAppears
+waitmovement 0
+waitse
+playmoncry SPECIES_KECLEON CRY_MODE_ENCOUNTER
+delay 40
+waitmoncry
+applymovement VAR_LAST_TALKED FortreeCity_Movement_KecleonFlee
+waitmovement 0
+removeobject VAR_LAST_TALKED
+setflag FLAG_KECLEON_FLED_FORTREE
+release
+end
+= FortreeCity_EventScript_GameboyKid
+msgbox	There are POKéMON that evolve when you trade them! That's what I heard.
+end
+= FortreeCity_EventScript_OldMan
+msgbox	The CITY consists of homes built on trees.Perhaps because of that lifestyle, everyone is healthy and lively.Why, even myself--I feel as if I've grown thirty years younger.
+end
+= FortreeCity_EventScript_Boy
+msgbox	Living on top of trees is okay.But sometimes BUG POKéMON come in through windows. It can be really startling.
+end
+= FortreeCity_EventScript_Woman
+lock
+faceplayer
+goto_if_set FLAG_KECLEON_FLED_FORTREE FortreeCity_EventScript_WomanGymAccessible
+msgbox	I want to go to the POKéMON GYM, but something's blocking the way.After all the bother I went through training on ROUTE 120…
+release
+end
+= FortreeCity_EventScript_WomanGymAccessible
+msgbox	I've got my pride-and-joy POKéMON with me. This time, I'll beat WINONA.
+release
+end
+= FortreeCity_EventScript_Girl
+msgbox	The ground absorbs rainwater, and trees grow by drinking that water…Our FORTREE CITY exists because there's both water and soil.
+end
+= FortreeCity_EventScript_Man
+msgbox	No one believes me, but I saw this gigantic POKéMON in the sky.It seemed to squirm as it flew toward ROUTE 131.By the way… Sniff… Um… You, uh…smell singed.Were you at a volcano or something?
+end
+signs
+6 9	FORTREE CITY “The treetop city that frolics with nature.”
+26 10	FORTREE CITY POKéMON GYM LEADER: WINONA“The bird user taking flight into the world.”
+visit
+FLAG_VISITED_FORTREE_CITY
+mapsec
+12 0 1 1	FORTREE CITY
+music
+MUS_FORTREE

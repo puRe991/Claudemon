@@ -1,0 +1,451 @@
+tileset building__battle_pyramid
+15 18
+7 9
+513,520,521,522,515,515,515,515,515,515,515,544,545,546,513
+515,515,529,530,516,519,516,516,516,519,516,552,553,554,515
+516,516,536,527,517,527,517,517,517,527,517,527,560,516,516
+517,517,536,555,518,535,518,518,518,555,518,535,560,517,517
+513,513,536,563,526,543,524,525,524,563,526,543,560,513,513
+514,514,537,523,534,523,523,523,523,523,534,523,561,514,514
+531,531,538,523,523,523,523,523,523,523,523,523,538,531,531
+523,523,523,523,523,523,523,523,523,523,523,523,523,523,523
+523,523,523,540,540,540,547,548,549,540,540,540,523,523,523
+523,523,523,541,541,541,547,548,549,541,541,541,523,523,523
+518,518,518,513,513,513,547,548,549,513,513,513,517,517,517
+714,715,716,513,513,712,547,548,549,513,513,513,518,542,518
+722,723,724,539,539,720,547,548,549,539,539,539,517,550,517
+730,731,732,523,523,728,704,705,706,523,523,523,523,558,523
+523,523,523,523,523,523,523,523,523,523,523,523,523,523,523
+523,523,523,523,523,523,523,523,523,523,523,523,523,523,523
+523,523,523,523,523,523,523,523,523,523,523,523,523,523,523
+523,523,523,523,523,523,707,708,709,523,523,523,523,523,523
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,0,1,1,1,1,1,0,1,1,1,1,1
+1,1,1,0,1,1,1,0,1,0,1,1,1,1,1
+0,0,1,0,1,0,0,0,0,0,1,0,1,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,1,1,1,1,0,1,1,1,1,0,0,0
+0,0,0,1,1,1,1,0,1,1,1,1,0,0,0
+0,0,0,1,1,1,1,0,1,1,1,1,1,1,1
+1,1,0,1,1,1,1,0,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,0,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+7 17 BattleFrontier_OutsideEast 3
+npcs
+people_hiker 7 12 S static 0 LOCALID_PYRAMID_LOBBY_ATTENDANT 0
+people_hex_maniac 14 13 W static 0 LOCALID_PYRAMID_LOBBY_HINT_GIVER 0
+people_woman_3 2 15 S wander 0 - 0
+people_fat_man 12 16 S wander 0 - 0
+dialogs
+0	Where the courage of TRAINERS is put to the test!Welcome to the BATTLE PYRAMID!I am your guide to the Battle Quest.
+1	Welcome…I shall be pleased to tell you what misfortunes await in the PYRAMID…
+2	Did you know?If you run fast, TRAINERS may notice and come after you for a battle.So, if you want to avoid TRAINERS, don't catch their eyes, but sneak cautiously and quietly past them.
+3	Awaaaaaaarrrrgh!I had a whole lot of items, but I lost them all when I lost!Awaaaaaaarrrrgh!
+objscripts
+0 BattleFrontier_BattlePyramidLobby_EventScript_Attendant
+1 BattleFrontier_BattlePyramidLobby_EventScript_HintGiver
+2 BattleFrontier_BattlePyramidLobby_EventScript_Woman
+3 BattleFrontier_BattlePyramidLobby_EventScript_FatMan
+onload
+VAR_TEMP_CHALLENGE_STATUS 0 BattleFrontier_BattlePyramidLobby_EventScript_GetChallengeStatus
+VAR_TEMP_CHALLENGE_STATUS CHALLENGE_STATUS_SAVING BattleFrontier_BattlePyramidLobby_EventScript_QuitWithoutSaving
+VAR_TEMP_CHALLENGE_STATUS CHALLENGE_STATUS_PAUSED BattleFrontier_BattlePyramidLobby_EventScript_ResumeChallenge
+VAR_TEMP_CHALLENGE_STATUS CHALLENGE_STATUS_WON BattleFrontier_BattlePyramidLobby_EventScript_WonChallenge
+VAR_TEMP_CHALLENGE_STATUS CHALLENGE_STATUS_LOST BattleFrontier_BattlePyramidLobby_EventScript_LostChallenge
+movements
+BattleFrontier_BattlePyramidLobby_Movement_AttendantMoveAside	right,face_left,end
+BattleFrontier_BattlePyramidLobby_Movement_AttendantWalkToPanel	up,up,up,up,up,up,up,face_down,end
+BattleFrontier_BattlePyramidLobby_Movement_PlayerStepOnPanel	up,up,end
+BattleFrontier_BattlePyramidLobby_Movement_PlayerWalkToPanel	up,up,up,up,up,up,up,end
+Common_Movement_FacePlayer	face_down,end
+scriptdefs
+= BattleFrontier_BattlePyramidLobby_EventScript_LostChallenge
+frontier_checkairshow
+special LoadPlayerParty
+pyramid_clearhelditems
+special HealPlayerParty
+lockall
+msgbox	How disappointing for you…Here is the BAG we've been holding for you.PLAYER got the BAG back.
+waitmessage
+playse SE_EXP_MAX
+waitse
+msgbox	I must record your results. Please wait.
+waitmessage
+pyramid_set PYRAMID_DATA_WIN_STREAK_ACTIVE FALSE
+pyramid_save 0
+playse SE_SAVE
+waitse
+msgbox	We look forward to your next challenge!
+closemessage
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+releaseall
+end
+= BattleFrontier_BattlePyramidLobby_EventScript_WonChallenge
+lockall
+frontier_isbrain
+goto_if_eq VAR_RESULT TRUE BattleFrontier_BattlePyramidLobby_EventScript_DefeatedKing
+msgbox	Excellent to see you back!You've conquered the PYRAMID! How splendid!
+goto BattleFrontier_BattlePyramidLobby_EventScript_GiveBattlePoints
+= BattleFrontier_BattlePyramidLobby_EventScript_GiveBattlePoints
+special DoBattlePyramidMonsHaveHeldItem
+call_if_eq VAR_RESULT TRUE BattleFrontier_BattlePyramidLobby_EventScript_StoreHeldItemsInPyramidBag
+clearflag FLAG_STORING_ITEMS_IN_PYRAMID_BAG
+frontier_checkairshow
+special LoadPlayerParty
+pyramid_clearhelditems
+special HealPlayerParty
+msgbox	The BATTLE BAG you used will be kept in readiness for your next challenge.PLAYER turned the BATTLE BAG over for the BAG's return.
+waitmessage
+playse SE_EXP_MAX
+waitse
+msgbox	Young explorer! In commendation of your courage, we give you these Battle Point(s)!
+frontier_givepoints
+msgbox	PLAYER obtained STR_VAR_1 Battle Point(s).
+msgbox	I must record your results. Please wait.
+waitmessage
+pyramid_setprize
+pyramid_save 0
+playse SE_SAVE
+waitse
+msgbox	We look forward to your next challenge!
+closemessage
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+releaseall
+end
+= BattleFrontier_BattlePyramidLobby_EventScript_StoreHeldItemsInPyramidBag
+msgbox	Ah, a slight problem.At least one POKéMON is holding an item.I'm sorry to say, items obtained in the PYRAMID cannot be taken away.
+setflag FLAG_STORING_ITEMS_IN_PYRAMID_BAG
+special TryStoreHeldItemsInPyramidBag
+goto_if_eq VAR_RESULT 0 BattleFrontier_BattlePyramidLobby_EventScript_HeldItemsStoredInPyramidBag
+msgbox	The BATTLE BAG cannot hold all your items, I'm sorry to say.Please pick the items you'll keep in the BATTLE BAG, and with your POKéMON.
+waitmessage
+goto BattleFrontier_BattlePyramidLobby_EventScript_PickItemsToKeep
+end
+= BattleFrontier_BattlePyramidLobby_EventScript_PickItemsToKeep
+multichoice 17 6 MULTI_FRONTIER_ITEM_CHOOSE FALSE
+switch VAR_RESULT
+case 0 BattleFrontier_BattlePyramidLobby_EventScript_PickItemsFromBag
+case 1 BattleFrontier_BattlePyramidLobby_EventScript_PickItemsFromParty
+case 2 BattleFrontier_BattlePyramidLobby_EventScript_ExitPickItems
+case MULTI_B_PRESSED BattleFrontier_BattlePyramidLobby_EventScript_ExitPickItems
+end
+= BattleFrontier_BattlePyramidLobby_EventScript_ExitPickItems
+special DoBattlePyramidMonsHaveHeldItem
+goto_if_eq VAR_RESULT TRUE BattleFrontier_BattlePyramidLobby_EventScript_PartyStillHasHeldItems
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_PartyStillHasHeldItems
+msgbox	At least one POKéMON is still holding an item.
+msgbox	Please pick the items you'll keep in the BATTLE BAG, and with your POKéMON.
+waitmessage
+goto BattleFrontier_BattlePyramidLobby_EventScript_PickItemsToKeep
+end
+= BattleFrontier_BattlePyramidLobby_EventScript_PickItemsFromParty
+special BattlePyramidChooseMonHeldItems
+msgbox	Please pick the items you'll keep in the BATTLE BAG, and with your POKéMON.
+waitmessage
+goto BattleFrontier_BattlePyramidLobby_EventScript_PickItemsToKeep
+end
+= BattleFrontier_BattlePyramidLobby_EventScript_PickItemsFromBag
+special ChooseItemsToTossFromPyramidBag
+msgbox	Please pick the items you'll keep in the BATTLE BAG, and with your POKéMON.
+waitmessage
+goto BattleFrontier_BattlePyramidLobby_EventScript_PickItemsToKeep
+end
+= BattleFrontier_BattlePyramidLobby_EventScript_HeldItemsStoredInPyramidBag
+msgbox	All items held by your POKéMON will be moved to your BATTLE BAG, PLAYER.
+return
+@ When exiting Battle Pyramid with a full pyramid bag and held items the player must select to keep/toss party held items and make room for any kept items by tossing from the pyramid bag
+goto BattleFrontier_BattlePyramidLobby_EventScript_PickItemsToKeep
+= BattleFrontier_BattlePyramidLobby_EventScript_DefeatedKing
+msgbox	Welcome back! You've done the unthinkable!You've defeated the PYRAMID KING and conquered the BATTLE PYRAMID!
+goto BattleFrontier_BattlePyramidLobby_EventScript_GiveBattlePoints
+= BattleFrontier_BattlePyramidLobby_EventScript_ResumeChallenge
+goto BattleFrontier_BattlePyramidLobby_EventScript_EnterChallenge
+= BattleFrontier_BattlePyramidLobby_EventScript_EnterChallenge
+special SavePlayerParty
+frontier_setpartyorder FRONTIER_PARTY_SIZE
+msgbox	Very good. I will now show you into the BATTLE PYRAMID.
+closemessage
+call BattleFrontier_BattlePyramidLobby_EventScript_WalkToPanelAndReceiveBag
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
+setvar VAR_RESULT 0
+special HealPlayerParty
+warp BattleFrontier_BattlePyramidFloor 1 1
+setvar VAR_TEMP_CHALLENGE_STATUS 0
+waitstate
+end
+= BattleFrontier_BattlePyramidLobby_EventScript_WalkToPanelAndReceiveBag
+applymovement LOCALID_PYRAMID_LOBBY_ATTENDANT BattleFrontier_BattlePyramidLobby_Movement_AttendantWalkToPanel
+applymovement LOCALID_PLAYER BattleFrontier_BattlePyramidLobby_Movement_PlayerWalkToPanel
+waitmovement 0
+msgbox	We will hold your BAG for safekeeping, PLAYER, while you are exploring.
+pyramid_get PYRAMID_DATA_WIN_STREAK
+goto_if_eq VAR_RESULT 0 BattleFrontier_BattlePyramidLobby_EventScript_ReceiveNewBattleBag
+msgbox	In exchange, please take this BATTLE BAG, the one you used previously.
+goto BattleFrontier_BattlePyramidLobby_EventScript_ReceiveBattleBag
+= BattleFrontier_BattlePyramidLobby_EventScript_ReceiveBattleBag
+msgbox	PLAYER exchanged the BAG for the BATTLE BAG.
+waitmessage
+playse SE_EXP_MAX
+waitse
+msgbox	When you step on this floor panel, you will be transported to a higher floor in the PYRAMID.I hope for your sake that your quest goes safely!
+closemessage
+applymovement LOCALID_PYRAMID_LOBBY_ATTENDANT BattleFrontier_BattlePyramidLobby_Movement_AttendantMoveAside
+waitmovement 0
+applymovement LOCALID_PLAYER BattleFrontier_BattlePyramidLobby_Movement_PlayerStepOnPanel
+waitmovement 0
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_ReceiveNewBattleBag
+msgbox	In exchange, please take this BATTLE BAG.
+goto BattleFrontier_BattlePyramidLobby_EventScript_ReceiveBattleBag
+= BattleFrontier_BattlePyramidLobby_EventScript_QuitWithoutSaving
+lockall
+msgbox	A major problem, explorer!You did not save before ending your challenge the last time.Consequently, your challenge has been disqualified, I'm sorry to say.Here is the BAG we've been holding for you.PLAYER got the BAG back.
+waitmessage
+playse SE_EXP_MAX
+waitse
+closemessage
+pyramid_set PYRAMID_DATA_WIN_STREAK 0
+pyramid_set PYRAMID_DATA_WIN_STREAK_ACTIVE FALSE
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+releaseall
+end
+= BattleFrontier_BattlePyramidLobby_EventScript_GetChallengeStatus
+frontier_getstatus
+end
+= BattleFrontier_BattlePyramidLobby_EventScript_FatMan
+msgbox	Awaaaaaaarrrrgh!I had a whole lot of items, but I lost them all when I lost!Awaaaaaaarrrrgh!
+end
+= BattleFrontier_BattlePyramidLobby_EventScript_Woman
+msgbox	Did you know?If you run fast, TRAINERS may notice and come after you for a battle.So, if you want to avoid TRAINERS, don't catch their eyes, but sneak cautiously and quietly past them.
+end
+= BattleFrontier_BattlePyramidLobby_EventScript_HintGiver
+lockall
+applymovement LOCALID_PYRAMID_LOBBY_HINT_GIVER Common_Movement_FacePlayer
+waitmovement 0
+msgbox	Welcome…I shall be pleased to tell you what misfortunes await in the PYRAMID…
+call BattleFrontier_BattlePyramidLobby_EventScript_GiveHint
+msgbox	Whether you believe my fortunes or not, the choice is yours…The future can be changed anytime… I wish you safe passage…
+releaseall
+end
+= BattleFrontier_BattlePyramidLobby_EventScript_GiveHint
+multichoice 17 6 MULTI_LEVEL_MODE FALSE
+switch VAR_RESULT
+case FRONTIER_LVL_50 BattleFrontier_BattlePyramidLobby_EventScript_GiveHintLv50
+case FRONTIER_LVL_OPEN BattleFrontier_BattlePyramidLobby_EventScript_GiveHintLvOpen
+case FRONTIER_LVL_TENT BattleFrontier_BattlePyramidLobby_EventScript_NoHint
+case MULTI_B_PRESSED BattleFrontier_BattlePyramidLobby_EventScript_NoHint
+return
+@ Shouldnt occur
+goto BattleFrontier_BattlePyramidLobby_EventScript_NoHint
+= BattleFrontier_BattlePyramidLobby_EventScript_NoHint
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_GiveHintLvOpen
+msgbox	… … … … … … … … … … … …… … … … … … Aah!
+pyramid_get PYRAMID_DATA_WIN_STREAK_ACTIVE_OPEN
+goto_if_ne VAR_RESULT FALSE BattleFrontier_BattlePyramidLobby_EventScript_GiveHintGetLvOpenStreak
+setvar VAR_RESULT 0
+goto BattleFrontier_BattlePyramidLobby_EventScript_DoHintComment
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_DoHintComment
+copyvar VAR_0x8004 VAR_RESULT
+special GetBattlePyramidHint
+switch VAR_RESULT
+case 0 BattleFrontier_BattlePyramidLobby_EventScript_HintParalysis
+case 1 BattleFrontier_BattlePyramidLobby_EventScript_HintPoison
+case 2 BattleFrontier_BattlePyramidLobby_EventScript_HintBurn
+case 3 BattleFrontier_BattlePyramidLobby_EventScript_HintPPWaste
+case 4 BattleFrontier_BattlePyramidLobby_EventScript_HintLevitate
+case 5 BattleFrontier_BattlePyramidLobby_EventScript_HintTrapAbility
+case 6 BattleFrontier_BattlePyramidLobby_EventScript_HintIce
+case 7 BattleFrontier_BattlePyramidLobby_EventScript_HintExplosion
+case 8 BattleFrontier_BattlePyramidLobby_EventScript_HintPsychic
+case 9 BattleFrontier_BattlePyramidLobby_EventScript_HintRock
+case 10 BattleFrontier_BattlePyramidLobby_EventScript_HintFighting
+case 11 BattleFrontier_BattlePyramidLobby_EventScript_HintWeather
+case 12 BattleFrontier_BattlePyramidLobby_EventScript_HintBug
+case 13 BattleFrontier_BattlePyramidLobby_EventScript_HintDark
+case 14 BattleFrontier_BattlePyramidLobby_EventScript_HintWater
+case 15 BattleFrontier_BattlePyramidLobby_EventScript_HintGhost
+case 16 BattleFrontier_BattlePyramidLobby_EventScript_HintSteel
+case 17 BattleFrontier_BattlePyramidLobby_EventScript_HintFlyingDragon
+case 18 BattleFrontier_BattlePyramidLobby_EventScript_HintStoneEvolve
+case 19 BattleFrontier_BattlePyramidLobby_EventScript_HintNormal
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintNormal
+msgbox	I see NORMAL-type POKéMON……And, I see your POKéMON suffering from enormously powerful moves…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintStoneEvolve
+msgbox	I see those that have evolved from the power of stones…I also sense fire, water, and electricity……And, I see your POKéMON suffering from those three powers…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintFlyingDragon
+msgbox	I see flying POKéMON……And, I see your POKéMON suffering from enormously powerful moves…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintSteel
+msgbox	I see STEEL-type POKéMON……And, I see your POKéMON suffering from enormously powerful moves…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintGhost
+msgbox	I see GHOST-type POKéMON……And, I see your POKéMON suffering from GHOST-type moves…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintWater
+msgbox	I see WATER-type POKéMON……And, I see your POKéMON suffering from WATER-type moves…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintDark
+msgbox	I see DARK-type POKéMON……And, I see your POKéMON suffering from DARK-type moves…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintBug
+msgbox	I see BUG-type POKéMON……And, I see your POKéMON suffering from different kinds of attacks…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintWeather
+msgbox	RAIN DANCE… SUNNY DAY… SANDSTORM… HAIL…I see POKéMON that become stronger with the weather……And, I see your POKéMON confounded by different types of moves…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintFighting
+msgbox	I see FIGHTING-type POKéMON……And, I see your POKéMON pummeled by FIGHTING moves…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintRock
+msgbox	I see ROCK-type POKéMON……And, I see your POKéMON suffering from ROCK moves…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintPsychic
+msgbox	I see PSYCHIC-type POKéMON……And, I see your POKéMON in torment from PSYCHIC moves…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintExplosion
+msgbox	I see a flurry of moves that imperil the user……And, I see your POKéMON falling to them…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintIce
+msgbox	I see ICE-type POKéMON……And, I see your POKéMON fighting the freezing effects of ice…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintTrapAbility
+msgbox	I sense terrific energy rising from the ground below……And, I see your POKéMON unable to escape the power's clutches…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintLevitate
+msgbox	I see POKéMON loftily airborne……And, I see your POKéMON frustrated by powerless GROUND-type moves…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintPPWaste
+msgbox	I sense the tremendous pressure of unrequited anger…It is a curse……And, I see your POKéMON drained of Power Points and having no recourse but to use STRUGGLE…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintBurn
+msgbox	I see bright red flames……And, I see your POKéMON suffering from burns…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintPoison
+msgbox	I see poison……And, I see your POKéMON suffering from the effects of poison…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_HintParalysis
+msgbox	I see a shower of sparks……And in it, I see your POKéMON struggling with paralysis…
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_GiveHintGetLvOpenStreak
+pyramid_get PYRAMID_DATA_WIN_STREAK_OPEN
+goto BattleFrontier_BattlePyramidLobby_EventScript_DoHintComment
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_GiveHintLv50
+msgbox	… … … … … … … … … … … …… … … … … … Aah!
+pyramid_get PYRAMID_DATA_WIN_STREAK_ACTIVE_50
+goto_if_ne VAR_RESULT FALSE BattleFrontier_BattlePyramidLobby_EventScript_GiveHintGetLv50Streak
+setvar VAR_RESULT 0
+goto BattleFrontier_BattlePyramidLobby_EventScript_DoHintComment
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_GiveHintGetLv50Streak
+pyramid_get PYRAMID_DATA_WIN_STREAK_50
+goto BattleFrontier_BattlePyramidLobby_EventScript_DoHintComment
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_Attendant
+lock
+faceplayer
+setvar VAR_FRONTIER_FACILITY FRONTIER_FACILITY_PYRAMID
+setvar VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES
+special SavePlayerParty
+msgbox	Where the courage of TRAINERS is put to the test!Welcome to the BATTLE PYRAMID!I am your guide to the Battle Quest.
+goto BattleFrontier_BattlePyramidLobby_EventScript_AskTakeChallenge
+= BattleFrontier_BattlePyramidLobby_EventScript_AskTakeChallenge
+msgbox	Have you the courage to embark on the Battle Quest challenge?
+waitmessage
+multichoice 17 6 MULTI_CHALLENGEINFO FALSE
+switch VAR_RESULT
+case 0 BattleFrontier_BattlePyramidLobby_EventScript_TryEnterChallenge
+case 1 BattleFrontier_BattlePyramidLobby_EventScript_ExplainChallenge
+case 2 BattleFrontier_BattlePyramidLobby_EventScript_CancelChallenge
+case MULTI_B_PRESSED BattleFrontier_BattlePyramidLobby_EventScript_CancelChallenge
+goto BattleFrontier_BattlePyramidLobby_EventScript_TryEnterChallenge
+= BattleFrontier_BattlePyramidLobby_EventScript_TryEnterChallenge
+msgbox	The PYRAMID offers two courses, Level 50 and Open Level. Which will you enter?
+waitmessage
+multichoice 17 6 MULTI_LEVEL_MODE FALSE
+switch VAR_RESULT
+case FRONTIER_LVL_TENT BattleFrontier_BattlePyramidLobby_EventScript_CancelChallenge
+case MULTI_B_PRESSED BattleFrontier_BattlePyramidLobby_EventScript_CancelChallenge
+frontier_checkineligible
+goto_if_eq VAR_0x8004 TRUE BattleFrontier_BattlePyramidLobby_EventScript_NotEnoughValidMons
+frontier_set FRONTIER_DATA_LVL_MODE VAR_RESULT
+msgbox	Very good. Now, please select the three POKéMON you wish to accompany you.
+fadescreen FADE_TO_BLACK
+call BattleFrontier_EventScript_GetLvlMode
+copyvar VAR_0x8004 VAR_RESULT
+setvar VAR_0x8005 FRONTIER_PARTY_SIZE
+special ChoosePartyForBattleFrontier
+goto_if_eq VAR_RESULT 0 BattleFrontier_BattlePyramidLobby_EventScript_LoadPartyAndCancelChallenge
+msgboxyesno	Before you enter the BATTLE PYRAMID, the game must be saved. Is that okay?
+switch VAR_RESULT
+case NO BattleFrontier_BattlePyramidLobby_EventScript_LoadPartyAndCancelChallenge
+case YES BattleFrontier_BattlePyramidLobby_EventScript_SaveBeforeChallenge
+case MULTI_B_PRESSED BattleFrontier_BattlePyramidLobby_EventScript_LoadPartyAndCancelChallenge
+goto BattleFrontier_BattlePyramidLobby_EventScript_SaveBeforeChallenge
+= BattleFrontier_BattlePyramidLobby_EventScript_SaveBeforeChallenge
+setvar VAR_TEMP_CHALLENGE_STATUS 0
+frontier_set FRONTIER_DATA_SELECTED_MON_ORDER
+pyramid_init
+pyramid_set PYRAMID_DATA_WIN_STREAK_ACTIVE TRUE
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS CHALLENGE_STATUS_SAVING
+frontier_set FRONTIER_DATA_PAUSED FALSE
+pyramid_seedfloor
+pyramid_settrainers
+special LoadPlayerParty
+closemessage
+delay 2
+call Common_EventScript_SaveGame
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+goto_if_eq VAR_RESULT 0 BattleFrontier_BattlePyramidLobby_EventScript_CancelChallengeSaveFailed
+goto BattleFrontier_BattlePyramidLobby_EventScript_EnterChallenge
+= BattleFrontier_BattlePyramidLobby_EventScript_CancelChallengeSaveFailed
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
+goto BattleFrontier_BattlePyramidLobby_EventScript_CancelChallenge
+= BattleFrontier_BattlePyramidLobby_EventScript_CancelChallenge
+msgbox	We await your challenge in the future!
+goto BattleFrontier_BattlePyramidLobby_EventScript_EndCancelChallenge
+= BattleFrontier_BattlePyramidLobby_EventScript_EndCancelChallenge
+release
+end
+= Common_EventScript_SaveGame
+special SaveGame
+return
+= BattleFrontier_BattlePyramidLobby_EventScript_LoadPartyAndCancelChallenge
+special LoadPlayerParty
+goto BattleFrontier_BattlePyramidLobby_EventScript_CancelChallenge
+= BattleFrontier_BattlePyramidLobby_EventScript_NotEnoughValidMons
+switch VAR_RESULT
+case FRONTIER_LVL_50 BattleFrontier_BattlePyramidLobby_EventScript_NotEnoughValidMonsLv50
+case FRONTIER_LVL_OPEN BattleFrontier_BattlePyramidLobby_EventScript_NotEnoughValidMonsLvOpen
+goto BattleFrontier_BattlePyramidLobby_EventScript_NotEnoughValidMonsLv50
+= BattleFrontier_BattlePyramidLobby_EventScript_NotEnoughValidMonsLv50
+msgbox	A slight problem, adventurer!You seem to not have the three POKéMON qualified for the challenge.The three POKéMON must be different and each no higher than Level 50.Please also remember to take all items from your POKéMON.EGGSSTR_VAR_1 ineligible.When you are ready, please have a word with me.
+goto BattleFrontier_BattlePyramidLobby_EventScript_EndCancelChallenge
+= BattleFrontier_BattlePyramidLobby_EventScript_NotEnoughValidMonsLvOpen
+msgbox	A slight problem, adventurer!You seem to not have the three POKéMON qualified for the challenge.Please also remember to take all items from your POKéMON.EGGSSTR_VAR_1 ineligible.When you are ready, please have a word with me.
+goto BattleFrontier_BattlePyramidLobby_EventScript_EndCancelChallenge
+= BattleFrontier_BattlePyramidLobby_EventScript_ExplainChallenge
+msgbox	The Battle Quest is a battling event in which you must explore the PYRAMID and try to reach the top.In the PYRAMID are seven floors of mazes, all of them filled with not only skilled TRAINERS but also wild POKéMON.You must enter with three POKéMON, none of them holding an item.On your ascent, you will be provided with a BATTLE BAG for items.If you fail in your challenge, any item placed in the BATTLE BAG disappears.If you want to interrupt your challenge, you must select “REST” and save the game.If you don't save before interrupting, you will be disqualified.
+goto BattleFrontier_BattlePyramidLobby_EventScript_AskTakeChallenge
+signs
+1 12	The Battle Quest rules are listed.
+mapsec
+22 12 1 1	BATTLE FRONTIER
+music
+MUS_B_PYRAMID

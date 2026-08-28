@@ -1,0 +1,81 @@
+tileset building__generic_building
+11 8
+4 3
+646,647,560,517,517,518,517,517,517,517,632
+654,655,542,525,525,526,525,616,620,621,640
+662,663,568,548,548,548,548,624,628,629,648
+569,547,547,547,547,547,547,547,547,547,547
+569,547,547,547,555,586,587,556,547,547,547
+569,547,547,547,555,594,595,556,547,547,547
+657,547,547,547,547,547,547,547,547,547,546
+665,547,547,520,521,547,547,547,547,547,554
+collision
+1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,1,1,0,0,0,0
+0,0,0,0,0,1,1,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0
+1,0,0,0,0,0,0,0,0,0,1
+warps
+3 7 PetalburgCity 1
+4 7 PetalburgCity 1
+npcs
+people_pokefan_m 3 4 E static 0 LOCALID_WALLYS_HOUSE_WALLYS_DAD 0
+people_woman_4 7 5 W static 0 - 0
+dialogs
+0	You're… Ah, you must be PLAYER, right?Thank you for playing with WALLY a little while ago.He's been frail and sickly ever since he was a baby.We've sent him to stay with my relatives in VERDANTURF TOWN for a while.The air is a lot cleaner there than it is here.What's that? Where's WALLY? He's already left, our WALLY.I wonder where he could have gotten by now?
+1	WALLY was really happy when he told us that he caught a POKéMON.It's been ages since I've seen him smile like that.
+objscripts
+0 PetalburgCity_WallysHouse_EventScript_WallysDad
+1 PetalburgCity_WallysHouse_EventScript_WallysMom
+onload
+VAR_PETALBURG_CITY_STATE 4 PetalburgCity_WallysHouse_EventScript_GiveHMSurf
+scriptdefs
+= PetalburgCity_WallysHouse_EventScript_GiveHMSurf
+lockall
+msgbox	PLAYER! Please excuse us for dragging you here this way.But our WALLY's become very healthy since he went to VERDANTURF TOWN.We owe it all to you!When WALLY left town, you helped him catch a POKéMON, right?I think that made WALLY really happy.Actually, not just WALLY. It made me, his father, happy too.Happy that he's gained such a great friend as you.This isn't a bribe or anything, but I'd really like you to have this.
+giveitem ITEM_HM_SURF
+setflag FLAG_RECEIVED_HM_SURF
+msgbox	If your POKéMON can SURF, you'll be able to go to all sorts of places.
+setvar VAR_PETALBURG_CITY_STATE 5
+releaseall
+end
+= PetalburgCity_WallysHouse_EventScript_WallysMom
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_HM_SURF PetalburgCity_WallysHouse_EventScript_ReceivedHMSurf
+msgbox	WALLY was really happy when he told us that he caught a POKéMON.It's been ages since I've seen him smile like that.
+release
+end
+= PetalburgCity_WallysHouse_EventScript_ReceivedHMSurf
+msgbox	I want you to keep this a secret from my husband…But our WALLY left VERDANTURF TOWN without telling anyone.You know, WALLY is frail, but he's surprisingly strong-willed.I'm sure that he'll come back safe and sound one day!
+release
+end
+= PetalburgCity_WallysHouse_EventScript_WallysDad
+lock
+faceplayer
+goto_if_set FLAG_DEFEATED_WALLY_VICTORY_ROAD PetalburgCity_WallysHouse_EventScript_DefeatedWallyInVictoryRoad
+goto_if_set FLAG_RECEIVED_HM_SURF PetalburgCity_WallysHouse_EventScript_ReceievedHMSurf
+goto_if_set FLAG_THANKED_FOR_PLAYING_WITH_WALLY PetalburgCity_WallysHouse_EventScript_PlayedWithWally
+msgbox	You're… Ah, you must be PLAYER, right?Thank you for playing with WALLY a little while ago.He's been frail and sickly ever since he was a baby.We've sent him to stay with my relatives in VERDANTURF TOWN for a while.The air is a lot cleaner there than it is here.What's that? Where's WALLY? He's already left, our WALLY.I wonder where he could have gotten by now?
+setflag FLAG_THANKED_FOR_PLAYING_WITH_WALLY
+release
+end
+= PetalburgCity_WallysHouse_EventScript_PlayedWithWally
+msgbox	I wonder how our WALLY is doing?
+release
+end
+= PetalburgCity_WallysHouse_EventScript_ReceievedHMSurf
+msgbox	WALLY's coming home soon. I'm looking forward to that.
+release
+end
+= PetalburgCity_WallysHouse_EventScript_DefeatedWallyInVictoryRoad
+msgbox	Oh? You met WALLY in EVER GRANDE CITY?Oh, PLAYER, don't be silly.He may have gotten healthy, but he can't go somewhere far away like that all by himself.
+release
+end
+mapsec
+1 9 1 1	PETALBURG CITY
+music
+MUS_PETALBURG

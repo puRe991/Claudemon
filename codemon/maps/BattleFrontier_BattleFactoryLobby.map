@@ -1,0 +1,272 @@
+tileset building__battle_factory
+19 12
+9 6
+547,546,538,546,547,546,538,546,546,547,546,546,538,546,547,546,538,546,547
+548,552,538,553,548,552,538,549,553,548,552,549,538,553,548,552,538,553,548
+539,539,538,539,539,539,538,725,726,726,726,727,538,539,539,539,538,539,539
+539,539,538,554,555,556,538,733,734,734,734,735,538,554,555,556,538,539,539
+569,572,851,562,563,564,587,520,852,853,854,520,587,562,563,564,851,572,572
+577,570,528,864,516,515,595,528,860,861,862,528,844,515,516,515,528,847,571
+585,514,536,865,513,557,558,528,829,514,560,536,827,559,513,557,528,820,513
+820,513,544,531,820,529,530,545,863,513,561,544,530,531,820,529,545,819,514
+819,514,515,856,857,858,515,516,821,514,513,516,515,848,849,850,515,823,513
+820,513,514,513,514,513,514,513,514,513,514,513,514,513,514,513,514,513,568
+819,514,513,514,513,514,513,514,513,514,513,514,513,514,513,517,513,517,576
+820,513,514,513,514,513,514,513,514,521,522,513,514,513,514,525,514,525,584
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1
+1,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1
+1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,0,1,1,1
+0,0,1,1,0,0,1,1,0,0,0,1,1,0,0,0,1,0,0
+0,0,1,1,0,1,1,1,1,0,1,1,1,1,0,1,1,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0
+warps
+9 11 BattleFrontier_OutsideWest 2
+10 11 BattleFrontier_OutsideWest 2
+npcs
+people_scientist_1 4 7 S static 0 LOCALID_FACTORY_ATTENDANT_SINGLES 0
+people_woman_1 3 11 S wander 0 - 0
+people_camper 14 11 S static 0 - 0
+people_picnicker 13 11 E static 0 - 0
+people_fat_man 6 10 S static 0 - 0
+people_scientist_1 14 7 S static 0 LOCALID_FACTORY_ATTENDANT_DOUBLES 0
+dialogs
+1	Hi! You, there!Are you thinking that the events here are easy since you don't need to have a raised team of POKéMON?I wouldn't be too sure about winning that easily.If you don't have thorough knowledge about POKéMON and their moves, it will be tough to keep winning.
+2	I swapped for a weak POKéMON… I thought it was a good kind to have…They wiped the floor with us…
+3	Things haven't been going my way at all.You need to check your opponent's POKéMON during battle to see if they're any good.
+4	You know how the staff here give you a few hints about your next opponent?Well, I'm a full-grown man, but I have trouble figuring out their hints.
+objscripts
+0 BattleFrontier_BattleFactoryLobby_EventScript_SinglesAttendant
+1 BattleFrontier_BattleFactoryLobby_EventScript_Woman
+2 BattleFrontier_BattleFactoryLobby_EventScript_Camper
+3 BattleFrontier_BattleFactoryLobby_EventScript_Picnicker
+4 BattleFrontier_BattleFactoryLobby_EventScript_FatMan
+5 BattleFrontier_BattleFactoryLobby_EventScript_DoublesAttendant
+onload
+VAR_TEMP_CHALLENGE_STATUS 0 BattleFrontier_BattleFactoryLobby_EventScript_GetChallengeStatus
+VAR_TEMP_CHALLENGE_STATUS CHALLENGE_STATUS_SAVING BattleFrontier_BattleFactoryLobby_EventScript_QuitWithoutSaving
+VAR_TEMP_CHALLENGE_STATUS CHALLENGE_STATUS_PAUSED BattleFrontier_BattleFactoryLobby_EventScript_ResumeChallenge
+VAR_TEMP_CHALLENGE_STATUS CHALLENGE_STATUS_WON BattleFrontier_BattleFactoryLobby_EventScript_WonChallenge
+VAR_TEMP_CHALLENGE_STATUS CHALLENGE_STATUS_LOST BattleFrontier_BattleFactoryLobby_EventScript_LostChallenge
+movements
+BattleFrontier_BattleFactoryLobby_Movement_AttendantEnterDoor	up,up,up,delay,end
+BattleFrontier_BattleFactoryLobby_Movement_PlayerEnterDoor	up,up,up,up,end
+scriptdefs
+= BattleFrontier_BattleFactoryLobby_EventScript_LostChallenge
+lockall
+msgbox	Thank you for participating!I will return your POKéMON in exchange for our rental POKéMON.I must also save the event results. Please wait.
+waitmessage
+frontier_checkairshow
+special LoadPlayerParty
+factory_set FACTORY_DATA_WIN_STREAK_ACTIVE FALSE
+factory_save 0
+playse SE_SAVE
+waitse
+goto BattleFrontier_BattleFactoryLobby_EventScript_AskRecordBattle
+= BattleFrontier_BattleFactoryLobby_EventScript_AskRecordBattle
+call BattleFrontier_EventScript_GetCantRecordBattle
+goto_if_eq VAR_RESULT TRUE BattleFrontier_BattleFactoryLobby_EventScript_EndRecordBattle
+msgbox	Would you like to record your last BATTLE FACTORY match on your FRONTIER PASS?
+waitmessage
+multichoicedefault 20 8 MULTI_YESNO 1 FALSE
+switch VAR_RESULT
+case 1 BattleFrontier_BattleFactoryLobby_EventScript_EndRecordBattle
+case 0 BattleFrontier_BattleFactoryLobby_EventScript_RecordBattle
+case MULTI_B_PRESSED BattleFrontier_BattleFactoryLobby_EventScript_EndRecordBattle
+goto BattleFrontier_BattleFactoryLobby_EventScript_RecordBattle
+= BattleFrontier_BattleFactoryLobby_EventScript_RecordBattle
+call BattleFrontier_EventScript_SaveBattle
+goto BattleFrontier_BattleFactoryLobby_EventScript_EndRecordBattle
+= BattleFrontier_BattleFactoryLobby_EventScript_EndRecordBattle
+msgbox	We look forward to your next visit.
+closemessage
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+releaseall
+end
+= BattleFrontier_BattleFactoryLobby_EventScript_WonChallenge
+lockall
+frontier_isbrain
+goto_if_eq VAR_RESULT TRUE BattleFrontier_BattleFactoryLobby_EventScript_DefeatedFactoryHead
+msgbox	Congratulations! You've won seven straight Battle Swap matches!
+waitmessage
+goto BattleFrontier_BattleFactoryLobby_EventScript_GiveBattlePoints
+= BattleFrontier_BattleFactoryLobby_EventScript_GiveBattlePoints
+msgbox	In recognition of your wealth of knowledge and keen intelligence, we award you these Battle Point(s).
+frontier_givepoints
+msgbox	PLAYER obtained STR_VAR_1 Battle Point(s).
+msgbox	Let me exchange your POKéMON for our rental POKéMON.I need to save the battle data, so please wait.
+waitmessage
+frontier_checkairshow
+special LoadPlayerParty
+factory_save 0
+playse SE_SAVE
+waitse
+goto BattleFrontier_BattleFactoryLobby_EventScript_AskRecordBattle
+end
+= BattleFrontier_BattleFactoryLobby_EventScript_DefeatedFactoryHead
+msgbox	Congratulations for defeating the FACTORY HEAD and winning seven matches in a row!
+waitmessage
+goto BattleFrontier_BattleFactoryLobby_EventScript_GiveBattlePoints
+= BattleFrontier_BattleFactoryLobby_EventScript_ResumeChallenge
+lockall
+msgbox	We've been waiting for you!Before we resume your challenge, I must save the game.
+waitmessage
+factory_save CHALLENGE_STATUS_SAVING
+playse SE_SAVE
+waitse
+frontier_set FRONTIER_DATA_PAUSED FALSE
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+setvar VAR_0x8006 2
+goto BattleFrontier_BattleFactoryLobby_EventScript_EnterChallenge
+= BattleFrontier_BattleFactoryLobby_EventScript_EnterChallenge
+special SavePlayerParty
+msgbox	Please step this way.
+closemessage
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES BattleFrontier_BattleFactoryLobby_EventScript_TalkedToSinglesAttendant
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_DOUBLES BattleFrontier_BattleFactoryLobby_EventScript_TalkedToDoublesAttendant
+applymovement VAR_LAST_TALKED BattleFrontier_BattleFactoryLobby_Movement_AttendantEnterDoor
+applymovement LOCALID_PLAYER BattleFrontier_BattleFactoryLobby_Movement_PlayerEnterDoor
+waitmovement 0
+warp BattleFrontier_BattleFactoryPreBattleRoom 8 13
+setvar VAR_TEMP_CHALLENGE_STATUS 0
+waitstate
+end
+= BattleFrontier_BattleFactoryLobby_EventScript_TalkedToDoublesAttendant
+setvar VAR_LAST_TALKED LOCALID_FACTORY_ATTENDANT_DOUBLES
+return
+= BattleFrontier_BattleFactoryLobby_EventScript_TalkedToSinglesAttendant
+setvar VAR_LAST_TALKED LOCALID_FACTORY_ATTENDANT_SINGLES
+return
+= BattleFrontier_BattleFactoryLobby_EventScript_QuitWithoutSaving
+lockall
+msgbox	I'm sorry to say this, but you didn't save before you quit playing last time.As a result, you have been disqualified from your challenge.
+closemessage
+factory_setswapped
+factory_set FACTORY_DATA_WIN_STREAK_SWAPS 0
+factory_set FACTORY_DATA_WIN_STREAK 0
+factory_set FACTORY_DATA_WIN_STREAK_ACTIVE FALSE
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+releaseall
+end
+= BattleFrontier_BattleFactoryLobby_EventScript_GetChallengeStatus
+frontier_getstatus
+end
+= BattleFrontier_BattleFactoryLobby_EventScript_DoublesAttendant
+setvar VAR_FRONTIER_FACILITY FRONTIER_FACILITY_FACTORY
+setvar VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_DOUBLES
+goto BattleFrontier_BattleFactoryLobby_EventScript_Attendant
+end
+= BattleFrontier_BattleFactoryLobby_EventScript_Attendant
+special SavePlayerParty
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES BattleFrontier_BattleFactoryLobby_EventScript_WelcomeForSingleBattle
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_DOUBLES BattleFrontier_BattleFactoryLobby_EventScript_WelcomeForDoubleBattle
+goto BattleFrontier_BattleFactoryLobby_EventScript_AskTakeChallenge
+= BattleFrontier_BattleFactoryLobby_EventScript_AskTakeChallenge
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES BattleFrontier_BattleFactoryLobby_EventScript_TakeSinglesChallenge
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_DOUBLES BattleFrontier_BattleFactoryLobby_EventScript_TakeDoublesChallenge
+waitmessage
+multichoice 17 6 MULTI_CHALLENGEINFO FALSE
+switch VAR_RESULT
+case 0 BattleFrontier_BattleFactoryLobby_EventScript_TryEnterChallenge
+case 1 BattleFrontier_BattleFactoryLobby_EventScript_ExplainChallenge
+case 2 BattleFrontier_BattleFactoryLobby_EventScript_CancelChallenge
+case MULTI_B_PRESSED BattleFrontier_BattleFactoryLobby_EventScript_CancelChallenge
+goto BattleFrontier_BattleFactoryLobby_EventScript_TryEnterChallenge
+= BattleFrontier_BattleFactoryLobby_EventScript_TryEnterChallenge
+msgbox	Which level do you wish to challenge? Level 50 or Open Level?
+waitmessage
+multichoice 17 6 MULTI_LEVEL_MODE FALSE
+switch VAR_RESULT
+case FRONTIER_LVL_TENT BattleFrontier_BattleFactoryLobby_EventScript_CancelChallenge
+case MULTI_B_PRESSED BattleFrontier_BattleFactoryLobby_EventScript_CancelChallenge
+frontier_set FRONTIER_DATA_LVL_MODE VAR_RESULT
+msgboxyesno	Before you begin your challenge, I need to save the game. Is that okay?
+switch VAR_RESULT
+case NO BattleFrontier_BattleFactoryLobby_EventScript_LoadPartyAndCancelChallenge
+case YES BattleFrontier_BattleFactoryLobby_EventScript_SaveBeforeChallenge
+case MULTI_B_PRESSED BattleFrontier_BattleFactoryLobby_EventScript_LoadPartyAndCancelChallenge
+goto BattleFrontier_BattleFactoryLobby_EventScript_SaveBeforeChallenge
+= BattleFrontier_BattleFactoryLobby_EventScript_SaveBeforeChallenge
+setvar VAR_TEMP_CHALLENGE_STATUS 0
+factory_init
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS CHALLENGE_STATUS_SAVING
+factory_set FACTORY_DATA_WIN_STREAK_ACTIVE TRUE
+frontier_set FRONTIER_DATA_PAUSED FALSE
+closemessage
+delay 2
+call Common_EventScript_SaveGame
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+goto_if_eq VAR_RESULT 0 BattleFrontier_BattleFactoryLobby_EventScript_CancelChallengeSaveFailed
+setvar VAR_0x8006 0
+goto BattleFrontier_BattleFactoryLobby_EventScript_EnterChallenge
+= BattleFrontier_BattleFactoryLobby_EventScript_CancelChallengeSaveFailed
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
+goto BattleFrontier_BattleFactoryLobby_EventScript_CancelChallenge
+= BattleFrontier_BattleFactoryLobby_EventScript_CancelChallenge
+msgbox	We look forward to your next visit.
+release
+end
+= Common_EventScript_SaveGame
+special SaveGame
+return
+= BattleFrontier_BattleFactoryLobby_EventScript_LoadPartyAndCancelChallenge
+special LoadPlayerParty
+goto BattleFrontier_BattleFactoryLobby_EventScript_CancelChallenge
+= BattleFrontier_BattleFactoryLobby_EventScript_ExplainChallenge
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES BattleFrontier_BattleFactoryLobby_EventScript_ExplainSinglesChallenge
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_DOUBLES BattleFrontier_BattleFactoryLobby_EventScript_ExplainDoublesChallenge
+goto BattleFrontier_BattleFactoryLobby_EventScript_AskTakeChallenge
+= BattleFrontier_BattleFactoryLobby_EventScript_ExplainDoublesChallenge
+msgbox	The Battle Swap Double Tournament is a DOUBLE BATTLE competition using only rental POKéMON.First, you will be loaned three POKéMON specifically for this event.Using the supplied rental POKéMON, you must conduct a DOUBLE BATTLE.If you win, you are permitted to trade one of your rental POKéMON.Repeat this cycle of battling and trading--if you win seven times in a row, you will earn Battle Points.If you want to interrupt your challenge, please save the game.If you don't save before interrupting, you will be disqualified.
+return
+= BattleFrontier_BattleFactoryLobby_EventScript_ExplainSinglesChallenge
+msgbox	The Battle Swap Single Tournament is a SINGLE BATTLE competition using only rental POKéMON.First, you will be loaned three POKéMON specifically for this event.Using the supplied rental POKéMON, you must conduct a SINGLE BATTLE.If you win, you are permitted to trade one of your rental POKéMON.Repeat this cycle of battling and trading--if you win seven times in a row, you will earn Battle Points.If you want to interrupt your challenge, please save the game.If you don't save, you will be disqualified from your challenge.
+return
+= BattleFrontier_BattleFactoryLobby_EventScript_TakeDoublesChallenge
+msgbox	Would you like to take the Battle Swap Double challenge?
+return
+= BattleFrontier_BattleFactoryLobby_EventScript_TakeSinglesChallenge
+msgbox	Would you like to take the Battle Swap Single challenge?
+return
+= BattleFrontier_BattleFactoryLobby_EventScript_WelcomeForDoubleBattle
+msgbox	Where the intelligence of TRAINERS is put to the test!Welcome to the BATTLE FACTORY!I am your guide to the Battle Swap Double Tournament.
+return
+= BattleFrontier_BattleFactoryLobby_EventScript_WelcomeForSingleBattle
+msgbox	Where the intelligence of TRAINERS is put to the test!Welcome to the BATTLE FACTORY!I am your guide to the Battle Swap Single Tournament.
+return
+= BattleFrontier_BattleFactoryLobby_EventScript_FatMan
+msgbox	You know how the staff here give you a few hints about your next opponent?Well, I'm a full-grown man, but I have trouble figuring out their hints.
+end
+= BattleFrontier_BattleFactoryLobby_EventScript_Picnicker
+lock
+msgbox	Things haven't been going my way at all.You need to check your opponent's POKéMON during battle to see if they're any good.
+release
+end
+= BattleFrontier_BattleFactoryLobby_EventScript_Camper
+msgbox	I swapped for a weak POKéMON… I thought it was a good kind to have…They wiped the floor with us…
+end
+= BattleFrontier_BattleFactoryLobby_EventScript_Woman
+msgbox	Hi! You, there!Are you thinking that the events here are easy since you don't need to have a raised team of POKéMON?I wouldn't be too sure about winning that easily.If you don't have thorough knowledge about POKéMON and their moves, it will be tough to keep winning.
+end
+= BattleFrontier_BattleFactoryLobby_EventScript_SinglesAttendant
+lock
+faceplayer
+setvar VAR_FRONTIER_FACILITY FRONTIER_FACILITY_FACTORY
+setvar VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES
+goto BattleFrontier_BattleFactoryLobby_EventScript_Attendant
+end
+signs
+9 4	The Battle Swap rules are listed.
+mapsec
+22 12 1 1	BATTLE FRONTIER
+music
+MUS_B_FACTORY
+counters
+528,529,530,531

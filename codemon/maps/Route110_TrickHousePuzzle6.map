@@ -1,0 +1,90 @@
+tileset building__trick_house_puzzle
+15 22
+7 11
+513,513,513,513,513,513,513,513,513,513,513,513,514,623,516
+521,521,521,521,521,521,521,521,521,521,521,521,522,631,524
+649,643,528,528,528,640,528,528,528,528,528,528,640,528,528
+648,520,520,520,520,656,520,520,640,520,520,520,648,520,520
+656,520,520,520,520,520,520,520,648,520,640,520,652,643,520
+520,520,520,520,520,640,520,520,656,520,656,520,648,520,520
+520,520,520,649,642,658,520,520,520,520,520,520,648,520,520
+520,520,520,656,520,520,520,520,520,640,520,520,648,520,644
+520,520,520,520,520,641,659,643,520,656,520,520,648,520,520
+520,520,520,520,520,520,648,520,520,520,520,641,658,520,520
+531,520,640,520,640,520,648,520,520,520,640,520,520,520,520
+641,642,658,520,648,520,656,520,520,520,648,520,520,520,520
+520,520,520,520,648,520,520,641,650,520,657,650,520,520,520
+520,520,520,520,657,650,520,520,648,520,520,648,520,520,520
+649,642,643,520,520,648,520,520,656,520,641,660,650,520,640
+648,520,520,520,520,648,520,520,520,520,520,520,656,520,656
+656,520,640,520,520,648,520,520,644,520,520,520,520,520,520
+520,520,656,520,520,657,643,520,520,520,520,520,520,520,520
+520,520,520,520,520,520,520,520,520,641,643,520,640,520,520
+520,520,520,520,520,520,520,520,520,520,520,520,648,520,520
+520,520,520,520,649,643,520,520,520,520,649,642,658,520,520
+529,530,520,520,656,520,520,520,520,641,658,520,520,520,520
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,0,0,0,1,0,0,0,0,0,0,1,0,0
+1,0,0,0,0,1,0,0,1,0,0,0,1,0,0
+1,0,0,0,0,0,0,0,1,0,1,0,1,1,0
+0,0,0,0,0,1,0,0,1,0,1,0,1,0,0
+0,0,0,1,1,1,0,0,0,0,0,0,1,0,0
+0,0,0,1,0,0,0,0,0,1,0,0,1,0,1
+0,0,0,0,0,1,1,1,0,1,0,0,1,0,0
+0,0,0,0,0,0,1,0,0,0,0,1,1,0,0
+1,0,1,0,1,0,1,0,0,0,1,0,0,0,0
+1,1,1,0,1,0,1,0,0,0,1,0,0,0,0
+0,0,0,0,1,0,0,1,1,0,1,1,0,0,0
+0,0,0,0,1,1,0,0,1,0,0,1,0,0,0
+1,1,1,0,0,1,0,0,1,0,1,1,1,0,1
+1,0,0,0,0,1,0,0,0,0,0,0,1,0,1
+1,0,1,0,0,1,0,0,1,0,0,0,0,0,0
+0,0,1,0,0,1,1,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,1,1,0,1,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,1,0,0
+0,0,0,0,1,1,0,0,0,0,1,1,1,0,0
+0,0,0,0,1,0,0,0,0,1,1,0,0,0,0
+warps
+0 21 Route110_TrickHouseEntrance 2
+1 21 Route110_TrickHouseEntrance 2
+13 1 Route110_TrickHouseEnd 0
+npcs
+people_picnicker 7 9 E static 0 - 1
+people_man_5 11 10 E static 0 - 3
+people_camper 4 5 N static 0 - 1
+misc_item_ball 11 21 S static FLAG_ITEM_TRICK_HOUSE_PUZZLE_6_GLITTER_MAIL - 0
+dialogs
+0	I'm sure having a good time checking this place out.It's a challenge I've found worth repeating!
+1	Ehehehe… I guess I lost because I was trying to cheat.
+2	You don't seem to be affected at all. Or do you have your poker face on?
+objscripts
+0 Route110_TrickHousePuzzle6_EventScript_Sophia
+1 Route110_TrickHousePuzzle6_EventScript_Benny
+2 Route110_TrickHousePuzzle6_EventScript_Sebastian
+3 Route110_TrickHousePuzzle6_EventScript_ItemGlitterMail
+scriptdefs
+= Route110_TrickHousePuzzle6_EventScript_ItemGlitterMail
+goto_if_set FLAG_ITEM_TRICK_HOUSE_PUZZLE_6_GLITTER_MAIL Route110_TrickHousePuzzle6_EventScript_ItemGlitterMail_Taken
+finditem ITEM_GLITTER_MAIL
+setflag FLAG_ITEM_TRICK_HOUSE_PUZZLE_6_GLITTER_MAIL
+end
+= Route110_TrickHousePuzzle6_EventScript_ItemGlitterMail_Taken
+end
+= Route110_TrickHousePuzzle6_EventScript_Sebastian
+trainerbattle_single TRAINER_SEBASTIAN Route110_TrickHousePuzzle6_Text_SebastianIntro Route110_TrickHousePuzzle6_Text_SebastianDefeat
+msgbox	You don't seem to be affected at all. Or do you have your poker face on?
+end
+= Route110_TrickHousePuzzle6_EventScript_Benny
+trainerbattle_single TRAINER_BENNY Route110_TrickHousePuzzle6_Text_BennyIntro Route110_TrickHousePuzzle6_Text_BennyDefeat
+msgbox	Ehehehe… I guess I lost because I was trying to cheat.
+end
+= Route110_TrickHousePuzzle6_EventScript_Sophia
+trainerbattle_single TRAINER_SOPHIA Route110_TrickHousePuzzle6_Text_SophiaIntro Route110_TrickHousePuzzle6_Text_SophiaDefeat
+msgbox	I'm sure having a good time checking this place out.It's a challenge I've found worth repeating!
+end
+mapsec
+8 7 1 3	ROUTE 110
+music
+MUS_TRICK_HOUSE

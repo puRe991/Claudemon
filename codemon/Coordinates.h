@@ -17,8 +17,8 @@ private:
 	unsigned int x;
 	unsigned int y;
 public:
-	unsigned int get_x();
-	unsigned int get_y();
+	unsigned int get_x() const;
+	unsigned int get_y() const;
 	void set_x(unsigned int new_x);
 	void set_y(unsigned int new_y);
 	Coordinates();

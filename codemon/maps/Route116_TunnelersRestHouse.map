@@ -1,0 +1,59 @@
+tileset building__generic_building
+10 9
+5 4
+739,689,690,535,533,535,533,702,703,740
+747,697,698,543,541,543,541,710,711,748
+755,705,706,545,545,545,545,718,719,756
+545,553,553,553,553,553,553,553,553,553
+601,590,591,553,553,553,553,590,591,580
+545,598,599,580,553,553,580,598,599,580
+545,553,553,553,553,553,553,553,553,553
+800,792,792,792,792,792,792,792,792,792
+803,795,795,795,528,529,795,795,795,795
+collision
+1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+0,1,1,0,0,0,0,1,1,0
+0,1,1,0,0,0,0,1,1,0
+0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+warps
+4 8 Route116 1
+5 8 Route116 1
+npcs
+people_pokefan_m 6 5 E static 0 - 0
+people_pokefan_m 3 6 S static 0 - 0
+people_pokefan_m 7 2 N static 0 - 0
+dialogs
+0	That RUSTURF TUNNEL there…At first, we had a huge work crew boring through rock with the latest machinery. But, we had to stop.It turns out that we would have had a negative effect on wild POKéMON in the area.So, we've got nothing to do but loll around here doing nothing.
+1	To get to VERDANTURF without using this TUNNEL, you'd have to cross the sea to DEWFORD, sail on to SLATEPORT, then travel through MAUVILLE.
+2	There's a man digging his way to VERDANTURF all by his lonesome. He's desperate to get through.He says that if he digs little by little without using machines, he won't disturb POKéMON, and he'll avoid harming the natural environment.I wonder if he made it through yet.
+objscripts
+0 Route116_TunnelersRestHouse_EventScript_Tunneler1
+1 Route116_TunnelersRestHouse_EventScript_Tunneler3
+2 Route116_TunnelersRestHouse_EventScript_Tunneler2
+scriptdefs
+= Route116_TunnelersRestHouse_EventScript_Tunneler2
+msgbox	There's a man digging his way to VERDANTURF all by his lonesome. He's desperate to get through.He says that if he digs little by little without using machines, he won't disturb POKéMON, and he'll avoid harming the natural environment.I wonder if he made it through yet.
+end
+= Route116_TunnelersRestHouse_EventScript_Tunneler3
+lock
+faceplayer
+goto_if_set FLAG_RUSTURF_TUNNEL_OPENED Route116_TunnelersRestHouse_EventScript_TunnelOpened
+msgbox	To get to VERDANTURF without using this TUNNEL, you'd have to cross the sea to DEWFORD, sail on to SLATEPORT, then travel through MAUVILLE.
+release
+end
+= Route116_TunnelersRestHouse_EventScript_TunnelOpened
+msgbox	Did you hear? The TUNNEL to VERDANTURF has gone through!Sometimes, if you hope strongly enough, dreams do come true.
+release
+end
+= Route116_TunnelersRestHouse_EventScript_Tunneler1
+msgbox	That RUSTURF TUNNEL there…At first, we had a huge work crew boring through rock with the latest machinery. But, we had to stop.It turns out that we would have had a negative effect on wild POKéMON in the area.So, we've got nothing to do but loll around here doing nothing.
+end
+mapsec
+1 5 4 1	ROUTE 116
+music
+MUS_RUSTBORO

@@ -1,0 +1,98 @@
+tileset building__facility
+19 9
+8 3
+513,513,922,904,905,904,904,905,904,923,513,513,922,906,907,908,923,513,513
+513,513,920,1014,913,912,912,913,1014,921,513,513,920,914,915,916,921,513,513
+513,513,920,1022,897,897,897,897,1022,921,513,513,920,897,897,897,921,513,513
+904,905,928,902,909,909,909,903,896,929,904,904,928,897,896,896,929,905,904
+912,913,912,910,924,924,924,911,900,912,912,912,912,897,896,896,912,913,912
+897,897,897,897,899,899,899,899,901,897,897,897,897,897,896,896,897,897,897
+897,896,896,896,896,896,896,896,896,896,896,896,896,896,896,896,896,896,896
+897,896,896,896,896,896,896,896,896,896,896,896,896,896,896,896,896,896,896
+897,896,896,896,896,518,519,896,896,896,896,896,896,896,896,896,896,896,896
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1
+1,1,1,1,0,0,0,0,1,1,1,1,1,0,0,0,1,1,1
+1,1,1,0,0,0,0,0,0,1,1,1,1,0,0,0,1,1,1
+1,1,1,1,1,1,1,1,0,1,1,1,1,0,0,0,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+5 8 RustboroCity 5
+6 8 RustboroCity 6
+14 1 RustboroCity_DevonCorp_2F 0
+npcs
+people_devon_employee 2 6 S wander 0 - 0
+people_devon_employee 15 5 S wander 0 LOCALID_DEVON_CORP_STAIR_GUARD 0
+people_woman_3 5 3 S static 0 - 0
+dialogs
+0	Hey, those RUNNING SHOES! They're one of our products!It makes me happy when I see someone using something we made.
+1	I'm sorry, only authorized people are allowed to enter here.
+2	Hello and welcome to the DEVON CORPORATION.We're proud producers of items and medicine that enhance your life.
+objscripts
+0 RustboroCity_DevonCorp_1F_EventScript_Employee
+1 RustboroCity_DevonCorp_1F_EventScript_StairGuard
+2 RustboroCity_DevonCorp_1F_EventScript_Greeter
+scriptdefs
+= RustboroCity_DevonCorp_1F_EventScript_Greeter
+lock
+faceplayer
+goto_if_set FLAG_RETURNED_DEVON_GOODS RustboroCity_DevonCorp_1F_EventScript_WelcomeToDevonCorp
+goto_if_set FLAG_RECOVERED_DEVON_GOODS RustboroCity_DevonCorp_1F_EventScript_StaffGotRobbed
+goto_if_set FLAG_DEVON_GOODS_STOLEN RustboroCity_DevonCorp_1F_EventScript_StaffGotRobbed
+msgbox	Hello and welcome to the DEVON CORPORATION.We're proud producers of items and medicine that enhance your life.
+release
+end
+= RustboroCity_DevonCorp_1F_EventScript_StaffGotRobbed
+msgbox	One of our research staff stupidly got robbed of an important parcel.
+release
+end
+= RustboroCity_DevonCorp_1F_EventScript_WelcomeToDevonCorp
+msgbox	Hello and welcome to the DEVON CORPORATION.We're proud producers of items and medicine that enhance your life.
+release
+end
+= RustboroCity_DevonCorp_1F_EventScript_StairGuard
+lock
+faceplayer
+goto_if_set FLAG_RETURNED_DEVON_GOODS RustboroCity_DevonCorp_1F_EventScript_AlwaysWelcome
+goto_if_set FLAG_RECOVERED_DEVON_GOODS RustboroCity_DevonCorp_1F_EventScript_GotRobbed
+goto_if_set FLAG_DEVON_GOODS_STOLEN RustboroCity_DevonCorp_1F_EventScript_GotRobbed
+msgbox	I'm sorry, only authorized people are allowed to enter here.
+release
+end
+= RustboroCity_DevonCorp_1F_EventScript_GotRobbed
+msgbox	It's beyond stupid. How could we get robbed?
+release
+end
+= RustboroCity_DevonCorp_1F_EventScript_AlwaysWelcome
+msgbox	Hi, there! You're always welcome here!
+release
+end
+= RustboroCity_DevonCorp_1F_EventScript_Employee
+lock
+faceplayer
+goto_if_set FLAG_RETURNED_DEVON_GOODS RustboroCity_DevonCorp_1F_EventScript_GoodsRecovered
+goto_if_set FLAG_DEVON_GOODS_STOLEN RustboroCity_DevonCorp_1F_EventScript_RobberWasntBright
+msgbox	Hey, those RUNNING SHOES! They're one of our products!It makes me happy when I see someone using something we made.
+release
+end
+= RustboroCity_DevonCorp_1F_EventScript_RobberWasntBright
+msgbox	That stolen parcel…Well, sure it's important, but it's not anything that anyone can use.In my estimation, that robber must not have been very bright.
+release
+end
+= RustboroCity_DevonCorp_1F_EventScript_GoodsRecovered
+msgbox	It sounds like they've recovered the ripped-off DEVON GOODS.
+release
+end
+signs
+3 2	Prototypes and test products fill the glass display case.There's a panel with a description…“In addition to industrial products, DEVON now markets sundries and pharmaceuticals for better lifestyles.“Recently, DEVON has begun marketing tools for POKéMON TRAINERS, including POKé BALLS and POKéNAV systems.”
+8 2	Samples of rocks and metal are displayed in the glass case.There's a panel with some writing on it…“DEVON CORPORATION got its start as a producer of stones from quarries.“The company also produced iron from filings in the sand.“From that humble start as a producer of raw materials, DEVON developed.“DEVON is now a manufacturer of a wide range of industrial products.”
+mapsec
+0 5 1 2	RUSTBORO CITY
+music
+MUS_RUSTBORO
+counters
+910,911,924

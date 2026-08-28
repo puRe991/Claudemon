@@ -1,0 +1,768 @@
+tileset general__fallarbor
+40 80
+18 41
+325,136,198,199,198,199,198,199,198,199,198,199,198,199,198,198,576,579,579,579,579,577,577,577,577,577,579,577,577,577,577,577,577,577,577,577,577,577,577,577
+291,136,198,198,198,198,198,198,198,198,198,198,198,198,198,198,576,579,579,579,579,577,577,577,577,577,579,577,577,577,577,577,577,577,577,577,577,577,577,577
+291,136,198,198,198,198,198,198,198,198,198,198,198,198,198,198,576,579,579,579,579,577,577,577,577,577,579,577,577,577,571,572,572,572,572,572,572,573,572,572
+291,136,198,198,198,198,198,198,198,198,198,198,198,198,198,198,576,579,579,579,579,577,577,577,577,577,579,577,577,577,579,577,577,577,577,577,577,563,577,573
+291,136,198,198,198,22,22,22,198,198,23,23,23,23,23,23,576,579,579,579,587,613,613,613,613,588,587,613,613,588,587,613,613,613,613,588,577,577,577,581
+291,136,198,198,22,13,13,13,23,23,1,331,332,332,332,333,576,579,579,587,613,613,613,613,588,579,577,577,577,587,613,612,612,612,588,579,577,577,580,589
+291,136,198,198,13,13,13,13,13,14,1,275,276,276,276,277,576,579,587,613,613,613,588,577,579,587,613,613,613,612,612,612,520,588,579,579,577,577,581,577
+291,136,198,198,13,13,13,13,13,198,14,14,14,1,14,14,576,579,577,597,577,577,579,577,587,611,588,597,577,577,577,577,577,579,579,579,577,577,581,577
+291,136,198,198,13,13,13,13,13,198,198,198,198,1,198,198,576,579,577,577,577,577,587,520,588,577,587,810,232,811,613,588,577,579,579,587,613,613,589,577
+291,136,198,198,14,14,13,13,14,198,198,198,198,1,198,198,576,579,577,577,577,577,577,577,587,613,612,818,232,819,588,579,577,579,587,612,612,612,588,577
+291,136,198,198,198,198,14,1,198,198,198,198,198,1,198,198,576,579,577,577,577,577,577,577,577,577,577,577,577,577,579,579,577,587,613,612,612,588,579,577
+291,136,198,198,198,198,198,1,23,198,198,23,198,1,198,198,576,579,577,577,577,577,577,577,577,577,577,577,577,577,579,579,577,577,577,577,577,579,579,577
+291,136,198,198,198,198,198,14,1,23,23,1,198,1,23,198,576,587,175,207,613,613,613,613,613,613,613,175,207,588,579,579,577,577,577,577,577,579,579,577
+291,136,23,198,198,198,198,198,14,14,14,1,23,1,1,23,584,613,175,207,588,577,577,577,577,577,577,577,577,579,579,579,577,577,577,577,577,579,579,577
+291,144,137,198,198,23,23,23,23,23,23,1,1,1,1,1,1,1,1,1,576,577,577,577,577,571,572,573,577,579,579,579,577,577,577,577,577,579,579,577
+299,325,136,23,23,14,14,14,1,1,1,1,14,1,1,1,1,1,1,1,576,577,577,577,577,587,520,589,577,579,579,579,577,577,577,577,571,563,579,577
+368,291,144,124,137,23,23,198,14,1,1,14,198,1,14,14,14,1,568,569,563,577,577,577,577,577,577,577,577,579,579,579,577,577,577,571,563,571,563,577
+368,299,300,325,144,124,137,198,198,14,1,23,23,1,198,198,198,1,576,577,571,572,573,577,577,597,577,571,572,563,579,579,577,577,577,579,577,579,577,577
+368,368,368,299,300,325,136,23,23,198,14,1,1,14,198,198,198,1,576,577,587,520,589,577,577,571,572,563,571,572,563,563,577,577,571,563,577,579,577,577
+368,368,368,336,337,291,136,30,31,198,198,1,14,198,198,198,23,1,576,577,577,577,577,577,577,579,577,571,579,577,577,577,577,577,579,577,577,579,577,577
+368,368,368,344,345,291,136,38,39,198,198,1,198,198,198,198,1,1,576,597,577,577,571,572,572,563,571,563,563,577,577,577,577,577,579,577,577,579,577,577
+368,840,841,368,368,291,136,1,1,198,198,1,198,198,198,23,1,568,563,577,597,577,579,577,571,563,579,577,577,577,577,577,577,571,563,577,577,579,577,577
+368,848,849,368,368,291,144,137,1,23,198,1,23,198,198,1,14,576,571,572,572,572,563,571,563,572,563,577,577,577,571,572,572,563,577,571,572,563,577,577
+368,368,368,368,368,299,325,136,14,1,198,1,1,23,23,1,198,576,579,577,577,577,571,579,571,572,573,577,577,577,579,571,572,572,572,563,577,577,577,577
+368,368,368,368,368,336,341,136,198,1,198,14,1,1,1,14,23,576,579,577,571,572,563,579,587,520,589,577,577,571,563,563,577,577,577,577,577,577,577,577
+368,368,368,336,337,344,349,136,198,1,23,198,14,1,14,198,568,563,579,577,579,577,571,563,577,577,577,577,571,579,577,577,577,577,577,577,577,577,577,577
+368,368,368,344,345,368,291,136,198,14,1,198,198,1,198,198,576,577,579,571,563,577,579,577,577,577,577,577,579,579,577,577,577,577,577,577,577,577,577,577
+368,368,840,841,368,368,291,136,198,198,1,23,198,1,198,198,576,577,579,579,577,577,579,577,577,571,572,572,563,563,577,577,577,577,577,577,577,577,577,577
+368,368,848,849,368,368,291,136,198,198,1,1,23,1,198,198,576,577,579,587,588,577,579,577,571,579,577,577,577,577,577,577,577,577,577,577,577,577,577,577
+368,336,337,368,368,368,291,136,23,23,1,1,1,1,198,23,576,577,579,577,579,577,579,577,579,579,577,577,577,577,577,577,577,577,577,577,577,577,577,577
+368,344,345,368,368,368,291,144,424,137,1,1,1,1,198,568,563,577,579,577,587,588,587,588,579,587,588,577,577,577,577,577,577,577,577,577,577,577,577,577
+368,368,840,841,368,368,291,292,292,144,137,1,1,1,23,576,577,577,587,588,577,579,577,579,587,588,587,588,577,577,577,577,577,577,577,577,577,577,577,577
+368,368,848,849,368,368,299,300,300,325,136,1,1,1,1,576,577,577,577,579,577,579,577,587,588,587,588,587,588,577,577,577,577,577,577,577,577,577,577,577
+368,368,368,840,841,368,368,368,368,291,144,175,207,124,137,576,597,577,577,579,577,579,577,577,587,588,579,577,587,613,613,613,588,577,577,577,577,577,577,577
+368,336,337,848,849,368,368,368,368,291,292,292,292,292,136,576,577,577,577,579,577,587,613,588,577,579,587,588,577,577,577,577,587,613,613,613,613,613,588,577
+368,344,345,368,368,368,368,368,368,291,292,292,292,292,136,576,577,595,596,579,577,577,577,579,577,587,588,587,613,613,613,613,612,612,612,612,612,588,579,577
+368,840,841,368,368,368,368,368,368,299,338,339,325,292,136,584,588,603,604,587,588,577,577,579,577,577,587,601,612,612,612,612,612,612,612,588,577,579,587,588
+368,848,849,368,368,368,368,368,368,368,344,345,299,325,136,1,576,577,577,577,579,577,577,587,613,613,613,609,612,612,612,612,588,577,577,579,577,587,588,579
+336,337,368,368,368,368,368,368,368,368,368,840,841,291,136,1,576,577,577,597,587,613,613,588,577,3,577,577,597,577,577,577,587,613,588,587,613,588,579,579
+344,345,336,337,368,368,368,368,368,368,368,848,849,291,144,137,584,588,577,577,577,595,596,579,577,577,577,577,580,613,613,613,520,588,579,577,577,579,579,579
+368,368,344,345,368,368,368,336,337,368,368,368,368,299,325,136,313,584,585,588,577,603,604,579,577,577,577,577,581,595,596,577,577,579,579,577,577,579,579,579
+368,840,841,368,368,368,368,344,345,840,841,368,368,368,291,136,320,1,1,584,585,585,588,579,577,577,577,577,581,603,604,577,577,579,579,577,577,579,579,579
+368,848,849,368,368,368,840,841,368,848,849,368,368,336,341,136,328,329,329,329,329,313,576,587,175,207,613,613,589,577,577,577,577,579,587,588,577,579,579,579
+840,841,368,368,368,368,848,849,368,368,368,336,337,344,349,136,1,1,1,1,1,320,576,577,577,577,577,577,595,596,577,577,571,563,577,579,577,579,579,587
+848,849,368,368,368,368,368,368,368,368,368,344,345,368,291,136,1,1,1,1,1,320,576,577,577,577,577,577,603,604,577,571,563,577,577,579,577,579,579,577
+368,336,337,368,368,368,368,368,368,336,337,368,368,283,317,136,1,1,1,1,1,320,576,595,596,577,577,577,577,577,577,579,577,577,577,587,588,579,587,588
+368,344,345,368,368,368,368,368,368,344,345,368,283,317,292,144,175,207,137,1,1,320,576,603,604,577,577,577,577,577,577,587,520,588,577,577,579,587,588,587
+368,840,841,368,368,368,368,368,368,368,368,368,291,292,292,292,292,292,136,1,1,320,584,585,588,577,577,577,577,577,577,577,577,579,577,577,579,577,587,611
+368,848,849,368,368,368,368,368,368,368,368,368,291,292,292,292,292,292,136,1,1,328,329,313,584,585,175,207,585,585,585,585,588,579,577,577,587,613,611,611
+368,368,840,841,368,368,368,368,840,841,368,368,291,292,292,292,292,292,136,1,1,1,1,328,329,1,1,1,1,329,329,329,576,587,613,613,613,612,612,612
+368,368,848,849,368,368,368,368,848,849,368,368,291,292,292,292,292,292,136,1,1,1,1,1,1,1,280,282,1,1,1,1,584,726,727,726,727,726,727,726
+368,368,368,336,337,368,368,368,368,368,368,368,291,292,292,292,292,292,136,1,1,1,1,1,1,1,288,290,1,254,1,1,1,470,469,468,469,468,469,468
+368,336,337,344,345,368,368,368,368,368,368,368,299,325,292,292,292,292,144,137,1,1,462,463,1,1,288,290,1,133,1,1,1,476,477,476,477,476,477,476
+368,344,345,368,368,368,368,368,368,368,368,368,368,291,292,292,292,292,292,144,416,137,470,471,1,1,288,290,1,133,1,1,1,468,469,468,469,468,469,468
+368,368,840,841,368,368,368,368,368,368,336,337,368,291,292,292,292,292,292,292,292,136,476,477,1,1,288,290,1,133,1,1,224,476,477,476,477,476,477,476
+840,841,848,849,368,368,368,368,368,368,344,345,368,299,300,300,300,300,300,300,325,136,468,469,1,1,288,290,1,133,1,1,1,468,469,468,469,468,469,468
+848,849,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,291,136,476,477,1,1,288,290,1,133,4,1,1,476,477,476,477,476,477,476
+336,337,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,291,136,468,469,1,1,288,290,1,133,1,1,4,468,469,468,469,468,469,468
+344,345,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,291,136,476,477,1,1,288,290,1,133,4,1,1,476,477,476,477,476,477,476
+368,336,337,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,291,136,468,469,1,1,288,290,1,133,1,1,4,468,469,468,469,468,469,468
+368,344,345,368,368,368,368,368,283,284,284,284,284,284,284,284,284,284,284,284,317,136,476,477,1,1,288,290,1,133,4,1,1,476,477,476,477,476,477,476
+368,336,337,368,368,368,283,284,317,292,292,292,292,292,128,211,2,2,2,2,2,2,468,469,1,1,288,290,1,133,1,1,4,468,469,468,469,468,469,468
+368,344,345,368,368,283,317,292,292,292,292,128,211,2,2,1,1,1,1,462,463,4,486,487,1,1,288,290,1,133,224,1,1,476,477,476,477,476,477,476
+336,337,368,368,368,291,292,292,292,292,292,136,1,1,1,1,1,1,4,470,471,1,254,1,1,1,288,290,1,133,259,260,261,468,469,468,469,468,469,468
+344,345,368,368,368,291,292,292,292,128,211,2,1,1,1,1,3,1,1,476,477,4,133,1,1,1,288,290,1,133,267,268,269,476,477,476,477,476,477,476
+373,374,368,368,368,291,292,292,292,136,1,1,1,1,1,1,1,1,4,468,469,1,133,1,1,1,288,290,1,133,267,268,269,468,469,468,469,468,469,468
+381,382,368,368,368,291,292,292,292,136,1,1,1,1,1,1,1,1,1,486,487,4,133,1,1,1,288,290,1,133,275,276,277,476,477,476,477,476,477,476
+368,336,337,368,368,291,292,292,292,136,1,1,1,1,1,1,1,1,1,4,1,1,133,1,1,1,296,298,1,141,135,135,214,468,469,468,469,468,469,468
+368,344,345,368,368,291,292,292,292,136,1,1,1,1,1,254,1,1,1,1,1,1,133,1,1,1,1,1,1,1,1,1,462,499,498,499,498,499,498,499
+373,374,368,368,368,291,292,292,292,136,1,1,1,1,1,133,1,1,1,1,1,1,141,135,135,135,135,135,135,135,135,214,470,469,468,469,468,469,468,469
+381,382,368,368,368,291,292,292,292,144,175,207,137,462,463,133,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,476,477,476,477,476,477,476,477
+336,337,368,368,368,299,325,292,292,292,292,292,136,470,471,141,135,135,135,214,1,1,1,1,1,1,1,1,1,1,1,1,468,469,468,469,468,469,468,469
+344,345,368,368,368,368,291,292,292,292,292,292,136,476,477,462,463,1,1,1,1,1,1,213,135,135,135,135,135,135,135,214,476,477,476,477,476,477,476,477
+368,373,374,368,368,368,299,325,292,292,292,326,375,468,469,468,471,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,468,469,468,469,468,469,468,469
+368,381,382,368,368,368,368,299,300,300,300,301,378,476,477,476,477,1,1,1,1,1,1,1,1,1,1,1,1,1,462,463,476,477,476,477,476,477,476,477
+368,368,373,374,368,368,368,368,368,368,368,368,378,468,469,468,469,213,135,135,135,214,1,1,213,135,135,135,135,214,470,469,468,469,468,469,468,469,468,469
+368,368,381,382,336,337,368,368,368,336,337,370,211,476,477,476,477,1,1,1,1,1,1,1,1,1,462,463,462,463,476,477,476,477,476,477,476,477,476,477
+368,368,368,368,344,345,373,374,368,344,345,378,1,468,469,468,469,1,1,1,1,1,1,1,1,1,470,469,468,469,468,469,468,469,468,469,468,469,468,469
+368,368,368,368,368,368,381,382,336,337,368,378,1,476,477,476,477,1,1,1,1,1,1,1,462,463,476,477,476,477,476,477,476,477,476,477,476,477,476,477
+368,368,368,368,368,368,368,368,344,345,373,488,463,468,469,468,469,462,463,1,1,1,1,1,470,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469
+collision
+0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,0,0
+0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,1,1,1,1,0,0,0,1,1,0,0,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,1,1,1,0,0,0,0,0,1,0,0,0,0,0,0,1,1,0,1,0,0,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1
+0,1,1,1,0,0,0,0,0,1,1,1,1,0,1,1,1,1,0,0,0,0,1,1,1,1,1,1,0,1,1,1,0,1,1,1,1,1,1,1
+0,1,1,1,0,0,0,0,0,1,1,1,1,0,1,1,1,1,0,0,0,0,0,0,1,1,1,1,0,1,1,1,0,1,1,1,1,1,1,1
+0,1,1,1,1,1,0,0,1,1,1,1,1,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,1,1,1,1,1,1
+0,1,1,1,1,1,1,0,1,1,1,1,1,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,1,1,1
+0,1,1,1,1,1,1,0,0,1,1,0,1,0,1,1,1,1,0,0,1,1,1,1,1,1,1,0,0,1,1,1,0,0,0,0,0,1,1,1
+0,1,1,1,1,1,1,1,0,0,0,0,1,0,0,1,1,1,0,0,1,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,1,1,1
+0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,1,0,1,1,1,0,0,0,0,0,1,1,1
+0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,1,0,1,1,1,0,0,0,0,1,1,1,1
+0,0,1,1,1,1,1,1,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,1,1,1,1,1
+0,0,0,0,1,1,1,1,1,0,0,1,1,0,1,1,1,0,1,0,1,1,1,0,0,1,0,1,1,1,1,1,0,0,0,1,1,1,1,1
+0,0,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,0,1,0,1,1,1,0,0,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1
+0,0,0,1,1,0,1,0,0,1,1,0,0,1,1,1,1,0,1,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1
+0,0,0,1,1,0,1,1,1,1,1,0,1,1,1,1,0,0,1,1,0,0,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1
+0,1,1,0,0,0,1,0,0,1,1,0,1,1,1,1,0,1,1,0,1,0,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1
+0,1,1,0,0,0,1,1,0,1,1,0,1,1,1,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,1,0,0,1,0,0,1,1,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,1,1,1,1,0,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,1,1,1,1,1,1,0,1,1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,1,1,0,0,1,1,0,0,1,1,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,1,1,0,0,0,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,1,1,0,0,0,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,1,1,0,0,0,0,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,1,1,0,0,0,0,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,1,1,0,0,0,0,0,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,1,1,0,0,0,0,0,0,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,1,1,0,0,0,0,0,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,1,1,0,0,0,0,0,0,0,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,1,1,0,0,0,0,0,0,0,1,1,0,0,1,0,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,0,0,0,0,0,0,0,0,0,1,1,0,1,0,1,1,1,1,1,1,1,1,0,1,0,0,1,0,0,0,1,1,1,1,1,1,1,1
+1,1,1,1,0,0,0,0,0,0,0,1,1,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,1,1,0,0,0,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,0,0,1,1,1,1,1,1,1
+0,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,0,0,1,1,1,1,1,0,0,0,0,1,1,1,0,0,1,1,1,1,1,1,1
+0,1,1,0,0,0,1,1,0,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,0,0,0,0,1,1,1,1,1,1,1
+1,1,0,0,0,0,1,1,0,0,0,1,1,1,1,1,0,0,0,0,0,1,1,0,0,0,0,0,1,1,0,0,1,1,1,1,1,1,1,1
+1,1,0,0,0,0,0,0,0,0,0,1,1,0,0,1,0,0,0,0,0,1,1,0,0,0,0,0,1,1,0,1,1,1,1,1,1,1,1,1
+0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,1,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1
+0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,1,0,0,1,0,0,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1
+0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1
+0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,1,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1
+0,0,1,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1
+0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,1,1,1,1,1
+0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,1,1,1,1,1
+0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,1,0,0,0,1,1,1,1,1,1,1
+0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,1,0,0,1,1,1,1,1,1,1,1
+1,1,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,1,0,0,0,1,1,1,1,1,1,1
+1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,1,0,0,0,1,1,1,1,1,1,1
+1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,1,0,0,0,1,1,1,1,1,1,1
+1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,1,0,0,0,1,1,1,1,1,1,1
+0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,1,0,0,0,1,1,1,1,1,1,1
+0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,1,0,0,0,1,1,1,1,1,1,1
+0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,1,0,0,0,1,1,1,1,1,1,1
+0,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,1,1,0,0,1,1,1,1,1,1,1
+1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,0,1,0,0,0,0,0,0,1,0,0,0,1,1,1,1,1,1,1
+1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,1,1,0,1,0,0,0,0,0,0,1,0,1,0,1,1,1,1,1,1,1
+1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,1,0,1,0,0,0,0,0,0,1,0,1,0,1,1,1,1,1,1,1
+1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,1,0,1,0,0,0,0,0,0,1,0,0,0,1,1,1,1,1,1,1
+0,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1
+0,1,1,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1
+1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,0,0,0,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1
+1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1
+1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1
+0,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1
+0,0,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,1,1,1,1,0,0,0,1,1,1,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,1,1,1,1,0,1,1,1,0,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,1,1,1,1,0,1,0,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,1,1,1,0,0,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+connections
+down 0 RustboroCity
+right -40 Route114
+warps
+27 37 MeteorFalls_1F_1R 1
+21 6 TerraCave_Entrance 0
+36 10 TerraCave_Entrance 0
+npcs
+people_woman_2 18 68 S wander 0 - 0
+people_expert_m 5 15 E static 0 - 6
+people_black_belt 27 53 S static 0 - 4
+people_man_1 12 5 S static 0 - 0
+people_man_1 13 5 S static 0 - 0
+people_man_1 14 5 S static 0 - 0
+people_girl_3 15 50 S static 0 - 3
+people_black_belt 19 15 W pace_h 0 - 2
+people_maniac 24 62 S static 0 - 4
+misc_item_ball 20 60 S static FLAG_ITEM_ROUTE_115_SUPER_POTION - 0
+misc_item_ball 18 7 S static FLAG_ITEM_ROUTE_115_TM_FOCUS_PUNCH - 0
+misc_item_ball 23 29 S static FLAG_ITEM_ROUTE_115_IRON - 0
+people_man_1 31 64 S static 0 - 0
+people_man_1 31 65 S static 0 - 0
+misc_breakable_rock 29 50 S static FLAG_TEMP_11 - 0
+misc_item_ball 31 56 S static FLAG_ITEM_ROUTE_115_GREAT_BALL - 0
+people_running_triathlete_f 10 15 S static 0 - 2
+people_ninja_boy 11 12 S static 0 - 3
+people_girl_3 15 7 W static 0 - 4
+people_lass 10 7 E static 0 - 4
+people_lass 28 62 W static 0 - 4
+misc_item_ball 26 67 S static FLAG_ITEM_ROUTE_115_PP_UP - 0
+misc_item_ball 12 14 S static FLAG_ITEM_ROUTE_115_HEAL_POWDER - 0
+dialogs
+0	Exploring a cave isn't like walking on a road.You never know when wild POKéMON will appear. It's full of suspense.
+objscripts
+0 Route115_EventScript_Woman
+1 Route115_EventScript_Timothy
+2 Route115_EventScript_Nob
+3 BerryTreeScript
+4 BerryTreeScript
+5 BerryTreeScript
+6 Route115_EventScript_Cyndy
+7 Route115_EventScript_Koichi
+8 Route115_EventScript_Hector
+9 Route115_EventScript_ItemSuperPotion
+10 Route115_EventScript_ItemTMFocusPunch
+11 Route115_EventScript_ItemIron
+12 BerryTreeScript
+13 BerryTreeScript
+14 EventScript_RockSmash
+15 Route115_EventScript_ItemGreatBall
+16 Route115_EventScript_Kyra
+17 Route115_EventScript_Jaiden
+18 Route115_EventScript_Helene
+19 Route115_EventScript_Alix
+20 Route115_EventScript_Marlene
+21 Route115_EventScript_ItemPPUp
+22 Route115_EventScript_ItemHealPowder
+triggers
+15 49 0 0 Route115_HiddenItem_15_49
+onload
+VAR_SHOULD_END_ABNORMAL_WEATHER 1 AbnormalWeather_EventScript_EndEventAndCleanup_1
+movements
+Movement_SmashRock	delay,end
+scriptdefs
+= AbnormalWeather_EventScript_EndEventAndCleanup_1
+lockall
+goto_if_ge VAR_ABNORMAL_WEATHER_LOCATION MARINE_CAVE_LOCATIONS_START AbnormalWeather_EventScript_ShowRainEndedMessage
+goto AbnormalWeather_EventScript_ShowSunEndedMessage
+end
+= AbnormalWeather_EventScript_ShowSunEndedMessage
+msgbox	The intense sunshine appears to have subsided…
+goto AbnormalWeather_EventScript_EndEventAndCleanup_2
+end
+= AbnormalWeather_EventScript_EndEventAndCleanup_2
+closemessage
+fadescreenswapbuffers FADE_TO_BLACK
+setweather WEATHER_SUNNY
+doweather
+call AbnormalWeather_EventScript_CleanupMapTiles
+special DrawWholeMapView
+setvar VAR_ABNORMAL_WEATHER_LOCATION ABNORMAL_WEATHER_NONE
+setvar VAR_SHOULD_END_ABNORMAL_WEATHER 0
+clearflag FLAG_HIDE_MAP_NAME_POPUP
+fadescreenswapbuffers FADE_FROM_BLACK
+releaseall
+end
+= AbnormalWeather_EventScript_CleanupMapTiles
+switch VAR_ABNORMAL_WEATHER_LOCATION
+case ABNORMAL_WEATHER_ROUTE_114_NORTH AbnormalWeather_EventScript_CleanupRoute114North
+case ABNORMAL_WEATHER_ROUTE_114_SOUTH AbnormalWeather_EventScript_CleanupRoute114South
+case ABNORMAL_WEATHER_ROUTE_115_WEST AbnormalWeather_EventScript_CleanupRoute115West
+case ABNORMAL_WEATHER_ROUTE_115_EAST AbnormalWeather_EventScript_CleanupRoute115East
+case ABNORMAL_WEATHER_ROUTE_116_NORTH AbnormalWeather_EventScript_CleanupRoute116North
+case ABNORMAL_WEATHER_ROUTE_116_SOUTH AbnormalWeather_EventScript_CleanupRoute116South
+case ABNORMAL_WEATHER_ROUTE_118_EAST AbnormalWeather_EventScript_CleanupRoute118East
+case ABNORMAL_WEATHER_ROUTE_118_WEST AbnormalWeather_EventScript_CleanupRoute118West
+case ABNORMAL_WEATHER_ROUTE_105_NORTH AbnormalWeather_EventScript_CleanupRoute105North
+case ABNORMAL_WEATHER_ROUTE_105_SOUTH AbnormalWeather_EventScript_CleanupRoute105South
+case ABNORMAL_WEATHER_ROUTE_125_WEST AbnormalWeather_EventScript_CleanupRoute125West
+case ABNORMAL_WEATHER_ROUTE_125_EAST AbnormalWeather_EventScript_CleanupRoute125East
+case ABNORMAL_WEATHER_ROUTE_127_NORTH AbnormalWeather_EventScript_CleanupRoute127North
+case ABNORMAL_WEATHER_ROUTE_127_SOUTH AbnormalWeather_EventScript_CleanupRoute127South
+case ABNORMAL_WEATHER_ROUTE_129_WEST AbnormalWeather_EventScript_CleanupRoute129West
+case ABNORMAL_WEATHER_ROUTE_129_EAST AbnormalWeather_EventScript_CleanupRoute129East
+return
+= AbnormalWeather_EventScript_CleanupRoute129East
+setmetatile 42 19 METATILE_General_CalmWater FALSE
+setmetatile 43 19 METATILE_General_CalmWater FALSE
+setmetatile 41 20 METATILE_General_CalmWater FALSE
+setmetatile 42 20 METATILE_General_CalmWater FALSE
+setmetatile 43 20 METATILE_General_CalmWater FALSE
+setmetatile 44 20 METATILE_General_CalmWater FALSE
+setmetatile 41 21 METATILE_General_CalmWater FALSE
+setmetatile 42 21 METATILE_General_CalmWater FALSE
+setmetatile 43 21 METATILE_General_CalmWater FALSE
+setmetatile 44 21 METATILE_General_CalmWater FALSE
+setmetatile 42 22 METATILE_General_CalmWater FALSE
+setmetatile 43 22 METATILE_General_CalmWater FALSE
+return
+= AbnormalWeather_EventScript_CleanupRoute129West
+setmetatile 16 14 METATILE_General_CalmWater FALSE
+setmetatile 17 14 METATILE_General_CalmWater FALSE
+setmetatile 15 15 METATILE_General_CalmWater FALSE
+setmetatile 16 15 METATILE_General_CalmWater FALSE
+setmetatile 17 15 METATILE_General_CalmWater FALSE
+setmetatile 18 15 METATILE_General_CalmWater FALSE
+setmetatile 15 16 METATILE_General_CalmWater FALSE
+setmetatile 16 16 METATILE_General_CalmWater FALSE
+setmetatile 17 16 METATILE_General_CalmWater FALSE
+setmetatile 18 16 METATILE_General_CalmWater FALSE
+setmetatile 16 17 METATILE_General_CalmWater FALSE
+setmetatile 17 17 METATILE_General_CalmWater FALSE
+return
+= AbnormalWeather_EventScript_CleanupRoute127South
+setmetatile 61 30 METATILE_General_CalmWater FALSE
+setmetatile 62 30 METATILE_General_CalmWater FALSE
+setmetatile 60 31 METATILE_General_CalmWater FALSE
+setmetatile 61 31 METATILE_General_CalmWater FALSE
+setmetatile 62 31 METATILE_General_CalmWater FALSE
+setmetatile 63 31 METATILE_General_CalmWater FALSE
+setmetatile 60 32 METATILE_General_CalmWater FALSE
+setmetatile 61 32 METATILE_General_CalmWater FALSE
+setmetatile 62 32 METATILE_General_CalmWater FALSE
+setmetatile 63 32 METATILE_General_CalmWater FALSE
+setmetatile 61 33 METATILE_General_CalmWater FALSE
+setmetatile 62 33 METATILE_General_CalmWater FALSE
+return
+= AbnormalWeather_EventScript_CleanupRoute127North
+setmetatile 57 9 METATILE_General_CalmWater FALSE
+setmetatile 58 9 METATILE_General_CalmWater FALSE
+setmetatile 56 10 METATILE_General_CalmWater FALSE
+setmetatile 57 10 METATILE_General_CalmWater FALSE
+setmetatile 58 10 METATILE_General_CalmWater FALSE
+setmetatile 59 10 METATILE_General_CalmWater FALSE
+setmetatile 56 11 METATILE_General_CalmWater FALSE
+setmetatile 57 11 METATILE_General_CalmWater FALSE
+setmetatile 58 11 METATILE_General_CalmWater FALSE
+setmetatile 59 11 METATILE_General_CalmWater FALSE
+setmetatile 57 12 METATILE_General_CalmWater FALSE
+setmetatile 58 12 METATILE_General_CalmWater FALSE
+return
+= AbnormalWeather_EventScript_CleanupRoute125East
+setmetatile 53 18 METATILE_General_CalmWater FALSE
+setmetatile 54 18 METATILE_General_CalmWater FALSE
+setmetatile 52 19 METATILE_General_CalmWater FALSE
+setmetatile 53 19 METATILE_General_CalmWater FALSE
+setmetatile 54 19 METATILE_General_CalmWater FALSE
+setmetatile 55 19 METATILE_General_CalmWater FALSE
+setmetatile 52 20 METATILE_General_CalmWater FALSE
+setmetatile 53 20 METATILE_General_CalmWater FALSE
+setmetatile 54 20 METATILE_General_CalmWater FALSE
+setmetatile 55 20 METATILE_General_CalmWater FALSE
+setmetatile 53 21 METATILE_General_CalmWater FALSE
+setmetatile 54 21 METATILE_General_CalmWater FALSE
+return
+= AbnormalWeather_EventScript_CleanupRoute125West
+setmetatile 8 16 METATILE_General_CalmWater FALSE
+setmetatile 9 16 METATILE_General_CalmWater FALSE
+setmetatile 7 17 METATILE_General_CalmWater FALSE
+setmetatile 8 17 METATILE_General_CalmWater FALSE
+setmetatile 9 17 METATILE_General_CalmWater FALSE
+setmetatile 10 17 METATILE_General_CalmWater FALSE
+setmetatile 7 18 METATILE_General_CalmWater FALSE
+setmetatile 8 18 METATILE_General_CalmWater FALSE
+setmetatile 9 18 METATILE_General_CalmWater FALSE
+setmetatile 10 18 METATILE_General_CalmWater FALSE
+setmetatile 8 19 METATILE_General_CalmWater FALSE
+setmetatile 9 19 METATILE_General_CalmWater FALSE
+return
+= AbnormalWeather_EventScript_CleanupRoute105South
+setmetatile 20 53 METATILE_General_CalmWater FALSE
+setmetatile 21 53 METATILE_General_CalmWater FALSE
+setmetatile 19 54 METATILE_General_CalmWater FALSE
+setmetatile 20 54 METATILE_General_CalmWater FALSE
+setmetatile 21 54 METATILE_General_CalmWater FALSE
+setmetatile 22 54 METATILE_General_CalmWater FALSE
+setmetatile 19 55 METATILE_General_CalmWater FALSE
+setmetatile 20 55 METATILE_General_CalmWater FALSE
+setmetatile 21 55 METATILE_General_CalmWater FALSE
+setmetatile 22 55 METATILE_General_CalmWater FALSE
+setmetatile 20 56 METATILE_General_CalmWater FALSE
+setmetatile 21 56 METATILE_General_CalmWater FALSE
+return
+= AbnormalWeather_EventScript_CleanupRoute105North
+setmetatile 10 28 METATILE_General_CalmWater FALSE
+setmetatile 11 28 METATILE_General_CalmWater FALSE
+setmetatile 9 29 METATILE_General_CalmWater FALSE
+setmetatile 10 29 METATILE_General_CalmWater FALSE
+setmetatile 11 29 METATILE_General_CalmWater FALSE
+setmetatile 12 29 METATILE_General_CalmWater FALSE
+setmetatile 9 30 METATILE_General_CalmWater FALSE
+setmetatile 10 30 METATILE_General_CalmWater FALSE
+setmetatile 11 30 METATILE_General_CalmWater FALSE
+setmetatile 12 30 METATILE_General_CalmWater FALSE
+setmetatile 10 31 METATILE_General_CalmWater FALSE
+setmetatile 11 31 METATILE_General_CalmWater FALSE
+return
+= AbnormalWeather_EventScript_CleanupRoute118West
+setmetatile 9 5 METATILE_General_RockWall_RockBase TRUE
+setmetatile 9 6 METATILE_General_RockWall_GrassBase TRUE
+return
+= AbnormalWeather_EventScript_CleanupRoute118East
+setmetatile 42 5 METATILE_General_RockWall_RockBase TRUE
+setmetatile 42 6 METATILE_General_RockWall_GrassBase TRUE
+return
+= AbnormalWeather_EventScript_CleanupRoute116South
+setmetatile 79 5 METATILE_General_RockWall_RockBase TRUE
+setmetatile 79 6 METATILE_General_RockWall_RockBase TRUE
+return
+= AbnormalWeather_EventScript_CleanupRoute116North
+setmetatile 59 12 METATILE_General_RockWall_RockBase TRUE
+setmetatile 59 13 METATILE_General_RockWall_RockBase TRUE
+return
+= AbnormalWeather_EventScript_CleanupRoute115East
+setmetatile 36 9 METATILE_Fallarbor_BrownRockWall TRUE
+setmetatile 36 10 METATILE_Fallarbor_BrownRockWall TRUE
+return
+= AbnormalWeather_EventScript_CleanupRoute115West
+setmetatile 21 5 METATILE_Fallarbor_BrownRockWall TRUE
+setmetatile 21 6 METATILE_Fallarbor_BrownRockWall TRUE
+return
+= AbnormalWeather_EventScript_CleanupRoute114South
+setmetatile 6 45 METATILE_Fallarbor_BrownRockWall TRUE
+setmetatile 6 46 METATILE_Fallarbor_BrownRockWall TRUE
+return
+= AbnormalWeather_EventScript_CleanupRoute114North
+setmetatile 7 3 METATILE_Fallarbor_RedRockWall TRUE
+setmetatile 7 4 METATILE_Fallarbor_RedRockWall TRUE
+return
+= AbnormalWeather_EventScript_ShowRainEndedMessage
+msgbox	The massive downpour appears to have stopped…
+goto AbnormalWeather_EventScript_EndEventAndCleanup_2
+end
+= Route115_HiddenItem_15_49
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_115_HEART_SCALE Route115_HiddenItem_15_49_Taken
+finditem ITEM_HEART_SCALE
+setflag FLAG_HIDDEN_ITEM_ROUTE_115_HEART_SCALE
+end
+= Route115_HiddenItem_15_49_Taken
+end
+= Route115_EventScript_ItemHealPowder
+goto_if_set FLAG_ITEM_ROUTE_115_HEAL_POWDER Route115_EventScript_ItemHealPowder_Taken
+finditem ITEM_HEAL_POWDER
+setflag FLAG_ITEM_ROUTE_115_HEAL_POWDER
+end
+= Route115_EventScript_ItemHealPowder_Taken
+end
+= Route115_EventScript_ItemPPUp
+goto_if_set FLAG_ITEM_ROUTE_115_PP_UP Route115_EventScript_ItemPPUp_Taken
+finditem ITEM_PP_UP
+setflag FLAG_ITEM_ROUTE_115_PP_UP
+end
+= Route115_EventScript_ItemPPUp_Taken
+end
+= Route115_EventScript_Marlene
+trainerbattle_single TRAINER_MARLENE Route115_Text_MarleneIntro Route115_Text_MarleneDefeat
+msgbox	I was meditating with my POKéMON. But this place isn't very peaceful…
+end
+= Route115_EventScript_Alix
+trainerbattle_single TRAINER_ALIX Route115_Text_AlixIntro Route115_Text_AlixDefeat
+msgbox	Oh, well. I think I will TELEPORT home.
+end
+= Route115_EventScript_Helene
+trainerbattle_single TRAINER_HELENE Route115_Text_HeleneIntro Route115_Text_HeleneDefeat
+msgbox	I rarely meet anyone who's better than me…I get it now! You're a GYM LEADER, aren't you?
+end
+= Route115_EventScript_Jaiden
+trainerbattle_single TRAINER_JAIDEN Route115_Text_JaidenIntro Route115_Text_JaidenDefeat
+msgbox	But my POKéMON were ultra, weren't they?
+end
+= Route115_EventScript_Kyra
+trainerbattle_single TRAINER_KYRA Route115_Text_KyraIntro Route115_Text_KyraDefeat
+msgbox	I made the mistake of trying to battle while running!I should take a run to calm down…
+end
+= Route115_EventScript_ItemGreatBall
+goto_if_set FLAG_ITEM_ROUTE_115_GREAT_BALL Route115_EventScript_ItemGreatBall_Taken
+finditem ITEM_GREAT_BALL
+setflag FLAG_ITEM_ROUTE_115_GREAT_BALL
+end
+= Route115_EventScript_ItemGreatBall_Taken
+end
+= EventScript_RockSmash
+lockall
+goto_if_unset FLAG_BADGE03_GET EventScript_CantSmashRock
+checkpartymove MOVE_ROCK_SMASH
+goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CantSmashRock
+setfieldeffectargument 0 VAR_RESULT
+bufferpartymonnick STR_VAR_1 VAR_RESULT
+buffermovename STR_VAR_2 MOVE_ROCK_SMASH
+msgboxyesno	This rock appears to be breakable. Would you like to use ROCK SMASH?
+goto_if_eq VAR_RESULT NO EventScript_CancelSmash
+msgbox	STR_VAR_1 used STR_VAR_2!
+closemessage
+dofieldeffect FLDEFF_USE_ROCK_SMASH
+waitstate
+goto EventScript_SmashRock
+end
+@ Use rock smash from party menu
+goto EventScript_UseRockSmash
+= EventScript_UseRockSmash
+lockall
+dofieldeffect FLDEFF_USE_ROCK_SMASH
+waitstate
+goto EventScript_SmashRock
+end
+= EventScript_SmashRock
+applymovement VAR_LAST_TALKED Movement_SmashRock
+waitmovement 0
+removeobject VAR_LAST_TALKED
+specialvar VAR_RESULT TryUpdateRusturfTunnelState
+goto_if_eq VAR_RESULT TRUE EventScript_EndSmash
+special RockSmashWildEncounter
+goto_if_eq VAR_RESULT FALSE EventScript_EndSmash
+waitstate
+releaseall
+end
+= EventScript_EndSmash
+releaseall
+end
+= EventScript_CancelSmash
+closemessage
+releaseall
+end
+= EventScript_CantSmashRock
+msgbox	It's a rugged rock, but a POKéMON may be able to smash it.
+releaseall
+end
+= BerryTreeScript
+special ObjectEventInteractionGetBerryTreeData
+switch VAR_0x8004
+case BERRY_STAGE_SPARKLING BerryTree_EventScript_Sparkling
+case BERRY_STAGE_NO_BERRY BerryTree_EventScript_CheckSoil
+case BERRY_STAGE_PLANTED BerryTree_EventScript_CheckBerryStage1
+case BERRY_STAGE_SPROUTED BerryTree_EventScript_CheckBerryStage2
+case BERRY_STAGE_TALLER BerryTree_EventScript_CheckBerryStage3
+case BERRY_STAGE_FLOWERING BerryTree_EventScript_CheckBerryStage4
+case BERRY_STAGE_BERRIES BerryTree_EventScript_CheckBerryFullyGrown
+end
+= BerryTree_EventScript_CheckBerryFullyGrown
+buffernumberstring STR_VAR_2 VAR_0x8006
+lock
+faceplayer
+special ObjectEventInteractionGetBerryCountString
+msgboxyesno	You found STR_VAR_2 STR_VAR_1!Do you want to pick the STR_VAR_1?
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_PickBerry
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPickingBerry
+goto BerryTree_EventScript_PickBerry
+= BerryTree_EventScript_PickBerry
+special ObjectEventInteractionPickBerryTree
+goto_if_eq VAR_0x8004 0 BerryTree_EventScript_BerryPocketFull
+special IncrementDailyPickedBerries
+special ObjectEventInteractionRemoveBerryTree
+msgbox	PLAYER picked the STR_VAR_2 STR_VAR_1.
+playfanfare MUS_OBTAIN_BERRY
+waitmessage
+waitfanfare
+waitbuttonpress
+msgbox	PLAYER put away the STR_VAR_1 in the BAG's BERRIES POCKET.The soil returned to its soft and loamy state.
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_BerryPocketFull
+msgbox	The BAG's BERRIES POCKET is full.The STR_VAR_1 couldn't be taken.
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_CancelPickingBerry
+msgbox	PLAYER left the STR_VAR_1 unpicked.
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_CheckBerryStage4
+call BerryTree_EventScript_GetCareAdverb
+lockall
+special ObjectEventInteractionGetBerryName
+msgbox	These STR_VAR_1 flowers are blooming STR_VAR_2.
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+@ VAR_0x8005 here is the number of times watered
+@ Buffered by ObjectEventInteractionGetBerryTreeData
+goto BerryTree_EventScript_GetCareAdverb
+= BerryTree_EventScript_GetCareAdverb
+goto_if_eq VAR_0x8005 0 BerryTree_EventScript_SetAdverbPoor
+goto_if_eq VAR_0x8005 4 BerryTree_EventScript_SetAdverbGreat
+bufferstring STR_VAR_2	prettily
+return
+= BerryTree_EventScript_SetAdverbGreat
+bufferstring STR_VAR_2	very beautifully
+return
+= BerryTree_EventScript_SetAdverbPoor
+bufferstring STR_VAR_2	cutely
+return
+@ VAR_0x8006 here is the number of berries
+goto BerryTree_EventScript_CheckBerryFullyGrown
+= BerryTree_EventScript_WantToWater
+checkitem ITEM_WAILMER_PAIL
+goto_if_eq VAR_RESULT FALSE BerryTree_EventScript_DontWater
+special ObjectEventInteractionGetBerryName
+msgboxyesno	Want to water the STR_VAR_1 with the WAILMER PAIL?
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_WaterBerry
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_DontWater
+goto BerryTree_EventScript_DontWater
+= BerryTree_EventScript_DontWater
+releaseall
+end
+= BerryTree_EventScript_WaterBerry
+special ObjectEventInteractionGetBerryName
+msgbox	PLAYER watered the STR_VAR_1.
+waitmessage
+special ObjectEventInteractionWaterBerryTree
+special DoWateringBerryTreeAnim
+msgbox	The plant seems to be delighted.
+waitmessage
+waitbuttonpress
+releaseall
+end
+= BerryTree_EventScript_CheckBerryStage3
+lockall
+special ObjectEventInteractionGetBerryName
+msgbox	This STR_VAR_1 plant is growing taller.
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckBerryStage2
+lockall
+special ObjectEventInteractionGetBerryName
+msgbox	STR_VAR_1 has sprouted.
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckBerryStage1
+lockall
+special ObjectEventInteractionGetBerryCountString
+msgbox	One STR_VAR_1 was planted here.
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckSoil
+lock
+faceplayer
+specialvar VAR_RESULT PlayerHasBerries
+goto_if_eq VAR_RESULT TRUE BerryTree_EventScript_WantToPlant
+msgbox	It's soft, loamy soil.
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_WantToPlant
+msgboxyesno	It's soft, loamy soil. Want to plant a BERRY?
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_ChooseBerryToPlant
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPlanting
+end
+= BerryTree_EventScript_CancelPlanting
+release
+end
+= BerryTree_EventScript_ChooseBerryToPlant
+fadescreen FADE_TO_BLACK
+closemessage
+special Bag_ChooseBerry
+goto_if_eq VAR_ITEM_ID 0 BerryTree_EventScript_CancelPlanting
+removeitem VAR_ITEM_ID
+call BerryTree_EventScript_PlantBerry
+goto BerryTree_EventScript_CancelPlanting
+= BerryTree_EventScript_PlantBerry
+special ObjectEventInteractionPlantBerryTree
+incrementgamestat GAME_STAT_PLANTED_BERRIES
+special IncrementDailyPlantedBerries
+special ObjectEventInteractionGetBerryCountString
+msgbox	PLAYER planted one STR_VAR_1 in the soft, loamy soil.
+waitmessage
+waitbuttonpress
+return
+= BerryTree_EventScript_Sparkling
+lockall
+msgbox	!
+waitmessage
+waitbuttonpress
+releaseall
+end
+= Route115_EventScript_ItemIron
+goto_if_set FLAG_ITEM_ROUTE_115_IRON Route115_EventScript_ItemIron_Taken
+finditem ITEM_IRON
+setflag FLAG_ITEM_ROUTE_115_IRON
+end
+= Route115_EventScript_ItemIron_Taken
+end
+= Route115_EventScript_ItemTMFocusPunch
+goto_if_set FLAG_ITEM_ROUTE_115_TM_FOCUS_PUNCH Route115_EventScript_ItemTMFocusPunch_Taken
+finditem ITEM_TM_FOCUS_PUNCH
+setflag FLAG_ITEM_ROUTE_115_TM_FOCUS_PUNCH
+end
+= Route115_EventScript_ItemTMFocusPunch_Taken
+end
+= Route115_EventScript_ItemSuperPotion
+goto_if_set FLAG_ITEM_ROUTE_115_SUPER_POTION Route115_EventScript_ItemSuperPotion_Taken
+finditem ITEM_SUPER_POTION
+setflag FLAG_ITEM_ROUTE_115_SUPER_POTION
+end
+= Route115_EventScript_ItemSuperPotion_Taken
+end
+= Route115_EventScript_Hector
+trainerbattle_single TRAINER_HECTOR Route115_Text_HectorIntro Route115_Text_HectorDefeat
+msgbox	I have this rare POKéMON. It's enough to keep me satisfied.
+end
+= Route115_EventScript_Koichi
+trainerbattle_single TRAINER_KOICHI Route115_Text_KoichiIntro Route115_Text_KoichiDefeat
+msgbox	My MACHOP crew!So long as they seek power, I will grow strong with them!
+end
+= Route115_EventScript_Cyndy
+trainerbattle_single TRAINER_CYNDY_1 Route115_Text_CyndyIntro Route115_Text_CyndyDefeat Route115_EventScript_RegisterCyndy
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route115_EventScript_RematchCyndy
+msgbox	The sand acts as a cushion to reduce impact and prevent injury. This is the perfect place to train.
+release
+end
+= Route115_EventScript_RematchCyndy
+trainerbattle_rematch TRAINER_CYNDY_1 Route115_Text_CyndyRematchIntro Route115_Text_CyndyRematchDefeat
+msgbox	Even when I lose, I still get some enjoyment out of it. It must be that I love POKéMON.
+end
+= Route115_EventScript_RegisterCyndy
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	Okay, fine, you're free to come here. In return, I'd like to battle you again.
+register_matchcall TRAINER_CYNDY_1
+release
+end
+= Route115_EventScript_Nob
+trainerbattle_single TRAINER_NOB_1 Route115_Text_NobIntro Route115_Text_NobDefeat Route115_EventScript_RegisterNob
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route115_EventScript_RematchNob
+msgbox	I've been teaching my POKéMON karate.It looks like they'll get a lot better than me. I'm excited about that.
+release
+end
+= Route115_EventScript_RematchNob
+trainerbattle_rematch TRAINER_NOB_1 Route115_Text_NobRematchIntro Route115_Text_NobRematchDefeat
+msgbox	My POKéMON will grow stronger! I'll redouble my training!
+end
+= Route115_EventScript_RegisterNob
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	You impress me! Give me a rematch after I redo my training!
+register_matchcall TRAINER_NOB_1
+release
+end
+= Route115_EventScript_Timothy
+trainerbattle_single TRAINER_TIMOTHY_1 Route115_Text_TimothyIntro Route115_Text_TimothyDefeat Route115_EventScript_RegisterTimothy
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route115_EventScript_RematchTimothy
+msgbox	There is no such thing as a born genius. It all depends on effort! That is what I believe…
+release
+end
+= Route115_EventScript_RematchTimothy
+trainerbattle_rematch TRAINER_TIMOTHY_1 Route115_Text_TimothyRematchIntro Route115_Text_TimothyRematchDefeat
+msgbox	All it takes is effort!I lost because I haven't put in enough effort!
+end
+= Route115_EventScript_RegisterTimothy
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	Hmm… A loss this thorough has been a distant memory.If you would allow it, I wish for another opportunity to do battle.
+register_matchcall TRAINER_TIMOTHY_1
+release
+end
+= Route115_EventScript_Woman
+msgbox	Exploring a cave isn't like walking on a road.You never know when wild POKéMON will appear. It's full of suspense.
+end
+signs
+16 64	ROUTE 115 RUSTBORO CITY
+25 38	METEOR FALLS FALLARBOR TOWN THROUGH HERE
+grass
+13
+water
+283,291,299,300,301,325,326,368,370
+mapsec
+0 2 1 3	ROUTE 115
+music
+MUS_ROUTE104
+encounters
+land SWABLU:23:23,TAILLOW:23:23,SWABLU:25:25,TAILLOW:24:24,TAILLOW:25:25,SWELLOW:25:25,JIGGLYPUFF:24:24,JIGGLYPUFF:25:25,WINGULL:24:24,WINGULL:24:24,WINGULL:26:26,WINGULL:25:25
+water TENTACOOL:5:35,WINGULL:10:30,WINGULL:15:25,PELIPPER:25:30,PELIPPER:25:30
+fishing MAGIKARP:5:10,TENTACOOL:5:10,MAGIKARP:10:30,TENTACOOL:10:30,WAILMER:10:30,WAILMER:25:30,WAILMER:30:35,WAILMER:20:25,WAILMER:35:40,WAILMER:40:45

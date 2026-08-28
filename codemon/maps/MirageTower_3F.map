@@ -1,0 +1,102 @@
+tileset general__mirage_tower
+21 17
+10 8
+581,581,539,523,537,537,537,537,537,537,537,537,537,537,537,537,523,537,540,581,581
+581,581,530,539,537,537,537,537,537,537,537,537,537,537,537,537,537,540,528,581,581
+539,537,538,530,664,665,665,665,665,665,666,529,529,529,664,665,666,528,536,537,540
+530,539,527,538,680,681,681,681,681,681,682,529,529,529,672,673,682,536,537,540,528
+530,530,535,529,529,529,529,520,521,521,521,521,521,522,680,682,529,529,529,528,528
+530,530,529,529,529,529,520,521,529,529,529,529,529,521,522,529,529,514,515,528,528
+530,530,529,529,515,520,528,529,529,529,529,529,529,529,530,522,515,559,529,528,528
+530,530,529,664,666,528,528,529,529,529,529,529,529,529,530,530,559,529,559,528,528
+530,530,515,673,674,528,528,529,529,529,529,529,529,529,530,530,529,664,666,528,528
+530,530,664,673,674,528,528,529,529,529,529,529,529,529,530,530,664,673,674,528,528
+530,530,680,673,674,528,536,540,529,529,529,529,529,539,538,530,680,681,682,528,528
+530,530,529,672,674,536,540,536,537,537,537,537,537,538,539,538,529,529,529,528,528
+530,530,529,680,682,529,536,537,537,537,537,537,537,537,538,529,529,529,517,528,528
+530,521,521,522,529,529,529,664,665,665,665,665,665,665,665,666,529,520,521,521,528
+521,521,522,530,529,529,529,680,681,681,681,681,681,681,681,682,529,528,544,521,521
+581,529,530,521,521,521,521,521,521,521,521,521,521,521,521,521,521,521,528,529,581
+581,529,521,521,521,521,521,521,521,521,521,521,521,521,521,521,521,521,521,529,581
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
+1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
+1,1,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,1,1
+1,1,0,0,0,0,1,1,0,0,0,0,0,1,1,0,0,1,1,1,1
+1,1,0,0,1,1,1,0,0,0,0,0,0,0,1,1,1,0,0,1,1
+1,1,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,1,1
+1,1,1,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,1,1
+1,1,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,1,1
+1,1,0,0,0,1,1,1,0,0,0,0,0,1,1,1,0,0,0,1,1
+1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1
+1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1
+1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
+1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
+1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1
+1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1
+warps
+18 12 MirageTower_2F 0
+2 4 MirageTower_4F 0
+npcs
+misc_breakable_rock 3 7 S static FLAG_TEMP_11 - 0
+misc_breakable_rock 4 8 S static FLAG_TEMP_12 - 0
+objscripts
+0 EventScript_RockSmash
+1 EventScript_RockSmash
+movements
+Movement_SmashRock	delay,end
+scriptdefs
+= EventScript_RockSmash
+lockall
+goto_if_unset FLAG_BADGE03_GET EventScript_CantSmashRock
+checkpartymove MOVE_ROCK_SMASH
+goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CantSmashRock
+setfieldeffectargument 0 VAR_RESULT
+bufferpartymonnick STR_VAR_1 VAR_RESULT
+buffermovename STR_VAR_2 MOVE_ROCK_SMASH
+msgboxyesno	This rock appears to be breakable. Would you like to use ROCK SMASH?
+goto_if_eq VAR_RESULT NO EventScript_CancelSmash
+msgbox	STR_VAR_1 used STR_VAR_2!
+closemessage
+dofieldeffect FLDEFF_USE_ROCK_SMASH
+waitstate
+goto EventScript_SmashRock
+end
+@ Use rock smash from party menu
+goto EventScript_UseRockSmash
+= EventScript_UseRockSmash
+lockall
+dofieldeffect FLDEFF_USE_ROCK_SMASH
+waitstate
+goto EventScript_SmashRock
+end
+= EventScript_SmashRock
+applymovement VAR_LAST_TALKED Movement_SmashRock
+waitmovement 0
+removeobject VAR_LAST_TALKED
+specialvar VAR_RESULT TryUpdateRusturfTunnelState
+goto_if_eq VAR_RESULT TRUE EventScript_EndSmash
+special RockSmashWildEncounter
+goto_if_eq VAR_RESULT FALSE EventScript_EndSmash
+waitstate
+releaseall
+end
+= EventScript_EndSmash
+releaseall
+end
+= EventScript_CancelSmash
+closemessage
+releaseall
+end
+= EventScript_CantSmashRock
+msgbox	It's a rugged rock, but a POKéMON may be able to smash it.
+releaseall
+end
+mapsec
+8 2 1 1	MIRAGE TOWER
+music
+MUS_MT_CHIMNEY
+encounters
+land SANDSHREW:21:21,TRAPINCH:21:21,SANDSHREW:20:20,TRAPINCH:20:20,SANDSHREW:20:20,TRAPINCH:20:20,SANDSHREW:22:22,TRAPINCH:22:22,SANDSHREW:23:23,TRAPINCH:23:23,SANDSHREW:24:24,TRAPINCH:24:24

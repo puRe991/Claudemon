@@ -1,0 +1,53 @@
+tileset building__lab
+11 8
+5 4
+528,529,528,529,521,520,521,530,531,528,529
+536,537,536,537,522,588,524,538,539,536,537
+544,545,544,545,517,546,547,546,547,544,545
+552,562,552,514,560,514,592,593,514,552,570
+593,566,549,514,568,514,600,601,514,562,578
+601,556,557,514,576,514,562,586,514,566,549
+592,564,565,514,514,514,514,514,553,556,557
+600,586,562,514,514,518,519,562,561,564,565
+collision
+1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1
+1,0,1,0,0,0,0,0,0,1,0
+1,1,1,0,1,0,1,1,0,1,0
+1,0,0,0,1,0,1,1,0,1,1
+1,1,1,0,1,0,1,1,0,0,0
+1,1,1,0,0,0,0,0,0,1,1
+1,1,1,0,0,0,0,1,1,1,1
+warps
+5 7 Route114 2
+6 7 Route114 2
+npcs
+people_woman_2 5 4 S static FLAG_HIDE_LANETTES_HOUSE_LANETTE - 0
+dialogs
+0	LANETTE: Oh! PLAYER!I'm sorry everything is so cluttered… When I get engrossed in research, things end up this way…This is embarrassing… Please keep this a secret in exchange for this.
+objscripts
+0 Route114_LanettesHouse_EventScript_Lanette
+scriptdefs
+= Route114_LanettesHouse_EventScript_Lanette
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_DOLL_LANETTE Route114_LanettesHouse_EventScript_OfferAdvice
+setflag FLAG_SYS_PC_LANETTE
+msgbox	LANETTE: Oh! PLAYER!I'm sorry everything is so cluttered… When I get engrossed in research, things end up this way…This is embarrassing… Please keep this a secret in exchange for this.
+givedecoration DECOR_LOTAD_DOLL
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowNoRoomForDecor
+setflag FLAG_RECEIVED_DOLL_LANETTE
+release
+end
+= Route114_LanettesHouse_EventScript_OfferAdvice
+msgbox	May I offer advice about my POKéMON Storage System?You should organize your BOXES so you can tell which POKéMON are in them.
+release
+end
+signs
+5 1	It's LANETTE's research notes. There's information about BOXES.Design BOXES to hold 30 POKéMON each.Each TRAINER should be able to store 420 POKéMON on the PC system.Keep reading?
+8 1	There's an e-mail from someone on the PC.“… … … … … … …“Your Storage System offers more convenience than mine.“It has a lot of user-friendly features that make it fun and useful, too.“It makes me proud that I played a part in its development.“Here's hoping that you'll continue research in Storage Systems.“From BILL … … … … … … … …”
+7 1	There's an e-mail from someone on the PC.“… … … … … … …“Your Storage System offers more convenience than mine.“It has a lot of user-friendly features that make it fun and useful, too.“It makes me proud that I played a part in its development.“Here's hoping that you'll continue research in Storage Systems.“From BILL … … … … … … … …”
+mapsec
+1 0 2 3	ROUTE 114
+music
+MUS_FALLARBOR

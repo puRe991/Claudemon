@@ -1,0 +1,497 @@
+tileset general__slateport
+40 63
+20 31
+336,337,368,368,368,368,368,291,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,293,368,344,345
+344,345,368,368,368,368,368,291,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,293,368,336,337
+368,373,374,368,368,368,368,299,325,292,704,705,705,705,706,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,326,301,368,344,345
+368,381,382,368,368,368,368,368,291,292,712,713,713,713,714,292,292,292,292,292,292,292,292,292,738,739,292,292,292,292,292,292,292,292,292,293,368,368,373,374
+368,368,336,337,368,368,368,368,291,292,728,721,723,721,730,292,292,292,738,739,292,292,292,292,746,747,292,292,292,292,292,292,292,292,292,293,368,368,381,382
+368,368,344,345,368,368,368,368,291,292,717,19,731,19,718,3,292,292,746,747,292,292,292,292,754,755,292,292,292,292,292,292,292,292,292,293,368,368,373,374
+368,368,373,374,368,368,368,368,291,740,741,292,292,292,292,740,741,292,754,755,292,740,741,292,292,292,292,740,741,292,292,292,292,292,326,301,368,368,381,382
+368,368,381,382,368,368,368,368,291,748,749,292,292,292,292,748,749,292,292,292,292,748,749,292,292,292,292,748,749,292,292,292,292,292,293,368,368,373,374,368
+368,373,374,368,368,368,368,368,291,756,757,738,739,292,292,756,757,737,292,292,292,756,757,737,737,292,292,756,757,292,292,292,292,292,293,368,368,381,382,368
+368,381,382,368,368,368,368,368,291,736,292,746,747,292,737,737,292,745,292,292,292,292,292,745,745,292,292,292,292,292,292,292,292,292,293,368,336,337,368,368
+368,368,368,336,337,368,368,368,291,744,292,754,755,292,745,745,292,753,292,292,292,292,292,753,753,292,292,292,292,660,292,736,292,326,301,368,344,345,336,337
+368,368,368,344,345,368,368,368,291,752,292,292,737,292,753,753,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,744,292,293,368,368,368,368,344,345
+368,368,368,368,336,337,368,368,299,325,292,292,745,292,292,292,740,741,292,292,292,292,292,292,292,740,741,292,292,292,292,752,292,293,368,368,368,373,374,368
+368,368,370,372,344,345,368,368,368,291,292,292,753,292,292,292,748,749,292,292,737,737,737,737,292,748,749,292,292,292,292,292,292,293,368,368,368,381,382,368
+368,368,378,180,372,368,368,368,368,299,325,292,292,742,743,292,756,757,737,292,745,745,745,745,292,756,757,292,292,292,292,292,326,301,368,368,368,368,373,374
+368,368,386,121,388,368,368,368,368,368,291,292,292,750,751,292,292,292,745,292,753,753,753,753,292,292,292,742,743,736,292,292,293,368,368,368,368,368,381,382
+368,368,368,368,373,374,368,368,368,368,291,292,737,758,759,292,292,292,753,292,292,292,292,292,292,292,292,750,751,744,292,292,293,368,368,368,368,336,337,368
+368,368,368,368,381,382,368,368,368,368,299,325,745,292,292,292,737,737,292,292,742,743,292,737,292,292,292,758,759,752,326,300,301,368,368,368,368,344,345,368
+368,368,368,336,337,368,368,368,368,368,368,291,753,292,292,292,745,745,292,292,750,751,292,745,292,292,292,292,292,292,293,368,368,368,368,368,336,337,368,368
+368,368,368,344,345,368,368,368,368,368,368,299,325,292,292,292,753,753,292,292,758,759,292,753,292,292,736,292,292,326,301,368,368,368,368,368,344,345,368,368
+368,368,368,373,374,368,368,368,368,368,368,368,291,292,292,292,292,292,292,292,292,292,292,292,292,292,744,292,292,293,368,368,368,368,368,368,368,373,374,368
+368,368,368,381,382,336,337,368,368,368,368,368,299,300,300,325,292,292,292,292,292,292,292,292,292,292,752,326,300,301,368,368,368,368,368,368,368,381,382,368
+368,368,368,368,368,344,345,368,368,368,368,368,368,368,368,291,292,292,292,292,292,292,292,292,292,292,292,293,368,368,368,368,368,368,368,368,368,370,379,372
+368,368,368,368,368,368,373,374,368,368,368,368,368,368,368,291,292,292,292,292,292,292,292,292,292,326,300,301,368,368,368,368,368,368,368,368,370,180,113,380
+368,368,368,368,368,368,381,382,368,368,368,368,368,368,368,299,300,300,325,292,292,292,292,326,300,301,368,368,368,368,368,368,368,368,368,368,378,113,116,388
+368,368,368,368,368,373,374,368,368,368,368,368,368,368,368,368,368,368,299,300,300,300,300,301,368,368,368,368,368,368,368,368,368,368,368,368,378,113,380,368
+368,368,368,368,368,381,382,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,373,374,386,121,388,368
+368,368,368,368,370,379,372,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,381,382,368,368,368,368
+368,368,368,370,180,113,380,373,374,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,283,284,284,285,368,368,368,368,368,368,373,374,368,368
+368,368,368,378,113,113,380,381,382,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,283,317,740,741,318,284,285,368,368,368,368,381,382,368,368
+368,368,368,378,113,116,388,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,283,317,292,748,749,292,292,318,284,285,368,336,337,368,368,368
+368,368,368,386,121,388,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,291,292,292,756,757,736,292,292,292,293,368,344,345,368,368,368
+368,368,373,374,368,368,336,337,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,291,292,292,292,292,744,292,292,292,293,368,368,336,337,368,368
+368,368,381,382,368,368,344,345,373,374,368,368,368,368,368,368,368,368,368,368,368,368,368,368,291,292,292,292,292,752,292,292,326,301,368,368,344,345,368,368
+368,368,368,368,368,368,368,368,381,382,368,368,368,368,368,368,368,368,368,368,368,368,368,368,299,300,325,292,292,292,326,300,301,368,368,336,337,368,368,368
+368,368,368,368,368,368,370,379,372,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,299,300,300,300,301,368,368,368,368,344,345,368,368,368
+368,368,368,368,336,337,378,113,380,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,373,374,368,368,368,368
+368,368,368,368,344,345,386,121,388,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,381,382,368,368,368,368
+368,368,368,373,374,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,373,374,368,368,368,368,368
+368,368,368,381,382,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,381,382,368,368,368,368,368
+368,368,373,374,368,368,368,283,284,284,285,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,373,374,368,368,373,374,368,368,368
+373,374,381,382,368,368,283,317,292,292,293,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,381,382,368,368,381,382,368,368,368
+381,382,368,368,368,368,291,292,292,292,293,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,283,284,284,285,368,368,336,337,368,368,368,368,368,368
+368,368,373,374,368,368,291,292,292,326,301,368,368,368,368,368,368,368,368,368,368,368,368,368,368,283,317,292,292,293,368,368,344,345,368,368,368,368,368,368
+368,368,381,382,368,368,299,300,300,301,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,291,292,292,292,318,285,368,368,373,374,368,368,368,368,368
+368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,283,317,292,292,292,292,293,368,368,381,382,368,368,368,368,368
+368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,291,292,292,292,292,292,293,368,368,368,373,374,368,368,368,368
+368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,291,292,292,292,292,326,301,368,368,368,381,382,368,368,368,368
+368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,299,300,300,300,300,301,368,368,368,336,337,368,368,368,368,368
+368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,344,345,368,368,368,368,368
+368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,373,374,368,368,368,368
+368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,283,284,284,284,284,284,285,368,368,368,368,368,368,368,368,368,368,368,368,381,382,368,368,368,368
+368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,291,736,736,737,292,292,293,368,368,368,368,368,368,368,368,368,368,368,336,337,368,368,368,368,368
+368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,291,744,744,745,292,292,293,368,368,368,368,368,368,368,368,368,368,368,344,345,368,368,368,368,368
+368,368,336,337,373,374,368,368,336,337,368,368,368,368,368,291,752,752,753,292,292,293,368,368,368,368,368,368,368,368,368,368,368,370,379,372,368,368,368,368
+336,337,344,345,381,382,368,368,344,345,368,368,368,368,368,291,738,739,292,292,737,318,285,368,336,337,368,368,368,368,368,368,370,180,113,380,368,368,368,368
+344,345,368,368,368,373,374,370,379,372,368,368,368,368,283,317,746,747,292,292,745,292,318,285,344,345,368,368,368,368,336,337,378,113,116,388,368,368,368,368
+368,368,368,368,368,381,382,378,113,380,368,368,368,368,291,292,754,755,292,292,753,292,292,293,336,337,373,374,368,368,344,345,386,121,388,368,368,368,368,368
+368,368,368,368,368,368,368,386,121,388,368,368,368,368,299,300,300,325,292,292,292,292,326,301,344,345,381,382,373,374,368,368,368,368,368,368,368,368,368,368
+368,368,368,368,368,368,368,368,368,336,337,368,368,368,336,337,368,299,300,325,292,326,301,336,337,368,368,368,381,382,368,368,368,368,368,368,368,368,368,368
+368,368,368,368,368,368,368,368,368,344,345,373,374,368,344,345,368,368,368,299,300,301,368,344,345,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368
+368,368,368,368,368,368,368,368,368,368,368,381,382,336,337,336,337,373,374,373,374,336,337,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368
+368,368,368,368,368,368,368,368,368,368,368,368,368,344,345,344,345,381,382,381,382,344,345,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368
+collision
+1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+0,1,1,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+0,0,1,1,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+0,0,1,1,0,0,0,0,0,0,1,1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0
+0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0
+0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0
+0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,1,1
+0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0
+0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0
+0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0
+0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0
+0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0
+0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0
+0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0
+0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0
+0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1
+0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1
+0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0
+0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0
+0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0
+0,0,0,1,1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0
+0,0,0,1,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0
+0,0,0,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0
+0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0
+0,0,1,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0
+0,0,1,1,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0
+0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0
+0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0
+0,0,0,0,1,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0
+0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0
+0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0
+0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0
+0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,1,1,0,0,0
+1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,1,1,0,0,0
+1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0
+0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0
+0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0
+0,0,1,1,1,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0
+1,1,1,1,1,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,1,0,0,0,0
+1,1,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,1,1,1,0,1,1,0,0,0,0
+0,0,0,0,0,1,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,1,1,1,1,1,0,0,0,0,0
+0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,1,1,1,1,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+connections
+up 0 SlateportCity
+left 40 Route108
+warps
+12 5 Route109_SeashoreHouse 0
+npcs
+misc_mr_brineys_boat 21 26 N static FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT LOCALID_ROUTE109_BOAT 0
+people_expert_m 21 24 N static FLAG_HIDE_ROUTE_109_MR_BRINEY LOCALID_ROUTE109_BRINEY 0
+people_swimmer_m 12 36 E static 0 - 5
+people_swimmer_f 25 39 S static 0 - 5
+people_sailor 15 17 S static 0 - 1
+people_sailor 24 13 W static 0 - 6
+people_tuber_m 19 10 S static 0 - 3
+people_tuber_f 22 7 S static 0 - 4
+people_little_girl 11 6 S static 0 - 0
+misc_item_ball 27 46 S static FLAG_ITEM_ROUTE_109_PP_UP - 0
+people_tuber_f 29 32 S static 0 - 3
+people_tuber_f 28 31 S static 0 - 3
+people_fisherman 21 56 W static 0 - 3
+people_tuber_m 24 18 E static 0 - 0
+people_tuber_f 25 18 W static 0 - 0
+people_pokefan_f 30 32 S static 0 - 0
+people_woman_4 8 41 S static 0 - 1
+people_man_4 9 41 S static 0 - 1
+people_old_man 33 6 S static 0 - 0
+pokemon_zigzagoon 32 6 S static 0 - 0
+people_tuber_f 17 13 S static 0 - 6
+people_tuber_m 27 7 S static 0 - 4
+misc_item_ball 25 6 S static FLAG_ITEM_ROUTE_109_POTION - 0
+people_man_5 17 56 S static 0 - 3
+dialogs
+8	Yo, TRAINERS! Whether you're hot to trot, or cool cat not, chill at my papa's spot!
+13	Our sand castle's taking a long time to make.
+14	You can have this!
+15	Little kids can dart around so quickly…You don't dare take your eyes off them for an instant. It's very taxing.Mine are with my POKéMON, so they should be okay, but…
+18	The water around these parts is clean.But, I get my ZIGZAGOON to pick up litter from the shoreline at times.Dirty water becomes rain and joins our rivers, which we drink from…If we pollute the sea, it all comes back to haunt us eventually.
+19	ZIGZAGOON: Guguu?
+objscripts
+1 Route109_EventScript_MrBriney
+2 Route109_EventScript_David
+3 Route109_EventScript_Alice
+4 Route109_EventScript_Huey
+5 Route109_EventScript_Edmond
+6 Route109_EventScript_Ricky
+7 Route109_EventScript_Lola
+8 Route109_EventScript_SeashoreHouseGirl
+9 Route109_EventScript_ItemPPUp
+10 Route109_EventScript_Gwen
+11 Route109_EventScript_Austina
+12 Route109_EventScript_Carter
+13 Route109_EventScript_SandCastleBoy
+14 Route109_EventScript_SoftSandGirl
+15 Route109_EventScript_Woman
+16 Route109_EventScript_Mel
+17 Route109_EventScript_Paul
+18 Route109_EventScript_OldMan
+19 Route109_EventScript_Zigzagoon
+20 Route109_EventScript_Hailey
+21 Route109_EventScript_Chandler
+22 Route109_EventScript_ItemPotion
+23 Route109_EventScript_Elijah
+triggers
+16 23 0 0 Route109_HiddenItem_16_23
+33 5 0 0 Route109_HiddenItem_33_5
+9 10 0 0 Route109_HiddenItem_9_10
+28 20 0 0 Route109_HiddenItem_28_20
+13 16 0 0 Route109_HiddenItem_13_16
+8 42 0 0 Route109_HiddenItem_8_42
+movements
+Common_Movement_FaceOriginalDirection	face_down,end
+Route109_Movement_BrineyEnterBoat	down,end
+Route109_Movement_BrineyExitBoat	down,delay,end
+Route109_Movement_PlayerEnterBoatEast	right,down,end
+Route109_Movement_PlayerEnterBoatSouth	down,down,end
+Route109_Movement_PlayerEnterBoatWest	left,down,end
+Route109_Movement_PlayerExitBoat	down,down,left,delay,end
+Route109_Movement_SailToDewford	delay,down,down,down,down,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,down,down,left,left,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,left,left,left,left,left,left,left,left,left,left,left,delay,end
+scriptdefs
+= Route109_HiddenItem_8_42
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_109_HEART_SCALE_3 Route109_HiddenItem_8_42_Taken
+finditem ITEM_HEART_SCALE
+setflag FLAG_HIDDEN_ITEM_ROUTE_109_HEART_SCALE_3
+end
+= Route109_HiddenItem_8_42_Taken
+end
+= Route109_HiddenItem_13_16
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_109_HEART_SCALE_2 Route109_HiddenItem_13_16_Taken
+finditem ITEM_HEART_SCALE
+setflag FLAG_HIDDEN_ITEM_ROUTE_109_HEART_SCALE_2
+end
+= Route109_HiddenItem_13_16_Taken
+end
+= Route109_HiddenItem_28_20
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_109_ETHER Route109_HiddenItem_28_20_Taken
+finditem ITEM_ETHER
+setflag FLAG_HIDDEN_ITEM_ROUTE_109_ETHER
+end
+= Route109_HiddenItem_28_20_Taken
+end
+= Route109_HiddenItem_9_10
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_109_GREAT_BALL Route109_HiddenItem_9_10_Taken
+finditem ITEM_GREAT_BALL
+setflag FLAG_HIDDEN_ITEM_ROUTE_109_GREAT_BALL
+end
+= Route109_HiddenItem_9_10_Taken
+end
+= Route109_HiddenItem_33_5
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_109_HEART_SCALE_1 Route109_HiddenItem_33_5_Taken
+finditem ITEM_HEART_SCALE
+setflag FLAG_HIDDEN_ITEM_ROUTE_109_HEART_SCALE_1
+end
+= Route109_HiddenItem_33_5_Taken
+end
+= Route109_HiddenItem_16_23
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_109_REVIVE Route109_HiddenItem_16_23_Taken
+finditem ITEM_REVIVE
+setflag FLAG_HIDDEN_ITEM_ROUTE_109_REVIVE
+end
+= Route109_HiddenItem_16_23_Taken
+end
+= Route109_EventScript_Elijah
+trainerbattle_single TRAINER_ELIJAH Route109_Text_ElijahIntro Route109_Text_ElijahDefeated
+msgbox	For a guy as macho as me, a port is the perfect setting!I guess I'll head for SLATEPORT.
+end
+= Route109_EventScript_ItemPotion
+goto_if_set FLAG_ITEM_ROUTE_109_POTION Route109_EventScript_ItemPotion_Taken
+finditem ITEM_POTION
+setflag FLAG_ITEM_ROUTE_109_POTION
+end
+= Route109_EventScript_ItemPotion_Taken
+end
+= Route109_EventScript_Chandler
+trainerbattle_single TRAINER_CHANDLER Route109_Text_ChandlerIntro Route109_Text_ChandlerDefeated
+msgbox	After I showed you my round inner tube, too…
+end
+= Route109_EventScript_Hailey
+trainerbattle_single TRAINER_HAILEY Route109_Text_HaileyIntro Route109_Text_HaileyDefeated
+msgbox	When I learn how to swim, I think my POKéMON will become tougher.
+end
+= Route109_EventScript_Zigzagoon
+lock
+faceplayer
+waitse
+playmoncry SPECIES_ZIGZAGOON CRY_MODE_NORMAL
+msgbox	ZIGZAGOON: Guguu?
+waitmoncry
+release
+end
+= Route109_EventScript_OldMan
+msgbox	The water around these parts is clean.But, I get my ZIGZAGOON to pick up litter from the shoreline at times.Dirty water becomes rain and joins our rivers, which we drink from…If we pollute the sea, it all comes back to haunt us eventually.
+end
+= Route109_EventScript_Paul
+trainerbattle_double TRAINER_MEL_AND_PAUL Route109_Text_PaulIntro Route109_Text_PaulDefeated Route109_Text_PaulNotEnoughPokemon
+msgbox	PAUL: Well, don't tell anyone that we're here. This is just our private world of two!
+end
+= Route109_EventScript_Mel
+trainerbattle_double TRAINER_MEL_AND_PAUL Route109_Text_MelIntro Route109_Text_MelDefeated Route109_Text_MelNotEnoughPokemon
+msgbox	MEL: Um, PAUL, are you angry with me? Please don't be angry.
+end
+= Route109_EventScript_Woman
+msgbox	Little kids can dart around so quickly…You don't dare take your eyes off them for an instant. It's very taxing.Mine are with my POKéMON, so they should be okay, but…
+end
+= Route109_EventScript_SoftSandGirl
+lock
+faceplayer
+special GetPlayerBigGuyGirlString
+goto_if_set FLAG_RECEIVED_SOFT_SAND Route109_EventScript_AlreadyReceivedSoftSand
+msgbox	You can have this!
+giveitem ITEM_SOFT_SAND
+goto_if_eq VAR_RESULT 0 Common_EventScript_ShowBagIsFull
+closemessage
+applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
+waitmovement 0
+setflag FLAG_RECEIVED_SOFT_SAND
+release
+end
+= Route109_EventScript_AlreadyReceivedSoftSand
+msgbox	We're going to get all the sand from the beach and make a big castle!And then we're going to be a king and queen.We'll let you be a servant.
+applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= Route109_EventScript_SandCastleBoy
+lock
+faceplayer
+msgbox	Our sand castle's taking a long time to make.
+closemessage
+applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= Route109_EventScript_Carter
+trainerbattle_single TRAINER_CARTER Route109_Text_CarterIntro Route109_Text_CarterDefeated
+msgbox	This dude thinks you're a big one. No, you're a big-one-to-be!
+end
+= Route109_EventScript_Austina
+trainerbattle_single TRAINER_AUSTINA Route109_Text_AustinaIntro Route109_Text_AustinaDefeated
+msgbox	My inner tube is a fashion item. I can't be seen without it.
+end
+= Route109_EventScript_Gwen
+trainerbattle_single TRAINER_GWEN Route109_Text_GwenIntro Route109_Text_GwenDefeated
+msgbox	How did you get to be so strong?
+end
+= Route109_EventScript_ItemPPUp
+goto_if_set FLAG_ITEM_ROUTE_109_PP_UP Route109_EventScript_ItemPPUp_Taken
+finditem ITEM_PP_UP
+setflag FLAG_ITEM_ROUTE_109_PP_UP
+end
+= Route109_EventScript_ItemPPUp_Taken
+end
+= Route109_EventScript_SeashoreHouseGirl
+msgbox	Yo, TRAINERS! Whether you're hot to trot, or cool cat not, chill at my papa's spot!
+end
+= Route109_EventScript_Lola
+trainerbattle_single TRAINER_LOLA_1 Route109_Text_LolaIntro Route109_Text_LolaDefeated Route109_EventScript_LolaRegisterMatchCallAfterBattle
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route109_EventScript_LolaRematch
+msgbox	If you look at the beach from the sky, it looks like a big flower garden!
+release
+end
+= Route109_EventScript_LolaRematch
+trainerbattle_rematch TRAINER_LOLA_1 Route109_Text_LolaRematchIntro Route109_Text_LolaRematchDefeated
+msgbox	If I have an inner tube, me and my POKéMON's cuteness goes way up!
+end
+= Route109_EventScript_LolaRegisterMatchCallAfterBattle
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	Me? I'm here every day!
+register_matchcall TRAINER_LOLA_1
+release
+end
+= Route109_EventScript_Ricky
+trainerbattle_single TRAINER_RICKY_1 Route109_Text_RickyIntro Route109_Text_RickyDefeated Route109_EventScript_RickyRegisterMatchCallAfterBattle
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route109_EventScript_RickyRematch
+msgbox	I'm getting famished… My inner tube looks like a giant doughnut…
+release
+end
+= Route109_EventScript_RickyRematch
+trainerbattle_rematch TRAINER_RICKY_1 Route109_Text_RickyRematchIntro Route109_Text_RickyRematchDefeated
+msgbox	When you eat on a beach, everything seems to taste a little better.
+end
+= Route109_EventScript_RickyRegisterMatchCallAfterBattle
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	Will you have another match with me when I'm not all thirsty?
+register_matchcall TRAINER_RICKY_1
+release
+end
+= Route109_EventScript_Edmond
+trainerbattle_single TRAINER_EDMOND Route109_Text_EdmondIntro Route109_Text_EdmondDefeated
+msgbox	I'm usually stronger than this! I'm just seasick as a dog!I'm a SAILOR, but…
+end
+= Route109_EventScript_Huey
+trainerbattle_single TRAINER_HUEY Route109_Text_HueyIntro Route109_Text_HueyDefeated
+msgbox	In the best port was the best TRAINER…
+end
+= Route109_EventScript_Alice
+trainerbattle_single TRAINER_ALICE Route109_Text_AliceIntro Route109_Text_AliceDefeated
+msgbox	Cheeks are the most prone to burning!
+end
+= Route109_EventScript_David
+trainerbattle_single TRAINER_DAVID Route109_Text_DavidIntro Route109_Text_DavidDefeated
+msgbox	Hiyah!My sculpted abs have nothing to do with POKéMON battles!
+end
+= Route109_EventScript_MrBriney
+lock
+faceplayer
+goto_if_unset FLAG_DELIVERED_DEVON_GOODS Route109_EventScript_HaveNotDeliveredDevonGood
+goto Route109_EventScript_DeliveredDevonGoods
+end
+= Route109_EventScript_DeliveredDevonGoods
+msgbox	MR. BRINEY: Ahoy! For you, I'll go out to sea anytime!Now, my friend, where are we bound?
+waitmessage
+multichoicedefault 21 8 MULTI_BRINEY_OFF_DEWFORD 1 FALSE
+switch VAR_RESULT
+case 0 Route109_EventScript_SailToDewford
+case 1 Route109_EventScript_ChoseNotToSail
+case MULTI_B_PRESSED Route109_EventScript_ChoseNotToSail
+end
+= Route109_EventScript_ChoseNotToSail
+msgbox	MR. BRINEY: You just tell me whenever you need to set sail again!
+release
+end
+= Route109_EventScript_SailToDewford
+msgbox	MR. BRINEY: DEWFORD it is, then!Anchors aweigh! PEEKO, we're setting sail, my darling!
+closemessage
+goto Route109_EventScript_StartDepartForDewford
+end
+= Route109_EventScript_StartDepartForDewford
+call EventScript_BackupMrBrineyLocation
+setobjectsubpriority LOCALID_ROUTE109_BRINEY MAP_ROUTE109 0
+setobjectsubpriority LOCALID_PLAYER MAP_ROUTE109 0
+applymovement LOCALID_ROUTE109_BRINEY Route109_Movement_BrineyEnterBoat
+waitmovement 0
+removeobject LOCALID_ROUTE109_BRINEY
+switch VAR_FACING
+case DIR_SOUTH Route109_EventScript_EnterBoatSouth
+case DIR_WEST Route109_EventScript_EnterBoatWest
+case DIR_EAST Route109_EventScript_EnterBoatEast
+end
+= Route109_EventScript_EnterBoatEast
+applymovement LOCALID_PLAYER Route109_Movement_PlayerEnterBoatEast
+waitmovement 0
+goto Route109_EventScript_DoSailToDewford
+end
+= Route109_EventScript_DoSailToDewford
+hideobjectat LOCALID_PLAYER MAP_ROUTE109
+call Common_EventScript_PlayBrineysBoatMusic
+applymovement LOCALID_ROUTE109_BOAT Route109_Movement_SailToDewford
+applymovement LOCALID_PLAYER Route109_Movement_SailToDewford
+waitmovement 0
+delay 50
+call Common_EventScript_StopBrineysBoatMusic
+showobjectat LOCALID_PLAYER MAP_DEWFORD_TOWN
+applymovement LOCALID_PLAYER Route109_Movement_PlayerExitBoat
+waitmovement 0
+addobject LOCALID_DEWFORD_BOAT
+clearflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
+setobjectxyperm LOCALID_DEWFORD_BRINEY 12 8
+addobject LOCALID_DEWFORD_BRINEY
+setobjectsubpriority LOCALID_DEWFORD_BRINEY MAP_DEWFORD_TOWN 0
+applymovement LOCALID_DEWFORD_BRINEY Route109_Movement_BrineyExitBoat
+waitmovement 0
+clearflag FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN
+setflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
+hideobjectat LOCALID_ROUTE109_BOAT MAP_ROUTE109
+msgbox	MR. BRINEY: Ahoy! We've hit land in DEWFORD!You just go on and tell me whenever you want to set sail again!
+closemessage
+copyvar VAR_BRINEY_LOCATION VAR_0x8008
+resetobjectsubpriority LOCALID_PLAYER MAP_ROUTE109
+resetobjectsubpriority LOCALID_DEWFORD_BRINEY MAP_DEWFORD_TOWN
+copyobjectxytoperm LOCALID_DEWFORD_BRINEY
+release
+end
+= Route109_EventScript_EnterBoatWest
+applymovement LOCALID_PLAYER Route109_Movement_PlayerEnterBoatWest
+waitmovement 0
+goto Route109_EventScript_DoSailToDewford
+end
+= Route109_EventScript_EnterBoatSouth
+applymovement LOCALID_PLAYER Route109_Movement_PlayerEnterBoatSouth
+waitmovement 0
+goto Route109_EventScript_DoSailToDewford
+end
+= Route109_EventScript_HaveNotDeliveredDevonGood
+msgbox	MR. BRINEY: I thought you're supposed to deliver the DEVON GOODS.Would you like to sail back to DEWFORD, then?
+msgboxyesno	MR. BRINEY: I thought you're supposed to deliver the DEVON GOODS.Would you like to sail back to DEWFORD, then?
+goto_if_eq VAR_RESULT NO Route109_EventScript_StayHere
+goto Route109_EventScript_SailToDewford
+end
+= Route109_EventScript_StayHere
+msgbox	MR. BRINEY: Then you go on and deliver the DEVON GOODS. I'll be waiting.
+release
+end
+signs
+15 5	SEASHORE HOUSE“May hot battles rage on hot sands! The place for hot TRAINERS!”
+29 10	TRAINER TIPSPOKéMON at the same level may not always have identical stats.POKéMON raised by TRAINERS are said to grow stronger than wild POKéMON.
+water
+283,285,291,293,299,300,301,325,326,368,370,372
+mapsec
+8 12 1 3	ROUTE 109
+music
+MUS_ROUTE104
+encounters
+water TENTACOOL:5:35,WINGULL:10:30,WINGULL:15:25,PELIPPER:25:30,PELIPPER:25:30
+fishing MAGIKARP:5:10,TENTACOOL:5:10,MAGIKARP:10:30,TENTACOOL:10:30,WAILMER:10:30,WAILMER:25:30,WAILMER:30:35,WAILMER:20:25,WAILMER:35:40,WAILMER:40:45

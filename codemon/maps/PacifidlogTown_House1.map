@@ -1,0 +1,45 @@
+tileset building__generic_building
+10 9
+4 3
+912,913,948,949,913,913,913,913,919,914
+920,936,956,957,921,921,952,953,927,922
+928,944,964,965,929,951,960,961,935,930
+929,916,917,917,917,917,917,917,918,931
+929,924,925,942,938,939,943,925,926,931
+951,924,925,942,946,947,943,925,926,931
+929,932,933,933,933,933,933,933,934,931
+951,931,931,931,931,931,931,931,931,931
+998,931,931,931,940,941,931,931,931,999
+collision
+1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,1,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+0,0,0,0,1,1,0,0,0,0
+1,0,0,0,1,1,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+1,0,0,0,0,0,0,0,0,0
+1,0,0,0,0,0,0,0,0,1
+warps
+4 8 PacifidlogTown 1
+5 8 PacifidlogTown 1
+npcs
+people_man_5 3 5 S static 0 - 0
+people_woman_4 6 4 W static 0 - 0
+dialogs
+0	In the HOENN region, there are three POKéMON that represent the power of rock, ice, and steel.Each of them is said to hide away deep inside caves.That's the story I heard when I was just a little kid.
+1	“Six dots open three doors.”Grandpa used to say that, but I don't know what he meant.
+objscripts
+0 PacifidlogTown_House1_EventScript_Man
+1 PacifidlogTown_House1_EventScript_Woman
+scriptdefs
+= PacifidlogTown_House1_EventScript_Woman
+msgbox	“Six dots open three doors.”Grandpa used to say that, but I don't know what he meant.
+end
+= PacifidlogTown_House1_EventScript_Man
+msgbox	In the HOENN region, there are three POKéMON that represent the power of rock, ice, and steel.Each of them is said to hide away deep inside caves.That's the story I heard when I was just a little kid.
+end
+mapsec
+17 10 1 1	PACIFIDLOG TOWN
+music
+MUS_LILYCOVE

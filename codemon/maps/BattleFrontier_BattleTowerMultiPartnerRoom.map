@@ -1,0 +1,156 @@
+tileset building__battle_frontier
+21 15
+10 7
+521,521,521,521,521,521,521,521,521,542,518,543,521,521,521,521,521,521,521,521,521
+529,529,529,529,529,529,529,529,529,550,526,551,529,529,529,529,529,529,529,529,529
+516,515,515,515,515,515,515,515,515,515,515,515,515,515,515,515,515,515,515,515,515
+525,553,512,512,512,512,512,512,512,512,512,512,512,512,512,512,512,512,553,512,512
+525,553,512,512,512,512,512,512,512,512,512,512,512,512,512,512,512,512,553,512,552
+525,553,512,512,512,512,512,512,512,512,512,512,512,512,512,512,512,512,553,512,560
+525,553,512,512,512,512,512,512,512,512,512,512,512,512,512,512,512,512,553,512,568
+525,553,512,512,512,512,512,512,512,512,512,512,512,512,512,512,512,512,553,512,512
+525,553,512,512,512,512,512,512,512,512,512,512,512,512,512,512,512,512,553,512,512
+525,553,512,512,512,512,512,512,512,512,512,512,512,512,512,512,512,512,553,512,552
+525,553,512,512,512,512,512,512,512,512,512,512,512,512,512,512,512,512,553,512,560
+525,553,512,512,512,512,512,512,512,512,512,512,512,512,512,512,512,512,553,512,568
+525,553,512,512,512,512,512,512,512,512,512,512,512,512,512,512,512,512,553,512,512
+622,607,512,512,512,512,512,512,512,512,512,512,512,512,512,512,512,512,512,607,607
+630,615,512,512,512,512,512,512,512,512,512,512,512,512,512,512,512,512,512,615,615
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+npcs
+people_teala 11 2 S static 0 LOCALID_TOWER_PARTNER_ROOM_ATTENDANT 0
+dialogs
+0	Then, please find a partner from the TRAINERS gathered here.
+objscripts
+0 BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_Attendant
+onload
+VAR_TEMP_1 0 BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_EnterRoom
+VAR_TEMP_3 1 BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_ExitRoom
+movements
+BattleFrontier_BattleTowerMultiPartnerRoom_Movement_AttendantBlockExit	left,delay,end
+BattleFrontier_BattleTowerMultiPartnerRoom_Movement_AttendantEnterElevator	up,delay,end
+BattleFrontier_BattleTowerMultiPartnerRoom_Movement_PartnerExit	up,up,up,up,up,up,up,end
+BattleFrontier_BattleTowerMultiPartnerRoom_Movement_PartnerExitSouth	left,up,up,up,up,up,up,up,end
+BattleFrontier_BattleTowerMultiPartnerRoom_Movement_PlayerEnterElevator	up,up,delay,end
+BattleFrontier_BattleTowerMultiPartnerRoom_Movement_PlayerEnterRoom	down,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
+scriptdefs
+= BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_ExitRoom
+lockall
+setvar VAR_TEMP_3 0
+goto BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_EnterElevator
+end
+= BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_EnterElevator
+msgbox	Thank you for choosing a partner.I will now show you to your MULTI BATTLE ROOM.
+closemessage
+applymovement LOCALID_TOWER_PARTNER_ROOM_ATTENDANT Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+opendoor 10 1
+waitdooranim
+call BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_MoveToElevator
+closedoor 10 1
+waitdooranim
+warp BattleFrontier_BattleTowerElevator 1 6
+waitstate
+releaseall
+end
+= BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_MoveToElevator
+applymovement LOCALID_TOWER_PARTNER_ROOM_ATTENDANT BattleFrontier_BattleTowerMultiPartnerRoom_Movement_AttendantEnterElevator
+applymovement LOCALID_PLAYER BattleFrontier_BattleTowerMultiPartnerRoom_Movement_PlayerEnterElevator
+waitmovement 0
+return
+@ Unused
+goto BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_Partner1
+= BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_Partner1
+lock
+faceplayer
+setvar VAR_TEMP_2 0
+goto BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_TalkToPotentialPartner
+end
+= BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_TalkToPotentialPartner
+goto_if_set FLAG_CHOSEN_MULTI_BATTLE_NPC_PARTNER BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_RejectPartner
+tower_dopartnermsg PARTNER_MSGID_INTRO
+waitmessage
+waitbuttonpress
+tower_dopartnermsg PARTNER_MSGID_MON1
+waitmessage
+waitbuttonpress
+tower_dopartnermsg PARTNER_MSGID_MON2_ASK
+waitmessage
+multichoicedefault 20 8 MULTI_YESNO 1 FALSE
+switch VAR_RESULT
+case 1 BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_RejectPartner
+case MULTI_B_PRESSED BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_RejectPartner
+tower_dopartnermsg PARTNER_MSGID_ACCEPT
+waitmessage
+waitbuttonpress
+closemessage
+call_if_ne VAR_FACING DIR_SOUTH BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_PartnerExit
+call_if_eq VAR_FACING DIR_SOUTH BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_PartnerExitSouth
+removeobject VAR_LAST_TALKED
+setflag FLAG_CHOSEN_MULTI_BATTLE_NPC_PARTNER
+warpsilent BattleFrontier_BattleTowerMultiPartnerRoom 10 3
+waitstate
+release
+end
+= BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_PartnerExitSouth
+applymovement VAR_LAST_TALKED BattleFrontier_BattleTowerMultiPartnerRoom_Movement_PartnerExitSouth
+waitmovement 0
+return
+= BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_PartnerExit
+applymovement VAR_LAST_TALKED BattleFrontier_BattleTowerMultiPartnerRoom_Movement_PartnerExit
+waitmovement 0
+return
+= BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_RejectPartner
+tower_dopartnermsg PARTNER_MSGID_REJECT
+waitmessage
+waitbuttonpress
+release
+end
+= BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_EnterRoom
+lockall
+applymovement LOCALID_PLAYER BattleFrontier_BattleTowerMultiPartnerRoom_Movement_PlayerEnterRoom
+waitmovement 0
+applymovement LOCALID_TOWER_PARTNER_ROOM_ATTENDANT BattleFrontier_BattleTowerMultiPartnerRoom_Movement_AttendantBlockExit
+waitmovement 0
+copyobjectxytoperm LOCALID_TOWER_PARTNER_ROOM_ATTENDANT
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+msgbox	Please find a partner from out of the TRAINERS gathered here.
+special HealPlayerParty
+setvar VAR_TEMP_1 1
+releaseall
+end
+= BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_Attendant
+lock
+faceplayer
+msgbox	PLAYER, you have not found a partner for your tag team.Would you like to quit looking and return to the reception counter?
+waitmessage
+multichoicedefault 20 8 MULTI_YESNO 1 FALSE
+goto_if_eq VAR_RESULT 0 BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_QuitChallenge
+msgbox	Then, please find a partner from the TRAINERS gathered here.
+release
+end
+= BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_QuitChallenge
+frontier_set FRONTIER_DATA_RECORD_DISABLED TRUE
+goto BattleFrontier_BattleTower_EventScript_WarpToLobbyLost
+end
+mapsec
+22 12 1 1	BATTLE FRONTIER
+music
+MUS_B_TOWER

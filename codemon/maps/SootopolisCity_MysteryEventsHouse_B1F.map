@@ -1,0 +1,75 @@
+tileset building__mystery_events_house
+12 9
+6 4
+517,517,514,515,516,517,517,517,517,517,517,517
+531,525,522,523,524,525,525,525,525,525,525,531
+539,566,566,566,566,566,566,566,566,566,566,539
+566,565,565,565,565,565,565,565,565,565,565,565
+566,565,565,544,545,545,545,545,546,565,565,565
+566,565,565,552,553,553,553,553,554,565,565,565
+566,565,565,560,561,561,561,561,562,565,565,565
+536,565,565,565,565,565,565,565,565,565,565,547
+539,565,565,565,565,565,565,565,565,565,565,538
+collision
+1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,0,1,1,1,1,1,1,1,1
+1,0,0,0,0,0,0,0,0,0,0,1
+0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0
+1,0,0,0,0,0,0,0,0,0,0,1
+warps
+3 1 SootopolisCity_MysteryEventsHouse_1F 2
+onload
+VAR_TEMP_1 0 SootopolisCity_MysteryEventsHouse_B1F_EventScript_BattleVisitingTrainer
+movements
+SootopolisCity_MysteryEventsHouse_B1F_Movement_PlayerEnterBasement	down,down,down,right,right,end
+SootopolisCity_MysteryEventsHouse_B1F_Movement_PlayerExitBasement	left,left,up,up,up,up,delay,end
+scriptdefs
+= SootopolisCity_MysteryEventsHouse_B1F_EventScript_BattleVisitingTrainer
+lockall
+applymovement LOCALID_PLAYER SootopolisCity_MysteryEventsHouse_B1F_Movement_PlayerEnterBasement
+waitmovement 0
+special CopyEReaderTrainerGreeting
+msgbox	gStringVar4
+closemessage
+setvar VAR_0x8004 SPECIAL_BATTLE_EREADER
+setvar VAR_0x8005 0
+special DoSpecialTrainerBattle
+call_if_eq VAR_RESULT B_OUTCOME_DREW SootopolisCity_MysteryEventsHouse_B1F_EventScript_BattleTie
+call_if_eq VAR_RESULT B_OUTCOME_WON SootopolisCity_MysteryEventsHouse_B1F_EventScript_BattleWon
+call_if_eq VAR_RESULT B_OUTCOME_LOST SootopolisCity_MysteryEventsHouse_B1F_EventScript_BattleLost
+closemessage
+special HealPlayerParty
+applymovement LOCALID_PLAYER SootopolisCity_MysteryEventsHouse_B1F_Movement_PlayerExitBasement
+waitmovement 0
+special LoadPlayerParty
+setvar VAR_TEMP_1 1
+warp SootopolisCity_MysteryEventsHouse_1F 3 1
+waitstate
+releaseall
+end
+= SootopolisCity_MysteryEventsHouse_B1F_EventScript_BattleLost
+setvar VAR_SOOTOPOLIS_MYSTERY_EVENTS_STATE 2
+special ShowFieldMessageStringVar4
+waitmessage
+waitbuttonpress
+return
+= SootopolisCity_MysteryEventsHouse_B1F_EventScript_BattleWon
+setvar VAR_SOOTOPOLIS_MYSTERY_EVENTS_STATE 1
+special ShowFieldMessageStringVar4
+waitmessage
+waitbuttonpress
+return
+= SootopolisCity_MysteryEventsHouse_B1F_EventScript_BattleTie
+setvar VAR_SOOTOPOLIS_MYSTERY_EVENTS_STATE 3
+msgbox	The match ended up a draw.
+return
+mapsec
+21 7 1 1	SOOTOPOLIS CITY
+music
+MUS_SOOTOPOLIS
+counters
+522,524

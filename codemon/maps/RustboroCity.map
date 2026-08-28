@@ -1,0 +1,959 @@
+tileset general__rustboro
+40 60
+16 39
+336,337,368,368,368,368,368,368,368,368,378,468,469,476,477,476,477,468,471,1,1,1,1,1,476,477,476,477,476,477,476,477,476,477,476,477,476,477,468,469
+344,345,368,368,368,336,337,368,368,368,378,476,477,468,469,468,469,476,477,1,1,1,1,1,468,469,468,469,468,469,468,469,468,469,468,469,468,469,476,477
+368,368,368,368,368,344,345,368,368,368,378,468,469,476,477,476,477,468,469,1,1,1,1,1,476,477,476,477,476,477,476,477,476,477,476,477,476,477,468,469
+368,368,368,368,368,368,368,368,368,368,378,476,477,468,469,468,469,476,477,1,1,1,1,1,468,469,468,469,468,469,468,469,468,469,468,469,468,469,476,477
+368,368,368,368,368,368,368,368,368,368,378,468,469,476,477,476,477,468,469,1,1,1,1,1,486,485,476,477,476,477,476,477,476,477,476,477,476,477,468,469
+368,368,368,368,368,368,373,211,2,2,2,486,485,468,469,468,469,476,477,1,1,1,1,1,1,1,468,469,468,469,468,469,468,469,468,469,468,469,476,477
+368,368,336,337,368,373,211,1,1,1,1,1,1,484,485,484,485,468,469,1,1,1,1,1,1,1,486,485,484,485,484,485,484,485,484,485,484,485,468,469
+368,368,344,345,368,378,1,648,649,649,651,652,652,653,649,649,650,484,487,736,737,737,737,737,702,679,679,679,679,679,679,679,679,679,679,679,850,1,486,485
+368,368,368,368,368,378,795,656,657,657,659,660,660,661,657,657,658,850,737,699,699,699,699,699,699,699,699,699,699,699,3,699,699,699,699,699,746,1,1,1
+368,368,368,368,368,378,792,664,665,666,654,655,662,663,666,666,667,732,699,699,760,761,761,761,761,761,761,761,761,761,761,761,761,761,761,761,762,1,1,1
+368,368,368,368,368,378,792,672,673,674,668,669,669,670,674,674,675,748,701,699,768,94,777,777,777,777,777,777,777,777,777,777,777,777,777,777,778,1,1,1
+336,337,368,368,368,378,792,664,665,666,676,677,677,678,666,666,667,748,707,699,768,770,699,699,699,699,699,699,699,699,699,699,699,699,699,699,746,1,1,1
+344,345,368,368,368,378,792,672,673,674,668,669,669,670,674,674,675,748,707,699,768,770,699,699,699,699,699,699,699,699,699,699,699,699,699,699,754,462,463,1
+368,368,368,368,368,378,792,680,681,681,676,677,677,678,682,682,683,748,707,699,768,770,699,699,702,679,679,679,679,679,679,679,679,679,679,679,794,470,471,1
+368,368,368,368,368,378,792,688,689,689,684,685,685,686,690,690,691,748,707,699,768,770,699,699,710,699,699,699,699,699,699,699,699,699,699,699,793,486,498,463
+368,368,368,368,368,378,792,708,707,707,692,693,693,694,707,707,707,748,707,530,768,770,530,699,714,715,715,715,715,731,699,548,549,549,549,550,793,1,468,471
+368,368,368,368,368,378,792,699,708,707,707,707,707,707,707,707,707,748,707,538,768,770,538,699,434,435,435,435,435,436,699,566,574,574,574,567,793,462,499,485
+368,368,368,368,368,378,792,699,530,699,699,708,707,707,707,531,699,711,699,699,768,770,699,699,712,441,442,435,443,713,699,556,557,557,557,558,793,470,469,1
+368,368,368,368,373,211,792,699,538,699,699,699,699,699,699,538,699,711,699,699,768,770,699,716,720,449,450,453,451,721,699,532,578,535,578,534,793,486,498,463
+368,368,368,368,378,1,792,699,699,530,699,699,699,699,530,699,702,725,699,699,768,770,699,724,728,729,722,461,723,730,699,540,541,543,541,542,793,1,468,469
+368,368,368,368,378,1,792,699,699,538,699,699,699,699,538,699,699,3,699,699,768,770,699,699,699,699,699,699,699,699,699,699,699,699,699,699,793,462,499,485
+368,368,368,368,378,1,792,699,699,699,699,699,699,699,699,699,699,699,760,761,94,94,761,761,761,761,761,761,761,761,761,761,761,761,762,699,793,470,469,1
+368,368,368,368,378,1,792,699,699,699,699,699,699,699,699,699,699,699,776,777,94,94,777,777,777,777,777,777,777,777,777,777,777,777,778,699,793,486,498,463
+368,368,368,373,211,1,813,764,764,764,764,764,764,764,764,764,764,703,699,530,768,770,530,699,699,699,699,699,699,699,699,699,699,699,699,699,793,1,468,469
+368,368,368,378,1,1,792,699,699,699,699,699,699,699,699,699,699,699,699,538,768,770,538,699,699,699,699,699,548,549,549,549,550,699,699,699,793,462,499,485
+368,368,368,378,462,463,792,699,699,544,545,545,545,545,545,545,546,547,699,699,768,770,699,699,702,764,764,764,566,574,574,574,567,679,679,679,794,470,469,1
+368,368,368,378,470,471,792,699,699,552,553,553,553,553,553,553,554,555,699,699,768,770,699,746,734,1,462,463,556,557,557,557,558,753,753,699,793,486,498,463
+368,368,373,211,476,477,792,699,699,560,561,561,561,561,561,561,561,563,701,699,768,770,699,746,734,4,470,471,532,578,535,578,534,4,4,744,793,1,468,469
+368,368,378,1,468,469,792,699,699,568,570,569,570,569,570,569,570,571,707,699,768,770,699,746,734,4,486,487,540,541,543,541,542,4,4,744,793,462,499,485
+368,368,378,1,476,477,792,699,699,568,570,569,569,551,569,569,570,571,707,699,768,770,699,746,734,1,4,4,1,1,1,1,1,4,4,744,793,470,469,1
+368,373,211,1,468,469,792,699,699,576,577,577,577,559,577,577,577,579,707,530,768,770,530,699,544,545,545,545,545,546,547,1,1,1,736,699,793,486,498,463
+368,378,462,463,476,477,792,699,699,708,707,707,707,707,707,707,707,707,707,538,768,770,538,699,552,553,553,553,553,554,555,1,1,736,717,679,794,1,468,469
+368,378,470,469,468,469,792,699,699,699,699,699,699,699,699,699,699,699,699,699,768,770,699,699,560,561,561,561,561,561,563,737,737,699,699,699,793,462,499,485
+368,378,476,477,476,477,792,699,699,699,699,699,699,699,699,699,699,699,699,699,768,770,699,699,568,570,570,551,570,570,571,699,699,699,699,699,793,470,469,1
+2,2,468,469,468,469,792,544,545,545,546,547,699,699,699,699,699,699,699,699,768,770,699,699,576,577,577,559,577,577,579,699,699,699,699,699,793,486,498,463
+462,463,476,477,476,477,792,552,553,553,554,555,699,699,699,598,606,607,599,699,768,770,699,699,699,3,699,699,699,699,699,699,699,699,699,699,793,1,468,469
+468,469,468,469,468,469,792,560,561,561,561,563,699,699,699,80,81,82,83,699,768,770,699,699,699,699,699,699,699,699,699,699,699,699,699,699,793,462,499,485
+476,477,476,477,476,477,792,568,570,551,570,571,699,699,699,88,89,90,91,530,768,770,530,699,699,699,699,699,699,699,699,699,699,699,699,699,793,470,469,1
+468,469,468,469,468,469,792,576,577,559,577,579,3,699,699,614,97,98,638,538,768,770,538,699,699,699,699,824,825,826,699,699,699,699,699,699,793,486,498,463
+476,477,484,485,484,485,792,699,699,699,699,699,699,699,699,699,699,699,699,699,768,770,699,699,699,699,699,832,833,834,699,548,549,549,550,699,793,1,468,469
+468,469,795,695,695,695,745,699,760,761,761,761,761,761,761,761,761,761,761,761,94,770,699,699,699,699,699,840,841,842,699,566,574,574,567,699,793,462,499,485
+476,477,792,699,699,699,699,699,776,777,777,777,777,777,777,777,777,777,777,777,94,770,699,699,699,699,699,699,699,699,699,556,557,557,558,701,793,470,469,1
+468,469,792,699,699,699,699,699,699,699,699,699,699,699,699,805,615,615,806,699,768,770,699,699,544,545,545,545,545,575,699,532,533,533,534,707,793,486,498,463
+476,477,792,548,549,549,549,549,549,550,699,699,699,699,699,48,49,50,51,699,768,770,699,699,552,553,553,553,553,583,699,532,578,578,534,707,793,1,468,469
+468,469,792,566,574,574,574,574,574,567,699,699,699,699,699,56,57,58,59,530,768,770,530,699,560,561,561,561,561,563,699,532,533,533,534,707,793,462,499,485
+476,477,792,556,557,557,557,557,557,558,701,699,699,699,699,614,65,66,639,538,768,770,538,699,568,570,551,570,570,571,699,532,578,578,534,707,793,470,469,1
+468,469,792,532,578,533,578,533,578,534,707,701,699,699,699,699,699,699,699,699,768,770,699,699,576,577,559,577,577,579,699,540,541,541,542,707,793,486,498,463
+476,477,792,532,578,533,578,533,578,534,707,707,699,699,699,760,761,761,761,761,94,94,761,761,761,761,761,761,762,699,699,708,707,707,707,707,793,1,468,469
+468,469,792,532,533,533,533,533,533,534,707,707,699,699,699,768,94,777,777,777,777,777,777,777,777,777,777,777,778,530,699,699,699,699,699,699,793,462,499,485
+476,477,792,532,578,533,578,533,578,534,707,707,699,699,699,768,770,699,699,3,699,699,699,699,699,699,699,699,699,538,699,699,699,699,699,699,793,470,469,1
+468,469,792,532,578,535,578,533,578,534,707,707,699,699,699,768,770,699,699,699,699,699,699,699,699,699,699,699,699,699,699,702,764,764,764,764,801,476,477,1
+476,477,792,540,541,543,541,541,541,542,707,707,699,699,699,768,770,699,699,699,699,699,699,699,699,699,699,699,699,699,699,789,1,462,463,462,463,468,469,1
+468,469,792,708,707,707,707,707,707,707,707,707,699,699,699,768,770,699,699,699,699,699,699,699,699,699,699,699,699,699,699,789,1,470,469,468,471,484,498,463
+476,477,792,699,708,707,707,707,707,707,707,707,699,699,699,768,770,699,699,699,699,699,699,699,699,699,699,699,699,699,699,789,1,476,477,484,498,463,468,469
+468,469,800,764,764,764,764,764,764,764,764,703,699,699,530,768,770,530,699,699,702,764,764,764,764,764,764,764,764,764,764,812,1,468,469,1,468,469,476,477
+476,477,462,463,462,463,462,463,462,463,1,797,699,699,538,768,770,538,699,699,789,1,462,463,462,463,462,463,462,463,462,463,462,499,498,463,476,477,468,469
+468,469,468,469,468,469,468,469,468,471,1,797,753,753,753,768,770,753,753,753,789,1,470,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,476,477
+476,477,476,477,476,477,484,485,484,487,1,735,1,1,1,272,274,1,1,1,734,1,486,485,484,485,484,485,484,485,484,485,484,485,476,477,476,477,468,469
+468,469,468,469,468,469,1,1,1,1,1,735,1,1,1,1,1,1,1,1,734,1,1,1,1,1,1,1,1,1,1,1,1,1,468,469,468,469,476,477
+476,477,476,477,476,477,823,831,830,831,695,743,1,1,1,1,1,1,1,1,742,695,695,695,695,695,695,695,695,695,695,695,727,1,476,477,476,477,468,469
+collision
+1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,0,0,0,1,1,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,1,1,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,1,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,1,1,0,1,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,1,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1
+0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0
+0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0
+0,0,0,0,0,1,1,0,0,0,1,0,0,1,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1
+0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,1,1,1,1,1,0,1,1,1,1,1,1,0,1,1
+0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0
+0,0,0,0,1,0,1,0,1,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0
+0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,1,0,0,1,1,1,0,0,1,1,1,1,1,1,0,1,1
+0,0,0,0,1,0,1,0,0,1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1
+0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0
+0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0
+0,0,0,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1
+0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1
+0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0
+0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,0,0,0,1,1,1,1,1,0,0,0,1,1,1,0
+0,0,1,0,1,1,1,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,0,1,1,1,1,1,1,1,0,0,0,1,0,1,1
+0,0,1,0,1,1,1,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,0,1,1,1,1,1,1,1,0,0,0,1,0,1,1
+0,0,1,0,1,1,1,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0
+0,1,0,0,1,1,1,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0
+0,1,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,1,1,1,1,1,1,1,0,0,0,1,1,1,0,1,1
+0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,1,0,1,1
+0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,0
+0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,0
+0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,0,0,1,0,0,0,0,1,1,1,0,0,0,0,0,0,1,1,1,0
+1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,0,1,1
+1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,1,1,1,1,0,1,0,1,1
+1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,1,1,1,0
+1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,1,1,1,0
+1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,0,1,1,1,1,0,1,0,1,1
+1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,0,1,1,1,1,0,1,0,1,1
+1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,0,1,1,1,1,0,1,1,1,0
+1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,1,1,1,1,0,1,1,1,0
+1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1
+1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1
+1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,1,0
+1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0
+1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,0
+1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,1,1,1,1,0
+1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,1,1,0,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1
+1,1,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,0,1,0,0,0,0,0,0,0,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,0,1,0,0,0,0,0,0,0,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1
+connections
+up 0 Route115
+down 0 Route104
+right 0 Route116
+warps
+27 19 RustboroCity_Gym 0
+13 30 RustboroCity_Flat1_1F 0
+16 45 RustboroCity_Mart 0
+16 38 RustboroCity_PokemonCenter_1F 0
+27 34 RustboroCity_PokemonSchool 0
+11 15 RustboroCity_DevonCorp_1F 0
+12 15 RustboroCity_DevonCorp_1F 1
+33 19 RustboroCity_House1 0
+9 38 RustboroCity_CuttersHouse 0
+30 28 RustboroCity_House2 0
+5 51 RustboroCity_Flat2_1F 0
+26 46 RustboroCity_House3 0
+npcs
+people_woman_5 22 34 S wander 0 - 0
+people_fat_man 19 13 S static 0 - 0
+people_ninja_boy 25 37 N static 0 - 0
+people_twin 21 46 S wander 0 - 0
+people_boy_2 12 45 S static 0 - 0
+people_man_3 26 23 S static 0 - 0
+people_little_boy 24 51 E static 0 LOCALID_RUSTBORO_LITTLE_BOY 0
+people_little_girl 25 51 W static 0 LOCALID_RUSTBORO_LITTLE_GIRL 0
+people_man_2 30 10 E static FLAG_HIDE_RUSTBORO_CITY_DEVON_EMPLOYEE_1 LOCALID_RUSTBORO_DEVON_EMPLOYEE 0
+people_team_aqua_aqua_member_m 13 21 E static FLAG_HIDE_RUSTBORO_CITY_AQUA_GRUNT LOCALID_RUSTBORO_GRUNT 0
+people_devon_employee 13 34 S wander 0 - 0
+misc_item_ball 36 51 S static FLAG_ITEM_RUSTBORO_CITY_X_DEFEND - 0
+people_man_4 19 27 S static 0 - 0
+people_may_walking 16 50 S static FLAG_HIDE_RUSTBORO_CITY_RIVAL LOCALID_RUSTBORO_RIVAL 0
+people_scientist_1 11 15 S static FLAG_HIDE_RUSTBORO_CITY_SCIENTIST LOCALID_RUSTBORO_SCIENTIST 0
+people_boy_1 31 36 S static 0 - 0
+dialogs
+0	I challenged the GYM LEADER, but…It's not going to be easy winning with my FIRE-type POKéMON…FIRE-type POKéMON don't match up well against ROCK-type POKéMON…
+1	The DEVON CORPORATION… We all just shorten it to DEVON.That company makes all sorts of convenient products.
+2	POKéMON TRAINER'S SCHOOL!If I go to this school, will I be able to catch rare POKéMON easily?
+3	Wow, you have POKéMON with you, too.When I get bigger, I'm going to go places with POKéMON, too.
+4	The old sailor MR. BRINEY lives in a cottage by the sea.He goes for walks in the tunnel every so often.
+5	Have you taken the POKéMON GYM challenge?When you get that shiny GYM BADGE in hand, I guess TRAINERS begin to realize what is required of them.
+6	If a POKéMON gains experience in battles, it can sometimes change in the way it looks.
+7	A POKéMON changes shape? If one did that, I would be shocked!
+8	That shady character, I think he took off towards the tunnel over there.
+10	Oh? Who might you be? You're a new face around these parts.Have you just transferred into the POKéMON TRAINER'S SCHOOL?
+12	A POKéMON you get in a trade from someone grows fast.But if you don't have certain GYM BADGES, it may not obey you…
+15	Did you know this?You can have a 2-on-2 battle even if you're not with another TRAINER.If you catch the eyes of two TRAINERS when you have two or more POKéMON, they'll both challenge you.Don't you think it'd be cool if you could beat two TRAINERS by yourself?
+objscripts
+0 RustboroCity_EventScript_Woman
+1 RustboroCity_EventScript_FatMan
+2 RustboroCity_EventScript_NinjaBoy
+3 RustboroCity_EventScript_Twin
+4 RustboroCity_EventScript_Boy2
+5 RustboroCity_EventScript_Man1
+6 RustboroCity_EventScript_LittleBoy
+7 RustboroCity_EventScript_LittleGirl
+8 RustboroCity_EventScript_DevonEmployee1
+10 RustboroCity_EventScript_DevonEmployee2
+11 RustboroCity_EventScript_ItemXDefend
+12 RustboroCity_EventScript_Man2
+13 RustboroCity_EventScript_Rival
+15 RustboroCity_EventScript_Boy1
+triggers
+23 20 VAR_RUSTBORO_CITY_STATE 1 RustboroCity_EventScript_StolenGoodsTrigger0
+23 21 VAR_RUSTBORO_CITY_STATE 1 RustboroCity_EventScript_StolenGoodsTrigger1
+23 22 VAR_RUSTBORO_CITY_STATE 1 RustboroCity_EventScript_StolenGoodsTrigger2
+23 23 VAR_RUSTBORO_CITY_STATE 1 RustboroCity_EventScript_StolenGoodsTrigger3
+23 24 VAR_RUSTBORO_CITY_STATE 1 RustboroCity_EventScript_StolenGoodsTrigger4
+30 9 VAR_RUSTBORO_CITY_STATE 2 RustboroCity_EventScript_HelpGetGoodsTrigger0
+29 10 VAR_RUSTBORO_CITY_STATE 2 RustboroCity_EventScript_HelpGetGoodsTrigger1
+30 11 VAR_RUSTBORO_CITY_STATE 2 RustboroCity_EventScript_HelpGetGoodsTrigger2
+30 12 VAR_RUSTBORO_CITY_STATE 2 RustboroCity_EventScript_HelpGetGoodsTrigger3
+30 9 VAR_RUSTBORO_CITY_STATE 4 RustboroCity_EventScript_ReturnGoodsTrigger0
+31 10 VAR_RUSTBORO_CITY_STATE 4 RustboroCity_EventScript_ReturnGoodsTrigger1
+30 11 VAR_RUSTBORO_CITY_STATE 4 RustboroCity_EventScript_ReturnGoodsTrigger2
+30 12 VAR_RUSTBORO_CITY_STATE 4 RustboroCity_EventScript_ReturnGoodsTrigger3
+12 53 VAR_RUSTBORO_CITY_STATE 7 RustboroCity_EventScript_RivalTrigger0
+13 53 VAR_RUSTBORO_CITY_STATE 7 RustboroCity_EventScript_RivalTrigger1
+14 53 VAR_RUSTBORO_CITY_STATE 7 RustboroCity_EventScript_RivalTrigger2
+15 53 VAR_RUSTBORO_CITY_STATE 7 RustboroCity_EventScript_RivalTrigger3
+16 53 VAR_RUSTBORO_CITY_STATE 7 RustboroCity_EventScript_RivalTrigger4
+17 53 VAR_RUSTBORO_CITY_STATE 7 RustboroCity_EventScript_RivalTrigger5
+18 53 VAR_RUSTBORO_CITY_STATE 7 RustboroCity_EventScript_RivalTrigger6
+19 53 VAR_RUSTBORO_CITY_STATE 7 RustboroCity_EventScript_RivalTrigger7
+onload
+VAR_RUSTBORO_CITY_STATE 6 RustboroCity_EventScript_ScientistAddMatchCall
+movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
+Common_Movement_FaceLeft	face_left,end
+Common_Movement_FaceOriginalDirection	face_down,end
+Common_Movement_FacePlayer	face_down,end
+Common_Movement_FaceRight	face_right,end
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
+RustboroCity_Movement_EmployeeApproachDown	down,down,down,right,right,end
+RustboroCity_Movement_EmployeeApproachLeft	down,down,right,right,end
+RustboroCity_Movement_EmployeeApproachPlayerDown	down,end
+RustboroCity_Movement_EmployeeApproachPlayerFar	down,down,down,right,right,right,delay,end
+RustboroCity_Movement_EmployeeApproachRight	down,down,right,right,end
+RustboroCity_Movement_EmployeeApproachUp	down,right,right,end
+RustboroCity_Movement_EmployeeChaseGrunt1	right,right,right,right,right,right,delay,end
+RustboroCity_Movement_EmployeeChaseGrunt2	up,up,up,up,up,up,up,end
+RustboroCity_Movement_GruntEscape	delay,delay,right,right,right,right,right,up,up,up,up,up,up,up,up,up,end
+RustboroCity_Movement_PlayerWalkDown	down,end
+RustboroCity_Movement_RivalApproachPlayer0	down,left,left,left,left,down,end
+RustboroCity_Movement_RivalApproachPlayer1	down,left,left,left,down,end
+RustboroCity_Movement_RivalApproachPlayer2	down,left,left,down,end
+RustboroCity_Movement_RivalApproachPlayer3	down,left,down,end
+RustboroCity_Movement_RivalApproachPlayer4	down,down,end
+RustboroCity_Movement_RivalApproachPlayer5	down,right,down,end
+RustboroCity_Movement_RivalApproachPlayer6	down,right,right,down,end
+RustboroCity_Movement_RivalApproachPlayer7	down,right,right,right,down,end
+RustboroCity_Movement_ScientistApproachPlayer	down,delay,end
+RustboroCity_Movement_ScientistLeave	up,end
+RustboroCity_Movement_ScientistWalkInPlaceDown	delay,end
+scriptdefs
+= RustboroCity_EventScript_ScientistAddMatchCall
+lockall
+setvar VAR_ROUTE104_STATE 1
+applymovement LOCALID_PLAYER RustboroCity_Movement_PlayerWalkDown
+waitmovement 0
+playse SE_EXIT
+delay 10
+addobject LOCALID_RUSTBORO_SCIENTIST
+applymovement LOCALID_RUSTBORO_SCIENTIST RustboroCity_Movement_ScientistApproachPlayer
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_RUSTBORO_SCIENTIST Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_RUSTBORO_SCIENTIST Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+applymovement LOCALID_RUSTBORO_SCIENTIST RustboroCity_Movement_ScientistWalkInPlaceDown
+waitmovement 0
+msgbox	I've been developing an added feature for the POKéNAV…And it turned out great!PLAYER, may I see that POKéNAV? The one our PRESIDENT gave you?
+closemessage
+setflag FLAG_HAS_MATCH_CALL
+applymovement LOCALID_RUSTBORO_SCIENTIST Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+playse SE_CLICK
+delay 10
+playse SE_CLICK
+delay 10
+playse SE_CLICK
+delay 10
+playse SE_CLICK
+delay 20
+applymovement LOCALID_RUSTBORO_SCIENTIST Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+msgbox	There you go, PLAYER!I added a new feature named MATCH CALL to your POKéNAV.Using the MATCH CALL feature, you can chat with people who have been registered in your POKéNAV.PLAYER, our PRESIDENT STONE should be registered in your POKéNAV.Test it out. Please give our PRESIDENT a call.
+closemessage
+delay 20
+goto RustboroCity_EventScript_MatchCallTutorial
+= RustboroCity_EventScript_MatchCallTutorial
+setflag FLAG_ADDED_MATCH_CALL_TO_POKENAV
+special ScriptMenu_CreateStartMenuForPokenavTutorial
+switch VAR_RESULT
+case 0 RustboroCity_EventScript_PleaseSelectPokenav
+case 1 RustboroCity_EventScript_PleaseSelectPokenav
+case 2 RustboroCity_EventScript_PleaseSelectPokenav
+case 4 RustboroCity_EventScript_PleaseSelectPokenav
+case 5 RustboroCity_EventScript_PleaseSelectPokenav
+case 6 RustboroCity_EventScript_PleaseSelectPokenav
+case 7 RustboroCity_EventScript_PleaseSelectPokenav
+case MULTI_B_PRESSED RustboroCity_EventScript_PleaseSelectPokenav
+special OpenPokenavForTutorial
+delay 20
+msgbox	Okay, I'd better get back to work. Please take care, PLAYER!
+closemessage
+applymovement LOCALID_RUSTBORO_SCIENTIST RustboroCity_Movement_ScientistLeave
+waitmovement 0
+playse SE_EXIT
+removeobject LOCALID_RUSTBORO_SCIENTIST
+setflag FLAG_HIDE_RUSTBORO_CITY_SCIENTIST
+setvar VAR_RUSTBORO_CITY_STATE 7
+clearflag FLAG_HIDE_MAP_NAME_POPUP
+releaseall
+end
+= RustboroCity_EventScript_PleaseSelectPokenav
+msgbox	Please select the POKéNAV.
+closemessage
+delay 10
+goto RustboroCity_EventScript_MatchCallTutorial
+= RustboroCity_EventScript_RivalTrigger7
+lockall
+call RustboroCity_EventScript_PlayRivalMusic
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_RUSTBORO_RIVAL RustboroCity_Movement_RivalApproachPlayer7
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+goto RustboroCity_EventScript_RivalEncounter
+= RustboroCity_EventScript_RivalEncounter
+checkplayergender
+goto_if_eq VAR_RESULT MALE RustboroCity_EventScript_MayEncounter
+goto_if_eq VAR_RESULT FEMALE RustboroCity_EventScript_BrendanEncounter
+end
+= RustboroCity_EventScript_BrendanEncounter
+goto_if_set FLAG_DEFEATED_RIVAL_RUSTBORO RustboroCity_EventScript_BrendanBrineyHint
+goto_if_set FLAG_MET_RIVAL_RUSTBORO RustboroCity_EventScript_BrendanAskToBattle
+setflag FLAG_MET_RIVAL_RUSTBORO
+msgbox	BRENDAN: Oh, hey, PLAYER!You had a MATCH CALL feature put on your POKéNAV! Cool!Let's register each other so we can get in touch anytime!… … … … … …
+closemessage
+delay 30
+playfanfare MUS_REGISTER_MATCH_CALL
+msgbox	Registered BRENDAN in the POKéNAV.
+waitfanfare
+closemessage
+delay 30
+setflag FLAG_ENABLE_RIVAL_MATCH_CALL
+setvar VAR_RUSTBORO_CITY_STATE 8
+setvar VAR_ROUTE104_STATE 2
+msgboxyesno	BRENDAN: By the way, PLAYER, I walked by MR. BRINEY in PETALBURG WOODS.I bet he was on his way home to his cottage by the sea.PLAYER, how's your POKéDEX? Have you filled in any pages yet?Mine rules.Want to have a battle to test how far you've progressed?
+goto_if_eq VAR_RESULT YES RustboroCity_EventScript_BattleBrendan
+msgbox	BRENDAN: What's the matter? Don't have any confidence in your POKéMON?
+call RustboroCity_EventScript_RestoreBgm
+releaseall
+end
+= RustboroCity_EventScript_RestoreBgm
+savebgm MUS_DUMMY
+fadedefaultbgm
+return
+= RustboroCity_EventScript_BattleBrendan
+msgbox	BRENDAN: I know you just became a TRAINER, but I won't go easy!
+switch VAR_STARTER_MON
+case 0 RustboroCity_EventScript_BattleBrendanTreecko
+case 1 RustboroCity_EventScript_BattleBrendanTorchic
+case 2 RustboroCity_EventScript_BattleBrendanMudkip
+end
+= RustboroCity_EventScript_BattleBrendanMudkip
+trainerbattle_no_intro TRAINER_BRENDAN_RUSTBORO_MUDKIP RustboroCity_Text_BrendanDefeat
+setflag FLAG_DEFEATED_RIVAL_RUSTBORO
+goto RustboroCity_EventScript_BrendanBrineyHint
+end
+= RustboroCity_EventScript_BrendanBrineyHint
+msgbox	BRENDAN: By the way, you know MR. BRINEY? The guy I just passed?I bet you didn't know this, since you just moved here, PLAYER, but MR. BRINEY was once a great sailor.
+call_if_eq VAR_0x8008 0 RustboroCity_EventScript_RestoreBgm
+releaseall
+end
+= RustboroCity_EventScript_BattleBrendanTorchic
+trainerbattle_no_intro TRAINER_BRENDAN_RUSTBORO_TORCHIC RustboroCity_Text_BrendanDefeat
+setflag FLAG_DEFEATED_RIVAL_RUSTBORO
+goto RustboroCity_EventScript_BrendanBrineyHint
+end
+= RustboroCity_EventScript_BattleBrendanTreecko
+trainerbattle_no_intro TRAINER_BRENDAN_RUSTBORO_TREECKO RustboroCity_Text_BrendanDefeat
+setflag FLAG_DEFEATED_RIVAL_RUSTBORO
+goto RustboroCity_EventScript_BrendanBrineyHint
+end
+= RustboroCity_EventScript_BrendanAskToBattle
+msgboxyesno	BRENDAN: What's up? Want to have a battle with me?
+goto_if_eq VAR_RESULT YES RustboroCity_EventScript_BattleBrendan
+msgbox	BRENDAN: What's the matter? Don't have any confidence in your POKéMON?
+releaseall
+end
+= RustboroCity_EventScript_MayEncounter
+goto_if_set FLAG_DEFEATED_RIVAL_RUSTBORO RustboroCity_EventScript_MayBrineyHint
+goto_if_set FLAG_MET_RIVAL_RUSTBORO RustboroCity_EventScript_MayAskToBattle
+setflag FLAG_MET_RIVAL_RUSTBORO
+msgbox	MAY: Oh, hi, PLAYER!You had a MATCH CALL feature put on your POKéNAV!Let's register each other so we can contact one another anytime!… … … … … …
+closemessage
+delay 30
+playfanfare MUS_REGISTER_MATCH_CALL
+msgbox	Registered MAY in the POKéNAV.
+waitfanfare
+closemessage
+delay 30
+setflag FLAG_ENABLE_RIVAL_MATCH_CALL
+setvar VAR_RUSTBORO_CITY_STATE 8
+setvar VAR_ROUTE104_STATE 2
+setvar VAR_0x8008 0
+msgboxyesno	MAY: Oh, by the way, I passed MR. BRINEY in PETALBURG WOODS.I guess he's on his way home to his cottage by the sea.How's your POKéDEX coming along, PLAYER? Mine's looking pretty decent!So… How about a little battle?
+goto_if_eq VAR_RESULT YES RustboroCity_EventScript_BattleMay
+msgbox	MAY: Oh, what's the matter?Haven't you caught or raised your POKéMON very much?That's not very good for a TRAINER!
+call RustboroCity_EventScript_RestoreBgm
+releaseall
+end
+= RustboroCity_EventScript_BattleMay
+msgbox	MAY: You just became a TRAINER, PLAYER. I'm not going to lose!
+switch VAR_STARTER_MON
+case 0 RustboroCity_EventScript_BattleMayTreecko
+case 1 RustboroCity_EventScript_BattleMayTorchic
+case 2 RustboroCity_EventScript_BattleMayMudkip
+end
+= RustboroCity_EventScript_BattleMayMudkip
+trainerbattle_no_intro TRAINER_MAY_RUSTBORO_MUDKIP RustboroCity_Text_MayDefeat
+setflag FLAG_DEFEATED_RIVAL_RUSTBORO
+goto RustboroCity_EventScript_MayBrineyHint
+end
+= RustboroCity_EventScript_MayBrineyHint
+msgbox	MAY: Oh, by the way, MR. BRINEY, who I just passed…PLAYER, you just moved here so you might not know this, but MR. BRINEY was once a revered seafarer.
+call_if_eq VAR_0x8008 0 RustboroCity_EventScript_RestoreBgm
+releaseall
+end
+= RustboroCity_EventScript_BattleMayTorchic
+trainerbattle_no_intro TRAINER_MAY_RUSTBORO_TORCHIC RustboroCity_Text_MayDefeat
+setflag FLAG_DEFEATED_RIVAL_RUSTBORO
+goto RustboroCity_EventScript_MayBrineyHint
+end
+= RustboroCity_EventScript_BattleMayTreecko
+trainerbattle_no_intro TRAINER_MAY_RUSTBORO_TREECKO RustboroCity_Text_MayDefeat
+setflag FLAG_DEFEATED_RIVAL_RUSTBORO
+goto RustboroCity_EventScript_MayBrineyHint
+end
+= RustboroCity_EventScript_MayAskToBattle
+setvar VAR_0x8008 1
+msgboxyesno	MAY: So, what do you think? How about a little battle here?
+goto_if_eq VAR_RESULT YES RustboroCity_EventScript_BattleMay
+msgbox	MAY: Oh, what's the matter?Haven't you caught or raised your POKéMON very much?That's not very good for a TRAINER!
+releaseall
+end
+= RustboroCity_EventScript_PlayRivalMusic
+checkplayergender
+goto_if_eq VAR_RESULT MALE RustboroCity_EventScript_PlayMayMusic
+goto_if_eq VAR_RESULT FEMALE RustboroCity_EventScript_PlayBrendanMusic
+return
+= RustboroCity_EventScript_PlayBrendanMusic
+playbgm MUS_ENCOUNTER_BRENDAN TRUE
+return
+= RustboroCity_EventScript_PlayMayMusic
+playbgm MUS_ENCOUNTER_MAY TRUE
+return
+= RustboroCity_EventScript_RivalTrigger6
+lockall
+call RustboroCity_EventScript_PlayRivalMusic
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_RUSTBORO_RIVAL RustboroCity_Movement_RivalApproachPlayer6
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+goto RustboroCity_EventScript_RivalEncounter
+= RustboroCity_EventScript_RivalTrigger5
+lockall
+call RustboroCity_EventScript_PlayRivalMusic
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_RUSTBORO_RIVAL RustboroCity_Movement_RivalApproachPlayer5
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+goto RustboroCity_EventScript_RivalEncounter
+= RustboroCity_EventScript_RivalTrigger4
+lockall
+call RustboroCity_EventScript_PlayRivalMusic
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_RUSTBORO_RIVAL RustboroCity_Movement_RivalApproachPlayer4
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+goto RustboroCity_EventScript_RivalEncounter
+= RustboroCity_EventScript_RivalTrigger3
+lockall
+call RustboroCity_EventScript_PlayRivalMusic
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_RUSTBORO_RIVAL RustboroCity_Movement_RivalApproachPlayer3
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+goto RustboroCity_EventScript_RivalEncounter
+= RustboroCity_EventScript_RivalTrigger2
+lockall
+call RustboroCity_EventScript_PlayRivalMusic
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_RUSTBORO_RIVAL RustboroCity_Movement_RivalApproachPlayer2
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+goto RustboroCity_EventScript_RivalEncounter
+= RustboroCity_EventScript_RivalTrigger1
+lockall
+call RustboroCity_EventScript_PlayRivalMusic
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_RUSTBORO_RIVAL RustboroCity_Movement_RivalApproachPlayer1
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+goto RustboroCity_EventScript_RivalEncounter
+= RustboroCity_EventScript_RivalTrigger0
+lockall
+call RustboroCity_EventScript_PlayRivalMusic
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_RUSTBORO_RIVAL RustboroCity_Movement_RivalApproachPlayer0
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+goto RustboroCity_EventScript_RivalEncounter
+= RustboroCity_EventScript_ReturnGoodsTrigger3
+lockall
+setvar VAR_TEMP_1 3
+goto RustboroCity_EventScript_ReturnGoods
+end
+= RustboroCity_EventScript_ReturnGoods
+call_if_eq VAR_TEMP_1 0 RustboroCity_EventScript_EmployeeFacePlayerUp2
+call_if_eq VAR_TEMP_1 1 RustboroCity_EventScript_EmployeeFacePlayerLeft2
+call_if_eq VAR_TEMP_1 2 RustboroCity_EventScript_EmployeeFacePlayerDown2
+call_if_eq VAR_TEMP_1 3 RustboroCity_EventScript_EmployeeApproachPlayerDown2
+call_if_eq VAR_TEMP_1 4 RustboroCity_EventScript_EmployeeFacePlayerRight
+msgbox	Oh! How did it go? The DEVON GOODS?You did! You got them back!You really are a great TRAINER!I know! As my thanks, I'll give you another GREAT BALL!
+giveitem ITEM_GREAT_BALL
+call_if_eq VAR_RESULT FALSE RustboroCity_EventScript_BagFull
+msgbox	Excuse me, please! Please come with me!
+closemessage
+setflag FLAG_RETURNED_DEVON_GOODS
+setflag FLAG_HIDE_RUSTBORO_CITY_DEVON_EMPLOYEE_1
+setvar VAR_RUSTBORO_CITY_STATE 5
+delay 30
+warp RustboroCity_DevonCorp_3F 2 2
+waitstate
+releaseall
+end
+= RustboroCity_EventScript_BagFull
+msgbox	You're loaded with items. I can't give you this GREAT BALL.
+return
+= RustboroCity_EventScript_EmployeeFacePlayerRight
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_Delay48
+waitmovement 0
+return
+= RustboroCity_EventScript_EmployeeApproachPlayerDown2
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE RustboroCity_Movement_EmployeeApproachPlayerDown
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+return
+= RustboroCity_EventScript_EmployeeFacePlayerDown2
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+return
+= RustboroCity_EventScript_EmployeeFacePlayerLeft2
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_FaceLeft
+waitmovement 0
+return
+= RustboroCity_EventScript_EmployeeFacePlayerUp2
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+return
+= RustboroCity_EventScript_ReturnGoodsTrigger2
+lockall
+setvar VAR_TEMP_1 2
+goto RustboroCity_EventScript_ReturnGoods
+end
+= RustboroCity_EventScript_ReturnGoodsTrigger1
+lockall
+setvar VAR_TEMP_1 1
+goto RustboroCity_EventScript_ReturnGoods
+end
+= RustboroCity_EventScript_ReturnGoodsTrigger0
+lockall
+setvar VAR_TEMP_1 0
+goto RustboroCity_EventScript_ReturnGoods
+end
+= RustboroCity_EventScript_HelpGetGoodsTrigger3
+lockall
+setvar VAR_TEMP_1 3
+goto RustboroCity_EventScript_EmployeeAskToGetGoods
+end
+= RustboroCity_EventScript_EmployeeAskToGetGoods
+call_if_eq VAR_TEMP_1 0 RustboroCity_EventScript_EmployeeFacePlayerUp1
+call_if_eq VAR_TEMP_1 1 RustboroCity_EventScript_EmployeeFacePlayerLeft1
+call_if_eq VAR_TEMP_1 2 RustboroCity_EventScript_EmployeeFacePlayerDown1
+call_if_eq VAR_TEMP_1 3 RustboroCity_EventScript_EmployeeApproachPlayerDown1
+setflag FLAG_INTERACTED_WITH_DEVON_EMPLOYEE_GOODS_STOLEN
+setvar VAR_RUSTBORO_CITY_STATE 3
+copyobjectxytoperm LOCALID_RUSTBORO_DEVON_EMPLOYEE
+msgbox	Oh, it's you!You're that fantastic TRAINER who helped me in PETALBURG WOODS!Help me! I was robbed by TEAM AQUA! I have to get the DEVON GOODS back!If I don't… I'm going to be in serious trouble.
+releaseall
+end
+@ The below movement scripts are either partially or fully duplicated by the movement scripts when the player returns the goods
+goto RustboroCity_EventScript_EmployeeFacePlayerUp1
+= RustboroCity_EventScript_EmployeeFacePlayerUp1
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+return
+= RustboroCity_EventScript_EmployeeApproachPlayerDown1
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE RustboroCity_Movement_EmployeeApproachPlayerDown
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+return
+= RustboroCity_EventScript_EmployeeFacePlayerDown1
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+return
+= RustboroCity_EventScript_EmployeeFacePlayerLeft1
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_FaceRight
+waitmovement 0
+return
+= RustboroCity_EventScript_HelpGetGoodsTrigger2
+lockall
+setvar VAR_TEMP_1 2
+goto RustboroCity_EventScript_EmployeeAskToGetGoods
+end
+= RustboroCity_EventScript_HelpGetGoodsTrigger1
+lockall
+setvar VAR_TEMP_1 1
+goto RustboroCity_EventScript_EmployeeAskToGetGoods
+end
+= RustboroCity_EventScript_HelpGetGoodsTrigger0
+lockall
+setvar VAR_TEMP_1 0
+goto RustboroCity_EventScript_EmployeeAskToGetGoods
+end
+= RustboroCity_EventScript_StolenGoodsTrigger4
+lockall
+setobjectxyperm LOCALID_RUSTBORO_DEVON_EMPLOYEE 14 21
+setobjectmovementtype LOCALID_RUSTBORO_DEVON_EMPLOYEE MOVEMENT_TYPE_FACE_RIGHT
+setvar VAR_0x8004 4
+goto RustboroCity_EventScript_StolenGoodsScene
+end
+= RustboroCity_EventScript_StolenGoodsScene
+msgbox	Get out! Out of the way!
+closemessage
+playbgm MUS_ENCOUNTER_AQUA FALSE
+addobject LOCALID_RUSTBORO_GRUNT
+addobject LOCALID_RUSTBORO_DEVON_EMPLOYEE
+applymovement LOCALID_RUSTBORO_GRUNT RustboroCity_Movement_GruntEscape
+waitmovement 0
+removeobject LOCALID_RUSTBORO_GRUNT
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE RustboroCity_Movement_EmployeeChaseGrunt1
+waitmovement 0
+msgbox	Wait! Pleeeaaase!Don't take my GOODS!
+closemessage
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE RustboroCity_Movement_EmployeeChaseGrunt2
+waitmovement 0
+fadedefaultbgm
+removeobject LOCALID_RUSTBORO_DEVON_EMPLOYEE
+setobjectxyperm LOCALID_RUSTBORO_DEVON_EMPLOYEE 30 10
+clearflag FLAG_HIDE_RUSTBORO_CITY_DEVON_EMPLOYEE_1
+setflag FLAG_DEVON_GOODS_STOLEN
+setvar VAR_RUSTBORO_CITY_STATE 2
+setvar VAR_RUSTURF_TUNNEL_STATE 2
+setvar VAR_ROUTE116_STATE 1
+clearflag FLAG_HIDE_ROUTE_116_MR_BRINEY
+clearflag FLAG_HIDE_RUSTURF_TUNNEL_PEEKO
+clearflag FLAG_HIDE_RUSTURF_TUNNEL_AQUA_GRUNT
+setflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
+setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
+releaseall
+end
+@ Unused
+goto RustboroCity_EventScript_ShadyCharacterTookOff
+= RustboroCity_EventScript_ShadyCharacterTookOff
+msgbox	That shady character, I think he took off towards the tunnel over there.
+return
+@ Unused
+goto RustboroCity_EventScript_YouGotItThankYou
+= RustboroCity_EventScript_YouGotItThankYou
+msgbox	Oh! How did it go? The DEVON GOODS?You did! You got them back!You really are a great TRAINER!I know! As my thanks, I'll give you another GREAT BALL!
+return
+@ Unknown unused employee movements. Based on the differences in movement theyre for approaching an object (probably the player) in different positions
+goto RustboroCity_EventScript_EmployeeApproachUp
+= RustboroCity_EventScript_EmployeeApproachUp
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE RustboroCity_Movement_EmployeeApproachUp
+waitmovement 0
+return
+@ Unused see above
+goto RustboroCity_EventScript_EmployeeApproachLeft
+= RustboroCity_EventScript_EmployeeApproachLeft
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE RustboroCity_Movement_EmployeeApproachLeft
+waitmovement 0
+return
+@ Unused see above
+goto RustboroCity_EventScript_EmployeeApproachRight
+= RustboroCity_EventScript_EmployeeApproachRight
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE RustboroCity_Movement_EmployeeApproachRight
+waitmovement 0
+return
+@ Unused see above
+goto RustboroCity_EventScript_EmployeeApproachDown
+= RustboroCity_EventScript_EmployeeApproachDown
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE RustboroCity_Movement_EmployeeApproachDown
+waitmovement 0
+return
+@ Unused similar movement to the above scripts
+goto RustboroCity_EventScript_EmployeeApproachPlayerFar
+= RustboroCity_EventScript_EmployeeApproachPlayerFar
+applymovement LOCALID_RUSTBORO_DEVON_EMPLOYEE RustboroCity_Movement_EmployeeApproachPlayerFar
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+return
+@ Unused
+goto RustboroCity_EventScript_DevonEmployee1
+= RustboroCity_EventScript_DevonEmployee1
+lock
+faceplayer
+goto_if_set FLAG_RECOVERED_DEVON_GOODS RustboroCity_EventScript_ReturnGoodsSpokeToEmployee
+msgbox	That shady character, I think he took off towards the tunnel over there.
+release
+end
+= RustboroCity_EventScript_ReturnGoodsSpokeToEmployee
+waitse
+setvar VAR_TEMP_1 4
+goto RustboroCity_EventScript_ReturnGoods
+end
+= RustboroCity_EventScript_StolenGoodsTrigger3
+lockall
+setobjectxyperm LOCALID_RUSTBORO_DEVON_EMPLOYEE 14 21
+setobjectmovementtype LOCALID_RUSTBORO_DEVON_EMPLOYEE MOVEMENT_TYPE_FACE_RIGHT
+setvar VAR_0x8004 3
+goto RustboroCity_EventScript_StolenGoodsScene
+end
+= RustboroCity_EventScript_StolenGoodsTrigger2
+lockall
+setobjectxyperm LOCALID_RUSTBORO_DEVON_EMPLOYEE 14 21
+setobjectmovementtype LOCALID_RUSTBORO_DEVON_EMPLOYEE MOVEMENT_TYPE_FACE_RIGHT
+setvar VAR_0x8004 2
+goto RustboroCity_EventScript_StolenGoodsScene
+end
+= RustboroCity_EventScript_StolenGoodsTrigger1
+lockall
+setobjectxyperm LOCALID_RUSTBORO_DEVON_EMPLOYEE 14 21
+setobjectmovementtype LOCALID_RUSTBORO_DEVON_EMPLOYEE MOVEMENT_TYPE_FACE_RIGHT
+setvar VAR_0x8004 1
+goto RustboroCity_EventScript_StolenGoodsScene
+end
+= RustboroCity_EventScript_StolenGoodsTrigger0
+lockall
+setobjectxyperm LOCALID_RUSTBORO_DEVON_EMPLOYEE 14 21
+setobjectmovementtype LOCALID_RUSTBORO_DEVON_EMPLOYEE MOVEMENT_TYPE_FACE_RIGHT
+setvar VAR_0x8004 0
+goto RustboroCity_EventScript_StolenGoodsScene
+end
+= RustboroCity_EventScript_Boy1
+msgbox	Did you know this?You can have a 2-on-2 battle even if you're not with another TRAINER.If you catch the eyes of two TRAINERS when you have two or more POKéMON, they'll both challenge you.Don't you think it'd be cool if you could beat two TRAINERS by yourself?
+end
+= RustboroCity_EventScript_Rival
+lockall
+call_if_unset FLAG_MET_RIVAL_RUSTBORO RustboroCity_EventScript_PlayRivalMusic
+applymovement LOCALID_RUSTBORO_RIVAL Common_Movement_FacePlayer
+waitmovement 0
+goto RustboroCity_EventScript_RivalEncounter
+= RustboroCity_EventScript_Man2
+lock
+faceplayer
+msgbox	A POKéMON you get in a trade from someone grows fast.But if you don't have certain GYM BADGES, it may not obey you…
+release
+end
+= RustboroCity_EventScript_ItemXDefend
+goto_if_set FLAG_ITEM_RUSTBORO_CITY_X_DEFEND RustboroCity_EventScript_ItemXDefend_Taken
+finditem ITEM_X_DEFEND
+setflag FLAG_ITEM_RUSTBORO_CITY_X_DEFEND
+end
+= RustboroCity_EventScript_ItemXDefend_Taken
+end
+= RustboroCity_EventScript_DevonEmployee2
+lock
+faceplayer
+msgbox	Oh? Who might you be? You're a new face around these parts.Have you just transferred into the POKéMON TRAINER'S SCHOOL?
+release
+end
+= RustboroCity_EventScript_LittleGirl
+lock
+faceplayer
+msgbox	A POKéMON changes shape? If one did that, I would be shocked!
+applymovement LOCALID_RUSTBORO_LITTLE_GIRL Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= RustboroCity_EventScript_LittleBoy
+lock
+faceplayer
+msgbox	If a POKéMON gains experience in battles, it can sometimes change in the way it looks.
+applymovement LOCALID_RUSTBORO_LITTLE_BOY Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= RustboroCity_EventScript_Man1
+lock
+faceplayer
+goto_if_set FLAG_BADGE01_GET RustboroCity_EventScript_Man1HaveBadge
+msgbox	Have you taken the POKéMON GYM challenge?When you get that shiny GYM BADGE in hand, I guess TRAINERS begin to realize what is required of them.
+release
+end
+= RustboroCity_EventScript_Man1HaveBadge
+msgbox	Hey, that's RUSTBORO's GYM BADGE!Out of all the POKéMON GYM BADGES, RUSTBORO's is the coolest, I'd say.
+release
+end
+= RustboroCity_EventScript_Boy2
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_POKENAV RustboroCity_EventScript_Boy2BrineyLeftTunnel
+msgbox	The old sailor MR. BRINEY lives in a cottage by the sea.He goes for walks in the tunnel every so often.
+release
+end
+= RustboroCity_EventScript_Boy2BrineyLeftTunnel
+msgbox	The old sailor MR. BRINEY lives in a cottage by the sea.He said he was going shopping in SLATEPORT for his pet, PEEKO.That old sea dog, he must really love that PEEKO.
+release
+end
+= RustboroCity_EventScript_Twin
+msgbox	Wow, you have POKéMON with you, too.When I get bigger, I'm going to go places with POKéMON, too.
+end
+= RustboroCity_EventScript_NinjaBoy
+msgbox	POKéMON TRAINER'S SCHOOL!If I go to this school, will I be able to catch rare POKéMON easily?
+end
+= RustboroCity_EventScript_FatMan
+lock
+faceplayer
+goto_if_set FLAG_DEVON_GOODS_STOLEN RustboroCity_EventScript_FatManSawGrunt
+msgbox	The DEVON CORPORATION… We all just shorten it to DEVON.That company makes all sorts of convenient products.
+release
+end
+= RustboroCity_EventScript_FatManSawGrunt
+msgbox	Hm? A sneaky-looking man?Come to think of it, yes, a shady- looking guy went around the corner.
+release
+end
+= RustboroCity_EventScript_Woman
+msgbox	I challenged the GYM LEADER, but…It's not going to be easy winning with my FIRE-type POKéMON…FIRE-type POKéMON don't match up well against ROCK-type POKéMON…
+end
+signs
+23 19	RUSTBORO CITY POKéMON GYM LEADER: ROXANNE“The ROCK-loving honors student!”
+25 35	POKéMON TRAINER'S SCHOOL“We'll teach you anything about POKéMON!”
+19 49	RUSTBORO CITY“The city probing the integration of nature and science.”
+17 20	DEVON CORPORATION“For all your living needs, we make it all.”
+30 8	“Timesaving tunnel nearing completion!”…Is what it says on the sign, but there's also a big “X” splashed across it in red paint…
+12 38	CUTTER'S HOUSE
+water
+368
+visit
+FLAG_VISITED_RUSTBORO_CITY
+mapsec
+0 5 1 2	RUSTBORO CITY
+music
+MUS_RUSTBORO

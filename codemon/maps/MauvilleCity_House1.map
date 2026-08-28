@@ -1,0 +1,49 @@
+tileset building__generic_building
+11 8
+4 3
+646,647,560,517,517,518,517,517,517,517,632
+654,655,542,525,525,526,525,616,620,621,640
+662,663,568,548,548,548,548,624,628,629,648
+569,547,547,547,547,547,547,547,547,547,547
+569,547,547,547,555,586,587,556,547,547,547
+569,547,547,547,555,594,595,556,547,547,547
+657,547,547,547,547,547,547,547,547,547,546
+665,547,547,520,521,547,547,547,547,547,554
+collision
+1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,1,1,0,0,0,0
+0,0,0,0,0,1,1,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0
+1,0,0,0,0,0,0,0,0,0,1
+warps
+3 7 MauvilleCity 4
+4 7 MauvilleCity 4
+npcs
+people_scientist_1 4 4 E static 0 - 0
+dialogs
+0	Woohoo!I hear people call me the ROCK SMASH GUY, but I find that sort of degrading.I think I deserve a bit more respect, like maybe the ROCK SMASH DUDE.Woohoo!Anyways, your POKéMON look pretty strong.I like that! Here, take this HIDDEN MACHINE!
+objscripts
+0 MauvilleCity_House1_EventScript_RockSmashDude
+scriptdefs
+= MauvilleCity_House1_EventScript_RockSmashDude
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_HM_ROCK_SMASH MauvilleCity_House1_EventScript_ReceivedRockSmash
+msgbox	Woohoo!I hear people call me the ROCK SMASH GUY, but I find that sort of degrading.I think I deserve a bit more respect, like maybe the ROCK SMASH DUDE.Woohoo!Anyways, your POKéMON look pretty strong.I like that! Here, take this HIDDEN MACHINE!
+giveitem ITEM_HM_ROCK_SMASH
+setflag FLAG_RECEIVED_HM_ROCK_SMASH
+setflag FLAG_HIDE_ROUTE_111_ROCK_SMASH_TIP_GUY
+msgbox	That HM contains ROCK SMASH.If you come across large boulders that block your path…Well, use that HM move and smash them right out of your way!Yes, sir! Smash rocks aside, I say! Woohoo!
+release
+end
+= MauvilleCity_House1_EventScript_ReceivedRockSmash
+msgbox	Oh, yes, if you smash a rock, a POKéMON could come flying out of hiding.Woohoo!
+release
+end
+mapsec
+8 6 2 1	MAUVILLE CITY
+music
+MUS_RUSTBORO

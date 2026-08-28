@@ -1,0 +1,53 @@
+tileset general__underwater
+14 9
+6 5
+531,531,531,531,518,542,542,542,542,519,531,531,531,531
+531,531,518,542,543,531,531,531,531,541,542,519,531,531
+531,518,543,518,542,542,542,542,542,542,519,541,519,531
+518,543,518,543,518,740,741,742,743,519,541,519,541,519
+532,518,543,518,540,736,737,738,739,538,519,530,531,530
+532,532,518,540,552,744,745,746,747,552,530,541,519,530
+532,532,532,552,552,552,552,552,552,552,538,519,530,530
+547,547,547,524,552,552,548,552,552,552,522,546,546,546
+531,531,531,547,523,555,556,557,523,523,546,531,531,531
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,0,0,0,0,0,0,1,1,1,1
+1,1,1,0,0,0,0,0,0,0,1,1,1,1
+1,1,1,1,0,0,0,0,0,0,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+6 7 Underwater_Route128 0
+npcs
+people_brendan_walking 5 4 S static FLAG_HIDE_UNDERWATER_SEA_FLOOR_CAVERN_STOLEN_SUBMARINE - 0
+people_brendan_walking 6 4 S static FLAG_HIDE_UNDERWATER_SEA_FLOOR_CAVERN_STOLEN_SUBMARINE - 0
+people_brendan_walking 7 4 S static FLAG_HIDE_UNDERWATER_SEA_FLOOR_CAVERN_STOLEN_SUBMARINE - 0
+people_brendan_walking 8 4 S static FLAG_HIDE_UNDERWATER_SEA_FLOOR_CAVERN_STOLEN_SUBMARINE - 0
+dialogs
+0	“SUBMARINE EXPLORER 1” is painted on the hull.This is the submarine TEAM AQUA stole in SLATEPORT!TEAM AQUA must have gone ashore here.
+1	“SUBMARINE EXPLORER 1” is painted on the hull.This is the submarine TEAM AQUA stole in SLATEPORT!TEAM AQUA must have gone ashore here.
+2	“SUBMARINE EXPLORER 1” is painted on the hull.This is the submarine TEAM AQUA stole in SLATEPORT!TEAM AQUA must have gone ashore here.
+3	“SUBMARINE EXPLORER 1” is painted on the hull.This is the submarine TEAM AQUA stole in SLATEPORT!TEAM AQUA must have gone ashore here.
+objscripts
+0 Underwater_SeafloorCavern_EventScript_CheckStolenSub
+1 Underwater_SeafloorCavern_EventScript_CheckStolenSub
+2 Underwater_SeafloorCavern_EventScript_CheckStolenSub
+3 Underwater_SeafloorCavern_EventScript_CheckStolenSub
+scriptdefs
+= Underwater_SeafloorCavern_EventScript_CheckStolenSub
+msgbox	“SUBMARINE EXPLORER 1” is painted on the hull.This is the submarine TEAM AQUA stole in SLATEPORT!TEAM AQUA must have gone ashore here.
+end
+water
+552,736,737,738,739,744,745,746,747
+divewarp
+SeafloorCavern_Entrance 10 17
+dive
+552,736,737,738,739,744,745,746,747
+mapsec
+24 9 1 1	UNDERWATER
+music
+MUS_UNDERWATER

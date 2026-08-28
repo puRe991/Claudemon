@@ -1,0 +1,128 @@
+tileset building__elite_four
+13 14
+6 7
+527,519,527,519,527,520,520,520,519,527,519,527,519
+517,516,517,516,517,513,514,515,516,517,516,517,516
+525,524,525,524,525,521,522,523,524,525,524,525,524
+626,626,626,626,626,648,648,648,626,626,626,626,626
+670,630,652,652,624,627,627,627,628,652,652,631,629
+637,638,652,652,632,633,634,635,636,652,652,639,637
+645,646,652,652,640,641,642,643,644,652,652,647,645
+653,625,652,652,632,649,650,651,636,652,652,647,653
+653,654,652,652,632,657,658,659,636,652,652,655,653
+669,662,652,652,664,667,667,667,668,652,652,663,661
+666,665,665,665,665,665,665,665,665,665,665,665,665
+519,527,519,527,520,520,520,520,520,519,527,519,527
+725,726,725,726,741,652,652,652,727,725,726,725,726
+840,841,840,841,742,660,660,660,735,840,841,840,841
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,0,0,0,0,0,0,0,0,0,1,1
+1,1,0,0,0,0,0,0,0,0,0,1,1
+1,1,0,0,0,0,0,0,0,0,0,1,1
+1,1,0,0,0,0,0,0,0,0,0,1,1
+1,1,0,0,0,0,0,0,0,0,0,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,1,1,1,0,0,0,1,1,1,1,1
+1,1,1,1,1,0,0,0,1,1,1,1,1
+warps
+6 13 EverGrandeCity_Hall2 1
+6 2 EverGrandeCity_Hall3 0
+npcs
+people_elite_four_glacia 6 5 S static 0 - 0
+dialogs
+0	Welcome, my name is GLACIA of the ELITE FOUR.I've traveled from afar to HOENN so that I may hone my ice skills.But all I have seen are challenges by weak TRAINERS and their POKéMON.What about you?It would please me to no end if I could go all out against you!
+objscripts
+0 EverGrandeCity_GlaciasRoom_EventScript_Glacia
+onload
+VAR_ELITE_4_STATE 2 EverGrandeCity_GlaciasRoom_EventScript_WalkInCloseDoor
+movements
+Common_Movement_Delay32	delay,delay,end
+Common_Movement_WalkUp6	up,up,up,up,up,up,end
+scriptdefs
+= EverGrandeCity_GlaciasRoom_EventScript_WalkInCloseDoor
+lockall
+call PokemonLeague_EliteFour_EventScript_WalkInCloseDoor
+setvar VAR_ELITE_4_STATE 3
+releaseall
+end
+= PokemonLeague_EliteFour_EventScript_WalkInCloseDoor
+applymovement LOCALID_PLAYER Common_Movement_WalkUp6
+waitmovement 0
+playse SE_TRUCK_DOOR
+setmetatile 5 12 METATILE_EliteFour_EntryDoor_ClosedTop TRUE
+setmetatile 6 12 METATILE_EliteFour_EntryDoor_ClosedTop TRUE
+setmetatile 7 12 METATILE_EliteFour_EntryDoor_ClosedTop TRUE
+setmetatile 5 13 METATILE_EliteFour_EntryDoor_ClosedBottom TRUE
+setmetatile 6 13 METATILE_EliteFour_EntryDoor_ClosedBottom TRUE
+setmetatile 7 13 METATILE_EliteFour_EntryDoor_ClosedBottom TRUE
+special DrawWholeMapView
+return
+@ Essentially unused only necessary when re-entering an Elite Four room after defeating the member which isnt normally possible
+goto PokemonLeague_EliteFour_EventScript_ResetAdvanceToNextRoom
+= PokemonLeague_EliteFour_EventScript_ResetAdvanceToNextRoom
+setmetatile 6 1 METATILE_EliteFour_OpenDoor_Frame FALSE
+setmetatile 6 2 METATILE_EliteFour_OpenDoor_Opening FALSE
+setmetatile 5 12 METATILE_EliteFour_EntryDoor_ClosedTop TRUE
+setmetatile 6 12 METATILE_EliteFour_EntryDoor_ClosedTop TRUE
+setmetatile 7 12 METATILE_EliteFour_EntryDoor_ClosedTop TRUE
+setmetatile 5 13 METATILE_EliteFour_EntryDoor_ClosedBottom TRUE
+setmetatile 6 13 METATILE_EliteFour_EntryDoor_ClosedBottom TRUE
+setmetatile 7 13 METATILE_EliteFour_EntryDoor_ClosedBottom TRUE
+setmetatile 0 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 1 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+setmetatile 2 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 3 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+setmetatile 4 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 8 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+setmetatile 9 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 10 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+setmetatile 11 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 12 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+return
+= EverGrandeCity_GlaciasRoom_EventScript_Glacia
+lock
+faceplayer
+goto_if_set FLAG_DEFEATED_ELITE_4_GLACIA EverGrandeCity_GlaciasRoom_EventScript_PostBattleSpeech
+playbgm MUS_ENCOUNTER_ELITE_FOUR FALSE
+msgbox	Welcome, my name is GLACIA of the ELITE FOUR.I've traveled from afar to HOENN so that I may hone my ice skills.But all I have seen are challenges by weak TRAINERS and their POKéMON.What about you?It would please me to no end if I could go all out against you!
+trainerbattle_no_intro TRAINER_GLACIA EverGrandeCity_GlaciasRoom_Text_Defeat
+goto EverGrandeCity_GlaciasRoom_EventScript_Defeated
+end
+= EverGrandeCity_GlaciasRoom_EventScript_Defeated
+setflag FLAG_DEFEATED_ELITE_4_GLACIA
+call PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles
+msgbox	Advance to the next room.And there, confirm the truly fearsome side of the POKéMON LEAGUE.
+release
+end
+= PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles
+applymovement LOCALID_PLAYER Common_Movement_Delay32
+waitmovement 0
+playse SE_DOOR
+setmetatile 6 1 METATILE_EliteFour_OpenDoor_Frame FALSE
+setmetatile 6 2 METATILE_EliteFour_OpenDoor_Opening FALSE
+setmetatile 0 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 1 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+setmetatile 2 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 3 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+setmetatile 4 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 8 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+setmetatile 9 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 10 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+setmetatile 11 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 12 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+special DrawWholeMapView
+return
+= EverGrandeCity_GlaciasRoom_EventScript_PostBattleSpeech
+msgbox	Advance to the next room.And there, confirm the truly fearsome side of the POKéMON LEAGUE.
+release
+end
+mapsec
+27 8 1 2	EVER GRANDE CITY
+music
+MUS_VICTORY_ROAD

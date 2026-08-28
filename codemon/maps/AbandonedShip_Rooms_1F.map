@@ -1,0 +1,96 @@
+tileset general__inside_ship
+18 17
+10 7
+566,551,551,661,611,662,551,551,567,566,576,619,661,611,662,551,551,567
+574,559,559,669,663,670,559,559,575,574,584,627,669,663,670,559,559,575
+574,570,571,571,571,571,571,571,575,574,592,593,570,571,571,571,571,575
+574,573,568,568,568,568,568,568,575,574,600,601,573,568,568,568,682,575
+574,683,568,568,568,568,609,568,575,574,570,571,572,568,568,568,568,575
+574,573,568,568,568,568,568,568,575,574,573,568,568,568,608,568,568,575
+574,573,610,568,568,568,568,568,575,574,683,568,568,568,568,568,568,575
+574,573,568,568,568,609,568,568,575,574,573,568,568,568,568,568,568,575
+513,513,513,513,513,513,513,513,513,513,513,513,513,573,513,513,513,513
+566,576,577,578,551,551,551,581,567,566,551,551,551,573,579,580,581,567
+574,584,585,586,559,559,559,559,575,574,559,559,559,573,587,588,589,575
+574,592,593,570,571,571,571,571,583,582,570,571,571,572,571,596,597,575
+574,600,601,573,568,608,568,568,591,590,573,568,568,568,568,604,605,575
+574,570,571,572,610,568,568,568,571,571,572,568,568,568,568,571,571,575
+574,573,568,568,568,568,568,568,575,574,573,598,599,568,568,568,682,575
+574,573,609,568,568,568,568,568,575,574,573,606,607,568,568,568,568,575
+574,683,568,568,612,613,568,568,575,574,573,568,568,612,613,568,568,575
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,1
+1,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,1,1
+1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1
+1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1
+1,0,1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1
+1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1
+1,1,1,0,0,0,0,0,1,1,0,0,0,0,0,1,1,1
+1,1,1,0,0,0,0,0,1,1,0,0,0,0,0,1,1,1
+1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1
+1,0,0,0,0,0,0,0,1,1,0,1,1,0,0,0,1,1
+1,0,0,0,0,0,0,0,1,1,0,1,1,0,0,0,0,1
+1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1
+warps
+4 16 AbandonedShip_Corridors_1F 4
+5 16 AbandonedShip_Corridors_1F 4
+4 1 AbandonedShip_Corridors_1F 6
+13 16 AbandonedShip_Corridors_1F 5
+13 1 AbandonedShip_Corridors_1F 7
+14 16 AbandonedShip_Corridors_1F 5
+npcs
+people_gentleman 12 5 S wander 0 - 0
+misc_item_ball 4 5 S static FLAG_ITEM_ABANDONED_SHIP_ROOMS_1F_HARBOR_MAIL - 0
+people_beauty 10 11 S static 0 - 4
+people_youngster 10 16 S static 0 - 4
+dialogs
+0	Ships of this sort are rare, so I'm taking a look around.Hmhm… There appear to be other cabins…
+2	The man next door…He says he's just sightseeing, but I don't know about that.
+3	I'm in trouble with my mom, so I ran. Keep it a secret where I am!
+objscripts
+0 AbandonedShip_Rooms_1F_EventScript_Gentleman
+1 AbandonedShip_Rooms_1F_EventScript_ItemHarborMail
+2 AbandonedShip_Rooms_1F_EventScript_Thalia
+3 AbandonedShip_Rooms_1F_EventScript_Demetrius
+scriptdefs
+= AbandonedShip_Rooms_1F_EventScript_Demetrius
+trainerbattle_single TRAINER_DEMETRIUS AbandonedShip_Rooms_1F_Text_DemetriusIntro AbandonedShip_Rooms_1F_Text_DemetriusDefeat
+msgbox	I'm in trouble with my mom, so I ran. Keep it a secret where I am!
+end
+= AbandonedShip_Rooms_1F_EventScript_Thalia
+trainerbattle_single TRAINER_THALIA_1 AbandonedShip_Rooms_1F_Text_ThaliaIntro AbandonedShip_Rooms_1F_Text_ThaliaDefeat AbandonedShip_Rooms_1F_EventScript_RegisterThalia
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE AbandonedShip_Rooms_1F_EventScript_ThaliaRematch
+msgbox	The man next door…He says he's just sightseeing, but I don't know about that.
+release
+end
+= AbandonedShip_Rooms_1F_EventScript_ThaliaRematch
+trainerbattle_rematch TRAINER_THALIA_1 AbandonedShip_Rooms_1F_Text_ThaliaRematchIntro AbandonedShip_Rooms_1F_Text_ThaliaRematchDefeat
+msgbox	I'm sure that man's up to something! He just acts so suspiciously!
+end
+= AbandonedShip_Rooms_1F_EventScript_RegisterThalia
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	You're such a tough TRAINER! Let me register you as a memento!
+register_matchcall TRAINER_THALIA_1
+release
+end
+= AbandonedShip_Rooms_1F_EventScript_ItemHarborMail
+goto_if_set FLAG_ITEM_ABANDONED_SHIP_ROOMS_1F_HARBOR_MAIL AbandonedShip_Rooms_1F_EventScript_ItemHarborMail_Taken
+finditem ITEM_HARBOR_MAIL
+setflag FLAG_ITEM_ABANDONED_SHIP_ROOMS_1F_HARBOR_MAIL
+end
+= AbandonedShip_Rooms_1F_EventScript_ItemHarborMail_Taken
+end
+= AbandonedShip_Rooms_1F_EventScript_Gentleman
+msgbox	Ships of this sort are rare, so I'm taking a look around.Hmhm… There appear to be other cabins…
+end
+mapsec
+6 14 1 1	ABANDONED SHIP
+music
+MUS_ABANDONED_SHIP

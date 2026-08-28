@@ -1,0 +1,91 @@
+tileset general__facility
+13 13
+5 5
+740,691,692,693,751,740,751,740,751,707,708,709,740
+748,699,700,701,759,748,759,748,759,715,716,717,748
+806,744,743,745,743,806,806,806,743,744,743,745,806
+806,742,742,742,750,750,750,750,750,742,742,742,750
+743,742,742,742,742,742,742,742,742,742,742,742,742
+806,742,742,742,742,742,750,742,742,742,742,742,750
+806,742,742,750,750,750,750,750,750,750,742,742,750
+743,742,742,742,742,742,742,742,742,742,742,742,742
+806,750,750,750,750,750,750,750,750,750,742,742,742
+806,750,750,750,750,750,750,750,750,750,742,742,742
+743,742,742,742,742,742,742,750,750,742,742,742,742
+743,742,742,750,750,742,742,750,750,742,742,750,750
+743,742,742,750,750,742,1010,750,750,742,1010,750,750
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,0,1,1,1,1,1,1,1,0,1,1
+1,0,0,0,0,1,1,1,0,0,0,0,1
+1,0,0,0,1,1,1,1,1,0,0,0,1
+0,0,0,0,0,0,0,0,0,0,0,0,0
+1,0,0,0,0,0,1,0,0,0,0,0,1
+1,0,0,1,1,1,1,1,1,1,0,0,1
+0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,0,0,0
+1,1,1,1,1,1,1,1,1,1,0,0,0
+0,0,0,0,0,0,0,1,1,0,0,0,0
+0,0,0,1,1,0,0,1,1,0,0,1,1
+0,0,0,1,1,0,0,1,1,0,0,1,1
+warps
+10 1 MtPyre_2F 1
+2 1 MtPyre_4F 1
+9 10 MtPyre_4F 4
+1 12 MtPyre_4F 5
+10 12 MtPyre_2F 2
+6 12 MtPyre_2F 3
+npcs
+people_psychic_m 1 4 S static 0 - 4
+people_lass 11 4 S static 0 - 4
+misc_item_ball 0 7 S static FLAG_ITEM_MT_PYRE_3F_SUPER_REPEL - 0
+people_woman_2 6 4 W pace_h 0 - 4
+dialogs
+0	My psychic powers have surely grown several times, but…
+1	This means my training is still not enough…I've got to keep working toward the summit…Go, me!
+3	POKéMON no longer of this world. POKéMON that are with you now.And the POKéMON that you will meet in the future…They are all to be equally cherished. Please remember that.
+objscripts
+0 MtPyre_3F_EventScript_William
+1 MtPyre_3F_EventScript_Kayla
+2 MtPyre_3F_EventScript_ItemSuperRepel
+3 MtPyre_3F_EventScript_Gabrielle
+scriptdefs
+= MtPyre_3F_EventScript_Gabrielle
+trainerbattle_single TRAINER_GABRIELLE_1 MtPyre_3F_Text_GabrielleIntro MtPyre_3F_Text_GabrielleDefeat MtPyre_3F_EventScript_RegisterGabrielle
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE MtPyre_3F_EventScript_RematchGabrielle
+msgbox	POKéMON no longer of this world. POKéMON that are with you now.And the POKéMON that you will meet in the future…They are all to be equally cherished. Please remember that.
+release
+end
+= MtPyre_3F_EventScript_RematchGabrielle
+trainerbattle_rematch TRAINER_GABRIELLE_1 MtPyre_3F_Text_GabrielleRematchIntro MtPyre_3F_Text_GabrielleRematchDefeat
+msgbox	POKéMON no longer of this world. POKéMON that are with you now.And the POKéMON that you will meet in the future…They are all to be equally cherished. I see that you've remembered that.
+end
+= MtPyre_3F_EventScript_RegisterGabrielle
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	I would like to see your POKéMON when they grow up some more…Please, I need to see your POKéNAV.
+register_matchcall TRAINER_GABRIELLE_1
+release
+end
+= MtPyre_3F_EventScript_ItemSuperRepel
+goto_if_set FLAG_ITEM_MT_PYRE_3F_SUPER_REPEL MtPyre_3F_EventScript_ItemSuperRepel_Taken
+finditem ITEM_SUPER_REPEL
+setflag FLAG_ITEM_MT_PYRE_3F_SUPER_REPEL
+end
+= MtPyre_3F_EventScript_ItemSuperRepel_Taken
+end
+= MtPyre_3F_EventScript_Kayla
+trainerbattle_single TRAINER_KAYLA MtPyre_3F_Text_KaylaIntro MtPyre_3F_Text_KaylaDefeat
+msgbox	This means my training is still not enough…I've got to keep working toward the summit…Go, me!
+end
+= MtPyre_3F_EventScript_William
+trainerbattle_single TRAINER_WILLIAM MtPyre_3F_Text_WilliamIntro MtPyre_3F_Text_WilliamDefeat
+msgbox	My psychic powers have surely grown several times, but…
+end
+mapsec
+16 4 1 1	MT. PYRE
+music
+MUS_MT_PYRE
+encounters
+land SHUPPET:27:27,SHUPPET:28:28,SHUPPET:26:26,SHUPPET:25:25,SHUPPET:29:29,SHUPPET:24:24,SHUPPET:23:23,SHUPPET:22:22,SHUPPET:29:29,SHUPPET:24:24,SHUPPET:29:29,SHUPPET:24:24

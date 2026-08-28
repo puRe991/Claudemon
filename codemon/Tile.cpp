@@ -5,13 +5,13 @@
 /* Constructors */
 
 //Naked int constructor
-Tile::Tile(unsigned int x, unsigned int y, 	Tile::tile data) {
+Tile::Tile(unsigned int x, unsigned int y, 	int data) {
 	this->pos = new Coordinates(x, y);
-	this->data = data;	
+	this->data = data;
 }
 
 //Coordinate pointer constructor
-Tile::Tile(Coordinates *tile_pos, Tile::tile data) {
+Tile::Tile(Coordinates *tile_pos, int data) {
 	this->pos = tile_pos;
 	this->data = data;
 }
@@ -19,7 +19,7 @@ Tile::Tile(Coordinates *tile_pos, Tile::tile data) {
 //Empty Constructor
 Tile::Tile() {
 	this->pos = new Coordinates(0, 0);
-	this->data = (Tile::tile) 0;
+	this->data = 0;
 }
 
 /* Coordinate getters*/
@@ -44,8 +44,8 @@ void Tile::set_pos(unsigned int x, unsigned int y) {
 	this->get_pos()->set_y(y);
 }
 
-/* Tile Type getter */
-Tile::tile Tile::get_data()
+/* Metatile id getter */
+int Tile::get_data()
 {
 	return this->data;
 }

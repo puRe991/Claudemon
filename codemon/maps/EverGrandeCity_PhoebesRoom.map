@@ -1,0 +1,128 @@
+tileset building__elite_four
+13 14
+6 7
+527,519,527,519,527,520,520,520,519,527,519,527,519
+517,516,517,516,517,513,514,515,516,517,516,517,516
+525,524,525,524,525,521,522,523,524,525,524,525,524
+578,578,578,578,578,600,600,600,578,578,578,578,578
+581,582,604,604,576,579,579,579,580,604,604,583,577
+589,590,604,604,584,585,586,587,588,604,604,591,832
+597,598,604,604,592,593,594,595,596,604,604,599,833
+605,606,604,604,584,601,602,603,588,604,604,599,834
+613,614,604,604,584,609,610,611,588,604,604,615,835
+621,622,604,604,616,619,619,619,620,604,604,623,608
+618,617,617,617,617,617,617,617,617,617,617,617,617
+519,527,519,527,520,520,520,520,520,519,527,519,527
+725,726,725,726,741,604,604,604,727,725,726,725,726
+840,841,840,841,742,612,612,612,735,840,841,840,841
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,0,0,0,0,0,0,0,0,0,1,1
+1,1,0,0,0,0,0,0,0,0,0,1,1
+1,1,0,0,0,0,0,0,0,0,0,1,1
+1,1,0,0,0,0,0,0,0,0,0,1,1
+1,1,0,0,0,0,0,0,0,0,0,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,1,1,1,0,0,0,1,1,1,1,1
+1,1,1,1,1,0,0,0,1,1,1,1,1
+warps
+6 13 EverGrandeCity_Hall1 1
+6 2 EverGrandeCity_Hall2 0
+npcs
+people_elite_four_phoebe 6 5 S static 0 - 0
+dialogs
+0	Ahahaha!I'm PHOEBE of the ELITE FOUR. I did my training on MT. PYRE.While I trained, I gained the ability to commune with GHOST-type POKéMON.Yes, the bond I developed with POKéMON is extremely tight.So, come on, just try and see if you can even inflict damage on my POKéMON!
+objscripts
+0 EverGrandeCity_PhoebesRoom_EventScript_Phoebe
+onload
+VAR_ELITE_4_STATE 1 EverGrandeCity_PhoebesRoom_EventScript_WalkInCloseDoor
+movements
+Common_Movement_Delay32	delay,delay,end
+Common_Movement_WalkUp6	up,up,up,up,up,up,end
+scriptdefs
+= EverGrandeCity_PhoebesRoom_EventScript_WalkInCloseDoor
+lockall
+call PokemonLeague_EliteFour_EventScript_WalkInCloseDoor
+setvar VAR_ELITE_4_STATE 2
+releaseall
+end
+= PokemonLeague_EliteFour_EventScript_WalkInCloseDoor
+applymovement LOCALID_PLAYER Common_Movement_WalkUp6
+waitmovement 0
+playse SE_TRUCK_DOOR
+setmetatile 5 12 METATILE_EliteFour_EntryDoor_ClosedTop TRUE
+setmetatile 6 12 METATILE_EliteFour_EntryDoor_ClosedTop TRUE
+setmetatile 7 12 METATILE_EliteFour_EntryDoor_ClosedTop TRUE
+setmetatile 5 13 METATILE_EliteFour_EntryDoor_ClosedBottom TRUE
+setmetatile 6 13 METATILE_EliteFour_EntryDoor_ClosedBottom TRUE
+setmetatile 7 13 METATILE_EliteFour_EntryDoor_ClosedBottom TRUE
+special DrawWholeMapView
+return
+@ Essentially unused only necessary when re-entering an Elite Four room after defeating the member which isnt normally possible
+goto PokemonLeague_EliteFour_EventScript_ResetAdvanceToNextRoom
+= PokemonLeague_EliteFour_EventScript_ResetAdvanceToNextRoom
+setmetatile 6 1 METATILE_EliteFour_OpenDoor_Frame FALSE
+setmetatile 6 2 METATILE_EliteFour_OpenDoor_Opening FALSE
+setmetatile 5 12 METATILE_EliteFour_EntryDoor_ClosedTop TRUE
+setmetatile 6 12 METATILE_EliteFour_EntryDoor_ClosedTop TRUE
+setmetatile 7 12 METATILE_EliteFour_EntryDoor_ClosedTop TRUE
+setmetatile 5 13 METATILE_EliteFour_EntryDoor_ClosedBottom TRUE
+setmetatile 6 13 METATILE_EliteFour_EntryDoor_ClosedBottom TRUE
+setmetatile 7 13 METATILE_EliteFour_EntryDoor_ClosedBottom TRUE
+setmetatile 0 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 1 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+setmetatile 2 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 3 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+setmetatile 4 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 8 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+setmetatile 9 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 10 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+setmetatile 11 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 12 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+return
+= EverGrandeCity_PhoebesRoom_EventScript_Phoebe
+lock
+faceplayer
+goto_if_set FLAG_DEFEATED_ELITE_4_PHOEBE EverGrandeCity_PhoebesRoom_EventScript_PostBattleSpeech
+playbgm MUS_ENCOUNTER_ELITE_FOUR FALSE
+msgbox	Ahahaha!I'm PHOEBE of the ELITE FOUR. I did my training on MT. PYRE.While I trained, I gained the ability to commune with GHOST-type POKéMON.Yes, the bond I developed with POKéMON is extremely tight.So, come on, just try and see if you can even inflict damage on my POKéMON!
+trainerbattle_no_intro TRAINER_PHOEBE EverGrandeCity_PhoebesRoom_Text_Defeat
+goto EverGrandeCity_PhoebesRoom_EventScript_Defeated
+end
+= EverGrandeCity_PhoebesRoom_EventScript_Defeated
+setflag FLAG_DEFEATED_ELITE_4_PHOEBE
+call PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles
+msgbox	There's a definite bond between you and your POKéMON, too.I didn't recognize it, so it's only natural that I lost.Yup, I'd like to see how far your bond will carry you.Go ahead, move on to the next room.
+release
+end
+= PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles
+applymovement LOCALID_PLAYER Common_Movement_Delay32
+waitmovement 0
+playse SE_DOOR
+setmetatile 6 1 METATILE_EliteFour_OpenDoor_Frame FALSE
+setmetatile 6 2 METATILE_EliteFour_OpenDoor_Opening FALSE
+setmetatile 0 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 1 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+setmetatile 2 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 3 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+setmetatile 4 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 8 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+setmetatile 9 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 10 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+setmetatile 11 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 12 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+special DrawWholeMapView
+return
+= EverGrandeCity_PhoebesRoom_EventScript_PostBattleSpeech
+msgbox	There's a definite bond between you and your POKéMON, too.I didn't recognize it, so it's only natural that I lost.Yup, I'd like to see how far your bond will carry you.Go ahead, move on to the next room.
+release
+end
+mapsec
+27 8 1 2	EVER GRANDE CITY
+music
+MUS_VICTORY_ROAD

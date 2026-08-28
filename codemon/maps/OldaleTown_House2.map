@@ -1,0 +1,43 @@
+tileset building__generic_building
+11 8
+4 3
+646,647,560,517,517,518,517,517,517,517,632
+654,655,542,525,525,526,525,616,620,621,640
+662,663,568,548,548,548,548,624,628,629,648
+569,547,547,547,547,547,547,547,547,547,547
+569,547,547,547,555,586,587,556,547,547,547
+569,547,547,547,555,594,595,556,547,547,547
+657,547,547,547,547,547,547,547,547,547,546
+665,547,547,520,521,547,547,547,547,547,554
+collision
+1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,1,1,0,0,0,0
+0,0,0,0,0,1,1,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0
+1,0,0,0,0,0,0,0,0,0,1
+warps
+3 7 OldaleTown 1
+4 7 OldaleTown 1
+npcs
+people_pokefan_f 4 4 E static 0 - 0
+people_school_kid_m 7 4 W static 0 - 0
+dialogs
+0	When POKéMON battle, they eventually level up and become stronger.
+1	If the POKéMON with you become stronger, you'll be able to go farther away from here.
+objscripts
+0 OldaleTown_House2_EventScript_Woman
+1 OldaleTown_House2_EventScript_Man
+scriptdefs
+= OldaleTown_House2_EventScript_Man
+msgbox	If the POKéMON with you become stronger, you'll be able to go farther away from here.
+end
+= OldaleTown_House2_EventScript_Woman
+msgbox	When POKéMON battle, they eventually level up and become stronger.
+end
+mapsec
+4 9 1 1	OLDALE TOWN
+music
+MUS_OLDALE

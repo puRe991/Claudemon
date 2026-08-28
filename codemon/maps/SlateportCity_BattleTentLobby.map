@@ -1,0 +1,232 @@
+tileset building__battle_tent
+13 10
+6 5
+514,515,517,517,517,610,611,612,517,517,517,518,519
+522,523,608,609,525,618,619,620,525,614,615,526,527
+530,520,616,617,521,520,521,520,521,622,623,520,535
+538,529,624,521,528,529,528,529,528,521,631,534,543
+546,528,632,633,634,635,529,636,637,638,639,542,551
+660,529,640,641,642,643,528,644,645,646,647,550,528
+659,528,648,649,650,651,529,652,653,654,655,528,529
+658,529,528,529,528,529,528,529,528,529,528,529,528
+661,528,529,528,529,528,529,528,529,528,529,528,560
+1,552,528,529,528,529,558,559,528,529,528,552,1
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,0,1,1,1,1,1,1
+1,0,1,1,0,0,0,0,0,1,1,1,1
+1,0,1,0,0,0,0,0,0,0,1,1,1
+1,0,1,1,1,1,0,1,1,1,1,1,1
+0,0,1,1,1,1,0,1,1,1,1,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0
+1,0,0,0,0,0,0,0,0,0,0,0,1
+1,1,0,0,0,0,0,0,0,0,0,1,1
+warps
+6 9 SlateportCity 3
+7 9 SlateportCity 3
+npcs
+people_scientist_1 6 5 S static 0 LOCALID_SLATEPORT_TENT_ATTENDANT 0
+people_sailor 1 5 S wander 0 - 0
+people_man_3 3 7 N static 0 - 0
+people_girl_1 1 8 S static 0 - 0
+people_woman_2 11 8 W static 0 - 0
+dialogs
+1	So, like, I couldn't find myself any POKéMON that were, like, for me.So, I figured, like, hey, I should file a complaint to the guy there?And he wouldn't hear me out, like, hey! So, like, total bummer, man!Hey, like, you! Zip it, you know? Just, you know, take this!
+2	I don't really like BUG POKéMON, but maybe I'll try using some for a change of pace.Who knows, I might even get to like them!
+3	You can battle all you want here even if you don't have any tough POKéMON.
+4	Wouldn't it be nice if they had more of a selection?
+objscripts
+0 SlateportCity_BattleTentLobby_EventScript_Attendant
+1 SlateportCity_BattleTentLobby_EventScript_TormentGiver
+2 SlateportCity_BattleTentLobby_EventScript_Man
+3 SlateportCity_BattleTentLobby_EventScript_Girl
+4 SlateportCity_BattleTentLobby_EventScript_Woman
+onload
+VAR_TEMP_CHALLENGE_STATUS 0 SlateportCity_BattleTentLobby_EventScript_GetChallengeStatus
+VAR_TEMP_CHALLENGE_STATUS CHALLENGE_STATUS_SAVING SlateportCity_BattleTentLobby_EventScript_QuitWithoutSaving
+VAR_TEMP_CHALLENGE_STATUS CHALLENGE_STATUS_PAUSED SlateportCity_BattleTentLobby_EventScript_ResumeChallenge
+VAR_TEMP_CHALLENGE_STATUS CHALLENGE_STATUS_WON SlateportCity_BattleTentLobby_EventScript_WonChallenge
+VAR_TEMP_CHALLENGE_STATUS CHALLENGE_STATUS_LOST SlateportCity_BattleTentLobby_EventScript_LostChallenge
+movements
+SlateportCity_BattleTentLobby_Movement_AttendantEnterDoor	up,delay,end
+SlateportCity_BattleTentLobby_Movement_AttendantWalkToDoor	up,up,up,end
+SlateportCity_BattleTentLobby_Movement_PlayerEnterDoor	up,up,delay,end
+SlateportCity_BattleTentLobby_Movement_PlayerWalkToDoor	up,up,up,end
+scriptdefs
+= SlateportCity_BattleTentLobby_EventScript_LostChallenge
+lockall
+msgbox	Thank you for participating!I will return your POKéMON in exchange for our rental POKéMON.I must also save your event results. Please wait.
+waitmessage
+frontier_set FRONTIER_DATA_LVL_MODE FRONTIER_LVL_50
+slateporttent_save 0
+playse SE_SAVE
+waitse
+goto SlateportCity_BattleTentLobby_EventScript_EndGivePrize
+= SlateportCity_BattleTentLobby_EventScript_EndGivePrize
+msgbox	We look forward to your next visit.
+closemessage
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+releaseall
+end
+= SlateportCity_BattleTentLobby_EventScript_WonChallenge
+lockall
+msgbox	Congratulations! You've won three straight matches!I will return your POKéMON in exchange for our rental POKéMON.I must also save your event results. Please wait.
+waitmessage
+slateporttent_setrandomprize
+frontier_set FRONTIER_DATA_LVL_MODE FRONTIER_LVL_50
+slateporttent_save 0
+playse SE_SAVE
+waitse
+goto SlateportCity_BattleTentLobby_EventScript_GivePrize
+= SlateportCity_BattleTentLobby_EventScript_GivePrize
+msgbox	In recognition of your 3-win streak, we award you this prize.
+slateporttent_giveprize
+switch VAR_RESULT
+case FALSE SlateportCity_BattleTentLobby_EventScript_NoRoomForPrize
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
+msgbox	BattleFrontier_BattleTowerLobby_Text_ReceivedPrize  @ Odd that it uses Tower's instead of Factory's or its own
+waitmessage
+playfanfare MUS_OBTAIN_ITEM
+waitfanfare
+goto SlateportCity_BattleTentLobby_EventScript_EndGivePrize
+= SlateportCity_BattleTentLobby_EventScript_NoRoomForPrize
+msgbox	Oh? You seem to have no room for this.Please make room in your BAG and let me know.
+goto SlateportCity_BattleTentLobby_EventScript_EndGivePrize
+= SlateportCity_BattleTentLobby_EventScript_ResumeChallenge
+lockall
+msgbox	We've been waiting for you!Before we resume your challenge, I must save the game.
+waitmessage
+slateporttent_save CHALLENGE_STATUS_SAVING
+playse SE_SAVE
+waitse
+frontier_set FRONTIER_DATA_PAUSED FALSE
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+setvar VAR_0x8006 2
+goto SlateportCity_BattleTentLobby_EventScript_EnterChallenge
+= SlateportCity_BattleTentLobby_EventScript_EnterChallenge
+msgbox	Please step this way.
+closemessage
+call SlateportCity_BattleTentLobby_EventScript_WalkToDoor
+warp SlateportCity_BattleTentCorridor 2 7
+setvar VAR_TEMP_CHALLENGE_STATUS 0
+waitstate
+end
+= SlateportCity_BattleTentLobby_EventScript_WalkToDoor
+applymovement LOCALID_SLATEPORT_TENT_ATTENDANT SlateportCity_BattleTentLobby_Movement_AttendantWalkToDoor
+applymovement LOCALID_PLAYER SlateportCity_BattleTentLobby_Movement_PlayerWalkToDoor
+waitmovement 0
+opendoor 6 1
+waitdooranim
+applymovement LOCALID_SLATEPORT_TENT_ATTENDANT SlateportCity_BattleTentLobby_Movement_AttendantEnterDoor
+applymovement LOCALID_PLAYER SlateportCity_BattleTentLobby_Movement_PlayerEnterDoor
+waitmovement 0
+closedoor 6 1
+waitdooranim
+return
+= SlateportCity_BattleTentLobby_EventScript_QuitWithoutSaving
+lockall
+msgbox	I'm sorry to say this, but you didn't save before you quit playing last time.As a result, you have been disqualified from your challenge.
+closemessage
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+frontier_set FRONTIER_DATA_LVL_MODE FRONTIER_LVL_50
+releaseall
+end
+= SlateportCity_BattleTentLobby_EventScript_GetChallengeStatus
+frontier_getstatus
+end
+= SlateportCity_BattleTentLobby_EventScript_Woman
+msgbox	Wouldn't it be nice if they had more of a selection?
+end
+= SlateportCity_BattleTentLobby_EventScript_Girl
+msgbox	You can battle all you want here even if you don't have any tough POKéMON.
+end
+= SlateportCity_BattleTentLobby_EventScript_Man
+msgbox	I don't really like BUG POKéMON, but maybe I'll try using some for a change of pace.Who knows, I might even get to like them!
+end
+= SlateportCity_BattleTentLobby_EventScript_TormentGiver
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_TM_TORMENT SlateportCity_BattleTentLobby_EventScript_ReceivedTorment
+msgbox	So, like, I couldn't find myself any POKéMON that were, like, for me.So, I figured, like, hey, I should file a complaint to the guy there?And he wouldn't hear me out, like, hey! So, like, total bummer, man!Hey, like, you! Zip it, you know? Just, you know, take this!
+giveitem ITEM_TM_TORMENT
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_RECEIVED_TM_TORMENT
+msgbox	That's, like, TM41, you know? Hey, it's TORMENT, you hearing me?Like, it won't let the other guy use the same move twice in a row, see?Hey, now, you listen here, like, I'm not laying a torment on you!
+release
+end
+= SlateportCity_BattleTentLobby_EventScript_ReceivedTorment
+msgbox	That's, like, TM41, you know? Hey, it's TORMENT, you hearing me?Like, it won't let the other guy use the same move twice in a row, see?Hey, now, you listen here, like, I'm not laying a torment on you!
+release
+end
+= SlateportCity_BattleTentLobby_EventScript_Attendant
+lock
+faceplayer
+slateporttent_getprize
+goto_if_ne VAR_RESULT ITEM_NONE SlateportCity_BattleTentLobby_EventScript_GivePrize
+special SavePlayerParty
+msgbox	Welcome to the BATTLE TENT SLATEPORT SITE!I am your guide to the Battle Swap Tournament.
+goto SlateportCity_BattleTentLobby_EventScript_AskEnterChallenge
+= SlateportCity_BattleTentLobby_EventScript_AskEnterChallenge
+msgbox	Would you like to take the Battle Swap challenge?
+waitmessage
+multichoice 17 6 MULTI_CHALLENGEINFO FALSE
+switch VAR_RESULT
+case 0 SlateportCity_BattleTentLobby_EventScript_TryEnterChallenge
+case 1 SlateportCity_BattleTentLobby_EventScript_ExplainChallenge
+case 2 SlateportCity_BattleTentLobby_EventScript_CancelChallenge
+case MULTI_B_PRESSED SlateportCity_BattleTentLobby_EventScript_CancelChallenge
+goto SlateportCity_BattleTentLobby_EventScript_TryEnterChallenge
+= SlateportCity_BattleTentLobby_EventScript_TryEnterChallenge
+setvar VAR_FRONTIER_FACILITY FRONTIER_FACILITY_FACTORY
+setvar VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES
+frontier_set FRONTIER_DATA_LVL_MODE FRONTIER_LVL_TENT
+msgboxyesno	Before you begin your challenge, I need to save data. Is that okay?
+switch VAR_RESULT
+case NO SlateportCity_BattleTentLobby_EventScript_LoadPartyCancelChallenge
+case YES SlateportCity_BattleTentLobby_EventScript_SaveBeforeChallenge
+case MULTI_B_PRESSED SlateportCity_BattleTentLobby_EventScript_LoadPartyCancelChallenge
+goto SlateportCity_BattleTentLobby_EventScript_SaveBeforeChallenge
+= SlateportCity_BattleTentLobby_EventScript_SaveBeforeChallenge
+setvar VAR_TEMP_CHALLENGE_STATUS 0
+frontier_set FRONTIER_DATA_SELECTED_MON_ORDER
+slateporttent_init
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS CHALLENGE_STATUS_SAVING
+frontier_set FRONTIER_DATA_PAUSED FALSE
+closemessage
+delay 2
+call Common_EventScript_SaveGame
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+goto_if_eq VAR_RESULT 0 SlateportCity_BattleTentLobby_EventScript_CancelChallengeSaveFailed
+setvar VAR_0x8006 0
+goto SlateportCity_BattleTentLobby_EventScript_EnterChallenge
+= SlateportCity_BattleTentLobby_EventScript_CancelChallengeSaveFailed
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
+goto SlateportCity_BattleTentLobby_EventScript_CancelChallenge
+= SlateportCity_BattleTentLobby_EventScript_CancelChallenge
+msgbox	We look forward to your next visit.
+release
+end
+@ Unused
+goto SlateportCity_BattleTentLobby_Movement_UnusedEnterDoor
+= SlateportCity_BattleTentLobby_Movement_UnusedEnterDoor
+walk_up
+walk_up
+walk_up
+set_invisible
+step_end
+goto SlateportCity_BattleTentLobby_EventScript_TormentGiver
+= Common_EventScript_SaveGame
+special SaveGame
+return
+= SlateportCity_BattleTentLobby_EventScript_LoadPartyCancelChallenge
+special LoadPlayerParty
+goto SlateportCity_BattleTentLobby_EventScript_CancelChallenge
+= SlateportCity_BattleTentLobby_EventScript_ExplainChallenge
+msgbox	Here at the SLATEPORT BATTLE TENT, we hold Battle Swap events using rental POKéMON.First, you will be loaned three POKéMON specifically for this event.Using the supplied rental POKéMON, you must conduct a SINGLE BATTLE.If you win, you are permitted to trade one of your rental POKéMON.Repeat this cycle of battling and trading--if you win three times in a row, you will earn a fine prize.If you want to interrupt your challenge, please save the game.If you don't save before interrupting, you will be disqualified.
+goto SlateportCity_BattleTentLobby_EventScript_AskEnterChallenge
+mapsec
+8 10 1 2	SLATEPORT CITY
+music
+MUS_B_TOWER_RS

@@ -1,0 +1,77 @@
+tileset building__shop
+18 8
+9 4
+648,636,637,638,648,648,648,784,648,648,784,648,781,777,782,781,777,782
+656,644,645,646,656,656,656,785,656,656,785,656,775,592,783,775,593,783
+523,662,679,663,520,520,520,520,520,520,520,520,520,520,520,520,520,520
+518,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,621
+518,513,682,683,516,513,733,667,667,667,667,733,513,513,682,683,516,629
+518,513,563,564,518,513,670,675,675,675,675,670,518,513,563,564,518,513
+518,513,690,691,518,513,676,523,520,520,520,670,518,513,690,691,518,621
+518,513,527,520,514,513,734,518,513,513,513,721,518,513,527,520,514,629
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,1
+0,0,1,1,0,0,1,1,1,1,1,1,0,0,1,1,0,0
+0,0,1,1,0,0,1,0,0,0,0,1,0,0,1,1,0,0
+0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,1
+warps
+16 1 LilycoveCity_DepartmentStore_1F 2
+13 1 LilycoveCity_DepartmentStore_3F 0
+2 1 LilycoveCity_DepartmentStoreElevator 0
+npcs
+people_cook 8 2 S static 0 - 0
+people_pokefan_f 0 5 S wander 0 - 0
+people_sailor 13 5 S wander 0 - 0
+people_woman_3 10 6 N static 0 - 0
+people_woman_3 7 6 N static 0 - 0
+dialogs
+0	Learn to use items properly. That's basic, really.
+1	My husband is waiting at home. What would make a good gift for him?
+2	I'm leaving on a long journey soon. I need to stock up on items.
+objscripts
+0 LilycoveCity_DepartmentStore_2F_EventScript_Cook
+1 LilycoveCity_DepartmentStore_2F_EventScript_PokefanF
+2 LilycoveCity_DepartmentStore_2F_EventScript_Sailor
+3 LilycoveCity_DepartmentStore_2F_EventScript_ClerkRight
+4 LilycoveCity_DepartmentStore_2F_EventScript_ClerkLeft
+shops
+LilycoveCity_DepartmentStore_2F_Pokemart1	ITEM_POKE_BALL,ITEM_GREAT_BALL,ITEM_ULTRA_BALL,ITEM_ESCAPE_ROPE,ITEM_FULL_HEAL,ITEM_ANTIDOTE,ITEM_PARALYZE_HEAL,ITEM_BURN_HEAL,ITEM_ICE_HEAL,ITEM_AWAKENING,ITEM_FLUFFY_TAIL
+LilycoveCity_DepartmentStore_2F_Pokemart2	ITEM_POTION,ITEM_SUPER_POTION,ITEM_HYPER_POTION,ITEM_MAX_POTION,ITEM_REVIVE,ITEM_REPEL,ITEM_SUPER_REPEL,ITEM_MAX_REPEL,ITEM_WAVE_MAIL,ITEM_MECH_MAIL
+scriptdefs
+= LilycoveCity_DepartmentStore_2F_EventScript_ClerkLeft
+lock
+faceplayer
+msgbox	Welcome!How may I serve you?
+waitmessage
+pokemart LilycoveCity_DepartmentStore_2F_Pokemart1
+msgbox	Please come again!
+release
+end
+= LilycoveCity_DepartmentStore_2F_EventScript_ClerkRight
+lock
+faceplayer
+msgbox	Welcome!How may I serve you?
+waitmessage
+pokemart LilycoveCity_DepartmentStore_2F_Pokemart2
+msgbox	Please come again!
+release
+end
+= LilycoveCity_DepartmentStore_2F_EventScript_Sailor
+msgbox	I'm leaving on a long journey soon. I need to stock up on items.
+end
+= LilycoveCity_DepartmentStore_2F_EventScript_PokefanF
+msgbox	My husband is waiting at home. What would make a good gift for him?
+end
+= LilycoveCity_DepartmentStore_2F_EventScript_Cook
+msgbox	Learn to use items properly. That's basic, really.
+end
+mapsec
+18 3 2 1	LILYCOVE CITY
+music
+MUS_POKE_MART
+counters
+670,675,676

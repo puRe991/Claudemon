@@ -1,0 +1,48 @@
+tileset general__inside_ship
+18 8
+9 4
+566,576,577,578,551,551,551,551,567,566,576,577,578,551,579,580,581,567
+574,584,585,586,559,559,559,559,575,574,584,585,586,559,587,588,589,575
+574,592,593,570,571,571,571,571,583,582,592,593,570,571,571,596,597,575
+574,600,601,573,568,598,599,682,591,590,600,601,573,568,568,604,605,575
+574,570,571,572,568,606,607,568,571,571,571,571,614,568,568,571,571,575
+574,573,568,568,568,568,568,568,575,574,573,568,568,568,568,568,682,575
+574,683,568,568,568,568,568,568,575,574,683,568,568,568,568,608,568,575
+574,573,568,568,612,613,568,610,575,574,573,568,568,612,613,568,568,575
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,0,0,0,0,0,1,1,1,1,0,0,0,1,1,1
+1,1,1,0,0,1,1,1,1,1,1,1,0,0,0,1,1,1
+1,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1
+1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1
+1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1
+1,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1
+warps
+4 7 AbandonedShip_Corridors_B1F 1
+5 7 AbandonedShip_Corridors_B1F 1
+13 7 AbandonedShip_Corridors_B1F 0
+14 7 AbandonedShip_Corridors_B1F 0
+npcs
+people_camper 3 4 S wander 0 - 0
+misc_item_ball 13 3 S static FLAG_ITEM_ABANDONED_SHIP_ROOMS_2_B1F_DIVE_BALL - 0
+dialogs
+0	This is a perfect place to go exploring! It's exciting here!I bet there're amazing treasures on board.
+objscripts
+0 AbandonedShip_Rooms2_B1F_EventScript_Camper
+1 AbandonedShip_Rooms2_B1F_EventScript_ItemDiveBall
+scriptdefs
+= AbandonedShip_Rooms2_B1F_EventScript_ItemDiveBall
+goto_if_set FLAG_ITEM_ABANDONED_SHIP_ROOMS_2_B1F_DIVE_BALL AbandonedShip_Rooms2_B1F_EventScript_ItemDiveBall_Taken
+finditem ITEM_DIVE_BALL
+setflag FLAG_ITEM_ABANDONED_SHIP_ROOMS_2_B1F_DIVE_BALL
+end
+= AbandonedShip_Rooms2_B1F_EventScript_ItemDiveBall_Taken
+end
+= AbandonedShip_Rooms2_B1F_EventScript_Camper
+msgbox	This is a perfect place to go exploring! It's exciting here!I bet there're amazing treasures on board.
+end
+mapsec
+6 14 1 1	ABANDONED SHIP
+music
+MUS_ABANDONED_SHIP

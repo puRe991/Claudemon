@@ -1,0 +1,44 @@
+tileset building__generic_building
+14 8
+7 4
+824,808,809,810,826,824,824,824,826,824,888,824,824,826
+840,816,523,818,834,832,832,832,834,832,896,854,855,834
+848,811,811,811,811,811,811,811,811,811,904,862,863,811
+811,836,812,812,812,812,812,812,891,892,892,892,892,893
+811,872,873,812,812,812,812,812,899,737,584,585,738,901
+811,880,881,837,812,812,812,812,899,574,592,593,738,901
+838,839,812,812,812,812,812,812,907,908,908,908,908,909
+846,847,812,812,812,812,844,845,812,812,812,812,812,812
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,0,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,1,1,0,0,0,0,0,0,0,1,1,0,0
+0,1,1,0,0,0,0,0,0,0,1,1,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+6 7 RustboroCity 1
+7 7 RustboroCity 1
+2 1 RustboroCity_Flat1_2F 0
+npcs
+people_man_3 9 4 E static 0 - 0
+people_woman_5 12 4 W static 0 - 0
+dialogs
+0	Every POKéMON has a special ability that it can use.
+1	POKéMON are such strange creatures.
+objscripts
+0 RustboroCity_Flat1_1F_EventScript_Man
+1 RustboroCity_Flat1_1F_EventScript_Woman
+scriptdefs
+= RustboroCity_Flat1_1F_EventScript_Woman
+msgbox	POKéMON are such strange creatures.
+end
+= RustboroCity_Flat1_1F_EventScript_Man
+msgbox	Every POKéMON has a special ability that it can use.
+end
+mapsec
+0 5 1 2	RUSTBORO CITY
+music
+MUS_RUSTBORO

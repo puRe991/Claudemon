@@ -1,0 +1,39 @@
+tileset general__inside_ship
+9 8
+4 4
+566,551,551,551,551,551,551,551,567
+574,559,559,559,559,559,559,559,575
+574,570,571,571,571,571,571,571,575
+574,573,568,609,568,568,568,568,575
+574,573,608,568,568,568,568,568,575
+574,573,568,568,568,568,609,568,575
+574,573,568,568,568,568,568,568,575
+574,573,568,568,612,613,568,610,575
+collision
+1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1
+1,0,0,0,0,0,0,0,1
+1,0,0,0,0,0,0,0,1
+1,0,0,0,0,0,0,0,1
+1,0,0,0,0,0,0,0,1
+1,0,0,0,0,0,0,0,1
+1,0,0,0,0,0,0,1,1
+warps
+4 7 AbandonedShip_Corridors_B1F 5
+5 7 AbandonedShip_Corridors_B1F 5
+npcs
+misc_item_ball 4 4 S static FLAG_ITEM_ABANDONED_SHIP_ROOMS_B1F_TM_ICE_BEAM - 0
+objscripts
+0 AbandonedShip_Room_B1F_EventScript_ItemTMIceBeam
+scriptdefs
+= AbandonedShip_Room_B1F_EventScript_ItemTMIceBeam
+goto_if_set FLAG_ITEM_ABANDONED_SHIP_ROOMS_B1F_TM_ICE_BEAM AbandonedShip_Room_B1F_EventScript_ItemTMIceBeam_Taken
+finditem ITEM_TM_ICE_BEAM
+setflag FLAG_ITEM_ABANDONED_SHIP_ROOMS_B1F_TM_ICE_BEAM
+end
+= AbandonedShip_Room_B1F_EventScript_ItemTMIceBeam_Taken
+end
+mapsec
+6 14 1 1	ABANDONED SHIP
+music
+MUS_ABANDONED_SHIP

@@ -1,0 +1,66 @@
+tileset building__generic_building
+8 6
+5 2
+968,969,969,958,959,969,969,970
+976,977,977,958,959,977,977,978
+1005,1006,975,958,959,974,1006,1007
+1013,1014,983,966,967,982,1014,1015
+985,985,985,985,985,985,985,985
+972,985,985,980,981,985,985,973
+collision
+1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1
+1,0,0,1,1,0,0,1
+1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0
+1,0,0,0,0,0,0,1
+warps
+3 5 FortreeCity 8
+4 5 FortreeCity 8
+npcs
+people_pokefan_m 6 5 S static 0 - 0
+people_girl_3 0 4 W static 0 - 0
+people_mart_employee 1 2 S static 0 - 0
+people_mart_employee 6 2 S static 0 - 0
+dialogs
+0	Merchandise you buy here is sent to your own PC.That's fantastic! I wish they could also deliver me home like that.
+1	I'm buying a pretty desk and I'm putting my cute DOLLS on it.If I don't, when I decorate my SECRET BASE, my DOLLS will get dirty or poked with splinters.
+objscripts
+0 FortreeCity_DecorationShop_EventScript_PokefanM
+1 FortreeCity_DecorationShop_EventScript_Girl
+2 FortreeCity_DecorationShop_EventScript_ClerkDesks
+3 FortreeCity_DecorationShop_EventScript_ClerkChairs
+movements
+FortreeCity_DecorationShop_PokemartDecor_Chairs	delay
+FortreeCity_DecorationShop_PokemartDecor_Desks	delay
+scriptdefs
+= FortreeCity_DecorationShop_EventScript_ClerkChairs
+lock
+faceplayer
+msgbox	Welcome!How may I serve you?
+waitmessage
+pokemartdecoration FortreeCity_DecorationShop_PokemartDecor_Chairs
+msgbox	Please come again!
+release
+end
+= FortreeCity_DecorationShop_EventScript_ClerkDesks
+lock
+faceplayer
+msgbox	Welcome!How may I serve you?
+waitmessage
+pokemartdecoration FortreeCity_DecorationShop_PokemartDecor_Desks
+msgbox	Please come again!
+release
+end
+= FortreeCity_DecorationShop_EventScript_Girl
+msgbox	I'm buying a pretty desk and I'm putting my cute DOLLS on it.If I don't, when I decorate my SECRET BASE, my DOLLS will get dirty or poked with splinters.
+end
+= FortreeCity_DecorationShop_EventScript_PokefanM
+msgbox	Merchandise you buy here is sent to your own PC.That's fantastic! I wish they could also deliver me home like that.
+end
+mapsec
+12 0 1 1	FORTREE CITY
+music
+MUS_FORTREE
+counters
+982,983,1014

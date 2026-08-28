@@ -1,0 +1,110 @@
+tileset general__cave
+19 19
+8 8
+796,809,809,809,809,809,809,809,809,809,809,809,809,809,809,809,809,809,797
+799,819,796,809,809,809,809,809,809,809,809,809,809,809,809,809,797,819,800
+802,819,802,819,819,819,796,809,809,832,809,809,797,819,819,819,840,819,800
+802,796,810,819,799,809,810,795,795,833,795,795,808,809,797,819,808,797,800
+799,802,819,796,810,795,795,795,795,795,795,795,795,795,808,797,819,800,840
+802,799,819,845,795,795,795,796,809,809,809,797,795,795,795,800,819,806,800
+802,802,819,802,795,795,796,810,795,816,795,808,797,795,795,846,819,800,800
+802,802,819,799,795,796,810,816,795,795,795,816,808,797,795,800,819,800,840
+802,799,819,802,795,802,795,795,795,795,795,795,795,800,795,800,819,800,800
+802,802,819,802,795,802,816,795,795,816,795,795,816,800,795,840,819,806,800
+799,802,819,845,795,802,795,795,795,795,795,795,795,800,795,800,819,800,800
+802,802,819,802,795,804,794,816,795,795,795,816,792,804,795,846,819,806,840
+799,802,819,802,795,795,804,794,795,816,795,792,804,795,795,800,819,800,800
+802,845,819,804,794,795,795,804,804,804,804,804,795,795,792,804,819,800,800
+802,804,791,819,804,794,795,795,795,795,795,795,795,792,804,819,783,804,800
+802,819,799,819,819,818,818,818,818,818,818,818,804,818,819,819,846,819,800
+802,819,804,818,818,818,818,791,819,819,819,783,818,818,818,818,804,819,800
+802,819,819,819,819,819,819,804,818,818,818,804,819,819,819,819,819,819,846
+804,818,818,818,818,818,818,818,791,819,783,818,818,818,818,818,818,818,804
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1
+1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1
+1,1,1,1,0,0,0,1,1,1,1,1,0,0,0,1,1,1,1
+1,1,1,1,0,0,1,1,0,1,0,1,1,0,0,1,1,1,1
+1,1,1,1,0,1,1,1,0,0,0,1,1,1,0,1,1,1,1
+1,1,1,1,0,1,0,0,0,0,0,0,0,1,0,1,1,1,1
+1,1,1,1,0,1,1,0,0,1,0,0,1,1,0,1,1,1,1
+1,1,1,1,0,1,0,0,0,0,0,0,0,1,0,1,1,1,1
+1,1,1,1,0,0,1,1,0,0,0,1,1,0,0,1,1,1,1
+1,1,1,1,0,0,0,1,0,1,0,1,0,0,0,1,1,1,1
+1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1
+1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+9 3 CaveOfOrigin_1F 1
+npcs
+people_wallace 9 13 N static FLAG_HIDE_CAVE_OF_ORIGIN_B1F_WALLACE LOCALID_CAVE_OF_ORIGIN_WALLACE 0
+dialogs
+0	Ah, so you are PLAYER? I've heard tales of your exploits.My name is WALLACE.I was once the GYM LEADER of SOOTOPOLIS, but something came up.So now, I've entrusted my mentor JUAN with the GYM's operation.… … … … … … … … … … … …GROUDON and KYOGRE, the two POKéMON wreaking havoc here, are considered to be super-ancient POKéMON.But there aren't just two super- ancient POKéMON.There is one more somewhere.Somewhere, there is a super- ancient POKéMON named RAYQUAZA.It's said that it was RAYQUAZA that becalmed the two combatants in the distant past.But even I have no clue as to RAYQUAZA's whereabouts…
+objscripts
+0 CaveOfOrigin_B1F_EventScript_Wallace
+movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
+Common_Movement_FacePlayer	face_down,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
+scriptdefs
+= CaveOfOrigin_B1F_EventScript_Wallace
+lock
+faceplayer
+msgbox	Ah, so you are PLAYER? I've heard tales of your exploits.My name is WALLACE.I was once the GYM LEADER of SOOTOPOLIS, but something came up.So now, I've entrusted my mentor JUAN with the GYM's operation.… … … … … … … … … … … …GROUDON and KYOGRE, the two POKéMON wreaking havoc here, are considered to be super-ancient POKéMON.But there aren't just two super- ancient POKéMON.There is one more somewhere.Somewhere, there is a super- ancient POKéMON named RAYQUAZA.It's said that it was RAYQUAZA that becalmed the two combatants in the distant past.But even I have no clue as to RAYQUAZA's whereabouts…
+closemessage
+applymovement LOCALID_CAVE_OF_ORIGIN_WALLACE Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+delay 60
+playse SE_PIN
+applymovement LOCALID_CAVE_OF_ORIGIN_WALLACE Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_CAVE_OF_ORIGIN_WALLACE Common_Movement_Delay48
+waitmovement 0
+delay 30
+applymovement LOCALID_CAVE_OF_ORIGIN_WALLACE Common_Movement_FacePlayer
+waitmovement 0
+msgbox	WALLACE: PLAYER, do you perhaps know where RAYQUAZA is now?If you do, please tell me.
+waitmessage
+goto CaveOfOrigin_B1F_EventScript_WheresRayquaza
+= CaveOfOrigin_B1F_EventScript_WheresRayquaza
+multichoice 0 0 MULTI_WHERES_RAYQUAZA FALSE
+switch VAR_RESULT
+case 0 CaveOfOrigin_B1F_EventScript_AtCaveOfOrigin
+case 1 CaveOfOrigin_B1F_EventScript_AtMtPyre
+case 2 CaveOfOrigin_B1F_EventScript_AtSkyPillar
+case 3 CaveOfOrigin_B1F_EventScript_DontRemember
+goto CaveOfOrigin_B1F_EventScript_DontRemember
+end
+= CaveOfOrigin_B1F_EventScript_DontRemember
+msgbox	WALLACE: Huh? You don't remember? Hmm… That's a problem…Can't you remember somehow?
+waitmessage
+goto CaveOfOrigin_B1F_EventScript_WheresRayquaza
+= CaveOfOrigin_B1F_EventScript_AtSkyPillar
+msgbox	WALLACE: The SKY PILLAR?That's it! It must be the SKY PILLAR!PLAYER, there's not a moment to lose! We'll head to the SKY PILLAR right away!
+closemessage
+playse SE_EXIT
+fadescreenspeed FADE_TO_BLACK 4
+setflag FLAG_WALLACE_GOES_TO_SKY_PILLAR
+setvar VAR_SOOTOPOLIS_CITY_STATE 3
+removeobject LOCALID_CAVE_OF_ORIGIN_WALLACE
+clearflag FLAG_HIDE_SKY_PILLAR_WALLACE
+fadescreen FADE_FROM_BLACK
+release
+end
+= CaveOfOrigin_B1F_EventScript_AtMtPyre
+msgbox	WALLACE: MT. PYRE?But when I met the old lady there earlier, she made no mention of it.I very much doubt that the old lady would try to hide something from me…PLAYER, could you think about this more carefully for me?
+waitmessage
+goto CaveOfOrigin_B1F_EventScript_WheresRayquaza
+= CaveOfOrigin_B1F_EventScript_AtCaveOfOrigin
+msgbox	WALLACE: The CAVE OF ORIGIN?But that's right here! I need you to do better than that!Please, I need you to think about where RAYQUAZA might be right now.
+waitmessage
+goto CaveOfOrigin_B1F_EventScript_WheresRayquaza
+mapsec
+21 7 1 1	CAVE OF ORIGIN

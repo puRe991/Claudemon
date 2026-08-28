@@ -1,0 +1,484 @@
+tileset general__facility
+24 15
+8 10
+537,537,537,537,537,537,537,537,537,537,537,537,537,537,537,537,537,537,537,537,537,537,537,537
+946,950,950,946,946,946,950,950,946,946,946,950,950,946,946,946,950,950,946,946,946,950,950,946
+946,951,951,946,946,946,951,951,946,946,946,951,951,946,946,946,951,951,946,946,946,951,951,946
+545,545,545,545,545,545,545,545,545,545,545,545,545,545,545,545,545,545,545,545,545,545,545,545
+515,515,515,845,846,846,846,846,846,846,846,846,846,846,846,846,846,846,846,846,846,846,846,846
+515,514,514,839,369,369,369,369,369,369,369,369,369,369,369,369,369,369,369,369,369,369,369,369
+515,514,514,839,369,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368
+515,514,514,839,369,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368
+515,514,514,839,369,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368
+515,514,514,839,369,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368
+515,514,514,616,854,854,855,859,859,853,854,854,854,854,854,854,854,838,990,991,854,854,854,854
+515,514,514,516,516,516,516,514,514,549,516,516,549,516,516,549,516,608,986,987,984,985,689,554
+515,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,608,988,989,988,989,984,985
+515,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,608,554,554,554,554,986,987
+515,514,514,514,514,514,514,514,514,514,514,518,519,514,514,514,514,608,552,552,552,552,988,989
+collision
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1
+warps
+11 14 LilycoveCity 12
+12 14 LilycoveCity 12
+npcs
+people_beauty 8 10 S static FLAG_HIDE_LILYCOVE_HARBOR_FERRY_ATTENDANT LOCALID_LILYCOVE_HARBOR_ATTENDANT 0
+misc_ss_tidal 8 9 E static FLAG_HIDE_LILYCOVE_HARBOR_SSTIDAL LOCALID_LILYCOVE_HARBOR_SS_TIDAL 0
+people_sailor 3 13 S wander 0 - 0
+people_sailor 8 10 S static FLAG_HIDE_LILYCOVE_HARBOR_FERRY_SAILOR LOCALID_LILYCOVE_HARBOR_FERRY_SAILOR 0
+people_expert_m 8 10 S static FLAG_HIDE_LILYCOVE_HARBOR_EVENT_TICKET_TAKER LOCALID_LILYCOVE_HARBOR_BRINEY 0
+dialogs
+2	Until they finish making the ferry, we sailors have nothing to do…I wish they'd get a move on, the folks at the SHIPYARD in SLATEPORT.
+objscripts
+0 LilycoveCity_Harbor_EventScript_FerryAttendant
+2 LilycoveCity_Harbor_EventScript_Sailor
+movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
+Common_Movement_FacePlayer	face_down,end
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
+LilycoveCity_Harbor_Movement_BrineyBoardFerry	delay,delay,delay,end
+LilycoveCity_Harbor_Movement_PlayerBoardFerryEast	right,delay,end
+LilycoveCity_Harbor_Movement_PlayerBoardFerryNorth	up,end
+LilycoveCity_Harbor_Movement_PlayerBoardWithBrineyEast	delay,right,delay,delay,delay,end
+LilycoveCity_Harbor_Movement_PlayerBoardWithBrineyNorth	delay,up,delay,delay,end
+LilycoveCity_Harbor_Movement_SailorBoardWithBrineyEast	delay,delay,delay,up,delay,delay,end
+LilycoveCity_Harbor_Movement_SailorBoardWithBrineyNorth	delay,delay,delay,right,delay,delay,delay,end
+LilycoveCity_Harbor_Movement_SailorOutOfWayEast	delay,down,delay,end
+LilycoveCity_Harbor_Movement_SailorOutOfWayNorth	delay,delay,left,delay,end
+scriptdefs
+= LilycoveCity_Harbor_EventScript_Sailor
+lock
+faceplayer
+goto_if_set FLAG_SYS_GAME_CLEAR LilycoveCity_Harbor_EventScript_SailorFerryAvailable
+msgbox	Until they finish making the ferry, we sailors have nothing to do…I wish they'd get a move on, the folks at the SHIPYARD in SLATEPORT.
+release
+end
+= LilycoveCity_Harbor_EventScript_SailorFerryAvailable
+msgbox	The ferry S.S. TIDAL is finally in operation.The folks at the SHIPYARD in SLATEPORT must've worked extra hard.Well, it's my turn to get busy now!
+release
+end
+= LilycoveCity_Harbor_EventScript_FerryAttendant
+lock
+faceplayer
+goto_if_unset FLAG_SYS_GAME_CLEAR LilycoveCity_Harbor_EventScript_FerryUnavailable
+call LilycoveCity_Harbor_EventScript_GetEonTicketState
+call LilycoveCity_Harbor_EventScript_GetAuroraTicketState
+call LilycoveCity_Harbor_EventScript_GetOldSeaMapState
+call LilycoveCity_Harbor_EventScript_GetMysticTicketState
+call LilycoveCity_Harbor_EventScript_GetFirstTimeShowingTicket
+call LilycoveCity_Harbor_EventScript_GetHasTicketsState
+goto_if_eq VAR_TEMP_C 2 LilycoveCity_Harbor_EventScript_OldSeaMapFirstTime
+goto_if_eq VAR_TEMP_B 1 LilycoveCity_Harbor_EventScript_EonTicketFirstTime
+goto_if_eq VAR_TEMP_B 2 LilycoveCity_Harbor_EventScript_AuroraTicketFirstTime
+goto_if_eq VAR_TEMP_B 4 LilycoveCity_Harbor_EventScript_OldSeaMapFirstTime
+goto_if_eq VAR_TEMP_B 8 LilycoveCity_Harbor_EventScript_MysticTicketFirstTime
+goto_if_ne VAR_TEMP_B 0 LilycoveCity_Harbor_EventScript_MultipleEventTicketsFirstTime
+goto LilycoveCity_Harbor_EventScript_NoFirstTimeEventTickets
+end
+@ First goto_if_eq is unnecessary; identical scripts
+goto LilycoveCity_Harbor_EventScript_NoFirstTimeEventTickets
+= LilycoveCity_Harbor_EventScript_NoFirstTimeEventTickets
+goto_if_eq VAR_TEMP_A 0 LilycoveCity_Harbor_EventScript_NoEventTickets
+msgbox	Hello, are you here for the ferry? May I see your TICKET?
+msgbox	PLAYER flashed the TICKET.Perfect! That's all you need!And where would you like to go?
+waitmessage
+goto LilycoveCity_Harbor_EventScript_FerryRegularLocationSelect
+end
+= LilycoveCity_Harbor_EventScript_FerryRegularLocationSelect
+setvar VAR_0x8004 0
+special ScriptMenu_CreateLilycoveSSTidalMultichoice
+special GetLilycoveSSTidalSelection
+switch VAR_RESULT
+case 0 LilycoveCity_Harbor_EventScript_GoToSlateport
+case 1 LilycoveCity_Harbor_EventScript_GoToBattleFrontier
+case 2 LilycoveCity_Harbor_EventScript_GoToSouthernIsland
+case 3 LilycoveCity_Harbor_EventScript_GoToNavelRock
+case 4 LilycoveCity_Harbor_EventScript_GoToBirthIsland
+case 5 LilycoveCity_Harbor_EventScript_GoToFarawayIsland
+case 6 LilycoveCity_Harbor_EventScript_ExitSailSelect
+case MULTI_B_PRESSED LilycoveCity_Harbor_EventScript_ExitSailSelect
+end
+= LilycoveCity_Harbor_EventScript_ExitSailSelect
+msgbox	Please sail with us another time!
+release
+end
+= LilycoveCity_Harbor_EventScript_GoToFarawayIsland
+call LilycoveCity_Harbor_EventScript_BoardFerry
+warp FarawayIsland_Entrance 13 38
+waitstate
+release
+end
+= LilycoveCity_Harbor_EventScript_BoardFerry
+msgbox	Please board the ferry and wait for departure.
+closemessage
+applymovement VAR_LAST_TALKED Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+delay 30
+hideobjectat VAR_LAST_TALKED MAP_LILYCOVE_CITY_HARBOR
+call_if_eq VAR_FACING DIR_NORTH LilycoveCity_Harbor_EventScript_PlayerBoardFerryNorth
+call_if_eq VAR_FACING DIR_EAST LilycoveCity_Harbor_EventScript_PlayerBoardFerryEast
+delay 30
+hideplayer
+setvar VAR_0x8004 LOCALID_LILYCOVE_HARBOR_SS_TIDAL
+call Common_EventScript_FerryDepart
+return
+= LilycoveCity_Harbor_EventScript_PlayerBoardFerryEast
+applymovement LOCALID_PLAYER LilycoveCity_Harbor_Movement_PlayerBoardFerryEast
+waitmovement 0
+return
+= LilycoveCity_Harbor_EventScript_PlayerBoardFerryNorth
+applymovement LOCALID_PLAYER LilycoveCity_Harbor_Movement_PlayerBoardFerryNorth
+waitmovement 0
+return
+= LilycoveCity_Harbor_EventScript_GoToBirthIsland
+call LilycoveCity_Harbor_EventScript_BoardFerry
+warp BirthIsland_Harbor 8 4
+waitstate
+release
+end
+= LilycoveCity_Harbor_EventScript_GoToNavelRock
+call LilycoveCity_Harbor_EventScript_BoardFerry
+warp NavelRock_Harbor 8 4
+waitstate
+release
+end
+= LilycoveCity_Harbor_EventScript_GoToSouthernIsland
+call LilycoveCity_Harbor_EventScript_BoardFerry
+warp SouthernIsland_Exterior 13 22
+waitstate
+release
+end
+= LilycoveCity_Harbor_EventScript_GoToBattleFrontier
+msgboxyesno	BATTLE FRONTIER it is, then!
+goto_if_eq VAR_RESULT NO LilycoveCity_Harbor_EventScript_FerryDestinationChangeMind
+call LilycoveCity_Harbor_EventScript_BoardFerry
+warp BattleFrontier_OutsideWest 19 67
+waitstate
+release
+end
+= LilycoveCity_Harbor_EventScript_FerryDestinationChangeMind
+msgbox	Then, where would you like to go?
+waitmessage
+goto LilycoveCity_Harbor_EventScript_FerryRegularLocationSelect
+end
+= LilycoveCity_Harbor_EventScript_GoToSlateport
+msgboxyesno	SLATEPORT CITY it is, then!
+goto_if_eq VAR_RESULT NO LilycoveCity_Harbor_EventScript_FerryDestinationChangeMind
+setvar VAR_SS_TIDAL_STATE SS_TIDAL_BOARD_LILYCOVE
+call LilycoveCity_Harbor_EventScript_BoardFerry
+warp SSTidalCorridor 1 10
+waitstate
+release
+end
+= LilycoveCity_Harbor_EventScript_NoEventTickets
+msgbox	Hello, are you here for the ferry? May I see your TICKET?
+msgbox	PLAYER flashed the TICKET.Perfect! That's all you need!And where would you like to go?
+waitmessage
+goto LilycoveCity_Harbor_EventScript_FerryRegularLocationSelect
+end
+@ Unused
+goto LilycoveCity_Harbor_EventScript_NoTicket
+= LilycoveCity_Harbor_EventScript_NoTicket
+msgbox	PLAYER doesn't have the TICKET…I'm terribly sorry.You must have a TICKET to board the ferry.
+release
+end
+@ Unused
+goto LilycoveCity_Harbor_EventScript_GoToSlateportUnused
+= LilycoveCity_Harbor_EventScript_GoToSlateportUnused
+msgboxyesno	SLATEPORT CITY it is, then!
+goto_if_eq VAR_RESULT NO LilycoveCity_Harbor_EventScript_FerryDestinationChangeMind
+setvar VAR_SS_TIDAL_STATE SS_TIDAL_BOARD_LILYCOVE
+call LilycoveCity_Harbor_EventScript_BoardFerry
+warp SSTidalCorridor 1 10
+waitstate
+release
+end
+@ Unused
+goto LilycoveCity_Harbor_EventScript_GoToBattleFrontierUnused
+= LilycoveCity_Harbor_EventScript_GoToBattleFrontierUnused
+msgboxyesno	BATTLE FRONTIER it is, then!
+goto_if_eq VAR_RESULT NO LilycoveCity_Harbor_EventScript_FerryDestinationChangeMind
+call LilycoveCity_Harbor_EventScript_BoardFerry
+warp BattleFrontier_OutsideWest 19 67
+waitstate
+release
+end
+= LilycoveCity_Harbor_EventScript_MultipleEventTicketsFirstTime
+msgbox	The ferry to SLATEPORT is…Oh? That PASS…
+closemessage
+call LilycoveCity_Harbor_EventScript_GetEventTicketSailor
+msgbox	Is it you who brought those odd tickets?… … …Hm.These tickets will get you to islands that are far, far away.No one knows what awaits there, or what may happen there.The very thought excites my blood as a sailing man!Get on board, youngster! Where shall we sail first?
+waitmessage
+setvar VAR_0x8004 1
+special ScriptMenu_CreateLilycoveSSTidalMultichoice
+special GetLilycoveSSTidalSelection
+switch VAR_RESULT
+case 2 LilycoveCity_Harbor_EventScript_GoToSouthernIslandFirstTime
+case 3 LilycoveCity_Harbor_EventScript_GoToNavelRockFirstTime
+case 4 LilycoveCity_Harbor_EventScript_GoToBirthIslandFirstTime
+case 5 LilycoveCity_Harbor_EventScript_GoToFarawayIslandFirstTime
+case 6 LilycoveCity_Harbor_EventScript_ExitFirstTimeTicketSailSelect
+case MULTI_B_PRESSED LilycoveCity_Harbor_EventScript_ExitFirstTimeTicketSailSelect
+release
+end
+= LilycoveCity_Harbor_EventScript_ExitFirstTimeTicketSailSelect
+msgbox	Aye, right, as you like, then.
+closemessage
+applymovement LOCALID_LILYCOVE_HARBOR_FERRY_SAILOR Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+delay 30
+removeobject LOCALID_LILYCOVE_HARBOR_FERRY_SAILOR
+delay 30
+applymovement LOCALID_LILYCOVE_HARBOR_ATTENDANT Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+showobjectat LOCALID_LILYCOVE_HARBOR_ATTENDANT MAP_LILYCOVE_CITY_HARBOR
+delay 30
+msgbox	Please sail with us another time!
+release
+end
+= LilycoveCity_Harbor_EventScript_GoToFarawayIslandFirstTime
+closemessage
+call LilycoveCity_Harbor_EventScript_BoardFerryWithSailor
+warp FarawayIsland_Entrance 13 38
+waitstate
+release
+end
+= LilycoveCity_Harbor_EventScript_BoardFerryWithSailor
+applymovement LOCALID_LILYCOVE_HARBOR_FERRY_SAILOR Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+delay 30
+removeobject LOCALID_LILYCOVE_HARBOR_FERRY_SAILOR
+call_if_eq VAR_FACING DIR_NORTH LilycoveCity_Harbor_EventScript_PlayerBoardFerryNorth
+call_if_eq VAR_FACING DIR_EAST LilycoveCity_Harbor_EventScript_PlayerBoardFerryEast
+delay 30
+hideplayer
+setvar VAR_0x8004 LOCALID_LILYCOVE_HARBOR_SS_TIDAL
+call Common_EventScript_FerryDepart
+return
+= LilycoveCity_Harbor_EventScript_GoToBirthIslandFirstTime
+closemessage
+call LilycoveCity_Harbor_EventScript_BoardFerryWithSailor
+warp BirthIsland_Harbor 8 4
+waitstate
+release
+end
+= LilycoveCity_Harbor_EventScript_GoToNavelRockFirstTime
+closemessage
+call LilycoveCity_Harbor_EventScript_BoardFerryWithSailor
+warp NavelRock_Harbor 8 4
+waitstate
+release
+end
+= LilycoveCity_Harbor_EventScript_GoToSouthernIslandFirstTime
+closemessage
+call LilycoveCity_Harbor_EventScript_BoardFerryWithSailor
+warp SouthernIsland_Exterior 13 22
+waitstate
+release
+end
+= LilycoveCity_Harbor_EventScript_GetEventTicketSailor
+applymovement VAR_LAST_TALKED Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+delay 30
+hideobjectat VAR_LAST_TALKED MAP_LILYCOVE_CITY_HARBOR
+delay 60
+addobject LOCALID_LILYCOVE_HARBOR_FERRY_SAILOR
+delay 30
+applymovement LOCALID_LILYCOVE_HARBOR_FERRY_SAILOR Common_Movement_FacePlayer
+waitmovement 0
+return
+= LilycoveCity_Harbor_EventScript_MysticTicketFirstTime
+setflag FLAG_SHOWN_MYSTIC_TICKET
+msgbox	The ferry to SLATEPORT is…Oh? That PASS…
+closemessage
+call LilycoveCity_Harbor_EventScript_GetEventTicketSailor
+msgbox	Is it you who brought that odd ticket?Where you're trying to go is an island that's far, far away.No one knows what awaits there…The very thought excites my blood as a sailing man!Get on board, youngster!
+goto LilycoveCity_Harbor_EventScript_GoToNavelRockFirstTime
+end
+= LilycoveCity_Harbor_EventScript_OldSeaMapFirstTime
+setflag FLAG_SHOWN_OLD_SEA_MAP
+msgbox	The ferry to SLATEPORT is…I beg your pardon? Can we sail to this place on the map?I know someone who will help you better. Please wait.
+closemessage
+call LilycoveCity_Harbor_EventScript_GetEventTicketSailor
+msgbox	What's up, youngster?What, it's you who's supposed to have a tattered old map?Let's have a look. … … … … … …Boy, this is quite a ways away. I'm afraid I can't help you…
+closemessage
+applymovement LOCALID_LILYCOVE_HARBOR_FERRY_SAILOR Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_LILYCOVE_HARBOR_FERRY_SAILOR Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_LILYCOVE_HARBOR_FERRY_SAILOR Common_Movement_Delay48
+waitmovement 0
+call_if_eq VAR_FACING DIR_NORTH LilycoveCity_Harbor_EventScript_MoveSailorOutOfWayNorth
+call_if_eq VAR_FACING DIR_EAST LilycoveCity_Harbor_EventScript_MoveSailorOutOfWayEast
+addobject LOCALID_LILYCOVE_HARBOR_BRINEY
+call_if_eq VAR_FACING DIR_NORTH LilycoveCity_Harbor_EventScript_BrineyFaceSailorNorth
+call_if_eq VAR_FACING DIR_EAST LilycoveCity_Harbor_EventScript_BrineyFaceSailorEast
+msgbox	BRINEY: Hold on a second!What's the idea of turning down someone that I owe so much to?
+call_if_eq VAR_FACING DIR_NORTH LilycoveCity_Harbor_EventScript_BrineyFacePlayerNorth
+call_if_eq VAR_FACING DIR_EAST LilycoveCity_Harbor_EventScript_BrineyFacePlayerEast
+msgbox	PLAYER, I'm terribly sorry.You came to me seeking my help, and we almost turned you away.Well, let me make things right.We'll sail right away, of course!Let's find this island on this OLD SEA MAP!
+closemessage
+call_if_eq VAR_FACING DIR_NORTH LilycoveCity_Harbor_EventScript_BoardFerryWithBrineyAndSailorNorth
+call_if_eq VAR_FACING DIR_EAST LilycoveCity_Harbor_EventScript_BoardFerryWithBrineyAndSailorEast
+setvar VAR_0x8004 LOCALID_LILYCOVE_HARBOR_SS_TIDAL
+call Common_EventScript_FerryDepart
+warp FarawayIsland_Entrance 13 38
+waitstate
+release
+end
+= LilycoveCity_Harbor_EventScript_BoardFerryWithBrineyAndSailorEast
+applymovement LOCALID_LILYCOVE_HARBOR_BRINEY LilycoveCity_Harbor_Movement_BrineyBoardFerry
+applymovement LOCALID_PLAYER LilycoveCity_Harbor_Movement_PlayerBoardWithBrineyEast
+applymovement LOCALID_LILYCOVE_HARBOR_FERRY_SAILOR LilycoveCity_Harbor_Movement_SailorBoardWithBrineyEast
+waitmovement 0
+return
+= LilycoveCity_Harbor_EventScript_BoardFerryWithBrineyAndSailorNorth
+applymovement LOCALID_LILYCOVE_HARBOR_BRINEY LilycoveCity_Harbor_Movement_BrineyBoardFerry
+applymovement LOCALID_PLAYER LilycoveCity_Harbor_Movement_PlayerBoardWithBrineyNorth
+applymovement LOCALID_LILYCOVE_HARBOR_FERRY_SAILOR LilycoveCity_Harbor_Movement_SailorBoardWithBrineyNorth
+waitmovement 0
+return
+= LilycoveCity_Harbor_EventScript_BrineyFacePlayerEast
+applymovement LOCALID_LILYCOVE_HARBOR_BRINEY Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+return
+= LilycoveCity_Harbor_EventScript_BrineyFacePlayerNorth
+applymovement LOCALID_LILYCOVE_HARBOR_BRINEY Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+return
+= LilycoveCity_Harbor_EventScript_BrineyFaceSailorEast
+applymovement LOCALID_LILYCOVE_HARBOR_BRINEY Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+return
+= LilycoveCity_Harbor_EventScript_BrineyFaceSailorNorth
+applymovement LOCALID_LILYCOVE_HARBOR_BRINEY Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+return
+= LilycoveCity_Harbor_EventScript_MoveSailorOutOfWayEast
+applymovement LOCALID_LILYCOVE_HARBOR_FERRY_SAILOR LilycoveCity_Harbor_Movement_SailorOutOfWayEast
+waitmovement 0
+return
+= LilycoveCity_Harbor_EventScript_MoveSailorOutOfWayNorth
+applymovement LOCALID_LILYCOVE_HARBOR_FERRY_SAILOR LilycoveCity_Harbor_Movement_SailorOutOfWayNorth
+waitmovement 0
+return
+= LilycoveCity_Harbor_EventScript_AuroraTicketFirstTime
+setflag FLAG_SHOWN_AURORA_TICKET
+msgbox	The ferry to SLATEPORT is…Oh? That PASS…
+closemessage
+call LilycoveCity_Harbor_EventScript_GetEventTicketSailor
+msgbox	Is it you who brought that odd ticket?Where you're trying to go is an island that's far, far away.No one knows what awaits there…The very thought excites my blood as a sailing man!Get on board, youngster!
+goto LilycoveCity_Harbor_EventScript_GoToBirthIslandFirstTime
+end
+= LilycoveCity_Harbor_EventScript_EonTicketFirstTime
+setflag FLAG_SHOWN_EON_TICKET
+msgbox	The ferry to SLATEPORT is…Oh? That PASS…
+closemessage
+call LilycoveCity_Harbor_EventScript_GetEventTicketSailor
+msgbox	Aye, mate, are you the one who brought that mighty odd PASS?I'll tell you, you're trying to reach a tiny spit of an island far in the south.There's no telling what we'll encounter once we reach there, aye. That shivers my timbers!All aboard!
+goto LilycoveCity_Harbor_EventScript_GoToSouthernIslandFirstTime
+end
+= LilycoveCity_Harbor_EventScript_GetHasTicketsState
+setvar VAR_TEMP_A 0
+call_if_eq VAR_TEMP_E 1 LilycoveCity_Harbor_EventScript_SetHasEonTicket
+call_if_eq VAR_TEMP_D 1 LilycoveCity_Harbor_EventScript_SetHasAuroraTicket
+call_if_eq VAR_TEMP_C 1 LilycoveCity_Harbor_EventScript_SetHasOldSeaMap
+call_if_eq VAR_TEMP_9 1 LilycoveCity_Harbor_EventScript_SetHasMysticTicket
+return
+= LilycoveCity_Harbor_EventScript_SetHasMysticTicket
+addvar VAR_TEMP_A 8
+return
+= LilycoveCity_Harbor_EventScript_SetHasOldSeaMap
+addvar VAR_TEMP_A 4
+return
+= LilycoveCity_Harbor_EventScript_SetHasAuroraTicket
+addvar VAR_TEMP_A 2
+return
+= LilycoveCity_Harbor_EventScript_SetHasEonTicket
+addvar VAR_TEMP_A 1
+return
+= LilycoveCity_Harbor_EventScript_GetFirstTimeShowingTicket
+setvar VAR_TEMP_B 0
+call_if_eq VAR_TEMP_E 2 LilycoveCity_Harbor_EventScript_SetFirstTimeShowingEonTicket
+call_if_eq VAR_TEMP_D 2 LilycoveCity_Harbor_EventScript_SetFirstTimeShowingAuroraTicket
+call_if_eq VAR_TEMP_C 2 LilycoveCity_Harbor_EventScript_SetFirstTimeShowingOldSeaMap
+call_if_eq VAR_TEMP_9 2 LilycoveCity_Harbor_EventScript_SetFirstTimeShowingMysticTicket
+return
+= LilycoveCity_Harbor_EventScript_SetFirstTimeShowingMysticTicket
+addvar VAR_TEMP_B 8
+return
+= LilycoveCity_Harbor_EventScript_SetFirstTimeShowingOldSeaMap
+addvar VAR_TEMP_B 4
+return
+= LilycoveCity_Harbor_EventScript_SetFirstTimeShowingAuroraTicket
+addvar VAR_TEMP_B 2
+return
+= LilycoveCity_Harbor_EventScript_SetFirstTimeShowingEonTicket
+addvar VAR_TEMP_B 1
+return
+= LilycoveCity_Harbor_EventScript_GetMysticTicketState
+setvar VAR_TEMP_9 0
+goto_if_unset FLAG_ENABLE_SHIP_NAVEL_ROCK Common_EventScript_NopReturn
+checkitem ITEM_MYSTIC_TICKET
+goto_if_eq VAR_RESULT FALSE Common_EventScript_NopReturn
+setvar VAR_TEMP_9 1
+goto_if_set FLAG_SHOWN_MYSTIC_TICKET Common_EventScript_NopReturn
+setvar VAR_TEMP_9 2
+return
+= LilycoveCity_Harbor_EventScript_GetOldSeaMapState
+setvar VAR_TEMP_C 0
+goto_if_unset FLAG_ENABLE_SHIP_FARAWAY_ISLAND Common_EventScript_NopReturn
+checkitem ITEM_OLD_SEA_MAP
+goto_if_eq VAR_RESULT FALSE Common_EventScript_NopReturn
+setvar VAR_TEMP_C 1
+goto_if_set FLAG_SHOWN_OLD_SEA_MAP Common_EventScript_NopReturn
+setvar VAR_TEMP_C 2
+return
+= LilycoveCity_Harbor_EventScript_GetAuroraTicketState
+setvar VAR_TEMP_D 0
+goto_if_unset FLAG_ENABLE_SHIP_BIRTH_ISLAND Common_EventScript_NopReturn
+checkitem ITEM_AURORA_TICKET
+goto_if_eq VAR_RESULT FALSE Common_EventScript_NopReturn
+setvar VAR_TEMP_D 1
+goto_if_set FLAG_SHOWN_AURORA_TICKET Common_EventScript_NopReturn
+setvar VAR_TEMP_D 2
+return
+= LilycoveCity_Harbor_EventScript_GetEonTicketState
+setvar VAR_TEMP_E 0
+goto_if_unset FLAG_ENABLE_SHIP_SOUTHERN_ISLAND Common_EventScript_NopReturn
+checkitem ITEM_EON_TICKET
+goto_if_eq VAR_RESULT FALSE Common_EventScript_NopReturn
+setvar VAR_TEMP_E 1
+goto_if_set FLAG_SHOWN_EON_TICKET Common_EventScript_NopReturn
+setvar VAR_TEMP_E 2
+return
+= LilycoveCity_Harbor_EventScript_FerryUnavailable
+msgbox	I beg your pardon? You're looking for a ship?I'm sorry, the ferry service isn't available at present…
+release
+end
+water
+368,369
+mapsec
+18 3 2 1	LILYCOVE CITY
+music
+MUS_LILYCOVE
+counters
+537

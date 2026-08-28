@@ -1,0 +1,169 @@
+tileset building__shop
+18 8
+9 4
+648,636,637,638,648,648,648,648,648,648,648,648,648,648,648,781,777,782
+656,644,645,646,656,656,668,656,656,656,656,669,656,656,656,775,592,783
+632,654,671,655,624,624,676,724,664,665,664,677,632,624,624,624,624,624
+640,616,616,616,616,616,684,673,672,673,672,685,640,616,616,616,622,616
+735,615,616,616,616,616,625,624,624,624,624,624,633,616,616,616,616,616
+609,610,616,616,616,616,616,616,616,616,616,616,616,616,616,616,622,616
+735,615,616,616,616,616,616,616,616,616,616,616,616,616,620,616,620,620
+609,610,616,616,616,616,616,616,534,535,616,616,616,616,628,616,628,628
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1
+0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0
+0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1
+warps
+8 7 LilycoveCity 0
+9 7 LilycoveCity 0
+16 1 LilycoveCity_DepartmentStore_2F 0
+2 1 LilycoveCity_DepartmentStoreElevator 0
+npcs
+people_beauty 8 2 S static 0 - 0
+people_beauty 10 2 S static 0 LOCALID_LOTTERY_CLERK 0
+people_pokefan_f 14 5 S wander 0 - 0
+people_little_girl 4 4 S wander 0 - 0
+people_pokefan_m 3 6 S static 0 - 0
+pokemon_azumarill 2 6 S static 0 - 0
+dialogs
+0	Welcome to LILYCOVE DEPARTMENT STORE.
+2	Whenever I come to the DEPARTMENT STORE, I always end up buying all sorts of things because it's so fun.
+3	Today, my mom is going to buy me some nice furniture.
+4	I'm buying something for my AZUMARILL as a reward for winning a CONTEST.
+5	AZUMARILL: Maririroo!
+objscripts
+0 LilycoveCity_DepartmentStore_1F_EventScript_Greeter
+1 LilycoveCity_DepartmentStore_1F_EventScript_LotteryClerk
+2 LilycoveCity_DepartmentStore_1F_EventScript_PokefanF
+3 LilycoveCity_DepartmentStore_1F_EventScript_LittleGirl
+4 LilycoveCity_DepartmentStore_1F_EventScript_PokefanM
+5 LilycoveCity_DepartmentStore_1F_EventScript_Azumarill
+movements
+Common_Movement_FacePlayer	face_down,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+scriptdefs
+= LilycoveCity_DepartmentStore_1F_EventScript_Azumarill
+lock
+faceplayer
+waitse
+playmoncry SPECIES_AZUMARILL CRY_MODE_NORMAL
+msgbox	AZUMARILL: Maririroo!
+waitmoncry
+release
+end
+= LilycoveCity_DepartmentStore_1F_EventScript_PokefanM
+msgbox	I'm buying something for my AZUMARILL as a reward for winning a CONTEST.
+end
+= LilycoveCity_DepartmentStore_1F_EventScript_LittleGirl
+msgbox	Today, my mom is going to buy me some nice furniture.
+end
+= LilycoveCity_DepartmentStore_1F_EventScript_PokefanF
+msgbox	Whenever I come to the DEPARTMENT STORE, I always end up buying all sorts of things because it's so fun.
+end
+= LilycoveCity_DepartmentStore_1F_EventScript_LotteryClerk
+lock
+faceplayer
+dotimebasedevents
+goto_if_ne VAR_POKELOT_PRIZE_ITEM ITEM_NONE LilycoveCity_DepartmentStore_1F_EventScript_GivePrizeFromEarlier
+goto_if_set FLAG_DAILY_PICKED_LOTO_TICKET LilycoveCity_DepartmentStore_1F_EventScript_ComeBackTomorrow
+msgboxyesno	This is the POKéMON LOTTERY CORNER.All shoppers at our DEPARTMENT STORE get to draw a POKéMON LOTO TICKET.If the LOTO TICKET's number matches the ID number of any of your POKéMON, you will receive a fabulous gift.Would you like to draw a POKéMON LOTO TICKET?
+goto_if_eq VAR_RESULT NO LilycoveCity_DepartmentStore_1F_EventScript_PleaseVisitAgain
+setflag FLAG_DAILY_PICKED_LOTO_TICKET
+msgbox	Please pick a LOTO TICKET. ………
+waitmessage
+special RetrieveLotteryNumber
+copyvar VAR_0x8008 VAR_RESULT
+special BufferLottoTicketNumber
+msgbox	The LOTO TICKET number is STR_VAR_1.I need to run a check on this number to see if it matches any of your POKéMON's ID numbers. Please wait.
+applymovement LOCALID_LOTTERY_CLERK Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+playse SE_PC_ON
+special DoLotteryCornerComputerEffect
+special PickLotteryCornerTicket
+delay 220
+special EndLotteryCornerComputerEffect
+delay 10
+applymovement LOCALID_LOTTERY_CLERK Common_Movement_FacePlayer
+waitmovement 0
+goto_if_eq VAR_0x8004 0 LilycoveCity_DepartmentStore_1F_EventScript_NoMatch
+incrementgamestat GAME_STAT_WON_POKEMON_LOTTERY
+call_if_eq VAR_0x8006 0 LilycoveCity_DepartmentStore_1F_EventScript_TicketMatchPartyMon
+call_if_eq VAR_0x8006 1 LilycoveCity_DepartmentStore_1F_EventScript_TicketMatchPCMon
+bufferitemname STR_VAR_1 VAR_0x8005
+call_if_eq VAR_0x8004 1 LilycoveCity_DepartmentStore_1F_EventScript_TwoDigitMatch
+call_if_eq VAR_0x8004 2 LilycoveCity_DepartmentStore_1F_EventScript_ThreeDigitMatch
+call_if_eq VAR_0x8004 3 LilycoveCity_DepartmentStore_1F_EventScript_FourDigitMatch
+call_if_eq VAR_0x8004 4 LilycoveCity_DepartmentStore_1F_EventScript_FullMatch
+giveitem VAR_0x8005
+goto_if_eq VAR_RESULT FALSE LilycoveCity_DepartmentStore_1F_EventScript_RecordPrizeNoRoom
+special TryPutLotteryWinnerReportOnAir
+goto LilycoveCity_DepartmentStore_1F_EventScript_PleaseVisitAgain2
+end
+= LilycoveCity_DepartmentStore_1F_EventScript_PleaseVisitAgain2
+msgbox	Please do visit again.
+release
+end
+= LilycoveCity_DepartmentStore_1F_EventScript_RecordPrizeNoRoom
+copyvar VAR_POKELOT_PRIZE_PLACE VAR_0x8004
+copyvar VAR_POKELOT_PRIZE_ITEM VAR_0x8005
+goto LilycoveCity_DepartmentStore_1F_EventScript_NoRoomForPrize
+end
+= LilycoveCity_DepartmentStore_1F_EventScript_NoRoomForPrize
+msgbox	Oh? You seem to have no room for this.Please make room in your BAG and let me know.
+release
+end
+= LilycoveCity_DepartmentStore_1F_EventScript_FullMatch
+msgbox	Oh, my goodness, all five digits matched!You've won the jackpot prize! You've won the STR_VAR_1!
+return
+= LilycoveCity_DepartmentStore_1F_EventScript_FourDigitMatch
+msgbox	Four digits matched, so you win the first prize! You've won the STR_VAR_1!
+return
+= LilycoveCity_DepartmentStore_1F_EventScript_ThreeDigitMatch
+msgbox	Three digits matched, so you win the second prize! You've won the STR_VAR_1!
+return
+= LilycoveCity_DepartmentStore_1F_EventScript_TwoDigitMatch
+msgbox	Two digits matched, so you win the third prize! You've won the STR_VAR_1!
+return
+= LilycoveCity_DepartmentStore_1F_EventScript_TicketMatchPCMon
+msgbox	Congratulations!The ID number of your PC-boxed STR_VAR_1 matches your LOTO TICKET's number!
+return
+= LilycoveCity_DepartmentStore_1F_EventScript_TicketMatchPartyMon
+msgbox	Congratulations!The ID number of your team's STR_VAR_1 matches your LOTO TICKET's number!
+return
+= LilycoveCity_DepartmentStore_1F_EventScript_NoMatch
+msgbox	I'm sorry. None of the numbers matched.
+goto LilycoveCity_DepartmentStore_1F_EventScript_PleaseVisitAgain2
+end
+= LilycoveCity_DepartmentStore_1F_EventScript_PleaseVisitAgain
+msgbox	Please do visit again.
+release
+end
+= LilycoveCity_DepartmentStore_1F_EventScript_ComeBackTomorrow
+msgbox	Please come back tomorrow.
+release
+end
+= LilycoveCity_DepartmentStore_1F_EventScript_GivePrizeFromEarlier
+msgbox	PLAYER? Yes, I've been expecting you.This is the prize we've been holding for you.
+giveitem VAR_POKELOT_PRIZE_ITEM
+goto_if_eq VAR_RESULT FALSE LilycoveCity_DepartmentStore_1F_EventScript_NoRoomForPrize
+copyvar VAR_0x8004 VAR_POKELOT_PRIZE_PLACE
+copyvar VAR_0x8005 VAR_POKELOT_PRIZE_ITEM
+special TryPutLotteryWinnerReportOnAir
+setvar VAR_POKELOT_PRIZE_ITEM ITEM_NONE
+setvar VAR_POKELOT_PRIZE_PLACE 0
+release
+end
+= LilycoveCity_DepartmentStore_1F_EventScript_Greeter
+msgbox	Welcome to LILYCOVE DEPARTMENT STORE.
+end
+mapsec
+18 3 2 1	LILYCOVE CITY
+music
+MUS_LILYCOVE
+counters
+672,673,676,677

@@ -1,0 +1,142 @@
+tileset general__mirage_tower
+13 10
+6 5
+581,581,539,537,537,537,537,537,537,523,540,581,581
+539,537,538,529,664,665,665,665,665,666,536,537,540
+530,529,515,544,521,521,521,521,521,625,666,529,528
+530,529,664,528,664,665,665,665,666,530,673,666,528
+530,517,672,528,672,673,673,673,674,530,673,682,528
+530,529,680,528,680,681,681,681,682,530,674,529,528
+530,529,529,536,537,537,516,537,537,617,682,529,528
+530,515,529,529,529,529,664,665,673,674,529,529,528
+521,521,522,664,665,665,673,673,673,674,544,521,521
+581,529,521,521,521,521,521,521,521,521,521,529,581
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,0,0,0,0,0,0,0,1,1,1
+1,0,1,1,0,0,0,0,0,1,0,0,1
+1,0,0,1,0,0,0,0,0,1,0,0,1
+1,0,0,1,0,0,0,0,0,1,0,0,1
+1,0,0,1,0,0,0,0,0,1,0,0,1
+1,0,0,1,1,1,0,1,1,1,0,0,1
+1,1,0,0,0,0,0,0,0,0,0,0,1
+1,1,1,0,0,0,0,0,0,0,1,1,1
+1,0,1,1,1,1,1,1,1,1,1,0,1
+warps
+1 4 MirageTower_3F 1
+npcs
+misc_fossil 5 4 S static FLAG_HIDE_MIRAGE_TOWER_ROOT_FOSSIL LOCALID_MIRAGE_ROOT_FOSSIL 0
+misc_fossil 7 4 S static FLAG_HIDE_MIRAGE_TOWER_CLAW_FOSSIL LOCALID_MIRAGE_CLAW_FOSSIL 0
+misc_breakable_rock 6 7 S static FLAG_TEMP_11 - 0
+dialogs
+0	You found the ROOT FOSSIL.If this FOSSIL is taken, the ground around it will likely crumble away…Take the ROOT FOSSIL anyway?
+1	You found the CLAW FOSSIL.If this FOSSIL is taken, the ground around it will likely crumble away…Take the CLAW FOSSIL anyway?
+objscripts
+0 MirageTower_4F_EventScript_RootFossil
+1 MirageTower_4F_EventScript_ClawFossil
+2 EventScript_RockSmash
+movements
+Movement_SmashRock	delay,end
+scriptdefs
+= EventScript_RockSmash
+lockall
+goto_if_unset FLAG_BADGE03_GET EventScript_CantSmashRock
+checkpartymove MOVE_ROCK_SMASH
+goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CantSmashRock
+setfieldeffectargument 0 VAR_RESULT
+bufferpartymonnick STR_VAR_1 VAR_RESULT
+buffermovename STR_VAR_2 MOVE_ROCK_SMASH
+msgboxyesno	This rock appears to be breakable. Would you like to use ROCK SMASH?
+goto_if_eq VAR_RESULT NO EventScript_CancelSmash
+msgbox	STR_VAR_1 used STR_VAR_2!
+closemessage
+dofieldeffect FLDEFF_USE_ROCK_SMASH
+waitstate
+goto EventScript_SmashRock
+end
+@ Use rock smash from party menu
+goto EventScript_UseRockSmash
+= EventScript_UseRockSmash
+lockall
+dofieldeffect FLDEFF_USE_ROCK_SMASH
+waitstate
+goto EventScript_SmashRock
+end
+= EventScript_SmashRock
+applymovement VAR_LAST_TALKED Movement_SmashRock
+waitmovement 0
+removeobject VAR_LAST_TALKED
+specialvar VAR_RESULT TryUpdateRusturfTunnelState
+goto_if_eq VAR_RESULT TRUE EventScript_EndSmash
+special RockSmashWildEncounter
+goto_if_eq VAR_RESULT FALSE EventScript_EndSmash
+waitstate
+releaseall
+end
+= EventScript_EndSmash
+releaseall
+end
+= EventScript_CancelSmash
+closemessage
+releaseall
+end
+= EventScript_CantSmashRock
+msgbox	It's a rugged rock, but a POKéMON may be able to smash it.
+releaseall
+end
+= MirageTower_4F_EventScript_ClawFossil
+lock
+faceplayer
+msgboxyesno	You found the CLAW FOSSIL.If this FOSSIL is taken, the ground around it will likely crumble away…Take the CLAW FOSSIL anyway?
+goto_if_eq VAR_RESULT NO MirageTower_4F_EventScript_LeaveClawFossil
+giveitem ITEM_CLAW_FOSSIL
+closemessage
+setflag FLAG_HIDE_MIRAGE_TOWER_CLAW_FOSSIL
+setflag FLAG_HIDE_MIRAGE_TOWER_ROOT_FOSSIL
+removeobject LOCALID_MIRAGE_CLAW_FOSSIL
+delay 30
+setflag FLAG_CHOSE_CLAW_FOSSIL
+goto MirageTower_4F_EventScript_CollapseMirageTower
+end
+= MirageTower_4F_EventScript_CollapseMirageTower
+setvar VAR_0x8004 1   @ vertical pan
+setvar VAR_0x8005 1   @ horizontal pan
+setvar VAR_0x8006 32  @ num shakes
+setvar VAR_0x8007 2   @ shake delay
+special ShakeCamera
+waitstate
+special DoMirageTowerCeilingCrumble
+setvar VAR_MIRAGE_TOWER_STATE 1
+clearflag FLAG_LANDMARK_MIRAGE_TOWER
+warp Route111 19 59
+waitstate
+release
+end
+= MirageTower_4F_EventScript_LeaveClawFossil
+msgbox	PLAYER left the CLAW FOSSIL alone.
+release
+end
+= MirageTower_4F_EventScript_RootFossil
+lock
+faceplayer
+msgboxyesno	You found the ROOT FOSSIL.If this FOSSIL is taken, the ground around it will likely crumble away…Take the ROOT FOSSIL anyway?
+goto_if_eq VAR_RESULT NO MirageTower_4F_EventScript_LeaveRootFossil
+giveitem ITEM_ROOT_FOSSIL
+closemessage
+setflag FLAG_HIDE_MIRAGE_TOWER_ROOT_FOSSIL
+setflag FLAG_HIDE_MIRAGE_TOWER_CLAW_FOSSIL
+removeobject LOCALID_MIRAGE_ROOT_FOSSIL
+delay 30
+setflag FLAG_CHOSE_ROOT_FOSSIL
+goto MirageTower_4F_EventScript_CollapseMirageTower
+end
+= MirageTower_4F_EventScript_LeaveRootFossil
+msgbox	PLAYER left the ROOT FOSSIL alone.
+release
+end
+mapsec
+8 2 1 1	MIRAGE TOWER
+music
+MUS_MT_CHIMNEY
+encounters
+land SANDSHREW:21:21,TRAPINCH:21:21,SANDSHREW:20:20,TRAPINCH:20:20,SANDSHREW:20:20,TRAPINCH:20:20,SANDSHREW:22:22,TRAPINCH:22:22,SANDSHREW:23:23,TRAPINCH:23:23,SANDSHREW:24:24,TRAPINCH:24:24

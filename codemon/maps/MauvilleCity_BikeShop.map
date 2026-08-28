@@ -1,0 +1,125 @@
+tileset general__bike_shop
+12 9
+7 3
+513,514,515,516,516,517,552,553,554,555,556,557
+521,522,523,524,524,525,560,561,562,563,564,565
+529,530,531,532,533,534,568,569,570,571,572,570
+537,538,539,540,541,542,576,577,578,575,579,580
+545,546,547,548,549,550,584,585,586,575,587,588
+518,519,575,575,575,575,592,593,594,575,595,596
+537,546,575,575,575,575,575,575,575,575,581,582
+545,546,575,575,575,575,575,575,575,575,589,590
+526,527,575,536,544,575,575,575,575,575,597,598
+collision
+1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,0,0,0,1,0,0,0,0,0
+1,1,1,1,1,1,1,0,0,0,0,0
+1,1,0,0,0,0,1,1,0,0,1,1
+1,1,0,0,0,0,0,0,0,0,1,1
+1,1,0,0,0,0,0,0,0,0,1,1
+1,1,0,0,0,0,0,0,0,0,1,1
+1,1,0,0,0,0,0,0,0,0,1,1
+warps
+3 8 MauvilleCity 2
+4 8 MauvilleCity 2
+npcs
+people_man_2 2 5 W static 0 - 0
+people_man_5 7 6 S wander 0 - 0
+dialogs
+0	Well, well, what have we here? A most energetic customer!Me? You may call me RYDEL. I'm the owner of this cycle shop.
+1	I'm learning about BIKES while I work here.If you need advice on how to ride your BIKE, there're a couple handbooks in the back.
+objscripts
+0 MauvilleCity_BikeShop_EventScript_Rydel
+1 MauvilleCity_BikeShop_EventScript_Assistant
+scriptdefs
+= MauvilleCity_BikeShop_EventScript_Assistant
+msgbox	I'm learning about BIKES while I work here.If you need advice on how to ride your BIKE, there're a couple handbooks in the back.
+end
+= MauvilleCity_BikeShop_EventScript_Rydel
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_BIKE MauvilleCity_BikeShop_EventScript_AskSwitchBikes
+goto_if_set FLAG_DECLINED_BIKE MauvilleCity_BikeShop_EventScript_SkipGreeting
+msgbox	Well, well, what have we here? A most energetic customer!Me? You may call me RYDEL. I'm the owner of this cycle shop.
+msgboxyesno	RYDEL: Your RUNNING SHOES… They're awfully filthy.Did you come from far away?
+goto_if_eq VAR_RESULT YES MauvilleCity_BikeShop_EventScript_YesFar
+goto_if_eq VAR_RESULT NO MauvilleCity_BikeShop_EventScript_NotFar
+end
+= MauvilleCity_BikeShop_EventScript_NotFar
+setflag FLAG_DECLINED_BIKE
+msgbox	RYDEL: Is that right?Then, I guess you have no need for any of my BIKES.
+release
+end
+= MauvilleCity_BikeShop_EventScript_YesFar
+setflag FLAG_RECEIVED_BIKE
+goto MauvilleCity_BikeShop_EventScript_ChooseBike
+end
+= MauvilleCity_BikeShop_EventScript_ChooseBike
+msgbox	RYDEL: Hm, hm… … … … …You're saying that you came all this way from LITTLEROOT?My goodness! That's ridiculously far!If you had one of my BIKES, you could go anywhere easily while feeling the gentle caress of the wind!I'll tell you what! I'll give you a BIKE!Oh, wait a second!I forgot to tell you that there are two kinds of BIKES!They are the MACH BIKE and the ACRO BIKE!The MACH BIKE is for cyclists who want to feel the wind with their bodies!And an ACRO BIKE is for those who prefer technical rides!I'm a real sweetheart, so you can have whichever one you like!Which one will you choose?
+waitmessage
+multichoice 21 8 MULTI_BIKE TRUE
+switch VAR_RESULT
+case 0 MauvilleCity_BikeShop_EventScript_GetMachBike
+case 1 MauvilleCity_BikeShop_EventScript_GetAcroBike
+end
+= MauvilleCity_BikeShop_EventScript_GetAcroBike
+msgbox	PLAYER chose the ACRO BIKE.
+giveitem ITEM_ACRO_BIKE
+goto MauvilleCity_BikeShop_EventScript_ComeBackToSwitchBikes
+end
+= MauvilleCity_BikeShop_EventScript_ComeBackToSwitchBikes
+msgbox	RYDEL: If you get the urge to switch BIKES, just come see me!
+special SwapRegisteredBike
+release
+end
+= MauvilleCity_BikeShop_EventScript_GetMachBike
+msgbox	PLAYER chose the MACH BIKE.
+giveitem ITEM_MACH_BIKE
+goto MauvilleCity_BikeShop_EventScript_ComeBackToSwitchBikes
+end
+= MauvilleCity_BikeShop_EventScript_SkipGreeting
+msgboxyesno	RYDEL: Your RUNNING SHOES… They're awfully filthy.Did you come from far away?
+goto_if_eq VAR_RESULT YES MauvilleCity_BikeShop_EventScript_YesFar
+goto_if_eq VAR_RESULT NO MauvilleCity_BikeShop_EventScript_NotFar
+end
+= MauvilleCity_BikeShop_EventScript_AskSwitchBikes
+msgboxyesno	RYDEL: Oh? Were you thinking about switching BIKES?
+goto_if_eq VAR_RESULT YES MauvilleCity_BikeShop_EventScript_SwitchBikes
+goto_if_eq VAR_RESULT NO MauvilleCity_BikeShop_EventScript_KeepBike
+end
+@ If the player does not have a bike on them Rydel assumes its stored in the PC
+goto MauvilleCity_BikeShop_EventScript_SwitchBikes
+= MauvilleCity_BikeShop_EventScript_SwitchBikes
+msgbox	RYDEL: Okay, no problem! I'll switch BIKES for you!
+checkitem ITEM_ACRO_BIKE
+goto_if_eq VAR_RESULT TRUE MauvilleCity_BikeShop_EventScript_SwitchAcroForMach
+checkitem ITEM_MACH_BIKE
+goto_if_eq VAR_RESULT TRUE MauvilleCity_BikeShop_EventScript_SwitchMachForAcro
+msgbox	Oh? What happened to that BIKE I gave you?Oh, I get it, you stored it using your PC.Well, take it out of PC storage, and I'll be happy to exchange it!May the wind always be at your back on your adventure!
+release
+end
+= MauvilleCity_BikeShop_EventScript_SwitchMachForAcro
+incrementgamestat GAME_STAT_TRADED_BIKES
+msgbox	PLAYER got the MACH BIKE exchanged for an ACRO BIKE.
+removeitem ITEM_MACH_BIKE
+giveitem ITEM_ACRO_BIKE
+goto MauvilleCity_BikeShop_EventScript_ComeBackToSwitchBikes
+end
+= MauvilleCity_BikeShop_EventScript_SwitchAcroForMach
+incrementgamestat GAME_STAT_TRADED_BIKES
+msgbox	PLAYER got the ACRO BIKE exchanged for a MACH BIKE.
+removeitem ITEM_ACRO_BIKE
+giveitem ITEM_MACH_BIKE
+goto MauvilleCity_BikeShop_EventScript_ComeBackToSwitchBikes
+end
+= MauvilleCity_BikeShop_EventScript_KeepBike
+msgbox	RYDEL: Good, good! I'm happy that you like it!
+release
+end
+mapsec
+8 6 2 1	MAUVILLE CITY
+music
+MUS_RUSTBORO
+counters
+540,541,542

@@ -1,0 +1,134 @@
+tileset building__battle_tent
+5 8
+2 4
+517,610,611,612,517
+525,618,619,620,525
+539,555,554,555,554
+547,570,571,570,571
+548,571,570,571,570
+547,570,571,570,571
+548,571,570,571,570
+547,540,541,549,571
+collision
+1,1,1,1,1
+1,1,0,1,1
+0,0,0,0,0
+0,0,0,0,0
+0,0,0,0,0
+0,0,0,0,0
+0,0,0,0,0
+0,0,0,0,0
+npcs
+people_scientist_1 2 6 N static 0 LOCALID_SLATEPORT_TENT_CORRIDOR_ATTENDANT 0
+onload
+VAR_TEMP_0 0 SlateportCity_BattleTentCorridor_EventScript_EnterCorridor
+movements
+Common_Movement_WalkInPlaceFasterUp	delay,end
+SlateportCity_BattleTentCorridor_Movement_AttendantEnter	up,up,up,up,delay,end
+SlateportCity_BattleTentCorridor_Movement_AttendantExit	up,delay,end
+SlateportCity_BattleTentCorridor_Movement_PlayerEnter	up,up,up,up,end
+SlateportCity_BattleTentCorridor_Movement_PlayerExit	up,up,delay,end
+scriptdefs
+= SlateportCity_BattleTentCorridor_EventScript_EnterCorridor
+goto_if_eq VAR_0x8006 1 SlateportCity_BattleTentCorridor_EventScript_ReturnToRoomFromBattle
+setvar VAR_TEMP_0 1
+applymovement LOCALID_SLATEPORT_TENT_CORRIDOR_ATTENDANT SlateportCity_BattleTentCorridor_Movement_AttendantEnter
+applymovement LOCALID_PLAYER SlateportCity_BattleTentCorridor_Movement_PlayerEnter
+waitmovement 0
+goto_if_eq VAR_0x8006 2 SlateportCity_BattleTentCorridor_EventScript_ResumeChallenge
+slateporttent_generaterentalmons
+slateporttent_generateopponentmons
+msgbox	First, we will hold your POKéMON for safekeeping.You may then choose from our selection of POKéMON.
+fadescreen FADE_TO_BLACK
+slateporttent_rentmons
+waitstate
+goto SlateportCity_BattleTentCorridor_EventScript_EnterBattleRoom
+= SlateportCity_BattleTentCorridor_EventScript_EnterBattleRoom
+msgbox	Right this way, please!
+closemessage
+applymovement LOCALID_SLATEPORT_TENT_CORRIDOR_ATTENDANT Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+opendoor 2 1
+waitdooranim
+applymovement LOCALID_SLATEPORT_TENT_CORRIDOR_ATTENDANT SlateportCity_BattleTentCorridor_Movement_AttendantExit
+applymovement LOCALID_PLAYER SlateportCity_BattleTentCorridor_Movement_PlayerExit
+waitmovement 0
+closedoor 2 1
+waitdooranim
+warp SlateportCity_BattleTentBattleRoom 4 4
+waitstate
+end
+= SlateportCity_BattleTentCorridor_EventScript_ResumeChallenge
+special SavePlayerParty
+factory_setparties 0
+goto SlateportCity_BattleTentCorridor_EventScript_AskReadyForOpponent
+= SlateportCity_BattleTentCorridor_EventScript_AskReadyForOpponent
+frontier_get FRONTIER_DATA_BATTLE_NUM
+call_if_eq VAR_RESULT 1 SlateportCity_BattleTentCorridor_EventScript_ReadyFor2ndOpponent
+call_if_eq VAR_RESULT 2 SlateportCity_BattleTentCorridor_EventScript_ReadyFor3rdOpponent
+multichoice 20 6 MULTI_GO_ON_REST_RETIRE TRUE
+switch VAR_RESULT
+case 0 SlateportCity_BattleTentCorridor_EventScript_AskSwapMon
+case 1 SlateportCity_BattleTentCorridor_EventScript_AskPauseChallenge
+case 2 SlateportCity_BattleTentCorridor_EventScript_AskRetireChallenge
+goto SlateportCity_BattleTentCorridor_EventScript_AskPauseChallenge
+= SlateportCity_BattleTentCorridor_EventScript_AskPauseChallenge
+msgboxyesno	Would you like to save and quit the game?
+switch VAR_RESULT
+case NO SlateportCity_BattleTentCorridor_EventScript_AskReadyForOpponent
+case YES SlateportCity_BattleTentCorridor_EventScript_PauseChallenge
+case MULTI_B_PRESSED SlateportCity_BattleTentCorridor_EventScript_AskReadyForOpponent
+goto SlateportCity_BattleTentCorridor_EventScript_AskRetireChallenge
+= SlateportCity_BattleTentCorridor_EventScript_AskRetireChallenge
+msgbox	Would you like to retire from your Battle Swap challenge?
+waitmessage
+multichoicedefault 20 8 MULTI_YESNO 1 FALSE
+switch VAR_RESULT
+case 1 SlateportCity_BattleTentCorridor_EventScript_AskReadyForOpponent
+case 0 SlateportCity_BattleTent_EventScript_WarpToLobbyLost
+case MULTI_B_PRESSED SlateportCity_BattleTentCorridor_EventScript_AskReadyForOpponent
+goto SlateportCity_BattleTentCorridor_EventScript_AskSwapMon
+= SlateportCity_BattleTentCorridor_EventScript_AskSwapMon
+slateporttent_generateopponentmons
+msgboxyesno	Before starting the battle, would you like to swap a POKéMON?
+switch VAR_RESULT
+case NO SlateportCity_BattleTentCorridor_EventScript_EnterBattleRoom
+case YES SlateportCity_BattleTentCorridor_EventScript_SwapMons
+case MULTI_B_PRESSED SlateportCity_BattleTentCorridor_EventScript_EnterBattleRoom
+goto SlateportCity_BattleTentCorridor_EventScript_SwapMons
+= SlateportCity_BattleTentCorridor_EventScript_SwapMons
+fadescreen FADE_TO_BLACK
+slateporttent_swapmons
+waitstate
+goto_if_eq VAR_RESULT 1 SlateportCity_BattleTentCorridor_EventScript_EnterBattleRoom
+msgbox	Thank you! Your POKéMON swap is complete.
+goto SlateportCity_BattleTentCorridor_EventScript_EnterBattleRoom
+= SlateportCity_BattleTentCorridor_EventScript_PauseChallenge
+msgbox	I am saving your data. Please wait.
+waitmessage
+slateporttent_save CHALLENGE_STATUS_PAUSED
+playse SE_SAVE
+waitse
+fadescreen FADE_TO_BLACK
+frontier_reset
+end
+= SlateportCity_BattleTentCorridor_EventScript_ReadyFor3rdOpponent
+msgbox	The 3rd match is next! Are you ready?
+waitmessage
+return
+= SlateportCity_BattleTentCorridor_EventScript_ReadyFor2ndOpponent
+msgbox	The 2nd match is next! Are you ready?
+waitmessage
+return
+= SlateportCity_BattleTentCorridor_EventScript_ReturnToRoomFromBattle
+factory_setopponentmons
+factory_resethelditems
+msgbox	Thank you for competing! Let us restore your POKéMON!
+playfanfare MUS_HEAL
+waitfanfare
+special HealPlayerParty
+goto SlateportCity_BattleTentCorridor_EventScript_AskReadyForOpponent
+mapsec
+8 10 1 2	SLATEPORT CITY
+music
+MUS_B_TOWER_RS

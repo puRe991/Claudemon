@@ -1,0 +1,51 @@
+tileset building__generic_building
+8 6
+5 2
+968,969,969,958,959,969,969,970
+976,992,977,958,959,977,977,978
+984,1000,988,958,959,987,985,986
+985,985,988,966,967,987,985,985
+985,985,985,985,985,985,985,985
+972,985,985,980,981,985,985,973
+collision
+1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1
+0,0,0,1,1,0,0,0
+0,0,0,1,1,0,0,0
+0,0,0,0,0,0,0,0
+1,0,0,0,0,0,0,1
+warps
+3 5 FortreeCity 7
+4 5 FortreeCity 7
+npcs
+people_pokefan_f 6 4 S static 0 - 0
+pokemon_zigzagoon 6 3 S static 0 - 0
+people_man_1 2 4 E static 0 - 0
+dialogs
+0	The tree houses of FORTREE are great!I think it's the number one town for living together with POKéMON.
+1	ZIGZAGOON: Bufuu!
+2	POKéMON and people have adapted to nature for survival.There's no need to make nature conform to the way we want to live.
+objscripts
+0 FortreeCity_House5_EventScript_PokefanF
+1 FortreeCity_House5_EventScript_Zigzagoon
+2 FortreeCity_House5_EventScript_Man
+scriptdefs
+= FortreeCity_House5_EventScript_Man
+msgbox	POKéMON and people have adapted to nature for survival.There's no need to make nature conform to the way we want to live.
+end
+= FortreeCity_House5_EventScript_Zigzagoon
+lock
+faceplayer
+waitse
+playmoncry SPECIES_ZIGZAGOON CRY_MODE_NORMAL
+msgbox	ZIGZAGOON: Bufuu!
+waitmoncry
+release
+end
+= FortreeCity_House5_EventScript_PokefanF
+msgbox	The tree houses of FORTREE are great!I think it's the number one town for living together with POKéMON.
+end
+mapsec
+12 0 1 1	FORTREE CITY
+music
+MUS_FORTREE

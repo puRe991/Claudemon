@@ -1,0 +1,130 @@
+tileset building__elite_four
+13 14
+6 7
+527,519,527,519,527,520,520,520,519,527,519,527,519
+517,516,517,516,517,513,514,515,516,517,516,517,516
+525,524,525,524,525,521,522,523,524,525,524,525,524
+674,674,674,674,674,696,696,696,674,674,674,674,674
+718,678,700,700,672,675,675,675,676,700,700,679,677
+685,686,700,700,680,681,682,683,684,700,700,687,685
+693,694,700,700,688,689,690,691,692,700,700,695,693
+701,673,700,700,680,697,698,699,684,700,700,695,701
+701,702,700,700,680,705,706,707,684,700,700,703,701
+717,710,700,700,712,715,715,715,716,700,700,711,709
+714,713,713,713,713,713,713,713,713,713,713,713,713
+519,527,519,527,520,520,520,520,520,519,527,519,527
+725,726,725,726,741,700,700,700,727,725,726,725,726
+840,841,840,841,742,708,708,708,735,840,841,840,841
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,0,0,0,0,0,0,0,0,0,1,1
+1,1,0,0,0,0,0,0,0,0,0,1,1
+1,1,0,0,0,0,0,0,0,0,0,1,1
+1,1,0,0,0,0,0,0,0,0,0,1,1
+1,1,0,0,0,0,0,0,0,0,0,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,1,1,1,0,0,0,1,1,1,1,1
+1,1,1,1,1,0,0,0,1,1,1,1,1
+warps
+6 13 EverGrandeCity_Hall3 1
+6 2 EverGrandeCity_Hall4 0
+npcs
+people_elite_four_drake 6 5 S static 0 - 0
+dialogs
+0	I am the last of the POKéMON LEAGUE ELITE FOUR, DRAKE the DRAGON master!In their natural state, POKéMON are wild living things. They are free.At times, they hinder us. At times, they help us.For us to battle with POKéMON as partners, do you know what it takes?Do you know what is needed?If you don't, then you will never prevail over me!
+objscripts
+0 EverGrandeCity_DrakesRoom_EventScript_Drake
+onload
+VAR_ELITE_4_STATE 3 EverGrandeCity_DrakesRoom_EventScript_WalkInCloseDoor
+movements
+Common_Movement_Delay32	delay,delay,end
+Common_Movement_WalkUp6	up,up,up,up,up,up,end
+scriptdefs
+= EverGrandeCity_DrakesRoom_EventScript_WalkInCloseDoor
+lockall
+call PokemonLeague_EliteFour_EventScript_WalkInCloseDoor
+setvar VAR_ELITE_4_STATE 4
+releaseall
+end
+= PokemonLeague_EliteFour_EventScript_WalkInCloseDoor
+applymovement LOCALID_PLAYER Common_Movement_WalkUp6
+waitmovement 0
+playse SE_TRUCK_DOOR
+setmetatile 5 12 METATILE_EliteFour_EntryDoor_ClosedTop TRUE
+setmetatile 6 12 METATILE_EliteFour_EntryDoor_ClosedTop TRUE
+setmetatile 7 12 METATILE_EliteFour_EntryDoor_ClosedTop TRUE
+setmetatile 5 13 METATILE_EliteFour_EntryDoor_ClosedBottom TRUE
+setmetatile 6 13 METATILE_EliteFour_EntryDoor_ClosedBottom TRUE
+setmetatile 7 13 METATILE_EliteFour_EntryDoor_ClosedBottom TRUE
+special DrawWholeMapView
+return
+@ Essentially unused only necessary when re-entering an Elite Four room after defeating the member which isnt normally possible
+goto PokemonLeague_EliteFour_EventScript_ResetAdvanceToNextRoom
+= PokemonLeague_EliteFour_EventScript_ResetAdvanceToNextRoom
+setmetatile 6 1 METATILE_EliteFour_OpenDoor_Frame FALSE
+setmetatile 6 2 METATILE_EliteFour_OpenDoor_Opening FALSE
+setmetatile 5 12 METATILE_EliteFour_EntryDoor_ClosedTop TRUE
+setmetatile 6 12 METATILE_EliteFour_EntryDoor_ClosedTop TRUE
+setmetatile 7 12 METATILE_EliteFour_EntryDoor_ClosedTop TRUE
+setmetatile 5 13 METATILE_EliteFour_EntryDoor_ClosedBottom TRUE
+setmetatile 6 13 METATILE_EliteFour_EntryDoor_ClosedBottom TRUE
+setmetatile 7 13 METATILE_EliteFour_EntryDoor_ClosedBottom TRUE
+setmetatile 0 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 1 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+setmetatile 2 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 3 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+setmetatile 4 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 8 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+setmetatile 9 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 10 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+setmetatile 11 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 12 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+return
+= EverGrandeCity_DrakesRoom_EventScript_Drake
+lock
+faceplayer
+goto_if_set FLAG_DEFEATED_ELITE_4_DRAKE EverGrandeCity_DrakesRoom_EventScript_PostBattleSpeech
+playbgm MUS_ENCOUNTER_ELITE_FOUR FALSE
+msgbox	I am the last of the POKéMON LEAGUE ELITE FOUR, DRAKE the DRAGON master!In their natural state, POKéMON are wild living things. They are free.At times, they hinder us. At times, they help us.For us to battle with POKéMON as partners, do you know what it takes?Do you know what is needed?If you don't, then you will never prevail over me!
+trainerbattle_no_intro TRAINER_DRAKE EverGrandeCity_DrakesRoom_Text_Defeat
+goto EverGrandeCity_DrakesRoom_EventScript_Defeated
+end
+= EverGrandeCity_DrakesRoom_EventScript_Defeated
+setvar VAR_0x8004 FANCOUNTER_DEFEATED_DRAKE
+special Script_TryGainNewFanFromCounter
+setflag FLAG_DEFEATED_ELITE_4_DRAKE
+call PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles
+msgbox	You deserve every credit for coming this far as a TRAINER of POKéMON.You do seem to know what is needed.Yes, what a TRAINER needs is a virtuous heart.POKéMON touch the good hearts of TRAINERS and learn good from wrong.They touch the good hearts of TRAINERS and grow strong.Go! Go onwards! The CHAMPION is waiting!
+release
+end
+= PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles
+applymovement LOCALID_PLAYER Common_Movement_Delay32
+waitmovement 0
+playse SE_DOOR
+setmetatile 6 1 METATILE_EliteFour_OpenDoor_Frame FALSE
+setmetatile 6 2 METATILE_EliteFour_OpenDoor_Opening FALSE
+setmetatile 0 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 1 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+setmetatile 2 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 3 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+setmetatile 4 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 8 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+setmetatile 9 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 10 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+setmetatile 11 2 METATILE_EliteFour_RightSpotlightOff TRUE
+setmetatile 12 2 METATILE_EliteFour_LeftSpotlightOff TRUE
+special DrawWholeMapView
+return
+= EverGrandeCity_DrakesRoom_EventScript_PostBattleSpeech
+msgbox	You deserve every credit for coming this far as a TRAINER of POKéMON.You do seem to know what is needed.Yes, what a TRAINER needs is a virtuous heart.POKéMON touch the good hearts of TRAINERS and learn good from wrong.They touch the good hearts of TRAINERS and grow strong.Go! Go onwards! The CHAMPION is waiting!
+release
+end
+mapsec
+27 8 1 2	EVER GRANDE CITY
+music
+MUS_VICTORY_ROAD

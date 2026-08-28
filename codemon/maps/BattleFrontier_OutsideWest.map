@@ -1,0 +1,462 @@
+tileset general__battle_frontier_outside_west
+56 72
+28 36
+368,368,368,368,368,336,337,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,336,337,368,368,368,336,337,368,368,368,368,368,336,337,368
+336,337,368,368,368,344,345,368,368,966,967,368,966,967,368,966,967,368,966,967,368,966,967,368,966,967,368,966,967,368,966,967,368,966,967,368,966,967,368,966,967,344,345,368,368,368,344,345,368,368,368,368,368,344,345,368
+344,345,368,368,368,368,368,368,368,974,975,368,974,975,368,974,975,368,974,975,368,974,975,368,974,975,368,974,975,368,974,975,368,974,975,368,974,975,368,974,975,502,503,882,883,884,368,502,503,502,503,502,503,502,503,502
+368,368,368,368,370,61,62,62,615,982,621,620,983,620,621,982,621,620,983,620,621,982,621,620,983,620,621,982,621,620,983,620,621,982,621,620,983,620,621,982,623,508,509,898,899,900,2,508,509,508,509,508,509,508,509,508
+336,337,368,370,115,69,14,15,618,617,616,617,616,617,627,626,627,626,627,633,627,626,627,626,627,626,616,617,616,617,616,617,616,617,616,617,616,617,616,617,607,486,487,906,1012,908,224,486,487,486,487,486,487,486,487,486
+344,345,370,115,115,69,199,23,626,616,624,616,624,616,619,1,1,634,635,636,637,638,1,1,1,618,624,625,624,616,617,625,624,625,624,625,624,625,624,625,599,5,224,914,1020,916,5,4,4,4,4,4,4,4,4,4
+368,370,115,115,115,69,199,4,618,617,616,617,627,626,627,640,641,690,691,692,693,694,647,738,1,626,627,626,616,624,625,617,616,617,627,626,627,626,627,626,555,1,1,1,1,256,257,257,257,257,257,257,257,257,257,257
+402,115,115,115,115,69,199,15,626,616,617,616,619,1,737,648,649,690,691,692,693,694,655,746,747,1,1,618,624,616,617,625,624,625,619,1,1,1,1,1,1,1,1,256,257,265,265,265,265,265,265,265,265,265,265,265
+402,115,115,115,115,69,199,23,618,617,616,617,627,744,745,656,657,690,691,692,693,694,663,754,755,756,1,626,616,624,625,624,616,624,627,1,1,1,1,1,1,1,1,272,273,273,273,273,273,273,273,273,273,273,273,273
+402,115,115,115,115,69,199,4,626,616,617,616,619,752,753,664,665,690,691,692,693,694,671,762,763,764,1,618,624,616,617,625,629,628,614,329,329,329,329,329,329,329,329,329,329,329,329,329,329,329,329,329,329,329,329,314
+402,115,115,115,115,69,199,15,618,617,616,617,627,760,761,672,673,690,691,692,693,694,679,770,771,772,1,626,616,624,625,599,116,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,137,322
+402,115,115,115,115,69,199,23,626,616,617,616,619,768,769,680,681,690,691,692,693,694,687,778,779,780,1,618,624,625,617,555,117,116,169,169,169,169,169,169,169,169,169,169,169,169,169,169,169,169,169,169,169,137,115,322
+402,115,115,115,115,69,199,4,618,617,616,617,627,776,777,688,689,690,691,692,693,694,695,644,645,646,1,626,625,617,555,116,125,117,116,169,169,169,169,169,169,169,169,169,169,169,169,169,169,169,169,169,137,112,115,322
+402,115,115,115,115,69,199,15,626,627,626,616,619,741,742,696,697,698,699,700,701,702,703,652,653,654,1,618,617,607,116,125,116,125,117,116,206,206,206,206,206,206,206,206,206,206,206,206,206,206,206,137,115,112,115,322
+402,115,115,115,115,69,22,22,1,1,618,617,627,749,750,704,705,706,707,708,709,710,711,660,661,662,1,626,625,599,117,116,125,116,125,114,22,22,22,22,22,22,22,22,22,22,22,22,198,198,198,112,115,112,115,322
+402,115,115,115,115,77,78,78,78,1,626,616,619,757,758,712,713,714,715,716,717,718,719,668,669,670,1,618,617,607,117,117,116,125,116,122,384,393,393,393,393,393,393,393,393,393,393,394,22,198,198,112,115,112,123,124
+402,115,115,115,123,169,169,169,137,69,618,617,627,765,766,720,721,722,723,642,725,726,727,676,677,678,1,626,625,599,117,117,117,116,122,384,408,370,308,308,308,308,308,308,308,308,372,410,394,22,198,112,115,120,206,206
+402,115,115,120,936,937,938,137,115,69,626,616,619,328,774,728,729,730,731,650,733,734,735,684,685,330,1,618,617,607,117,117,117,117,384,408,370,308,1016,1016,965,957,958,959,516,4,308,372,410,394,198,112,115,14,198,199
+402,115,115,7,901,902,903,112,115,69,618,617,627,1,1,3,1,1,1,1,1,1,1,1,1,1,1,626,625,599,117,117,117,117,400,402,115,1016,198,198,1016,1,949,950,1,516,1016,117,377,402,198,112,115,198,198,198
+402,115,115,6,909,910,911,112,115,69,626,616,619,618,619,618,619,618,619,618,619,618,619,618,619,618,619,618,617,607,117,117,117,117,400,402,115,198,198,23,23,1,944,951,1,4,198,117,400,402,198,112,115,198,198,198
+402,115,115,1,917,918,919,112,115,69,618,617,616,617,616,617,616,617,616,617,616,617,616,617,616,617,616,617,616,599,117,117,117,117,400,402,115,198,23,1,1,945,946,947,948,4,198,117,400,402,198,112,115,198,198,198
+402,115,115,1,256,257,258,112,115,69,626,616,617,616,617,616,617,616,617,616,624,625,624,625,624,625,624,625,624,607,117,117,117,117,400,402,115,198,1,516,952,953,954,955,956,516,198,117,400,402,198,112,115,198,198,198
+402,115,115,1,264,265,266,112,115,77,613,629,628,629,628,629,628,624,625,624,625,624,625,624,625,624,625,629,628,554,117,117,117,117,400,402,115,23,1,1,960,961,962,963,964,516,198,117,400,402,198,112,115,198,198,198
+402,115,115,1,264,265,266,112,123,124,124,124,124,124,124,124,124,207,207,207,207,207,207,207,207,207,207,124,124,124,125,117,117,117,400,402,115,1,516,516,968,969,970,971,972,516,198,117,400,402,198,112,115,198,198,198
+402,115,115,1,264,265,266,120,121,121,121,121,121,121,121,121,121,207,207,207,207,207,207,207,207,207,207,121,121,121,121,122,117,117,400,402,115,4,516,516,976,977,978,979,980,516,198,117,400,402,198,112,115,198,198,198
+402,115,115,1,272,265,265,257,257,257,257,257,257,257,257,257,257,257,258,1,1,1,1,1,1,1,1,4,4,4,4,4,117,117,400,402,115,4,1,516,984,985,986,987,988,516,198,117,400,402,198,112,115,198,198,198
+402,115,115,1,1,272,273,273,273,273,273,273,273,273,273,273,273,94,94,257,257,257,258,1,1,1,1,1,1,1,1,1,117,117,400,402,115,1016,516,516,992,993,994,995,996,516,198,117,400,402,198,112,115,198,198,198
+402,115,115,1,1,1,116,124,124,124,124,124,124,124,124,124,137,272,273,273,273,94,94,257,257,257,257,257,257,258,1,1,117,117,400,402,115,23,1,1,1000,1001,1002,1003,1004,516,198,117,400,402,198,112,115,22,22,22
+402,115,123,124,124,124,125,116,169,169,169,169,169,169,169,137,123,124,169,124,137,272,273,94,94,94,94,94,94,95,116,175,122,117,400,402,115,559,1016,516,1008,1009,1010,1011,939,516,198,117,400,402,198,112,123,124,124,124
+402,123,169,169,169,169,169,125,384,393,393,393,393,393,385,123,169,169,169,137,123,124,137,93,94,94,94,94,94,95,114,1,4,117,400,402,123,137,198,1,1,1017,1018,1019,1,516,198,117,400,402,22,120,124,124,124,124
+410,393,393,393,393,393,393,393,408,787,788,789,790,791,410,393,393,393,385,123,169,137,115,93,94,94,94,94,94,95,114,1,4,117,400,410,385,115,198,1,516,516,516,516,516,3,23,117,400,410,393,393,393,393,393,393
+368,368,368,368,368,563,792,793,794,795,796,797,798,799,560,561,792,743,410,393,385,115,123,1014,1015,94,94,94,94,95,122,1,4,117,400,368,402,115,198,1016,516,1,516,1,516,1,559,117,400,368,368,368,368,368,368,368
+336,337,368,368,570,571,800,801,802,803,804,805,806,807,568,569,800,751,732,368,402,123,169,1013,94,94,94,94,94,95,124,124,124,125,400,368,402,115,198,23,516,1,1,71,559,116,169,125,400,368,368,368,368,368,368,368
+344,345,368,370,578,579,808,809,810,811,812,813,814,815,576,577,808,759,740,372,410,393,393,93,94,94,94,94,94,95,935,393,393,393,408,368,402,115,23,559,516,1,516,71,169,125,384,393,408,368,368,336,337,368,368,368
+368,368,370,115,586,587,816,817,818,819,820,821,822,823,584,585,816,767,748,117,372,368,368,1014,1015,94,94,94,94,95,575,368,368,336,337,368,402,123,169,137,516,1,516,71,935,393,408,368,368,368,368,344,345,368,368,368
+368,370,115,115,594,659,824,825,826,827,828,829,830,831,580,581,824,582,593,117,117,372,368,1013,94,94,94,94,94,95,575,368,368,344,345,368,410,393,385,115,559,69,516,71,575,368,368,368,368,336,337,368,368,368,368,368
+402,115,115,115,602,667,832,833,834,835,836,837,838,839,588,589,832,590,601,117,117,117,377,93,94,94,94,94,94,95,575,336,337,368,368,368,368,368,402,123,169,69,1,71,575,368,368,368,368,344,345,368,368,368,368,368
+402,115,115,115,610,675,840,841,842,843,844,603,846,847,596,597,840,598,609,117,117,117,377,1014,1015,94,94,94,94,95,575,344,345,368,368,368,368,368,410,393,393,69,516,71,575,368,368,368,368,368,368,368,368,368,368,368
+402,115,115,115,93,683,848,849,850,851,852,611,854,855,604,605,848,606,95,117,117,117,377,1013,94,94,94,94,94,95,575,368,368,368,368,368,368,368,368,368,368,69,516,71,575,368,368,368,368,368,368,368,368,368,368,368
+402,115,115,115,101,102,94,94,94,94,94,94,94,94,94,94,94,102,103,117,117,117,377,93,94,94,94,94,94,266,62,62,62,62,62,62,62,62,62,62,62,1,516,1,62,62,62,62,62,62,62,62,62,62,62,62
+402,115,115,123,124,137,93,520,522,94,94,94,94,94,520,522,95,116,124,125,117,117,377,1014,1015,94,94,94,94,94,257,257,257,257,258,1,1,1,1,1,516,516,516,516,516,1,1,1,1,1,1,1,1,1,1,1
+402,115,123,124,137,115,93,528,530,94,94,94,94,94,528,530,95,117,116,124,125,117,377,1013,94,94,94,94,94,94,94,94,94,94,94,258,1,1,1,1,1,516,516,1,890,891,891,891,891,892,1,1,893,894,895,1
+402,123,124,137,115,115,93,528,530,94,94,94,94,94,528,530,95,117,117,116,124,125,377,93,94,94,94,94,94,94,94,94,94,94,94,94,258,1,1,1,1,1,1,14,898,899,899,899,899,900,1,1,901,902,903,1
+410,393,385,115,115,115,93,536,538,94,94,94,94,94,536,538,3,86,86,86,86,86,86,94,94,94,94,94,94,94,94,94,94,94,94,94,94,257,257,257,257,257,258,198,906,1012,879,879,879,908,5,7,909,910,911,256
+368,368,402,115,115,115,93,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,266,22,914,1020,887,887,887,916,5,7,917,918,919,264
+368,368,402,115,115,115,93,94,94,94,94,94,94,94,94,94,94,520,521,521,521,522,94,94,94,94,94,94,94,94,94,520,521,521,521,521,521,521,521,521,522,94,94,257,257,257,257,257,257,257,257,257,257,257,257,265
+336,337,402,115,115,115,1014,1015,94,94,94,94,94,94,94,94,94,528,529,529,529,530,94,94,94,572,573,574,94,94,94,528,529,529,529,529,529,529,529,529,530,94,94,94,94,94,265,265,265,265,265,265,265,265,265,265
+344,345,402,115,115,115,1013,265,94,94,94,94,94,94,94,94,94,536,537,537,537,538,94,94,526,523,524,525,527,94,94,536,537,537,537,537,537,537,537,537,538,94,94,94,94,94,265,265,265,273,273,273,273,273,273,265
+368,368,402,115,115,115,93,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,534,531,532,533,535,94,94,94,94,94,94,94,94,94,94,94,94,265,265,265,265,265,265,265,266,1,40,41,41,43,1,264
+368,368,402,115,115,115,1014,1015,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,542,94,94,94,542,94,94,265,94,265,265,265,265,265,265,265,265,265,265,265,265,265,265,265,266,14,48,49,50,51,1,264
+368,368,402,115,115,115,1013,265,94,926,927,94,926,927,94,926,927,94,926,927,94,926,927,94,550,94,94,94,550,94,94,94,926,927,265,926,927,265,926,927,265,926,927,265,926,927,265,265,266,198,56,57,58,59,6,264
+368,368,402,115,115,115,101,102,102,1021,102,102,1021,102,102,1021,102,102,1021,102,102,1021,102,94,94,572,573,574,94,94,102,102,1021,102,102,1021,102,102,1021,102,102,1021,102,102,1021,265,265,265,266,22,96,65,66,67,6,264
+336,337,402,115,115,123,124,124,124,124,124,124,124,137,4,4,4,4,4,4,4,4,4,93,526,523,524,525,527,95,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,93,265,265,265,257,257,257,257,257,257,265
+344,345,402,115,123,124,124,124,124,124,124,124,137,120,121,121,121,121,121,121,121,121,137,93,534,531,532,533,535,95,116,124,124,124,124,124,124,124,124,124,124,124,124,124,137,1014,927,265,265,265,265,265,265,265,265,265
+368,368,402,123,124,124,124,124,124,124,124,137,120,121,137,4,4,4,4,4,4,4,120,93,542,94,94,94,542,95,122,4,4,4,4,116,121,169,169,159,169,169,169,137,115,1013,265,265,926,927,265,926,927,265,926,927
+368,368,410,393,393,393,393,393,393,393,385,115,4,4,120,121,121,121,121,121,121,121,121,93,550,94,94,94,550,95,121,121,121,121,121,122,116,124,124,167,124,124,137,115,115,101,102,102,1021,102,102,1021,102,102,1021,102
+368,368,368,368,368,368,368,368,336,337,402,123,124,137,14,14,14,14,15,15,15,15,15,93,94,572,573,574,94,95,15,15,15,15,15,15,117,113,113,113,113,113,115,115,123,124,124,124,124,124,124,124,124,124,124,124
+368,368,368,368,368,368,368,368,344,345,410,393,385,115,198,198,198,198,198,198,198,198,198,93,526,523,524,525,527,95,198,198,198,198,198,198,117,113,113,113,113,113,115,123,169,169,169,169,169,169,169,169,169,169,169,169
+368,336,337,368,368,368,368,368,368,368,368,368,402,115,22,22,22,22,22,22,23,23,23,93,534,531,532,533,535,95,23,23,23,23,23,23,117,113,113,113,113,113,123,124,169,169,169,169,169,169,169,169,169,169,169,169
+368,344,345,368,368,368,368,368,368,368,368,368,402,123,124,124,124,124,124,124,124,124,124,93,542,94,94,94,542,95,124,124,124,124,124,124,125,384,393,393,393,393,393,393,393,393,393,393,393,393,393,393,393,393,393,393
+368,368,368,368,368,368,368,368,336,337,368,368,410,393,393,393,393,393,393,393,393,393,393,93,550,94,94,94,550,95,935,393,393,393,346,347,393,408,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368
+368,368,368,368,368,368,368,368,344,345,368,336,337,368,336,337,368,336,337,368,368,368,368,93,94,856,857,858,94,95,575,368,368,368,344,345,368,368,336,337,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368
+368,368,368,336,337,368,368,368,368,368,368,344,345,368,344,345,368,344,345,368,368,368,85,864,865,866,867,868,869,870,87,575,336,337,368,368,336,337,344,345,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368
+368,368,368,344,345,368,368,368,368,368,368,966,967,368,966,967,368,966,967,368,966,967,93,872,873,874,875,876,877,878,95,575,344,345,368,368,344,345,368,368,336,337,368,368,336,337,368,368,368,368,368,368,368,368,368,368
+368,368,368,368,368,368,368,368,368,368,368,974,975,368,974,975,368,974,975,368,974,975,93,920,921,922,934,923,924,925,95,575,368,368,368,368,368,368,368,368,344,345,368,368,344,345,368,368,368,368,368,368,368,368,368,368
+368,368,368,368,368,368,336,337,368,368,85,973,86,86,973,86,86,973,86,86,973,86,94,928,929,930,880,931,932,933,95,575,368,368,336,337,368,368,336,337,368,368,336,337,368,368,336,337,368,368,336,337,368,368,368,368
+368,368,368,368,368,368,344,345,368,368,93,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,95,575,368,368,344,345,368,368,344,345,368,368,344,345,368,368,344,345,368,368,344,345,368,368,368,368
+368,368,368,368,368,368,368,368,368,368,93,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,94,95,575,368,368,368,368,368,368,368,368,336,337,368,368,368,368,368,368,336,337,368,368,368,368,368,368
+368,368,368,368,368,368,368,368,368,368,539,540,540,540,540,540,540,540,540,207,207,540,540,540,540,540,540,540,540,540,541,575,368,368,368,368,368,368,368,368,344,345,336,337,368,368,368,368,344,345,368,368,368,368,368,368
+368,368,368,368,368,368,368,368,368,368,547,548,548,548,548,548,548,548,548,548,548,548,548,548,548,548,548,548,548,548,549,575,368,368,368,368,368,368,368,368,368,368,344,345,368,336,337,368,368,336,337,368,368,336,337,368
+368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,336,337,344,345,336,337,344,345,336,337,344,345,336
+368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,344,345,368,368,344,345,368,368,344,345,368,368,344
+collision
+1,0,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,1,0,0,0,0,0,1,1,0
+1,1,1,1,0,1,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,1,0,0,0,0,0,1,1,0
+1,1,1,0,1,1,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0
+1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1
+0,1,1,1,0,0,0,1,1,1,0,0,0,1,0,0,0,0,1,1,1,0,0,0,0,1,0,0,0,1,1,1,1,1,0,0,1,1,0,0,0,0,0,0,0,0,1,1,0,0,1,1,1,0,1,1
+0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,1,0,1,1,0,0,0,0,0,0,0,1,0,0,1,1,1,1,1,1
+0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,1,1,1,1,1,0,0,0,0,0,1,1,0,0,1,1,1,1,1,1
+0,1,1,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,1,1,1,1,1,1
+0,1,1,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,1,1,0,0,0,1,1,1,0,0,1,1,0,0,1,1,1,1,1,1
+0,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,1,1,0,0,1,1,1,1,1,0,1,1,0,0,1,1,1,1,1,1
+0,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,1,0,0,0,1,1,1,1,1,0,1,1,0,0,1,1,1,1,1,1
+0,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,1,0,0,0,1,1,1,1,1,0,1,1,0,0,1,1,1,1,1,1
+0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,1,0,0,0,1,1,1,1,1,0,1,1,0,0,1,1,1,1,1,1
+0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,1,0,0,0,1,1,1,1,1,0,1,1,0,0,1,1,1,1,1,1
+0,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,1,1,0,0,0,1,0,1,0,0,1,1,0,0,1,1,1,1,1,1
+0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,0,1,1,0,0,1,1,0,0,0,1,0,1,0,0,1,1,0,0,1,1,1,1,1,1
+0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,0,0,1,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,1,1,0,0,1,0,0,0,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,0,0,0,0,0,1,1,0,0,1,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,0,0,0,0,0,1,1,1,1,1,0,0,0,1,1,1,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,0,0,1,1,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,0,0,0,1,1,0,0,1,1,1,0,0,0,1,0,0,0,0,0,0,0,1,1,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,0,0,0,1,1,1,0,0,0,1,1,1,0,1,0,0,0,0,0,1,1,0,0,0,0,0
+0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,0,0,0,0,1,0,1,1,0,0,0,0,0,0,1,1,1,0,1,0,0,0,0,0,1,1,0,0,0,0,0
+0,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,0,0,0,0,1,0,1,1,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+0,1,1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,0,1,1,1,1,0,1,0,0,0,0,0,1,0,1,1,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1
+0,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,1,1,1,0
+0,0,0,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0
+1,1,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0
+1,1,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0
+1,1,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0
+1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,0
+1,1,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0
+1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0
+1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0
+1,1,0,0,0,0,0,0,0,0,0,1,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,0,0,0,0,1,0,0,0,0,1,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,0,0,1,0,0,1,0,0,1,0,0,1,1,1,1,1,1,1,1,1,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,0,0,1,0,0,1,0,0,1,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,1,1,0,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,1,1,0,0,0,0,0,0
+1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,1,0,0,1,1,0,0,1,1,0
+1,1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1
+connections
+right 0 BattleFrontier_OutsideEast
+warps
+42 27 BattleFrontier_BattlePikeLobby 0
+19 17 BattleFrontier_BattleDomeLobby 0
+11 38 BattleFrontier_BattleFactoryLobby 0
+45 44 BattleFrontier_Lounge2 0
+51 51 BattleFrontier_Mart 0
+44 5 BattleFrontier_ScottsHouse 0
+53 44 BattleFrontier_Lounge4 0
+5 20 BattleFrontier_Lounge7 0
+26 65 BattleFrontier_ReceptionGate 0
+26 61 BattleFrontier_ReceptionGate 1
+39 55 ArtisanCave_B1F 0
+npcs
+people_boy_2 26 38 S wander 0 - 0
+misc_ss_tidal 20 70 E static 0 LOCALID_FRONTIER_SS_TIDAL 0
+people_beauty 19 68 N static 0 LOCALID_FRONTIER_FERRY_ATTENDANT 0
+people_expert_m 26 20 S wander 0 - 0
+people_man_3 27 30 S wander 0 - 0
+people_woman_5 33 41 S wander 0 - 0
+people_fat_man 28 43 S wander 0 - 0
+people_gentleman 17 20 S wander 0 - 0
+people_maniac 13 44 N static 0 LOCALID_FRONTIER_MANIAC_1 0
+people_maniac 14 44 N static 0 LOCALID_FRONTIER_MANIAC_2 0
+people_man_5 23 47 S static 0 - 0
+people_girl_1 38 27 S wander 0 LOCALID_FRONTIER_GIRL 0
+people_woman_3 45 18 S wander 0 - 0
+people_camper 9 47 S static 0 LOCALID_FRONTIER_CAMPER 0
+people_lass 35 5 S wander 0 - 0
+people_man_2 11 66 W static 0 - 0
+people_fisherman 31 31 S static 0 - 0
+people_fisherman 42 48 S static 0 LOCALID_FRONTIER_FISHERMAN_2 0
+people_fat_man 38 22 S wander 0 - 0
+people_woman_2 12 9 S static 0 - 0
+people_boy_1 12 10 N static 0 - 0
+people_old_man 11 10 S static 0 - 0
+people_man_4 8 5 S static 0 LOCALID_FRONTIER_MAN_4 0
+people_pokefan_f 4 26 S static 0 - 0
+dialogs
+0	I'm the best out of all my friends. But here… I've been useless!
+2	Hello, are you here for the ferry? May I see your TICKET?
+3	Ah, so this here is the BATTLE DOME? I won't let GENTLEMEN beat me!But where is the entrance?
+4	It's not as if just anyone can come here, you know?Only those TRAINERS who've been recognized as tough are brought here.That's why many TRAINERS don't even know about the BATTLE FRONTIER.
+5	I've finally arrived at the BATTLE FRONTIER!I'm sure to grab attention with my looks and ability!
+6	Munch, munch…It looks like this square's filled with tough people.Munch, munch…
+7	Oh? You're off to challenge the BATTLE DOME?I'll wish you the best of luck. Let us both win our way up and meet in challenges.
+10	There used to be nothing here not all that long ago.But, now look at this place! Amazing! I'll bring my mother out to see this.
+12	Let's play rock, paper, scissors! One, two, three!… … … … … …
+13	That's the BATTLE FACTORY. You can rent strong POKéMON there.But it makes me wonder. Who's raising those rental POKéMON?
+14	Today, I'm going to keep battling, no matter what, until I get a Symbol.
+16	I believe I'm the only person here who, for some unknown reason, would choose fishing over battling.Huh? You can't catch anything here? That's disappointing…
+18	Crunch, munch…A while back, I met this older girl at the BATTLE PIKE.She had these eyes that were scary in a real ornery way.Crunch, munch…She got all furious: “Will you quit eating!” Then she whaled on me.It was a hair-raising kind of scary experience, sure enough.Crunch, munch…
+19	Huh? Will you listen to yourself? That's nothing!Why, the last time I cheered for him, our eyes met and sparks flew!
+20	Whaaaaaat?! Pfft!That only happened because I happened to be sitting next to you!The DOME ACE only looked our way because my cheering was so loud!
+21	Oh, shush! Keep that racket down!You fair-weather fans should stick to cheering for some GYM LEADER!The DOME ACE is mine! The only idol for me!
+22	Those people squabbling over there…It's hard to believe, but they once were TRAINERS, and good ones, too.They used to be incredibly tough, and they were famous, too.But they were obliterated by this certain TRAINER at a tournament.They were so thoroughly whipped, they became smitten by the TRAINER.Now they're just fans of the TRAINER. They go cheer for their idol at the BATTLE DOME every day now.
+23	I heard a rumor that someone saw a POKéMON with an unusually long tail somewhere in the BATTLE FRONTIER.It must be adorable. I'm sure of it…Oh, challenges can wait. I feel driven to find the delightful creature!
+objscripts
+0 BattleFrontier_OutsideWest_EventScript_Boy1
+2 BattleFrontier_OutsideWest_EventScript_FerryAttendant
+3 BattleFrontier_OutsideWest_EventScript_ExpertM
+4 BattleFrontier_OutsideWest_EventScript_Man1
+5 BattleFrontier_OutsideWest_EventScript_Woman1
+6 BattleFrontier_OutsideWest_EventScript_FatMan1
+7 BattleFrontier_OutsideWest_EventScript_Gentleman
+8 BattleFrontier_OutsideWest_EventScript_Maniac1
+9 BattleFrontier_OutsideWest_EventScript_Maniac2
+10 BattleFrontier_OutsideWest_EventScript_Man2
+11 BattleFrontier_OutsideWest_EventScript_Girl
+12 BattleFrontier_OutsideWest_EventScript_Woman2
+13 BattleFrontier_OutsideWest_EventScript_Camper
+14 BattleFrontier_OutsideWest_EventScript_Lass
+16 BattleFrontier_OutsideWest_EventScript_Fisherman1
+17 BattleFrontier_OutsideWest_EventScript_Fisherman2
+18 BattleFrontier_OutsideWest_EventScript_FatMan2
+19 BattleFrontier_OutsideWest_EventScript_Woman3
+20 BattleFrontier_OutsideWest_EventScript_Boy2
+21 BattleFrontier_OutsideWest_EventScript_OldMan
+22 BattleFrontier_OutsideWest_EventScript_Man4
+23 BattleFrontier_OutsideWest_EventScript_PokefanF
+movements
+BattleFrontier_OutsideWest_Movement_GirlShudderEast	delay,delay,end
+BattleFrontier_OutsideWest_Movement_GirlShudderNorth	delay,delay,end
+BattleFrontier_OutsideWest_Movement_GirlShudderSouth	delay,delay,end
+BattleFrontier_OutsideWest_Movement_GirlShudderWest	delay,delay,end
+Common_Movement_FaceAwayPlayer	face_down,end
+Common_Movement_FaceOriginalDirection	face_down,end
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
+scriptdefs
+= BattleFrontier_OutsideWest_EventScript_PokefanF
+msgbox	I heard a rumor that someone saw a POKéMON with an unusually long tail somewhere in the BATTLE FRONTIER.It must be adorable. I'm sure of it…Oh, challenges can wait. I feel driven to find the delightful creature!
+end
+= BattleFrontier_OutsideWest_EventScript_Man4
+lock
+faceplayer
+msgbox	Those people squabbling over there…It's hard to believe, but they once were TRAINERS, and good ones, too.They used to be incredibly tough, and they were famous, too.But they were obliterated by this certain TRAINER at a tournament.They were so thoroughly whipped, they became smitten by the TRAINER.Now they're just fans of the TRAINER. They go cheer for their idol at the BATTLE DOME every day now.
+closemessage
+applymovement LOCALID_FRONTIER_MAN_4 Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= BattleFrontier_OutsideWest_EventScript_OldMan
+msgbox	Oh, shush! Keep that racket down!You fair-weather fans should stick to cheering for some GYM LEADER!The DOME ACE is mine! The only idol for me!
+end
+= BattleFrontier_OutsideWest_EventScript_Boy2
+lock
+msgbox	Whaaaaaat?! Pfft!That only happened because I happened to be sitting next to you!The DOME ACE only looked our way because my cheering was so loud!
+release
+end
+= BattleFrontier_OutsideWest_EventScript_Woman3
+lock
+msgbox	Huh? Will you listen to yourself? That's nothing!Why, the last time I cheered for him, our eyes met and sparks flew!
+release
+end
+= BattleFrontier_OutsideWest_EventScript_FatMan2
+msgbox	Crunch, munch…A while back, I met this older girl at the BATTLE PIKE.She had these eyes that were scary in a real ornery way.Crunch, munch…She got all furious: “Will you quit eating!” Then she whaled on me.It was a hair-raising kind of scary experience, sure enough.Crunch, munch…
+end
+= BattleFrontier_OutsideWest_EventScript_Fisherman2
+lock
+faceplayer
+msgbox	I wanted to take a challenge as soon as I arrived here.But on the way, I got seasick… Urrrrp…
+waitmessage
+applymovement LOCALID_FRONTIER_FISHERMAN_2 Common_Movement_FaceAwayPlayer
+waitmovement 0
+waitbuttonpress
+release
+end
+= BattleFrontier_OutsideWest_EventScript_Fisherman1
+msgbox	I believe I'm the only person here who, for some unknown reason, would choose fishing over battling.Huh? You can't catch anything here? That's disappointing…
+end
+@ Unused
+goto BattleFrontier_OutsideWest_EventScript_UnusedNPC3
+= BattleFrontier_OutsideWest_EventScript_UnusedNPC3
+msgbox	Grandpa, over here! The BATTLE DOME is here! Go get 'em, Grandpa!
+end
+= BattleFrontier_OutsideWest_EventScript_Lass
+msgbox	Today, I'm going to keep battling, no matter what, until I get a Symbol.
+end
+= BattleFrontier_OutsideWest_EventScript_Camper
+lock
+faceplayer
+delay 20
+call_if_eq VAR_FACING DIR_NORTH BattleFrontier_OutsideWest_EventScript_CamperFaceFactory
+call_if_eq VAR_FACING DIR_SOUTH BattleFrontier_OutsideWest_EventScript_CamperAlreadyFacingFactory
+call_if_eq VAR_FACING DIR_WEST BattleFrontier_OutsideWest_EventScript_CamperFaceFactory
+call_if_eq VAR_FACING DIR_EAST BattleFrontier_OutsideWest_EventScript_CamperFaceFactory
+msgbox	That's the BATTLE FACTORY. You can rent strong POKéMON there.But it makes me wonder. Who's raising those rental POKéMON?
+release
+end
+= BattleFrontier_OutsideWest_EventScript_CamperFaceFactory
+applymovement LOCALID_FRONTIER_CAMPER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+return
+= BattleFrontier_OutsideWest_EventScript_CamperAlreadyFacingFactory
+return
+= BattleFrontier_OutsideWest_EventScript_Woman2
+lock
+faceplayer
+msgbox	Let's play rock, paper, scissors! One, two, three!… … … … … …
+random 2
+goto_if_eq VAR_RESULT 1 BattleFrontier_OutsideWest_EventScript_WomanWonRockPaperScissors
+goto BattleFrontier_OutsideWest_EventScript_WomanLostRockPaperScissors
+end
+= BattleFrontier_OutsideWest_EventScript_WomanLostRockPaperScissors
+msgbox	Oh, no… I lost.I guess I'm not very lucky today. I'll put off my BATTLE PIKE challenge until tomorrow.
+release
+end
+= BattleFrontier_OutsideWest_EventScript_WomanWonRockPaperScissors
+msgbox	Yay! I won! I will take the BATTLE PIKE challenge!
+release
+end
+= BattleFrontier_OutsideWest_EventScript_Girl
+lock
+faceplayer
+msgbox	I'm scared of going into the BATTLE PIKE because of SEVIPER…B-but I came all the way here, so I will try to conquer everything! …Shudder…
+waitmessage
+call_if_eq VAR_FACING DIR_NORTH BattleFrontier_OutsideWest_EventScript_GirlShudderNorth
+call_if_eq VAR_FACING DIR_SOUTH BattleFrontier_OutsideWest_EventScript_GirlShudderSouth
+call_if_eq VAR_FACING DIR_WEST BattleFrontier_OutsideWest_EventScript_GirlShudderWest
+call_if_eq VAR_FACING DIR_EAST BattleFrontier_OutsideWest_EventScript_GirlShudderEast
+waitbuttonpress
+release
+end
+= BattleFrontier_OutsideWest_EventScript_GirlShudderEast
+applymovement LOCALID_FRONTIER_GIRL BattleFrontier_OutsideWest_Movement_GirlShudderEast
+waitmovement 0
+return
+= BattleFrontier_OutsideWest_EventScript_GirlShudderWest
+applymovement LOCALID_FRONTIER_GIRL BattleFrontier_OutsideWest_Movement_GirlShudderWest
+waitmovement 0
+return
+= BattleFrontier_OutsideWest_EventScript_GirlShudderSouth
+applymovement LOCALID_FRONTIER_GIRL BattleFrontier_OutsideWest_Movement_GirlShudderSouth
+waitmovement 0
+return
+= BattleFrontier_OutsideWest_EventScript_GirlShudderNorth
+applymovement LOCALID_FRONTIER_GIRL BattleFrontier_OutsideWest_Movement_GirlShudderNorth
+waitmovement 0
+return
+= BattleFrontier_OutsideWest_EventScript_Man2
+msgbox	There used to be nothing here not all that long ago.But, now look at this place! Amazing! I'll bring my mother out to see this.
+end
+= BattleFrontier_OutsideWest_EventScript_Maniac2
+lock
+goto BattleFrontier_OutsideWest_EventScript_FactoryChallengersTalk
+end
+= BattleFrontier_OutsideWest_EventScript_FactoryChallengersTalk
+applymovement LOCALID_FRONTIER_MANIAC_1 Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+msgbox	Hey, bro…Are you sure we can make challenges even if we don't have any POKéMON?
+applymovement LOCALID_FRONTIER_MANIAC_2 Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+msgbox	Uh… I'm sure it'll be okay.I think…But remember that big scary guy? He said, “I'll lend you POKéMON!”
+closemessage
+delay 25
+applymovement LOCALID_FRONTIER_MANIAC_1 Common_Movement_WalkInPlaceFasterUp
+applymovement LOCALID_FRONTIER_MANIAC_2 Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+release
+end
+= BattleFrontier_OutsideWest_EventScript_Maniac1
+lock
+goto BattleFrontier_OutsideWest_EventScript_FactoryChallengersTalk
+end
+= BattleFrontier_OutsideWest_EventScript_Gentleman
+msgbox	Oh? You're off to challenge the BATTLE DOME?I'll wish you the best of luck. Let us both win our way up and meet in challenges.
+end
+= BattleFrontier_OutsideWest_EventScript_FatMan1
+msgbox	Munch, munch…It looks like this square's filled with tough people.Munch, munch…
+end
+= BattleFrontier_OutsideWest_EventScript_Woman1
+msgbox	I've finally arrived at the BATTLE FRONTIER!I'm sure to grab attention with my looks and ability!
+end
+= BattleFrontier_OutsideWest_EventScript_Man1
+msgbox	It's not as if just anyone can come here, you know?Only those TRAINERS who've been recognized as tough are brought here.That's why many TRAINERS don't even know about the BATTLE FRONTIER.
+end
+= BattleFrontier_OutsideWest_EventScript_ExpertM
+msgbox	Ah, so this here is the BATTLE DOME? I won't let GENTLEMEN beat me!But where is the entrance?
+end
+= BattleFrontier_OutsideWest_EventScript_FerryAttendant
+lock
+faceplayer
+msgbox	Hello, are you here for the ferry? May I see your TICKET?
+checkitem ITEM_SS_TICKET
+goto_if_eq VAR_RESULT FALSE BattleFrontier_OutsideWest_EventScript_NoSSTicket
+msgbox	PLAYER flashed the TICKET.Perfect! That's all you need!And where would you like to go?
+waitmessage
+goto BattleFrontier_OutsideWest_EventScript_ChooseFerryDestination
+end
+= BattleFrontier_OutsideWest_EventScript_ChooseFerryDestination
+multichoicedefault 18 6 MULTI_SSTIDAL_BATTLE_FRONTIER 2 FALSE
+switch VAR_RESULT
+case 0 BattleFrontier_OutsideWest_EventScript_FerryToSlateport
+case 1 BattleFrontier_OutsideWest_EventScript_FerryToLilycove
+case 2 BattleFrontier_OutsideWest_EventScript_CancelFerrySelect
+case MULTI_B_PRESSED BattleFrontier_OutsideWest_EventScript_CancelFerrySelect
+end
+= BattleFrontier_OutsideWest_EventScript_CancelFerrySelect
+msgbox	Please sail with us another time!
+release
+end
+= BattleFrontier_OutsideWest_EventScript_FerryToLilycove
+msgboxyesno	LILYCOVE CITY it is, then!
+goto_if_eq VAR_RESULT NO BattleFrontier_OutsideWest_EventScript_ChooseNewFerryDestination
+msgbox	Please board the ferry and wait for departure.
+call BattleFrontier_OutsideWest_EventScript_BoardFerry
+warp LilycoveCity_Harbor 8 11
+waitstate
+release
+end
+= BattleFrontier_OutsideWest_EventScript_BoardFerry
+closemessage
+applymovement VAR_LAST_TALKED Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+delay 30
+hideobjectat LOCALID_FRONTIER_FERRY_ATTENDANT MAP_BATTLE_FRONTIER_OUTSIDE_WEST
+setvar VAR_0x8004 LOCALID_FRONTIER_SS_TIDAL
+call Common_EventScript_FerryDepartIsland
+return
+= BattleFrontier_OutsideWest_EventScript_ChooseNewFerryDestination
+msgbox	Then, where would you like to go?
+waitmessage
+goto BattleFrontier_OutsideWest_EventScript_ChooseFerryDestination
+end
+= BattleFrontier_OutsideWest_EventScript_FerryToSlateport
+msgboxyesno	SLATEPORT CITY it is, then!
+goto_if_eq VAR_RESULT NO BattleFrontier_OutsideWest_EventScript_ChooseNewFerryDestination
+msgbox	Please board the ferry and wait for departure.
+call BattleFrontier_OutsideWest_EventScript_BoardFerry
+warp SlateportCity_Harbor 8 11
+waitstate
+release
+end
+= BattleFrontier_OutsideWest_EventScript_NoSSTicket
+msgbox	PLAYER doesn't have the TICKET…I'm terribly sorry.You must have a TICKET to board the ferry.
+release
+end
+= BattleFrontier_OutsideWest_EventScript_Boy1
+msgbox	I'm the best out of all my friends. But here… I've been useless!
+end
+signs
+15 18	This is the BATTLE DOME! Your path to the invincible superstar!
+45 30	This is the BATTLE PIKE! Choose one of three paths!
+16 43	This is the BATTLE FACTORY! Seek out the toughest POKéMON!
+water
+368,370,372,377,384,385,393,394,400,402,408,410,502,503,575,935
+mapsec
+22 12 1 1	BATTLE FRONTIER
+music
+MUS_B_FRONTIER

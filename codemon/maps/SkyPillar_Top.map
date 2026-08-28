@@ -1,0 +1,157 @@
+tileset general__pacifidlog
+27 24
+12 11
+705,705,705,705,705,705,705,705,705,705,705,705,705,705,705,705,705,705,705,705,705,705,705,705,705,705,705
+705,705,705,705,705,705,705,705,705,705,705,705,705,705,705,705,705,705,705,705,705,705,705,705,705,705,705
+705,705,705,705,705,705,705,705,705,705,705,705,705,705,705,705,705,705,705,705,705,705,705,705,705,705,705
+612,612,612,685,612,612,612,685,612,612,612,685,685,685,685,685,685,685,612,612,612,685,612,612,612,685,612
+527,566,566,566,527,564,567,564,527,564,527,564,566,543,564,543,567,567,527,564,567,564,567,535,527,567,567
+564,567,564,564,567,567,566,567,564,527,564,567,543,564,564,564,543,567,564,567,564,567,564,527,535,567,567
+566,566,566,564,567,567,567,567,567,567,527,564,543,564,564,564,543,564,567,566,567,564,527,564,564,567,527
+567,567,567,566,566,567,566,567,566,566,566,527,564,543,564,543,567,567,567,566,566,527,567,566,567,527,566
+566,566,566,564,527,564,567,567,567,564,543,564,527,564,564,543,527,567,567,567,567,567,527,564,527,543,566
+564,567,567,566,564,527,564,564,543,527,564,543,527,564,564,564,527,543,566,527,564,567,567,567,567,567,566
+564,564,567,567,567,564,567,567,564,567,543,564,543,527,564,527,564,564,543,566,567,564,527,564,567,564,566
+567,564,564,567,567,567,564,527,564,543,564,564,564,564,564,564,564,543,564,543,566,567,566,566,567,567,567
+564,564,527,564,527,566,566,564,527,564,564,564,564,543,564,564,564,564,564,564,527,566,564,566,566,564,527
+551,551,551,551,551,551,551,551,551,551,621,669,670,622,551,571,572,573,551,551,551,551,551,551,551,551,551
+559,559,559,559,559,559,559,559,559,559,618,669,670,619,559,579,588,581,559,559,559,559,559,559,559,559,559
+565,519,565,519,565,519,565,519,565,565,535,565,565,565,565,565,565,565,535,565,519,565,519,565,519,565,519
+527,566,567,566,567,567,527,564,564,564,564,564,564,564,564,543,564,543,566,543,543,543,564,567,567,567,567
+566,527,567,567,566,567,567,527,564,564,564,564,543,564,564,564,543,564,567,564,527,567,527,566,527,543,527
+603,603,603,603,603,603,603,603,603,603,603,603,603,603,603,603,603,603,603,603,603,603,603,603,603,603,603
+674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674
+674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674
+674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674
+674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674
+674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674,674
+collision
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,1,0,0,0,1,0,0,0,1,1,1,1,1,1,1,0,0,0,1,0,0,0,1,0
+1,0,0,0,1,0,0,0,1,0,1,0,0,1,0,1,0,0,1,0,0,0,0,1,1,0,0
+0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,1,0,0,0,0,0,0,1,1,0,0
+0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,1,0,0,0,0,0,1,0,0,0,1
+0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,0,0,0,0,1,0,0,0,1,0
+0,0,0,0,1,0,0,0,0,0,1,0,1,0,0,1,1,0,0,0,0,0,1,0,1,1,0
+0,0,0,0,0,1,0,0,1,1,0,1,1,0,0,0,1,1,0,1,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,1,0,1,1,0,1,0,0,1,0,0,0,1,0,0,0,0
+0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0
+0,0,1,0,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,1
+1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,0,1,1,1,1,1,1,1,1,1,1
+0,1,0,1,0,1,0,1,0,0,1,0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,1
+1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,1,0,1,1,1,0,0,0,0,0
+0,1,0,0,0,0,0,1,0,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+16 14 SkyPillar_5F 1
+npcs
+pokemon_rayquaza 14 7 S static FLAG_HIDE_SKY_PILLAR_TOP_RAYQUAZA LOCALID_RAYQUAZA_SLEEPING 0
+pokemon_rayquaza_still 14 6 S static FLAG_HIDE_SKY_PILLAR_TOP_RAYQUAZA_STILL - 0
+objscripts
+1 SkyPillar_Top_EventScript_Rayquaza
+triggers
+14 9 VAR_SKY_PILLAR_RAYQUAZA_CRY_DONE 0 SkyPillar_Top_EventScript_AwakenRayquaza
+movements
+Common_Movement_FaceUp	face_up,end
+SkyPillar_Top_Movement_CameraPanDown	down,down,down,end
+SkyPillar_Top_Movement_CameraPanUp	up,up,up,end
+SkyPillar_Top_Movement_RayquazaFlyOff	delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,end
+SkyPillar_Top_Movement_RayquazaStir	delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,end
+scriptdefs
+= SkyPillar_Top_EventScript_AwakenRayquaza
+lockall
+fadeoutbgm 1
+applymovement LOCALID_PLAYER Common_Movement_FaceUp
+waitmovement 0
+special SpawnCameraObject
+applymovement LOCALID_CAMERA SkyPillar_Top_Movement_CameraPanUp
+waitmovement 0
+special RemoveCameraObject
+applymovement LOCALID_RAYQUAZA_SLEEPING SkyPillar_Top_Movement_RayquazaStir
+waitmovement 0
+waitse
+playmoncry SPECIES_RAYQUAZA CRY_MODE_ENCOUNTER
+setvar VAR_0x8004 1  @ vertical pan
+setvar VAR_0x8005 1  @ horizontal pan
+setvar VAR_0x8006 8  @ num shakes
+setvar VAR_0x8007 3  @ shake delay
+special ShakeCamera
+waitstate
+waitse
+playmoncry SPECIES_RAYQUAZA CRY_MODE_ENCOUNTER
+setvar VAR_0x8004 1  @ vertical pan
+setvar VAR_0x8005 2  @ horizontal pan
+setvar VAR_0x8006 8  @ num shakes
+setvar VAR_0x8007 5  @ shake delay
+special ShakeCamera
+waitstate
+waitmoncry
+applymovement LOCALID_RAYQUAZA_SLEEPING SkyPillar_Top_Movement_RayquazaFlyOff
+waitmovement 0
+removeobject LOCALID_RAYQUAZA_SLEEPING
+msgbox	The awakened RAYQUAZA flew off…
+closemessage
+delay 20
+fadeinbgm 1
+special SpawnCameraObject
+applymovement LOCALID_CAMERA SkyPillar_Top_Movement_CameraPanDown
+waitmovement 0
+special RemoveCameraObject
+setvar VAR_SOOTOPOLIS_CITY_STATE 5
+setvar VAR_SKY_PILLAR_STATE 1
+setvar VAR_SKY_PILLAR_RAYQUAZA_CRY_DONE 1
+releaseall
+end
+@ Rayquaza has unusual movement frames
+@ See comments or sAnimTable_Rayquaza
+= SkyPillar_Top_EventScript_Rayquaza
+lockall
+waitse
+playmoncry SPECIES_RAYQUAZA CRY_MODE_ENCOUNTER
+delay 40
+waitmoncry
+setwildbattle SPECIES_RAYQUAZA 70
+setflag FLAG_SYS_CTRL_OBJ_DELETE
+special BattleSetup_StartLegendaryBattle
+clearflag FLAG_SYS_CTRL_OBJ_DELETE
+specialvar VAR_RESULT GetBattleOutcome
+goto_if_eq VAR_RESULT B_OUTCOME_WON SkyPillar_Top_EventScript_DefeatedRayquaza
+goto_if_eq VAR_RESULT B_OUTCOME_RAN SkyPillar_Top_EventScript_RanFromRayquaza
+goto_if_eq VAR_RESULT B_OUTCOME_PLAYER_TELEPORTED SkyPillar_Top_EventScript_RanFromRayquaza
+setflag FLAG_DEFEATED_RAYQUAZA
+releaseall
+end
+= SkyPillar_Top_EventScript_RanFromRayquaza
+setvar VAR_0x8004 SPECIES_RAYQUAZA
+goto SkyPillar_Top_EventScript_RanFromRayquaza2
+end
+= SkyPillar_Top_EventScript_RanFromRayquaza2
+fadescreenswapbuffers FADE_TO_BLACK
+removeobject VAR_LAST_TALKED
+fadescreenswapbuffers FADE_FROM_BLACK
+bufferspeciesname STR_VAR_1 VAR_0x8004
+msgbox	The STR_VAR_1 flew away!
+releaseall
+end
+= SkyPillar_Top_EventScript_DefeatedRayquaza
+setflag FLAG_DEFEATED_RAYQUAZA
+goto SkyPillar_Top_EventScript_DefeatedRayquaza2
+end
+= SkyPillar_Top_EventScript_DefeatedRayquaza2
+fadescreenswapbuffers FADE_TO_BLACK
+removeobject VAR_LAST_TALKED
+fadescreenswapbuffers FADE_FROM_BLACK
+releaseall
+end
+mapsec
+19 10 1 1	SKY PILLAR
+music
+MUS_MT_CHIMNEY

@@ -1,0 +1,973 @@
+tileset general__contest
+15 11
+7 5
+608,608,608,608,608,608,608,608,608,608,608,608,608,608,608
+524,525,525,525,525,525,525,525,525,525,525,525,525,525,526
+548,549,549,549,549,549,549,549,549,549,549,549,549,549,550
+548,549,549,616,617,617,617,617,617,617,617,618,549,549,550
+548,549,549,624,625,625,625,625,625,623,625,626,549,549,550
+548,549,549,624,625,625,625,641,625,631,625,626,549,549,550
+548,549,549,624,625,625,625,649,625,625,625,626,549,549,550
+548,549,549,624,625,625,625,625,625,625,625,626,549,549,550
+548,549,549,632,633,633,619,620,621,633,633,634,549,549,550
+532,533,533,533,533,533,627,628,629,533,533,533,533,533,534
+540,541,541,541,541,537,627,628,629,537,541,541,541,541,542
+collision
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+1,0,0,1,1,1,1,1,1,1,1,1,0,0,1
+1,0,0,1,0,0,0,0,0,0,0,1,0,0,1
+1,0,0,1,0,0,0,0,0,1,0,1,0,0,1
+1,0,0,1,0,0,0,0,0,0,0,1,0,0,1
+1,0,0,1,0,0,0,0,0,0,0,1,0,0,1
+1,0,0,1,1,1,0,0,0,1,1,1,0,0,1
+1,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+1,1,1,1,1,1,0,0,0,1,1,1,1,1,1
+npcs
+people_woman_3 6 4 S static 0 LOCALID_CONTEST_MC 0
+people_contest_judge 7 4 S static 0 LOCALID_CONTEST_JUDGE 0
+misc_item_ball 7 5 S static FLAG_HIDE_CONTEST_POKE_BALL LOCALID_CONTEST_POKEBALL 0
+people_artist 12 6 W static 0 LOCALID_CONTEST_ARTIST 0
+onload
+VAR_CONTEST_HALL_STATE 1 ContestHall_EventScript_Contest
+movements
+ContestHall_Movement_AudienceMemberLookDown	face_down,delay,face_down,end
+ContestHall_Movement_AudienceMemberLookLeft	face_left,delay,face_down,end
+ContestHall_Movement_AudienceMemberLookRight	face_right,delay,face_down,end
+ContestHall_Movement_AudienceMemberLookUp	face_up,delay,face_down,end
+ContestHall_Movement_ContestantDelay32	delay,delay,end
+ContestHall_Movement_FaceContestants	delay,end
+ContestHall_Movement_FaceContestants2	delay,end
+ContestHall_Movement_Heart	delay,end
+ContestHall_Movement_JudgeFaceMC	delay,end
+ContestHall_Movement_JudgeLookAtMC	delay,delay,delay,delay,end
+ContestHall_Movement_MCBackUp	delay,up,delay,end
+ContestHall_Movement_MCFaceJudge	delay,end
+ContestHall_Movement_MCFaceJudge2	delay,end
+ContestHall_Movement_MCLookAtJudge	face_up,delay,delay,end
+ContestHall_Movement_MCWalkDown	down,end
+ContestHall_Movement_MCWalkInPlaceDown	delay,delay,delay,end
+ContestHall_Movement_Player1ApproachForPrize	right,right,up,end
+ContestHall_Movement_Player1WalkBack	left,left,left,down,delay,end
+ContestHall_Movement_Player1WalkToCenter	up,right,right,right,delay,end
+ContestHall_Movement_Player2ApproachForPrize	up,end
+ContestHall_Movement_Player2WalkBack	left,down,delay,end
+ContestHall_Movement_Player2WalkToCenter	up,right,delay,end
+ContestHall_Movement_Player3ApproachForPrize	left,left,up,end
+ContestHall_Movement_Player3WalkBack	right,down,delay,end
+ContestHall_Movement_Player3WalkToCenter	up,left,delay,end
+ContestHall_Movement_Player4ApproachForPrize	left,left,left,left,up,end
+ContestHall_Movement_Player4FaceUp	face_up,end
+ContestHall_Movement_Player4WalkBack	right,right,right,down,delay,end
+ContestHall_Movement_Player4WalkToCenter	up,left,left,left,delay,end
+ContestHall_Movement_WalkStageLeft	left,left,delay,end
+ContestHall_Movement_WalkStageRight	right,right,delay,end
+ContestHall_Movement_WinningPlayerWalkUp	up,delay,end
+scriptdefs
+= ContestHall_EventScript_Contest
+call ContestHall_EventScript_DoContest
+call ContestHall_EventScript_SetExitWarp
+end
+= ContestHall_EventScript_SetExitWarp
+special ClearLinkContestFlags
+switch VAR_CONTEST_TYPE
+case CONTEST_TYPE_NPC_NORMAL ContestHall_EventScript_SetExitWarpNormalContest
+case CONTEST_TYPE_NPC_SUPER ContestHall_EventScript_SetExitWarpSuperContest
+case CONTEST_TYPE_NPC_HYPER ContestHall_EventScript_SetExitWarpHyperContest
+case CONTEST_TYPE_NPC_MASTER ContestHall_EventScript_SetExitWarpMasterContest
+case CONTEST_TYPE_LINK ContestHall_EventScript_SetExitWarpLinkContest
+return
+= ContestHall_EventScript_SetExitWarpLinkContest
+warp LilycoveCity_ContestLobby 15 4
+waitstate
+end
+= ContestHall_EventScript_SetExitWarpMasterContest
+warp LilycoveCity_ContestLobby 14 4
+waitstate
+end
+= ContestHall_EventScript_SetExitWarpHyperContest
+warp LilycoveCity_ContestLobby 14 4
+waitstate
+end
+= ContestHall_EventScript_SetExitWarpSuperContest
+warp LilycoveCity_ContestLobby 14 4
+waitstate
+end
+= ContestHall_EventScript_SetExitWarpNormalContest
+warp LilycoveCity_ContestLobby 14 4
+waitstate
+end
+= ContestHall_EventScript_DoContest
+special LinkContestTryShowWirelessIndicator
+setvar VAR_0x8006 0
+lockall
+applymovement LOCALID_CONTESTANT_4 ContestHall_Movement_Player4FaceUp
+waitmovement 0
+applymovement LOCALID_CONTEST_MC ContestHall_Movement_MCWalkDown
+waitmovement 0
+releaseall
+call ContestHall_EventScript_TryWaitForLink
+call ContestHall_EventScript_GetContestRankStringId
+call ContestHall_EventScript_GetContestCategory
+call ContestHall_EventScript_ContestGettingStarted
+call ContestHall_EventScript_ShowContestMons
+call ContestHall_EventScript_DoContestAppeals
+call ContestHall_EventScript_ContestResults
+call ContestHall_EventScript_GetWinnerObjEventId
+call ContestHall_EventScript_CongratulateWinner
+call ContestHall_EventScript_AudienceLookAround
+call ContestHall_EventScript_GiveWinnerPrize
+setvar VAR_CONTEST_HALL_STATE 2
+return
+= ContestHall_EventScript_GiveWinnerPrize
+goto_if_eq VAR_CONTEST_TYPE CONTEST_TYPE_LINK ContestHall_EventScript_EndLinkContest
+call ContestHall_EventScript_CheckShouldSkipPrize
+goto_if_set FLAG_TEMP_2 ContestHall_EventScript_SkipPrize
+lockall
+msgbox	MC: Here you are! Please accept your prize!
+releaseall
+call ContestHall_EventScript_WinnerApproachForPrize
+call ContestHall_EventScript_GivePrizeIfWinner
+playse SE_M_ENCORE2
+setvar VAR_TEMP_1 0
+call ContestHall_EventScript_AudienceLookAround
+delay 30
+special ShouldReadyContestArtist
+goto_if_eq VAR_0x8004 TRUE ContestHall_EventScript_SetReadyForContestArtist
+return
+= ContestHall_EventScript_SetReadyForContestArtist
+setvar VAR_LILYCOVE_CONTEST_LOBBY_STATE 1
+return
+= ContestHall_EventScript_AudienceLookAround
+addvar VAR_TEMP_1 1
+lockall
+call_if_gt VAR_CONTEST_TYPE CONTEST_TYPE_NPC_NORMAL ContestHall_EventScript_VObjectAudienceLookAround
+applymovement LOCALID_CONTEST_AUDIENCE_5 ContestHall_Movement_AudienceMemberLookRight
+applymovement LOCALID_CONTEST_AUDIENCE_2 ContestHall_Movement_AudienceMemberLookDown
+applymovement LOCALID_CONTEST_AUDIENCE_3 ContestHall_Movement_AudienceMemberLookRight
+delay 30
+applymovement LOCALID_CONTEST_AUDIENCE_6 ContestHall_Movement_AudienceMemberLookLeft
+applymovement LOCALID_CONTEST_AUDIENCE_7 ContestHall_Movement_AudienceMemberLookDown
+applymovement LOCALID_CONTEST_AUDIENCE_1 ContestHall_Movement_AudienceMemberLookUp
+applymovement LOCALID_CONTEST_AUDIENCE_4 ContestHall_Movement_AudienceMemberLookLeft
+goto_if_ne VAR_TEMP_1 4 ContestHall_EventScript_AudienceLookAround
+delay 30
+return
+= ContestHall_EventScript_VObjectAudienceLookAround
+turnvobject 0 DIR_SOUTH
+turnvobject 2 DIR_SOUTH
+turnvobject 4 DIR_EAST
+turnvobject 6 DIR_SOUTH
+turnvobject 8 DIR_SOUTH
+turnvobject 10 DIR_SOUTH
+turnvobject 12 DIR_SOUTH
+turnvobject 14 DIR_SOUTH
+turnvobject 16 DIR_SOUTH
+turnvobject 18 DIR_SOUTH
+turnvobject 20 DIR_EAST
+turnvobject 22 DIR_EAST
+turnvobject 25 DIR_EAST
+turnvobject 27 DIR_WEST
+turnvobject 28 DIR_EAST
+delay 10
+turnvobject 0 DIR_EAST
+turnvobject 2 DIR_EAST
+turnvobject 4 DIR_EAST
+turnvobject 6 DIR_EAST
+turnvobject 8 DIR_EAST
+turnvobject 10 DIR_WEST
+turnvobject 12 DIR_WEST
+turnvobject 14 DIR_WEST
+turnvobject 16 DIR_WEST
+turnvobject 18 DIR_WEST
+turnvobject 20 DIR_SOUTH
+turnvobject 22 DIR_SOUTH
+turnvobject 25 DIR_NORTH
+turnvobject 27 DIR_NORTH
+turnvobject 28 DIR_NORTH
+delay 10
+turnvobject 1 DIR_NORTH
+turnvobject 3 DIR_NORTH
+turnvobject 5 DIR_NORTH
+turnvobject 7 DIR_NORTH
+turnvobject 9 DIR_EAST
+turnvobject 11 DIR_NORTH
+turnvobject 15 DIR_NORTH
+turnvobject 13 DIR_NORTH
+turnvobject 17 DIR_NORTH
+turnvobject 19 DIR_NORTH
+turnvobject 21 DIR_WEST
+turnvobject 23 DIR_WEST
+turnvobject 24 DIR_WEST
+turnvobject 26 DIR_EAST
+turnvobject 29 DIR_WEST
+turnvobject 30 DIR_WEST
+delay 10
+turnvobject 1 DIR_EAST
+turnvobject 3 DIR_EAST
+turnvobject 5 DIR_EAST
+turnvobject 7 DIR_EAST
+turnvobject 9 DIR_EAST
+turnvobject 11 DIR_WEST
+turnvobject 15 DIR_WEST
+turnvobject 13 DIR_WEST
+turnvobject 17 DIR_WEST
+turnvobject 19 DIR_WEST
+turnvobject 21 DIR_SOUTH
+turnvobject 23 DIR_SOUTH
+turnvobject 24 DIR_SOUTH
+turnvobject 26 DIR_NORTH
+turnvobject 29 DIR_NORTH
+turnvobject 30 DIR_NORTH
+delay 10
+return
+= ContestHall_EventScript_GivePrizeIfWinner
+special GetContestWinnerId
+goto_if_eq VAR_0x8005 3 ContestHall_EventScript_GiveContestPrizes
+lockall
+msgbox	MC: Congratulations! Please do compete again!
+releaseall
+return
+= ContestHall_EventScript_GiveContestPrizes
+call_if_eq VAR_CONTEST_TYPE CONTEST_TYPE_NPC_SUPER ContestHall_EventScript_SetSketchFlag
+specialvar VAR_RESULT HasMonWonThisContestBefore
+goto_if_eq VAR_RESULT FALSE ContestHall_EventScript_ReceiveContestRibbon
+goto_if_eq VAR_CONTEST_RANK CONTEST_RANK_MASTER ContestHall_EventScript_GiveLuxuryBall
+lockall
+msgbox	MC: Congratulations! Please do compete again!
+releaseall
+return
+= ContestHall_EventScript_GiveLuxuryBall
+giveitem ITEM_LUXURY_BALL
+goto_if_eq VAR_RESULT FALSE ContestHall_EventScript_NoRoomForLuxuryBall
+lockall
+msgbox	MC: Congratulations! Please do compete again!
+releaseall
+return
+= ContestHall_EventScript_NoRoomForLuxuryBall
+lockall
+call Common_EventScript_BagIsFull
+msgbox	Please pick up your prize at the reception counter later. Please do compete again!
+releaseall
+setvar VAR_CONTEST_PRIZE_PICKUP 4
+return
+= ContestHall_EventScript_ReceiveContestRibbon
+special GiveMonContestRibbon
+incrementgamestat GAME_STAT_RECEIVED_RIBBONS
+setflag FLAG_SYS_RIBBON_GET
+lockall
+msgbox	We confer on you this RIBBON as your prize!
+playfanfare MUS_OBTAIN_ITEM
+msgbox	PLAYER received a RIBBON.
+waitfanfare
+special BufferContestWinnerMonName
+msgbox	PLAYER put the RIBBON on STR_VAR_1.
+releaseall
+return
+= ContestHall_EventScript_SetSketchFlag
+setflag FLAG_CONTEST_SKETCH_CREATED
+return
+= ContestHall_EventScript_WinnerApproachForPrize
+switch VAR_0x8005
+case 0 ContestHall_EventScript_Player1ApproachForPrize
+case 1 ContestHall_EventScript_Player2ApproachForPrize
+case 2 ContestHall_EventScript_Player3ApproachForPrize
+case 3 ContestHall_EventScript_Player4ApproachForPrize
+return
+= ContestHall_EventScript_Player4ApproachForPrize
+lockall
+applymovement VAR_TEMP_3 ContestHall_Movement_Player4ApproachForPrize
+waitmovement 0
+releaseall
+return
+@ In NPC Contests the player is always entry 4 (id number 3)
+goto ContestHall_EventScript_GivePrizeIfWinner
+= ContestHall_EventScript_Player3ApproachForPrize
+lockall
+applymovement VAR_TEMP_3 ContestHall_Movement_Player3ApproachForPrize
+waitmovement 0
+releaseall
+return
+= ContestHall_EventScript_Player2ApproachForPrize
+lockall
+applymovement VAR_TEMP_3 ContestHall_Movement_Player2ApproachForPrize
+waitmovement 0
+releaseall
+return
+= ContestHall_EventScript_Player1ApproachForPrize
+lockall
+applymovement VAR_TEMP_3 ContestHall_Movement_Player1ApproachForPrize
+waitmovement 0
+releaseall
+return
+= ContestHall_EventScript_SkipPrize
+lockall
+msgbox	MC: Congratulations! Please do compete again!
+releaseall
+delay 90
+special ShouldReadyContestArtist
+goto_if_eq VAR_0x8004 TRUE ContestHall_EventScript_SetReadyForContestArtist
+return
+= ContestHall_EventScript_CheckShouldSkipPrize
+specialvar VAR_RESULT HasMonWonThisContestBefore
+goto_if_eq VAR_RESULT TRUE ContestHall_EventScript_CheckPlayerWon
+return
+= ContestHall_EventScript_CheckPlayerWon
+special GetContestWinnerId
+goto_if_eq VAR_0x8005 3 ContestHall_EventScript_CheckRankIsMaster
+return
+= ContestHall_EventScript_CheckRankIsMaster
+goto_if_eq VAR_CONTEST_RANK CONTEST_RANK_MASTER ContestHall_EventScript_DontSkipPrize
+setflag FLAG_TEMP_2
+return
+= ContestHall_EventScript_DontSkipPrize
+return
+@ This flag is never read
+goto ContestHall_EventScript_SetSketchFlag
+= ContestHall_EventScript_EndLinkContest
+delay 60
+special GetContestPlayerId
+special GetContestWinnerId
+special ShouldReadyContestArtist
+goto_if_eq VAR_0x8004 TRUE ContestHall_EventScript_SetReadyForLinkContestArtist
+closemessage
+return
+= ContestHall_EventScript_SetReadyForLinkContestArtist
+setvar VAR_LILYCOVE_CONTEST_LOBBY_STATE 2
+return
+@ Unused
+goto ContestHall_EventScript_Ret
+= ContestHall_EventScript_Ret
+return
+= ContestHall_EventScript_CongratulateWinner
+special BufferContestWinnerTrainerName
+special BufferContestWinnerMonName
+addvar VAR_0x8005 1
+buffernumberstring STR_VAR_2 VAR_0x8005
+addvar VAR_0x8005 -1
+call ContestHall_EventScript_CongratsWinner
+applymovement VAR_TEMP_3 ContestHall_Movement_WinningPlayerWalkUp
+waitmovement 0
+playse SE_M_ENCORE2
+setvar VAR_TEMP_1 0
+return
+= ContestHall_EventScript_CongratsWinner
+goto_if_eq VAR_CONTEST_TYPE CONTEST_TYPE_LINK ContestHall_EventScript_CongratsWinnerLink
+msgbox	MC: Entry No. STR_VAR_2!STR_VAR_3 and STR_VAR_1, congratulations!
+return
+= ContestHall_EventScript_CongratsWinnerLink
+messageautoscroll ContestHall_Text_CongratsTrainerXandMon
+waitmessage
+return
+= ContestHall_EventScript_GetWinnerObjEventId
+special GetContestWinnerId
+switch VAR_0x8005
+case 0 ContestHall_EventScript_GetPlayer1ObjEventId
+case 1 ContestHall_EventScript_GetPlayer2ObjEventId
+case 2 ContestHall_EventScript_GetPlayer3ObjEventId
+case 3 ContestHall_EventScript_GetPlayer4ObjEventId
+return
+= ContestHall_EventScript_GetPlayer4ObjEventId
+setvar VAR_TEMP_3 LOCALID_CONTESTANT_4
+return
+= ContestHall_EventScript_GetPlayer3ObjEventId
+setvar VAR_TEMP_3 LOCALID_CONTESTANT_3
+return
+= ContestHall_EventScript_GetPlayer2ObjEventId
+setvar VAR_TEMP_3 LOCALID_CONTESTANT_2
+return
+= ContestHall_EventScript_GetPlayer1ObjEventId
+setvar VAR_TEMP_3 LOCALID_CONTESTANT_1
+return
+= ContestHall_EventScript_ContestResults
+call ContestHall_EventScript_TryWaitForLink
+call ContestHall_EventScript_ThatsItForJudging
+call ContestHall_EventScript_TryWaitForLink
+call ContestHall_EventScript_ThankYouForAppeals
+call ContestHall_EventScript_TryWaitForLink
+applymovement LOCALID_CONTEST_MC ContestHall_Movement_MCFaceJudge
+waitmovement 0
+call ContestHall_EventScript_JudgeLooksReady
+call ContestHall_EventScript_TryWaitForLink
+call ContestHall_EventScript_WeWillDeclareWinner
+call ContestHall_EventScript_TryWaitForLink
+applymovement LOCALID_CONTEST_MC ContestHall_Movement_FaceContestants
+waitmovement 0
+closemessage
+releaseall
+special LinkContestTryHideWirelessIndicator
+setvar VAR_TEMP_9 1
+showcontestresults
+setvar VAR_TEMP_9 0
+playbgm MUS_CONTEST_WINNER FALSE
+return
+= ContestHall_EventScript_TryWaitForLink
+specialvar VAR_RESULT IsWirelessContest
+goto_if_eq VAR_RESULT TRUE ContestHall_EventScript_WaitForLink
+return
+= ContestHall_EventScript_WaitForLink
+special LinkContestWaitForConnection
+return
+= ContestHall_EventScript_WeWillDeclareWinner
+goto_if_eq VAR_CONTEST_TYPE CONTEST_TYPE_LINK ContestHall_EventScript_WeWillDeclareWinnerLink
+msgbox	JUDGE: We will now declare the winner!
+return
+= ContestHall_EventScript_WeWillDeclareWinnerLink
+call ContestHall_EventScript_TryWaitForLink
+messageautoscroll ContestHall_Text_WeWillNowDeclareWinner
+waitmessage
+delay 30
+return
+= ContestHall_EventScript_JudgeLooksReady
+goto_if_eq VAR_CONTEST_TYPE CONTEST_TYPE_LINK ContestHall_EventScript_JudgeLooksReadyLink
+msgbox	Now, all that remains is the pulse- pounding proclamation of the winner.The JUDGE looks ready to make the announcement!
+return
+= ContestHall_EventScript_JudgeLooksReadyLink
+call ContestHall_EventScript_TryWaitForLink
+messageautoscroll ContestHall_Text_JudgeLooksReady
+waitmessage
+delay 30
+return
+= ContestHall_EventScript_ThankYouForAppeals
+goto_if_eq VAR_CONTEST_TYPE CONTEST_TYPE_LINK ContestHall_EventScript_ThankYouForAppealsLink
+msgbox	Thank you all for a most wonderful display of quality appeals!This concludes all judging! Thank you for your fine efforts!
+return
+= ContestHall_EventScript_ThankYouForAppealsLink
+call ContestHall_EventScript_TryWaitForLink
+messageautoscroll ContestHall_Text_ThankYouForAppeals
+waitmessage
+delay 30
+return
+= ContestHall_EventScript_ThatsItForJudging
+goto_if_eq VAR_CONTEST_TYPE CONTEST_TYPE_LINK ContestHall_EventScript_ThatsItForJudgingLink
+msgbox	MC: That's it for judging!
+return
+= ContestHall_EventScript_ThatsItForJudgingLink
+call ContestHall_EventScript_TryWaitForLink
+messageautoscroll ContestHall_Text_ThatsItForJudging
+waitmessage
+delay 30
+return
+= ContestHall_EventScript_DoContestAppeals
+lockall
+applymovement LOCALID_CONTEST_MC ContestHall_Movement_FaceContestants2
+waitmovement 0
+call ContestHall_EventScript_TryWaitForLink
+call ContestHall_EventScript_LetsAppeal
+waitmessage
+applymovement LOCALID_CONTEST_MC ContestHall_Movement_WalkStageLeft
+applymovement LOCALID_CONTEST_JUDGE ContestHall_Movement_WalkStageRight
+waitmovement 0
+releaseall
+call ContestHall_EventScript_TryWaitForLink
+setvar VAR_TEMP_9 1
+special LinkContestTryHideWirelessIndicator
+startcontest
+special LinkContestTryShowWirelessIndicator
+setvar VAR_TEMP_9 0
+lockall
+applymovement LOCALID_CONTEST_MC ContestHall_Movement_WalkStageRight
+applymovement LOCALID_CONTEST_JUDGE ContestHall_Movement_WalkStageLeft
+waitmovement 0
+releaseall
+return
+= ContestHall_EventScript_LetsAppeal
+goto_if_eq VAR_CONTEST_TYPE CONTEST_TYPE_LINK ContestHall_EventScript_LetsAppealLink
+msgbox	Voting is now complete!While the votes are being tallied, let's move on to secondary judging!The second stage of judging is the much anticipated appeal time!May the contestants amaze us with superb appeals of dazzling moves!Let's see a little enthusiasm! Let's appeal!
+return
+= ContestHall_EventScript_LetsAppealLink
+specialvar VAR_RESULT IsWirelessContest
+goto_if_eq VAR_RESULT TRUE ContestHall_EventScript_LetsAppealWireless
+messageautoscroll ContestHall_Text_VotingCompleteLetsAppeal
+waitmessage
+return
+= ContestHall_EventScript_LetsAppealWireless
+call ContestHall_EventScript_TryWaitForLink
+messageautoscroll ContestHall_Text_VotingComplete
+waitmessage
+call ContestHall_EventScript_TryWaitForLink
+messageautoscroll ContestHall_Text_SecondStageOfJudging
+waitmessage
+call ContestHall_EventScript_TryWaitForLink
+messageautoscroll ContestHall_Text_LetsAppeal
+waitmessage
+call ContestHall_EventScript_TryWaitForLink
+return
+= ContestHall_EventScript_ShowContestMons
+call ContestHall_EventScript_ContestantWalkToCenter
+call ContestHall_EventScript_ShowContestMonPic
+call ContestHall_EventScript_AudienceHeartEmotes
+call ContestHall_EventScript_AudienceReactToContestant
+call ContestHall_EventScript_ContestantReturn
+call ContestHall_EventScript_TryWaitForLink
+call ContestHall_EventScript_TryWaitForLink
+addvar VAR_0x8006 1
+goto_if_ne VAR_0x8006 CONTESTANT_COUNT ContestHall_EventScript_ShowContestMons
+call ContestHall_EventScript_AudienceVote
+setvar VAR_TEMP_1 6
+return
+= ContestHall_EventScript_AudienceVote
+call ContestHall_EventScript_AudienceWillVote
+call ContestHall_EventScript_VotingUnderWay
+playse SE_M_ENCORE2
+waitmessage
+call ContestHall_EventScript_AudienceLookAround
+applymovement LOCALID_CONTEST_MC ContestHall_Movement_MCFaceJudge2
+waitmovement 0
+applymovement LOCALID_CONTEST_JUDGE ContestHall_Movement_JudgeFaceMC
+waitmovement 0
+delay 20
+applymovement LOCALID_CONTEST_MC ContestHall_Movement_FaceContestants
+applymovement LOCALID_CONTEST_JUDGE ContestHall_Movement_FaceContestants
+waitmovement 0
+return
+= ContestHall_EventScript_VotingUnderWay
+goto_if_eq VAR_CONTEST_TYPE CONTEST_TYPE_LINK ContestHall_EventScript_VotingUnderWayLink
+msgbox	Voting under way…
+return
+= ContestHall_EventScript_VotingUnderWayLink
+messageautoscroll ContestHall_Text_VotingUnderWay
+call ContestHall_EventScript_TryWaitForLink
+return
+= ContestHall_EventScript_AudienceWillVote
+goto_if_eq VAR_CONTEST_TYPE CONTEST_TYPE_LINK ContestHall_EventScript_AudienceWillVoteLink
+msgbox	MC: We've just seen the four POKéMON contestants.Now it's time for primary judging!The audience will vote on their favorite POKéMON contestants.Without any further ado, let the voting begin!
+return
+= ContestHall_EventScript_AudienceWillVoteLink
+specialvar VAR_RESULT IsWirelessContest
+goto_if_eq VAR_RESULT TRUE ContestHall_EventScript_AudienceWillVoteWireless
+messageautoscroll ContestHall_Text_SeenContestantsAudienceWillVote
+waitmessage
+return
+= ContestHall_EventScript_AudienceWillVoteWireless
+messageautoscroll ContestHall_Text_WeveSeenContestants
+waitmessage
+call ContestHall_EventScript_TryWaitForLink
+messageautoscroll ContestHall_Text_AudienceWillVote
+waitmessage
+call ContestHall_EventScript_TryWaitForLink
+messageautoscroll ContestHall_Text_LetVotingBegin
+waitmessage
+call ContestHall_EventScript_TryWaitForLink
+return
+= ContestHall_EventScript_ContestantReturn
+closemessage
+release
+removeobject LOCALID_CONTEST_POKEBALL
+special HideContestEntryMonPic
+call ContestHall_EventScript_TryWaitForLink
+switch VAR_0x8006
+case 0 ContestHall_EventScript_Player1WalkBack
+case 1 ContestHall_EventScript_Player2WalkBack
+case 2 ContestHall_EventScript_Player3WalkBack
+case 3 ContestHall_EventScript_Player4WalkBack
+return
+= ContestHall_EventScript_Player4WalkBack
+call ContestHall_EventScript_TryWaitForLink
+lockall
+applymovement VAR_0x800B ContestHall_Movement_Player4WalkBack
+waitmovement 0
+releaseall
+return
+= ContestHall_EventScript_Player3WalkBack
+call ContestHall_EventScript_TryWaitForLink
+lockall
+applymovement VAR_0x800B ContestHall_Movement_Player3WalkBack
+waitmovement 0
+releaseall
+return
+= ContestHall_EventScript_Player2WalkBack
+call ContestHall_EventScript_TryWaitForLink
+lockall
+applymovement VAR_0x800B ContestHall_Movement_Player2WalkBack
+waitmovement 0
+releaseall
+return
+= ContestHall_EventScript_Player1WalkBack
+call ContestHall_EventScript_TryWaitForLink
+lockall
+applymovement VAR_0x800B ContestHall_Movement_Player1WalkBack
+waitmovement 0
+releaseall
+return
+= ContestHall_EventScript_AudienceReactToContestant
+call ContestHall_EventScript_TryWaitForLink
+applymovement LOCALID_CONTEST_MC ContestHall_Movement_AudienceMemberLookLeft
+waitmovement 0
+playse SE_M_ENCORE2
+call ContestHall_EventScript_VObjectAudienceLookAround
+applymovement LOCALID_CONTEST_AUDIENCE_5 ContestHall_Movement_AudienceMemberLookRight
+applymovement LOCALID_CONTEST_AUDIENCE_2 ContestHall_Movement_AudienceMemberLookDown
+applymovement LOCALID_CONTEST_AUDIENCE_3 ContestHall_Movement_AudienceMemberLookRight
+waitmovement 0
+applymovement LOCALID_CONTEST_MC ContestHall_Movement_AudienceMemberLookRight
+waitmovement 0
+applymovement LOCALID_CONTEST_AUDIENCE_6 ContestHall_Movement_AudienceMemberLookLeft
+applymovement LOCALID_CONTEST_AUDIENCE_7 ContestHall_Movement_AudienceMemberLookDown
+applymovement LOCALID_CONTEST_AUDIENCE_1 ContestHall_Movement_AudienceMemberLookUp
+applymovement LOCALID_CONTEST_AUDIENCE_4 ContestHall_Movement_AudienceMemberLookLeft
+waitmovement 0
+applymovement LOCALID_CONTEST_MC ContestHall_Movement_MCLookAtJudge
+waitmovement 0
+applymovement LOCALID_CONTEST_MC ContestHall_Movement_MCWalkInPlaceDown
+applymovement LOCALID_CONTEST_JUDGE ContestHall_Movement_JudgeLookAtMC
+waitmovement 0
+releaseall
+call ContestHall_EventScript_TryWaitForLink
+return
+@ For below VAR_TEMP_0 is the number of heart emotes to try to display in the audience
+@ The number of hearts to try to display is based on the condition of the presented pokemon and the rank
+@ For each heart to display a random audience member is chosen and a new one chosen if they already displayed a heart
+@ VAR_TEMP_1 through VAR_TEMP_8 represent each of the 8 audience members that are actual object events
+@ and are set to 9 if they havent displayed a heart yet and 1 if they have
+goto ContestHall_EventScript_AudienceHeartEmotes
+= ContestHall_EventScript_AudienceHeartEmotes
+special GetContestMonCondition
+call_if_eq VAR_CONTEST_TYPE CONTEST_TYPE_NPC_NORMAL ContestHall_EventScript_GetNumberOfHeartsNormal
+call_if_eq VAR_CONTEST_TYPE CONTEST_TYPE_NPC_SUPER ContestHall_EventScript_GetNumberOfHeartsSuper
+call_if_eq VAR_CONTEST_TYPE CONTEST_TYPE_NPC_HYPER ContestHall_EventScript_GetNumberOfHeartsHyper
+call_if_eq VAR_CONTEST_TYPE CONTEST_TYPE_NPC_MASTER ContestHall_EventScript_GetNumberOfHeartsMaster
+call_if_eq VAR_CONTEST_TYPE CONTEST_TYPE_LINK ContestHall_EventScript_GetNumberOfHeartsLink
+setvar VAR_TEMP_1 9
+setvar VAR_TEMP_2 9
+setvar VAR_TEMP_3 9
+setvar VAR_TEMP_4 9
+setvar VAR_TEMP_5 9
+setvar VAR_TEMP_6 9
+setvar VAR_TEMP_7 9
+setvar VAR_TEMP_8 9
+call_if_gt VAR_TEMP_0 0 ContestHall_EventScript_DisplayHearts
+setvar VAR_TEMP_1 0
+setvar VAR_TEMP_2 0
+setvar VAR_TEMP_3 0
+setvar VAR_TEMP_4 0
+setvar VAR_TEMP_5 0
+setvar VAR_TEMP_6 0
+setvar VAR_TEMP_7 0
+setvar VAR_TEMP_8 0
+return
+= ContestHall_EventScript_DisplayHearts
+setvar VAR_RESULT 8
+special GenerateContestRand
+call_if_eq VAR_RESULT 0 ContestHall_EventScript_TryDisplayHeartAudienceMember1
+call_if_eq VAR_RESULT 1 ContestHall_EventScript_TryDisplayHeartAudienceMember2
+call_if_eq VAR_RESULT 2 ContestHall_EventScript_TryDisplayHeartAudienceMember3
+call_if_eq VAR_RESULT 3 ContestHall_EventScript_TryDisplayHeartAudienceMember4
+call_if_eq VAR_RESULT 4 ContestHall_EventScript_TryDisplayHeartAudienceMember5
+call_if_eq VAR_RESULT 5 ContestHall_EventScript_TryDisplayHeartAudienceMember6
+call_if_eq VAR_RESULT 6 ContestHall_EventScript_TryDisplayHeartAudienceMember7
+call_if_eq VAR_RESULT 7 ContestHall_EventScript_TryDisplayHeartAudienceMember8
+goto_if_gt VAR_TEMP_0 0 ContestHall_EventScript_DisplayHearts  @ Still more hearts to display
+waitmovement 0
+return
+= ContestHall_EventScript_TryDisplayHeartAudienceMember8
+goto_if_eq VAR_TEMP_8 1 ContestHall_EventScript_AudienceMember8AlreadyEmoted
+applymovement LOCALID_CONTEST_ARTIST ContestHall_Movement_Heart
+playse SE_PIN
+delay 14
+setvar VAR_TEMP_8 1
+addvar VAR_TEMP_0 -1
+return
+= ContestHall_EventScript_AudienceMember8AlreadyEmoted
+return
+= ContestHall_EventScript_TryDisplayHeartAudienceMember7
+goto_if_eq VAR_TEMP_7 1 ContestHall_EventScript_AudienceMember7AlreadyEmoted
+applymovement LOCALID_CONTEST_AUDIENCE_7 ContestHall_Movement_Heart
+playse SE_PIN
+delay 14
+setvar VAR_TEMP_7 1
+addvar VAR_TEMP_0 -1
+return
+= ContestHall_EventScript_AudienceMember7AlreadyEmoted
+return
+= ContestHall_EventScript_TryDisplayHeartAudienceMember6
+goto_if_eq VAR_TEMP_6 1 ContestHall_EventScript_AudienceMember6AlreadyEmoted
+applymovement LOCALID_CONTEST_AUDIENCE_6 ContestHall_Movement_Heart
+playse SE_PIN
+delay 14
+setvar VAR_TEMP_6 1
+addvar VAR_TEMP_0 -1
+return
+= ContestHall_EventScript_AudienceMember6AlreadyEmoted
+return
+= ContestHall_EventScript_TryDisplayHeartAudienceMember5
+goto_if_eq VAR_TEMP_5 1 ContestHall_EventScript_AudienceMember5AlreadyEmoted
+applymovement LOCALID_CONTEST_AUDIENCE_5 ContestHall_Movement_Heart
+playse SE_PIN
+delay 14
+setvar VAR_TEMP_5 1
+addvar VAR_TEMP_0 -1
+return
+= ContestHall_EventScript_AudienceMember5AlreadyEmoted
+return
+= ContestHall_EventScript_TryDisplayHeartAudienceMember4
+goto_if_eq VAR_TEMP_4 1 ContestHall_EventScript_Audience4MemberAlreadyEmoted
+applymovement LOCALID_CONTEST_AUDIENCE_4 ContestHall_Movement_Heart
+playse SE_PIN
+delay 14
+setvar VAR_TEMP_4 1
+addvar VAR_TEMP_0 -1
+return
+= ContestHall_EventScript_Audience4MemberAlreadyEmoted
+return
+= ContestHall_EventScript_TryDisplayHeartAudienceMember3
+goto_if_eq VAR_TEMP_3 1 ContestHall_EventScript_AudienceMember3AlreadyEmoted
+applymovement LOCALID_CONTEST_AUDIENCE_3 ContestHall_Movement_Heart
+playse SE_PIN
+delay 14
+setvar VAR_TEMP_3 1
+addvar VAR_TEMP_0 -1
+return
+= ContestHall_EventScript_AudienceMember3AlreadyEmoted
+return
+= ContestHall_EventScript_TryDisplayHeartAudienceMember2
+goto_if_eq VAR_TEMP_2 1 ContestHall_EventScript_AudienceMember2AlreadyEmoted
+applymovement LOCALID_CONTEST_AUDIENCE_2 ContestHall_Movement_Heart
+playse SE_PIN
+delay 14
+setvar VAR_TEMP_2 1
+addvar VAR_TEMP_0 -1
+return
+= ContestHall_EventScript_AudienceMember2AlreadyEmoted
+return
+= ContestHall_EventScript_TryDisplayHeartAudienceMember1
+goto_if_eq VAR_TEMP_1 1 ContestHall_EventScript_AudienceMember1AlreadyEmoted
+applymovement LOCALID_CONTEST_AUDIENCE_1 ContestHall_Movement_Heart
+playse SE_PIN
+delay 14
+setvar VAR_TEMP_1 1
+addvar VAR_TEMP_0 -1
+return
+= ContestHall_EventScript_AudienceMember1AlreadyEmoted
+return
+= ContestHall_EventScript_GetNumberOfHeartsLink
+goto_if_gt VAR_0x8004 600 ContestHall_EventScript_Set8Hearts
+goto_if_gt VAR_0x8004 550 ContestHall_EventScript_Set7Hearts
+goto_if_gt VAR_0x8004 500 ContestHall_EventScript_Set6Hearts
+goto_if_gt VAR_0x8004 450 ContestHall_EventScript_Set5Hearts
+goto_if_gt VAR_0x8004 400 ContestHall_EventScript_Set4Hearts
+goto_if_gt VAR_0x8004 300 ContestHall_EventScript_Set3Hearts
+goto_if_gt VAR_0x8004 200 ContestHall_EventScript_Set2Hearts
+goto_if_gt VAR_0x8004 100 ContestHall_EventScript_Set1Heart
+setvar VAR_TEMP_0 0
+return
+= ContestHall_EventScript_Set1Heart
+setvar VAR_TEMP_0 1
+return
+= ContestHall_EventScript_Set2Hearts
+setvar VAR_TEMP_0 2
+return
+= ContestHall_EventScript_Set3Hearts
+setvar VAR_TEMP_0 3
+return
+= ContestHall_EventScript_Set4Hearts
+setvar VAR_TEMP_0 4
+return
+= ContestHall_EventScript_Set5Hearts
+setvar VAR_TEMP_0 5
+return
+= ContestHall_EventScript_Set6Hearts
+setvar VAR_TEMP_0 6
+return
+= ContestHall_EventScript_Set7Hearts
+setvar VAR_TEMP_0 7
+return
+= ContestHall_EventScript_Set8Hearts
+setvar VAR_TEMP_0 8
+return
+= ContestHall_EventScript_GetNumberOfHeartsMaster
+goto_if_gt VAR_0x8004 600 ContestHall_EventScript_Set8Hearts
+goto_if_gt VAR_0x8004 560 ContestHall_EventScript_Set7Hearts
+goto_if_gt VAR_0x8004 520 ContestHall_EventScript_Set6Hearts
+goto_if_gt VAR_0x8004 480 ContestHall_EventScript_Set5Hearts
+goto_if_gt VAR_0x8004 440 ContestHall_EventScript_Set4Hearts
+goto_if_gt VAR_0x8004 400 ContestHall_EventScript_Set3Hearts
+goto_if_gt VAR_0x8004 360 ContestHall_EventScript_Set2Hearts
+goto_if_gt VAR_0x8004 320 ContestHall_EventScript_Set1Heart
+setvar VAR_TEMP_0 0
+return
+= ContestHall_EventScript_GetNumberOfHeartsHyper
+goto_if_gt VAR_0x8004 380 ContestHall_EventScript_Set8Hearts
+goto_if_gt VAR_0x8004 350 ContestHall_EventScript_Set7Hearts
+goto_if_gt VAR_0x8004 320 ContestHall_EventScript_Set6Hearts
+goto_if_gt VAR_0x8004 290 ContestHall_EventScript_Set5Hearts
+goto_if_gt VAR_0x8004 260 ContestHall_EventScript_Set4Hearts
+goto_if_gt VAR_0x8004 230 ContestHall_EventScript_Set3Hearts
+goto_if_gt VAR_0x8004 200 ContestHall_EventScript_Set2Hearts
+goto_if_gt VAR_0x8004 170 ContestHall_EventScript_Set1Heart
+setvar VAR_TEMP_0 0
+return
+= ContestHall_EventScript_GetNumberOfHeartsSuper
+goto_if_gt VAR_0x8004 230 ContestHall_EventScript_Set8Hearts
+goto_if_gt VAR_0x8004 210 ContestHall_EventScript_Set7Hearts
+goto_if_gt VAR_0x8004 190 ContestHall_EventScript_Set6Hearts
+goto_if_gt VAR_0x8004 170 ContestHall_EventScript_Set5Hearts
+goto_if_gt VAR_0x8004 150 ContestHall_EventScript_Set4Hearts
+goto_if_gt VAR_0x8004 130 ContestHall_EventScript_Set3Hearts
+goto_if_gt VAR_0x8004 110 ContestHall_EventScript_Set2Hearts
+goto_if_gt VAR_0x8004 90 ContestHall_EventScript_Set1Heart
+setvar VAR_TEMP_0 0
+return
+= ContestHall_EventScript_GetNumberOfHeartsNormal
+goto_if_gt VAR_0x8004 80 ContestHall_EventScript_Set8Hearts
+goto_if_gt VAR_0x8004 70 ContestHall_EventScript_Set7Hearts
+goto_if_gt VAR_0x8004 60 ContestHall_EventScript_Set6Hearts
+goto_if_gt VAR_0x8004 50 ContestHall_EventScript_Set5Hearts
+goto_if_gt VAR_0x8004 40 ContestHall_EventScript_Set4Hearts
+goto_if_gt VAR_0x8004 30 ContestHall_EventScript_Set3Hearts
+goto_if_gt VAR_0x8004 20 ContestHall_EventScript_Set2Hearts
+goto_if_gt VAR_0x8004 10 ContestHall_EventScript_Set1Heart
+setvar VAR_TEMP_0 0
+return
+= ContestHall_EventScript_ShowContestMonPic
+special BufferContestTrainerAndMonNames
+addvar VAR_0x8006 1
+buffernumberstring STR_VAR_2 VAR_0x8006
+lockall
+applymovement VAR_0x800B ContestHall_Movement_ContestantDelay32
+waitmovement 0
+releaseall
+call ContestHall_EventScript_TryWaitForLink
+call ContestHall_EventScript_CheckIfContestWithRSPlayer
+addobject LOCALID_CONTEST_POKEBALL
+playse SE_LEDGE
+lockall
+applymovement VAR_0x800B ContestHall_Movement_ContestantDelay32
+waitmovement 0
+releaseall
+addvar VAR_0x8006 -1
+playse SE_BALL_OPEN
+special ShowContestEntryMonPic
+call ContestHall_EventScript_EntryXTrainersMon
+return
+= ContestHall_EventScript_EntryXTrainersMon
+goto_if_eq VAR_CONTEST_TYPE CONTEST_TYPE_LINK ContestHall_EventScript_EntryXTrainersMonLink
+msgbox	MC: Entry No. STR_VAR_2! STR_VAR_1's STR_VAR_3!
+waitmessage
+return
+= ContestHall_EventScript_EntryXTrainersMonLink
+messageautoscroll ContestHall_Text_EntryXTrainersMon
+waitmessage
+return
+= ContestHall_EventScript_CheckIfContestWithRSPlayer
+specialvar VAR_RESULT IsContestWithRSPlayer
+goto_if_eq VAR_RESULT TRUE ContestHall_EventScript_RetRSPlayer
+return
+= ContestHall_EventScript_RetRSPlayer
+return
+= ContestHall_EventScript_ContestantWalkToCenter
+goto_if_eq VAR_0x8006 0 ContestHall_EventScript_Player1WalkToCenter
+goto_if_eq VAR_0x8006 1 ContestHall_EventScript_Player2WalkToCenter
+goto_if_eq VAR_0x8006 2 ContestHall_EventScript_Player3WalkToCenter
+goto_if_eq VAR_0x8006 3 ContestHall_EventScript_Player4WalkToCenter
+return
+= ContestHall_EventScript_Player4WalkToCenter
+call ContestHall_EventScript_TryWaitForLink
+lockall
+applymovement LOCALID_CONTESTANT_4 ContestHall_Movement_Player4WalkToCenter
+waitmovement 0
+releaseall
+setvar VAR_0x800B LOCALID_CONTESTANT_4
+return
+= ContestHall_EventScript_Player3WalkToCenter
+call ContestHall_EventScript_TryWaitForLink
+lockall
+applymovement LOCALID_CONTESTANT_3 ContestHall_Movement_Player3WalkToCenter
+waitmovement 0
+releaseall
+setvar VAR_0x800B LOCALID_CONTESTANT_3
+return
+= ContestHall_EventScript_Player2WalkToCenter
+call ContestHall_EventScript_TryWaitForLink
+lockall
+applymovement LOCALID_CONTESTANT_2 ContestHall_Movement_Player2WalkToCenter
+waitmovement 0
+releaseall
+setvar VAR_0x800B LOCALID_CONTESTANT_2
+return
+= ContestHall_EventScript_Player1WalkToCenter
+call ContestHall_EventScript_TryWaitForLink
+lockall
+applymovement LOCALID_CONTESTANT_1 ContestHall_Movement_Player1WalkToCenter
+waitmovement 0
+releaseall
+setvar VAR_0x800B LOCALID_CONTESTANT_1
+return
+= ContestHall_EventScript_ContestGettingStarted
+buffercontestname STR_VAR_2 VAR_0x8008
+bufferstdstring STR_VAR_3 VAR_0x8009
+call ContestHall_EventScript_GettingStarted
+lockall
+applymovement LOCALID_CONTEST_MC ContestHall_Movement_MCBackUp
+waitmovement 0
+releaseall
+return
+= ContestHall_EventScript_GettingStarted
+goto_if_eq VAR_CONTEST_TYPE CONTEST_TYPE_LINK ContestHall_EventScript_GettingStartedLink
+lockall
+msgbox	MC: Hello! We're just getting started with a STR_VAR_3 Rank POKéMON STR_VAR_2!The participating TRAINERS and their POKéMON are as follows:
+releaseall
+return
+= ContestHall_EventScript_GettingStartedLink
+specialvar VAR_RESULT IsWirelessContest
+goto_if_eq VAR_RESULT TRUE ContestHall_EventScript_GettingStartedWireless
+messageautoscroll ContestHall_Text_GettingStartedParticipantsAsFollowsLink
+waitmessage
+return
+= ContestHall_EventScript_GettingStartedWireless
+messageautoscroll ContestHall_Text_GettingStartedWireless
+waitmessage
+call ContestHall_EventScript_TryWaitForLink
+messageautoscroll ContestHall_Text_ParticipantsAsFollows
+waitmessage
+call ContestHall_EventScript_TryWaitForLink
+return
+= ContestHall_EventScript_GetContestCategory
+switch VAR_CONTEST_CATEGORY
+case CONTEST_CATEGORY_COOL ContestHall_EventScript_GetCategoryCool
+case CONTEST_CATEGORY_BEAUTY ContestHall_EventScript_GetCategoryBeauty
+case CONTEST_CATEGORY_CUTE ContestHall_EventScript_GetCategoryCute
+case CONTEST_CATEGORY_SMART ContestHall_EventScript_GetCategorySmart
+case CONTEST_CATEGORY_TOUGH ContestHall_EventScript_GetCategoryTough
+return
+= ContestHall_EventScript_GetCategoryTough
+setvar VAR_0x8008 CONTEST_CATEGORY_TOUGH
+return
+= ContestHall_EventScript_GetCategorySmart
+setvar VAR_0x8008 CONTEST_CATEGORY_SMART
+return
+= ContestHall_EventScript_GetCategoryCute
+setvar VAR_0x8008 CONTEST_CATEGORY_CUTE
+return
+= ContestHall_EventScript_GetCategoryBeauty
+setvar VAR_0x8008 CONTEST_CATEGORY_BEAUTY
+return
+= ContestHall_EventScript_GetCategoryCool
+setvar VAR_0x8008 CONTEST_CATEGORY_COOL
+return
+= ContestHall_EventScript_GetContestRankStringId
+switch VAR_CONTEST_RANK
+case CONTEST_RANK_NORMAL ContestHall_EventScript_GetNormalStringId
+case CONTEST_RANK_SUPER ContestHall_EventScript_GetSuperStringId
+case CONTEST_RANK_HYPER ContestHall_EventScript_GetHyperStringId
+case CONTEST_RANK_MASTER ContestHall_EventScript_GetMasterStringId
+return
+= ContestHall_EventScript_GetMasterStringId
+setvar VAR_0x8009 STDSTRING_MASTER
+return
+@ This whole switch is equivalent to copyvar VAR_0x8008 VAR_CONTEST_CATEGORY
+goto ContestHall_EventScript_GetContestCategory
+= ContestHall_EventScript_GetHyperStringId
+setvar VAR_0x8009 STDSTRING_HYPER
+return
+= ContestHall_EventScript_GetSuperStringId
+setvar VAR_0x8009 STDSTRING_SUPER
+return
+= ContestHall_EventScript_GetNormalStringId
+setvar VAR_0x8009 STDSTRING_NORMAL
+return
+mapsec
+0 0 1 1	
+music
+MUS_CONTEST

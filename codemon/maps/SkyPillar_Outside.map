@@ -1,0 +1,130 @@
+tileset general__pacifidlog
+28 23
+13 10
+368,368,368,368,368,368,368,368,368,368,370,695,672,673,674,675,676,695,695,695,372,368,368,368,368,368,368,368
+368,368,368,368,368,368,368,368,370,695,695,289,672,674,674,674,676,699,226,289,695,695,695,372,368,368,368,368
+368,368,368,368,368,368,370,695,695,289,289,289,672,673,674,675,676,698,699,289,289,289,289,117,371,372,368,368
+368,368,368,368,368,370,115,289,289,289,226,289,672,674,674,674,676,698,698,699,289,226,289,117,113,117,372,368
+368,368,368,368,370,115,115,289,289,289,289,289,680,681,706,683,684,698,698,700,699,289,289,117,113,117,117,377
+368,368,368,376,115,115,115,289,289,289,226,226,688,689,714,691,692,700,698,698,698,699,289,117,113,117,117,400
+368,368,368,402,115,115,123,137,289,226,292,292,678,697,698,698,698,698,700,700,698,698,699,117,113,117,117,400
+368,368,368,402,115,115,113,115,226,292,292,292,292,678,697,698,698,698,698,698,700,698,698,117,116,125,117,400
+368,368,368,402,115,123,137,115,292,292,292,292,292,292,678,697,698,698,698,698,698,700,116,125,117,113,117,400
+368,368,368,402,123,137,115,115,292,292,292,292,292,292,292,678,693,677,677,696,700,698,117,113,117,113,117,400
+368,368,368,410,385,115,115,123,137,292,292,292,292,292,292,128,190,113,113,117,696,698,117,113,117,113,117,400
+368,368,368,368,402,115,115,113,115,292,292,292,292,292,128,115,113,113,113,117,138,698,117,113,117,116,125,400
+368,368,368,368,402,115,123,137,123,137,292,292,292,292,136,123,124,100,124,125,138,698,117,116,125,117,113,400
+368,368,336,337,402,123,137,123,137,123,137,292,292,292,144,169,169,167,169,169,146,116,125,117,116,125,384,408
+368,368,344,345,410,385,123,137,123,137,123,137,292,292,292,292,292,292,226,292,292,117,116,125,117,384,408,368
+368,368,368,368,368,410,385,123,137,123,137,115,292,292,292,292,292,292,292,292,116,125,117,116,125,400,368,368
+336,337,368,368,368,368,410,385,115,113,115,123,137,292,292,292,226,292,116,124,125,113,117,117,384,408,368,368
+344,345,368,368,368,368,336,357,115,113,123,137,123,137,226,292,292,116,125,113,116,124,125,117,400,368,336,337
+368,368,368,368,368,368,344,365,123,137,113,123,137,123,124,124,124,125,113,116,125,116,124,125,400,368,344,345
+368,368,368,368,336,337,368,410,385,123,137,113,123,169,169,159,169,169,124,125,113,117,384,393,408,368,368,368
+368,368,368,368,344,345,368,368,410,385,123,124,169,169,169,167,169,169,169,169,124,125,400,368,368,368,368,368
+368,368,368,368,368,336,337,368,368,410,393,393,385,292,292,292,292,292,384,393,346,347,408,368,368,368,368,368
+368,368,368,368,368,344,345,368,368,368,368,368,402,292,292,292,292,292,400,368,344,345,373,379,379,379,372,368
+collision
+0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,1,1,1,0,1,1,1,1,1,1,1,0,1,1,1,1,0,0,0,0
+0,0,0,0,0,0,1,1,1,0,0,0,1,1,1,1,1,1,1,0,0,0,0,1,1,1,0,0
+0,0,0,0,0,1,1,0,0,0,1,0,1,1,1,1,1,1,1,1,0,1,0,1,1,1,1,0
+0,0,0,0,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,0
+0,0,0,0,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0
+0,0,0,0,1,1,1,1,0,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0
+0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0
+0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0
+0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,0,1,1,1,1,1,0
+0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,0,1,1,1,1,1,0
+0,0,0,0,0,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,0,1,1,1,1,1,0
+0,0,0,0,0,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,0,1,1,1,1,1,0
+0,0,1,1,0,1,1,1,1,1,1,0,0,0,1,1,1,0,1,1,1,1,1,1,1,1,0,0
+0,0,1,1,0,0,1,1,1,1,1,1,0,0,0,0,0,0,1,0,0,1,1,1,1,0,0,0
+0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0
+1,1,0,0,0,0,0,0,1,1,1,1,1,0,0,0,1,0,1,1,1,1,1,1,0,0,0,0
+1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,0,0,1,1
+0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1
+0,0,0,0,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0
+0,0,0,0,1,1,0,0,0,0,1,1,1,1,1,0,1,1,1,1,1,1,0,0,0,0,0,0
+0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0
+0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0
+warps
+17 13 SkyPillar_Entrance 1
+14 5 SkyPillar_1F 0
+npcs
+people_wallace 13 7 S static FLAG_HIDE_SKY_PILLAR_WALLACE LOCALID_SKY_PILLAR_WALLACE 0
+objscripts
+0 SkyPillar_Outside_EventScript_Wallace
+onload
+VAR_SOOTOPOLIS_CITY_STATE 3 SkyPillar_Outside_EventScript_WallaceScene
+movements
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+SkyPillar_Outside_Movement_PlayerClimbSkyPillar	left,left,left,left,up,up,up,up,right,up,up,up,end
+SkyPillar_Outside_Movement_WallaceApproachPlayer	down,down,down,down,down,down,down,right,right,right,end
+SkyPillar_Outside_Movement_WallaceClimbSkyPillar	left,left,left,up,up,up,up,right,up,up,up,up,end
+scriptdefs
+= SkyPillar_Outside_EventScript_WallaceScene
+lockall
+applymovement LOCALID_SKY_PILLAR_WALLACE SkyPillar_Outside_Movement_WallaceApproachPlayer
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+msgbox	WALLACE: Oh, my, I'm terribly sorry!In my haste, I didn't notice that I'd left you behind!I've opened the locked door of the SKY PILLAR.PLAYER, let's be on our way!
+closemessage
+delay 30
+setvar VAR_0x8004 1  @ vertical pan
+setvar VAR_0x8005 1  @ horizontal pan
+setvar VAR_0x8006 8  @ num shakes
+setvar VAR_0x8007 3  @ shake delay
+special ShakeCamera
+waitstate
+delay 40
+msgbox	WALLACE: It's an earthquake!There's not a moment to waste! We've got to hurry!
+closemessage
+applymovement LOCALID_PLAYER SkyPillar_Outside_Movement_PlayerClimbSkyPillar
+applymovement LOCALID_SKY_PILLAR_WALLACE SkyPillar_Outside_Movement_WallaceClimbSkyPillar
+waitmovement 0
+setvar VAR_0x8004 1   @ vertical pan
+setvar VAR_0x8005 3   @ horizontal pan
+setvar VAR_0x8006 20  @ num shakes
+setvar VAR_0x8007 5   @ shake delay
+special ShakeCamera
+waitstate
+delay 20
+applymovement LOCALID_SKY_PILLAR_WALLACE Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+delay 10
+applymovement LOCALID_SKY_PILLAR_WALLACE Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+delay 20
+applymovement LOCALID_SKY_PILLAR_WALLACE Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+delay 30
+msgbox	WALLACE: Hmm… The situation is getting worse…
+closemessage
+setflag FLAG_SYS_WEATHER_CTRL
+setweather WEATHER_ABNORMAL
+doweather
+special WaitWeather
+delay 30
+msgbox	WALLACE: This isn't good…The weather distortion is spreading even here…PLAYER.RAYQUAZA should be farther up from here.I'm worried about SOOTOPOLIS. I've got to go back.Everything is in your hands now. Don't fail us!
+closemessage
+playse SE_EXIT
+fadescreenswapbuffers FADE_TO_BLACK
+clearflag FLAG_HIDE_MAP_NAME_POPUP
+setvar VAR_SOOTOPOLIS_CITY_STATE 4
+removeobject LOCALID_SKY_PILLAR_WALLACE
+clearflag FLAG_HIDE_SOOTOPOLIS_CITY_WALLACE
+fadescreenswapbuffers FADE_FROM_BLACK
+releaseall
+end
+= SkyPillar_Outside_EventScript_Wallace
+end
+water
+368,370,372,376,377,384,385,393,400,402,408,410
+mapsec
+19 10 1 1	SKY PILLAR
+music
+MUS_MT_CHIMNEY

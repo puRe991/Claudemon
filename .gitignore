@@ -365,3 +365,6 @@ FodyWeavers.xsd
 
 # CMake build output
 /build/
+
+# Player save file (written next to the game binary at runtime)
+savegame.dat

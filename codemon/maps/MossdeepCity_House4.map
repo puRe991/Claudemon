@@ -1,0 +1,73 @@
+tileset building__generic_building
+10 8
+5 4
+517,517,517,518,517,517,518,517,622,623
+616,617,525,526,525,525,526,525,630,631
+624,625,548,548,548,548,548,548,638,639
+602,603,547,547,547,547,547,547,547,556
+610,611,547,547,547,547,547,547,588,589
+569,547,547,547,547,547,547,555,596,597
+569,547,547,547,547,547,547,547,547,547
+569,547,547,520,521,547,547,547,547,547
+collision
+1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0
+1,1,0,0,0,0,0,0,0,0
+1,1,0,0,0,0,0,0,1,1
+0,0,0,0,0,0,0,0,1,1
+0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+warps
+4 7 MossdeepCity 7
+3 7 MossdeepCity 7
+npcs
+people_woman_2 3 4 W static 0 - 0
+people_ninja_boy 6 6 S wander 0 - 0
+pokemon_skitty 2 4 S static 0 - 0
+dialogs
+0	My little brother says he likes to go find people's SECRET BASES.
+1	Was it you who made a SECRET BASE near STR_VAR_1?
+2	SKITTY: Miyaan?
+objscripts
+0 MossdeepCity_House4_EventScript_Woman
+1 MossdeepCity_House4_EventScript_NinjaBoy
+2 MossdeepCity_House4_EventScript_Skitty
+scriptdefs
+= MossdeepCity_House4_EventScript_Skitty
+lock
+faceplayer
+waitse
+playmoncry SPECIES_SKITTY CRY_MODE_NORMAL
+msgbox	SKITTY: Miyaan?
+waitmoncry
+release
+end
+= MossdeepCity_House4_EventScript_NinjaBoy
+lock
+faceplayer
+special CheckPlayerHasSecretBase
+goto_if_eq VAR_RESULT FALSE MossdeepCity_House4_EventScript_NoSecretBase
+special GetSecretBaseNearbyMapName
+msgbox	Was it you who made a SECRET BASE near STR_VAR_1?
+release
+end
+= MossdeepCity_House4_EventScript_NoSecretBase
+msgbox	You should make a SECRET BASE somewhere. I'll go find it!
+release
+end
+= MossdeepCity_House4_EventScript_Woman
+lock
+faceplayer
+goto_if_set FLAG_SYS_GAME_CLEAR MossdeepCity_House4_EventScript_CanBattleAtSecretBases
+msgbox	My little brother says he likes to go find people's SECRET BASES.
+release
+end
+= MossdeepCity_House4_EventScript_CanBattleAtSecretBases
+msgbox	My little brother says he likes to visit people's SECRET BASES and have POKéMON battles.
+release
+end
+mapsec
+24 5 2 1	MOSSDEEP CITY
+music
+MUS_RUSTBORO

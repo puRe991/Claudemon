@@ -1,0 +1,260 @@
+tileset general__lavaridge
+20 20
+9 7
+625,625,625,625,635,628,628,628,628,628,636,625,625,625,625,625,625,625,536,536
+635,628,628,628,634,625,686,686,686,686,632,628,628,628,628,628,628,628,628,529
+626,635,665,666,667,667,668,669,628,670,636,625,625,625,590,587,588,591,625,536
+626,626,673,675,700,675,675,677,586,584,585,589,633,633,48,49,50,51,529,529
+626,626,673,699,797,797,699,677,80,81,82,83,542,543,56,57,58,59,198,198
+626,626,681,682,675,700,684,685,88,89,90,91,470,471,96,65,66,67,198,198
+626,626,689,690,691,691,692,693,96,97,98,99,486,487,4,288,290,1,22,22
+626,626,698,680,680,680,697,650,1,288,290,1,4,4,1,288,290,1,1,1
+626,626,680,664,680,664,652,658,1,288,290,1,1,3,1,288,290,1,1,1
+626,626,680,672,680,672,650,1,1,288,289,281,281,281,281,289,289,281,281,281
+626,626,657,657,657,657,658,1,1,296,297,297,297,297,297,297,297,297,297,297
+626,626,426,427,427,427,427,428,1,1,1,1,1,1,1,1,1,1,1,1
+626,626,434,435,435,435,435,436,1,1,1,8,9,9,10,8,9,9,10,1
+626,626,440,441,442,435,443,444,1,1,1,16,17,17,18,16,17,17,18,14
+626,626,448,449,450,453,451,671,1,1,1,24,25,11,26,24,25,11,26,198
+626,626,456,457,458,461,459,679,1,1,1,32,33,19,34,32,33,19,34,198
+626,626,1,1,1,1,1,1,1,1,1,1,1,1,3,1,1,1,14,198
+639,639,621,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,198,198
+625,625,626,621,1,1,1,1,1,1,1,1,1,1,1,1,1,1,22,22
+625,625,639,639,620,620,620,620,620,620,620,620,620,620,620,620,620,620,620,620
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,1,1
+1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,0,0,0,0,1,1,1,1,1,0,0,1,1,1,1,1,1
+1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1
+1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,0
+1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1
+1,1,0,0,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1
+1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1
+1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+connections
+right -40 Route112
+warps
+12 15 LavaridgeTown_HerbShop 0
+5 15 LavaridgeTown_Gym_1F 0
+15 5 LavaridgeTown_Mart 0
+9 6 LavaridgeTown_PokemonCenter_1F 0
+16 15 LavaridgeTown_House 0
+9 2 LavaridgeTown_PokemonCenter_1F 3
+npcs
+people_expert_f 8 7 S static 0 - 0
+people_expert_m 5 1 S static 0 - 0
+people_old_man 5 8 S static 0 - 0
+people_twin 10 13 S wander 0 - 0
+people_hot_springs_old_woman 4 4 S static 0 - 0
+people_hot_springs_old_woman 5 4 S static 0 - 0
+people_may_walking 6 16 W static FLAG_HIDE_LAVARIDGE_TOWN_RIVAL_ON_BIKE LOCALID_LAVARIDGE_RIVAL_ON_BIKE 0
+people_may_walking 12 15 S static FLAG_HIDE_LAVARIDGE_TOWN_RIVAL LOCALID_LAVARIDGE_RIVAL 0
+people_expert_f 4 7 S static 0 - 0
+dialogs
+0	Oh, you like hot springs, do you?That's surprising for one as young as you.
+1	We draw as much hot water as we need, and yet the hot springs never run dry.Isn't it magical?These hot springs appear near active volcanoes. Veins of water under the ground are heated by magma to well up as hot springs.
+2	Being buried in this hot sand is… Sigh…So warm and heavenly…Eh? Gyaah! Ouch!A POKéMON nipped my backside!
+3	I bathe in the hot springs every day.I want to become a beautiful and strong GYM LEADER like FLANNERY.
+4	If people put POKéMON in hot springs, it might be seriously strange.Why, it might be an electric bath, or a bubble bath, or even a lava bath…
+5	They're claiming that these hot springs are good for calming nervous tension, relieving aching muscles, solving romantic problems, and attracting money…
+8	I have here an EGG.I'd hoped to hatch it by covering it in hot sand by the hot springs. But that doesn't seem to be enough…I've heard it would be best if it were kept together with POKéMON and carried about.You are a TRAINER, yes? And your POKéMON radiate vitality.So, what say you? Will you take this EGG to hatch?
+objscripts
+0 LavaridgeTown_EventScript_ExpertF
+1 LavaridgeTown_EventScript_ExpertM
+2 LavaridgeTown_EventScript_OldMan
+3 LavaridgeTown_EventScript_Twin
+4 LavaridgeTown_EventScript_HotSpringsOldWoman1
+5 LavaridgeTown_EventScript_HotSpringsOldWoman2
+8 LavaridgeTown_EventScript_EggWoman
+triggers
+6 3 TRIGGER_RUN_IMMEDIATELY 0 LavaridgeTown_EventScript_HotSpringsTrigger
+4 5 0 0 LavaridgeTown_HiddenItem_4_5
+onload
+VAR_LAVARIDGE_TOWN_STATE 1 LavaridgeTown_EventScript_RivalGiveGoGoggles
+movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
+LavaridgeTown_Movement_PlayerWatchRivalExit	delay,delay,delay,end
+LavaridgeTown_Movement_RivalApproachPlayer1	left,left,up,end
+LavaridgeTown_Movement_RivalApproachPlayer2	left,left,left,left,left,left,end
+LavaridgeTown_Movement_RivalExit1	down,right,right,right,right,right,right,right,right,end
+LavaridgeTown_Movement_RivalExit2	right,right,right,up,up,up,up,up,up,up,end
+LavaridgeTown_Movement_RivalExitHerbShop	down,end
+scriptdefs
+= LavaridgeTown_EventScript_RivalGiveGoGoggles
+lockall
+getplayerxy VAR_0x8008 VAR_0x8009
+call_if_eq VAR_0x8008 9 LavaridgeTown_EventScript_RivalNoticePlayer
+call_if_ne VAR_0x8008 9 LavaridgeTown_EventScript_RivalExitHerbShop
+delay 20
+checkplayergender
+call_if_eq VAR_RESULT MALE LavaridgeTown_EventScript_PlayMayMusic
+call_if_eq VAR_RESULT FEMALE LavaridgeTown_EventScript_PlayBrendanMusic
+call_if_eq VAR_0x8008 9 LavaridgeTown_EventScript_RivalApproachPlayer1
+call_if_ne VAR_0x8008 9 LavaridgeTown_EventScript_RivalApproachPlayer2
+checkplayergender
+goto_if_eq VAR_RESULT MALE LavaridgeTown_EventScript_MayGiveGoGoggles
+goto_if_eq VAR_RESULT FEMALE LavaridgeTown_EventScript_BrendanGiveGoGoggles
+end
+= LavaridgeTown_EventScript_BrendanGiveGoGoggles
+msgbox	BRENDAN: PLAYER, hey, it's been a while. How's it going?Hmm… That's a decent collection of BADGES.All right, then. You may as well have this.
+giveitem ITEM_GO_GOGGLES
+setflag FLAG_RECEIVED_GO_GOGGLES
+msgbox	BRENDAN: Keep those with you if you're planning on going into that desert near ROUTE 111.There should be some POKéMON that are exclusively desert-dwellers. You might look around for those.As for me… I'm considering challenging NORMAN, the GYM LEADER of PETALBURG.Unlike you, PLAYER, your dad looks like he really is tough.See you around!
+goto LavaridgeTown_EventScript_RivalExit
+end
+= LavaridgeTown_EventScript_RivalExit
+closemessage
+removeobject LOCALID_LAVARIDGE_RIVAL
+addobject LOCALID_LAVARIDGE_RIVAL_ON_BIKE
+delay 30
+call_if_eq VAR_0x8008 9 LavaridgeTown_EventScript_RivalExit1
+call_if_ne VAR_0x8008 9 LavaridgeTown_EventScript_RivalExit2
+removeobject LOCALID_LAVARIDGE_RIVAL_ON_BIKE
+setvar VAR_LAVARIDGE_TOWN_STATE 2
+clearflag FLAG_HIDE_MAP_NAME_POPUP
+savebgm MUS_DUMMY
+fadedefaultbgm
+releaseall
+end
+= LavaridgeTown_EventScript_RivalExit2
+applymovement LOCALID_LAVARIDGE_RIVAL_ON_BIKE LavaridgeTown_Movement_RivalExit2
+waitmovement 0
+return
+= LavaridgeTown_EventScript_RivalExit1
+applymovement LOCALID_PLAYER LavaridgeTown_Movement_PlayerWatchRivalExit
+applymovement LOCALID_LAVARIDGE_RIVAL_ON_BIKE LavaridgeTown_Movement_RivalExit1
+waitmovement 0
+return
+= LavaridgeTown_EventScript_MayGiveGoGoggles
+msgbox	MAY: PLAYER! Long time no see!Oh? While I visited the hot springs, you got the LAVARIDGE GYM BADGE.You must have collected good POKéMON… No, I believe you raised some.I guess it would be okay for you to have this.
+giveitem ITEM_GO_GOGGLES
+setflag FLAG_RECEIVED_GO_GOGGLES
+msgbox	MAY: With those GO-GOGGLES, you'll have no trouble getting through the desert near ROUTE 111.But, wow, PLAYER… Challenging GYMS…You're trying hard because you don't want to lose to me, I bet!PLAYER, I think I should challenge your dad in PETALBURG GYM.See you again!
+goto LavaridgeTown_EventScript_RivalExit
+end
+= LavaridgeTown_EventScript_RivalApproachPlayer2
+applymovement LOCALID_LAVARIDGE_RIVAL LavaridgeTown_Movement_RivalApproachPlayer2
+waitmovement 0
+return
+= LavaridgeTown_EventScript_RivalApproachPlayer1
+applymovement LOCALID_LAVARIDGE_RIVAL LavaridgeTown_Movement_RivalApproachPlayer1
+waitmovement 0
+return
+= LavaridgeTown_EventScript_PlayBrendanMusic
+playbgm MUS_ENCOUNTER_BRENDAN TRUE
+return
+= LavaridgeTown_EventScript_PlayMayMusic
+playbgm MUS_ENCOUNTER_MAY TRUE
+return
+= LavaridgeTown_EventScript_RivalExitHerbShop
+opendoor 12 15
+waitdooranim
+addobject LOCALID_LAVARIDGE_RIVAL
+applymovement LOCALID_LAVARIDGE_RIVAL LavaridgeTown_Movement_RivalExitHerbShop
+waitmovement 0
+closedoor 12 15
+waitdooranim
+applymovement LOCALID_LAVARIDGE_RIVAL Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_LAVARIDGE_RIVAL Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_LAVARIDGE_RIVAL Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+return
+= LavaridgeTown_EventScript_RivalNoticePlayer
+applymovement LOCALID_LAVARIDGE_RIVAL Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_LAVARIDGE_RIVAL Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_LAVARIDGE_RIVAL Common_Movement_Delay48
+waitmovement 0
+return
+= LavaridgeTown_HiddenItem_4_5
+goto_if_set FLAG_HIDDEN_ITEM_LAVARIDGE_TOWN_ICE_HEAL LavaridgeTown_HiddenItem_4_5_Taken
+finditem ITEM_ICE_HEAL
+setflag FLAG_HIDDEN_ITEM_LAVARIDGE_TOWN_ICE_HEAL
+end
+= LavaridgeTown_HiddenItem_4_5_Taken
+end
+= LavaridgeTown_EventScript_HotSpringsTrigger
+specialvar VAR_RESULT GetPlayerFacingDirection
+goto_if_eq VAR_RESULT DIR_SOUTH LavaridgeTown_EventScript_EnteredHotSprings
+end
+= LavaridgeTown_EventScript_EnteredHotSprings
+incrementgamestat GAME_STAT_ENTERED_HOT_SPRINGS
+end
+= LavaridgeTown_EventScript_EggWoman
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_LAVARIDGE_EGG LavaridgeTown_EventScript_ReceivedEgg
+msgboxyesno	I have here an EGG.I'd hoped to hatch it by covering it in hot sand by the hot springs. But that doesn't seem to be enough…I've heard it would be best if it were kept together with POKéMON and carried about.You are a TRAINER, yes? And your POKéMON radiate vitality.So, what say you? Will you take this EGG to hatch?
+goto_if_eq VAR_RESULT NO LavaridgeTown_EventScript_DeclineEgg
+getpartysize
+goto_if_eq VAR_RESULT PARTY_SIZE LavaridgeTown_EventScript_NoRoomForEgg
+msgbox	Good! I hope you'll walk plenty with this here EGG!
+setflag FLAG_RECEIVED_LAVARIDGE_EGG
+playfanfare MUS_OBTAIN_ITEM
+msgbox	PLAYER received the EGG.
+waitfanfare
+giveegg SPECIES_WYNAUT
+release
+end
+= LavaridgeTown_EventScript_NoRoomForEgg
+msgbox	Oh? You've too many POKéMON. There's no room for this EGG…
+release
+end
+= LavaridgeTown_EventScript_DeclineEgg
+msgbox	As you wish, then…If you have a change of heart about hatching this EGG, I will be here.
+release
+end
+= LavaridgeTown_EventScript_ReceivedEgg
+msgbox	Every so often, an EGG will be found at the POKéMON DAY CARE.Or at least that's how the rumor goes.
+release
+end
+= LavaridgeTown_EventScript_HotSpringsOldWoman2
+msgbox	They're claiming that these hot springs are good for calming nervous tension, relieving aching muscles, solving romantic problems, and attracting money…
+end
+= LavaridgeTown_EventScript_HotSpringsOldWoman1
+msgbox	If people put POKéMON in hot springs, it might be seriously strange.Why, it might be an electric bath, or a bubble bath, or even a lava bath…
+end
+= LavaridgeTown_EventScript_Twin
+msgbox	I bathe in the hot springs every day.I want to become a beautiful and strong GYM LEADER like FLANNERY.
+end
+= LavaridgeTown_EventScript_OldMan
+msgbox	Being buried in this hot sand is… Sigh…So warm and heavenly…Eh? Gyaah! Ouch!A POKéMON nipped my backside!
+end
+= LavaridgeTown_EventScript_ExpertM
+msgbox	We draw as much hot water as we need, and yet the hot springs never run dry.Isn't it magical?These hot springs appear near active volcanoes. Veins of water under the ground are heated by magma to well up as hot springs.
+end
+= LavaridgeTown_EventScript_ExpertF
+msgbox	Oh, you like hot springs, do you?That's surprising for one as young as you.
+end
+signs
+14 16	POKéMON HERB SHOP “Bitter taste--better cure!”
+7 15	LAVARIDGE TOWN POKéMON GYM LEADER: FLANNERY “One with a fiery passion that burns!”
+13 8	LAVARIDGE TOWN“POKéMON CENTER HOT SPRINGS An excellent place for relaxing!”
+visit
+FLAG_VISITED_LAVARIDGE_TOWN
+mapsec
+5 3 1 1	LAVARIDGE TOWN
+music
+MUS_OLDALE

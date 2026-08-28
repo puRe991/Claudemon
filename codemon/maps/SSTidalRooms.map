@@ -1,0 +1,131 @@
+tileset general__inside_ship
+36 18
+16 7
+566,576,619,661,611,662,621,581,513,513,576,619,661,611,662,621,581,513,513,576,619,661,611,662,551,551,513,513,576,619,661,611,662,621,581,567
+574,584,627,669,663,670,629,589,513,513,584,627,669,663,670,629,589,513,513,584,627,669,663,670,559,559,513,513,559,559,669,663,670,629,589,575
+574,592,593,570,571,571,596,597,513,513,592,593,570,571,571,596,597,513,513,592,593,570,571,571,571,571,513,513,665,666,571,571,571,596,597,575
+574,600,601,573,568,568,604,605,513,513,600,601,573,568,568,604,605,513,513,600,601,573,568,568,568,568,513,513,673,674,568,568,568,604,605,575
+574,570,571,572,568,568,571,571,513,513,570,571,572,568,568,571,571,513,513,570,571,572,568,568,568,568,513,513,631,568,568,568,568,571,571,575
+574,573,568,568,568,568,568,568,513,513,631,568,568,598,599,568,568,513,513,573,568,608,598,599,609,568,513,513,573,568,568,568,568,568,609,575
+574,573,568,568,568,598,599,568,513,513,573,568,608,606,607,609,568,513,513,573,568,608,606,607,609,568,513,513,573,568,568,568,568,598,599,575
+574,573,568,568,608,606,607,610,513,513,573,568,568,568,568,568,568,513,513,573,568,568,568,610,568,568,513,513,573,568,568,568,608,606,607,575
+513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513
+566,576,619,620,630,620,621,581,513,513,620,630,620,620,579,580,581,513,513,576,620,630,620,630,621,581,513,513,576,619,630,551,630,621,581,567
+574,584,627,628,638,628,629,589,513,513,628,638,628,628,587,617,618,513,513,559,628,638,628,638,629,589,513,513,584,627,638,559,638,559,559,575
+574,592,593,570,571,571,596,597,513,513,570,571,571,571,571,625,626,513,513,665,666,571,571,571,596,597,513,513,592,593,570,571,571,571,636,575
+574,600,601,573,568,568,604,605,513,513,573,598,599,568,568,633,634,513,513,673,674,568,568,568,604,605,513,513,600,601,573,598,624,624,599,575
+574,570,571,572,568,568,571,636,513,513,573,606,607,609,568,571,565,513,513,573,568,568,568,568,571,571,513,513,616,571,572,606,632,632,607,575
+574,573,568,568,568,568,568,568,513,513,573,568,568,568,568,568,568,513,513,573,568,568,568,568,568,568,513,513,573,568,568,608,568,568,568,575
+574,573,568,568,568,568,568,568,513,513,573,568,568,568,568,568,568,513,513,573,568,568,568,568,568,568,513,513,573,568,568,568,568,568,568,575
+574,573,568,568,612,613,568,568,513,513,573,568,568,612,613,568,568,513,513,573,568,568,612,613,568,568,513,513,573,568,568,612,613,568,568,575
+513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,0,0,0,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,0,0,0,1,1,1
+1,1,1,0,0,0,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,0,0,0,1,1,1
+1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1
+1,0,0,0,0,0,0,0,1,1,1,0,0,1,1,0,0,1,1,0,0,0,1,1,0,0,1,1,0,0,0,0,0,0,0,1
+1,0,0,0,0,1,1,0,1,1,0,0,0,1,1,0,0,1,1,0,0,0,1,1,0,0,1,1,0,0,0,0,0,1,1,1
+1,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,1,0,0,1,1,0,0,0,0,0,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,0,0,0,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,0,0,0,0,0,1
+1,1,1,0,0,0,1,1,1,1,0,1,1,0,0,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,0,1,1,1,1,1
+1,0,0,0,0,0,0,0,1,1,0,1,1,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,1,0,0,1,1,1,1,1
+1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1
+1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1
+1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+4 16 SSTidalCorridor 0
+5 16 SSTidalCorridor 0
+13 16 SSTidalCorridor 1
+14 16 SSTidalCorridor 1
+22 16 SSTidalCorridor 2
+23 16 SSTidalCorridor 2
+31 16 SSTidalCorridor 3
+32 16 SSTidalCorridor 3
+4 1 SSTidalCorridor 4
+13 1 SSTidalCorridor 5
+22 1 SSTidalCorridor 6
+31 1 SSTidalCorridor 7
+npcs
+people_pokefan_m 4 7 E static 0 - 0
+people_gentleman 34 11 W static 0 - 3
+people_gentleman 21 5 E static 0 - 0
+people_man_4 5 14 S static 0 - 1
+people_woman_4 4 14 S static 0 - 1
+people_rich_boy 22 11 S static 0 - 3
+people_woman_2 15 6 W static 0 - 0
+people_maniac 28 5 N static FLAG_HIDE_SS_TIDAL_ROOMS_SNATCH_GIVER - 0
+dialogs
+0	I get so excited imagining what kinds of POKéMON I'll get to see in the next CONTEST. The anticipation of it thrills!
+1	Friends need not be human. For me, POKéMON are treasured friends!
+2	To be never ruffled in any situation is the GENTLEMAN's code of conduct.
+3	JED: It's the first time that our lovey- dovey power couldn't prevail! You must be an awesome TRAINER!
+4	LEA: I can't believe it! Our lovey-dovey power failed… You must be an awesome TRAINER!
+5	Perhaps I shall get Father to acquire a yacht for me. A yacht for me and POKéMON!
+6	A world cruise on a luxury liner has its charms, I must say…But, I will admit there is an appealing side to touring HOENN by ferry.
+7	Uh… Hi! I… I'm not acting suspicious! Uh… You can have this! For free!It… Honestly, I didn't SNATCH it from someone! I'd never do such a thing! It's clean! You can use it!
+objscripts
+0 SSTidalRooms_EventScript_Colton
+1 SSTidalRooms_EventScript_Micah
+2 SSTidalRooms_EventScript_Thomas
+3 SSTidalRooms_EventScript_Jed
+4 SSTidalRooms_EventScript_Lea
+5 SSTidalRooms_EventScript_Garret
+6 SSTidalRooms_EventScript_Naomi
+7 SSTidalRooms_EventScript_SnatchGiver
+scriptdefs
+= SSTidalRooms_EventScript_SnatchGiver
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_TM_SNATCH SSTidalRooms_EventScript_ExplainSnatch
+msgbox	Uh… Hi! I… I'm not acting suspicious! Uh… You can have this! For free!It… Honestly, I didn't SNATCH it from someone! I'd never do such a thing! It's clean! You can use it!
+giveitem ITEM_TM_SNATCH
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_RECEIVED_TM_SNATCH
+msgbox	SNATCH steals the beneficial effects of certain moves before they can be used by a foe or ally.
+release
+end
+= SSTidalRooms_EventScript_ExplainSnatch
+msgbox	SNATCH steals the beneficial effects of certain moves before they can be used by a foe or ally.
+release
+end
+= SSTidalRooms_EventScript_Naomi
+trainerbattle_single TRAINER_NAOMI SSTidalRooms_Text_NaomiIntro SSTidalRooms_Text_NaomiDefeat
+msgbox	A world cruise on a luxury liner has its charms, I must say…But, I will admit there is an appealing side to touring HOENN by ferry.
+end
+= SSTidalRooms_EventScript_Garret
+trainerbattle_single TRAINER_GARRET SSTidalRooms_Text_GarretIntro SSTidalRooms_Text_GarretDefeat
+msgbox	Perhaps I shall get Father to acquire a yacht for me. A yacht for me and POKéMON!
+end
+= SSTidalRooms_EventScript_Lea
+trainerbattle_double TRAINER_LEA_AND_JED SSTidalRooms_Text_LeaIntro SSTidalRooms_Text_LeaDefeat SSTidalRooms_Text_LeaNotEnoughMons
+msgbox	LEA: I can't believe it! Our lovey-dovey power failed… You must be an awesome TRAINER!
+end
+= SSTidalRooms_EventScript_Jed
+trainerbattle_double TRAINER_LEA_AND_JED SSTidalRooms_Text_JedIntro SSTidalRooms_Text_JedDefeat SSTidalRooms_Text_JedNotEnoughMons
+msgbox	JED: It's the first time that our lovey- dovey power couldn't prevail! You must be an awesome TRAINER!
+end
+= SSTidalRooms_EventScript_Thomas
+trainerbattle_single TRAINER_THOMAS SSTidalRooms_Text_ThomasIntro SSTidalRooms_Text_ThomasDefeat
+msgbox	To be never ruffled in any situation is the GENTLEMAN's code of conduct.
+end
+= SSTidalRooms_EventScript_Micah
+trainerbattle_single TRAINER_MICAH SSTidalRooms_Text_MicahIntro SSTidalRooms_Text_MicahDefeat
+msgbox	Friends need not be human. For me, POKéMON are treasured friends!
+end
+= SSTidalRooms_EventScript_Colton
+trainerbattle_single TRAINER_COLTON SSTidalRooms_Text_ColtonIntro SSTidalRooms_Text_ColtonDefeat
+msgbox	I get so excited imagining what kinds of POKéMON I'll get to see in the next CONTEST. The anticipation of it thrills!
+end
+signs
+15 11	There's a bed… Let's take a rest.
+15 12	There's a bed… Let's take a rest.
+mapsec
+0 0 1 1	
+music
+MUS_SAILING

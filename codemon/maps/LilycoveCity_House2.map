@@ -1,0 +1,49 @@
+tileset building__generic_building
+8 8
+4 4
+739,689,690,535,535,702,703,740
+747,697,698,543,543,710,711,748
+755,705,706,545,545,718,719,756
+601,590,591,553,553,553,553,553
+601,598,599,580,553,553,553,553
+545,553,553,553,553,553,553,553
+800,792,792,792,792,792,792,792
+803,795,528,529,795,795,795,795
+collision
+1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0
+0,1,1,0,0,0,0,0
+0,1,1,0,0,0,0,0
+0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0
+warps
+2 7 LilycoveCity 9
+3 7 LilycoveCity 9
+npcs
+people_fat_man 0 4 S static 0 - 0
+dialogs
+0	Huh? What? What's that?I'm not near awake yet… You can have this…
+objscripts
+0 LilycoveCity_House2_EventScript_FatMan
+scriptdefs
+= LilycoveCity_House2_EventScript_FatMan
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_TM_REST LilycoveCity_House2_EventScript_ReceivedRest
+msgbox	Huh? What? What's that?I'm not near awake yet… You can have this…
+giveitem ITEM_TM_REST
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_RECEIVED_TM_REST
+msgbox	Yawn…Sleep is essential for good health… Sleep and regain health…
+release
+end
+= LilycoveCity_House2_EventScript_ReceivedRest
+msgbox	Yawn…Sleep is essential for good health… Sleep and regain health…
+release
+end
+mapsec
+18 3 2 1	LILYCOVE CITY
+music
+MUS_LILYCOVE

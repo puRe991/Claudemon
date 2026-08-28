@@ -1,0 +1,114 @@
+tileset general__fallarbor
+20 20
+14 8
+798,798,798,798,798,798,798,798,798,798,798,798,798,798,789,633,633,633,633,633
+617,617,617,617,617,617,617,617,617,617,617,617,617,618,797,798,798,798,798,798
+617,617,617,617,617,617,617,617,617,617,617,617,618,634,617,617,617,617,617,618
+802,803,803,804,706,707,842,843,844,845,846,618,634,617,617,617,617,617,618,634
+645,646,646,647,714,715,850,851,852,853,854,634,617,672,673,674,675,618,634,617
+653,669,670,655,679,633,858,859,860,861,862,625,625,80,81,82,83,634,617,617
+661,677,678,663,633,547,866,867,868,869,870,547,633,88,89,90,91,625,625,625
+633,633,633,3,633,547,874,875,876,877,878,547,633,681,97,98,682,633,633,671
+671,633,633,633,633,633,3,744,745,746,633,633,633,633,744,746,633,633,633,633
+633,744,745,745,745,745,745,753,753,753,745,745,745,745,753,753,745,745,746,633
+633,760,761,761,761,761,761,761,761,761,761,753,753,761,761,761,761,761,762,633
+633,671,671,671,671,633,633,633,633,633,3,752,754,633,633,671,671,671,671,633
+633,633,633,633,633,633,633,633,633,633,633,752,754,633,699,680,680,700,633,633
+633,633,633,633,633,633,633,800,801,633,633,752,754,633,48,49,50,51,633,671
+633,805,806,807,633,637,638,808,809,633,633,752,754,633,56,57,58,59,518,519
+633,813,814,815,633,645,646,646,647,633,671,752,754,633,681,65,66,683,526,628
+633,821,822,823,633,653,669,670,655,633,633,752,753,745,745,746,633,671,518,620
+519,633,633,633,633,661,677,678,663,633,633,760,761,761,761,762,633,518,627,628
+619,519,518,519,679,633,633,633,633,633,633,633,633,633,518,519,518,620,619,620
+620,619,620,619,519,518,519,518,519,518,519,518,519,518,627,628,627,628,627,628
+collision
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,0,0,1,1,1,1,1,0,0,1,1,1,1,1,1,1
+1,1,1,1,0,1,1,1,1,1,1,1,0,1,1,1,1,0,0,0
+0,0,0,1,0,1,1,1,1,1,1,1,0,1,1,1,1,0,0,0
+0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0
+0,0,0,0,0,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1
+0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1
+0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1
+1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1
+connections
+left 0 Route114
+right 0 Route113
+warps
+15 15 FallarborTown_Mart 0
+8 7 FallarborTown_BattleTentLobby 0
+14 7 FallarborTown_PokemonCenter_1F 0
+6 17 FallarborTown_CozmosHouse 0
+1 6 FallarborTown_MoveRelearnersHouse 0
+npcs
+people_girl_1 8 11 S static 0 - 0
+people_expert_m 11 9 S wander 0 - 0
+people_gentleman 11 15 S wander 0 - 0
+pokemon_azurill 8 12 S static FLAG_HIDE_FALLARBOR_AZURILL - 0
+dialogs
+0	See! Take a look! This is my precious AZURILL!It's slick and smooth and plushy, too!
+1	Something's happening, and I don't like it!I've seen shady characters wandering in and out of PROF. COZMO's home…
+2	Have you already challenged FLANNERY, the LEADER of LAVARIDGE GYM?The girl's grandfather was famous. He was one of the ELITE FOUR in the POKéMON LEAGUE at one point.It wouldn't surprise me to see FLANNERY become a great TRAINER in her own right.
+3	AZURILL: Rooreelooo.
+objscripts
+0 FallarborTown_EventScript_Girl
+1 FallarborTown_EventScript_ExpertM
+2 FallarborTown_EventScript_Gentleman
+3 FallarborTown_EventScript_Azurill
+triggers
+2 15 0 0 FallarborTown_HiddenItem_2_15
+scriptdefs
+= FallarborTown_HiddenItem_2_15
+goto_if_set FLAG_HIDDEN_ITEM_FALLARBOR_TOWN_NUGGET FallarborTown_HiddenItem_2_15_Taken
+finditem ITEM_NUGGET
+setflag FLAG_HIDDEN_ITEM_FALLARBOR_TOWN_NUGGET
+end
+= FallarborTown_HiddenItem_2_15_Taken
+end
+= FallarborTown_EventScript_Azurill
+lock
+faceplayer
+waitse
+playmoncry SPECIES_AZURILL CRY_MODE_NORMAL
+msgbox	AZURILL: Rooreelooo.
+waitmoncry
+release
+end
+= FallarborTown_EventScript_Gentleman
+msgbox	Have you already challenged FLANNERY, the LEADER of LAVARIDGE GYM?The girl's grandfather was famous. He was one of the ELITE FOUR in the POKéMON LEAGUE at one point.It wouldn't surprise me to see FLANNERY become a great TRAINER in her own right.
+end
+= FallarborTown_EventScript_ExpertM
+lock
+faceplayer
+goto_if_set FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY FallarborTown_EventScript_ExpertMNormal
+msgbox	Something's happening, and I don't like it!I've seen shady characters wandering in and out of PROF. COZMO's home…
+release
+end
+= FallarborTown_EventScript_ExpertMNormal
+msgbox	This region's been known for meteors since the olden days.They say METEOR FALLS was gouged out by a falling meteorite long ago.
+release
+end
+= FallarborTown_EventScript_Girl
+msgbox	See! Take a look! This is my precious AZURILL!It's slick and smooth and plushy, too!
+end
+signs
+6 8	BATTLE TENT FALLARBOR SITE “May the Greatest Teams Gather!”
+10 11	FALLARBOR TOWN “A farm community with small gardens.”
+3 7	MOVE TUTOR'S HOUSE “New moves taught to POKéMON.”
+visit
+FLAG_VISITED_FALLARBOR_TOWN
+mapsec
+3 0 1 1	FALLARBOR TOWN
+music
+MUS_FALLARBOR

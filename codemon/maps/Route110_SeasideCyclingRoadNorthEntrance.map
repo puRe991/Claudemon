@@ -1,0 +1,71 @@
+tileset building__shop
+15 6
+6 2
+648,648,648,648,648,648,653,648,651,648,648,648,648,648,648
+656,656,656,656,656,668,661,656,659,656,668,656,656,656,656
+632,624,624,624,624,680,665,664,665,665,681,632,624,624,624
+640,616,616,616,616,688,673,672,673,673,689,640,616,616,616
+604,616,616,616,616,624,601,602,601,602,624,633,616,616,620
+612,534,535,616,616,616,609,610,609,610,616,616,534,535,628
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,1,0,0,0,0,1,0,0,0,0
+0,0,0,0,0,1,1,1,1,1,1,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,0,0,0,0,0,1,1,1,1,0,0,0,0,1
+warps
+1 5 Route110 2
+2 5 Route110 2
+12 5 Route110 3
+13 5 Route110 3
+npcs
+people_mart_employee 7 2 S static 0 - 0
+dialogs
+0	On CYCLING ROAD, you can go all out and cycle as fast as you'd like.It feels great to go that fast, but try not to crash into anyone!
+objscripts
+0 Route110_SeasideCyclingRoadNorthEntrance_EventScript_Clerk
+triggers
+7 4 VAR_TEMP_1 0 Route110_SeasideCyclingRoadNorthEntrance_EventScript_BikeCheck
+5 4 VAR_TEMP_1 1 Route110_SeasideCyclingRoadNorthEntrance_EventScript_ClearCyclingRoad
+movements
+Route110_SeasideCyclingRoadNorthEntrance_Movement_PushPlayerBackFromCounter	left,end
+scriptdefs
+= Route110_SeasideCyclingRoadNorthEntrance_EventScript_ClearCyclingRoad
+lockall
+setvar VAR_CYCLING_CHALLENGE_STATE 0
+clearflag FLAG_SYS_CYCLING_ROAD
+setvar VAR_TEMP_1 0
+releaseall
+end
+= Route110_SeasideCyclingRoadNorthEntrance_EventScript_BikeCheck
+lockall
+specialvar VAR_RESULT GetPlayerAvatarBike
+call_if_eq VAR_RESULT 2 Route110_SeasideCyclingRoadNorthEntrance_EventScript_OnMachBike
+goto_if_eq VAR_RESULT 0 Route110_SeasideCyclingRoadNorthEntrance_EventScript_NoBike
+setflag FLAG_SYS_CYCLING_ROAD
+setvar VAR_TEMP_1 1
+releaseall
+end
+= Route110_SeasideCyclingRoadNorthEntrance_EventScript_NoBike
+msgbox	Sorry, you can't walk on CYCLING ROAD. It's too dangerous.Please come back with a BIKE.
+closemessage
+applymovement LOCALID_PLAYER Route110_SeasideCyclingRoadNorthEntrance_Movement_PushPlayerBackFromCounter
+waitmovement 0
+releaseall
+end
+= Route110_SeasideCyclingRoadNorthEntrance_EventScript_OnMachBike
+setvar VAR_CYCLING_CHALLENGE_STATE 1
+return
+= Route110_SeasideCyclingRoadNorthEntrance_EventScript_Clerk
+lock
+faceplayer
+msgbox	On CYCLING ROAD, you can go all out and cycle as fast as you'd like.It feels great to go that fast, but try not to crash into anyone!
+release
+end
+mapsec
+8 7 1 3	ROUTE 110
+music
+MUS_SLATEPORT
+counters
+672,673,680,681

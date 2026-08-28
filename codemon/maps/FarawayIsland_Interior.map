@@ -1,0 +1,146 @@
+tileset general__fortree
+29 26
+14 13
+198,198,198,200,201,202,14,14,21,200,201,201,202,1,4,21,21,14,14,14,1,200,202,198,21,21,21,198,198
+198,198,22,216,209,210,22,198,21,216,217,217,209,201,202,520,21,22,198,198,200,209,210,198,21,520,21,198,198
+198,22,1,21,216,218,14,198,520,14,4,14,216,217,218,4,520,14,198,198,216,217,218,198,21,14,520,198,198
+198,200,202,21,4,21,198,22,14,198,14,198,14,14,14,14,14,198,198,198,14,4,14,198,21,22,14,198,198
+198,216,218,520,21,520,198,14,22,22,22,22,22,22,22,22,22,22,22,22,198,14,198,198,21,21,22,22,198
+198,21,14,224,520,14,198,22,1,1,4,1,4,4,4,4,1,1,1,1,22,198,198,22,21,21,21,21,198
+198,520,198,1,14,22,22,1,1,1,1,4,1,1,1,4,1,1,1,1,4,198,22,21,21,21,21,21,198
+198,14,198,14,198,4,1,1,21,21,21,21,21,21,21,21,21,21,21,21,1,198,21,21,21,21,21,21,198
+198,22,22,198,198,1,4,21,21,21,21,21,21,21,520,21,21,21,520,21,14,22,21,21,21,520,520,21,198
+198,200,202,22,198,1,1,21,21,520,21,21,21,21,224,21,21,21,224,21,198,4,21,21,520,200,202,21,198
+198,216,218,21,198,14,1,21,21,224,21,21,21,21,21,21,21,21,21,21,22,14,21,21,200,209,218,21,198
+198,21,1,520,198,198,1,21,21,21,21,21,21,21,21,21,21,21,21,21,1,198,21,520,208,218,21,21,198
+198,520,200,202,22,198,1,21,21,21,21,21,21,520,21,21,21,21,21,520,14,198,21,200,210,4,21,21,198
+198,200,209,209,202,22,14,520,21,21,21,21,21,224,21,21,21,21,21,1,198,198,21,216,209,202,520,21,198
+198,208,210,216,209,202,22,14,520,520,21,21,21,21,21,21,21,21,520,14,198,198,21,1,216,209,202,21,198
+198,216,218,1,216,209,202,198,14,1,520,520,21,21,21,520,520,520,1,198,198,22,21,21,21,216,218,21,198
+198,1,4,224,4,208,210,198,198,1,1,1,520,520,520,1,4,1,14,198,198,21,520,520,21,21,21,520,198
+198,200,202,14,224,216,218,22,198,14,1,1,1,1,1,1,1,14,198,198,198,21,200,202,21,21,520,14,198
+198,208,210,198,4,21,21,21,198,198,15,15,464,466,15,14,15,198,22,22,22,21,216,218,21,21,14,198,198
+198,216,218,198,14,21,21,520,198,198,198,198,782,783,198,198,198,198,200,202,21,21,21,21,21,520,198,198,198
+198,14,14,198,22,21,520,14,198,198,198,198,790,791,198,198,198,198,216,218,520,21,21,21,520,15,198,198,198
+198,198,198,22,21,21,14,198,198,198,198,198,198,198,198,198,198,198,14,14,15,520,21,520,14,198,198,198,198
+198,198,198,21,21,520,198,198,198,198,198,198,198,198,198,198,198,198,198,198,198,14,520,14,198,198,198,198,198
+198,198,198,21,520,14,198,198,198,198,198,198,198,198,198,198,198,198,198,198,198,198,14,198,198,198,198,198,198
+198,198,198,520,198,198,198,198,198,198,198,198,198,198,198,198,198,198,198,198,198,198,198,198,198,198,198,198,198
+198,198,198,198,198,198,198,198,198,198,198,198,198,198,198,198,198,198,198,198,198,198,198,198,198,198,198,198,198
+collision
+1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1
+1,1,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,1,0,0,0,1,1
+1,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,0,0,0,1,1
+1,0,0,0,0,0,1,1,0,1,0,1,0,0,0,0,0,1,1,1,0,0,0,1,0,1,0,1,1
+1,0,0,0,0,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,0,1,1,1
+1,0,0,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,1
+1,0,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,1
+1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1
+1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1
+1,0,0,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,1,0,0,0,0,0,0,0,1
+1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1
+1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1
+1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1
+1,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1
+1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1
+1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1
+1,0,0,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1
+1,0,0,0,1,0,0,1,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1
+1,0,0,1,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,1,1
+1,0,0,1,0,0,0,0,1,1,1,1,0,0,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1
+1,0,0,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1
+1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1
+1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1
+1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1
+1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+12 19 FarawayIsland_Entrance 0
+13 19 FarawayIsland_Entrance 1
+npcs
+pokemon_mew 13 17 S static FLAG_HIDE_MEW LOCALID_FARAWAY_ISLAND_MEW 0
+objscripts
+0 FarawayIsland_Interior_EventScript_Mew
+onload
+VAR_TEMP_1 0 FarawayIsland_Interior_EventScript_FindMew
+movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
+FarawayIsland_Interior_Movement_MewAppear	delay,end
+FarawayIsland_Interior_Movement_MewFloatUpEast	delay,up,up,delay,delay,delay,end
+FarawayIsland_Interior_Movement_MewFloatUpNorth	delay,up,up,delay,delay,delay,end
+FarawayIsland_Interior_Movement_MewFloatUpSouth	delay,up,up,delay,delay,delay,end
+FarawayIsland_Interior_Movement_MewFloatUpWest	delay,up,up,delay,delay,delay,end
+FarawayIsland_Interior_Movement_MewMoveAndHide	up,up,up,delay,delay,end
+scriptdefs
+= FarawayIsland_Interior_EventScript_FindMew
+lockall
+playse SE_PIN
+applymovement LOCALID_FARAWAY_ISLAND_MEW Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_FARAWAY_ISLAND_MEW Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_FARAWAY_ISLAND_MEW FarawayIsland_Interior_Movement_MewMoveAndHide
+waitmovement 0
+copyobjectxytoperm LOCALID_FARAWAY_ISLAND_MEW
+setvar VAR_TEMP_1 1
+releaseall
+end
+= FarawayIsland_Interior_EventScript_Mew
+lock
+faceplayer
+applymovement LOCALID_FARAWAY_ISLAND_MEW FarawayIsland_Interior_Movement_MewAppear
+waitmovement 0
+setvar VAR_0x8004 0
+special SetMewAboveGrass
+msgbox	Myuu…
+waitse
+playmoncry SPECIES_MEW CRY_MODE_ENCOUNTER
+call_if_eq VAR_FACING DIR_NORTH FarawayIsland_Interior_EventScript_FoundMewNorth
+call_if_eq VAR_FACING DIR_SOUTH FarawayIsland_Interior_EventScript_FoundMewSouth
+call_if_eq VAR_FACING DIR_WEST FarawayIsland_Interior_EventScript_FoundMewWest
+call_if_eq VAR_FACING DIR_EAST FarawayIsland_Interior_EventScript_FoundMewEast
+special DestroyMewEmergingGrassSprite
+delay 40
+waitmoncry
+seteventmon SPECIES_MEW 30
+setflag FLAG_SYS_CTRL_OBJ_DELETE
+special BattleSetup_StartLegendaryBattle
+clearflag FLAG_SYS_CTRL_OBJ_DELETE
+specialvar VAR_RESULT GetBattleOutcome
+goto_if_eq VAR_RESULT B_OUTCOME_WON FarawayIsland_Interior_EventScript_MewDefeated
+goto_if_eq VAR_RESULT B_OUTCOME_RAN FarawayIsland_Interior_EventScript_PlayerOrMewRan
+goto_if_eq VAR_RESULT B_OUTCOME_PLAYER_TELEPORTED FarawayIsland_Interior_EventScript_PlayerOrMewRan
+goto_if_eq VAR_RESULT B_OUTCOME_MON_TELEPORTED FarawayIsland_Interior_EventScript_PlayerOrMewRan
+setflag FLAG_CAUGHT_MEW
+release
+end
+= FarawayIsland_Interior_EventScript_PlayerOrMewRan
+setvar VAR_0x8004 SPECIES_MEW
+goto Common_EventScript_LegendaryFlewAway
+end
+= FarawayIsland_Interior_EventScript_MewDefeated
+setflag FLAG_DEFEATED_MEW
+setvar VAR_0x8004 SPECIES_MEW
+goto Common_EventScript_LegendaryFlewAway
+end
+= FarawayIsland_Interior_EventScript_FoundMewEast
+applymovement LOCALID_FARAWAY_ISLAND_MEW FarawayIsland_Interior_Movement_MewFloatUpEast
+waitmovement 0
+return
+= FarawayIsland_Interior_EventScript_FoundMewWest
+applymovement LOCALID_FARAWAY_ISLAND_MEW FarawayIsland_Interior_Movement_MewFloatUpWest
+waitmovement 0
+return
+= FarawayIsland_Interior_EventScript_FoundMewSouth
+applymovement LOCALID_FARAWAY_ISLAND_MEW FarawayIsland_Interior_Movement_MewFloatUpSouth
+waitmovement 0
+return
+= FarawayIsland_Interior_EventScript_FoundMewNorth
+applymovement LOCALID_FARAWAY_ISLAND_MEW FarawayIsland_Interior_Movement_MewFloatUpNorth
+waitmovement 0
+return
+mapsec
+0 0 1 1	FARAWAY ISLAND
+music
+MUS_ABANDONED_SHIP

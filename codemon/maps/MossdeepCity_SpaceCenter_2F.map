@@ -1,0 +1,302 @@
+tileset general__facility
+16 10
+8 5
+529,537,537,760,760,760,760,760,760,760,760,760,707,708,709,537
+522,696,697,768,768,768,768,768,768,768,768,768,715,716,717,697
+521,886,886,870,870,870,870,870,870,870,870,870,878,870,879,886
+528,753,865,752,752,865,752,752,865,752,752,865,752,752,752,752
+544,854,883,883,883,883,883,883,883,883,883,883,884,752,752,752
+882,870,870,870,870,870,870,870,870,870,870,870,870,752,752,752
+753,752,867,868,752,867,868,752,866,868,752,867,868,752,752,752
+753,752,875,876,752,875,876,752,874,876,752,875,876,752,752,752
+753,752,865,752,752,865,752,752,865,752,752,865,752,752,752,752
+753,752,752,752,752,752,752,752,752,752,752,752,752,752,752,752
+collision
+1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1
+1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,1,1,0,1,1,0,1,1,0,1,1,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+13 1 MossdeepCity_SpaceCenter_1F 2
+npcs
+people_rich_boy 6 2 N static 0 LOCALID_SPACE_CENTER_2F_RICH_BOY 0
+people_gentleman 11 8 N static 0 LOCALID_SPACE_CENTER_2F_GENTLEMAN 0
+people_scientist_1 5 6 S wander 0 LOCALID_SPACE_CENTER_2F_SCIENTIST 0
+people_steven 1 8 S static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_STEVEN LOCALID_SPACE_CENTER_2F_STEVEN 0
+people_team_magma_magma_member_m 12 2 E static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA LOCALID_SPACE_CENTER_GRUNT_6 0
+people_team_magma_magma_member_m 13 3 N static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA LOCALID_SPACE_CENTER_GRUNT_5 0
+people_team_magma_magma_member_m 14 2 W static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA LOCALID_SPACE_CENTER_GRUNT_7 0
+people_team_magma_magma_member_m 0 8 E static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA LOCALID_SPACE_CENTER_TABITHA 0
+people_team_magma_maxie 1 9 N static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA LOCALID_SPACE_CENTER_MAXIE 0
+dialogs
+3	STEVEN: TEAM MAGMA…What's the point of stealing rocket fuel?
+4	Three of us here, and look at the sorry mess we got ourselves into.
+5	Are we being useful to our leader at all?
+6	We three losing like this… We look worse than usual by triple!
+7	Hehehe!We come all the way here to get some fuel, and we're interfered with again!If you're going to mess with us too, we'll take care of you at the same time!
+8	MAXIE: Clear out of the way! Don't you dare interfere!
+objscripts
+0 MossdeepCity_SpaceCenter_2F_EventScript_RichBoy
+1 MossdeepCity_SpaceCenter_2F_EventScript_Gentleman
+2 MossdeepCity_SpaceCenter_2F_EventScript_Scientist
+3 MossdeepCity_SpaceCenter_2F_EventScript_Steven
+4 MossdeepCity_SpaceCenter_2F_EventScript_Grunt6
+5 MossdeepCity_SpaceCenter_2F_EventScript_Grunt5
+6 MossdeepCity_SpaceCenter_2F_EventScript_Grunt7
+7 MossdeepCity_SpaceCenter_2F_EventScript_Tabitha
+8 MossdeepCity_SpaceCenter_2F_EventScript_Maxie
+onload
+VAR_MOSSDEEP_SPACE_CENTER_STATE 1 MossdeepCity_SpaceCenter_2F_EventScript_ThreeMagmaGrunts
+movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
+Common_Movement_FaceOriginalDirection	face_down,end
+Common_Movement_FacePlayer	face_down,end
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
+MossdeepCity_SpaceCenter_2F_Movement_Grunt5Defeated	delay,down,delay,end
+MossdeepCity_SpaceCenter_2F_Movement_Grunt6Defeated	delay,left,delay,end
+MossdeepCity_SpaceCenter_2F_Movement_Grunt7Defeated	delay,right,delay,end
+MossdeepCity_SpaceCenter_2F_Movement_PlayerExit	up,end
+MossdeepCity_SpaceCenter_2F_Movement_StevenFight	delay,up,up,delay,delay,delay,down,down,end
+MossdeepCity_SpaceCenter_2F_Movement_StevenFightSouth	face_left,delay,right,right,delay,delay,delay,left,left,face_down,end
+scriptdefs
+= MossdeepCity_SpaceCenter_2F_EventScript_ThreeMagmaGrunts
+playse SE_PIN
+applymovement LOCALID_PLAYER Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_Delay48
+waitmovement 0
+msgboxyesno	What's wrong with you?You're outnumbered three to one, but you still want to take us on?
+goto_if_eq VAR_RESULT YES MossdeepCity_SpaceCenter_2F_EventScript_BattleThreeMagmaGrunts
+msgbox	Good answer! That's what a smart person'll do!
+closemessage
+applymovement LOCALID_PLAYER MossdeepCity_SpaceCenter_2F_Movement_PlayerExit
+waitmovement 0
+warp MossdeepCity_SpaceCenter_1F 13 1
+waitstate
+releaseall
+end
+= MossdeepCity_SpaceCenter_2F_EventScript_BattleThreeMagmaGrunts
+msgbox	A reckless go-getter, are you? Okay, I'll go first!
+trainerbattle_no_intro TRAINER_GRUNT_SPACE_CENTER_5 MossdeepCity_SpaceCenter_2F_Text_Grunt5Defeat
+applymovement LOCALID_SPACE_CENTER_GRUNT_5 MossdeepCity_SpaceCenter_2F_Movement_Grunt5Defeated
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+msgbox	It's too soon to be relieved! I'm up next!
+trainerbattle_no_intro TRAINER_GRUNT_SPACE_CENTER_6 MossdeepCity_SpaceCenter_2F_Text_Grunt6Defeat
+applymovement LOCALID_SPACE_CENTER_GRUNT_6 MossdeepCity_SpaceCenter_2F_Movement_Grunt6Defeated
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+msgbox	I bet you want to take a break. But I'm not about to let you do that!
+trainerbattle_no_intro TRAINER_GRUNT_SPACE_CENTER_7 MossdeepCity_SpaceCenter_2F_Text_Grunt7Defeat
+applymovement LOCALID_SPACE_CENTER_GRUNT_7 MossdeepCity_SpaceCenter_2F_Movement_Grunt7Defeated
+waitmovement 0
+setvar VAR_MOSSDEEP_SPACE_CENTER_STATE 2
+copyobjectxytoperm LOCALID_SPACE_CENTER_GRUNT_6
+copyobjectxytoperm LOCALID_SPACE_CENTER_GRUNT_7
+copyobjectxytoperm LOCALID_SPACE_CENTER_GRUNT_5
+releaseall
+end
+= MossdeepCity_SpaceCenter_2F_EventScript_Maxie
+lockall
+msgbox	MAXIE: Clear out of the way! Don't you dare interfere!
+releaseall
+end
+= MossdeepCity_SpaceCenter_2F_EventScript_Tabitha
+lock
+faceplayer
+msgbox	Hehehe!We come all the way here to get some fuel, and we're interfered with again!If you're going to mess with us too, we'll take care of you at the same time!
+applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= MossdeepCity_SpaceCenter_2F_EventScript_Grunt7
+msgbox	We three losing like this… We look worse than usual by triple!
+end
+= MossdeepCity_SpaceCenter_2F_EventScript_Grunt5
+msgbox	Are we being useful to our leader at all?
+end
+= MossdeepCity_SpaceCenter_2F_EventScript_Grunt6
+msgbox	Three of us here, and look at the sorry mess we got ourselves into.
+end
+= MossdeepCity_SpaceCenter_2F_EventScript_Steven
+lockall
+goto_if_set FLAG_INTERACTED_WITH_STEVEN_SPACE_CENTER MossdeepCity_SpaceCenter_2F_EventScript_ReadyForBattlePrompt
+setflag FLAG_INTERACTED_WITH_STEVEN_SPACE_CENTER
+msgbox	STEVEN: TEAM MAGMA…What's the point of stealing rocket fuel?
+msgbox	MAXIE: Fufufu… Since you're so curious, you deserve an explanation.We're going to jettison the entire load into MT. CHIMNEY!With GROUDON gone, we have no need for that slag heap of a mountain!So we'll use the fuel's power to make the volcano erupt!It will be savage!
+closemessage
+delay 30
+playse SE_NOT_EFFECTIVE
+switch VAR_FACING
+case DIR_SOUTH MossdeepCity_SpaceCenter_2F_EventScript_StevenFightMovementSouth
+applymovement LOCALID_SPACE_CENTER_2F_STEVEN MossdeepCity_SpaceCenter_2F_Movement_StevenFight
+waitmovement 0
+releaseall
+end
+= MossdeepCity_SpaceCenter_2F_EventScript_StevenFightMovementSouth
+applymovement LOCALID_SPACE_CENTER_2F_STEVEN MossdeepCity_SpaceCenter_2F_Movement_StevenFightSouth
+waitmovement 0
+releaseall
+end
+= MossdeepCity_SpaceCenter_2F_EventScript_ReadyForBattlePrompt
+applymovement VAR_LAST_TALKED Common_Movement_FacePlayer
+waitmovement 0
+msgboxyesno	STEVEN: PLAYER! You're going to help me?Let's go into battle together! Are you ready?
+goto_if_eq VAR_RESULT YES MossdeepCity_SpaceCenter_2F_EventScript_ChoosePartyForMultiBattle
+msgbox	STEVEN: Then, hurry! Get ready quickly!
+closemessage
+applymovement VAR_LAST_TALKED Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+releaseall
+end
+= MossdeepCity_SpaceCenter_2F_EventScript_ChoosePartyForMultiBattle
+applymovement VAR_LAST_TALKED Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+special SavePlayerParty
+fadescreen FADE_TO_BLACK
+special ChooseHalfPartyForBattle
+goto_if_ne VAR_RESULT 0 MossdeepCity_SpaceCenter_2F_EventScript_DoStevenMultiBattle
+special LoadPlayerParty
+goto MossdeepCity_SpaceCenter_2F_EventScript_ReadyForBattlePrompt
+= MossdeepCity_SpaceCenter_2F_EventScript_DoStevenMultiBattle
+special ReducePlayerPartyToSelectedMons
+frontier_set FRONTIER_DATA_SELECTED_MON_ORDER
+setvar VAR_0x8004 SPECIAL_BATTLE_STEVEN
+setvar VAR_0x8005 0
+special DoSpecialTrainerBattle
+frontier_saveparty
+special LoadPlayerParty
+switch VAR_RESULT
+case 1 MossdeepCity_SpaceCenter_2F_EventScript_DefeatedMaxieTabitha
+fadescreen FADE_TO_BLACK
+special SetCB2WhiteOut
+goto MossdeepCity_SpaceCenter_2F_EventScript_DefeatedMaxieTabitha
+= MossdeepCity_SpaceCenter_2F_EventScript_DefeatedMaxieTabitha
+msgbox	MAXIE: We failed to make the volcano erupt…We failed to control GROUDON after we had awoken it…Is our goal to expand the land misguided?… … … … … … … … … … … …If… If we, TEAM MAGMA, are wrong… … … … … … …Then might TEAM AQUA's goal to expand the sea also be equally misguided?
+closemessage
+delay 20
+applymovement LOCALID_SPACE_CENTER_MAXIE Common_Movement_WalkInPlaceFasterLeft
+applymovement LOCALID_SPACE_CENTER_TABITHA Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+delay 60
+applymovement LOCALID_SPACE_CENTER_MAXIE Common_Movement_WalkInPlaceFasterUp
+applymovement LOCALID_SPACE_CENTER_TABITHA Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+delay 20
+msgbox	MAXIE: All right… We will give up on the fuel…There appear to be more important matters that I must examine…
+closemessage
+setvar VAR_MOSSDEEP_CITY_STATE 3
+fadedefaultbgm
+fadescreen FADE_TO_BLACK
+setvar VAR_MOSSDEEP_SPACE_CENTER_STATE 3
+setflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA
+setflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA
+setflag FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA
+removeobject LOCALID_SPACE_CENTER_GRUNT_6
+removeobject LOCALID_SPACE_CENTER_GRUNT_7
+removeobject LOCALID_SPACE_CENTER_GRUNT_5
+removeobject LOCALID_SPACE_CENTER_TABITHA
+removeobject LOCALID_SPACE_CENTER_MAXIE
+setobjectxy LOCALID_SPACE_CENTER_2F_SCIENTIST 5 6
+turnobject LOCALID_SPACE_CENTER_2F_SCIENTIST DIR_SOUTH
+setobjectxy LOCALID_SPACE_CENTER_2F_GENTLEMAN 11 8
+turnobject LOCALID_SPACE_CENTER_2F_GENTLEMAN DIR_NORTH
+setobjectxy LOCALID_SPACE_CENTER_2F_RICH_BOY 6 2
+turnobject LOCALID_SPACE_CENTER_2F_RICH_BOY DIR_NORTH
+call MossdeepCity_SpaceCenter_2F_EventScript_StevenFacePlayer
+fadescreen FADE_FROM_BLACK
+msgbox	STEVEN: Whew, that was too tense. PLAYER, thank you.I have something to give you as thanks for your support.Please come see me at home after this.Oh, yes, I don't live in RUSTBORO CITY. I live right here on this island.
+closemessage
+fadescreen FADE_TO_BLACK
+setflag FLAG_DEFEATED_MAGMA_SPACE_CENTER
+setflag FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_STEVEN
+removeobject LOCALID_SPACE_CENTER_2F_STEVEN
+setflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_MAGMA_NOTE
+clearflag FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_STEVEN
+setvar VAR_STEVENS_HOUSE_STATE 1
+setflag FLAG_HIDE_MOSSDEEP_CITY_SCOTT
+removeobject LOCALID_SPACE_CENTER_2F_SCIENTIST
+setobjectxyperm LOCALID_SPACE_CENTER_2F_SCIENTIST 5 6
+setobjectmovementtype LOCALID_SPACE_CENTER_2F_SCIENTIST MOVEMENT_TYPE_WANDER_AROUND
+addobject LOCALID_SPACE_CENTER_2F_SCIENTIST
+fadescreen FADE_FROM_BLACK
+end
+= MossdeepCity_SpaceCenter_2F_EventScript_StevenFacePlayer
+switch VAR_FACING
+case DIR_SOUTH MossdeepCity_SpaceCenter_2F_EventScript_StevenFacePlayerSouth
+case DIR_WEST MossdeepCity_SpaceCenter_2F_EventScript_StevenFacePlayerWest
+return
+= MossdeepCity_SpaceCenter_2F_EventScript_StevenFacePlayerWest
+turnobject LOCALID_SPACE_CENTER_2F_STEVEN DIR_EAST
+return
+= MossdeepCity_SpaceCenter_2F_EventScript_StevenFacePlayerSouth
+turnobject LOCALID_SPACE_CENTER_2F_STEVEN DIR_NORTH
+return
+= MossdeepCity_SpaceCenter_2F_EventScript_Scientist
+lock
+faceplayer
+goto_if_set FLAG_SYS_GAME_CLEAR MossdeepCity_SpaceCenter_2F_EventScript_ScientistNormal
+goto_if_eq VAR_MOSSDEEP_CITY_STATE 2 MossdeepCity_SpaceCenter_2F_EventScript_ScientistMagma
+goto_if_lt VAR_MOSSDEEP_CITY_STATE 2 MossdeepCity_SpaceCenter_2F_EventScript_ScientistNormal
+goto MossdeepCity_SpaceCenter_2F_EventScript_ScientistMagma
+end
+= MossdeepCity_SpaceCenter_2F_EventScript_ScientistMagma
+msgbox	Why would TEAM MAGMA want to steal our rocket fuel in the first place?
+release
+end
+= MossdeepCity_SpaceCenter_2F_EventScript_ScientistNormal
+msgbox	MOSSDEEP has mainly sunny weather, and its winds are stable.It's an ideal location for launching rockets.
+release
+end
+= MossdeepCity_SpaceCenter_2F_EventScript_Gentleman
+lock
+faceplayer
+goto_if_set FLAG_SYS_GAME_CLEAR MossdeepCity_SpaceCenter_2F_EventScript_GentlemanNormal
+goto_if_eq VAR_MOSSDEEP_CITY_STATE 2 MossdeepCity_SpaceCenter_2F_EventScript_GentlemanMagma
+goto_if_lt VAR_MOSSDEEP_CITY_STATE 2 MossdeepCity_SpaceCenter_2F_EventScript_GentlemanNormal
+goto MossdeepCity_SpaceCenter_2F_EventScript_GentlemanMagma
+end
+= MossdeepCity_SpaceCenter_2F_EventScript_GentlemanMagma
+msgbox	If TEAM MAGMA takes the rocket fuel, I won't be able to go to space!They can't be allowed to get away with such an outrage!
+release
+end
+= MossdeepCity_SpaceCenter_2F_EventScript_GentlemanNormal
+msgbox	If only I was a little younger, I would have liked being an astronaut…No… It's not too late! I can and will try!
+release
+end
+= MossdeepCity_SpaceCenter_2F_EventScript_RichBoy
+lock
+faceplayer
+goto_if_set FLAG_SYS_GAME_CLEAR MossdeepCity_SpaceCenter_2F_EventScript_RichBoyNormal
+goto_if_eq VAR_MOSSDEEP_CITY_STATE 2 MossdeepCity_SpaceCenter_2F_EventScript_RichBoyMagma
+goto_if_lt VAR_MOSSDEEP_CITY_STATE 2 MossdeepCity_SpaceCenter_2F_EventScript_RichBoyNormal
+goto MossdeepCity_SpaceCenter_2F_EventScript_RichBoyMagma
+end
+= MossdeepCity_SpaceCenter_2F_EventScript_RichBoyMagma
+msgbox	TEAM MAGMA… Do they want to go to space, too?
+release
+end
+@ Battle for the below 3 grunts is handled in MossdeepCity_SpaceCenter_2F_EventScript_BattleThreeMagmaGrunts
+goto MossdeepCity_SpaceCenter_2F_EventScript_Grunt6
+= MossdeepCity_SpaceCenter_2F_EventScript_RichBoyNormal
+msgbox	I wish ordinary people could go into space one day…
+release
+end
+mapsec
+24 5 2 1	MOSSDEEP CITY
+music
+MUS_RUSTBORO
+counters
+537

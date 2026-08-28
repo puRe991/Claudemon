@@ -1,0 +1,52 @@
+tileset building__generic_building
+14 9
+7 4
+824,824,808,809,810,727,824,824,825,824,825,888,824,824
+832,832,816,523,818,768,832,832,833,832,833,896,854,855
+811,811,811,811,811,768,811,811,811,811,811,904,862,863
+811,812,812,812,812,768,811,812,836,874,875,837,812,812
+811,812,812,812,812,768,811,812,836,882,883,837,812,812
+811,812,812,812,812,768,811,812,669,798,798,798,798,798
+811,812,812,812,812,735,811,812,670,824,824,824,824,824
+811,812,812,812,812,743,811,812,671,832,832,832,832,832
+811,812,844,845,812,811,811,812,811,811,811,811,811,811
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,0,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,1,0,0,0,0,0,0,0,0
+0,0,0,0,0,1,0,0,0,1,1,0,0,0
+0,0,0,0,0,1,0,0,0,1,1,0,0,0
+0,0,0,0,0,1,0,0,0,0,0,0,0,0
+0,0,0,0,0,1,0,0,1,1,1,1,1,1
+0,0,0,0,0,1,0,0,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+2 8 RustboroCity 10
+3 8 RustboroCity 10
+3 1 RustboroCity_Flat2_2F 0
+npcs
+pokemon_skitty 11 4 W static 0 - 0
+people_old_woman 8 4 E static 0 - 0
+dialogs
+0	SKITTY: Gyaaaah!
+1	DEVON CORPORATION's workers live in this building.
+objscripts
+0 RustboroCity_Flat2_1F_EventScript_Skitty
+1 RustboroCity_Flat2_1F_EventScript_OldWoman
+scriptdefs
+= RustboroCity_Flat2_1F_EventScript_OldWoman
+msgbox	DEVON CORPORATION's workers live in this building.
+end
+= RustboroCity_Flat2_1F_EventScript_Skitty
+lock
+faceplayer
+waitse
+playmoncry SPECIES_SKITTY CRY_MODE_NORMAL
+msgbox	SKITTY: Gyaaaah!
+waitmoncry
+release
+end
+mapsec
+0 5 1 2	RUSTBORO CITY
+music
+MUS_RUSTBORO

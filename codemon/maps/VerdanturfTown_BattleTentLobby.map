@@ -1,0 +1,278 @@
+tileset building__battle_tent
+13 10
+6 5
+514,515,517,517,517,610,611,612,517,517,517,518,519
+522,523,608,609,525,618,619,620,525,614,615,526,527
+530,520,616,617,521,520,521,520,521,622,623,520,535
+538,529,624,521,528,529,528,529,528,521,631,534,543
+546,528,632,633,634,635,529,636,637,638,639,542,551
+660,529,640,641,642,643,528,644,645,646,647,550,528
+659,528,648,649,650,651,529,652,653,654,655,528,529
+658,529,528,529,528,529,528,529,528,529,528,529,528
+661,528,529,528,529,528,529,528,529,528,529,528,560
+1,552,528,529,528,529,558,559,528,529,528,552,1
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,0,1,1,1,1,1,1
+1,0,1,1,0,0,0,0,0,1,1,1,1
+1,0,1,0,0,0,0,0,0,0,1,1,1
+1,0,1,1,1,1,0,1,1,1,1,1,1
+0,0,1,1,1,1,0,1,1,1,1,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0
+1,0,0,0,0,0,0,0,0,0,0,0,1
+1,1,0,0,0,0,0,0,0,0,0,1,1
+warps
+6 9 VerdanturfTown 0
+7 9 VerdanturfTown 0
+npcs
+people_expert_m 6 5 S static 0 LOCALID_VERDANTURF_TENT_ATTENDANT 0
+people_girl_1 0 5 S wander 0 - 0
+people_boy_3 9 7 S wander 0 - 0
+people_boy_2 1 8 E static 0 - 0
+people_scott 12 6 W static FLAG_HIDE_VERDANTURF_TOWN_SCOTT - 0
+people_little_boy 2 8 W static 0 - 0
+dialogs
+1	My feelings toward my POKéMON… The attraction runs deep…Oh, hi, you didn't see that, did you? Well, it doesn't matter.How would you like this TM for your POKéMON?
+2	What kind of moves have you taught your POKéMON?I think you would give yourself an advantage if they knew how to heal or protect themselves.
+3	If it doesn't like a certain move, a POKéMON will be reluctant to use it.It doesn't matter how strong it is, either.For example, a POKéMON with a GENTLE nature probably won't enjoy hurting its opponents.If it can't seem to live up to its potential, it's probably failing at using a disliked move against its will.
+4	SCOTT: Hey there, PLAYER! I thought I might see you here.A BATTLE TENT's a place where you can meet tough TRAINERS.It doesn't matter what the rules are, or how battles are waged, either.PLAYER, I expect you to do the best you can!
+5	My big sister is gentle usually. But when she gets angry, she's really, really scary!I bet a gentle POKéMON will be scary if it gets angry!
+objscripts
+0 VerdanturfTown_BattleTentLobby_EventScript_Attendant
+1 VerdanturfTown_BattleTentLobby_EventScript_AttractGiver
+2 VerdanturfTown_BattleTentLobby_EventScript_Boy1
+3 VerdanturfTown_BattleTentLobby_EventScript_Boy2
+4 VerdanturfTown_BattleTentLobby_EventScript_Scott
+5 VerdanturfTown_BattleTentLobby_EventScript_LittleBoy
+onload
+VAR_TEMP_CHALLENGE_STATUS 0 VerdanturfTown_BattleTentLobby_EventScript_GetChallengeStatus
+VAR_TEMP_CHALLENGE_STATUS CHALLENGE_STATUS_SAVING VerdanturfTown_BattleTentLobby_EventScript_QuitWithoutSaving
+VAR_TEMP_CHALLENGE_STATUS CHALLENGE_STATUS_PAUSED VerdanturfTown_BattleTentLobby_EventScript_ResumeChallenge
+VAR_TEMP_CHALLENGE_STATUS CHALLENGE_STATUS_WON VerdanturfTown_BattleTentLobby_EventScript_WonChallenge
+VAR_TEMP_CHALLENGE_STATUS CHALLENGE_STATUS_LOST VerdanturfTown_BattleTentLobby_EventScript_LostChallenge
+movements
+VerdanturfTown_BattleTentLobby_Movement_AttendantEnterDoor	up,delay,end
+VerdanturfTown_BattleTentLobby_Movement_PlayerEnterDoor	up,up,delay,end
+VerdanturfTown_BattleTentLobby_Movement_WalkToDoor	up,up,up,end
+scriptdefs
+= VerdanturfTown_BattleTentLobby_EventScript_LostChallenge
+lockall
+msgbox	I feel privileged for having seen your POKéMON's exploits.The results will be recorded. I must ask you to briefly wait.
+waitmessage
+frontier_set FRONTIER_DATA_LVL_MODE FRONTIER_LVL_50
+verdanturftent_save 0
+playse SE_SAVE
+waitse
+msgbox	When you have fortified your heart and POKéMON, you must return.
+closemessage
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+releaseall
+end
+= VerdanturfTown_BattleTentLobby_EventScript_WonChallenge
+lockall
+msgbox	To achieve a 3-win streak…The bonds that bind your heart with your POKéMON seem firm and true.
+msgbox	Your feat will be recorded. I must ask you to briefly wait.
+waitmessage
+verdanturftent_setrandomprize
+frontier_set FRONTIER_DATA_LVL_MODE FRONTIER_LVL_50
+verdanturftent_save 0
+playse SE_SAVE
+waitse
+goto VerdanturfTown_BattleTentLobby_EventScript_GivePrize
+= VerdanturfTown_BattleTentLobby_EventScript_GivePrize
+msgbox	For the feat of your 3-win streak, we present you with this prize.
+verdanturftent_giveprize
+switch VAR_RESULT
+case FALSE VerdanturfTown_BattleTentLobby_EventScript_NoRoomForPrize
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
+msgbox	BattleFrontier_BattleDomeLobby_Text_ReceivedPrize  @ Odd that it used Dome's copy instead of Palace's
+waitmessage
+playfanfare MUS_OBTAIN_ITEM
+waitfanfare
+msgbox	When you have fortified your heart and POKéMON, you must return.
+closemessage
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+releaseall
+end
+= VerdanturfTown_BattleTentLobby_EventScript_NoRoomForPrize
+msgbox	You seem to have no space for our prize.You should return when you have organized your BAG.
+waitmessage
+closemessage
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+releaseall
+end
+= VerdanturfTown_BattleTentLobby_EventScript_ResumeChallenge
+lockall
+msgbox	We have been waiting for you…
+msgbox	I must save before I show you to the BATTLE HALL. Is that okay?
+waitmessage
+verdanturftent_save CHALLENGE_STATUS_SAVING
+playse SE_SAVE
+waitse
+frontier_set FRONTIER_DATA_PAUSED FALSE
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+goto VerdanturfTown_BattleTentLobby_EventScript_EnterChallenge
+= VerdanturfTown_BattleTentLobby_EventScript_EnterChallenge
+special SavePlayerParty
+frontier_setpartyorder FRONTIER_PARTY_SIZE
+msgbox	Good. Now, follow me.
+closemessage
+call VerdanturfTown_BattleTentLobby_EventScript_WalkToDoor
+warp VerdanturfTown_BattleTentCorridor 2 7
+setvar VAR_TEMP_CHALLENGE_STATUS 0
+waitstate
+end
+= VerdanturfTown_BattleTentLobby_EventScript_WalkToDoor
+applymovement LOCALID_VERDANTURF_TENT_ATTENDANT VerdanturfTown_BattleTentLobby_Movement_WalkToDoor
+applymovement LOCALID_PLAYER VerdanturfTown_BattleTentLobby_Movement_WalkToDoor
+waitmovement 0
+opendoor 6 1
+waitdooranim
+applymovement LOCALID_VERDANTURF_TENT_ATTENDANT VerdanturfTown_BattleTentLobby_Movement_AttendantEnterDoor
+applymovement LOCALID_PLAYER VerdanturfTown_BattleTentLobby_Movement_PlayerEnterDoor
+waitmovement 0
+closedoor 6 1
+waitdooranim
+return
+= VerdanturfTown_BattleTentLobby_EventScript_QuitWithoutSaving
+lockall
+msgbox	Sigh…You failed to save before you ended your challenge the last time.As a result, your challenge has been disqualified. It is most unfortunate.
+closemessage
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+frontier_set FRONTIER_DATA_LVL_MODE FRONTIER_LVL_50
+releaseall
+end
+= VerdanturfTown_BattleTentLobby_EventScript_GetChallengeStatus
+frontier_getstatus
+end
+= VerdanturfTown_BattleTentLobby_EventScript_LittleBoy
+lock
+msgbox	My big sister is gentle usually. But when she gets angry, she's really, really scary!I bet a gentle POKéMON will be scary if it gets angry!
+release
+end
+= VerdanturfTown_BattleTentLobby_EventScript_Scott
+lock
+faceplayer
+goto_if_set FLAG_MET_SCOTT_IN_VERDANTURF VerdanturfTown_BattleTentLobby_EventScript_ScottAlreadySpokenTo
+msgbox	SCOTT: Hey there, PLAYER! I thought I might see you here.A BATTLE TENT's a place where you can meet tough TRAINERS.It doesn't matter what the rules are, or how battles are waged, either.PLAYER, I expect you to do the best you can!
+addvar VAR_SCOTT_STATE 1
+setflag FLAG_MET_SCOTT_IN_VERDANTURF
+release
+end
+= VerdanturfTown_BattleTentLobby_EventScript_ScottAlreadySpokenTo
+msgbox	SCOTT: I visit here regularly in hopes of seeing tough TRAINERS in action in whatever the situation.
+release
+end
+= VerdanturfTown_BattleTentLobby_EventScript_Boy2
+lock
+msgbox	If it doesn't like a certain move, a POKéMON will be reluctant to use it.It doesn't matter how strong it is, either.For example, a POKéMON with a GENTLE nature probably won't enjoy hurting its opponents.If it can't seem to live up to its potential, it's probably failing at using a disliked move against its will.
+release
+end
+= VerdanturfTown_BattleTentLobby_EventScript_Boy1
+msgbox	What kind of moves have you taught your POKéMON?I think you would give yourself an advantage if they knew how to heal or protect themselves.
+end
+= VerdanturfTown_BattleTentLobby_EventScript_AttractGiver
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_TM_ATTRACT VerdanturfTown_BattleTentLobby_EventScript_ReceivedAttract
+msgbox	My feelings toward my POKéMON… The attraction runs deep…Oh, hi, you didn't see that, did you? Well, it doesn't matter.How would you like this TM for your POKéMON?
+giveitem ITEM_TM_ATTRACT
+goto_if_eq VAR_RESULT 0 Common_EventScript_ShowBagIsFull
+setflag FLAG_RECEIVED_TM_ATTRACT
+msgbox	My feelings toward my POKéMON… I'm sure the attraction is mutual!They battle exactly the way I want them to!
+release
+end
+= VerdanturfTown_BattleTentLobby_EventScript_ReceivedAttract
+msgbox	My feelings toward my POKéMON… I'm sure the attraction is mutual!They battle exactly the way I want them to!
+release
+end
+= VerdanturfTown_BattleTentLobby_EventScript_Attendant
+lock
+faceplayer
+verdanturftent_getprize
+goto_if_ne VAR_RESULT ITEM_NONE VerdanturfTown_BattleTentLobby_EventScript_PrizeWaiting
+special SavePlayerParty
+msgbox	I welcome you to the BATTLE TENT VERDANTURF SITE!Here, the TRAINER's trust toward POKéMON is tested.
+goto VerdanturfTown_BattleTentLobby_EventScript_AskEnterChallenge
+= VerdanturfTown_BattleTentLobby_EventScript_AskEnterChallenge
+msgbox	Do you wish to take the VERDANTURF BATTLE TENT challenge?
+waitmessage
+multichoice 17 6 MULTI_CHALLENGEINFO FALSE
+switch VAR_RESULT
+case 0 VerdanturfTown_BattleTentLobby_EventScript_TryEnterChallenge
+case 1 VerdanturfTown_BattleTentLobby_EventScript_ExplainChallenge
+case 2 VerdanturfTown_BattleTentLobby_EventScript_CancelChallenge
+case MULTI_B_PRESSED VerdanturfTown_BattleTentLobby_EventScript_CancelChallenge
+goto VerdanturfTown_BattleTentLobby_EventScript_TryEnterChallenge
+= VerdanturfTown_BattleTentLobby_EventScript_TryEnterChallenge
+setvar VAR_FRONTIER_FACILITY FRONTIER_FACILITY_PALACE
+setvar VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES
+setvar VAR_RESULT 2
+frontier_checkineligible
+goto_if_eq VAR_0x8004 TRUE VerdanturfTown_BattleTentLobby_EventScript_NotEnoughValidMons
+frontier_set FRONTIER_DATA_LVL_MODE FRONTIER_LVL_TENT
+msgbox	Good. Now, you must select your three POKéMON.
+fadescreen FADE_TO_BLACK
+setvar VAR_0x8004 1
+setvar VAR_0x8005 FRONTIER_PARTY_SIZE
+special ChoosePartyForBattleFrontier
+goto_if_eq VAR_RESULT 0 VerdanturfTown_BattleTentLobby_EventScript_LoadPartyCancelChallenge
+msgboxyesno	I must save before I show you to the BATTLE TENT. Is that okay?
+switch VAR_RESULT
+case NO VerdanturfTown_BattleTentLobby_EventScript_LoadPartyCancelChallenge
+case YES VerdanturfTown_BattleTentLobby_EventScript_SaveBeforeChallenge
+case MULTI_B_PRESSED VerdanturfTown_BattleTentLobby_EventScript_LoadPartyCancelChallenge
+goto VerdanturfTown_BattleTentLobby_EventScript_SaveBeforeChallenge
+= VerdanturfTown_BattleTentLobby_EventScript_SaveBeforeChallenge
+setvar VAR_TEMP_CHALLENGE_STATUS 0
+frontier_set FRONTIER_DATA_SELECTED_MON_ORDER
+verdanturftent_init
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS CHALLENGE_STATUS_SAVING
+frontier_set FRONTIER_DATA_PAUSED FALSE
+special LoadPlayerParty
+closemessage
+delay 2
+call Common_EventScript_SaveGame
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+goto_if_eq VAR_RESULT 0 VerdanturfTown_BattleTentLobby_EventScript_CancelChallengeSaveFailed
+goto VerdanturfTown_BattleTentLobby_EventScript_EnterChallenge
+= VerdanturfTown_BattleTentLobby_EventScript_CancelChallengeSaveFailed
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
+goto VerdanturfTown_BattleTentLobby_EventScript_CancelChallenge
+= VerdanturfTown_BattleTentLobby_EventScript_CancelChallenge
+msgbox	When you have fortified your heart and POKéMON, you must return.
+goto VerdanturfTown_BattleTentLobby_EventScript_EndCancelChallenge
+= VerdanturfTown_BattleTentLobby_EventScript_EndCancelChallenge
+release
+end
+= Common_EventScript_SaveGame
+special SaveGame
+return
+= VerdanturfTown_BattleTentLobby_EventScript_LoadPartyCancelChallenge
+special LoadPlayerParty
+goto VerdanturfTown_BattleTentLobby_EventScript_CancelChallenge
+= VerdanturfTown_BattleTentLobby_EventScript_NotEnoughValidMons
+switch VAR_RESULT
+case FRONTIER_LVL_50 VerdanturfTown_BattleTentLobby_EventScript_NotEnoughValidMonsLv50
+case FRONTIER_LVL_OPEN VerdanturfTown_BattleTentLobby_EventScript_NotEnoughValidMonsLvOpen
+goto VerdanturfTown_BattleTentLobby_EventScript_NotEnoughValidMonsLv50
+= VerdanturfTown_BattleTentLobby_EventScript_NotEnoughValidMonsLv50
+msgbox	Sigh…You do not have the three POKéMON required for the challenge.To enter, you must provide three different kinds of POKéMON.They also must not be holding the same kinds of items.EGGSSTR_VAR_1 ineligible.Come back when you have made your preparations.
+goto VerdanturfTown_BattleTentLobby_EventScript_EndCancelChallenge
+= VerdanturfTown_BattleTentLobby_EventScript_NotEnoughValidMonsLvOpen
+msgbox	Sigh…You do not have the three POKéMON required for the challenge.To enter, you must provide three different kinds of POKéMON.They also must not be holding the same kinds of items.EGGSSTR_VAR_1 ineligible.Come back when you have made your preparations.
+goto VerdanturfTown_BattleTentLobby_EventScript_EndCancelChallenge
+= VerdanturfTown_BattleTentLobby_EventScript_ExplainChallenge
+msgbox	In the VERDANTURF BATTLE TENT, there is one crucial rule that must be obeyed.TRAINERS are permitted only to switch their POKéMON in and out.TRAINERS are otherwise forbidden to command their POKéMON.The POKéMON are to behave according to their nature and battle on their own.You must put your trust in your POKéMON and watch over them.If you achieve the honor of beating three TRAINERS in succession, we will present you with a prize.If you want to interrupt your challenge, please save the game.If you don't save before interrupting, you will be disqualified.
+goto VerdanturfTown_BattleTentLobby_EventScript_AskEnterChallenge
+= VerdanturfTown_BattleTentLobby_EventScript_PrizeWaiting
+lockall
+msgbox	To achieve a 3-win streak…The bonds that bind your heart with your POKéMON seem firm and true.
+goto VerdanturfTown_BattleTentLobby_EventScript_GivePrize
+end
+mapsec
+4 6 1 1	VERDANTURF TOWN
+music
+MUS_B_TOWER_RS

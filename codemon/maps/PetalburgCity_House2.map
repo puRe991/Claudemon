@@ -1,0 +1,43 @@
+tileset building__generic_building
+10 8
+5 4
+517,517,517,518,517,517,518,517,622,623
+616,617,525,526,525,525,526,525,630,631
+624,625,548,548,548,548,548,548,638,639
+602,603,547,547,547,547,547,547,547,556
+610,611,547,547,547,547,547,547,588,589
+569,547,547,547,547,547,547,555,596,597
+569,547,547,547,547,547,547,547,547,547
+569,547,547,520,521,547,547,547,547,547
+collision
+1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0
+1,1,0,0,0,0,0,0,0,0
+1,1,0,0,0,0,0,0,1,1
+0,0,0,0,0,0,0,0,1,1
+0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+warps
+3 7 PetalburgCity 4
+4 7 PetalburgCity 4
+npcs
+people_pokefan_f 2 5 S wander 0 - 0
+people_school_kid_m 7 5 S static 0 - 0
+dialogs
+0	NORMAN became our town's new GYM LEADER.I think he called his family over from somewhere far away.
+1	I battled NORMAN once, but, whew, he was way too strong.How would I put it?I just got the feeling that he lives for POKéMON.
+objscripts
+0 PetalburgCity_House2_EventScript_Woman
+1 PetalburgCity_House2_EventScript_SchoolKid
+scriptdefs
+= PetalburgCity_House2_EventScript_SchoolKid
+msgbox	I battled NORMAN once, but, whew, he was way too strong.How would I put it?I just got the feeling that he lives for POKéMON.
+end
+= PetalburgCity_House2_EventScript_Woman
+msgbox	NORMAN became our town's new GYM LEADER.I think he called his family over from somewhere far away.
+end
+mapsec
+1 9 1 1	PETALBURG CITY
+music
+MUS_PETALBURG

@@ -1,0 +1,105 @@
+tileset building__pretty_petal_flower_shop
+15 9
+7 4
+528,532,531,531,533,529,531,534,534,531,531,534,534,531,530
+536,540,542,539,541,537,535,547,548,551,563,564,563,564,538
+544,559,550,514,514,545,543,555,556,543,571,572,571,572,546
+581,567,524,513,513,513,573,554,515,520,573,566,566,523,520
+574,575,524,513,513,513,513,513,513,513,513,554,515,520,513
+582,583,524,513,513,513,549,549,513,513,513,513,558,558,549
+523,515,521,513,513,558,557,557,558,522,513,513,558,558,557
+558,522,513,513,513,566,565,565,566,524,513,513,566,566,565
+566,524,6,7,513,554,515,515,515,520,513,513,554,515,515
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,1,0,0,0,0,0,1,1,0,1,1,1,1,0
+0,1,0,0,0,0,0,0,0,0,0,1,1,0,0
+0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,0,0,0,0,1,1,0,0,0,0,1,1,1
+0,0,0,0,0,1,1,1,1,0,0,0,1,1,1
+1,0,0,0,0,1,1,1,1,0,0,0,1,1,1
+1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+2 8 Route104 1
+3 8 Route104 1
+npcs
+people_woman_2 0 3 E static 0 LOCALID_FLOWER_SHOP_OWNER 0
+people_girl_3 7 3 S wander 0 - 0
+people_girl_1 11 6 S wander 0 - 0
+objscripts
+0 Route104_PrettyPetalFlowerShop_EventScript_ShopOwner
+1 Route104_PrettyPetalFlowerShop_EventScript_WailmerPailGirl
+2 Route104_PrettyPetalFlowerShop_EventScript_RandomBerryGirl
+movements
+Route104_PrettyPetalFlowerShop_Pokemart_Plants	delay
+scriptdefs
+= Route104_PrettyPetalFlowerShop_EventScript_RandomBerryGirl
+lock
+faceplayer
+dotimebasedevents
+goto_if_set FLAG_DAILY_FLOWER_SHOP_RECEIVED_BERRY Route104_PrettyPetalFlowerShop_EventScript_AlreadyReceivedBerry
+msgbox	I'm trying to be like my big sisters. I'm growing flowers, too!Here you go! It's for you!
+random 8
+addvar VAR_RESULT FIRST_BERRY_INDEX
+giveitem VAR_RESULT
+goto_if_eq VAR_RESULT 0 Common_EventScript_ShowBagIsFull
+setflag FLAG_DAILY_FLOWER_SHOP_RECEIVED_BERRY
+msgbox	You can plant a BERRY and grow it big, or you can make a POKéMON hold it.But now they have a machine that mixes up different BERRIES and makes candies for POKéMON.I want some candy, too.
+release
+end
+= Route104_PrettyPetalFlowerShop_EventScript_AlreadyReceivedBerry
+msgbox	You can plant a BERRY and grow it big, or you can make a POKéMON hold it.But now they have a machine that mixes up different BERRIES and makes candies for POKéMON.I want some candy, too.
+release
+end
+= Route104_PrettyPetalFlowerShop_EventScript_WailmerPailGirl
+lock
+faceplayer
+goto_if_unset FLAG_RECEIVED_WAILMER_PAIL Route104_PrettyPetalFlowerShop_EventScript_GiveWailmerPail
+msgbox	While BERRY plants are growing, water them with the WAILMER PAIL.Oh, another thing.If you don't pick BERRIES for a while, they'll drop off onto the ground. But they'll sprout again.Isn't that awesome? It's like they have the will to live.
+release
+end
+= Route104_PrettyPetalFlowerShop_EventScript_GiveWailmerPail
+msgbox	Hello!The more attention you give to flowers, the more beautifully they bloom.You'll like tending flowers. I'm sure of it. You can have this.
+giveitem ITEM_WAILMER_PAIL
+msgbox	While BERRY plants are growing, water them with the WAILMER PAIL.Oh, another thing.If you don't pick BERRIES for a while, they'll drop off onto the ground. But they'll sprout again.Isn't that awesome? It's like they have the will to live.
+setflag FLAG_RECEIVED_WAILMER_PAIL
+release
+end
+= Route104_PrettyPetalFlowerShop_EventScript_ShopOwner
+lock
+faceplayer
+goto_if_set FLAG_TEMP_1 Route104_PrettyPetalFlowerShop_EventScript_SellDecorations
+msgbox	Hello!This is the PRETTY PETAL flower shop. Spreading flowers all over the world!
+goto_if_set FLAG_MET_PRETTY_PETAL_SHOP_OWNER Route104_PrettyPetalFlowerShop_EventScript_AlreadyMet
+setflag FLAG_MET_PRETTY_PETAL_SHOP_OWNER
+msgboxyesno	Your name is?PLAYER. That's a nice name.PLAYER, would you like to learn about BERRIES?
+call_if_eq VAR_RESULT YES Route104_PrettyPetalFlowerShop_EventScript_ExplainBerries
+call_if_eq VAR_RESULT NO Route104_PrettyPetalFlowerShop_EventScript_DontExplainBerries
+release
+end
+= Route104_PrettyPetalFlowerShop_EventScript_DontExplainBerries
+msgbox	Flowers bring so much happiness to people, don't they?
+return
+= Route104_PrettyPetalFlowerShop_EventScript_ExplainBerries
+msgbox	BERRIES grow on trees that thrive only in soft, loamy soil.If you take some BERRIES, be sure to plant one in the loamy soil again.A planted BERRY will soon sprout, grow into a plant, flower beautifully, then grow BERRIES again.I want to see the whole wide world filled with beautiful flowers. That's my dream.Please help me, PLAYER. Plant BERRIES and bring more flowers into the world.
+return
+= Route104_PrettyPetalFlowerShop_EventScript_AlreadyMet
+msgboxyesno	PLAYER, would you like to learn about BERRIES?
+call_if_eq VAR_RESULT YES Route104_PrettyPetalFlowerShop_EventScript_ExplainBerries
+call_if_eq VAR_RESULT NO Route104_PrettyPetalFlowerShop_EventScript_DontExplainBerries
+release
+end
+= Route104_PrettyPetalFlowerShop_EventScript_SellDecorations
+msgbox	PLAYER, welcome!What can I do for you?
+waitmessage
+pokemartdecoration2 Route104_PrettyPetalFlowerShop_Pokemart_Plants
+msgbox	Please come again!
+release
+end
+mapsec
+0 7 1 3	ROUTE 104
+music
+MUS_PETALBURG
+counters
+559,567,575

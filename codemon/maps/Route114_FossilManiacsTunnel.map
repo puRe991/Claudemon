@@ -1,0 +1,105 @@
+tileset general__fallarbor
+13 26
+6 13
+631,631,616,617,617,617,617,617,617,618,631,631,631
+631,616,632,616,617,617,839,617,618,626,631,631,631
+631,624,616,632,616,617,847,618,626,634,618,631,631
+631,624,624,616,632,771,772,626,634,618,626,631,631
+631,624,624,624,771,796,765,634,618,626,626,631,631
+631,624,624,624,687,633,773,772,626,626,626,631,631
+631,624,624,624,788,633,633,711,626,626,626,631,631
+631,624,624,624,788,633,633,765,626,626,626,631,631
+631,624,624,557,709,633,633,765,626,626,626,631,631
+631,624,557,696,624,788,633,703,626,626,626,631,631
+631,631,696,624,624,788,633,765,626,626,626,631,631
+631,631,624,624,624,788,633,710,556,626,626,631,631
+631,631,624,624,624,687,765,626,695,626,634,618,631
+631,631,624,624,624,788,765,626,788,634,618,626,631
+631,631,624,624,624,788,765,626,788,633,626,626,631
+631,631,624,624,624,788,765,626,788,633,626,626,631
+631,616,632,624,557,709,765,626,788,633,626,626,631
+631,624,765,624,765,624,780,626,797,789,626,626,631
+631,624,711,624,765,624,780,634,618,788,626,634,618
+631,624,765,624,703,624,779,772,626,788,626,788,626
+631,624,765,624,765,624,788,765,626,788,626,797,626
+631,624,765,624,765,624,788,703,626,788,634,618,626
+616,632,765,624,799,624,788,765,626,797,789,626,626
+624,633,765,624,616,632,788,765,634,618,788,626,626
+624,633,765,624,624,771,796,773,772,626,788,626,626
+624,633,765,624,624,788,689,690,765,626,788,626,626
+collision
+0,0,1,1,1,1,1,1,1,1,0,0,0
+0,1,1,1,1,1,0,1,1,1,0,0,0
+0,1,1,1,1,1,0,1,1,1,1,0,0
+0,1,1,1,1,0,0,1,1,1,1,0,0
+0,1,1,1,0,0,0,1,1,1,1,0,0
+0,1,1,1,1,0,0,0,1,1,1,0,0
+0,1,1,1,0,0,0,1,1,1,1,0,0
+0,1,1,1,0,0,0,0,1,1,1,0,0
+0,1,1,0,1,0,0,0,1,1,1,0,0
+0,1,0,1,1,0,0,1,1,1,1,0,0
+0,0,1,1,1,0,0,0,1,1,1,0,0
+0,0,1,1,1,0,0,1,0,1,1,0,0
+0,0,1,1,1,1,0,1,1,1,1,1,0
+0,0,1,1,1,0,0,1,0,1,1,1,0
+0,0,1,1,1,0,0,1,0,1,1,1,0
+0,0,1,1,1,0,0,1,0,1,1,1,0
+0,1,1,1,0,1,0,1,0,1,1,1,0
+0,1,0,1,0,1,0,1,1,1,1,1,0
+0,1,1,1,0,1,0,1,1,0,1,1,1
+0,1,0,1,1,1,0,0,1,0,1,0,1
+0,1,0,1,0,1,0,0,1,0,1,1,1
+0,1,0,1,0,1,0,1,1,0,1,1,1
+1,1,0,1,1,1,0,0,1,1,1,1,1
+1,1,0,1,1,1,0,0,1,1,0,1,1
+1,1,0,1,1,0,0,0,0,1,0,1,1
+1,1,0,1,1,0,0,0,0,1,0,1,1
+warps
+6 25 Route114_FossilManiacsHouse 2
+7 25 Route114_FossilManiacsHouse 2
+6 2 DesertUnderpass 0
+npcs
+people_maniac 5 3 N static 0 LOCALID_FOSSIL_MANIAC 0
+dialogs
+0	I'm the FOSSIL MANIAC… I'm a nice guy who loves FOSSILS…Do you want a FOSSIL?But the FOSSILS around these parts all belong to me… None for you…If you can't bear to go without a FOSSIL, look in a desert where there are boulders and sand that may hide FOSSILS…
+objscripts
+0 Route114_FossilManiacsTunnel_EventScript_FossilManiac
+triggers
+5 4 VAR_FOSSIL_MANIAC_STATE 1 Route114_FossilManiacsTunnel_EventScript_ManiacMentionCaveIn
+6 4 VAR_FOSSIL_MANIAC_STATE 1 Route114_FossilManiacsTunnel_EventScript_ManiacMentionCaveIn
+movements
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
+scriptdefs
+= Route114_FossilManiacsTunnel_EventScript_ManiacMentionCaveIn
+lockall
+applymovement LOCALID_FOSSIL_MANIAC Common_Movement_WalkInPlaceFasterUp
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+msgbox	Oh… It's not safe that way…I was digging away, you see… When the whole wall collapsed…I think there's a giant cavern underneath now…But I've left it alone because I don't think there are any FOSSILS there…
+setvar VAR_FOSSIL_MANIAC_STATE 2
+releaseall
+end
+= Route114_FossilManiacsTunnel_EventScript_FossilManiac
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_REVIVED_FOSSIL_MON Route114_FossilManiacsTunnel_EventScript_PlayerRevivedFossil
+checkitem ITEM_ROOT_FOSSIL
+goto_if_eq VAR_RESULT TRUE Route114_FossilManiacsTunnel_EventScript_PlayerHasFossil
+checkitem ITEM_CLAW_FOSSIL
+goto_if_eq VAR_RESULT TRUE Route114_FossilManiacsTunnel_EventScript_PlayerHasFossil
+msgbox	I'm the FOSSIL MANIAC… I'm a nice guy who loves FOSSILS…Do you want a FOSSIL?But the FOSSILS around these parts all belong to me… None for you…If you can't bear to go without a FOSSIL, look in a desert where there are boulders and sand that may hide FOSSILS…
+release
+end
+= Route114_FossilManiacsTunnel_EventScript_PlayerHasFossil
+msgbox	You found a FOSSIL, didn't you? That's so nice… It's so dreamy…What are you going to do with that FOSSIL?From what I've heard, DEVON is doing research on reviving POKéMON from FOSSILS…I love my FOSSILS, so I would never do anything like that…
+release
+end
+= Route114_FossilManiacsTunnel_EventScript_PlayerRevivedFossil
+msgbox	FOSSILS are so… Wonderful… It's so dreamy…
+release
+end
+mapsec
+1 0 2 3	ROUTE 114
+music
+MUS_FALLARBOR

@@ -1,0 +1,423 @@
+tileset building__generic_building
+12 14
+6 7
+622,623,517,517,518,517,517,518,560,517,517,517
+630,631,617,525,526,525,525,526,542,525,643,644
+638,639,625,548,548,548,548,548,568,548,651,652
+569,547,547,555,588,589,588,589,556,547,547,547
+569,547,547,547,596,597,596,597,547,547,547,547
+569,547,547,547,547,547,547,556,547,547,547,547
+777,763,764,547,547,547,547,547,547,762,763,763
+771,771,772,547,547,547,547,547,547,770,771,771
+643,644,780,565,566,566,566,566,567,778,616,617
+651,652,548,573,584,606,584,585,575,549,624,625
+569,547,547,573,592,593,592,593,575,547,547,547
+569,547,547,581,582,582,582,582,583,547,547,547
+569,547,547,547,547,547,547,547,547,547,547,547
+569,547,547,547,547,520,521,547,547,547,547,547
+collision
+1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,1,1,1,1,0,0,0,0
+0,0,0,0,1,1,1,1,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0
+1,1,1,0,0,0,0,0,0,1,1,1
+1,1,1,0,0,0,0,0,0,1,1,1
+0,0,0,0,1,1,1,1,0,0,0,0
+0,0,0,0,1,1,1,1,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0
+warps
+6 13 LilycoveCity 5
+5 13 LilycoveCity 5
+npcs
+people_lass 3 11 N static 0 LOCALID_TRAINER_FAN_CLUB_LASS 0
+people_man_4 8 10 W static 0 LOCALID_TRAINER_FAN_CLUB_MAN 0
+people_pokefan_m 6 11 N static 0 LOCALID_TRAINER_FAN_CLUB_POKEFAN_M 0
+people_little_girl 5 8 S static 0 LOCALID_TRAINER_FAN_CLUB_LITTLE_GIRL 0
+people_ninja_boy 7 11 N static FLAG_HIDE_FANCLUB_LITTLE_BOY LOCALID_TRAINER_FAN_CLUB_NINJA_BOY 0
+people_boy_2 1 9 S static FLAG_HIDE_FANCLUB_BOY LOCALID_TRAINER_FAN_CLUB_BOY 0
+people_woman_3 3 10 E static FLAG_HIDE_FANCLUB_LADY LOCALID_TRAINER_FAN_CLUB_WOMAN 0
+people_expert_f 10 10 W static FLAG_HIDE_FANCLUB_OLD_LADY LOCALID_TRAINER_FAN_CLUB_EXPERT_F 0
+people_boy_1 11 5 S static FLAG_HIDE_LILYCOVE_FAN_CLUB_INTERVIEWER - 0
+dialogs
+0	I can't help it, I can only get to like BRAWLY…
+1	I hate to say this, but the TRAINER everybody's talking about is STR_VAR_1, no question about it!That TRAINER's power… It's out of the ordinary.
+2	NORMAN battled with more power, charisma, and showmanship than you.Even though people may say that you're strong…You've still got a long way to go compared to your father.
+3	STR_VAR_1 is really cool…Everyone thinks so, right, right?
+4	STR_VAR_1 is so wickedly cool… I want to shake hands with my hero.
+5	You're a pretty decent TRAINER, I think.But I also think that STR_VAR_1 is number one right now.That's just my opinion. Don't worry about it too much.
+6	Among the recently hot TRAINERS, STR_VAR_1 is the standout.That toughness, it's simply not normal.You're doing okay, but you're not in the same class as STR_VAR_1.
+7	Yes, I see strength in your eyes.But!You still haven't realized your potential.
+objscripts
+0 LilycoveCity_PokemonTrainerFanClub_EventScript_Lass
+1 LilycoveCity_PokemonTrainerFanClub_EventScript_Man
+2 LilycoveCity_PokemonTrainerFanClub_EventScript_PokefanM
+3 LilycoveCity_PokemonTrainerFanClub_EventScript_LittleGirl
+4 LilycoveCity_PokemonTrainerFanClub_EventScript_NinjaBoy
+5 LilycoveCity_PokemonTrainerFanClub_EventScript_Boy
+6 LilycoveCity_PokemonTrainerFanClub_EventScript_Woman
+7 LilycoveCity_PokemonTrainerFanClub_EventScript_ExpertF
+8 LilycoveCity_PokemonTrainerFanClub_EventScript_Interviewer
+onload
+VAR_LILYCOVE_FAN_CLUB_STATE 1 LilycoveCity_PokemonTrainerFanClub_EventScript_MeetFirstFans
+movements
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+LilycoveCity_PokemonTrainerFanClub_Movement_FanApproachPlayer	delay,delay,down,down,down,left,left,end
+LilycoveCity_PokemonTrainerFanClub_Movement_LittleGirlHideFromPlayer	delay,up,up,right,delay,end
+LilycoveCity_PokemonTrainerFanClub_Movement_LittleGirlMoveCloserToPlayer	down,delay,end
+LilycoveCity_PokemonTrainerFanClub_Movement_LittleGirlWatchPlayer	left,left,down,down,left,down,end
+scriptdefs
+= LilycoveCity_PokemonTrainerFanClub_EventScript_MeetFirstFans
+lockall
+applymovement LOCALID_TRAINER_FAN_CLUB_LASS Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+msgbox	Oh, wow! It's PLAYER!
+applymovement LOCALID_TRAINER_FAN_CLUB_LITTLE_GIRL LilycoveCity_PokemonTrainerFanClub_Movement_LittleGirlWatchPlayer
+applymovement LOCALID_TRAINER_FAN_CLUB_MAN LilycoveCity_PokemonTrainerFanClub_Movement_FanApproachPlayer
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+msgbox	I've heard the news! You're really strong, aren't you?We always argue about who is the strongest of all TRAINERS here.So when I heard about you, I decided to be your fan!I hope you'll keep on battling other tough TRAINERS.That way, we'll be able to see more of your hot, hot battles.That will make the others here see exactly how great you are.Remember, I'm cheering for you, PLAYER!
+applymovement LOCALID_TRAINER_FAN_CLUB_LITTLE_GIRL LilycoveCity_PokemonTrainerFanClub_Movement_LittleGirlMoveCloserToPlayer
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+applymovement LOCALID_TRAINER_FAN_CLUB_LITTLE_GIRL LilycoveCity_PokemonTrainerFanClub_Movement_LittleGirlHideFromPlayer
+waitmovement 0
+setvar VAR_LILYCOVE_FAN_CLUB_STATE 2
+releaseall
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_Interviewer
+lock
+faceplayer
+goto_if_set FLAG_FAN_CLUB_STRENGTH_SHARED LilycoveCity_PokemonTrainerFanClub_EventScript_AlreadyInterviewed
+goto_if_unset FLAG_FAN_CLUB_STRENGTH_SHARED LilycoveCity_PokemonTrainerFanClub_EventScript_Interview
+end
+@ The interviewer doesnt count as an individual fan club member
+@ Instead they always ask about whoever the Lass would be interested in if not the player
+goto LilycoveCity_PokemonTrainerFanClub_EventScript_Interview
+= LilycoveCity_PokemonTrainerFanClub_EventScript_Interview
+setvar VAR_0x8005 TVSHOW_FAN_CLUB_SPECIAL
+special InterviewBefore
+goto_if_eq VAR_RESULT TRUE LilycoveCity_PokemonTrainerFanClub_EventScript_AlreadyInterviewed2
+copyvar VAR_0x800A VAR_0x8006
+setvar VAR_0x8004 FANCLUB_MEMBER1
+special BufferFanClubTrainerName
+msgbox	Hi, there!I'm a big fan of STR_VAR_1. What's your opinion of STR_VAR_1?
+setvar VAR_0x8004 EASY_CHAT_TYPE_FAN_QUESTION
+copyvar VAR_0x8005 VAR_0x800A
+call Common_ShowEasyChatScreen
+lock
+faceplayer
+goto_if_eq VAR_RESULT 1 LilycoveCity_PokemonTrainerFanClub_EventScript_SubmitOpinion
+goto_if_eq VAR_RESULT 0 LilycoveCity_PokemonTrainerFanClub_EventScript_CancelGiveOpinion
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_CancelGiveOpinion
+setvar VAR_0x8004 FANCLUB_MEMBER1
+special BufferFanClubTrainerName
+msgboxyesno	Have you completely forgotten about STR_VAR_1?
+goto_if_eq VAR_RESULT YES LilycoveCity_PokemonTrainerFanClub_EventScript_ForgetTrainer
+goto_if_eq VAR_RESULT NO LilycoveCity_PokemonTrainerFanClub_EventScript_AskForOpinion
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_AskForOpinion
+setvar VAR_0x8004 FANCLUB_MEMBER1
+special BufferFanClubTrainerName
+msgbox	I'm a big fan of STR_VAR_1. What's your opinion of STR_VAR_1?
+setvar VAR_0x8004 EASY_CHAT_TYPE_FAN_QUESTION
+copyvar VAR_0x8005 VAR_0x800A
+call Common_ShowEasyChatScreen
+lock
+faceplayer
+goto_if_eq VAR_RESULT 1 LilycoveCity_PokemonTrainerFanClub_EventScript_SubmitOpinion
+goto_if_eq VAR_RESULT 0 LilycoveCity_PokemonTrainerFanClub_EventScript_CancelGiveOpinion
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_SubmitOpinion
+msgbox	I see, I see. That's what you think about the TRAINER.
+goto LilycoveCity_PokemonTrainerFanClub_EventScript_RateTrainer
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_RateTrainer
+setvar VAR_0x8004 FANCLUB_MEMBER1
+special BufferFanClubTrainerName
+msgbox	How strong would you rate STR_VAR_1 on a scale of one hundred?
+waitmessage
+setvar VAR_0x8004 SCROLL_MULTI_POKEMON_FAN_CLUB_RATER
+special ShowScrollableMultichoice
+setvar VAR_0x8004 FANCLUB_MEMBER1
+switch VAR_RESULT
+case 11 LilycoveCity_PokemonTrainerFanClub_EventScript_CancelRateTrainer
+case MULTI_B_PRESSED LilycoveCity_PokemonTrainerFanClub_EventScript_CancelRateTrainer
+setvar VAR_0x8004 FANCLUB_MEMBER1
+special BufferFanClubTrainerName
+copyvar VAR_0x8006 VAR_0x800A
+copyvar VAR_0x8005 VAR_RESULT
+special PutFanClubSpecialOnTheAir
+goto LilycoveCity_PokemonTrainerFanClub_EventScript_CompleteInterview
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_CompleteInterview
+setvar VAR_0x8004 FANCLUB_MEMBER1
+special BufferFanClubTrainerName
+msgbox	I see, I see.Thank you! That's very useful to know.I'll share this information with other STR_VAR_1 fans and discuss it.
+setflag FLAG_FAN_CLUB_STRENGTH_SHARED
+release
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_CancelRateTrainer
+setvar VAR_0x8004 FANCLUB_MEMBER1
+special BufferFanClubTrainerName
+msgboxyesno	Have you completely forgotten about STR_VAR_1?
+goto_if_eq VAR_RESULT YES LilycoveCity_PokemonTrainerFanClub_EventScript_ForgetTrainer
+goto_if_eq VAR_RESULT NO LilycoveCity_PokemonTrainerFanClub_EventScript_RateTrainer
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_ForgetTrainer
+setvar VAR_0x8004 FANCLUB_MEMBER1
+special BufferFanClubTrainerName
+msgbox	Oh, I see! You should meet STR_VAR_1 sometime. I'm sure you'll become a fan, too!
+release
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_AlreadyInterviewed2
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_AlreadyInterviewed
+setvar VAR_0x8004 FANCLUB_MEMBER1
+special BufferFanClubTrainerName
+msgbox	There's going to be a TV special on STR_VAR_1 very soon.I hope you catch it!
+release
+end
+@ Shouldnt be reached
+goto LilycoveCity_PokemonTrainerFanClub_EventScript_AlreadyInterviewed2
+= LilycoveCity_PokemonTrainerFanClub_EventScript_ExpertF
+lock
+faceplayer
+setvar VAR_0x8004 FANCLUB_MEMBER8
+special BufferFanClubTrainerName
+specialvar VAR_RESULT IsFanClubMemberFanOfPlayer
+goto_if_eq VAR_RESULT TRUE LilycoveCity_PokemonTrainerFanClub_EventScript_ExpertFPlayersFan
+specialvar VAR_RESULT GetNumFansOfPlayerInTrainerFanClub
+goto_if_eq VAR_RESULT (NUM_TRAINER_FAN_CLUB_MEMBERS - 1) LilycoveCity_PokemonTrainerFanClub_EventScript_ExpertFOnlyNonFan
+msgbox	Yes, I see strength in your eyes.But!You still haven't realized your potential.
+release
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_ExpertFOnlyNonFan
+msgbox	It is true that you are tremendously powerful.But! I can tell…That strength cannot be considered true strength yet!True strength is…! … …Actually, I have no idea, either.
+release
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_ExpertFPlayersFan
+specialvar VAR_RESULT GetNumFansOfPlayerInTrainerFanClub
+goto_if_eq VAR_RESULT 1 LilycoveCity_PokemonTrainerFanClub_EventScript_ExpertFOnlyFan
+msgbox	You…Impressive!
+release
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_ExpertFOnlyFan
+msgbox	Your true worth, it is fine if only I recognized it.The others I doubt will understand the hidden power that beats within.
+release
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_Woman
+lock
+faceplayer
+setvar VAR_0x8004 FANCLUB_MEMBER7
+special BufferFanClubTrainerName
+specialvar VAR_RESULT IsFanClubMemberFanOfPlayer
+goto_if_eq VAR_RESULT TRUE LilycoveCity_PokemonTrainerFanClub_EventScript_WomanPlayersFan
+specialvar VAR_RESULT GetNumFansOfPlayerInTrainerFanClub
+goto_if_eq VAR_RESULT (NUM_TRAINER_FAN_CLUB_MEMBERS - 1) LilycoveCity_PokemonTrainerFanClub_EventScript_WomanOnlyNonFan
+msgbox	Among the recently hot TRAINERS, STR_VAR_1 is the standout.That toughness, it's simply not normal.You're doing okay, but you're not in the same class as STR_VAR_1.
+release
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_WomanOnlyNonFan
+msgbox	You are really popular…You're strong, and you're caring to POKéMON. No one can knock you.But, you know, I believe in STR_VAR_1.STR_VAR_1 is definitely stronger! I'm positive!
+release
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_WomanPlayersFan
+specialvar VAR_RESULT GetNumFansOfPlayerInTrainerFanClub
+goto_if_eq VAR_RESULT 1 LilycoveCity_PokemonTrainerFanClub_EventScript_WomanOnlyFan
+msgbox	You've changed my mind! You are strong, aren't you?I'd like you to tell me how you managed to get so strong!
+release
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_WomanOnlyFan
+msgbox	The tougher the situation, the more attractively you battle.I can't wait for your next battle!
+release
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_Boy
+lock
+faceplayer
+setvar VAR_0x8004 FANCLUB_MEMBER5
+special BufferFanClubTrainerName
+specialvar VAR_RESULT IsFanClubMemberFanOfPlayer
+goto_if_eq VAR_RESULT TRUE LilycoveCity_PokemonTrainerFanClub_EventScript_BoyPlayersFan
+specialvar VAR_RESULT GetNumFansOfPlayerInTrainerFanClub
+goto_if_eq VAR_RESULT (NUM_TRAINER_FAN_CLUB_MEMBERS - 1) LilycoveCity_PokemonTrainerFanClub_EventScript_BoyOnlyNonFan
+msgbox	You're a pretty decent TRAINER, I think.But I also think that STR_VAR_1 is number one right now.That's just my opinion. Don't worry about it too much.
+release
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_BoyOnlyNonFan
+msgbox	Wow, you really are strong. Maybe even stronger than STR_VAR_1.But STR_VAR_1 needs me.If I don't cheer for STR_VAR_1, who will?
+release
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_BoyPlayersFan
+specialvar VAR_RESULT GetNumFansOfPlayerInTrainerFanClub
+goto_if_eq VAR_RESULT 1 LilycoveCity_PokemonTrainerFanClub_EventScript_BoyOnlyFan
+msgbox	PLAYER! You are amazing after all!Ever since I set eyes on you, I knew that you were great.It looks like my eyes didn't deceive me.
+release
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_BoyOnlyFan
+msgbox	Who cares about the others. I'm in your corner!You don't need to worry. Just get out there and battle like always.
+release
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_NinjaBoy
+lock
+faceplayer
+setvar VAR_0x8004 FANCLUB_MEMBER4
+special BufferFanClubTrainerName
+specialvar VAR_RESULT IsFanClubMemberFanOfPlayer
+goto_if_eq VAR_RESULT TRUE LilycoveCity_PokemonTrainerFanClub_EventScript_NinjaBoyPlayersFan
+specialvar VAR_RESULT GetNumFansOfPlayerInTrainerFanClub
+goto_if_eq VAR_RESULT (NUM_TRAINER_FAN_CLUB_MEMBERS - 1) LilycoveCity_PokemonTrainerFanClub_EventScript_NinjaBoyOnlyNonFan
+msgbox	STR_VAR_1 is so wickedly cool… I want to shake hands with my hero.
+release
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_NinjaBoyOnlyNonFan
+msgbox	Even if I'm the only one…I'm never going to stop being STR_VAR_1's fan!Because I've heard, STR_VAR_1 never loses!
+release
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_NinjaBoyPlayersFan
+specialvar VAR_RESULT GetNumFansOfPlayerInTrainerFanClub
+goto_if_eq VAR_RESULT 1 LilycoveCity_PokemonTrainerFanClub_EventScript_NinjaBoyOnlyFan
+msgbox	Whoa! It's PLAYER! Wicked!When I grow up, I want to be strong like you, PLAYER!
+release
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_NinjaBoyOnlyFan
+msgbox	Even if I'm the only one…You'll always be the only one I cheer for, PLAYER!Because I believe in you, PLAYER!
+release
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_LittleGirl
+lock
+faceplayer
+setvar VAR_0x8004 FANCLUB_MEMBER3
+special BufferFanClubTrainerName
+goto_if_eq VAR_LILYCOVE_FAN_CLUB_STATE 0 LilycoveCity_PokemonTrainerFanClub_EventScript_LittleGirlPlayerNotChampion
+specialvar VAR_RESULT IsFanClubMemberFanOfPlayer
+goto_if_eq VAR_RESULT TRUE LilycoveCity_PokemonTrainerFanClub_EventScript_LittleGirlPlayersFan
+specialvar VAR_RESULT GetNumFansOfPlayerInTrainerFanClub
+goto_if_eq VAR_RESULT (NUM_TRAINER_FAN_CLUB_MEMBERS - 1) LilycoveCity_PokemonTrainerFanClub_EventScript_LittleGirlOnlyNonFan
+msgbox	STR_VAR_1 is really cool…Everyone thinks so, right, right?
+release
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_LittleGirlOnlyNonFan
+msgbox	STR_VAR_1 really is cool, don't you think so?Even if it's just me, I'm going to keep cheering my favorite TRAINER.
+release
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_LittleGirlPlayersFan
+specialvar VAR_RESULT GetNumFansOfPlayerInTrainerFanClub
+goto_if_eq VAR_RESULT 1 LilycoveCity_PokemonTrainerFanClub_EventScript_LittleGirlOnlyFan
+msgbox	Oh, woweee! It's PLAYER! For real, too!Please, shake my hand, shake my hand!
+release
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_LittleGirlOnlyFan
+msgbox	I'll always cheer for you, PLAYER! Always, always!I don't want to see you lose ever, PLAYER.Because I know you're really, really strong, PLAYER!
+release
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_LittleGirlPlayerNotChampion
+msgbox	My favorite TRAINER is…Cool…Strong…And really nice…I wish there was a TRAINER like that…
+release
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_PokefanM
+lock
+faceplayer
+setvar VAR_0x8004 FANCLUB_MEMBER2
+special BufferFanClubTrainerName
+goto_if_eq VAR_LILYCOVE_FAN_CLUB_STATE 0 LilycoveCity_PokemonTrainerFanClub_EventScript_PokefanMPlayerNotChampion
+specialvar VAR_RESULT IsFanClubMemberFanOfPlayer
+goto_if_eq VAR_RESULT TRUE LilycoveCity_PokemonTrainerFanClub_EventScript_PokefanMPlayersFan
+specialvar VAR_RESULT GetNumFansOfPlayerInTrainerFanClub
+goto_if_eq VAR_RESULT (NUM_TRAINER_FAN_CLUB_MEMBERS - 1) LilycoveCity_PokemonTrainerFanClub_EventScript_PokefanMOnlyNonFan
+msgbox	NORMAN battled with more power, charisma, and showmanship than you.Even though people may say that you're strong…You've still got a long way to go compared to your father.
+release
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_PokefanMOnlyNonFan
+msgbox	You're beginning to get the same air of awe NORMAN exudes.But there's something conclusively different between you and NORMAN.I can't tell you what that is. You'll have to find it yourself.
+release
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_PokefanMPlayersFan
+specialvar VAR_RESULT GetNumFansOfPlayerInTrainerFanClub
+goto_if_eq VAR_RESULT 1 LilycoveCity_PokemonTrainerFanClub_EventScript_PokefanMOnlyFan
+msgbox	You've surpassed your own father in every regard!I'm telling you, so there's no question about it at all!
+release
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_PokefanMOnlyFan
+msgbox	Even when things turned bleak, your father never gave up.This I know to be true.You never give up even if you lose! So keep on battling!
+release
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_PokefanMPlayerNotChampion
+msgbox	Everyone here, we're all huge fans of POKéMON battles.We discuss who we consider to be the strongest of all TRAINERS.If you were to become famous, we might even become your fans!
+release
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_Man
+lock
+faceplayer
+setvar VAR_0x8004 FANCLUB_MEMBER6
+special BufferFanClubTrainerName
+goto_if_eq VAR_LILYCOVE_FAN_CLUB_STATE 0 LilycoveCity_PokemonTrainerFanClub_EventScript_ManPlayerNotChampion
+specialvar VAR_RESULT IsFanClubMemberFanOfPlayer
+goto_if_eq VAR_RESULT TRUE LilycoveCity_PokemonTrainerFanClub_EventScript_ManPlayersFan
+specialvar VAR_RESULT GetNumFansOfPlayerInTrainerFanClub
+goto_if_eq VAR_RESULT (NUM_TRAINER_FAN_CLUB_MEMBERS - 1) LilycoveCity_PokemonTrainerFanClub_EventScript_ManOnlyNonFan
+msgbox	I hate to say this, but the TRAINER everybody's talking about is STR_VAR_1, no question about it!That TRAINER's power… It's out of the ordinary.
+release
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_ManOnlyNonFan
+msgbox	Darn it… I've been telling people that STR_VAR_1 is the best now…But no one wants to listen…
+release
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_ManPlayersFan
+specialvar VAR_RESULT GetNumFansOfPlayerInTrainerFanClub
+goto_if_eq VAR_RESULT 1 LilycoveCity_PokemonTrainerFanClub_EventScript_ManOnlyFan
+msgbox	Yo, PLAYER! You're the one we want to win!
+release
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_ManOnlyFan
+msgbox	The others, they don't know that you're the best of the best!Isn't that right, PLAYER? Show them you've got guts!
+release
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_ManPlayerNotChampion
+msgbox	I've been hearing things about a tough new TRAINER.This TRAINER's supposed to be beating GYM LEADERS, even.Do you know anything about this new TRAINER?
+release
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_Lass
+lock
+faceplayer
+setvar VAR_0x8004 FANCLUB_MEMBER1
+special BufferFanClubTrainerName
+goto_if_eq VAR_LILYCOVE_FAN_CLUB_STATE 0 LilycoveCity_PokemonTrainerFanClub_EventScript_LassPlayerNotChampion
+specialvar VAR_RESULT IsFanClubMemberFanOfPlayer
+goto_if_eq VAR_RESULT TRUE LilycoveCity_PokemonTrainerFanClub_EventScript_LassPlayersFan
+specialvar VAR_RESULT GetNumFansOfPlayerInTrainerFanClub
+goto_if_eq VAR_RESULT (NUM_TRAINER_FAN_CLUB_MEMBERS - 1) LilycoveCity_PokemonTrainerFanClub_EventScript_LassOnlyNonFan
+msgbox	I can't help it, I can only get to like BRAWLY…
+release
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_LassOnlyNonFan
+msgbox	Nobody understands the charm of BRAWLY…I don't care!Even if I'm the only one, I'm going to keep cheering for BRAWLY!
+release
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_LassPlayersFan
+specialvar VAR_RESULT GetNumFansOfPlayerInTrainerFanClub
+goto_if_eq VAR_RESULT 1 LilycoveCity_PokemonTrainerFanClub_EventScript_LassOnlyFan
+msgbox	Oh! PLAYER!Go for it! I'm pulling for you!
+release
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_LassOnlyFan
+msgbox	Sigh… BRAWLY…Oh, no! Wait! That's not right! No, no, no!I'm your fan through and through!So make me proud! Go for it!
+release
+end
+= LilycoveCity_PokemonTrainerFanClub_EventScript_LassPlayerNotChampion
+msgbox	Whatever anyone says, my favorite TRAINER is DEWFORD's GYM LEADER BRAWLY!
+release
+end
+mapsec
+18 3 2 1	LILYCOVE CITY
+music
+MUS_LILYCOVE

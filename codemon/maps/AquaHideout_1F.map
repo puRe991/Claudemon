@@ -1,0 +1,129 @@
+tileset general__facility
+28 30
+14 15
+513,513,513,513,513,529,595,596,537,537,540,539,537,595,596,537,537,537,537,537,537,707,708,709,538,537,529,513
+513,513,513,513,513,521,603,604,562,561,548,547,545,603,604,560,545,562,561,545,545,715,716,717,546,543,522,513
+513,529,537,537,537,528,611,612,570,569,553,553,553,611,612,568,553,570,569,553,553,710,553,711,553,551,522,513
+513,522,545,545,545,544,619,620,673,552,552,552,552,619,620,673,552,552,552,552,552,552,552,552,552,567,522,513
+513,522,543,543,543,531,553,552,552,552,552,552,552,552,552,552,552,552,552,552,552,552,552,552,552,553,522,513
+513,522,551,559,559,673,552,552,605,617,617,617,617,617,617,617,617,617,617,606,665,552,552,552,552,552,522,513
+513,522,559,551,559,673,552,552,608,369,369,369,369,369,369,369,369,369,369,676,673,552,552,552,552,552,522,513
+513,522,551,559,689,681,552,552,608,369,368,368,368,368,368,368,368,368,369,676,673,552,552,552,552,552,522,513
+513,522,559,689,681,552,552,552,616,617,617,617,617,617,617,617,617,617,617,684,673,552,552,552,552,543,522,513
+513,522,553,681,552,552,552,552,554,554,554,554,554,554,554,554,554,554,554,554,681,552,552,552,552,551,522,513
+513,522,553,552,552,552,552,552,552,552,552,552,552,552,552,552,552,552,552,552,552,552,552,552,552,559,522,513
+513,522,553,552,552,605,617,617,617,617,617,617,614,552,552,613,617,617,617,617,617,617,606,665,552,551,522,513
+513,522,553,552,552,608,116,124,124,124,124,124,124,175,207,124,124,124,124,124,124,137,676,673,552,559,522,513
+513,522,553,552,552,608,117,384,393,393,393,393,393,393,393,393,393,393,393,393,385,115,676,673,552,554,522,513
+513,522,553,552,552,608,117,400,368,368,368,368,368,368,368,368,368,368,368,368,402,115,676,673,552,552,522,513
+513,522,650,643,552,608,117,400,368,368,368,368,368,368,368,368,368,368,368,368,402,115,676,673,552,552,522,513
+513,522,648,649,673,682,117,400,368,368,368,368,368,368,368,368,368,368,368,368,402,115,633,673,552,552,522,513
+513,522,656,657,673,554,685,669,669,669,372,368,368,368,368,368,370,669,669,669,669,669,554,681,552,552,522,513
+513,522,553,554,681,552,552,669,669,669,117,377,368,368,368,376,115,669,669,669,669,669,552,552,642,643,522,513
+513,522,553,552,552,662,116,124,124,124,125,400,368,368,368,402,123,124,124,124,124,137,661,665,648,649,522,513
+513,522,553,552,552,608,117,384,393,393,393,408,368,368,368,410,393,393,393,393,385,115,676,673,656,657,522,513
+513,522,553,552,552,608,117,400,368,368,368,368,368,368,368,368,368,368,368,368,402,115,676,673,554,554,522,513
+513,522,650,643,552,608,117,400,368,368,368,368,368,368,368,368,368,368,368,368,402,115,676,673,552,552,522,513
+513,522,648,649,673,608,117,400,368,368,368,368,368,368,368,368,368,368,368,368,402,115,676,673,642,643,522,513
+513,522,656,657,673,682,117,400,368,368,368,368,368,368,368,368,368,368,368,368,402,115,633,673,648,649,522,513
+513,522,553,554,681,554,685,669,669,669,669,372,368,368,368,370,669,669,669,669,669,669,554,681,656,657,522,513
+513,522,553,552,552,552,552,669,669,669,669,117,377,368,376,115,669,552,552,552,552,552,552,552,554,554,522,513
+513,522,621,621,621,621,621,621,621,621,623,117,400,615,402,115,622,621,621,621,621,621,621,621,621,621,522,513
+513,522,113,113,113,113,113,113,113,113,117,191,712,713,714,190,115,113,113,113,113,113,113,113,113,113,522,513
+513,191,108,108,108,108,108,108,108,108,191,108,108,108,108,108,190,108,108,108,108,108,108,108,108,108,190,513
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1
+1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1
+1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1
+1,1,1,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1
+1,1,1,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1
+1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1
+1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+1,1,0,0,0,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,0,0,1,1,1
+1,1,0,0,0,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,0,0,1,1,1
+1,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,1
+1,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,1
+1,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,1
+1,1,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,1
+1,1,1,1,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,1
+1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,1
+1,1,0,0,0,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,0,1,1,1,1
+1,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,1,1,1
+1,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,1
+1,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,1
+1,1,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,1
+1,1,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,1,1,1
+1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,1,1,1,1
+1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+13 27 LilycoveCity 6
+14 27 LilycoveCity 6
+22 1 AquaHideout_B1F 0
+npcs
+people_team_aqua_aqua_member_m 13 11 S static FLAG_HIDE_AQUA_HIDEOUT_1F_GRUNT_1_BLOCKING_ENTRANCE - 0
+people_team_aqua_aqua_member_m 14 11 S static FLAG_HIDE_AQUA_HIDEOUT_1F_GRUNT_2_BLOCKING_ENTRANCE - 0
+people_team_aqua_aqua_member_m 20 4 S static FLAG_HIDE_AQUA_HIDEOUT_GRUNTS - 3
+dialogs
+0	What? What? What do you want with TEAM AQUA?Our BOSS isn't here! He's gone off to snatch something important!… … Where did he go?Wahaha! Do you really think I'd tell you something that crucial?
+1	What? What? What do you want with TEAM AQUA?Our BOSS isn't here! He's on his way to MT. PYRE on ROUTE 122!… … Why did he go?Wahaha! Do you really think I'd tell you something that crucial?
+2	I took the loss for the TEAM, but I did my job…
+objscripts
+0 AquaHideout_1F_EventScript_HideoutEntranceGrunt1
+1 AquaHideout_1F_EventScript_HideoutEntranceGrunt2
+2 AquaHideout_1F_EventScript_Grunt1
+scriptdefs
+= AquaHideout_1F_EventScript_Grunt1
+trainerbattle_single TRAINER_GRUNT_AQUA_HIDEOUT_1 AquaHideout_1F_Text_Grunt1Intro AquaHideout_1F_Text_Grunt1Defeat AquaHideout_1F_EventScript_Grunt1Defeated
+msgbox	I took the loss for the TEAM, but I did my job…
+end
+= AquaHideout_1F_EventScript_Grunt1Defeated
+msgbox	I took the loss for the TEAM, but I did my job…
+release
+end
+= AquaHideout_1F_EventScript_HideoutEntranceGrunt2
+lock
+faceplayer
+goto_if_set FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT AquaHideout_1F_EventScript_SlateportHint2
+goto_if_set FLAG_RECEIVED_RED_OR_BLUE_ORB AquaHideout_1F_EventScript_MagmaHideoutHint2
+msgbox	What? What? What do you want with TEAM AQUA?Our BOSS isn't here! He's on his way to MT. PYRE on ROUTE 122!… … Why did he go?Wahaha! Do you really think I'd tell you something that crucial?
+release
+end
+= AquaHideout_1F_EventScript_MagmaHideoutHint2
+msgbox	What? What? Are you a TEAM MAGMA grunt?I hear that TEAM MAGMA is after an awesome POKéMON at MT. CHIMNEY.But what is that POKéMON like?
+release
+end
+= AquaHideout_1F_EventScript_SlateportHint2
+msgbox	What? What? What do you want with TEAM AQUA?Our BOSS isn't here! He's on his way to SLATEPORT CITY!… … Why did he go?Wahaha! Do you really think I'd tell you something that crucial?
+release
+end
+= AquaHideout_1F_EventScript_HideoutEntranceGrunt1
+lock
+faceplayer
+goto_if_set FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT AquaHideout_1F_EventScript_SlateportHint1
+goto_if_set FLAG_RECEIVED_RED_OR_BLUE_ORB AquaHideout_1F_EventScript_MagmaHideoutHint1
+msgbox	What? What? What do you want with TEAM AQUA?Our BOSS isn't here! He's gone off to snatch something important!… … Where did he go?Wahaha! Do you really think I'd tell you something that crucial?
+release
+end
+= AquaHideout_1F_EventScript_MagmaHideoutHint1
+msgbox	What? What? Are you a TEAM MAGMA grunt?I hear that TEAM MAGMA is trying to awaken an awesome POKéMON at their HIDEOUT.But where might their HIDEOUT be?
+release
+end
+= AquaHideout_1F_EventScript_SlateportHint1
+msgbox	What? What? What do you want with TEAM AQUA?Our BOSS isn't here! He's gone off to jack a submarine!… … Where did he go?Wahaha! Do you really think I'd tell you something that crucial?
+release
+end
+water
+368,369,370,372,376,377,384,385,393,400,402,408,410
+mapsec
+19 3 1 1	AQUA HIDEOUT
+music
+MUS_AQUA_MAGMA_HIDEOUT
+counters
+537

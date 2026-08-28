@@ -1,0 +1,79 @@
+name: Windows build
+
+# Builds codemon.exe on a real Windows runner using the MSVC toolchain, for
+# both 64-bit and 32-bit targets:
+#   - x64 links the SFML bundled under codemon/SFML (statically linked, see
+#     CMakeLists.txt and run-windows.bat) -- no separate SFML install needed.
+#   - x86 has no bundled SFML in the repo (the bundled copy is 64-bit only),
+#     so CMakeLists.txt's CODEMON_FETCH_SFML option is used instead: it pulls
+#     SFML 2.5.1's source via FetchContent and builds it as part of this
+#     project. (A first attempt downloaded the official prebuilt 32-bit SFML
+#     package from sfml-dev.org directly in the job, but that host isn't
+#     reliably reachable from GitHub-hosted runners -- connection timeouts,
+#     not a code issue -- so building from source, which only needs GitHub
+#     itself, is used instead.)
+# Both results are uploaded as separate downloadable build artifacts.
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: x64
+            cmake_arch: x64
+            artifact_name: codemon-windows-x64
+          - platform: x86
+            cmake_arch: Win32
+            artifact_name: codemon-windows-x86
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        # sprites/ (a git submodule) is only used by the pe_import.py asset
+        # pipeline, never by the game itself, so it isn't needed for a build.
+
+      - name: Configure (CMake)
+        shell: bash
+        run: |
+          if [ "${{ matrix.platform }}" = "x86" ]; then
+            # SFML 2.5.1's own CMakeLists.txt only requires CMake 3.0.2, which
+            # newer CMake (4.0+) refuses to configure at all -- this tells it
+            # to treat that as 3.5 instead of hard-erroring on the fetched
+            # SFML source.
+            cmake -S . -B build -A ${{ matrix.cmake_arch }} -DCODEMON_FETCH_SFML=ON -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+          else
+            cmake -S . -B build -A ${{ matrix.cmake_arch }}
+          fi
+
+      - name: Build (Release)
+        run: cmake --build build --config Release --parallel
+
+      - name: Run tests
+        run: ctest --test-dir build -C Release --output-on-failure
+
+      - name: Locate the built executable
+        id: locate
+        shell: bash
+        run: |
+          if [ -f "build/Release/codemon.exe" ]; then
+            echo "dir=build/Release" >> "$GITHUB_OUTPUT"
+          elif [ -f "build/codemon.exe" ]; then
+            echo "dir=build" >> "$GITHUB_OUTPUT"
+          else
+            echo "codemon.exe not found after build" >&2
+            exit 1
+          fi
+
+      - name: Upload codemon.exe (+ maps/assets) as a build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact_name }}
+          # maps/ and assets/ are copied next to the binary by CMakeLists.txt's
+          # POST_BUILD step, so the whole output directory is what a player needs.
+          path: ${{ steps.locate.outputs.dir }}
+          if-no-files-found: error

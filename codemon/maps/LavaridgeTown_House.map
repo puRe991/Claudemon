@@ -1,0 +1,82 @@
+tileset building__generic_building
+10 8
+6 3
+739,702,703,535,533,534,678,679,533,740
+747,710,711,543,541,542,686,687,673,748
+755,718,719,545,545,576,694,695,681,756
+545,553,553,580,590,591,580,553,553,553
+545,553,553,580,598,599,580,553,553,553
+545,553,553,553,553,553,553,553,553,553
+800,792,792,792,792,792,792,792,792,792
+803,795,795,528,529,795,795,795,795,795
+collision
+1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0
+0,0,0,0,1,1,0,0,0,0
+0,0,0,0,1,1,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+warps
+3 7 LavaridgeTown 4
+4 7 LavaridgeTown 4
+npcs
+people_old_man 2 3 S static 0 - 0
+pokemon_zigzagoon 6 6 S static 0 - 0
+people_ninja_boy 8 4 S wander 0 - 0
+dialogs
+0	My wife's warming an EGG in the hot springs. This is what she told me.She left two POKéMON with the DAY CARE. And they discovered that EGG!
+1	ZIGZAGOON: Pshoo!
+objscripts
+0 LavaridgeTown_House_EventScript_OldMan
+1 LavaridgeTown_House_EventScript_Zigzagoon
+2 LavaridgeTown_House_EventScript_MimicTutor
+scriptdefs
+= LavaridgeTown_House_EventScript_MimicTutor
+lock
+faceplayer
+goto_if_set FLAG_MOVE_TUTOR_TAUGHT_MIMIC MoveTutor_EventScript_MimicTaught
+msgboxyesno	Ah, young one!I am also a young one, but I mimic the styles and speech of the elderly folks of this town.What do you say, young one? Would you agree to it if I were to offer to teach the move MIMIC?
+goto_if_eq VAR_RESULT NO MoveTutor_EventScript_MimicDeclined
+call MoveTutor_EventScript_CanOnlyBeLearnedOnce
+goto_if_eq VAR_RESULT NO MoveTutor_EventScript_MimicDeclined
+msgbox	Fwofwo! And so I shall! Let me see the POKéMON you wish me to teach.
+setvar VAR_0x8005 TUTOR_MOVE_MIMIC
+call MoveTutor_EventScript_OpenPartyMenu
+goto_if_eq VAR_RESULT 0 MoveTutor_EventScript_MimicDeclined
+setflag FLAG_MOVE_TUTOR_TAUGHT_MIMIC
+goto MoveTutor_EventScript_MimicTaught
+end
+= MoveTutor_EventScript_MimicTaught
+msgbox	MIMIC is a move of great depth.Could you execute it to perfection as well as me…?
+release
+end
+= MoveTutor_EventScript_MimicDeclined
+msgbox	Oh, boo! I wanted to teach MIMIC to your POKéMON!
+release
+end
+= MoveTutor_EventScript_OpenPartyMenu
+special ChooseMonForMoveTutor
+lock
+faceplayer
+return
+= MoveTutor_EventScript_CanOnlyBeLearnedOnce
+msgboxyesno	This move can be learned only once. Is that okay?
+return
+= LavaridgeTown_House_EventScript_Zigzagoon
+lock
+faceplayer
+waitse
+playmoncry SPECIES_ZIGZAGOON CRY_MODE_NORMAL
+msgbox	ZIGZAGOON: Pshoo!
+waitmoncry
+release
+end
+= LavaridgeTown_House_EventScript_OldMan
+msgbox	My wife's warming an EGG in the hot springs. This is what she told me.She left two POKéMON with the DAY CARE. And they discovered that EGG!
+end
+mapsec
+5 3 1 1	LAVARIDGE TOWN
+music
+MUS_OLDALE

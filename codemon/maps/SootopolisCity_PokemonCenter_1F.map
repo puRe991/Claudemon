@@ -1,0 +1,219 @@
+tileset building__pokemon_center
+14 9
+7 4
+520,521,617,618,523,523,523,586,587,523,524,525,526,527
+528,529,625,626,584,546,547,594,595,585,4,533,534,535
+536,537,633,634,592,554,555,519,603,593,548,541,542,543
+544,550,564,514,600,545,545,517,545,601,572,514,514,551
+544,514,514,514,608,620,621,622,623,518,549,514,514,551
+640,641,514,514,514,560,561,562,563,514,514,514,514,551
+648,649,514,514,514,568,569,570,571,514,564,573,574,551
+656,657,514,514,514,576,577,578,579,514,550,581,582,551
+552,514,514,514,514,514,515,516,514,514,514,550,564,567
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,1,1,1,0,1,1,0,0,0,0
+0,0,0,0,1,1,1,1,1,1,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,0,0,0,0,0,0,0,0,0,0,1,1,0
+0,0,0,0,0,0,0,0,0,0,0,1,1,0
+1,0,0,0,0,0,0,0,0,0,0,0,0,1
+warps
+7 8 SootopolisCity 0
+6 8 SootopolisCity 0
+1 6 SootopolisCity_PokemonCenter_2F 0
+npcs
+people_nurse 7 2 S static 0 LOCALID_SOOTOPOLIS_NURSE 0
+people_gentleman 12 4 S wander 0 - 0
+people_woman_5 4 7 S wander 0 - 0
+people_woman_1 2 3 S wander 0 - 0
+dialogs
+1	Everyone in town has taken refuge and won't come out of their homes.Even I would rather not venture outside.
+2	Aren't POKéMON our friends?Why are they going wild this way?
+objscripts
+0 SootopolisCity_PokemonCenter_1F_EventScript_Nurse
+1 SootopolisCity_PokemonCenter_1F_EventScript_Gentleman
+2 SootopolisCity_PokemonCenter_1F_EventScript_Woman
+3 SootopolisCity_PokemonCenter_1F_EventScript_DoubleEdgeTutor
+movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Movement_PkmnCenterNurse_Bow	delay,delay,end
+scriptdefs
+= SootopolisCity_PokemonCenter_1F_EventScript_DoubleEdgeTutor
+lock
+faceplayer
+goto_if_set FLAG_MOVE_TUTOR_TAUGHT_DOUBLE_EDGE MoveTutor_EventScript_DoubleEdgeTaught
+msgboxyesno	Sigh…SOOTOPOLIS's GYM LEADER is really lovably admirable.But that also means I have many rivals for his attention.He's got appeal with a DOUBLE-EDGE. I couldn't even catch his eye.Please, let me teach your POKéMON the move DOUBLE-EDGE!
+goto_if_eq VAR_RESULT NO MoveTutor_EventScript_DoubleEdgeDeclined
+call MoveTutor_EventScript_CanOnlyBeLearnedOnce
+goto_if_eq VAR_RESULT NO MoveTutor_EventScript_DoubleEdgeDeclined
+msgbox	Okay, which POKéMON should I teach DOUBLE-EDGE?
+setvar VAR_0x8005 TUTOR_MOVE_DOUBLE_EDGE
+call MoveTutor_EventScript_OpenPartyMenu
+goto_if_eq VAR_RESULT 0 MoveTutor_EventScript_DoubleEdgeDeclined
+setflag FLAG_MOVE_TUTOR_TAUGHT_DOUBLE_EDGE
+goto MoveTutor_EventScript_DoubleEdgeTaught
+end
+= MoveTutor_EventScript_DoubleEdgeTaught
+msgbox	I won't live for love anymore! I'll become tough!
+release
+end
+= MoveTutor_EventScript_DoubleEdgeDeclined
+msgbox	Oh… Even you rejected me…
+release
+end
+= MoveTutor_EventScript_OpenPartyMenu
+special ChooseMonForMoveTutor
+lock
+faceplayer
+return
+= MoveTutor_EventScript_CanOnlyBeLearnedOnce
+msgboxyesno	This move can be learned only once. Is that okay?
+return
+= SootopolisCity_PokemonCenter_1F_EventScript_Woman
+lock
+faceplayer
+goto_if_ge VAR_SKY_PILLAR_STATE 2 SootopolisCity_PokemonCenter_1F_EventScript_WomanNoLegendaries
+goto_if_unset FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN SootopolisCity_PokemonCenter_1F_EventScript_WomanNoLegendaries
+msgbox	Aren't POKéMON our friends?Why are they going wild this way?
+release
+end
+= SootopolisCity_PokemonCenter_1F_EventScript_WomanNoLegendaries
+msgbox	Whenever, wherever, and whatever happens, I will always be friends with POKéMON.Because it's fun to be with POKéMON!
+release
+end
+= SootopolisCity_PokemonCenter_1F_EventScript_Gentleman
+lock
+faceplayer
+goto_if_ge VAR_SKY_PILLAR_STATE 2 SootopolisCity_PokemonCenter_1F_EventScript_GentlemanNoLegendaries
+goto_if_unset FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN SootopolisCity_PokemonCenter_1F_EventScript_GentlemanNoLegendaries
+msgbox	Everyone in town has taken refuge and won't come out of their homes.Even I would rather not venture outside.
+release
+end
+= SootopolisCity_PokemonCenter_1F_EventScript_GentlemanNoLegendaries
+msgbox	WALLACE is rumored to be the toughest TRAINER in the whole HOENN region.This town's GYM is led by the TRAINER who taught WALLACE.But the ELITE FOUR… They're said to be even stronger than WALLACE's mentor.How strong could they be?
+release
+end
+= SootopolisCity_PokemonCenter_1F_EventScript_Nurse
+setvar VAR_0x800B LOCALID_SOOTOPOLIS_NURSE
+call Common_EventScript_PkmnCenterNurse
+waitmessage
+waitbuttonpress
+release
+end
+= Common_EventScript_PkmnCenterNurse
+lock
+faceplayer
+setvar VAR_0x8004 0
+specialvar VAR_RESULT CountPlayerTrainerStars
+goto_if_eq VAR_RESULT 4 EventScript_PkmnCenterNurse_GoldCard
+msgboxyesno	Hello, and welcome to the POKéMON CENTER.We restore your tired POKéMON to full health.Would you like to rest your POKéMON?
+goto_if_eq VAR_RESULT YES EventScript_PkmnCenterNurse_HealPkmn
+goto_if_eq VAR_RESULT NO EventScript_PkmnCenterNurse_Goodbye
+end
+= EventScript_PkmnCenterNurse_Goodbye
+msgbox	We hope to see you again!
+return
+@ VAR_0x8004 is 1 when player has Gold Card; jumps are identical
+goto EventScript_PkmnCenterNurse_HealPkmn
+= EventScript_PkmnCenterNurse_HealPkmn
+incrementgamestat GAME_STAT_USED_POKECENTER
+call_if_eq VAR_0x8004 0 EventScript_PkmnCenterNurse_IllTakeYourPkmn
+call_if_eq VAR_0x8004 1 EventScript_PkmnCenterNurse_IllTakeYourPkmn2
+waitmessage
+call EventScript_PkmnCenterNurse_TakeAndHealPkmn
+goto_if_unset FLAG_POKERUS_EXPLAINED EventScript_PkmnCenterNurse_CheckPokerus
+goto EventScript_PkmnCenterNurse_CheckTrainerHillAndUnionRoom
+end
+= EventScript_PkmnCenterNurse_CheckTrainerHillAndUnionRoom
+specialvar VAR_RESULT PlayerNotAtTrainerHillEntrance
+goto_if_eq VAR_RESULT 0 EventScript_PkmnCenterNurse_ReturnPkmn
+specialvar VAR_RESULT BufferUnionRoomPlayerName
+copyvar VAR_0x8008 VAR_RESULT
+goto_if_eq VAR_0x8008 0 EventScript_PkmnCenterNurse_ReturnPkmn
+goto_if_eq VAR_0x8008 1 EventScript_PkmnCenterNurse_PlayerWaitingInUnionRoom
+end
+@ VAR_0x8004 is 1 when player has Gold Card
+goto EventScript_PkmnCenterNurse_ReturnPkmn
+= EventScript_PkmnCenterNurse_ReturnPkmn
+goto_if_eq VAR_0x8004 1 EventScript_PkmnCenterNurse_ReturnPkmn2
+msgbox	Thank you for waiting.We've restored your POKéMON to full health.
+waitmessage
+applymovement VAR_0x800B Movement_PkmnCenterNurse_Bow
+waitmovement 0
+msgbox	We hope to see you again!
+return
+= EventScript_PkmnCenterNurse_ReturnPkmn2
+msgbox	Thank you for waiting.
+waitmessage
+applymovement VAR_0x800B Movement_PkmnCenterNurse_Bow
+waitmovement 0
+msgbox	We hope to see you again!
+return
+= EventScript_PkmnCenterNurse_PlayerWaitingInUnionRoom
+goto_if_set FLAG_NURSE_UNION_ROOM_REMINDER EventScript_PkmnCenterNurse_ReturnPkmn
+msgbox	Thank you for waiting.We've restored your POKéMON to full health.
+setflag FLAG_NURSE_UNION_ROOM_REMINDER
+msgbox	It appears as if STR_VAR_1 is playing right now. Go for it!
+waitmessage
+applymovement VAR_0x800B Movement_PkmnCenterNurse_Bow
+waitmovement 0
+msgbox	We hope to see you again!
+return
+= EventScript_PkmnCenterNurse_CheckPokerus
+specialvar VAR_RESULT IsPokerusInParty
+goto_if_eq VAR_RESULT TRUE EventScript_PkmnCenterNurse_ExplainPokerus
+goto_if_eq VAR_RESULT FALSE EventScript_PkmnCenterNurse_CheckTrainerHillAndUnionRoom
+end
+= EventScript_PkmnCenterNurse_ExplainPokerus
+msgbox	Your POKéMON may be infected with POKéRUS.Little is known about the POKéRUS except that they are microscopic life- forms that attach to POKéMON.While infected, POKéMON are said to grow exceptionally well.
+setflag FLAG_POKERUS_EXPLAINED
+return
+= EventScript_PkmnCenterNurse_TakeAndHealPkmn
+applymovement VAR_0x800B Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+dofieldeffect FLDEFF_POKECENTER_HEAL
+waitfieldeffect FLDEFF_POKECENTER_HEAL
+applymovement VAR_0x800B Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+special HealPlayerParty
+return
+= EventScript_PkmnCenterNurse_IllTakeYourPkmn2
+msgbox	Okay, I'll take your POKéMON for a few seconds.
+return
+= EventScript_PkmnCenterNurse_IllTakeYourPkmn
+msgbox	Okay, I'll take your POKéMON for a few seconds.
+return
+= EventScript_PkmnCenterNurse_GoldCard
+goto_if_set FLAG_NURSE_MENTIONS_GOLD_CARD EventScript_PkmnCenterNurse_AskForUsual
+setflag FLAG_NURSE_MENTIONS_GOLD_CARD
+msgbox	Hello, and welcome to the POKéMON CENTER.We restore your tired POKéMON to full health.Would you like to…
+playse SE_PIN
+applymovement VAR_0x800B Common_Movement_ExclamationMark
+waitmovement 0
+applymovement VAR_0x800B Common_Movement_Delay48
+waitmovement 0
+msgboxyesno	Th-that card… Could it be… The GOLD CARD?!Oh, the gold color is brilliant! The four stars seem to sparkle!I've seen several TRAINERS with a SILVER CARD before, but, PLAYER, you're the first TRAINER I've ever seen with a GOLD CARD!Okay, PLAYER, please allow me the honor of resting your POKéMON!
+goto_if_eq VAR_RESULT YES EventScript_PkmnCenterNurse_GoldCardHealPkmn
+msgbox	We hope to see you again!
+return
+= EventScript_PkmnCenterNurse_GoldCardHealPkmn
+setvar VAR_0x8004 1
+goto EventScript_PkmnCenterNurse_HealPkmn
+end
+= EventScript_PkmnCenterNurse_AskForUsual
+msgboxyesno	I'm delighted to see you, PLAYER! You want the usual, am I right?
+goto_if_eq VAR_RESULT YES EventScript_PkmnCenterNurse_GoldCardHealPkmn
+msgbox	We hope to see you again!
+return
+mapsec
+21 7 1 1	SOOTOPOLIS CITY
+music
+MUS_POKE_CENTER
+counters
+517

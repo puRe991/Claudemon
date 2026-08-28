@@ -1,0 +1,166 @@
+tileset building__brendans_mays_house
+9 8
+4 2
+520,524,522,551,598,596,592,596,593
+528,532,530,559,2,599,597,600,601
+581,517,519,517,605,615,517,608,609
+516,667,668,668,669,513,640,641,642
+516,675,676,676,677,513,648,649,650
+516,675,676,676,677,513,656,657,658
+516,683,684,684,685,513,513,513,513
+516,513,513,513,513,513,513,513,513
+collision
+1,1,1,1,1,1,1,1,1
+1,0,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,1,0
+0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0
+warps
+1 1 LittlerootTown_MaysHouse_1F 2
+npcs
+people_may_walking 1 1 S static FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_BEDROOM LOCALID_RIVALS_HOUSE_2F_RIVAL 0
+people_mom 1 1 S static FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_BEDROOM_MOM LOCALID_PLAYERS_HOUSE_2F_MOM 0
+people_man_1 3 4 S static FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_2F_PICHU_DOLL - 0
+misc_item_ball 5 4 S static FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_2F_POKE_BALL - 0
+dialogs
+3	It's RIVAL's POKé BALL!Better leave it right where it is.
+objscripts
+0 RivalsHouse_2F_EventScript_Rival
+3 LittlerootTown_MaysHouse_2F_EventScript_RivalsPokeBall
+movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
+Common_Movement_FacePlayer	face_down,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
+LittlerootTown_MaysHouse_2F_Movement_MayApproachPlayerEast	right,right,down,delay,end
+LittlerootTown_MaysHouse_2F_Movement_MayApproachPlayerNorth	right,right,down,down,right,end
+LittlerootTown_MaysHouse_2F_Movement_MayApproachPlayerSouth	right,right,right,end
+LittlerootTown_MaysHouse_2F_Movement_MayApproachPlayerWest	right,right,right,right,right,delay,end
+LittlerootTown_MaysHouse_2F_Movement_MayEnters	down,down,delay,end
+LittlerootTown_MaysHouse_2F_Movement_MayWalkToPCEast	up,up,right,right,right,right,right,delay,end
+LittlerootTown_MaysHouse_2F_Movement_MayWalkToPCNorth	up,up,up,delay,right,right,right,right,delay,end
+LittlerootTown_MaysHouse_2F_Movement_MayWalkToPCSouth	up,delay,right,right,right,right,delay,end
+LittlerootTown_MaysHouse_2F_Movement_MayWalkToPCWest	up,right,right,delay,end
+LittlerootTown_MaysHouse_2F_Movement_PlayerWatchMayEast	delay,delay,delay,delay,delay,end
+LittlerootTown_MaysHouse_2F_Movement_PlayerWatchMayNorth	delay,delay,delay,delay,delay,delay,delay,end
+LittlerootTown_MaysHouse_2F_Movement_PlayerWatchMaySouth	delay,delay,delay,delay,delay,end
+scriptdefs
+= LittlerootTown_MaysHouse_2F_EventScript_RivalsPokeBall
+lockall
+goto_if_eq VAR_LITTLEROOT_RIVAL_STATE 2 LittlerootTown_MaysHouse_2F_EventScript_MeetMay
+msgbox	It's RIVAL's POKé BALL!Better leave it right where it is.
+releaseall
+end
+= LittlerootTown_MaysHouse_2F_EventScript_MeetMay
+delay 10
+addobject LOCALID_RIVALS_HOUSE_2F_RIVAL
+applymovement LOCALID_RIVALS_HOUSE_2F_RIVAL LittlerootTown_MaysHouse_2F_Movement_MayEnters
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_RIVALS_HOUSE_2F_RIVAL Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_RIVALS_HOUSE_2F_RIVAL Common_Movement_Delay48
+waitmovement 0
+delay 10
+playbgm MUS_ENCOUNTER_MAY TRUE
+call_if_eq VAR_FACING DIR_NORTH LittlerootTown_MaysHouse_2F_EventScript_MeetMayNorth
+call_if_eq VAR_FACING DIR_SOUTH LittlerootTown_MaysHouse_2F_EventScript_MeetMaySouth
+call_if_eq VAR_FACING DIR_WEST LittlerootTown_MaysHouse_2F_EventScript_MeetMayWest
+call_if_eq VAR_FACING DIR_EAST LittlerootTown_MaysHouse_2F_EventScript_MeetMayEast
+setvar VAR_LITTLEROOT_RIVAL_STATE 3
+setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_2F_POKE_BALL
+clearflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_BEDROOM
+setvar VAR_LITTLEROOT_TOWN_STATE 1
+savebgm MUS_DUMMY
+fadedefaultbgm
+releaseall
+end
+= LittlerootTown_MaysHouse_2F_EventScript_MeetMayEast
+applymovement LOCALID_RIVALS_HOUSE_2F_RIVAL LittlerootTown_MaysHouse_2F_Movement_MayApproachPlayerEast
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+msgbox	Huh? Who… Who are you?… … … … … … … … … … … … … … … …Oh, you're PLAYER. So your move was today.Um… I'm MAY. Glad to meet you!I… I have this dream of becoming friends with POKéMON all over the world.I… I heard about you, PLAYER, from my dad, PROF. BIRCH.I was hoping that you would be nice, PLAYER, and that we could be friends.Oh, this is silly, isn't it? I… I've just met you, PLAYER.Eheheh…Oh, no! I forgot!I was supposed to go help Dad catch some wild POKéMON!PLAYER, I'll catch you later!
+closemessage
+applymovement LOCALID_PLAYER LittlerootTown_MaysHouse_2F_Movement_PlayerWatchMayEast
+applymovement LOCALID_RIVALS_HOUSE_2F_RIVAL LittlerootTown_MaysHouse_2F_Movement_MayWalkToPCEast
+waitmovement 0
+return
+= LittlerootTown_MaysHouse_2F_EventScript_MeetMayWest
+applymovement LOCALID_RIVALS_HOUSE_2F_RIVAL LittlerootTown_MaysHouse_2F_Movement_MayApproachPlayerWest
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+msgbox	Huh? Who… Who are you?… … … … … … … … … … … … … … … …Oh, you're PLAYER. So your move was today.Um… I'm MAY. Glad to meet you!I… I have this dream of becoming friends with POKéMON all over the world.I… I heard about you, PLAYER, from my dad, PROF. BIRCH.I was hoping that you would be nice, PLAYER, and that we could be friends.Oh, this is silly, isn't it? I… I've just met you, PLAYER.Eheheh…Oh, no! I forgot!I was supposed to go help Dad catch some wild POKéMON!PLAYER, I'll catch you later!
+closemessage
+applymovement LOCALID_RIVALS_HOUSE_2F_RIVAL LittlerootTown_MaysHouse_2F_Movement_MayWalkToPCWest
+waitmovement 0
+return
+= LittlerootTown_MaysHouse_2F_EventScript_MeetMaySouth
+applymovement LOCALID_RIVALS_HOUSE_2F_RIVAL LittlerootTown_MaysHouse_2F_Movement_MayApproachPlayerSouth
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+msgbox	Huh? Who… Who are you?… … … … … … … … … … … … … … … …Oh, you're PLAYER. So your move was today.Um… I'm MAY. Glad to meet you!I… I have this dream of becoming friends with POKéMON all over the world.I… I heard about you, PLAYER, from my dad, PROF. BIRCH.I was hoping that you would be nice, PLAYER, and that we could be friends.Oh, this is silly, isn't it? I… I've just met you, PLAYER.Eheheh…Oh, no! I forgot!I was supposed to go help Dad catch some wild POKéMON!PLAYER, I'll catch you later!
+closemessage
+applymovement LOCALID_PLAYER LittlerootTown_MaysHouse_2F_Movement_PlayerWatchMaySouth
+applymovement LOCALID_RIVALS_HOUSE_2F_RIVAL LittlerootTown_MaysHouse_2F_Movement_MayWalkToPCSouth
+waitmovement 0
+return
+= LittlerootTown_MaysHouse_2F_EventScript_MeetMayNorth
+applymovement LOCALID_RIVALS_HOUSE_2F_RIVAL LittlerootTown_MaysHouse_2F_Movement_MayApproachPlayerNorth
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+msgbox	Huh? Who… Who are you?… … … … … … … … … … … … … … … …Oh, you're PLAYER. So your move was today.Um… I'm MAY. Glad to meet you!I… I have this dream of becoming friends with POKéMON all over the world.I… I heard about you, PLAYER, from my dad, PROF. BIRCH.I was hoping that you would be nice, PLAYER, and that we could be friends.Oh, this is silly, isn't it? I… I've just met you, PLAYER.Eheheh…Oh, no! I forgot!I was supposed to go help Dad catch some wild POKéMON!PLAYER, I'll catch you later!
+closemessage
+applymovement LOCALID_PLAYER LittlerootTown_MaysHouse_2F_Movement_PlayerWatchMayNorth
+applymovement LOCALID_RIVALS_HOUSE_2F_RIVAL LittlerootTown_MaysHouse_2F_Movement_MayWalkToPCNorth
+waitmovement 0
+return
+= RivalsHouse_2F_EventScript_Rival
+lockall
+goto_if_set FLAG_MET_RIVAL_LILYCOVE RivalsHouse_2F_EventScript_RivalPostLilycove
+checkplayergender
+goto_if_eq VAR_RESULT MALE RivalsHouse_2F_EventScript_May
+goto_if_eq VAR_RESULT FEMALE RivalsHouse_2F_EventScript_Brendan
+end
+= RivalsHouse_2F_EventScript_Brendan
+msgbox	POKéMON fully restored… Items all packed, and…
+releaseall
+end
+= RivalsHouse_2F_EventScript_May
+msgbox	POKéMON fully restored! Items ready, and…
+releaseall
+end
+= RivalsHouse_2F_EventScript_RivalPostLilycove
+applymovement VAR_LAST_TALKED Common_Movement_FacePlayer
+waitmovement 0
+checkplayergender
+call_if_eq VAR_RESULT MALE RivalsHouse_2F_EventScript_MayPostLilycove
+call_if_eq VAR_RESULT FEMALE RivalsHouse_2F_EventScript_BrendanPostLilycove
+setflag FLAG_MET_RIVAL_IN_HOUSE_AFTER_LILYCOVE
+releaseall
+end
+= RivalsHouse_2F_EventScript_BrendanPostLilycove
+goto_if_set FLAG_MET_RIVAL_IN_HOUSE_AFTER_LILYCOVE RivalsHouse_2F_EventScript_BrendanWhereShouldIGoNext
+msgbox	BRENDAN: Hey, it's PLAYER.I was just checking out my POKéDEX.There are still many POKéMON that I need to catch, I know, but this is looking pretty good.Checking this POKéDEX out gives me the urge to hit the road again.
+return
+= RivalsHouse_2F_EventScript_BrendanWhereShouldIGoNext
+msgbox	BRENDAN: I'm having a hard time deciding where I should catch POKéMON next.Hey, PLAYER, if I see you while I'm out catching POKéMON, I can pitch you a battle if you'd like.
+return
+= RivalsHouse_2F_EventScript_MayPostLilycove
+goto_if_set FLAG_MET_RIVAL_IN_HOUSE_AFTER_LILYCOVE RivalsHouse_2F_EventScript_MayWhereShouldIGoNext
+msgbox	MAY: PLAYER!I was just checking my POKéDEX.There's still a lot of POKéMON that I've seen but haven't caught.And there are many others that I think will evolve.I wonder where I should go catch some POKéMON next?
+return
+= RivalsHouse_2F_EventScript_MayWhereShouldIGoNext
+msgbox	MAY: I wonder where I should go catch some POKéMON next?Wouldn't it be funny if we ran into each other, PLAYER?
+return
+mapsec
+4 11 1 1	LITTLEROOT TOWN
+music
+MUS_LITTLEROOT

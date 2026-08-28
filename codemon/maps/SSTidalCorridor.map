@@ -1,0 +1,205 @@
+tileset general__inside_ship
+18 13
+6 3
+513,697,696,697,696,697,696,697,696,697,696,697,696,697,696,697,696,697
+513,705,704,705,704,705,704,705,704,705,704,705,704,705,704,705,704,705
+513,699,699,699,699,699,699,699,699,699,699,699,699,699,699,699,692,523
+513,700,698,706,708,709,707,708,709,707,708,709,707,708,710,698,698,711
+513,700,698,560,561,561,561,561,561,561,561,561,561,561,562,700,698,698
+513,700,698,560,561,561,561,561,561,561,561,561,561,561,562,700,698,698
+513,700,698,560,561,561,561,561,561,561,561,561,561,561,562,700,698,698
+513,700,698,560,561,561,561,561,561,561,561,561,561,561,562,700,698,698
+513,700,698,549,547,548,546,547,548,546,547,548,546,547,550,700,698,698
+513,700,698,557,555,635,554,555,635,554,555,635,554,555,763,700,698,698
+513,700,698,701,702,702,702,702,702,702,702,702,702,702,702,703,698,698
+524,693,698,698,698,698,698,698,698,698,698,698,698,698,698,698,698,698
+532,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0
+1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0
+1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0
+1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0
+1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0
+1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0
+1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+4 9 SSTidalRooms 0
+7 9 SSTidalRooms 2
+10 9 SSTidalRooms 4
+13 9 SSTidalRooms 6
+4 3 SSTidalRooms 8
+7 3 SSTidalRooms 9
+10 3 SSTidalRooms 10
+13 3 SSTidalRooms 11
+16 2 SSTidalLowerDeck 0
+npcs
+people_sailor 1 11 N static 0 LOCALID_SS_TIDAL_EXIT_SAILOR 0
+people_sailor 16 7 S wander 0 - 0
+people_expert_m 9 2 S static FLAG_HIDE_SS_TIDAL_CORRIDOR_MR_BRINEY - 0
+pokemon_wingull 7 2 S static FLAG_HIDE_SS_TIDAL_CORRIDOR_MR_BRINEY - 0
+people_scott 9 10 W static FLAG_HIDE_SS_TIDAL_CORRIDOR_SCOTT LOCALID_SS_TIDAL_SCOTT 0
+dialogs
+0	It'll be some time before we make land, I reckon.You can rest up in your cabin if you'd like. Your cabin's No. 2.The bed in there is soft and plushy. I can attest to how comfy it is!
+1	Go visit other cabins. TRAINERS bored of the boat trip will be itching to battle.
+2	MR. BRINEY: Welcome aboard, PLAYER!They made me honorary captain of the S.S. TIDAL!You can call me CAPTAIN BRINEY now!You know, I retired once before, but when I saw this majestic ship…Let me just say, it stirred my sleeping soul as a sailor!
+3	PEEKO: Pihyo pihyohyo…
+objscripts
+0 SSTidalCorridor_EventScript_ExitSailor
+1 SSTidalCorridor_EventScript_Sailor
+2 SSTidalCorridor_EventScript_Briney
+3 SSTidalCorridor_EventScript_Peeko
+onload
+VAR_SS_TIDAL_SCOTT_STATE 0 SSTidalCorridor_EventScript_ScottScene
+VAR_SS_TIDAL_STATE SS_TIDAL_BOARD_SLATEPORT SSTidalCorridor_EventScript_DepartSlateportForLilycove
+VAR_SS_TIDAL_STATE SS_TIDAL_BOARD_LILYCOVE SSTidalCorridor_EventScript_DepartLilycoveForSlateport
+VAR_SS_TIDAL_STATE SS_TIDAL_EXIT_CURRENTS_RIGHT SSTidalCorridor_EventScript_HalfwayToLilycove
+VAR_SS_TIDAL_STATE SS_TIDAL_EXIT_CURRENTS_LEFT SSTidalCorridor_EventScript_ArrivedInSlateport
+movements
+Common_Movement_WalkInPlaceFasterRight	delay,end
+SSTidalCorridor_Movement_PlayerWatchScottExit	delay,delay,delay,delay,delay,delay,end
+SSTidalCorridor_Movement_SailorMoveForScott	delay,right,right,delay,delay,delay,end
+SSTidalCorridor_Movement_SailorReturn	left,left,delay,end
+SSTidalCorridor_Movement_ScottApproachPlayer	left,left,left,left,left,left,left,end
+SSTidalCorridor_Movement_ScottExit	delay,delay,delay,delay,delay,down,left,end
+scriptdefs
+= SSTidalCorridor_EventScript_ArrivedInSlateport
+special ResetSSTidalFlag
+setvar VAR_SS_TIDAL_STATE SS_TIDAL_LAND_SLATEPORT
+lockall
+playse SE_DING_DONG
+msgbox	We have made land in SLATEPORT CITY. Thank you for sailing with us.
+releaseall
+end
+= SSTidalCorridor_EventScript_HalfwayToLilycove
+special ResetSSTidalFlag
+setvar VAR_SS_TIDAL_STATE SS_TIDAL_HALFWAY_LILYCOVE
+lockall
+playse SE_DING_DONG
+msgbox	We hope you enjoy your voyage on our ferry.
+releaseall
+end
+= SSTidalCorridor_EventScript_DepartLilycoveForSlateport
+setvar VAR_SS_TIDAL_STATE SS_TIDAL_DEPART_LILYCOVE
+lockall
+playse SE_DING_DONG
+msgbox	We hope you enjoy your voyage on our ferry.
+releaseall
+end
+= SSTidalCorridor_EventScript_DepartSlateportForLilycove
+special SetSSTidalFlag
+setvar VAR_SS_TIDAL_STATE SS_TIDAL_DEPART_SLATEPORT
+lockall
+playse SE_DING_DONG
+msgbox	This ferry is built to plow through fast-running currents.We hope you enjoy your voyage with us. Feel free to explore the ship.
+releaseall
+end
+= SSTidalCorridor_EventScript_ScottScene
+lockall
+applymovement LOCALID_SS_TIDAL_SCOTT SSTidalCorridor_Movement_ScottApproachPlayer
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+msgbox	SCOTT: Well, hi, hi! PLAYER, PLAYER!Something's come up, so I have to disembark, but am I glad to see you!Congratulations, LEAGUE CHAMPION!There's a place I'd like to invite someone like you.It's the… BATTLE FRONTIER!What's the place like? You'll understand when you see it!I've spoken with the ship's CAPTAIN about this.The next time you take a ferry, you should be able to sail to the BATTLE FRONTIER.Okay, PLAYER, I'll be waiting for you at the BATTLE FRONTIER!
+closemessage
+applymovement LOCALID_PLAYER SSTidalCorridor_Movement_PlayerWatchScottExit
+applymovement LOCALID_SS_TIDAL_EXIT_SAILOR SSTidalCorridor_Movement_SailorMoveForScott
+applymovement LOCALID_SS_TIDAL_SCOTT SSTidalCorridor_Movement_ScottExit
+waitmovement 0
+playse SE_EXIT
+waitse
+removeobject LOCALID_SS_TIDAL_SCOTT
+applymovement LOCALID_SS_TIDAL_EXIT_SAILOR SSTidalCorridor_Movement_SailorReturn
+waitmovement 0
+delay 30
+setflag FLAG_MET_SCOTT_ON_SS_TIDAL
+setvar VAR_SS_TIDAL_SCOTT_STATE 1
+releaseall
+end
+= SSTidalCorridor_EventScript_Peeko
+lock
+faceplayer
+waitse
+playmoncry SPECIES_WINGULL CRY_MODE_NORMAL
+msgbox	PEEKO: Pihyo pihyohyo…
+waitmoncry
+release
+end
+= SSTidalCorridor_EventScript_Briney
+msgbox	MR. BRINEY: Welcome aboard, PLAYER!They made me honorary captain of the S.S. TIDAL!You can call me CAPTAIN BRINEY now!You know, I retired once before, but when I saw this majestic ship…Let me just say, it stirred my sleeping soul as a sailor!
+end
+= SSTidalCorridor_EventScript_Sailor
+lock
+faceplayer
+goto_if_set FLAG_DEFEATED_SS_TIDAL_TRAINERS SSTidalCorridor_EventScript_EnjoyYourCruise
+call SSTidalCorridor_EventScript_CheckIfTrainersDefeated
+msgbox	Go visit other cabins. TRAINERS bored of the boat trip will be itching to battle.
+release
+end
+= SSTidalCorridor_EventScript_CheckIfTrainersDefeated
+goto_if_not_defeated TRAINER_PHILLIP SSTidalCorridor_EventScript_TrainerNotDefeated
+goto_if_not_defeated TRAINER_LEONARD SSTidalCorridor_EventScript_TrainerNotDefeated
+goto_if_not_defeated TRAINER_COLTON SSTidalCorridor_EventScript_TrainerNotDefeated
+goto_if_not_defeated TRAINER_MICAH SSTidalCorridor_EventScript_TrainerNotDefeated
+goto_if_not_defeated TRAINER_THOMAS SSTidalCorridor_EventScript_TrainerNotDefeated
+goto_if_not_defeated TRAINER_LEA_AND_JED SSTidalCorridor_EventScript_TrainerNotDefeated
+goto_if_not_defeated TRAINER_GARRET SSTidalCorridor_EventScript_TrainerNotDefeated
+goto_if_not_defeated TRAINER_NAOMI SSTidalCorridor_EventScript_TrainerNotDefeated
+setflag FLAG_DEFEATED_SS_TIDAL_TRAINERS
+goto SSTidalCorridor_EventScript_EnjoyYourCruise
+return
+= SSTidalCorridor_EventScript_EnjoyYourCruise
+msgbox	Enjoy your cruise!
+release
+end
+= SSTidalCorridor_EventScript_TrainerNotDefeated
+return
+= SSTidalCorridor_EventScript_ExitSailor
+lock
+faceplayer
+goto_if_eq VAR_SS_TIDAL_STATE SS_TIDAL_LAND_LILYCOVE SSTidalCorridor_EventScript_ExitLilycove
+goto_if_eq VAR_SS_TIDAL_STATE SS_TIDAL_LAND_SLATEPORT SSTidalCorridor_EventScript_ExitSlateport
+msgbox	It'll be some time before we make land, I reckon.You can rest up in your cabin if you'd like. Your cabin's No. 2.The bed in there is soft and plushy. I can attest to how comfy it is!
+release
+end
+= SSTidalCorridor_EventScript_ExitSlateport
+setrespawn HEAL_LOCATION_SLATEPORT_CITY
+msgbox	We've arrived!
+call_if_set FLAG_RECEIVED_TM_SNATCH SSTidalCorridor_EventScript_HideSnatchGiver
+warp SlateportCity_Harbor 8 11
+waitstate
+release
+end
+= SSTidalCorridor_EventScript_HideSnatchGiver
+setflag FLAG_HIDE_SS_TIDAL_ROOMS_SNATCH_GIVER
+return
+= SSTidalCorridor_EventScript_ExitLilycove
+setrespawn HEAL_LOCATION_LILYCOVE_CITY
+msgbox	We've arrived!
+call_if_set FLAG_RECEIVED_TM_SNATCH SSTidalCorridor_EventScript_HideSnatchGiver
+warp LilycoveCity_Harbor 8 11
+waitstate
+release
+end
+signs
+2 1	The horizon spreads beyond the porthole.
+4 1	The horizon spreads beyond the porthole.
+6 1	The horizon spreads beyond the porthole.
+8 1	The horizon spreads beyond the porthole.
+10 1	The horizon spreads beyond the porthole.
+12 1	The horizon spreads beyond the porthole.
+14 1	The horizon spreads beyond the porthole.
+16 1	The horizon spreads beyond the porthole.
+5 9	Cabin 1
+8 9	Cabin 2
+11 9	Cabin 3
+14 9	Cabin 4
+mapsec
+0 0 1 1	
+music
+MUS_SAILING

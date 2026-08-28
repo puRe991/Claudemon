@@ -1,0 +1,81 @@
+tileset building__generic_building
+10 9
+4 3
+912,913,948,949,913,913,913,913,919,914
+920,936,956,957,921,921,952,953,927,922
+928,944,964,965,929,951,960,961,935,930
+929,916,917,917,917,917,917,917,918,931
+929,924,925,942,938,939,943,925,926,931
+951,924,925,942,946,947,943,925,926,931
+929,932,933,933,933,933,933,933,934,931
+951,931,931,931,931,931,931,931,931,931
+998,931,931,931,940,941,931,931,931,999
+collision
+1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,1,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+0,0,0,0,1,1,0,0,0,0
+1,0,0,0,1,1,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+1,0,0,0,0,0,0,0,0,0
+1,0,0,0,0,0,0,0,0,1
+warps
+4 8 PacifidlogTown 3
+5 8 PacifidlogTown 3
+npcs
+people_girl_2 3 5 S static 0 - 0
+people_man_3 4 2 E static 0 - 0
+dialogs
+0	Is that a POKéDEX?Did you get to meet a lot of different POKéMON?I wish I was like you.
+1	Check out this STR_VAR_2!It's the STR_VAR_2 that I caught yesterday to celebrate my birthday!Oh, I can see that you want it! After all, it's priceless!I'll tell you what. I might be willing to trade it for a STR_VAR_1.
+objscripts
+0 PacifidlogTown_House3_EventScript_Girl
+1 PacifidlogTown_House3_EventScript_Trader
+scriptdefs
+= PacifidlogTown_House3_EventScript_Trader
+lock
+faceplayer
+goto_if_set FLAG_PACIFIDLOG_NPC_TRADE_COMPLETED PacifidlogTown_House3_EventScript_TradeCompleted
+setvar VAR_0x8008 INGAME_TRADE_HORSEA
+copyvar VAR_0x8004 VAR_0x8008
+specialvar VAR_RESULT GetInGameTradeSpeciesInfo
+copyvar VAR_0x8009 VAR_RESULT
+msgboxyesno	Check out this STR_VAR_2!It's the STR_VAR_2 that I caught yesterday to celebrate my birthday!Oh, I can see that you want it! After all, it's priceless!I'll tell you what. I might be willing to trade it for a STR_VAR_1.
+goto_if_eq VAR_RESULT NO PacifidlogTown_House3_EventScript_DeclineTrade
+special ChoosePartyMon
+copyvar VAR_0x800A VAR_0x8004
+goto_if_eq VAR_0x8004 PARTY_NOTHING_CHOSEN PacifidlogTown_House3_EventScript_DeclineTrade
+copyvar VAR_0x8005 VAR_0x800A
+specialvar VAR_RESULT GetTradeSpecies
+copyvar VAR_0x800B VAR_RESULT
+goto_if_ne VAR_RESULT VAR_0x8009 PacifidlogTown_House3_EventScript_NotRequestedMon
+copyvar VAR_0x8004 VAR_0x8008
+copyvar VAR_0x8005 VAR_0x800A
+special CreateInGameTradePokemon
+special DoInGameTradeScene
+bufferspeciesname STR_VAR_1 VAR_0x8009
+msgbox	Oh, so this is a STR_VAR_1?It's sort of like a STR_VAR_2, and yet it's subtly different.Thank you!
+setflag FLAG_PACIFIDLOG_NPC_TRADE_COMPLETED
+release
+end
+= PacifidlogTown_House3_EventScript_NotRequestedMon
+bufferspeciesname STR_VAR_1 VAR_0x8009
+msgbox	No, no, no! I won't accept any less than a real STR_VAR_1!
+release
+end
+= PacifidlogTown_House3_EventScript_DeclineTrade
+msgbox	Oh, so you're not going to go through with this?That's cool. I'm not desperate to make a trade or anything.
+release
+end
+= PacifidlogTown_House3_EventScript_TradeCompleted
+msgbox	I know I could go looking for one on my own, but…But I really wanted to get a BAGON that another TRAINER caught…
+release
+end
+= PacifidlogTown_House3_EventScript_Girl
+msgbox	Is that a POKéDEX?Did you get to meet a lot of different POKéMON?I wish I was like you.
+end
+mapsec
+17 10 1 1	PACIFIDLOG TOWN
+music
+MUS_LILYCOVE

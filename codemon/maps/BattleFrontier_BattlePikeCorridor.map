@@ -1,0 +1,52 @@
+tileset building__battle_pike
+14 8
+7 4
+673,678,679,672,673,674,675,676,677,678,672,673,678,679
+681,686,687,680,681,682,683,684,685,686,680,681,686,687
+689,694,695,688,689,690,691,692,693,694,688,689,694,695
+697,702,703,548,697,698,699,700,701,549,696,697,702,703
+729,730,730,556,730,739,740,741,730,556,730,730,730,730
+707,705,705,730,534,734,764,735,534,730,705,705,705,705
+707,705,534,705,542,734,764,735,542,705,534,705,705,705
+707,705,542,705,730,742,744,743,730,705,542,705,705,705
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,0,1,1,1,1,1,1,1
+0,0,0,1,0,0,0,0,0,1,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,1,0,0,0,1,0,0,0,0,0
+0,0,1,0,0,0,0,0,0,0,1,0,0,0
+npcs
+people_link_receptionist 6 6 S static 0 LOCALID_PIKE_CORRIDOR_ATTENDANT 0
+onload
+VAR_TEMP_0 0 BattleFrontier_BattlePikeCorridor_EventScript_EnterCorridor
+movements
+BattleFrontier_BattlePikeCorridor_Movement_AttendantEnterCorridor	up,up,left,face_down,end
+BattleFrontier_BattlePikeCorridor_Movement_PlayerEnterCorridor	up,up,end
+BattleFrontier_BattlePikeCorridor_Movement_PlayerExitCorridor	up,up,delay,end
+scriptdefs
+= BattleFrontier_BattlePikeCorridor_EventScript_EnterCorridor
+delay 16
+frontier_set FRONTIER_DATA_BATTLE_NUM 1
+pike_cleartrainerids
+pike_nohealing TRUE
+applymovement LOCALID_PLAYER BattleFrontier_BattlePikeCorridor_Movement_PlayerEnterCorridor
+applymovement LOCALID_PIKE_CORRIDOR_ATTENDANT BattleFrontier_BattlePikeCorridor_Movement_AttendantEnterCorridor
+waitmovement 0
+lockall
+msgbox	Your Battle Choice challenge has now begun…
+closemessage
+releaseall
+applymovement LOCALID_PLAYER BattleFrontier_BattlePikeCorridor_Movement_PlayerExitCorridor
+waitmovement 0
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS 99
+call BattleFrontier_BattlePike_EventScript_CloseCurtain
+warpsilent BattleFrontier_BattlePikeThreePathRoom 6 10
+waitstate
+end
+mapsec
+22 12 1 1	BATTLE FRONTIER
+music
+MUS_B_PIKE

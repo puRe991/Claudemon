@@ -1,0 +1,183 @@
+tileset building__generic_building
+11 8
+4 5
+646,647,517,517,517,518,517,517,517,517,517
+654,655,616,525,525,526,525,525,525,617,617
+662,663,624,548,548,548,548,548,548,625,625
+569,547,547,547,744,745,745,746,547,547,859
+569,547,547,547,752,753,721,754,547,547,867
+569,547,547,547,547,547,556,547,547,547,859
+569,547,547,547,547,547,547,547,547,547,867
+569,547,547,520,521,547,547,547,547,547,547
+collision
+1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,1,1,1,1,0,0,0
+0,0,0,0,1,1,1,1,0,0,1
+0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,1
+0,0,0,0,0,0,0,0,0,0,0
+warps
+3 7 MossdeepCity 6
+4 7 MossdeepCity 6
+npcs
+people_steven 9 6 E static FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_STEVEN LOCALID_STEVENS_HOUSE_STEVEN 0
+misc_item_ball 4 3 S static FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_BELDUM_POKEBALL LOCALID_STEVENS_HOUSE_BALL 0
+people_ninja_boy 6 4 S static FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_INVISIBLE_NINJA_BOY - 0
+dialogs
+0	STEVEN: Apparently, there's an underwater cavern between MOSSDEEP and SOOTOPOLIS.You know, the one that CAPT. STERN found in his submarine.
+1	PLAYER checked the POKé BALL.It contained the POKéMON BELDUM.Take the POKé BALL?
+2	It's a letter.… … … … … …To PLAYER…I've decided to do a little soul- searching and train on the road.I don't plan to return home for some time.I have a favor to ask of you.I want you to take the POKé BALL on the desk.Inside it is a BELDUM, my favorite POKéMON.I'm counting on you.May our paths cross someday.STEVEN STONE
+objscripts
+0 MossdeepCity_StevensHouse_EventScript_Steven
+1 MossdeepCity_StevensHouse_EventScript_BeldumPokeball
+2 MossdeepCity_StevensHouse_EventScript_Letter
+onload
+VAR_STEVENS_HOUSE_STATE 1 MossdeepCity_StevensHouse_EventScript_StevenGivesDive
+movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+MossdeepCity_StevensHouse_Movement_StevenApproachPlayer	left,left,left,left,left,left,delay,end
+MossdeepCity_StevensHouse_Movement_StevenReturn	up,right,right,right,delay,end
+scriptdefs
+= MossdeepCity_StevensHouse_EventScript_StevenGivesDive
+lockall
+applymovement LOCALID_STEVENS_HOUSE_STEVEN Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_STEVENS_HOUSE_STEVEN Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_STEVENS_HOUSE_STEVEN Common_Movement_Delay48
+waitmovement 0
+applymovement LOCALID_STEVENS_HOUSE_STEVEN MossdeepCity_StevensHouse_Movement_StevenApproachPlayer
+waitmovement 0
+msgbox	STEVEN: PLAYER…As you can see, there's not much here, but this is my home.Thank you for all that you've done.This is my token of appreciation. It's the HIDDEN MACHINE DIVE.No need to be shy--you've earned this HM.
+giveitem ITEM_HM_DIVE
+setflag FLAG_RECEIVED_HM_DIVE
+setflag FLAG_OMIT_DIVE_FROM_STEVEN_LETTER
+msgbox	STEVEN: While you're using SURF, you should notice dark patches of water.Use DIVE if you come to deep water like it. You'll drop to the seafloor.When you want to come back up, use DIVE again.In some places, it won't be possible for you to surface, though.
+closemessage
+delay 20
+applymovement LOCALID_STEVENS_HOUSE_STEVEN MossdeepCity_StevensHouse_Movement_StevenReturn
+waitmovement 0
+setflag FLAG_HIDE_MOSSDEEP_CITY_SCOTT
+setflag FLAG_HIDE_SEAFLOOR_CAVERN_ENTRANCE_AQUA_GRUNT
+setvar VAR_STEVENS_HOUSE_STATE 2
+releaseall
+end
+= MossdeepCity_StevensHouse_EventScript_Letter
+lockall
+msgbox	It's a letter.… … … … … …To PLAYER…I've decided to do a little soul- searching and train on the road.I don't plan to return home for some time.I have a favor to ask of you.I want you to take the POKé BALL on the desk.Inside it is a BELDUM, my favorite POKéMON.I'm counting on you.May our paths cross someday.STEVEN STONE
+releaseall
+end
+@ Unused leftover from RS
+goto MossdeepCity_StevensHouse_EventScript_DiveItemBall
+= MossdeepCity_StevensHouse_EventScript_DiveItemBall
+finditem ITEM_HM_DIVE
+setflag FLAG_RECEIVED_HM_DIVE
+end
+= MossdeepCity_StevensHouse_EventScript_BeldumPokeball
+lockall
+msgboxyesno	PLAYER checked the POKé BALL.It contained the POKéMON BELDUM.Take the POKé BALL?
+goto_if_eq VAR_RESULT NO MossdeepCity_StevensHouse_EventScript_LeaveBeldum
+goto MossdeepCity_StevensHouse_EventScript_GiveBeldum
+end
+= MossdeepCity_StevensHouse_EventScript_GiveBeldum
+setvar VAR_TEMP_TRANSFERRED_SPECIES SPECIES_BELDUM
+givemon SPECIES_BELDUM 5
+goto_if_eq VAR_RESULT MON_GIVEN_TO_PARTY MossdeepCity_StevensHouse_EventScript_SendBeldumParty
+goto_if_eq VAR_RESULT MON_GIVEN_TO_PC MossdeepCity_StevensHouse_EventScript_SendBeldumPC
+goto Common_EventScript_NoMoreRoomForPokemon
+end
+= Common_EventScript_NoMoreRoomForPokemon
+msgbox	There's no more room for POKéMON!The POKéMON BOXES are full and can't accept any more!
+release
+end
+= MossdeepCity_StevensHouse_EventScript_SendBeldumPC
+call MossdeepCity_StevensHouse_EventScript_ReceivedBeldumFanfare
+msgboxyesno	Do you want to give a nickname to this STR_VAR_1?
+goto_if_eq VAR_RESULT NO MossdeepCity_StevensHouse_EventScript_BeldumTransferredToPC
+call Common_EventScript_NameReceivedBoxMon
+goto MossdeepCity_StevensHouse_EventScript_BeldumTransferredToPC
+end
+= MossdeepCity_StevensHouse_EventScript_BeldumTransferredToPC
+call Common_EventScript_TransferredToPC
+goto MossdeepCity_StevensHouse_EventScript_ReceivedBeldum
+end
+= MossdeepCity_StevensHouse_EventScript_ReceivedBeldum
+setflag FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_BELDUM_POKEBALL
+setflag FLAG_RECEIVED_BELDUM
+releaseall
+end
+= Common_EventScript_TransferredToPC
+bufferboxname STR_VAR_1 VAR_PC_BOX_TO_SEND_MON
+bufferspeciesname STR_VAR_2 VAR_TEMP_TRANSFERRED_SPECIES
+call_if_unset FLAG_SYS_PC_LANETTE EventScript_TransferredSomeonesPC
+call_if_set FLAG_SYS_PC_LANETTE EventScript_TransferredLanettesPC
+return
+= EventScript_TransferredLanettesPC
+specialvar VAR_RESULT ShouldShowBoxWasFullMessage
+goto_if_eq VAR_RESULT TRUE EventScript_LanettesPCBoxFull
+msgbox	STR_VAR_2 was transferred to LANETTE'S PC.It was placed in BOX “STR_VAR_1.”
+return
+= EventScript_LanettesPCBoxFull
+specialvar VAR_RESULT GetPCBoxToSendMon
+bufferboxname STR_VAR_3 VAR_RESULT
+msgbox	BOX “STR_VAR_3” on LANETTE'S PC was full.STR_VAR_2 was transferred to BOX “STR_VAR_1.”
+return
+= EventScript_TransferredSomeonesPC
+specialvar VAR_RESULT ShouldShowBoxWasFullMessage
+goto_if_eq VAR_RESULT TRUE EventScript_SomeonesPCBoxFull
+msgbox	STR_VAR_2 was transferred to SOMEONE'S PC.It was placed in BOX “STR_VAR_1.”
+return
+= EventScript_SomeonesPCBoxFull
+specialvar VAR_RESULT GetPCBoxToSendMon
+bufferboxname STR_VAR_3 VAR_RESULT
+msgbox	BOX “STR_VAR_3” on SOMEONE'S PC was full.STR_VAR_2 was transferred to BOX “STR_VAR_1.”
+return
+= Common_EventScript_NameReceivedBoxMon
+fadescreen FADE_TO_BLACK
+special ChangeBoxPokemonNickname
+lock
+faceplayer
+return
+= MossdeepCity_StevensHouse_EventScript_ReceivedBeldumFanfare
+bufferspeciesname STR_VAR_2 SPECIES_BELDUM
+removeobject LOCALID_STEVENS_HOUSE_BALL
+playfanfare MUS_OBTAIN_ITEM
+msgbox	PLAYER obtained a BELDUM.
+waitmessage
+waitfanfare
+bufferspeciesname STR_VAR_1 SPECIES_BELDUM
+return
+= MossdeepCity_StevensHouse_EventScript_SendBeldumParty
+call MossdeepCity_StevensHouse_EventScript_ReceivedBeldumFanfare
+msgboxyesno	Do you want to give a nickname to this STR_VAR_1?
+goto_if_eq VAR_RESULT NO MossdeepCity_StevensHouse_EventScript_ReceivedBeldum
+call Common_EventScript_GetGiftMonPartySlot
+call Common_EventScript_NameReceivedPartyMon
+goto MossdeepCity_StevensHouse_EventScript_ReceivedBeldum
+end
+= Common_EventScript_GetGiftMonPartySlot
+getpartysize
+subvar VAR_RESULT 1
+copyvar VAR_0x8004 VAR_RESULT
+return
+= MossdeepCity_StevensHouse_EventScript_LeaveBeldum
+msgbox	PLAYER left the POKé BALL where it was.
+releaseall
+end
+= MossdeepCity_StevensHouse_EventScript_Steven
+msgbox	STEVEN: Apparently, there's an underwater cavern between MOSSDEEP and SOOTOPOLIS.You know, the one that CAPT. STERN found in his submarine.
+end
+signs
+0 1	It's a collection of rare rocks and stones assembled by STEVEN.
+1 1	It's a collection of rare rocks and stones assembled by STEVEN.
+10 4	It's a collection of rare rocks and stones assembled by STEVEN.
+10 6	It's a collection of rare rocks and stones assembled by STEVEN.
+mapsec
+24 5 2 1	MOSSDEEP CITY
+music
+MUS_RUSTBORO

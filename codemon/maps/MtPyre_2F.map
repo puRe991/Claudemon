@@ -1,0 +1,102 @@
+tileset general__facility
+13 13
+6 6
+740,707,708,709,751,740,751,740,751,691,692,693,740
+748,715,716,717,759,748,759,748,759,699,700,701,748
+743,744,743,745,743,743,806,806,743,744,743,745,806
+743,742,742,742,742,742,742,750,742,742,742,742,750
+806,750,742,742,742,742,750,742,750,750,742,742,742
+806,750,742,742,742,742,750,742,750,742,742,742,742
+743,742,750,742,742,742,742,742,742,742,750,750,742
+743,742,750,742,742,742,742,742,742,742,750,750,742
+806,750,750,750,750,750,742,742,750,750,742,742,750
+806,742,742,742,750,750,742,742,750,750,742,1010,750
+743,742,742,742,742,742,742,742,742,742,742,742,742
+806,750,742,742,750,750,742,742,750,750,742,750,750
+806,750,742,742,750,750,742,742,750,750,742,750,750
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,0,1,1,1,1,1,1,1,0,1,1
+0,0,0,0,0,0,1,1,0,0,0,0,1
+0,0,0,0,0,0,0,1,0,0,0,0,1
+1,1,0,0,0,0,1,0,1,1,0,0,0
+1,1,0,0,0,0,1,0,1,0,0,0,0
+0,0,1,0,0,0,0,0,0,0,1,1,0
+0,0,1,0,0,0,0,0,0,0,1,1,0
+1,1,1,1,1,1,0,0,1,1,0,0,1
+1,0,0,0,1,1,0,0,1,1,0,0,1
+0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,0,0,1,1,0,0,1,1,0,1,1
+1,1,0,0,1,1,0,0,1,1,0,1,1
+warps
+2 1 MtPyre_1F 4
+10 1 MtPyre_3F 0
+10 12 MtPyre_3F 4
+6 12 MtPyre_3F 5
+11 9 MtPyre_1F 5
+npcs
+people_maniac 3 6 E static 0 - 2
+misc_item_ball 0 10 S static FLAG_ITEM_MT_PYRE_2F_ULTRA_BALL - 0
+people_woman_1 9 3 E static 0 - 0
+people_pokefan_m 12 10 S static 0 - 0
+people_woman_4 2 9 S static 0 - 1
+people_man_4 3 9 S static 0 - 1
+people_black_belt 6 9 N static 0 - 2
+people_hex_maniac 6 6 S static 0 - 2
+dialogs
+0	People don't come here often, so I thought there'd be rare POKéMON.
+2	Memories of my darling SKITTY… My eyes overflow thinking about it.
+3	Ooch, ouch… There are holes in the ground here and there.I didn't notice and took a tumble from the floor above.
+4	DEZ: We're lovey-dovey, so we don't care if we lose!
+5	LUKE: Well, we lost but that's okay! I'm right here by your side. We'll make it through this dare!
+6	I get freaked out every time I see anything move…I shouldn't have come here to train…
+7	Our family has been TRAINERS here since my great-grandmother's time…It is my duty to protect this mountain…
+objscripts
+0 MtPyre_2F_EventScript_Mark
+1 MtPyre_2F_EventScript_ItemUltraBall
+2 MtPyre_2F_EventScript_Woman
+3 MtPyre_2F_EventScript_PokefanM
+4 MtPyre_2F_EventScript_Dez
+5 MtPyre_2F_EventScript_Luke
+6 MtPyre_2F_EventScript_Zander
+7 MtPyre_2F_EventScript_Leah
+scriptdefs
+= MtPyre_2F_EventScript_Leah
+trainerbattle_single TRAINER_LEAH MtPyre_2F_Text_LeahIntro MtPyre_2F_Text_LeahDefeat
+msgbox	Our family has been TRAINERS here since my great-grandmother's time…It is my duty to protect this mountain…
+end
+= MtPyre_2F_EventScript_Zander
+trainerbattle_single TRAINER_ZANDER MtPyre_2F_Text_ZanderIntro MtPyre_2F_Text_ZanderDefeat
+msgbox	I get freaked out every time I see anything move…I shouldn't have come here to train…
+end
+= MtPyre_2F_EventScript_Luke
+trainerbattle_double TRAINER_DEZ_AND_LUKE MtPyre_2F_Text_LukeIntro MtPyre_2F_Text_LukeDefeat MtPyre_2F_Text_LukeNotEnoughMons
+msgbox	LUKE: Well, we lost but that's okay! I'm right here by your side. We'll make it through this dare!
+end
+= MtPyre_2F_EventScript_Dez
+trainerbattle_double TRAINER_DEZ_AND_LUKE MtPyre_2F_Text_DezIntro MtPyre_2F_Text_DezDefeat MtPyre_2F_Text_DezNotEnoughMons
+msgbox	DEZ: We're lovey-dovey, so we don't care if we lose!
+end
+= MtPyre_2F_EventScript_PokefanM
+msgbox	Ooch, ouch… There are holes in the ground here and there.I didn't notice and took a tumble from the floor above.
+end
+= MtPyre_2F_EventScript_Woman
+msgbox	Memories of my darling SKITTY… My eyes overflow thinking about it.
+end
+= MtPyre_2F_EventScript_ItemUltraBall
+goto_if_set FLAG_ITEM_MT_PYRE_2F_ULTRA_BALL MtPyre_2F_EventScript_ItemUltraBall_Taken
+finditem ITEM_ULTRA_BALL
+setflag FLAG_ITEM_MT_PYRE_2F_ULTRA_BALL
+end
+= MtPyre_2F_EventScript_ItemUltraBall_Taken
+end
+= MtPyre_2F_EventScript_Mark
+trainerbattle_single TRAINER_MARK MtPyre_2F_Text_MarkIntro MtPyre_2F_Text_MarkDefeat
+msgbox	People don't come here often, so I thought there'd be rare POKéMON.
+end
+mapsec
+16 4 1 1	MT. PYRE
+music
+MUS_MT_PYRE
+encounters
+land SHUPPET:27:27,SHUPPET:28:28,SHUPPET:26:26,SHUPPET:25:25,SHUPPET:29:29,SHUPPET:24:24,SHUPPET:23:23,SHUPPET:22:22,SHUPPET:29:29,SHUPPET:24:24,SHUPPET:29:29,SHUPPET:24:24

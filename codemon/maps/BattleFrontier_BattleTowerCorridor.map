@@ -1,0 +1,45 @@
+tileset building__battle_frontier
+17 5
+8 2
+557,540,558,557,540,558,554,555,518,556,554,557,540,558,557,540,558
+565,548,566,565,548,566,562,563,526,564,562,565,548,566,565,548,566
+516,515,515,515,515,515,515,631,515,631,515,515,515,515,515,515,515
+622,553,553,553,553,553,553,553,553,553,553,553,553,553,553,553,607
+630,512,512,512,512,512,512,623,512,623,512,512,512,512,512,512,615
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+npcs
+people_teala 9 2 W static 0 LOCALID_TOWER_CORRIDOR_ATTENDANT 0
+onload
+VAR_TEMP_0 0 BattleFrontier_BattleTowerCorridor_EventScript_EnterCorridor
+movements
+BattleFrontier_BattleTowerCorridor_Movement_AttendantWalkToDoor	right,right,right,up,delay,end
+BattleFrontier_BattleTowerCorridor_Movement_AttendantWalkToFarDoor	right,right
+BattleFrontier_BattleTowerCorridor_Movement_PlayerWalkToDoor	right
+BattleFrontier_BattleTowerCorridor_Movement_PlayerWalkToFarDoor	right
+scriptdefs
+= BattleFrontier_BattleTowerCorridor_EventScript_EnterCorridor
+setvar VAR_TEMP_0 1
+goto_if_eq VAR_0x8006 1 BattleFrontier_BattleTowerCorridor_EventScript_WalkToFarDoor
+applymovement LOCALID_TOWER_CORRIDOR_ATTENDANT BattleFrontier_BattleTowerCorridor_Movement_AttendantWalkToDoor
+applymovement LOCALID_PLAYER BattleFrontier_BattleTowerCorridor_Movement_PlayerWalkToDoor
+waitmovement 0
+goto BattleFrontier_BattleTowerCorridor_EventScript_WarpToBattleRoom
+= BattleFrontier_BattleTowerCorridor_EventScript_WarpToBattleRoom
+setvar VAR_TEMP_0 0
+warp BattleFrontier_BattleTowerBattleRoom 4 8
+waitstate
+end
+= BattleFrontier_BattleTowerCorridor_EventScript_WalkToFarDoor
+applymovement LOCALID_TOWER_CORRIDOR_ATTENDANT BattleFrontier_BattleTowerCorridor_Movement_AttendantWalkToFarDoor
+applymovement LOCALID_PLAYER BattleFrontier_BattleTowerCorridor_Movement_PlayerWalkToFarDoor
+waitmovement 0
+goto BattleFrontier_BattleTowerCorridor_EventScript_WarpToBattleRoom
+mapsec
+22 12 1 1	BATTLE FRONTIER
+music
+MUS_B_TOWER

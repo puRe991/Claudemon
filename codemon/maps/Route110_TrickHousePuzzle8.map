@@ -1,0 +1,90 @@
+tileset building__trick_house_puzzle
+15 22
+8 11
+513,513,513,513,513,513,513,513,513,513,513,513,514,623,516
+521,521,521,521,521,521,521,521,521,521,521,521,522,631,524
+528,528,528,533,528,528,528,528,528,528,528,528,528,528,533
+619,619,620,620,620,619,620,620,620,620,620,620,620,620,620
+619,619,619,619,620,619,620,619,619,619,619,619,619,619,619
+619,620,619,619,619,619,619,619,619,619,619,619,619,619,619
+619,619,619,619,619,619,619,620,619,619,619,619,619,619,620
+619,619,619,619,619,619,619,619,619,620,619,619,619,619,619
+619,619,619,619,619,619,619,619,619,619,619,619,619,620,619
+520,520,520,532,532,520,520,532,532,532,532,532,619,532,520
+532,520,532,532,532,532,532,532,532,520,532,520,619,532,520
+619,620,619,619,619,619,620,620,619,619,619,619,619,619,520
+619,619,619,619,620,619,619,619,619,619,620,619,619,619,619
+619,619,619,619,620,619,619,619,619,619,620,619,619,619,619
+619,619,619,619,620,619,619,619,619,619,620,619,619,619,619
+619,619,619,619,620,619,619,619,619,619,620,619,619,619,619
+619,620,619,619,619,619,619,619,619,619,620,619,619,619,619
+619,619,619,619,619,619,619,619,520,619,620,619,619,619,619
+619,619,619,619,619,619,619,619,619,619,620,619,619,619,619
+619,619,620,620,620,619,620,619,619,619,620,619,619,619,619
+520,520,532,532,532,520,532,520,520,520,532,520,520,520,520
+529,530,532,531,520,520,532,520,520,520,520,520,520,520,520
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,1,0,0,0,0,0,0,0,0,0,0,1
+0,0,1,1,1,0,1,1,1,1,1,1,1,1,1
+0,0,0,0,1,0,1,0,0,0,0,0,0,0,0
+0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,1,0,0,0,0,0,0,1
+0,0,0,0,0,0,0,0,0,1,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+0,0,0,1,1,0,0,1,1,1,1,1,0,1,0
+1,0,1,1,1,1,1,1,1,0,1,0,0,1,0
+0,1,0,0,0,0,1,1,0,0,0,0,0,0,0
+0,0,0,0,1,0,0,0,0,0,1,0,0,0,0
+0,0,0,0,1,0,0,0,0,0,1,0,0,0,0
+0,0,0,0,1,0,0,0,0,0,1,0,0,0,0
+0,0,0,0,1,0,0,0,0,0,1,0,0,0,0
+0,1,0,0,0,0,0,0,0,0,1,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+0,0,1,1,1,0,1,0,0,0,1,0,0,0,0
+0,0,1,1,1,0,1,0,0,0,1,0,0,0,0
+0,0,1,1,0,0,1,0,0,0,0,0,0,0,0
+warps
+0 21 Route110_TrickHouseEntrance 2
+1 21 Route110_TrickHouseEntrance 2
+13 1 Route110_TrickHouseEnd 0
+npcs
+people_man_3 1 10 N static 0 - 1
+people_man_3 4 2 E static 0 - 1
+people_woman_5 8 17 W static 0 - 1
+misc_item_ball 2 2 S static FLAG_ITEM_TRICK_HOUSE_PUZZLE_8_BEAD_MAIL - 0
+dialogs
+0	You've beaten the POKéMON LEAGUE CHAMPION? That's too much!
+1	Seeing someone like you should please the TRICK MASTER.
+2	It's a miracle that you beat me. You can brag about it.
+objscripts
+0 Route110_TrickHousePuzzle8_EventScript_Vincent
+1 Route110_TrickHousePuzzle8_EventScript_Leroy
+2 Route110_TrickHousePuzzle8_EventScript_Keira
+3 Route110_TrickHousePuzzle8_EventScript_ItemBeadMail
+scriptdefs
+= Route110_TrickHousePuzzle8_EventScript_ItemBeadMail
+goto_if_set FLAG_ITEM_TRICK_HOUSE_PUZZLE_8_BEAD_MAIL Route110_TrickHousePuzzle8_EventScript_ItemBeadMail_Taken
+finditem ITEM_BEAD_MAIL
+setflag FLAG_ITEM_TRICK_HOUSE_PUZZLE_8_BEAD_MAIL
+end
+= Route110_TrickHousePuzzle8_EventScript_ItemBeadMail_Taken
+end
+= Route110_TrickHousePuzzle8_EventScript_Keira
+trainerbattle_single TRAINER_KEIRA Route110_TrickHousePuzzle8_Text_KeiraIntro Route110_TrickHousePuzzle8_Text_KeiraDefeat
+msgbox	It's a miracle that you beat me. You can brag about it.
+end
+= Route110_TrickHousePuzzle8_EventScript_Leroy
+trainerbattle_single TRAINER_LEROY Route110_TrickHousePuzzle8_Text_LeroyIntro Route110_TrickHousePuzzle8_Text_LeroyDefeat
+msgbox	Seeing someone like you should please the TRICK MASTER.
+end
+= Route110_TrickHousePuzzle8_EventScript_Vincent
+trainerbattle_single TRAINER_VINCENT Route110_TrickHousePuzzle8_Text_VincentIntro Route110_TrickHousePuzzle8_Text_VincentDefeat
+msgbox	You've beaten the POKéMON LEAGUE CHAMPION? That's too much!
+end
+mapsec
+8 7 1 3	ROUTE 110
+music
+MUS_TRICK_HOUSE

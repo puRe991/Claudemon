@@ -1,0 +1,59 @@
+tileset building__generic_building
+8 7
+3 2
+1008,1008,1009,1008,1008,1009,1008,560
+717,1016,1017,1016,1016,1017,1016,2
+725,1023,1023,1023,1023,1023,1023,693
+1023,1022,733,1011,1012,734,1022,1022
+1023,1022,733,1019,1020,734,1022,1022
+1023,1022,1022,1022,1022,1022,1022,1022
+1023,1022,1022,520,521,1022,1022,1022
+collision
+1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0
+0,0,0,1,1,0,0,0
+0,0,0,1,1,0,0,0
+0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0
+warps
+3 6 SootopolisCity 4
+4 6 SootopolisCity 4
+npcs
+people_black_belt 2 4 E static 0 - 0
+pokemon_kecleon 2 3 S static 0 - 0
+dialogs
+0	For thirty years I've remained in SOOTOPOLIS honing my skills.I developed a shattering TM. I bequeath it to you!
+1	KECLEON: Puu puhyaah.
+objscripts
+0 SootopolisCity_House1_EventScript_BrickBreakBlackBelt
+1 SootopolisCity_House1_EventScript_Kecleon
+scriptdefs
+= SootopolisCity_House1_EventScript_Kecleon
+lock
+faceplayer
+waitse
+playmoncry SPECIES_KECLEON CRY_MODE_NORMAL
+msgbox	KECLEON: Puu puhyaah.
+waitmoncry
+release
+end
+= SootopolisCity_House1_EventScript_BrickBreakBlackBelt
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_TM_BRICK_BREAK SootopolisCity_House1_EventScript_ReceivedBrickBreak
+msgbox	For thirty years I've remained in SOOTOPOLIS honing my skills.I developed a shattering TM. I bequeath it to you!
+giveitem ITEM_TM_BRICK_BREAK
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_RECEIVED_TM_BRICK_BREAK
+msgbox	TM31 contains BRICK BREAK! It's a move so horrible that I can't describe it.
+release
+end
+= SootopolisCity_House1_EventScript_ReceivedBrickBreak
+msgbox	TM31 contains BRICK BREAK! It's a move so horrible that I can't describe it.
+release
+end
+mapsec
+21 7 1 1	SOOTOPOLIS CITY
+music
+MUS_SOOTOPOLIS

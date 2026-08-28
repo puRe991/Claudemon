@@ -1,0 +1,43 @@
+tileset building__generic_building
+11 8
+4 3
+646,647,560,517,517,518,517,517,517,517,632
+654,655,542,525,525,526,525,616,620,621,640
+662,663,568,548,548,548,548,624,628,629,648
+569,547,547,547,547,547,547,547,547,547,547
+569,547,547,547,555,586,587,556,547,547,547
+569,547,547,547,555,594,595,556,547,547,547
+657,547,547,547,547,547,547,547,547,547,546
+665,547,547,520,521,547,547,547,547,547,554
+collision
+1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,1,1,0,0,0,0
+0,0,0,0,0,1,1,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0
+1,0,0,0,0,0,0,0,0,0,1
+warps
+3 7 SlateportCity 10
+4 7 SlateportCity 10
+npcs
+people_pokefan_m 4 4 E static 0 - 0
+people_girl_3 7 4 W static 0 - 0
+dialogs
+0	My POKéMON has a HASTY nature.It has higher SPEED compared to my other POKéMON.Maybe their nature has something to do with the stat gains of POKéMON.
+1	You're a TRAINER, aren't you?Since you came to SLATEPORT CITY, you must be going to the BATTLE TENT.
+objscripts
+0 SlateportCity_House_EventScript_PokefanM
+1 SlateportCity_House_EventScript_Girl
+scriptdefs
+= SlateportCity_House_EventScript_Girl
+msgbox	You're a TRAINER, aren't you?Since you came to SLATEPORT CITY, you must be going to the BATTLE TENT.
+end
+= SlateportCity_House_EventScript_PokefanM
+msgbox	My POKéMON has a HASTY nature.It has higher SPEED compared to my other POKéMON.Maybe their nature has something to do with the stat gains of POKéMON.
+end
+mapsec
+8 10 1 2	SLATEPORT CITY
+music
+MUS_SLATEPORT

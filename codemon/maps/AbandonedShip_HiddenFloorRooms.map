@@ -1,0 +1,206 @@
+tileset general__inside_ship
+44 15
+21 6
+566,551,551,551,551,661,611,662,551,551,551,551,551,567,566,551,551,551,551,551,661,687,662,551,551,551,551,551,567,566,551,551,551,551,551,661,611,662,551,551,551,551,551,567
+574,559,559,559,559,669,663,670,559,559,559,559,559,575,574,559,559,559,559,559,669,695,670,559,559,559,559,559,583,582,559,559,559,559,559,669,663,670,559,559,559,559,559,575
+574,616,571,571,571,571,571,571,571,571,571,571,571,575,574,570,571,571,527,535,565,571,665,666,571,571,571,571,591,590,570,571,571,571,571,571,571,615,571,571,665,666,571,575
+574,573,568,568,568,568,568,609,568,568,568,568,682,575,574,683,568,609,606,607,568,610,672,674,568,568,568,568,571,571,572,568,568,610,568,568,568,568,568,568,672,674,568,575
+574,573,568,598,599,568,568,568,568,568,609,568,568,575,574,573,568,568,608,568,568,568,568,568,568,568,568,568,575,574,573,568,568,568,568,608,568,568,568,568,568,568,568,575
+574,683,568,606,607,568,568,568,568,568,568,608,568,575,574,573,608,568,568,568,568,568,568,568,568,568,609,568,575,574,683,568,598,599,568,568,568,568,610,568,568,568,609,575
+574,573,568,568,568,568,568,568,568,568,568,568,568,575,574,573,568,568,568,568,568,568,568,568,568,568,568,568,575,574,573,568,606,607,568,568,568,609,568,568,568,568,682,575
+513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513
+566,551,551,551,551,551,551,551,551,551,551,551,551,567,566,551,551,551,551,551,551,551,551,551,551,551,551,551,567,566,551,551,551,551,551,551,551,551,551,551,551,551,551,567
+574,559,559,559,559,559,559,559,559,559,559,559,559,575,574,559,559,559,559,559,559,559,559,559,559,559,559,559,575,574,559,559,559,559,559,559,559,559,559,559,559,559,559,575
+574,570,615,571,571,571,571,565,571,571,571,571,571,575,574,570,571,571,571,571,571,571,571,571,571,571,571,571,575,574,570,571,571,615,571,571,571,571,571,571,665,666,571,575
+574,573,568,568,568,568,609,568,568,568,598,599,568,575,574,573,568,568,568,568,568,608,568,568,568,610,568,682,575,574,683,568,568,568,568,598,599,568,568,568,672,674,568,575
+574,573,568,568,568,568,568,568,568,568,606,607,568,575,574,573,568,568,609,608,568,568,568,568,568,568,568,568,575,574,573,568,568,568,568,606,607,568,568,609,568,568,568,575
+574,683,568,608,568,568,568,568,568,568,568,568,568,575,574,573,598,599,568,568,568,568,568,568,568,568,568,568,575,574,573,568,568,568,568,568,568,568,568,568,568,568,682,575
+574,573,568,568,568,568,612,613,568,568,568,568,682,575,574,573,606,607,568,568,568,612,613,568,568,568,609,568,575,574,573,608,568,610,568,568,612,613,568,568,568,568,609,575
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,1,1,0,1,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,1
+1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,1,1,0,1,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,0,1
+1,0,0,1,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+1,1,0,1,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,1,1,0,0,0,0,1,0,0,0,0,1
+1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,1,1,0,0,0,0,0,0,0,0,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,0,0,0,0,0,0,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,1
+1,0,0,0,0,0,0,0,0,0,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,1,0,1,1,1,1,0,0,0,0,1,1,0,0,0,1,1,0,1
+1,0,0,0,0,0,0,0,0,0,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,1,1,0,0,0,0,0,0,1
+1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,1
+warps
+6 14 AbandonedShip_HiddenFloorCorridors 0
+7 14 AbandonedShip_HiddenFloorCorridors 0
+21 14 AbandonedShip_HiddenFloorCorridors 1
+22 14 AbandonedShip_HiddenFloorCorridors 1
+36 14 AbandonedShip_HiddenFloorCorridors 2
+37 14 AbandonedShip_HiddenFloorCorridors 2
+6 1 AbandonedShip_HiddenFloorCorridors 3
+21 1 AbandonedShip_HiddenFloorCorridors 4
+36 1 AbandonedShip_HiddenFloorCorridors 5
+npcs
+misc_item_ball 41 4 S static FLAG_ITEM_ABANDONED_SHIP_HIDDEN_FLOOR_ROOM_6_LUXURY_BALL - 0
+misc_item_ball 16 10 S static FLAG_ITEM_ABANDONED_SHIP_HIDDEN_FLOOR_ROOM_2_SCANNER - 0
+misc_item_ball 5 11 S static FLAG_ITEM_ABANDONED_SHIP_HIDDEN_FLOOR_ROOM_1_TM_RAIN_DANCE - 0
+misc_item_ball 31 11 S static FLAG_ITEM_ABANDONED_SHIP_HIDDEN_FLOOR_ROOM_3_WATER_STONE - 0
+objscripts
+0 AbandonedShip_HiddenFloorRooms_EventScript_ItemLuxuryBall
+1 AbandonedShip_HiddenFloorRooms_EventScript_ItemScanner
+2 AbandonedShip_HiddenFloorRooms_EventScript_ItemTMRainDance
+3 AbandonedShip_HiddenFloorRooms_EventScript_ItemWaterStone
+triggers
+42 10 0 0 AbandonedShip_HiddenFloorRooms_HiddenItem_42_10
+20 5 0 0 AbandonedShip_HiddenFloorRooms_HiddenItem_20_5
+1 12 0 0 AbandonedShip_HiddenFloorRooms_HiddenItem_1_12
+1 2 0 0 AbandonedShip_HiddenFloorRooms_HiddenItem_1_2
+onload
+VAR_TEMP_1 0 AbandonedShip_HiddenFloorRooms_EventScript_DoHiddenItemSparkle
+scriptdefs
+= AbandonedShip_HiddenFloorRooms_EventScript_DoHiddenItemSparkle
+setvar VAR_TEMP_1 1
+getplayerxy VAR_TEMP_2 VAR_TEMP_3
+setvar VAR_TEMP_4 1
+call_if_eq VAR_TEMP_2 21 AbandonedShip_HiddenFloorRooms_EventScript_InMiddleRoomColumn
+call_if_eq VAR_TEMP_2 36 AbandonedShip_HiddenFloorRooms_EventScript_InRightRoomColumn
+call_if_eq VAR_TEMP_3 2 AbandonedShip_HiddenFloorRooms_EventScript_InUpperRoomRow
+switch VAR_TEMP_4
+case 1 AbandonedShip_HiddenFloorRooms_EventScript_EnterRm1
+case 2 AbandonedShip_HiddenFloorRooms_EventScript_EnterRm2
+case 3 AbandonedShip_HiddenFloorRooms_EventScript_EnterRm3
+case 4 AbandonedShip_HiddenFloorRooms_EventScript_EnterRm4
+case 5 AbandonedShip_HiddenFloorRooms_EventScript_EnterRm5
+case 6 AbandonedShip_HiddenFloorRooms_EventScript_EnterRm6
+end
+= AbandonedShip_HiddenFloorRooms_EventScript_EnterRm6
+end
+= AbandonedShip_HiddenFloorRooms_EventScript_EnterRm5
+delay 20
+dofieldeffectsparkle 16 3 0
+dofieldeffectsparkle 25 2 0
+dofieldeffectsparkle 24 6 0
+specialvar VAR_RESULT FoundAbandonedShipRoom2Key
+call_if_eq VAR_RESULT FALSE AbandonedShip_HiddenFloorRooms_EventScript_Rm2KeySparkle
+waitfieldeffect FLDEFF_SPARKLE
+delay 10
+end
+= AbandonedShip_HiddenFloorRooms_EventScript_Rm2KeySparkle
+dofieldeffectsparkle 20 5 0
+return
+= AbandonedShip_HiddenFloorRooms_EventScript_EnterRm4
+delay 20
+dofieldeffectsparkle 8 5 0
+dofieldeffectsparkle 11 3 0
+specialvar VAR_RESULT FoundAbandonedShipRoom6Key
+call_if_eq VAR_RESULT FALSE AbandonedShip_HiddenFloorRooms_EventScript_Rm6KeySparkle
+waitfieldeffect FLDEFF_SPARKLE
+delay 10
+end
+= AbandonedShip_HiddenFloorRooms_EventScript_Rm6KeySparkle
+dofieldeffectsparkle 1 2 0
+return
+= AbandonedShip_HiddenFloorRooms_EventScript_EnterRm3
+specialvar VAR_RESULT FoundAbandonedShipRoom1Key
+goto_if_eq VAR_RESULT TRUE AbandonedShip_HiddenFloorRooms_EventScript_Rm3NoSparkle
+delay 20
+call_if_eq VAR_RESULT FALSE AbandonedShip_HiddenFloorRooms_EventScript_Rm1KeySparkle
+waitfieldeffect FLDEFF_SPARKLE
+delay 10
+end
+= AbandonedShip_HiddenFloorRooms_EventScript_Rm1KeySparkle
+dofieldeffectsparkle 42 10 0
+return
+= AbandonedShip_HiddenFloorRooms_EventScript_Rm3NoSparkle
+end
+= AbandonedShip_HiddenFloorRooms_EventScript_EnterRm2
+end
+= AbandonedShip_HiddenFloorRooms_EventScript_EnterRm1
+delay 20
+dofieldeffectsparkle 10 10 0
+specialvar VAR_RESULT FoundAbandonedShipRoom4Key
+call_if_eq VAR_RESULT FALSE AbandonedShip_HiddenFloorRooms_EventScript_Rm4KeySparkle
+waitfieldeffect FLDEFF_SPARKLE
+delay 10
+end
+= AbandonedShip_HiddenFloorRooms_EventScript_Rm4KeySparkle
+dofieldeffectsparkle 1 12 0
+return
+= AbandonedShip_HiddenFloorRooms_EventScript_InUpperRoomRow
+addvar VAR_TEMP_4 3
+return
+= AbandonedShip_HiddenFloorRooms_EventScript_InRightRoomColumn
+addvar VAR_TEMP_4 2
+return
+= AbandonedShip_HiddenFloorRooms_EventScript_InMiddleRoomColumn
+addvar VAR_TEMP_4 1
+return
+= AbandonedShip_HiddenFloorRooms_HiddenItem_1_2
+goto_if_set FLAG_HIDDEN_ITEM_ABANDONED_SHIP_RM_6_KEY AbandonedShip_HiddenFloorRooms_HiddenItem_1_2_Taken
+finditem ITEM_ROOM_6_KEY
+setflag FLAG_HIDDEN_ITEM_ABANDONED_SHIP_RM_6_KEY
+end
+= AbandonedShip_HiddenFloorRooms_HiddenItem_1_2_Taken
+end
+= AbandonedShip_HiddenFloorRooms_HiddenItem_1_12
+goto_if_set FLAG_HIDDEN_ITEM_ABANDONED_SHIP_RM_4_KEY AbandonedShip_HiddenFloorRooms_HiddenItem_1_12_Taken
+finditem ITEM_ROOM_4_KEY
+setflag FLAG_HIDDEN_ITEM_ABANDONED_SHIP_RM_4_KEY
+end
+= AbandonedShip_HiddenFloorRooms_HiddenItem_1_12_Taken
+end
+= AbandonedShip_HiddenFloorRooms_HiddenItem_20_5
+goto_if_set FLAG_HIDDEN_ITEM_ABANDONED_SHIP_RM_2_KEY AbandonedShip_HiddenFloorRooms_HiddenItem_20_5_Taken
+finditem ITEM_ROOM_2_KEY
+setflag FLAG_HIDDEN_ITEM_ABANDONED_SHIP_RM_2_KEY
+end
+= AbandonedShip_HiddenFloorRooms_HiddenItem_20_5_Taken
+end
+= AbandonedShip_HiddenFloorRooms_HiddenItem_42_10
+goto_if_set FLAG_HIDDEN_ITEM_ABANDONED_SHIP_RM_1_KEY AbandonedShip_HiddenFloorRooms_HiddenItem_42_10_Taken
+finditem ITEM_ROOM_1_KEY
+setflag FLAG_HIDDEN_ITEM_ABANDONED_SHIP_RM_1_KEY
+end
+= AbandonedShip_HiddenFloorRooms_HiddenItem_42_10_Taken
+end
+= AbandonedShip_HiddenFloorRooms_EventScript_ItemWaterStone
+goto_if_set FLAG_ITEM_ABANDONED_SHIP_HIDDEN_FLOOR_ROOM_3_WATER_STONE AbandonedShip_HiddenFloorRooms_EventScript_ItemWaterStone_Taken
+finditem ITEM_WATER_STONE
+setflag FLAG_ITEM_ABANDONED_SHIP_HIDDEN_FLOOR_ROOM_3_WATER_STONE
+end
+= AbandonedShip_HiddenFloorRooms_EventScript_ItemWaterStone_Taken
+end
+= AbandonedShip_HiddenFloorRooms_EventScript_ItemTMRainDance
+goto_if_set FLAG_ITEM_ABANDONED_SHIP_HIDDEN_FLOOR_ROOM_1_TM_RAIN_DANCE AbandonedShip_HiddenFloorRooms_EventScript_ItemTMRainDance_Taken
+finditem ITEM_TM_RAIN_DANCE
+setflag FLAG_ITEM_ABANDONED_SHIP_HIDDEN_FLOOR_ROOM_1_TM_RAIN_DANCE
+end
+= AbandonedShip_HiddenFloorRooms_EventScript_ItemTMRainDance_Taken
+end
+= AbandonedShip_HiddenFloorRooms_EventScript_ItemScanner
+goto_if_set FLAG_ITEM_ABANDONED_SHIP_HIDDEN_FLOOR_ROOM_2_SCANNER AbandonedShip_HiddenFloorRooms_EventScript_ItemScanner_Taken
+finditem ITEM_SCANNER
+setflag FLAG_ITEM_ABANDONED_SHIP_HIDDEN_FLOOR_ROOM_2_SCANNER
+end
+= AbandonedShip_HiddenFloorRooms_EventScript_ItemScanner_Taken
+end
+= AbandonedShip_HiddenFloorRooms_EventScript_ItemLuxuryBall
+goto_if_set FLAG_ITEM_ABANDONED_SHIP_HIDDEN_FLOOR_ROOM_6_LUXURY_BALL AbandonedShip_HiddenFloorRooms_EventScript_ItemLuxuryBall_Taken
+finditem ITEM_LUXURY_BALL
+setflag FLAG_ITEM_ABANDONED_SHIP_HIDDEN_FLOOR_ROOM_6_LUXURY_BALL
+end
+= AbandonedShip_HiddenFloorRooms_EventScript_ItemLuxuryBall_Taken
+end
+signs
+8 5	It's bright and shiny! But it's just trash…
+11 3	It's bright and shiny! But it's just trash…
+10 10	It's bright and shiny! But it's just trash…
+16 3	It's bright and shiny! But it's just trash…
+25 2	It's bright and shiny! But it's just trash…
+24 6	It's bright and shiny! But it's just trash…
+mapsec
+6 14 1 1	ABANDONED SHIP
+music
+MUS_ABANDONED_SHIP

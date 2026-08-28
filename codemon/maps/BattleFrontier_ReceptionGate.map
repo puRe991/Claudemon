@@ -1,0 +1,266 @@
+tileset general__battle_frontier
+9 14
+4 7
+955,955,955,691,692,693,955,955,956
+963,964,964,596,597,598,963,963,964
+848,849,868,928,929,930,868,850,851
+856,857,876,936,937,938,876,858,859
+872,873,868,936,937,938,868,874,875
+880,881,876,936,937,938,876,882,883
+709,94,94,936,937,938,852,852,852
+709,852,852,936,937,938,860,860,860
+709,860,860,936,937,938,94,94,701
+848,849,868,936,937,938,868,850,851
+856,857,876,936,937,938,876,858,859
+872,873,868,936,937,938,868,874,875
+880,881,876,936,937,938,876,882,883
+94,94,94,944,945,946,94,94,94
+collision
+1,1,1,1,1,1,1,1,1
+1,1,1,1,0,1,1,1,1
+0,0,0,0,0,0,0,0,0
+1,1,1,0,0,0,1,1,1
+0,1,0,0,0,0,0,1,0
+1,1,1,0,0,0,1,1,1
+0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,1,1,1
+0,1,1,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0
+1,1,1,0,0,0,1,1,1
+0,1,0,0,0,0,0,1,0
+1,1,1,0,0,0,1,1,1
+0,0,0,0,0,0,0,0,0
+warps
+4 13 BattleFrontier_OutsideWest 8
+4 1 BattleFrontier_OutsideWest 9
+npcs
+people_teala 0 11 E static 0 LOCALID_FRONTIER_RECEPTION_GREETER 0
+people_teala 8 11 W static 0 LOCALID_FRONTIER_RECEPTION_GUIDE 0
+people_man_2 8 4 W static 0 - 0
+people_scott 4 5 S static FLAG_HIDE_BATTLE_FRONTIER_RECEPTION_GATE_SCOTT LOCALID_FRONTIER_RECEPTION_SCOTT 0
+people_man_2 0 4 E static 0 - 0
+dialogs
+0	The front lines of POKéMON battling! Welcome to the BATTLE FRONTIER!
+1	I'm your guide to the various facilities here in the BATTLE FRONTIER.
+2	I'm your guide to the basic rules that are common to all the challenges offered by the facilities in the BATTLE FRONTIER.
+4	I'm your guide to the FRONTIER PASS.
+objscripts
+0 BattleFrontier_ReceptionGate_EventScript_Greeter
+1 BattleFrontier_ReceptionGate_EventScript_FacilityGuide
+2 BattleFrontier_ReceptionGate_EventScript_RulesGuide
+4 BattleFrontier_ReceptionGate_EventScript_FrontierPassGuide
+onload
+VAR_HAS_ENTERED_BATTLE_FRONTIER 0 BattleFrontier_ReceptionGate_EventScript_FirstTimeEntering
+movements
+BattleFrontier_ReceptionGate_Movement_FacilityGuideFaceScott	delay,delay,delay,delay,delay,end
+BattleFrontier_ReceptionGate_Movement_GreeterFaceScott	delay,delay,delay,delay,delay,end
+BattleFrontier_ReceptionGate_Movement_PlayerApproachCounter	up,up,left,left,end
+BattleFrontier_ReceptionGate_Movement_PlayerFaceScott	delay,delay,delay,delay,delay,end
+BattleFrontier_ReceptionGate_Movement_ScottEnter	down,down,down,down,down,down,left,end
+BattleFrontier_ReceptionGate_Movement_ScottExit	right,up,up,up,up,up,up,end
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
+scriptdefs
+= BattleFrontier_ReceptionGate_EventScript_FirstTimeEntering
+lockall
+setvar VAR_HAS_ENTERED_BATTLE_FRONTIER 1
+playse SE_PIN
+applymovement LOCALID_FRONTIER_RECEPTION_GREETER Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_FRONTIER_RECEPTION_GREETER Common_Movement_Delay48
+waitmovement 0
+msgbox	Is it your first time here? Please step this way!
+closemessage
+applymovement LOCALID_PLAYER BattleFrontier_ReceptionGate_Movement_PlayerApproachCounter
+waitmovement 0
+goto BattleFrontier_ReceptionGate_EventScript_ScottScene
+end
+= BattleFrontier_ReceptionGate_EventScript_ScottScene
+msgbox	The front lines of POKéMON battling! Welcome to the BATTLE FRONTIER!
+msgbox	For a first-time visitor, we issue the FRONTIER PASS.It's for use at all the facilities in the BATTLE FRONTIER.Here you are!
+playfanfare MUS_OBTAIN_ITEM
+msgbox	PLAYER obtained the FRONTIER PASS.
+waitfanfare
+waitmessage
+msgbox	PLAYER placed the TRAINER CARD in the FRONTIER PASS.
+setflag FLAG_SYS_FRONTIER_PASS
+msgbox	We hope you enjoy all that the BATTLE FRONTIER has to offer!
+msgbox	???: Well, if it isn't PLAYER! You came out here!
+closemessage
+applymovement LOCALID_FRONTIER_RECEPTION_GREETER Common_Movement_WalkInPlaceFasterUp
+applymovement LOCALID_FRONTIER_RECEPTION_GUIDE Common_Movement_WalkInPlaceFasterUp
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_FRONTIER_RECEPTION_GREETER Common_Movement_ExclamationMark
+applymovement LOCALID_FRONTIER_RECEPTION_GUIDE Common_Movement_ExclamationMark
+applymovement LOCALID_PLAYER Common_Movement_ExclamationMark
+waitmovement 0
+msgbox	GUIDE: Oh! MR. SCOTT, sir! Good day to you, sir!
+closemessage
+applymovement LOCALID_FRONTIER_RECEPTION_GREETER BattleFrontier_ReceptionGate_Movement_GreeterFaceScott
+applymovement LOCALID_FRONTIER_RECEPTION_GUIDE BattleFrontier_ReceptionGate_Movement_FacilityGuideFaceScott
+applymovement LOCALID_PLAYER BattleFrontier_ReceptionGate_Movement_PlayerFaceScott
+applymovement LOCALID_FRONTIER_RECEPTION_SCOTT BattleFrontier_ReceptionGate_Movement_ScottEnter
+waitmovement 0
+msgbox	SCOTT: It's great to see you here, it really is!I hope you'll take your time and explore everywhere.Naturally, I hope you'll also experience the pure essence of battling.I also have my quarters here, so feel free to visit if you have time.
+closemessage
+applymovement LOCALID_FRONTIER_RECEPTION_SCOTT BattleFrontier_ReceptionGate_Movement_ScottExit
+waitmovement 0
+removeobject LOCALID_FRONTIER_RECEPTION_SCOTT
+releaseall
+end
+= BattleFrontier_ReceptionGate_EventScript_FrontierPassGuide
+lock
+faceplayer
+msgbox	I'm your guide to the FRONTIER PASS.
+goto BattleFrontier_ReceptionGate_EventScript_ChooseFrontierPassInfoToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_ChooseFrontierPassInfoToLearnAbout
+msgbox	Which would you like to learn about?
+waitmessage
+multichoice 16 4 MULTI_FRONTIER_PASS_INFO FALSE
+switch VAR_RESULT
+case 0 BattleFrontier_ReceptionGate_EventScript_Symbols
+case 1 BattleFrontier_ReceptionGate_EventScript_RecordBattle
+case 2 BattleFrontier_ReceptionGate_EventScript_BattlePoints
+case 3 BattleFrontier_ReceptionGate_EventScript_ExitFrontierPassGuide
+case MULTI_B_PRESSED BattleFrontier_ReceptionGate_EventScript_ExitFrontierPassGuide
+end
+= BattleFrontier_ReceptionGate_EventScript_ExitFrontierPassGuide
+msgbox	We hope you enjoy all that the BATTLE FRONTIER has to offer!
+release
+end
+= BattleFrontier_ReceptionGate_EventScript_BattlePoints
+msgbox	Battle Points are rewards given to TRAINERS who battled outstandingly at the BATTLE FRONTIER.You may trade in your Battle Points for prizes at the EXCHANGE SERVICE CORNER.
+goto BattleFrontier_ReceptionGate_EventScript_ChooseFrontierPassInfoToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_RecordBattle
+msgbox	It is possible to record one battle on your FRONTIER PASS.You may record a battle you had with a friend or friends.Or you may record a battle conducted at the BATTLE FRONTIER excluding matches at the BATTLE PIKE or the BATTLE PYRAMID.You may choose to record your match at the end of a battle.
+goto BattleFrontier_ReceptionGate_EventScript_ChooseFrontierPassInfoToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_Symbols
+msgbox	There are seven facilities at the BATTLE FRONTIER.TRAINERS who gain recognition for their abilities may be rewarded with symbols from each of the facilities.To earn a symbol, TRAINERS may need to defeat other TRAINERS in a row, and may need to win events repeatedly.It's certainly not easy to win symbols. I wish you the best of luck!
+goto BattleFrontier_ReceptionGate_EventScript_ChooseFrontierPassInfoToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_RulesGuide
+lock
+faceplayer
+msgbox	I'm your guide to the basic rules that are common to all the challenges offered by the facilities in the BATTLE FRONTIER.
+goto BattleFrontier_ReceptionGate_EventScript_ChooseRuleToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_ChooseRuleToLearnAbout
+msgbox	What would you like to learn about?
+waitmessage
+multichoice 15 0 MULTI_FRONTIER_RULES FALSE
+switch VAR_RESULT
+case 0 BattleFrontier_ReceptionGate_EventScript_LevelMode
+case 1 BattleFrontier_ReceptionGate_EventScript_Level50
+case 2 BattleFrontier_ReceptionGate_EventScript_OpenLevel
+case 3 BattleFrontier_ReceptionGate_EventScript_MonEntry
+case 4 BattleFrontier_ReceptionGate_EventScript_HoldItems
+case 5 BattleFrontier_ReceptionGate_EventScript_ExitRulesGuide
+case MULTI_B_PRESSED BattleFrontier_ReceptionGate_EventScript_ExitRulesGuide
+end
+= BattleFrontier_ReceptionGate_EventScript_ExitRulesGuide
+msgbox	We hope you enjoy all that the BATTLE FRONTIER has to offer!
+release
+end
+= BattleFrontier_ReceptionGate_EventScript_HoldItems
+msgbox	When entering a challenge at a BATTLE FRONTIER facility, POKéMON may not be holding the same kind of item.Please make sure that all POKéMON entering a challenge are holding different items.
+goto BattleFrontier_ReceptionGate_EventScript_ChooseRuleToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_MonEntry
+msgbox	Virtually any kind of POKéMON may take on the challenges at all facilities.EGGS and certain kinds of POKéMON, however, are not permitted.The numbers of POKéMON required for challenges will depend on the facility.At all facilities, however, two or more of the same kind of POKéMON are not permitted.
+goto BattleFrontier_ReceptionGate_EventScript_ChooseRuleToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_OpenLevel
+msgbox	The Open Level course places no limit on the levels of POKéMON entering challenges.The levels of your opponents will be adjusted to match the levels of your POKéMON.However, no TRAINER you face will have any POKéMON below Level 60.
+goto BattleFrontier_ReceptionGate_EventScript_ChooseRuleToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_Level50
+msgbox	The Level 50 course is open to POKéMON up to and including Level 50.Please keep in mind, however, that no TRAINER you face will have any POKéMON below Level 50.This course is the entry level for battles at the BATTLE FRONTIER.To begin, we hope you will challenge this course.
+goto BattleFrontier_ReceptionGate_EventScript_ChooseRuleToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_LevelMode
+msgbox	All the challenges at the BATTLE FRONTIER's facilities come in two courses--Level 50 and Open Level.
+goto BattleFrontier_ReceptionGate_EventScript_ChooseRuleToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_FacilityGuide
+lock
+faceplayer
+msgbox	I'm your guide to the various facilities here in the BATTLE FRONTIER.
+goto BattleFrontier_ReceptionGate_EventScript_ChooseFacilityToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_ChooseFacilityToLearnAbout
+msgbox	Which would you like to learn about?
+waitmessage
+setvar VAR_0x8004 SCROLL_MULTI_BF_RECEPTIONIST
+special ShowScrollableMultichoice
+switch VAR_RESULT
+case 0 BattleFrontier_ReceptionGate_EventScript_BattleTower
+case 1 BattleFrontier_ReceptionGate_EventScript_BattleDome
+case 2 BattleFrontier_ReceptionGate_EventScript_BattlePalace
+case 3 BattleFrontier_ReceptionGate_EventScript_BattleArena
+case 4 BattleFrontier_ReceptionGate_EventScript_BattleFactory
+case 5 BattleFrontier_ReceptionGate_EventScript_BattlePike
+case 6 BattleFrontier_ReceptionGate_EventScript_BattlePyramid
+case 7 BattleFrontier_ReceptionGate_EventScript_RankingHall
+case 8 BattleFrontier_ReceptionGate_EventScript_ExchangeCorner
+case 9 BattleFrontier_ReceptionGate_EventScript_ExitFacilityGuide
+case MULTI_B_PRESSED BattleFrontier_ReceptionGate_EventScript_ExitFacilityGuide
+end
+= BattleFrontier_ReceptionGate_EventScript_ExitFacilityGuide
+msgbox	We hope you enjoy all that the BATTLE FRONTIER has to offer!
+release
+end
+= BattleFrontier_ReceptionGate_EventScript_ExchangeCorner
+msgbox	The EXCHANGE SERVICE CORNER is near the BATTLE TOWER.The Battle Points you have earned in the BATTLE FRONTIER may be exchanged for fabulous prizes there.
+goto BattleFrontier_ReceptionGate_EventScript_ChooseFacilityToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_RankingHall
+msgbox	The RANKING HALL is located near the BATTLE TOWER.There, you may see the most fantastic records left by the TRAINERS that took on the many challenges of the BATTLE FRONTIER.
+goto BattleFrontier_ReceptionGate_EventScript_ChooseFacilityToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_BattlePyramid
+msgbox	The BATTLE PYRAMID is the enormous pyramid.An event called the Battle Quest is conducted there.
+goto BattleFrontier_ReceptionGate_EventScript_ChooseFacilityToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_BattlePike
+msgbox	The BATTLE PIKE is the building shaped like a POKéMON at the center-left of the BATTLE FRONTIER.An event called the Battle Choice is conducted there.
+goto BattleFrontier_ReceptionGate_EventScript_ChooseFacilityToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_BattleFactory
+msgbox	The BATTLE FACTORY is the large building that is the closest to us.An event called the Battle Swap is conducted there.The Battle Swap event is offered in two courses for SINGLE and DOUBLE BATTLES.
+goto BattleFrontier_ReceptionGate_EventScript_ChooseFacilityToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_BattleArena
+msgbox	The BATTLE ARENA is the dojo-like building at the center-right of the BATTLE FRONTIER.An event called the Set KO Tourney takes place at the BATTLE ARENA.
+goto BattleFrontier_ReceptionGate_EventScript_ChooseFacilityToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_BattlePalace
+msgbox	The BATTLE PALACE is the red building on the right of the BATTLE FRONTIER.There are two kinds of BATTLE HALLS for SINGLE and DOUBLE BATTLES.
+goto BattleFrontier_ReceptionGate_EventScript_ChooseFacilityToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_BattleDome
+msgbox	The BATTLE DOME is the large building shaped like a huge egg.Events named Battle Tourneys are held in this facility.The Battle Tourneys are offered in two courses--for SINGLE and DOUBLE BATTLES.
+goto BattleFrontier_ReceptionGate_EventScript_ChooseFacilityToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_BattleTower
+msgbox	It is the gigantic tower considered to be the BATTLE FRONTIER's symbol.There are four kinds of BATTLE ROOMS in the tower for SINGLE, DOUBLE, MULTI, and LINK MULTI BATTLES.
+goto BattleFrontier_ReceptionGate_EventScript_ChooseFacilityToLearnAbout
+end
+= BattleFrontier_ReceptionGate_EventScript_Greeter
+lock
+faceplayer
+msgbox	The front lines of POKéMON battling! Welcome to the BATTLE FRONTIER!
+msgbox	We hope you enjoy all that the BATTLE FRONTIER has to offer!
+release
+end
+mapsec
+22 12 1 1	BATTLE FRONTIER
+music
+MUS_B_TOWER_RS
+counters
+857,858,873,874

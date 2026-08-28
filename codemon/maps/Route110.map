@@ -1,0 +1,1035 @@
+tileset general__mauville
+40 100
+19 49
+199,199,199,199,199,199,199,199,199,14,22,322,1,1,1,1,1,1,1,320,198,198,198,198,198,198,198,198,14,198,198,198,198,198,198,198,400,368,368,368
+198,199,199,199,199,199,199,199,199,199,321,330,1,1,1,1,1,1,1,320,198,198,198,198,198,198,198,198,198,198,198,198,198,198,199,198,400,368,368,368
+198,199,199,199,199,199,199,199,199,199,322,1,1,1,1,1,1,1,312,306,198,198,198,198,198,198,198,198,198,198,198,198,198,199,199,198,400,368,368,368
+198,199,199,199,199,199,199,199,199,199,322,1,1,1,1,1,1,1,320,1,22,22,22,198,198,198,198,198,198,198,198,198,198,198,199,198,29,377,368,368
+22,199,199,199,199,199,199,199,199,22,322,1,1,1,1,1,1,312,306,1,1,1,1,22,22,22,22,22,22,22,22,22,22,22,199,199,199,400,368,368
+394,199,199,199,199,199,199,199,199,321,330,1,1,1,280,282,1,320,848,849,844,844,844,844,844,844,844,844,844,844,844,844,850,851,199,198,198,400,368,368
+402,199,199,199,199,199,199,199,199,322,1,1,1,280,289,290,1,320,856,757,758,758,758,758,758,758,758,758,758,758,758,758,759,859,198,199,199,400,368,368
+402,199,199,199,199,199,199,199,199,322,1,1,1,288,289,290,1,320,857,741,766,766,766,766,766,766,766,766,766,766,766,766,742,858,198,199,199,400,368,368
+402,199,199,199,199,199,199,199,199,322,1,1,280,289,289,290,1,320,865,741,766,766,766,766,766,766,766,766,766,766,766,766,742,866,886,199,199,400,368,368
+402,199,199,199,199,199,199,199,199,322,1,1,288,289,289,298,1,320,864,765,766,766,766,766,766,766,766,766,766,766,766,766,767,867,28,199,199,400,368,368
+402,199,199,199,23,23,23,23,23,307,1,280,289,289,290,1,1,320,872,777,820,766,766,821,778,820,725,766,726,821,778,778,775,875,28,199,199,400,368,368
+402,199,199,199,331,332,332,332,333,1,1,288,289,289,298,1,1,320,880,881,828,724,724,831,786,828,741,766,742,829,786,781,882,883,878,199,199,400,368,368
+402,199,199,199,275,276,276,276,277,1,1,288,289,290,638,679,679,679,679,639,873,724,724,874,28,873,741,766,742,874,878,852,878,878,199,199,199,400,368,368
+402,199,199,199,1,1,1,1,1,280,281,289,289,290,646,687,687,687,687,647,891,724,724,868,889,894,741,766,742,877,199,860,23,23,199,199,199,29,29,377
+402,199,199,199,1,1,1,280,281,289,289,289,289,290,654,695,695,695,695,655,329,1,1,329,329,892,741,766,742,893,887,329,329,329,199,199,199,198,198,400
+402,199,199,199,1,1,280,289,289,297,297,297,297,298,662,641,678,678,641,663,1,1,1,1,15,876,741,766,742,877,863,1,1,15,199,199,199,198,198,400
+402,199,199,23,1,280,289,289,298,1,1,1,1,3,670,649,668,668,649,671,1,1,1,15,199,884,741,766,742,885,879,1,1,199,199,199,199,199,199,400
+402,199,199,3,1,296,297,298,1,1,1,1,1,1,1,1,1,313,1,1,1,1,15,198,199,884,741,766,742,885,199,15,15,199,199,23,23,23,23,400
+402,199,199,1,1,1,1,1,15,15,1,15,1,1,1,15,15,320,1,1,1,1,23,198,199,884,741,766,742,885,199,199,199,199,199,104,105,105,106,400
+402,23,23,1,1,1,1,1,23,23,1,23,1,1,1,23,23,328,329,329,329,329,329,23,22,936,741,766,742,937,887,23,23,23,23,112,113,113,114,400
+410,394,69,1,1,1,71,392,393,393,393,393,393,393,393,393,393,393,393,393,393,393,393,393,393,824,741,766,742,825,909,393,394,104,105,190,113,113,114,400
+368,402,69,1,1,1,71,400,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,832,741,766,742,833,369,368,402,112,107,108,108,109,114,400
+368,402,69,1,1,13,71,400,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,840,741,766,742,841,369,368,402,112,115,113,113,117,114,400
+368,402,69,1,1,1,71,400,368,368,368,368,368,368,368,376,2,2,377,368,368,368,368,368,368,808,741,766,742,809,369,368,402,112,123,100,124,125,114,400
+368,402,69,13,1,1,71,400,368,368,368,368,368,368,376,2,30,31,400,368,368,368,368,368,368,808,741,766,742,809,369,368,402,120,121,167,206,206,122,400
+368,402,69,1,1,13,71,400,368,368,368,368,368,368,402,27,38,39,400,368,368,368,368,368,368,808,741,766,742,809,369,368,402,518,1,1,198,198,15,400
+368,402,69,1,1,1,71,400,368,368,368,368,368,368,402,1,1,1,400,368,368,368,368,368,368,808,741,766,742,809,369,368,402,1,1,1,198,198,198,400
+368,402,69,13,1,13,71,400,368,368,368,368,368,368,410,393,393,393,408,368,368,368,368,368,368,808,741,766,742,809,369,368,402,1,518,15,198,198,23,400
+368,402,69,1,13,1,71,400,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,804,741,766,742,805,369,368,402,1,15,198,198,198,392,408
+368,402,69,13,1,13,71,400,752,753,754,754,754,754,754,754,754,754,754,754,754,754,754,754,754,812,741,766,742,813,837,756,410,394,198,198,198,198,400,368
+368,402,69,1,13,13,71,400,760,757,758,758,762,762,762,762,762,762,762,762,762,762,762,762,762,762,709,766,710,758,759,764,369,402,23,23,23,23,400,368
+368,402,69,13,13,13,71,400,768,765,766,766,766,770,770,770,770,770,770,770,770,770,770,770,770,770,770,766,766,766,767,772,369,410,393,346,347,393,408,368
+368,402,69,1,13,13,71,400,776,777,820,725,766,726,823,778,778,778,778,778,778,778,778,778,778,778,778,778,778,774,775,780,369,368,368,344,345,336,337,368
+368,402,69,13,13,13,71,400,784,785,828,741,766,742,831,786,786,786,781,786,786,786,786,786,781,786,786,786,786,786,787,788,369,368,368,368,368,344,345,368
+368,402,69,13,13,13,71,400,369,369,838,741,766,742,839,369,369,369,789,369,369,369,369,369,789,369,369,369,369,369,369,369,369,368,368,368,368,368,336,337
+368,402,69,13,1,13,71,400,369,369,796,741,766,742,809,369,369,369,797,369,369,369,369,369,797,369,369,369,369,369,369,369,369,368,368,368,368,368,344,345
+368,402,69,13,13,13,71,400,368,368,808,741,766,742,809,369,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,336,337,368
+368,402,69,13,13,1,71,400,368,368,808,741,766,742,809,369,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,344,345,368
+368,402,69,13,13,1,1,62,62,62,853,1003,1004,1005,854,855,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,63,377,368
+368,402,69,13,13,1,1,1,1,1,861,741,766,742,862,863,1,13,13,1,13,1,13,1,1,13,13,1,13,1,13,13,13,27,13,1,13,71,400,368
+368,402,69,13,13,13,13,13,13,1,861,741,766,742,862,863,1,1,1,13,1,1,13,13,13,13,1,13,1,13,1,13,13,13,13,13,13,71,400,368
+368,402,69,13,13,13,13,13,13,13,861,741,766,742,862,863,13,1,13,1,1,13,13,13,1,13,13,13,13,13,13,13,13,13,13,13,13,71,400,368
+368,402,77,78,78,78,78,78,78,78,938,741,766,742,939,871,78,78,78,78,78,78,78,78,78,78,78,78,78,78,78,13,13,13,13,13,13,71,400,368
+368,410,393,393,393,393,393,393,393,393,824,741,766,742,825,909,393,393,346,347,393,393,393,393,393,393,393,393,393,393,394,69,13,13,13,13,13,71,400,368
+368,368,368,368,368,336,337,368,368,368,832,741,766,742,833,369,368,368,344,345,368,368,368,368,368,368,368,368,368,368,402,69,1,13,13,13,13,71,400,368
+368,368,368,368,368,344,345,368,368,368,840,741,766,742,841,369,368,336,337,368,368,368,368,368,368,368,368,368,368,368,402,69,13,1,13,13,1,71,400,368
+368,368,368,368,336,337,368,368,368,368,808,741,766,742,809,369,368,344,345,368,368,368,368,368,376,2,2,2,377,368,402,69,13,13,13,13,13,71,400,368
+368,368,336,337,344,345,368,368,368,368,808,741,766,742,809,369,368,368,336,337,368,368,368,368,402,1,1,1,400,368,402,69,13,13,1,13,1,71,400,368
+336,337,344,345,368,368,368,368,368,368,808,741,766,742,809,369,368,368,344,345,336,337,368,368,410,394,1,1,400,368,402,69,13,1,13,1,13,71,400,368
+344,345,368,368,368,368,368,368,368,368,804,741,766,742,805,369,368,368,368,368,344,345,368,368,368,410,393,393,408,368,402,69,1,13,13,13,13,71,400,368
+368,336,337,368,368,368,368,752,753,754,812,741,766,742,813,836,754,754,754,754,755,756,336,337,368,368,368,368,368,368,402,77,1,1,13,1,1,79,400,368
+368,344,345,368,368,368,368,782,757,3,758,709,766,710,758,758,758,758,758,758,759,783,344,345,368,368,368,368,368,368,410,394,69,13,1,13,71,392,408,368
+368,368,336,337,368,368,368,810,741,766,766,766,766,766,766,766,766,766,766,766,742,811,369,336,337,368,368,368,368,368,368,402,69,13,13,1,71,400,368,368
+368,368,344,345,368,368,368,818,741,766,766,766,766,766,766,766,766,766,766,766,742,819,369,344,345,368,368,368,368,368,368,402,69,13,1,13,71,400,368,368
+368,336,337,368,368,368,368,826,741,766,766,766,766,766,766,766,766,766,766,766,742,827,369,336,337,368,368,368,368,368,368,402,69,1,13,1,71,400,368,368
+368,344,345,368,368,368,368,834,741,766,766,766,766,766,766,766,766,766,766,766,742,835,369,344,345,368,368,368,368,368,368,402,69,13,1,13,71,400,368,368
+336,337,368,368,368,368,368,842,741,766,766,766,766,766,766,766,766,766,766,766,742,843,369,368,336,337,368,368,368,368,368,402,69,1,1,1,71,400,368,368
+344,345,336,337,368,368,368,847,765,766,766,766,766,766,766,766,766,766,766,766,767,791,369,368,344,345,368,368,368,368,368,402,69,1,1,1,71,400,368,368
+368,368,344,345,368,368,368,798,777,774,774,774,774,774,774,820,725,766,726,821,779,799,369,336,337,368,368,368,368,368,368,402,69,13,13,1,71,400,368,368
+371,371,371,371,372,368,368,806,785,786,786,781,786,786,786,828,741,766,742,831,787,807,369,344,345,368,368,368,368,368,368,402,69,13,1,13,71,400,368,368
+113,113,113,113,117,377,368,368,368,369,369,789,369,369,369,838,741,766,742,839,369,369,369,336,337,368,368,368,368,368,368,402,69,1,1,1,71,400,368,368
+107,108,108,109,191,191,372,368,368,369,643,644,645,369,369,796,741,766,742,809,369,369,369,344,345,368,368,368,368,368,368,402,69,13,1,13,71,400,368,368
+115,113,113,191,108,109,117,29,29,643,651,652,653,645,377,808,741,766,742,809,369,368,336,337,368,368,368,368,368,368,368,402,69,1,13,1,71,400,368,368
+123,124,124,124,124,125,117,198,198,651,651,652,653,653,400,816,741,766,742,817,369,368,344,345,368,368,368,368,368,368,368,402,69,13,1,13,71,400,368,368
+206,206,206,206,206,206,206,198,198,651,628,626,629,653,400,824,741,766,742,825,369,336,337,368,368,368,368,368,368,368,368,402,69,13,13,1,71,400,368,368
+198,198,198,198,198,198,198,198,23,672,675,676,675,674,400,832,741,766,742,833,369,344,345,368,368,368,368,368,368,376,61,62,13,13,13,1,13,62,63,377
+22,22,22,22,198,198,198,23,1,680,683,684,683,682,400,840,741,766,742,841,369,368,336,337,368,368,368,368,368,402,69,13,13,1,13,13,13,13,71,400
+1,1,1,1,22,22,22,1,3,1,1,1,1,71,400,796,741,766,742,809,369,368,344,345,368,368,368,368,368,402,69,13,13,13,13,13,13,1,71,400
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,62,853,1003,1004,1005,854,855,62,62,62,62,62,2,2,62,62,13,13,13,13,13,13,13,13,71,400
+281,281,281,281,281,281,281,281,281,281,282,1,1,1,1,861,741,766,742,862,863,1,1,13,13,1,13,13,13,13,1,13,1,13,1,13,13,13,71,400
+297,297,297,297,297,297,297,297,289,289,289,282,1,1,1,861,741,766,742,862,863,1,1,1,1,13,1,13,1,13,13,13,13,13,13,13,1,27,71,400
+14,14,14,14,14,14,1,1,288,289,289,298,1,1,1,938,741,766,742,939,863,1,13,1,1,1,13,1,13,13,1,1,1,13,13,13,1,1,71,400
+199,199,199,199,199,199,14,14,288,289,290,1,78,78,78,824,741,766,742,825,871,78,78,78,78,78,78,78,78,78,78,1,1,1,1,78,78,78,79,400
+199,199,199,199,199,199,198,198,288,289,290,1,392,393,393,832,741,766,742,833,909,393,393,393,393,393,393,393,393,393,393,393,393,393,393,393,346,347,393,408
+199,199,199,199,199,198,198,199,288,289,290,1,400,368,368,840,741,766,742,841,369,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,344,345,368,368
+199,199,199,199,199,199,199,23,288,289,290,1,400,368,368,804,741,766,742,805,369,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,336,337,368,368
+199,199,199,199,199,199,199,15,288,289,290,320,400,752,753,812,741,766,742,813,836,754,754,754,754,754,754,754,754,755,756,368,368,368,368,368,344,345,336,337
+199,199,199,199,199,199,198,199,288,289,290,320,400,760,757,758,709,766,718,762,762,762,762,762,762,762,762,762,762,763,764,369,368,368,368,368,368,368,344,345
+199,199,199,199,199,199,198,23,288,289,290,320,400,768,765,766,766,770,770,770,770,770,770,770,770,770,770,770,770,742,827,369,368,368,368,368,368,368,336,337
+199,199,199,199,199,199,198,3,288,289,290,320,400,776,777,778,778,778,778,778,778,778,778,778,778,778,822,733,766,742,835,369,368,368,368,368,368,368,344,345
+199,199,199,199,199,199,198,1,288,289,290,320,400,784,785,786,786,781,786,786,786,786,781,786,786,786,828,741,766,742,843,369,368,368,368,368,368,336,337,368
+199,199,199,199,199,199,198,1,288,289,290,320,400,369,369,369,369,789,369,369,369,369,789,369,369,369,838,741,766,742,811,369,368,368,368,368,368,344,345,368
+199,199,199,199,199,199,198,1,288,289,290,320,400,369,369,369,369,797,369,369,369,369,797,369,369,369,743,741,766,742,743,369,368,368,368,368,368,368,336,337
+199,199,199,199,199,199,198,1,288,289,290,320,400,368,368,368,368,368,368,368,368,752,753,754,754,754,751,741,766,742,751,836,754,754,754,755,756,368,344,345
+199,199,199,199,199,199,198,1,288,289,290,320,400,368,368,619,620,620,620,620,621,782,757,758,758,758,758,709,766,710,758,758,758,758,758,759,783,368,336,337
+199,199,199,199,199,199,198,1,288,289,290,328,308,308,308,646,687,687,687,687,613,818,741,766,766,766,766,766,766,766,766,766,766,766,766,742,819,579,344,345
+199,199,199,199,199,199,198,15,288,289,290,1,1,1,1,654,695,695,695,695,655,826,741,766,766,766,766,766,766,766,766,766,766,766,766,742,827,199,377,368
+199,199,199,199,199,199,198,198,288,289,290,1,1,1,1,662,641,678,678,641,663,864,765,766,766,766,766,766,766,766,766,766,766,766,766,767,867,199,400,368
+199,199,199,199,199,199,199,198,288,289,290,1,1,1,3,670,649,668,668,649,671,872,777,778,778,778,778,820,766,766,821,778,778,778,778,779,875,199,400,368
+199,199,199,199,199,199,199,198,288,289,290,1,1,1,1,1,1,1,313,1,1,880,881,781,786,786,786,828,724,724,831,786,786,786,781,882,883,199,400,368
+199,199,199,199,199,199,199,198,288,289,290,1,1,1,1,1,1,1,320,1,1,1,898,852,28,28,28,873,724,724,874,28,28,28,852,28,878,199,400,368
+199,199,199,199,199,199,199,198,288,289,289,281,281,281,281,282,1,1,320,1,1,1,900,860,889,889,889,891,724,724,868,897,889,889,860,889,199,199,400,368
+199,199,199,199,199,199,198,198,296,297,297,297,297,289,289,289,281,282,320,1,1,1,1,1,1,1,1,1,1,1,1,328,329,329,329,64,199,199,400,368
+199,199,199,199,199,199,199,198,15,13,13,13,13,296,297,297,289,290,328,329,329,329,329,313,4,1,1,1,1,1,1,1,3,1,1,199,199,199,400,368
+199,199,199,199,199,199,199,198,198,13,13,13,13,13,1,1,288,290,1,1,3,1,1,320,1,4,1,4,1,4,1,1,1,1,14,199,199,199,400,368
+199,199,199,199,199,199,199,199,198,15,13,13,13,13,13,1,288,290,1,1,1,1,1,320,4,1,4,1,4,1,1,1,1,14,199,199,199,199,400,368
+199,199,199,199,199,199,199,198,198,198,15,13,13,13,13,1,288,289,282,1,1,1,1,328,329,329,64,64,64,64,64,64,64,199,199,199,199,199,400,368
+199,199,199,199,199,199,199,198,198,198,198,15,15,13,13,1,296,289,290,1,1,1,1,14,14,14,199,199,199,199,199,199,199,199,199,199,22,22,400,368
+199,199,199,199,199,199,199,199,199,199,199,199,199,14,14,1,1,288,290,1,1,14,14,199,198,198,198,198,199,199,199,199,199,199,199,199,392,393,408,368
+198,198,198,198,198,198,198,198,198,198,198,198,198,198,198,1,1,296,298,1,14,198,199,199,198,198,198,198,199,199,199,199,199,199,199,199,400,368,368,368
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0
+0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0
+0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0
+0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0
+0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0
+0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,0,0,0
+0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,0,0,1,1,1,0,0,0,1,1,1,1,1,0,1,1,0,0,0
+0,1,1,1,0,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,1,1,1,0,0,0,1,1,1,1,1,0,1,1,0,0,0
+0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,1,0,1,0,0,0,1,0,1,0,0,1,1,1,0,0,0
+0,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,1,0,1,0,0,0,1,1,1,1,1,1,1,1,0,0,0
+0,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,0
+0,1,1,1,0,0,0,0,0,0,0,0,0,0,1,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0
+0,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,1,1,0,0,0,1,0,0,0,1,1,1,1,1,1,0
+0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,1,0,0,0,1,1,0,0,1,1,1,1,1,1,0
+0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,0
+0,1,1,0,0,0,0,0,1,1,0,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,0
+0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1,1,1,1,1,1,0
+0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1,1,1,1,1,1,0
+0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1,1,1,1,1,1,0
+0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0
+0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,1,1,0
+0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0
+0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0
+0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0
+0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0
+0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0
+0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0
+0,0,1,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,0,0,0
+0,0,1,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,1,1,0
+0,0,1,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,0
+0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0
+0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0
+0,0,1,0,0,0,0,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0
+0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0
+0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0
+0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0
+0,0,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,0,0
+0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0
+0,0,0,0,0,1,1,0,0,0,1,0,0,0,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0
+0,0,0,0,0,1,1,0,0,0,1,0,0,0,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0
+0,0,0,0,1,1,0,0,0,0,1,0,0,0,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0
+0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0
+1,1,1,1,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0
+1,1,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0
+0,1,1,0,0,0,0,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0
+0,1,1,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0
+0,0,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0
+0,0,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0
+0,1,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0
+0,1,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0
+1,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,0,0,0,0,0,0,1,0,0,0,1,0,0,0
+1,1,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,0,0,0,0,0,0,1,0,0,0,1,0,0,0
+0,0,1,1,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,0,1,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0
+1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,0,1,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0
+1,1,1,1,1,1,0,0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0
+1,1,1,1,0,0,0,0,0,0,1,1,1,0,0,1,0,0,0,1,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0
+1,1,1,0,1,1,1,0,0,1,1,1,1,1,1,1,0,0,0,1,0,0,1,1,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,0,0,1,1,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,0,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,1,1,0
+1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,0,0,1,0,0,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0
+0,0,0,0,1,1,1,0,1,0,0,0,0,1,1,1,0,0,0,1,0,0,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,1,1,1,1,1,1,0,0,1,1,0,0,0,0,0,0,0,0,1,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,0
+1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0
+1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0
+1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0
+1,1,1,1,1,1,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
+1,1,1,1,1,1,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,1,1,1,1,1,1,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1
+1,1,1,1,1,1,1,1,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1
+1,1,1,1,1,1,1,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,0
+1,1,1,1,1,1,1,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0
+1,1,1,1,1,1,1,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,1,1,1,1,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,1,1,1,1,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0
+1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0
+1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,0,0
+1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,0,0
+1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,1,0,0,1,0,0,0,1,0,0,1,0,0
+1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,1,1,0,0,1,0,1,1,0,0
+1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0
+1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,0,0,1,1,1,0,0
+1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0
+1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0
+1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0
+1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0
+connections
+up 0 MauvilleCity
+down 0 SlateportCity
+left 60 Route103
+warps
+35 24 NewMauville_Entrance 0
+11 66 Route110_TrickHouseEntrance 0
+15 16 Route110_SeasideCyclingRoadNorthEntrance 0
+18 16 Route110_SeasideCyclingRoadNorthEntrance 2
+16 88 Route110_SeasideCyclingRoadSouthEntrance 0
+19 88 Route110_SeasideCyclingRoadSouthEntrance 2
+npcs
+people_camper 17 90 S static 0 - 0
+people_cycling_triathlete_m 29 79 S static 0 - 0
+people_expert_f 14 69 S wander 0 - 0
+people_cycling_triathlete_m 9 57 S wander 0 - 0
+people_expert_m 10 11 S wander 0 - 0
+people_cycling_triathlete_f 27 24 S wander 0 - 0
+people_boy_3 15 7 S wander 0 - 0
+people_cycling_triathlete_f 16 73 S static 0 - 3
+people_cycling_triathlete_m 19 31 S static 0 - 3
+people_cycling_triathlete_f 30 31 W static 0 - 4
+people_cycling_triathlete_m 16 55 S static 0 - 3
+people_psychic_m 3 39 E static 0 - 6
+people_lass 33 15 W static 0 - 1
+people_maniac 34 40 S static 0 - 4
+people_fisherman 10 19 S static 0 - 1
+people_man_1 5 11 S static 0 - 0
+people_man_1 6 11 S static 0 - 0
+people_man_1 7 11 S static 0 - 0
+misc_item_ball 30 69 S static FLAG_ITEM_ROUTE_110_DIRE_HIT - 0
+misc_item_ball 26 47 S static FLAG_ITEM_ROUTE_110_RARE_CANDY - 0
+people_cycling_triathlete_m 27 92 S static 0 LOCALID_CHALLENGE_BIKER 0
+people_team_aqua_aqua_member_m 7 83 N static FLAG_HIDE_ROUTE_110_TEAM_AQUA - 0
+people_team_aqua_aqua_member_m 8 83 N static FLAG_HIDE_ROUTE_110_TEAM_AQUA - 0
+people_team_aqua_aqua_member_m 9 83 N static FLAG_HIDE_ROUTE_110_TEAM_AQUA - 0
+people_team_aqua_aqua_member_m 10 83 N static FLAG_HIDE_ROUTE_110_TEAM_AQUA - 0
+people_team_aqua_aqua_member_m 8 82 S static FLAG_HIDE_ROUTE_110_TEAM_AQUA - 0
+people_cycling_triathlete_m 21 78 S static 0 - 2
+people_may_walking 34 54 W pace_h FLAG_HIDE_ROUTE_110_RIVAL LOCALID_ROUTE110_RIVAL 0
+people_may_walking 34 54 S static FLAG_HIDE_ROUTE_110_RIVAL_ON_BIKE LOCALID_ROUTE110_RIVAL_ON_BIKE 0
+people_youngster 33 69 W pace_h 0 - 3
+people_pokefan_f 10 76 W static 0 - 2
+people_pokefan_m 7 76 E static 0 - 2
+people_cycling_triathlete_f 10 39 W static 0 - 6
+people_man_5 36 40 S static 0 - 3
+misc_item_ball 6 38 S static FLAG_ITEM_ROUTE_110_ELIXIR - 0
+people_prof_birch 9 79 S static FLAG_HIDE_ROUTE_110_BIRCH LOCALID_ROUTE110_BIRCH 0
+dialogs
+0	Which should I choose?Make a beeline for MAUVILLE on CYCLING ROAD, or take the low road and look for POKéMON?
+1	Learning techniques will make BIKE riding even more fun.There are some places that you can reach only by using a BIKE technique.
+2	I don't have a BIKE, so I'll take a leisurely walk on the low road.
+3	Oh, hey, you got that BIKE from RYDEL!Oh, it's glaringly obvious. It says right on your bike…RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,RYDEL, RYDEL, RYDEL, RYDEL, RYDEL… That name's everywhere.You should ride it around all over the place--it's good advertising!
+4	The two roads, one above, one below…A road each for people and POKéMON. Perhaps that is right and fair.
+5	How do you like the way my raven- colored hair streams behind me?I grew my hair out just for that.
+6	Wouldn't it be great to ride a BIKE at full speed on CYCLING ROAD?
+20	Regardless of the results, I count on seeing more challenges from you. Always aim higher!
+21	TEAM AQUA's activities… We can't talk about them yet.
+22	I want to get going to SLATEPORT and kick up a ruckus!
+23	This is my first job after joining TEAM AQUA. It's a little scary.
+24	TEAM AQUA's actions should bring smiles to people's faces!
+objscripts
+0 Route110_EventScript_Boy2
+1 Route110_EventScript_CyclingGuy2
+2 Route110_EventScript_OldWoman
+3 Route110_EventScript_CyclingGuy1
+4 Route110_EventScript_OldMan
+5 Route110_EventScript_CyclingGirl1
+6 Route110_EventScript_Boy1
+7 Route110_EventScript_Jasmine
+8 Route110_EventScript_Anthony
+9 Route110_EventScript_Abigail
+10 Route110_EventScript_Benjamin
+11 Route110_EventScript_Edward
+12 Route110_EventScript_Jaclyn
+13 Route110_EventScript_Edwin
+14 Route110_EventScript_Dale
+15 BerryTreeScript
+16 BerryTreeScript
+17 BerryTreeScript
+18 Route110_EventScript_ItemDireHit
+19 Route110_EventScript_ItemRareCandy
+20 Route110_EventScript_ChallengeGuy
+21 Route110_EventScript_AquaGrunt1
+22 Route110_EventScript_AquaGrunt2
+23 Route110_EventScript_AquaGrunt3
+24 Route110_EventScript_AquaGrunt4
+26 Route110_EventScript_Jacob
+29 Route110_EventScript_Timmy
+30 Route110_EventScript_Isabel
+31 Route110_EventScript_Kaleb
+32 Route110_EventScript_Alyssa
+33 Route110_EventScript_Joseph
+34 Route110_EventScript_ItemElixir
+triggers
+28 92 VAR_CYCLING_CHALLENGE_STATE 2 Route110_EventScript_CyclingChallengeEnd
+29 92 VAR_CYCLING_CHALLENGE_STATE 2 Route110_EventScript_CyclingChallengeEnd
+33 56 VAR_ROUTE110_STATE 0 Route110_EventScript_RivalTrigger1
+34 56 VAR_ROUTE110_STATE 0 Route110_EventScript_RivalTrigger2
+35 56 VAR_ROUTE110_STATE 0 Route110_EventScript_RivalTrigger3
+7 85 VAR_REGISTER_BIRCH_STATE 1 Route110_EventScript_BirchScene1
+8 85 VAR_REGISTER_BIRCH_STATE 1 Route110_EventScript_BirchScene2
+9 85 VAR_REGISTER_BIRCH_STATE 1 Route110_EventScript_BirchScene3
+10 85 VAR_REGISTER_BIRCH_STATE 1 Route110_EventScript_BirchScene4
+35 39 0 0 Route110_HiddenItem_35_39
+33 45 0 0 Route110_HiddenItem_33_45
+4 35 0 0 Route110_HiddenItem_4_35
+37 67 0 0 Route110_HiddenItem_37_67
+onload
+VAR_CYCLING_CHALLENGE_STATE 1 Route110_EventScript_BeginCylcingRoadChallenge
+movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
+Common_Movement_FaceOriginalDirection	face_down,end
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+Route110_Movement_BirchApproachPlayer1	down,left,left,down,end
+Route110_Movement_BirchApproachPlayer2	down,left,down,end
+Route110_Movement_BirchApproachPlayer3	down,down,end
+Route110_Movement_BirchApproachPlayer4	down,right,down,end
+Route110_Movement_BirchEntrance	down,down,down,end
+Route110_Movement_BirchExit1	up,up,right,up,up,up,end
+Route110_Movement_BirchExit2	up,up,up,up,up,end
+Route110_Movement_BirchExit3	up,up,up,up,up,end
+Route110_Movement_BirchExit4	up,up,up,up,up,end
+Route110_Movement_RivalApproachPlayer1	down,left,delay,end
+Route110_Movement_RivalApproachPlayer2	down,end
+Route110_Movement_RivalApproachPlayer3	down,right,delay,end
+Route110_Movement_RivalExit1	up,up,up,up,up,up,up,end
+Route110_Movement_RivalExit2	up,up,up,up,up,up,up,down,end
+Route110_Movement_RivalExit3	up,up,up,up,up,up,up,end
+scriptdefs
+= Route110_EventScript_BeginCylcingRoadChallenge
+special Special_BeginCyclingRoadChallenge
+setvar VAR_CYCLING_CHALLENGE_STATE 2
+return
+= Route110_HiddenItem_37_67
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_110_FULL_HEAL Route110_HiddenItem_37_67_Taken
+finditem ITEM_FULL_HEAL
+setflag FLAG_HIDDEN_ITEM_ROUTE_110_FULL_HEAL
+end
+= Route110_HiddenItem_37_67_Taken
+end
+= Route110_HiddenItem_4_35
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_110_POKE_BALL Route110_HiddenItem_4_35_Taken
+finditem ITEM_POKE_BALL
+setflag FLAG_HIDDEN_ITEM_ROUTE_110_POKE_BALL
+end
+= Route110_HiddenItem_4_35_Taken
+end
+= Route110_HiddenItem_33_45
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_110_GREAT_BALL Route110_HiddenItem_33_45_Taken
+finditem ITEM_GREAT_BALL
+setflag FLAG_HIDDEN_ITEM_ROUTE_110_GREAT_BALL
+end
+= Route110_HiddenItem_33_45_Taken
+end
+= Route110_HiddenItem_35_39
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_110_REVIVE Route110_HiddenItem_35_39_Taken
+finditem ITEM_REVIVE
+setflag FLAG_HIDDEN_ITEM_ROUTE_110_REVIVE
+end
+= Route110_HiddenItem_35_39_Taken
+end
+= Route110_EventScript_BirchScene4
+lockall
+setvar VAR_0x8008 4
+goto Route110_EventScript_BirchScene
+= Route110_EventScript_BirchScene
+addobject LOCALID_ROUTE110_BIRCH
+applymovement LOCALID_ROUTE110_BIRCH Route110_Movement_BirchEntrance
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_ROUTE110_BIRCH Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_ROUTE110_BIRCH Common_Movement_Delay48
+waitmovement 0
+call_if_eq VAR_0x8008 1 Route110_EventScript_BirchApproachPlayer1
+call_if_eq VAR_0x8008 2 Route110_EventScript_BirchApproachPlayer2
+call_if_eq VAR_0x8008 3 Route110_EventScript_BirchApproachPlayer3
+call_if_eq VAR_0x8008 4 Route110_EventScript_BirchApproachPlayer4
+msgbox	PROF. BIRCH: Oh, PLAYER! Imagine seeing you here!And where might my RIVAL be?
+closemessage
+delay 20
+applymovement LOCALID_ROUTE110_BIRCH Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+delay 10
+applymovement LOCALID_ROUTE110_BIRCH Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+delay 20
+applymovement LOCALID_ROUTE110_BIRCH Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+delay 30
+msgbox	Oh, I see! You two are running separately. Well, that's fine.Oh, yes, I heard that your POKéNAV had the MATCH CALL system installed.Well, then, I should register you in my POKéNAV as well.That way, even when we're apart, I can rate your POKéDEX anytime.… … … … … …
+closemessage
+delay 30
+playfanfare MUS_REGISTER_MATCH_CALL
+msgbox	Registered PROF. BIRCH in the POKéNAV.
+waitfanfare
+closemessage
+delay 30
+setflag FLAG_ENABLE_PROF_BIRCH_MATCH_CALL
+msgbox	PROF. BIRCH: PLAYER…Please keep an eye out for my RIVAL. … … … … … …Well, I had better get going. See you again, PLAYER!
+closemessage
+call_if_eq VAR_0x8008 1 Route110_EventScript_BirchExit1
+call_if_eq VAR_0x8008 2 Route110_EventScript_BirchExit2
+call_if_eq VAR_0x8008 3 Route110_EventScript_BirchExit3
+call_if_eq VAR_0x8008 4 Route110_EventScript_BirchExit4
+removeobject LOCALID_ROUTE110_BIRCH
+setvar VAR_REGISTER_BIRCH_STATE 2
+releaseall
+end
+= Route110_EventScript_BirchExit4
+applymovement LOCALID_ROUTE110_BIRCH Route110_Movement_BirchExit4
+waitmovement 0
+return
+= Route110_EventScript_BirchExit3
+applymovement LOCALID_ROUTE110_BIRCH Route110_Movement_BirchExit3
+waitmovement 0
+return
+= Route110_EventScript_BirchExit2
+applymovement LOCALID_ROUTE110_BIRCH Route110_Movement_BirchExit2
+waitmovement 0
+return
+= Route110_EventScript_BirchExit1
+applymovement LOCALID_ROUTE110_BIRCH Route110_Movement_BirchExit1
+waitmovement 0
+return
+= Route110_EventScript_BirchApproachPlayer4
+applymovement LOCALID_ROUTE110_BIRCH Route110_Movement_BirchApproachPlayer4
+waitmovement 0
+return
+= Route110_EventScript_BirchApproachPlayer3
+applymovement LOCALID_ROUTE110_BIRCH Route110_Movement_BirchApproachPlayer3
+waitmovement 0
+return
+= Route110_EventScript_BirchApproachPlayer2
+applymovement LOCALID_ROUTE110_BIRCH Route110_Movement_BirchApproachPlayer2
+waitmovement 0
+return
+= Route110_EventScript_BirchApproachPlayer1
+applymovement LOCALID_ROUTE110_BIRCH Route110_Movement_BirchApproachPlayer1
+waitmovement 0
+return
+= Route110_EventScript_BirchScene3
+lockall
+setvar VAR_0x8008 3
+goto Route110_EventScript_BirchScene
+= Route110_EventScript_BirchScene2
+lockall
+setvar VAR_0x8008 2
+goto Route110_EventScript_BirchScene
+= Route110_EventScript_BirchScene1
+lockall
+setvar VAR_0x8008 1
+goto Route110_EventScript_BirchScene
+= Route110_EventScript_RivalTrigger3
+setvar VAR_0x8008 3
+goto Route110_EventScript_RivalScene
+end
+= Route110_EventScript_RivalScene
+lockall
+checkplayergender
+call_if_eq VAR_RESULT MALE Route110_EventScript_PlayMayMusic
+call_if_eq VAR_RESULT FEMALE Route110_EventScript_PlayBrendanMusic
+applymovement LOCALID_ROUTE110_RIVAL Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+applymovement LOCALID_ROUTE110_RIVAL Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_ROUTE110_RIVAL Common_Movement_Delay48
+waitmovement 0
+delay 30
+call_if_eq VAR_0x8008 1 Route110_EventScript_RivalApproachPlayer1
+call_if_eq VAR_0x8008 2 Route110_EventScript_RivalApproachPlayer2
+call_if_eq VAR_0x8008 3 Route110_EventScript_RivalApproachPlayer3
+checkplayergender
+goto_if_eq VAR_RESULT MALE Route110_EventScript_MayBattle
+goto_if_eq VAR_RESULT FEMALE Route110_EventScript_BrendanBattle
+releaseall
+end
+= Route110_EventScript_BrendanBattle
+msgbox	BRENDAN: Hey, PLAYER. So this is where you were. How's it going?Have you been raising your POKéMON? I'll check for you.
+switch VAR_STARTER_MON
+case 0 Route110_EventScript_BrendanBattleTreecko
+case 1 Route110_EventScript_BrendanBattleTorchic
+case 2 Route110_EventScript_BrendanBattleMudkip
+end
+= Route110_EventScript_BrendanBattleMudkip
+trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_110_MUDKIP Route110_Text_BrendanDefeated
+goto Route110_EventScript_BrendanDefeated
+end
+= Route110_EventScript_BrendanDefeated
+msgbox	BRENDAN: PLAYER, you've trained without me noticing…Good enough! Here, take this.
+call Route110_EventScript_GiveItemfinder
+msgbox	BRENDAN: That's an ITEMFINDER.Use it to root around for items that aren't visible.If it senses something, it emits a sound.Anyway, I'm off to look for new POKéMON.
+goto Route110_EventScript_RivalExit
+end
+= Route110_EventScript_RivalExit
+closemessage
+call_if_eq VAR_0x8008 1 Route110_EventScript_MoveRival1
+call_if_eq VAR_0x8008 2 Route110_EventScript_MoveRival2
+call_if_eq VAR_0x8008 3 Route110_EventScript_MoveRival3
+setobjectmovementtype LOCALID_ROUTE110_RIVAL MOVEMENT_TYPE_FACE_RIGHT
+setobjectmovementtype LOCALID_ROUTE110_RIVAL_ON_BIKE MOVEMENT_TYPE_FACE_RIGHT
+removeobject LOCALID_ROUTE110_RIVAL
+addobject LOCALID_ROUTE110_RIVAL_ON_BIKE
+delay 45
+call_if_eq VAR_0x8008 1 Route110_EventScript_RivalExit1
+call_if_eq VAR_0x8008 2 Route110_EventScript_RivalExit2
+call_if_eq VAR_0x8008 3 Route110_EventScript_RivalExit3
+removeobject LOCALID_ROUTE110_RIVAL_ON_BIKE
+setvar VAR_ROUTE110_STATE 1
+savebgm MUS_DUMMY
+fadedefaultbgm
+releaseall
+end
+= Route110_EventScript_RivalExit3
+applymovement LOCALID_ROUTE110_RIVAL_ON_BIKE Route110_Movement_RivalExit3
+waitmovement 0
+return
+= Route110_EventScript_RivalExit2
+applymovement LOCALID_ROUTE110_RIVAL_ON_BIKE Route110_Movement_RivalExit2
+waitmovement 0
+return
+= Route110_EventScript_RivalExit1
+applymovement LOCALID_ROUTE110_RIVAL_ON_BIKE Route110_Movement_RivalExit1
+waitmovement 0
+return
+= Route110_EventScript_MoveRival3
+setobjectxyperm LOCALID_ROUTE110_RIVAL_ON_BIKE 35 55
+return
+= Route110_EventScript_MoveRival2
+setobjectxyperm LOCALID_ROUTE110_RIVAL_ON_BIKE 34 55
+return
+= Route110_EventScript_MoveRival1
+setobjectxyperm LOCALID_ROUTE110_RIVAL_ON_BIKE 33 55
+return
+= Route110_EventScript_GiveItemfinder
+giveitem ITEM_ITEMFINDER
+return
+= Route110_EventScript_BrendanBattleTorchic
+trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_110_TORCHIC Route110_Text_BrendanDefeated
+goto Route110_EventScript_BrendanDefeated
+end
+= Route110_EventScript_BrendanBattleTreecko
+trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_110_TREECKO Route110_Text_BrendanDefeated
+goto Route110_EventScript_BrendanDefeated
+end
+= Route110_EventScript_MayBattle
+msgbox	MAY: Hi, PLAYER, long time no see!While I was searching for other POKéMON, my POKéMON grew stronger.So… How about a little battle?
+switch VAR_STARTER_MON
+case 0 Route110_EventScript_MayBattleTreecko
+case 1 Route110_EventScript_MayBattleTorchic
+case 2 Route110_EventScript_MayBattleMudkip
+end
+= Route110_EventScript_MayBattleMudkip
+trainerbattle_no_intro TRAINER_MAY_ROUTE_110_MUDKIP Route110_Text_MayDefeated
+goto Route110_EventScript_MayDefeated
+end
+= Route110_EventScript_MayDefeated
+msgbox	MAY: PLAYER, you've been busy training, too, haven't you?I think you deserve a reward! This is from me!
+call Route110_EventScript_GiveItemfinder
+msgbox	MAY: That's an ITEMFINDER.Try it out. If there is an item that's not visible, it emits a sound.Okay, PLAYER, let's meet again!I know it's a little silly coming from me, but I think you should train a lot harder for the next time.
+goto Route110_EventScript_RivalExit
+end
+= Route110_EventScript_MayBattleTorchic
+trainerbattle_no_intro TRAINER_MAY_ROUTE_110_TORCHIC Route110_Text_MayDefeated
+goto Route110_EventScript_MayDefeated
+end
+= Route110_EventScript_MayBattleTreecko
+trainerbattle_no_intro TRAINER_MAY_ROUTE_110_TREECKO Route110_Text_MayDefeated
+goto Route110_EventScript_MayDefeated
+end
+= Route110_EventScript_RivalApproachPlayer3
+applymovement LOCALID_ROUTE110_RIVAL Route110_Movement_RivalApproachPlayer3
+waitmovement 0
+return
+= Route110_EventScript_RivalApproachPlayer2
+applymovement LOCALID_ROUTE110_RIVAL Route110_Movement_RivalApproachPlayer2
+waitmovement 0
+return
+= Route110_EventScript_RivalApproachPlayer1
+applymovement LOCALID_ROUTE110_RIVAL Route110_Movement_RivalApproachPlayer1
+waitmovement 0
+return
+= Route110_EventScript_PlayBrendanMusic
+playbgm MUS_ENCOUNTER_BRENDAN TRUE
+return
+= Route110_EventScript_PlayMayMusic
+playbgm MUS_ENCOUNTER_MAY TRUE
+return
+= Route110_EventScript_RivalTrigger2
+setvar VAR_0x8008 2
+goto Route110_EventScript_RivalScene
+end
+= Route110_EventScript_RivalTrigger1
+setvar VAR_0x8008 1
+goto Route110_EventScript_RivalScene
+end
+= Route110_EventScript_CyclingChallengeEnd
+lockall
+applymovement LOCALID_CHALLENGE_BIKER Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+call Route110_EventScript_CyclingChallengeResults
+releaseall
+end
+= Route110_EventScript_CyclingChallengeResults
+special FinishCyclingRoadChallenge
+msgbox	Number of collisions: … … STR_VAR_1!Total time: … … STR_VAR_2!
+switch VAR_RESULT
+case 10 Route110_EventScript_ChallengeReactionBest
+case 9 Route110_EventScript_ChallengeReactionGood
+case 8 Route110_EventScript_ChallengeReactionGood
+case 7 Route110_EventScript_ChallengeReactionGood
+case 6 Route110_EventScript_ChallengeReactionOk
+case 5 Route110_EventScript_ChallengeReactionOk
+case 4 Route110_EventScript_ChallengeReactionOk
+case 3 Route110_EventScript_ChallengeReactionBad
+case 2 Route110_EventScript_ChallengeReactionBad
+case 1 Route110_EventScript_ChallengeReactionBad
+case 0 Route110_EventScript_ChallengeReactionWorst
+end
+= Route110_EventScript_ChallengeReactionWorst
+msgbox	…I am aghast…You're perhaps not cut out for this unfortunate cycling business.You ought to give serious thought to returning that BIKE to RYDEL.
+goto Route110_EventScript_EndChallenge
+end
+= Route110_EventScript_EndChallenge
+setvar VAR_CYCLING_CHALLENGE_STATE 3
+savebgm MUS_DUMMY
+fadedefaultbgm
+return
+= Route110_EventScript_ChallengeReactionBad
+msgbox	My word… Your cycling skills border on terrifying.Most certainly, you need much more practice riding.
+goto Route110_EventScript_EndChallenge
+end
+= Route110_EventScript_ChallengeReactionOk
+msgbox	I would consider you a work in progress.Still, I hope you don't forget the sheer pleasure of cycling.
+goto Route110_EventScript_EndChallenge
+end
+= Route110_EventScript_ChallengeReactionGood
+msgbox	Your technique is remarkable.I suggest you speed up a bit while still avoiding collisions.
+goto Route110_EventScript_EndChallenge
+end
+= Route110_EventScript_ChallengeReactionBest
+msgbox	Bravo! Splendid showing!Your love of cycling comes from deep within your heart. You've shaken me to my very soul!
+goto Route110_EventScript_EndChallenge
+end
+= Route110_EventScript_ItemElixir
+goto_if_set FLAG_ITEM_ROUTE_110_ELIXIR Route110_EventScript_ItemElixir_Taken
+finditem ITEM_ELIXIR
+setflag FLAG_ITEM_ROUTE_110_ELIXIR
+end
+= Route110_EventScript_ItemElixir_Taken
+end
+= Route110_EventScript_Joseph
+trainerbattle_single TRAINER_JOSEPH Route110_Text_JosephIntro Route110_Text_JosephDefeated
+msgbox	This isn't going to bring me down! Losing has made me a better man!
+end
+= Route110_EventScript_Alyssa
+trainerbattle_single TRAINER_ALYSSA Route110_Text_AlyssaIntro Route110_Text_AlyssaDefeated
+msgbox	Falling… Losing… This is so humiliating for me!
+end
+= Route110_EventScript_Kaleb
+trainerbattle_single TRAINER_KALEB Route110_Text_KalebIntro Route110_Text_KalebDefeated
+msgbox	Okay, okay, you've done the best you could, my pretties.
+end
+= Route110_EventScript_Isabel
+trainerbattle_single TRAINER_ISABEL_1 Route110_Text_IsabelIntro Route110_Text_IsabelDefeated Route110_EventScript_IsabelRegisterMatchCallAfterBattle
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route110_EventScript_IsabelRematch
+msgbox	Rather than battling, perhaps I should show off my POKéMON at the FAN CLUB.
+release
+end
+= Route110_EventScript_IsabelRematch
+trainerbattle_rematch TRAINER_ISABEL_1 Route110_Text_IsabelRematchIntro Route110_Text_IsabelRematchDefeated
+msgbox	I don't think that I could ever stop from showing off my POKéMON.But I like to battle, too!
+end
+= Route110_EventScript_IsabelRegisterMatchCallAfterBattle
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	That wasn't close to what I could do to show off my POKéMON.I'll have you as my captive audience as often as possible!
+register_matchcall TRAINER_ISABEL_1
+release
+end
+= Route110_EventScript_Timmy
+trainerbattle_single TRAINER_TIMMY Route110_Text_TimmyIntro Route110_Text_TimmyDefeated
+msgbox	It's hard to battle with POKéMON you just caught.
+end
+= Route110_EventScript_Jacob
+trainerbattle_single TRAINER_JACOB Route110_Text_JacobIntro Route110_Text_JacobDefeated
+msgbox	Flat tires and brake problems can cause serious injury! Inspect your BIKE for problems!
+end
+= Route110_EventScript_AquaGrunt4
+lock
+faceplayer
+msgbox	TEAM AQUA's actions should bring smiles to people's faces!
+applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= Route110_EventScript_AquaGrunt3
+lock
+faceplayer
+msgbox	This is my first job after joining TEAM AQUA. It's a little scary.
+applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= Route110_EventScript_AquaGrunt2
+lock
+faceplayer
+msgbox	I want to get going to SLATEPORT and kick up a ruckus!
+applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= Route110_EventScript_AquaGrunt1
+lock
+faceplayer
+msgbox	TEAM AQUA's activities… We can't talk about them yet.
+applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= Route110_EventScript_ChallengeGuy
+lock
+faceplayer
+specialvar VAR_RESULT GetPlayerAvatarBike
+goto_if_eq VAR_RESULT 1 Route110_EventScript_PlayerRidingAcroBike
+goto_if_eq VAR_CYCLING_CHALLENGE_STATE 0 Route110_EventScript_PlayerNotRidingBike
+msgbox	Regardless of the results, I count on seeing more challenges from you. Always aim higher!
+release
+end
+= Route110_EventScript_PlayerNotRidingBike
+msgbox	This is CYCLING ROAD.If you were to ride from MAUVILLE to SLATEPORT on a MACH BIKE, you would be rated for the number of collisions and your total time.
+release
+end
+= Route110_EventScript_PlayerRidingAcroBike
+msgbox	On this CYCLING ROAD, those riding MACH BIKES are rated for their number of collisions and their total times.ACRO BIKES do not qualify for rating. They are easy to turn, so it's not fair.
+release
+end
+= Route110_EventScript_ItemRareCandy
+goto_if_set FLAG_ITEM_ROUTE_110_RARE_CANDY Route110_EventScript_ItemRareCandy_Taken
+finditem ITEM_RARE_CANDY
+setflag FLAG_ITEM_ROUTE_110_RARE_CANDY
+end
+= Route110_EventScript_ItemRareCandy_Taken
+end
+= Route110_EventScript_ItemDireHit
+goto_if_set FLAG_ITEM_ROUTE_110_DIRE_HIT Route110_EventScript_ItemDireHit_Taken
+finditem ITEM_DIRE_HIT
+setflag FLAG_ITEM_ROUTE_110_DIRE_HIT
+end
+= Route110_EventScript_ItemDireHit_Taken
+end
+= BerryTreeScript
+special ObjectEventInteractionGetBerryTreeData
+switch VAR_0x8004
+case BERRY_STAGE_SPARKLING BerryTree_EventScript_Sparkling
+case BERRY_STAGE_NO_BERRY BerryTree_EventScript_CheckSoil
+case BERRY_STAGE_PLANTED BerryTree_EventScript_CheckBerryStage1
+case BERRY_STAGE_SPROUTED BerryTree_EventScript_CheckBerryStage2
+case BERRY_STAGE_TALLER BerryTree_EventScript_CheckBerryStage3
+case BERRY_STAGE_FLOWERING BerryTree_EventScript_CheckBerryStage4
+case BERRY_STAGE_BERRIES BerryTree_EventScript_CheckBerryFullyGrown
+end
+= BerryTree_EventScript_CheckBerryFullyGrown
+buffernumberstring STR_VAR_2 VAR_0x8006
+lock
+faceplayer
+special ObjectEventInteractionGetBerryCountString
+msgboxyesno	You found STR_VAR_2 STR_VAR_1!Do you want to pick the STR_VAR_1?
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_PickBerry
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPickingBerry
+goto BerryTree_EventScript_PickBerry
+= BerryTree_EventScript_PickBerry
+special ObjectEventInteractionPickBerryTree
+goto_if_eq VAR_0x8004 0 BerryTree_EventScript_BerryPocketFull
+special IncrementDailyPickedBerries
+special ObjectEventInteractionRemoveBerryTree
+msgbox	PLAYER picked the STR_VAR_2 STR_VAR_1.
+playfanfare MUS_OBTAIN_BERRY
+waitmessage
+waitfanfare
+waitbuttonpress
+msgbox	PLAYER put away the STR_VAR_1 in the BAG's BERRIES POCKET.The soil returned to its soft and loamy state.
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_BerryPocketFull
+msgbox	The BAG's BERRIES POCKET is full.The STR_VAR_1 couldn't be taken.
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_CancelPickingBerry
+msgbox	PLAYER left the STR_VAR_1 unpicked.
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_CheckBerryStage4
+call BerryTree_EventScript_GetCareAdverb
+lockall
+special ObjectEventInteractionGetBerryName
+msgbox	These STR_VAR_1 flowers are blooming STR_VAR_2.
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+@ VAR_0x8005 here is the number of times watered
+@ Buffered by ObjectEventInteractionGetBerryTreeData
+goto BerryTree_EventScript_GetCareAdverb
+= BerryTree_EventScript_GetCareAdverb
+goto_if_eq VAR_0x8005 0 BerryTree_EventScript_SetAdverbPoor
+goto_if_eq VAR_0x8005 4 BerryTree_EventScript_SetAdverbGreat
+bufferstring STR_VAR_2	prettily
+return
+= BerryTree_EventScript_SetAdverbGreat
+bufferstring STR_VAR_2	very beautifully
+return
+= BerryTree_EventScript_SetAdverbPoor
+bufferstring STR_VAR_2	cutely
+return
+@ VAR_0x8006 here is the number of berries
+goto BerryTree_EventScript_CheckBerryFullyGrown
+= BerryTree_EventScript_WantToWater
+checkitem ITEM_WAILMER_PAIL
+goto_if_eq VAR_RESULT FALSE BerryTree_EventScript_DontWater
+special ObjectEventInteractionGetBerryName
+msgboxyesno	Want to water the STR_VAR_1 with the WAILMER PAIL?
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_WaterBerry
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_DontWater
+goto BerryTree_EventScript_DontWater
+= BerryTree_EventScript_DontWater
+releaseall
+end
+= BerryTree_EventScript_WaterBerry
+special ObjectEventInteractionGetBerryName
+msgbox	PLAYER watered the STR_VAR_1.
+waitmessage
+special ObjectEventInteractionWaterBerryTree
+special DoWateringBerryTreeAnim
+msgbox	The plant seems to be delighted.
+waitmessage
+waitbuttonpress
+releaseall
+end
+= BerryTree_EventScript_CheckBerryStage3
+lockall
+special ObjectEventInteractionGetBerryName
+msgbox	This STR_VAR_1 plant is growing taller.
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckBerryStage2
+lockall
+special ObjectEventInteractionGetBerryName
+msgbox	STR_VAR_1 has sprouted.
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckBerryStage1
+lockall
+special ObjectEventInteractionGetBerryCountString
+msgbox	One STR_VAR_1 was planted here.
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckSoil
+lock
+faceplayer
+specialvar VAR_RESULT PlayerHasBerries
+goto_if_eq VAR_RESULT TRUE BerryTree_EventScript_WantToPlant
+msgbox	It's soft, loamy soil.
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_WantToPlant
+msgboxyesno	It's soft, loamy soil. Want to plant a BERRY?
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_ChooseBerryToPlant
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPlanting
+end
+= BerryTree_EventScript_CancelPlanting
+release
+end
+= BerryTree_EventScript_ChooseBerryToPlant
+fadescreen FADE_TO_BLACK
+closemessage
+special Bag_ChooseBerry
+goto_if_eq VAR_ITEM_ID 0 BerryTree_EventScript_CancelPlanting
+removeitem VAR_ITEM_ID
+call BerryTree_EventScript_PlantBerry
+goto BerryTree_EventScript_CancelPlanting
+= BerryTree_EventScript_PlantBerry
+special ObjectEventInteractionPlantBerryTree
+incrementgamestat GAME_STAT_PLANTED_BERRIES
+special IncrementDailyPlantedBerries
+special ObjectEventInteractionGetBerryCountString
+msgbox	PLAYER planted one STR_VAR_1 in the soft, loamy soil.
+waitmessage
+waitbuttonpress
+return
+= BerryTree_EventScript_Sparkling
+lockall
+msgbox	!
+waitmessage
+waitbuttonpress
+releaseall
+end
+= Route110_EventScript_Dale
+trainerbattle_single TRAINER_DALE Route110_Text_DaleIntro Route110_Text_DaleDefeated
+msgbox	Fishing is all about concentration. You have to focus on the floater.
+end
+= Route110_EventScript_Edwin
+trainerbattle_single TRAINER_EDWIN_1 Route110_Text_EdwinIntro Route110_Text_EdwinDefeated Route110_EventScript_EdwinRegisterMatchCallAfterBattle
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route110_EventScript_EdwinRematch
+msgbox	When I see a POKéMON that I don't know, my passion as a collector is ignited!
+release
+end
+= Route110_EventScript_EdwinRematch
+trainerbattle_rematch TRAINER_EDWIN_1 Route110_Text_EdwinRematchIntro Route110_Text_EdwinRematchDefeated
+msgbox	Oh, I long to make all rare POKéMON mine!
+end
+= Route110_EventScript_EdwinRegisterMatchCallAfterBattle
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	I like collecting MATCH CALL registrations, too…
+register_matchcall TRAINER_EDWIN_1
+release
+end
+= Route110_EventScript_Jaclyn
+trainerbattle_single TRAINER_JACLYN Route110_Text_JaclynIntro Route110_Text_JaclynDefeated
+msgbox	You managed to win only because it was a wonder! Yes, a wonder! Don't think you can win all the time!
+end
+= Route110_EventScript_Edward
+trainerbattle_single TRAINER_EDWARD Route110_Text_EdwardIntro Route110_Text_EdwardDefeated
+msgbox	I see your future…Hmm… I see a shining light…
+end
+= Route110_EventScript_Benjamin
+trainerbattle_single TRAINER_BENJAMIN_1 Route110_Text_BenjaminIntro Route110_Text_BenjaminDefeated Route110_EventScript_BenjaminRegisterMatchCallAfterBattle
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route110_EventScript_BenjaminRematch
+msgbox	There's no need to panic or stress. Take it easy. There's plenty of time.
+release
+end
+= Route110_EventScript_BenjaminRematch
+trainerbattle_rematch TRAINER_BENJAMIN_1 Route110_Text_BenjaminRematchIntro Route110_Text_BenjaminRematchDefeated
+msgbox	There's no need to panic or stress. Take it easy. There's plenty of time.
+end
+= Route110_EventScript_BenjaminRegisterMatchCallAfterBattle
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	I'll keep chugging on without stressing. Give me a shout if you're up to it.
+register_matchcall TRAINER_BENJAMIN_1
+release
+end
+= Route110_EventScript_Abigail
+trainerbattle_single TRAINER_ABIGAIL_1 Route110_Text_AbigailIntro Route110_Text_AbigailDefeated Route110_EventScript_AbigailRegisterMatchCallAfterBattle
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route110_EventScript_AbigailRematch
+msgbox	I'm exhausted, so I need a break. It's important to get proper rest.
+release
+end
+= Route110_EventScript_AbigailRematch
+trainerbattle_rematch TRAINER_ABIGAIL_1 Route110_Text_AbigailRematchIntro Route110_Text_AbigailRematchDefeated
+msgbox	Were you going after a record?I'm sorry if I held you up!
+end
+= Route110_EventScript_AbigailRegisterMatchCallAfterBattle
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	You know, I like you! Let's have a rematch on CYCLING ROAD.
+register_matchcall TRAINER_ABIGAIL_1
+release
+end
+= Route110_EventScript_Anthony
+trainerbattle_single TRAINER_ANTHONY Route110_Text_AnthonyIntro Route110_Text_AnthonyDefeated
+msgbox	Speed alone won't let me win at POKéMON. I need to reconsider this…
+end
+= Route110_EventScript_Jasmine
+trainerbattle_single TRAINER_JASMINE Route110_Text_JasmineIntro Route110_Text_JasmineDefeated
+msgbox	Oh, you have some GYM BADGES? No wonder you're so strong!
+end
+= Route110_EventScript_Boy1
+msgbox	Wouldn't it be great to ride a BIKE at full speed on CYCLING ROAD?
+end
+= Route110_EventScript_CyclingGirl1
+msgbox	How do you like the way my raven- colored hair streams behind me?I grew my hair out just for that.
+end
+= Route110_EventScript_OldMan
+msgbox	The two roads, one above, one below…A road each for people and POKéMON. Perhaps that is right and fair.
+end
+= Route110_EventScript_CyclingGuy1
+msgbox	Oh, hey, you got that BIKE from RYDEL!Oh, it's glaringly obvious. It says right on your bike…RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,RYDEL, RYDEL, RYDEL, RYDEL, RYDEL… That name's everywhere.You should ride it around all over the place--it's good advertising!
+end
+= Route110_EventScript_OldWoman
+msgbox	I don't have a BIKE, so I'll take a leisurely walk on the low road.
+end
+= Route110_EventScript_CyclingGuy2
+msgbox	Learning techniques will make BIKE riding even more fun.There are some places that you can reach only by using a BIKE technique.
+end
+= Route110_EventScript_Boy2
+msgbox	Which should I choose?Make a beeline for MAUVILLE on CYCLING ROAD, or take the low road and look for POKéMON?
+end
+signs
+15 25	“TEAM AQUA was here!”Someone painted that onto this sign, but then someone else painted over it.“TEAM MAGMA rules!” is what it says now.
+9 51	SEASIDE PARKING
+14 88	SEASIDE CYCLING ROAD
+20 94	ROUTE 110 SLATEPORT CITY
+7 79	ROUTE 110 ROUTE 103
+3 17	ROUTE 110 MAUVILLE CITY
+33 39	TRAINER TIPSThe foe can be made helpless by paralyzing it or causing it to sleep.It is an important technique for POKéMON battles.
+37 70	TRAINER TIPSThe items in the BAG can be reorganized by pressing SELECT.
+8 67	“Three steps and two steps to reach the wondrous TRICK HOUSE.”
+32 93	THE BEST RECORD TO DATE…No. of collisions: STR_VAR_1Elapsed time: STR_VAR_2
+13 16	SEASIDE CYCLING ROAD
+grass
+13
+water
+368,369,372,376,377,392,393,394,400,402,408,410,613,619,620,621,743,752,753,754,755,756,776,780,782,783,784,785,786,787,788,791,796,797,798,799,804,805,806,807,808,809,810,811,816,817,818,819,828,829,831,836,837,838,839,840,841,842,843,847,909
+mapsec
+8 7 1 3	ROUTE 110
+music
+MUS_ROUTE110
+encounters
+land POOCHYENA:12:12,ELECTRIKE:12:12,GULPIN:12:12,ELECTRIKE:13:13,MINUN:13:13,ODDISH:13:13,MINUN:13:13,GULPIN:13:13,WINGULL:12:12,WINGULL:12:12,PLUSLE:12:12,PLUSLE:13:13
+water TENTACOOL:5:35,WINGULL:10:30,WINGULL:15:25,PELIPPER:25:30,PELIPPER:25:30
+fishing MAGIKARP:5:10,TENTACOOL:5:10,MAGIKARP:10:30,TENTACOOL:10:30,WAILMER:10:30,WAILMER:25:30,WAILMER:30:35,WAILMER:20:25,WAILMER:35:40,WAILMER:40:45

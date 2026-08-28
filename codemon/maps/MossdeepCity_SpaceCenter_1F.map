@@ -1,0 +1,255 @@
+tileset general__facility
+16 10
+8 5
+536,537,537,760,760,760,760,760,760,760,760,760,691,692,693,537
+698,696,697,768,768,768,768,768,768,768,768,768,699,700,701,697
+887,885,886,870,870,870,870,870,870,870,870,870,878,870,879,886
+753,752,865,752,752,865,752,752,865,752,752,865,752,752,752,752
+753,752,752,752,752,752,752,752,752,752,867,868,752,867,868,752
+753,752,872,873,872,873,752,752,752,752,875,876,752,875,876,752
+753,865,880,881,880,881,865,752,752,752,865,752,752,865,752,752
+753,752,865,752,865,752,752,752,752,752,872,873,872,873,752,752
+753,752,752,752,752,752,752,752,752,752,880,881,880,881,865,752
+753,752,752,752,752,752,752,518,519,752,752,865,752,865,752,752
+collision
+1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,1,1,1,1,0,0,0,0,1,1,0,1,1,0
+0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0
+0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+7 9 MossdeepCity 8
+8 9 MossdeepCity 8
+13 1 MossdeepCity_SpaceCenter_2F 0
+npcs
+people_scientist_1 7 2 N static 0 LOCALID_SPACE_CENTER_1F_SCIENTIST_1 0
+people_scientist_1 2 2 N static 0 LOCALID_SPACE_CENTER_1F_SCIENTIST_2 0
+people_sailor 6 6 W static 0 LOCALID_SPACE_CENTER_1F_SAILOR 0
+people_old_man 10 2 N static 0 LOCALID_SPACE_CENTER_1F_OLD_MAN 0
+people_woman_4 14 7 S wander 0 LOCALID_SPACE_CENTER_1F_WOMAN 0
+people_team_magma_magma_member_f 12 9 W static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA - 2
+people_team_magma_magma_member_m 11 6 W static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA - 2
+people_team_magma_magma_member_m 10 2 S static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA - 2
+people_team_magma_magma_member_m 13 2 S static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA LOCALID_SPACE_CENTER_1F_STAIR_GRUNT 0
+people_ninja_boy 2 5 S static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_MAGMA_NOTE - 0
+people_steven 1 4 S static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_STEVEN - 0
+dialogs
+1	A rocket launch demands perfection. Not even a 1% margin of error is allowed.Even if it's 99% okay, the whole thing is useless if 1% happens to be no good.Despite that, we never stop trying. Why? It's a dream that never ends.
+2	I was taking a stroll down the beach when I found this.It's not anything I need, so you can have it.
+5	Don't think you're on a roll just because you've beaten me!
+6	Okay, I get it already! The next time, we'll come unannounced.
+7	What are we going to do with the rocket fuel?How would I know? Ask our leader upstairs!
+8	Our leader said no one, but no one, gets past me!
+9	This is… An intent-to-steal notice?“To the staff of the SPACE CENTER: How are you? We are doing fine.“We will soon visit you to take your rocket fuel.“Please don't try to stop us. We will take the fuel no matter what.“Let there be more land! TEAM MAGMA”
+10	STEVEN: PLAYER, have you read that proclamation already?TEAM MAGMA is coming after the rocket fuel on this island.I don't know what they'd need it for, but they can't be allowed to take it.I'll keep an eye on things for a while longer.In the meantime, why don't you go check out the town?
+objscripts
+0 MossdeepCity_SpaceCenter_1F_EventScript_RocketLaunchCounter
+1 MossdeepCity_SpaceCenter_1F_EventScript_Scientist
+2 MossdeepCity_SpaceCenter_1F_EventScript_SunStoneMan
+3 MossdeepCity_SpaceCenter_1F_EventScript_OldMan
+4 MossdeepCity_SpaceCenter_1F_EventScript_Woman
+5 MossdeepCity_SpaceCenter_1F_EventScript_Grunt3
+6 MossdeepCity_SpaceCenter_1F_EventScript_Grunt1
+7 MossdeepCity_SpaceCenter_1F_EventScript_Grunt4
+8 MossdeepCity_SpaceCenter_1F_EventScript_Grunt2
+9 MossdeepCity_SpaceCenter_1F_EventScript_MagmaNote
+10 MossdeepCity_SpaceCenter_1F_EventScript_Steven
+movements
+Common_Movement_FaceOriginalDirection	face_down,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+MossdeepCity_SpaceCenter_1F_Movement_MoveGruntFromStairs	face_left,delay,right,delay,end
+MossdeepCity_SpaceCenter_1F_Movement_MoveGruntFromStairsEast	delay,right,delay,end
+MossdeepCity_SpaceCenter_1F_Movement_MoveGruntFromStairsWest	delay,left,delay,end
+scriptdefs
+= MossdeepCity_SpaceCenter_1F_EventScript_Steven
+lock
+faceplayer
+msgbox	STEVEN: PLAYER, have you read that proclamation already?TEAM MAGMA is coming after the rocket fuel on this island.I don't know what they'd need it for, but they can't be allowed to take it.I'll keep an eye on things for a while longer.In the meantime, why don't you go check out the town?
+applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= MossdeepCity_SpaceCenter_1F_EventScript_MagmaNote
+lockall
+msgbox	This is… An intent-to-steal notice?“To the staff of the SPACE CENTER: How are you? We are doing fine.“We will soon visit you to take your rocket fuel.“Please don't try to stop us. We will take the fuel no matter what.“Let there be more land! TEAM MAGMA”
+releaseall
+end
+= MossdeepCity_SpaceCenter_1F_EventScript_Grunt2
+lock
+faceplayer
+goto_if_set FLAG_DEFEATED_GRUNT_SPACE_CENTER_1F MossdeepCity_SpaceCenter_1F_EventScript_Grunt2Defeated
+msgbox	Our leader said no one, but no one, gets past me!
+trainerbattle_no_intro TRAINER_GRUNT_SPACE_CENTER_2 MossdeepCity_SpaceCenter_1F_Text_Grunt2Defeat
+setflag FLAG_DEFEATED_GRUNT_SPACE_CENTER_1F
+copyobjectxytoperm LOCALID_SPACE_CENTER_1F_STAIR_GRUNT
+switch VAR_FACING
+case DIR_WEST MossdeepCity_SpaceCenter_1F_EventScript_MoveGruntFromStairsWest
+case DIR_WEST MossdeepCity_SpaceCenter_1F_EventScript_MoveGruntFromStairsEast
+applymovement LOCALID_SPACE_CENTER_1F_STAIR_GRUNT MossdeepCity_SpaceCenter_1F_Movement_MoveGruntFromStairs
+waitmovement 0
+setvar VAR_MOSSDEEP_SPACE_CENTER_STAIR_GUARD_STATE 2
+release
+end
+= MossdeepCity_SpaceCenter_1F_EventScript_MoveGruntFromStairsEast
+applymovement LOCALID_SPACE_CENTER_1F_STAIR_GRUNT MossdeepCity_SpaceCenter_1F_Movement_MoveGruntFromStairsEast
+waitmovement 0
+setvar VAR_MOSSDEEP_SPACE_CENTER_STAIR_GUARD_STATE 3
+release
+end
+= MossdeepCity_SpaceCenter_1F_EventScript_MoveGruntFromStairsWest
+applymovement LOCALID_SPACE_CENTER_1F_STAIR_GRUNT MossdeepCity_SpaceCenter_1F_Movement_MoveGruntFromStairsWest
+waitmovement 0
+setvar VAR_MOSSDEEP_SPACE_CENTER_STAIR_GUARD_STATE 1
+release
+end
+@ Functionally unused by mistake. The movement is handled anyway after the switch (see above)
+@ This also means VAR_MOSSDEEP_SPACE_CENTER_STAIR_GUARD_STATE can never be 3
+goto MossdeepCity_SpaceCenter_1F_EventScript_MoveGruntFromStairsEast
+= MossdeepCity_SpaceCenter_1F_EventScript_Grunt2Defeated
+msgbox	Please, tell our leader that I never abandoned my post. That I stayed to the bitter end…
+release
+end
+= MossdeepCity_SpaceCenter_1F_EventScript_Grunt4
+trainerbattle_single TRAINER_GRUNT_SPACE_CENTER_4 MossdeepCity_SpaceCenter_1F_Text_Grunt4Intro MossdeepCity_SpaceCenter_1F_Text_Grunt4Defeat
+msgbox	What are we going to do with the rocket fuel?How would I know? Ask our leader upstairs!
+end
+= MossdeepCity_SpaceCenter_1F_EventScript_Grunt1
+trainerbattle_single TRAINER_GRUNT_SPACE_CENTER_1 MossdeepCity_SpaceCenter_1F_Text_Grunt1Intro MossdeepCity_SpaceCenter_1F_Text_Grunt1Defeat
+msgbox	Okay, I get it already! The next time, we'll come unannounced.
+end
+= MossdeepCity_SpaceCenter_1F_EventScript_Grunt3
+trainerbattle_single TRAINER_GRUNT_SPACE_CENTER_3 MossdeepCity_SpaceCenter_1F_Text_Grunt3Intro MossdeepCity_SpaceCenter_1F_Text_Grunt3Defeat
+msgbox	Don't think you're on a roll just because you've beaten me!
+end
+= MossdeepCity_SpaceCenter_1F_EventScript_Woman
+lock
+faceplayer
+goto_if_set FLAG_SYS_GAME_CLEAR MossdeepCity_SpaceCenter_1F_EventScript_WomanNormal
+goto_if_eq VAR_MOSSDEEP_CITY_STATE 2 MossdeepCity_SpaceCenter_1F_EventScript_WomanMagma
+goto_if_lt VAR_MOSSDEEP_CITY_STATE 2 MossdeepCity_SpaceCenter_1F_EventScript_WomanNormal
+goto MossdeepCity_SpaceCenter_1F_EventScript_WomanMagma
+end
+= MossdeepCity_SpaceCenter_1F_EventScript_WomanMagma
+msgbox	TEAM AQUA should take care of TEAM MAGMA!But if they did that, TEAM AQUA will become bold and brazen, won't they?
+release
+end
+= MossdeepCity_SpaceCenter_1F_EventScript_WomanNormal
+msgbox	Some people claim that POKéMON came from space. Could it be true?
+release
+end
+= MossdeepCity_SpaceCenter_1F_EventScript_OldMan
+lock
+faceplayer
+goto_if_set FLAG_SYS_GAME_CLEAR MossdeepCity_SpaceCenter_1F_EventScript_OldManNormal
+goto_if_eq VAR_MOSSDEEP_CITY_STATE 2 MossdeepCity_SpaceCenter_1F_EventScript_OldManMagma
+goto_if_lt VAR_MOSSDEEP_CITY_STATE 2 MossdeepCity_SpaceCenter_1F_EventScript_OldManNormal
+goto MossdeepCity_SpaceCenter_1F_EventScript_OldManMagma
+end
+= MossdeepCity_SpaceCenter_1F_EventScript_OldManMagma
+msgbox	A giant chunk of metal bursts through the skies and flies into space…But TEAM MAGMA wants to spoil that dream of mine!I'm not having any of that!
+closemessage
+applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= MossdeepCity_SpaceCenter_1F_EventScript_OldManNormal
+msgbox	A giant chunk of metal bursts through the skies and flies into space…It boggles my mind!
+closemessage
+applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= MossdeepCity_SpaceCenter_1F_EventScript_SunStoneMan
+lock
+faceplayer
+goto_if_eq VAR_MOSSDEEP_CITY_STATE 2 MossdeepCity_SpaceCenter_1F_EventScript_SunStoneManMagma
+goto_if_set FLAG_RECEIVED_SUN_STONE_MOSSDEEP MossdeepCity_SpaceCenter_1F_EventScript_GaveSunStone
+msgbox	I was taking a stroll down the beach when I found this.It's not anything I need, so you can have it.
+giveitem ITEM_SUN_STONE
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_RECEIVED_SUN_STONE_MOSSDEEP
+msgbox	The HOENN region has been famous for its meteor showers for a long time.
+release
+end
+= MossdeepCity_SpaceCenter_1F_EventScript_GaveSunStone
+msgbox	The HOENN region has been famous for its meteor showers for a long time.
+release
+end
+= MossdeepCity_SpaceCenter_1F_EventScript_SunStoneManMagma
+goto_if_set FLAG_RECEIVED_SUN_STONE_MOSSDEEP MossdeepCity_SpaceCenter_1F_EventScript_GaveSunStoneMagma
+msgbox	TEAM MAGMA can't be allowed to steal the rocket fuel.Oh, by the way, you can have this stone I found on the beach.
+giveitem ITEM_SUN_STONE
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_RECEIVED_SUN_STONE_MOSSDEEP
+msgbox	With TEAM MAGMA around, I guess strolls on the beach aren't safe.
+applymovement VAR_LAST_TALKED Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+release
+end
+= MossdeepCity_SpaceCenter_1F_EventScript_GaveSunStoneMagma
+msgbox	With TEAM MAGMA around, I guess strolls on the beach aren't safe.
+applymovement VAR_LAST_TALKED Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+release
+end
+= MossdeepCity_SpaceCenter_1F_EventScript_Scientist
+lock
+faceplayer
+goto_if_eq VAR_MOSSDEEP_CITY_STATE 2 MossdeepCity_SpaceCenter_1F_EventScript_ScientistMagma
+msgbox	A rocket launch demands perfection. Not even a 1% margin of error is allowed.Even if it's 99% okay, the whole thing is useless if 1% happens to be no good.Despite that, we never stop trying. Why? It's a dream that never ends.
+release
+end
+= MossdeepCity_SpaceCenter_1F_EventScript_ScientistMagma
+msgbox	Those MAGMA thugs have their sights set on our SPACE CENTER.But we can't allow anything that minor to interfere with our rocket launch!
+applymovement VAR_LAST_TALKED Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+release
+end
+= MossdeepCity_SpaceCenter_1F_EventScript_RocketLaunchCounter
+lock
+faceplayer
+goto_if_eq VAR_MOSSDEEP_CITY_STATE 2 MossdeepCity_SpaceCenter_1F_EventScript_RocketLaunchCounterMagma
+dotimebasedevents
+specialvar VAR_RESULT GetWeekCount
+buffernumberstring STR_VAR_1 VAR_RESULT
+call_if_eq VAR_RESULT 0 MossdeepCity_SpaceCenter_1F_EventScript_NoLaunchesYet
+call_if_ge VAR_RESULT 1 MossdeepCity_SpaceCenter_1F_EventScript_ShowLaunchNumber
+closemessage
+applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= MossdeepCity_SpaceCenter_1F_EventScript_ShowLaunchNumber
+msgbox	The rocket launched safely! That's successful launch no. STR_VAR_1!
+return
+= MossdeepCity_SpaceCenter_1F_EventScript_NoLaunchesYet
+msgbox	The rocket's launch is imminent!
+return
+= MossdeepCity_SpaceCenter_1F_EventScript_RocketLaunchCounterMagma
+dotimebasedevents
+specialvar VAR_RESULT GetWeekCount
+buffernumberstring STR_VAR_1 VAR_RESULT
+call_if_eq VAR_RESULT 0 MossdeepCity_SpaceCenter_1F_EventScript_NoLaunchesYetMagma
+call_if_ge VAR_RESULT 1 MossdeepCity_SpaceCenter_1F_EventScript_ShowLaunchNumberMagma
+closemessage
+applymovement VAR_LAST_TALKED Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+release
+end
+= MossdeepCity_SpaceCenter_1F_EventScript_ShowLaunchNumberMagma
+msgbox	I know that things are a little haywire right now, but…The rocket launched safely! That's successful launch no. STR_VAR_1!
+return
+= MossdeepCity_SpaceCenter_1F_EventScript_NoLaunchesYetMagma
+msgbox	I know that things are a little haywire right now, but…The rocket's launch is imminent!
+return
+mapsec
+24 5 2 1	MOSSDEEP CITY
+music
+MUS_RUSTBORO
+counters
+537

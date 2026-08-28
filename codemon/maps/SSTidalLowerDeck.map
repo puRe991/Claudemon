@@ -1,0 +1,63 @@
+tileset general__inside_ship
+17 13
+7 5
+681,681,520,681,681,681,681,681,681,681,681,681,681,681,681,681,520
+689,689,744,746,689,689,736,746,689,689,747,748,749,689,689,689,526
+639,541,744,746,541,541,744,746,541,639,747,748,749,541,541,533,534
+541,525,752,754,750,525,752,754,750,525,755,756,757,750,525,525,525
+541,525,743,743,758,525,743,743,758,525,743,743,743,758,525,525,525
+541,736,737,738,736,737,738,525,739,741,525,739,740,741,525,525,525
+541,747,748,749,744,745,746,750,744,746,750,747,748,749,750,525,525
+541,755,756,757,752,753,754,750,752,754,750,755,756,757,750,525,525
+541,743,743,743,743,743,743,758,743,743,758,743,743,743,758,525,525
+541,525,525,525,525,525,525,525,525,525,525,525,525,525,525,736,738
+541,736,737,738,736,737,738,525,736,738,525,739,741,525,525,744,746
+541,744,745,746,744,745,746,750,752,754,750,755,757,750,525,739,741
+639,752,753,754,752,753,754,750,743,743,758,743,743,758,525,755,757
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,0,1,1,0,0,1,1,0,1,1,1,1,0,0,0,1
+0,0,1,1,0,0,1,1,0,0,1,1,1,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,1,1,1,1,1,1,0,1,1,0,1,1,1,0,0,0
+0,1,1,1,1,1,1,0,1,1,0,1,1,1,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+0,1,1,1,1,1,1,0,1,1,0,1,1,0,0,1,1
+1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1
+warps
+15 2 SSTidalCorridor 8
+npcs
+people_sailor 10 4 S static 0 - 3
+people_sailor 7 4 S static 0 - 3
+dialogs
+0	We're the CLEANUP BROTHERS!The old one dumps the detergent, and the young one does the scrubbing!
+1	We're the CLEANUP BROTHERS!The old one dumps the detergent, and the young one does the scrubbing!
+objscripts
+0 SSTidalLowerDeck_EventScript_Phillip
+1 SSTidalLowerDeck_EventScript_Leonard
+triggers
+0 2 0 0 SSTidalLowerDeck_HiddenItem_0_2
+scriptdefs
+= SSTidalLowerDeck_HiddenItem_0_2
+goto_if_set FLAG_HIDDEN_ITEM_SS_TIDAL_LOWER_DECK_LEFTOVERS SSTidalLowerDeck_HiddenItem_0_2_Taken
+finditem ITEM_LEFTOVERS
+setflag FLAG_HIDDEN_ITEM_SS_TIDAL_LOWER_DECK_LEFTOVERS
+end
+= SSTidalLowerDeck_HiddenItem_0_2_Taken
+end
+= SSTidalLowerDeck_EventScript_Leonard
+trainerbattle_single TRAINER_LEONARD SSTidalLowerDeck_Text_LeonardIntro SSTidalLowerDeck_Text_LeonardDefeat
+msgbox	We're the CLEANUP BROTHERS!The old one dumps the detergent, and the young one does the scrubbing!
+end
+= SSTidalLowerDeck_EventScript_Phillip
+trainerbattle_single TRAINER_PHILLIP SSTidalLowerDeck_Text_PhillipIntro SSTidalLowerDeck_Text_PhillipDefeat
+msgbox	We're the CLEANUP BROTHERS!The old one dumps the detergent, and the young one does the scrubbing!
+end
+mapsec
+0 0 1 1	
+music
+MUS_SAILING

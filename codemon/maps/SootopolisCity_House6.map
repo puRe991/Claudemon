@@ -1,0 +1,58 @@
+tileset building__generic_building
+8 7
+4 3
+1008,1008,1008,1010,1010,1008,1008,1008
+701,699,700,1018,1018,1016,658,659
+709,707,708,1023,1023,1023,666,667
+1023,1022,1022,1022,1022,1022,1022,1022
+989,990,734,1022,1022,1022,1022,1022
+997,991,1022,1022,1022,1022,1022,1022
+1023,1022,1022,520,521,1022,1022,1022
+collision
+1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1
+1,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0
+1,1,0,0,0,0,0,0
+1,1,0,0,0,0,0,0
+0,0,0,0,0,0,0,0
+warps
+3 6 SootopolisCity 9
+4 6 SootopolisCity 9
+npcs
+people_woman_2 4 3 S wander 0 - 0
+dialogs
+0	Hello! You're our first guest in a good while.You've brightened up my day, so I'll give you a big WAILMER DOLL.
+objscripts
+0 SootopolisCity_House6_EventScript_Woman
+scriptdefs
+= SootopolisCity_House6_EventScript_Woman
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_WAILMER_DOLL SootopolisCity_House6_EventScript_ReceivedWailmerDoll
+msgboxyesno	Hello! You're our first guest in a good while.You've brightened up my day, so I'll give you a big WAILMER DOLL.
+call_if_eq VAR_RESULT NO SootopolisCity_House6_EventScript_DeclineWailmerDoll
+msgbox	Take good care of it!
+givedecoration DECOR_WAILMER_DOLL
+goto_if_eq VAR_RESULT FALSE SootopolisCity_House6_EventScript_NoRoomForWailmerDoll
+setflag FLAG_RECEIVED_WAILMER_DOLL
+release
+end
+= SootopolisCity_House6_EventScript_NoRoomForWailmerDoll
+bufferdecorationname STR_VAR_2 DECOR_WAILMER_DOLL
+msgbox	Too bad! There's no room left for another STR_VAR_2…
+msgbox	Oh, you want it, but not right now? Okay, then I'll hold it for you.
+release
+end
+= SootopolisCity_House6_EventScript_DeclineWailmerDoll
+msgbox	Are you sure? You don't want this DOLL?
+release
+end
+= SootopolisCity_House6_EventScript_ReceivedWailmerDoll
+msgbox	I love plush DOLLS!
+release
+end
+mapsec
+21 7 1 1	SOOTOPOLIS CITY
+music
+MUS_SOOTOPOLIS

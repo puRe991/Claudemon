@@ -1,0 +1,334 @@
+tileset general__mossdeep
+80 40
+28 17
+368,368,368,368,378,113,113,123,124,124,125,113,113,113,380,344,345,386,121,388,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,373,374,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368
+368,368,368,368,386,121,137,113,113,113,113,113,116,121,388,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,373,374,381,382,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368
+368,368,368,368,827,829,386,121,121,121,121,121,388,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,381,382,368,368,368,368,368,368,368,368,881,882,883,884,885,886,368,368,368,368,368,368,368,368,368,368,368,368,368
+368,368,336,337,381,382,368,368,368,368,368,368,368,368,368,368,368,368,368,429,430,430,430,431,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,370,668,661,662,669,701,368,368,368,754,755,756,368,368,889,890,891,892,893,894,368,368,368,368,368,368,368,368,368,368,368,368,368
+336,337,344,345,368,368,368,368,368,368,368,368,429,430,430,430,430,430,430,411,414,414,414,412,430,430,431,368,368,368,370,246,246,246,246,246,246,246,246,246,246,246,372,368,368,368,370,238,656,657,658,659,2,2,2,2,769,779,773,372,368,897,898,899,900,901,902,368,368,368,368,368,368,368,368,368,368,368,368,368
+344,345,368,368,368,368,368,368,368,368,368,429,411,414,414,414,414,414,414,414,414,404,414,414,414,350,246,246,246,246,246,794,795,794,795,426,427,427,427,427,428,1,246,246,246,246,851,115,664,665,666,667,1,1,4,4,786,787,788,2,855,905,906,907,908,368,910,368,368,368,368,368,368,368,368,368,368,368,368,368
+368,368,368,368,368,368,368,368,368,368,429,411,414,414,414,404,414,414,414,414,414,414,414,350,798,799,1,660,661,662,663,802,854,853,803,434,435,435,435,435,436,1,1,794,795,1,112,115,672,673,674,675,1,1,1,1,1,1,104,2,2,913,914,915,916,917,918,2,2,2,372,368,368,368,368,368,368,368,368,368
+368,368,368,368,368,368,368,368,368,429,411,414,414,404,350,798,799,2,670,661,678,671,2,798,853,854,795,656,657,658,659,1,802,803,1,440,441,442,435,443,444,1,794,853,803,104,211,2,4,1,1,1,1,1,4,1,104,2,704,4,1,921,922,923,924,925,926,1,1,4,117,372,368,368,368,368,368,368,368,368
+368,368,368,368,368,368,368,368,368,437,414,414,414,350,115,802,803,1,656,657,679,659,794,853,805,804,803,664,665,666,667,1,1,1,304,448,449,450,453,451,452,794,853,803,104,115,4,1,1,280,281,281,282,1,104,2,704,104,2,4,928,929,930,931,932,933,934,935,814,1,117,117,212,372,368,368,368,368,368,368
+368,368,368,368,368,368,368,368,368,437,414,414,414,358,115,1,4,4,664,665,666,667,802,803,802,803,1,672,673,674,675,1,1,1,305,456,457,458,461,459,460,802,803,104,211,2,1,1,1,288,289,297,298,104,2,104,2,112,1,1,936,937,938,939,940,941,942,943,822,1,114,212,106,117,372,368,368,368,368,368
+368,368,368,368,368,368,368,368,368,437,414,414,404,358,115,1,4,4,672,673,674,675,1,1,1,1,1,1,1,1,4,1,280,281,281,281,281,281,281,281,282,1,104,115,4,1,1,1,280,289,290,1,104,115,1,112,1,112,1,1,944,945,946,947,948,949,950,951,859,1,2,106,117,117,117,372,368,368,368,368
+368,368,368,368,368,368,368,368,368,437,414,414,414,358,123,137,1,1,1,1,1,1,1,1,1,1,1,4,1,1,1,1,288,289,289,297,297,297,297,297,298,1,112,115,1,1,1,280,289,289,290,104,2,112,104,2,1,112,1,1,952,953,953,954,733,955,956,956,957,1,1,117,117,117,117,117,372,368,368,368
+368,368,368,368,368,368,368,368,368,437,414,414,414,366,137,115,1,1,1,1,1,1,1,1,794,795,1,1,1,1,1,1,288,289,290,1,1,1,1,1,1,104,762,763,772,1,280,289,289,289,290,112,1,112,112,1,1,112,1,1,960,961,961,962,733,963,964,964,965,1,1,117,117,117,117,117,117,372,368,368
+368,368,368,368,368,368,368,368,368,437,414,414,414,414,358,123,137,660,661,662,663,1,1,1,802,854,795,72,73,74,75,1,288,289,290,1,1,1,1,4,104,115,778,779,780,1,288,289,289,289,290,112,4,112,120,137,1,112,1,1,730,731,731,732,733,734,735,735,711,1,1,117,117,117,117,117,117,114,212,372
+368,368,368,368,368,368,368,368,368,437,414,414,414,414,366,137,115,656,657,658,659,1,794,795,794,853,803,80,81,82,83,1,288,289,290,1,1,4,1,1,112,115,786,787,788,1,296,289,289,289,298,112,1,112,1,120,137,112,4,1,738,739,739,740,741,742,743,743,719,1,1,117,117,117,117,117,114,212,106,380
+368,368,368,368,368,368,368,368,368,437,414,414,414,414,414,358,115,664,665,666,667,1,802,803,802,803,1,88,89,90,91,1,288,289,290,4,40,41,41,43,112,115,1,1,1,1,1,296,289,290,1,120,137,115,1,4,112,120,137,4,746,747,747,748,749,750,751,751,727,1,1,117,117,117,117,117,114,4,117,380
+368,368,368,368,368,368,368,368,368,445,419,414,414,414,414,358,115,672,673,674,675,1,1,1,1,3,1,96,97,98,99,1,288,289,290,1,48,49,50,51,112,123,137,4,1,1,1,1,288,290,1,1,112,123,137,1,112,1,120,137,1,4,1,280,281,282,3,1,4,1,116,125,117,117,117,117,114,1,117,380
+368,368,368,368,368,368,368,368,368,368,437,414,414,414,414,358,115,1,1,1,1,1,1,1,4,280,281,281,281,281,281,281,289,289,290,1,56,57,58,59,120,137,123,137,1,1,1,1,296,298,1,1,120,137,123,137,120,124,137,123,124,137,1,296,297,298,1,1,1,1,117,116,122,117,117,114,212,106,117,380
+368,368,368,368,368,368,368,368,368,368,437,414,414,414,414,358,123,137,1,794,795,1,1,1,1,288,289,297,297,297,297,297,289,289,290,1,96,65,66,67,1,120,137,115,1,1,1,1,1,1,1,1,1,120,137,123,124,137,123,169,137,123,124,175,207,207,124,124,124,124,125,117,1,117,117,114,1,117,117,380
+430,430,430,430,431,368,368,368,368,368,437,414,414,414,414,366,137,115,1,802,803,794,795,1,1,288,290,1,1,1,4,1,288,289,289,281,281,281,281,281,281,282,112,123,137,1,4,1,770,771,772,1,1,1,120,145,137,123,124,137,123,124,124,175,207,207,124,124,124,124,124,122,116,125,117,114,1,117,117,380
+405,406,406,407,412,430,430,431,368,368,445,419,414,414,414,414,358,123,124,124,137,802,803,1,1,288,290,1,1,1,1,1,288,289,297,856,857,857,857,858,289,290,120,137,123,137,1,1,778,779,780,1,1,280,282,1,120,145,137,123,124,137,4,1,1,1,1,1,1,4,116,124,125,116,122,114,4,117,117,380
+413,292,292,390,406,406,407,412,430,431,368,437,414,414,414,414,366,145,145,137,115,1,1,1,1,288,290,1,1,794,795,1,288,290,1,864,865,865,865,866,288,290,1,120,137,123,124,137,786,787,788,1,1,288,289,281,282,768,120,145,137,123,124,175,207,207,124,124,124,124,125,116,145,122,1,117,116,125,117,380
+413,292,292,776,777,292,390,407,414,412,430,411,414,414,414,414,414,414,414,358,123,124,124,137,1,288,290,1,794,853,803,1,288,290,1,872,873,873,873,874,288,290,1,1,120,145,137,123,124,124,137,1,1,296,289,289,289,281,281,282,120,145,145,175,207,207,670,661,662,671,145,122,4,1,1,117,117,116,125,380
+413,292,292,784,854,777,292,415,414,414,414,414,414,414,414,414,414,414,414,366,145,145,137,115,1,288,290,1,802,803,1,1,288,290,4,867,665,868,869,870,288,290,1,1,1,1,120,145,145,137,123,137,1,1,296,297,289,289,289,289,282,1,1,1,1,1,656,657,658,659,1,1,1,116,124,125,117,117,116,382
+413,292,292,292,784,785,292,390,407,414,414,414,414,414,414,414,414,414,414,414,414,414,358,123,124,175,207,124,124,124,137,1,288,290,1,875,673,876,877,878,288,290,1,1,1,1,1,1,1,120,137,115,4,1,1,1,296,289,289,297,298,1,1,1,1,1,664,665,666,667,1,1,116,125,116,169,125,117,380,368
+413,292,292,292,292,292,292,292,415,414,414,414,414,414,414,414,414,414,414,414,414,414,366,145,145,175,207,145,145,137,115,1,288,290,1,1,1,1,1,1,288,289,281,281,281,281,281,282,1,1,112,123,124,124,137,4,1,296,298,1,1,1,1,1,1,1,672,673,674,675,4,1,117,116,125,116,169,125,380,368
+421,397,292,292,776,777,292,292,415,414,414,414,414,414,414,414,414,414,414,414,414,414,414,414,414,414,414,414,414,358,115,1,288,290,1,1,1,1,1,1,296,297,297,297,297,297,289,290,1,1,120,145,145,137,123,137,1,1,1,1,1,1,4,1,1,1,1,1,770,771,772,116,125,117,116,125,116,145,382,368
+419,421,397,292,784,785,292,292,415,414,414,414,414,414,414,414,414,414,414,414,414,414,414,414,414,414,414,414,414,358,123,124,175,207,124,124,796,797,796,797,121,796,797,137,1,1,288,290,1,1,1,1,1,120,137,123,124,175,207,124,124,124,124,124,137,1,1,1,778,779,780,117,116,125,117,116,382,368,368,368
+437,414,413,292,292,292,292,292,415,414,420,446,446,419,414,414,414,414,414,414,414,414,414,414,414,414,414,414,414,366,121,145,175,207,145,137,802,803,802,803,1,802,803,112,1,1,288,290,1,1,1,1,1,1,120,145,145,175,207,145,145,145,137,1,120,137,1,1,786,787,788,117,117,116,125,380,368,368,368,368
+437,414,413,292,292,292,292,292,415,414,439,368,368,445,446,446,419,414,414,414,414,414,414,414,414,414,414,414,414,414,414,414,414,414,414,366,796,797,796,797,796,797,137,112,1,1,288,289,281,281,281,281,281,281,281,281,281,289,290,1,1,1,120,121,137,123,124,124,124,124,124,125,117,117,116,382,368,368,368,368
+445,419,421,397,292,292,292,398,423,420,447,368,368,368,368,368,445,446,446,446,446,446,419,414,414,414,414,414,414,414,414,414,414,414,414,752,804,805,804,805,804,761,358,120,137,1,296,297,297,297,297,297,297,297,297,297,297,297,298,1,1,1,1,4,120,145,145,169,169,169,169,169,125,117,380,368,368,368,368,368
+368,445,419,421,422,422,422,423,420,447,368,368,368,368,368,368,368,368,368,368,368,368,445,446,446,446,446,419,414,414,414,414,414,414,752,804,761,760,805,804,805,753,358,4,120,121,175,207,121,121,137,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,4,116,145,145,169,169,169,125,380,368,368,368,368,368
+368,368,445,446,446,446,446,446,447,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,445,446,446,446,419,414,414,760,805,753,752,804,805,804,761,358,1,794,795,1,1,1,1,120,121,121,137,1,1,1,1,1,1,1,4,1,1,1,116,121,122,1,4,116,145,145,145,382,368,368,368,368,368
+368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,445,446,419,414,760,805,804,761,760,761,414,358,794,853,803,1,1,1,1,1,1,1,120,121,121,121,121,121,137,1,1,1,116,124,122,1,4,1,1,380,368,368,368,368,368,368,368,368,368
+379,379,379,379,379,379,379,379,372,368,373,374,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,445,419,752,804,805,753,752,753,414,358,802,803,1,4,1,1,1,1,1,1,1,1,1,1,1,4,120,121,121,121,122,116,145,121,121,121,121,382,368,368,368,368,368,368,368,368,368
+113,113,113,113,113,113,113,113,180,372,381,382,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,437,760,761,760,805,804,805,753,366,121,121,796,797,121,137,1,1,4,1,1,1,1,1,1,1,1,1,4,1,1,380,368,368,368,368,368,368,368,368,368,368,370,372,368,368,368
+113,113,113,113,113,113,113,113,113,180,379,379,379,379,379,379,379,379,379,379,379,372,368,368,368,368,368,368,368,368,368,368,368,368,437,752,753,752,804,805,804,761,414,414,752,804,805,753,366,121,121,121,121,121,121,121,121,121,121,121,121,121,121,121,382,368,368,368,368,368,368,368,368,368,370,190,380,368,368,368
+108,108,109,113,113,113,113,113,113,113,113,113,107,108,108,108,108,108,108,109,113,180,372,368,368,368,368,368,368,368,368,368,368,368,437,760,805,804,761,760,805,753,414,414,760,805,804,761,414,414,414,414,414,414,420,446,446,446,446,446,447,368,368,368,368,368,368,368,368,368,368,368,368,368,378,113,380,368,368,368
+113,113,190,109,113,113,147,148,113,113,113,107,190,113,107,108,108,109,113,190,109,113,380,368,368,368,368,368,368,368,368,368,368,368,437,752,804,761,414,752,804,805,753,414,752,804,761,414,420,446,446,446,446,446,447,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,370,190,113,190,372,368,368
+113,113,113,117,113,113,155,156,113,113,113,115,113,107,190,113,113,190,109,113,117,113,380,373,374,368,368,368,368,368,368,368,368,368,437,760,805,753,752,804,805,804,805,753,760,761,420,446,447,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,378,113,107,109,380,368,368
+collision
+0,0,0,0,1,0,0,1,1,1,1,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,1,1,1,1,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,1,1,0,1,1,1,1,0,1,1,0,1,1,1,1,1,1,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,1,1,1,1,0,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,0,1,1,1,1,0,0,0,0,0,0,0,0,1,0,1,1,0,0,1,1,1,1,1,1,1,1,1,0,1,1,0,1,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,1,1,1,1,1,1,1,0,1,1,1,1,0,0,0,1,0,0,1,1,1,0,1,1,1,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,0,1,1,1,1,1,1,1,1,1,0,1,0,1,1,1,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1,0,1,0,1,0,0,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,1,1,0,0,1,0,0,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,1,1,0,0,1,0,0,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,0,0,0,0,0,0,0,1,0,1,1,1,0,1,0,0,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,0,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,1,0,1,0,1,1,1,0,0,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,0,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,1,1,1,1,0,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,1,1,1,0,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,0,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,1,0,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,0,1,0,1,1,0,0,0,0,0,0,1,0,0,0,1,1,1,1,1,1,1,0,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,0,1,1,1,0,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,0,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,1,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,0,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,1,1,0,0,0,0,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,1,1,1,1,1,1,0,0,0,1,1,1,1,1
+0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,1,1,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,1,1,1,1,1,1,1
+0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,1,1,1,1,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0
+0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,0,0,0,0,1,0,1,1,1,1,1,1,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,1,1,1,1,1,1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,1,1,1,1,0,1,1,0,0,1,1,1,1,1,1,1,1,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,1,0,1,1,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,1,1,1,1,1,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,1,0,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,1,1,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+1,1,1,1,1,1,1,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,1,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,0,1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,1,1,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,1,0,0
+connections
+up 0 Route125
+down 0 Route127
+left -40 Route124
+warps
+28 9 MossdeepCity_House1 0
+38 9 MossdeepCity_Gym 0
+28 16 MossdeepCity_PokemonCenter_1F 0
+67 25 MossdeepCity_House2 0
+37 18 MossdeepCity_Mart 0
+49 6 MossdeepCity_House3 0
+19 10 MossdeepCity_StevensHouse 0
+18 16 MossdeepCity_House4 1
+64 15 MossdeepCity_SpaceCenter_1F 0
+36 24 MossdeepCity_GameCorner_1F 0
+npcs
+people_sailor 38 12 S wander 0 - 0
+people_expert_m 50 34 S wander 0 - 0
+people_pokefan_f 32 12 S wander 0 - 0
+people_ninja_boy 26 21 S wander 0 - 0
+people_girl_1 45 18 W static 0 - 0
+misc_item_ball 62 35 S static FLAG_ITEM_MOSSDEEP_CITY_NET_BALL - 0
+people_man_1 55 5 N static 0 - 0
+people_woman_1 56 21 E static 0 - 0
+people_boy_2 23 13 S wander 0 - 0
+people_team_magma_magma_member_m 44 23 S static FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA LOCALID_MOSSDEEP_GRUNT_1 0
+people_team_magma_magma_member_m 44 24 N static FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA LOCALID_MOSSDEEP_GRUNT_2 0
+people_team_magma_magma_member_m 44 25 S static FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA LOCALID_MOSSDEEP_GRUNT_3 0
+people_team_magma_magma_member_m 44 26 N static FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA LOCALID_MOSSDEEP_GRUNT_4 0
+people_team_magma_maxie 45 25 W static FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA LOCALID_MOSSDEEP_MAXIE 0
+people_black_belt 19 25 S static 0 - 0
+people_scott 61 29 S static FLAG_HIDE_MOSSDEEP_CITY_SCOTT LOCALID_MOSSDEEP_SCOTT 0
+people_black_belt 31 29 S static 0 - 0
+dialogs
+0	I heard from a SAILOR buddy that TEAM AQUA set up shop in LILYCOVE.I also heard that someone came along and wiped the floor with them!But MOSSDEEP here's been targeted by that TEAM MAGMA.If you want to know what they're up to, go visit the SPACE CENTER.
+1	All life needs the sea to live, even though it makes its home on the land.Life, having run its course, becomes soil and returns to the land.And the sea is always connected to the land.Yes, like the very shoreline here.
+2	The island's SPACE CENTER has been launching huge rockets.There's been some kind of an uproar over a letter they received recently.
+3	Around MOSSDEEP, you can see wild WAILMER.It's called, uh… What was it now…WAI, WAI, WAI…WAILMER watching!
+4	Wouldn't it be nice?If the whole world was covered in plants and flowers like this island?
+6	A voyage on a ship is fine.But crossing the sea with POKéMON using SURF…Now that's an exhilarating trip! Wouldn't you agree, youngster?
+7	This rock has a special meaning to the people at the SPACE CENTER.They put it here as their wish for their rockets to fly safely.When you make a wish, what do you use? Do you wish upon a star?I use a wish tag to make it happen. That's what I do.
+8	I got this from STEVEN, but I don't know what it's good for.I think it's called KING'S ROCK. Do you want it?
+15	SCOTT: PLAYER, feeling good? I'm doing great!I'd heard MOSSDEEP's GYM LEADER is pretty strong, so I decided to come take a look-see for myself.But there's something wrong about this town.People are going on about a warning letter and the SPACE CENTER…I don't think it concerns me in any way, though.
+16	Ahh… It feels great letting the waves wash over my feet…Speaking of the waves, you know that island city SOOTOPOLIS?I think the GYM there had a new LEADER come in.People tell me the new LEADER once mentored WALLACE.
+objscripts
+0 MossdeepCity_EventScript_Sailor
+1 MossdeepCity_EventScript_ExpertM
+2 MossdeepCity_EventScript_PokefanF
+3 MossdeepCity_EventScript_NinjaBoy
+4 MossdeepCity_EventScript_Girl
+5 MossdeepCity_EventScript_ItemNetBall
+6 MossdeepCity_EventScript_Man
+7 MossdeepCity_EventScript_Woman
+8 MossdeepCity_EventScript_KingsRockBoy
+14 MossdeepCity_EventScript_DynamicPunchTutor
+15 MossdeepCity_EventScript_Scott
+16 MossdeepCity_EventScript_BlackBelt
+triggers
+25 25 VAR_TEMP_1 0 MossdeepCity_EventScript_VisitedMossdeep
+26 25 VAR_TEMP_1 0 MossdeepCity_EventScript_VisitedMossdeep
+32 27 VAR_TEMP_1 0 MossdeepCity_EventScript_VisitedMossdeep
+33 27 VAR_TEMP_1 0 MossdeepCity_EventScript_VisitedMossdeep
+42 21 VAR_MOSSDEEP_CITY_STATE 1 MossdeepCity_EventScript_TeamMagmaEnterSpaceCenter
+41 22 VAR_MOSSDEEP_CITY_STATE 1 MossdeepCity_EventScript_TeamMagmaEnterSpaceCenter
+41 23 VAR_MOSSDEEP_CITY_STATE 1 MossdeepCity_EventScript_TeamMagmaEnterSpaceCenter
+41 24 VAR_MOSSDEEP_CITY_STATE 1 MossdeepCity_EventScript_TeamMagmaEnterSpaceCenter
+40 25 VAR_MOSSDEEP_CITY_STATE 1 MossdeepCity_EventScript_TeamMagmaEnterSpaceCenter
+40 26 VAR_MOSSDEEP_CITY_STATE 1 MossdeepCity_EventScript_TeamMagmaEnterSpaceCenter
+movements
+Common_Movement_FaceOriginalDirection	face_down,end
+MossdeepCity_Movement_Grunt1EnterSpaceCenter	delay,delay,down,down,down,right,right,right,down,down,down,right,right,right,right,right,right,right,end
+MossdeepCity_Movement_Grunt2EnterSpaceCenter	delay,delay,down,down,right,right,right,down,down,down,right,right,right,right,right,right,right,end
+MossdeepCity_Movement_Grunt3EnterSpaceCenter	delay,delay,down,right,right,right,down,down,down,right,right,right,right,right,right,right,end
+MossdeepCity_Movement_Grunt4EnterSpaceCenter	delay,delay,right,right,right,down,down,down,right,right,right,right,right,right,right,end
+MossdeepCity_Movement_GruntFaceSpaceCenter	face_right,delay,delay,delay,end
+MossdeepCity_Movement_MaxieEnterSpaceCenter	down,right,right,down,down,down,right,right,right,right,right,right,right,end
+MossdeepCity_Movement_MaxieGestureToSpaceCenter	delay,face_right,delay,delay,delay,delay,face_left,delay,delay,end
+MossdeepCity_Movement_PlayerWatchScottExit	delay,delay,delay,end
+MossdeepCity_Movement_ScottExitEast	down,left,left,left,left,left,left,left,left,left,end
+MossdeepCity_Movement_ScottExitNorth	left,left,left,left,left,left,left,left,left,end
+scriptdefs
+= MossdeepCity_EventScript_TeamMagmaEnterSpaceCenter
+lockall
+applymovement LOCALID_MOSSDEEP_MAXIE MossdeepCity_Movement_MaxieGestureToSpaceCenter
+waitmovement 0
+applymovement LOCALID_MOSSDEEP_GRUNT_1 MossdeepCity_Movement_GruntFaceSpaceCenter
+applymovement LOCALID_MOSSDEEP_GRUNT_2 MossdeepCity_Movement_GruntFaceSpaceCenter
+applymovement LOCALID_MOSSDEEP_GRUNT_3 MossdeepCity_Movement_GruntFaceSpaceCenter
+applymovement LOCALID_MOSSDEEP_GRUNT_4 MossdeepCity_Movement_GruntFaceSpaceCenter
+waitmovement 0
+applymovement LOCALID_MOSSDEEP_MAXIE MossdeepCity_Movement_MaxieEnterSpaceCenter
+applymovement LOCALID_MOSSDEEP_GRUNT_1 MossdeepCity_Movement_Grunt1EnterSpaceCenter
+applymovement LOCALID_MOSSDEEP_GRUNT_2 MossdeepCity_Movement_Grunt2EnterSpaceCenter
+applymovement LOCALID_MOSSDEEP_GRUNT_3 MossdeepCity_Movement_Grunt3EnterSpaceCenter
+applymovement LOCALID_MOSSDEEP_GRUNT_4 MossdeepCity_Movement_Grunt4EnterSpaceCenter
+waitmovement 0
+removeobject LOCALID_MOSSDEEP_MAXIE
+removeobject LOCALID_MOSSDEEP_GRUNT_1
+removeobject LOCALID_MOSSDEEP_GRUNT_2
+removeobject LOCALID_MOSSDEEP_GRUNT_3
+removeobject LOCALID_MOSSDEEP_GRUNT_4
+delay 30
+setvar VAR_MOSSDEEP_CITY_STATE 2
+setflag FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA
+releaseall
+end
+= MossdeepCity_EventScript_VisitedMossdeep
+setflag FLAG_VISITED_MOSSDEEP_CITY
+setvar VAR_TEMP_1 1
+end
+= MossdeepCity_EventScript_BlackBelt
+msgbox	Ahh… It feels great letting the waves wash over my feet…Speaking of the waves, you know that island city SOOTOPOLIS?I think the GYM there had a new LEADER come in.People tell me the new LEADER once mentored WALLACE.
+end
+= MossdeepCity_EventScript_Scott
+lock
+faceplayer
+msgbox	SCOTT: PLAYER, feeling good? I'm doing great!I'd heard MOSSDEEP's GYM LEADER is pretty strong, so I decided to come take a look-see for myself.But there's something wrong about this town.People are going on about a warning letter and the SPACE CENTER…I don't think it concerns me in any way, though.
+closemessage
+call_if_eq VAR_FACING DIR_NORTH MossdeepCity_EventScript_ScottExitNorth
+call_if_eq VAR_FACING DIR_EAST MossdeepCity_EventScript_ScottExitEast
+addvar VAR_SCOTT_STATE 1
+removeobject LOCALID_MOSSDEEP_SCOTT
+release
+end
+= MossdeepCity_EventScript_ScottExitEast
+applymovement LOCALID_PLAYER MossdeepCity_Movement_PlayerWatchScottExit
+applymovement LOCALID_MOSSDEEP_SCOTT MossdeepCity_Movement_ScottExitEast
+waitmovement 0
+return
+= MossdeepCity_EventScript_ScottExitNorth
+applymovement LOCALID_PLAYER MossdeepCity_Movement_PlayerWatchScottExit
+applymovement LOCALID_MOSSDEEP_SCOTT MossdeepCity_Movement_ScottExitNorth
+waitmovement 0
+return
+= MossdeepCity_EventScript_DynamicPunchTutor
+lock
+faceplayer
+goto_if_set FLAG_MOVE_TUTOR_TAUGHT_DYNAMICPUNCH MoveTutor_EventScript_DynamicPunchTaught
+msgboxyesno	I can't do this anymore!It's utterly hopeless!I'm a FIGHTING-type TRAINER, so I can't win at the MOSSDEEP GYM no matter how hard I try!Argh! Punch! Punch! Punch! Punch! Punch! Punch!What, don't look at me that way! I'm only hitting the ground!Or do you want me to teach your POKéMON DYNAMICPUNCH?
+goto_if_eq VAR_RESULT NO MoveTutor_EventScript_DynamicPunchDeclined
+call MoveTutor_EventScript_CanOnlyBeLearnedOnce
+goto_if_eq VAR_RESULT NO MoveTutor_EventScript_DynamicPunchDeclined
+msgbox	What? You do? You're a good person! Which POKéMON should I teach?
+setvar VAR_0x8005 TUTOR_MOVE_DYNAMIC_PUNCH
+call MoveTutor_EventScript_OpenPartyMenu
+goto_if_eq VAR_RESULT 0 MoveTutor_EventScript_DynamicPunchDeclined
+setflag FLAG_MOVE_TUTOR_TAUGHT_DYNAMICPUNCH
+goto MoveTutor_EventScript_DynamicPunchTaught
+end
+= MoveTutor_EventScript_DynamicPunchTaught
+msgbox	I want you to win at the MOSSDEEP GYM using that DYNAMICPUNCH!
+release
+end
+= MoveTutor_EventScript_DynamicPunchDeclined
+msgbox	Darn! You're even making fun of me? Punch! Punch! Punch!
+release
+end
+= MoveTutor_EventScript_OpenPartyMenu
+special ChooseMonForMoveTutor
+lock
+faceplayer
+return
+= MoveTutor_EventScript_CanOnlyBeLearnedOnce
+msgboxyesno	This move can be learned only once. Is that okay?
+return
+= MossdeepCity_EventScript_KingsRockBoy
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_KINGS_ROCK MossdeepCity_EventScript_ReceivedKingsRock
+msgboxyesno	I got this from STEVEN, but I don't know what it's good for.I think it's called KING'S ROCK. Do you want it?
+goto_if_eq VAR_RESULT NO MossdeepCity_EventScript_DeclineKingsRock
+msgbox	Why would you want it? You're weird.You can keep it, but keep it a secret from STEVEN.
+giveitem ITEM_KINGS_ROCK
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_RECEIVED_KINGS_ROCK
+release
+end
+= MossdeepCity_EventScript_DeclineKingsRock
+msgbox	Yeah, you think so, too! What are you supposed to do with some weird rock?
+release
+end
+= MossdeepCity_EventScript_ReceivedKingsRock
+msgbox	STEVEN's house is right over there!
+release
+end
+= MossdeepCity_EventScript_Woman
+msgbox	This rock has a special meaning to the people at the SPACE CENTER.They put it here as their wish for their rockets to fly safely.When you make a wish, what do you use? Do you wish upon a star?I use a wish tag to make it happen. That's what I do.
+end
+= MossdeepCity_EventScript_Man
+lock
+faceplayer
+msgbox	A voyage on a ship is fine.But crossing the sea with POKéMON using SURF…Now that's an exhilarating trip! Wouldn't you agree, youngster?
+applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= MossdeepCity_EventScript_ItemNetBall
+goto_if_set FLAG_ITEM_MOSSDEEP_CITY_NET_BALL MossdeepCity_EventScript_ItemNetBall_Taken
+finditem ITEM_NET_BALL
+setflag FLAG_ITEM_MOSSDEEP_CITY_NET_BALL
+end
+= MossdeepCity_EventScript_ItemNetBall_Taken
+end
+= MossdeepCity_EventScript_Girl
+msgbox	Wouldn't it be nice?If the whole world was covered in plants and flowers like this island?
+end
+= MossdeepCity_EventScript_NinjaBoy
+msgbox	Around MOSSDEEP, you can see wild WAILMER.It's called, uh… What was it now…WAI, WAI, WAI…WAILMER watching!
+end
+= MossdeepCity_EventScript_PokefanF
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_HM_DIVE MossdeepCity_EventScript_PokefanFMagmaGone
+msgbox	The island's SPACE CENTER has been launching huge rockets.There's been some kind of an uproar over a letter they received recently.
+release
+end
+= MossdeepCity_EventScript_PokefanFMagmaGone
+msgbox	The island's SPACE CENTER has been launching huge rockets.
+release
+end
+= MossdeepCity_EventScript_ExpertM
+msgbox	All life needs the sea to live, even though it makes its home on the land.Life, having run its course, becomes soil and returns to the land.And the sea is always connected to the land.Yes, like the very shoreline here.
+end
+= MossdeepCity_EventScript_Sailor
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_HM_DIVE MossdeepCity_EventScript_SailorMagmaGone
+msgbox	I heard from a SAILOR buddy that TEAM AQUA set up shop in LILYCOVE.I also heard that someone came along and wiped the floor with them!But MOSSDEEP here's been targeted by that TEAM MAGMA.If you want to know what they're up to, go visit the SPACE CENTER.
+release
+end
+= MossdeepCity_EventScript_SailorMagmaGone
+msgbox	I'm a SAILOR, so the sea's obviously more important to me.But you know? When I get back on land after a long voyage, I do feel relief!
+release
+end
+signs
+25 16	MOSSDEEP CITY “Our slogan: Cherish POKéMON!”
+34 9	MOSSDEEP CITY POKéMON GYM LEADERS: LIZA & TATE“The mystic combination!”
+66 16	MOSSDEEP SPACE CENTER “The closest place to space.”
+57 21	It's a white rock.
+water
+368,370,372,419,420,429,431,437,439,445,446,447,701,827,829,855
+visit
+FLAG_VISITED_MOSSDEEP_CITY
+mapsec
+24 5 2 1	MOSSDEEP CITY
+music
+MUS_RUSTBORO
+encounters
+water TENTACOOL:5:35,WINGULL:10:30,WINGULL:15:25,PELIPPER:25:30,PELIPPER:25:30
+fishing MAGIKARP:5:10,TENTACOOL:5:10,MAGIKARP:10:30,TENTACOOL:10:30,WAILMER:10:30,SHARPEDO:30:35,WAILMER:30:35,WAILMER:25:30,WAILMER:35:40,WAILMER:40:45

@@ -1,0 +1,279 @@
+tileset building__battle_arena
+16 13
+6 8
+592,593,592,592,592,592,595,600,594,592,592,592,592,597,592,592
+600,601,531,532,602,603,595,604,594,602,603,531,532,605,600,600
+608,609,539,540,610,611,596,612,609,610,611,539,540,613,608,608
+513,513,520,513,513,513,513,674,513,513,513,520,513,513,513,513
+513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513
+543,543,543,543,547,513,513,513,513,513,548,543,543,640,543,543
+657,658,659,542,549,513,513,513,513,513,550,541,649,4,645,647
+665,666,667,523,533,543,543,543,543,543,534,523,679,656,673,653
+522,523,523,514,541,529,516,517,518,551,542,514,523,514,523,655
+641,514,514,514,523,537,642,643,644,523,523,514,514,514,514,653
+649,514,514,514,514,523,650,651,652,514,514,514,514,514,514,646
+527,514,514,514,514,514,514,514,514,514,514,514,514,514,514,654
+522,514,514,514,514,514,668,669,670,514,514,514,514,514,514,663
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,0,1,1,1,1,1,1,1,0,1,1,1,1
+1,1,1,0,1,1,1,1,1,1,1,0,1,0,1,1
+0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1
+0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1
+1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+warps
+7 12 BattleFrontier_OutsideEast 1
+npcs
+people_black_belt 7 7 S static 0 LOCALID_ARENA_ATTENDANT 0
+people_woman_5 2 10 S wander 0 - 0
+people_man_5 14 11 W static 0 - 0
+people_camper 14 12 W static 0 - 0
+people_youngster 14 10 W static 0 - 0
+dialogs
+0	Where the battling spirit of TRAINERS is put to the test!I welcome you to the BATTLE ARENA!I am your guide to the Set KO Tourney!
+1	In the BATTLE ARENA, the order of POKéMON is totally important.For example, if your first POKéMON has certain type disadvantages, try making your second POKéMON one with moves that are super effective against the first one.I think that will be a good way of making an effective team.
+2	I won in judging!Landing hits consistently on the opponent's POKéMON worked!
+3	Our match was declared a draw.When we ran out of time, both my POKéMON and the opponent's had about the same amount of HP left.
+4	I lost on the REFEREE's decision…I don't think it was a good idea to only use defensive moves and not attack…
+objscripts
+0 BattleFrontier_BattleArenaLobby_EventScript_Attendant
+1 BattleFrontier_BattleArenaLobby_EventScript_Woman
+2 BattleFrontier_BattleArenaLobby_EventScript_Man
+3 BattleFrontier_BattleArenaLobby_EventScript_Camper
+4 BattleFrontier_BattleArenaLobby_EventScript_Youngster
+onload
+VAR_TEMP_CHALLENGE_STATUS 0 BattleFrontier_BattleArenaLobby_EventScript_GetChallengeStatus
+VAR_TEMP_CHALLENGE_STATUS CHALLENGE_STATUS_SAVING BattleFrontier_BattleArenaLobby_EventScript_QuitWithoutSaving
+VAR_TEMP_CHALLENGE_STATUS CHALLENGE_STATUS_PAUSED BattleFrontier_BattleArenaLobby_EventScript_ResumeChallenge
+VAR_TEMP_CHALLENGE_STATUS CHALLENGE_STATUS_WON BattleFrontier_BattleArenaLobby_EventScript_WonChallenge
+VAR_TEMP_CHALLENGE_STATUS CHALLENGE_STATUS_LOST BattleFrontier_BattleArenaLobby_EventScript_LostChallenge
+movements
+BattleFrontier_BattleArenaLobby_Movement_AttendantEnterDoor	up,delay,end
+BattleFrontier_BattleArenaLobby_Movement_AttendantWalkToLeftDoor	up,up,up,left,left,left,left,left,up,end
+BattleFrontier_BattleArenaLobby_Movement_AttendantWalkToRightDoor	up,up,up,right,right,right,right,up,end
+BattleFrontier_BattleArenaLobby_Movement_PlayerEnterDoor	up,up,delay,end
+BattleFrontier_BattleArenaLobby_Movement_PlayerWalkToLeftDoor	up,up,up,up,left,left,left,left,left,delay,end
+BattleFrontier_BattleArenaLobby_Movement_PlayerWalkToRightDoor	up,up,up,up,right,right,right,right,delay,end
+scriptdefs
+= BattleFrontier_BattleArenaLobby_EventScript_LostChallenge
+lockall
+msgbox	Thank you so much for participating!Please wait while I save the game.
+waitmessage
+arena_set ARENA_DATA_WIN_STREAK_ACTIVE FALSE
+call BattleFrontier_BattleArenaLobby_EventScript_SaveAfterChallenge
+msgbox	We await your challenge on another occasion!
+closemessage
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+releaseall
+end
+= BattleFrontier_BattleArenaLobby_EventScript_SaveAfterChallenge
+frontier_checkairshow
+special LoadPlayerParty
+special HealPlayerParty
+arena_save 0
+playse SE_SAVE
+waitse
+call BattleFrontier_EventScript_GetCantRecordBattle
+goto_if_eq VAR_RESULT TRUE BattleFrontier_BattleArenaLobby_EventScript_EndSaveAfterChallenge
+msgbox	Shall I record your last BATTLE ARENA match on your FRONTIER PASS?
+waitmessage
+multichoicedefault 20 8 MULTI_YESNO 1 FALSE
+switch VAR_RESULT
+case 1 BattleFrontier_BattleArenaLobby_EventScript_EndSaveAfterChallenge
+case 0 BattleFrontier_BattleArenaLobby_EventScript_RecordMatch
+case MULTI_B_PRESSED BattleFrontier_BattleArenaLobby_EventScript_EndSaveAfterChallenge
+goto BattleFrontier_BattleArenaLobby_EventScript_RecordMatch
+= BattleFrontier_BattleArenaLobby_EventScript_RecordMatch
+call BattleFrontier_EventScript_SaveBattle
+goto BattleFrontier_BattleArenaLobby_EventScript_EndSaveAfterChallenge
+= BattleFrontier_BattleArenaLobby_EventScript_EndSaveAfterChallenge
+return
+= BattleFrontier_BattleArenaLobby_EventScript_WonChallenge
+lockall
+frontier_isbrain
+goto_if_eq VAR_RESULT TRUE BattleFrontier_BattleArenaLobby_EventScript_DefeatedTycoon
+msgbox	We congratulate you for your splendid string of wins over seven TRAINERS!
+goto BattleFrontier_BattleArenaLobby_EventScript_GiveBattlePoints
+= BattleFrontier_BattleArenaLobby_EventScript_GiveBattlePoints
+msgbox	My dear challenger, in recognition of your indefatigable spirit, please accept these Battle Point(s).
+frontier_givepoints
+msgbox	PLAYER obtained STR_VAR_1 Battle Point(s).
+msgbox	Your achievement will be recorded. Please wait while I save the game.
+waitmessage
+call BattleFrontier_BattleArenaLobby_EventScript_SaveAfterChallenge
+msgbox	We await your challenge on another occasion!
+closemessage
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+releaseall
+end
+= BattleFrontier_BattleArenaLobby_EventScript_DefeatedTycoon
+msgbox	A victory snatched from the ARENA TYCOON, and a seven-TRAINER sweep!We congratulate you on your most splendid challenge!
+goto BattleFrontier_BattleArenaLobby_EventScript_GiveBattlePoints
+= BattleFrontier_BattleArenaLobby_EventScript_ResumeChallenge
+lockall
+msgbox	We have been looking forward to your arrival.Before I show you to the BATTLE ARENA, I must save the game. Please wait.
+waitmessage
+arena_save CHALLENGE_STATUS_SAVING
+playse SE_SAVE
+waitse
+frontier_set FRONTIER_DATA_PAUSED FALSE
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+goto BattleFrontier_BattleArenaLobby_EventScript_EnterChallenge
+= BattleFrontier_BattleArenaLobby_EventScript_EnterChallenge
+special SavePlayerParty
+frontier_setpartyorder FRONTIER_PARTY_SIZE
+msgbox	I shall now guide you to the BATTLE ARENA.
+closemessage
+frontier_get FRONTIER_DATA_LVL_MODE
+call_if_eq VAR_RESULT FRONTIER_LVL_50 BattleFrontier_BattleArenaLobby_EventScript_WalkToDoorLv50
+call_if_eq VAR_RESULT FRONTIER_LVL_OPEN BattleFrontier_BattleArenaLobby_EventScript_WalkToDoorLvOpen
+warp BattleFrontier_BattleArenaCorridor 9 13
+setvar VAR_TEMP_CHALLENGE_STATUS 0
+waitstate
+end
+= BattleFrontier_BattleArenaLobby_EventScript_WalkToDoorLvOpen
+applymovement LOCALID_ARENA_ATTENDANT BattleFrontier_BattleArenaLobby_Movement_AttendantWalkToRightDoor
+applymovement LOCALID_PLAYER BattleFrontier_BattleArenaLobby_Movement_PlayerWalkToRightDoor
+waitmovement 0
+opendoor 11 2
+waitdooranim
+applymovement LOCALID_ARENA_ATTENDANT BattleFrontier_BattleArenaLobby_Movement_AttendantEnterDoor
+applymovement LOCALID_PLAYER BattleFrontier_BattleArenaLobby_Movement_PlayerEnterDoor
+waitmovement 0
+closedoor 11 2
+waitdooranim
+return
+= BattleFrontier_BattleArenaLobby_EventScript_WalkToDoorLv50
+applymovement LOCALID_ARENA_ATTENDANT BattleFrontier_BattleArenaLobby_Movement_AttendantWalkToLeftDoor
+applymovement LOCALID_PLAYER BattleFrontier_BattleArenaLobby_Movement_PlayerWalkToLeftDoor
+waitmovement 0
+opendoor 2 2
+waitdooranim
+applymovement LOCALID_ARENA_ATTENDANT BattleFrontier_BattleArenaLobby_Movement_AttendantEnterDoor
+applymovement LOCALID_PLAYER BattleFrontier_BattleArenaLobby_Movement_PlayerEnterDoor
+waitmovement 0
+closedoor 2 2
+waitdooranim
+return
+= BattleFrontier_BattleArenaLobby_EventScript_QuitWithoutSaving
+lockall
+msgbox	My dear challenger!You did not save the game before shutting down, did you?It is unfortunate, but that has resulted in your disqualification from your challenge.You may, of course, start with a fresh challenge.
+closemessage
+arena_set ARENA_DATA_WIN_STREAK 0
+arena_set ARENA_DATA_WIN_STREAK_ACTIVE FALSE
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+releaseall
+end
+= BattleFrontier_BattleArenaLobby_EventScript_GetChallengeStatus
+frontier_getstatus
+end
+= BattleFrontier_BattleArenaLobby_EventScript_Youngster
+msgbox	I lost on the REFEREE's decision…I don't think it was a good idea to only use defensive moves and not attack…
+end
+= BattleFrontier_BattleArenaLobby_EventScript_Camper
+msgbox	Our match was declared a draw.When we ran out of time, both my POKéMON and the opponent's had about the same amount of HP left.
+end
+= BattleFrontier_BattleArenaLobby_EventScript_Man
+msgbox	I won in judging!Landing hits consistently on the opponent's POKéMON worked!
+end
+= BattleFrontier_BattleArenaLobby_EventScript_Woman
+msgbox	In the BATTLE ARENA, the order of POKéMON is totally important.For example, if your first POKéMON has certain type disadvantages, try making your second POKéMON one with moves that are super effective against the first one.I think that will be a good way of making an effective team.
+end
+= BattleFrontier_BattleArenaLobby_EventScript_Attendant
+lock
+faceplayer
+setvar VAR_FRONTIER_FACILITY FRONTIER_FACILITY_ARENA
+setvar VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES
+special SavePlayerParty
+msgbox	Where the battling spirit of TRAINERS is put to the test!I welcome you to the BATTLE ARENA!I am your guide to the Set KO Tourney!
+goto BattleFrontier_BattleArenaLobby_EventScript_AskTakeChallenge
+= BattleFrontier_BattleArenaLobby_EventScript_AskTakeChallenge
+msgbox	Now, do you wish to take the BATTLE ARENA challenge?
+waitmessage
+multichoice 17 6 MULTI_CHALLENGEINFO FALSE
+switch VAR_RESULT
+case 0 BattleFrontier_BattleArenaLobby_EventScript_TryEnterChallenge
+case 1 BattleFrontier_BattleArenaLobby_EventScript_ExplainChallenge
+case 2 BattleFrontier_BattleArenaLobby_EventScript_CancelChallenge
+case MULTI_B_PRESSED BattleFrontier_BattleArenaLobby_EventScript_CancelChallenge
+goto BattleFrontier_BattleArenaLobby_EventScript_TryEnterChallenge
+= BattleFrontier_BattleArenaLobby_EventScript_TryEnterChallenge
+msgbox	The BATTLE ARENA offers two levels of challenge, Level 50 and Open Level. Which is your choice?
+waitmessage
+multichoice 17 6 MULTI_LEVEL_MODE FALSE
+switch VAR_RESULT
+case FRONTIER_LVL_TENT BattleFrontier_BattleArenaLobby_EventScript_CancelChallenge
+case MULTI_B_PRESSED BattleFrontier_BattleArenaLobby_EventScript_CancelChallenge
+frontier_checkineligible
+goto_if_eq VAR_0x8004 TRUE BattleFrontier_BattleArenaLobby_EventScript_NotEnoughValidMons
+frontier_set FRONTIER_DATA_LVL_MODE VAR_RESULT
+msgbox	Very well, now select your three POKéMON, please.
+fadescreen FADE_TO_BLACK
+call BattleFrontier_EventScript_GetLvlMode
+copyvar VAR_0x8004 VAR_RESULT
+setvar VAR_0x8005 FRONTIER_PARTY_SIZE
+special ChoosePartyForBattleFrontier
+goto_if_eq VAR_RESULT 0 BattleFrontier_BattleArenaLobby_EventScript_LoadPartyAndCancelChallenge
+msgboxyesno	Before showing you to the BATTLE ARENA, you must save. Is that okay?
+switch VAR_RESULT
+case NO BattleFrontier_BattleArenaLobby_EventScript_LoadPartyAndCancelChallenge
+case YES BattleFrontier_BattleArenaLobby_EventScript_SaveBeforeChallenge
+case MULTI_B_PRESSED BattleFrontier_BattleArenaLobby_EventScript_LoadPartyAndCancelChallenge
+goto BattleFrontier_BattleArenaLobby_EventScript_SaveBeforeChallenge
+= BattleFrontier_BattleArenaLobby_EventScript_SaveBeforeChallenge
+setvar VAR_TEMP_CHALLENGE_STATUS 0
+frontier_set FRONTIER_DATA_SELECTED_MON_ORDER
+arena_init
+arena_set ARENA_DATA_WIN_STREAK_ACTIVE TRUE
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS CHALLENGE_STATUS_SAVING
+frontier_set FRONTIER_DATA_PAUSED FALSE
+special LoadPlayerParty
+closemessage
+delay 2
+call Common_EventScript_SaveGame
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+goto_if_eq VAR_RESULT 0 BattleFrontier_BattleArenaLobby_EventScript_CancelChallengeSaveFailed
+goto BattleFrontier_BattleArenaLobby_EventScript_EnterChallenge
+= BattleFrontier_BattleArenaLobby_EventScript_CancelChallengeSaveFailed
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
+goto BattleFrontier_BattleArenaLobby_EventScript_CancelChallenge
+= BattleFrontier_BattleArenaLobby_EventScript_CancelChallenge
+msgbox	We await your challenge on another occasion!
+goto BattleFrontier_BattleArenaLobby_EventScript_EndCancelChallenge
+= BattleFrontier_BattleArenaLobby_EventScript_EndCancelChallenge
+release
+end
+= Common_EventScript_SaveGame
+special SaveGame
+return
+= BattleFrontier_BattleArenaLobby_EventScript_LoadPartyAndCancelChallenge
+special LoadPlayerParty
+goto BattleFrontier_BattleArenaLobby_EventScript_CancelChallenge
+= BattleFrontier_BattleArenaLobby_EventScript_NotEnoughValidMons
+switch VAR_RESULT
+case FRONTIER_LVL_50 BattleFrontier_BattleArenaLobby_EventScript_NotEnoughValidMonsLv50
+case FRONTIER_LVL_OPEN BattleFrontier_BattleArenaLobby_EventScript_NotEnoughValidMonsLvOpen
+goto BattleFrontier_BattleArenaLobby_EventScript_NotEnoughValidMonsLv50
+= BattleFrontier_BattleArenaLobby_EventScript_NotEnoughValidMonsLv50
+msgbox	My dear challenger!You do not have the three POKéMON required for entry.To qualify, you must bring three different kinds of POKéMON.The three different POKéMON must all be Level 50 or lower.They also must not hold the same kinds of items.EGGSSTR_VAR_1 ineligible.When you have made your preparations, please do return.
+goto BattleFrontier_BattleArenaLobby_EventScript_EndCancelChallenge
+= BattleFrontier_BattleArenaLobby_EventScript_NotEnoughValidMonsLvOpen
+msgbox	My dear challenger!You do not have the three POKéMON required for entry.To qualify, you must bring three different kinds of POKéMON.They also must not hold the same kinds of items.EGGSSTR_VAR_1 ineligible.When you have made your preparations, please do return.
+goto BattleFrontier_BattleArenaLobby_EventScript_EndCancelChallenge
+= BattleFrontier_BattleArenaLobby_EventScript_ExplainChallenge
+msgbox	In the BATTLE ARENA, we undertake the Set KO Tourney.All participants enter with a team of three POKéMON.The three POKéMON must be lined up in the order in which they are to appear.During battle, the POKéMON will appear one at a time in the preset order.Once a POKéMON enters battle, it must remain out until the match is decided.If a match remains undecided in three turns, it goes to judging.If you wish to interrupt your challenge, please save the game.If you don't save, you will not be able to continue with your challenge.If you pull off the feat of beating seven TRAINERS in succession, we will present you with Battle Points.
+goto BattleFrontier_BattleArenaLobby_EventScript_AskTakeChallenge
+signs
+1 7	The Set KO Tourney's rules are listed.
+mapsec
+22 12 1 1	BATTLE FRONTIER
+music
+MUS_B_ARENA

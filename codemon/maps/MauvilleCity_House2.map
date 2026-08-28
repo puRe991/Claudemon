@@ -1,0 +1,73 @@
+tileset building__generic_building
+10 9
+5 4
+646,647,633,634,517,519,517,517,517,517
+654,655,641,642,525,527,525,525,656,656
+662,663,649,650,548,548,548,548,664,664
+569,565,566,566,566,566,566,567,547,547
+569,573,584,585,738,574,574,575,547,547
+569,573,592,593,738,574,574,575,547,547
+569,581,582,582,582,582,582,583,547,547
+569,547,547,547,547,547,547,547,547,546
+569,547,547,520,521,547,547,547,547,554
+collision
+1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,0,0
+0,0,0,0,0,0,0,0,1,1
+0,0,0,0,0,0,0,0,0,0
+0,0,1,1,0,0,0,0,0,0
+0,0,1,1,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,1
+warps
+3 8 MauvilleCity 6
+4 8 MauvilleCity 6
+npcs
+people_woman_3 4 5 W static 0 - 0
+dialogs
+0	If I had a BIKE, it'd be easy to cycle to SLATEPORT for some shopping.I'd be able to buy HARBOR MAIL at the POKéMON MART in SLATEPORT…
+objscripts
+0 MauvilleCity_House2_EventScript_Woman
+movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
+scriptdefs
+= MauvilleCity_House2_EventScript_Woman
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_COIN_CASE MauvilleCity_House2_EventScript_ReceivedCoinCase
+msgbox	If I had a BIKE, it'd be easy to cycle to SLATEPORT for some shopping.I'd be able to buy HARBOR MAIL at the POKéMON MART in SLATEPORT…
+checkitem ITEM_HARBOR_MAIL
+goto_if_eq VAR_RESULT TRUE MauvilleCity_House2_EventScript_AskToTradeForHarborMail
+release
+end
+= MauvilleCity_House2_EventScript_AskToTradeForHarborMail
+playse SE_PIN
+applymovement VAR_LAST_TALKED Common_Movement_ExclamationMark
+waitmovement 0
+applymovement VAR_LAST_TALKED Common_Movement_Delay48
+waitmovement 0
+msgboxyesno	Oh! You have HARBOR MAIL? Will you trade it for a COIN CASE?
+goto_if_eq VAR_RESULT YES MauvilleCity_House2_EventScript_AcceptTrade
+goto_if_eq VAR_RESULT NO MauvilleCity_House2_EventScript_DeclineTrade
+end
+= MauvilleCity_House2_EventScript_DeclineTrade
+msgbox	Oh, that's disappointing.A COIN CASE is needed for the GAME CORNER.
+release
+end
+= MauvilleCity_House2_EventScript_AcceptTrade
+msgbox	Oh, I'm so happy! Okay, I'll trade you a COIN CASE!
+removeitem ITEM_HARBOR_MAIL
+giveitem ITEM_COIN_CASE
+setflag FLAG_RECEIVED_COIN_CASE
+goto MauvilleCity_House2_EventScript_ReceivedCoinCase
+end
+= MauvilleCity_House2_EventScript_ReceivedCoinCase
+msgbox	That COIN CASE can be used at the GAME CORNER.
+release
+end
+mapsec
+8 6 2 1	MAUVILLE CITY
+music
+MUS_RUSTBORO

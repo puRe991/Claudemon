@@ -1,0 +1,70 @@
+tileset building__pokemon_center
+14 10
+7 5
+520,523,523,575,523,604,523,523,575,604,523,523,575,527
+528,531,531,583,531,612,531,531,583,612,531,531,583,535
+728,729,729,678,719,542,717,719,591,542,717,719,591,610
+726,736,736,4,727,605,725,727,731,605,725,727,730,559
+544,620,620,694,609,514,703,620,739,572,703,620,738,559
+664,665,514,514,714,715,716,514,615,712,713,514,615,580
+672,673,514,514,722,723,724,514,514,720,721,514,514,551
+680,681,514,514,514,514,514,514,514,514,514,514,514,551
+544,514,514,514,514,606,606,514,514,606,606,514,514,551
+552,514,514,564,514,614,614,564,550,614,614,550,564,567
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,1,0,0,0,0,1,0,0,0,1,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,0
+0,0,0,0,0,0,0,0,1,0,0,0,1,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,0,0,0,0,1,1,0,0,1,1,0,0,1
+warps
+1 6 LilycoveCity_PokemonCenter_1F 2
+5 1 UnionRoom 0
+9 1 TradeCenter 0
+npcs
+people_teala 6 2 S static 0 - 0
+people_teala 2 2 S static 0 - 0
+people_teala 10 2 S static 0 - 0
+people_man_1 1 2 S static FLAG_HIDE_POKEMON_CENTER_2F_MYSTERY_GIFT_MAN - 0
+objscripts
+3 CableClub_EventScript_MysteryGiftMan
+scriptdefs
+= CableClub_EventScript_MysteryGiftMan
+specialvar VAR_RESULT ShouldDistributeEonTicket
+goto_if_eq VAR_RESULT TRUE CableClub_EventScript_DistributeEonTicket
+goto CableClub_EventScript_TryWonderCardScript
+end
+= CableClub_EventScript_TryWonderCardScript
+trywondercardscript
+goto CableClub_EventScript_MysteryGiftThankYou
+= CableClub_EventScript_MysteryGiftThankYou
+msgbox	Thank you for accessing the MYSTERY GIFT System.
+end
+= CableClub_EventScript_DistributeEonTicket
+checkitem ITEM_EON_TICKET
+goto_if_eq VAR_RESULT TRUE CableClub_EventScript_TryWonderCardScript
+goto_if_set FLAG_ENABLE_SHIP_SOUTHERN_ISLAND CableClub_EventScript_TryWonderCardScript
+msgbox	Thank you for using the MYSTERY EVENT System.You must be PLAYER. There is a ticket here for you.
+giveitem ITEM_EON_TICKET
+setflag FLAG_ENABLE_SHIP_SOUTHERN_ISLAND
+setvar VAR_DISTRIBUTE_EON_TICKET 0
+msgbox	It appears to be for use at the LILYCOVE CITY port.Why not give it a try and see what it is about?
+release
+end
+@ Unused?
+goto CableClub_EventScript_MysteryGiftThankYou2
+= CableClub_EventScript_MysteryGiftThankYou2
+msgbox	Thank you for accessing the MYSTERY GIFT System.
+release
+end
+mapsec
+18 3 2 1	LILYCOVE CITY
+music
+MUS_POKE_CENTER
+counters
+725,726,727,736

@@ -1,0 +1,990 @@
+tileset general__rustboro
+40 80
+21 41
+468,469,468,469,468,469,468,469,468,471,462,463,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,468,469,468,469,476,477
+476,477,476,477,476,477,476,477,476,477,468,471,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,462,463,476,477,476,477,468,469
+468,469,468,469,468,469,468,469,468,469,476,477,462,463,1,280,282,1,1,1,1,1,1,1,1,1,1,1,200,202,1,1,470,469,468,469,468,469,476,477
+476,477,476,477,476,477,484,485,476,477,468,469,468,471,1,288,289,281,281,281,281,281,281,281,281,282,1,1,216,209,202,1,476,477,476,477,476,477,468,469
+468,469,468,469,468,469,13,13,468,469,476,477,476,477,1,296,297,297,297,297,297,297,297,297,289,290,1,1,1,216,218,1,468,469,468,469,468,469,476,477
+476,477,484,485,484,487,1,13,486,485,468,469,468,469,1,1,1,1,200,202,1,1,1,3,288,290,1,1,1,1,1,4,486,485,484,485,484,485,468,469
+468,469,13,1,13,13,13,1,13,13,476,477,476,477,462,463,1,1,216,218,1,1,1,1,288,290,1,200,202,1,1,1,1,331,332,332,332,333,476,477
+476,477,13,13,13,13,13,13,13,1,468,469,468,469,468,471,462,463,462,463,1,200,202,1,296,298,1,216,218,1,1,1,4,275,276,276,276,277,468,469
+468,469,13,13,13,1,13,13,454,455,476,477,476,477,476,477,468,469,468,471,1,216,218,1,1,1,1,1,1,1,1,1,1,1,4,1,4,4,476,477
+476,477,13,1,13,13,454,455,470,469,468,469,468,469,468,469,476,477,476,477,176,177,177,177,848,849,177,177,177,177,177,177,177,177,177,177,177,178,468,469
+468,469,13,13,13,13,470,469,476,477,476,477,476,477,476,477,468,469,468,469,184,527,526,525,846,847,522,521,520,527,526,525,524,523,522,521,520,186,476,477
+476,477,13,13,454,455,476,477,468,469,468,469,468,469,468,469,484,485,484,487,184,520,527,526,846,847,523,522,521,520,527,526,525,524,523,522,521,186,468,469
+468,469,1,13,470,469,468,469,476,477,476,477,476,477,484,487,176,177,177,177,192,521,520,527,846,847,524,523,522,521,520,527,526,525,524,523,522,186,476,477
+476,477,1,1,476,477,476,477,468,469,468,469,468,469,176,177,192,526,525,524,523,522,521,520,846,847,525,524,523,522,521,520,527,526,525,524,523,186,468,469
+468,469,1,1,468,469,468,469,484,498,499,498,499,487,184,521,520,527,526,525,524,523,522,521,846,847,526,525,524,523,522,521,520,527,526,525,524,186,486,485
+476,477,1,584,585,586,587,588,589,468,469,468,469,176,192,522,521,520,527,526,525,524,523,522,846,847,836,836,836,836,846,847,521,520,527,526,525,186,1,1
+468,469,519,592,593,594,595,596,597,476,477,476,477,184,524,523,522,521,520,527,526,525,524,523,838,839,844,844,844,844,846,847,522,521,520,527,526,186,462,463
+476,477,519,600,601,602,603,604,605,468,469,468,469,184,525,524,523,522,521,520,527,526,525,524,819,820,845,845,845,845,846,847,523,522,521,520,527,186,470,469
+468,469,519,608,609,610,611,612,613,486,485,476,477,184,526,525,524,523,522,521,520,527,526,525,524,523,522,521,520,527,846,847,524,523,522,521,520,186,476,477
+476,477,519,518,519,1,518,519,518,519,519,468,469,184,527,526,525,524,523,522,521,520,527,526,525,524,523,522,521,520,846,847,525,524,523,522,521,186,468,469
+468,469,4,4,4,1,1,3,4,4,4,486,487,184,520,527,526,525,524,523,522,521,520,527,526,525,524,523,522,521,846,847,526,525,524,523,522,186,476,477
+476,477,4,4,4,1,1,1,4,4,4,1,1,184,521,520,527,526,525,524,523,522,521,520,527,526,525,524,523,522,846,847,527,526,525,524,523,186,468,469
+468,469,331,332,333,280,282,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,2,2,488,489,488,489,476,477
+476,477,267,268,269,288,290,1,1,1,1,1,1,1,1,1,1,27,1,1,1,1,1,1,1,1,1,1,1,1,280,282,1,1,470,469,468,469,468,469
+468,469,267,268,269,288,289,281,281,281,281,281,281,281,281,281,281,281,281,281,281,281,281,281,281,281,281,281,281,281,289,290,462,463,476,477,476,477,476,477
+476,477,267,268,269,296,297,297,297,297,289,289,297,297,297,297,297,297,297,297,297,297,297,297,297,297,297,297,297,297,297,298,470,469,468,469,468,469,468,469
+468,469,275,276,277,1,1,1,1,1,288,290,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,492,493,492,493,476,477,476,477
+476,477,462,463,462,463,1,1,1,1,288,290,1,1,329,329,329,64,64,329,329,329,329,64,64,64,329,329,329,329,64,64,199,199,199,199,468,469,468,469
+468,469,468,469,468,469,64,64,329,329,296,298,329,329,15,14,14,199,199,14,14,14,14,199,198,198,15,14,15,15,199,199,199,199,199,199,492,493,476,477
+476,477,492,493,492,493,199,199,15,15,774,774,15,15,199,199,199,199,199,199,199,199,198,198,198,199,199,199,199,199,199,199,199,199,199,199,199,199,468,469
+468,469,199,199,199,199,199,199,199,199,782,782,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,476,477
+492,493,199,199,199,199,199,199,199,199,790,790,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,468,469
+198,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,492,493
+199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199
+199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199
+199,199,199,199,199,199,199,198,198,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199
+199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199
+22,22,22,22,22,198,199,198,199,199,775,775,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199
+121,121,121,121,137,198,198,199,199,199,783,783,199,199,199,199,198,198,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199
+300,300,300,325,136,22,198,199,23,23,791,791,23,22,199,199,199,199,198,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199
+368,368,368,291,144,137,22,23,329,329,280,282,329,329,23,23,199,198,199,199,199,22,22,22,22,22,199,199,199,199,199,199,199,199,199,199,199,199,199,199
+368,368,368,299,325,144,137,13,13,13,288,290,13,13,13,13,23,22,22,23,23,331,332,332,332,333,198,199,199,199,199,199,775,775,199,199,199,199,199,199
+368,368,368,368,299,325,136,13,13,13,288,290,13,13,13,13,13,1,1,1,1,275,276,276,276,277,198,199,199,199,199,199,783,783,199,199,199,199,500,501
+368,368,368,368,368,291,136,13,13,13,288,289,281,281,281,281,281,281,281,281,281,281,281,281,282,1,198,199,199,199,199,22,791,791,500,501,199,199,468,469
+368,368,368,368,368,291,144,137,13,13,296,297,297,297,297,297,297,297,297,297,297,297,289,289,290,1,198,198,199,199,199,1,1,1,468,469,500,501,476,477
+368,368,368,368,368,299,325,136,13,13,13,13,13,13,13,13,13,13,1,1,1,1,288,289,290,1,198,199,199,199,199,1,1,1,476,477,468,469,468,469
+368,368,368,368,368,368,291,144,121,121,137,13,13,13,13,13,13,13,13,1,1,1,288,289,290,1,22,199,199,199,22,1,1,1,468,469,476,477,476,477
+368,368,368,368,368,368,299,300,300,325,144,121,121,121,137,616,617,618,619,620,1,1,288,289,290,1,1,198,199,199,1,1,1,1,476,477,468,469,468,469
+368,368,368,368,368,368,368,336,337,299,300,300,300,325,136,624,625,626,627,628,1,1,288,289,290,1,1,22,23,22,1,1,1,1,468,469,476,477,476,477
+368,368,368,368,368,368,368,344,345,368,368,368,368,291,136,632,633,634,635,636,1,1,288,289,290,1,1,1,254,1,1,1,1,1,476,477,468,469,468,469
+368,368,368,368,368,368,368,368,368,336,337,368,368,299,815,640,641,642,643,644,3,1,288,289,290,1,1,1,133,1,1,4,1,1,468,469,476,477,476,477
+368,368,368,368,368,368,368,336,337,344,345,829,622,622,814,1,1,1,1,1,1,1,296,297,298,1,1,1,133,1,4,1,1,1,476,477,468,469,468,469
+368,368,368,368,368,373,374,344,345,368,368,837,621,621,822,1,1,1,1,1,1,1,1,1,1,1,1,1,133,1,1,4,462,463,468,469,476,477,476,477
+368,368,368,368,368,381,382,368,368,368,368,821,630,630,631,1,1,1,1,1,1,1,1,1,1,1,1,1,133,1,4,1,470,469,476,477,468,469,468,469
+368,368,368,368,370,379,372,368,368,368,368,368,368,283,144,121,175,207,121,137,1,1,1,1,1,13,13,13,133,1,1,4,476,477,468,469,476,477,476,477
+368,368,368,368,378,113,380,368,368,368,368,368,368,291,292,292,292,292,292,136,1,13,13,13,13,13,13,13,141,135,111,1,468,469,476,477,468,469,468,469
+368,368,368,368,386,121,388,368,368,368,368,368,368,299,325,292,292,292,292,136,13,13,13,13,13,13,13,13,13,13,133,1,486,485,468,469,476,477,476,477
+368,368,368,368,368,373,374,368,368,368,368,368,368,368,291,292,292,292,292,136,13,13,13,13,13,13,13,13,13,13,141,135,135,214,476,477,468,469,468,469
+368,368,368,368,368,381,382,368,368,368,368,368,368,368,291,292,292,292,292,144,137,13,13,13,13,13,13,13,13,13,1,1,1,1,468,469,476,477,476,477
+368,368,368,368,368,368,373,374,368,368,368,368,368,368,291,292,292,292,292,292,136,13,13,13,13,13,13,1,1,1,1,1,1,1,486,485,468,469,468,469
+368,368,368,368,368,368,381,382,368,368,368,368,368,368,291,292,292,292,292,292,144,137,13,13,13,1,1,1,280,281,282,1,1,1,1,1,486,485,484,485
+368,368,368,368,368,368,336,337,368,368,368,368,368,283,317,292,292,292,292,292,292,136,13,13,13,1,1,280,289,289,289,281,281,282,1,1,1,1,1,1
+368,368,368,368,368,368,344,345,368,368,368,368,368,291,292,292,292,292,292,292,292,144,121,137,1,1,1,288,289,289,289,289,289,289,282,1,1,1,1,1
+368,368,368,368,368,368,368,336,337,368,368,368,368,291,292,292,292,292,292,292,292,292,292,136,1,1,1,296,289,289,289,289,297,297,298,1,462,463,462,463
+368,368,368,368,368,373,374,344,345,368,368,368,368,291,292,292,292,292,292,292,292,292,292,144,137,1,1,1,296,297,297,298,1,1,1,1,470,469,468,469
+368,368,368,368,368,381,382,368,368,368,368,368,368,291,292,292,292,292,292,292,292,292,292,292,136,1,1,1,1,1,1,1,1,1,462,463,476,477,476,477
+368,368,368,368,368,368,336,337,368,368,368,368,368,299,325,292,292,292,292,292,292,292,292,292,144,121,137,3,1,1,1,1,1,1,470,469,468,469,468,469
+368,368,368,368,368,368,344,345,368,368,368,368,368,368,291,292,292,292,292,292,292,292,292,292,292,292,136,1,1,1,1,1,462,463,476,477,476,477,476,477
+368,368,368,368,370,379,372,368,368,368,368,368,368,368,291,292,292,292,292,292,292,292,292,292,292,292,136,1,1,1,1,1,470,469,468,469,468,469,468,469
+368,368,368,368,378,113,380,368,368,368,368,368,368,368,291,292,292,292,292,292,292,292,292,292,292,292,136,1,1,1,1,1,476,477,476,477,476,477,476,477
+368,368,368,368,386,121,388,368,368,368,368,368,368,368,299,325,292,292,292,292,292,292,292,292,292,292,144,121,175,207,121,137,468,469,468,469,468,469,468,469
+368,368,368,368,368,368,368,373,374,368,368,368,368,368,368,291,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,136,476,477,476,477,476,477,476,477
+368,368,368,368,368,368,368,381,382,368,368,368,368,368,368,291,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,136,468,469,468,469,468,469,468,469
+368,368,368,368,368,368,373,374,368,368,368,368,368,368,368,299,300,325,292,292,292,292,292,292,292,292,292,292,292,292,292,136,476,477,476,477,476,477,476,477
+368,368,368,368,368,368,381,382,368,368,368,368,368,368,368,368,368,299,300,325,292,292,292,292,292,292,292,292,292,292,292,136,468,469,468,469,468,469,468,469
+368,368,368,368,368,336,337,368,368,368,368,368,368,368,368,368,368,368,368,299,300,300,325,292,292,292,292,292,292,292,292,136,476,477,476,477,476,477,476,477
+368,368,368,368,368,344,345,373,374,368,368,368,368,368,368,368,368,368,368,368,368,368,299,300,300,300,300,300,325,292,292,136,468,469,468,469,468,469,468,469
+368,368,368,368,368,368,368,381,382,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,299,338,339,375,476,477,476,477,476,477,476,477
+368,368,368,368,368,368,336,337,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,373,374,344,345,378,468,469,468,469,468,469,468,469
+368,368,368,368,368,368,344,345,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,381,382,368,368,378,476,477,476,477,476,477,476,477
+collision
+1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1
+1,1,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,1,1
+1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,0,1,1,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,0,0,0,0,0,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1
+1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1
+1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1
+1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1
+1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,0,0,1,1,0,0,0,1,1,0,0,0,0,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,1,1,1,1,1,1
+0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,1,1,1,1,1,1
+0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,1,1,1,1,1,1
+0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,1,1,1,1,1,1
+0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,1,1,1,1,1,1
+0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,1,1,1,1,1,1
+0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,1,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,1,1,1,1
+0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,1,1,1,1
+0,0,0,0,0,1,1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,1,1,1,1
+0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,1,1,1,1,1,1
+0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,1,1,0,0,0,0,0,0,0,0,1,0,0,0,1,1,1,1,1,1,1,1
+0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,1,1,0,1,1,1,1,1,1,1,1
+0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,1,1,1,1,1,1,1,1
+0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1
+0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1
+0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
+0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
+0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
+0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1
+0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,1,1,1,1
+0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,1,1,1,1,1,1
+0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,1,1,1,1,1,1
+0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,1,1,1,1,1,1,1,1,1
+connections
+up 0 RustboroCity
+down 0 Route105
+right 50 PetalburgCity
+warps
+17 50 Route104_MrBrineysHouse 0
+5 18 Route104_PrettyPetalFlowerShop 0
+10 30 PetalburgWoods 0
+11 30 PetalburgWoods 1
+10 38 PetalburgWoods 2
+11 38 PetalburgWoods 3
+32 42 PetalburgWoods 4
+33 42 PetalburgWoods 5
+npcs
+people_bug_catcher 15 60 W static 0 - 0
+people_girl_2 25 49 S wander 0 - 0
+people_lass 31 24 W static 0 - 7
+people_boy_1 27 63 S wander 0 - 0
+people_woman_2 30 50 S wander 0 - 0
+people_girl_3 28 74 N static 0 - 0
+misc_mr_brineys_boat 12 54 N static FLAG_HIDE_ROUTE_104_MR_BRINEY_BOAT LOCALID_ROUTE104_BOAT 0
+people_expert_m 12 51 E static FLAG_HIDE_ROUTE_104_MR_BRINEY LOCALID_ROUTE104_BRINEY 0
+people_fisherman 29 8 S static 0 - 0
+people_man_1 34 6 S static 0 - 0
+people_man_1 35 6 S static 0 - 0
+people_man_1 36 6 S static 0 - 0
+people_man_1 22 41 S static 0 - 0
+people_man_1 23 41 S static 0 - 0
+people_man_1 24 41 S static 0 - 0
+people_expert_f 37 8 W static 0 - 0
+people_man_1 3 22 S static 0 - 0
+people_man_1 3 23 S static 0 - 0
+people_man_1 3 24 S static 0 - 0
+people_man_1 3 25 S static 0 - 0
+misc_item_ball 39 15 S static FLAG_ITEM_ROUTE_104_PP_UP - 0
+people_woman_5 8 19 S wander FLAG_HIDE_ROUTE_104_WHITE_HERB_FLORIST - 0
+people_twin 27 15 S static 0 - 1
+people_twin 28 15 S static 0 - 1
+people_rich_boy 21 25 S static 0 - 3
+people_woman_2 11 44 S static 0 - 3
+misc_item_ball 29 53 S static FLAG_ITEM_ROUTE_104_POKE_BALL - 0
+people_youngster 18 67 S static 0 - 2
+misc_item_ball 37 22 S static FLAG_ITEM_ROUTE_104_X_ACCURACY - 0
+misc_cuttable_tree 35 22 S static FLAG_TEMP_11 - 0
+misc_item_ball 5 8 S static FLAG_ITEM_ROUTE_104_POTION - 0
+people_boy_2 5 26 S static 0 - 0
+people_fisherman 15 59 W static 0 - 0
+people_may_walking 17 50 S static FLAG_HIDE_ROUTE_104_RIVAL LOCALID_ROUTE104_RIVAL 0
+dialogs
+0	The sea, huh?I wonder what it's like at the bottom of the sea?
+1	That seaside cottage is where MR. BRINEY lives.He was once a mighty sailor who never feared the sea, however stormy.
+3	If you're going to throw a POKé BALL, weaken the wild POKéMON first.It will be easier to catch if it's been poisoned, burned, or lulled to sleep.
+4	You're a thief if you try to steal someone else's POKéMON.You should throw POKé BALLS only at wild POKéMON.
+5	Oh, no, I'm not a TRAINER.But that's right, if TRAINERS lock eyes, it's a challenge to battle.If you don't want to battle, stay out of their sight.
+21	This FLOWER SHOP started selling saplings recently.It made me so happy, I went overboard shopping.I don't need this WHITE HERB anymore. Would you take it, please?
+31	I like filling my mouth with seeds, then spitting them out fast!You can have this, so you try it out!Use it on a POKéMON, and it will learn a move for firing seeds rapidly.
+objscripts
+0 Route104_EventScript_BugCatcher
+1 Route104_EventScript_Girl1
+2 Route104_EventScript_Haley
+3 Route104_EventScript_Boy1
+4 Route104_EventScript_Woman
+5 Route104_EventScript_Girl2
+8 Route104_EventScript_Ivan
+9 BerryTreeScript
+10 BerryTreeScript
+11 BerryTreeScript
+12 BerryTreeScript
+13 BerryTreeScript
+14 BerryTreeScript
+15 Route104_EventScript_ExpertF
+16 BerryTreeScript
+17 BerryTreeScript
+18 BerryTreeScript
+19 BerryTreeScript
+20 Route104_EventScript_ItemPPUp
+21 Route104_EventScript_WhiteHerbFlorist
+22 Route104_EventScript_Gina
+23 Route104_EventScript_Mia
+24 Route104_EventScript_Winston
+25 Route104_EventScript_Cindy
+26 Route104_EventScript_ItemPokeBall
+27 Route104_EventScript_Billy
+28 Route104_EventScript_ItemXAccuracy
+29 EventScript_CutTree
+30 Route104_EventScript_ItemPotion
+31 Route104_EventScript_Boy2
+32 Route104_EventScript_Darian
+33 Route104_EventScript_Rival
+triggers
+17 51 VAR_ROUTE104_STATE 1 Route104_EventScript_RivalTrigger
+7 6 0 0 Route104_HiddenItem_7_6
+3 9 0 0 Route104_HiddenItem_3_9
+14 55 0 0 Route104_HiddenItem_14_55
+16 72 0 0 Route104_HiddenItem_16_72
+16 64 0 0 Route104_HiddenItem_16_64
+onload
+VAR_BOARD_BRINEY_BOAT_STATE 1 Route104_EventScript_StartSailToDewford
+movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
+Common_Movement_FacePlayer	face_down,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
+Movement_CutTreeDown	delay,end
+Route104_Movement_BrineyBoardBoat	down,down,end
+Route104_Movement_BrineyExitBoat	down,delay,end
+Route104_Movement_PlayerBackUp	delay,down,delay,end
+Route104_Movement_PlayerBoardBoat	left,down,down,end
+Route104_Movement_PlayerExitBoat	down,end
+Route104_Movement_PlayerFaceRival	delay,delay,end
+Route104_Movement_PlayerMoveForBriney	down,left,delay,end
+Route104_Movement_RivalApproachPlayer	down,face_right,end
+Route104_Movement_RivalExitBrineysCottage	down,end
+Route104_Movement_RivalWalkSlowLeft	left,end
+Route104_Movement_SailToDewford	down,down,down,down,down,down,down,down,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,down,down,down,down,right,right,delay,delay,delay,delay,delay,delay,right,right,down,down,down,down,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,down,down,down,down,right,right,right,right,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,right,right,right,right,right,right,down,down,down,down,down,down,down,down,down,down,down,down,down,down,down,down,down,down,down,end
+Route104_Movement_SailToDewfordAfterDadCalls	delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,down,down,down,down,right,right,right,right,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,right,right,right,right,right,right,down,down,down,down,down,down,down,down,down,down,down,down,down,down,down,down,down,down,down,end
+Route104_Movement_SailToDewfordBeforeDadCalls	down,down,down,down,down,down,down,down,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,down,down,down,down,right,right,delay,delay,delay,delay,delay,delay,right,right,down,down,down,down,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,end
+scriptdefs
+= Route104_EventScript_StartSailToDewford
+lockall
+goto Route104_EventScript_SailToDewford
+end
+= Route104_EventScript_SailToDewford
+setobjectsubpriority LOCALID_ROUTE104_BRINEY MAP_ROUTE104 0
+setobjectsubpriority LOCALID_PLAYER MAP_ROUTE104 0
+applymovement LOCALID_ROUTE104_BRINEY Route104_Movement_BrineyBoardBoat
+waitmovement 0
+removeobject LOCALID_ROUTE104_BRINEY
+applymovement LOCALID_PLAYER Route104_Movement_PlayerBoardBoat
+waitmovement 0
+hideobjectat LOCALID_PLAYER MAP_ROUTE104
+call Common_EventScript_PlayBrineysBoatMusic
+goto_if_set FLAG_ENABLE_NORMAN_MATCH_CALL Route104_EventScript_SailToDewfordNoCall
+goto_if_unset FLAG_ENABLE_NORMAN_MATCH_CALL Route104_EventScript_SailToDewfordDadCalls
+end
+= Route104_EventScript_SailToDewfordDadCalls
+applymovement LOCALID_ROUTE104_BOAT Route104_Movement_SailToDewfordBeforeDadCalls
+applymovement LOCALID_PLAYER Route104_Movement_SailToDewfordBeforeDadCalls
+waitmovement 0
+pokenavcall Route104_Text_DadPokenavCall
+waitmessage
+delay 30
+playfanfare MUS_REGISTER_MATCH_CALL
+msgbox	Registered DAD NORMAN in the POKéNAV.
+waitfanfare
+closemessage
+delay 30
+setflag FLAG_ENABLE_NORMAN_MATCH_CALL
+applymovement LOCALID_PLAYER Route104_Movement_SailToDewfordAfterDadCalls
+applymovement LOCALID_ROUTE104_BOAT Route104_Movement_SailToDewfordAfterDadCalls MAP_ROUTE104
+waitmovement LOCALID_ROUTE104_BOAT MAP_ROUTE104
+waitmovement 0
+goto Route104_EventScript_ArriveInDewford
+= Route104_EventScript_ArriveInDewford
+delay 50
+applymovement LOCALID_PLAYER Route104_Movement_PlayerExitBoat
+waitmovement 0
+call Common_EventScript_StopBrineysBoatMusic
+showobjectat LOCALID_PLAYER MAP_DEWFORD_TOWN
+applymovement LOCALID_PLAYER Route104_Movement_PlayerMoveForBriney
+waitmovement 0
+setobjectxyperm LOCALID_DEWFORD_BRINEY 12 8
+addobject LOCALID_DEWFORD_BRINEY
+setobjectsubpriority LOCALID_DEWFORD_BRINEY MAP_DEWFORD_TOWN 0
+clearflag FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN
+applymovement LOCALID_DEWFORD_BRINEY Route104_Movement_BrineyExitBoat
+waitmovement 0
+addobject LOCALID_DEWFORD_BOAT
+clearflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
+call Common_EventScript_StopBrineysBoatMusic
+setflag FLAG_HIDE_ROUTE_104_MR_BRINEY_BOAT
+hideobjectat LOCALID_ROUTE104_BOAT MAP_ROUTE104
+copyvar VAR_BRINEY_LOCATION VAR_0x8008
+resetobjectsubpriority LOCALID_PLAYER MAP_ROUTE104
+resetobjectsubpriority LOCALID_DEWFORD_BRINEY MAP_DEWFORD_TOWN
+copyobjectxytoperm LOCALID_DEWFORD_BRINEY
+setvar VAR_BOARD_BRINEY_BOAT_STATE 0
+goto_if_unset FLAG_DELIVERED_STEVEN_LETTER Route104_EventScript_DeliverLetterReminder
+goto_if_set FLAG_DELIVERED_STEVEN_LETTER Route104_EventScript_LandedInDewford
+end
+= Route104_EventScript_LandedInDewford
+msgbox	MR. BRINEY: Ahoy! We've hit land in DEWFORD!You just go on and tell me whenever you want to set sail again!
+releaseall
+end
+= Route104_EventScript_DeliverLetterReminder
+msgbox	MR. BRINEY: Ahoy! We've hit land in DEWFORD.I suppose you're off to deliver that LETTER to, who was it now, STEVEN!
+releaseall
+end
+= Route104_EventScript_SailToDewfordNoCall
+applymovement LOCALID_ROUTE104_BOAT Route104_Movement_SailToDewford
+applymovement LOCALID_PLAYER Route104_Movement_SailToDewford
+waitmovement 0
+goto Route104_EventScript_ArriveInDewford
+= Route104_HiddenItem_16_64
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_104_HEART_SCALE Route104_HiddenItem_16_64_Taken
+finditem ITEM_HEART_SCALE
+setflag FLAG_HIDDEN_ITEM_ROUTE_104_HEART_SCALE
+end
+= Route104_HiddenItem_16_64_Taken
+end
+= Route104_HiddenItem_16_72
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_104_ANTIDOTE Route104_HiddenItem_16_72_Taken
+finditem ITEM_ANTIDOTE
+setflag FLAG_HIDDEN_ITEM_ROUTE_104_ANTIDOTE
+end
+= Route104_HiddenItem_16_72_Taken
+end
+= Route104_HiddenItem_14_55
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_104_POTION Route104_HiddenItem_14_55_Taken
+finditem ITEM_POTION
+setflag FLAG_HIDDEN_ITEM_ROUTE_104_POTION
+end
+= Route104_HiddenItem_14_55_Taken
+end
+= Route104_HiddenItem_3_9
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_104_POKE_BALL Route104_HiddenItem_3_9_Taken
+finditem ITEM_POKE_BALL
+setflag FLAG_HIDDEN_ITEM_ROUTE_104_POKE_BALL
+end
+= Route104_HiddenItem_3_9_Taken
+end
+= Route104_HiddenItem_7_6
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_104_SUPER_POTION Route104_HiddenItem_7_6_Taken
+finditem ITEM_SUPER_POTION
+setflag FLAG_HIDDEN_ITEM_ROUTE_104_SUPER_POTION
+end
+= Route104_HiddenItem_7_6_Taken
+end
+= Route104_EventScript_RivalTrigger
+lockall
+setflag FLAG_HIDE_RUSTBORO_CITY_RIVAL
+setvar VAR_RUSTBORO_CITY_STATE 8
+setvar VAR_ROUTE104_STATE 2
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+delay 10
+addobject LOCALID_ROUTE104_RIVAL
+clearflag FLAG_HIDE_ROUTE_104_RIVAL
+applymovement LOCALID_PLAYER Route104_Movement_PlayerBackUp
+waitmovement 0
+applymovement LOCALID_ROUTE104_RIVAL Route104_Movement_RivalExitBrineysCottage
+waitmovement 0
+delay 20
+setvar VAR_0x8008 0
+call RustboroCity_EventScript_PlayRivalMusic
+playse SE_PIN
+applymovement LOCALID_ROUTE104_RIVAL Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_ROUTE104_RIVAL Common_Movement_Delay48
+waitmovement 0
+goto Route104_EventScript_RivalEncounter
+@ Unused shares script with Rustboro encounter instead
+goto Route104_EventScript_PlayRivalMusic
+= Route104_EventScript_PlayRivalMusic
+checkplayergender
+goto_if_eq VAR_RESULT MALE Route104_EventScript_PlayMayMusic
+goto_if_eq VAR_RESULT FEMALE Route104_EventScript_PlayBrendanMusic
+return
+= Route104_EventScript_PlayBrendanMusic
+playbgm MUS_ENCOUNTER_BRENDAN TRUE
+return
+= Route104_EventScript_PlayMayMusic
+playbgm MUS_ENCOUNTER_MAY TRUE
+return
+= Route104_EventScript_RivalEncounter
+checkplayergender
+goto_if_eq VAR_RESULT MALE Route104_EventScript_MayEncounter
+goto_if_eq VAR_RESULT FEMALE Route104_EventScript_BrendanEncounter
+end
+= Route104_EventScript_BrendanEncounter
+goto_if_set FLAG_DEFEATED_RIVAL_ROUTE_104 Route104_EventScript_BrendanDefeated
+goto_if_set FLAG_REGISTER_RIVAL_POKENAV Route104_EventScript_BrendanAskToBattle
+setflag FLAG_REGISTER_RIVAL_POKENAV
+msgbox	BRENDAN: Oh, hey, PLAYER!Cool, you had DEVON install the MATCH CALL system on your POKéNAV!Let's register each other in our POKéNAVS so we can keep in touch.
+closemessage
+delay 30
+playfanfare MUS_REGISTER_MATCH_CALL
+msgbox	PLAYER registered BRENDAN in the POKéNAV.
+waitfanfare
+closemessage
+delay 30
+setflag FLAG_ENABLE_RIVAL_MATCH_CALL
+applymovement LOCALID_PLAYER Route104_Movement_PlayerFaceRival
+applymovement LOCALID_ROUTE104_RIVAL Route104_Movement_RivalWalkSlowLeft
+msgbox	BRENDAN: PLAYER, how's your POKéDEX? Have you filled in any pages yet?
+closemessage
+waitmovement 0
+applymovement LOCALID_ROUTE104_RIVAL Route104_Movement_RivalApproachPlayer
+waitmovement 0
+copyobjectxytoperm LOCALID_ROUTE104_RIVAL
+msgboxyesno	Me, I'm doing great!Want to check out how good I am with a battle?
+goto_if_eq VAR_RESULT YES Route104_EventScript_BattleBrendan
+msgbox	BRENDAN: What's the matter? Don't have any confidence in your POKéMON?
+call Route104_EventScript_RestoreMusic
+releaseall
+end
+= Route104_EventScript_RestoreMusic
+savebgm MUS_DUMMY
+fadedefaultbgm
+return
+= Route104_EventScript_BattleBrendan
+msgbox	BRENDAN: I know you just became a TRAINER, but I won't go easy!
+switch VAR_STARTER_MON
+case 0 Route104_EventScript_BattleBrendanTreecko
+case 1 Route104_EventScript_BattleBrendanTorchic
+case 2 Route104_EventScript_BattleBrendanMudkip
+end
+= Route104_EventScript_BattleBrendanMudkip
+trainerbattle_no_intro TRAINER_BRENDAN_RUSTBORO_MUDKIP Route104_Text_BrendanDefeat
+setflag FLAG_DEFEATED_RIVAL_ROUTE_104
+goto Route104_EventScript_BrendanDefeated
+end
+= Route104_EventScript_BrendanDefeated
+msgbox	BRENDAN: You've gotten pretty decent at handling POKéMON.But, you know, you shouldn't just be making POKéMON battle.Like MR. BRINEY, it's important to become friends with your POKéMON.
+call_if_eq VAR_0x8008 0 Route104_EventScript_RestoreMusic
+releaseall
+end
+= Route104_EventScript_BattleBrendanTorchic
+trainerbattle_no_intro TRAINER_BRENDAN_RUSTBORO_TORCHIC Route104_Text_BrendanDefeat
+setflag FLAG_DEFEATED_RIVAL_ROUTE_104
+goto Route104_EventScript_BrendanDefeated
+end
+= Route104_EventScript_BattleBrendanTreecko
+trainerbattle_no_intro TRAINER_BRENDAN_RUSTBORO_TREECKO Route104_Text_BrendanDefeat
+setflag FLAG_DEFEATED_RIVAL_ROUTE_104
+goto Route104_EventScript_BrendanDefeated
+end
+= Route104_EventScript_BrendanAskToBattle
+msgboxyesno	BRENDAN: What's up? Want to have a battle with me?
+goto_if_eq VAR_RESULT YES Route104_EventScript_BattleBrendan
+msgbox	BRENDAN: What's the matter? Don't have any confidence in your POKéMON?
+releaseall
+end
+= Route104_EventScript_MayEncounter
+goto_if_set FLAG_DEFEATED_RIVAL_ROUTE_104 Route104_EventScript_MayDefeated
+goto_if_set FLAG_REGISTER_RIVAL_POKENAV Route104_EventScript_MayAskToBattle
+setflag FLAG_REGISTER_RIVAL_POKENAV
+msgbox	MAY: Oh, hi, PLAYER!DEVON upgraded your POKéNAV with the MATCH CALL system, huh?We should register each other so we can get in contact anytime.
+closemessage
+delay 30
+playfanfare MUS_REGISTER_MATCH_CALL
+msgbox	PLAYER registered MAY in the POKéNAV.
+waitfanfare
+closemessage
+delay 30
+setflag FLAG_ENABLE_RIVAL_MATCH_CALL
+applymovement LOCALID_PLAYER Route104_Movement_PlayerFaceRival
+applymovement LOCALID_ROUTE104_RIVAL Route104_Movement_RivalWalkSlowLeft
+msgbox	MAY: Oh, by the way, PLAYER, how's your POKéDEX coming along?
+closemessage
+waitmovement 0
+applymovement LOCALID_ROUTE104_RIVAL Route104_Movement_RivalApproachPlayer
+waitmovement 0
+copyobjectxytoperm LOCALID_ROUTE104_RIVAL
+msgboxyesno	Mine's looking pretty decent. So… How about a little battle?
+goto_if_eq VAR_RESULT YES Route104_EventScript_BattleMay
+msgbox	MAY: Oh, what's the matter?Haven't you caught or raised your POKéMON very much?That's not very good for a TRAINER!
+call Route104_EventScript_RestoreMusic
+releaseall
+end
+= Route104_EventScript_BattleMay
+msgbox	MAY: You just became a TRAINER, PLAYER. I'm not going to lose!
+switch VAR_STARTER_MON
+case 0 Route104_EventScript_BattleMayTreecko
+case 1 Route104_EventScript_BattleMayTorchic
+case 2 Route104_EventScript_BattleMayMudkip
+end
+= Route104_EventScript_BattleMayMudkip
+trainerbattle_no_intro TRAINER_MAY_RUSTBORO_MUDKIP Route104_Text_MayDefeat
+setflag FLAG_DEFEATED_RIVAL_ROUTE_104
+goto Route104_EventScript_MayDefeated
+end
+= Route104_EventScript_MayDefeated
+msgbox	MAY: I can tell you've gotten pretty good with the way you handle POKéMON.But instead of only making them battle, you should be like MR. BRINEY.It's important to become friends with POKéMON, too.
+call_if_eq VAR_0x8008 0 Route104_EventScript_RestoreMusic
+releaseall
+end
+= Route104_EventScript_BattleMayTorchic
+trainerbattle_no_intro TRAINER_MAY_RUSTBORO_TORCHIC Route104_Text_MayDefeat
+setflag FLAG_DEFEATED_RIVAL_ROUTE_104
+goto Route104_EventScript_MayDefeated
+end
+= Route104_EventScript_BattleMayTreecko
+trainerbattle_no_intro TRAINER_MAY_RUSTBORO_TREECKO Route104_Text_MayDefeat
+setflag FLAG_DEFEATED_RIVAL_ROUTE_104
+goto Route104_EventScript_MayDefeated
+end
+= Route104_EventScript_MayAskToBattle
+msgboxyesno	MAY: So, what do you think? How about a little battle here?
+goto_if_eq VAR_RESULT YES Route104_EventScript_BattleMay
+msgbox	MAY: Oh, what's the matter?Haven't you caught or raised your POKéMON very much?That's not very good for a TRAINER!
+releaseall
+end
+= Route104_EventScript_Rival
+lockall
+setvar VAR_0x8008 1
+applymovement LOCALID_ROUTE104_RIVAL Common_Movement_FacePlayer
+waitmovement 0
+goto Route104_EventScript_RivalEncounter
+= Route104_EventScript_Darian
+trainerbattle_single TRAINER_DARIAN Route104_Text_DarianIntro Route104_Text_DarianDefeat
+msgbox	Hey, MAGIKARP, you sure don't live up to your name, do you?
+end
+= Route104_EventScript_Boy2
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_TM_BULLET_SEED Route104_EventScript_ReceivedBulletSeed
+msgbox	I like filling my mouth with seeds, then spitting them out fast!You can have this, so you try it out!Use it on a POKéMON, and it will learn a move for firing seeds rapidly.
+giveitem ITEM_TM_BULLET_SEED
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_RECEIVED_TM_BULLET_SEED
+release
+end
+= Route104_EventScript_ReceivedBulletSeed
+msgbox	A word of advice!A TM, TECHNICAL MACHINE, is good only for one-time use.Once you use it, it's gone. Think twice before using it!
+release
+end
+= Route104_EventScript_ItemPotion
+goto_if_set FLAG_ITEM_ROUTE_104_POTION Route104_EventScript_ItemPotion_Taken
+finditem ITEM_POTION
+setflag FLAG_ITEM_ROUTE_104_POTION
+end
+= Route104_EventScript_ItemPotion_Taken
+end
+= EventScript_CutTree
+lockall
+goto_if_unset FLAG_BADGE01_GET EventScript_CheckTreeCantCut
+checkpartymove MOVE_CUT
+goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CheckTreeCantCut
+setfieldeffectargument 0 VAR_RESULT
+bufferpartymonnick STR_VAR_1 VAR_RESULT
+buffermovename STR_VAR_2 MOVE_CUT
+msgboxyesno	This tree looks like it can be CUT down!Would you like to CUT it?
+goto_if_eq VAR_RESULT NO EventScript_CancelCut
+msgbox	STR_VAR_1 used STR_VAR_2!
+closemessage
+dofieldeffect FLDEFF_USE_CUT_ON_TREE
+waitstate
+goto EventScript_CutTreeDown
+end
+@ Use cut from party menu
+goto EventScript_UseCut
+= EventScript_UseCut
+lockall
+dofieldeffect FLDEFF_USE_CUT_ON_TREE
+waitstate
+goto EventScript_CutTreeDown
+end
+= EventScript_CutTreeDown
+applymovement VAR_LAST_TALKED Movement_CutTreeDown
+waitmovement 0
+removeobject VAR_LAST_TALKED
+releaseall
+end
+= EventScript_CancelCut
+closemessage
+releaseall
+end
+= EventScript_CheckTreeCantCut
+msgbox	This tree looks like it can be CUT down!
+releaseall
+end
+= Route104_EventScript_ItemXAccuracy
+goto_if_set FLAG_ITEM_ROUTE_104_X_ACCURACY Route104_EventScript_ItemXAccuracy_Taken
+finditem ITEM_X_ACCURACY
+setflag FLAG_ITEM_ROUTE_104_X_ACCURACY
+end
+= Route104_EventScript_ItemXAccuracy_Taken
+end
+= Route104_EventScript_Billy
+trainerbattle_single TRAINER_BILLY Route104_Text_BillyIntro Route104_Text_BillyDefeat
+msgbox	I want to leave my footprints in the sand everywhere, but they disappear quickly…
+end
+= Route104_EventScript_ItemPokeBall
+goto_if_set FLAG_ITEM_ROUTE_104_POKE_BALL Route104_EventScript_ItemPokeBall_Taken
+finditem ITEM_POKE_BALL
+setflag FLAG_ITEM_ROUTE_104_POKE_BALL
+end
+= Route104_EventScript_ItemPokeBall_Taken
+end
+= Route104_EventScript_Cindy
+trainerbattle_single TRAINER_CINDY_1 Route104_Text_CindyIntro Route104_Text_CindyDefeat Route104_EventScript_TryRegisterCindyAfterBattle
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route104_EventScript_RematchCindy
+setvar VAR_0x8004 TRAINER_CINDY_1
+specialvar VAR_RESULT IsTrainerRegistered
+goto_if_eq VAR_RESULT FALSE Route104_EventScript_TryRegisterCindy
+msgbox	“Hello” is the beginning of “good-bye.” I hope we meet again.
+release
+end
+= Route104_EventScript_TryRegisterCindy
+goto_if_set FLAG_HAS_MATCH_CALL Route104_EventScript_RegisterCindy
+msgbox	“Hello” is the beginning of “good-bye.” I hope we meet again.
+release
+end
+= Route104_EventScript_RegisterCindy
+msgbox	Hello, we meet again.We seem to be drawn together. Let's register each other in our POKéNAVS.
+register_matchcall TRAINER_CINDY_1
+release
+end
+= Route104_EventScript_RematchCindy
+trainerbattle_rematch TRAINER_CINDY_1 Route104_Text_CindyRematchIntro Route104_Text_CindyRematchDefeat
+msgbox	“Hello” is the beginning of “good-bye.” I hope we meet again.
+end
+= Route104_EventScript_TryRegisterCindyAfterBattle
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+goto_if_set FLAG_HAS_MATCH_CALL Route104_EventScript_RegisterCindyAfterBattle
+release
+end
+= Route104_EventScript_RegisterCindyAfterBattle
+msgbox	We should commemorate how we seem to be drawn to each other.Let's register each other in our POKéNAVS.
+register_matchcall TRAINER_CINDY_1
+release
+end
+= Route104_EventScript_Winston
+trainerbattle_single TRAINER_WINSTON_1 Route104_Text_WinstonIntro Route104_Text_WinstonDefeat Route104_EventScript_TryRegisterWinstonAfterBattle
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route104_EventScript_RematchWinston
+setvar VAR_0x8004 TRAINER_WINSTON_1
+specialvar VAR_RESULT IsTrainerRegistered
+goto_if_eq VAR_RESULT FALSE Route104_EventScript_TryRegisterWinston
+msgbox	There are some things money can't buy. That's POKéMON…
+release
+end
+= Route104_EventScript_TryRegisterWinston
+goto_if_set FLAG_HAS_MATCH_CALL Route104_EventScript_RegisterWinston
+msgbox	There are some things money can't buy. That's POKéMON…
+release
+end
+= Route104_EventScript_RegisterWinston
+msgbox	Hm? Ah, you've obtained a POKéNAV.I will gladly register you. After all, I have plenty of money.
+register_matchcall TRAINER_WINSTON_1
+release
+end
+= Route104_EventScript_RematchWinston
+trainerbattle_rematch TRAINER_WINSTON_1 Route104_Text_WinstonRematchIntro Route104_Text_WinstonRematchDefeat
+msgbox	I'm fabulously wealthy, but I can't seem to win at POKéMON…It's so deep, the world of POKéMON…
+end
+= Route104_EventScript_TryRegisterWinstonAfterBattle
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+goto_if_set FLAG_HAS_MATCH_CALL Route104_EventScript_RegisterWinstonAfterBattle
+release
+end
+= Route104_EventScript_RegisterWinstonAfterBattle
+msgbox	Hm? Ah, you've obtained a POKéNAV.I will gladly register you. After all, I have plenty of money.
+register_matchcall TRAINER_WINSTON_1
+release
+end
+= Route104_EventScript_Mia
+trainerbattle_double TRAINER_GINA_AND_MIA_1 Route104_Text_MiaIntro Route104_Text_MiaDefeat Route104_Text_MiaNotEnoughMons
+special GetPlayerBigGuyGirlString
+msgbox	MIA: We will train our POKéMON more and be strong like you.
+release
+end
+= Route104_EventScript_Gina
+trainerbattle_double TRAINER_GINA_AND_MIA_1 Route104_Text_GinaIntro Route104_Text_GinaDefeat Route104_Text_GinaNotEnoughMons
+special GetPlayerBigGuyGirlString
+msgbox	GINA: You are strong! We have to train lots more!
+release
+end
+= Route104_EventScript_WhiteHerbFlorist
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_WHITE_HERB Route104_EventScript_ReceivedWhiteHerb
+msgbox	This FLOWER SHOP started selling saplings recently.It made me so happy, I went overboard shopping.I don't need this WHITE HERB anymore. Would you take it, please?
+giveitem ITEM_WHITE_HERB
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_RECEIVED_WHITE_HERB
+release
+end
+= Route104_EventScript_ReceivedWhiteHerb
+msgbox	This FLOWER SHOP started selling saplings recently.It made me so happy, I went overboard shopping. Where should I put them?
+release
+end
+= Route104_EventScript_ItemPPUp
+goto_if_set FLAG_ITEM_ROUTE_104_PP_UP Route104_EventScript_ItemPPUp_Taken
+finditem ITEM_PP_UP
+setflag FLAG_ITEM_ROUTE_104_PP_UP
+end
+= Route104_EventScript_ItemPPUp_Taken
+end
+= BerryTreeScript
+special ObjectEventInteractionGetBerryTreeData
+switch VAR_0x8004
+case BERRY_STAGE_SPARKLING BerryTree_EventScript_Sparkling
+case BERRY_STAGE_NO_BERRY BerryTree_EventScript_CheckSoil
+case BERRY_STAGE_PLANTED BerryTree_EventScript_CheckBerryStage1
+case BERRY_STAGE_SPROUTED BerryTree_EventScript_CheckBerryStage2
+case BERRY_STAGE_TALLER BerryTree_EventScript_CheckBerryStage3
+case BERRY_STAGE_FLOWERING BerryTree_EventScript_CheckBerryStage4
+case BERRY_STAGE_BERRIES BerryTree_EventScript_CheckBerryFullyGrown
+end
+= BerryTree_EventScript_CheckBerryFullyGrown
+buffernumberstring STR_VAR_2 VAR_0x8006
+lock
+faceplayer
+special ObjectEventInteractionGetBerryCountString
+msgboxyesno	You found STR_VAR_2 STR_VAR_1!Do you want to pick the STR_VAR_1?
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_PickBerry
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPickingBerry
+goto BerryTree_EventScript_PickBerry
+= BerryTree_EventScript_PickBerry
+special ObjectEventInteractionPickBerryTree
+goto_if_eq VAR_0x8004 0 BerryTree_EventScript_BerryPocketFull
+special IncrementDailyPickedBerries
+special ObjectEventInteractionRemoveBerryTree
+msgbox	PLAYER picked the STR_VAR_2 STR_VAR_1.
+playfanfare MUS_OBTAIN_BERRY
+waitmessage
+waitfanfare
+waitbuttonpress
+msgbox	PLAYER put away the STR_VAR_1 in the BAG's BERRIES POCKET.The soil returned to its soft and loamy state.
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_BerryPocketFull
+msgbox	The BAG's BERRIES POCKET is full.The STR_VAR_1 couldn't be taken.
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_CancelPickingBerry
+msgbox	PLAYER left the STR_VAR_1 unpicked.
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_CheckBerryStage4
+call BerryTree_EventScript_GetCareAdverb
+lockall
+special ObjectEventInteractionGetBerryName
+msgbox	These STR_VAR_1 flowers are blooming STR_VAR_2.
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+@ VAR_0x8005 here is the number of times watered
+@ Buffered by ObjectEventInteractionGetBerryTreeData
+goto BerryTree_EventScript_GetCareAdverb
+= BerryTree_EventScript_GetCareAdverb
+goto_if_eq VAR_0x8005 0 BerryTree_EventScript_SetAdverbPoor
+goto_if_eq VAR_0x8005 4 BerryTree_EventScript_SetAdverbGreat
+bufferstring STR_VAR_2	prettily
+return
+= BerryTree_EventScript_SetAdverbGreat
+bufferstring STR_VAR_2	very beautifully
+return
+= BerryTree_EventScript_SetAdverbPoor
+bufferstring STR_VAR_2	cutely
+return
+@ VAR_0x8006 here is the number of berries
+goto BerryTree_EventScript_CheckBerryFullyGrown
+= BerryTree_EventScript_WantToWater
+checkitem ITEM_WAILMER_PAIL
+goto_if_eq VAR_RESULT FALSE BerryTree_EventScript_DontWater
+special ObjectEventInteractionGetBerryName
+msgboxyesno	Want to water the STR_VAR_1 with the WAILMER PAIL?
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_WaterBerry
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_DontWater
+goto BerryTree_EventScript_DontWater
+= BerryTree_EventScript_DontWater
+releaseall
+end
+= BerryTree_EventScript_WaterBerry
+special ObjectEventInteractionGetBerryName
+msgbox	PLAYER watered the STR_VAR_1.
+waitmessage
+special ObjectEventInteractionWaterBerryTree
+special DoWateringBerryTreeAnim
+msgbox	The plant seems to be delighted.
+waitmessage
+waitbuttonpress
+releaseall
+end
+= BerryTree_EventScript_CheckBerryStage3
+lockall
+special ObjectEventInteractionGetBerryName
+msgbox	This STR_VAR_1 plant is growing taller.
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckBerryStage2
+lockall
+special ObjectEventInteractionGetBerryName
+msgbox	STR_VAR_1 has sprouted.
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckBerryStage1
+lockall
+special ObjectEventInteractionGetBerryCountString
+msgbox	One STR_VAR_1 was planted here.
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckSoil
+lock
+faceplayer
+specialvar VAR_RESULT PlayerHasBerries
+goto_if_eq VAR_RESULT TRUE BerryTree_EventScript_WantToPlant
+msgbox	It's soft, loamy soil.
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_WantToPlant
+msgboxyesno	It's soft, loamy soil. Want to plant a BERRY?
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_ChooseBerryToPlant
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPlanting
+end
+= BerryTree_EventScript_CancelPlanting
+release
+end
+= BerryTree_EventScript_ChooseBerryToPlant
+fadescreen FADE_TO_BLACK
+closemessage
+special Bag_ChooseBerry
+goto_if_eq VAR_ITEM_ID 0 BerryTree_EventScript_CancelPlanting
+removeitem VAR_ITEM_ID
+call BerryTree_EventScript_PlantBerry
+goto BerryTree_EventScript_CancelPlanting
+= BerryTree_EventScript_PlantBerry
+special ObjectEventInteractionPlantBerryTree
+incrementgamestat GAME_STAT_PLANTED_BERRIES
+special IncrementDailyPlantedBerries
+special ObjectEventInteractionGetBerryCountString
+msgbox	PLAYER planted one STR_VAR_1 in the soft, loamy soil.
+waitmessage
+waitbuttonpress
+return
+= BerryTree_EventScript_Sparkling
+lockall
+msgbox	!
+waitmessage
+waitbuttonpress
+releaseall
+end
+= Route104_EventScript_ExpertF
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_CHESTO_BERRY_ROUTE_104 Route104_EventScript_ReceivedBerry
+msgbox	If you see BERRIES growing in loamy soil, feel free to take them.But make sure you plant a BERRY in the same spot. That's common courtesy.Here, I'll share this with you.
+giveitem ITEM_CHESTO_BERRY
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_RECEIVED_CHESTO_BERRY_ROUTE_104
+msgbox	The way you look, you must be a TRAINER, no?TRAINERS often make POKéMON hold BERRIES.It's up to you whether to grow BERRIES or use them.
+release
+end
+= Route104_EventScript_ReceivedBerry
+msgbox	The way you look, you must be a TRAINER, no?TRAINERS often make POKéMON hold BERRIES.It's up to you whether to grow BERRIES or use them.
+release
+end
+= Route104_EventScript_Ivan
+trainerbattle_single TRAINER_IVAN Route104_Text_IvanIntro Route104_Text_IvanDefeat
+msgbox	I got too into fishing. I forgot I had to raise my POKéMON…
+end
+= Route104_EventScript_Girl2
+msgbox	Oh, no, I'm not a TRAINER.But that's right, if TRAINERS lock eyes, it's a challenge to battle.If you don't want to battle, stay out of their sight.
+end
+= Route104_EventScript_Woman
+msgbox	You're a thief if you try to steal someone else's POKéMON.You should throw POKé BALLS only at wild POKéMON.
+end
+= Route104_EventScript_Boy1
+msgbox	If you're going to throw a POKé BALL, weaken the wild POKéMON first.It will be easier to catch if it's been poisoned, burned, or lulled to sleep.
+end
+= Route104_EventScript_Haley
+trainerbattle_single TRAINER_HALEY_1 Route104_Text_HaleyIntro Route104_Text_HaleyDefeat Route104_EventScript_TryRegisterHaleyAfterBattle
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route104_EventScript_RematchHaley
+setvar VAR_0x8004 TRAINER_HALEY_1
+specialvar VAR_RESULT IsTrainerRegistered
+goto_if_eq VAR_RESULT FALSE Route104_EventScript_TryRegisterHaley
+msgbox	If you're faced with a decision and you let someone else choose for you, you will regret it, however things turn out.
+release
+end
+= Route104_EventScript_TryRegisterHaley
+goto_if_set FLAG_HAS_MATCH_CALL Route104_EventScript_RegisterHaley
+msgbox	If you're faced with a decision and you let someone else choose for you, you will regret it, however things turn out.
+release
+end
+= Route104_EventScript_RegisterHaley
+msgbox	You're strong, but should I register you in my POKéNAV? Maybe I shouldn't…Okay, sure, I will register you!
+register_matchcall TRAINER_HALEY_1
+release
+end
+= Route104_EventScript_RematchHaley
+trainerbattle_rematch TRAINER_HALEY_1 Route104_Text_HaleyRematchIntro Route104_Text_HaleyRematchDefeat
+msgbox	I made the decision to battle, so I can accept this loss with grace.I am still upset about losing!
+end
+= Route104_EventScript_TryRegisterHaleyAfterBattle
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+goto_if_set FLAG_HAS_MATCH_CALL Route104_EventScript_RegisterHaleyAfterBattle
+release
+end
+= Route104_EventScript_RegisterHaleyAfterBattle
+msgbox	You're strong, but should I register you in my POKéNAV? Maybe I shouldn't…Okay, sure, I will register you!
+register_matchcall TRAINER_HALEY_1
+release
+end
+= Route104_EventScript_Girl1
+msgbox	That seaside cottage is where MR. BRINEY lives.He was once a mighty sailor who never feared the sea, however stormy.
+end
+= Route104_EventScript_BugCatcher
+msgbox	The sea, huh?I wonder what it's like at the bottom of the sea?
+end
+signs
+20 50	MR. BRINEY'S COTTAGE
+27 66	ROUTE 1O4 PETALBURG CITY
+23 5	ROUTE 1O4 RUSTBORO CITY
+7 20	PRETTY PETAL FLOWER SHOP
+17 23	TRAINER TIPSIn the HOENN region there are pairs of TRAINERS who challenge others for 2-on-2 POKéMON battles called DOUBLE BATTLES.In a DOUBLE BATTLE, the TRAINER must send out two POKéMON, the one at the left of the list and the top one. Watch how POKéMON are lined up.
+grass
+13,454,455
+water
+176,177,178,184,186,192,283,291,299,300,325,368,370,372,520,521,522,523,524,525,526,527,630,819,820,821,829,837,845
+mapsec
+0 7 1 3	ROUTE 104
+music
+MUS_ROUTE104
+encounters
+land POOCHYENA:4:4,WURMPLE:4:4,POOCHYENA:5:5,MARILL:5:5,MARILL:4:4,POOCHYENA:5:5,TAILLOW:4:4,TAILLOW:5:5,WINGULL:4:4,WINGULL:4:4,WINGULL:3:3,WINGULL:5:5
+water WINGULL:10:30,WINGULL:15:25,WINGULL:15:25,PELIPPER:25:30,PELIPPER:25:30
+fishing MAGIKARP:5:10,MAGIKARP:5:10,MAGIKARP:10:30,MAGIKARP:10:30,MAGIKARP:10:30,MAGIKARP:25:30,MAGIKARP:30:35,MAGIKARP:20:25,MAGIKARP:35:40,MAGIKARP:40:45

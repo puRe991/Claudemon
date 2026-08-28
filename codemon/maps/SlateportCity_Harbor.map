@@ -1,0 +1,344 @@
+tileset general__facility
+24 15
+8 10
+537,537,537,537,537,537,537,537,537,537,537,537,537,537,537,537,537,537,537,537,537,537,537,537
+946,950,950,946,946,946,950,950,946,946,946,950,950,946,946,946,950,950,946,946,946,950,950,946
+946,951,951,946,946,946,951,951,946,946,946,951,951,946,946,946,951,951,946,946,946,951,951,946
+545,545,545,545,545,545,545,545,545,545,545,545,545,545,545,545,545,545,545,545,545,545,545,545
+515,515,515,845,846,846,846,846,846,846,846,846,846,846,846,846,846,846,846,846,846,846,846,846
+515,514,514,839,369,369,369,369,369,369,369,369,369,369,369,369,369,369,369,369,369,369,369,369
+515,514,514,839,369,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368
+515,514,514,839,369,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368
+515,514,514,839,369,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368
+515,514,514,839,369,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368
+515,514,514,616,854,854,855,859,859,853,854,854,854,854,854,854,854,838,990,991,854,854,854,854
+515,514,514,516,516,516,516,514,514,549,516,516,549,516,516,549,516,608,986,987,984,985,689,554
+515,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,608,988,989,988,989,984,985
+515,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,608,554,554,554,554,986,987
+515,514,514,514,514,514,514,514,514,514,514,518,519,514,514,514,514,608,552,552,552,552,988,989
+collision
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1
+warps
+11 14 SlateportCity 8
+12 14 SlateportCity 8
+19 15 SlateportCity 9
+20 15 SlateportCity 9
+npcs
+people_beauty 8 10 S static FLAG_HIDE_SLATEPORT_CITY_HARBOR_PATRONS - 0
+people_sailor 4 12 W static FLAG_HIDE_SLATEPORT_CITY_HARBOR_PATRONS - 0
+people_fat_man 1 12 E static FLAG_HIDE_SLATEPORT_CITY_HARBOR_PATRONS - 0
+people_scientist_1 6 13 S static FLAG_HIDE_SLATEPORT_CITY_HARBOR_CAPTAIN_STERN LOCALID_SLATEPORT_HARBOR_CAPT_STERN 0
+misc_ss_tidal 8 9 E static FLAG_HIDE_SLATEPORT_CITY_HARBOR_SS_TIDAL LOCALID_SLATEPORT_HARBOR_SS_TIDAL 0
+people_team_aqua_aqua_member_m 7 10 E static FLAG_HIDE_SLATEPORT_CITY_HARBOR_AQUA_GRUNT LOCALID_SLATEPORT_HARBOR_GRUNT 0
+people_team_aqua_archie 8 10 W static FLAG_HIDE_SLATEPORT_CITY_HARBOR_ARCHIE LOCALID_SLATEPORT_HARBOR_ARCHIE 0
+misc_submarine_shadow 7 9 E static FLAG_HIDE_SLATEPORT_CITY_HARBOR_SUBMARINE_SHADOW LOCALID_SLATEPORT_HARBOR_SUBMARINE 0
+dialogs
+0	I beg your pardon? You're looking for a ship?I'm sorry, the ferry service isn't available at present…
+1	For a ship to sail safely, we need to know about the weather!Speaking of weather, I heard something from a guy at the WEATHER INSTITUTE.He was saying abnormal weather has been reported all over the place!You should visit the WEATHER INSTITUTE and ask around!
+2	I wanted to go with CAPT. STERN on the ocean floor exploration.But the sub's too small for me.If I squeezed in, there wouldn't be any room for the CAPTAIN…
+3	CAPT. STERN: Those thugs…They're the same lot who tried to rob the DEVON GOODS at the MUSEUM.
+objscripts
+0 SlateportCity_Harbor_EventScript_FerryAttendant
+1 SlateportCity_Harbor_EventScript_Sailor
+2 SlateportCity_Harbor_EventScript_FatMan
+3 SlateportCity_Harbor_EventScript_CaptStern
+triggers
+8 11 VAR_SLATEPORT_HARBOR_STATE 1 SlateportCity_Harbor_EventScript_AquaEscapeTrigger0
+8 12 VAR_SLATEPORT_HARBOR_STATE 1 SlateportCity_Harbor_EventScript_AquaEscapeTrigger1
+8 13 VAR_SLATEPORT_HARBOR_STATE 1 SlateportCity_Harbor_EventScript_AquaEscapeTrigger2
+8 14 VAR_SLATEPORT_HARBOR_STATE 1 SlateportCity_Harbor_EventScript_AquaEscapeTrigger3
+movements
+Common_Movement_FaceOriginalDirection	face_down,end
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
+SlateportCity_Harbor_Movement_AquaBoardSub	delay,delay,up,delay,end
+SlateportCity_Harbor_Movement_BoardFerryEast	right,delay,end
+SlateportCity_Harbor_Movement_BoardFerryNorth	up,end
+SlateportCity_Harbor_Movement_PlayerWalkUp	up,end
+SlateportCity_Harbor_Movement_SternApproachPlayer	left,left,left,end
+SlateportCity_Harbor_Movement_SternApproachPlayer0	left,left,left,left,up,end
+SlateportCity_Harbor_Movement_SternApproachPlayer1	left,left,up,left,end
+SlateportCity_Harbor_Movement_SubmarineExit	delay,delay,delay,delay,right,right,right,right,right,right,right,right,right,end
+scriptdefs
+= SlateportCity_Harbor_EventScript_AquaEscapeTrigger3
+lockall
+setvar VAR_0x8008 3
+applymovement LOCALID_PLAYER SlateportCity_Harbor_Movement_PlayerWalkUp
+waitmovement 0
+goto SlateportCity_Harbor_EventScript_AquaEscapeScene
+end
+= SlateportCity_Harbor_EventScript_AquaEscapeScene
+applymovement LOCALID_SLATEPORT_HARBOR_ARCHIE Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+applymovement LOCALID_SLATEPORT_HARBOR_GRUNT Common_Movement_WalkInPlaceFasterDown
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+msgbox	ARCHIE: Oh? Not you again…You are tenacious to track us here, that much I will give you.But now… No one can stop us! No one!Or, will you follow us back to our HIDEOUT in LILYCOVE CITY?Fwahahahaha…
+closemessage
+applymovement LOCALID_SLATEPORT_HARBOR_GRUNT SlateportCity_Harbor_Movement_AquaBoardSub
+applymovement LOCALID_SLATEPORT_HARBOR_ARCHIE SlateportCity_Harbor_Movement_AquaBoardSub
+applymovement LOCALID_SLATEPORT_HARBOR_SUBMARINE SlateportCity_Harbor_Movement_SubmarineExit
+waitmovement 0
+removeobject LOCALID_SLATEPORT_HARBOR_GRUNT
+removeobject LOCALID_SLATEPORT_HARBOR_ARCHIE
+removeobject LOCALID_SLATEPORT_HARBOR_SUBMARINE
+setvar VAR_SLATEPORT_HARBOR_STATE 2
+setflag FLAG_MET_TEAM_AQUA_HARBOR
+setflag FLAG_HIDE_LILYCOVE_MOTEL_SCOTT
+call_if_eq VAR_0x8008 0 SlateportCity_Harbor_EventScript_SternApproachPlayer0
+call_if_eq VAR_0x8008 1 SlateportCity_Harbor_EventScript_SternApproachPlayer1
+call_if_eq VAR_0x8008 2 SlateportCity_Harbor_EventScript_SternApproachPlayer
+call_if_eq VAR_0x8008 3 SlateportCity_Harbor_EventScript_SternApproachPlayer
+msgbox	CAPT. STERN: Why…Why would TEAM AQUA steal my SUBMARINE EXPLORER 1?They can't be after the slumbering POKéMON at the bottom of the sea…But even if I were to chase them, I don't stand a chance against them…
+closemessage
+setflag FLAG_HIDE_AQUA_HIDEOUT_1F_GRUNT_1_BLOCKING_ENTRANCE
+setflag FLAG_HIDE_AQUA_HIDEOUT_1F_GRUNT_2_BLOCKING_ENTRANCE
+copyobjectxytoperm LOCALID_SLATEPORT_HARBOR_CAPT_STERN
+setobjectmovementtype LOCALID_SLATEPORT_HARBOR_CAPT_STERN MOVEMENT_TYPE_FACE_RIGHT
+releaseall
+end
+= SlateportCity_Harbor_EventScript_SternApproachPlayer
+applymovement LOCALID_SLATEPORT_HARBOR_CAPT_STERN SlateportCity_Harbor_Movement_SternApproachPlayer
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+return
+= SlateportCity_Harbor_EventScript_SternApproachPlayer1
+applymovement LOCALID_SLATEPORT_HARBOR_CAPT_STERN SlateportCity_Harbor_Movement_SternApproachPlayer1
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+return
+= SlateportCity_Harbor_EventScript_SternApproachPlayer0
+applymovement LOCALID_SLATEPORT_HARBOR_CAPT_STERN SlateportCity_Harbor_Movement_SternApproachPlayer0
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+return
+= SlateportCity_Harbor_EventScript_AquaEscapeTrigger2
+lockall
+setvar VAR_0x8008 2
+goto SlateportCity_Harbor_EventScript_AquaEscapeScene
+end
+= SlateportCity_Harbor_EventScript_AquaEscapeTrigger1
+lockall
+setvar VAR_0x8008 1
+goto SlateportCity_Harbor_EventScript_AquaEscapeScene
+end
+= SlateportCity_Harbor_EventScript_AquaEscapeTrigger0
+lockall
+setvar VAR_0x8008 0
+goto SlateportCity_Harbor_EventScript_AquaEscapeScene
+end
+= SlateportCity_Harbor_EventScript_CaptStern
+lock
+faceplayer
+goto_if_set FLAG_BADGE07_GET SlateportCity_Harbor_EventScript_CaptSternFerryOrScannerComment
+goto_if_set FLAG_EVIL_TEAM_ESCAPED_STERN_SPOKE SlateportCity_Harbor_EventScript_NeedDive
+goto_if_set FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE SlateportCity_Harbor_EventScript_TeamAquaLeftNeedDive
+goto_if_eq VAR_SLATEPORT_HARBOR_STATE 2 SlateportCity_Harbor_EventScript_WhyStealSubmarine
+msgbox	CAPT. STERN: Those thugs…They're the same lot who tried to rob the DEVON GOODS at the MUSEUM.
+closemessage
+applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= SlateportCity_Harbor_EventScript_WhyStealSubmarine
+msgbox	CAPT. STERN: Why…Why would TEAM AQUA steal my SUBMARINE EXPLORER 1?They can't be after the slumbering POKéMON at the bottom of the sea…But even if I were to chase them, I don't stand a chance against them…
+release
+end
+= SlateportCity_Harbor_EventScript_TeamAquaLeftNeedDive
+setflag FLAG_EVIL_TEAM_ESCAPED_STERN_SPOKE
+msgbox	CAPT. STERN: Oh, PLAYER…Okay… So TEAM AQUA left before you could stop them…Oh, no, don't blame yourself. You're not responsible for this.Trying to catch a submarine… It's impossible for most people.You would need a POKéMON that knows how to DIVE…Perhaps if you went out to MOSSDEEP CITY…A lot of divers live out there, so someone might teach you…
+release
+end
+= SlateportCity_Harbor_EventScript_NeedDive
+msgbox	CAPT. STERN: Trying to catch a submarine… It's impossible.You would need a POKéMON that knows how to DIVE…Perhaps if you went out to MOSSDEEP CITY…A lot of divers live out there, so someone might teach you…
+release
+end
+= SlateportCity_Harbor_EventScript_CaptSternFerryOrScannerComment
+goto_if_eq VAR_TEMP_1 1 SlateportCity_Harbor_EventScript_TradedScanner
+checkitem ITEM_SCANNER
+goto_if_eq VAR_RESULT TRUE SlateportCity_Harbor_EventScript_AskToTradeScanner
+goto_if_set FLAG_SYS_GAME_CLEAR SlateportCity_Harbor_EventScript_FerryFinished
+msgbox	CAPT. STERN: Oh, yes. MR. BRINEY came to our SHIPYARD.It won't be long now before we finish making the ferry!
+release
+end
+= SlateportCity_Harbor_EventScript_FerryFinished
+msgbox	CAPT. STERN: PLAYER!We finally finished making the ferry S.S. TIDAL!We couldn't have done it without your friend MR. BRINEY.Please go for a short cruise on it!
+release
+end
+= SlateportCity_Harbor_EventScript_AskToTradeScanner
+msgbox	CAPT. STERN: Oh? PLAYER, that item you have…That's a SCANNER! That would sure help us on our explorations.PLAYER, would you trade your SCANNER for something?Like, say, a DEEPSEATOOTH or a DEEPSEASCALE that I have?
+waitmessage
+goto SlateportCity_Harbor_EventScript_ChooseScannerTrade
+end
+= SlateportCity_Harbor_EventScript_ChooseScannerTrade
+multichoice 0 0 MULTI_STERN_DEEPSEA FALSE
+switch VAR_RESULT
+case 0 SlateportCity_Harbor_EventScript_DeepSeaTooth
+case 1 SlateportCity_Harbor_EventScript_DeepSeaScale
+case 2 SlateportCity_Harbor_EventScript_DeclineTrade
+case MULTI_B_PRESSED SlateportCity_Harbor_EventScript_DeclineTrade
+end
+= SlateportCity_Harbor_EventScript_DeclineTrade
+msgbox	CAPT. STERN: Are you certain? It's useless to you, PLAYER…Well, okay, then. If you want to trade your SCANNER, let me know.
+release
+end
+= SlateportCity_Harbor_EventScript_DeepSeaScale
+msgboxyesno	CAPT. STERN: So you'll trade it for my DEEPSEASCALE?
+goto_if_eq VAR_RESULT NO SlateportCity_Harbor_EventScript_ChooseDifferentTrade
+giveitem ITEM_DEEP_SEA_SCALE
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+removeitem ITEM_SCANNER
+msgbox	PLAYER handed the SCANNER to CAPT. STERN.
+setflag FLAG_EXCHANGED_SCANNER
+goto SlateportCity_Harbor_EventScript_TradedScanner
+end
+= SlateportCity_Harbor_EventScript_TradedScanner
+setvar VAR_TEMP_1 1
+msgbox	CAPT. STERN: Thanks, PLAYER! This will help our research a lot!
+release
+end
+= SlateportCity_Harbor_EventScript_ChooseDifferentTrade
+msgbox	CAPT. STERN: Which one do you want?
+waitmessage
+goto SlateportCity_Harbor_EventScript_ChooseScannerTrade
+end
+= SlateportCity_Harbor_EventScript_DeepSeaTooth
+msgboxyesno	CAPT. STERN: So you'll trade it for my DEEPSEATOOTH?
+goto_if_eq VAR_RESULT NO SlateportCity_Harbor_EventScript_ChooseDifferentTrade
+giveitem ITEM_DEEP_SEA_TOOTH
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+removeitem ITEM_SCANNER
+msgbox	PLAYER handed the SCANNER to CAPT. STERN.
+setflag FLAG_EXCHANGED_SCANNER
+goto SlateportCity_Harbor_EventScript_TradedScanner
+end
+= SlateportCity_Harbor_EventScript_FatMan
+msgbox	I wanted to go with CAPT. STERN on the ocean floor exploration.But the sub's too small for me.If I squeezed in, there wouldn't be any room for the CAPTAIN…
+end
+= SlateportCity_Harbor_EventScript_Sailor
+lock
+faceplayer
+goto_if_unset FLAG_SYS_GAME_CLEAR SlateportCity_Harbor_EventScript_SailorNoAbnormalWeather
+setvar VAR_0x8004 0
+call_if_set FLAG_DEFEATED_KYOGRE SlateportCity_Harbor_EventScript_CountDefeatedLegendary
+call_if_set FLAG_DEFEATED_GROUDON SlateportCity_Harbor_EventScript_CountDefeatedLegendary
+goto_if_eq VAR_0x8004 2 SlateportCity_Harbor_EventScript_SailorNoAbnormalWeather  @ Defeated both
+msgbox	For a ship to sail safely, we need to know about the weather!Speaking of weather, I heard something from a guy at the WEATHER INSTITUTE.He was saying abnormal weather has been reported all over the place!You should visit the WEATHER INSTITUTE and ask around!
+release
+end
+= SlateportCity_Harbor_EventScript_CountDefeatedLegendary
+addvar VAR_0x8004 1
+return
+= SlateportCity_Harbor_EventScript_SailorNoAbnormalWeather
+msgbox	A journey to the bottom of the sea… I wonder what it'd be like?I'd love to go deep underwater like that someday.
+release
+end
+= SlateportCity_Harbor_EventScript_FerryAttendant
+lock
+faceplayer
+goto_if_set FLAG_SYS_GAME_CLEAR SlateportCity_Harbor_EventScript_AskForTicket
+msgbox	I beg your pardon? You're looking for a ship?I'm sorry, the ferry service isn't available at present…
+release
+end
+= SlateportCity_Harbor_EventScript_AskForTicket
+msgbox	Hello, are you here for the ferry? May I see your TICKET?
+msgbox	PLAYER flashed the TICKET.Perfect! That's all you need!And where would you like to go?
+waitmessage
+goto SlateportCity_Harbor_EventScript_ChooseDestination
+end
+= SlateportCity_Harbor_EventScript_ChooseDestination
+goto_if_set FLAG_MET_SCOTT_ON_SS_TIDAL SlateportCity_Harbor_EventScript_ChooseDestinationWithBattleFrontier
+multichoicedefault 18 8 MULTI_SSTIDAL_SLATEPORT_NO_BF 2 FALSE
+switch VAR_RESULT
+case 0 SlateportCity_Harbor_EventScript_Lilycove
+case 1 SlateportCity_Harbor_EventScript_CancelDestinationSelect
+case MULTI_B_PRESSED SlateportCity_Harbor_EventScript_CancelDestinationSelect
+end
+= SlateportCity_Harbor_EventScript_CancelDestinationSelect
+msgbox	Please sail with us another time!
+release
+end
+= SlateportCity_Harbor_EventScript_Lilycove
+msgboxyesno	LILYCOVE CITY it is, then!
+goto_if_eq VAR_RESULT NO SlateportCity_Harbor_EventScript_ChooseNewDestination
+setvar VAR_SS_TIDAL_STATE SS_TIDAL_BOARD_SLATEPORT
+call SlateportCity_Harbor_EventScript_BoardFerry
+warp SSTidalCorridor 1 10
+waitstate
+release
+end
+= SlateportCity_Harbor_EventScript_BoardFerry
+msgbox	Please board the ferry and wait for departure.
+closemessage
+applymovement VAR_LAST_TALKED Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+delay 30
+hideobjectat VAR_LAST_TALKED MAP_SLATEPORT_CITY_HARBOR
+call_if_eq VAR_FACING DIR_NORTH SlateportCity_Harbor_EventScript_BoardFerryNorth
+call_if_eq VAR_FACING DIR_EAST SlateportCity_Harbor_EventScript_BoardFerryEast
+delay 30
+hideplayer
+setvar VAR_0x8004 LOCALID_SLATEPORT_HARBOR_SS_TIDAL
+call Common_EventScript_FerryDepart
+return
+= SlateportCity_Harbor_EventScript_BoardFerryEast
+applymovement LOCALID_PLAYER SlateportCity_Harbor_Movement_BoardFerryEast
+waitmovement 0
+return
+= SlateportCity_Harbor_EventScript_BoardFerryNorth
+applymovement LOCALID_PLAYER SlateportCity_Harbor_Movement_BoardFerryNorth
+waitmovement 0
+return
+= SlateportCity_Harbor_EventScript_ChooseNewDestination
+msgbox	Then, where would you like to go?
+waitmessage
+goto SlateportCity_Harbor_EventScript_ChooseDestination
+end
+= SlateportCity_Harbor_EventScript_ChooseDestinationWithBattleFrontier
+multichoicedefault 17 6 MULTI_SSTIDAL_SLATEPORT_WITH_BF 2 FALSE
+switch VAR_RESULT
+case 0 SlateportCity_Harbor_EventScript_Lilycove
+case 1 SlateportCity_Harbor_EventScript_BattleFrontier
+case 2 SlateportCity_Harbor_EventScript_CancelDestinationSelect
+case MULTI_B_PRESSED SlateportCity_Harbor_EventScript_CancelDestinationSelect
+end
+@ Unused. Should be impossible for player to reach Ferry without having received SS Tidal ticket
+goto SlateportCity_Harbor_EventScript_NoTicket
+= SlateportCity_Harbor_EventScript_NoTicket
+msgbox	PLAYER doesn't have the TICKET…I'm terribly sorry.You must have a TICKET to board the ferry.
+release
+end
+= SlateportCity_Harbor_EventScript_BattleFrontier
+msgboxyesno	BATTLE FRONTIER it is, then!
+goto_if_eq VAR_RESULT NO SlateportCity_Harbor_EventScript_ChooseNewDestination
+call SlateportCity_Harbor_EventScript_BoardFerry
+warp BattleFrontier_OutsideWest 19 67
+waitstate
+release
+end
+water
+368,369
+mapsec
+8 10 1 2	SLATEPORT CITY
+music
+MUS_SLATEPORT
+counters
+537

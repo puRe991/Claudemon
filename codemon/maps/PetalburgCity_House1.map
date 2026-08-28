@@ -1,0 +1,45 @@
+tileset building__generic_building
+10 9
+5 4
+646,647,633,634,517,519,517,517,517,517
+654,655,641,642,525,527,525,525,656,656
+662,663,649,650,548,548,548,548,664,664
+569,565,566,566,566,566,566,567,547,547
+569,573,584,585,738,574,574,575,547,547
+569,573,592,593,738,574,574,575,547,547
+569,581,582,582,582,582,582,583,547,547
+569,547,547,547,547,547,547,547,547,546
+569,547,547,520,521,547,547,547,547,554
+collision
+1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,0,0
+0,0,0,0,0,0,0,0,1,1
+0,0,0,0,0,0,0,0,0,0
+0,0,1,1,0,0,0,0,0,0
+0,0,1,1,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,1
+warps
+3 8 PetalburgCity 0
+4 8 PetalburgCity 0
+npcs
+people_girl_1 7 4 S wander 0 - 0
+people_expert_m 4 4 S static 0 - 0
+dialogs
+0	Sigh…I wish I could go on an adventure with some POKéMON…Crawl through some damp grass… Climb rocky, rugged mountains…Cross the raging seas… Wander about in dark caves…And, sometimes, even get a little homesick…It must be fabulous to travel!
+1	Traveling is wonderful!When I was young, I roamed the seas and the mountains!
+objscripts
+0 PetalburgCity_House1_EventScript_Woman
+1 PetalburgCity_House1_EventScript_Man
+scriptdefs
+= PetalburgCity_House1_EventScript_Man
+msgbox	Traveling is wonderful!When I was young, I roamed the seas and the mountains!
+end
+= PetalburgCity_House1_EventScript_Woman
+msgbox	Sigh…I wish I could go on an adventure with some POKéMON…Crawl through some damp grass… Climb rocky, rugged mountains…Cross the raging seas… Wander about in dark caves…And, sometimes, even get a little homesick…It must be fabulous to travel!
+end
+mapsec
+1 9 1 1	PETALBURG CITY
+music
+MUS_PETALBURG

@@ -1,0 +1,427 @@
+tileset general__rustboro
+48 44
+26 20
+468,469,468,469,468,469,468,469,468,469,468,469,476,477,517,517,476,477,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469
+476,477,476,477,476,477,476,477,476,477,476,477,468,469,517,517,468,469,476,477,476,477,476,477,476,477,476,477,476,477,476,477,476,477,476,477,476,477,476,477,476,477,476,477,476,477,476,477
+468,469,468,469,468,469,468,469,468,469,468,469,476,477,517,517,476,477,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469
+476,477,476,477,476,477,476,477,476,477,476,477,468,469,517,517,468,469,476,477,476,477,476,477,476,477,476,477,476,477,476,477,484,485,484,485,484,485,484,485,484,485,484,485,476,477,476,477
+468,469,468,469,468,469,468,469,468,469,468,469,484,487,517,517,486,485,468,469,468,469,468,469,468,469,468,469,468,469,468,469,1,1,1,1,1,1,13,13,13,13,13,13,468,469,468,469
+476,477,476,477,476,477,476,477,476,477,476,477,329,329,515,515,329,329,476,477,476,477,476,477,476,477,484,498,499,498,499,487,1,1,1,1,1,454,455,454,455,13,13,13,486,485,476,477
+468,469,468,469,468,469,468,469,468,469,468,469,1,1,1,1,1,1,468,469,468,469,468,469,468,469,1,468,469,468,469,1,1,1,1,1,1,470,469,468,471,13,13,13,1,1,468,469
+476,477,476,477,484,485,484,485,484,485,484,487,1,1,1,1,1,1,476,477,476,477,476,477,484,487,1,486,485,484,487,1,1,1,1,1,1,476,477,476,477,13,13,1,1,1,476,477
+468,469,468,469,1,1,1,13,13,13,13,27,1,1,1,1,1,1,468,469,468,469,468,469,13,13,1,1,1,1,1,1,13,13,13,1,1,468,469,468,469,213,135,135,135,214,468,469
+476,477,476,477,1,13,13,13,13,13,13,1,1,1,1,1,1,1,486,485,484,485,484,487,13,13,13,1,462,463,454,455,454,455,13,13,1,486,485,484,487,1,1,1,1,1,476,477
+468,469,468,469,13,13,13,13,13,13,13,1,1,1,1,1,1,1,1,1,1,13,13,13,13,13,13,13,470,469,468,469,468,471,13,13,13,1,1,1,1,1,1,1,1,13,468,469
+476,477,476,477,13,13,13,13,454,455,462,463,462,463,1,1,1,1,462,463,462,463,454,455,454,455,454,455,476,477,476,477,476,477,454,455,454,455,462,463,1,1,1,1,13,13,476,477
+468,469,468,469,1,13,13,13,470,469,468,469,468,471,1,1,1,1,470,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,471,1,1,1,13,13,13,468,469
+476,477,476,477,1,1,1,1,476,477,476,477,476,477,1,1,1,1,486,498,499,498,499,498,499,498,499,498,499,498,499,498,499,498,499,498,499,498,499,498,463,1,1,13,13,13,476,477
+468,469,468,469,1,1,1,1,468,469,468,469,468,469,213,135,135,135,214,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,471,1,1,13,13,13,468,469
+476,477,476,477,1,1,1,13,486,485,484,485,484,487,1,1,1,1,1,486,485,484,485,484,485,484,485,484,498,499,498,499,498,499,498,499,498,499,498,499,498,463,1,13,13,13,476,477
+468,469,468,469,1,13,13,13,13,13,13,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,468,469,468,469,468,469,468,469,468,469,468,469,468,471,1,13,13,13,468,469
+476,477,476,477,13,13,13,13,13,13,13,1,1,1,1,1,1,13,13,13,13,1,1,1,1,1,1,1,476,477,476,477,476,477,476,477,476,477,476,477,476,477,1,1,13,13,476,477
+468,469,468,469,13,13,13,13,13,13,13,1,1,1,1,1,13,13,13,13,13,13,13,13,13,1,1,1,468,469,468,469,468,469,468,469,468,469,468,469,468,469,1,1,1,13,468,469
+476,477,476,477,462,455,454,455,454,455,462,463,1,1,1,1,454,455,454,455,454,455,454,455,454,455,1,1,476,477,476,477,476,477,484,485,476,477,476,477,476,477,1,1,1,1,476,477
+468,469,468,469,468,469,468,469,468,469,468,471,1,1,1,1,470,469,468,469,468,469,468,469,468,471,1,1,468,469,468,469,468,469,1,1,468,469,468,469,468,469,213,135,135,214,468,469
+476,477,476,477,476,477,476,477,476,477,476,477,1,1,1,1,476,477,476,477,476,477,476,477,476,477,1,1,476,477,476,477,484,487,1,1,486,485,476,477,476,477,13,1,1,1,476,477
+468,469,468,469,468,469,468,469,468,469,468,469,213,135,135,214,468,469,468,469,468,469,468,469,468,469,1,1,468,469,468,469,13,1,1,1,1,1,468,469,468,469,13,13,1,1,468,469
+476,477,476,477,476,477,484,485,484,485,484,487,1,1,1,1,486,485,484,485,484,485,484,485,484,487,1,1,476,477,476,477,13,1,1,1,1,1,486,485,484,487,13,13,13,1,476,477
+468,469,468,469,468,469,1,1,1,1,1,1,1,1,1,1,1,1,13,13,13,13,13,13,13,13,1,1,468,469,468,469,13,13,1,1,1,1,1,1,13,13,13,13,13,1,468,469
+476,477,476,477,484,487,13,13,13,1,1,1,1,1,1,1,1,1,1,13,13,13,13,13,13,1,1,1,476,477,476,477,13,13,13,1,462,463,1,13,13,13,13,13,13,13,476,477
+468,469,468,469,1,13,13,13,13,13,13,13,13,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,468,469,468,469,13,13,13,13,470,471,1,13,13,13,13,13,13,13,468,469
+476,477,476,477,13,13,13,13,13,13,454,455,454,455,462,463,1,1,1,1,1,1,462,463,462,463,462,463,476,477,476,477,13,13,13,13,476,477,462,455,13,13,13,13,454,455,476,477
+468,469,468,469,13,13,13,13,13,13,470,469,468,469,468,471,1,1,1,1,1,1,470,469,468,469,468,469,468,469,468,469,13,13,13,13,468,469,468,471,13,13,13,13,470,469,468,469
+476,477,476,477,13,13,13,13,13,13,476,477,476,477,476,477,1,1,1,1,1,1,476,477,476,477,476,477,476,477,476,477,1,13,13,13,476,477,476,477,462,455,454,455,476,477,476,477
+468,469,468,469,13,13,13,13,13,13,468,469,468,469,468,469,213,135,135,135,135,214,468,469,468,469,468,469,468,469,468,469,1,1,1,13,468,469,468,469,468,469,468,469,468,469,468,469
+476,477,476,477,13,13,13,13,13,13,486,485,484,485,484,487,1,1,1,1,1,1,486,485,484,485,476,477,476,477,476,477,1,1,1,1,476,477,476,477,476,477,476,477,476,477,476,477
+468,469,468,469,1,13,13,13,13,13,13,13,13,13,27,1,1,1,1,1,1,1,13,13,13,13,468,469,468,469,468,469,213,135,135,214,468,469,468,469,468,469,468,469,468,469,468,469
+476,477,476,477,462,463,1,13,13,13,13,13,13,1,1,1,1,1,1,1,1,13,13,13,13,13,486,485,484,485,484,487,1,1,1,1,486,485,484,485,484,485,476,477,476,477,476,477
+468,469,468,469,468,471,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,13,13,13,13,13,13,13,1,1,1,1,1,1,1,1,13,13,13,13,13,13,468,469,468,469,468,469
+476,477,476,477,476,477,462,463,462,463,462,463,462,463,1,1,1,1,1,1,462,455,454,455,454,455,454,463,462,463,462,463,462,463,1,1,1,13,13,1,13,13,476,477,476,477,476,477
+468,469,468,469,468,469,468,469,468,469,468,469,468,471,1,1,1,1,1,1,470,469,468,469,468,469,468,469,468,469,468,469,468,471,1,1,1,13,13,13,13,13,468,469,468,469,468,469
+476,477,476,477,476,477,476,477,476,477,476,477,476,477,1,1,1,1,1,1,476,477,476,477,476,477,476,477,476,477,476,477,476,477,1,1,1,1,13,13,454,455,476,477,476,477,476,477
+468,469,468,469,468,469,468,469,468,469,468,469,468,469,329,329,516,516,329,329,468,469,468,469,468,469,468,469,468,469,468,469,468,469,329,329,516,516,329,329,470,469,468,469,468,469,468,469
+476,477,476,477,476,477,476,477,476,477,476,477,476,477,462,463,517,517,462,463,476,477,476,477,476,477,476,477,476,477,476,477,476,477,462,463,517,517,462,463,476,477,476,477,476,477,476,477
+468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,471,517,517,470,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,471,517,517,470,469,468,469,468,469,468,469,468,469
+476,477,476,477,476,477,476,477,476,477,476,477,476,477,476,477,517,517,476,477,476,477,476,477,476,477,476,477,476,477,476,477,476,477,476,477,517,517,476,477,476,477,476,477,476,477,476,477
+468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,517,517,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,517,517,468,469,468,469,468,469,468,469,468,469
+476,477,476,477,476,477,476,477,476,477,476,477,476,477,476,477,517,517,476,477,476,477,476,477,476,477,476,477,476,477,476,477,476,477,476,477,517,517,476,477,476,477,476,477,476,477,476,477
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,1,1,1,1,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,1,1,1,1,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,1,1
+1,1,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,1,1
+1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,1,1,0,0,0,0,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1
+1,1,1,1,0,0,0,0,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1
+1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1
+1,1,1,1,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1
+1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1
+1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1
+1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1
+1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,0,0,1,1,1,1,1,1,0,0,0,0,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,0,0,0,0,0,0,1,1,1,1,0,0,0,0,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,0,0,0,0,0,0,1,1,1,1,0,0,0,0,1,1
+1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1
+1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1
+1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1
+1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1
+1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1
+1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+14 5 Route104 2
+15 5 Route104 3
+16 38 Route104 4
+17 38 Route104 5
+36 38 Route104 6
+37 38 Route104 7
+npcs
+misc_cuttable_tree 19 10 S static FLAG_TEMP_11 - 0
+misc_cuttable_tree 19 11 S static FLAG_TEMP_12 - 0
+people_team_aqua_aqua_member_m 26 17 E static FLAG_HIDE_PETALBURG_WOODS_AQUA_GRUNT LOCALID_PETALBURG_WOODS_GRUNT 0
+people_man_2 26 20 S static FLAG_HIDE_PETALBURG_WOODS_DEVON_EMPLOYEE LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE 0
+misc_item_ball 45 7 S static FLAG_ITEM_PETALBURG_WOODS_GREAT_BALL - 0
+misc_item_ball 35 20 S static FLAG_ITEM_PETALBURG_WOODS_X_ATTACK - 0
+misc_item_ball 4 8 S static FLAG_ITEM_PETALBURG_WOODS_ETHER - 0
+people_boy_2 15 19 S wander 0 - 0
+people_bug_catcher 7 32 W pace_h 0 - 3
+people_bug_catcher 4 14 S static 0 - 3
+people_boy_3 30 34 S wander 0 - 0
+misc_item_ball 4 26 S static FLAG_ITEM_PETALBURG_WOODS_PARALYZE_HEAL - 0
+people_girl_2 33 5 S static 0 - 0
+dialogs
+7	Yo, there! Your POKéMON doing okay?If your POKéMON are weak and you want to avoid battles, you should stay out of tall grass.
+8	I caught a bunch of POKéMON. Now I'm out of POKé BALLS.
+9	If you have a big BUG POKéMON, people respect you for it.
+10	Sometimes, there are things on the ground even if you can't see them.That's why I always check where I'm walking.
+12	Oh, neat! That's the BADGE from RUSTBORO GYM!You must be a TRAINER. You should try using this item.
+objscripts
+0 EventScript_CutTree
+1 EventScript_CutTree
+4 PetalburgWoods_EventScript_ItemGreatBall
+5 PetalburgWoods_EventScript_ItemXAttack
+6 PetalburgWoods_EventScript_ItemEther
+7 PetalburgWoods_EventScript_Boy1
+8 PetalburgWoods_EventScript_Lyle
+9 PetalburgWoods_EventScript_James
+10 PetalburgWoods_EventScript_Boy2
+11 PetalburgWoods_EventScript_ItemParalyzeHeal
+12 PetalburgWoods_EventScript_Girl
+triggers
+26 23 VAR_PETALBURG_WOODS_STATE 0 PetalburgWoods_EventScript_DevonResearcherLeft
+27 23 VAR_PETALBURG_WOODS_STATE 0 PetalburgWoods_EventScript_DevonResearcherRight
+39 35 0 0 PetalburgWoods_HiddenItem_39_35
+26 6 0 0 PetalburgWoods_HiddenItem_26_6
+40 29 0 0 PetalburgWoods_HiddenItem_40_29
+4 19 0 0 PetalburgWoods_HiddenItem_4_19
+movements
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
+Movement_CutTreeDown	delay,end
+PetalburgWoods_Movement_AquaApproachPlayer	down,end
+PetalburgWoods_Movement_AquaApproachResearcherLeft	down,down,end
+PetalburgWoods_Movement_AquaApproachResearcherRight	down,down,down,end
+PetalburgWoods_Movement_AquaBackOff	delay,up,delay,end
+PetalburgWoods_Movement_AquaEntrance	down,down,delay,delay,end
+PetalburgWoods_Movement_AquaRunAway	up,up,up,up,up,delay,delay,end
+PetalburgWoods_Movement_DevonResearcherApproachPlayerLeft	delay,face_down,down,down,end
+PetalburgWoods_Movement_DevonResearcherApproachPlayerRight	delay,face_down,down,down,down,delay,end
+PetalburgWoods_Movement_DevonResearcherExitLeft	right,up,up,up,up,up,up,up,end
+PetalburgWoods_Movement_DevonResearcherExitRight	left,up,up,up,up,up,up,up,end
+PetalburgWoods_Movement_DevonResearcherFleeToPlayerLeft	right,down,down,left,delay,end
+PetalburgWoods_Movement_DevonResearcherFleeToPlayerRight	down,right,delay,end
+PetalburgWoods_Movement_DevonResearcherLookAround	face_up,delay,delay,face_right,delay,delay,face_left,delay,delay,face_down,delay,face_right,delay,delay,face_up,delay,end
+PetalburgWoods_Movement_DevonResearcherStartExit	delay,delay,delay,delay,delay,delay,face_up,end
+PetalburgWoods_Movement_WatchResearcherLeave	delay,delay,delay,end
+scriptdefs
+= PetalburgWoods_HiddenItem_4_19
+goto_if_set FLAG_HIDDEN_ITEM_PETALBURG_WOODS_POKE_BALL PetalburgWoods_HiddenItem_4_19_Taken
+finditem ITEM_POKE_BALL
+setflag FLAG_HIDDEN_ITEM_PETALBURG_WOODS_POKE_BALL
+end
+= PetalburgWoods_HiddenItem_4_19_Taken
+end
+= PetalburgWoods_HiddenItem_40_29
+goto_if_set FLAG_HIDDEN_ITEM_PETALBURG_WOODS_TINY_MUSHROOM_2 PetalburgWoods_HiddenItem_40_29_Taken
+finditem ITEM_TINY_MUSHROOM
+setflag FLAG_HIDDEN_ITEM_PETALBURG_WOODS_TINY_MUSHROOM_2
+end
+= PetalburgWoods_HiddenItem_40_29_Taken
+end
+= PetalburgWoods_HiddenItem_26_6
+goto_if_set FLAG_HIDDEN_ITEM_PETALBURG_WOODS_TINY_MUSHROOM_1 PetalburgWoods_HiddenItem_26_6_Taken
+finditem ITEM_TINY_MUSHROOM
+setflag FLAG_HIDDEN_ITEM_PETALBURG_WOODS_TINY_MUSHROOM_1
+end
+= PetalburgWoods_HiddenItem_26_6_Taken
+end
+= PetalburgWoods_HiddenItem_39_35
+goto_if_set FLAG_HIDDEN_ITEM_PETALBURG_WOODS_POTION PetalburgWoods_HiddenItem_39_35_Taken
+finditem ITEM_POTION
+setflag FLAG_HIDDEN_ITEM_PETALBURG_WOODS_POTION
+end
+= PetalburgWoods_HiddenItem_39_35_Taken
+end
+= PetalburgWoods_EventScript_DevonResearcherRight
+lockall
+call PetalburgWoods_EventScript_DevonResearcherIntro
+applymovement LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE PetalburgWoods_Movement_DevonResearcherApproachPlayerRight
+waitmovement 0
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+msgbox	Hello, have you seen any POKéMON called SHROOMISH around here?I really love that POKéMON.
+closemessage
+playbgm MUS_ENCOUNTER_AQUA FALSE
+applymovement LOCALID_PETALBURG_WOODS_GRUNT PetalburgWoods_Movement_AquaEntrance
+waitmovement 0
+msgbox	I was going to ambush you, but you had to dawdle in PETALBURG WOODS forever, didn't you?I got sick of waiting, so here I am!
+closemessage
+applymovement LOCALID_PETALBURG_WOODS_GRUNT PetalburgWoods_Movement_AquaApproachResearcherRight
+waitmovement 0
+applymovement LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+msgbox	You! DEVON RESEARCHER!Hand over those papers!
+closemessage
+applymovement LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE PetalburgWoods_Movement_DevonResearcherFleeToPlayerRight
+waitmovement 0
+msgbox	Aiyeeeh!You're a POKéMON TRAINER, aren't you? You've got to help me, please!
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+msgbox	Hunh? What do you think you're doing? What, you're going to protect him?No one who crosses TEAM AQUA gets any mercy, not even a kid!Come on and battle me!
+trainerbattle_no_intro TRAINER_GRUNT_PETALBURG_WOODS PetalburgWoods_Text_YoureKiddingMe
+applymovement LOCALID_PETALBURG_WOODS_GRUNT PetalburgWoods_Movement_AquaBackOff
+waitmovement 0
+call PetalburgWoods_EventScript_DevonResearcherPostBattle
+applymovement LOCALID_PLAYER PetalburgWoods_Movement_WatchResearcherLeave
+applymovement LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE PetalburgWoods_Movement_DevonResearcherExitRight
+waitmovement 0
+goto PetalburgWoods_EventScript_RemoveDevonResearcher
+end
+= PetalburgWoods_EventScript_RemoveDevonResearcher
+removeobject LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE
+setvar VAR_PETALBURG_WOODS_STATE 1
+releaseall
+end
+= PetalburgWoods_EventScript_DevonResearcherPostBattle
+msgbox	Grrr… You've got some nerve meddling with TEAM AQUA! Come on and battle me again!I wish I could say that, but I'm out of POKéMON…And, hey, we of TEAM AQUA are also after something in RUSTBORO.I'll let you go today!
+closemessage
+applymovement LOCALID_PETALBURG_WOODS_GRUNT PetalburgWoods_Movement_AquaRunAway
+waitmovement 0
+removeobject LOCALID_PETALBURG_WOODS_GRUNT
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+msgbox	Whew… That was awfully close!Thanks to you, he didn't rob me of these important papers.I know, I'll give you a GREAT BALL as my thanks!
+giveitem ITEM_GREAT_BALL
+goto_if_eq VAR_RESULT FALSE PetalburgWoods_EventScript_BagFull
+goto PetalburgWoods_EventScript_DevonResearcherFinish
+end
+= PetalburgWoods_EventScript_DevonResearcherFinish
+msgbox	Didn't that TEAM AQUA thug say they were after something in RUSTBORO, too?
+applymovement LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE PetalburgWoods_Movement_DevonResearcherStartExit
+waitmovement 0
+msgbox	Uh-oh! It's a crisis! I can't be wasting time!
+closemessage
+return
+= PetalburgWoods_EventScript_BagFull
+msgbox	You're loaded with items. I can't give you this GREAT BALL.
+goto PetalburgWoods_EventScript_DevonResearcherFinish
+end
+= PetalburgWoods_EventScript_DevonResearcherIntro
+applymovement LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE PetalburgWoods_Movement_DevonResearcherLookAround
+waitmovement 0
+msgbox	Hmmm… Not a one to be found…
+closemessage
+return
+= PetalburgWoods_EventScript_DevonResearcherLeft
+lockall
+call PetalburgWoods_EventScript_DevonResearcherIntro
+applymovement LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE PetalburgWoods_Movement_DevonResearcherApproachPlayerLeft
+waitmovement 0
+msgbox	Hello, have you seen any POKéMON called SHROOMISH around here?I really love that POKéMON.
+closemessage
+playbgm MUS_ENCOUNTER_AQUA FALSE
+applymovement LOCALID_PETALBURG_WOODS_GRUNT PetalburgWoods_Movement_AquaEntrance
+waitmovement 0
+msgbox	I was going to ambush you, but you had to dawdle in PETALBURG WOODS forever, didn't you?I got sick of waiting, so here I am!
+closemessage
+applymovement LOCALID_PETALBURG_WOODS_GRUNT PetalburgWoods_Movement_AquaApproachResearcherLeft
+waitmovement 0
+applymovement LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+msgbox	You! DEVON RESEARCHER!Hand over those papers!
+closemessage
+applymovement LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE PetalburgWoods_Movement_DevonResearcherFleeToPlayerLeft
+waitmovement 0
+msgbox	Aiyeeeh!You're a POKéMON TRAINER, aren't you? You've got to help me, please!
+closemessage
+applymovement LOCALID_PETALBURG_WOODS_GRUNT PetalburgWoods_Movement_AquaApproachPlayer
+waitmovement 0
+msgbox	Hunh? What do you think you're doing? What, you're going to protect him?No one who crosses TEAM AQUA gets any mercy, not even a kid!Come on and battle me!
+trainerbattle_no_intro TRAINER_GRUNT_PETALBURG_WOODS PetalburgWoods_Text_YoureKiddingMe
+applymovement LOCALID_PETALBURG_WOODS_GRUNT PetalburgWoods_Movement_AquaBackOff
+waitmovement 0
+call PetalburgWoods_EventScript_DevonResearcherPostBattle
+applymovement LOCALID_PLAYER PetalburgWoods_Movement_WatchResearcherLeave
+applymovement LOCALID_PETALBURG_WOODS_DEVON_EMPLOYEE PetalburgWoods_Movement_DevonResearcherExitLeft
+waitmovement 0
+goto PetalburgWoods_EventScript_RemoveDevonResearcher
+end
+= PetalburgWoods_EventScript_Girl
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_MIRACLE_SEED PetalburgWoods_EventScript_ExplainMiracleSeed
+msgbox	Oh, neat! That's the BADGE from RUSTBORO GYM!You must be a TRAINER. You should try using this item.
+giveitem ITEM_MIRACLE_SEED
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_RECEIVED_MIRACLE_SEED
+release
+end
+= PetalburgWoods_EventScript_ExplainMiracleSeed
+msgbox	It's a MIRACLE SEED. If a POKéMON holds that item, its GRASS-type moves become stronger.Besides MIRACLE SEED, I think there are other convenient items for POKéMON to hold.
+release
+end
+= PetalburgWoods_EventScript_ItemParalyzeHeal
+goto_if_set FLAG_ITEM_PETALBURG_WOODS_PARALYZE_HEAL PetalburgWoods_EventScript_ItemParalyzeHeal_Taken
+finditem ITEM_PARALYZE_HEAL
+setflag FLAG_ITEM_PETALBURG_WOODS_PARALYZE_HEAL
+end
+= PetalburgWoods_EventScript_ItemParalyzeHeal_Taken
+end
+= PetalburgWoods_EventScript_Boy2
+msgbox	Sometimes, there are things on the ground even if you can't see them.That's why I always check where I'm walking.
+end
+= PetalburgWoods_EventScript_James
+trainerbattle_single TRAINER_JAMES_1 PetalburgWoods_Text_InstantlyPopularWithBugPokemon PetalburgWoods_Text_CantBePopularIfILose PetalburgWoods_EventScript_TryRegisterJames
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE PetalburgWoods_EventScript_JamesRematch
+setvar VAR_0x8004 TRAINER_JAMES_1
+specialvar VAR_RESULT IsTrainerRegistered
+goto_if_eq VAR_RESULT FALSE PetalburgWoods_EventScript_TryRegisterJames2
+msgbox	If you have a big BUG POKéMON, people respect you for it.
+release
+end
+= PetalburgWoods_EventScript_TryRegisterJames2
+goto_if_set FLAG_HAS_MATCH_CALL PetalburgWoods_EventScript_RegisterJames2
+msgbox	If you have a big BUG POKéMON, people respect you for it.
+release
+end
+= PetalburgWoods_EventScript_RegisterJames2
+msgbox	I want a rematch when my BUG POKéMON grow up!I'm registering you in my POKéNAV!
+register_matchcall TRAINER_JAMES_1
+release
+end
+= PetalburgWoods_EventScript_JamesRematch
+trainerbattle_rematch TRAINER_JAMES_1 PetalburgWoods_Text_MyPokemonHaveGrown PetalburgWoods_Text_CantBePopularIfLose
+msgbox	You get to be popular if you have strong POKéMON, right? So, I've been training hard.
+end
+= PetalburgWoods_EventScript_TryRegisterJames
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+goto_if_set FLAG_HAS_MATCH_CALL PetalburgWoods_EventScript_RegisterJames
+release
+end
+= PetalburgWoods_EventScript_RegisterJames
+msgbox	I want a rematch when my BUG POKéMON grow up!I'm registering you in my POKéNAV!
+register_matchcall TRAINER_JAMES_1
+release
+end
+= PetalburgWoods_EventScript_Lyle
+trainerbattle_single TRAINER_LYLE PetalburgWoods_Text_GoBugPokemonTeam PetalburgWoods_Text_ICouldntWin
+msgbox	I caught a bunch of POKéMON. Now I'm out of POKé BALLS.
+end
+= PetalburgWoods_EventScript_Boy1
+msgbox	Yo, there! Your POKéMON doing okay?If your POKéMON are weak and you want to avoid battles, you should stay out of tall grass.
+end
+= PetalburgWoods_EventScript_ItemEther
+goto_if_set FLAG_ITEM_PETALBURG_WOODS_ETHER PetalburgWoods_EventScript_ItemEther_Taken
+finditem ITEM_ETHER
+setflag FLAG_ITEM_PETALBURG_WOODS_ETHER
+end
+= PetalburgWoods_EventScript_ItemEther_Taken
+end
+= PetalburgWoods_EventScript_ItemXAttack
+goto_if_set FLAG_ITEM_PETALBURG_WOODS_X_ATTACK PetalburgWoods_EventScript_ItemXAttack_Taken
+finditem ITEM_X_ATTACK
+setflag FLAG_ITEM_PETALBURG_WOODS_X_ATTACK
+end
+= PetalburgWoods_EventScript_ItemXAttack_Taken
+end
+= PetalburgWoods_EventScript_ItemGreatBall
+goto_if_set FLAG_ITEM_PETALBURG_WOODS_GREAT_BALL PetalburgWoods_EventScript_ItemGreatBall_Taken
+finditem ITEM_GREAT_BALL
+setflag FLAG_ITEM_PETALBURG_WOODS_GREAT_BALL
+end
+= PetalburgWoods_EventScript_ItemGreatBall_Taken
+end
+= EventScript_CutTree
+lockall
+goto_if_unset FLAG_BADGE01_GET EventScript_CheckTreeCantCut
+checkpartymove MOVE_CUT
+goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CheckTreeCantCut
+setfieldeffectargument 0 VAR_RESULT
+bufferpartymonnick STR_VAR_1 VAR_RESULT
+buffermovename STR_VAR_2 MOVE_CUT
+msgboxyesno	This tree looks like it can be CUT down!Would you like to CUT it?
+goto_if_eq VAR_RESULT NO EventScript_CancelCut
+msgbox	STR_VAR_1 used STR_VAR_2!
+closemessage
+dofieldeffect FLDEFF_USE_CUT_ON_TREE
+waitstate
+goto EventScript_CutTreeDown
+end
+@ Use cut from party menu
+goto EventScript_UseCut
+= EventScript_UseCut
+lockall
+dofieldeffect FLDEFF_USE_CUT_ON_TREE
+waitstate
+goto EventScript_CutTreeDown
+end
+= EventScript_CutTreeDown
+applymovement VAR_LAST_TALKED Movement_CutTreeDown
+waitmovement 0
+removeobject VAR_LAST_TALKED
+releaseall
+end
+= EventScript_CancelCut
+closemessage
+releaseall
+end
+= EventScript_CheckTreeCantCut
+msgbox	This tree looks like it can be CUT down!
+releaseall
+end
+signs
+14 32	TRAINER TIPSAny POKéMON that appears even once in a battle is awarded EXP Points.To raise a weak POKéMON, put it at the left of the team list.As soon as a battle starts, switch it out. It will earn EXP Points without being exposed to any harm.
+11 8	TRAINER TIPSIn addition to Hit Points (HP), POKéMON have Power Points (PP) that are used to make moves during battle.If a POKéMON runs out of PP, it must be taken to a POKéMON CENTER.
+grass
+13,454,455
+mapsec
+0 8 1 1	PETALBURG WOODS
+music
+MUS_PETALBURG_WOODS
+encounters
+land POOCHYENA:5:5,WURMPLE:5:5,SHROOMISH:5:5,POOCHYENA:6:6,SILCOON:5:5,CASCOON:5:5,WURMPLE:6:6,SHROOMISH:6:6,TAILLOW:5:5,SLAKOTH:5:5,TAILLOW:6:6,SLAKOTH:6:6

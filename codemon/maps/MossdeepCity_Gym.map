@@ -1,0 +1,477 @@
+tileset building__mossdeep_gym
+26 36
+9 18
+520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520
+520,520,520,520,520,519,526,517,520,520,519,526,517,520,520,520,520,520,520,520,520,520,520,520,520,520
+520,520,520,520,526,527,534,525,526,517,543,534,541,520,520,520,520,520,520,520,520,520,520,520,520,520
+520,520,520,520,534,535,513,533,534,541,543,530,525,520,520,520,520,520,520,520,520,520,520,520,520,520
+520,520,520,520,513,514,515,548,514,541,543,521,533,520,520,520,520,520,520,520,520,526,517,520,520,520
+520,520,520,520,521,522,625,626,522,541,543,625,626,520,520,520,520,520,520,520,520,534,525,526,526,526
+520,520,520,520,521,522,624,627,628,525,527,624,627,520,520,520,520,520,520,520,520,530,533,552,553,534
+520,520,520,520,521,532,604,522,532,534,534,521,520,520,520,520,520,520,520,520,520,521,536,537,538,539
+520,520,520,520,521,522,601,602,532,601,602,515,520,520,520,520,520,520,520,520,520,521,544,545,546,547
+520,520,520,520,520,520,600,603,522,600,603,522,520,520,520,520,520,520,520,520,520,521,522,522,522,522
+520,520,520,520,520,520,520,520,605,520,520,520,520,520,520,520,520,520,520,520,520,529,520,520,520,520
+520,520,520,520,520,520,520,520,521,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520
+520,520,520,520,520,520,520,520,528,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520
+520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520
+520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520
+520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520
+520,520,520,520,520,520,519,526,526,527,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520
+520,520,520,520,520,520,543,534,534,535,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520
+520,519,526,526,526,526,527,530,514,531,520,520,520,520,520,520,520,520,520,520,520,520,519,526,517,520
+520,527,534,534,534,534,535,532,522,532,520,520,520,520,520,520,520,520,520,520,520,520,543,534,541,520
+520,535,513,514,593,594,514,515,522,520,520,520,520,520,520,520,520,520,520,520,519,526,527,530,525,526
+520,513,596,532,592,595,520,520,520,520,520,520,520,520,520,520,520,520,520,520,543,534,535,621,533,534
+520,521,522,522,522,522,520,520,520,520,520,520,520,520,520,520,520,520,520,520,527,617,618,515,617,618
+520,528,520,520,540,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,535,616,619,522,616,619
+520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,530,515,522,620,522,520
+520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,617,618,522,548
+520,520,519,526,517,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,616,619,522,520
+520,526,527,534,525,526,517,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,521,522,520
+520,534,535,528,533,534,542,526,517,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,540,520
+520,593,594,515,593,594,518,534,541,520,520,520,520,520,520,520,520,520,520,520,520,520,519,526,521,520
+520,592,595,596,592,595,533,549,525,526,520,520,519,526,520,520,520,520,520,520,520,519,527,535,521,520
+520,521,522,522,522,522,548,515,533,534,520,526,527,534,520,520,520,520,520,520,519,527,535,513,515,520
+520,521,520,540,522,522,522,522,548,514,520,534,535,530,520,526,526,526,526,526,527,535,513,515,520,520
+520,528,520,521,516,522,522,522,516,522,520,609,610,515,520,534,534,534,534,534,535,513,515,520,520,520
+520,520,520,521,524,540,522,522,524,540,520,608,611,522,520,612,514,514,514,514,514,515,520,520,520,520
+520,520,520,521,548,515,6,7,548,515,520,528,522,520,520,520,520,520,520,520,520,520,520,520,520,520
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,0,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,0,0,0,0,0,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,0,0,0,0,0,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,0,0,0,0,0,1,1,0,0,1,1,1,1,1,1,1,1,0,1,1,1,1
+1,1,1,1,0,1,0,0,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1
+1,1,1,1,0,0,0,0,1,0,0,0,1,1,1,1,1,1,1,1,1,0,1,0,0,1
+1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0
+1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1
+1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1
+1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1
+1,0,0,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1
+1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0
+1,0,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1
+1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1
+1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1
+1,0,0,0,0,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1
+1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1
+1,0,1,0,0,0,0,0,0,0,1,1,1,0,1,1,1,1,1,1,1,1,0,0,1,1
+1,0,1,0,0,0,0,0,0,0,1,0,0,0,1,1,1,1,1,1,1,0,0,1,1,1
+1,1,1,0,1,0,0,0,1,0,1,0,0,0,1,0,0,0,0,0,0,0,1,1,1,1
+1,1,1,0,0,0,0,0,0,0,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+6 35 MossdeepCity 1
+7 35 MossdeepCity 1
+3 28 MossdeepCity_Gym 3
+1 23 MossdeepCity_Gym 2
+7 18 MossdeepCity_Gym 5
+8 12 MossdeepCity_Gym 4
+9 18 MossdeepCity_Gym 7
+23 20 MossdeepCity_Gym 6
+1 33 MossdeepCity_Gym 9
+20 24 MossdeepCity_Gym 8
+11 3 MossdeepCity_Gym 11
+11 35 MossdeepCity_Gym 10
+13 32 MossdeepCity_Gym 13
+21 10 MossdeepCity_Gym 12
+npcs
+people_gym_leaders_tate 23 7 S static 0 - 0
+people_psychic_m 1 30 S static 0 - 1
+people_psychic_m 5 20 N static 0 - 1
+people_lass 4 29 N static 0 - 1
+people_lass 4 23 N static 0 - 1
+people_psychic_m 6 9 S static 0 - 1
+people_lass 6 3 S static 0 - 1
+people_man_2 5 33 S static 0 - 0
+people_gym_leaders_liza 24 7 S static 0 - 0
+misc_statue 2 30 S static 0 - 0
+misc_statue 1 29 S static 0 - 0
+misc_statue 4 30 S static 0 - 0
+misc_statue 5 29 S static 0 - 0
+misc_statue 5 21 S static 0 - 0
+misc_statue 7 9 S static 0 - 0
+misc_statue 10 8 S static 0 - 0
+people_gentleman 9 8 N static 0 - 1
+people_hex_maniac 7 5 E static 0 - 1
+misc_statue 6 6 S static 0 - 0
+misc_statue 12 5 S static 0 - 0
+misc_statue 11 5 S static 0 - 0
+misc_statue 11 34 S static 0 - 0
+misc_statue 12 33 S static 0 - 0
+misc_statue 12 34 S static 0 - 0
+people_gentleman 22 25 N static 0 - 1
+misc_statue 23 26 S static 0 - 0
+people_lass 25 25 W static 0 - 1
+people_hex_maniac 22 23 S static 0 - 1
+misc_statue 21 23 S static 0 - 0
+misc_statue 21 22 S static 0 - 0
+misc_statue 22 22 S static 0 - 0
+people_psychic_m 25 22 N static 0 - 1
+misc_statue 24 22 S static 0 - 0
+misc_statue 24 23 S static 0 - 0
+misc_statue 6 5 S static 0 - 0
+misc_statue 23 25 S static 0 - 0
+dialogs
+0	TATE: Looks like the bond between you and your POKéMON is far stronger than the bond that we share as twins.LIZA: You will become even stronger! We've battled you, so we know.
+1	The indecisive lose. That's my warning to you.
+2	A POKé BALL was too heavy to lift psychically. But this dust bunny…Whoooooooooooooooh! … … … … … …No, I'm not cheating! I didn't blow on it! Honestly!
+3	A bright future awaits those who have worked diligently.For those who lazed idly, there is only despair at the end.What goes around comes around…
+4	You will wage a terrifically intense battle with our GYM LEADERS…The result… You won't hear it from me!
+5	If there are prodigies in the world, then our GYM LEADERS are them!However, you may be even more talented than them…
+6	I'm not going to get down on myself for losing. I just need to train harder.Positive thinking--that's my strong point!
+7	Yo, how's it going, CHAMPION-bound PLAYER?The GYM LEADERS here use PSYCHIC-type POKéMON.If you go up against them with FIGHTING- or POISON-type POKéMON, they'll inflict horrible damage!Plus, they'll come at you with outstanding combination attacks.If you want to win, you'll need to show them how tight you are with your POKéMON. Go for it!
+8	TATE: Looks like the bond between you and your POKéMON is far stronger than the bond that we share as twins.LIZA: You will become even stronger! We've battled you, so we know.
+16	I… I don't let defeat rattle m-me, however b-badly.
+17	How dare you beat me…It won't be my fault if something horrible befalls you…
+24	It seems that I could not overcome your youthful energy.
+26	Humph! You may be strong, but you're not suitable for the PSYCHIC type!The way you battle is somehow brutal!
+27	Your vitality is contagious! Get away from me quickly!
+31	All right! I think I'll develop a special invincible POKéMON power next.
+objscripts
+0 MossdeepCity_Gym_EventScript_TateAndLiza
+1 MossdeepCity_Gym_EventScript_Preston
+2 MossdeepCity_Gym_EventScript_Blake
+3 MossdeepCity_Gym_EventScript_Maura
+4 MossdeepCity_Gym_EventScript_Samantha
+5 MossdeepCity_Gym_EventScript_Virgil
+6 MossdeepCity_Gym_EventScript_Hannah
+7 MossdeepCity_Gym_EventScript_GymGuide
+8 MossdeepCity_Gym_EventScript_TateAndLiza
+16 MossdeepCity_Gym_EventScript_Nate
+17 MossdeepCity_Gym_EventScript_Sylvia
+24 MossdeepCity_Gym_EventScript_Clifford
+26 MossdeepCity_Gym_EventScript_Macey
+27 MossdeepCity_Gym_EventScript_Kathleen
+31 MossdeepCity_Gym_EventScript_Nicholas
+triggers
+2 21 VAR_TEMP_1 0 MossdeepCity_Gym_EventScript_YellowFloorSwitch
+8 10 VAR_TEMP_1 0 MossdeepCity_Gym_EventScript_BlueFloorSwitch
+6 7 VAR_TEMP_1 0 MossdeepCity_Gym_EventScript_BlueFloorSwitch
+15 34 VAR_TEMP_1 0 MossdeepCity_Gym_EventScript_GreenFloorSwitch
+23 24 VAR_TEMP_1 0 MossdeepCity_Gym_EventScript_PurpleFloorSwitch
+23 21 VAR_TEMP_1 0 MossdeepCity_Gym_EventScript_PurpleFloorSwitch
+8 6 VAR_TEMP_1 0 MossdeepCity_Gym_EventScript_RedFloorSwitch
+21 6 VAR_TEMP_1 0 MossdeepCity_Gym_EventScript_WarpToEntrance
+3 30 VAR_TEMP_1 0 MossdeepCity_Gym_EventScript_YellowFloorSwitch
+movements
+MossdeepCity_Gym_Movement_WaitAfterSwitchUse	delay,delay,end
+scriptdefs
+= MossdeepCity_Gym_EventScript_YellowFloorSwitch
+playse SE_SWITCH
+waitse
+playse SE_REPEL
+initrotatingtilepuzzle FALSE
+moverotatingtileobjects 0
+waitmovement 0
+turnrotatingtileobjects
+waitmovement 0
+freerotatingtilepuzzle
+end
+= MossdeepCity_Gym_EventScript_WarpToEntrance
+lockall
+warpmossdeepgym MossdeepCity_Gym 7 30
+waitstate
+releaseall
+end
+= MossdeepCity_Gym_EventScript_RedFloorSwitch
+playse SE_SWITCH
+waitse
+playse SE_REPEL
+initrotatingtilepuzzle FALSE
+moverotatingtileobjects 4
+waitmovement 0
+turnrotatingtileobjects
+waitmovement 0
+freerotatingtilepuzzle
+end
+= MossdeepCity_Gym_EventScript_PurpleFloorSwitch
+playse SE_SWITCH
+waitse
+playse SE_REPEL
+initrotatingtilepuzzle FALSE
+moverotatingtileobjects 3
+waitmovement 0
+turnrotatingtileobjects
+waitmovement 0
+freerotatingtilepuzzle
+end
+= MossdeepCity_Gym_EventScript_GreenFloorSwitch
+playse SE_SWITCH
+waitse
+playse SE_REPEL
+initrotatingtilepuzzle FALSE
+moverotatingtileobjects 2
+waitmovement 0
+turnrotatingtileobjects
+waitmovement 0
+freerotatingtilepuzzle
+end
+= MossdeepCity_Gym_EventScript_BlueFloorSwitch
+playse SE_SWITCH
+waitse
+playse SE_REPEL
+initrotatingtilepuzzle FALSE
+moverotatingtileobjects 1
+waitmovement 0
+turnrotatingtileobjects
+waitmovement 0
+freerotatingtilepuzzle
+end
+= MossdeepCity_Gym_EventScript_Nicholas
+trainerbattle_single TRAINER_NICHOLAS MossdeepCity_Gym_Text_NicholasIntro MossdeepCity_Gym_Text_NicholasDefeat
+msgbox	All right! I think I'll develop a special invincible POKéMON power next.
+end
+= MossdeepCity_Gym_EventScript_Kathleen
+trainerbattle_single TRAINER_KATHLEEN MossdeepCity_Gym_Text_KathleenIntro MossdeepCity_Gym_Text_KathleenDefeat
+msgbox	Your vitality is contagious! Get away from me quickly!
+end
+= MossdeepCity_Gym_EventScript_Macey
+trainerbattle_single TRAINER_MACEY MossdeepCity_Gym_Text_MaceyIntro MossdeepCity_Gym_Text_MaceyDefeat
+msgbox	Humph! You may be strong, but you're not suitable for the PSYCHIC type!The way you battle is somehow brutal!
+end
+= MossdeepCity_Gym_EventScript_Clifford
+trainerbattle_single TRAINER_CLIFFORD MossdeepCity_Gym_Text_CliffordIntro MossdeepCity_Gym_Text_CliffordDefeat
+msgbox	It seems that I could not overcome your youthful energy.
+end
+= MossdeepCity_Gym_EventScript_Sylvia
+trainerbattle_single TRAINER_SYLVIA MossdeepCity_Gym_Text_SylviaIntro MossdeepCity_Gym_Text_SylviaDefeat
+msgbox	How dare you beat me…It won't be my fault if something horrible befalls you…
+end
+= MossdeepCity_Gym_EventScript_Nate
+trainerbattle_single TRAINER_NATE MossdeepCity_Gym_Text_NateIntro MossdeepCity_Gym_Text_NateDefeat
+msgbox	I… I don't let defeat rattle m-me, however b-badly.
+end
+= MossdeepCity_Gym_EventScript_TateAndLiza
+trainerbattle_double TRAINER_TATE_AND_LIZA_1 MossdeepCity_Gym_Text_TateAndLizaIntro MossdeepCity_Gym_Text_TateAndLizaDefeat MossdeepCity_Gym_Text_TateAndLizaNeedTwoMons MossdeepCity_Gym_EventScript_TateAndLizaDefeated NO_MUSIC
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE MossdeepCity_Gym_EventScript_TateAndLizaRematch
+goto_if_unset FLAG_RECEIVED_TM_CALM_MIND MossdeepCity_Gym_EventScript_GiveCalmMind2
+msgbox	TATE: Looks like the bond between you and your POKéMON is far stronger than the bond that we share as twins.LIZA: You will become even stronger! We've battled you, so we know.
+release
+end
+= MossdeepCity_Gym_EventScript_GiveCalmMind2
+giveitem ITEM_TM_CALM_MIND
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+msgbox	TATE: That TM04 contains… LIZA: CALM MIND!TATE: It raises SP. ATK and… LIZA: It raises SP. DEF!TATE: It's a move that's perfect… LIZA: For PSYCHIC POKéMON!… … … … … …
+setflag FLAG_RECEIVED_TM_CALM_MIND
+release
+end
+= MossdeepCity_Gym_EventScript_TateAndLizaRematch
+trainerbattle_rematch_double TRAINER_TATE_AND_LIZA_1 MossdeepCity_Gym_Text_TateAndLizaPreRematch MossdeepCity_Gym_Text_TateAndLizaRematchDefeat MossdeepCity_Gym_Text_TateAndLizaRematchNeedTwoMons
+msgbox	TATE: You can knock us down, but we'll never stay down!LIZA: Because the two of us, we always support each other!
+end
+@ All the below switch scripts are leftover from RS and are functionally unused
+goto MossdeepCity_Gym_EventScript_Switch1
+= MossdeepCity_Gym_EventScript_Switch1
+lockall
+goto_if_set FLAG_MOSSDEEP_GYM_SWITCH_1 MossdeepCity_Gym_EventScript_ClearSwitch1
+setflag FLAG_MOSSDEEP_GYM_SWITCH_1
+applymovement LOCALID_PLAYER MossdeepCity_Gym_Movement_WaitAfterSwitchUse
+waitmovement 0
+setmetatile 5 5 METATILE_RSMossdeepGym_RedArrow_Right FALSE
+setmetatile 2 7 METATILE_RSMossdeepGym_Switch_Down TRUE
+goto MossdeepCity_Gym_EventScript_DrawMapAfterSwitchUsed
+end
+= MossdeepCity_Gym_EventScript_DrawMapAfterSwitchUsed
+special DrawWholeMapView
+playse SE_CLICK
+releaseall
+end
+= MossdeepCity_Gym_EventScript_ClearSwitch1
+clearflag FLAG_MOSSDEEP_GYM_SWITCH_1
+applymovement LOCALID_PLAYER MossdeepCity_Gym_Movement_WaitAfterSwitchUse
+waitmovement 0
+setmetatile 5 5 METATILE_RSMossdeepGym_RedArrow_Left FALSE
+setmetatile 2 7 METATILE_RSMossdeepGym_Switch_Up TRUE
+goto MossdeepCity_Gym_EventScript_DrawMapAfterSwitchUsed
+end
+= MossdeepCity_Gym_EventScript_TateAndLizaDefeated
+msgbox	PLAYER received the MIND BADGE from TATE and LIZA.
+waitmessage
+call Common_EventScript_PlayGymBadgeFanfare
+msgbox	TATE: The MIND BADGE enhances the SP. ATK and SP. DEF of POKéMON.LIZA: It also lets you use the HM move DIVE outside of battle.TATE: You should also take this, too.
+setflag FLAG_DEFEATED_MOSSDEEP_GYM
+setflag FLAG_BADGE07_GET
+setflag FLAG_HIDE_AQUA_HIDEOUT_GRUNTS
+clearflag FLAG_HIDE_SLATEPORT_CITY_STERNS_SHIPYARD_MR_BRINEY
+clearflag FLAG_UNKNOWN_0x393
+setvar VAR_0x8008 7
+call Common_EventScript_SetGymTrainers
+clearflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_PATRONS
+clearflag FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA
+clearflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA
+clearflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA
+clearflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_STEVEN
+setvar VAR_MOSSDEEP_CITY_STATE 1
+setflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_STEVEN
+setvar VAR_MOSSDEEP_SPACE_CENTER_STATE 1
+call MossdeepCity_Gym_EventScript_GiveCalmMind
+closemessage
+delay 30
+playfanfare MUS_REGISTER_MATCH_CALL
+msgbox	Registered GYM LEADERS TATE & LIZA in the POKéNAV.
+waitfanfare
+closemessage
+delay 30
+setflag FLAG_ENABLE_TATE_AND_LIZA_MATCH_CALL
+release
+end
+= MossdeepCity_Gym_EventScript_GiveCalmMind
+giveitem ITEM_TM_CALM_MIND
+goto_if_eq VAR_RESULT FALSE Common_EventScript_BagIsFull
+msgbox	TATE: That TM04 contains… LIZA: CALM MIND!TATE: It raises SP. ATK and… LIZA: It raises SP. DEF!TATE: It's a move that's perfect… LIZA: For PSYCHIC POKéMON!… … … … … …
+setflag FLAG_RECEIVED_TM_CALM_MIND
+return
+= Common_EventScript_SetGymTrainers
+switch VAR_0x8008
+case 1 RustboroCity_Gym_SetGymTrainers
+case 2 DewfordTown_Gym_SetGymTrainers
+case 3 MauvilleCity_Gym_SetGymTrainers
+case 4 LavaridgeTown_Gym_SetGymTrainers
+case 5 PetalburgCity_Gym_SetGymTrainers
+case 6 FortreeCity_Gym_SetGymTrainers
+case 7 MossdeepCity_Gym_SetGymTrainers
+case 8 SootopolisCity_Gym_SetGymTrainers
+end
+= SootopolisCity_Gym_SetGymTrainers
+settrainerflag TRAINER_ANDREA
+settrainerflag TRAINER_CRISSY
+settrainerflag TRAINER_BRIANNA
+settrainerflag TRAINER_CONNIE
+settrainerflag TRAINER_BRIDGET
+settrainerflag TRAINER_OLIVIA
+settrainerflag TRAINER_TIFFANY
+settrainerflag TRAINER_BETHANY
+settrainerflag TRAINER_ANNIKA
+settrainerflag TRAINER_DAPHNE
+return
+= MossdeepCity_Gym_SetGymTrainers
+settrainerflag TRAINER_PRESTON
+settrainerflag TRAINER_VIRGIL
+settrainerflag TRAINER_BLAKE
+settrainerflag TRAINER_HANNAH
+settrainerflag TRAINER_SAMANTHA
+settrainerflag TRAINER_MAURA
+settrainerflag TRAINER_SYLVIA
+settrainerflag TRAINER_NATE
+settrainerflag TRAINER_KATHLEEN
+settrainerflag TRAINER_CLIFFORD
+settrainerflag TRAINER_MACEY
+settrainerflag TRAINER_NICHOLAS
+return
+= FortreeCity_Gym_SetGymTrainers
+settrainerflag TRAINER_JARED
+settrainerflag TRAINER_FLINT
+settrainerflag TRAINER_ASHLEY
+settrainerflag TRAINER_EDWARDO
+settrainerflag TRAINER_HUMBERTO
+settrainerflag TRAINER_DARIUS
+return
+= PetalburgCity_Gym_SetGymTrainers
+settrainerflag TRAINER_RANDALL
+settrainerflag TRAINER_PARKER
+settrainerflag TRAINER_GEORGE
+settrainerflag TRAINER_BERKE
+settrainerflag TRAINER_MARY
+settrainerflag TRAINER_ALEXIA
+settrainerflag TRAINER_JODY
+return
+= LavaridgeTown_Gym_SetGymTrainers
+settrainerflag TRAINER_COLE
+settrainerflag TRAINER_AXLE
+settrainerflag TRAINER_KEEGAN
+settrainerflag TRAINER_GERALD
+settrainerflag TRAINER_DANIELLE
+settrainerflag TRAINER_JACE
+settrainerflag TRAINER_JEFF
+settrainerflag TRAINER_ELI
+return
+= MauvilleCity_Gym_SetGymTrainers
+settrainerflag TRAINER_KIRK
+settrainerflag TRAINER_SHAWN
+settrainerflag TRAINER_BEN
+settrainerflag TRAINER_VIVIAN
+settrainerflag TRAINER_ANGELO
+return
+= DewfordTown_Gym_SetGymTrainers
+settrainerflag TRAINER_TAKAO
+settrainerflag TRAINER_JOCELYN
+settrainerflag TRAINER_LAURA
+settrainerflag TRAINER_BRENDEN
+settrainerflag TRAINER_CRISTIAN
+settrainerflag TRAINER_LILITH
+return
+= RustboroCity_Gym_SetGymTrainers
+settrainerflag TRAINER_JOSH
+settrainerflag TRAINER_TOMMY
+settrainerflag TRAINER_MARC
+return
+= MossdeepCity_Gym_EventScript_GymGuide
+lock
+faceplayer
+goto_if_set FLAG_DEFEATED_MOSSDEEP_GYM MossdeepCity_Gym_EventScript_GymGuidePostVictory
+msgbox	Yo, how's it going, CHAMPION-bound PLAYER?The GYM LEADERS here use PSYCHIC-type POKéMON.If you go up against them with FIGHTING- or POISON-type POKéMON, they'll inflict horrible damage!Plus, they'll come at you with outstanding combination attacks.If you want to win, you'll need to show them how tight you are with your POKéMON. Go for it!
+release
+end
+= MossdeepCity_Gym_EventScript_GymGuidePostVictory
+msgbox	Wow, you're astounding! You're one great TRAINER!
+release
+end
+@ Leftover from RS functionally unused
+goto MossdeepCity_Gym_EventScript_LeftGymStatue
+= MossdeepCity_Gym_EventScript_LeftGymStatue
+lockall
+goto_if_set FLAG_BADGE07_GET MossdeepCity_Gym_EventScript_GymStatueCertified
+goto MossdeepCity_Gym_EventScript_GymStatue
+end
+= MossdeepCity_Gym_EventScript_GymStatue
+msgbox	MOSSDEEP CITY POKéMON GYM
+releaseall
+end
+= MossdeepCity_Gym_EventScript_GymStatueCertified
+msgbox	MOSSDEEP CITY POKéMON GYMLIZA AND TATE'S CERTIFIED TRAINERS: PLAYER
+releaseall
+end
+= MossdeepCity_Gym_EventScript_Hannah
+trainerbattle_single TRAINER_HANNAH MossdeepCity_Gym_Text_HannahIntro MossdeepCity_Gym_Text_HannahDefeat
+msgbox	I'm not going to get down on myself for losing. I just need to train harder.Positive thinking--that's my strong point!
+end
+= MossdeepCity_Gym_EventScript_Virgil
+trainerbattle_single TRAINER_VIRGIL MossdeepCity_Gym_Text_VirgilIntro MossdeepCity_Gym_Text_VirgilDefeat
+msgbox	If there are prodigies in the world, then our GYM LEADERS are them!However, you may be even more talented than them…
+end
+= MossdeepCity_Gym_EventScript_Samantha
+trainerbattle_single TRAINER_SAMANTHA MossdeepCity_Gym_Text_SamanthaIntro MossdeepCity_Gym_Text_SamanthaDefeat
+msgbox	You will wage a terrifically intense battle with our GYM LEADERS…The result… You won't hear it from me!
+end
+= MossdeepCity_Gym_EventScript_Maura
+trainerbattle_single TRAINER_MAURA MossdeepCity_Gym_Text_MauraIntro MossdeepCity_Gym_Text_MauraDefeat
+msgbox	A bright future awaits those who have worked diligently.For those who lazed idly, there is only despair at the end.What goes around comes around…
+end
+= MossdeepCity_Gym_EventScript_Blake
+trainerbattle_single TRAINER_BLAKE MossdeepCity_Gym_Text_BlakeIntro MossdeepCity_Gym_Text_BlakeDefeat
+msgbox	A POKé BALL was too heavy to lift psychically. But this dust bunny…Whoooooooooooooooh! … … … … … …No, I'm not cheating! I didn't blow on it! Honestly!
+end
+= MossdeepCity_Gym_EventScript_Preston
+trainerbattle_single TRAINER_PRESTON MossdeepCity_Gym_Text_PrestonIntro MossdeepCity_Gym_Text_PrestonDefeat
+msgbox	The indecisive lose. That's my warning to you.
+end
+mapsec
+24 5 2 1	MOSSDEEP CITY
+music
+MUS_GYM

@@ -1,0 +1,88 @@
+tileset general__facility
+22 19
+11 8
+513,513,513,513,513,513,513,513,513,751,691,692,693,751,751,740,751,751,740,751,751,740
+513,513,513,513,513,513,513,513,513,759,699,700,701,759,759,748,759,759,748,759,759,748
+513,513,513,513,513,513,513,513,513,743,744,743,745,806,806,743,743,743,743,743,743,743
+513,513,513,751,740,751,751,740,799,743,742,742,742,750,750,742,750,750,750,742,750,750
+513,513,513,759,748,759,759,748,807,743,742,742,742,750,750,742,750,750,750,742,750,750
+513,513,513,743,743,743,743,743,743,743,742,742,742,750,750,742,742,742,742,742,742,742
+513,513,513,518,519,742,742,742,742,742,742,742,742,742,742,742,750,750,750,742,750,750
+513,513,513,513,513,513,513,513,513,806,750,742,742,742,742,742,750,750,750,742,750,750
+513,513,513,513,513,513,513,513,513,806,750,742,742,742,742,742,742,742,742,742,742,742
+513,513,513,513,513,513,513,513,513,743,742,750,750,742,742,742,742,742,742,742,742,742
+513,513,513,513,513,513,513,513,513,743,742,750,750,742,742,742,742,742,742,742,742,742
+513,513,513,513,513,513,513,513,513,806,750,742,742,750,750,742,742,742,742,742,750,750
+513,513,513,513,513,513,513,513,513,806,750,742,742,750,750,742,742,742,742,742,750,750
+513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,743,742,513,513,513
+513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,743,742,513,513,513
+513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,743,742,513,513,513
+513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,743,742,513,513,513
+513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,743,742,513,513,513
+513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,518,519,513,513,513
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,0,0,0,0,0,0,0
+1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,0,1,1,1,0,1,1
+1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,0,1,1,1,0,1,1
+1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0
+1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,1,1
+1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,0,1,1
+1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0
+1,1,1,1,1,1,1,1,1,0,0,1,1,0,0,0,0,0,0,0,0,0
+1,1,1,1,1,1,1,1,1,0,0,1,1,0,0,0,0,0,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,0,0,0,0,0,1,1
+1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,0,0,0,0,0,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1
+warps
+17 18 Route122 0
+3 6 MtPyre_Exterior 0
+18 18 Route122 0
+4 6 MtPyre_Exterior 0
+11 1 MtPyre_2F 0
+20 9 MtPyre_2F 4
+npcs
+people_old_woman 21 2 S static 0 - 0
+people_pokefan_f 17 8 N static 0 - 0
+people_man_4 13 10 W static 0 - 0
+dialogs
+0	All sorts of beings wander the slopes of MT. PYRE…There is no telling what may happen. Take this. It's for your own good.
+1	Did you come to pay your respect to the spirits of departed POKéMON?You must care for your POKéMON a lot.
+2	This is the final resting place of my ZIGZAGOON. I cherished it…
+objscripts
+0 MtPyre_1F_EventScript_CleanseTagWoman
+1 MtPyre_1F_EventScript_PokefanF
+2 MtPyre_1F_EventScript_Man
+scriptdefs
+= MtPyre_1F_EventScript_Man
+msgbox	This is the final resting place of my ZIGZAGOON. I cherished it…
+end
+= MtPyre_1F_EventScript_PokefanF
+msgbox	Did you come to pay your respect to the spirits of departed POKéMON?You must care for your POKéMON a lot.
+end
+= MtPyre_1F_EventScript_CleanseTagWoman
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_CLEANSE_TAG MtPyre_1F_EventScript_ReceivedCleanseTag
+msgbox	All sorts of beings wander the slopes of MT. PYRE…There is no telling what may happen. Take this. It's for your own good.
+giveitem ITEM_CLEANSE_TAG
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_RECEIVED_CLEANSE_TAG
+release
+end
+= MtPyre_1F_EventScript_ReceivedCleanseTag
+msgbox	Have a POKéMON hold that CLEANSE TAG.It will help ward off wild POKéMON.
+release
+end
+mapsec
+16 4 1 1	MT. PYRE
+music
+MUS_MT_PYRE
+encounters
+land SHUPPET:27:27,SHUPPET:28:28,SHUPPET:26:26,SHUPPET:25:25,SHUPPET:29:29,SHUPPET:24:24,SHUPPET:23:23,SHUPPET:22:22,SHUPPET:29:29,SHUPPET:24:24,SHUPPET:29:29,SHUPPET:24:24

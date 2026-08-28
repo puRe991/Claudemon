@@ -1,0 +1,904 @@
+tileset general__sootopolis
+60 60
+43 32
+729,729,729,729,729,729,729,730,729,729,723,737,737,737,738,730,729,730,729,729,729,729,729,729,729,723,737,737,569,737,737,737,737,737,724,736,724,736,724,729,729,729,729,729,736,737,737,737,737,737,737,737,569,737,724,729,729,729,729,729
+729,729,729,729,723,737,737,738,729,729,730,729,723,737,737,738,723,738,729,729,723,737,737,569,737,738,723,520,528,536,587,588,589,724,736,724,736,724,736,737,737,737,737,737,737,737,737,737,737,737,737,520,528,515,736,569,737,737,724,729
+729,723,737,737,738,729,723,737,737,569,738,729,730,729,729,729,730,729,729,729,730,723,520,528,536,737,738,521,522,523,525,526,527,728,729,736,724,736,737,737,737,737,724,729,729,729,729,729,729,729,729,521,522,523,520,528,536,724,728,729
+737,738,729,729,723,737,738,729,513,514,536,737,738,723,737,737,738,729,729,729,730,730,521,522,523,729,729,529,530,531,549,567,551,728,729,729,736,724,729,729,729,729,736,737,587,588,589,729,729,729,729,529,530,531,521,522,523,728,736,737
+729,729,723,737,738,729,723,737,521,522,523,597,729,730,723,737,737,737,737,737,738,730,529,516,531,729,729,537,538,539,557,575,559,736,724,729,729,736,724,576,577,577,577,578,525,526,602,724,729,729,729,537,538,539,529,516,531,736,737,724
+737,737,738,729,729,723,738,729,547,532,548,607,723,738,730,729,729,729,729,729,729,730,537,524,539,729,729,729,729,729,729,729,729,729,736,737,724,729,736,737,724,729,729,729,533,534,535,736,724,729,729,729,729,729,537,524,539,729,729,728
+729,723,587,588,589,738,729,729,555,540,556,607,730,723,738,729,729,723,737,580,581,738,729,729,729,729,729,729,729,729,729,729,729,729,729,729,728,729,729,729,728,729,729,729,541,542,543,729,728,576,577,577,577,577,577,577,577,578,729,736
+723,738,525,526,527,576,577,577,582,729,583,604,730,730,729,729,729,730,729,729,729,729,729,729,729,729,576,577,582,729,729,583,577,577,577,578,736,724,729,729,736,737,737,737,737,580,737,724,736,737,737,737,737,737,737,737,737,724,729,729
+738,729,549,566,551,729,723,737,610,580,611,737,738,730,729,729,729,730,729,729,729,729,729,729,729,729,723,737,610,580,581,611,737,737,737,737,724,736,737,737,737,737,724,729,729,729,729,736,737,737,737,737,737,569,737,737,724,728,729,729
+729,729,557,574,559,729,730,729,723,580,737,737,737,738,729,729,729,730,723,737,737,737,737,737,737,737,738,729,729,729,729,729,729,729,729,729,736,737,737,737,724,729,736,737,737,580,737,737,737,737,737,737,520,528,536,724,728,736,737,724
+577,577,577,577,577,578,730,729,730,729,729,729,729,729,729,729,729,730,730,729,729,723,737,737,737,737,737,737,737,737,737,737,737,737,580,581,737,737,737,724,736,724,729,729,723,580,737,737,737,737,737,724,521,522,523,728,736,737,724,736
+737,737,737,737,737,737,738,723,738,723,737,737,737,737,737,580,581,738,730,723,737,738,723,737,737,737,737,737,737,737,737,737,737,737,580,581,737,737,724,728,729,728,729,729,730,729,729,729,729,729,729,728,529,516,531,728,729,729,728,729
+729,729,723,737,737,737,737,738,723,738,729,729,729,729,729,729,729,723,738,730,723,737,738,729,723,737,737,737,737,737,737,737,737,737,580,581,724,729,728,736,724,736,737,737,738,729,729,729,729,729,729,728,537,524,539,728,729,729,736,737
+737,737,738,729,723,737,737,737,738,568,729,723,737,737,737,580,581,738,729,730,730,723,737,737,738,729,729,729,729,729,729,729,729,729,729,729,736,724,736,724,736,737,737,737,569,737,737,724,729,729,729,736,724,729,729,736,737,724,729,729
+729,729,729,729,730,729,723,737,520,528,536,738,729,729,729,729,729,729,723,738,730,730,576,577,582,729,729,583,577,577,577,577,577,577,577,577,578,736,724,736,737,737,737,520,528,536,724,728,729,729,729,729,728,729,729,729,729,736,737,724
+729,723,737,737,738,729,730,596,521,522,523,578,729,729,729,729,729,729,730,729,730,730,729,723,610,580,581,611,737,593,594,603,594,595,737,724,729,729,736,737,724,596,577,521,522,523,728,728,729,729,729,729,728,729,568,729,729,729,729,736
+729,571,729,729,729,729,730,606,547,532,548,729,729,729,723,737,580,581,738,729,730,730,729,730,729,729,729,729,723,544,737,545,737,546,724,736,737,737,724,729,728,606,729,547,532,548,728,728,729,729,729,729,736,520,528,536,737,737,737,724
+520,528,515,729,729,729,730,606,555,540,556,729,729,729,730,723,580,581,737,737,738,730,729,730,729,729,729,729,730,552,553,553,553,554,755,729,729,729,736,724,728,606,729,555,540,556,728,736,724,729,729,729,729,521,522,523,517,518,519,736
+521,522,523,723,587,588,589,606,729,729,729,729,729,729,730,730,729,729,729,729,729,730,723,738,622,729,729,623,730,560,113,113,113,562,755,729,729,729,729,728,728,606,729,729,729,729,728,729,736,580,581,737,724,529,530,531,525,526,527,729
+529,530,531,730,525,526,527,606,729,729,729,729,729,729,730,730,729,729,729,729,729,730,730,723,610,580,581,611,765,113,640,113,640,113,763,737,724,729,729,728,728,606,729,729,729,729,736,737,737,580,581,724,728,537,538,539,549,567,551,729
+537,538,539,730,549,567,551,605,577,577,577,578,729,729,730,730,729,729,723,737,580,738,730,730,113,113,113,113,113,113,640,113,640,113,113,113,763,737,724,728,728,606,729,729,729,729,729,729,729,729,729,728,736,737,737,724,557,575,559,729
+577,577,578,730,557,575,559,729,723,737,737,737,580,581,738,730,729,729,730,723,580,737,738,730,113,113,113,113,113,113,113,113,113,113,113,113,113,113,718,728,728,605,577,578,729,729,729,729,729,729,729,728,729,729,729,736,737,737,737,724
+737,737,737,738,723,737,737,737,738,729,729,729,729,729,729,730,729,729,730,730,729,729,729,730,113,113,113,113,113,113,113,113,113,113,113,113,113,113,718,728,736,737,737,737,580,581,737,587,588,589,724,736,737,737,724,729,729,729,729,736
+729,729,723,737,738,729,723,737,587,588,589,737,580,581,737,738,723,737,738,730,729,729,729,730,113,113,116,124,124,124,124,124,124,124,124,124,124,137,718,736,737,724,596,578,729,729,729,525,526,527,728,729,729,729,736,724,729,729,729,729
+737,587,588,519,729,729,730,596,601,526,602,578,729,729,723,737,738,723,737,738,723,580,581,717,116,121,125,195,177,177,177,177,177,177,177,177,196,115,726,737,724,728,606,729,729,729,729,533,534,535,728,729,729,729,729,728,729,729,729,729
+729,525,526,527,729,729,730,606,533,534,535,729,729,729,730,723,737,738,729,729,730,113,113,116,125,195,177,192,633,633,633,633,633,633,633,633,186,123,121,137,755,728,606,729,729,729,729,541,542,543,728,729,517,518,519,736,724,729,729,729
+729,549,566,551,729,729,730,606,541,542,543,729,729,729,730,730,619,620,620,621,730,113,113,117,195,192,633,633,633,633,633,633,633,633,633,633,194,177,196,115,755,728,606,729,729,729,729,729,729,729,736,724,525,526,527,729,728,729,729,729
+729,557,574,559,729,729,730,606,729,729,729,729,729,729,730,730,48,49,50,51,730,113,113,117,184,633,633,633,633,633,633,633,633,633,633,633,633,633,186,115,755,728,605,577,577,578,729,729,729,729,729,728,533,534,535,729,736,724,729,729
+577,577,577,577,578,723,738,605,577,577,577,577,578,723,738,730,56,57,58,59,730,113,113,117,184,633,633,633,642,643,643,643,643,644,633,633,633,633,186,115,755,736,635,636,637,638,724,729,729,729,729,728,541,542,543,729,729,728,729,729
+729,729,723,737,737,738,723,737,737,737,737,737,737,738,723,738,639,65,66,631,730,113,113,117,184,633,633,203,650,651,651,651,651,652,204,633,633,633,186,115,755,596,80,81,82,83,728,729,729,729,729,736,737,580,724,729,729,736,724,729
+729,723,738,729,723,737,738,729,729,729,723,737,737,737,738,729,729,729,729,729,730,113,113,117,184,633,633,186,440,441,442,435,443,444,184,633,633,633,186,115,755,606,88,89,90,91,728,729,729,729,729,729,729,729,728,729,729,729,728,729
+729,730,729,729,730,729,729,729,729,729,730,729,729,729,729,729,729,729,729,723,765,113,113,117,184,633,633,186,448,449,450,453,451,452,184,633,633,633,186,115,755,606,639,97,98,630,736,737,580,581,724,729,729,729,736,737,737,724,736,724
+723,738,729,729,730,723,737,587,588,589,738,729,729,729,729,729,723,580,581,765,113,113,113,117,184,633,203,211,456,457,458,461,459,460,212,204,633,633,186,115,755,606,729,729,729,729,729,729,729,729,736,737,737,724,729,729,729,728,729,728
+738,729,729,723,738,730,596,601,526,602,578,729,729,729,729,723,765,113,113,113,113,113,113,117,184,633,186,1,1,1,1,1,1,304,1,184,633,633,186,115,755,606,729,729,729,729,729,729,729,729,517,518,519,736,569,737,724,728,729,728
+729,729,729,730,729,730,606,533,534,535,729,729,729,729,723,765,113,113,113,113,113,113,116,125,184,633,186,1,1,1,1,1,1,305,1,184,633,633,186,115,755,605,578,729,729,576,577,582,729,729,525,526,527,513,514,515,728,728,729,728
+729,723,737,738,723,738,606,541,542,543,729,729,729,729,730,113,116,734,735,580,581,121,122,195,192,633,186,1,1,1,1,1,1,1,1,184,633,633,186,115,763,737,737,580,581,737,724,590,729,729,533,534,535,521,522,523,728,728,729,728
+723,738,729,729,730,729,606,729,729,729,729,729,729,729,730,113,114,470,471,1,1,1,1,184,633,633,186,1,1,1,1,1,1,1,1,184,633,633,186,123,121,121,121,580,581,137,755,590,729,729,541,542,543,529,530,531,728,736,724,728
+738,723,737,737,738,729,605,578,729,729,729,729,723,737,765,113,114,486,487,1,1,1,1,184,633,633,194,177,177,177,177,177,177,177,177,192,633,633,194,178,1,3,1,1,1,112,755,590,729,729,729,729,729,537,538,539,728,729,728,728
+729,730,729,729,723,737,737,737,737,737,737,737,765,116,121,121,122,1,176,177,177,177,177,192,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,186,1,1,1,1,1,112,755,598,576,577,577,577,577,577,577,578,736,724,728,736
+723,738,729,723,765,113,116,121,734,735,734,735,121,122,1,1,1,1,184,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,186,1,1,1,1,1,112,763,737,737,737,737,737,737,737,724,729,729,728,736,724
+730,729,729,730,113,113,114,1,470,471,470,471,1,1,1,1,1,1,184,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,194,177,178,1,1,1,120,121,121,121,121,137,113,113,113,755,729,729,728,729,728
+730,729,729,730,113,113,114,1,486,485,476,477,1,1,1,1,1,1,184,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,186,1,1,1,1,1,1,1,1,120,734,735,137,763,724,729,736,724,728
+730,729,729,730,113,113,114,1,1,1,468,469,1,1,1,1,1,1,184,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,186,1,1,1,1,1,1,1,1,1,470,471,112,113,755,729,729,728,728
+730,729,729,730,113,113,114,1,1,1,486,487,1,1,1,1,1,1,184,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,194,177,177,178,1,1,1,1,462,463,476,477,112,113,763,724,729,728,728
+730,729,729,730,113,113,114,1,1,1,1,1,1,1,462,463,1,1,184,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,186,1,1,1,1,470,469,468,469,112,113,113,755,729,728,728
+732,722,729,748,749,113,114,1,1,1,1,1,1,1,470,471,1,1,184,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,186,1,1,1,1,476,477,476,477,112,113,113,755,729,728,728
+729,730,729,729,732,749,191,105,105,105,106,1,1,1,476,477,176,177,192,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,194,177,177,177,178,468,469,468,469,112,113,113,755,729,728,728
+729,732,721,721,722,732,748,748,748,749,191,105,106,1,468,469,184,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,186,486,485,484,487,112,747,748,731,729,728,728
+729,729,729,729,732,721,721,722,729,732,748,749,114,1,486,487,184,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,152,608,617,105,105,105,190,755,729,720,721,731,731
+729,729,729,729,729,729,729,732,721,722,729,730,191,105,105,106,184,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,160,113,113,113,113,747,748,731,720,728,729,729,729
+721,721,721,722,729,729,729,729,729,730,729,732,748,749,113,114,184,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,152,617,617,617,617,617,617,113,747,748,748,731,729,729,728,728,729,729,729
+729,729,729,732,721,722,729,729,729,732,721,721,722,732,749,114,184,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,633,160,113,113,113,113,113,113,113,755,729,729,729,720,721,731,728,729,729,729
+729,729,729,729,729,730,729,729,729,729,729,729,730,729,730,114,184,633,633,633,633,633,633,633,633,633,645,646,646,646,647,633,633,633,633,633,633,152,617,617,617,617,113,113,113,113,747,748,748,731,729,729,729,728,729,729,728,729,729,729
+729,729,729,729,729,732,721,722,729,729,729,729,732,722,730,114,184,633,633,633,633,633,633,633,645,646,653,654,654,654,655,646,647,633,633,633,633,160,113,113,113,113,113,113,113,747,731,720,721,721,721,721,721,731,720,721,731,729,729,729
+729,729,729,729,729,729,729,730,729,729,729,729,729,730,730,114,184,633,633,633,633,633,633,645,653,654,654,654,654,654,654,654,655,647,633,633,633,160,113,113,113,113,113,747,748,731,729,728,729,729,729,729,720,721,731,729,729,729,729,729
+729,729,729,729,729,729,729,732,721,722,729,729,729,730,730,617,617,617,617,154,633,633,645,653,654,654,654,654,654,654,654,654,654,655,647,152,617,617,113,113,747,748,748,731,729,729,729,728,720,721,721,721,731,729,729,729,729,729,729,729
+729,729,729,729,729,729,729,729,729,730,729,729,729,730,730,113,113,113,113,617,617,617,617,617,617,617,617,617,617,617,617,617,617,617,617,617,113,113,113,113,755,729,720,721,721,721,721,731,728,729,729,729,729,729,729,729,729,729,729,729
+729,729,729,729,729,729,729,729,729,732,721,722,729,730,732,749,113,113,113,113,113,113,113,113,113,113,113,113,113,113,113,113,113,113,113,113,113,747,748,748,731,729,728,720,721,721,721,721,731,729,729,729,729,729,729,729,729,729,729,729
+729,729,729,729,729,729,729,729,729,729,729,730,729,730,729,732,748,748,748,748,748,748,748,748,748,748,748,748,748,748,748,748,748,748,748,748,748,731,729,720,721,721,731,728,729,729,729,729,729,729,729,729,729,729,729,729,729,729,729,729
+729,729,729,729,729,729,729,729,729,729,729,730,729,732,721,721,721,721,721,721,721,721,721,721,721,721,721,721,721,721,721,721,721,721,721,721,721,721,721,731,729,729,729,728,729,729,729,729,729,729,729,729,729,729,729,729,729,729,729,729
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,0,0,1,1,1,1,1,1,1,0,0,1,1,0,0,0,0,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,0,1,1,1,0,0,0,1,1,1,1,1,0,0,0,0,0,1,1,1,0,0,1
+1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,0,0,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1,1,1,0,1,1,1,1,1,1,1,1,1,1,0,1
+1,1,1,1,1,1,1,1,1,0,1,1,1,1,0,0,0,1,0,0,0,0,0,0,0,0,1,1,1,0,0,1,1,1,1,1,1,1,0,0,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0
+1,1,1,1,1,0,1,1,1,0,1,1,1,1,0,0,0,1,0,0,0,0,0,0,0,0,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0
+1,1,1,1,1,0,1,0,1,0,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,0,1,0,0,0,0,0,0,0,0,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,0,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,0,0,1,0
+0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,0,0,1,1
+1,1,1,0,1,1,1,1,1,0,0,1,1,1,1,0,0,1,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,0,0,1,1,1,0,0
+0,0,0,0,1,0,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,0,0,0,0,1,1,1
+0,1,1,1,1,0,1,1,1,1,1,1,0,0,0,0,0,0,1,0,1,1,0,1,1,0,0,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,0,0,0,0,0,0,1
+0,1,0,0,0,0,1,1,1,1,1,0,0,0,1,1,0,0,1,0,1,1,0,1,0,0,0,0,1,1,1,0,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1
+1,1,0,0,0,0,1,1,1,1,1,0,0,0,1,1,0,0,1,1,1,1,0,1,0,0,0,0,1,1,0,0,0,1,1,0,0,0,1,1,1,1,0,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,1,1,1,1,0,0,1,1,1,0,0,0,1,1,0,0,0,0,1,1,1,0,0,0,0,1,0,1,0,0,1,1,1,1,1,1,1,1,0
+1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,1,1,1,1,0,0,1,1,0,1,0,1,0,1,1,1,0,0,1,1,1,0,0,0,0,1,1,1,0,0,1,1,1,1,1,1,1,1,0
+1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,0,0,1,1,0,1,1,1,0,0,0,0,0,0,1,0,1,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0
+1,1,1,1,1,1,1,0,1,1,1,1,0,0,1,1,0,0,1,1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,0,0,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,0,0,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,1
+1,1,1,1,1,0,1,1,1,1,1,1,0,0,1,1,1,1,1,1,0,0,0,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,0,0,0,1,1,0,0,0,0
+1,1,1,1,0,0,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,0
+0,1,1,1,0,0,1,1,1,1,1,0,0,0,1,1,1,1,0,0,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,1,1,1,1,0,1,1,1,1,1,0,0,0
+0,1,1,1,0,0,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,0,1,0,0,0
+0,1,1,1,0,0,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,0,1,1,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,0,0,1,0,0
+0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,1,1,0,1,0,0,1,1,0
+0,1,1,0,1,1,1,0,0,0,1,1,1,1,1,0,0,0,0,0,1,0,0,1,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,0,0,1,0
+0,1,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,1,0,0,1,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,1,0,0,0,1,1,1,1,1,1
+1,1,0,0,1,1,1,1,1,1,1,0,0,0,0,0,1,0,0,1,0,0,0,1,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,1,0,1
+1,0,0,1,1,1,1,1,1,1,1,0,0,0,0,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,1
+0,0,0,1,0,1,1,1,1,1,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,1,1,0,0,1,1,1,0,0,1,1,1,0,0,0,1,1,0,1
+0,1,1,1,1,1,1,1,1,1,0,0,0,0,1,0,1,1,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,1,1,1,0,0,1,1,1,1,1,1,1,1,0,1
+1,1,0,0,1,0,1,0,0,0,0,0,0,0,1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,0,1,1,0,0,0,0,1,1,1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,1,0,0,0,0,0,1,1,1,1,0,1,1
+0,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,0,1,1,1,1,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,0,1,1,1,1,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1
+1,1,0,1,1,1,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1
+1,1,0,1,1,1,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1
+1,1,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1
+1,1,0,1,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+43 31 SootopolisCity_PokemonCenter_1F 0
+17 29 SootopolisCity_Mart 0
+31 32 SootopolisCity_Gym_1F 0
+31 16 CaveOfOrigin_Entrance 0
+9 6 SootopolisCity_House1 0
+45 6 SootopolisCity_House2 0
+9 17 SootopolisCity_House3 0
+44 17 SootopolisCity_House4 0
+9 26 SootopolisCity_House5 0
+53 28 SootopolisCity_House6 0
+8 35 SootopolisCity_House7 0
+48 25 SootopolisCity_LotadAndSeedotHouse 0
+51 36 SootopolisCity_MysteryEventsHouse_1F 0
+npcs
+people_expert_m 31 18 S static 0 LOCALID_SOOTOPOLIS_EXPERT 0
+people_woman_4 47 33 W static FLAG_HIDE_SOOTOPOLIS_CITY_RESIDENTS LOCALID_SOOTOPOLIS_WOMAN_2 0
+people_girl_2 9 43 S wander 0 LOCALID_KIRI 0
+people_ninja_boy 51 14 S static 0 LOCALID_SOOTOPOLIS_NINJA_BOY 0
+people_boy_1 43 26 S static 0 LOCALID_SOOTOPOLIS_BOY_1 0
+people_man_1 26 4 S wander FLAG_HIDE_SOOTOPOLIS_CITY_MAN_1 - 0
+people_steven 20 36 S static FLAG_HIDE_SOOTOPOLIS_CITY_STEVEN LOCALID_SOOTOPOLIS_STEVEN 0
+people_woman_5 49 34 S wander 0 LOCALID_SOOTOPOLIS_WOMAN_1 0
+people_man_1 28 44 S static FLAG_HIDE_SOOTOPOLIS_CITY_GROUDON LOCALID_SOOTOPOLIS_GROUDON 0
+people_man_1 34 44 S static FLAG_HIDE_SOOTOPOLIS_CITY_KYOGRE LOCALID_SOOTOPOLIS_KYOGRE 0
+pokemon_rayquaza 31 41 E static FLAG_HIDE_SOOTOPOLIS_CITY_RAYQUAZA LOCALID_SOOTOPOLIS_RAYQUAZA 0
+people_maniac 17 44 E static FLAG_HIDE_SOOTOPOLIS_CITY_RESIDENTS LOCALID_SOOTOPOLIS_MANIAC 0
+people_girl_3 14 42 E static FLAG_HIDE_SOOTOPOLIS_CITY_RESIDENTS LOCALID_SOOTOPOLIS_GIRL 0
+people_black_belt 17 40 E static FLAG_HIDE_SOOTOPOLIS_CITY_RESIDENTS LOCALID_SOOTOPOLIS_BLACK_BELT 0
+people_boy_2 19 37 S static FLAG_HIDE_SOOTOPOLIS_CITY_RESIDENTS LOCALID_SOOTOPOLIS_BOY_2 0
+people_team_magma_maxie 29 33 S static FLAG_HIDE_SOOTOPOLIS_CITY_MAXIE LOCALID_SOOTOPOLIS_MAXIE 0
+people_team_aqua_archie 31 33 S static FLAG_HIDE_SOOTOPOLIS_CITY_ARCHIE LOCALID_SOOTOPOLIS_ARCHIE 0
+people_wallace 31 18 S static FLAG_HIDE_SOOTOPOLIS_CITY_WALLACE LOCALID_SOOTOPOLIS_WALLACE 0
+dialogs
+0	Who might you be?This is the CAVE OF ORIGIN.The spirits of POKéMON, becalmed at MT. PYRE, are said to be revived here.Please leave.
+1	The weather was clear this morning, but…All of a sudden, dark clouds brewed up, rain started falling in sheets, and there was thunder and lightning, too.The weather just went completely wild!Is all of this because of those POKéMON?
+2	A big POKéMON is fighting with another big POKéMON!Please, someone make them stop!
+3	Wow! This is wicked!
+4	These giant POKéMON suddenly appeared in the middle of the city!And, I've never seen them before!Why are they smashing into each other like that?Why can't they be friends, those POKéMON?
+5	Hm! You've come all the way to SOOTOPOLIS? You're no ordinary tourist.But I suppose that doesn't make you an extraordinary tourist, either.
+6	STEVEN: So that's RAYQUAZA…It's incredible how the two rampaging POKéMON would flee from it in fear…
+7	SOOTOPOLIS sprang up as a town in the crater of a volcano.If you look up at the sky, the lip of the crater is also visible. So, all you see is the sky in a circle.But that's what makes the sky above SOOTOPOLIS the most beautiful.
+11	There's an ancient legend that claims the land and sea were shaped by a colossal battle between POKéMON.Well, I'm seeing that happen with my very own eyes!Whoa! I never expected to be witness to something this huge!
+12	Oh, no! SOOTOPOLIS CITY will get wrecked!
+13	Go for it, red POKéMON! Don't back off, blue POKéMON!
+14	I just get this sense somehow that the two POKéMON aren't angry.I think… They probably can't control their own power…
+15	MAXIE: G… GROUDON… Please! Stop what you're doing!I know the extent of your power now!If you keep going, all HOENN, not just SOOTOPOLIS, will be utterly ruined!
+16	ARCHIE: KYOGRE! What's wrong?! Look over here! It's the RED ORB! Calm down! KYOGRE!… … … … … … … … … … … …It's no good! It's not responding at all!
+17	WALLACE: PLAYER…The leaders of TEAM MAGMA and AQUA, I don't think they meant harm.It wouldn't hurt to hear what they have to say for themselves.
+objscripts
+0 SootopolisCity_EventScript_CaveOfOriginExpert
+1 SootopolisCity_EventScript_Woman2
+2 SootopolisCity_EventScript_Kiri
+3 SootopolisCity_EventScript_NinjaBoy
+4 SootopolisCity_EventScript_Boy1
+5 SootopolisCity_EventScript_Man
+6 SootopolisCity_EventScript_Steven
+7 SootopolisCity_EventScript_Woman1
+11 SootopolisCity_EventScript_Maniac
+12 SootopolisCity_EventScript_Girl
+13 SootopolisCity_EventScript_BlackBelt
+14 SootopolisCity_EventScript_Boy2
+15 SootopolisCity_EventScript_Maxie
+16 SootopolisCity_EventScript_Archie
+17 SootopolisCity_EventScript_Wallace
+onload
+VAR_SOOTOPOLIS_CITY_STATE 1 SootopolisCity_EventScript_StartLegendariesScene
+VAR_SKY_PILLAR_STATE 1 SootopolisCity_EventScript_StartRayquazaScene
+movements
+Common_Movement_FaceOriginalDirection	face_down,end
+Common_Movement_FacePlayer	face_down,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+SootopolisCity_Movement_ExpertMoveAside	left,delay,end
+SootopolisCity_Movement_GroudonAttack	delay,delay,delay,delay,delay,delay,right,end
+SootopolisCity_Movement_GroudonDefend	delay,delay,delay,delay,delay,delay,delay,delay,delay,right,end
+SootopolisCity_Movement_GroudonIdle	delay,delay,delay,delay,delay,delay,end
+SootopolisCity_Movement_GroudonMoveBack	delay,left,delay,delay,delay,delay,end
+SootopolisCity_Movement_KyogreAttack	delay,delay,delay,delay,delay,delay,delay,delay,delay,end
+SootopolisCity_Movement_KyogreDefend	delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,end
+SootopolisCity_Movement_KyogreIdle	delay,delay,delay,delay,delay,delay,end
+SootopolisCity_Movement_KyogreMoveBack	delay,right,delay,delay,delay,delay,end
+SootopolisCity_Movement_PanBackToDive	down,down,down,down,down,down,down,delay,delay,end
+SootopolisCity_Movement_PanBackToPokeCenter	delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,end
+SootopolisCity_Movement_PanToActionFromDive	delay,delay,up,up,up,up,up,up,up,end
+SootopolisCity_Movement_PanToActionFromPokeCenter	delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,end
+SootopolisCity_Movement_PanUp	up,up,up,up,end
+SootopolisCity_Movement_PlayerApproachLegendaries	up,up,up,up,end
+SootopolisCity_Movement_PlayerArriveCaveEntrance	delay,delay,delay,delay,right,right,up,up,up,delay,end
+SootopolisCity_Movement_PlayerEnterCaveOfOrigin	up,up,end
+SootopolisCity_Movement_PlayerStartWalkToCaveOfOriginNorth	up,up,up,up,right,up,up,up,up,up,up,up,up,up,up,up,left,up,up,up,up,left,left,left,left,up,up,up,up,up,up,up,up,up,up,end
+SootopolisCity_Movement_PlayerStartWalkToCaveOfOriginWest	left,up,up,up,right,up,up,up,up,up,up,up,up,up,up,up,left,up,up,up,up,left,left,left,left,up,up,up,up,up,up,up,up,up,up,end
+SootopolisCity_Movement_PlayerWalkToCaveOfOrigin	up,up,up,right,right,right,right,down,down,right,right,right,right,right,up,right,right,right,right,down,down,down,right,right,right,right,right,down,down,down,down,left,left,left,left,left,left,left,left,down,down,down,down,down,down,down,down,right,right,right,end
+SootopolisCity_Movement_RayquazaFlyOff	up,delay,delay,delay,delay,delay,delay,end
+SootopolisCity_Movement_StevenArriveCaveEntrance	down,down,left,delay,right,up,up,up,right,delay,end
+SootopolisCity_Movement_StevenStartWalkToCaveOfOrigin	up,up,up,right,up,up,up,up,up,up,up,up,up,up,up,left,up,up,up,up,left,left,left,left,up,up,up,up,up,up,up,up,up,up,up,delay,end
+SootopolisCity_Movement_StevenWalkToCaveOfOrigin	up,up,right,right,right,right,down,down,right,right,right,right,right,up,right,right,right,right,down,down,down,right,right,right,right,right,down,down,down,down,left,left,left,left,left,left,left,left,down,down,down,down,down,down,down,down,right,right,right,right,delay,delay,delay,delay,right,up,up,end
+SootopolisCity_Movement_WallaceMoveFromGym	right,delay,end
+SootopolisCity_Movement_WallaceMoveFromGymWest	left,delay,end
+scriptdefs
+= SootopolisCity_EventScript_StartRayquazaScene
+lockall
+special StorePlayerCoordsInVars
+goto_if_ne VAR_0x8004 43 SootopolisCity_EventScript_RayquazaSceneFromDive
+goto_if_ne VAR_0x8005 32 SootopolisCity_EventScript_RayquazaSceneFromDive
+goto SootopolisCity_EventScript_RayquazaSceneFromPokeCenter
+end
+= SootopolisCity_EventScript_RayquazaSceneFromPokeCenter
+delay 60
+special SpawnCameraObject
+applymovement LOCALID_CAMERA SootopolisCity_Movement_PanToActionFromPokeCenter
+waitmovement 0
+special RemoveCameraObject
+delay 60
+fadescreenspeed FADE_TO_BLACK 8
+call SootopolisCity_EventScript_SetRoughWater
+removeobject LOCALID_SOOTOPOLIS_GROUDON
+removeobject LOCALID_SOOTOPOLIS_KYOGRE
+addobject LOCALID_SOOTOPOLIS_RAYQUAZA
+setvar VAR_0x8004 TRUE
+special Script_DoRayquazaScene
+playse SE_THUNDER
+special SpawnCameraObject
+applymovement LOCALID_CAMERA SootopolisCity_Movement_PanUp
+waitmovement 0
+waitse
+playmoncry SPECIES_RAYQUAZA CRY_MODE_ENCOUNTER
+setvar VAR_0x8004 1  @ vertical pan
+setvar VAR_0x8005 1  @ horizontal pan
+setvar VAR_0x8006 8  @ num shakes
+setvar VAR_0x8007 3  @ shake delay
+special ShakeCamera
+waitstate
+waitse
+playmoncry SPECIES_RAYQUAZA CRY_MODE_ENCOUNTER
+setvar VAR_0x8004 1  @ vertical pan
+setvar VAR_0x8005 2  @ horizontal pan
+setvar VAR_0x8006 8  @ num shakes
+setvar VAR_0x8007 5  @ shake delay
+special ShakeCamera
+waitstate
+waitmoncry
+setweather WEATHER_NONE
+doweather
+applymovement LOCALID_SOOTOPOLIS_RAYQUAZA SootopolisCity_Movement_RayquazaFlyOff
+waitmovement 0
+removeobject LOCALID_SOOTOPOLIS_RAYQUAZA
+special WaitWeather
+clearflag FLAG_SYS_WEATHER_CTRL
+setvar VAR_SKY_PILLAR_STATE 3
+clearflag FLAG_LEGENDARIES_IN_SOOTOPOLIS
+fadenewbgm MUS_SOOTOPOLIS
+delay 120
+clearflag FLAG_HIDE_MAP_NAME_POPUP
+warpwhitefade SootopolisCity 43 32
+waitstate
+end
+= SootopolisCity_EventScript_SetRoughWater
+setmetatile 27 43 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 28 43 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 29 43 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 30 43 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 27 44 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 28 44 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 29 44 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 30 44 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 27 45 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 28 45 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 29 45 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 30 45 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 32 43 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 33 43 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 34 43 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 35 43 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 32 44 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 33 44 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 34 44 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 35 44 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 32 45 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 33 45 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 34 45 METATILE_Sootopolis_RoughWater FALSE
+setmetatile 35 45 METATILE_Sootopolis_RoughWater FALSE
+return
+= SootopolisCity_EventScript_RayquazaSceneFromDive
+delay 60
+special SpawnCameraObject
+applymovement LOCALID_CAMERA SootopolisCity_Movement_PanToActionFromDive
+waitmovement 0
+special RemoveCameraObject
+delay 60
+fadescreenspeed FADE_TO_BLACK 8
+call SootopolisCity_EventScript_SetRoughWater
+removeobject LOCALID_SOOTOPOLIS_GROUDON
+removeobject LOCALID_SOOTOPOLIS_KYOGRE
+addobject LOCALID_SOOTOPOLIS_RAYQUAZA
+setvar VAR_0x8004 TRUE
+special Script_DoRayquazaScene
+special SpawnCameraObject
+applymovement LOCALID_CAMERA SootopolisCity_Movement_PanUp
+applymovement LOCALID_PLAYER SootopolisCity_Movement_PlayerApproachLegendaries
+waitmovement 0
+waitse
+playmoncry SPECIES_RAYQUAZA CRY_MODE_ENCOUNTER
+setvar VAR_0x8004 1  @ vertical pan
+setvar VAR_0x8005 1  @ horizontal pan
+setvar VAR_0x8006 8  @ num shakes
+setvar VAR_0x8007 3  @ shake delay
+special ShakeCamera
+waitstate
+waitse
+playmoncry SPECIES_RAYQUAZA CRY_MODE_ENCOUNTER
+setvar VAR_0x8004 1  @ vertical pan
+setvar VAR_0x8005 2  @ horizontal pan
+setvar VAR_0x8006 8  @ num shakes
+setvar VAR_0x8007 5  @ shake delay
+special ShakeCamera
+waitstate
+waitmoncry
+setweather WEATHER_NONE
+doweather
+applymovement LOCALID_SOOTOPOLIS_RAYQUAZA SootopolisCity_Movement_RayquazaFlyOff
+waitmovement 0
+removeobject LOCALID_SOOTOPOLIS_RAYQUAZA
+special WaitWeather
+clearflag FLAG_SYS_WEATHER_CTRL
+setvar VAR_SKY_PILLAR_STATE 2
+clearflag FLAG_LEGENDARIES_IN_SOOTOPOLIS
+fadenewbgm MUS_SURF
+delay 120
+clearflag FLAG_HIDE_MAP_NAME_POPUP
+warpwhitefade SootopolisCity 29 53
+waitstate
+end
+= SootopolisCity_EventScript_StartLegendariesScene
+lockall
+special StorePlayerCoordsInVars
+goto_if_ne VAR_0x8004 43 SootopolisCity_EventScript_LegendariesSceneFromDive
+goto_if_ne VAR_0x8005 32 SootopolisCity_EventScript_LegendariesSceneFromDive
+goto SootopolisCity_EventScript_LegendariesSceneFromPokeCenter
+end
+= SootopolisCity_EventScript_LegendariesSceneFromPokeCenter
+delay 60
+special SpawnCameraObject
+applymovement LOCALID_CAMERA SootopolisCity_Movement_PanToActionFromPokeCenter
+waitmovement 0
+special RemoveCameraObject
+delay 60
+fadescreenspeed FADE_TO_BLACK 8
+setweather WEATHER_ABNORMAL
+doweather
+setvar VAR_0x8004 FALSE @ Just do Groudon/Kyogre fight scene
+special Script_DoRayquazaScene
+applymovement LOCALID_SOOTOPOLIS_KYOGRE Common_Movement_WalkInPlaceFasterLeft
+applymovement LOCALID_SOOTOPOLIS_GROUDON Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+delay 60
+waitse
+playmoncry SPECIES_KYOGRE CRY_MODE_ENCOUNTER
+applymovement LOCALID_SOOTOPOLIS_KYOGRE SootopolisCity_Movement_KyogreAttack
+applymovement LOCALID_SOOTOPOLIS_GROUDON SootopolisCity_Movement_GroudonDefend
+waitmovement 0
+setvar VAR_0x8004 1  @ vertical pan
+setvar VAR_0x8005 1  @ horizontal pan
+setvar VAR_0x8006 8  @ num shakes
+setvar VAR_0x8007 5  @ shake delay
+special ShakeCamera
+waitstate
+applymovement LOCALID_SOOTOPOLIS_KYOGRE SootopolisCity_Movement_KyogreMoveBack
+applymovement LOCALID_SOOTOPOLIS_GROUDON SootopolisCity_Movement_GroudonMoveBack
+waitmovement 0
+waitse
+playmoncry SPECIES_GROUDON CRY_MODE_ENCOUNTER
+applymovement LOCALID_SOOTOPOLIS_KYOGRE SootopolisCity_Movement_KyogreDefend
+applymovement LOCALID_SOOTOPOLIS_GROUDON SootopolisCity_Movement_GroudonAttack
+waitmovement 0
+setvar VAR_0x8004 1  @ vertical pan
+setvar VAR_0x8005 1  @ horizontal pan
+setvar VAR_0x8006 8  @ num shakes
+setvar VAR_0x8007 5  @ shake delay
+special ShakeCamera
+waitstate
+applymovement LOCALID_SOOTOPOLIS_KYOGRE SootopolisCity_Movement_KyogreMoveBack
+applymovement LOCALID_SOOTOPOLIS_GROUDON SootopolisCity_Movement_GroudonMoveBack
+waitmovement 0
+waitse
+playmoncry SPECIES_KYOGRE CRY_MODE_ENCOUNTER
+applymovement LOCALID_SOOTOPOLIS_KYOGRE SootopolisCity_Movement_KyogreAttack
+applymovement LOCALID_SOOTOPOLIS_GROUDON SootopolisCity_Movement_GroudonDefend
+waitmovement 0
+setvar VAR_0x8004 1  @ vertical pan
+setvar VAR_0x8005 1  @ horizontal pan
+setvar VAR_0x8006 8  @ num shakes
+setvar VAR_0x8007 5  @ shake delay
+special ShakeCamera
+waitstate
+applymovement LOCALID_SOOTOPOLIS_KYOGRE SootopolisCity_Movement_KyogreMoveBack
+applymovement LOCALID_SOOTOPOLIS_GROUDON SootopolisCity_Movement_GroudonMoveBack
+waitmovement 0
+special SpawnCameraObject
+applymovement LOCALID_SOOTOPOLIS_KYOGRE SootopolisCity_Movement_KyogreIdle
+applymovement LOCALID_SOOTOPOLIS_GROUDON SootopolisCity_Movement_GroudonIdle
+applymovement LOCALID_CAMERA SootopolisCity_Movement_PanBackToPokeCenter
+waitmovement 0
+special RemoveCameraObject
+setvar VAR_SOOTOPOLIS_CITY_STATE 2
+clearflag FLAG_HIDE_MAP_NAME_POPUP
+releaseall
+end
+= SootopolisCity_EventScript_LegendariesSceneFromDive
+delay 60
+special SpawnCameraObject
+applymovement LOCALID_CAMERA SootopolisCity_Movement_PanToActionFromDive
+waitmovement 0
+special RemoveCameraObject
+delay 60
+fadescreenspeed FADE_TO_BLACK 8
+setweather WEATHER_ABNORMAL
+doweather
+setvar VAR_0x8004 FALSE @ Just do Groudon/Kyogre fight scene
+special Script_DoRayquazaScene
+applymovement LOCALID_SOOTOPOLIS_KYOGRE Common_Movement_WalkInPlaceFasterLeft
+applymovement LOCALID_SOOTOPOLIS_GROUDON Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+delay 60
+waitse
+playmoncry SPECIES_KYOGRE CRY_MODE_ENCOUNTER
+applymovement LOCALID_SOOTOPOLIS_KYOGRE SootopolisCity_Movement_KyogreAttack
+applymovement LOCALID_SOOTOPOLIS_GROUDON SootopolisCity_Movement_GroudonDefend
+waitmovement 0
+setvar VAR_0x8004 1  @ vertical pan
+setvar VAR_0x8005 1  @ horizontal pan
+setvar VAR_0x8006 8  @ num shakes
+setvar VAR_0x8007 5  @ shake delay
+special ShakeCamera
+waitstate
+applymovement LOCALID_SOOTOPOLIS_KYOGRE SootopolisCity_Movement_KyogreMoveBack
+applymovement LOCALID_SOOTOPOLIS_GROUDON SootopolisCity_Movement_GroudonMoveBack
+waitmovement 0
+waitse
+playmoncry SPECIES_GROUDON CRY_MODE_ENCOUNTER
+applymovement LOCALID_SOOTOPOLIS_KYOGRE SootopolisCity_Movement_KyogreDefend
+applymovement LOCALID_SOOTOPOLIS_GROUDON SootopolisCity_Movement_GroudonAttack
+waitmovement 0
+setvar VAR_0x8004 1  @ vertical pan
+setvar VAR_0x8005 1  @ horizontal pan
+setvar VAR_0x8006 8  @ num shakes
+setvar VAR_0x8007 5  @ shake delay
+special ShakeCamera
+waitstate
+applymovement LOCALID_SOOTOPOLIS_KYOGRE SootopolisCity_Movement_KyogreMoveBack
+applymovement LOCALID_SOOTOPOLIS_GROUDON SootopolisCity_Movement_GroudonMoveBack
+waitmovement 0
+waitse
+playmoncry SPECIES_KYOGRE CRY_MODE_ENCOUNTER
+applymovement LOCALID_SOOTOPOLIS_KYOGRE SootopolisCity_Movement_KyogreAttack
+applymovement LOCALID_SOOTOPOLIS_GROUDON SootopolisCity_Movement_GroudonDefend
+waitmovement 0
+setvar VAR_0x8004 1  @ vertical pan
+setvar VAR_0x8005 1  @ horizontal pan
+setvar VAR_0x8006 8  @ num shakes
+setvar VAR_0x8007 5  @ shake delay
+special ShakeCamera
+waitstate
+applymovement LOCALID_SOOTOPOLIS_KYOGRE SootopolisCity_Movement_KyogreMoveBack
+applymovement LOCALID_SOOTOPOLIS_GROUDON SootopolisCity_Movement_GroudonMoveBack
+waitmovement 0
+special SpawnCameraObject
+applymovement LOCALID_SOOTOPOLIS_KYOGRE SootopolisCity_Movement_KyogreIdle
+applymovement LOCALID_SOOTOPOLIS_GROUDON SootopolisCity_Movement_GroudonIdle
+applymovement LOCALID_CAMERA SootopolisCity_Movement_PanBackToDive
+waitmovement 0
+special RemoveCameraObject
+setvar VAR_SOOTOPOLIS_CITY_STATE 2
+clearflag FLAG_HIDE_MAP_NAME_POPUP
+releaseall
+end
+= SootopolisCity_EventScript_Wallace
+lock
+faceplayer
+goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 4 SootopolisCity_EventScript_GoToSkyPillar
+goto_if_set FLAG_RECEIVED_HM_WATERFALL SootopolisCity_EventScript_GoToGym
+goto_if_set FLAG_SOOTOPOLIS_ARCHIE_MAXIE_LEAVE SootopolisCity_EventScript_GiveWaterfall
+msgbox	WALLACE: PLAYER…The leaders of TEAM MAGMA and AQUA, I don't think they meant harm.It wouldn't hurt to hear what they have to say for themselves.
+release
+end
+= SootopolisCity_EventScript_GiveWaterfall
+msgbox	WALLACE: PLAYER… My eyes didn't deceive me.Thanks to your help, SOOTOPOLIS… No, all of HOENN was saved.On behalf of the people, I thank you.This is a gift from me. Please accept it.
+giveitem ITEM_HM_WATERFALL
+setflag FLAG_RECEIVED_HM_WATERFALL
+msgbox	That HIDDEN MACHINE contains WATERFALL.If you have the RAIN BADGE, a POKéMON that has learned that HM move can force its way up waterfalls.And where does one get the RAIN BADGE? You know, don't you?That's right! You have to beat the SOOTOPOLIS GYM LEADER.When you're all set to go, step through that door.
+closemessage
+call_if_eq VAR_FACING DIR_NORTH SootopolisCity_EventScript_WallaceMoveFromGym
+call_if_eq VAR_FACING DIR_EAST SootopolisCity_EventScript_WallaceMoveFromGym
+call_if_eq VAR_FACING DIR_WEST SootopolisCity_EventScript_WallaceMoveFromGymWest
+release
+end
+= SootopolisCity_EventScript_WallaceMoveFromGymWest
+applymovement LOCALID_SOOTOPOLIS_WALLACE SootopolisCity_Movement_WallaceMoveFromGymWest
+waitmovement 0
+copyobjectxytoperm LOCALID_SOOTOPOLIS_WALLACE
+setvar VAR_SOOTOPOLIS_WALLACE_STATE 2
+return
+= SootopolisCity_EventScript_WallaceMoveFromGym
+applymovement LOCALID_SOOTOPOLIS_WALLACE SootopolisCity_Movement_WallaceMoveFromGym
+waitmovement 0
+copyobjectxytoperm LOCALID_SOOTOPOLIS_WALLACE
+setvar VAR_SOOTOPOLIS_WALLACE_STATE 1
+return
+= SootopolisCity_EventScript_GoToGym
+msgbox	WALLACE: I'm sure that you will be dazzled by my mentor's breathtakingly elegant battle style.
+release
+end
+= SootopolisCity_EventScript_GoToSkyPillar
+msgbox	WALLACE: Oh? PLAYER?Haven't you scaled the SKY PILLAR yet?I'm sure that you can make it to the top of the SKY PILLAR…
+release
+end
+= SootopolisCity_EventScript_Archie
+lockall
+goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 5 SootopolisCity_EventScript_ArchieRayquaza
+msgbox	ARCHIE: KYOGRE! What's wrong?! Look over here! It's the RED ORB! Calm down! KYOGRE!… … … … … … … … … … … …It's no good! It's not responding at all!
+closemessage
+releaseall
+end
+= SootopolisCity_EventScript_ArchieRayquaza
+msgbox	ARCHIE: KYOGRE and GROUDON both flew off to who knows where.The weather in HOENN has returned to its normal state…Haha… Hahaha…Maybe what we were trying to do was something small, even meaningless, to POKéMON…
+setflag FLAG_MET_ARCHIE_SOOTOPOLIS
+goto_if_set FLAG_MET_MAXIE_SOOTOPOLIS SootopolisCity_EventScript_MaxieArchieLeave
+releaseall
+end
+= SootopolisCity_EventScript_MaxieArchieLeave
+setflag FLAG_HIDE_SOOTOPOLIS_CITY_MAXIE
+setflag FLAG_HIDE_SOOTOPOLIS_CITY_ARCHIE
+setflag FLAG_SOOTOPOLIS_ARCHIE_MAXIE_LEAVE
+clearflag FLAG_HIDE_MT_PYRE_SUMMIT_MAXIE
+clearflag FLAG_HIDE_MT_PYRE_SUMMIT_ARCHIE
+setvar VAR_MT_PYRE_STATE 2
+warpsilent SootopolisCity 31 34
+waitstate
+releaseall
+end
+@ Unused
+goto SootopolisCity_Movement_Levitate
+= SootopolisCity_Movement_Levitate
+levitate
+step_end
+@ Unused
+goto SootopolisCity_Movement_DestroyTask
+= SootopolisCity_Movement_DestroyTask
+destroy_extra_task
+step_end
+= SootopolisCity_EventScript_Maxie
+lockall
+goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 5 SootopolisCity_EventScript_MaxieRayquaza
+msgbox	MAXIE: G… GROUDON… Please! Stop what you're doing!I know the extent of your power now!If you keep going, all HOENN, not just SOOTOPOLIS, will be utterly ruined!
+closemessage
+releaseall
+end
+= SootopolisCity_EventScript_MaxieRayquaza
+msgbox	MAXIE: So the super-ancient POKéMON weren't only GROUDON and KYOGRE…After all our fruitless scheming and frantic efforts, that one POKéMON's simple action puts everything right again as if nothing had happened…Fu… Fuhahaha…
+setflag FLAG_MET_MAXIE_SOOTOPOLIS
+goto_if_set FLAG_MET_ARCHIE_SOOTOPOLIS SootopolisCity_EventScript_MaxieArchieLeave
+releaseall
+end
+= SootopolisCity_EventScript_Boy2
+lockall
+applymovement LOCALID_SOOTOPOLIS_BOY_2 Common_Movement_FacePlayer
+waitmovement 0
+goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 5 SootopolisCity_EventScript_Boy2Rayquaza
+msgbox	I just get this sense somehow that the two POKéMON aren't angry.I think… They probably can't control their own power…
+closemessage
+applymovement LOCALID_SOOTOPOLIS_BOY_2 Common_Movement_FaceOriginalDirection
+waitmovement 0
+releaseall
+end
+= SootopolisCity_EventScript_Boy2Rayquaza
+msgbox	That flying POKéMON came down from the sky and stopped the rampaging POKéMON…
+closemessage
+releaseall
+end
+= SootopolisCity_EventScript_BlackBelt
+lockall
+goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 5 SootopolisCity_EventScript_BlackBeltRayquaza
+msgbox	Go for it, red POKéMON! Don't back off, blue POKéMON!
+closemessage
+applymovement LOCALID_SOOTOPOLIS_BLACK_BELT Common_Movement_FacePlayer
+waitmovement 0
+msgbox	… … … … … …Hi, do you know the names of those POKéMON fighting over there?
+closemessage
+applymovement LOCALID_SOOTOPOLIS_BLACK_BELT Common_Movement_FaceOriginalDirection
+waitmovement 0
+releaseall
+end
+= SootopolisCity_EventScript_BlackBeltRayquaza
+applymovement LOCALID_SOOTOPOLIS_BLACK_BELT Common_Movement_FacePlayer
+waitmovement 0
+msgbox	I was wondering which one would win, the red one or the blue one, but, oh no, it's the green one that settles things!Talk about a huge turn of events!
+releaseall
+end
+= SootopolisCity_EventScript_Girl
+lockall
+applymovement LOCALID_SOOTOPOLIS_GIRL Common_Movement_FacePlayer
+waitmovement 0
+goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 5 SootopolisCity_EventScript_GirlRayquaza
+msgbox	Oh, no! SOOTOPOLIS CITY will get wrecked!
+closemessage
+applymovement LOCALID_SOOTOPOLIS_GIRL Common_Movement_FaceOriginalDirection
+waitmovement 0
+releaseall
+end
+= SootopolisCity_EventScript_GirlRayquaza
+msgbox	SOOTOPOLIS CITY didn't get wrecked!
+closemessage
+releaseall
+end
+= SootopolisCity_EventScript_Maniac
+lockall
+applymovement LOCALID_SOOTOPOLIS_MANIAC Common_Movement_FacePlayer
+waitmovement 0
+goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 5 SootopolisCity_EventScript_ManiacRayquaza
+msgbox	There's an ancient legend that claims the land and sea were shaped by a colossal battle between POKéMON.Well, I'm seeing that happen with my very own eyes!Whoa! I never expected to be witness to something this huge!
+closemessage
+applymovement LOCALID_SOOTOPOLIS_MANIAC Common_Movement_FaceOriginalDirection
+waitmovement 0
+releaseall
+end
+= SootopolisCity_EventScript_ManiacRayquaza
+msgbox	There's an ancient legend that claims the land and sea were shaped by a colossal battle between POKéMON.Well, I saw that happen with my very own eyes!Whoa! I never expected to be witness to something this huge!
+releaseall
+end
+= SootopolisCity_EventScript_Woman1
+lock
+faceplayer
+goto_if_ge VAR_SOOTOPOLIS_CITY_STATE 6 SootopolisCity_EventScript_Woman1PostLegendaries
+goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 5 SootopolisCity_EventScript_Woman1Rayquaza
+goto_if_ge VAR_SOOTOPOLIS_CITY_STATE 2 SootopolisCity_EventScript_Woman1Legendaries
+msgbox	SOOTOPOLIS sprang up as a town in the crater of a volcano.If you look up at the sky, the lip of the crater is also visible. So, all you see is the sky in a circle.But that's what makes the sky above SOOTOPOLIS the most beautiful.
+release
+end
+= SootopolisCity_EventScript_Woman1Legendaries
+msgbox	When two POKéMON that gigantic are fighting that savagely, there's not much that we can do.
+closemessage
+applymovement LOCALID_SOOTOPOLIS_WOMAN_1 Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= SootopolisCity_EventScript_Woman1Rayquaza
+msgbox	When that third POKéMON flew down, I feared the worst.
+release
+end
+= SootopolisCity_EventScript_Woman1PostLegendaries
+msgbox	A circle of a night sky framed by the crater of a volcano…And in that ring, stars flicker and blink as if they were alive… It's my favorite scenery.
+release
+end
+= SootopolisCity_EventScript_Steven
+lockall
+applymovement LOCALID_SOOTOPOLIS_STEVEN Common_Movement_FacePlayer
+waitmovement 0
+call_if_unset FLAG_STEVEN_GUIDES_TO_CAVE_OF_ORIGIN SootopolisCity_EventScript_StevenLeadPlayerCaveOfOrigin
+goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 2 SootopolisCity_EventScript_StevenHelpWallace
+goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 3 SootopolisCity_EventScript_StevenHelpedWallace
+goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 4 SootopolisCity_EventScript_StevenHelpedWallace
+goto_if_set FLAG_SOOTOPOLIS_ARCHIE_MAXIE_LEAVE SootopolisCity_EventScript_StevenMaxieArchieLeft
+msgbox	STEVEN: So that's RAYQUAZA…It's incredible how the two rampaging POKéMON would flee from it in fear…
+releaseall
+end
+= SootopolisCity_EventScript_StevenMaxieArchieLeft
+msgbox	STEVEN: It looks like both MAXIE and ARCHIE have gone away somewhere.Perhaps they've gone to MT. PYRE to return those ORBS…
+releaseall
+end
+= SootopolisCity_EventScript_StevenHelpedWallace
+msgbox	STEVEN: The SKY PILLAR…I've never been there. I wonder where it could be?
+releaseall
+end
+= SootopolisCity_EventScript_StevenHelpWallace
+msgbox	STEVEN: I think you have what's needed to help him…
+releaseall
+end
+= SootopolisCity_EventScript_StevenLeadPlayerCaveOfOrigin
+msgbox	STEVEN: Those POKéMON fighting… GROUDON… And KYOGRE…The two super-ancient POKéMON were awakened from a long sleep…And now they are smashing each other with their uncontrollable energy……PLAYER.You being here now I'll take to mean that you're prepared to become involved in this crisis.Well, then, there's someone that I'd like you to meet.Come with me, please.
+closemessage
+call_if_eq VAR_FACING DIR_WEST SootopolisCity_EventScript_StartWalkToCaveOfOriginWest
+call_if_eq VAR_FACING DIR_NORTH SootopolisCity_EventScript_StartWalkToCaveOfOriginNorth
+msgbox	STEVEN: Listen, PLAYER.Does seeing GROUDON and KYOGRE make you think POKéMON are to be feared?But that's not true. POKéMON are really more……Why am I asking you this? You already know.
+closemessage
+applymovement LOCALID_SOOTOPOLIS_STEVEN SootopolisCity_Movement_StevenWalkToCaveOfOrigin
+applymovement LOCALID_PLAYER SootopolisCity_Movement_PlayerWalkToCaveOfOrigin
+waitmovement 0
+delay 120
+applymovement LOCALID_SOOTOPOLIS_EXPERT SootopolisCity_Movement_ExpertMoveAside
+waitmovement 0
+applymovement LOCALID_SOOTOPOLIS_STEVEN SootopolisCity_Movement_StevenArriveCaveEntrance
+applymovement LOCALID_PLAYER SootopolisCity_Movement_PlayerArriveCaveEntrance
+waitmovement 0
+msgbox	STEVEN: Okay, here we are!Inside here you'll find someone named WALLACE.I think you have what's needed to help him…
+closemessage
+setflag FLAG_STEVEN_GUIDES_TO_CAVE_OF_ORIGIN
+applymovement LOCALID_PLAYER SootopolisCity_Movement_PlayerEnterCaveOfOrigin
+waitmovement 0
+warp CaveOfOrigin_Entrance 9 20
+waitstate
+end
+= SootopolisCity_EventScript_StartWalkToCaveOfOriginNorth
+applymovement LOCALID_SOOTOPOLIS_STEVEN SootopolisCity_Movement_StevenStartWalkToCaveOfOrigin
+applymovement LOCALID_PLAYER SootopolisCity_Movement_PlayerStartWalkToCaveOfOriginNorth
+waitmovement 0
+return
+= SootopolisCity_EventScript_StartWalkToCaveOfOriginWest
+applymovement LOCALID_SOOTOPOLIS_STEVEN SootopolisCity_Movement_StevenStartWalkToCaveOfOrigin
+applymovement LOCALID_PLAYER SootopolisCity_Movement_PlayerStartWalkToCaveOfOriginWest
+waitmovement 0
+return
+= SootopolisCity_EventScript_Man
+lock
+faceplayer
+goto_if_ge VAR_SOOTOPOLIS_CITY_STATE 6 SootopolisCity_EventScript_ManPostLegendaries
+msgbox	Hm! You've come all the way to SOOTOPOLIS? You're no ordinary tourist.But I suppose that doesn't make you an extraordinary tourist, either.
+release
+end
+= SootopolisCity_EventScript_ManPostLegendaries
+msgbox	The city has regained its calm…
+release
+end
+= SootopolisCity_EventScript_Boy1
+lockall
+applymovement LOCALID_SOOTOPOLIS_BOY_1 Common_Movement_FacePlayer
+waitmovement 0
+goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 5 SootopolisCity_EventScript_Boy1Rayquaza
+goto_if_set FLAG_SYS_GAME_CLEAR SootopolisCity_EventScript_Boy1GameClear
+goto_if_ge VAR_SOOTOPOLIS_CITY_STATE 6 SootopolisCity_EventScript_Boy1Normal
+goto_if_le VAR_SOOTOPOLIS_CITY_STATE 1 SootopolisCity_EventScript_Boy1Normal
+msgbox	These giant POKéMON suddenly appeared in the middle of the city!And, I've never seen them before!Why are they smashing into each other like that?Why can't they be friends, those POKéMON?
+closemessage
+applymovement LOCALID_SOOTOPOLIS_BOY_1 Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= SootopolisCity_EventScript_Boy1Normal
+msgbox	Diving in the sea. Climbing up and down stairs all the time…If you live in this town, you end up getting physically fit.
+release
+end
+= SootopolisCity_EventScript_Boy1GameClear
+msgbox	GROUDON and KYOGRE… Where did they go?Will they cause droughts or downpours somewhere else?
+release
+end
+= SootopolisCity_EventScript_Boy1Rayquaza
+msgbox	What? What? What? What is that green POKéMON?!
+release
+end
+= SootopolisCity_EventScript_NinjaBoy
+lockall
+applymovement LOCALID_SOOTOPOLIS_NINJA_BOY Common_Movement_FacePlayer
+waitmovement 0
+goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 5 SootopolisCity_EventScript_NinjaBoyRayquaza
+goto_if_ge VAR_SOOTOPOLIS_CITY_STATE 6 SootopolisCity_EventScript_NinjaBoyNormal
+goto_if_le VAR_SOOTOPOLIS_CITY_STATE 1 SootopolisCity_EventScript_NinjaBoyNormal
+msgbox	Wow! This is wicked!
+closemessage
+applymovement LOCALID_SOOTOPOLIS_NINJA_BOY Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= SootopolisCity_EventScript_NinjaBoyNormal
+msgbox	I… I've never been out of this city.I wonder what the world is like on the other side of this round sky?
+release
+end
+= SootopolisCity_EventScript_NinjaBoyRayquaza
+msgbox	Wow! That was wicked!
+release
+end
+= SootopolisCity_EventScript_Kiri
+lock
+faceplayer
+goto_if_le VAR_SOOTOPOLIS_CITY_STATE 1 SootopolisCity_EventScript_KiriGiveBerry
+goto_if_ge VAR_SOOTOPOLIS_CITY_STATE 6 SootopolisCity_EventScript_KiriGiveBerry
+goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 5 SootopolisCity_EventScript_KiriRayquaza
+msgbox	A big POKéMON is fighting with another big POKéMON!Please, someone make them stop!
+closemessage
+applymovement LOCALID_KIRI Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= SootopolisCity_EventScript_KiriRayquaza
+msgbox	A pretty POKéMON came down from the sky…
+closemessage
+release
+end
+@ Gives 2 berries daily. First ranges from FIRST_KIRI_BERRY to LAST_KIRI_BERRY second is always Figy or Iapapa
+goto SootopolisCity_EventScript_KiriGiveBerry
+= SootopolisCity_EventScript_KiriGiveBerry
+dotimebasedevents
+special GetPlayerBigGuyGirlString
+goto_if_set FLAG_DAILY_SOOTOPOLIS_RECEIVED_BERRY SootopolisCity_EventScript_KiriReceivedBerry
+msgbox	Hi, what's your name?… … … … … … … … … Okay. That's nice!My name is KIRI.My mommy and daddy named me that so I would grow healthy and warmhearted. That's what they wished.You can have one of these.
+random NUM_KIRI_BERRIES
+addvar VAR_RESULT NUM_KIRI_BERRIES_SKIPPED
+addvar VAR_RESULT FIRST_BERRY_INDEX
+giveitem VAR_RESULT
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_DAILY_SOOTOPOLIS_RECEIVED_BERRY
+msgbox	KIRI will give you this BERRY, too! I really like it lots!
+random 2
+goto_if_eq VAR_RESULT 0 SootopolisCity_EventScript_GiveFigyBerry
+goto_if_eq VAR_RESULT 1 SootopolisCity_EventScript_GiveIapapaBerry
+end
+= SootopolisCity_EventScript_GiveIapapaBerry
+giveitem ITEM_IAPAPA_BERRY
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+msgbox	I wonder what kind of wish is included in your name.
+release
+end
+= SootopolisCity_EventScript_GiveFigyBerry
+giveitem ITEM_FIGY_BERRY
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+msgbox	I wonder what kind of wish is included in your name.
+release
+end
+= SootopolisCity_EventScript_KiriReceivedBerry
+msgboxyesno	Spring, summer, autumn, and winter.If you're born in springtime, do you like the spring, and if you're born in the summer, do you like the summer?
+goto_if_eq VAR_RESULT YES SootopolisCity_EventScript_KiriLikeSeasonBornIn
+msgbox	Oh… It doesn't matter…There's so much that I want to know…
+release
+end
+= SootopolisCity_EventScript_KiriLikeSeasonBornIn
+msgbox	Then KIRI was born in the autumn, so I love the autumn!Which season do you like?
+release
+end
+= SootopolisCity_EventScript_Woman2
+lockall
+applymovement LOCALID_SOOTOPOLIS_WOMAN_2 Common_Movement_FacePlayer
+waitmovement 0
+goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 5 SootopolisCity_EventScript_Woman2Rayquaza
+msgbox	The weather was clear this morning, but…All of a sudden, dark clouds brewed up, rain started falling in sheets, and there was thunder and lightning, too.The weather just went completely wild!Is all of this because of those POKéMON?
+closemessage
+applymovement LOCALID_SOOTOPOLIS_WOMAN_2 Common_Movement_FaceOriginalDirection
+waitmovement 0
+releaseall
+end
+= SootopolisCity_EventScript_Woman2Rayquaza
+msgbox	Oh?It was you who brought that flying POKéMON here?Well, aren't you amazing!
+releaseall
+end
+= SootopolisCity_EventScript_CaveOfOriginExpert
+lock
+faceplayer
+goto_if_ge VAR_SOOTOPOLIS_CITY_STATE 6 SootopolisCity_EventScript_ExpertPostLegendaries
+goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 5 SootopolisCity_EventScript_ExpertLegendaries
+goto_if_ge VAR_SOOTOPOLIS_CITY_STATE 2 SootopolisCity_EventScript_ExpertLeadToCave
+msgbox	Who might you be?This is the CAVE OF ORIGIN.The spirits of POKéMON, becalmed at MT. PYRE, are said to be revived here.Please leave.
+release
+end
+= SootopolisCity_EventScript_ExpertLeadToCave
+msgbox	A person with a strong will and superior talent…A TRAINER who has knowledge and experience of many kinds of POKéMON…If such a person were to appear, I was instructed by WALLACE to lead that TRAINER to this CAVE.
+release
+end
+= SootopolisCity_EventScript_ExpertLegendaries
+msgbox	Oh, my…The clash between the two awakened POKéMON was quelled by the awakening of a third POKéMON…
+release
+end
+= SootopolisCity_EventScript_ExpertPostLegendaries
+msgbox	This is the CAVE OF ORIGIN…With the passing of the crisis, the cave, too, shall sleep…
+release
+end
+signs
+33 34	SOOTOPOLIS CITY POKéMON GYM LEADER: JUAN“The GYM LEADER with the beauty of pure water!”
+41 37	SOOTOPOLIS CITY“The mystical city where history slumbers.”
+water
+152,154,176,177,178,184,186,192,194,195,196,203,204,617,633,642,643,644,645,646,647,653,654,655
+divewarp
+Underwater_SootopolisCity 9 6
+dive
+654
+visit
+FLAG_VISITED_SOOTOPOLIS_CITY
+mapsec
+21 7 1 1	SOOTOPOLIS CITY
+music
+MUS_SOOTOPOLIS
+encounters
+water MAGIKARP:5:35,MAGIKARP:10:30,MAGIKARP:15:25,MAGIKARP:25:30,MAGIKARP:25:30
+fishing MAGIKARP:5:10,TENTACOOL:5:10,MAGIKARP:10:30,MAGIKARP:10:30,MAGIKARP:10:30,MAGIKARP:30:35,MAGIKARP:30:35,GYARADOS:35:40,GYARADOS:35:45,GYARADOS:5:45

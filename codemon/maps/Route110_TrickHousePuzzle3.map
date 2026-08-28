@@ -1,0 +1,393 @@
+tileset building__trick_house_puzzle
+15 22
+7 11
+513,513,517,518,513,513,517,518,513,513,517,518,514,623,516
+521,521,525,526,521,521,525,526,521,521,525,526,522,631,524
+550,528,528,550,528,528,550,534,600,550,528,534,550,528,528
+557,568,569,557,520,520,557,520,520,557,520,520,557,568,569
+565,576,577,565,520,520,589,520,520,570,520,520,565,576,577
+625,520,520,625,520,520,597,520,520,578,520,520,600,520,520
+542,587,588,542,568,569,542,520,520,550,568,569,542,520,520
+565,595,596,589,576,577,565,520,520,546,576,577,589,520,520
+625,520,520,520,536,537,597,520,520,546,520,520,625,520,520
+542,587,588,542,558,559,542,568,569,557,520,520,542,587,588
+565,595,596,565,566,567,565,576,577,565,520,520,565,595,596
+625,520,520,600,520,520,625,520,520,597,520,520,597,520,520
+542,568,569,542,568,569,542,520,520,542,568,569,550,520,520
+565,576,577,589,576,577,565,520,520,565,576,577,546,520,520
+638,536,537,597,600,520,625,536,537,625,520,520,546,520,520
+542,558,559,542,587,588,550,558,559,542,520,520,557,587,588
+565,566,567,570,595,596,546,566,567,589,520,520,565,595,596
+625,625,625,578,520,520,546,625,625,597,520,520,520,520,520
+542,520,520,542,568,569,557,520,520,542,568,569,542,520,520
+565,520,520,565,576,577,565,520,520,565,576,577,565,520,520
+625,520,520,625,520,520,625,520,520,625,520,520,625,520,520
+529,530,520,520,520,520,520,520,520,520,520,520,520,520,520
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,0,0,1,0,0,1,0,0,1,0,0,1,0,0
+1,0,0,1,0,0,1,0,0,1,0,0,1,0,0
+1,1,1,1,0,0,1,0,0,1,0,0,1,1,1
+0,0,0,0,0,0,0,0,0,1,0,0,0,0,0
+1,0,0,1,0,0,1,0,0,1,0,0,1,0,0
+1,0,0,1,1,1,1,0,0,1,1,1,1,0,0
+0,0,0,0,0,0,0,0,0,1,0,0,0,0,0
+1,0,0,1,1,1,1,0,0,1,0,0,1,0,0
+1,0,0,1,1,1,1,1,1,1,0,0,1,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,0,0,1,0,0,1,0,0,1,0,0,1,0,0
+1,1,1,1,1,1,1,0,0,1,1,1,1,0,0
+1,0,0,0,0,0,0,0,0,0,0,0,1,0,0
+1,1,1,1,0,0,1,1,1,1,0,0,1,0,0
+1,1,1,1,0,0,1,1,1,1,0,0,1,0,0
+0,0,0,1,0,0,1,0,0,0,0,0,0,0,0
+1,0,0,1,0,0,1,0,0,1,0,0,1,0,0
+1,0,0,1,1,1,1,0,0,1,1,1,1,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+0 21 Route110_TrickHouseEntrance 2
+1 21 Route110_TrickHouseEntrance 2
+13 1 Route110_TrickHouseEnd 0
+npcs
+people_camper 7 19 S static 0 - 2
+people_picnicker 4 4 E static 0 - 1
+people_hiker 10 10 S static 0 - 1
+misc_item_ball 1 2 S static FLAG_ITEM_TRICK_HOUSE_PUZZLE_3_WOOD_MAIL - 0
+misc_item_ball 4 2 S static FLAG_ITEM_TRICK_HOUSE_PUZZLE_3_SHADOW_MAIL - 0
+misc_breakable_rock 1 20 S static FLAG_TEMP_15 - 0
+misc_breakable_rock 2 21 S static FLAG_TEMP_16 - 0
+dialogs
+0	It's full of doors here! It's too small and dark in here! Help!
+1	I know I'm weak! And, I have no sense of direction!
+2	I don't get it. How many traps are in this house?You may be the one to solve that.
+objscripts
+0 Route110_TrickHousePuzzle3_EventScript_Justin
+1 Route110_TrickHousePuzzle3_EventScript_Martha
+2 Route110_TrickHousePuzzle3_EventScript_Alan
+3 Route110_TrickHousePuzzle3_EventScript_ItemWoodMail
+4 Route110_TrickHousePuzzle3_EventScript_ItemShadowMail
+5 EventScript_RockSmash
+6 EventScript_RockSmash
+triggers
+4 14 VAR_TEMP_1 0 Route110_TrickHousePuzzle3_EventScript_Button1
+3 11 VAR_TEMP_2 0 Route110_TrickHousePuzzle3_EventScript_Button2
+12 5 VAR_TEMP_3 0 Route110_TrickHousePuzzle3_EventScript_Button3
+8 2 VAR_TEMP_4 0 Route110_TrickHousePuzzle3_EventScript_Button4
+movements
+Movement_SmashRock	delay,end
+scriptdefs
+= Route110_TrickHousePuzzle3_EventScript_Button4
+lockall
+setvar VAR_TEMP_8 4
+goto Route110_TrickHousePuzzle3_EventScript_PressButton
+end
+= Route110_TrickHousePuzzle3_EventScript_PressButton
+call Route110_TrickHousePuzzle3_EventScript_SetButton
+playse SE_PIN
+call Route110_TrickHousePuzzle3_EventScript_UpdateButtonMetatiles
+goto Route110_TrickHousePuzzle3_EventScript_AlternateDoors
+end
+= Route110_TrickHousePuzzle3_EventScript_AlternateDoors
+call_if_eq VAR_TEMP_9 1 Route110_TrickHousePuzzle3_EventScript_SetDoorsState0
+call_if_eq VAR_TEMP_9 0 Route110_TrickHousePuzzle3_EventScript_SetDoorsState1
+special DrawWholeMapView
+goto_if_eq VAR_TEMP_9 1 Route110_TrickHousePuzzle3_EventScript_ClearAltDoorState
+goto_if_eq VAR_TEMP_9 0 Route110_TrickHousePuzzle3_EventScript_SetAltDoorState
+end
+= Route110_TrickHousePuzzle3_EventScript_SetAltDoorState
+setvar VAR_TEMP_9 1
+releaseall
+end
+= Route110_TrickHousePuzzle3_EventScript_ClearAltDoorState
+setvar VAR_TEMP_9 0
+releaseall
+end
+= Route110_TrickHousePuzzle3_EventScript_SetDoorsState1
+setmetatile 1 6 METATILE_TrickHousePuzzle_BlueDoorH_Closed_Tile0 FALSE
+setmetatile 2 6 METATILE_TrickHousePuzzle_BlueDoorH_Closed_Tile1 FALSE
+setmetatile 1 7 METATILE_TrickHousePuzzle_BlueDoorH_Closed_Tile2 TRUE
+setmetatile 2 7 METATILE_TrickHousePuzzle_BlueDoorH_Closed_Tile3 TRUE
+setmetatile 1 9 METATILE_TrickHousePuzzle_BlueDoorH_Closed_Tile0 FALSE
+setmetatile 2 9 METATILE_TrickHousePuzzle_BlueDoorH_Closed_Tile1 FALSE
+setmetatile 1 10 METATILE_TrickHousePuzzle_BlueDoorH_Closed_Tile2 TRUE
+setmetatile 2 10 METATILE_TrickHousePuzzle_BlueDoorH_Closed_Tile3 TRUE
+setmetatile 4 15 METATILE_TrickHousePuzzle_BlueDoorH_Closed_Tile0 FALSE
+setmetatile 5 15 METATILE_TrickHousePuzzle_BlueDoorH_Closed_Tile1 FALSE
+setmetatile 4 16 METATILE_TrickHousePuzzle_BlueDoorH_Closed_Tile2 TRUE
+setmetatile 5 16 METATILE_TrickHousePuzzle_BlueDoorH_Closed_Tile3 TRUE
+setmetatile 13 9 METATILE_TrickHousePuzzle_BlueDoorH_Closed_Tile0 FALSE
+setmetatile 14 9 METATILE_TrickHousePuzzle_BlueDoorH_Closed_Tile1 FALSE
+setmetatile 13 10 METATILE_TrickHousePuzzle_BlueDoorH_Closed_Tile2 TRUE
+setmetatile 14 10 METATILE_TrickHousePuzzle_BlueDoorH_Closed_Tile3 TRUE
+setmetatile 13 15 METATILE_TrickHousePuzzle_BlueDoorH_Closed_Tile0 FALSE
+setmetatile 14 15 METATILE_TrickHousePuzzle_BlueDoorH_Closed_Tile1 FALSE
+setmetatile 13 16 METATILE_TrickHousePuzzle_BlueDoorH_Closed_Tile2 TRUE
+setmetatile 14 16 METATILE_TrickHousePuzzle_BlueDoorH_Closed_Tile3 TRUE
+setmetatile 3 7 METATILE_TrickHousePuzzle_BlueDoorV_Open0 TRUE
+setmetatile 3 8 METATILE_TrickHousePuzzle_BlueDoorV_Open1 TRUE
+setmetatile 3 13 METATILE_TrickHousePuzzle_BlueDoorV_Open0 TRUE
+setmetatile 3 14 METATILE_TrickHousePuzzle_BlueDoorV_Open1 TRUE
+setmetatile 6 4 METATILE_TrickHousePuzzle_BlueDoorV_Open0 TRUE
+setmetatile 6 5 METATILE_TrickHousePuzzle_BlueDoorV_Open1 TRUE
+setmetatile 9 16 METATILE_TrickHousePuzzle_BlueDoorV_Open0 TRUE
+setmetatile 9 17 METATILE_TrickHousePuzzle_BlueDoorV_Open1 TRUE
+setmetatile 12 7 METATILE_TrickHousePuzzle_BlueDoorV_Open0 TRUE
+setmetatile 12 8 METATILE_TrickHousePuzzle_BlueDoorV_Open1 TRUE
+setmetatile 1 3 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile0 FALSE
+setmetatile 2 3 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile1 FALSE
+setmetatile 1 4 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile2 FALSE
+setmetatile 2 4 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile3 FALSE
+setmetatile 1 12 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile0 FALSE
+setmetatile 2 12 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile1 FALSE
+setmetatile 1 13 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile2 FALSE
+setmetatile 2 13 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile3 FALSE
+setmetatile 4 6 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile0 FALSE
+setmetatile 5 6 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile1 FALSE
+setmetatile 4 7 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile2 FALSE
+setmetatile 5 7 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile3 FALSE
+setmetatile 4 12 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile0 FALSE
+setmetatile 5 12 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile1 FALSE
+setmetatile 4 13 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile2 FALSE
+setmetatile 5 13 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile3 FALSE
+setmetatile 4 18 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile0 FALSE
+setmetatile 5 18 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile1 FALSE
+setmetatile 4 19 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile2 FALSE
+setmetatile 5 19 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile3 FALSE
+setmetatile 7 9 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile0 FALSE
+setmetatile 8 9 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile1 FALSE
+setmetatile 7 10 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile2 FALSE
+setmetatile 8 10 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile3 FALSE
+setmetatile 10 6 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile0 FALSE
+setmetatile 11 6 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile1 FALSE
+setmetatile 10 7 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile2 FALSE
+setmetatile 11 7 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile3 FALSE
+setmetatile 10 12 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile0 FALSE
+setmetatile 11 12 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile1 FALSE
+setmetatile 10 13 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile2 FALSE
+setmetatile 11 13 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile3 FALSE
+setmetatile 10 18 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile0 FALSE
+setmetatile 11 18 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile1 FALSE
+setmetatile 10 19 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile2 FALSE
+setmetatile 11 19 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile3 FALSE
+setmetatile 13 3 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile0 FALSE
+setmetatile 14 3 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile1 FALSE
+setmetatile 13 4 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile2 FALSE
+setmetatile 14 4 METATILE_TrickHousePuzzle_RedDoorH_Open_Tile3 FALSE
+setmetatile 3 16 METATILE_TrickHousePuzzle_RedDoorV_Retracted TRUE
+setmetatile 3 17 METATILE_TrickHousePuzzle_Floor_ShadowTop_Alt FALSE
+setmetatile 9 4 METATILE_TrickHousePuzzle_RedDoorV_Retracted TRUE
+setmetatile 9 5 METATILE_TrickHousePuzzle_Floor_ShadowTop_Alt FALSE
+return
+= Route110_TrickHousePuzzle3_EventScript_SetDoorsState0
+setmetatile 1 6 METATILE_TrickHousePuzzle_BlueDoorH_Open_Tile0 FALSE
+setmetatile 2 6 METATILE_TrickHousePuzzle_BlueDoorH_Open_Tile1 FALSE
+setmetatile 1 7 METATILE_TrickHousePuzzle_BlueDoorH_Open_Tile2 FALSE
+setmetatile 2 7 METATILE_TrickHousePuzzle_BlueDoorH_Open_Tile3 FALSE
+setmetatile 1 9 METATILE_TrickHousePuzzle_BlueDoorH_Open_Tile0 FALSE
+setmetatile 2 9 METATILE_TrickHousePuzzle_BlueDoorH_Open_Tile1 FALSE
+setmetatile 1 10 METATILE_TrickHousePuzzle_BlueDoorH_Open_Tile2 FALSE
+setmetatile 2 10 METATILE_TrickHousePuzzle_BlueDoorH_Open_Tile3 FALSE
+setmetatile 4 15 METATILE_TrickHousePuzzle_BlueDoorH_Open_Tile0 FALSE
+setmetatile 5 15 METATILE_TrickHousePuzzle_BlueDoorH_Open_Tile1 FALSE
+setmetatile 4 16 METATILE_TrickHousePuzzle_BlueDoorH_Open_Tile2 FALSE
+setmetatile 5 16 METATILE_TrickHousePuzzle_BlueDoorH_Open_Tile3 FALSE
+setmetatile 13 9 METATILE_TrickHousePuzzle_BlueDoorH_Open_Tile0 FALSE
+setmetatile 14 9 METATILE_TrickHousePuzzle_BlueDoorH_Open_Tile1 FALSE
+setmetatile 13 10 METATILE_TrickHousePuzzle_BlueDoorH_Open_Tile2 FALSE
+setmetatile 14 10 METATILE_TrickHousePuzzle_BlueDoorH_Open_Tile3 FALSE
+setmetatile 13 15 METATILE_TrickHousePuzzle_BlueDoorH_Open_Tile0 FALSE
+setmetatile 14 15 METATILE_TrickHousePuzzle_BlueDoorH_Open_Tile1 FALSE
+setmetatile 13 16 METATILE_TrickHousePuzzle_BlueDoorH_Open_Tile2 FALSE
+setmetatile 14 16 METATILE_TrickHousePuzzle_BlueDoorH_Open_Tile3 FALSE
+setmetatile 3 7 METATILE_TrickHousePuzzle_BlueDoorV_Retracted TRUE
+setmetatile 3 8 METATILE_TrickHousePuzzle_Floor_ShadowTop FALSE
+setmetatile 3 13 METATILE_TrickHousePuzzle_BlueDoorV_Retracted TRUE
+setmetatile 3 14 METATILE_TrickHousePuzzle_Floor_ShadowTop FALSE
+setmetatile 6 4 METATILE_TrickHousePuzzle_BlueDoorV_Retracted TRUE
+setmetatile 6 5 METATILE_TrickHousePuzzle_Floor_ShadowTop FALSE
+setmetatile 9 16 METATILE_TrickHousePuzzle_BlueDoorV_Retracted TRUE
+setmetatile 9 17 METATILE_TrickHousePuzzle_Floor_ShadowTop FALSE
+setmetatile 12 7 METATILE_TrickHousePuzzle_BlueDoorV_Retracted TRUE
+setmetatile 12 8 METATILE_TrickHousePuzzle_Floor_ShadowTop FALSE
+setmetatile 1 3 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile0 FALSE
+setmetatile 2 3 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile1 FALSE
+setmetatile 1 4 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile2 TRUE
+setmetatile 2 4 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile3 TRUE
+setmetatile 1 12 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile0 FALSE
+setmetatile 2 12 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile1 FALSE
+setmetatile 1 13 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile2 TRUE
+setmetatile 2 13 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile3 TRUE
+setmetatile 4 6 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile0 FALSE
+setmetatile 5 6 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile1 FALSE
+setmetatile 4 7 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile2 TRUE
+setmetatile 5 7 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile3 TRUE
+setmetatile 4 12 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile0 FALSE
+setmetatile 5 12 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile1 FALSE
+setmetatile 4 13 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile2 TRUE
+setmetatile 5 13 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile3 TRUE
+setmetatile 4 18 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile0 FALSE
+setmetatile 5 18 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile1 FALSE
+setmetatile 4 19 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile2 TRUE
+setmetatile 5 19 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile3 TRUE
+setmetatile 7 9 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile0 FALSE
+setmetatile 8 9 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile1 FALSE
+setmetatile 7 10 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile2 TRUE
+setmetatile 8 10 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile3 TRUE
+setmetatile 10 6 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile0 FALSE
+setmetatile 11 6 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile1 FALSE
+setmetatile 10 7 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile2 TRUE
+setmetatile 11 7 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile3 TRUE
+setmetatile 10 12 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile0 FALSE
+setmetatile 11 12 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile1 FALSE
+setmetatile 10 13 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile2 TRUE
+setmetatile 11 13 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile3 TRUE
+setmetatile 10 18 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile0 FALSE
+setmetatile 11 18 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile1 FALSE
+setmetatile 10 19 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile2 TRUE
+setmetatile 11 19 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile3 TRUE
+setmetatile 13 3 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile0 FALSE
+setmetatile 14 3 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile1 FALSE
+setmetatile 13 4 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile2 TRUE
+setmetatile 14 4 METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile3 TRUE
+setmetatile 3 16 METATILE_TrickHousePuzzle_RedDoorV_Open0 TRUE
+setmetatile 3 17 METATILE_TrickHousePuzzle_RedDoorV_Open1 TRUE
+setmetatile 9 4 METATILE_TrickHousePuzzle_RedDoorV_Open0 TRUE
+setmetatile 9 5 METATILE_TrickHousePuzzle_RedDoorV_Open1 TRUE
+return
+= Route110_TrickHousePuzzle3_EventScript_UpdateButtonMetatiles
+setmetatile 4 14 METATILE_TrickHousePuzzle_Button_Up FALSE
+setmetatile 3 11 METATILE_TrickHousePuzzle_Button_Up FALSE
+setmetatile 12 5 METATILE_TrickHousePuzzle_Button_Up FALSE
+setmetatile 8 2 METATILE_TrickHousePuzzle_Button_Up FALSE
+call_if_eq VAR_TEMP_8 1 Route110_TrickHousePuzzle3_EventScript_PressedButton1Metatile
+call_if_eq VAR_TEMP_8 2 Route110_TrickHousePuzzle3_EventScript_PressedButton2Metatile
+call_if_eq VAR_TEMP_8 3 Route110_TrickHousePuzzle3_EventScript_PressedButton3Metatile
+call_if_eq VAR_TEMP_8 4 Route110_TrickHousePuzzle3_EventScript_PressedButton4Metatile
+return
+= Route110_TrickHousePuzzle3_EventScript_PressedButton4Metatile
+setmetatile 8 2 METATILE_TrickHousePuzzle_Button_Pressed FALSE
+return
+= Route110_TrickHousePuzzle3_EventScript_PressedButton3Metatile
+setmetatile 12 5 METATILE_TrickHousePuzzle_Button_Pressed FALSE
+return
+= Route110_TrickHousePuzzle3_EventScript_PressedButton2Metatile
+setmetatile 3 11 METATILE_TrickHousePuzzle_Button_Pressed FALSE
+return
+= Route110_TrickHousePuzzle3_EventScript_PressedButton1Metatile
+setmetatile 4 14 METATILE_TrickHousePuzzle_Button_Pressed FALSE
+return
+= Route110_TrickHousePuzzle3_EventScript_SetButton
+setvar VAR_TEMP_1 0
+setvar VAR_TEMP_2 0
+setvar VAR_TEMP_3 0
+setvar VAR_TEMP_4 0
+call_if_eq VAR_TEMP_8 1 Route110_TrickHousePuzzle3_EventScript_SetButton1
+call_if_eq VAR_TEMP_8 2 Route110_TrickHousePuzzle3_EventScript_SetButton2
+call_if_eq VAR_TEMP_8 3 Route110_TrickHousePuzzle3_EventScript_SetButton3
+call_if_eq VAR_TEMP_8 4 Route110_TrickHousePuzzle3_EventScript_SetButton4
+return
+= Route110_TrickHousePuzzle3_EventScript_SetButton4
+setvar VAR_TEMP_4 1
+return
+= Route110_TrickHousePuzzle3_EventScript_SetButton3
+setvar VAR_TEMP_3 1
+return
+= Route110_TrickHousePuzzle3_EventScript_SetButton2
+setvar VAR_TEMP_2 1
+return
+= Route110_TrickHousePuzzle3_EventScript_SetButton1
+setvar VAR_TEMP_1 1
+return
+= Route110_TrickHousePuzzle3_EventScript_Button3
+lockall
+setvar VAR_TEMP_8 3
+goto Route110_TrickHousePuzzle3_EventScript_PressButton
+end
+= Route110_TrickHousePuzzle3_EventScript_Button2
+lockall
+setvar VAR_TEMP_8 2
+goto Route110_TrickHousePuzzle3_EventScript_PressButton
+end
+= Route110_TrickHousePuzzle3_EventScript_Button1
+lockall
+setvar VAR_TEMP_8 1
+goto Route110_TrickHousePuzzle3_EventScript_PressButton
+end
+= EventScript_RockSmash
+lockall
+goto_if_unset FLAG_BADGE03_GET EventScript_CantSmashRock
+checkpartymove MOVE_ROCK_SMASH
+goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CantSmashRock
+setfieldeffectargument 0 VAR_RESULT
+bufferpartymonnick STR_VAR_1 VAR_RESULT
+buffermovename STR_VAR_2 MOVE_ROCK_SMASH
+msgboxyesno	This rock appears to be breakable. Would you like to use ROCK SMASH?
+goto_if_eq VAR_RESULT NO EventScript_CancelSmash
+msgbox	STR_VAR_1 used STR_VAR_2!
+closemessage
+dofieldeffect FLDEFF_USE_ROCK_SMASH
+waitstate
+goto EventScript_SmashRock
+end
+@ Use rock smash from party menu
+goto EventScript_UseRockSmash
+= EventScript_UseRockSmash
+lockall
+dofieldeffect FLDEFF_USE_ROCK_SMASH
+waitstate
+goto EventScript_SmashRock
+end
+= EventScript_SmashRock
+applymovement VAR_LAST_TALKED Movement_SmashRock
+waitmovement 0
+removeobject VAR_LAST_TALKED
+specialvar VAR_RESULT TryUpdateRusturfTunnelState
+goto_if_eq VAR_RESULT TRUE EventScript_EndSmash
+special RockSmashWildEncounter
+goto_if_eq VAR_RESULT FALSE EventScript_EndSmash
+waitstate
+releaseall
+end
+= EventScript_EndSmash
+releaseall
+end
+= EventScript_CancelSmash
+closemessage
+releaseall
+end
+= EventScript_CantSmashRock
+msgbox	It's a rugged rock, but a POKéMON may be able to smash it.
+releaseall
+end
+= Route110_TrickHousePuzzle3_EventScript_ItemShadowMail
+goto_if_set FLAG_ITEM_TRICK_HOUSE_PUZZLE_3_SHADOW_MAIL Route110_TrickHousePuzzle3_EventScript_ItemShadowMail_Taken
+finditem ITEM_SHADOW_MAIL
+setflag FLAG_ITEM_TRICK_HOUSE_PUZZLE_3_SHADOW_MAIL
+end
+= Route110_TrickHousePuzzle3_EventScript_ItemShadowMail_Taken
+end
+= Route110_TrickHousePuzzle3_EventScript_ItemWoodMail
+goto_if_set FLAG_ITEM_TRICK_HOUSE_PUZZLE_3_WOOD_MAIL Route110_TrickHousePuzzle3_EventScript_ItemWoodMail_Taken
+finditem ITEM_WOOD_MAIL
+setflag FLAG_ITEM_TRICK_HOUSE_PUZZLE_3_WOOD_MAIL
+end
+= Route110_TrickHousePuzzle3_EventScript_ItemWoodMail_Taken
+end
+= Route110_TrickHousePuzzle3_EventScript_Alan
+trainerbattle_single TRAINER_ALAN Route110_TrickHousePuzzle3_Text_AlanIntro Route110_TrickHousePuzzle3_Text_AlanDefeat
+msgbox	I don't get it. How many traps are in this house?You may be the one to solve that.
+end
+= Route110_TrickHousePuzzle3_EventScript_Martha
+trainerbattle_single TRAINER_MARTHA Route110_TrickHousePuzzle3_Text_MarthaIntro Route110_TrickHousePuzzle3_Text_MarthaDefeat
+msgbox	I know I'm weak! And, I have no sense of direction!
+end
+= Route110_TrickHousePuzzle3_EventScript_Justin
+trainerbattle_single TRAINER_JUSTIN Route110_TrickHousePuzzle3_Text_JustinIntro Route110_TrickHousePuzzle3_Text_JustinDefeat
+msgbox	It's full of doors here! It's too small and dark in here! Help!
+end
+mapsec
+8 7 1 3	ROUTE 110
+music
+MUS_TRICK_HOUSE

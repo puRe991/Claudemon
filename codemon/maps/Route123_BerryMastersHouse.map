@@ -1,0 +1,143 @@
+tileset building__generic_building
+11 8
+4 3
+646,647,560,517,517,518,517,517,517,517,632
+654,655,542,525,525,526,525,616,620,621,640
+662,663,568,548,548,548,548,624,628,629,648
+569,547,547,547,547,547,547,547,547,547,547
+569,547,547,547,555,586,587,556,547,547,547
+569,547,547,547,555,594,595,556,547,547,547
+657,547,547,547,547,547,547,547,547,547,546
+665,547,547,520,521,547,547,547,547,547,554
+collision
+1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,1,1,0,0,0,0
+0,0,0,0,0,1,1,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0
+1,0,0,0,0,0,0,0,0,0,1
+warps
+3 7 Route123 0
+4 7 Route123 0
+npcs
+people_expert_m 4 4 S static 0 - 0
+people_old_woman 7 4 S static 0 - 0
+objscripts
+0 Route123_BerryMastersHouse_EventScript_BerryMaster
+1 Route123_BerryMastersHouse_EventScript_BerryMastersWife
+scriptdefs
+= Route123_BerryMastersHouse_EventScript_BerryMastersWife
+lock
+faceplayer
+dotimebasedevents
+goto_if_set FLAG_DAILY_BERRY_MASTERS_WIFE Route123_BerryMastersHouse_EventScript_ReceivedWifeBerryToday
+msgbox	The way my husband grows BERRIES, oh, he's the best in the world.He makes me proud, that he does.Incidentally, child, have you heard a good saying lately?
+setvar VAR_0x8004 EASY_CHAT_TYPE_GOOD_SAYING
+call Common_ShowEasyChatScreen
+lock
+faceplayer
+goto_if_eq VAR_RESULT TRUE Route123_BerryMastersHouse_EventScript_GavePhrase
+goto_if_eq VAR_RESULT FALSE Route123_BerryMastersHouse_EventScript_CancelPhrase
+end
+= Route123_BerryMastersHouse_EventScript_CancelPhrase
+msgbox	Ah…
+msgbox	Our four grandchildren should become more accomplished than my husband.Joy never goes out of my life!
+release
+end
+= Route123_BerryMastersHouse_EventScript_GavePhrase
+goto_if_eq VAR_0x8004 NOT_SPECIAL_PHRASE Route123_BerryMastersHouse_EventScript_GiveNormalBerry
+goto_if_eq VAR_0x8004 PHRASE_GREAT_BATTLE Route123_BerryMastersHouse_EventScript_GiveSpelonBerry
+goto_if_eq VAR_0x8004 PHRASE_CHALLENGE_CONTEST Route123_BerryMastersHouse_EventScript_GivePamtreBerry
+goto_if_eq VAR_0x8004 PHRASE_OVERWHELMING_LATIAS Route123_BerryMastersHouse_EventScript_GiveWatmelBerry
+goto_if_eq VAR_0x8004 PHRASE_COOL_LATIOS Route123_BerryMastersHouse_EventScript_GiveDurinBerry
+goto_if_eq VAR_0x8004 PHRASE_SUPER_HUSTLE Route123_BerryMastersHouse_EventScript_GiveBelueBerry
+end
+= Route123_BerryMastersHouse_EventScript_GiveBelueBerry
+goto_if_set FLAG_RECEIVED_BELUE_BERRY Route123_BerryMastersHouse_EventScript_GiveNormalBerry
+msgbox	Ah! What a remarkable saying! Inspirational, it is!I want you to have this.
+giveitem ITEM_BELUE_BERRY
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_RECEIVED_BELUE_BERRY
+goto Route123_BerryMastersHouse_EventScript_GaveBerry
+end
+= Route123_BerryMastersHouse_EventScript_GaveBerry
+setflag FLAG_DAILY_BERRY_MASTERS_WIFE
+msgbox	Our four grandchildren should become more accomplished than my husband.Joy never goes out of my life!
+release
+end
+= Route123_BerryMastersHouse_EventScript_GiveNormalBerry
+msgbox	Oh! A good saying it is. You're quite remarkable.I want you to have this.
+random NUM_BERRY_MASTER_WIFE_BERRIES
+addvar VAR_RESULT FIRST_BERRY_INDEX
+giveitem VAR_RESULT
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+goto Route123_BerryMastersHouse_EventScript_GaveBerry
+release
+end
+= Route123_BerryMastersHouse_EventScript_GiveDurinBerry
+goto_if_set FLAG_RECEIVED_DURIN_BERRY Route123_BerryMastersHouse_EventScript_GiveNormalBerry
+msgbox	Ah! What a remarkable saying! Inspirational, it is!I want you to have this.
+giveitem ITEM_DURIN_BERRY
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_RECEIVED_DURIN_BERRY
+goto Route123_BerryMastersHouse_EventScript_GaveBerry
+end
+= Route123_BerryMastersHouse_EventScript_GiveWatmelBerry
+goto_if_set FLAG_RECEIVED_WATMEL_BERRY Route123_BerryMastersHouse_EventScript_GiveNormalBerry
+msgbox	Ah! What a remarkable saying! Inspirational, it is!I want you to have this.
+giveitem ITEM_WATMEL_BERRY
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_RECEIVED_WATMEL_BERRY
+goto Route123_BerryMastersHouse_EventScript_GaveBerry
+end
+= Route123_BerryMastersHouse_EventScript_GivePamtreBerry
+goto_if_set FLAG_RECEIVED_PAMTRE_BERRY Route123_BerryMastersHouse_EventScript_GiveNormalBerry
+msgbox	Ah! What a remarkable saying! Inspirational, it is!I want you to have this.
+giveitem ITEM_PAMTRE_BERRY
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_RECEIVED_PAMTRE_BERRY
+goto Route123_BerryMastersHouse_EventScript_GaveBerry
+end
+= Route123_BerryMastersHouse_EventScript_GiveSpelonBerry
+goto_if_set FLAG_RECEIVED_SPELON_BERRY Route123_BerryMastersHouse_EventScript_GiveNormalBerry
+msgbox	Ah! What a remarkable saying! Inspirational, it is!I want you to have this.
+giveitem ITEM_SPELON_BERRY
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_RECEIVED_SPELON_BERRY
+goto Route123_BerryMastersHouse_EventScript_GaveBerry
+end
+= Route123_BerryMastersHouse_EventScript_ReceivedWifeBerryToday
+msgbox	Our four grandchildren should become more accomplished than my husband.Joy never goes out of my life!
+release
+end
+= Route123_BerryMastersHouse_EventScript_BerryMaster
+lock
+faceplayer
+dotimebasedevents
+goto_if_set FLAG_DAILY_BERRY_MASTER_RECEIVED_BERRY Route123_BerryMastersHouse_EventScript_ReceivedBerryToday
+msgbox	You may call me the BERRY MASTER.I dream of filling the world with beautiful flowers, so I raise BERRIES and hand them out to everyone.You're deserving of one!
+random NUM_BERRY_MASTER_BERRIES
+addvar VAR_RESULT NUM_BERRY_MASTER_BERRIES_SKIPPED
+addvar VAR_RESULT FIRST_BERRY_INDEX
+giveitem VAR_RESULT
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_DAILY_BERRY_MASTER_RECEIVED_BERRY
+msgbox	Why be stingy? Take another!
+random NUM_BERRY_MASTER_BERRIES
+addvar VAR_RESULT NUM_BERRY_MASTER_BERRIES_SKIPPED
+addvar VAR_RESULT FIRST_BERRY_INDEX
+giveitem VAR_RESULT
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+msgbox	Be sure to visit the PRETTY PETAL flower shop near RUSTBORO.Let flowers fill the world!
+release
+end
+= Route123_BerryMastersHouse_EventScript_ReceivedBerryToday
+msgbox	I'm done for today. Come again another day.Let flowers fill the world!
+release
+end
+mapsec
+12 6 5 1	ROUTE 123
+music
+MUS_RUSTBORO

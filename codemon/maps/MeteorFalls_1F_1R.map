@@ -1,0 +1,266 @@
+tileset general__meteor_falls
+30 42
+14 20
+564,612,613,580,580,580,588,580,580,580,580,580,580,580,580,580,580,580,580,580,580,612,613,580,580,580,580,614,615,572
+564,620,621,580,580,580,596,580,580,580,580,580,580,614,615,580,580,580,580,580,580,620,621,580,580,580,580,622,623,572
+564,628,629,558,580,559,604,558,580,581,582,583,580,622,623,580,580,580,580,580,559,628,629,558,580,580,580,622,623,572
+564,513,513,513,513,513,564,534,580,589,590,591,559,630,631,558,580,580,533,572,513,513,513,513,513,564,534,630,631,572
+564,513,513,513,513,525,564,530,513,513,513,513,564,384,393,393,393,385,552,572,513,513,513,513,513,564,530,513,526,572
+564,513,642,643,513,513,575,530,574,574,574,574,575,400,368,368,368,402,552,572,513,513,513,513,513,575,530,513,513,572
+564,513,650,651,513,564,531,562,384,393,393,393,393,408,368,368,368,402,552,572,513,513,513,513,564,531,538,513,513,572
+564,513,513,513,513,575,530,384,408,368,368,368,368,368,368,368,368,402,552,572,513,513,513,513,564,530,513,513,513,572
+564,574,574,574,575,531,538,400,368,368,368,368,368,368,368,368,368,402,552,573,574,574,574,574,575,530,513,513,513,572
+564,537,537,537,537,538,574,567,377,368,368,368,368,368,368,376,565,566,536,537,537,537,537,537,537,538,574,574,574,572
+564,612,613,580,580,580,580,559,187,179,179,179,179,179,179,188,558,580,580,614,615,580,580,580,612,613,580,514,580,572
+564,620,621,580,580,580,580,559,185,185,185,185,185,185,185,185,558,580,580,622,623,580,580,580,620,621,580,514,580,572
+564,628,629,558,580,580,580,559,185,185,185,185,185,185,185,185,558,588,580,622,623,580,580,559,628,629,558,514,580,572
+564,513,513,564,534,580,580,559,185,185,185,185,185,185,185,185,558,596,580,622,623,580,580,533,572,642,643,513,526,572
+564,513,513,564,554,534,580,559,76,76,76,76,76,76,76,76,558,604,558,630,631,558,533,552,572,650,651,513,513,572
+564,574,574,575,554,530,384,393,84,84,84,84,84,84,84,84,393,346,347,385,513,513,552,552,573,574,574,574,574,572
+564,537,514,537,562,530,400,368,368,368,368,368,368,368,368,368,368,344,345,410,393,385,552,536,537,537,537,514,537,572
+564,574,574,574,575,530,400,368,368,368,368,568,624,625,625,625,625,626,569,368,368,402,552,572,513,513,513,513,527,572
+564,531,514,537,537,538,400,368,368,368,376,552,572,513,513,513,513,564,608,609,609,609,610,572,513,513,513,519,513,572
+564,530,513,513,513,513,400,368,368,368,402,536,537,537,514,532,572,564,616,617,617,617,618,573,520,563,637,638,639,572
+564,530,513,513,513,513,542,542,542,542,542,513,513,513,513,552,572,564,554,640,369,641,560,532,552,572,513,513,513,572
+564,530,526,513,513,513,513,513,513,513,513,513,642,643,513,552,572,564,554,400,368,410,385,552,552,573,574,574,574,572
+564,538,513,526,574,574,574,574,574,574,513,513,650,651,513,552,573,575,554,400,368,368,402,552,560,561,561,561,561,572
+564,574,575,588,580,580,514,580,612,613,572,513,513,513,527,536,537,537,562,567,377,368,402,560,561,561,561,561,561,572
+564,614,615,596,580,580,514,580,620,621,573,527,574,574,575,580,588,580,580,559,187,179,188,558,580,580,580,580,580,572
+564,622,623,604,553,553,553,553,628,629,558,580,580,580,559,580,596,580,580,559,185,185,185,558,580,580,580,580,580,572
+564,630,631,553,553,553,553,553,553,553,558,580,580,580,559,534,604,558,580,559,185,185,185,558,580,580,580,580,588,572
+564,553,553,553,553,553,553,553,553,553,553,553,553,553,553,554,534,580,580,559,185,185,185,558,580,581,582,583,596,572
+564,553,553,553,654,597,598,599,653,553,553,553,553,553,553,554,554,534,580,559,185,185,185,558,580,589,590,591,604,572
+564,531,561,561,670,605,606,607,669,561,561,561,561,514,561,562,554,554,534,559,76,76,76,558,533,572,513,513,513,572
+564,554,553,654,597,599,597,598,598,599,653,553,553,553,553,553,554,554,554,384,84,84,84,385,552,572,513,527,513,572
+564,562,531,670,605,607,605,606,606,607,669,561,561,514,561,561,562,554,554,400,368,368,368,402,552,572,513,513,513,572
+564,561,670,654,597,598,598,598,599,597,599,653,553,553,553,543,553,554,554,400,368,368,368,402,552,572,642,643,513,572
+564,531,561,670,605,606,606,606,607,605,607,669,561,514,561,561,561,562,554,400,368,368,368,402,552,572,650,651,513,572
+564,554,654,597,599,597,598,598,599,597,598,599,653,553,553,553,553,543,554,400,368,368,368,402,552,572,513,513,513,572
+564,554,662,605,607,605,606,606,607,605,606,607,661,553,642,643,553,531,562,400,368,336,337,402,552,573,527,513,513,572
+564,554,662,597,598,598,598,599,597,598,598,599,661,553,650,651,553,554,384,408,368,344,345,402,560,532,573,574,527,572
+564,554,662,605,606,606,606,607,605,606,606,607,669,514,561,561,561,562,400,368,368,368,368,410,385,560,561,561,561,572
+564,554,530,553,553,553,553,553,553,553,553,553,553,553,553,543,553,384,408,368,368,368,368,368,410,393,346,347,385,572
+564,562,530,553,553,553,548,553,553,553,553,553,553,553,553,543,553,400,368,368,368,368,336,337,368,368,344,345,402,572
+564,535,600,600,601,584,585,586,601,546,553,553,553,553,553,553,543,400,368,368,368,368,344,345,368,368,368,368,402,572
+513,566,566,566,566,566,566,566,566,566,566,566,566,566,566,566,566,566,566,566,566,566,566,566,566,566,566,566,566,513
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,0,0,0,0,0,0,1,1,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1
+1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,1,1
+1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,1
+1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,0,0,1
+1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,1
+1,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,1
+1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,1
+1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,1,1
+1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,1,1
+1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,1,1
+1,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,1,1
+1,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,1
+1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,1,0,0,0,0,0,1
+1,1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,1,1,1,1,0,1,1
+1,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,1,1
+1,1,0,1,1,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+1,1,0,0,0,0,0,0,0,0,0,1,1,1,0,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1
+1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,1,1,1,1,1,1,1,1
+1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,1,1,1,0,0,1,1
+1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,1,1,1,1,1,1,1
+1,0,0,1,1,1,0,1,1,1,0,0,0,0,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1
+1,1,1,1,1,1,0,1,1,1,0,1,0,0,0,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1
+1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1
+1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1
+1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1
+1,0,0,0,1,0,0,0,1,0,0,0,0,0,0,1,1,1,1,1,0,0,0,1,1,1,0,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,0,0,1,1,0,0,0,0,1
+1,1,0,1,0,0,0,0,0,0,1,0,0,0,0,0,1,1,1,0,0,0,0,0,1,0,0,1,0,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,0,0,0,0,0,1,0,0,0,0,1
+1,1,1,1,0,0,0,0,0,0,0,1,0,0,0,1,1,1,1,0,0,0,0,0,1,0,0,0,0,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,0,0,0,0,0,1,0,0,0,0,1
+1,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,0,0,0,0,0,1,0,0,0,0,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,0,0,1,1,0,1,0,1,0,0,1
+1,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,1,1,0,1,1,0,0,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1
+1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,1,0,1
+1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,0,0,1,1,0,1
+1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,0,0,0,0,0,1,1,0,0,0,0,0,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+27 18 Route114 0
+6 39 Route115 0
+10 3 MeteorFalls_1F_2R 0
+5 4 MeteorFalls_B1F_1R 4
+26 28 MeteorFalls_B1F_1R 5
+4 2 MeteorFalls_StevensCave 0
+npcs
+misc_item_ball 2 4 S static FLAG_ITEM_METEOR_FALLS_1F_1R_TM_IRON_TAIL - 0
+misc_item_ball 2 14 S static FLAG_ITEM_METEOR_FALLS_1F_1R_MOON_STONE - 0
+misc_item_ball 27 5 S static FLAG_ITEM_METEOR_FALLS_1F_1R_FULL_HEAL - 0
+misc_item_ball 26 32 S static FLAG_ITEM_METEOR_FALLS_1F_1R_PP_UP - 0
+people_team_magma_magma_member_m 12 20 S static FLAG_HIDE_METEOR_FALLS_TEAM_MAGMA LOCALID_METEOR_FALLS_MAGMA_GRUNT_1 0
+people_team_magma_magma_member_m 14 21 W static FLAG_HIDE_METEOR_FALLS_TEAM_MAGMA LOCALID_METEOR_FALLS_MAGMA_GRUNT_2 0
+people_team_aqua_archie 6 20 E static FLAG_HIDE_METEOR_FALLS_TEAM_AQUA LOCALID_METEOR_FALLS_ARCHIE 0
+people_team_aqua_aqua_member_m 6 20 E static FLAG_HIDE_METEOR_FALLS_TEAM_AQUA LOCALID_METEOR_FALLS_AQUA_GRUNT_1 0
+people_team_aqua_aqua_member_m 6 21 S static FLAG_HIDE_METEOR_FALLS_TEAM_AQUA LOCALID_METEOR_FALLS_AQUA_GRUNT_2 0
+people_scientist_1 13 23 W pace_h FLAG_HIDE_METEOR_FALLS_1F_1R_COZMO - 0
+dialogs
+9	I… I'm COZMO… I'm a PROFESSOR…TEAM MAGMA asked me to guide them to METEOR FALLS…But they tricked me. They even took my METEORITE away…And then another similar bunch, TEAM AQUA showed up.After that… I don't understand any of it.But that TEAM MAGMA…What are they going to do with that METEORITE at MT. CHIMNEY?
+objscripts
+0 MeteorFalls_1F_1R_EventScript_ItemTMIronTail
+1 MeteorFalls_1F_1R_EventScript_ItemMoonStone
+2 MeteorFalls_1F_1R_EventScript_ItemFullHeal
+3 MeteorFalls_1F_1R_EventScript_ItemPPUP
+9 MeteorFalls_1F_1R_EventScript_ProfCozmo
+triggers
+14 18 VAR_METEOR_FALLS_STATE 0 MeteorFalls_1F_1R_EventScript_MagmaStealsMeteoriteScene
+movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
+Common_Movement_FaceDown	face_down,end
+Common_Movement_WalkInPlaceDown	delay,end
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
+MeteorFalls_1F_1R_Movement_AquaGrunt1ApproachArchie	right,right,right,delay,end
+MeteorFalls_1F_1R_Movement_AquaGrunt1Arrive	delay,delay,right,right,right,right,right,end
+MeteorFalls_1F_1R_Movement_AquaGrunt1Exit	up,up,right,right,right,right,right,right,right,end
+MeteorFalls_1F_1R_Movement_AquaGrunt2ApproachArchie	right,right,right,delay,end
+MeteorFalls_1F_1R_Movement_AquaGrunt2Arrive	delay,delay,right,right,right,right,right,end
+MeteorFalls_1F_1R_Movement_AquaGrunt2Exit	up,up,up,right,right,right,right,right,right,right,end
+MeteorFalls_1F_1R_Movement_ArchieApproachPlayer	right,right,up,up,delay,end
+MeteorFalls_1F_1R_Movement_ArchieArrive	right,right,right,right,right,right,end
+MeteorFalls_1F_1R_Movement_ArchieExit	right,right,right,right,right,right,right,end
+MeteorFalls_1F_1R_Movement_MagmaGrunt1Exit	up,up,right,right,right,right,right,right,right,end
+MeteorFalls_1F_1R_Movement_MagmaGrunt2Exit	up,up,up,right,right,right,right,right,right,right,end
+MeteorFalls_1F_1R_Movement_MagmaGruntApproachPlayer	right,right,delay,end
+MeteorFalls_1F_1R_Movement_PushPlayerOutOfWay	delay,delay,delay,delay,left,delay,face_right,end
+scriptdefs
+= MeteorFalls_1F_1R_EventScript_MagmaStealsMeteoriteScene
+lockall
+playbgm MUS_ENCOUNTER_MAGMA FALSE
+applymovement LOCALID_PLAYER Common_Movement_FaceDown
+waitmovement 0
+delay 30
+applymovement LOCALID_METEOR_FALLS_MAGMA_GRUNT_1 Common_Movement_WalkInPlaceDown
+waitmovement 0
+msgbox	Hehehe!With this METEORITE, that thing in MT. CHIMNEY will…
+closemessage
+applymovement LOCALID_METEOR_FALLS_MAGMA_GRUNT_1 Common_Movement_WalkInPlaceFasterUp
+applymovement LOCALID_METEOR_FALLS_MAGMA_GRUNT_2 Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_METEOR_FALLS_MAGMA_GRUNT_1 Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_METEOR_FALLS_MAGMA_GRUNT_1 Common_Movement_Delay48
+waitmovement 0
+msgbox	Heh?I don't know who you are, but if you get in the way of TEAM MAGMA, don't expect any mercy!
+closemessage
+applymovement LOCALID_METEOR_FALLS_MAGMA_GRUNT_1 MeteorFalls_1F_1R_Movement_MagmaGruntApproachPlayer
+waitmovement 0
+msgbox	Hold it right there, TEAM MAGMA!You're badly mistaken if you think you can have your way with the world!
+closemessage
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterLeft
+applymovement LOCALID_METEOR_FALLS_MAGMA_GRUNT_1 Common_Movement_WalkInPlaceFasterLeft
+applymovement LOCALID_METEOR_FALLS_MAGMA_GRUNT_2 Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+addobject LOCALID_METEOR_FALLS_ARCHIE
+addobject LOCALID_METEOR_FALLS_AQUA_GRUNT_1
+addobject LOCALID_METEOR_FALLS_AQUA_GRUNT_2
+playbgm MUS_ENCOUNTER_AQUA FALSE
+applymovement LOCALID_METEOR_FALLS_ARCHIE MeteorFalls_1F_1R_Movement_ArchieArrive
+applymovement LOCALID_METEOR_FALLS_AQUA_GRUNT_1 MeteorFalls_1F_1R_Movement_AquaGrunt1Arrive
+applymovement LOCALID_METEOR_FALLS_AQUA_GRUNT_2 MeteorFalls_1F_1R_Movement_AquaGrunt2Arrive
+waitmovement 0
+applymovement LOCALID_METEOR_FALLS_MAGMA_GRUNT_1 Common_Movement_WalkInPlaceFasterLeft
+applymovement LOCALID_METEOR_FALLS_MAGMA_GRUNT_2 Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+msgbox	Hehehe! Even TEAM AQUA joins us!But it's too much trouble to deal with you all…Heh, it doesn't matter!We've got the METEORITE, so off to MT. CHIMNEY we go!Hehehe! Be seeing you, you TEAM AQUA dingbats!
+closemessage
+applymovement LOCALID_PLAYER MeteorFalls_1F_1R_Movement_PushPlayerOutOfWay
+applymovement LOCALID_METEOR_FALLS_MAGMA_GRUNT_1 MeteorFalls_1F_1R_Movement_MagmaGrunt1Exit
+applymovement LOCALID_METEOR_FALLS_MAGMA_GRUNT_2 MeteorFalls_1F_1R_Movement_MagmaGrunt2Exit
+waitmovement 0
+removeobject LOCALID_METEOR_FALLS_MAGMA_GRUNT_1
+removeobject LOCALID_METEOR_FALLS_MAGMA_GRUNT_2
+applymovement LOCALID_METEOR_FALLS_ARCHIE MeteorFalls_1F_1R_Movement_ArchieApproachPlayer
+waitmovement 0
+msgbox	ARCHIE: Didn't I see you before? At SLATEPORT's MUSEUM?Ah, so your name is PLAYER.At the time, I thought you were one of TEAM MAGMA's goons.Humph… You're one odd kid.TEAM MAGMA is a dangerous group of total fanatics.They engage in destruction, claiming to expand the land mass.They are the rivals to us, the sea-loving TEAM AQUA!
+closemessage
+applymovement LOCALID_METEOR_FALLS_AQUA_GRUNT_1 MeteorFalls_1F_1R_Movement_AquaGrunt1ApproachArchie
+applymovement LOCALID_METEOR_FALLS_AQUA_GRUNT_2 MeteorFalls_1F_1R_Movement_AquaGrunt2ApproachArchie
+waitmovement 0
+msgbox	BOSS, we should give chase to TEAM MAGMA…
+applymovement LOCALID_METEOR_FALLS_ARCHIE Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+msgbox	ARCHIE: Yes, yes, we must! We've got to hurry.There's no telling what TEAM MAGMA will do at MT. CHIMNEY!
+applymovement LOCALID_METEOR_FALLS_ARCHIE Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+msgbox	ARCHIE: PLAYER, you should keep an eye out for TEAM MAGMA, too.Farewell!
+closemessage
+applymovement LOCALID_METEOR_FALLS_ARCHIE MeteorFalls_1F_1R_Movement_ArchieExit
+applymovement LOCALID_METEOR_FALLS_AQUA_GRUNT_1 MeteorFalls_1F_1R_Movement_AquaGrunt1Exit
+applymovement LOCALID_METEOR_FALLS_AQUA_GRUNT_2 MeteorFalls_1F_1R_Movement_AquaGrunt2Exit
+waitmovement 0
+fadedefaultbgm
+removeobject LOCALID_METEOR_FALLS_ARCHIE
+removeobject LOCALID_METEOR_FALLS_AQUA_GRUNT_1
+removeobject LOCALID_METEOR_FALLS_AQUA_GRUNT_2
+setflag FLAG_HIDE_ROUTE_112_TEAM_MAGMA
+setflag FLAG_MET_ARCHIE_METEOR_FALLS
+setflag FLAG_HIDE_FALLARBOR_TOWN_BATTLE_TENT_SCOTT
+setvar VAR_METEOR_FALLS_STATE 1
+releaseall
+end
+= MeteorFalls_1F_1R_EventScript_ProfCozmo
+lock
+faceplayer
+goto_if_set FLAG_MET_PROF_COZMO MeteorFalls_1F_1R_EventScript_MetCozmo
+setflag FLAG_MET_PROF_COZMO
+msgbox	I… I'm COZMO… I'm a PROFESSOR…TEAM MAGMA asked me to guide them to METEOR FALLS…But they tricked me. They even took my METEORITE away…And then another similar bunch, TEAM AQUA showed up.After that… I don't understand any of it.But that TEAM MAGMA…What are they going to do with that METEORITE at MT. CHIMNEY?
+release
+end
+= MeteorFalls_1F_1R_EventScript_MetCozmo
+msgbox	PROF. COZMO: But that TEAM MAGMA…What are they going to do with that METEORITE at MT. CHIMNEY?
+release
+end
+= MeteorFalls_1F_1R_EventScript_ItemPPUP
+goto_if_set FLAG_ITEM_METEOR_FALLS_1F_1R_PP_UP MeteorFalls_1F_1R_EventScript_ItemPPUP_Taken
+finditem ITEM_PP_UP
+setflag FLAG_ITEM_METEOR_FALLS_1F_1R_PP_UP
+end
+= MeteorFalls_1F_1R_EventScript_ItemPPUP_Taken
+end
+= MeteorFalls_1F_1R_EventScript_ItemFullHeal
+goto_if_set FLAG_ITEM_METEOR_FALLS_1F_1R_FULL_HEAL MeteorFalls_1F_1R_EventScript_ItemFullHeal_Taken
+finditem ITEM_FULL_HEAL
+setflag FLAG_ITEM_METEOR_FALLS_1F_1R_FULL_HEAL
+end
+= MeteorFalls_1F_1R_EventScript_ItemFullHeal_Taken
+end
+= MeteorFalls_1F_1R_EventScript_ItemMoonStone
+goto_if_set FLAG_ITEM_METEOR_FALLS_1F_1R_MOON_STONE MeteorFalls_1F_1R_EventScript_ItemMoonStone_Taken
+finditem ITEM_MOON_STONE
+setflag FLAG_ITEM_METEOR_FALLS_1F_1R_MOON_STONE
+end
+= MeteorFalls_1F_1R_EventScript_ItemMoonStone_Taken
+end
+= MeteorFalls_1F_1R_EventScript_ItemTMIronTail
+goto_if_set FLAG_ITEM_METEOR_FALLS_1F_1R_TM_IRON_TAIL MeteorFalls_1F_1R_EventScript_ItemTMIronTail_Taken
+finditem ITEM_TM_IRON_TAIL
+setflag FLAG_ITEM_METEOR_FALLS_1F_1R_TM_IRON_TAIL
+end
+= MeteorFalls_1F_1R_EventScript_ItemTMIronTail_Taken
+end
+water
+84,368,369,376,377,384,385,393,400,402,408,410,640,641
+waterfall
+76,179,185,187,188
+mapsec
+0 3 1 1	METEOR FALLS
+music
+MUS_CAVE_OF_ORIGIN
+encounters
+land ZUBAT:16:16,ZUBAT:17:17,ZUBAT:18:18,ZUBAT:15:15,ZUBAT:14:14,SOLROCK:16:16,SOLROCK:18:18,SOLROCK:14:14,ZUBAT:19:19,ZUBAT:20:20,ZUBAT:19:19,ZUBAT:20:20
+water ZUBAT:5:35,ZUBAT:30:35,SOLROCK:25:35,SOLROCK:15:25,SOLROCK:5:15
+fishing MAGIKARP:5:10,GOLDEEN:5:10,MAGIKARP:10:30,GOLDEEN:10:30,BARBOACH:10:30,BARBOACH:25:30,BARBOACH:30:35,BARBOACH:20:25,BARBOACH:35:40,BARBOACH:40:45

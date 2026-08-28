@@ -1,0 +1,450 @@
+tileset building__contest
+51 33
+25 16
+515,515,515,515,515,515,515,515,515,539,559,559,559,559,559,559,559,559,559,559,559,559,559,559,559,559,559,559,559,559,559,559,559,559,559,559,559,559,559,559,559,538,515,515,515,515,515,515,515,515,515
+515,515,515,515,515,515,515,515,515,514,529,529,529,638,529,529,529,529,529,646,529,529,529,529,529,662,529,529,529,529,529,630,529,529,529,529,529,654,529,529,529,523,515,515,515,515,515,515,515,515,515
+515,515,515,515,539,559,559,559,559,522,531,531,531,656,531,531,531,531,531,664,531,531,531,531,531,680,531,531,531,531,531,648,531,531,531,531,531,672,531,531,531,520,559,559,559,559,538,515,515,515,515
+515,515,515,515,514,529,572,573,574,530,610,610,610,610,610,610,610,610,610,610,610,610,610,610,610,610,610,610,610,610,610,610,610,610,610,610,610,610,610,610,610,528,572,573,574,529,523,515,515,515,515
+559,559,559,559,522,531,580,581,582,558,544,545,545,545,545,545,545,545,545,545,545,545,545,545,545,545,545,545,545,545,545,545,545,545,545,545,545,545,545,545,546,556,580,581,582,531,520,559,559,559,559
+529,572,573,574,530,610,610,610,610,566,552,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,554,564,610,610,610,610,528,572,573,574,529
+531,580,581,582,558,544,545,545,545,545,560,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,562,545,545,545,545,546,556,580,581,582,531
+610,610,610,610,566,552,608,608,608,608,608,608,608,608,608,608,608,608,524,525,525,525,525,525,525,525,525,525,525,525,525,525,526,614,608,608,608,608,608,608,608,608,608,608,608,554,564,610,610,610,610
+544,545,545,545,545,560,608,608,586,608,608,608,608,608,608,608,608,608,548,549,549,549,549,549,549,549,549,549,549,549,549,549,550,614,608,608,608,608,608,608,608,608,586,608,608,562,545,545,545,545,546
+552,608,608,608,608,608,608,608,594,608,608,608,608,608,608,608,608,608,548,549,549,616,617,617,617,617,617,617,617,618,549,549,550,614,608,608,608,608,608,608,608,608,594,608,608,608,608,608,608,608,554
+552,608,586,608,608,586,608,608,608,608,608,608,584,608,584,608,608,608,548,549,549,624,625,625,625,625,625,623,625,626,549,549,550,614,608,608,585,608,585,608,608,608,608,608,608,586,608,608,586,608,554
+552,608,594,608,608,594,608,608,608,608,608,608,592,608,592,608,608,608,548,549,549,624,625,625,625,657,625,631,625,626,549,549,550,614,608,608,593,608,593,608,608,608,608,608,608,594,608,608,594,608,554
+552,608,608,608,608,608,608,608,608,608,608,608,600,608,600,608,608,608,548,549,549,624,625,625,625,665,625,625,625,626,549,549,550,614,608,608,601,608,601,608,608,608,608,608,608,608,608,608,608,608,554
+552,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,548,549,549,624,625,625,625,625,625,625,625,626,549,549,550,614,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,554
+552,608,608,608,608,608,608,608,608,608,608,608,584,608,584,608,608,608,548,549,549,632,633,633,635,636,637,633,633,634,549,549,550,614,608,608,585,608,585,608,608,608,608,608,608,608,608,608,608,608,554
+552,608,608,608,608,608,608,608,608,608,608,608,592,608,592,608,608,608,532,533,533,533,533,533,643,644,645,533,533,533,533,533,534,614,608,608,593,608,593,608,608,608,608,608,608,608,608,608,608,608,554
+552,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,540,541,541,541,541,537,643,644,645,537,541,541,541,541,542,614,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,554
+552,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,710,607,607,607,607,607,607,607,607,607,607,607,607,607,607,615,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,554
+552,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,554
+552,608,608,608,608,608,524,525,525,525,525,525,525,525,525,525,525,525,525,525,526,614,608,608,608,608,608,608,608,608,524,525,525,525,525,525,525,525,525,525,525,525,525,525,526,614,608,608,608,608,554
+552,608,608,608,608,608,548,549,549,549,549,549,549,549,549,549,549,549,549,549,550,614,608,608,608,608,608,608,608,608,548,549,549,549,549,549,549,549,549,549,549,549,549,549,550,614,608,608,608,608,554
+552,608,608,608,608,608,548,549,549,616,617,617,617,617,617,617,617,618,549,549,550,614,585,608,608,608,608,608,584,608,548,549,549,616,617,617,617,617,617,617,617,618,549,549,550,614,608,608,608,608,554
+552,608,584,608,584,608,548,549,549,624,625,625,625,625,625,623,625,626,549,549,550,614,593,608,608,608,608,608,592,608,548,549,549,624,625,625,625,625,625,623,625,626,549,549,550,614,585,608,585,608,554
+552,608,592,608,592,608,548,549,549,624,625,625,625,673,625,631,625,626,549,549,550,614,601,608,608,608,608,608,600,608,548,549,549,624,625,625,625,658,625,631,625,626,549,549,550,614,593,608,593,608,554
+552,608,600,608,600,608,548,549,549,624,625,625,625,681,625,625,625,626,549,549,550,614,608,608,608,608,608,608,608,608,548,549,549,624,625,625,625,666,625,625,625,626,549,549,550,614,601,608,601,608,554
+552,608,608,608,608,608,548,549,549,624,625,625,625,625,625,625,625,626,549,549,550,614,585,608,608,608,608,608,584,608,548,549,549,624,625,625,625,625,625,625,625,626,549,549,550,614,608,608,608,608,554
+552,608,584,608,584,608,548,549,549,632,633,633,651,652,653,633,633,634,549,549,550,614,593,608,608,608,608,608,592,608,548,549,549,632,633,633,683,684,685,633,633,634,549,549,550,614,585,608,585,608,554
+552,608,592,608,592,608,532,533,533,533,533,533,659,660,661,533,533,533,533,533,534,614,601,608,608,608,608,608,600,608,532,533,533,533,533,533,691,692,693,533,533,533,533,533,534,614,593,608,593,608,554
+552,608,600,608,600,608,540,541,541,541,541,537,659,660,661,537,541,541,541,541,542,614,608,608,608,608,608,608,608,608,540,541,541,541,541,537,691,692,693,537,541,541,541,541,542,614,601,608,601,608,554
+552,608,608,608,608,608,710,607,607,607,607,607,607,607,607,607,607,607,607,607,607,615,608,608,608,608,608,608,608,608,710,607,607,607,607,607,607,607,607,607,607,607,607,607,607,615,608,608,608,608,554
+552,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,554
+552,608,608,586,608,608,608,586,608,608,608,586,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,608,586,608,608,608,586,608,608,608,586,608,608,554
+552,608,608,594,608,608,608,594,608,608,608,594,608,608,608,608,608,608,608,516,517,608,608,608,608,608,608,608,608,608,516,517,608,608,608,608,608,608,608,594,608,608,608,594,608,608,608,594,608,608,554
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1
+1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,1,1,1,1,1,1,1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,1,0,0,0,1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0
+0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+0,0,0,0,0,0,1,0,0,1,1,1,1,1,1,1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,1,1,1,1,1,1,1,1,1,0,0,1,0,0,0,0,0,0
+0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0
+0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0
+0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0
+0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0
+0,0,0,0,0,0,1,0,0,1,1,1,0,0,0,1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,1,1,1,0,0,0,1,1,1,0,0,1,0,0,0,0,0,0
+0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0
+warps
+19 32 LilycoveCity_ContestLobby 2
+30 32 LilycoveCity_ContestLobby 3
+20 32 LilycoveCity_ContestLobby 2
+31 32 LilycoveCity_ContestLobby 3
+npcs
+people_boy_1 30 30 S wander 0 - 0
+people_boy_3 11 7 S wander 0 - 0
+people_girl_3 40 8 S wander 0 - 0
+people_woman_3 12 22 S static 0 LOCALID_SMART_MC 0
+people_contest_judge 15 22 S static 0 LOCALID_SMART_JUDGE 0
+people_black_belt 10 25 N static 0 LOCALID_SMART_CONTESTANT_1 0
+people_expert_m 12 25 N static 0 LOCALID_SMART_CONTESTANT_2 0
+people_maniac 14 25 N static 0 LOCALID_SMART_CONTESTANT_3 0
+people_link_receptionist 16 25 N static 0 LOCALID_SMART_CONTESTANT_4 0
+people_expert_f 8 24 E static 0 - 0
+people_woman_5 18 24 W static 0 LOCALID_SMART_AUDIENCE_4 0
+people_boy_1 8 22 E static 0 LOCALID_SMART_AUDIENCE_2 0
+people_woman_3 24 10 S static 0 LOCALID_BEAUTY_MC 0
+people_contest_judge 27 10 S static 0 LOCALID_BEAUTY_JUDGE 0
+people_woman_4 22 13 N static 0 LOCALID_BEAUTY_CONTESTANT_1 0
+people_twin 24 13 N static 0 LOCALID_BEAUTY_CONTESTANT_2 0
+people_psychic_m 26 13 N static 0 LOCALID_BEAUTY_CONTESTANT_3 0
+people_pokefan_f 28 13 N static 0 LOCALID_BEAUTY_CONTESTANT_4 0
+people_woman_2 20 10 E static 0 LOCALID_BEAUTY_AUDIENCE_1 0
+people_woman_1 30 11 W static 0 LOCALID_BEAUTY_AUDIENCE_3 0
+people_man_1 26 8 S static 0 LOCALID_BEAUTY_AUDIENCE_2 0
+people_camper 13 20 S static 0 LOCALID_SMART_AUDIENCE_3 0
+people_woman_3 36 22 S static 0 LOCALID_CUTE_MC 0
+people_contest_judge 39 22 S static 0 LOCALID_CUTE_JUDGE 0
+people_boy_2 34 25 N static 0 LOCALID_CUTE_CONTESTANT_1 0
+people_girl_2 36 25 N static 0 LOCALID_CUTE_CONTESTANT_2 0
+people_boy_3 38 25 N static 0 LOCALID_CUTE_CONTESTANT_3 0
+people_expert_f 40 25 N static 0 LOCALID_CUTE_CONTESTANT_4 0
+people_woman_2 32 23 E static 0 LOCALID_CUTE_AUDIENCE_1 0
+people_man_1 37 20 S static 0 LOCALID_CUTE_AUDIENCE_3 0
+people_little_girl 42 24 W static 0 LOCALID_CUTE_AUDIENCE_2 0
+people_sailor 23 26 S wander 0 - 0
+dialogs
+0	This POKéMON won the BEAUTY CONTEST here before.Well, guess what? Today, I made it win a SMARTNESS CONTEST!My abilities scare even me…
+1	I've entered a bunch of CONTESTS, so I'm seeing how things work.If you're in a COOLNESS CONTEST, cool moves go over as appeals.But smart moves and cute moves don't go over well, for instance.
+2	That young man who won earlier had a whole bunch of different S.Can you win if you had that many of those things?
+3	MC: Okay, SMART POKéMON and their TRAINERS, are you ready?!Give it your best showing! Let's appeal!
+4	JUDGE: Are you enjoying this CONTEST?Come back with three friends, and all of you may enter a CONTEST!
+5	Ayayayay… I entered the wrong CONTEST.I entered this tough POKéMON in the SMARTNESS CONTEST…Come on, wow them with a smart-looking ROCK SMASH.
+6	I've spent many a year, and all my wisdom besides, raising this POKéMON to be smart.It won't be easily bested by some young pup's POKéMON.My dear wife, are you seeing this?
+7	There it is!If my POKéMON pulls a smart move next, the audience's excitement will peak!
+8	Oh, dear, no!My darling ZUBAT's LEECH LIFE is so cute I kept using it over and over!But these mean people don't appreciate it at all!
+9	Kiyaaah! You're beautiful, Grandpa!
+10	When all's said and done, I still love SMARTNESS CONTESTS.That intellectual green color… It's so… So… Cool.
+11	Even when TRAINERS enter the same kind of POKéMON, they all seem to use different moves for appeals.It's just like the way people have different styles for battling.
+12	MC: Are you entering the BEAUTY CONTEST, too? Good luck!
+13	JUDGE: Ah, every POKéMON here is a model of pristine beauty!Why, I almost forgot to score them!
+14	A POKéMON this beautiful… There isn't another one like it.Everyone's eyes will be glued to my beauty.
+15	Waaaah!I brushed and groomed my POKéMON carefully for this CONTEST…But I overdid it… My POKéMON's coat turned all scraggly…What should I do?
+16	This AURORA BEAM is so dazzling, the JUDGE won't be able to see it.Uh, wait a second… That'll be meaningless, then!
+17	This pretty POKéMON looks just like me when I was younger.Right when I said that, my husband spewed the coffee he was drinking.Did I say something funny?
+18	You know, if I win at a BEAUTY CONTEST, sure it makes me happy. More than usual, anyway.
+19	You can't always win on just beauty alone.You have to groom your POKéMON so it's nice and glossy like mine.
+20	Wahahahah!Will you take a gander at all those pretty POKéMON! I just love this sort of glitz!
+21	I think the POKéMON look smarter than their TRAINERS. By a lot.
+22	MC: Uh-oh! Hello! We're in the middle of a CONTEST!Please enter at our registration counter and come out, okay?
+23	JUDGE: Oh, such charming and cute appeals!Oh, my goodness! What a perfectly adorable WATER SPORT appeal!
+24	Oh, no… My sweet AZURILL was distracted by another POKéMON.
+25	My POKéMON has never won in a battle, but put it in a CONTEST and look out!
+26	My POKéMON's PETAL DANCE is a marvel of elegance.I won't let anyone disturb its performance.
+27	Everyone's POKéMON are very cute.However, if my POKéMON were to make a cute appeal…I'm sure that it would be so much cuter than the others.
+28	My child is in this CONTEST.
+29	I think that girl over there is the cutest of the lot.What's that? They're judging POKéMON by their looks?
+30	Ohh, seeing all these cute POKéMON, they make we want to get my own!I'm going to go catch some!
+31	Whoa, isn't this place humongous!The tension in the air… It's not like a CONTEST hall in the sticks.
+objscripts
+0 LilycoveCity_ContestHall_EventScript_Boy1
+1 LilycoveCity_ContestHall_EventScript_Boy2
+2 LilycoveCity_ContestHall_EventScript_Girl
+3 LilycoveCity_ContestHall_EventScript_SmartContestMC
+4 LilycoveCity_ContestHall_EventScript_SmartContestJudge
+5 LilycoveCity_ContestHall_EventScript_SmartContestant1
+6 LilycoveCity_ContestHall_EventScript_SmartContestant2
+7 LilycoveCity_ContestHall_EventScript_SmartContestant3
+8 LilycoveCity_ContestHall_EventScript_SmartContestant4
+9 LilycoveCity_ContestHall_EventScript_SmartContestAudience1
+10 LilycoveCity_ContestHall_EventScript_SmartContestAudience4
+11 LilycoveCity_ContestHall_EventScript_SmartContestAudience2
+12 LilycoveCity_ContestHall_EventScript_BeautyContestMC
+13 LilycoveCity_ContestHall_EventScript_BeautyContestJudge
+14 LilycoveCity_ContestHall_EventScript_BeautyContestant1
+15 LilycoveCity_ContestHall_EventScript_BeautyContestant2
+16 LilycoveCity_ContestHall_EventScript_BeautyContestant3
+17 LilycoveCity_ContestHall_EventScript_BeautyContestant4
+18 LilycoveCity_ContestHall_EventScript_BeautyContestAudience1
+19 LilycoveCity_ContestHall_EventScript_BeautyContestAudience3
+20 LilycoveCity_ContestHall_EventScript_BeautyContestAudience2
+21 LilycoveCity_ContestHall_EventScript_SmartContestAudience3
+22 LilycoveCity_ContestHall_EventScript_CuteContestMC
+23 LilycoveCity_ContestHall_EventScript_CuteContestJudge
+24 LilycoveCity_ContestHall_EventScript_CuteContestant1
+25 LilycoveCity_ContestHall_EventScript_CuteContestant2
+26 LilycoveCity_ContestHall_EventScript_CuteContestant3
+27 LilycoveCity_ContestHall_EventScript_CuteContestant4
+28 LilycoveCity_ContestHall_EventScript_CuteContestAudience1
+29 LilycoveCity_ContestHall_EventScript_CuteContestAudience3
+30 LilycoveCity_ContestHall_EventScript_CuteContestAudience2
+31 LilycoveCity_ContestHall_EventScript_Sailor
+movements
+Common_Movement_FaceOriginalDirection	face_down,end
+Common_Movement_FacePlayer	face_down,end
+scriptdefs
+= LilycoveCity_ContestHall_EventScript_Sailor
+msgbox	Whoa, isn't this place humongous!The tension in the air… It's not like a CONTEST hall in the sticks.
+end
+= LilycoveCity_ContestHall_EventScript_CuteContestAudience2
+lock
+faceplayer
+msgbox	Ohh, seeing all these cute POKéMON, they make we want to get my own!I'm going to go catch some!
+closemessage
+applymovement LOCALID_CUTE_AUDIENCE_2 Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= LilycoveCity_ContestHall_EventScript_CuteContestAudience3
+lock
+faceplayer
+msgbox	I think that girl over there is the cutest of the lot.What's that? They're judging POKéMON by their looks?
+closemessage
+applymovement LOCALID_CUTE_AUDIENCE_3 Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= LilycoveCity_ContestHall_EventScript_CuteContestAudience1
+lockall
+applymovement LOCALID_CUTE_AUDIENCE_1 Common_Movement_FacePlayer
+waitmovement 0
+msgbox	My child is in this CONTEST.
+closemessage
+applymovement LOCALID_CUTE_AUDIENCE_1 Common_Movement_FaceOriginalDirection
+waitmovement 0
+delay 25
+msgbox	Come on, dear. Go for it! Your POKéMON is the best!
+releaseall
+end
+= LilycoveCity_ContestHall_EventScript_CuteContestant4
+lock
+faceplayer
+msgbox	Everyone's POKéMON are very cute.However, if my POKéMON were to make a cute appeal…I'm sure that it would be so much cuter than the others.
+closemessage
+applymovement LOCALID_CUTE_CONTESTANT_4 Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= LilycoveCity_ContestHall_EventScript_CuteContestant3
+lock
+faceplayer
+msgbox	My POKéMON's PETAL DANCE is a marvel of elegance.I won't let anyone disturb its performance.
+closemessage
+applymovement LOCALID_CUTE_CONTESTANT_3 Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= LilycoveCity_ContestHall_EventScript_CuteContestant2
+lock
+faceplayer
+msgbox	My POKéMON has never won in a battle, but put it in a CONTEST and look out!
+closemessage
+applymovement LOCALID_CUTE_CONTESTANT_2 Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= LilycoveCity_ContestHall_EventScript_CuteContestant1
+lock
+faceplayer
+msgbox	Oh, no… My sweet AZURILL was distracted by another POKéMON.
+closemessage
+applymovement LOCALID_CUTE_CONTESTANT_1 Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= LilycoveCity_ContestHall_EventScript_CuteContestJudge
+lock
+faceplayer
+msgbox	JUDGE: Oh, such charming and cute appeals!Oh, my goodness! What a perfectly adorable WATER SPORT appeal!
+closemessage
+applymovement LOCALID_CUTE_JUDGE Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= LilycoveCity_ContestHall_EventScript_CuteContestMC
+lock
+faceplayer
+msgbox	MC: Uh-oh! Hello! We're in the middle of a CONTEST!Please enter at our registration counter and come out, okay?
+closemessage
+applymovement LOCALID_CUTE_MC Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= LilycoveCity_ContestHall_EventScript_SmartContestAudience3
+lock
+faceplayer
+msgbox	I think the POKéMON look smarter than their TRAINERS. By a lot.
+closemessage
+applymovement LOCALID_SMART_AUDIENCE_3 Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= LilycoveCity_ContestHall_EventScript_BeautyContestAudience2
+lock
+faceplayer
+msgbox	Wahahahah!Will you take a gander at all those pretty POKéMON! I just love this sort of glitz!
+closemessage
+applymovement LOCALID_BEAUTY_AUDIENCE_2 Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= LilycoveCity_ContestHall_EventScript_BeautyContestAudience3
+lock
+faceplayer
+msgbox	You can't always win on just beauty alone.You have to groom your POKéMON so it's nice and glossy like mine.
+closemessage
+applymovement LOCALID_BEAUTY_AUDIENCE_3 Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= LilycoveCity_ContestHall_EventScript_BeautyContestAudience1
+lock
+faceplayer
+msgbox	You know, if I win at a BEAUTY CONTEST, sure it makes me happy. More than usual, anyway.
+closemessage
+applymovement LOCALID_BEAUTY_AUDIENCE_1 Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= LilycoveCity_ContestHall_EventScript_BeautyContestant4
+lock
+faceplayer
+msgbox	This pretty POKéMON looks just like me when I was younger.Right when I said that, my husband spewed the coffee he was drinking.Did I say something funny?
+closemessage
+applymovement LOCALID_BEAUTY_CONTESTANT_4 Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= LilycoveCity_ContestHall_EventScript_BeautyContestant3
+lock
+faceplayer
+msgbox	This AURORA BEAM is so dazzling, the JUDGE won't be able to see it.Uh, wait a second… That'll be meaningless, then!
+closemessage
+applymovement LOCALID_BEAUTY_CONTESTANT_3 Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= LilycoveCity_ContestHall_EventScript_BeautyContestant2
+lock
+faceplayer
+msgbox	Waaaah!I brushed and groomed my POKéMON carefully for this CONTEST…But I overdid it… My POKéMON's coat turned all scraggly…What should I do?
+closemessage
+applymovement LOCALID_BEAUTY_CONTESTANT_2 Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= LilycoveCity_ContestHall_EventScript_BeautyContestant1
+lock
+faceplayer
+msgbox	A POKéMON this beautiful… There isn't another one like it.Everyone's eyes will be glued to my beauty.
+closemessage
+applymovement LOCALID_BEAUTY_CONTESTANT_1 Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= LilycoveCity_ContestHall_EventScript_BeautyContestJudge
+lock
+faceplayer
+msgbox	JUDGE: Ah, every POKéMON here is a model of pristine beauty!Why, I almost forgot to score them!
+closemessage
+applymovement LOCALID_BEAUTY_JUDGE Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= LilycoveCity_ContestHall_EventScript_BeautyContestMC
+lock
+faceplayer
+msgbox	MC: Are you entering the BEAUTY CONTEST, too? Good luck!
+closemessage
+applymovement LOCALID_BEAUTY_MC Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= LilycoveCity_ContestHall_EventScript_SmartContestAudience2
+lock
+faceplayer
+msgbox	Even when TRAINERS enter the same kind of POKéMON, they all seem to use different moves for appeals.It's just like the way people have different styles for battling.
+closemessage
+applymovement LOCALID_SMART_AUDIENCE_2 Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= LilycoveCity_ContestHall_EventScript_SmartContestAudience4
+lock
+faceplayer
+msgbox	When all's said and done, I still love SMARTNESS CONTESTS.That intellectual green color… It's so… So… Cool.
+closemessage
+applymovement LOCALID_SMART_AUDIENCE_4 Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= LilycoveCity_ContestHall_EventScript_SmartContestAudience1
+msgbox	Kiyaaah! You're beautiful, Grandpa!
+end
+= LilycoveCity_ContestHall_EventScript_SmartContestant4
+lock
+faceplayer
+msgbox	Oh, dear, no!My darling ZUBAT's LEECH LIFE is so cute I kept using it over and over!But these mean people don't appreciate it at all!
+closemessage
+applymovement LOCALID_SMART_CONTESTANT_4 Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= LilycoveCity_ContestHall_EventScript_SmartContestant3
+lock
+faceplayer
+msgbox	There it is!If my POKéMON pulls a smart move next, the audience's excitement will peak!
+closemessage
+applymovement LOCALID_SMART_CONTESTANT_3 Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= LilycoveCity_ContestHall_EventScript_SmartContestant2
+lock
+faceplayer
+msgbox	I've spent many a year, and all my wisdom besides, raising this POKéMON to be smart.It won't be easily bested by some young pup's POKéMON.My dear wife, are you seeing this?
+closemessage
+applymovement LOCALID_SMART_CONTESTANT_2 Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= LilycoveCity_ContestHall_EventScript_SmartContestant1
+lock
+faceplayer
+msgbox	Ayayayay… I entered the wrong CONTEST.I entered this tough POKéMON in the SMARTNESS CONTEST…Come on, wow them with a smart-looking ROCK SMASH.
+closemessage
+applymovement LOCALID_SMART_CONTESTANT_1 Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= LilycoveCity_ContestHall_EventScript_SmartContestJudge
+lock
+faceplayer
+msgbox	JUDGE: Are you enjoying this CONTEST?Come back with three friends, and all of you may enter a CONTEST!
+closemessage
+applymovement LOCALID_SMART_JUDGE Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= LilycoveCity_ContestHall_EventScript_SmartContestMC
+lock
+faceplayer
+msgbox	MC: Okay, SMART POKéMON and their TRAINERS, are you ready?!Give it your best showing! Let's appeal!
+closemessage
+applymovement LOCALID_SMART_MC Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= LilycoveCity_ContestHall_EventScript_Girl
+msgbox	That young man who won earlier had a whole bunch of different S.Can you win if you had that many of those things?
+end
+= LilycoveCity_ContestHall_EventScript_Boy2
+msgbox	I've entered a bunch of CONTESTS, so I'm seeing how things work.If you're in a COOLNESS CONTEST, cool moves go over as appeals.But smart moves and cute moves don't go over well, for instance.
+end
+= LilycoveCity_ContestHall_EventScript_Boy1
+msgbox	This POKéMON won the BEAUTY CONTEST here before.Well, guess what? Today, I made it win a SMARTNESS CONTEST!My abilities scare even me…
+end
+signs
+27 16	BEAUTY CONTEST STAGE BE ALLURED BY BEAUTIFUL POKéMON!
+39 28	CUTENESS CONTEST STAGE BE CHARMED BY CUTE POKéMON!
+11 28	SMARTNESS CONTEST STAGE BE IMPRESSED BY SMART POKéMON!
+15 28	SMARTNESS CONTEST STAGE BE IMPRESSED BY SMART POKéMON!
+23 16	BEAUTY CONTEST STAGE BE ALLURED BY BEAUTIFUL POKéMON!
+35 28	CUTENESS CONTEST STAGE BE CHARMED BY CUTE POKéMON!
+mapsec
+18 3 2 1	LILYCOVE CITY
+music
+MUS_CONTEST_LOBBY

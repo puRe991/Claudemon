@@ -1,0 +1,86 @@
+tileset general__facility
+13 12
+6 6
+537,536,537,760,760,537,536,537,760,760,537,536,537
+545,544,545,768,768,545,544,545,768,768,545,544,545
+755,754,755,755,755,755,754,755,755,755,755,754,755
+761,761,761,761,761,761,761,761,761,761,761,761,761
+776,776,756,757,776,777,758,778,776,776,776,776,776
+784,784,784,784,784,785,752,786,784,784,784,784,784
+792,792,792,792,792,793,752,794,792,792,792,792,792
+771,800,800,800,800,801,752,802,800,800,800,800,762
+779,752,752,752,752,752,752,752,752,752,752,752,770
+787,752,752,752,752,752,752,752,752,752,752,752,763
+795,752,752,752,752,752,752,752,752,752,752,752,752
+803,752,752,752,752,752,518,519,752,752,752,752,752
+collision
+0,1,0,1,1,0,1,0,1,1,0,1,0
+1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,0,1,1,1,1,1,1
+1,1,1,1,1,1,0,1,1,1,1,1,1
+1,1,1,1,1,1,0,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,1
+0,0,0,0,0,0,0,0,0,0,0,0,1
+0,0,0,0,0,0,0,0,0,0,0,0,1
+0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+6 11 MtChimney 0
+7 11 MtChimney 1
+npcs
+people_beauty 6 6 S static 0 LOCALID_MT_CHIMNEY_CABLE_CAR_ATTENDANT 0
+misc_cable_car 6 3 S static 0 - 0
+dialogs
+0	The CABLE CAR is ready to go down. Would you like to be on it?
+objscripts
+0 MtChimney_CableCarStation_EventScript_Attendant
+onload
+VAR_CABLE_CAR_STATION_STATE 1 MtChimney_CableCarStation_EventScript_ExitCableCar
+movements
+MtChimney_CableCarStation_Movement_BoardCableCar	up,up,up,delay,end
+MtChimney_CableCarStation_Movement_ExitCableCar	down,down,down,delay,end
+MtChimney_CableCarStation_Movement_FollowPlayerOutFromCableCar	delay,right,down,down,end
+MtChimney_CableCarStation_Movement_LeadPlayerToCableCar	up,up,left,delay,end
+scriptdefs
+= MtChimney_CableCarStation_EventScript_ExitCableCar
+lockall
+applymovement LOCALID_PLAYER MtChimney_CableCarStation_Movement_ExitCableCar
+applymovement LOCALID_MT_CHIMNEY_CABLE_CAR_ATTENDANT MtChimney_CableCarStation_Movement_FollowPlayerOutFromCableCar
+waitmovement 0
+setvar VAR_CABLE_CAR_STATION_STATE 0
+setobjectxyperm LOCALID_MT_CHIMNEY_CABLE_CAR_ATTENDANT 6 7
+setobjectmovementtype LOCALID_MT_CHIMNEY_CABLE_CAR_ATTENDANT MOVEMENT_TYPE_FACE_DOWN
+releaseall
+end
+= MtChimney_CableCarStation_EventScript_Attendant
+lock
+faceplayer
+msgboxyesno	The CABLE CAR is ready to go down. Would you like to be on it?
+goto_if_eq VAR_RESULT YES MtChimney_CableCarStation_EventScript_RideCableCar
+goto_if_eq VAR_RESULT NO MtChimney_CableCarStation_EventScript_DeclineRide
+end
+= MtChimney_CableCarStation_EventScript_DeclineRide
+msgbox	Please ride with us another time.
+release
+end
+= MtChimney_CableCarStation_EventScript_RideCableCar
+msgbox	Please step this way.
+closemessage
+applymovement LOCALID_MT_CHIMNEY_CABLE_CAR_ATTENDANT MtChimney_CableCarStation_Movement_LeadPlayerToCableCar
+applymovement LOCALID_PLAYER MtChimney_CableCarStation_Movement_BoardCableCar
+waitmovement 0
+setvar VAR_0x8004 TRUE  @ Going down
+setvar VAR_CABLE_CAR_STATION_STATE 2
+incrementgamestat GAME_STAT_RODE_CABLE_CAR
+special CableCarWarp
+special CableCar
+release
+end
+mapsec
+6 2 1 1	MT. CHIMNEY
+music
+MUS_ROUTE110
+counters
+537

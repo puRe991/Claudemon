@@ -1,0 +1,246 @@
+tileset building__battle_pike
+11 13
+5 6
+678,679,672,673,674,675,676,677,678,679,672
+686,687,680,681,682,683,684,685,686,687,680
+810,811,812,689,690,691,692,693,808,695,809
+818,819,820,532,698,699,700,532,816,703,817
+826,827,828,540,518,724,518,540,824,724,825
+708,724,706,724,524,706,524,724,706,706,706
+708,516,706,706,800,801,802,706,706,516,706
+517,524,706,516,706,706,706,516,706,524,516
+525,724,706,524,706,706,706,524,706,724,524
+725,516,706,724,706,706,706,724,706,516,724
+708,524,706,706,706,706,706,706,706,524,706
+708,724,706,516,749,750,751,516,706,724,706
+708,706,706,524,792,793,794,524,706,706,706
+collision
+1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1
+1,1,1,0,1,0,1,0,1,1,1
+0,0,0,1,0,0,0,1,0,0,0
+0,0,0,0,1,0,1,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0
+0,1,0,0,0,0,0,0,0,1,0
+1,0,0,1,0,0,0,1,0,0,1
+0,0,0,0,0,0,0,0,0,0,0
+0,1,0,0,0,0,0,0,0,1,0
+0,0,0,0,0,0,0,0,0,0,0
+0,0,0,1,0,0,0,1,0,0,0
+warps
+5 12 BattleFrontier_OutsideWest 0
+4 12 BattleFrontier_OutsideWest 0
+6 12 BattleFrontier_OutsideWest 0
+npcs
+people_link_receptionist 5 5 S static 0 LOCALID_PIKE_LOBBY_ATTENDANT 0
+people_hiker 10 9 N static 0 - 0
+people_twin 0 5 W static 0 - 0
+people_beauty 8 9 S wander 0 - 0
+dialogs
+0	Where the luck of TRAINERS is put to the test…Welcome to the BATTLE PIKE…I am your guide to the BATTLE PIKE…
+1	Arrgh! I blew my chance! I was one room away from the goal!In this place, you'd better watch out for poison, freezing, and so on.
+2	I've completed the challenge 10 times now, but I've never had to battle a TRAINER once.
+3	Listen! Listen!Don't you think that the special abilities of POKéMON will be useful here?
+objscripts
+0 BattleFrontier_BattlePikeLobby_EventScript_Attendant
+1 BattleFrontier_BattlePikeLobby_EventScript_Hiker
+2 BattleFrontier_BattlePikeLobby_EventScript_Twin
+3 BattleFrontier_BattlePikeLobby_EventScript_Beauty
+onload
+VAR_TEMP_CHALLENGE_STATUS 0 BattleFrontier_BattlePikeLobby_EventScript_GetChallengeStatus
+VAR_TEMP_CHALLENGE_STATUS CHALLENGE_STATUS_SAVING BattleFrontier_BattlePikeLobby_EventScript_QuitWithoutSaving
+VAR_TEMP_CHALLENGE_STATUS CHALLENGE_STATUS_WON BattleFrontier_BattlePikeLobby_EventScript_WonChallenge
+VAR_TEMP_CHALLENGE_STATUS CHALLENGE_STATUS_LOST BattleFrontier_BattlePikeLobby_EventScript_LostChallenge
+movements
+BattleFrontier_BattlePikeLobby_Movement_AttendantWalkToCorridor	up,up,delay,end
+BattleFrontier_BattlePikeLobby_Movement_PlayerWalkToCorridor	up
+scriptdefs
+= BattleFrontier_BattlePikeLobby_EventScript_LostChallenge
+lockall
+msgbox	Your challenge has ended…I shall record your results. Please wait…
+waitmessage
+frontier_checkairshow
+frontier_set FRONTIER_DATA_BATTLE_NUM 0
+pike_set PIKE_DATA_WIN_STREAK_ACTIVE FALSE
+special LoadPlayerParty
+special HealPlayerParty
+pike_resethelditems
+pike_save 0
+playse SE_SAVE
+waitse
+msgbox	We look forward to seeing you on another occasion…
+closemessage
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+releaseall
+end
+= BattleFrontier_BattlePikeLobby_EventScript_WonChallenge
+lockall
+frontier_isbrain
+goto_if_eq VAR_RESULT TRUE BattleFrontier_BattlePikeLobby_EventScript_DefeatedQueen
+msgbox	You have completed the challenge…I must say… You seem to possess luck in abundance…
+waitmessage
+goto BattleFrontier_BattlePikeLobby_EventScript_GiveBattlePoints
+= BattleFrontier_BattlePikeLobby_EventScript_GiveBattlePoints
+msgbox	In recognition of your amazing luck, we award you these Battle Point(s)…
+frontier_givepoints
+msgbox	PLAYER obtained STR_VAR_1 Battle Point(s).
+frontier_checkairshow
+pike_get PIKE_DATA_TOTAL_STREAKS
+addvar VAR_RESULT 1
+pike_set PIKE_DATA_TOTAL_STREAKS VAR_RESULT
+special LoadPlayerParty
+special HealPlayerParty
+pike_resethelditems
+msgbox	I shall record your results. Please wait…
+waitmessage
+pike_save 0
+playse SE_SAVE
+waitse
+msgbox	We look forward to seeing you on another occasion…
+closemessage
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+releaseall
+end
+= BattleFrontier_BattlePikeLobby_EventScript_DefeatedQueen
+msgbox	Congratulations…You have snatched victory from the PIKE QUEEN and cleared the event…
+waitmessage
+goto BattleFrontier_BattlePikeLobby_EventScript_GiveBattlePoints
+= BattleFrontier_BattlePikeLobby_EventScript_QuitWithoutSaving
+special HealPlayerParty
+pike_resethelditems
+lockall
+msgbox	I beg your pardon, but…You failed to save before you quit your challenge the last time.Because of that, your challenge so far has been disqualified. I am sorry…
+closemessage
+pike_set PIKE_DATA_WIN_STREAK 0
+pike_set PIKE_DATA_WIN_STREAK_ACTIVE FALSE
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+releaseall
+end
+= BattleFrontier_BattlePikeLobby_EventScript_GetChallengeStatus
+frontier_getstatus
+end
+= BattleFrontier_BattlePikeLobby_EventScript_Beauty
+msgbox	Listen! Listen!Don't you think that the special abilities of POKéMON will be useful here?
+end
+= BattleFrontier_BattlePikeLobby_EventScript_Twin
+msgbox	I've completed the challenge 10 times now, but I've never had to battle a TRAINER once.
+end
+= BattleFrontier_BattlePikeLobby_EventScript_Hiker
+msgbox	Arrgh! I blew my chance! I was one room away from the goal!In this place, you'd better watch out for poison, freezing, and so on.
+end
+= BattleFrontier_BattlePikeLobby_EventScript_Attendant
+lock
+faceplayer
+setvar VAR_FRONTIER_FACILITY FRONTIER_FACILITY_PIKE
+setvar VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES
+special SavePlayerParty
+msgbox	Where the luck of TRAINERS is put to the test…Welcome to the BATTLE PIKE…I am your guide to the BATTLE PIKE…
+goto BattleFrontier_BattlePikeLobby_EventScript_AskTakeChallenge
+= BattleFrontier_BattlePikeLobby_EventScript_AskTakeChallenge
+msgbox	Would you like to take the Battle Choice challenge?
+waitmessage
+multichoice 17 6 MULTI_CHALLENGEINFO FALSE
+switch VAR_RESULT
+case 0 BattleFrontier_BattlePikeLobby_EventScript_TryEnterChallenge
+case 1 BattleFrontier_BattlePikeLobby_EventScript_ExplainChallenge
+case 2 BattleFrontier_BattlePikeLobby_EventScript_CancelChallenge
+case MULTI_B_PRESSED BattleFrontier_BattlePikeLobby_EventScript_CancelChallenge
+goto BattleFrontier_BattlePikeLobby_EventScript_TryEnterChallenge
+= BattleFrontier_BattlePikeLobby_EventScript_TryEnterChallenge
+msgbox	You have the choice of two courses, Level 50 and Open Level. Which will you challenge?
+waitmessage
+multichoice 17 6 MULTI_LEVEL_MODE FALSE
+switch VAR_RESULT
+case FRONTIER_LVL_TENT BattleFrontier_BattlePikeLobby_EventScript_CancelChallenge
+case MULTI_B_PRESSED BattleFrontier_BattlePikeLobby_EventScript_CancelChallenge
+frontier_checkineligible
+goto_if_eq VAR_0x8004 TRUE BattleFrontier_BattlePikeLobby_EventScript_NotEnoughValidMons
+frontier_set FRONTIER_DATA_LVL_MODE VAR_RESULT
+msgbox	Please choose the three POKéMON you wish to enter in the challenge…
+fadescreen FADE_TO_BLACK
+call BattleFrontier_EventScript_GetLvlMode
+copyvar VAR_0x8004 VAR_RESULT
+setvar VAR_0x8005 FRONTIER_PARTY_SIZE
+special ChoosePartyForBattleFrontier
+goto_if_eq VAR_RESULT 0 BattleFrontier_BattlePikeLobby_EventScript_LoadPartyAndCancelChallenge
+msgboxyesno	Before starting your Battle Choice challenge, I must save the game. Is that acceptable?
+switch VAR_RESULT
+case NO BattleFrontier_BattlePikeLobby_EventScript_LoadPartyAndCancelChallenge
+case YES BattleFrontier_BattlePikeLobby_EventScript_SaveBeforeChallenge
+case MULTI_B_PRESSED BattleFrontier_BattlePikeLobby_EventScript_LoadPartyAndCancelChallenge
+goto BattleFrontier_BattlePikeLobby_EventScript_SaveBeforeChallenge
+= BattleFrontier_BattlePikeLobby_EventScript_SaveBeforeChallenge
+setvar VAR_TEMP_CHALLENGE_STATUS 0
+setvar VAR_TEMP_1 0
+frontier_set FRONTIER_DATA_SELECTED_MON_ORDER
+pike_init
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS CHALLENGE_STATUS_SAVING
+pike_set PIKE_DATA_WIN_STREAK_ACTIVE TRUE
+pike_savehelditems
+frontier_set FRONTIER_DATA_PAUSED FALSE
+special LoadPlayerParty
+closemessage
+delay 2
+call Common_EventScript_SaveGame
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+pike_savehelditems
+goto_if_eq VAR_RESULT 0 BattleFrontier_BattlePikeLobby_EventScript_CancelChallengeSaveFailed
+special SavePlayerParty
+frontier_setpartyorder FRONTIER_PARTY_SIZE
+msgbox	Please step this way…
+closemessage
+frontier_settrainers
+call BattleFrontier_BattlePikeLobby_EventScript_WalkToCorridor
+special HealPlayerParty
+call BattleFrontier_BattlePike_EventScript_CloseCurtain
+warpsilent BattleFrontier_BattlePikeCorridor 6 7
+setvar VAR_TEMP_CHALLENGE_STATUS 0
+waitstate
+end
+= BattleFrontier_BattlePike_EventScript_CloseCurtain
+playse SE_PIKE_CURTAIN_CLOSE
+special CloseBattlePikeCurtain
+waitse
+return
+= BattleFrontier_BattlePikeLobby_EventScript_WalkToCorridor
+applymovement LOCALID_PIKE_LOBBY_ATTENDANT BattleFrontier_BattlePikeLobby_Movement_AttendantWalkToCorridor
+applymovement LOCALID_PLAYER BattleFrontier_BattlePikeLobby_Movement_PlayerWalkToCorridor
+waitmovement 0
+return
+= BattleFrontier_BattlePikeLobby_EventScript_CancelChallengeSaveFailed
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
+goto BattleFrontier_BattlePikeLobby_EventScript_CancelChallenge
+= BattleFrontier_BattlePikeLobby_EventScript_CancelChallenge
+msgbox	We look forward to seeing you on another occasion…
+goto BattleFrontier_BattlePikeLobby_EventScript_EndCancelChallenge
+= BattleFrontier_BattlePikeLobby_EventScript_EndCancelChallenge
+release
+end
+= Common_EventScript_SaveGame
+special SaveGame
+return
+= BattleFrontier_BattlePikeLobby_EventScript_LoadPartyAndCancelChallenge
+special LoadPlayerParty
+goto BattleFrontier_BattlePikeLobby_EventScript_CancelChallenge
+= BattleFrontier_BattlePikeLobby_EventScript_NotEnoughValidMons
+switch VAR_RESULT
+case FRONTIER_LVL_50 BattleFrontier_BattlePikeLobby_EventScript_NotEnoughValidMonsLv50
+case FRONTIER_LVL_OPEN BattleFrontier_BattlePikeLobby_EventScript_NotEnoughValidMonsLvOpen
+goto BattleFrontier_BattlePikeLobby_EventScript_NotEnoughValidMonsLv50
+= BattleFrontier_BattlePikeLobby_EventScript_NotEnoughValidMonsLv50
+msgbox	I beg your pardon, but…You do not have three eligible POKéMON for the Battle Choice event.You must have three different POKéMON of Level 50 or less to enter.They also must be holding different kinds of items.EGGSSTR_VAR_1 ineligible.Please come see me when you are ready…
+goto BattleFrontier_BattlePikeLobby_EventScript_EndCancelChallenge
+= BattleFrontier_BattlePikeLobby_EventScript_NotEnoughValidMonsLvOpen
+msgbox	I beg your pardon, but…You do not have three eligible POKéMON for the Battle Choice event.You must have three different POKéMON to enter.They also must be holding different kinds of items.EGGSSTR_VAR_1 ineligible.Please come see me when you are ready…
+goto BattleFrontier_BattlePikeLobby_EventScript_EndCancelChallenge
+= BattleFrontier_BattlePikeLobby_EventScript_ExplainChallenge
+msgbox	Here we conduct an event we call the Battle Choice.The Battle Choice rules are very simple…Choose one of three paths and make your way to the goal room at the end of the BATTLE PIKE. It's that simple.However, what happens on the chosen path depends entirely on the luck of the challenger…If you reach the goal, you will be rewarded with Battle Points.If you want to interrupt your challenge, please have a word with our staff in the big rooms on the way.If you don't save before interrupting, you will be disqualified.
+goto BattleFrontier_BattlePikeLobby_EventScript_AskTakeChallenge
+signs
+1 3	The Battle Choice's rules are listed.
+mapsec
+22 12 1 1	BATTLE FRONTIER
+music
+MUS_B_PIKE

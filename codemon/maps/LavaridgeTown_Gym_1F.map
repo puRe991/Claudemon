@@ -1,0 +1,289 @@
+tileset building__lavaridge_gym
+17 19
+8 9
+518,518,518,518,518,518,516,518,518,518,518,516,518,518,518,518,516
+526,526,526,526,526,526,524,526,526,526,526,524,526,526,526,526,524
+513,514,514,514,514,551,524,541,514,514,514,524,513,514,514,514,524
+521,520,530,520,520,520,524,521,520,520,520,524,531,520,520,520,524
+521,520,520,520,520,520,524,521,520,520,520,524,521,520,520,520,524
+521,520,520,520,520,520,524,521,520,520,520,524,521,520,520,520,524
+531,520,520,520,520,530,524,521,530,520,530,524,521,520,530,520,524
+518,518,518,518,516,518,532,516,518,518,516,532,518,534,518,518,524
+526,526,526,526,524,526,526,524,526,526,524,526,526,542,526,526,524
+513,514,514,514,524,541,514,524,541,514,524,536,537,538,539,540,524
+531,520,520,530,524,521,520,524,521,520,524,544,545,546,547,548,524
+521,520,520,520,524,521,520,524,521,520,524,521,520,520,520,520,524
+521,520,520,520,524,521,520,524,521,520,524,521,530,520,520,520,524
+521,520,520,520,524,521,520,524,521,520,524,549,550,550,550,550,524
+521,530,520,530,524,531,520,524,521,520,533,521,520,520,520,520,533
+521,520,530,520,524,549,550,524,521,520,543,521,520,520,520,520,543
+521,520,520,520,523,521,520,524,521,520,528,522,520,520,520,520,528
+531,520,520,520,528,522,520,524,521,520,520,520,520,520,520,520,520
+521,520,520,520,520,520,520,524,521,520,530,520,520,6,7,520,520
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1
+0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1
+0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1
+0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1
+0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,1,0,0,1,0,0,1,1,0,0,0,1,1
+0,0,0,0,1,0,0,1,0,0,1,1,0,0,0,1,1
+0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,1
+0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,1
+0,0,0,0,1,0,0,1,0,0,1,1,1,1,1,1,1
+0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,1
+0,0,0,0,1,1,1,1,0,0,1,0,0,0,0,0,1
+0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+warps
+13 18 LavaridgeTown 1
+14 18 LavaridgeTown 1
+10 18 LavaridgeTown_Gym_B1F 0
+8 9 LavaridgeTown_Gym_B1F 2
+4 18 LavaridgeTown_Gym_B1F 4
+5 14 LavaridgeTown_Gym_B1F 3
+0 17 LavaridgeTown_Gym_B1F 1
+5 9 LavaridgeTown_Gym_B1F 5
+2 15 LavaridgeTown_Gym_B1F 6
+3 14 LavaridgeTown_Gym_B1F 7
+1 14 LavaridgeTown_Gym_B1F 8
+0 10 LavaridgeTown_Gym_B1F 9
+3 10 LavaridgeTown_Gym_B1F 10
+0 6 LavaridgeTown_Gym_B1F 11
+3 6 LavaridgeTown_Gym_B1F 12
+5 6 LavaridgeTown_Gym_B1F 13
+2 3 LavaridgeTown_Gym_B1F 14
+5 2 LavaridgeTown_Gym_B1F 15
+7 2 LavaridgeTown_Gym_B1F 16
+8 6 LavaridgeTown_Gym_B1F 17
+10 6 LavaridgeTown_Gym_B1F 18
+4 16 LavaridgeTown_Gym_B1F 20
+12 3 LavaridgeTown_Gym_B1F 19
+14 6 LavaridgeTown_Gym_B1F 21
+13 17 LavaridgeTown_Gym_B1F 22
+12 12 LavaridgeTown_Gym_B1F 23
+npcs
+people_gym_leaders_flannery 13 9 S static 0 - 0
+people_man_5 3 14 S static 0 LOCALID_COLE 1
+people_man_3 2 15 S static 0 LOCALID_GERALD 1
+people_man_5 3 10 S static 0 LOCALID_AXLE 1
+people_girl_3 5 2 S static 0 LOCALID_DANIELLE 1
+people_man_2 12 16 E static 0 - 0
+dialogs
+0	Your power reminds me of someone…Oh! I know! You battle like NORMAN, the GYM LEADER of PETALBURG.
+1	Being buried in hot sand promotes circulation.It's effective for healing pain in your joints.
+2	The temperature of magma is 392 degrees.Your POKéMON beat me, so they should easily survive in magma.
+3	Haaah… Whew…If you spend too much time buried in hot sand, it tuckers you out…
+4	I'm going to be a pretty and strong TRAINER just like FLANNERY.
+5	Hey, how's it going, CHAMPION- bound PLAYER?LAVARIDGE's GYM LEADER FLANNERY uses FIRE-type POKéMON.Her passion for POKéMON burns stronger and hotter than a volcano.Don't get too close to her--you'll burn! Hose her down with water and then go for it!
+objscripts
+0 LavaridgeTown_Gym_1F_EventScript_Flannery
+1 LavaridgeTown_Gym_1F_EventScript_Cole
+2 LavaridgeTown_Gym_1F_EventScript_Gerald
+3 LavaridgeTown_Gym_1F_EventScript_Axle
+4 LavaridgeTown_Gym_1F_EventScript_Danielle
+5 LavaridgeTown_Gym_1F_EventScript_GymGuide
+scriptdefs
+= LavaridgeTown_Gym_1F_EventScript_GymGuide
+lock
+faceplayer
+goto_if_set FLAG_DEFEATED_LAVARIDGE_GYM LavaridgeTown_Gym_1F_EventScript_GymGuidePostVictory
+msgbox	Hey, how's it going, CHAMPION- bound PLAYER?LAVARIDGE's GYM LEADER FLANNERY uses FIRE-type POKéMON.Her passion for POKéMON burns stronger and hotter than a volcano.Don't get too close to her--you'll burn! Hose her down with water and then go for it!
+release
+end
+= LavaridgeTown_Gym_1F_EventScript_GymGuidePostVictory
+msgbox	Yow! That was a scorching-hot battle!
+release
+end
+= LavaridgeTown_Gym_1F_EventScript_Danielle
+trainerbattle TRAINER_BATTLE_CONTINUE_SCRIPT TRAINER_DANIELLE LOCALID_DANIELLE LavaridgeTown_Gym_1F_Text_DanielleIntro LavaridgeTown_Gym_1F_Text_DanielleDefeat LavaridgeTown_Gym_EventScript_CheckTrainerScript
+msgbox	I'm going to be a pretty and strong TRAINER just like FLANNERY.
+end
+= LavaridgeTown_Gym_EventScript_CheckTrainerScript
+call LavaridgeTown_Gym_1F_EventScript_SetTrainerTempVars
+release
+special ShouldTryGetTrainerScript
+goto_if_eq VAR_RESULT 1 EventScript_GotoTrainerScript
+end
+= EventScript_GotoTrainerScript
+gotobeatenscript
+releaseall
+end
+= LavaridgeTown_Gym_1F_EventScript_SetTrainerTempVars
+setvar VAR_TEMP_B 0
+setvar VAR_TEMP_C 0
+setvar VAR_TEMP_D 0
+setvar VAR_TEMP_E 0
+setvar VAR_TEMP_F 0
+goto_if_defeated TRAINER_COLE LavaridgeTown_Gym_1F_EventScript_SetGeraldTempVar
+setvar VAR_TEMP_B 1
+goto LavaridgeTown_Gym_1F_EventScript_SetGeraldTempVar
+= LavaridgeTown_Gym_1F_EventScript_SetGeraldTempVar
+goto_if_defeated TRAINER_GERALD LavaridgeTown_Gym_1F_EventScript_SetAxleTempVar
+setvar VAR_TEMP_C 1
+goto LavaridgeTown_Gym_1F_EventScript_SetAxleTempVar
+= LavaridgeTown_Gym_1F_EventScript_SetAxleTempVar
+goto_if_defeated TRAINER_AXLE LavaridgeTown_Gym_1F_EventScript_SetDanielleTempVar
+setvar VAR_TEMP_D 1
+goto LavaridgeTown_Gym_1F_EventScript_SetDanielleTempVar
+= LavaridgeTown_Gym_1F_EventScript_SetDanielleTempVar
+goto_if_defeated TRAINER_DANIELLE LavaridgeTown_Gym_1F_EventScript_EndSetTrainerTempVars
+setvar VAR_TEMP_E 1
+goto LavaridgeTown_Gym_1F_EventScript_EndSetTrainerTempVars
+= LavaridgeTown_Gym_1F_EventScript_EndSetTrainerTempVars
+return
+= LavaridgeTown_Gym_1F_EventScript_Axle
+trainerbattle TRAINER_BATTLE_CONTINUE_SCRIPT TRAINER_AXLE LOCALID_AXLE LavaridgeTown_Gym_1F_Text_AxleIntro LavaridgeTown_Gym_1F_Text_AxleDefeat LavaridgeTown_Gym_EventScript_CheckTrainerScript
+msgbox	Haaah… Whew…If you spend too much time buried in hot sand, it tuckers you out…
+end
+= LavaridgeTown_Gym_1F_EventScript_Gerald
+trainerbattle TRAINER_BATTLE_CONTINUE_SCRIPT TRAINER_GERALD LOCALID_GERALD LavaridgeTown_Gym_1F_Text_GeraldIntro LavaridgeTown_Gym_1F_Text_GeraldDefeat LavaridgeTown_Gym_EventScript_CheckTrainerScript
+msgbox	The temperature of magma is 392 degrees.Your POKéMON beat me, so they should easily survive in magma.
+end
+= LavaridgeTown_Gym_1F_EventScript_Cole
+trainerbattle TRAINER_BATTLE_CONTINUE_SCRIPT TRAINER_COLE LOCALID_COLE LavaridgeTown_Gym_1F_Text_ColeIntro LavaridgeTown_Gym_1F_Text_ColeDefeat LavaridgeTown_Gym_EventScript_CheckTrainerScript
+msgbox	Being buried in hot sand promotes circulation.It's effective for healing pain in your joints.
+end
+= LavaridgeTown_Gym_1F_EventScript_Flannery
+trainerbattle_single TRAINER_FLANNERY_1 LavaridgeTown_Gym_1F_Text_FlanneryIntro LavaridgeTown_Gym_1F_Text_FlanneryDefeat LavaridgeTown_Gym_1F_EventScript_FlanneryDefeated NO_MUSIC
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE LavaridgeTown_Gym_1F_EventScript_FlanneryRematch
+goto_if_unset FLAG_RECEIVED_TM_OVERHEAT LavaridgeTown_Gym_1F_EventScript_GiveOverheat2
+msgbox	Your power reminds me of someone…Oh! I know! You battle like NORMAN, the GYM LEADER of PETALBURG.
+release
+end
+= LavaridgeTown_Gym_1F_EventScript_GiveOverheat2
+giveitem ITEM_TM_OVERHEAT
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+msgbox	That TM50 contains OVERHEAT.That move inflicts serious damage on the opponent.But it also sharply cuts the SP. ATK of the POKéMON using it. It might not be suitable for longer battles.
+setflag FLAG_RECEIVED_TM_OVERHEAT
+release
+end
+= LavaridgeTown_Gym_1F_EventScript_FlanneryRematch
+trainerbattle_rematch_double TRAINER_FLANNERY_1 LavaridgeTown_Gym_1F_Text_FlanneryPreRematch LavaridgeTown_Gym_1F_Text_FlanneryRematchDefeat LavaridgeTown_Gym_1F_Text_FlanneryRematchNeedTwoMons
+msgbox	FLANNERY: I lost the match, but I'm completely satisfied.It's not often I get to enjoy a battle this heated.Let's have another one like this again sometime!
+end
+= LavaridgeTown_Gym_1F_EventScript_FlanneryDefeated
+msgbox	PLAYER received the HEAT BADGE from FLANNERY.
+waitmessage
+call Common_EventScript_PlayGymBadgeFanfare
+msgbox	If you have a HEAT BADGE, all POKéMON up to Level 50, even those you get in trades from other people, will obey you completely.And, it lets POKéMON use the HM move STRENGTH outside of battle.This is a token of my appreciation. Don't be shy about taking it!
+setflag FLAG_WHITEOUT_TO_LAVARIDGE
+setflag FLAG_DEFEATED_LAVARIDGE_GYM
+setflag FLAG_BADGE04_GET
+addvar VAR_PETALBURG_GYM_STATE 1
+call_if_eq VAR_PETALBURG_GYM_STATE 6 Common_EventScript_ReadyPetalburgGymForBattle
+setvar VAR_0x8008 4
+call Common_EventScript_SetGymTrainers
+setflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLY
+setvar VAR_LAVARIDGE_TOWN_STATE 1
+call LavaridgeTown_Gym_1F_EventScript_GiveOverheat
+closemessage
+delay 30
+playfanfare MUS_REGISTER_MATCH_CALL
+msgbox	Registered GYM LEADER FLANNERY in the POKéNAV.
+waitfanfare
+closemessage
+delay 30
+setflag FLAG_ENABLE_FLANNERY_MATCH_CALL
+release
+end
+= LavaridgeTown_Gym_1F_EventScript_GiveOverheat
+giveitem ITEM_TM_OVERHEAT
+goto_if_eq VAR_RESULT FALSE Common_EventScript_BagIsFull
+msgbox	That TM50 contains OVERHEAT.That move inflicts serious damage on the opponent.But it also sharply cuts the SP. ATK of the POKéMON using it. It might not be suitable for longer battles.
+setflag FLAG_RECEIVED_TM_OVERHEAT
+return
+= Common_EventScript_SetGymTrainers
+switch VAR_0x8008
+case 1 RustboroCity_Gym_SetGymTrainers
+case 2 DewfordTown_Gym_SetGymTrainers
+case 3 MauvilleCity_Gym_SetGymTrainers
+case 4 LavaridgeTown_Gym_SetGymTrainers
+case 5 PetalburgCity_Gym_SetGymTrainers
+case 6 FortreeCity_Gym_SetGymTrainers
+case 7 MossdeepCity_Gym_SetGymTrainers
+case 8 SootopolisCity_Gym_SetGymTrainers
+end
+= SootopolisCity_Gym_SetGymTrainers
+settrainerflag TRAINER_ANDREA
+settrainerflag TRAINER_CRISSY
+settrainerflag TRAINER_BRIANNA
+settrainerflag TRAINER_CONNIE
+settrainerflag TRAINER_BRIDGET
+settrainerflag TRAINER_OLIVIA
+settrainerflag TRAINER_TIFFANY
+settrainerflag TRAINER_BETHANY
+settrainerflag TRAINER_ANNIKA
+settrainerflag TRAINER_DAPHNE
+return
+= MossdeepCity_Gym_SetGymTrainers
+settrainerflag TRAINER_PRESTON
+settrainerflag TRAINER_VIRGIL
+settrainerflag TRAINER_BLAKE
+settrainerflag TRAINER_HANNAH
+settrainerflag TRAINER_SAMANTHA
+settrainerflag TRAINER_MAURA
+settrainerflag TRAINER_SYLVIA
+settrainerflag TRAINER_NATE
+settrainerflag TRAINER_KATHLEEN
+settrainerflag TRAINER_CLIFFORD
+settrainerflag TRAINER_MACEY
+settrainerflag TRAINER_NICHOLAS
+return
+= FortreeCity_Gym_SetGymTrainers
+settrainerflag TRAINER_JARED
+settrainerflag TRAINER_FLINT
+settrainerflag TRAINER_ASHLEY
+settrainerflag TRAINER_EDWARDO
+settrainerflag TRAINER_HUMBERTO
+settrainerflag TRAINER_DARIUS
+return
+= PetalburgCity_Gym_SetGymTrainers
+settrainerflag TRAINER_RANDALL
+settrainerflag TRAINER_PARKER
+settrainerflag TRAINER_GEORGE
+settrainerflag TRAINER_BERKE
+settrainerflag TRAINER_MARY
+settrainerflag TRAINER_ALEXIA
+settrainerflag TRAINER_JODY
+return
+= LavaridgeTown_Gym_SetGymTrainers
+settrainerflag TRAINER_COLE
+settrainerflag TRAINER_AXLE
+settrainerflag TRAINER_KEEGAN
+settrainerflag TRAINER_GERALD
+settrainerflag TRAINER_DANIELLE
+settrainerflag TRAINER_JACE
+settrainerflag TRAINER_JEFF
+settrainerflag TRAINER_ELI
+return
+= MauvilleCity_Gym_SetGymTrainers
+settrainerflag TRAINER_KIRK
+settrainerflag TRAINER_SHAWN
+settrainerflag TRAINER_BEN
+settrainerflag TRAINER_VIVIAN
+settrainerflag TRAINER_ANGELO
+return
+= DewfordTown_Gym_SetGymTrainers
+settrainerflag TRAINER_TAKAO
+settrainerflag TRAINER_JOCELYN
+settrainerflag TRAINER_LAURA
+settrainerflag TRAINER_BRENDEN
+settrainerflag TRAINER_CRISTIAN
+settrainerflag TRAINER_LILITH
+return
+= RustboroCity_Gym_SetGymTrainers
+settrainerflag TRAINER_JOSH
+settrainerflag TRAINER_TOMMY
+settrainerflag TRAINER_MARC
+return
+mapsec
+5 3 1 1	LAVARIDGE TOWN
+music
+MUS_GYM

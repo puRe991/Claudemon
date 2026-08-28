@@ -1,0 +1,69 @@
+tileset building__shop
+11 8
+5 4
+639,639,648,651,653,648,648,639,639,639,648
+647,647,656,659,661,669,656,647,647,647,656
+790,678,678,678,678,677,632,624,624,624,624
+674,674,674,674,674,685,640,616,616,616,786
+632,624,624,624,624,624,633,616,616,616,563
+640,616,616,616,616,616,616,616,616,616,788
+735,615,616,616,616,616,616,616,616,614,602
+609,610,616,534,535,616,616,616,616,609,610
+collision
+1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,1,0,0,0,0,0
+1,1,1,1,1,1,0,0,0,0,1
+0,0,0,0,0,0,0,0,0,0,1
+0,0,0,0,0,0,0,0,0,0,1
+0,0,0,0,0,0,0,0,0,0,0
+1,1,0,0,0,0,0,0,0,1,1
+warps
+3 7 LavaridgeTown 0
+4 7 LavaridgeTown 0
+npcs
+people_woman_2 3 2 S static 0 - 0
+people_old_man 7 5 S static 0 - 0
+people_expert_m 9 3 S wander 0 - 0
+dialogs
+1	You've come to look at herbal medicine in LAVARIDGE?That's rather commendable.I like you! Take this!
+2	Herbal medicine works impressively well. But your POKéMON will dislike you for it. It must be horribly bitter!
+objscripts
+0 LavaridgeTown_HerbShop_EventScript_Clerk
+1 LavaridgeTown_HerbShop_EventScript_OldMan
+2 LavaridgeTown_HerbShop_EventScript_ExpertM
+shops
+LavaridgeTown_HerbShop_Pokemart	ITEM_ENERGY_POWDER,ITEM_ENERGY_ROOT,ITEM_HEAL_POWDER,ITEM_REVIVAL_HERB
+scriptdefs
+= LavaridgeTown_HerbShop_EventScript_ExpertM
+msgbox	Herbal medicine works impressively well. But your POKéMON will dislike you for it. It must be horribly bitter!
+end
+= LavaridgeTown_HerbShop_EventScript_OldMan
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_CHARCOAL LavaridgeTown_HerbShop_EventScript_ExplainCharcoal
+msgbox	You've come to look at herbal medicine in LAVARIDGE?That's rather commendable.I like you! Take this!
+giveitem ITEM_CHARCOAL
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_RECEIVED_CHARCOAL
+release
+end
+= LavaridgeTown_HerbShop_EventScript_ExplainCharcoal
+msgbox	That CHARCOAL I gave you, it's used for making herbal medicine.It also does wonders when held by a POKéMON.It intensifies the power of FIRE-type moves.
+release
+end
+= LavaridgeTown_HerbShop_EventScript_Clerk
+lock
+faceplayer
+msgbox	Welcome to the HERB SHOP, home of effective and inexpensive medicine!
+waitmessage
+pokemart LavaridgeTown_HerbShop_Pokemart
+msgbox	Please come again!
+release
+end
+mapsec
+5 3 1 1	LAVARIDGE TOWN
+music
+MUS_OLDALE
+counters
+674,677

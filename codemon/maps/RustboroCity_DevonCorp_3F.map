@@ -1,0 +1,139 @@
+tileset building__facility
+19 9
+8 3
+904,906,907,908,904,905,904,905,904,905,904,905,904,905,904,905,904,905,904
+912,917,918,919,912,913,912,913,841,842,843,913,912,913,912,913,912,913,912
+897,897,897,897,897,897,897,897,849,850,851,897,897,897,897,897,897,897,897
+897,896,896,896,896,896,896,952,953,953,953,954,896,896,896,952,954,896,896
+897,733,896,896,896,840,896,960,961,961,961,962,896,896,896,960,962,767,896
+897,741,896,896,896,848,896,955,956,956,956,957,896,896,896,955,957,775,896
+897,733,896,896,896,936,896,963,964,964,964,965,896,896,896,963,965,937,896
+897,741,896,896,896,896,896,958,966,966,966,959,896,896,896,958,959,896,896
+897,896,896,896,896,896,896,896,896,896,896,896,896,896,896,896,896,896,896
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,1,1,0,0
+0,1,0,0,0,0,0,1,1,1,1,1,0,0,0,1,1,0,0
+0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,1,1,0,0
+0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+2 1 RustboroCity_DevonCorp_2F 1
+npcs
+people_gentleman 17 5 W static 0 - 0
+people_man_2 3 5 E static FLAG_HIDE_RUSTBORO_CITY_DEVON_CORP_3F_EMPLOYEE LOCALID_DEVON_CORP_3F_EMPLOYEE 0
+people_gentleman 15 5 S static 0 - 0
+dialogs
+0	MR. STONE: I'm counting on you!
+1	If you visit the SHIPYARD in SLATEPORT, you should go see CAPT. STERN.
+2	MR. STONE: I'm counting on you!
+objscripts
+0 RustboroCity_DevonCorp_3F_EventScript_MrStone
+1 RustboroCity_DevonCorp_3F_EventScript_Employee
+2 RustboroCity_DevonCorp_3F_EventScript_MrStone
+onload
+VAR_DEVON_CORP_3F_STATE 0 RustboroCity_DevonCorp_3F_EventScript_MeetPresident
+movements
+Common_Movement_FaceOriginalDirection	face_down,end
+RustboroCity_DevonCorp_3F_Movement_EmployeeFaceDesk	delay,delay,end
+RustboroCity_DevonCorp_3F_Movement_EmployeeReturnToPlayer	left,left,left,left,up,left,left,left,end
+RustboroCity_DevonCorp_3F_Movement_EmployeeWalkOffscreen	right,right,right,down,right,right,right,right,end
+RustboroCity_DevonCorp_3F_Movement_LeadPlayerToPresident	right,right,right,down,right,right,right,right,right,right,right,right,right,delay,end
+RustboroCity_DevonCorp_3F_Movement_PlayerApproachDesk	delay,delay,down,down,delay,end
+RustboroCity_DevonCorp_3F_Movement_PlayerFollowToPresident	right,right,right,right,down,right,right,right,right,right,right,right,right,end
+scriptdefs
+= RustboroCity_DevonCorp_3F_EventScript_MeetPresident
+lockall
+msgbox	This is the DEVON CORPORATION's third floor.Our PRESIDENT's OFFICE is on this floor.Anyway, I can't tell you how much I'm grateful for what you've done.Um… By the way, that parcel you got back for us…Could I get you to deliver that to the SHIPYARD in SLATEPORT?It would be awful if those robbers tried to take it again.Uh… Hehehe, so, uh, could I count on you to do that for me?Oh, that's right. Could you wait here a second?
+closemessage
+applymovement LOCALID_DEVON_CORP_3F_EMPLOYEE RustboroCity_DevonCorp_3F_Movement_EmployeeWalkOffscreen
+waitmovement 0
+delay 80
+applymovement LOCALID_DEVON_CORP_3F_EMPLOYEE RustboroCity_DevonCorp_3F_Movement_EmployeeReturnToPlayer
+waitmovement 0
+msgbox	Our PRESIDENT would like to have a word with you.Please come with me.
+closemessage
+playbgm MUS_FOLLOW_ME FALSE
+applymovement LOCALID_DEVON_CORP_3F_EMPLOYEE RustboroCity_DevonCorp_3F_Movement_LeadPlayerToPresident
+applymovement LOCALID_PLAYER RustboroCity_DevonCorp_3F_Movement_PlayerFollowToPresident
+waitmovement 0
+msgbox	Please, go ahead.
+closemessage
+fadedefaultbgm
+applymovement LOCALID_DEVON_CORP_3F_EMPLOYEE RustboroCity_DevonCorp_3F_Movement_EmployeeFaceDesk
+applymovement LOCALID_PLAYER RustboroCity_DevonCorp_3F_Movement_PlayerApproachDesk
+waitmovement 0
+msgbox	I'm MR. STONE, the PRESIDENT of the DEVON CORPORATION.I'd just got word about you!You saved our staff not just once, but twice!I have a favor to ask of an amazing person like you.I understand that you're delivering a package to SLATEPORT's SHIPYARD.Well, on the way, could you stop off in DEWFORD TOWN?I was hoping that you'd deliver a LETTER to STEVEN in DEWFORD.
+giveitem ITEM_LETTER
+msgbox	MR. STONE: Now, you should know that I am a great PRESIDENT.So, I'd never be so cheap as to ask a favor for nothing in return.That's why I want you to have this!
+playfanfare MUS_OBTAIN_ITEM
+msgbox	PLAYER received a POKéNAV.
+waitfanfare
+setflag FLAG_SYS_POKENAV_GET
+setflag FLAG_RECEIVED_POKENAV
+setflag FLAG_HIDE_RUSTBORO_CITY_POKEMON_SCHOOL_SCOTT
+msgbox	MR. STONE: That device…It's a POKéMON NAVIGATOR, or POKéNAV for short.It's an indispensable tool for any TRAINER on an adventure.It has a map of the HOENN region.You can check the locations of DEWFORD and SLATEPORT easily!By the way, I've heard that sinister criminals--MAGMA and AQUA, I believe-- have been making trouble far and wide.I think it would be best if you rested up before you go on your way.
+closemessage
+call Common_EventScript_OutOfCenterPartyHeal
+msgbox	MR. STONE: Well, then, PLAYER, go with caution and care!
+setflag FLAG_HIDE_ROUTE_116_WANDAS_BOYFRIEND
+clearflag FLAG_HIDE_RUSTURF_TUNNEL_WANDAS_BOYFRIEND
+clearflag FLAG_HIDE_RUSTURF_TUNNEL_WANDA
+clearflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
+clearflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
+setvar VAR_BRINEY_LOCATION 1
+clearflag FLAG_HIDE_RUSTBORO_CITY_RIVAL
+setvar VAR_DEVON_CORP_3F_STATE 1
+setvar VAR_RUSTBORO_CITY_STATE 6
+releaseall
+end
+= RustboroCity_DevonCorp_3F_EventScript_MrStone
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_EXP_SHARE RustboroCity_DevonCorp_3F_EventScript_MrStoneAfterFavor
+goto_if_set FLAG_DELIVERED_STEVEN_LETTER RustboroCity_DevonCorp_3F_EventScript_GiveExpShare
+msgbox	MR. STONE: I'm counting on you!
+closemessage
+applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= RustboroCity_DevonCorp_3F_EventScript_GiveExpShare
+msgbox	MR. STONE: You delivered my LETTER? Thank you kindly!This is my way of thanking you. It should help you, a TRAINER.
+giveitem ITEM_EXP_SHARE
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_RECEIVED_EXP_SHARE
+msgbox	MR. STONE: A POKéMON holding that EXP. SHARE will be given some of the EXP Points from battle.It will get EXP Points even if it didn't actually battle.I would say EXP. SHARE is quite useful for raising weak POKéMON.
+closemessage
+applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= RustboroCity_DevonCorp_3F_EventScript_MrStoneAfterFavor
+msgbox	MR. STONE: Since my youth, I've immersed myself in work.Consequently, I'm not familiar with trends and that sort of thing.But do young people all want to be TRAINERS in the POKéMON LEAGUE?
+closemessage
+applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= RustboroCity_DevonCorp_3F_EventScript_Employee
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_REPEAT_BALL RustboroCity_DevonCorp_3F_EventScript_EmployeeBalls
+msgbox	If you visit the SHIPYARD in SLATEPORT, you should go see CAPT. STERN.
+release
+end
+= RustboroCity_DevonCorp_3F_EventScript_EmployeeBalls
+msgbox	DEVON's new products, the REPEAT BALL and TIMER BALL, have become hugely popular among TRAINERS.
+release
+end
+signs
+1 5	It's a collection of rare rocks and stones assembled by the PRESIDENT.
+1 7	It's a collection of rare rocks and stones assembled by the PRESIDENT.
+mapsec
+0 5 1 2	RUSTBORO CITY
+music
+MUS_RUSTBORO

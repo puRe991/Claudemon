@@ -1,0 +1,366 @@
+tileset general__mauville
+40 20
+22 6
+648,1,4,1,4,1,4,4,1,4,1,1,650,1,1,264,94,266,1,1,648,1,14,198,198,198,198,198,198,198,198,198,198,198,198,198,198,198,198,198
+648,1,4,1,4,426,427,427,427,427,428,1,650,1,1,264,94,266,1,1,648,1,22,22,22,22,22,22,22,22,22,22,22,22,22,198,198,198,198,198
+648,4,1,4,4,434,435,435,435,435,436,4,650,1,1,264,94,266,1,1,648,72,73,74,75,640,657,657,657,657,657,657,657,642,643,644,644,644,645,198
+648,1,4,4,1,440,441,442,435,443,444,1,650,1,1,264,94,266,1,1,648,80,81,82,83,648,664,665,666,1,664,665,666,650,651,652,652,652,653,198
+627,657,657,657,657,448,449,450,453,451,452,657,658,1,1,264,94,266,1,1,656,88,89,90,91,648,664,665,666,1,664,665,666,650,659,676,677,623,661,198
+648,1,1,1,1,456,457,458,461,459,460,304,1,1,1,264,94,266,1,1,1,96,97,98,99,656,1,1,1,1,1,1,1,658,667,684,685,631,669,198
+690,1,1,1,1,1,1,256,94,258,1,305,1,1,1,264,94,266,1,1,1,1,264,266,1,1,1,1,1,1,1,1,1,3,1,264,266,1,1,22
+1,1,1,1,1,1,1,264,94,266,1,1,1,1,256,94,94,94,258,3,1,1,264,266,1,1,1,1,1,1,1,1,1,1,1,264,266,1,1,1
+256,257,257,257,257,257,257,94,94,94,257,257,257,257,94,94,94,94,94,257,257,257,94,94,257,257,257,257,257,257,257,257,257,257,257,94,94,257,257,258
+272,273,273,273,273,273,273,273,273,273,273,273,94,94,273,273,273,273,273,273,273,273,273,273,273,273,273,273,94,94,273,273,273,273,273,273,273,273,273,274
+1,1,1,1,1,728,729,729,729,729,729,732,264,266,1,1,1,1,1,1,1,1,1,1,1,1,1,1,264,266,1,1,1,1,1,1,1,1,1,1
+698,1,1,1,1,736,737,737,737,737,737,740,264,266,1,1,1,1,643,644,644,645,40,41,41,43,1,1,264,266,1,643,644,644,644,645,638,679,679,639
+648,1,1,1,1,744,731,745,746,747,731,748,264,266,640,657,657,657,651,652,652,653,48,49,50,51,1,1,264,266,1,651,652,652,652,653,646,687,687,647
+648,1,1,1,1,721,739,722,723,730,739,738,264,266,648,4,4,4,659,676,623,661,56,57,58,59,1,1,264,266,1,672,676,673,675,674,654,695,695,655
+656,657,657,657,657,657,642,800,1,801,1,1,264,266,648,1,1,1,667,684,631,669,96,65,66,67,1,1,264,266,1,680,684,681,683,682,662,678,678,663
+14,14,1,1,1,1,650,1,1,1,1,3,264,266,648,256,257,257,257,94,257,257,257,94,257,257,257,257,94,94,257,257,94,258,1,14,670,668,668,671
+198,198,14,14,14,1,650,1,1,1,1,1,272,274,648,264,94,94,273,273,273,273,273,273,273,273,273,273,273,273,273,273,273,274,1,198,14,14,1,1
+198,198,198,198,198,14,650,1,1,1,1,1,1,1,648,264,94,266,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,198,22,22,1,1
+198,198,198,198,198,198,689,657,657,657,657,657,657,657,690,264,94,266,1,657,657,657,657,657,657,14,14,657,657,657,657,657,657,1,14,198,392,393,393,393
+199,198,198,198,198,198,14,14,14,1,14,321,1,1,1,272,273,274,1,313,14,14,14,14,14,198,198,14,1,14,14,14,14,14,198,198,400,368,368,368
+collision
+1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,0,0,0,0,1,1,1,1,1,1,0,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,0,0,1,1,1,1,1,1,1,0,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1
+1,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1
+1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,0,0,0,0,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1
+1,0,0,0,0,1,1,1,0,1,1,1,0,0,1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1
+1,1,0,0,0,0,1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
+1,1,1,1,1,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0
+1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,0,0,0,0
+1,1,1,1,1,1,1,1,1,0,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0
+connections
+up 0 Route111
+down 0 Route110
+left 0 Route117
+right 0 Route118
+warps
+8 5 MauvilleCity_Gym 0
+22 5 MauvilleCity_PokemonCenter_1F 0
+35 5 MauvilleCity_BikeShop 0
+23 14 MauvilleCity_Mart 0
+32 14 MauvilleCity_House1 0
+8 13 MauvilleCity_GameCorner 0
+19 14 MauvilleCity_House2 0
+npcs
+people_boy_3 29 16 S wander 0 - 0
+people_rich_boy 24 10 S wander 0 - 0
+people_maniac 14 11 E static 0 - 0
+people_woman_4 18 6 S static 0 - 0
+people_school_kid_m 17 14 S static 0 - 0
+people_wally 8 6 N static FLAG_HIDE_MAUVILLE_CITY_WALLY LOCALID_MAUVILLE_WALLY 0
+people_pokefan_m 9 6 W static FLAG_HIDE_MAUVILLE_CITY_WALLYS_UNCLE LOCALID_MAUVILLE_WALLYS_UNCLE 0
+people_gym_leaders_wattson 29 9 S static FLAG_HIDE_MAUVILLE_CITY_WATTSON - 0
+misc_item_ball 28 19 S static FLAG_ITEM_MAUVILLE_CITY_X_SPEED - 0
+people_fat_man 13 7 W static 0 - 0
+people_scott 12 14 N static FLAG_HIDE_MAUVILLE_CITY_SCOTT LOCALID_MAUVILLE_SCOTT 0
+dialogs
+0	You know, it's cool to have POKéMON battles and stuff…But if your POKéMON gets hurt, you have to nurse it back to health.
+1	Even if you're riding a BIKE, wild POKéMON could jump you.
+2	The roads of this town stretch north and south, and east and west.Because of that, we get all sorts of people coming through.
+3	Have you been to RYDEL'S CYCLES yet?RYDEL, the owner, is a very generous man.
+4	Hi, do you check out TV at all?They've added a bunch of cool new shows recently.TV is so cool. I've seen my friends on TV just out of the blue.And, sometimes, they even put you on TV without telling you.I wish I would be on TV sometime.That's why I think you should check out TVs whenever you can.
+5	WALLY: Aww, UNCLE, please?I want to challenge this GYM and see how much better I've become.Please? May I, please?
+6	UNCLE: It's because of POKéMON that this boy's got more pep, I suppose… But he's become a bit too peppy…
+7	WATTSON: Oh, PLAYER! You look like you have a lot of zip! That's a good thing, wahahahaha!Fine! I've decided! I need a favor, PLAYER!MAUVILLE CITY has an underground sector called NEW MAUVILLE.PLAYER, I'd like you to go there and switch off the GENERATOR.The GENERATOR has been running a bit haywire. It's getting unsafe.Here, this is the KEY to get into NEW MAUVILLE.
+objscripts
+0 MauvilleCity_EventScript_Boy
+1 MauvilleCity_EventScript_RichBoy
+2 MauvilleCity_EventScript_Maniac
+3 MauvilleCity_EventScript_Woman
+4 MauvilleCity_EventScript_SchoolKidM
+5 MauvilleCity_EventScript_Wally
+6 MauvilleCity_EventScript_WallysUncle
+7 MauvilleCity_EventScript_Wattson
+8 MauvilleCity_EventScript_ItemXSpeed
+9 MauvilleCity_EventScript_RolloutTutor
+movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
+Common_Movement_FaceOriginalDirection	face_down,end
+Common_Movement_FacePlayer	face_down,end
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+MauvilleCity_Movement_PlayerFaceUncleNorth	delay,delay,delay,delay,end
+MauvilleCity_Movement_PlayerWatchScottExitEast	delay,delay,delay,end
+MauvilleCity_Movement_PlayerWatchScottExitNorth	delay,delay,end
+MauvilleCity_Movement_PlayerWatchWallyExitEast1	delay,delay,end
+MauvilleCity_Movement_PlayerWatchWallyExitEast2	delay,delay,delay,delay,end
+MauvilleCity_Movement_PlayerWatchWallyExitNorth1	delay,delay,end
+MauvilleCity_Movement_PlayerWatchWallyExitNorth2	delay,delay,delay,end
+MauvilleCity_Movement_ScottApproachPlayerEast	up,up,up,up,up,left,left,left,left,left,up,end
+MauvilleCity_Movement_ScottApproachPlayerNorth	up,up,up,up,up,up,left,left,left,left,delay,end
+MauvilleCity_Movement_ScottExitEast	down,left,left,left,left,left,left,left,left,left,end
+MauvilleCity_Movement_ScottExitNorth	left,left,left,left,left,left,left,left,left,end
+MauvilleCity_Movement_WallyExitEast1	down,down,left,left,left,end
+MauvilleCity_Movement_WallyExitEast2	delay,delay,left,left,left,left,left,left,left,left,delay,end
+MauvilleCity_Movement_WallyExitNorth1	left,left,down,down,left,end
+MauvilleCity_Movement_WallyExitNorth2	delay,delay,left,left,left,left,left,left,left,left,delay,end
+MauvilleCity_Movement_WallysUncleApproachPlayerEast	right,up,end
+MauvilleCity_Movement_WallysUncleApproachPlayerNorth	right,right,delay,end
+MauvilleCity_Movement_WallysUncleExitEast1	left,down,down,left,left,end
+MauvilleCity_Movement_WallysUncleExitEast2	down,left,left,left,left,left,left,left,left,end
+MauvilleCity_Movement_WallysUncleExitNorth1	left,left,left,down,down,end
+MauvilleCity_Movement_WallysUncleExitNorth2	left,left,left,left,left,left,left,left,end
+scriptdefs
+= MauvilleCity_EventScript_RolloutTutor
+lock
+faceplayer
+goto_if_set FLAG_MOVE_TUTOR_TAUGHT_ROLLOUT MoveTutor_EventScript_RolloutTaught
+msgboxyesno	Did you know that you can go from here a long way in that direction without changing direction?I might even be able to roll that way.Do you think your POKéMON will want to roll, too?I can teach one the move ROLLOUT if you'd like.
+goto_if_eq VAR_RESULT NO MoveTutor_EventScript_RolloutDeclined
+call MoveTutor_EventScript_CanOnlyBeLearnedOnce
+goto_if_eq VAR_RESULT NO MoveTutor_EventScript_RolloutDeclined
+msgbox	Ehehe, sure thing! It'd be great if the POKéMON looked like me.
+setvar VAR_0x8005 TUTOR_MOVE_ROLLOUT
+call MoveTutor_EventScript_OpenPartyMenu
+goto_if_eq VAR_RESULT 0 MoveTutor_EventScript_RolloutDeclined
+setflag FLAG_MOVE_TUTOR_TAUGHT_ROLLOUT
+goto MoveTutor_EventScript_RolloutTaught
+end
+= MoveTutor_EventScript_RolloutTaught
+msgbox	Rolling around in the grass makes me happy. Come on, let's roll!
+release
+end
+= MoveTutor_EventScript_RolloutDeclined
+msgbox	You don't need to be shy about it. Let's roll!
+release
+end
+= MoveTutor_EventScript_OpenPartyMenu
+special ChooseMonForMoveTutor
+lock
+faceplayer
+return
+= MoveTutor_EventScript_CanOnlyBeLearnedOnce
+msgboxyesno	This move can be learned only once. Is that okay?
+return
+= MauvilleCity_EventScript_ItemXSpeed
+goto_if_set FLAG_ITEM_MAUVILLE_CITY_X_SPEED MauvilleCity_EventScript_ItemXSpeed_Taken
+finditem ITEM_X_SPEED
+setflag FLAG_ITEM_MAUVILLE_CITY_X_SPEED
+end
+= MauvilleCity_EventScript_ItemXSpeed_Taken
+end
+= MauvilleCity_EventScript_Wattson
+lock
+faceplayer
+goto_if_set FLAG_GOT_TM_THUNDERBOLT_FROM_WATTSON MauvilleCity_EventScript_ReceivedThunderbolt
+goto_if_eq VAR_NEW_MAUVILLE_STATE 2 MauvilleCity_EventScript_CompletedNewMauville
+goto_if_set FLAG_GOT_BASEMENT_KEY_FROM_WATTSON MauvilleCity_EventScript_BegunNewMauville
+msgbox	WATTSON: Oh, PLAYER! You look like you have a lot of zip! That's a good thing, wahahahaha!Fine! I've decided! I need a favor, PLAYER!MAUVILLE CITY has an underground sector called NEW MAUVILLE.PLAYER, I'd like you to go there and switch off the GENERATOR.The GENERATOR has been running a bit haywire. It's getting unsafe.Here, this is the KEY to get into NEW MAUVILLE.
+giveitem ITEM_BASEMENT_KEY
+setflag FLAG_GOT_BASEMENT_KEY_FROM_WATTSON
+msgbox	WATTSON: Don't you worry about it. It won't be a challenge to you.The entrance to NEW MAUVILLE is just a short SURF away from ROUTE 110.That's it, then, you have my trust! Wahahahaha!
+release
+end
+= MauvilleCity_EventScript_BegunNewMauville
+msgbox	WATTSON: Don't you worry about it. It won't be a challenge to you.The entrance to NEW MAUVILLE is just a short SURF away from ROUTE 110.That's it, then, you have my trust! Wahahahaha!
+release
+end
+= MauvilleCity_EventScript_CompletedNewMauville
+msgbox	WATTSON: Wahahahaha!I knew it, PLAYER! I knew I'd made the right choice asking you!This is my thanks--a TM containing THUNDERBOLT!Go on, you've earned it!
+giveitem ITEM_TM_THUNDERBOLT
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_GOT_TM_THUNDERBOLT_FROM_WATTSON
+msgbox	WATTSON: Wahahahaha!It pleases me to no end to see the young step up and take charge!
+release
+end
+= MauvilleCity_EventScript_ReceivedThunderbolt
+msgbox	WATTSON: Wahahahaha!It pleases me to no end to see the young step up and take charge!
+release
+end
+= MauvilleCity_EventScript_WallysUncle
+lock
+faceplayer
+goto_if_set FLAG_DECLINED_WALLY_BATTLE_MAUVILLE MauvilleCity_EventScript_UncleAskPlayerToBattleWally
+msgbox	UNCLE: It's because of POKéMON that this boy's got more pep, I suppose… But he's become a bit too peppy…
+closemessage
+applymovement LOCALID_MAUVILLE_WALLYS_UNCLE Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= MauvilleCity_EventScript_UncleAskPlayerToBattleWally
+msgbox	UNCLE: PLAYER, was it? On WALLY's behalf, can I ask you to battle with him just this once?I don't think he's going to listen to any reason the way he is now.
+closemessage
+applymovement LOCALID_MAUVILLE_WALLYS_UNCLE Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= MauvilleCity_EventScript_Wally
+lockall
+goto_if_set FLAG_DECLINED_WALLY_BATTLE_MAUVILLE MauvilleCity_EventScript_WallyRequestBattleAgain
+applymovement LOCALID_MAUVILLE_WALLY Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+msgbox	WALLY: Aww, UNCLE, please?I want to challenge this GYM and see how much better I've become.Please? May I, please?
+msgbox	UNCLE: Now hold on, WALLY.Since you started living with POKéMON, you have grown quite a lot stronger.But don't you think you're pushing it to suddenly challenge a GYM?
+msgbox	WALLY: I'm not pushing it.If I combine forces with RALTS, we can beat anyone!
+applymovement LOCALID_MAUVILLE_WALLY Common_Movement_FacePlayer
+waitmovement 0
+playse SE_PIN
+applymovement LOCALID_MAUVILLE_WALLY Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_MAUVILLE_WALLY Common_Movement_Delay48
+waitmovement 0
+msgboxyesno	WALLY: Oh! Hi, PLAYER!I've gotten a lot stronger since we met.PLAYER, I want you and my UNCLE to understand that.PLAYER, please, will you have a battle with me?
+goto MauvilleCity_EventScript_BattleWallyPrompt
+end
+= MauvilleCity_EventScript_BattleWallyPrompt
+call_if_eq VAR_RESULT YES MauvilleCity_EventScript_BattleWally
+goto_if_eq VAR_RESULT NO MauvilleCity_EventScript_DeclineWallyBattle
+closemessage
+switch VAR_FACING
+case DIR_NORTH MauvilleCity_EventScript_WallyAndUncleExitNorth
+case DIR_EAST MauvilleCity_EventScript_WallyAndUncleExitEast
+end
+= MauvilleCity_EventScript_WallyAndUncleExitEast
+applymovement LOCALID_PLAYER MauvilleCity_Movement_PlayerWatchWallyExitEast1
+applymovement LOCALID_MAUVILLE_WALLY MauvilleCity_Movement_WallyExitEast1
+applymovement LOCALID_MAUVILLE_WALLYS_UNCLE MauvilleCity_Movement_WallysUncleExitEast1
+waitmovement 0
+applymovement LOCALID_MAUVILLE_WALLY Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+delay 30
+applymovement LOCALID_MAUVILLE_WALLYS_UNCLE MauvilleCity_Movement_WallysUncleApproachPlayerEast
+waitmovement 0
+msgbox	UNCLE: PLAYER, it just dawned on me that you must be the TRAINER who kept an eye out for WALLY when he caught his POKéMON.Why don't you visit us in VERDANTURF sometime? I'm sure WALLY would enjoy it.
+closemessage
+applymovement LOCALID_PLAYER MauvilleCity_Movement_PlayerWatchWallyExitEast2
+applymovement LOCALID_MAUVILLE_WALLYS_UNCLE MauvilleCity_Movement_WallysUncleExitEast2
+applymovement LOCALID_MAUVILLE_WALLY MauvilleCity_Movement_WallyExitEast2
+waitmovement 0
+goto MauvilleCity_EventScript_DefeatedWally
+end
+= MauvilleCity_EventScript_DefeatedWally
+removeobject LOCALID_MAUVILLE_WALLY
+removeobject LOCALID_MAUVILLE_WALLYS_UNCLE
+clearflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLY
+clearflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLYS_UNCLE
+setflag FLAG_DEFEATED_WALLY_MAUVILLE
+setvar VAR_WALLY_CALL_STEP_COUNTER 0
+setflag FLAG_ENABLE_FIRST_WALLY_POKENAV_CALL
+call_if_eq VAR_FACING DIR_NORTH MauvilleCity_EventScript_ScottApproachPlayerNorth
+call_if_eq VAR_FACING DIR_EAST MauvilleCity_EventScript_ScottApproachPlayerEast
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+msgbox	SCOTT: Hehe… I was watching that match!You're friends with that boy WALLY, aren't you?But you didn't hold anything back and beat him impressively.Yeah! That's what a real POKéMON battle is all about!I idolize TRAINERS like that!… … … … … … I'll be cheering for you!
+closemessage
+addvar VAR_SCOTT_STATE 1
+call_if_eq VAR_FACING DIR_NORTH MauvilleCity_EventScript_ScottExitNorth
+call_if_eq VAR_FACING DIR_EAST MauvilleCity_EventScript_ScottExitEast
+removeobject LOCALID_MAUVILLE_SCOTT
+releaseall
+end
+= MauvilleCity_EventScript_ScottExitEast
+applymovement LOCALID_PLAYER MauvilleCity_Movement_PlayerWatchScottExitEast
+applymovement LOCALID_MAUVILLE_SCOTT MauvilleCity_Movement_ScottExitEast
+waitmovement 0
+return
+= MauvilleCity_EventScript_ScottExitNorth
+applymovement LOCALID_PLAYER MauvilleCity_Movement_PlayerWatchScottExitNorth
+applymovement LOCALID_MAUVILLE_SCOTT MauvilleCity_Movement_ScottExitNorth
+waitmovement 0
+return
+= MauvilleCity_EventScript_ScottApproachPlayerEast
+setobjectxyperm LOCALID_MAUVILLE_SCOTT 12 13
+addobject LOCALID_MAUVILLE_SCOTT
+applymovement LOCALID_MAUVILLE_SCOTT MauvilleCity_Movement_ScottApproachPlayerEast
+waitmovement 0
+return
+= MauvilleCity_EventScript_ScottApproachPlayerNorth
+addobject LOCALID_MAUVILLE_SCOTT
+applymovement LOCALID_MAUVILLE_SCOTT MauvilleCity_Movement_ScottApproachPlayerNorth
+waitmovement 0
+return
+= MauvilleCity_EventScript_WallyAndUncleExitNorth
+applymovement LOCALID_PLAYER MauvilleCity_Movement_PlayerWatchWallyExitNorth1
+applymovement LOCALID_MAUVILLE_WALLY MauvilleCity_Movement_WallyExitNorth1
+applymovement LOCALID_MAUVILLE_WALLYS_UNCLE MauvilleCity_Movement_WallysUncleExitNorth1
+waitmovement 0
+applymovement LOCALID_MAUVILLE_WALLY Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+delay 30
+applymovement LOCALID_PLAYER MauvilleCity_Movement_PlayerFaceUncleNorth
+applymovement LOCALID_MAUVILLE_WALLYS_UNCLE MauvilleCity_Movement_WallysUncleApproachPlayerNorth
+waitmovement 0
+msgbox	UNCLE: PLAYER, it just dawned on me that you must be the TRAINER who kept an eye out for WALLY when he caught his POKéMON.Why don't you visit us in VERDANTURF sometime? I'm sure WALLY would enjoy it.
+closemessage
+applymovement LOCALID_PLAYER MauvilleCity_Movement_PlayerWatchWallyExitNorth2
+applymovement LOCALID_MAUVILLE_WALLYS_UNCLE MauvilleCity_Movement_WallysUncleExitNorth2
+applymovement LOCALID_MAUVILLE_WALLY MauvilleCity_Movement_WallyExitNorth2
+waitmovement 0
+goto MauvilleCity_EventScript_DefeatedWally
+end
+= MauvilleCity_EventScript_DeclineWallyBattle
+setflag FLAG_DECLINED_WALLY_BATTLE_MAUVILLE
+msgbox	WALLY: Oh… If you won't battle me, PLAYER, my UNCLE won't know that I've become really strong.
+release
+end
+= MauvilleCity_EventScript_BattleWally
+msgbox	WALLY: PLAYER, thank you.Okay… Here I come!
+trainerbattle_no_intro TRAINER_WALLY_MAUVILLE MauvilleCity_Text_WallyDefeat
+applymovement LOCALID_MAUVILLE_WALLY Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+msgbox	WALLY: UNCLE… I'll go back to VERDANTURF…
+applymovement LOCALID_MAUVILLE_WALLY Common_Movement_FacePlayer
+waitmovement 0
+msgbox	PLAYER, thank you. Being a TRAINER is tough, isn't it?It's not enough just to have POKéMON and make them battle. That isn't what being a real TRAINER is about.
+applymovement LOCALID_MAUVILLE_WALLY Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+msgbox	UNCLE: WALLY, there's no need to be so down on yourself.Why, what's keeping you from becoming stronger and stronger?Come on, let's go home. Everyone's waiting for you.
+return
+= MauvilleCity_EventScript_WallyRequestBattleAgain
+applymovement LOCALID_MAUVILLE_WALLY Common_Movement_FacePlayer
+waitmovement 0
+msgboxyesno	WALLY: PLAYER, please! Battle with me, please.
+goto MauvilleCity_EventScript_BattleWallyPrompt
+end
+= MauvilleCity_EventScript_SchoolKidM
+lock
+faceplayer
+goto_if_set FLAG_TV_EXPLAINED MauvilleCity_EventScript_TVExplained
+msgbox	Hi, do you check out TV at all?They've added a bunch of cool new shows recently.TV is so cool. I've seen my friends on TV just out of the blue.And, sometimes, they even put you on TV without telling you.I wish I would be on TV sometime.That's why I think you should check out TVs whenever you can.
+setflag FLAG_TV_EXPLAINED
+release
+end
+= MauvilleCity_EventScript_TVExplained
+msgbox	Hi, have you been checking out TVs?
+release
+end
+= MauvilleCity_EventScript_Woman
+msgbox	Have you been to RYDEL'S CYCLES yet?RYDEL, the owner, is a very generous man.
+end
+= MauvilleCity_EventScript_Maniac
+msgbox	The roads of this town stretch north and south, and east and west.Because of that, we get all sorts of people coming through.
+end
+= MauvilleCity_EventScript_RichBoy
+msgbox	Even if you're riding a BIKE, wild POKéMON could jump you.
+end
+= MauvilleCity_EventScript_Boy
+msgbox	You know, it's cool to have POKéMON battles and stuff…But if your POKéMON gets hurt, you have to nurse it back to health.
+end
+signs
+11 6	MAUVILLE CITY POKéMON GYM LEADER: WATTSON “The cheerfully electrifying man!”
+19 7	MAUVILLE CITY “The bright and shiny city of fun!”
+33 6	“Ride in gravel and shake up your soul!” RYDEL'S CYCLES
+11 15	“The play spot for all!” MAUVILLE GAME CORNER
+water
+368,392,393,400
+visit
+FLAG_VISITED_MAUVILLE_CITY
+mapsec
+8 6 2 1	MAUVILLE CITY
+music
+MUS_RUSTBORO

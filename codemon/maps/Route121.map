@@ -1,0 +1,490 @@
+tileset general__lilycove
+80 20
+40 10
+198,198,198,198,117,114,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,600,468,469,468,469,468,469,468,469,816,817,817,817,818,468,469,1,602,117,114,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469
+198,198,198,198,117,114,476,477,476,477,476,477,476,477,484,485,484,485,476,477,476,477,476,477,476,477,600,486,485,484,485,484,485,484,487,816,817,817,817,818,486,487,1,602,117,114,486,485,486,485,486,485,484,485,476,477,476,477,486,485,486,485,486,485,486,485,486,485,476,477,476,477,476,477,476,477,476,477,476,477
+198,198,23,23,117,114,468,469,468,469,468,469,468,469,627,332,332,629,468,469,468,469,468,469,468,469,600,1,4,1,4,1,4,1,4,816,817,817,817,818,1,4,1,602,117,114,1,1,4,1,4,1,4,1,468,469,468,469,4,1,1,1,4,1,4,1,4,1,468,469,468,469,468,469,468,469,468,469,468,469
+23,23,1,1,117,114,476,477,476,477,476,477,476,477,635,276,276,637,486,485,484,485,484,485,484,487,600,4,1,4,1,4,1,4,1,824,825,825,825,826,4,1,1,602,117,114,1,4,1,4,1,4,1,1,486,485,484,487,1,4,1,1,1,4,1,4,1,4,486,485,484,485,484,485,484,485,484,485,484,485
+124,124,124,124,125,114,468,469,468,469,468,469,468,469,13,13,13,592,593,593,593,593,593,593,593,593,593,593,593,593,593,593,593,593,593,819,804,805,806,821,593,593,593,594,117,114,592,593,593,593,593,593,593,593,593,593,593,593,593,593,593,593,593,593,594,1,592,593,593,593,593,593,593,833,593,593,593,593,593,594
+145,145,145,145,145,68,486,485,484,485,484,485,484,487,13,13,13,13,1,1,1,1,1,13,13,13,1,1,1,1,1,1,462,463,1,834,836,813,837,835,1,116,121,121,125,114,1,1,1,1,1,1,1,1,13,13,13,13,13,1,1,1,1,1,1,1,1,1,13,13,13,13,1,602,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,13,13,13,13,13,1,1,1,1,1,470,471,1,1,1,1,1,3,1,114,30,31,116,122,1,1,1,1,1,1,1,1,1,13,13,13,13,13,13,13,1,1,1,1,1,13,13,13,13,13,13,602,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,13,13,13,13,13,1,1,1,1,1,476,477,462,463,1,1,1,1,1,114,38,39,114,592,593,593,593,593,594,1,1,592,593,593,594,1,1,592,593,594,1,1,592,593,593,593,593,593,593,593,593,594,1,1,1,1,1,1
+1,1,1,1,4,280,281,281,281,281,281,281,282,1,1,1,1,1,1,1,1,13,13,13,13,13,13,13,1,1,1,1,468,469,468,471,116,175,207,121,121,122,1,1,114,13,13,1,1,1,1,1,1,1,1,1,602,1,1,1,1,602,1,1,600,1,13,13,1,13,13,13,1,602,1,1,1,1,1,1
+1,4,1,280,281,289,289,297,297,297,297,297,298,1,13,13,13,592,593,593,593,593,593,593,593,593,593,593,593,594,1,1,486,485,484,487,114,1,1,1,1,1,1,1,114,13,13,13,592,593,593,593,593,594,1,592,594,1,1,1,1,602,1,1,600,1,13,13,13,13,13,13,1,602,1,1,1,1,462,463
+281,281,281,289,289,289,298,1,1,1,1,1,13,13,13,13,13,13,13,13,13,13,13,1,116,124,124,124,124,124,175,207,124,124,124,124,122,1,1,1,1,1,1,1,114,13,13,13,13,13,13,13,1,1,1,1,602,13,13,1,1,602,1,1,1,1,13,13,13,13,13,13,1,1,1,1,462,463,470,469
+297,297,297,297,297,298,1,1,462,463,462,455,454,455,454,455,13,13,13,13,116,124,124,124,125,116,145,145,145,145,175,207,145,145,145,145,145,121,121,121,416,121,175,207,122,592,593,593,593,593,593,593,593,593,593,593,594,13,13,13,1,602,1,1,1,1,1,1,1,1,1,1,1,1,1,1,470,469,484,485
+1,1,4,1,1,4,1,1,470,469,468,469,468,469,468,471,116,124,124,124,125,116,145,145,145,122,1,1,1,1,1,1,1,1,1,1,1,1,13,13,13,13,13,1,1,1,1,1,1,1,1,1,1,1,1,13,13,13,13,13,1,602,592,593,593,593,593,593,593,593,593,594,1,1,1,1,486,485,116,124
+4,1,1,1,1,1,1,1,486,485,484,487,484,485,484,487,117,116,416,145,145,122,1,1,1,1,1,116,121,121,175,207,121,121,137,1,1,1,1,13,13,13,13,13,13,13,1,1,1,1,1,1,1,1,1,13,13,13,13,13,1,602,1,259,260,260,260,260,261,1,1,1,1,1,116,124,124,124,125,384
+121,121,121,496,497,121,121,121,124,124,124,124,124,124,124,124,125,114,1,1,1,1,1,116,124,124,124,125,93,94,94,94,3,95,123,124,124,124,124,137,13,13,13,13,13,13,13,1,1,1,1,1,1,1,13,13,13,13,13,592,593,594,1,725,733,733,733,733,741,1,1,1,1,1,117,384,393,393,393,408
+1,1,1,470,471,1,1,1,116,169,169,169,169,169,169,169,169,125,116,124,124,124,124,125,384,393,393,385,93,94,94,94,94,95,384,393,393,393,385,123,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,125,400,368,368,368,368
+462,463,1,486,487,116,124,124,125,113,113,113,113,113,113,116,169,169,125,384,393,393,393,393,408,368,336,357,93,94,94,94,94,95,356,337,368,368,410,393,393,393,393,393,393,393,393,393,393,393,393,393,393,393,393,393,393,393,393,393,393,393,393,393,393,393,393,393,393,393,393,393,393,393,393,408,368,368,368,368
+470,471,1,116,124,125,116,169,169,124,124,124,124,124,124,125,384,393,393,408,368,368,368,368,368,368,344,365,93,94,94,94,94,95,364,345,336,337,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368
+486,487,116,125,113,113,117,384,393,393,393,393,393,393,393,393,408,368,368,368,368,368,368,368,368,336,337,402,101,94,94,94,94,103,400,368,344,345,336,337,336,337,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368
+1,116,125,113,116,124,125,400,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,344,345,410,393,393,393,393,393,393,408,368,368,368,344,345,344,345,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,1,0,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,0,0,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,0,0,0,0,0,0,0,1,0,0,0,1,1,1,1,1,1,0,1,1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,1,1,1,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
+0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1
+0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1
+0,0,0,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0
+0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0
+1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,0,0,0,0,1,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,1,1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+connections
+down 20 Route122
+left -80 Route120
+right -10 LilycoveCity
+warps
+37 5 Route121_SafariZoneEntrance 2
+npcs
+people_woman_3 29 14 E static 0 - 0
+people_man_1 14 2 S static 0 - 0
+people_man_1 15 2 S static 0 - 0
+people_man_1 16 2 S static 0 - 0
+people_man_1 17 2 S static 0 - 0
+people_man_1 64 14 S static 0 - 0
+people_man_1 65 14 S static 0 - 0
+people_man_1 66 14 S static 0 - 0
+people_man_1 67 14 S static 0 - 0
+people_lass 39 9 S static 0 - 1
+people_lass 40 9 S static 0 - 1
+people_team_aqua_aqua_member_m 30 8 N static FLAG_HIDE_ROUTE_121_TEAM_AQUA_GRUNTS LOCALID_ROUTE121_GRUNT_1 0
+people_team_aqua_aqua_member_m 30 7 E static FLAG_HIDE_ROUTE_121_TEAM_AQUA_GRUNTS LOCALID_ROUTE121_GRUNT_2 0
+people_team_aqua_aqua_member_m 31 7 W static FLAG_HIDE_ROUTE_121_TEAM_AQUA_GRUNTS LOCALID_ROUTE121_GRUNT_3 0
+misc_cuttable_tree 32 5 S static FLAG_TEMP_11 - 0
+misc_cuttable_tree 65 4 S static FLAG_TEMP_12 - 0
+people_pokefan_f 63 5 W static 0 - 4
+people_gentleman 55 8 W static 0 - 3
+people_hex_maniac 11 11 N static 0 - 4
+people_beauty 22 5 S static 0 - 4
+misc_item_ball 55 10 S static FLAG_ITEM_ROUTE_121_CARBOS - 0
+misc_cuttable_tree 26 12 S static FLAG_TEMP_13 - 0
+people_maniac 11 6 S static 0 - 3
+people_man_4 59 8 S static 0 - 4
+people_woman_2 59 13 N static 0 - 4
+people_man_3 65 9 S static 0 - 6
+people_woman_5 72 9 S static 0 - 6
+misc_item_ball 60 10 S static FLAG_ITEM_ROUTE_121_REVIVE - 0
+misc_item_ball 38 13 S static FLAG_ITEM_ROUTE_121_ZINC - 0
+dialogs
+0	Ahead looms MT. PYRE…It is a natural monument to the spirits of departed POKéMON…
+objscripts
+0 Route121_EventScript_Woman
+1 BerryTreeScript
+2 BerryTreeScript
+3 BerryTreeScript
+4 BerryTreeScript
+5 BerryTreeScript
+6 BerryTreeScript
+7 BerryTreeScript
+8 BerryTreeScript
+9 Route121_EventScript_Kate
+10 Route121_EventScript_Joy
+14 EventScript_CutTree
+15 EventScript_CutTree
+16 Route121_EventScript_Vanessa
+17 Route121_EventScript_Walter
+18 Route121_EventScript_Tammy
+19 Route121_EventScript_Jessica
+20 Route121_EventScript_ItemCarbos
+21 EventScript_CutTree
+22 Route121_EventScript_Cale
+23 Route121_EventScript_Myles
+24 Route121_EventScript_Pat
+25 Route121_EventScript_Marcel
+26 Route121_EventScript_Cristin
+27 Route121_EventScript_ItemRevive
+28 Route121_EventScript_ItemZinc
+triggers
+25 5 VAR_ROUTE121_STATE 0 Route121_EventScript_AquaGruntsMoveOut
+25 6 VAR_ROUTE121_STATE 0 Route121_EventScript_AquaGruntsMoveOut
+25 7 VAR_ROUTE121_STATE 0 Route121_EventScript_AquaGruntsMoveOut
+25 8 VAR_ROUTE121_STATE 0 Route121_EventScript_AquaGruntsMoveOut
+23 10 0 0 Route121_HiddenItem_23_10
+58 3 0 0 Route121_HiddenItem_58_3
+72 5 0 0 Route121_HiddenItem_72_5
+68 8 0 0 Route121_HiddenItem_68_8
+movements
+Common_Movement_WalkInPlaceRight	delay,end
+Movement_CutTreeDown	delay,end
+Route121_Movement_Grunt1Exit	down,down,down,down,down,down,down,down,end
+Route121_Movement_Grunt2Exit	down,down,down,down,down,down,down,down,end
+Route121_Movement_Grunt3Exit	down,down,down,down,down,down,down,down,end
+scriptdefs
+= Route121_HiddenItem_68_8
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_121_MAX_REVIVE Route121_HiddenItem_68_8_Taken
+finditem ITEM_MAX_REVIVE
+setflag FLAG_HIDDEN_ITEM_ROUTE_121_MAX_REVIVE
+end
+= Route121_HiddenItem_68_8_Taken
+end
+= Route121_HiddenItem_72_5
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_121_FULL_HEAL Route121_HiddenItem_72_5_Taken
+finditem ITEM_FULL_HEAL
+setflag FLAG_HIDDEN_ITEM_ROUTE_121_FULL_HEAL
+end
+= Route121_HiddenItem_72_5_Taken
+end
+= Route121_HiddenItem_58_3
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_121_NUGGET Route121_HiddenItem_58_3_Taken
+finditem ITEM_NUGGET
+setflag FLAG_HIDDEN_ITEM_ROUTE_121_NUGGET
+end
+= Route121_HiddenItem_58_3_Taken
+end
+= Route121_HiddenItem_23_10
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_121_HP_UP Route121_HiddenItem_23_10_Taken
+finditem ITEM_HP_UP
+setflag FLAG_HIDDEN_ITEM_ROUTE_121_HP_UP
+end
+= Route121_HiddenItem_23_10_Taken
+end
+= Route121_EventScript_AquaGruntsMoveOut
+lockall
+playbgm MUS_ENCOUNTER_AQUA FALSE
+applymovement LOCALID_ROUTE121_GRUNT_2 Common_Movement_WalkInPlaceRight
+waitmovement 0
+msgbox	Okay! We're to move out to MT. PYRE!
+closemessage
+applymovement LOCALID_ROUTE121_GRUNT_1 Route121_Movement_Grunt1Exit
+applymovement LOCALID_ROUTE121_GRUNT_2 Route121_Movement_Grunt2Exit
+applymovement LOCALID_ROUTE121_GRUNT_3 Route121_Movement_Grunt3Exit
+waitmovement 0
+fadedefaultbgm
+removeobject LOCALID_ROUTE121_GRUNT_1
+removeobject LOCALID_ROUTE121_GRUNT_2
+removeobject LOCALID_ROUTE121_GRUNT_3
+setvar VAR_ROUTE121_STATE 1
+releaseall
+end
+= Route121_EventScript_ItemZinc
+goto_if_set FLAG_ITEM_ROUTE_121_ZINC Route121_EventScript_ItemZinc_Taken
+finditem ITEM_ZINC
+setflag FLAG_ITEM_ROUTE_121_ZINC
+end
+= Route121_EventScript_ItemZinc_Taken
+end
+= Route121_EventScript_ItemRevive
+goto_if_set FLAG_ITEM_ROUTE_121_REVIVE Route121_EventScript_ItemRevive_Taken
+finditem ITEM_REVIVE
+setflag FLAG_ITEM_ROUTE_121_REVIVE
+end
+= Route121_EventScript_ItemRevive_Taken
+end
+= Route121_EventScript_Cristin
+trainerbattle_single TRAINER_CRISTIN_1 Route121_Text_CristinIntro Route121_Text_CristinDefeat Route121_EventScript_RegisterCristin
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route121_EventScript_RematchCristin
+msgbox	I didn't expect to lose this easily… I'll win next time!
+release
+end
+= Route121_EventScript_RematchCristin
+trainerbattle_rematch TRAINER_CRISTIN_1 Route121_Text_CristinRematchIntro Route121_Text_CristinRematchDefeat
+msgbox	An opponent I just can't beat… Snivel… I can't believe this is happening…
+end
+= Route121_EventScript_RegisterCristin
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	That was total humiliation! I won't forget you… Hand over your POKéNAV!
+register_matchcall TRAINER_CRISTIN_1
+release
+end
+= Route121_EventScript_Marcel
+trainerbattle_single TRAINER_MARCEL Route121_Text_MarcelIntro Route121_Text_MarcelDefeat
+msgbox	I may have to train my gang some more before entering any CONTEST.
+end
+= Route121_EventScript_Pat
+trainerbattle_single TRAINER_PAT Route121_Text_PatIntro Route121_Text_PatDefeat
+msgbox	I raise every POKéMON with the same love and care--I don't pick favorites.
+end
+= Route121_EventScript_Myles
+trainerbattle_single TRAINER_MYLES Route121_Text_MylesIntro Route121_Text_MylesDefeat
+msgbox	They're great, your POKéMON! How do you raise them?
+end
+= Route121_EventScript_Cale
+trainerbattle_single TRAINER_CALE Route121_Text_CaleIntro Route121_Text_CaleDefeat
+msgbox	I bought too much stuff at the LILYCOVE DEPT. STORE.It's up the road from here. I wish I had a BAG like yours.
+end
+= EventScript_CutTree
+lockall
+goto_if_unset FLAG_BADGE01_GET EventScript_CheckTreeCantCut
+checkpartymove MOVE_CUT
+goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CheckTreeCantCut
+setfieldeffectargument 0 VAR_RESULT
+bufferpartymonnick STR_VAR_1 VAR_RESULT
+buffermovename STR_VAR_2 MOVE_CUT
+msgboxyesno	This tree looks like it can be CUT down!Would you like to CUT it?
+goto_if_eq VAR_RESULT NO EventScript_CancelCut
+msgbox	STR_VAR_1 used STR_VAR_2!
+closemessage
+dofieldeffect FLDEFF_USE_CUT_ON_TREE
+waitstate
+goto EventScript_CutTreeDown
+end
+@ Use cut from party menu
+goto EventScript_UseCut
+= EventScript_UseCut
+lockall
+dofieldeffect FLDEFF_USE_CUT_ON_TREE
+waitstate
+goto EventScript_CutTreeDown
+end
+= EventScript_CutTreeDown
+applymovement VAR_LAST_TALKED Movement_CutTreeDown
+waitmovement 0
+removeobject VAR_LAST_TALKED
+releaseall
+end
+= EventScript_CancelCut
+closemessage
+releaseall
+end
+= EventScript_CheckTreeCantCut
+msgbox	This tree looks like it can be CUT down!
+releaseall
+end
+= Route121_EventScript_ItemCarbos
+goto_if_set FLAG_ITEM_ROUTE_121_CARBOS Route121_EventScript_ItemCarbos_Taken
+finditem ITEM_CARBOS
+setflag FLAG_ITEM_ROUTE_121_CARBOS
+end
+= Route121_EventScript_ItemCarbos_Taken
+end
+= Route121_EventScript_Jessica
+trainerbattle_single TRAINER_JESSICA_1 Route121_Text_JessicaIntro Route121_Text_JessicaDefeat Route121_EventScript_RegisterJessica
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route121_EventScript_RematchJessica
+msgbox	Maybe I'll go catch more POKéMON at the SAFARI.
+release
+end
+= Route121_EventScript_RematchJessica
+trainerbattle_rematch TRAINER_JESSICA_1 Route121_Text_JessicaRematchIntro Route121_Text_JessicaRematchDefeat
+msgbox	Maybe I'll go catch more POKéMON at the SAFARI.
+end
+= Route121_EventScript_RegisterJessica
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	I took it easy on you this time! It won't be that way the next time!
+register_matchcall TRAINER_JESSICA_1
+release
+end
+= Route121_EventScript_Tammy
+trainerbattle_single TRAINER_TAMMY Route121_Text_TammyIntro Route121_Text_TammyDefeat
+msgbox	MT. PYRE… There is a mysterious power at work there…
+end
+= Route121_EventScript_Walter
+trainerbattle_single TRAINER_WALTER_1 Route121_Text_WalterIntro Route121_Text_WalterDefeat Route121_EventScript_RegisterWalter
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route121_EventScript_RematchWalter
+msgbox	I would like to circle the globe once again with my POKéMON.
+release
+end
+= Route121_EventScript_RematchWalter
+trainerbattle_rematch TRAINER_WALTER_1 Route121_Text_WalterRematchIntro Route121_Text_WalterRematchDefeat
+msgbox	Your POKéMON and you…Your prowess together will be considered strong, even overseas.
+end
+= Route121_EventScript_RegisterWalter
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	Your POKéMON prowess is remarkable. Allow me to register you as a memento.
+register_matchcall TRAINER_WALTER_1
+release
+end
+= Route121_EventScript_Vanessa
+trainerbattle_single TRAINER_VANESSA Route121_Text_VanessaIntro Route121_Text_VanessaDefeat
+msgbox	I'm going to a CONTEST in LILYCOVE.My POKéMON should have no problem sweeping the MASTER CLASS.
+end
+= Route121_EventScript_Joy
+trainerbattle_double TRAINER_KATE_AND_JOY Route121_Text_JoyIntro Route121_Text_JoyDefeat Route121_Text_JoyNotEnoughMons
+msgbox	JOY: Ehehe, I'll have to train with KATE, my senior student partner, again.
+end
+= Route121_EventScript_Kate
+trainerbattle_double TRAINER_KATE_AND_JOY Route121_Text_KateIntro Route121_Text_KateDefeat Route121_Text_KateNotEnoughMons
+msgbox	KATE: When someone's relying on me, I get this urge to look cool in front of them…
+end
+= BerryTreeScript
+special ObjectEventInteractionGetBerryTreeData
+switch VAR_0x8004
+case BERRY_STAGE_SPARKLING BerryTree_EventScript_Sparkling
+case BERRY_STAGE_NO_BERRY BerryTree_EventScript_CheckSoil
+case BERRY_STAGE_PLANTED BerryTree_EventScript_CheckBerryStage1
+case BERRY_STAGE_SPROUTED BerryTree_EventScript_CheckBerryStage2
+case BERRY_STAGE_TALLER BerryTree_EventScript_CheckBerryStage3
+case BERRY_STAGE_FLOWERING BerryTree_EventScript_CheckBerryStage4
+case BERRY_STAGE_BERRIES BerryTree_EventScript_CheckBerryFullyGrown
+end
+= BerryTree_EventScript_CheckBerryFullyGrown
+buffernumberstring STR_VAR_2 VAR_0x8006
+lock
+faceplayer
+special ObjectEventInteractionGetBerryCountString
+msgboxyesno	You found STR_VAR_2 STR_VAR_1!Do you want to pick the STR_VAR_1?
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_PickBerry
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPickingBerry
+goto BerryTree_EventScript_PickBerry
+= BerryTree_EventScript_PickBerry
+special ObjectEventInteractionPickBerryTree
+goto_if_eq VAR_0x8004 0 BerryTree_EventScript_BerryPocketFull
+special IncrementDailyPickedBerries
+special ObjectEventInteractionRemoveBerryTree
+msgbox	PLAYER picked the STR_VAR_2 STR_VAR_1.
+playfanfare MUS_OBTAIN_BERRY
+waitmessage
+waitfanfare
+waitbuttonpress
+msgbox	PLAYER put away the STR_VAR_1 in the BAG's BERRIES POCKET.The soil returned to its soft and loamy state.
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_BerryPocketFull
+msgbox	The BAG's BERRIES POCKET is full.The STR_VAR_1 couldn't be taken.
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_CancelPickingBerry
+msgbox	PLAYER left the STR_VAR_1 unpicked.
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_CheckBerryStage4
+call BerryTree_EventScript_GetCareAdverb
+lockall
+special ObjectEventInteractionGetBerryName
+msgbox	These STR_VAR_1 flowers are blooming STR_VAR_2.
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+@ VAR_0x8005 here is the number of times watered
+@ Buffered by ObjectEventInteractionGetBerryTreeData
+goto BerryTree_EventScript_GetCareAdverb
+= BerryTree_EventScript_GetCareAdverb
+goto_if_eq VAR_0x8005 0 BerryTree_EventScript_SetAdverbPoor
+goto_if_eq VAR_0x8005 4 BerryTree_EventScript_SetAdverbGreat
+bufferstring STR_VAR_2	prettily
+return
+= BerryTree_EventScript_SetAdverbGreat
+bufferstring STR_VAR_2	very beautifully
+return
+= BerryTree_EventScript_SetAdverbPoor
+bufferstring STR_VAR_2	cutely
+return
+@ VAR_0x8006 here is the number of berries
+goto BerryTree_EventScript_CheckBerryFullyGrown
+= BerryTree_EventScript_WantToWater
+checkitem ITEM_WAILMER_PAIL
+goto_if_eq VAR_RESULT FALSE BerryTree_EventScript_DontWater
+special ObjectEventInteractionGetBerryName
+msgboxyesno	Want to water the STR_VAR_1 with the WAILMER PAIL?
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_WaterBerry
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_DontWater
+goto BerryTree_EventScript_DontWater
+= BerryTree_EventScript_DontWater
+releaseall
+end
+= BerryTree_EventScript_WaterBerry
+special ObjectEventInteractionGetBerryName
+msgbox	PLAYER watered the STR_VAR_1.
+waitmessage
+special ObjectEventInteractionWaterBerryTree
+special DoWateringBerryTreeAnim
+msgbox	The plant seems to be delighted.
+waitmessage
+waitbuttonpress
+releaseall
+end
+= BerryTree_EventScript_CheckBerryStage3
+lockall
+special ObjectEventInteractionGetBerryName
+msgbox	This STR_VAR_1 plant is growing taller.
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckBerryStage2
+lockall
+special ObjectEventInteractionGetBerryName
+msgbox	STR_VAR_1 has sprouted.
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckBerryStage1
+lockall
+special ObjectEventInteractionGetBerryCountString
+msgbox	One STR_VAR_1 was planted here.
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckSoil
+lock
+faceplayer
+specialvar VAR_RESULT PlayerHasBerries
+goto_if_eq VAR_RESULT TRUE BerryTree_EventScript_WantToPlant
+msgbox	It's soft, loamy soil.
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_WantToPlant
+msgboxyesno	It's soft, loamy soil. Want to plant a BERRY?
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_ChooseBerryToPlant
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPlanting
+end
+= BerryTree_EventScript_CancelPlanting
+release
+end
+= BerryTree_EventScript_ChooseBerryToPlant
+fadescreen FADE_TO_BLACK
+closemessage
+special Bag_ChooseBerry
+goto_if_eq VAR_ITEM_ID 0 BerryTree_EventScript_CancelPlanting
+removeitem VAR_ITEM_ID
+call BerryTree_EventScript_PlantBerry
+goto BerryTree_EventScript_CancelPlanting
+= BerryTree_EventScript_PlantBerry
+special ObjectEventInteractionPlantBerryTree
+incrementgamestat GAME_STAT_PLANTED_BERRIES
+special IncrementDailyPlantedBerries
+special ObjectEventInteractionGetBerryCountString
+msgbox	PLAYER planted one STR_VAR_1 in the soft, loamy soil.
+waitmessage
+waitbuttonpress
+return
+= BerryTree_EventScript_Sparkling
+lockall
+msgbox	!
+waitmessage
+waitbuttonpress
+releaseall
+end
+= Route121_EventScript_Woman
+msgbox	Ahead looms MT. PYRE…It is a natural monument to the spirits of departed POKéMON…
+end
+signs
+32 14	MT. PYRE PIER…The sign is old and worn out. The words are barely legible…
+39 6	“Filled with rare POKéMON!” SAFARI ZONE
+grass
+13,454,455
+water
+368,384,385,393,400,402,408,410
+mapsec
+14 3 4 1	ROUTE 121
+music
+MUS_ROUTE120
+encounters
+land POOCHYENA:26:26,SHUPPET:26:26,MIGHTYENA:26:26,SHUPPET:28:28,MIGHTYENA:28:28,ODDISH:26:26,ODDISH:28:28,GLOOM:28:28,WINGULL:26:26,WINGULL:27:27,WINGULL:28:28,KECLEON:25:25
+water TENTACOOL:5:35,WINGULL:10:30,WINGULL:15:25,PELIPPER:25:30,PELIPPER:25:30
+fishing MAGIKARP:5:10,TENTACOOL:5:10,MAGIKARP:10:30,TENTACOOL:10:30,WAILMER:10:30,WAILMER:25:30,WAILMER:30:35,WAILMER:20:25,WAILMER:35:40,WAILMER:40:45

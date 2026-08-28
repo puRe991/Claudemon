@@ -1,0 +1,51 @@
+tileset building__generic_building
+10 9
+5 4
+646,647,633,634,517,519,517,517,517,517
+654,655,641,642,525,527,525,525,656,656
+662,663,649,650,548,548,548,548,664,664
+569,565,566,566,566,566,566,567,547,547
+569,573,584,585,738,574,574,575,547,547
+569,573,592,593,738,574,574,575,547,547
+569,581,582,582,582,582,582,583,547,547
+569,547,547,547,547,547,547,547,547,546
+569,547,547,520,521,547,547,547,547,554
+collision
+1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,0,0
+0,0,0,0,0,0,0,0,1,1
+0,0,0,0,0,0,0,0,0,0
+0,0,1,1,0,0,0,0,0,0
+0,0,1,1,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,1
+warps
+3 8 LilycoveCity 8
+4 8 LilycoveCity 8
+npcs
+people_expert_m 4 5 W static 0 - 0
+pokemon_kecleon 4 4 S static 0 - 0
+dialogs
+0	POKéMON are partners to people. They aren't our tools.Unfortunately, there are some people who fail to understand that…
+1	KECLEON: Ruroro?
+objscripts
+0 LilycoveCity_House1_EventScript_ExpertM
+1 LilycoveCity_House1_EventScript_Kecleon
+scriptdefs
+= LilycoveCity_House1_EventScript_Kecleon
+lock
+faceplayer
+waitse
+playmoncry SPECIES_KECLEON CRY_MODE_NORMAL
+msgbox	KECLEON: Ruroro?
+waitmoncry
+release
+end
+= LilycoveCity_House1_EventScript_ExpertM
+msgbox	POKéMON are partners to people. They aren't our tools.Unfortunately, there are some people who fail to understand that…
+end
+mapsec
+18 3 2 1	LILYCOVE CITY
+music
+MUS_LILYCOVE

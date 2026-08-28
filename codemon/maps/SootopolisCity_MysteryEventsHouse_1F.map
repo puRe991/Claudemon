@@ -1,0 +1,139 @@
+tileset building__mystery_events_house
+11 8
+5 4
+519,517,568,569,570,517,518,551,517,532,533
+527,525,576,577,578,525,526,2,559,540,541
+566,566,539,539,539,566,566,557,567,548,549
+566,565,565,565,565,565,565,565,565,565,565
+566,565,565,565,565,565,528,534,535,529,565
+566,565,565,565,565,565,528,542,543,529,565
+566,565,565,565,565,565,565,565,565,565,565
+566,565,565,520,521,565,565,565,565,565,565
+collision
+1,1,1,1,1,1,1,1,1,1,1
+1,1,1,0,1,1,1,1,1,1,1
+0,0,1,1,1,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,1,1,0,0
+0,0,0,0,0,0,0,1,1,0,0
+0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0
+warps
+3 7 SootopolisCity 12
+4 7 SootopolisCity 12
+3 1 SootopolisCity_MysteryEventsHouse_B1F 0
+npcs
+people_old_man 6 4 E static 0 LOCALID_MYSTERY_EVENTS_OLD_MAN 0
+dialogs
+0	When I was young, I traveled the world as a POKéMON TRAINER.Now that I've become an old buzzard, my only amusement is watching young TRAINERS battle.
+objscripts
+0 SootopolisCity_MysteryEventsHouse_1F_EventScript_OldMan
+onload
+VAR_SOOTOPOLIS_MYSTERY_EVENTS_STATE 1 SootopolisCity_MysteryEventsHouse_1F_EventScript_OldManCommentOnBattle
+VAR_SOOTOPOLIS_MYSTERY_EVENTS_STATE 2 SootopolisCity_MysteryEventsHouse_1F_EventScript_OldManCommentOnBattle
+VAR_SOOTOPOLIS_MYSTERY_EVENTS_STATE 3 SootopolisCity_MysteryEventsHouse_1F_EventScript_OldManCommentOnBattle
+movements
+Common_Movement_WalkInPlaceFasterUp	delay,end
+SootopolisCity_MysteryEventsHouse_1F_Movement_OldManMoveAsideLeft	left,delay,end
+SootopolisCity_MysteryEventsHouse_1F_Movement_OldManMoveAsideRight	right,delay,end
+SootopolisCity_MysteryEventsHouse_1F_Movement_OldManWalkBehindPlayer	right,delay,end
+SootopolisCity_MysteryEventsHouse_1F_Movement_PlayerEnterBasementEast	delay,right,up,end
+SootopolisCity_MysteryEventsHouse_1F_Movement_PlayerEnterBasementNorth	delay,up,up,end
+SootopolisCity_MysteryEventsHouse_1F_Movement_PlayerEnterBasementWest	delay,left,up,end
+SootopolisCity_MysteryEventsHouse_1F_Movement_PlayerExitStairs	down,end
+scriptdefs
+= SootopolisCity_MysteryEventsHouse_1F_EventScript_OldManCommentOnBattle
+lockall
+applymovement LOCALID_PLAYER SootopolisCity_MysteryEventsHouse_1F_Movement_PlayerExitStairs
+waitmovement 0
+applymovement LOCALID_MYSTERY_EVENTS_OLD_MAN SootopolisCity_MysteryEventsHouse_1F_Movement_OldManWalkBehindPlayer
+waitmovement 0
+copyobjectxytoperm LOCALID_MYSTERY_EVENTS_OLD_MAN
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+call_if_eq VAR_SOOTOPOLIS_MYSTERY_EVENTS_STATE 1 SootopolisCity_MysteryEventsHouse_1F_EventScript_BattleWonComment
+call_if_eq VAR_SOOTOPOLIS_MYSTERY_EVENTS_STATE 2 SootopolisCity_MysteryEventsHouse_1F_EventScript_BattleLostComment
+call_if_eq VAR_SOOTOPOLIS_MYSTERY_EVENTS_STATE 3 SootopolisCity_MysteryEventsHouse_1F_EventScript_BattleTiedComment
+special LoadPlayerParty
+setvar VAR_SOOTOPOLIS_MYSTERY_EVENTS_STATE 0
+releaseall
+end
+= SootopolisCity_MysteryEventsHouse_1F_EventScript_BattleTiedComment
+msgbox	So, it became a standoff.It was a brilliant match in which neither side conceded a step!
+return
+= SootopolisCity_MysteryEventsHouse_1F_EventScript_BattleLostComment
+msgbox	Ah, too bad for you!But it was a good match. I hope you can win next time.
+return
+= SootopolisCity_MysteryEventsHouse_1F_EventScript_BattleWonComment
+msgbox	That was superlative!Why, it was like seeing myself in my youth again!
+return
+= SootopolisCity_MysteryEventsHouse_1F_EventScript_OldMan
+lock
+faceplayer
+frontier_checkvisittrainer
+goto_if_eq VAR_RESULT 1 SootopolisCity_MysteryEventsHouse_1F_EventScript_InvalidVisitingTrainer
+goto_if_eq VAR_TEMP_1 1 SootopolisCity_MysteryEventsHouse_1F_EventScript_TrainerVisiting
+msgbox	When I was young, I traveled the world as a POKéMON TRAINER.Now that I've become an old buzzard, my only amusement is watching young TRAINERS battle.
+release
+end
+= SootopolisCity_MysteryEventsHouse_1F_EventScript_TrainerVisiting
+special SavePlayerParty
+special BufferEReaderTrainerName
+msgboxyesno	A TRAINER named STR_VAR_1 is visiting my home.Would you like to challenge STR_VAR_1?
+goto_if_eq VAR_RESULT NO SootopolisCity_MysteryEventsHouse_1F_EventScript_DeclineBattle
+call SootopolisCity_MysteryEventsHouse_1F_EventScript_ChooseParty
+goto_if_eq VAR_RESULT 0 SootopolisCity_MysteryEventsHouse_1F_EventScript_DeclineBattle
+msgboxyesno	Before you two battle, you should save your progress.
+goto_if_eq VAR_RESULT NO SootopolisCity_MysteryEventsHouse_1F_EventScript_DeclineBattle
+special LoadPlayerParty
+call Common_EventScript_SaveGame
+goto_if_eq VAR_RESULT FALSE SootopolisCity_MysteryEventsHouse_1F_EventScript_DeclineBattle
+special SavePlayerParty
+special ReducePlayerPartyToSelectedMons
+msgbox	I hope to see a good match!
+closemessage
+call_if_eq VAR_FACING DIR_NORTH SootopolisCity_MysteryEventsHouse_1F_EventScript_EnterBasementNorth
+call_if_eq VAR_FACING DIR_EAST SootopolisCity_MysteryEventsHouse_1F_EventScript_EnterBasementEast
+call_if_eq VAR_FACING DIR_WEST SootopolisCity_MysteryEventsHouse_1F_EventScript_EnterBasementWest
+warp SootopolisCity_MysteryEventsHouse_B1F 3 1
+waitstate
+release
+end
+= SootopolisCity_MysteryEventsHouse_1F_EventScript_EnterBasementWest
+applymovement VAR_LAST_TALKED SootopolisCity_MysteryEventsHouse_1F_Movement_OldManMoveAsideLeft
+applymovement LOCALID_PLAYER SootopolisCity_MysteryEventsHouse_1F_Movement_PlayerEnterBasementWest
+waitmovement 0
+return
+= SootopolisCity_MysteryEventsHouse_1F_EventScript_EnterBasementEast
+applymovement VAR_LAST_TALKED SootopolisCity_MysteryEventsHouse_1F_Movement_OldManMoveAsideRight
+applymovement LOCALID_PLAYER SootopolisCity_MysteryEventsHouse_1F_Movement_PlayerEnterBasementEast
+waitmovement 0
+return
+= SootopolisCity_MysteryEventsHouse_1F_EventScript_EnterBasementNorth
+applymovement VAR_LAST_TALKED SootopolisCity_MysteryEventsHouse_1F_Movement_OldManMoveAsideLeft
+applymovement LOCALID_PLAYER SootopolisCity_MysteryEventsHouse_1F_Movement_PlayerEnterBasementNorth
+waitmovement 0
+return
+= SootopolisCity_MysteryEventsHouse_1F_EventScript_DeclineBattle
+special LoadPlayerParty
+msgbox	You won't battle? I'm disappointed that I can't see you battle…
+release
+end
+= Common_EventScript_SaveGame
+special SaveGame
+return
+= SootopolisCity_MysteryEventsHouse_1F_EventScript_ChooseParty
+msgbox	Oh, good, good!But my house isn't all that sturdy.Could I ask you to keep it down to a 3-on-3 match?
+fadescreen FADE_TO_BLACK
+special ChooseHalfPartyForBattle
+return
+= SootopolisCity_MysteryEventsHouse_1F_EventScript_InvalidVisitingTrainer
+msgbox	When I was young, I traveled the world as a POKéMON TRAINER.Now that I've become an old buzzard, my only amusement is watching young TRAINERS battle.
+release
+end
+mapsec
+21 7 1 1	SOOTOPOLIS CITY
+music
+MUS_SOOTOPOLIS
+counters
+576,578

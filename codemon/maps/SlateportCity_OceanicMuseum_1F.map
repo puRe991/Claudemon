@@ -1,0 +1,314 @@
+tileset building__oceanic_museum
+20 9
+10 4
+516,516,530,531,517,605,518,599,516,550,551,516,550,551,516,516,532,533,516,516
+524,524,538,539,525,606,526,607,524,558,559,524,558,559,524,524,540,541,524,524
+514,514,514,514,514,514,514,514,514,566,567,514,566,567,514,514,514,514,514,514
+514,513,544,513,513,513,513,513,513,513,513,513,513,513,513,545,513,513,545,513
+514,513,552,579,513,513,513,513,513,513,513,513,513,513,513,553,579,513,553,579
+514,513,515,587,513,546,547,547,548,513,513,546,547,547,548,515,587,513,515,587
+514,513,544,513,513,597,584,585,598,579,513,597,585,563,598,579,513,513,545,513
+514,513,552,579,513,574,580,515,574,579,513,574,580,515,574,579,513,513,553,579
+514,513,515,587,513,608,579,513,608,522,523,608,579,513,608,579,513,513,515,587
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,1,1,1,1,0,0,1,1,1,1,0,0,0,0,0
+0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,0,1,0
+0,0,0,0,0,1,0,0,1,0,0,1,0,0,1,0,0,0,0,0
+warps
+9 8 SlateportCity 5
+10 8 SlateportCity 7
+6 1 SlateportCity_OceanicMuseum_2F 0
+npcs
+people_beauty 7 7 E static 0 - 0
+people_team_aqua_aqua_member_m 18 5 N static FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_AQUA_GRUNTS - 0
+people_team_aqua_aqua_member_m 12 2 N static FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_AQUA_GRUNTS - 0
+people_team_aqua_aqua_member_m 2 8 N static FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_AQUA_GRUNTS - 0
+people_team_aqua_aqua_member_f 3 4 W static FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_AQUA_GRUNTS - 0
+people_team_aqua_aqua_member_m 14 4 E static FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_AQUA_GRUNTS - 0
+people_beauty 12 7 W static 0 - 0
+people_team_aqua_aqua_member_m 8 3 S static FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_AQUA_GRUNTS - 0
+people_woman_5 4 2 S static FLAG_HIDE_SLATEPORT_MUSEUM_POPULATION - 0
+people_maniac 10 2 N static FLAG_HIDE_SLATEPORT_MUSEUM_POPULATION - 0
+people_pokefan_m 17 7 E static FLAG_HIDE_SLATEPORT_MUSEUM_POPULATION - 0
+people_little_girl 18 8 N static FLAG_HIDE_SLATEPORT_MUSEUM_POPULATION - 0
+people_team_aqua_aqua_member_m 9 4 W pace_h FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_FAMILIAR_AQUA_GRUNT LOCALID_OCEANIC_MUSEUM_FAMILIAR_GRUNT 0
+people_reporter_m 7 4 S static FLAG_HIDE_SLATEPORT_MUSEUM_POPULATION - 0
+dialogs
+0	Please enjoy yourself.
+1	If I ripped off the stuff here, would it make me rich?
+2	What I learn here, I can put to use on nefarious deeds…
+3	We were told to assemble here, so we did, but…Our BOSS, the linchpin, isn't here.
+4	We, TEAM AQUA, exist for the good of all!
+5	If our goons didn't bungle things in RUSTBORO, we wouldn't be here!
+6	Please enjoy yourself.
+7	I didn't have ¥50, so it took a long time getting by the receptionist.
+8	I want to learn about the sea and use that knowledge for battling.
+9	I get all giddy and gooey when I see the sea!For me, CAPT. STERN is the number one role model!
+10	The sea is vast without end, and infinitely deep…There must be many POKéMON that we don't know about.
+11	I want a sea POKéMON.I think it would feel cool and nice to hug.
+12	Aiyeeeh! What are you doing here?Me? I'm the TEAM AQUA member you thumped before, remember? Back in RUSTURF TUNNEL?Here, take this! You have to forgive me!
+objscripts
+0 SlateportCity_OceanicMuseum_1F_EventScript_EntranceAttendant
+1 SlateportCity_OceanicMuseum_1F_EventScript_MuseumGrunt3
+2 SlateportCity_OceanicMuseum_1F_EventScript_MuseumGrunt4
+3 SlateportCity_OceanicMuseum_1F_EventScript_MuseumGrunt2
+4 SlateportCity_OceanicMuseum_1F_EventScript_MuseumGrunt1
+5 SlateportCity_OceanicMuseum_1F_EventScript_MuseumGrunt5
+6 SlateportCity_OceanicMuseum_1F_EventScript_EntranceAttendant
+7 SlateportCity_OceanicMuseum_1F_EventScript_MuseumGrunt6
+8 SlateportCity_OceanicMuseum_1F_EventScript_MuseumPatron1
+9 SlateportCity_OceanicMuseum_1F_EventScript_MuseumPatron2
+10 SlateportCity_OceanicMuseum_1F_EventScript_MuseumPatron3
+11 SlateportCity_OceanicMuseum_1F_EventScript_MuseumPatron4
+12 SlateportCity_OceanicMuseum_1F_EventScript_FamiliarGrunt
+13 SlateportCity_OceanicMuseum_1F_EventScript_Reporter
+triggers
+9 7 VAR_SLATEPORT_MUSEUM_1F_STATE 0 SlateportCity_OceanicMuseum_1F_EventScript_PayEntranceFeeLeft
+10 7 VAR_SLATEPORT_MUSEUM_1F_STATE 0 SlateportCity_OceanicMuseum_1F_EventScript_PayEntranceFeeRight
+movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+SlateportCity_OceanicMuseum_1F_Movement_FamiliarGruntExit	face_down,down,down,down,down,delay,end
+SlateportCity_OceanicMuseum_1F_Movement_FamiliarGruntExitNorth	right,down,down,down,down,delay,end
+SlateportCity_OceanicMuseum_1F_Movement_PlayerWatchGruntExitNorth	delay,delay,delay,delay,end
+SlateportCity_OceanicMuseum_1F_Movement_PlayerWatchGruntExitWestEast	delay,delay,end
+SlateportCity_OceanicMuseum_1F_Movement_PushPlayerBackFromCounter	down,end
+scriptdefs
+= SlateportCity_OceanicMuseum_1F_EventScript_PayEntranceFeeRight
+lockall
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+goto SlateportCity_OceanicMuseum_1F_EventScript_PayEntranceFee
+end
+= SlateportCity_OceanicMuseum_1F_EventScript_PayEntranceFee
+showmoneybox 0 0
+msgboxyesno	Welcome to the OCEANIC MUSEUM.The entrance fee is ¥50. Would you like to enter?
+goto_if_eq VAR_RESULT YES SlateportCity_OceanicMuseum_1F_EventScript_CheckMoneyForFee
+closemessage
+hidemoneybox
+applymovement LOCALID_PLAYER SlateportCity_OceanicMuseum_1F_Movement_PushPlayerBackFromCounter
+waitmovement 0
+releaseall
+end
+= SlateportCity_OceanicMuseum_1F_EventScript_CheckMoneyForFee
+checkmoney 50
+goto_if_eq VAR_RESULT FALSE SlateportCity_OceanicMuseum_1F_EventScript_NotEnoughMoney
+playse SE_SHOP
+removemoney 50
+updatemoneybox
+msgbox	Please enjoy yourself.
+setvar VAR_SLATEPORT_MUSEUM_1F_STATE 1
+hidemoneybox
+releaseall
+end
+= SlateportCity_OceanicMuseum_1F_EventScript_NotEnoughMoney
+goto_if_unset FLAG_DELIVERED_DEVON_GOODS SlateportCity_OceanicMuseum_1F_EventScript_AllowEntranceAnyway
+msgbox	Oh? I'm sorry, but you don't seem to have enough money.
+closemessage
+hidemoneybox
+applymovement LOCALID_PLAYER SlateportCity_OceanicMuseum_1F_Movement_PushPlayerBackFromCounter
+waitmovement 0
+releaseall
+end
+= SlateportCity_OceanicMuseum_1F_EventScript_AllowEntranceAnyway
+msgbox	Oh? You're with that group that went in earlier?You're the only one who's late. You'd better go catch up to them!
+setvar VAR_SLATEPORT_MUSEUM_1F_STATE 1
+hidemoneybox
+releaseall
+end
+= SlateportCity_OceanicMuseum_1F_EventScript_PayEntranceFeeLeft
+lockall
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+goto SlateportCity_OceanicMuseum_1F_EventScript_PayEntranceFee
+end
+= SlateportCity_OceanicMuseum_1F_EventScript_Reporter
+lock
+faceplayer
+setvar VAR_0x8005 TVSHOW_RECENT_HAPPENINGS
+special InterviewBefore
+goto_if_eq VAR_RESULT TRUE SlateportCity_OceanicMuseum_1F_EventScript_AlreadyInterviewed
+copyvar VAR_0x8009 VAR_0x8006
+goto_if_set FLAG_OCEANIC_MUSEUM_MET_REPORTER SlateportCity_OceanicMuseum_1F_EventScript_RequestInterviewShort
+setflag FLAG_OCEANIC_MUSEUM_MET_REPORTER
+msgboxyesno	Oh? Do you perhaps like POKéMON?I'm on assignment with the TV network.I'm gathering stories on POKéMON and TRAINERS that occurred recently.If you don't mind, could you tell me something about yourself?
+goto_if_eq VAR_RESULT YES SlateportCity_OceanicMuseum_1F_EventScript_AcceptInterview
+goto_if_eq VAR_RESULT NO SlateportCity_OceanicMuseum_1F_EventScript_DeclineInterview
+end
+= SlateportCity_OceanicMuseum_1F_EventScript_DeclineInterview
+msgbox	Oh, I see…Well, if you do have an interesting story to tell, please let me know.
+release
+end
+= SlateportCity_OceanicMuseum_1F_EventScript_AcceptInterview
+msgbox	Oh, you will? Thank you!Then, please, tell me anything of interest that you experienced recently involving POKéMON.
+setvar VAR_0x8004 EASY_CHAT_TYPE_INTERVIEW
+copyvar VAR_0x8005 VAR_0x8009
+setvar VAR_0x8006 EASY_CHAT_PERSON_REPORTER_MALE
+call Common_ShowEasyChatScreen
+lock
+faceplayer
+goto_if_eq VAR_RESULT 1 SlateportCity_OceanicMuseum_1F_EventScript_SubmitResponse
+goto_if_eq VAR_RESULT 0 SlateportCity_OceanicMuseum_1F_EventScript_DeclineInterview
+end
+= SlateportCity_OceanicMuseum_1F_EventScript_SubmitResponse
+msgbox	Oh, what an uplifting story!I'll be sure to get your story told on television.It should be aired sometime, I think, so please look forward to it.
+setvar VAR_0x8005 TVSHOW_RECENT_HAPPENINGS
+goto Interview_EventScript_EndInterview
+end
+= Interview_EventScript_EndInterview
+special InterviewAfter
+incrementgamestat GAME_STAT_GOT_INTERVIEWED
+release
+end
+@ Shares reporter object with TVSHOW_PKMN_FAN_CLUB_OPINIONS
+goto SlateportCity_PokemonFanClub_EventScript_ReporterNoNickname
+= SlateportCity_PokemonFanClub_EventScript_ReporterNoNickname
+setvar VAR_0x8005 TVSHOW_FAN_CLUB_LETTER
+special InterviewBefore
+goto_if_eq VAR_RESULT TRUE SlateportCity_PokemonFanClub_EventScript_AlreadyInterviewed2
+copyvar VAR_0x8009 VAR_0x8006
+msgboxyesno	Hi, you seem to be very close to your STR_VAR_1.Do you know what? I'm a TV reporter.I travel around interviewing people about POKéMON.I'm wondering if you'd be willing to tell me a little about your STR_VAR_1?
+goto_if_eq VAR_RESULT YES SlateportCity_PokemonFanClub_EventScript_AcceptInterview2
+goto_if_eq VAR_RESULT NO SlateportCity_PokemonFanClub_EventScript_DeclineInterview2
+end
+= SlateportCity_PokemonFanClub_EventScript_DeclineInterview2
+msgbox	Oh, okay…Well, if you get the urge to tell me about POKéMON, I'll be here!
+release
+end
+= SlateportCity_PokemonFanClub_EventScript_AcceptInterview2
+msgbox	Wow, thank you!Okay, then, please tell me anything you'd like about your STR_VAR_1.
+setvar VAR_0x8004 EASY_CHAT_TYPE_INTERVIEW
+copyvar VAR_0x8005 VAR_0x8009
+setvar VAR_0x8006 EASY_CHAT_PERSON_REPORTER_FEMALE
+call Common_ShowEasyChatScreen
+lock
+faceplayer
+goto_if_eq VAR_RESULT 1 SlateportCity_PokemonFanClub_EventScript_SubmitResponse2
+goto_if_eq VAR_RESULT 0 SlateportCity_PokemonFanClub_EventScript_DeclineInterview2
+end
+= SlateportCity_PokemonFanClub_EventScript_SubmitResponse2
+msgbox	Wow… That's an interesting account.You really are tight with STR_VAR_1, aren't you?I get the feeling that your account will make a great TV story.I promise that I'll turn this into an entertaining show. Keep your eyes out for it.Okay, that's all. Bye-bye!
+setvar VAR_0x8005 TVSHOW_FAN_CLUB_LETTER
+goto Interview_EventScript_EndInterview
+end
+= SlateportCity_PokemonFanClub_EventScript_AlreadyInterviewed2
+msgbox	I enjoy this job--you get to learn about POKéMON by doing interviews.
+release
+end
+= SlateportCity_OceanicMuseum_1F_EventScript_RequestInterviewShort
+msgboxyesno	I'm gathering stories on POKéMON and TRAINERS that occurred recently.If you don't mind, could you tell me something about yourself?
+goto_if_eq VAR_RESULT YES SlateportCity_OceanicMuseum_1F_EventScript_AcceptInterview
+goto_if_eq VAR_RESULT NO SlateportCity_OceanicMuseum_1F_EventScript_DeclineInterview
+end
+= SlateportCity_OceanicMuseum_1F_EventScript_AlreadyInterviewed
+msgbox	Hmmm… I've got a good story for a TV program.I'd better write it up in a hurry!
+release
+end
+= SlateportCity_OceanicMuseum_1F_EventScript_FamiliarGrunt
+lock
+faceplayer
+delay 8
+playse SE_PIN
+applymovement LOCALID_OCEANIC_MUSEUM_FAMILIAR_GRUNT Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_OCEANIC_MUSEUM_FAMILIAR_GRUNT Common_Movement_Delay48
+waitmovement 0
+msgbox	Aiyeeeh! What are you doing here?Me? I'm the TEAM AQUA member you thumped before, remember? Back in RUSTURF TUNNEL?Here, take this! You have to forgive me!
+giveitem ITEM_TM_THIEF
+goto_if_eq VAR_RESULT 0 SlateportCity_OceanicMuseum_1F_EventScript_NoRoomForThief
+setflag FLAG_RECEIVED_TM_THIEF
+msgbox	That TM, it suits you more than it does me.Hope I never see you again! Wahahaha!
+closemessage
+goto_if_eq VAR_FACING DIR_NORTH SlateportCity_OceanicMuseum_1F_EventScript_FamiliarGruntExitNorth
+goto_if_eq VAR_FACING DIR_SOUTH SlateportCity_OceanicMuseum_1F_EventScript_FamiliarGruntExitSouth
+goto_if_eq VAR_FACING DIR_WEST SlateportCity_OceanicMuseum_1F_EventScript_FamiliarGruntExitWestEast
+goto_if_eq VAR_FACING DIR_EAST SlateportCity_OceanicMuseum_1F_EventScript_FamiliarGruntExitWestEast
+end
+= SlateportCity_OceanicMuseum_1F_EventScript_FamiliarGruntExitWestEast
+applymovement LOCALID_PLAYER SlateportCity_OceanicMuseum_1F_Movement_PlayerWatchGruntExitWestEast
+applymovement LOCALID_OCEANIC_MUSEUM_FAMILIAR_GRUNT SlateportCity_OceanicMuseum_1F_Movement_FamiliarGruntExit
+waitmovement 0
+goto SlateportCity_OceanicMuseum_1F_EventScript_FamiliarGruntExited
+end
+= SlateportCity_OceanicMuseum_1F_EventScript_FamiliarGruntExited
+setflag FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_FAMILIAR_AQUA_GRUNT
+playse SE_EXIT
+removeobject LOCALID_OCEANIC_MUSEUM_FAMILIAR_GRUNT
+release
+end
+= SlateportCity_OceanicMuseum_1F_EventScript_FamiliarGruntExitSouth
+applymovement LOCALID_OCEANIC_MUSEUM_FAMILIAR_GRUNT SlateportCity_OceanicMuseum_1F_Movement_FamiliarGruntExit
+waitmovement 0
+goto SlateportCity_OceanicMuseum_1F_EventScript_FamiliarGruntExited
+end
+= SlateportCity_OceanicMuseum_1F_EventScript_FamiliarGruntExitNorth
+applymovement LOCALID_PLAYER SlateportCity_OceanicMuseum_1F_Movement_PlayerWatchGruntExitNorth
+applymovement LOCALID_OCEANIC_MUSEUM_FAMILIAR_GRUNT SlateportCity_OceanicMuseum_1F_Movement_FamiliarGruntExitNorth
+waitmovement 0
+goto SlateportCity_OceanicMuseum_1F_EventScript_FamiliarGruntExited
+end
+= SlateportCity_OceanicMuseum_1F_EventScript_NoRoomForThief
+msgbox	Awww, come on! You have to take this and let me go!
+release
+end
+= SlateportCity_OceanicMuseum_1F_EventScript_MuseumPatron4
+msgbox	I want a sea POKéMON.I think it would feel cool and nice to hug.
+end
+= SlateportCity_OceanicMuseum_1F_EventScript_MuseumPatron3
+msgbox	The sea is vast without end, and infinitely deep…There must be many POKéMON that we don't know about.
+end
+= SlateportCity_OceanicMuseum_1F_EventScript_MuseumPatron2
+msgbox	I get all giddy and gooey when I see the sea!For me, CAPT. STERN is the number one role model!
+end
+= SlateportCity_OceanicMuseum_1F_EventScript_MuseumPatron1
+msgbox	I want to learn about the sea and use that knowledge for battling.
+end
+= SlateportCity_OceanicMuseum_1F_EventScript_MuseumGrunt6
+msgbox	I didn't have ¥50, so it took a long time getting by the receptionist.
+end
+= SlateportCity_OceanicMuseum_1F_EventScript_EntranceAttendant
+msgbox	Please enjoy yourself.
+end
+= SlateportCity_OceanicMuseum_1F_EventScript_MuseumGrunt5
+msgbox	If our goons didn't bungle things in RUSTBORO, we wouldn't be here!
+end
+= SlateportCity_OceanicMuseum_1F_EventScript_MuseumGrunt1
+msgbox	We, TEAM AQUA, exist for the good of all!
+end
+= SlateportCity_OceanicMuseum_1F_EventScript_MuseumGrunt2
+msgbox	We were told to assemble here, so we did, but…Our BOSS, the linchpin, isn't here.
+end
+= SlateportCity_OceanicMuseum_1F_EventScript_MuseumGrunt4
+msgbox	What I learn here, I can put to use on nefarious deeds…
+end
+= SlateportCity_OceanicMuseum_1F_EventScript_MuseumGrunt3
+msgbox	If I ripped off the stuff here, would it make me rich?
+end
+signs
+2 7	A blue fluid is spiraling inside a glass vessel.“This is an experiment to create a WHIRLPOOL artificially using wind.”
+2 4	A red ball is bobbing up and down inside a glass vessel.“This is an experiment simulating a WATERFALL using the ball's buoyancy.”
+9 1	It's a sample of soil from the ocean floor.“Over many years, the remains of life-forms settle at the bottom of the sea, making sedimentary layers.“By analyzing these layers, the ancient past is revealed.”
+12 1	It's a sample of beach sand.“Stones from mountains are washed down by rivers where they are chipped and ground down.“They are reduced to grains and end up as sand on beaches.”
+10 1	It's a sample of soil from the ocean floor.“Over many years, the remains of life-forms settle at the bottom of the sea, making sedimentary layers.“By analyzing these layers, the ancient past is revealed.”
+13 1	It's a sample of beach sand.“Stones from mountains are washed down by rivers where they are chipped and ground down.“They are reduced to grains and end up as sand on beaches.”
+15 4	“OCEANIC MINIFACT 1 Why is seawater blue?“Light is composed of many colors.“When light passes through water, most kinds of light lose color.“However, blue light retains its color, making the sea appear blue.”
+18 4	“OCEANIC MINIFACT 2 Why is the sea salty?“Seawater contains dissolved salt in the form of sodium and chlorine ions.“These ions leech out of rocks and are carried out to sea by rain.“The concentration of dissolved salt makes the sea salty.”
+18 7	“OCEANIC MINIFACT 3 Which is bigger? The sea or land?“The sea covers about 70% of the planet, and the rest is land.“The sea is therefore more than twice the size of land.”
+2 1	It's a fossil with wavy ridges on it.“Soil on the ocean floor gets scoured by the tide.“The flowing seawater marks the soil with small ridges and valleys.“If this soil becomes fossilized, it is called a ripple mark.”
+3 1	It's a fossil with wavy ridges on it.“Soil on the ocean floor gets scoured by the tide.“The flowing seawater marks the soil with small ridges and valleys.“If this soil becomes fossilized, it is called a ripple mark.”
+16 1	A strange machine is rotating under a glass dome.Maybe it's for measuring the depth of something…
+17 1	A strange machine is rotating under a glass dome.Maybe it's for measuring the depth of something…
+mapsec
+8 10 1 2	SLATEPORT CITY
+music
+MUS_OCEANIC_MUSEUM
+counters
+563,574,584,585

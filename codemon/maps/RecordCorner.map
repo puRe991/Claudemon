@@ -1,0 +1,89 @@
+tileset building__cable_club
+20 10
+8 3
+513,513,513,656,657,663,663,663,660,661,661,662,663,663,663,658,659,513,513,513
+513,513,513,664,665,671,671,671,668,669,669,670,671,671,671,666,667,513,513,513
+513,513,513,672,673,679,679,679,676,677,677,678,679,679,679,674,675,513,513,513
+513,513,513,680,681,708,708,692,708,708,708,708,694,708,708,682,683,513,513,513
+513,513,513,680,681,708,684,700,696,697,698,699,702,686,708,682,683,513,513,513
+513,513,513,680,681,708,708,693,704,705,706,707,695,708,708,682,683,513,513,513
+513,513,513,680,681,708,685,701,712,713,714,715,703,687,708,682,683,513,513,513
+513,513,513,680,681,708,708,710,710,710,710,710,710,708,708,682,683,513,513,513
+513,513,513,688,689,708,708,708,708,708,708,708,708,708,708,690,691,513,513,513
+513,513,513,513,513,513,513,513,546,546,546,546,513,513,513,513,513,513,513,513
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
+1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
+1,1,1,1,0,0,0,1,1,1,1,1,1,0,0,0,1,1,1,1
+1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1
+1,1,1,1,0,0,0,1,1,1,1,1,1,0,0,0,1,1,1,1
+1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
+1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
+1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1
+warps
+8 9 - 0
+9 9 - 0
+11 9 - 0
+10 9 - 0
+npcs
+people_link_receptionist 10 5 S static 0 - 0
+objscripts
+0 RecordCorner_EventScript_Attendant
+triggers
+6 4 VAR_TEMP_0 0 EventScript_RecordCenter_Spot0
+6 6 VAR_TEMP_0 0 EventScript_RecordCenter_Spot2
+13 4 VAR_TEMP_0 0 EventScript_RecordCenter_Spot1
+13 6 VAR_TEMP_0 0 EventScript_RecordCenter_Spot3
+scriptdefs
+= EventScript_RecordCenter_Spot3
+setvar VAR_0x8005 3
+special RecordMixingPlayerSpotTriggered
+goto_if_ne VAR_TEMP_RECORD_MIX_GIFT_ITEM ITEM_NONE RecordCorner_EventScript_ReceivedGiftItem
+end
+= RecordCorner_EventScript_ReceivedGiftItem
+bufferitemname STR_VAR_2 VAR_TEMP_RECORD_MIX_GIFT_ITEM
+msgbox	STR_VAR_1 sent over one STR_VAR_2.
+waitmessage
+waitbuttonpress
+releaseall
+end
+= EventScript_RecordCenter_Spot1
+setvar VAR_0x8005 1
+special RecordMixingPlayerSpotTriggered
+goto_if_ne VAR_TEMP_RECORD_MIX_GIFT_ITEM ITEM_NONE RecordCorner_EventScript_ReceivedGiftItem
+end
+= EventScript_RecordCenter_Spot2
+setvar VAR_0x8005 2
+special RecordMixingPlayerSpotTriggered
+goto_if_ne VAR_TEMP_RECORD_MIX_GIFT_ITEM ITEM_NONE RecordCorner_EventScript_ReceivedGiftItem
+end
+= EventScript_RecordCenter_Spot0
+setvar VAR_0x8005 0
+special RecordMixingPlayerSpotTriggered
+goto_if_ne VAR_TEMP_RECORD_MIX_GIFT_ITEM ITEM_NONE RecordCorner_EventScript_ReceivedGiftItem
+end
+= RecordCorner_EventScript_Attendant
+goto_if_ne VAR_TEMP_MIXED_RECORDS 0 RecordCorner_EventScript_AlreadyMixed
+special Script_FacePlayer
+msgbox	Please take your seat and wait.
+waitmessage
+waitbuttonpress
+special Script_ClearHeldMovement
+closemessage
+end
+= RecordCorner_EventScript_AlreadyMixed
+special Script_FacePlayer
+msgbox	Thanks for coming.
+waitmessage
+waitbuttonpress
+special Script_ClearHeldMovement
+closemessage
+end
+mapsec
+0 0 1 1	
+music
+MUS_EVER_GRANDE
+counters
+704,707,713,714

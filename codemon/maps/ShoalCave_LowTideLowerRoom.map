@@ -1,0 +1,97 @@
+tileset general__cave
+31 14
+15 6
+529,529,529,529,539,537,537,537,537,537,537,537,537,537,537,537,537,537,537,537,537,540,529,529,529,529,529,529,529,529,529
+529,529,529,529,530,539,537,527,537,537,537,537,537,537,537,537,537,537,537,537,540,536,537,537,537,537,537,537,537,537,540
+529,529,529,529,530,530,513,535,513,513,513,513,513,513,513,513,513,513,858,513,536,537,537,537,537,537,537,537,537,540,528
+529,529,529,529,530,530,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,513,528,528
+539,537,537,537,538,530,513,513,513,513,513,513,513,513,584,593,593,593,593,593,520,521,521,521,521,521,522,513,513,528,528
+530,539,537,537,537,538,513,513,513,513,513,513,513,513,569,513,513,513,513,513,528,520,521,521,521,522,530,513,513,528,528
+530,530,519,513,513,513,513,513,513,513,513,513,513,513,569,513,513,513,513,513,528,528,529,529,529,530,530,513,513,528,528
+530,600,601,602,521,521,521,521,521,521,521,521,521,521,521,521,521,521,522,513,528,528,529,529,529,530,530,513,513,528,528
+547,521,521,521,521,521,521,521,521,521,521,521,521,521,521,521,521,546,530,513,528,528,529,529,529,530,530,513,513,528,528
+529,529,529,529,529,529,529,529,529,529,529,529,529,529,529,529,529,530,530,513,528,528,529,529,529,530,530,513,513,528,528
+529,529,529,529,529,529,529,529,529,529,529,529,529,529,529,529,529,530,530,513,528,528,529,529,529,530,530,513,513,528,528
+529,529,529,529,529,529,529,529,529,529,529,529,529,529,529,529,529,530,530,519,528,528,529,529,529,530,530,513,517,528,528
+529,529,529,529,529,529,529,529,529,529,529,529,529,529,529,529,529,530,600,601,602,528,529,529,529,530,547,521,521,547,528
+529,529,529,529,529,529,529,529,529,529,529,529,529,529,529,529,529,547,521,521,521,547,529,529,529,547,521,521,521,521,547
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1
+1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,1,1,1,1,1,0,0,1,1
+1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,1,1,1,1,1,0,0,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,0,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,0,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,0,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,0,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,0,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+7 2 ShoalCave_LowTideInnerRoom 3
+2 6 ShoalCave_LowTideInnerRoom 4
+19 11 ShoalCave_LowTideInnerRoom 5
+28 11 ShoalCave_LowTideIceRoom 0
+npcs
+misc_pushable_boulder 25 3 S static FLAG_TEMP_11 - 0
+people_black_belt 11 4 S wander 0 - 0
+dialogs
+1	The penetrating cold around these parts is an impediment to training.But with focus, one can overcome!With this FOCUS BAND, buckle down and withstand the cold!
+objscripts
+0 EventScript_StrengthBoulder
+1 ShoalCave_LowTideLowerRoom_EventScript_BlackBelt
+scriptdefs
+= ShoalCave_LowTideLowerRoom_EventScript_BlackBelt
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_FOCUS_BAND ShoalCave_LowTideLowerRoom_EventScript_ReceivedFocusBand
+msgbox	The penetrating cold around these parts is an impediment to training.But with focus, one can overcome!With this FOCUS BAND, buckle down and withstand the cold!
+giveitem ITEM_FOCUS_BAND
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_RECEIVED_FOCUS_BAND
+release
+end
+= ShoalCave_LowTideLowerRoom_EventScript_ReceivedFocusBand
+msgbox	Everything starts with focus!
+release
+end
+= EventScript_StrengthBoulder
+lockall
+goto_if_unset FLAG_BADGE04_GET EventScript_CantStrength
+goto_if_set FLAG_SYS_USE_STRENGTH EventScript_CheckActivatedBoulder
+checkpartymove MOVE_STRENGTH
+goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CantStrength
+setfieldeffectargument 0 VAR_RESULT
+msgboxyesno	It's a big boulder, but a POKéMON may be able to push it aside.Would you like to use STRENGTH?
+goto_if_eq VAR_RESULT NO EventScript_CancelStrength
+closemessage
+dofieldeffect FLDEFF_USE_STRENGTH
+waitstate
+goto EventScript_ActivateStrength
+end
+= EventScript_ActivateStrength
+setflag FLAG_SYS_USE_STRENGTH
+msgbox	STR_VAR_1 used STRENGTH!STR_VAR_1's STRENGTH made it possible to move boulders around!
+releaseall
+end
+= EventScript_CancelStrength
+closemessage
+releaseall
+end
+= EventScript_CantStrength
+msgbox	It's a big boulder, but a POKéMON may be able to push it aside.
+releaseall
+end
+= EventScript_CheckActivatedBoulder
+msgbox	STRENGTH made it possible to move boulders around.
+releaseall
+end
+mapsec
+24 4 1 1	SHOAL CAVE
+music
+MUS_MT_PYRE
+encounters
+land ZUBAT:26:26,SPHEAL:26:26,ZUBAT:28:28,SPHEAL:28:28,ZUBAT:30:30,SPHEAL:30:30,ZUBAT:32:32,SPHEAL:32:32,GOLBAT:32:32,SPHEAL:32:32,GOLBAT:32:32,SPHEAL:32:32

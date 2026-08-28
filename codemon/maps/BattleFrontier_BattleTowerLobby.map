@@ -1,0 +1,885 @@
+tileset building__battle_frontier
+25 10
+11 4
+521,904,905,906,521,542,518,543,521,542,518,543,521,542,518,543,521,542,518,543,521,521,640,521,521
+529,912,913,914,520,550,526,551,520,550,526,551,520,550,526,551,520,550,526,551,520,529,4,529,529
+516,920,921,922,528,516,515,515,528,516,515,515,528,516,515,515,528,516,515,515,528,516,641,515,515
+525,512,553,512,528,525,512,512,528,525,512,512,528,525,512,512,528,525,512,512,528,525,553,512,512
+525,512,553,512,536,734,512,742,536,734,512,742,536,734,512,742,536,734,512,742,537,525,553,512,552
+525,512,553,512,544,532,512,530,669,532,512,530,669,532,512,530,669,532,512,530,545,525,553,512,560
+525,512,553,512,514,888,889,890,515,891,892,893,515,896,897,898,515,899,900,901,515,517,553,512,568
+525,512,553,512,512,512,512,512,512,512,512,512,512,512,512,512,512,512,512,512,512,512,553,512,512
+622,607,512,553,553,553,553,553,553,553,553,512,512,512,512,553,553,553,553,553,553,553,512,607,607
+630,615,512,512,512,512,512,512,512,512,512,512,534,535,512,512,512,512,512,512,512,512,512,615,615
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0
+0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0
+0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0
+0,0,0,0,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+warps
+12 9 BattleFrontier_OutsideEast 0
+13 9 BattleFrontier_OutsideEast 0
+6 1 BattleFrontier_BattleTowerBattleRoom 0
+npcs
+people_teala 6 5 S static 0 LOCALID_TOWER_ATTENDANT_SINGLES 0
+people_man_4 23 5 S static 0 - 0
+people_woman_5 17 8 S wander 0 - 0
+people_boy_1 15 9 S wander 0 - 0
+people_reporter_f 11 9 E static FLAG_HIDE_BATTLE_TOWER_REPORTER LOCALID_TOWER_LOBBY_REPORTER 0
+people_teala 10 5 S static 0 LOCALID_TOWER_ATTENDANT_DOUBLES 0
+people_teala 14 5 S static 0 LOCALID_TOWER_ATTENDANT_MULTIS 0
+people_teala 18 5 S static 0 LOCALID_TOWER_ATTENDANT_LINK_MULTIS 0
+dialogs
+0	Where the talents of TRAINERS are put to the test!Welcome to the BATTLE TOWER!I am your guide to the SINGLE BATTLE ROOMS.
+2	The number of matches you win in a row is recorded.I'd better not get beaten in an embarrassing way!
+3	Once you've entered the BATTLE TOWER, you can't leave until you either lose or you beat seven TRAINERS in a row.You'd best be certain that you're up to the challenge.
+5	Where the talents of TRAINERS are put to the test!Welcome to the BATTLE TOWER!I am your guide to the DOUBLE BATTLE ROOMS.
+6	Where the talents of TRAINERS are put to the test!Welcome to the BATTLE TOWER!I am your guide to the MULTI BATTLE ROOMS.
+7	Where the talents of TRAINERS are put to the test!Welcome to the BATTLE TOWER!I am your guide to the LINK MULTI BATTLE ROOMS.
+objscripts
+0 BattleFrontier_BattleTowerLobby_EventScript_SinglesAttendant
+1 BattleFrontier_BattleTowerLobby_EventScript_FeelingsMan
+2 BattleFrontier_BattleTowerLobby_EventScript_Woman
+3 BattleFrontier_BattleTowerLobby_EventScript_Boy
+4 BattleFrontier_BattleTowerLobby_EventScript_Reporter
+5 BattleFrontier_BattleTowerLobby_EventScript_DoublesAttendant
+6 BattleFrontier_BattleTowerLobby_EventScript_MultisAttendant
+7 BattleFrontier_BattleTowerLobby_EventScript_LinkMultisAttendant
+onload
+VAR_TEMP_CHALLENGE_STATUS 0 BattleFrontier_BattleTowerLobby_EventScript_GetChallengeStatus
+VAR_TEMP_CHALLENGE_STATUS CHALLENGE_STATUS_SAVING BattleFrontier_BattleTowerLobby_EventScript_QuitWithoutSaving
+VAR_TEMP_CHALLENGE_STATUS CHALLENGE_STATUS_PAUSED BattleFrontier_BattleTowerLobby_EventScript_ResumeChallenge
+VAR_TEMP_CHALLENGE_STATUS CHALLENGE_STATUS_WON BattleFrontier_BattleTowerLobby_EventScript_WonChallenge
+VAR_TEMP_CHALLENGE_STATUS CHALLENGE_STATUS_LOST BattleFrontier_BattleTowerLobby_EventScript_LostChallenge
+movements
+BattleFrontier_BattleTowerLobby_Movement_AttendantEnterElevator	up,delay,end
+BattleFrontier_BattleTowerLobby_Movement_PlayerEnterElevator	up,up,delay,end
+BattleFrontier_BattleTowerLobby_Movement_WalkToElevator	up,up,up,end
+scriptdefs
+= BattleFrontier_BattleTowerLobby_EventScript_LostChallenge
+goto_if_ne VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_MULTIS BattleFrontier_BattleTowerLobby_EventScript_CancelWinStreak
+goto_if_set FLAG_CHOSEN_MULTI_BATTLE_NPC_PARTNER BattleFrontier_BattleTowerLobby_EventScript_CancelWinStreak
+tower_get TOWER_DATA_WIN_STREAK
+goto_if_ne VAR_RESULT 0 BattleFrontier_BattleTowerLobby_EventScript_LostThanksForPlaying
+goto BattleFrontier_BattleTowerLobby_EventScript_CancelWinStreak
+= BattleFrontier_BattleTowerLobby_EventScript_CancelWinStreak
+tower_set TOWER_DATA_WIN_STREAK_ACTIVE FALSE
+goto BattleFrontier_BattleTowerLobby_EventScript_LostThanksForPlaying
+= BattleFrontier_BattleTowerLobby_EventScript_LostThanksForPlaying
+lock
+faceplayer
+msgbox	Thank you for playing!
+waitmessage
+call BattleFrontier_BattleTowerLobby_EventScript_AskSaveBattle
+msgbox	We look forward to seeing you on another challenge!
+closemessage
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+release
+end
+= BattleFrontier_BattleTowerLobby_EventScript_AskSaveBattle
+msgbox	Your record will be saved. Please wait.
+waitmessage
+frontier_checkairshow
+special LoadPlayerParty
+special HealPlayerParty
+tower_save 0
+playse SE_SAVE
+waitse
+call BattleFrontier_EventScript_GetCantRecordBattle
+goto_if_eq VAR_RESULT TRUE BattleFrontier_BattleTowerLobby_EventScript_EndSaveBattle
+msgbox	Shall I record your last BATTLE TOWER match on your FRONTIER PASS?
+waitmessage
+multichoicedefault 20 8 MULTI_YESNO 1 FALSE
+switch VAR_RESULT
+case 1 BattleFrontier_BattleTowerLobby_EventScript_EndSaveBattle
+case 0 BattleFrontier_EventScript_SaveBattle
+case MULTI_B_PRESSED BattleFrontier_BattleTowerLobby_EventScript_EndSaveBattle
+goto BattleFrontier_EventScript_SaveBattle
+= BattleFrontier_EventScript_SaveBattle
+frontier_savebattle
+goto_if_eq VAR_RESULT FALSE BattleFrontier_EventScript_BattleSaveFailed
+playse SE_SAVE
+msgbox	PLAYER's battle was recorded on the FRONTIER PASS.
+goto BattleFrontier_BattleTowerLobby_EventScript_EndSaveBattle
+= BattleFrontier_BattleTowerLobby_EventScript_EndSaveBattle
+return
+= BattleFrontier_EventScript_BattleSaveFailed
+msgbox	There was an error of some sort. Your record could not be saved.
+goto BattleFrontier_BattleTowerLobby_EventScript_EndSaveBattle
+= BattleFrontier_EventScript_GetCantRecordBattle
+frontier_get FRONTIER_DATA_RECORD_DISABLED
+return
+= BattleFrontier_BattleTowerLobby_EventScript_WonChallenge
+lock
+faceplayer
+frontier_isbrain
+goto_if_eq VAR_RESULT TRUE BattleFrontier_BattleTowerLobby_EventScript_DefeatedMaiden
+msgbox	Congratulations! You've beaten all seven TRAINERS!
+waitmessage
+goto BattleFrontier_BattleTowerLobby_EventScript_GiveRibbons
+= BattleFrontier_BattleTowerLobby_EventScript_GiveRibbons
+tower_giveribbons
+goto_if_eq VAR_RESULT FALSE BattleFrontier_BattleTowerLobby_EventScript_GiveBattlePoints
+msgbox	Here are some RIBBONS for beating seven tough TRAINERS in a row.PLAYER received some RIBBONS!
+waitmessage
+playfanfare MUS_OBTAIN_ITEM
+waitfanfare
+msgbox	PLAYER put the RIBBONS on the challenger POKéMON.
+goto BattleFrontier_BattleTowerLobby_EventScript_GiveBattlePoints
+= BattleFrontier_BattleTowerLobby_EventScript_GiveBattlePoints
+msgbox	In recognition of your infinite talent, we award you these Battle Point(s).
+frontier_givepoints
+msgbox	PLAYER obtained STR_VAR_1 Battle Point(s).
+call BattleFrontier_BattleTowerLobby_EventScript_AskSaveBattle
+tower_get TOWER_DATA_WIN_STREAK
+goto_if_ne VAR_RESULT 49 BattleFrontier_BattleTowerLobby_EventScript_LookForwardToChallenge
+msgbox	You're finally about to face the 50th TRAINER.From here on, every time you beat seven TRAINERS in a row, your POKéMON will receive a commemorative RIBBON.Good luck!
+goto BattleFrontier_BattleTowerLobby_EventScript_LookForwardToChallenge
+= BattleFrontier_BattleTowerLobby_EventScript_LookForwardToChallenge
+msgbox	We look forward to seeing you on another challenge!
+closemessage
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+release
+end
+= BattleFrontier_BattleTowerLobby_EventScript_DefeatedMaiden
+msgbox	Congratulations! You have defeated the SALON MAIDEN and swept seven TRAINERS!
+goto BattleFrontier_BattleTowerLobby_EventScript_GiveRibbons
+= BattleFrontier_BattleTowerLobby_EventScript_ResumeChallenge
+lock
+faceplayer
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES BattleFrontier_BattleTowerLobby_EventScript_SetBravoTrainerOn
+msgbox	We've been waiting for you!
+waitmessage
+msgbox	Before entering a BATTLE ROOM, your progress will be saved. Please wait.
+waitmessage
+tower_save CHALLENGE_STATUS_SAVING
+playse SE_SAVE
+waitse
+frontier_set FRONTIER_DATA_PAUSED FALSE
+goto BattleFrontier_BattleTowerLobby_EventScript_EnterElevator
+end
+= BattleFrontier_BattleTowerLobby_EventScript_EnterElevator
+special SavePlayerParty
+setvar VAR_0x8004 FRONTIER_UTIL_FUNC_SET_PARTY_ORDER
+call BattleFrontier_BattleTowerLobby_EventScript_GetPartySize
+special CallFrontierUtilFunc
+setvar VAR_RESULT 0
+goto BattleFrontier_BattleTowerLobby_EventScript_WaitForLinkOpponentLoad
+= BattleFrontier_BattleTowerLobby_EventScript_WaitForLinkOpponentLoad
+tower_loadlinkopponents
+delay 1
+goto_if_ne VAR_RESULT 6 BattleFrontier_BattleTowerLobby_EventScript_WaitForLinkOpponentLoad
+call BattleFrontier_BattleTowerLobby_EventScript_ShowYouToBattleRoom
+clearflag FLAG_CANCEL_BATTLE_ROOM_CHALLENGE
+warp BattleFrontier_BattleTowerElevator 1 6
+setvar VAR_TEMP_CHALLENGE_STATUS 0
+waitstate
+end
+= BattleFrontier_BattleTowerLobby_EventScript_ShowYouToBattleRoom
+call BattleFrontier_BattleTowerLobby_EventScript_BufferModeText
+goto_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_LINK_MULTIS BattleFrontier_BattleTowerLobby_EventScript_ShowYouToLinkMultiBattleRoom
+msgbox	I will now show you to the STR_VAR_1 BATTLE ROOM.
+goto BattleFrontier_BattleTowerLobby_EventScript_WalkToElevator
+= BattleFrontier_BattleTowerLobby_EventScript_WalkToElevator
+closemessage
+call BattleFrontier_BattleTowerLobby_EventScript_SetAttendantTalkedTo
+call BattleFrontier_BattleTowerLobby_EventScript_GetDoorXCoord
+applymovement VAR_LAST_TALKED BattleFrontier_BattleTowerLobby_Movement_WalkToElevator
+applymovement LOCALID_PLAYER BattleFrontier_BattleTowerLobby_Movement_WalkToElevator
+waitmovement 0
+opendoor VAR_0x8004 1
+waitdooranim
+applymovement VAR_LAST_TALKED BattleFrontier_BattleTowerLobby_Movement_AttendantEnterElevator
+applymovement LOCALID_PLAYER BattleFrontier_BattleTowerLobby_Movement_PlayerEnterElevator
+waitmovement 0
+closedoor VAR_0x8004 1
+waitdooranim
+return
+= BattleFrontier_BattleTowerLobby_EventScript_GetDoorXCoord
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES BattleFrontier_BattleTowerLobby_EventScript_GetDoorXCoordSingles
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_DOUBLES BattleFrontier_BattleTowerLobby_EventScript_GetDoorXCoordDoubles
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_MULTIS BattleFrontier_BattleTowerLobby_EventScript_GetDoorXCoordMultis
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_LINK_MULTIS BattleFrontier_BattleTowerLobby_EventScript_GetDoorXCoordLinkMultis
+return
+= BattleFrontier_BattleTowerLobby_EventScript_GetDoorXCoordLinkMultis
+setvar VAR_0x8004 18
+return
+= BattleFrontier_BattleTowerLobby_EventScript_GetDoorXCoordMultis
+setvar VAR_0x8004 14
+return
+= BattleFrontier_BattleTowerLobby_EventScript_GetDoorXCoordDoubles
+setvar VAR_0x8004 10
+return
+= BattleFrontier_BattleTowerLobby_EventScript_GetDoorXCoordSingles
+setvar VAR_0x8004 6
+return
+= BattleFrontier_BattleTowerLobby_EventScript_SetAttendantTalkedTo
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES BattleFrontier_BattleTowerLobby_EventScript_TalkedToSinglesAttendant
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_DOUBLES BattleFrontier_BattleTowerLobby_EventScript_TalkedToDoublesAttendant
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_MULTIS BattleFrontier_BattleTowerLobby_EventScript_TalkedToMultisAttendant
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_LINK_MULTIS BattleFrontier_BattleTowerLobby_EventScript_TalkedToLinkMultisAttendant
+return
+= BattleFrontier_BattleTowerLobby_EventScript_TalkedToLinkMultisAttendant
+setvar VAR_LAST_TALKED LOCALID_TOWER_ATTENDANT_LINK_MULTIS
+return
+= BattleFrontier_BattleTowerLobby_EventScript_TalkedToMultisAttendant
+setvar VAR_LAST_TALKED LOCALID_TOWER_ATTENDANT_MULTIS
+return
+= BattleFrontier_BattleTowerLobby_EventScript_TalkedToDoublesAttendant
+setvar VAR_LAST_TALKED LOCALID_TOWER_ATTENDANT_DOUBLES
+return
+= BattleFrontier_BattleTowerLobby_EventScript_TalkedToSinglesAttendant
+setvar VAR_LAST_TALKED LOCALID_TOWER_ATTENDANT_SINGLES
+return
+= BattleFrontier_BattleTowerLobby_EventScript_ShowYouToLinkMultiBattleRoom
+messageautoscroll BattleFrontier_BattleTowerLobby_Text_ShowYouToBattleRoom
+waitmessage
+delay 48
+goto BattleFrontier_BattleTowerLobby_EventScript_WalkToElevator
+= BattleFrontier_BattleTowerLobby_EventScript_BufferModeText
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES BattleFrontier_BattleTowerLobby_EventScript_BufferTextSingle
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_DOUBLES BattleFrontier_BattleTowerLobby_EventScript_BufferTextDouble
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_MULTIS BattleFrontier_BattleTowerLobby_EventScript_BufferTextMulti
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_LINK_MULTIS BattleFrontier_BattleTowerLobby_EventScript_BufferTextLinkMulti
+return
+= BattleFrontier_BattleTowerLobby_EventScript_BufferTextLinkMulti
+bufferstdstring STR_VAR_1 STDSTRING_MULTI_LINK
+return
+= BattleFrontier_BattleTowerLobby_EventScript_BufferTextMulti
+bufferstdstring STR_VAR_1 STDSTRING_MULTI
+return
+= BattleFrontier_BattleTowerLobby_EventScript_BufferTextDouble
+bufferstdstring STR_VAR_1 STDSTRING_DOUBLE
+return
+= BattleFrontier_BattleTowerLobby_EventScript_BufferTextSingle
+bufferstdstring STR_VAR_1 STDSTRING_SINGLE
+return
+= BattleFrontier_BattleTowerLobby_EventScript_GetPartySize
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES BattleFrontier_BattleTowerLobby_EventScript_GetSinglesPartySize
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_DOUBLES BattleFrontier_BattleTowerLobby_EventScript_GetDoublesPartySize
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_MULTIS BattleFrontier_BattleTowerLobby_EventScript_GetMultisPartySize
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_LINK_MULTIS BattleFrontier_BattleTowerLobby_EventScript_GetLinkMultisPartySize
+return
+= BattleFrontier_BattleTowerLobby_EventScript_GetLinkMultisPartySize
+setvar VAR_0x8005 FRONTIER_MULTI_PARTY_SIZE
+return
+= BattleFrontier_BattleTowerLobby_EventScript_GetMultisPartySize
+setvar VAR_0x8005 FRONTIER_MULTI_PARTY_SIZE
+return
+= BattleFrontier_BattleTowerLobby_EventScript_GetDoublesPartySize
+setvar VAR_0x8005 FRONTIER_DOUBLES_PARTY_SIZE
+return
+= BattleFrontier_BattleTowerLobby_EventScript_GetSinglesPartySize
+setvar VAR_0x8005 FRONTIER_PARTY_SIZE
+return
+= BattleFrontier_BattleTowerLobby_EventScript_SetBravoTrainerOn
+setvar VAR_BRAVO_TRAINER_BATTLE_TOWER_ON TRUE
+return
+= BattleFrontier_BattleTowerLobby_EventScript_QuitWithoutSaving
+lock
+faceplayer
+msgbox	Excuse me!You didn't save before you quit your challenge last time.Because of that, your challenge so far has been disqualified. Sorry!
+closemessage
+tower_set TOWER_DATA_WIN_STREAK 0
+tower_set TOWER_DATA_WIN_STREAK_ACTIVE FALSE
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+release
+end
+= BattleFrontier_BattleTowerLobby_EventScript_GetChallengeStatus
+frontier_getstatus
+end
+= BattleFrontier_BattleTowerLobby_EventScript_LinkMultisAttendant
+lock
+faceplayer
+setvar VAR_FRONTIER_FACILITY FRONTIER_FACILITY_TOWER
+special SavePlayerParty
+msgbox	Where the talents of TRAINERS are put to the test!Welcome to the BATTLE TOWER!I am your guide to the LINK MULTI BATTLE ROOMS.
+goto BattleFrontier_BattleTowerLobby_EventScript_AskEnterLinkMultisChallenge
+= BattleFrontier_BattleTowerLobby_EventScript_AskEnterLinkMultisChallenge
+msgbox	Would you like to take the LINK MULTI BATTLE ROOM challenge?
+waitmessage
+multichoice 17 6 MULTI_CHALLENGEINFO FALSE
+switch VAR_RESULT
+case 0 BattleFrontier_BattleTowerLobby_EventScript_TryEnterLinkMultisChallenge
+case 1 BattleFrontier_BattleTowerLobby_EventScript_ExplainLinkMultisChallenge
+case 2 BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
+case MULTI_B_PRESSED BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
+goto BattleFrontier_BattleTowerLobby_EventScript_TryEnterLinkMultisChallenge
+= BattleFrontier_BattleTowerLobby_EventScript_TryEnterLinkMultisChallenge
+setvar VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_LINK_MULTIS
+msgbox	The BATTLE ROOM offers two levels of challenge, Level 50 and Open Level. Which is your choice?
+waitmessage
+multichoice 17 6 MULTI_LEVEL_MODE FALSE
+switch VAR_RESULT
+case FRONTIER_LVL_TENT BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
+case MULTI_B_PRESSED BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
+frontier_checkineligible
+goto_if_eq VAR_0x8004 TRUE BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMons
+frontier_set FRONTIER_DATA_LVL_MODE VAR_RESULT
+msgbox	Now please select the two POKéMON that are to be entered.
+fadescreen FADE_TO_BLACK
+call BattleFrontier_EventScript_GetLvlMode
+copyvar VAR_0x8004 VAR_RESULT
+setvar VAR_0x8005 FRONTIER_MULTI_PARTY_SIZE
+special ChoosePartyForBattleFrontier
+goto_if_eq VAR_RESULT 0 BattleFrontier_BattleTowerLobby_EventScript_LoadPartyCancelChallenge
+msgboxyesno	Before entering a BATTLE ROOM, your progress must be saved. Is that okay?
+switch VAR_RESULT
+case NO BattleFrontier_BattleTowerLobby_EventScript_LoadPartyCancelChallenge
+case YES BattleFrontier_BattleTowerLobby_EventScript_SaveBeforeLinkMultisChallenge
+case MULTI_B_PRESSED BattleFrontier_BattleTowerLobby_EventScript_LoadPartyCancelChallenge
+goto BattleFrontier_BattleTowerLobby_EventScript_SaveBeforeLinkMultisChallenge
+= BattleFrontier_BattleTowerLobby_EventScript_SaveBeforeLinkMultisChallenge
+frontier_set FRONTIER_DATA_SELECTED_MON_ORDER
+setvar VAR_TEMP_CHALLENGE_STATUS 0
+tower_init
+tower_set TOWER_DATA_WIN_STREAK_ACTIVE TRUE
+frontier_set FRONTIER_DATA_PAUSED FALSE
+special LoadPlayerParty
+closemessage
+delay 2
+@ The command tower_save ultimately calls TrySavingData(SAVE_LINK) which writes data in SaveBlock1 and SaveBlock2
+@ to the flash but not data in PokemonStorage. The SaveGame script that follows asks the player to do a full save 
+@ which they can opt out of. As a result the player can save their party and quit without having saved the PC.
+@ This allows players to clone pokemon and their held items by withdrawing them (or erase them by despositing).
+tower_save 0
+call Common_EventScript_SaveGame
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+goto_if_eq VAR_RESULT 0 BattleFrontier_BattleTowerLobby_EventScript_CancelChallengeSaveFailed
+@ GAME_STAT_ENTERED_BATTLE_TOWER should not be incremented here for two reasons:
+@ 1. It is incremented again in BattleFrontier_BattleTowerLobby_EventScript_CableLinkSuccessful or BattleFrontier_BattleTowerLobby_EventScript_WirelessLinkSuccessful
+@ 2. If the player tries to connect but fails the counter will still be incremented even if the player never enters the tower.
+incrementgamestat GAME_STAT_ENTERED_BATTLE_TOWER
+specialvar VAR_RESULT IsWirelessAdapterConnected
+goto_if_eq VAR_RESULT TRUE BattleFrontier_BattleTowerLobby_EventScript_TryWirelessLink
+goto BattleFrontier_BattleTowerLobby_EventScript_TryCableLink
+end
+= BattleFrontier_BattleTowerLobby_EventScript_TryCableLink
+setvar VAR_0x8004 USING_BATTLE_TOWER
+msgbox	Please wait. … … B Button: Cancel
+waitmessage
+setvar VAR_0x8005 0
+special TryBattleLinkup
+goto_if_eq VAR_RESULT LINKUP_SUCCESS BattleFrontier_BattleTowerLobby_EventScript_CableLinkSuccessful
+goto_if_eq VAR_RESULT LINKUP_SOMEONE_NOT_READY CableClub_EventScript_AbortLinkSomeoneNotReady
+goto_if_eq VAR_RESULT LINKUP_DIFF_SELECTIONS BattleFrontier_BattleTowerLobby_EventScript_AbortLinkDifferentSelections
+goto_if_eq VAR_RESULT LINKUP_WRONG_NUM_PLAYERS BattleFrontier_BattleTowerLobby_EventScript_AbortLinkIncorrectNumberOfPlayers
+goto_if_eq VAR_RESULT LINKUP_FAILED BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
+goto_if_eq VAR_RESULT LINKUP_CONNECTION_ERROR CableClub_EventScript_AbortLinkConnectionError
+goto_if_eq VAR_RESULT LINKUP_FAILED_BATTLE_TOWER BattleFrontier_BattleTowerLobby_EventScript_AbortLink
+end
+= BattleFrontier_BattleTowerLobby_EventScript_AbortLink
+special CloseLink
+call_if_eq VAR_0x8005 0 BattleFrontier_BattleTowerLobby_EventScript_FriendChoseDifferentLvlMode
+call_if_eq VAR_0x8005 1 BattleFrontier_BattleTowerLobby_EventScript_FriendAlsoSelectedMon
+call_if_eq VAR_0x8005 2 BattleFrontier_BattleTowerLobby_EventScript_FriendAlsoSelectedMons
+msgbox	Please choose two POKéMON different from your friend's, match the level you wish to enter, and register again.
+release
+end
+= BattleFrontier_BattleTowerLobby_EventScript_FriendAlsoSelectedMons
+msgbox	Your friend has also selected the POKéMON STR_VAR_1 and STR_VAR_2.
+return
+= BattleFrontier_BattleTowerLobby_EventScript_FriendAlsoSelectedMon
+msgbox	Your friend has also selected the POKéMON STR_VAR_1.
+return
+= BattleFrontier_BattleTowerLobby_EventScript_FriendChoseDifferentLvlMode
+msgbox	Your friend has chosen a different battle level.
+return
+= CableClub_EventScript_AbortLinkConnectionError
+special CloseLink
+msgbox	Sorry, we have a link error… Please reset and try again.
+release
+end
+= BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
+special CloseLink
+msgbox	We look forward to seeing you on another challenge!
+goto BattleFrontier_BattleTowerLobby_EventScript_EndCancelChallenge
+= BattleFrontier_BattleTowerLobby_EventScript_EndCancelChallenge
+release
+end
+= BattleFrontier_BattleTowerLobby_EventScript_AbortLinkIncorrectNumberOfPlayers
+msgbox	The LINK MULTI BATTLE ROOM challenge is only for two linked players.
+special CloseLink
+msgbox	The number of participants is incorrect.
+release
+end
+= BattleFrontier_BattleTowerLobby_EventScript_AbortLinkDifferentSelections
+special CloseLink
+goto_if_eq VAR_0x8005 3 BattleFrontier_BattleTowerLobby_EventScript_FriendDifferentSelection
+msgbox	The link partners appear to have made different selections.
+release
+end
+= BattleFrontier_BattleTowerLobby_EventScript_FriendDifferentSelection
+msgbox	Your friend has chosen a different battle level.
+msgbox	Please choose two POKéMON different from your friend's, match the level you wish to enter, and register again.
+release
+end
+= CableClub_EventScript_AbortLinkSomeoneNotReady
+special CloseLink
+msgbox	Someone is not ready to link.Please come back after everyone has made preparations.
+release
+end
+= BattleFrontier_BattleTowerLobby_EventScript_CableLinkSuccessful
+incrementgamestat GAME_STAT_ENTERED_BATTLE_TOWER
+setvar VAR_BRAVO_TRAINER_BATTLE_TOWER_ON FALSE
+msgbox	I will save the game before showing you in. Please wait.
+waitmessage
+tower_save CHALLENGE_STATUS_SAVING
+special SaveForBattleTowerLink
+playse SE_SAVE
+waitse
+special TrySetBattleTowerLinkType
+goto BattleFrontier_BattleTowerLobby_EventScript_EnterElevator
+end
+= BattleFrontier_BattleTowerLobby_EventScript_TryWirelessLink
+setvar VAR_0x8004 LINK_GROUP_BATTLE_TOWER
+goto BattleFrontier_BattleTowerLobby_EventScript_ChooseLeader
+end
+= BattleFrontier_BattleTowerLobby_EventScript_ChooseLeader
+msgbox	Please decide which of you two will become the LEADER.The other player must then choose “JOIN GROUP.”
+waitmessage
+multichoice 16 6 MULTI_LINK_LEADER FALSE
+switch VAR_RESULT
+case 0 BattleFrontier_BattleTowerLobby_EventScript_TryJoinGroup
+case 1 BattleFrontier_BattleTowerLobby_EventScript_TryBecomeLeader
+case 2 BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
+case MULTI_B_PRESSED BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
+end
+= BattleFrontier_BattleTowerLobby_EventScript_TryBecomeLeader
+call CableClub_EventScript_TryBecomeLinkLeader
+goto_if_eq VAR_RESULT LINKUP_SUCCESS BattleFrontier_BattleTowerLobby_EventScript_WirelessLinkSuccessful
+goto_if_eq VAR_RESULT LINKUP_FAILED BattleFrontier_BattleTowerLobby_EventScript_ChooseLeader
+goto_if_eq VAR_RESULT LINKUP_RETRY_ROLE_ASSIGN BattleFrontier_BattleTowerLobby_EventScript_TryBecomeLeader
+goto_if_eq VAR_RESULT LINKUP_FAILED_BATTLE_TOWER BattleFrontier_BattleTowerLobby_EventScript_AbortLink
+release
+return
+= BattleFrontier_BattleTowerLobby_EventScript_WirelessLinkSuccessful
+incrementgamestat GAME_STAT_ENTERED_BATTLE_TOWER
+setvar VAR_BRAVO_TRAINER_BATTLE_TOWER_ON FALSE
+msgbox	I will save the game before showing you in. Please wait.
+waitmessage
+tower_save CHALLENGE_STATUS_SAVING
+special SaveForBattleTowerLink
+playse SE_SAVE
+waitse
+goto BattleFrontier_BattleTowerLobby_EventScript_EnterElevator
+end
+= CableClub_EventScript_TryBecomeLinkLeader
+special TryBecomeLinkLeader
+return
+= BattleFrontier_BattleTowerLobby_EventScript_TryJoinGroup
+call CableClub_EventScript_TryJoinLinkGroup
+goto_if_eq VAR_RESULT LINKUP_SUCCESS BattleFrontier_BattleTowerLobby_EventScript_WirelessLinkSuccessful
+goto_if_eq VAR_RESULT LINKUP_FAILED BattleFrontier_BattleTowerLobby_EventScript_ChooseLeader
+goto_if_eq VAR_RESULT LINKUP_RETRY_ROLE_ASSIGN BattleFrontier_BattleTowerLobby_EventScript_TryJoinGroup
+goto_if_eq VAR_RESULT LINKUP_FAILED_BATTLE_TOWER BattleFrontier_BattleTowerLobby_EventScript_AbortLink
+release
+return
+= CableClub_EventScript_TryJoinLinkGroup
+special TryJoinLinkGroup
+return
+= BattleFrontier_BattleTowerLobby_EventScript_CancelChallengeSaveFailed
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS  @ No status provided so it relies on VAR_0x8006 being 0 already
+goto BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
+end
+= Common_EventScript_SaveGame
+special SaveGame
+return
+= BattleFrontier_BattleTowerLobby_EventScript_LoadPartyCancelChallenge
+special LoadPlayerParty
+goto BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
+= BattleFrontier_EventScript_GetLvlMode
+frontier_get FRONTIER_DATA_LVL_MODE
+return
+= BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMons
+switch VAR_RESULT
+case FRONTIER_LVL_50 BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLv50
+case FRONTIER_LVL_OPEN BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLvOpen
+goto BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLv50
+= BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLv50
+switch VAR_FRONTIER_BATTLE_MODE
+case FRONTIER_MODE_SINGLES BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLv50Singles
+case FRONTIER_MODE_DOUBLES BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLv50Doubles
+msgbox	Excuse me!You don't have two eligible POKéMON.You must have two different POKéMON of Level 50 or less to enter.They also must be holding different kinds of items.EGGSSTR_VAR_1 ineligible.Please come see me when you are ready.
+goto BattleFrontier_BattleTowerLobby_EventScript_EndCancelChallenge
+end
+= BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLv50Doubles
+msgbox	Excuse me!You don't have four eligible POKéMON.You must have four different POKéMON of Level 50 or less to enter.They also must be holding different kinds of items.EGGSSTR_VAR_1 ineligible.Please come see me when you are ready.
+goto BattleFrontier_BattleTowerLobby_EventScript_EndCancelChallenge
+end
+= BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLv50Singles
+msgbox	Excuse me!You don't have three eligible POKéMON.You must have three different POKéMON of Level 50 or less to enter.They also must be holding different kinds of items.EGGSSTR_VAR_1 ineligible.Please come see me when you are ready.
+goto BattleFrontier_BattleTowerLobby_EventScript_EndCancelChallenge
+end
+= BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLvOpen
+switch VAR_FRONTIER_BATTLE_MODE
+case FRONTIER_MODE_SINGLES BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLvOpenSingles
+case FRONTIER_MODE_DOUBLES BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLvOpenDoubles
+msgbox	Excuse me!You don't have two eligible POKéMON.You must have two different POKéMON to enter.They also must be holding different kinds of items.EGGSSTR_VAR_1 ineligible.Please come see me when you are ready.
+goto BattleFrontier_BattleTowerLobby_EventScript_EndCancelChallenge
+end
+= BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLvOpenDoubles
+msgbox	Excuse me!You don't have four eligible POKéMON.You must have four different POKéMON to enter.They also must be holding different kinds of items.EGGSSTR_VAR_1 ineligible.Please come see me when you are ready.
+goto BattleFrontier_BattleTowerLobby_EventScript_EndCancelChallenge
+end
+= BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLvOpenSingles
+msgbox	Excuse me!You don't have three eligible POKéMON.You must have three different POKéMON to enter.They also must be holding different kinds of items.EGGSSTR_VAR_1 ineligible.Please come see me when you are ready.
+goto BattleFrontier_BattleTowerLobby_EventScript_EndCancelChallenge
+end
+= BattleFrontier_BattleTowerLobby_EventScript_ExplainLinkMultisChallenge
+msgbox	The BATTLE TOWER's MULTI BATTLE ROOMS are facilities for conducting MULTI BATTLES with a friend.You must link with your friend using Wireless Adapters or a Game Boy Advance Game Link cable.You must partner with your friend and enter two different kinds of POKéMON.There are many MULTI BATTLE ROOMS in the BATTLE TOWER for team battles.In a MULTI BATTLE ROOM, seven tag teams await you and your friend to make a tag-team challenge.If you manage to defeat all seven teams, you will earn Battle Points.Please beware that unlike other ROOMS, you may not interrupt your challenge.Once you start, you must battle seven MULTI BATTLES in a row nonstop.
+goto BattleFrontier_BattleTowerLobby_EventScript_AskEnterLinkMultisChallenge
+end
+= BattleFrontier_BattleTowerLobby_EventScript_MultisAttendant
+lock
+faceplayer
+setvar VAR_FRONTIER_FACILITY FRONTIER_FACILITY_TOWER
+clearflag FLAG_CHOSEN_MULTI_BATTLE_NPC_PARTNER
+special SavePlayerParty
+msgbox	Where the talents of TRAINERS are put to the test!Welcome to the BATTLE TOWER!I am your guide to the MULTI BATTLE ROOMS.
+goto BattleFrontier_BattleTowerLobby_EventScript_AskEnterMultisChallenge
+= BattleFrontier_BattleTowerLobby_EventScript_AskEnterMultisChallenge
+msgbox	Would you like to take the MULTI BATTLE ROOM challenge?
+waitmessage
+multichoice 17 6 MULTI_CHALLENGEINFO FALSE
+switch VAR_RESULT
+case 0 BattleFrontier_BattleTowerLobby_EventScript_TryEnterMultisChallenge
+case 1 BattleFrontier_BattleTowerLobby_EventScript_ExplainMultisChallenge
+case 2 BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
+case MULTI_B_PRESSED BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
+goto BattleFrontier_BattleTowerLobby_EventScript_TryEnterMultisChallenge
+= BattleFrontier_BattleTowerLobby_EventScript_TryEnterMultisChallenge
+setvar VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_MULTIS
+msgbox	The BATTLE ROOM offers two levels of challenge, Level 50 and Open Level. Which is your choice?
+waitmessage
+multichoice 17 6 MULTI_LEVEL_MODE FALSE
+switch VAR_RESULT
+case FRONTIER_LVL_TENT BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
+case MULTI_B_PRESSED BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
+frontier_checkineligible
+goto_if_eq VAR_0x8004 TRUE BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMons
+frontier_set FRONTIER_DATA_LVL_MODE VAR_RESULT
+msgbox	Now please select the two POKéMON that are to be entered.
+fadescreen FADE_TO_BLACK
+call BattleFrontier_EventScript_GetLvlMode
+copyvar VAR_0x8004 VAR_RESULT
+setvar VAR_0x8005 FRONTIER_MULTI_PARTY_SIZE
+special ChoosePartyForBattleFrontier
+goto_if_eq VAR_RESULT 0 BattleFrontier_BattleTowerLobby_EventScript_LoadPartyCancelChallenge
+msgboxyesno	Before entering a BATTLE ROOM, your progress must be saved. Is that okay?
+switch VAR_RESULT
+case NO BattleFrontier_BattleTowerLobby_EventScript_LoadPartyCancelChallenge
+case YES BattleFrontier_BattleTowerLobby_EventScript_SaveBeforeMultisChallenge
+case MULTI_B_PRESSED BattleFrontier_BattleTowerLobby_EventScript_LoadPartyCancelChallenge
+goto BattleFrontier_BattleTowerLobby_EventScript_SaveBeforeMultisChallenge
+= BattleFrontier_BattleTowerLobby_EventScript_SaveBeforeMultisChallenge
+frontier_set FRONTIER_DATA_SELECTED_MON_ORDER
+setvar VAR_TEMP_CHALLENGE_STATUS 0
+tower_init
+tower_set TOWER_DATA_WIN_STREAK_ACTIVE TRUE
+frontier_set FRONTIER_DATA_PAUSED FALSE
+special LoadPlayerParty
+closemessage
+delay 2
+call Common_EventScript_SaveGame
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+goto_if_eq VAR_RESULT 0 BattleFrontier_BattleTowerLobby_EventScript_CancelChallengeSaveFailed
+incrementgamestat GAME_STAT_ENTERED_BATTLE_TOWER
+setvar VAR_BRAVO_TRAINER_BATTLE_TOWER_ON FALSE
+goto BattleFrontier_BattleTowerLobby_EventScript_EnterElevator
+end
+= BattleFrontier_BattleTowerLobby_EventScript_ExplainMultisChallenge
+msgbox	The BATTLE TOWER's MULTI BATTLE ROOMS are facilities for conducting MULTI BATTLES.For MULTI BATTLES, you must partner with a TRAINER in the TOWER and enter with two POKéMON each.Inside the TOWER is a room named the BATTLE SALON where you may meet other TRAINERS.There, you must find a TRAINER to act as your partner in MULTI BATTLES.Once you have partnered up, you will be shown to a MULTI BATTLE ROOM.In the MULTI BATTLE ROOM, seven tag teams await your challenge.If you manage to defeat all seven teams, you will earn Battle Points.If you want to interrupt your challenge, please save the game.If you don't save before interrupting, you will be disqualified.
+goto BattleFrontier_BattleTowerLobby_EventScript_AskEnterMultisChallenge
+end
+= BattleFrontier_BattleTowerLobby_EventScript_DoublesAttendant
+lock
+faceplayer
+setvar VAR_FRONTIER_FACILITY FRONTIER_FACILITY_TOWER
+special SavePlayerParty
+msgbox	Where the talents of TRAINERS are put to the test!Welcome to the BATTLE TOWER!I am your guide to the DOUBLE BATTLE ROOMS.
+goto BattleFrontier_BattleTowerLobby_EventScript_AskEnterDoublesChallenge
+= BattleFrontier_BattleTowerLobby_EventScript_AskEnterDoublesChallenge
+msgbox	Would you like to take the DOUBLE BATTLE ROOM challenge?
+waitmessage
+multichoice 17 6 MULTI_CHALLENGEINFO FALSE
+switch VAR_RESULT
+case 0 BattleFrontier_BattleTowerLobby_EventScript_TryEnterDoublesChallenge
+case 1 BattleFrontier_BattleTowerLobby_EventScript_ExplainDoublesChallenge
+case 2 BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
+case MULTI_B_PRESSED BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
+goto BattleFrontier_BattleTowerLobby_EventScript_TryEnterDoublesChallenge
+= BattleFrontier_BattleTowerLobby_EventScript_TryEnterDoublesChallenge
+setvar VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_DOUBLES
+msgbox	The BATTLE ROOM offers two levels of challenge, Level 50 and Open Level. Which is your choice?
+waitmessage
+multichoice 17 6 MULTI_LEVEL_MODE FALSE
+switch VAR_RESULT
+case FRONTIER_LVL_TENT BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
+case MULTI_B_PRESSED BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
+frontier_checkineligible
+goto_if_eq VAR_0x8004 TRUE BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMons
+frontier_set FRONTIER_DATA_LVL_MODE VAR_RESULT
+msgbox	Now please select the four POKéMON that are to be entered.
+fadescreen FADE_TO_BLACK
+call BattleFrontier_EventScript_GetLvlMode
+copyvar VAR_0x8004 VAR_RESULT
+setvar VAR_0x8005 FRONTIER_DOUBLES_PARTY_SIZE
+special ChoosePartyForBattleFrontier
+goto_if_eq VAR_RESULT 0 BattleFrontier_BattleTowerLobby_EventScript_LoadPartyCancelChallenge
+msgboxyesno	Before entering a BATTLE ROOM, your progress must be saved. Is that okay?
+switch VAR_RESULT
+case NO BattleFrontier_BattleTowerLobby_EventScript_LoadPartyCancelChallenge
+case YES BattleFrontier_BattleTowerLobby_EventScript_SaveBeforeDoublesChallenge
+case MULTI_B_PRESSED BattleFrontier_BattleTowerLobby_EventScript_LoadPartyCancelChallenge
+goto BattleFrontier_BattleTowerLobby_EventScript_SaveBeforeDoublesChallenge
+= BattleFrontier_BattleTowerLobby_EventScript_SaveBeforeDoublesChallenge
+frontier_set FRONTIER_DATA_SELECTED_MON_ORDER
+setvar VAR_TEMP_CHALLENGE_STATUS 0
+tower_init
+tower_set TOWER_DATA_WIN_STREAK_ACTIVE TRUE
+frontier_set FRONTIER_DATA_PAUSED FALSE
+special LoadPlayerParty
+closemessage
+delay 2
+call Common_EventScript_SaveGame
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+goto_if_eq VAR_RESULT 0 BattleFrontier_BattleTowerLobby_EventScript_CancelChallengeSaveFailed
+incrementgamestat GAME_STAT_ENTERED_BATTLE_TOWER
+setvar VAR_BRAVO_TRAINER_BATTLE_TOWER_ON FALSE
+goto BattleFrontier_BattleTowerLobby_EventScript_EnterElevator
+end
+= BattleFrontier_BattleTowerLobby_EventScript_ExplainDoublesChallenge
+msgbox	The BATTLE TOWER's DOUBLE BATTLE ROOMS are facilities for conducting DOUBLE BATTLES with four POKéMON.There are many DOUBLE BATTLE ROOMS in the BATTLE TOWER for team battles.In each of the DOUBLE BATTLE ROOMS, seven TRAINERS await your challenge.If you manage to defeat all seven, you will earn Battle Points.If you want to interrupt your challenge, please save the game.If you don't save before interrupting, you will be disqualified.
+goto BattleFrontier_BattleTowerLobby_EventScript_AskEnterDoublesChallenge
+end
+= BattleFrontier_BattleTowerLobby_EventScript_Reporter
+lock
+faceplayer
+goto_if_set FLAG_TEMP_2 BattleFrontier_BattleTowerLobby_EventScript_AlreadyInterviewed
+setvar VAR_0x8005 TVSHOW_BRAVO_TRAINER_BATTLE_TOWER_PROFILE
+special InterviewBefore
+goto_if_eq VAR_RESULT TRUE BattleFrontier_BattleTowerLobby_EventScript_AlreadyInterviewed
+copyvar VAR_0x8009 VAR_0x8006
+msgboxyesno	Hello! You're the TRAINER who just had a battle, right?I'm gathering interviews with TRAINERS all over the place.May I get a few words from you about your impressions on battling?
+goto_if_eq VAR_RESULT YES BattleFrontier_BattleTowerLobby_EventScript_AcceptInterview
+goto_if_eq VAR_RESULT NO BattleFrontier_BattleTowerLobby_EventScript_DeclineInterview
+end
+= BattleFrontier_BattleTowerLobby_EventScript_DeclineInterview
+msgbox	Oh… Sorry we disturbed you.Please give us an interview the next time you visit the BATTLE TOWER.
+release
+end
+= BattleFrontier_BattleTowerLobby_EventScript_AcceptInterview
+msgbox	You will? Really? Thank you! Then, uh…How did things turn out in the BATTLE TOWER today?Were you satisfied with the battle? Or are you unhappy?
+waitmessage
+multichoice 20 8 MULTI_SATISFACTION TRUE
+copyvar VAR_0x8008 VAR_RESULT
+call_if_eq VAR_RESULT 0 BattleFrontier_BattleTowerLobby_EventScript_Satisfied
+call_if_eq VAR_RESULT 1 BattleFrontier_BattleTowerLobby_EventScript_Dissatisfied
+msgbox	Oh, oh, may I ask one more question?If you were to describe your impressions about this battle with one saying, what would it be?
+setvar VAR_0x8004 EASY_CHAT_TYPE_BATTLE_TOWER_INTERVIEW
+copyvar VAR_0x8005 VAR_0x8009
+call Common_ShowEasyChatScreen
+lock
+faceplayer
+goto_if_eq VAR_RESULT 1 BattleFrontier_BattleTowerLobby_EventScript_SubmitResponse
+goto_if_eq VAR_RESULT 0 BattleFrontier_BattleTowerLobby_EventScript_CancelInterview
+end
+= BattleFrontier_BattleTowerLobby_EventScript_CancelInterview
+msgbox	Oh, I see…Still, being the silent type is also cool, isn't it?I hope you'll give me the opportunity to share your thoughts again!
+release
+end
+= BattleFrontier_BattleTowerLobby_EventScript_SubmitResponse
+goto_if_eq VAR_RESULT 0 BattleFrontier_BattleTowerLobby_EventScript_CancelInterview
+msgbox	Oh, that is stunningly cool!That's a great line! I hope you'll do great next time, too.I hope to see you again!
+setflag FLAG_TEMP_2
+copyvar VAR_0x8004 VAR_0x8008
+setvar VAR_0x8005 TVSHOW_BRAVO_TRAINER_BATTLE_TOWER_PROFILE
+goto Interview_EventScript_EndInterview
+end
+= Interview_EventScript_EndInterview
+special InterviewAfter
+incrementgamestat GAME_STAT_GOT_INTERVIEWED
+release
+end
+@ Shares reporter object with TVSHOW_PKMN_FAN_CLUB_OPINIONS
+goto SlateportCity_PokemonFanClub_EventScript_ReporterNoNickname
+= SlateportCity_PokemonFanClub_EventScript_ReporterNoNickname
+setvar VAR_0x8005 TVSHOW_FAN_CLUB_LETTER
+special InterviewBefore
+goto_if_eq VAR_RESULT TRUE SlateportCity_PokemonFanClub_EventScript_AlreadyInterviewed2
+copyvar VAR_0x8009 VAR_0x8006
+msgboxyesno	Hi, you seem to be very close to your STR_VAR_1.Do you know what? I'm a TV reporter.I travel around interviewing people about POKéMON.I'm wondering if you'd be willing to tell me a little about your STR_VAR_1?
+goto_if_eq VAR_RESULT YES SlateportCity_PokemonFanClub_EventScript_AcceptInterview2
+goto_if_eq VAR_RESULT NO SlateportCity_PokemonFanClub_EventScript_DeclineInterview2
+end
+= SlateportCity_PokemonFanClub_EventScript_DeclineInterview2
+msgbox	Oh, okay…Well, if you get the urge to tell me about POKéMON, I'll be here!
+release
+end
+= SlateportCity_PokemonFanClub_EventScript_AcceptInterview2
+msgbox	Wow, thank you!Okay, then, please tell me anything you'd like about your STR_VAR_1.
+setvar VAR_0x8004 EASY_CHAT_TYPE_INTERVIEW
+copyvar VAR_0x8005 VAR_0x8009
+setvar VAR_0x8006 EASY_CHAT_PERSON_REPORTER_FEMALE
+call Common_ShowEasyChatScreen
+lock
+faceplayer
+goto_if_eq VAR_RESULT 1 SlateportCity_PokemonFanClub_EventScript_SubmitResponse2
+goto_if_eq VAR_RESULT 0 SlateportCity_PokemonFanClub_EventScript_DeclineInterview2
+end
+= SlateportCity_PokemonFanClub_EventScript_SubmitResponse2
+msgbox	Wow… That's an interesting account.You really are tight with STR_VAR_1, aren't you?I get the feeling that your account will make a great TV story.I promise that I'll turn this into an entertaining show. Keep your eyes out for it.Okay, that's all. Bye-bye!
+setvar VAR_0x8005 TVSHOW_FAN_CLUB_LETTER
+goto Interview_EventScript_EndInterview
+end
+= SlateportCity_PokemonFanClub_EventScript_AlreadyInterviewed2
+msgbox	I enjoy this job--you get to learn about POKéMON by doing interviews.
+release
+end
+= BattleFrontier_BattleTowerLobby_EventScript_Dissatisfied
+msgbox	Oh, I see…Well, it certainly is difficult to make a battle turn out exactly as planned.
+return
+= BattleFrontier_BattleTowerLobby_EventScript_Satisfied
+msgbox	Well, of course!That unmistakable look of satisfaction on your face…It's obvious that you've had a great battle.
+return
+= BattleFrontier_BattleTowerLobby_EventScript_AlreadyInterviewed
+msgbox	I'll be looking forward to your next battle!
+release
+end
+= BattleFrontier_BattleTowerLobby_EventScript_Boy
+msgbox	Once you've entered the BATTLE TOWER, you can't leave until you either lose or you beat seven TRAINERS in a row.You'd best be certain that you're up to the challenge.
+end
+= BattleFrontier_BattleTowerLobby_EventScript_Woman
+msgbox	The number of matches you win in a row is recorded.I'd better not get beaten in an embarrassing way!
+end
+= BattleFrontier_BattleTowerLobby_EventScript_FeelingsMan
+lock
+faceplayer
+msgbox	Excuse me, do you have a moment?Can you describe your feelings when you're about to begin a BATTLE TOWER match, or when you've either won or lost a match?
+waitmessage
+multichoice 16 4 MULTI_BATTLE_TOWER_FEELINGS FALSE
+switch VAR_RESULT
+case 0 BattleFrontier_BattleTowerLobby_EventScript_FeelingsBattleNow
+case 1 BattleFrontier_BattleTowerLobby_EventScript_FeelingsIWon
+case 2 BattleFrontier_BattleTowerLobby_EventScript_FeelingsILost
+case 3 BattleFrontier_BattleTowerLobby_EventScript_FeelingsWontTell
+case MULTI_B_PRESSED BattleFrontier_BattleTowerLobby_EventScript_FeelingsWontTell
+release
+end
+= BattleFrontier_BattleTowerLobby_EventScript_FeelingsWontTell
+msgbox	Oh, so you don't think much about it? You're one cool customer.
+release
+end
+= BattleFrontier_BattleTowerLobby_EventScript_FeelingsILost
+msgbox	Can I hear about your feelings when you have lost a match?
+setvar VAR_0x8004 EASY_CHAT_TYPE_BATTLE_LOST
+call Common_ShowEasyChatScreen
+lock
+faceplayer
+goto BattleFrontier_BattleTowerLobby_EventScript_CheckFeelings
+end
+= BattleFrontier_BattleTowerLobby_EventScript_CheckFeelings
+goto_if_eq VAR_RESULT 0 BattleFrontier_BattleTowerLobby_EventScript_CanceledEasyChat
+goto_if_eq VAR_RESULT 1 BattleFrontier_BattleTowerLobby_EventScript_SubmittedFeelings
+end
+= BattleFrontier_BattleTowerLobby_EventScript_SubmittedFeelings
+msgbox	Okay, so that's how you feel? That's quite original.Thanks!
+release
+end
+= BattleFrontier_BattleTowerLobby_EventScript_CanceledEasyChat
+msgbox	Hunh? You changed your mind? I guess you're fickle.
+release
+end
+= BattleFrontier_BattleTowerLobby_EventScript_FeelingsIWon
+msgbox	What do you feel when you've won a match?
+setvar VAR_0x8004 EASY_CHAT_TYPE_BATTLE_WON
+call Common_ShowEasyChatScreen
+lock
+faceplayer
+goto BattleFrontier_BattleTowerLobby_EventScript_CheckFeelings
+end
+= BattleFrontier_BattleTowerLobby_EventScript_FeelingsBattleNow
+msgbox	Okay, what are your feelings when you're about to begin a match?
+setvar VAR_0x8004 EASY_CHAT_TYPE_BATTLE_START
+call Common_ShowEasyChatScreen
+lock
+faceplayer
+goto BattleFrontier_BattleTowerLobby_EventScript_CheckFeelings
+end
+= BattleFrontier_BattleTowerLobby_EventScript_SinglesAttendant
+lock
+faceplayer
+setvar VAR_FRONTIER_FACILITY FRONTIER_FACILITY_TOWER
+special SavePlayerParty
+msgbox	Where the talents of TRAINERS are put to the test!Welcome to the BATTLE TOWER!I am your guide to the SINGLE BATTLE ROOMS.
+goto BattleFrontier_BattleTowerLobby_EventScript_AskEnterSinglesChallenge
+= BattleFrontier_BattleTowerLobby_EventScript_AskEnterSinglesChallenge
+msgbox	Would you like to take the SINGLE BATTLE ROOM challenge?
+waitmessage
+multichoice 17 6 MULTI_CHALLENGEINFO FALSE
+switch VAR_RESULT
+case 0 BattleFrontier_BattleTowerLobby_EventScript_TryEnterSinglesChallenge
+case 1 BattleFrontier_BattleTowerLobby_EventScript_ExplainSinglesChallenge
+case 2 BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
+case MULTI_B_PRESSED BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
+goto BattleFrontier_BattleTowerLobby_EventScript_TryEnterSinglesChallenge
+= BattleFrontier_BattleTowerLobby_EventScript_TryEnterSinglesChallenge
+setvar VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES
+msgbox	The BATTLE ROOM offers two levels of challenge, Level 50 and Open Level. Which is your choice?
+waitmessage
+multichoice 17 6 MULTI_LEVEL_MODE FALSE
+switch VAR_RESULT
+case FRONTIER_LVL_TENT BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
+case MULTI_B_PRESSED BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
+frontier_checkineligible
+goto_if_eq VAR_0x8004 TRUE BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMons
+frontier_set FRONTIER_DATA_LVL_MODE VAR_RESULT
+msgbox	Now please select the three POKéMON that are to be entered.
+fadescreen FADE_TO_BLACK
+call BattleFrontier_EventScript_GetLvlMode
+copyvar VAR_0x8004 VAR_RESULT
+setvar VAR_0x8005 FRONTIER_PARTY_SIZE
+special ChoosePartyForBattleFrontier
+goto_if_eq VAR_RESULT 0 BattleFrontier_BattleTowerLobby_EventScript_LoadPartyCancelChallenge
+msgboxyesno	Before entering a BATTLE ROOM, your progress must be saved. Is that okay?
+switch VAR_RESULT
+case NO BattleFrontier_BattleTowerLobby_EventScript_LoadPartyCancelChallenge
+case YES BattleFrontier_BattleTowerLobby_EventScript_SaveBeforeSinglesChallenge
+case MULTI_B_PRESSED BattleFrontier_BattleTowerLobby_EventScript_LoadPartyCancelChallenge
+goto BattleFrontier_BattleTowerLobby_EventScript_SaveBeforeSinglesChallenge
+= BattleFrontier_BattleTowerLobby_EventScript_SaveBeforeSinglesChallenge
+frontier_set FRONTIER_DATA_SELECTED_MON_ORDER
+setvar VAR_TEMP_CHALLENGE_STATUS 0
+tower_init
+tower_set TOWER_DATA_WIN_STREAK_ACTIVE TRUE
+frontier_set FRONTIER_DATA_PAUSED FALSE
+special LoadPlayerParty
+closemessage
+delay 2
+call Common_EventScript_SaveGame
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+goto_if_eq VAR_RESULT 0 BattleFrontier_BattleTowerLobby_EventScript_CancelChallengeSaveFailed
+incrementgamestat GAME_STAT_ENTERED_BATTLE_TOWER
+setvar VAR_BRAVO_TRAINER_BATTLE_TOWER_ON TRUE
+goto BattleFrontier_BattleTowerLobby_EventScript_EnterElevator
+end
+= BattleFrontier_BattleTowerLobby_EventScript_ExplainSinglesChallenge
+msgbox	The BATTLE TOWER's SINGLE BATTLE ROOMS are facilities for conducting SINGLE BATTLES with three POKéMON.There are many SINGLE BATTLE ROOMS in the BATTLE TOWER for team battles.In each of the SINGLE BATTLE ROOMS, seven TRAINERS await your challenge.If you manage to defeat all seven, you will earn Battle Points.If you want to interrupt your challenge, please save the game.If you don't save before interrupting, you will be disqualified.
+goto BattleFrontier_BattleTowerLobby_EventScript_AskEnterSinglesChallenge
+end
+signs
+2 1	The BATTLE TOWER rules are listed.
+mapsec
+22 12 1 1	BATTLE FRONTIER
+music
+MUS_B_TOWER
+counters
+528,530,532,537

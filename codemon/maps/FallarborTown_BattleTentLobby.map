@@ -1,0 +1,256 @@
+tileset building__battle_tent
+13 10
+6 5
+514,515,517,517,517,610,611,612,517,517,517,518,519
+522,523,608,609,525,618,619,620,525,614,615,526,527
+530,520,616,617,521,520,521,520,521,622,623,520,535
+538,529,624,521,528,529,528,529,528,521,631,534,543
+546,528,632,633,634,635,529,636,637,638,639,542,551
+660,529,640,641,642,643,528,644,645,646,647,550,528
+659,528,648,649,650,651,529,652,653,654,655,528,529
+658,529,528,529,528,529,528,529,528,529,528,529,528
+661,528,529,528,529,528,529,528,529,528,529,528,560
+1,552,528,529,528,529,558,559,528,529,528,552,1
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,0,1,1,1,1,1,1
+1,0,1,1,0,0,0,0,0,1,1,1,1
+1,0,1,0,0,0,0,0,0,0,1,1,1
+1,0,1,1,1,1,0,1,1,1,1,1,1
+0,0,1,1,1,1,0,1,1,1,1,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0
+1,0,0,0,0,0,0,0,0,0,0,0,1
+1,1,0,0,0,0,0,0,0,0,0,1,1
+warps
+6 9 FallarborTown 1
+7 9 FallarborTown 1
+npcs
+people_black_belt 6 5 S static 0 LOCALID_FALLARBOR_TENT_ATTENDANT 0
+people_hiker 1 5 S wander 0 - 0
+people_little_boy 12 6 S wander 0 - 0
+people_lass 10 9 S static 0 - 0
+people_scott 0 7 E static FLAG_HIDE_FALLARBOR_TOWN_BATTLE_TENT_SCOTT - 0
+dialogs
+1	I heard something about some tent, so I came to camp out.I didn't know that tents these days are so luxurious!Since I'm here, I may as well try my hand at battling!
+2	Fufufufufu.I'm going to make everyone think I'm just a kid and let them play down.Then, I'll shock them and grab the title!
+3	You know how BATTLE TENTS offer different events in different towns?My favorite is definitely the BATTLE TENT in FALLARBOR TOWN.I think it's fantastic how TRAINERS try to win with all their faith in their POKéMON.
+4	SCOTT: Hi, PLAYER! So you came out to this BATTLE TENT!The people in these parts tend to be easygoing and laid-back.But, you see, what I'm looking for are people with…How should I say this?Someone bursting with the desire and the drive to win.If there were a TRAINER like that, I'd immediately…Whoops! Never mind! Keep working at it!
+objscripts
+0 FallarborTown_BattleTentLobby_EventScript_Attendant
+1 FallarborTown_BattleTentLobby_EventScript_Hiker
+2 FallarborTown_BattleTentLobby_EventScript_LittleBoy
+3 FallarborTown_BattleTentLobby_EventScript_Lass
+4 FallarborTown_BattleTentLobby_EventScript_Scott
+onload
+VAR_TEMP_CHALLENGE_STATUS 0 FallarborTown_BattleTentLobby_EventScript_GetChallengeStatus
+VAR_TEMP_CHALLENGE_STATUS CHALLENGE_STATUS_SAVING FallarborTown_BattleTentLobby_EventScript_QuitWithoutSaving
+VAR_TEMP_CHALLENGE_STATUS CHALLENGE_STATUS_PAUSED FallarborTown_BattleTentLobby_EventScript_ResumeChallenge
+VAR_TEMP_CHALLENGE_STATUS CHALLENGE_STATUS_WON FallarborTown_BattleTentLobby_EventScript_WonChallenge
+VAR_TEMP_CHALLENGE_STATUS CHALLENGE_STATUS_LOST FallarborTown_BattleTentLobby_EventScript_LostChallenge
+movements
+FallarborTown_BattleTentLobby_Movement_AttendantEnterDoor	up,delay,end
+FallarborTown_BattleTentLobby_Movement_AttendantWalkToDoor	up,up,up,end
+FallarborTown_BattleTentLobby_Movement_PlayerEnterDoor	up,up,delay,end
+FallarborTown_BattleTentLobby_Movement_PlayerWalkToDoor	up,up,up,end
+scriptdefs
+= FallarborTown_BattleTentLobby_EventScript_LostChallenge
+lockall
+msgbox	Thank you so much for participating!Please wait while I save the game.
+waitmessage
+frontier_set FRONTIER_DATA_LVL_MODE FRONTIER_LVL_50
+fallarbortent_save 0
+playse SE_SAVE
+waitse
+msgbox	We await your challenge on another occasion!
+closemessage
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+releaseall
+end
+= FallarborTown_BattleTentLobby_EventScript_WonChallenge
+lockall
+msgbox	How splendid! You have beaten three TRAINERS in succession!
+msgbox	Please wait while I save the game.
+waitmessage
+fallarbortent_setrandomprize
+frontier_set FRONTIER_DATA_LVL_MODE FRONTIER_LVL_50
+fallarbortent_save 0
+playse SE_SAVE
+waitse
+goto FallarborTown_BattleTentLobby_EventScript_GivePrize
+= FallarborTown_BattleTentLobby_EventScript_GivePrize
+msgbox	In commemoration of your 3-win streak, we present you with this prize.
+fallarbortent_giveprize
+switch VAR_RESULT
+case FALSE FallarborTown_BattleTentLobby_EventScript_NoRoomForPrize
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
+msgbox	PLAYER received the prize STR_VAR_1.
+waitmessage
+playfanfare MUS_OBTAIN_ITEM
+waitfanfare
+msgbox	We await your challenge on another occasion!
+closemessage
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+releaseall
+end
+= FallarborTown_BattleTentLobby_EventScript_NoRoomForPrize
+msgbox	Oh? Your BAG seems to be full.I urge you to clear space and return for your prize.
+waitmessage
+closemessage
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+releaseall
+end
+= FallarborTown_BattleTentLobby_EventScript_ResumeChallenge
+lockall
+msgbox	We have been looking forward to your arrival.Before I show you to the BATTLE TENT, I must save the game. Please wait.
+waitmessage
+fallarbortent_save CHALLENGE_STATUS_SAVING
+playse SE_SAVE
+waitse
+frontier_set FRONTIER_DATA_PAUSED FALSE
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+goto FallarborTown_BattleTentLobby_EventScript_EnterChallenge
+= FallarborTown_BattleTentLobby_EventScript_EnterChallenge
+special SavePlayerParty
+frontier_setpartyorder FRONTIER_PARTY_SIZE
+msgbox	I shall now guide you to the BATTLE TENT.
+closemessage
+call FallarborTown_BattleTentLobby_EventScript_WalkToDoor
+warp FallarborTown_BattleTentCorridor 2 7
+setvar VAR_TEMP_CHALLENGE_STATUS 0
+waitstate
+end
+= FallarborTown_BattleTentLobby_EventScript_WalkToDoor
+applymovement LOCALID_FALLARBOR_TENT_ATTENDANT FallarborTown_BattleTentLobby_Movement_AttendantWalkToDoor
+applymovement LOCALID_PLAYER FallarborTown_BattleTentLobby_Movement_PlayerWalkToDoor
+waitmovement 0
+opendoor 6 1
+waitdooranim
+applymovement LOCALID_FALLARBOR_TENT_ATTENDANT FallarborTown_BattleTentLobby_Movement_AttendantEnterDoor
+applymovement LOCALID_PLAYER FallarborTown_BattleTentLobby_Movement_PlayerEnterDoor
+waitmovement 0
+closedoor 6 1
+waitdooranim
+return
+= FallarborTown_BattleTentLobby_EventScript_QuitWithoutSaving
+lockall
+msgbox	My dear challenger!You did not save the game before shutting down, did you?It is unfortunate, but that has resulted in your disqualification from your challenge.You may, of course, start with a fresh challenge.
+closemessage
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+frontier_set FRONTIER_DATA_LVL_MODE FRONTIER_LVL_50
+releaseall
+end
+= FallarborTown_BattleTentLobby_EventScript_GetChallengeStatus
+frontier_getstatus
+end
+= FallarborTown_BattleTentLobby_EventScript_Scott
+lock
+faceplayer
+goto_if_set FLAG_MET_SCOTT_IN_FALLARBOR FallarborTown_BattleTentLobby_EventScript_ScottAlreadySpokenTo
+msgbox	SCOTT: Hi, PLAYER! So you came out to this BATTLE TENT!The people in these parts tend to be easygoing and laid-back.But, you see, what I'm looking for are people with…How should I say this?Someone bursting with the desire and the drive to win.If there were a TRAINER like that, I'd immediately…Whoops! Never mind! Keep working at it!
+addvar VAR_SCOTT_STATE 1
+setflag FLAG_MET_SCOTT_IN_FALLARBOR
+release
+end
+= FallarborTown_BattleTentLobby_EventScript_ScottAlreadySpokenTo
+msgbox	SCOTT: Instead of wasting your time with the likes of me, why not make a challenge?
+release
+end
+= FallarborTown_BattleTentLobby_EventScript_Lass
+msgbox	You know how BATTLE TENTS offer different events in different towns?My favorite is definitely the BATTLE TENT in FALLARBOR TOWN.I think it's fantastic how TRAINERS try to win with all their faith in their POKéMON.
+end
+= FallarborTown_BattleTentLobby_EventScript_LittleBoy
+msgbox	Fufufufufu.I'm going to make everyone think I'm just a kid and let them play down.Then, I'll shock them and grab the title!
+end
+= FallarborTown_BattleTentLobby_EventScript_Hiker
+msgbox	I heard something about some tent, so I came to camp out.I didn't know that tents these days are so luxurious!Since I'm here, I may as well try my hand at battling!
+end
+= FallarborTown_BattleTentLobby_EventScript_Attendant
+lock
+faceplayer
+fallarbortent_getprize
+goto_if_ne VAR_RESULT ITEM_NONE FallarborTown_BattleTentLobby_EventScript_PrizeWaiting
+special SavePlayerParty
+msgbox	I welcome you to the BATTLE TENT FALLARBOR SITE!I am your guide to the Set KO Tourney!
+goto FallarborTown_BattleTentLobby_EventScript_AskEnterChallenge
+= FallarborTown_BattleTentLobby_EventScript_AskEnterChallenge
+msgbox	Now, do you wish to take the challenge of a Set KO Tourney?
+waitmessage
+multichoice 17 6 MULTI_CHALLENGEINFO FALSE
+switch VAR_RESULT
+case 0 FallarborTown_BattleTentLobby_EventScript_TryEnterChallenge
+case 1 FallarborTown_BattleTentLobby_EventScript_ExplainChallenge
+case 2 FallarborTown_BattleTentLobby_EventScript_CancelChallenge
+case MULTI_B_PRESSED FallarborTown_BattleTentLobby_EventScript_CancelChallenge
+goto FallarborTown_BattleTentLobby_EventScript_TryEnterChallenge
+= FallarborTown_BattleTentLobby_EventScript_TryEnterChallenge
+setvar VAR_FRONTIER_FACILITY FRONTIER_FACILITY_ARENA
+setvar VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES
+setvar VAR_RESULT 2
+frontier_checkineligible
+goto_if_eq VAR_0x8004 TRUE FallarborTown_BattleTentLobby_EventScript_NotEnoughValidMons
+frontier_set FRONTIER_DATA_LVL_MODE FRONTIER_LVL_TENT
+msgbox	Very well, now select your three POKéMON, please.
+fadescreen FADE_TO_BLACK
+setvar VAR_0x8004 2
+setvar VAR_0x8005 FRONTIER_PARTY_SIZE
+special ChoosePartyForBattleFrontier
+goto_if_eq VAR_RESULT 0 FallarborTown_BattleTentLobby_EventScript_LoadPartyCancelChallenge
+msgboxyesno	Before showing you to the BATTLE TENT, I must save. Is that okay?
+switch VAR_RESULT
+case NO FallarborTown_BattleTentLobby_EventScript_LoadPartyCancelChallenge
+case YES FallarborTown_BattleTentLobby_EventScript_SaveBeforeChallenge
+case MULTI_B_PRESSED FallarborTown_BattleTentLobby_EventScript_LoadPartyCancelChallenge
+goto FallarborTown_BattleTentLobby_EventScript_SaveBeforeChallenge
+= FallarborTown_BattleTentLobby_EventScript_SaveBeforeChallenge
+setvar VAR_TEMP_CHALLENGE_STATUS 0
+frontier_set FRONTIER_DATA_SELECTED_MON_ORDER
+fallarbortent_init
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS CHALLENGE_STATUS_SAVING
+frontier_set FRONTIER_DATA_PAUSED FALSE
+special LoadPlayerParty
+closemessage
+delay 2
+call Common_EventScript_SaveGame
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+goto_if_eq VAR_RESULT 0 FallarborTown_BattleTentLobby_EventScript_CancelChallengeSaveFailed
+goto FallarborTown_BattleTentLobby_EventScript_EnterChallenge
+= FallarborTown_BattleTentLobby_EventScript_CancelChallengeSaveFailed
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
+goto FallarborTown_BattleTentLobby_EventScript_CancelChallenge
+= FallarborTown_BattleTentLobby_EventScript_CancelChallenge
+msgbox	We await your challenge on another occasion!
+goto FallarborTown_BattleTentLobby_EventScript_EndCancelChallenge
+= FallarborTown_BattleTentLobby_EventScript_EndCancelChallenge
+release
+end
+= Common_EventScript_SaveGame
+special SaveGame
+return
+= FallarborTown_BattleTentLobby_EventScript_LoadPartyCancelChallenge
+special LoadPlayerParty
+goto FallarborTown_BattleTentLobby_EventScript_CancelChallenge
+= FallarborTown_BattleTentLobby_EventScript_NotEnoughValidMons
+switch VAR_RESULT
+case FRONTIER_LVL_50 FallarborTown_BattleTentLobby_EventScript_NotEnoughValidMonsLv50
+case FRONTIER_LVL_OPEN FallarborTown_BattleTentLobby_EventScript_NotEnoughValidMonsLvOpen
+goto FallarborTown_BattleTentLobby_EventScript_NotEnoughValidMonsLv50
+= FallarborTown_BattleTentLobby_EventScript_NotEnoughValidMonsLv50
+msgbox	My dear challenger!You do not have the three POKéMON required for entry.They also must not hold the same kinds of items.EGGSSTR_VAR_1 ineligible.When you have made your preparations, please do return.
+goto FallarborTown_BattleTentLobby_EventScript_EndCancelChallenge
+= FallarborTown_BattleTentLobby_EventScript_NotEnoughValidMonsLvOpen
+msgbox	My dear challenger!You do not have the three POKéMON required for entry.To qualify, you must bring three different kinds of POKéMON.They also must not hold the same kinds of items.EGGSSTR_VAR_1 ineligible.When you have made your preparations, please do return.
+goto FallarborTown_BattleTentLobby_EventScript_EndCancelChallenge
+= FallarborTown_BattleTentLobby_EventScript_ExplainChallenge
+msgbox	In the FALLARBOR BATTLE TENT, we undertake the Set KO Tourney.All participants enter with a team of three POKéMON.The three POKéMON must be lined up in the order that they are to appear in.During battle, the POKéMON will appear one at a time in the preset order.Once a POKéMON enters battle, it must remain out until the match is decided.If a match remains undecided in three turns, it goes to judging.If you wish to interrupt your challenge, please save the game.If you don't save, you will not be able to continue with your challenge.If you pull off the feat of beating three TRAINERS in succession, we will present you with a fine prize.
+goto FallarborTown_BattleTentLobby_EventScript_AskEnterChallenge
+= FallarborTown_BattleTentLobby_EventScript_PrizeWaiting
+lockall
+msgbox	How splendid! You have beaten three TRAINERS in succession!
+goto FallarborTown_BattleTentLobby_EventScript_GivePrize
+end
+mapsec
+3 0 1 1	FALLARBOR TOWN
+music
+MUS_B_TOWER_RS

@@ -1,0 +1,52 @@
+tileset building__battle_frontier
+9 10
+4 5
+957,958,959,958,909,958,959,958,959
+966,966,967,966,917,966,967,966,967
+983,974,975,974,2,974,975,974,975
+989,968,969,968,933,968,969,968,986
+1005,969,1007,969,968,969,991,969,992
+989,968,1015,968,969,968,999,968,1000
+997,969,991,969,968,969,1007,969,986
+1005,968,999,968,969,968,1015,968,1000
+977,969,968,969,968,969,968,969,968
+1,977,969,940,941,942,969,968,1
+collision
+1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0
+1,0,0,0,0,0,0,0,1
+warps
+4 9 BattleFrontier_OutsideWest 6
+npcs
+people_woman_3 4 4 N static 0 - 0
+people_cook 6 6 S wander 0 - 0
+people_man_3 0 5 E static 0 - 0
+dialogs
+0	I wonder if they'll be airing interviews with tough TRAINERS today?
+1	If I opened a restaurant here, it'd make money for sure.
+2	Whew…I need to take a breather after some intense battles…But even now, I never take a break from plotting strategy and combos.
+objscripts
+0 BattleFrontier_Lounge4_EventScript_Woman
+1 BattleFrontier_Lounge4_EventScript_Cook
+2 BattleFrontier_Lounge4_EventScript_Man
+scriptdefs
+= BattleFrontier_Lounge4_EventScript_Man
+msgbox	Whew…I need to take a breather after some intense battles…But even now, I never take a break from plotting strategy and combos.
+end
+= BattleFrontier_Lounge4_EventScript_Cook
+msgbox	If I opened a restaurant here, it'd make money for sure.
+end
+= BattleFrontier_Lounge4_EventScript_Woman
+msgbox	I wonder if they'll be airing interviews with tough TRAINERS today?
+end
+mapsec
+22 12 1 1	BATTLE FRONTIER
+music
+MUS_B_TOWER_RS

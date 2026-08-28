@@ -1,0 +1,349 @@
+tileset general__bike_shop
+41 41
+19 19
+520,520,520,616,543,680,543,543,543,543,695,543,543,543,543,618,520,520,520,520,520,520,520,520,616,543,543,665,666,543,543,543,543,543,543,543,543,543,543,543,618
+520,520,520,624,551,688,689,551,551,551,703,551,727,727,726,626,520,520,520,520,520,520,520,520,624,727,551,673,674,724,725,551,720,721,722,723,726,727,724,725,626
+520,520,520,624,629,696,697,629,559,559,711,559,751,735,734,652,543,543,543,543,543,694,543,543,651,735,629,681,682,732,733,629,728,729,730,731,734,735,732,733,626
+520,520,520,624,637,654,567,567,567,567,719,567,567,653,645,660,551,551,551,551,551,702,551,551,659,637,528,528,528,740,741,637,736,737,738,739,637,712,740,741,626
+520,520,520,624,637,662,551,551,551,551,551,551,551,661,637,639,559,559,559,559,559,710,559,559,559,638,528,528,528,639,559,638,744,745,746,747,637,528,639,559,626
+616,543,543,651,637,652,665,666,618,520,520,520,520,624,637,654,567,567,567,567,567,718,567,567,653,645,528,528,528,528,528,528,639,559,559,559,638,528,528,528,626
+624,551,691,659,637,660,673,674,626,520,520,520,520,624,637,662,551,551,551,551,551,551,551,551,661,637,528,528,528,528,528,528,528,574,528,528,528,528,705,704,626
+624,629,699,559,638,639,681,682,626,520,520,616,543,651,637,652,543,665,666,618,520,520,520,520,624,637,528,705,528,528,528,528,528,528,528,528,705,528,704,704,626
+649,633,623,669,645,670,623,567,650,520,520,624,726,659,637,660,551,673,674,626,520,520,520,520,632,633,567,567,567,567,567,567,567,567,567,567,567,567,567,567,634
+624,551,631,677,637,678,631,551,626,520,520,624,734,559,638,639,559,681,682,626,520,520,520,520,640,551,551,551,551,551,551,551,551,551,551,551,551,551,551,551,642
+624,629,559,559,638,639,559,559,626,520,520,624,637,566,528,528,528,558,528,626,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520
+624,637,558,528,528,528,566,528,626,520,520,632,633,567,567,567,567,567,567,634,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520
+649,633,567,669,645,670,567,567,650,520,520,640,551,551,551,551,551,551,551,642,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520
+624,724,725,677,637,678,551,551,626,520,520,616,543,680,543,543,543,543,543,665,648,543,543,543,543,543,618,520,520,520,520,520,520,520,520,520,520,520,520,520,520
+624,732,733,629,638,639,559,559,626,520,520,624,551,688,689,551,551,726,690,673,656,551,724,725,726,727,626,520,520,520,520,520,520,520,520,520,520,520,520,520,520
+624,740,741,637,528,528,528,528,626,520,520,624,629,696,697,629,559,750,708,681,656,629,732,733,734,735,626,520,520,520,520,520,520,520,520,520,520,520,520,520,520
+624,629,559,638,528,528,528,528,652,543,695,651,637,528,528,528,528,528,528,528,664,637,740,741,637,528,626,520,520,520,520,520,520,520,520,520,520,520,520,520,520
+624,637,705,528,528,528,528,528,660,551,703,659,637,528,528,528,528,528,528,528,672,637,639,559,638,528,626,520,520,520,520,520,520,520,520,520,520,520,520,520,520
+624,707,528,528,675,676,528,528,639,559,711,559,638,528,528,528,528,528,528,528,639,638,528,528,528,558,626,520,520,520,520,520,520,520,520,520,520,520,520,520,520
+624,706,600,528,683,684,528,528,654,567,719,653,645,528,670,567,567,567,567,658,567,623,567,567,623,567,650,520,520,520,520,520,520,520,520,520,520,520,520,520,520
+624,706,705,600,528,712,528,528,662,551,551,661,637,528,678,551,551,551,551,656,551,631,551,551,726,727,626,520,520,520,520,520,520,520,520,520,520,520,520,520,520
+649,633,623,567,623,567,623,567,650,520,520,624,637,528,639,559,559,559,559,656,629,559,559,559,750,735,626,520,520,671,543,543,543,543,680,543,679,520,520,520,520
+624,551,631,551,631,691,631,692,626,520,520,624,637,528,528,528,566,528,528,656,637,528,528,528,528,528,652,543,694,608,551,692,692,551,688,689,609,543,543,543,618
+624,629,559,559,559,699,559,700,626,520,520,624,637,528,528,528,528,528,705,656,637,528,528,528,528,528,660,551,702,659,629,700,701,559,696,697,660,551,551,551,626
+624,637,705,528,705,704,705,704,652,543,694,651,663,567,669,645,670,567,567,657,647,669,645,528,528,528,639,559,710,559,638,528,528,528,528,528,639,559,559,559,626
+624,707,528,528,528,705,704,704,660,551,702,659,678,551,677,637,678,691,692,656,551,677,637,528,528,528,654,567,718,653,645,528,528,528,528,528,654,567,653,645,626
+624,707,704,528,566,528,528,528,639,559,710,559,559,559,559,638,639,699,700,664,629,559,638,528,528,528,662,551,551,661,637,528,528,528,528,528,662,551,661,637,626
+624,706,704,528,528,528,528,528,654,567,718,653,645,704,528,528,528,528,528,672,637,528,528,528,528,528,626,520,520,632,633,567,567,567,567,567,634,520,624,637,626
+624,706,704,528,528,528,704,704,662,551,551,661,637,704,705,528,528,528,528,639,638,528,528,528,528,528,626,520,520,640,551,551,551,551,551,551,642,520,624,637,626
+632,633,653,645,528,654,567,567,634,520,520,632,633,567,567,567,567,567,567,567,567,567,567,567,567,567,634,520,520,520,520,520,520,520,520,520,520,520,624,637,626
+640,551,661,637,528,662,551,551,642,520,520,640,551,551,551,551,551,551,551,551,551,551,551,551,551,551,642,520,520,520,520,520,520,520,520,520,520,520,624,637,626
+520,520,624,637,528,626,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,520,624,637,626
+520,520,624,637,528,626,520,520,520,520,520,520,520,616,665,666,648,543,543,543,543,618,520,520,520,520,616,665,666,543,543,604,622,605,665,666,679,520,624,637,626
+520,520,624,637,528,626,520,520,520,520,520,520,520,624,673,674,656,551,691,690,691,626,520,520,520,520,624,673,674,690,692,659,630,660,673,674,609,694,651,637,626
+520,520,624,637,528,652,543,543,543,543,543,543,543,651,693,682,656,629,699,698,699,652,543,695,543,543,651,693,682,698,700,559,559,559,681,682,660,702,659,637,626
+520,520,624,637,528,660,551,691,691,690,691,551,551,659,637,528,664,637,528,528,528,660,551,703,551,551,659,637,528,528,528,528,528,528,528,528,639,710,559,638,626
+520,520,624,637,528,639,559,699,699,698,699,559,559,559,638,528,672,637,558,528,528,639,559,711,559,559,559,638,528,528,528,670,623,567,567,567,654,718,567,567,634
+520,520,632,633,567,567,567,567,567,567,567,567,567,653,645,528,639,638,528,528,528,654,567,719,567,567,653,645,528,528,528,678,631,692,692,551,662,551,551,551,642
+520,520,640,551,551,551,551,551,551,551,551,551,551,661,637,528,528,528,528,528,528,662,551,551,551,551,661,637,528,528,566,639,559,700,701,559,626,520,520,520,520
+520,520,520,520,520,520,520,520,520,520,520,520,520,632,633,567,567,567,567,567,567,634,520,520,520,520,632,633,567,567,567,567,567,567,567,567,634,520,520,520,520
+520,520,520,520,520,520,520,520,520,520,520,520,520,640,551,551,551,551,551,551,551,642,520,520,520,520,640,551,551,551,551,551,551,551,551,551,642,520,520,520,520
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,0,0,0,0,0,0,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,0,1,1,1,1,0,0,1,1,1
+1,1,1,1,0,0,0,0,0,0,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,0,1,1,1,1,0,0,1,1,1
+1,1,1,1,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,1
+1,1,1,1,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+1,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+1,0,0,0,0,0,0,0,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,0,0,1,0,0,0,0,0,0,0,0,1,0,1,1,1
+1,0,0,0,0,0,0,0,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+1,1,1,1,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,1,0,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,1,0,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,0,1,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,0,1,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,0,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1
+1,0,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1
+1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1
+1,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,1,1,1,0,1
+1,1,1,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,1,1,1,0,1
+1,1,1,0,0,0,1,1,1,1,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1
+1,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1
+1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1
+1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1
+1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1
+1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,1
+1,1,1,0,0,1,1,1,1,1,1,1,1,1,0,0,1,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,0,1
+1,1,1,0,0,1,1,1,1,1,1,1,1,1,0,0,1,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,1
+1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1
+1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+32 33 NewMauville_Entrance 1
+npcs
+misc_item_ball 32 25 S static FLAG_ITEM_NEW_MAUVILLE_ULTRA_BALL - 0
+misc_item_ball 16 22 S static FLAG_ITEM_NEW_MAUVILLE_ESCAPE_ROPE - 0
+misc_item_ball 39 4 S static FLAG_ITEM_NEW_MAUVILLE_THUNDER_STONE - 0
+misc_item_ball 17 10 S static FLAG_ITEM_NEW_MAUVILLE_FULL_HEAL - 0
+misc_item_ball 2 11 S static FLAG_ITEM_NEW_MAUVILLE_PARALYZE_HEAL - 0
+misc_item_ball 25 18 S static FLAG_HIDE_NEW_MAUVILLE_VOLTORB_1 - 0
+misc_item_ball 6 11 S static FLAG_HIDE_NEW_MAUVILLE_VOLTORB_2 - 0
+misc_item_ball 13 10 S static FLAG_HIDE_NEW_MAUVILLE_VOLTORB_3 - 0
+objscripts
+0 NewMauville_Inside_EventScript_ItemUltraBall
+1 NewMauville_Inside_EventScript_ItemEscapeRope
+2 NewMauville_Inside_EventScript_ItemThunderStone
+3 NewMauville_Inside_EventScript_ItemFullHeal
+4 NewMauville_Inside_EventScript_ItemParalyzeHeal
+5 NewMauville_Inside_EventScript_Voltorb1
+6 NewMauville_Inside_EventScript_Voltorb2
+7 NewMauville_Inside_EventScript_Voltorb3
+triggers
+30 38 VAR_TEMP_1 0 NewMauville_Inside_EventScript_BlueButton
+18 36 VAR_TEMP_2 0 NewMauville_Inside_EventScript_GreenButton
+4 26 VAR_TEMP_1 0 NewMauville_Inside_EventScript_BlueButton
+16 22 VAR_TEMP_1 0 NewMauville_Inside_EventScript_BlueButton
+25 18 VAR_TEMP_2 0 NewMauville_Inside_EventScript_GreenButton
+2 11 VAR_TEMP_2 0 NewMauville_Inside_EventScript_GreenButton
+6 11 VAR_TEMP_1 0 NewMauville_Inside_EventScript_BlueButton
+13 10 VAR_TEMP_1 0 NewMauville_Inside_EventScript_BlueButton
+17 10 VAR_TEMP_2 0 NewMauville_Inside_EventScript_GreenButton
+33 6 VAR_NEW_MAUVILLE_STATE 1 NewMauville_Inside_EventScript_RedButton
+scriptdefs
+= NewMauville_Inside_EventScript_RedButton
+lockall
+msgbox	PLAYER stepped on the switch.Click…… … … … … … … … … … … … … … … …The generator appears to have stopped…
+call NewMauville_Inside_EventScript_SetGeneratorOffMetatiles
+setvar VAR_NEW_MAUVILLE_STATE 2
+releaseall
+end
+= NewMauville_Inside_EventScript_SetGeneratorOffMetatiles
+setmetatile 33 6 METATILE_BikeShop_Button_Pressed FALSE
+setmetatile 32 2 METATILE_BikeShop_Generator_Off_Tile0 TRUE
+setmetatile 33 2 METATILE_BikeShop_Generator_Off_Tile1 TRUE
+setmetatile 34 2 METATILE_BikeShop_Generator_Off_Tile2 TRUE
+setmetatile 35 2 METATILE_BikeShop_Generator_Off_Tile3 TRUE
+setmetatile 32 3 METATILE_BikeShop_Generator_Off_Tile4 TRUE
+setmetatile 33 3 METATILE_BikeShop_Generator_Off_Tile5 TRUE
+setmetatile 34 3 METATILE_BikeShop_Generator_Off_Tile6 TRUE
+setmetatile 35 3 METATILE_BikeShop_Generator_Off_Tile7 TRUE
+special DrawWholeMapView
+return
+= NewMauville_Inside_EventScript_GreenButton
+lockall
+setvar VAR_TEMP_1 0
+setvar VAR_TEMP_2 1
+playse SE_PIN
+call NewMauville_Inside_EventScript_SetBarrierStateGreenButton
+special DrawWholeMapView
+releaseall
+end
+= NewMauville_Inside_EventScript_SetBarrierStateGreenButton
+setmetatile 23 34 METATILE_BikeShop_Barrier_Blue_Top TRUE
+setmetatile 23 35 METATILE_BikeShop_Barrier_Blue_TopMid TRUE
+setmetatile 23 36 METATILE_BikeShop_Barrier_Blue_BottomMid TRUE
+setmetatile 23 37 METATILE_BikeShop_Barrier_Blue_Bottom TRUE
+setmetatile 10 16 METATILE_BikeShop_Barrier_Blue_Top TRUE
+setmetatile 10 17 METATILE_BikeShop_Barrier_Blue_TopMid TRUE
+setmetatile 10 18 METATILE_BikeShop_Barrier_Blue_BottomMid TRUE
+setmetatile 10 19 METATILE_BikeShop_Barrier_Blue_Bottom TRUE
+setmetatile 10 0 METATILE_BikeShop_Barrier_Blue_Top TRUE
+setmetatile 10 1 METATILE_BikeShop_Barrier_Blue_TopMid TRUE
+setmetatile 10 2 METATILE_BikeShop_Barrier_Blue_BottomMid TRUE
+setmetatile 10 3 METATILE_BikeShop_Barrier_Blue_Bottom TRUE
+setmetatile 37 33 METATILE_BikeShop_Barrier_Hidden_Top TRUE
+setmetatile 37 34 METATILE_BikeShop_Barrier_Hidden_Bottom TRUE
+setmetatile 37 35 METATILE_BikeShop_Floor_Shadow_Top FALSE
+setmetatile 37 36 METATILE_BikeShop_Wall_Edge_Top FALSE
+setmetatile 28 22 METATILE_BikeShop_Barrier_Hidden_Top TRUE
+setmetatile 28 23 METATILE_BikeShop_Barrier_Hidden_Bottom TRUE
+setmetatile 28 24 METATILE_BikeShop_Floor_Shadow_Top FALSE
+setmetatile 28 25 METATILE_BikeShop_Wall_Edge_Top FALSE
+setmetatile 10 24 METATILE_BikeShop_Barrier_Hidden_Top TRUE
+setmetatile 10 25 METATILE_BikeShop_Barrier_Hidden_Bottom TRUE
+setmetatile 10 26 METATILE_BikeShop_Floor_Shadow_Top FALSE
+setmetatile 10 27 METATILE_BikeShop_Wall_Edge_Top FALSE
+setmetatile 21 2 METATILE_BikeShop_Barrier_Hidden_Top TRUE
+setmetatile 21 3 METATILE_BikeShop_Barrier_Hidden_Bottom TRUE
+setmetatile 21 4 METATILE_BikeShop_Floor_Shadow_Top FALSE
+setmetatile 21 5 METATILE_BikeShop_Wall_Edge_Top FALSE
+setmetatile 2 11 METATILE_BikeShop_Button_Pressed FALSE
+setmetatile 17 10 METATILE_BikeShop_Button_Pressed FALSE
+setmetatile 25 18 METATILE_BikeShop_Button_Pressed FALSE
+setmetatile 18 36 METATILE_BikeShop_Button_Pressed FALSE
+setmetatile 6 11 METATILE_BikeShop_Button_Blue FALSE
+setmetatile 13 10 METATILE_BikeShop_Button_Blue FALSE
+setmetatile 16 22 METATILE_BikeShop_Button_Blue FALSE
+setmetatile 4 26 METATILE_BikeShop_Button_Blue FALSE
+setmetatile 30 38 METATILE_BikeShop_Button_Blue FALSE
+return
+= NewMauville_Inside_EventScript_BlueButton
+lockall
+setvar VAR_TEMP_1 1
+setvar VAR_TEMP_2 0
+playse SE_PIN
+call NewMauville_Inside_EventScript_SetBarrierStateBlueButton
+special DrawWholeMapView
+releaseall
+end
+= NewMauville_Inside_EventScript_SetBarrierStateBlueButton
+setmetatile 23 34 METATILE_BikeShop_Barrier_Hidden_Top TRUE
+setmetatile 23 35 METATILE_BikeShop_Barrier_Hidden_Bottom TRUE
+setmetatile 23 36 METATILE_BikeShop_Floor_Shadow_Top FALSE
+setmetatile 23 37 METATILE_BikeShop_Wall_Edge_Top FALSE
+setmetatile 10 16 METATILE_BikeShop_Barrier_Hidden_Top TRUE
+setmetatile 10 17 METATILE_BikeShop_Barrier_Hidden_Bottom TRUE
+setmetatile 10 18 METATILE_BikeShop_Floor_Shadow_Top FALSE
+setmetatile 10 19 METATILE_BikeShop_Wall_Edge_Top FALSE
+setmetatile 10 0 METATILE_BikeShop_Barrier_Hidden_Top TRUE
+setmetatile 10 1 METATILE_BikeShop_Barrier_Hidden_Bottom TRUE
+setmetatile 10 2 METATILE_BikeShop_Floor_Shadow_Top FALSE
+setmetatile 10 3 METATILE_BikeShop_Wall_Edge_Top FALSE
+setmetatile 37 33 METATILE_BikeShop_Barrier_Green_Top TRUE
+setmetatile 37 34 METATILE_BikeShop_Barrier_Green_TopMid TRUE
+setmetatile 37 35 METATILE_BikeShop_Barrier_Green_BottomMid TRUE
+setmetatile 37 36 METATILE_BikeShop_Barrier_Green_Bottom TRUE
+setmetatile 28 22 METATILE_BikeShop_Barrier_Green_Top TRUE
+setmetatile 28 23 METATILE_BikeShop_Barrier_Green_TopMid TRUE
+setmetatile 28 24 METATILE_BikeShop_Barrier_Green_BottomMid TRUE
+setmetatile 28 25 METATILE_BikeShop_Barrier_Green_Bottom TRUE
+setmetatile 10 24 METATILE_BikeShop_Barrier_Green_Top TRUE
+setmetatile 10 25 METATILE_BikeShop_Barrier_Green_TopMid TRUE
+setmetatile 10 26 METATILE_BikeShop_Barrier_Green_BottomMid TRUE
+setmetatile 10 27 METATILE_BikeShop_Barrier_Green_Bottom TRUE
+setmetatile 21 2 METATILE_BikeShop_Barrier_Green_Top TRUE
+setmetatile 21 3 METATILE_BikeShop_Barrier_Green_TopMid TRUE
+setmetatile 21 4 METATILE_BikeShop_Barrier_Green_BottomMid TRUE
+setmetatile 21 5 METATILE_BikeShop_Barrier_Green_Bottom TRUE
+setmetatile 6 11 METATILE_BikeShop_Button_Pressed FALSE
+setmetatile 13 10 METATILE_BikeShop_Button_Pressed FALSE
+setmetatile 16 22 METATILE_BikeShop_Button_Pressed FALSE
+setmetatile 4 26 METATILE_BikeShop_Button_Pressed FALSE
+setmetatile 30 38 METATILE_BikeShop_Button_Pressed FALSE
+setmetatile 2 11 METATILE_BikeShop_Button_Green FALSE
+setmetatile 17 10 METATILE_BikeShop_Button_Green FALSE
+setmetatile 25 18 METATILE_BikeShop_Button_Green FALSE
+setmetatile 18 36 METATILE_BikeShop_Button_Green FALSE
+return
+= NewMauville_Inside_EventScript_Voltorb3
+lock
+faceplayer
+setwildbattle SPECIES_VOLTORB 25
+waitse
+playmoncry SPECIES_VOLTORB CRY_MODE_ENCOUNTER
+delay 40
+waitmoncry
+setflag FLAG_SYS_CTRL_OBJ_DELETE
+dowildbattle
+clearflag FLAG_SYS_CTRL_OBJ_DELETE
+specialvar VAR_RESULT GetBattleOutcome
+goto_if_eq VAR_RESULT B_OUTCOME_WON NewMauville_Inside_EventScript_DefeatedVoltorb3
+goto_if_eq VAR_RESULT B_OUTCOME_RAN NewMauville_Inside_EventScript_DefeatedVoltorb3
+goto_if_eq VAR_RESULT B_OUTCOME_PLAYER_TELEPORTED NewMauville_Inside_EventScript_DefeatedVoltorb3
+setflag FLAG_DEFEATED_VOLTORB_3_NEW_MAUVILLE
+release
+end
+= NewMauville_Inside_EventScript_DefeatedVoltorb3
+setflag FLAG_DEFEATED_VOLTORB_3_NEW_MAUVILLE
+goto Common_EventScript_RemoveStaticPokemon
+end
+= NewMauville_Inside_EventScript_Voltorb2
+lock
+faceplayer
+setwildbattle SPECIES_VOLTORB 25
+waitse
+playmoncry SPECIES_VOLTORB CRY_MODE_ENCOUNTER
+delay 40
+waitmoncry
+setflag FLAG_SYS_CTRL_OBJ_DELETE
+dowildbattle
+clearflag FLAG_SYS_CTRL_OBJ_DELETE
+specialvar VAR_RESULT GetBattleOutcome
+goto_if_eq VAR_RESULT B_OUTCOME_WON NewMauville_Inside_EventScript_DefeatedVoltorb2
+goto_if_eq VAR_RESULT B_OUTCOME_RAN NewMauville_Inside_EventScript_DefeatedVoltorb2
+goto_if_eq VAR_RESULT B_OUTCOME_PLAYER_TELEPORTED NewMauville_Inside_EventScript_DefeatedVoltorb2
+setflag FLAG_DEFEATED_VOLTORB_2_NEW_MAUVILLE
+release
+end
+= NewMauville_Inside_EventScript_DefeatedVoltorb2
+setflag FLAG_DEFEATED_VOLTORB_2_NEW_MAUVILLE
+goto Common_EventScript_RemoveStaticPokemon
+end
+= NewMauville_Inside_EventScript_Voltorb1
+lock
+faceplayer
+setwildbattle SPECIES_VOLTORB 25
+waitse
+playmoncry SPECIES_VOLTORB CRY_MODE_ENCOUNTER
+delay 40
+waitmoncry
+setflag FLAG_SYS_CTRL_OBJ_DELETE
+dowildbattle
+clearflag FLAG_SYS_CTRL_OBJ_DELETE
+specialvar VAR_RESULT GetBattleOutcome
+goto_if_eq VAR_RESULT B_OUTCOME_WON NewMauville_Inside_EventScript_DefeatedVoltorb1
+goto_if_eq VAR_RESULT B_OUTCOME_RAN NewMauville_Inside_EventScript_DefeatedVoltorb1
+goto_if_eq VAR_RESULT B_OUTCOME_PLAYER_TELEPORTED NewMauville_Inside_EventScript_DefeatedVoltorb1
+setflag FLAG_DEFEATED_VOLTORB_1_NEW_MAUVILLE
+release
+end
+= NewMauville_Inside_EventScript_DefeatedVoltorb1
+setflag FLAG_DEFEATED_VOLTORB_1_NEW_MAUVILLE
+goto Common_EventScript_RemoveStaticPokemon
+end
+= NewMauville_Inside_EventScript_ItemParalyzeHeal
+goto_if_set FLAG_ITEM_NEW_MAUVILLE_PARALYZE_HEAL NewMauville_Inside_EventScript_ItemParalyzeHeal_Taken
+finditem ITEM_PARALYZE_HEAL
+setflag FLAG_ITEM_NEW_MAUVILLE_PARALYZE_HEAL
+end
+= NewMauville_Inside_EventScript_ItemParalyzeHeal_Taken
+end
+= NewMauville_Inside_EventScript_ItemFullHeal
+goto_if_set FLAG_ITEM_NEW_MAUVILLE_FULL_HEAL NewMauville_Inside_EventScript_ItemFullHeal_Taken
+finditem ITEM_FULL_HEAL
+setflag FLAG_ITEM_NEW_MAUVILLE_FULL_HEAL
+end
+= NewMauville_Inside_EventScript_ItemFullHeal_Taken
+end
+= NewMauville_Inside_EventScript_ItemThunderStone
+goto_if_set FLAG_ITEM_NEW_MAUVILLE_THUNDER_STONE NewMauville_Inside_EventScript_ItemThunderStone_Taken
+finditem ITEM_THUNDER_STONE
+setflag FLAG_ITEM_NEW_MAUVILLE_THUNDER_STONE
+end
+= NewMauville_Inside_EventScript_ItemThunderStone_Taken
+end
+= NewMauville_Inside_EventScript_ItemEscapeRope
+goto_if_set FLAG_ITEM_NEW_MAUVILLE_ESCAPE_ROPE NewMauville_Inside_EventScript_ItemEscapeRope_Taken
+finditem ITEM_ESCAPE_ROPE
+setflag FLAG_ITEM_NEW_MAUVILLE_ESCAPE_ROPE
+end
+= NewMauville_Inside_EventScript_ItemEscapeRope_Taken
+end
+= NewMauville_Inside_EventScript_ItemUltraBall
+goto_if_set FLAG_ITEM_NEW_MAUVILLE_ULTRA_BALL NewMauville_Inside_EventScript_ItemUltraBall_Taken
+finditem ITEM_ULTRA_BALL
+setflag FLAG_ITEM_NEW_MAUVILLE_ULTRA_BALL
+end
+= NewMauville_Inside_EventScript_ItemUltraBall_Taken
+end
+signs
+32 4	The generator is radiating heat that can be felt even at a distance.It looks like it should be turned off as soon as possible.
+32 3	The generator is radiating heat that can be felt even at a distance.It looks like it should be turned off as soon as possible.
+32 2	The generator is radiating heat that can be felt even at a distance.It looks like it should be turned off as soon as possible.
+33 4	The generator is radiating heat that can be felt even at a distance.It looks like it should be turned off as soon as possible.
+34 4	The generator is radiating heat that can be felt even at a distance.It looks like it should be turned off as soon as possible.
+35 4	The generator is radiating heat that can be felt even at a distance.It looks like it should be turned off as soon as possible.
+35 3	The generator is radiating heat that can be felt even at a distance.It looks like it should be turned off as soon as possible.
+35 2	The generator is radiating heat that can be felt even at a distance.It looks like it should be turned off as soon as possible.
+mapsec
+8 7 1 1	NEW MAUVILLE
+music
+MUS_MT_PYRE
+encounters
+land VOLTORB:24:24,MAGNEMITE:24:24,VOLTORB:25:25,MAGNEMITE:25:25,VOLTORB:23:23,MAGNEMITE:23:23,VOLTORB:26:26,MAGNEMITE:26:26,VOLTORB:22:22,MAGNEMITE:22:22,ELECTRODE:26:26,MAGNETON:26:26

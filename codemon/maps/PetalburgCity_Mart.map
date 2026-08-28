@@ -1,0 +1,71 @@
+tileset building__shop
+11 8
+5 4
+528,546,530,531,531,531,547,548,547,548,533
+536,580,554,539,539,539,552,553,552,553,541
+544,520,562,523,520,520,560,561,545,561,549
+792,569,570,518,513,513,513,513,513,513,557
+800,577,578,518,513,513,555,556,516,513,555
+522,520,520,514,513,513,563,564,518,513,563
+522,513,513,513,513,513,571,572,518,513,571
+532,513,513,534,535,513,527,520,514,513,540
+collision
+1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1
+0,0,1,0,0,0,0,0,0,0,0
+0,0,1,0,0,0,0,0,0,0,1
+1,1,1,0,0,0,1,1,0,0,1
+0,0,0,0,0,0,1,1,0,0,1
+0,0,0,0,0,0,1,1,0,0,1
+0,0,0,0,0,0,0,0,0,0,0
+warps
+3 7 PetalburgCity 5
+4 7 PetalburgCity 5
+npcs
+people_mart_employee 1 3 E static 0 LOCALID_PETALBURG_MART_CLERK 0
+people_man_1 9 4 E static 0 - 0
+people_boy_1 6 3 S static 0 - 0
+people_woman_2 5 5 E static 0 - 0
+dialogs
+1	Do you have any ANTIDOTES with you?If you walk around with a poisoned POKéMON, it will lose HP until it faints. Take some ANTIDOTES with you.
+2	Do you use REPEL? It keeps POKéMON away, so it's useful when you're in a hurry.
+3	Even if a POKéMON is weak now, it will grow stronger.The most important thing is love! Love for your POKéMON!
+objscripts
+0 PetalburgCity_Mart_EventScript_Clerk
+1 PetalburgCity_Mart_EventScript_Man
+2 PetalburgCity_Mart_EventScript_Boy
+3 PetalburgCity_Mart_EventScript_Woman
+shops
+PetalburgCity_Mart_Pokemart_Basic	ITEM_POKE_BALL,ITEM_POTION,ITEM_ANTIDOTE,ITEM_PARALYZE_HEAL,ITEM_AWAKENING,ITEM_ESCAPE_ROPE,ITEM_REPEL,ITEM_X_SPEED,ITEM_X_ATTACK,ITEM_X_DEFEND,ITEM_ORANGE_MAIL
+PetalburgCity_Mart_Pokemart_Expanded	ITEM_POKE_BALL,ITEM_GREAT_BALL,ITEM_POTION,ITEM_SUPER_POTION,ITEM_ANTIDOTE,ITEM_PARALYZE_HEAL,ITEM_AWAKENING,ITEM_ESCAPE_ROPE,ITEM_REPEL,ITEM_X_SPEED,ITEM_X_ATTACK,ITEM_X_DEFEND,ITEM_ORANGE_MAIL
+scriptdefs
+= PetalburgCity_Mart_EventScript_Woman
+msgbox	Even if a POKéMON is weak now, it will grow stronger.The most important thing is love! Love for your POKéMON!
+end
+= PetalburgCity_Mart_EventScript_Boy
+msgbox	Do you use REPEL? It keeps POKéMON away, so it's useful when you're in a hurry.
+end
+= PetalburgCity_Mart_EventScript_Man
+msgbox	Do you have any ANTIDOTES with you?If you walk around with a poisoned POKéMON, it will lose HP until it faints. Take some ANTIDOTES with you.
+end
+= PetalburgCity_Mart_EventScript_Clerk
+lock
+faceplayer
+msgbox	Welcome!How may I serve you?
+waitmessage
+goto_if_set FLAG_PETALBURG_MART_EXPANDED_ITEMS PetalburgCity_Mart_EventScript_ExpandedItems
+pokemart PetalburgCity_Mart_Pokemart_Basic
+msgbox	Please come again!
+release
+end
+= PetalburgCity_Mart_EventScript_ExpandedItems
+pokemart PetalburgCity_Mart_Pokemart_Expanded
+msgbox	Please come again!
+release
+end
+mapsec
+1 9 1 1	PETALBURG CITY
+music
+MUS_POKE_MART
+counters
+562,570,577

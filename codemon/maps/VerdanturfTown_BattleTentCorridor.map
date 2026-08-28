@@ -1,0 +1,51 @@
+tileset building__battle_tent
+5 8
+2 4
+517,610,611,612,517
+525,618,619,620,525
+539,555,554,555,554
+547,570,571,570,571
+548,571,570,571,570
+547,570,571,570,571
+548,571,570,571,570
+547,540,541,549,571
+collision
+1,1,1,1,1
+1,1,0,1,1
+0,0,0,0,0
+0,0,0,0,0
+0,0,0,0,0
+0,0,0,0,0
+0,0,0,0,0
+0,0,0,0,0
+npcs
+people_expert_m 2 6 N static 0 LOCALID_VERDANTURF_TENT_CORRIDOR_ATTENDANT 0
+onload
+VAR_TEMP_0 0 VerdanturfTown_BattleTentCorridor_EventScript_EnterCorridor
+movements
+VerdanturfTown_BattleTentCorridor_Movement_AttendantEnterDoor	up,delay,end
+VerdanturfTown_BattleTentCorridor_Movement_PlayerEnterDoor	up
+VerdanturfTown_BattleTentCorridor_Movement_WalkToDoor	up,up,up,up,end
+scriptdefs
+= VerdanturfTown_BattleTentCorridor_EventScript_EnterCorridor
+lockall
+setvar VAR_TEMP_0 1
+applymovement LOCALID_VERDANTURF_TENT_CORRIDOR_ATTENDANT VerdanturfTown_BattleTentCorridor_Movement_WalkToDoor
+applymovement LOCALID_PLAYER VerdanturfTown_BattleTentCorridor_Movement_WalkToDoor
+waitmovement 0
+opendoor 2 1
+waitdooranim
+applymovement LOCALID_VERDANTURF_TENT_CORRIDOR_ATTENDANT VerdanturfTown_BattleTentCorridor_Movement_AttendantEnterDoor
+applymovement LOCALID_PLAYER VerdanturfTown_BattleTentCorridor_Movement_PlayerEnterDoor
+waitmovement 0
+closedoor 2 1
+waitdooranim
+setvar VAR_0x8006 0
+warp VerdanturfTown_BattleTentBattleRoom 6 5
+waitstate
+releaseall
+end
+mapsec
+4 6 1 1	VERDANTURF TOWN
+music
+MUS_B_TOWER_RS

@@ -1,0 +1,118 @@
+tileset general__cave
+20 20
+10 10
+753,753,753,753,753,753,747,761,761,782,766,767,761,761,748,753,753,753,753,753
+753,753,753,753,747,761,787,747,761,790,774,775,761,748,786,761,748,753,753,753
+753,753,753,753,779,747,761,781,292,292,292,292,292,780,761,748,752,753,753,753
+753,753,747,761,787,773,292,292,292,292,292,292,292,292,292,772,786,748,753,753
+753,753,779,747,761,781,292,292,292,292,292,292,292,292,292,780,748,752,753,753
+753,747,787,773,292,292,292,292,292,292,292,292,292,292,292,292,772,786,761,748
+753,779,747,781,292,292,292,292,292,292,292,292,292,292,292,292,780,761,748,778
+753,779,773,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,772,778
+753,779,773,292,292,292,292,292,398,422,422,422,397,292,292,292,292,292,772,778
+753,779,773,292,292,292,398,422,423,414,414,414,421,422,397,292,292,292,772,778
+753,779,773,292,292,398,423,414,414,414,414,414,414,414,421,397,292,292,772,778
+753,779,773,292,398,423,414,420,446,446,446,446,446,419,414,421,397,292,772,778
+753,779,773,398,423,414,420,447,368,368,368,368,368,445,419,414,413,292,772,778
+753,779,773,415,414,420,447,368,368,368,368,368,368,368,445,419,421,397,772,778
+753,779,773,423,414,439,368,368,368,368,368,368,368,368,368,437,414,413,772,778
+753,779,773,414,414,439,368,368,368,368,368,368,368,368,368,437,414,413,772,778
+753,756,912,679,414,439,368,368,342,342,342,342,368,368,368,437,687,663,755,755
+753,753,753,912,679,439,368,342,660,660,660,660,342,368,920,912,912,753,753,753
+753,753,753,753,912,912,921,342,660,660,660,660,342,920,912,753,753,753,753,753
+753,753,753,753,753,753,912,912,912,912,912,912,912,912,753,753,753,753,753,753
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1
+1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1
+1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1
+1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
+1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
+1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
+1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1
+1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+10 18 Underwater_Route128 0
+10 1 SeafloorCavern_Room1 0
+npcs
+people_team_aqua_aqua_member_m 10 2 N static FLAG_HIDE_SEAFLOOR_CAVERN_ENTRANCE_AQUA_GRUNT LOCALID_SEAFLOOR_CAVERN_ENTRANCE_GRUNT 0
+dialogs
+0	Hey! I remember your face!If you're here, it must mean that you're about to mess with us again!A punk like you, do you really think you can take on TEAM AQUA?I'd say you're too early by about a trillion years!You're a perfect fit for the likes of TEAM MAGMA!Speaking of TEAM MAGMA, I hear they were spotted near MOSSDEEP.That bunch of goons, they sure don't look good near the sea!
+objscripts
+0 SeafloorCavern_Entrance_EventScript_Grunt
+movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
+scriptdefs
+= SeafloorCavern_Entrance_EventScript_Grunt
+lockall
+goto_if_eq VAR_HAS_TALKED_TO_SEAFLOOR_CAVERN_ENTRANCE_GRUNT 1 SeafloorCavern_Entrance_EventScript_GruntSpeechShort
+waitse
+playse SE_PIN
+applymovement LOCALID_SEAFLOOR_CAVERN_ENTRANCE_GRUNT Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_SEAFLOOR_CAVERN_ENTRANCE_GRUNT Common_Movement_Delay48
+waitmovement 0
+delay 20
+call_if_eq VAR_FACING DIR_WEST SeafloorCavern_Entrance_EventScript_GruntFacePlayerWest
+call_if_eq VAR_FACING DIR_EAST SeafloorCavern_Entrance_EventScript_GruntFacePlayerEast
+call_if_eq VAR_FACING DIR_NORTH SeafloorCavern_Entrance_EventScript_GruntFacePlayerNorth
+delay 30
+setvar VAR_HAS_TALKED_TO_SEAFLOOR_CAVERN_ENTRANCE_GRUNT 1
+copyobjectxytoperm LOCALID_SEAFLOOR_CAVERN_ENTRANCE_GRUNT
+msgbox	Hey! I remember your face!If you're here, it must mean that you're about to mess with us again!A punk like you, do you really think you can take on TEAM AQUA?I'd say you're too early by about a trillion years!You're a perfect fit for the likes of TEAM MAGMA!Speaking of TEAM MAGMA, I hear they were spotted near MOSSDEEP.That bunch of goons, they sure don't look good near the sea!
+closemessage
+applymovement LOCALID_SEAFLOOR_CAVERN_ENTRANCE_GRUNT Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+releaseall
+end
+= SeafloorCavern_Entrance_EventScript_GruntFacePlayerNorth
+applymovement LOCALID_SEAFLOOR_CAVERN_ENTRANCE_GRUNT Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+return
+= SeafloorCavern_Entrance_EventScript_GruntFacePlayerEast
+applymovement LOCALID_SEAFLOOR_CAVERN_ENTRANCE_GRUNT Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+return
+= SeafloorCavern_Entrance_EventScript_GruntFacePlayerWest
+applymovement LOCALID_SEAFLOOR_CAVERN_ENTRANCE_GRUNT Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+return
+= SeafloorCavern_Entrance_EventScript_GruntSpeechShort
+call_if_eq VAR_FACING DIR_WEST SeafloorCavern_Entrance_EventScript_GruntFacePlayerWest
+call_if_eq VAR_FACING DIR_EAST SeafloorCavern_Entrance_EventScript_GruntFacePlayerEast
+call_if_eq VAR_FACING DIR_NORTH SeafloorCavern_Entrance_EventScript_GruntFacePlayerNorth
+msgbox	A punk like you, do you really think you can take on TEAM AQUA?I'd say you're too early by about a trillion years!You're a perfect fit for the likes of TEAM MAGMA!Speaking of TEAM MAGMA, I hear they were spotted near MOSSDEEP.That bunch of goons, they sure don't look good near the sea!
+closemessage
+applymovement LOCALID_SEAFLOOR_CAVERN_ENTRANCE_GRUNT Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+releaseall
+end
+water
+342,368,419,420,437,439,445,446,447,660
+divewarp
+Underwater_SeafloorCavern 6 5
+dive
+342,660
+mapsec
+24 9 1 1	SEAFLOOR CAVERN
+music
+MUS_MT_CHIMNEY
+encounters
+water TENTACOOL:5:35,ZUBAT:5:35,ZUBAT:30:35,GOLBAT:30:35,GOLBAT:30:35
+fishing MAGIKARP:5:10,TENTACOOL:5:10,MAGIKARP:10:30,TENTACOOL:10:30,WAILMER:10:30,WAILMER:25:30,WAILMER:30:35,WAILMER:20:25,WAILMER:35:40,WAILMER:40:45

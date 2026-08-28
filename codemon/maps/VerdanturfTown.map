@@ -1,0 +1,116 @@
+tileset general__mauville
+20 20
+16 4
+124,124,125,113,113,116,169,169,159,169,124,608,575,575,574,571,572,573,581,114
+113,113,113,113,113,117,116,145,167,145,145,48,49,50,51,80,81,82,83,122
+124,124,124,124,124,125,114,516,516,516,944,56,57,58,59,88,89,90,91,705
+206,946,947,948,949,950,557,3,516,516,846,96,65,66,67,96,97,98,99,199
+199,954,955,956,957,958,516,516,516,516,803,516,1,1,517,516,1,1,516,713
+199,962,963,964,965,966,516,516,516,516,516,516,1,1,516,516,1,1,516,516
+199,970,971,972,973,974,516,529,516,516,516,516,1,1,3,516,1,1,516,516
+199,978,979,980,981,982,1,516,516,516,516,1,1,1,1,1,1,1,516,516
+713,3,516,1,1,1,1,1,1,1,1,1,1,1,1,1,1,517,516,516
+516,516,516,516,1,1,1,1,1,1,1,1,1,1,1,1,516,517,516,516
+532,516,516,516,517,516,517,516,516,516,529,516,516,1,1,516,516,516,516,516
+904,905,905,906,517,516,517,516,904,905,905,905,906,1,1,517,516,516,516,517
+912,913,913,914,845,845,845,845,912,913,913,913,914,1,1,517,904,905,905,906
+920,921,907,908,532,516,531,530,920,907,921,907,908,1,1,517,912,913,913,914
+928,929,915,916,516,533,532,3,928,915,929,915,916,1,1,517,920,921,907,908
+692,517,516,516,517,517,516,517,517,516,1,1,1,1,516,516,928,929,915,916
+700,516,517,517,516,516,516,517,516,516,516,517,516,517,516,517,516,516,516,516
+705,534,516,517,516,516,533,705,705,705,705,516,532,517,517,516,516,516,516,705
+199,705,705,534,516,516,705,199,199,199,199,705,705,516,516,691,691,691,705,199
+199,199,199,705,705,705,199,199,199,199,199,199,199,705,705,705,705,705,199,199
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,0
+1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,0,0,0,0,1,0,0,0,0,0,0,0,0,1
+1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0
+1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0
+1,1,1,1,0,0,0,0,1,1,1,1,1,0,0,0,1,1,1,1
+1,1,1,1,0,0,0,1,1,1,1,1,1,0,0,0,1,1,1,1
+1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
+1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,0,0,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,0,1
+1,1,1,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,1,1
+connections
+up -80 Route116
+right 0 Route117
+warps
+3 7 VerdanturfTown_BattleTentLobby 0
+12 3 VerdanturfTown_Mart 0
+16 3 VerdanturfTown_PokemonCenter_1F 0
+10 14 VerdanturfTown_WandasHouse 0
+8 1 RusturfTunnel 1
+1 14 VerdanturfTown_FriendshipRatersHouse 0
+17 15 VerdanturfTown_House 0
+npcs
+people_man_2 4 17 S wander 0 - 0
+people_twin 9 2 W static 0 LOCALID_VERDANTURF_TWIN 0
+people_boy_1 7 11 S wander 0 - 0
+people_camper 7 6 S wander 0 - 0
+dialogs
+0	The way the winds blow, volcanic ash is never blown in this direction.The air is clean and delicious here. Living here should do wonders for even frail and sickly people.
+1	My papa told me.He says this tunnel is full of timid POKéMON.They get all scared of loud noise and make a big uproar.So they had to stop the big tunnel project.But there's one man. He's trying to dig the tunnel by himself!
+2	Did you see the cave next to the POKéMON MART?There's a guy in there who's trying to bust up boulders so he can bust out through to the other side.It'd be great if we could go through… It'll make it easy to visit RUSTBORO.
+3	My POKéMON and I, we've been riding a hot winning streak.So I decided to make my BATTLE TENT debut in this town.
+objscripts
+0 VerdanturfTown_EventScript_Man
+1 VerdanturfTown_EventScript_Twin
+2 VerdanturfTown_EventScript_Boy
+3 VerdanturfTown_EventScript_Camper
+movements
+Common_Movement_FaceOriginalDirection	face_down,end
+scriptdefs
+= VerdanturfTown_EventScript_Camper
+msgbox	My POKéMON and I, we've been riding a hot winning streak.So I decided to make my BATTLE TENT debut in this town.
+end
+= VerdanturfTown_EventScript_Boy
+lock
+faceplayer
+goto_if_set FLAG_RUSTURF_TUNNEL_OPENED VerdanturfTown_EventScript_BoyTunnelOpen
+msgbox	Did you see the cave next to the POKéMON MART?There's a guy in there who's trying to bust up boulders so he can bust out through to the other side.It'd be great if we could go through… It'll make it easy to visit RUSTBORO.
+release
+end
+= VerdanturfTown_EventScript_BoyTunnelOpen
+msgbox	That cave next to the POKéMON MART is now a tunnel to the other side.It's great--it's easy to go shop for new DEVON products in RUSTBORO now.
+release
+end
+= VerdanturfTown_EventScript_Twin
+lock
+faceplayer
+goto_if_set FLAG_RUSTURF_TUNNEL_OPENED VerdanturfTown_EventScript_TwinTunnelOpen
+msgbox	My papa told me.He says this tunnel is full of timid POKéMON.They get all scared of loud noise and make a big uproar.So they had to stop the big tunnel project.But there's one man. He's trying to dig the tunnel by himself!
+applymovement LOCALID_VERDANTURF_TWIN Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= VerdanturfTown_EventScript_TwinTunnelOpen
+msgbox	There was a man who dug a tunnel for a lady he loved.I don't really get it, but hey!
+applymovement LOCALID_VERDANTURF_TWIN Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= VerdanturfTown_EventScript_Man
+msgbox	The way the winds blow, volcanic ash is never blown in this direction.The air is clean and delicious here. Living here should do wonders for even frail and sickly people.
+end
+signs
+14 6	VERDANTURF TOWN“The windswept highlands with the sweet fragrance of grass.”
+7 14	WANDA'S HOUSE
+1 8	BATTLE TENT VERDANTURF SITE “Feast Your Eyes on Battles!”
+7 3	RUSTURF TUNNEL “Linking RUSTBORO and VERDANTURF“The tunnel project has been canceled.”
+visit
+FLAG_VISITED_VERDANTURF_TOWN
+mapsec
+4 6 1 1	VERDANTURF TOWN
+music
+MUS_VERDANTURF

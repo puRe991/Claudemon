@@ -1,0 +1,119 @@
+tileset building__shop
+18 8
+9 4
+743,770,637,771,743,743,739,736,737,738,739,743,776,777,778,776,777,778
+751,772,645,773,751,763,747,744,745,746,747,767,779,593,780,779,592,780
+755,768,703,769,756,676,766,758,758,758,758,677,755,756,756,756,756,756
+762,754,754,754,754,684,674,674,674,674,674,685,762,754,754,754,754,754
+762,754,682,683,757,764,756,756,756,756,756,756,765,754,774,759,759,759
+762,754,563,564,762,754,682,683,757,754,682,683,757,754,670,675,675,675
+762,754,690,691,762,754,690,691,762,754,690,691,762,754,670,755,756,756
+762,754,764,756,765,754,764,756,765,754,764,756,765,754,721,762,754,754
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,1
+0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0
+0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0
+0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,1,1
+0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+warps
+13 1 LilycoveCity_DepartmentStore_4F 1
+2 1 LilycoveCity_DepartmentStoreElevator 0
+16 1 LilycoveCity_DepartmentStoreRooftop 0
+npcs
+people_little_girl 1 6 S wander 0 - 0
+people_pokefan_f 7 7 S static 0 - 0
+people_woman_3 7 2 S static 0 - 0
+people_woman_3 9 2 S static 0 - 0
+people_woman_3 15 6 W static 0 - 0
+people_woman_3 17 6 N static 0 - 0
+people_woman_2 9 5 E static 0 LOCALID_DEPARTMENT_STORE_STAIRS_WOMAN 0
+dialogs
+0	I'm not big enough to raise POKéMON, so I'm getting a cute DOLL instead.
+1	This place is full of cute DOLLS.I should buy some for me, instead of just for my children.
+objscripts
+0 LilycoveCity_DepartmentStore_5F_EventScript_LittleGirl
+1 LilycoveCity_DepartmentStore_5F_EventScript_PokefanF
+2 LilycoveCity_DepartmentStore_5F_EventScript_ClerkFarLeft
+3 LilycoveCity_DepartmentStore_5F_EventScript_ClerkMidLeft
+4 LilycoveCity_DepartmentStore_5F_EventScript_ClerkMidRight
+5 LilycoveCity_DepartmentStore_5F_EventScript_ClerkFarRight
+6 LilycoveCity_DepartmentStore_5F_EventScript_Woman
+movements
+Common_Movement_FacePlayer	face_down,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
+LilycoveCity_DepartmentStore_5F_Pokemart_Cushions	delay
+LilycoveCity_DepartmentStore_5F_Pokemart_Dolls	delay
+LilycoveCity_DepartmentStore_5F_Pokemart_Mats	delay
+LilycoveCity_DepartmentStore_5F_Pokemart_Posters	delay
+scriptdefs
+= LilycoveCity_DepartmentStore_5F_EventScript_Woman
+lockall
+applymovement LOCALID_DEPARTMENT_STORE_STAIRS_WOMAN Common_Movement_FacePlayer
+waitmovement 0
+goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 0 LilycoveCity_DepartmentStore_5F_EventScript_WomanNormal
+goto_if_ge VAR_SOOTOPOLIS_CITY_STATE 4 LilycoveCity_DepartmentStore_5F_EventScript_WomanNormal
+goto LilycoveCity_DepartmentStore_5F_EventScript_WomanLegendaryWeather
+end
+= LilycoveCity_DepartmentStore_5F_EventScript_WomanLegendaryWeather
+msgbox	I think they closed the rooftop because the weather is wild today.
+closemessage
+applymovement LOCALID_DEPARTMENT_STORE_STAIRS_WOMAN Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+releaseall
+end
+= LilycoveCity_DepartmentStore_5F_EventScript_WomanNormal
+msgbox	They sell many cute MATS here.I wonder which one I should get? Maybe I'll buy them all…
+closemessage
+releaseall
+end
+= LilycoveCity_DepartmentStore_5F_EventScript_ClerkFarRight
+lock
+faceplayer
+msgbox	Welcome!How may I serve you?
+waitmessage
+pokemartdecoration2 LilycoveCity_DepartmentStore_5F_Pokemart_Mats
+msgbox	Please come again!
+release
+end
+= LilycoveCity_DepartmentStore_5F_EventScript_ClerkMidRight
+lock
+faceplayer
+msgbox	Welcome!How may I serve you?
+waitmessage
+pokemartdecoration2 LilycoveCity_DepartmentStore_5F_Pokemart_Posters
+msgbox	Please come again!
+release
+end
+= LilycoveCity_DepartmentStore_5F_EventScript_ClerkMidLeft
+lock
+faceplayer
+msgbox	Welcome!How may I serve you?
+waitmessage
+pokemartdecoration2 LilycoveCity_DepartmentStore_5F_Pokemart_Cushions
+msgbox	Please come again!
+release
+end
+= LilycoveCity_DepartmentStore_5F_EventScript_ClerkFarLeft
+lock
+faceplayer
+msgbox	Welcome!How may I serve you?
+waitmessage
+pokemartdecoration2 LilycoveCity_DepartmentStore_5F_Pokemart_Dolls
+msgbox	Please come again!
+release
+end
+= LilycoveCity_DepartmentStore_5F_EventScript_PokefanF
+msgbox	This place is full of cute DOLLS.I should buy some for me, instead of just for my children.
+end
+= LilycoveCity_DepartmentStore_5F_EventScript_LittleGirl
+msgbox	I'm not big enough to raise POKéMON, so I'm getting a cute DOLL instead.
+end
+mapsec
+18 3 2 1	LILYCOVE CITY
+music
+MUS_POKE_MART
+counters
+670,674,675,676,677

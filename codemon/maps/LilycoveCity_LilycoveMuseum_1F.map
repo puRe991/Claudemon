@@ -1,0 +1,184 @@
+tileset building__lilycove_museum
+21 14
+10 7
+523,536,537,523,523,538,539,523,523,540,523,541,523,529,523,517,518,519,523,542,543
+531,544,545,531,531,546,547,531,531,548,531,549,531,529,531,525,526,527,531,550,551
+515,515,515,515,515,515,515,515,515,515,515,515,515,516,515,515,515,515,515,515,515
+515,514,514,514,514,514,514,514,514,514,514,514,514,524,515,514,514,514,514,514,514
+520,521,521,521,521,521,521,521,521,530,514,514,514,532,515,514,514,514,514,514,514
+523,523,557,558,523,523,559,523,523,651,515,514,514,515,515,514,514,514,514,514,514
+531,531,565,566,531,531,567,531,531,516,515,514,514,514,514,570,571,571,571,572,514
+515,515,515,515,515,515,515,515,515,524,515,514,514,514,514,578,552,553,554,580,591
+515,514,514,514,514,514,514,514,514,532,515,514,514,514,514,586,560,561,562,588,591
+515,570,571,571,571,571,572,514,514,515,515,514,514,514,514,594,595,595,595,596,591
+515,584,595,577,595,576,585,574,514,514,514,514,514,514,514,575,575,575,575,575,582
+515,528,589,575,575,575,528,591,514,514,514,514,514,514,514,555,514,514,556,574,514
+515,568,564,571,571,571,569,591,514,514,514,514,514,514,514,563,574,514,575,582,514
+515,594,595,595,595,595,596,591,514,534,535,514,514,514,514,575,582,514,514,514,514
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,1,1,1,0
+0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,1,1,1,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0
+0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0
+0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0
+0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+9 13 LilycoveCity 3
+10 13 LilycoveCity 13
+16 1 LilycoveCity_LilycoveMuseum_2F 0
+npcs
+people_beauty 5 12 E static 0 - 0
+people_gentleman 16 2 S static FLAG_HIDE_LILYCOVE_MUSEUM_CURATOR LOCALID_MUSEUM_1F_CURATOR 0
+people_school_kid_m 13 7 E static 0 - 0
+people_artist 13 10 S wander 0 - 0
+people_ninja_boy 2 8 N static 0 - 0
+people_woman_4 3 8 N static 0 - 0
+people_woman_2 11 3 S wander FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_1 - 0
+people_artist 19 3 N static FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_4 LOCALID_MUSEUM_1F_ARTIST_2 0
+people_fat_man 2 2 S wander FLAG_HIDE_LILYCOVE_MUSEUM_TOURISTS - 0
+people_psychic_m 6 2 S wander FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_3 - 0
+dialogs
+0	Welcome to LILYCOVE MUSEUM.Please take the time to enjoy our collection of fantastic artwork featuring POKéMON.
+2	Battling with POKéMON is fun, I'll grant you that.But one mustn't forget our love for the fine arts.
+3	This ART MUSEUM… Well, you could see many fantastic paintings.And the CURATOR is a wonderful person.Among artists like myself, this MUSEUM is an inspiration.
+4	This lady is pretty! She's like Mommy!
+5	This POKéMON is adorable! Just like our little boy!
+6	I'd heard that this ART MUSEUM got in some new paintings.So, naturally I hurried over.Are the new paintings up on the second floor?
+7	I aim to see many great paintings here and learn from them.I have this dream of one day having my artwork exhibited here.
+8	The ART MUSEUM has become a favorite tourist destination.It's great for LILYCOVE… No, great for the HOENN region!This is what I've heard--a lone TRAINER procured all the paintings upstairs.
+9	Lately, the CURATOR has been unusually cheerful.I bet something good happened for him. Definitely.
+objscripts
+0 LilycoveCity_LilycoveMuseum_1F_EventScript_Greeter
+1 LilycoveCity_LilycoveMuseum_1F_EventScript_Curator
+2 LilycoveCity_LilycoveMuseum_1F_EventScript_SchoolKidM
+3 LilycoveCity_LilycoveMuseum_1F_EventScript_Artist1
+4 LilycoveCity_LilycoveMuseum_1F_EventScript_NinjaBoy
+5 LilycoveCity_LilycoveMuseum_1F_EventScript_Woman1
+6 LilycoveCity_LilycoveMuseum_1F_EventScript_Woman2
+7 LilycoveCity_LilycoveMuseum_1F_EventScript_Artist2
+8 LilycoveCity_LilycoveMuseum_1F_EventScript_FatMan
+9 LilycoveCity_LilycoveMuseum_1F_EventScript_PsychicM
+movements
+Common_Movement_FaceOriginalDirection	face_down,end
+Common_Movement_FacePlayer	face_down,end
+LilycoveCity_LilycoveMuseum_1F_Movement_CuratorEnterStairs	up,end
+LilycoveCity_LilycoveMuseum_1F_Movement_FollowCuratorEast	right,up,end
+LilycoveCity_LilycoveMuseum_1F_Movement_FollowCuratorNorth	up,up,end
+LilycoveCity_LilycoveMuseum_1F_Movement_FollowCuratorWest	left,up,end
+scriptdefs
+= LilycoveCity_LilycoveMuseum_1F_EventScript_PsychicM
+msgbox	Lately, the CURATOR has been unusually cheerful.I bet something good happened for him. Definitely.
+end
+= LilycoveCity_LilycoveMuseum_1F_EventScript_FatMan
+msgbox	The ART MUSEUM has become a favorite tourist destination.It's great for LILYCOVE… No, great for the HOENN region!This is what I've heard--a lone TRAINER procured all the paintings upstairs.
+end
+= LilycoveCity_LilycoveMuseum_1F_EventScript_Artist2
+lock
+faceplayer
+msgbox	I aim to see many great paintings here and learn from them.I have this dream of one day having my artwork exhibited here.
+closemessage
+applymovement LOCALID_MUSEUM_1F_ARTIST_2 Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= LilycoveCity_LilycoveMuseum_1F_EventScript_Woman2
+msgbox	I'd heard that this ART MUSEUM got in some new paintings.So, naturally I hurried over.Are the new paintings up on the second floor?
+end
+= LilycoveCity_LilycoveMuseum_1F_EventScript_Woman1
+msgbox	This POKéMON is adorable! Just like our little boy!
+end
+= LilycoveCity_LilycoveMuseum_1F_EventScript_NinjaBoy
+msgbox	This lady is pretty! She's like Mommy!
+end
+= LilycoveCity_LilycoveMuseum_1F_EventScript_Artist1
+msgbox	This ART MUSEUM… Well, you could see many fantastic paintings.And the CURATOR is a wonderful person.Among artists like myself, this MUSEUM is an inspiration.
+end
+= LilycoveCity_LilycoveMuseum_1F_EventScript_SchoolKidM
+msgbox	Battling with POKéMON is fun, I'll grant you that.But one mustn't forget our love for the fine arts.
+end
+= LilycoveCity_LilycoveMuseum_1F_EventScript_Curator
+lockall
+applymovement LOCALID_MUSEUM_1F_CURATOR Common_Movement_FacePlayer
+msgbox	I'm the CURATOR of this MUSEUM of fine arts.It's heartening to see someone so young as you in our MUSEUM.Have you viewed our collection of paintings already?
+waitmessage
+multichoice 20 8 MULTI_VIEWED_PAINTINGS TRUE
+goto_if_eq VAR_RESULT 0 LilycoveCity_LilycoveMuseum_1F_EventScript_SawPaintings
+goto_if_eq VAR_RESULT 1 LilycoveCity_LilycoveMuseum_1F_EventScript_NotYet
+end
+= LilycoveCity_LilycoveMuseum_1F_EventScript_NotYet
+msgbox	Ah, then let me not disturb you. Please, do take your time.
+end
+= LilycoveCity_LilycoveMuseum_1F_EventScript_SawPaintings
+msgboxyesno	Oh? I do believe that you seem to be a POKéMON TRAINER.Have you an interest in paintings, too?
+goto_if_eq VAR_RESULT NO LilycoveCity_LilycoveMuseum_1F_EventScript_NotInterested
+goto_if_eq VAR_RESULT YES LilycoveCity_LilycoveMuseum_1F_EventScript_InterestedInPaintings
+end
+= LilycoveCity_LilycoveMuseum_1F_EventScript_InterestedInPaintings
+msgbox	Ah, excellent! You do like paintings!Then, may I ask you to come with me?
+applymovement LOCALID_MUSEUM_1F_CURATOR LilycoveCity_LilycoveMuseum_1F_Movement_CuratorEnterStairs
+waitmovement 0
+removeobject LOCALID_MUSEUM_1F_CURATOR
+switch VAR_FACING
+case DIR_NORTH LilycoveCity_LilycoveMuseum_1F_EventScript_FollowCuratorNorth
+case DIR_WEST LilycoveCity_LilycoveMuseum_1F_EventScript_FollowCuratorWest
+case DIR_EAST LilycoveCity_LilycoveMuseum_1F_EventScript_FollowCuratorEast
+end
+= LilycoveCity_LilycoveMuseum_1F_EventScript_FollowCuratorEast
+lockall
+applymovement LOCALID_PLAYER LilycoveCity_LilycoveMuseum_1F_Movement_FollowCuratorEast
+waitmovement 0
+warp LilycoveCity_LilycoveMuseum_2F 11 8
+waitstate
+end
+= LilycoveCity_LilycoveMuseum_1F_EventScript_FollowCuratorWest
+lockall
+applymovement LOCALID_PLAYER LilycoveCity_LilycoveMuseum_1F_Movement_FollowCuratorWest
+waitmovement 0
+warp LilycoveCity_LilycoveMuseum_2F 11 8
+waitstate
+end
+= LilycoveCity_LilycoveMuseum_1F_EventScript_FollowCuratorNorth
+lockall
+applymovement LOCALID_PLAYER LilycoveCity_LilycoveMuseum_1F_Movement_FollowCuratorNorth
+waitmovement 0
+warp LilycoveCity_LilycoveMuseum_2F 11 8
+waitstate
+end
+= LilycoveCity_LilycoveMuseum_1F_EventScript_NotInterested
+msgbox	I see…I'm honored that you would visit us in spite of that.
+releaseall
+end
+= LilycoveCity_LilycoveMuseum_1F_EventScript_Greeter
+msgbox	Welcome to LILYCOVE MUSEUM.Please take the time to enjoy our collection of fantastic artwork featuring POKéMON.
+end
+signs
+1 1	It's an odd landscape with bizarre and fantastic scenery.
+2 1	It's an odd landscape with bizarre and fantastic scenery.
+5 1	It's a delicious-looking painting of BERRIES.This painting could make you hungry!
+6 1	It's a delicious-looking painting of BERRIES.This painting could make you hungry!
+9 1	It's a very old painting. The paint is peeling here and there.
+3 6	It's a painting of a beautiful, smiling woman with a POKéMON on her lap.
+2 6	It's a painting of a beautiful, smiling woman with a POKéMON on her lap.
+15 12	It's a replica of a famous sculpture.It depicts an ancient BIRD POKéMON.
+11 1	It's a very old painting. The paint is peeling here and there.
+6 6	It's a painting of GRASS POKéMON swaying in a breeze.They appear to be enjoying the wind's gentle caress.
+17 9	It's a huge stone tablet inscribed with POKéMON and dense text in the small characters of an ancient, unreadable language.
+19 1	It's a painting of a legendary POKéMON from long ago.The artist painted this from imagination.
+20 1	It's a painting of a legendary POKéMON from long ago.The artist painted this from imagination.
+18 9	It's a huge stone tablet inscribed with POKéMON and dense text in the small characters of an ancient, unreadable language.
+18 11	It's a big POKé BALL carved from a black stone.It was apparently used in festivals in the olden days.
+16 9	It's a huge stone tablet inscribed with POKéMON and dense text in the small characters of an ancient, unreadable language.
+mapsec
+18 3 2 1	LILYCOVE CITY
+music
+MUS_LILYCOVE_MUSEUM
+counters
+516,528,568,569,576,577,595

@@ -1,0 +1,61 @@
+tileset general__facility
+9 7
+4 3
+760,760,760,537,537,539,540,537,537
+768,768,768,696,697,547,548,526,527
+515,516,516,704,705,516,516,534,535
+948,514,514,514,514,514,514,516,516
+949,514,514,514,514,514,514,514,514
+515,514,514,524,525,514,514,514,514
+515,514,514,532,533,514,514,518,519
+collision
+1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,1,1
+1,0,0,0,0,0,0,0,0
+1,0,0,0,0,0,0,0,0
+0,0,0,1,1,0,0,0,0
+0,0,0,1,1,0,0,0,0
+warps
+7 6 AbandonedShip_Deck 4
+8 6 AbandonedShip_Deck 4
+npcs
+people_scientist_1 3 4 S static 0 - 0
+misc_item_ball 0 6 S static FLAG_ITEM_ABANDONED_SHIP_CAPTAINS_OFFICE_STORAGE_KEY - 0
+dialogs
+0	I'm investigating this ship on behalf of CAPT. STERN.He also asked me to find a SCANNER, but I haven't had any success…
+objscripts
+0 AbandonedShip_CaptainsOffice_EventScript_CaptSternAide
+1 AbandonedShip_CaptainsOffice_EventScript_ItemStorageKey
+scriptdefs
+= AbandonedShip_CaptainsOffice_EventScript_ItemStorageKey
+goto_if_set FLAG_ITEM_ABANDONED_SHIP_CAPTAINS_OFFICE_STORAGE_KEY AbandonedShip_CaptainsOffice_EventScript_ItemStorageKey_Taken
+finditem ITEM_STORAGE_KEY
+setflag FLAG_ITEM_ABANDONED_SHIP_CAPTAINS_OFFICE_STORAGE_KEY
+end
+= AbandonedShip_CaptainsOffice_EventScript_ItemStorageKey_Taken
+end
+= AbandonedShip_CaptainsOffice_EventScript_CaptSternAide
+lock
+faceplayer
+goto_if_set FLAG_EXCHANGED_SCANNER AbandonedShip_CaptainsOffice_EventScript_ThisIsSSCactus
+checkitem ITEM_SCANNER
+goto_if_eq VAR_RESULT TRUE AbandonedShip_CaptainsOffice_EventScript_CanYouDeliverScanner
+goto_if_set FLAG_ITEM_ABANDONED_SHIP_HIDDEN_FLOOR_ROOM_2_SCANNER AbandonedShip_CaptainsOffice_EventScript_ThisIsSSCactus
+msgbox	I'm investigating this ship on behalf of CAPT. STERN.He also asked me to find a SCANNER, but I haven't had any success…
+release
+end
+= AbandonedShip_CaptainsOffice_EventScript_ThisIsSSCactus
+msgbox	This ship is called S.S. CACTUS. It seems to be from an earlier era.
+release
+end
+= AbandonedShip_CaptainsOffice_EventScript_CanYouDeliverScanner
+msgbox	Oh! That's a SCANNER!Listen, can I get you to deliver that to CAPT. STERN?I want to investigate this ship a little more.
+release
+end
+mapsec
+6 14 1 1	ABANDONED SHIP
+music
+MUS_ABANDONED_SHIP
+counters
+537

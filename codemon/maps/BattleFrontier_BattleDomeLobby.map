@@ -1,0 +1,358 @@
+tileset building__battle_dome
+23 17
+10 7
+516,517,549,550,518,516,517,549,534,516,516,516,516,516,533,550,518,516,517,549,550,518,516
+524,525,557,558,526,524,525,557,558,526,524,524,524,525,557,558,526,524,525,557,558,526,524
+524,524,541,542,565,566,567,541,542,524,524,524,524,524,541,542,565,566,567,541,542,524,524
+524,524,541,542,563,513,564,541,542,524,524,524,524,524,541,542,563,513,564,541,542,524,524
+532,532,540,548,571,521,572,540,548,532,532,532,532,532,540,548,571,521,572,540,548,532,532
+836,834,835,834,835,834,835,834,835,834,835,834,835,834,835,834,835,834,835,834,835,834,835
+840,833,832,833,832,833,832,833,832,833,832,833,832,833,832,833,832,833,832,833,832,833,832
+841,832,912,913,833,832,833,832,833,832,833,832,833,832,833,832,833,832,833,881,882,832,833
+840,833,920,921,832,833,832,833,832,733,734,883,731,732,832,833,832,833,832,889,890,841,832
+841,832,928,929,914,832,884,885,886,832,833,891,833,832,864,865,866,832,915,897,898,840,833
+735,732,936,937,922,841,892,893,894,736,734,899,735,732,872,873,874,841,923,905,906,736,734
+841,832,835,834,924,925,926,834,835,852,833,832,833,832,835,834,916,917,918,834,835,852,833
+840,833,832,833,832,833,832,833,832,833,832,833,832,833,832,833,832,833,832,833,832,833,832
+907,900,902,900,902,832,833,832,833,832,833,832,833,832,833,832,833,832,833,900,902,900,902
+908,901,903,901,903,833,832,833,832,833,832,833,832,833,832,833,832,833,832,901,903,901,903
+807,900,902,832,833,832,833,832,833,832,833,832,833,832,833,832,833,900,902,900,902,900,902
+815,901,903,833,832,833,832,833,832,833,832,573,574,833,832,833,832,901,903,901,903,901,903
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0
+0,0,1,1,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,1,1,0,0
+0,0,1,1,1,0,1,1,1,0,0,1,0,0,1,1,1,0,1,1,1,0,0
+1,1,1,1,1,0,1,1,1,1,1,0,1,1,1,1,1,0,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1
+warps
+11 16 BattleFrontier_OutsideWest 1
+12 16 BattleFrontier_OutsideWest 1
+npcs
+people_teala 5 10 S static 0 LOCALID_DOME_ATTENDANT_SINGLES 0
+people_man_3 1 11 S wander 0 - 0
+people_lass 14 14 S wander 0 - 0
+people_fat_man 18 14 S wander 0 - 0
+people_maniac 8 14 S wander 0 - 0
+people_teala 17 10 S static 0 LOCALID_DOME_ATTENDANT_DOUBLES 0
+dialogs
+1	I would've won if I'd kept this POKéMON held in reserve.You need to check your opponent's POKéMON carefully before choosing your battling POKéMON.
+2	When a TRAINER chains tournament wins at the BATTLE DOME, he or she gains a reputation as a star.Tough TRAINERS are drawn by that reputation to the BATTLE DOME.A true superstar is a TRAINER who can keep winning tournaments.
+3	I ran into one of the tournament favorites in the very first round.Of course I got trashed…
+4	Did you see it? The last Battle Tournament?The winner, STR_VAR_1, was seriously tough.You should check out the results on the monitor beside the PC.
+objscripts
+0 BattleFrontier_BattleDomeLobby_EventScript_SinglesAttendant
+1 BattleFrontier_BattleDomeLobby_EventScript_Man
+2 BattleFrontier_BattleDomeLobby_EventScript_Lass
+3 BattleFrontier_BattleDomeLobby_EventScript_FatMan
+4 BattleFrontier_BattleDomeLobby_EventScript_Maniac
+5 BattleFrontier_BattleDomeLobby_EventScript_DoublesAttendant
+onload
+VAR_TEMP_CHALLENGE_STATUS 0 BattleFrontier_BattleDomeLobby_EventScript_GetChallengeStatus
+VAR_TEMP_CHALLENGE_STATUS CHALLENGE_STATUS_SAVING BattleFrontier_BattleDomeLobby_EventScript_QuitWithoutSaving
+VAR_TEMP_CHALLENGE_STATUS CHALLENGE_STATUS_PAUSED BattleFrontier_BattleDomeLobby_EventScript_ResumeChallenge
+VAR_TEMP_CHALLENGE_STATUS CHALLENGE_STATUS_WON BattleFrontier_BattleDomeLobby_EventScript_WonChallenge
+VAR_TEMP_CHALLENGE_STATUS CHALLENGE_STATUS_LOST BattleFrontier_BattleDomeLobby_EventScript_LostChallenge
+movements
+BattleFrontier_BattleDomeLobby_Movement_AttendantEnterDoor	up,delay,end
+BattleFrontier_BattleDomeLobby_Movement_PlayerEnterDoor	up,up,delay,end
+BattleFrontier_BattleDomeLobby_Movement_WalkToDoor	up,up,up,up,up,end
+scriptdefs
+= BattleFrontier_BattleDomeLobby_EventScript_LostChallenge
+lockall
+msgbox	Thank you for playing!
+msgbox	Your record will be saved. Please wait.
+waitmessage
+special LoadPlayerParty
+frontier_setpartyorder FRONTIER_PARTY_SIZE
+frontier_checkairshow
+dome_set DOME_DATA_WIN_STREAK_ACTIVE FALSE
+dome_set DOME_DATA_ATTEMPTED_CHALLENGE TRUE
+special LoadPlayerParty
+special HealPlayerParty
+goto BattleFrontier_BattleDomeLobby_EventScript_AskRecordBattle
+= BattleFrontier_BattleDomeLobby_EventScript_AskRecordBattle
+dome_save 0
+playse SE_SAVE
+waitse
+call BattleFrontier_EventScript_GetCantRecordBattle
+goto_if_eq VAR_RESULT TRUE BattleFrontier_BattleDomeLobby_EventScript_EndChallenge
+msgbox	Would you like to record your last BATTLE DOME match on your FRONTIER PASS?
+waitmessage
+multichoicedefault 20 8 MULTI_YESNO 1 FALSE
+switch VAR_RESULT
+case 1 BattleFrontier_BattleDomeLobby_EventScript_EndChallenge
+case 0 BattleFrontier_BattleDomeLobby_EventScript_RecordBattle
+case MULTI_B_PRESSED BattleFrontier_BattleDomeLobby_EventScript_EndChallenge
+goto BattleFrontier_BattleDomeLobby_EventScript_RecordBattle
+= BattleFrontier_BattleDomeLobby_EventScript_RecordBattle
+call BattleFrontier_EventScript_SaveBattle
+goto BattleFrontier_BattleDomeLobby_EventScript_EndChallenge
+= BattleFrontier_BattleDomeLobby_EventScript_EndChallenge
+msgbox	We hope to see you again.
+closemessage
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+releaseall
+end
+= BattleFrontier_BattleDomeLobby_EventScript_WonChallenge
+call BattleFrontier_EventScript_IncrementWinStreak
+lockall
+frontier_isbrain
+goto_if_eq VAR_RESULT TRUE BattleFrontier_BattleDomeLobby_EventScript_DefeatedAce
+msgbox	Congratulations for winning your Battle Tournament!
+goto BattleFrontier_BattleDomeLobby_EventScript_GiveBattlePoints
+= BattleFrontier_BattleDomeLobby_EventScript_GiveBattlePoints
+msgbox	In recognition of your strategy-- a thing of beauty it was, too-- we award you these Battle Point(s)!
+frontier_givepoints
+msgbox	PLAYER obtained STR_VAR_1 Battle Point(s).
+msgbox	Your record will be saved. Please wait.
+waitmessage
+special LoadPlayerParty
+frontier_setpartyorder FRONTIER_PARTY_SIZE
+frontier_checkairshow
+dome_set DOME_DATA_ATTEMPTED_CHALLENGE TRUE
+dome_set DOME_DATA_HAS_WON_CHALLENGE TRUE
+dome_set DOME_DATA_WIN_STREAK_ACTIVE TRUE
+special LoadPlayerParty
+special HealPlayerParty
+goto BattleFrontier_BattleDomeLobby_EventScript_AskRecordBattle
+= BattleFrontier_BattleDomeLobby_EventScript_DefeatedAce
+msgbox	Congratulations!You defeated the DOME ACE and won the Battle Tournament!
+goto BattleFrontier_BattleDomeLobby_EventScript_GiveBattlePoints
+= BattleFrontier_BattleDomeLobby_EventScript_ResumeChallenge
+lockall
+msgbox	We've been waiting for you!
+msgbox	Before I show you to the BATTLE DOME, I must save the data. Is that okay?
+waitmessage
+dome_save CHALLENGE_STATUS_SAVING
+playse SE_SAVE
+waitse
+frontier_set FRONTIER_DATA_PAUSED FALSE
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+goto BattleFrontier_BattleDomeLobby_EventScript_EnterChallenge
+= BattleFrontier_BattleDomeLobby_EventScript_EnterChallenge
+special SavePlayerParty
+frontier_setpartyorder FRONTIER_PARTY_SIZE
+dome_settrainers
+msgbox	I will now show you to the BATTLE DOME.
+closemessage
+call BattleFrontier_BattleDomeLobby_EventScript_WalkToDoor
+special HealPlayerParty
+warp BattleFrontier_BattleDomeCorridor 23 6
+setvar VAR_TEMP_CHALLENGE_STATUS 0
+waitstate
+end
+= BattleFrontier_BattleDomeLobby_EventScript_WalkToDoor
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES BattleFrontier_BattleDomeLobby_EventScript_SinglesAttendantWalkToDoor
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_DOUBLES BattleFrontier_BattleDomeLobby_EventScript_DoublesAttendantWalkToDoor
+applymovement LOCALID_PLAYER BattleFrontier_BattleDomeLobby_Movement_WalkToDoor
+waitmovement 0
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES BattleFrontier_BattleDomeLobby_EventScript_OpenSinglesDoor
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_DOUBLES BattleFrontier_BattleDomeLobby_EventScript_OpenDoublesDoor
+waitdooranim
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES BattleFrontier_BattleDomeLobby_EventScript_SinglesAttendantEnterDoor
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_DOUBLES BattleFrontier_BattleDomeLobby_EventScript_DoublesAttendantEnterDoor
+applymovement LOCALID_PLAYER BattleFrontier_BattleDomeLobby_Movement_PlayerEnterDoor
+waitmovement 0
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES BattleFrontier_BattleDomeLobby_EventScript_CloseSinglesDoor
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_DOUBLES BattleFrontier_BattleDomeLobby_EventScript_CloseDoublesDoor
+waitdooranim
+return
+= BattleFrontier_BattleDomeLobby_EventScript_CloseDoublesDoor
+closedoor 17 4
+return
+= BattleFrontier_BattleDomeLobby_EventScript_CloseSinglesDoor
+closedoor 5 4
+return
+= BattleFrontier_BattleDomeLobby_EventScript_DoublesAttendantEnterDoor
+applymovement LOCALID_DOME_ATTENDANT_DOUBLES BattleFrontier_BattleDomeLobby_Movement_AttendantEnterDoor
+return
+= BattleFrontier_BattleDomeLobby_EventScript_SinglesAttendantEnterDoor
+applymovement LOCALID_DOME_ATTENDANT_SINGLES BattleFrontier_BattleDomeLobby_Movement_AttendantEnterDoor
+return
+= BattleFrontier_BattleDomeLobby_EventScript_OpenDoublesDoor
+opendoor 17 4
+return
+= BattleFrontier_BattleDomeLobby_EventScript_OpenSinglesDoor
+opendoor 5 4
+return
+= BattleFrontier_BattleDomeLobby_EventScript_DoublesAttendantWalkToDoor
+applymovement LOCALID_DOME_ATTENDANT_DOUBLES BattleFrontier_BattleDomeLobby_Movement_WalkToDoor
+return
+= BattleFrontier_BattleDomeLobby_EventScript_SinglesAttendantWalkToDoor
+applymovement LOCALID_DOME_ATTENDANT_SINGLES BattleFrontier_BattleDomeLobby_Movement_WalkToDoor
+return
+= BattleFrontier_BattleDomeLobby_EventScript_QuitWithoutSaving
+lockall
+msgbox	Excuse me!You didn't save before you quit your challenge last time.Because of that, your challenge so far has been disqualified. Sorry!
+closemessage
+dome_set DOME_DATA_WIN_STREAK 0
+dome_set DOME_DATA_WIN_STREAK_ACTIVE FALSE
+dome_set DOME_DATA_ATTEMPTED_CHALLENGE TRUE
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+releaseall
+end
+= BattleFrontier_BattleDomeLobby_EventScript_GetChallengeStatus
+frontier_getstatus
+end
+= BattleFrontier_BattleDomeLobby_EventScript_DoublesAttendant
+lock
+faceplayer
+setvar VAR_FRONTIER_FACILITY FRONTIER_FACILITY_DOME
+setvar VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_DOUBLES
+goto BattleFrontier_BattleDomeLobby_EventScript_AttendantWelcome
+end
+= BattleFrontier_BattleDomeLobby_EventScript_AttendantWelcome
+special SavePlayerParty
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES BattleFrontier_BattleDomeLobby_EventScript_WelcomeSingles
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_DOUBLES BattleFrontier_BattleDomeLobby_EventScript_WelcomeDoubles
+goto BattleFrontier_BattleDomeLobby_EventScript_AskTakeChallenge
+= BattleFrontier_BattleDomeLobby_EventScript_AskTakeChallenge
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES BattleFrontier_BattleDomeLobby_EventScript_TakeSinglesChallenge
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_DOUBLES BattleFrontier_BattleDomeLobby_EventScript_TakeDoublesChallenge
+waitmessage
+multichoice 17 6 MULTI_CHALLENGEINFO FALSE
+switch VAR_RESULT
+case 0 BattleFrontier_BattleDomeLobby_EventScript_TryEnterChallenge
+case 1 BattleFrontier_BattleDomeLobby_EventScript_ExplainChallenge
+case 2 BattleFrontier_BattleDomeLobby_EventScript_CancelChallenge
+case MULTI_B_PRESSED BattleFrontier_BattleDomeLobby_EventScript_CancelChallenge
+goto BattleFrontier_BattleDomeLobby_EventScript_TryEnterChallenge
+= BattleFrontier_BattleDomeLobby_EventScript_TryEnterChallenge
+msgbox	The tournament offers two levels of challenge, Level 50 and Open Level. Which is your choice?
+waitmessage
+multichoice 17 6 MULTI_LEVEL_MODE FALSE
+switch VAR_RESULT
+case FRONTIER_LVL_TENT BattleFrontier_BattleDomeLobby_EventScript_CancelChallenge
+case MULTI_B_PRESSED BattleFrontier_BattleDomeLobby_EventScript_CancelChallenge
+frontier_checkineligible
+goto_if_eq VAR_0x8004 TRUE BattleFrontier_BattleDomeLobby_EventScript_NotEnoughValidMons
+frontier_set FRONTIER_DATA_LVL_MODE VAR_RESULT
+msgbox	Now select the three POKéMON that you wish to enter, please.
+fadescreen FADE_TO_BLACK
+call BattleFrontier_EventScript_GetLvlMode
+copyvar VAR_0x8004 VAR_RESULT
+setvar VAR_0x8005 FRONTIER_PARTY_SIZE
+special ChoosePartyForBattleFrontier
+goto_if_eq VAR_RESULT 0 BattleFrontier_BattleDomeLobby_EventScript_LoadPartyCancelChallenge
+msgboxyesno	Before I show you to the BATTLE DOME, I must save the data. Is that okay?
+switch VAR_RESULT
+case NO BattleFrontier_BattleDomeLobby_EventScript_LoadPartyCancelChallenge
+case YES BattleFrontier_BattleDomeLobby_EventScript_SaveBeforeChallenge
+case MULTI_B_PRESSED BattleFrontier_BattleDomeLobby_EventScript_LoadPartyCancelChallenge
+goto BattleFrontier_BattleDomeLobby_EventScript_SaveBeforeChallenge
+= BattleFrontier_BattleDomeLobby_EventScript_SaveBeforeChallenge
+setvar VAR_TEMP_CHALLENGE_STATUS 0
+frontier_set FRONTIER_DATA_SELECTED_MON_ORDER
+dome_init
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS CHALLENGE_STATUS_SAVING
+frontier_set FRONTIER_DATA_PAUSED FALSE
+special LoadPlayerParty
+closemessage
+delay 2
+call Common_EventScript_SaveGame
+setvar VAR_TEMP_CHALLENGE_STATUS 255
+goto_if_eq VAR_RESULT 0 BattleFrontier_BattleDomeLobby_EventScript_CancelChallengeSaveFailed
+dome_inittrainers
+goto BattleFrontier_BattleDomeLobby_EventScript_EnterChallenge
+= BattleFrontier_BattleDomeLobby_EventScript_CancelChallengeSaveFailed
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
+goto BattleFrontier_BattleDomeLobby_EventScript_CancelChallenge
+= BattleFrontier_BattleDomeLobby_EventScript_CancelChallenge
+msgbox	We hope to see you again.
+goto BattleFrontier_BattleDomeLobby_EventScript_EndCancelChallenge
+= BattleFrontier_BattleDomeLobby_EventScript_EndCancelChallenge
+release
+end
+= Common_EventScript_SaveGame
+special SaveGame
+return
+= BattleFrontier_BattleDomeLobby_EventScript_LoadPartyCancelChallenge
+special LoadPlayerParty
+goto BattleFrontier_BattleDomeLobby_EventScript_CancelChallenge
+= BattleFrontier_BattleDomeLobby_EventScript_NotEnoughValidMons
+switch VAR_RESULT
+case FRONTIER_LVL_50 BattleFrontier_BattleDomeLobby_EventScript_NotEnoughValidMonsLv50
+case FRONTIER_LVL_OPEN BattleFrontier_BattleDomeLobby_EventScript_NotEnoughValidMonsLvOpen
+goto BattleFrontier_BattleDomeLobby_EventScript_NotEnoughValidMonsLv50
+= BattleFrontier_BattleDomeLobby_EventScript_NotEnoughValidMonsLv50
+msgbox	Excuse me!You don't have three eligible POKéMON.You must have three different POKéMON of Level 50 or less to enter.They also must be holding different kinds of items.EGGSSTR_VAR_1 ineligible.Please come see me when you are ready.
+goto BattleFrontier_BattleDomeLobby_EventScript_EndCancelChallenge
+= BattleFrontier_BattleDomeLobby_EventScript_NotEnoughValidMonsLvOpen
+msgbox	Excuse me!You don't have three eligible POKéMON.Also, the POKéMON must be holding different kinds of items.EGGSSTR_VAR_1 ineligible.Please come see me when you are ready.
+goto BattleFrontier_BattleDomeLobby_EventScript_EndCancelChallenge
+= BattleFrontier_BattleDomeLobby_EventScript_ExplainChallenge
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES BattleFrontier_BattleDomeLobby_EventScript_ExplainSinglesChallenge
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_DOUBLES BattleFrontier_BattleDomeLobby_EventScript_ExplainDoublesChallenge
+goto BattleFrontier_BattleDomeLobby_EventScript_AskTakeChallenge
+= BattleFrontier_BattleDomeLobby_EventScript_ExplainDoublesChallenge
+msgbox	The DOUBLE BATTLE Tournament is exactly as the name suggests-- a tournament of DOUBLE BATTLES.All participating TRAINERS must enter three POKéMON each.In each battle, one of the three POKéMON must be held in reserve.The remaining two POKéMON must take part in a DOUBLE BATTLE.Choose the two battling POKéMON after examining the opponent's trio.You win the tournament by defeating four TRAINERS.Battle Points are awarded to the tournament winner.If you want to interrupt your tournament, please save the game.If you don't save before interrupting, you will be disqualified.
+return
+= BattleFrontier_BattleDomeLobby_EventScript_ExplainSinglesChallenge
+msgbox	The SINGLE BATTLE Tournament is exactly as the name suggests-- a tournament of SINGLE BATTLES.All participating TRAINERS must enter three POKéMON each.In each battle, one of the three POKéMON must be held in reserve.The other two POKéMON can battle one at a time.Choose the two battling POKéMON after examining the opponent's trio.You win the tournament by defeating four TRAINERS.Battle Points are awarded to the tournament winner.If you want to interrupt your tournament, please save the game.If you don't save before interrupting, you will be disqualified.
+return
+= BattleFrontier_BattleDomeLobby_EventScript_TakeDoublesChallenge
+msgbox	Would you like to challenge the DOUBLE BATTLE Tournament?
+return
+= BattleFrontier_BattleDomeLobby_EventScript_TakeSinglesChallenge
+msgbox	Would you like to challenge the SINGLE BATTLE Tournament?
+return
+= BattleFrontier_BattleDomeLobby_EventScript_WelcomeDoubles
+msgbox	Where the strategies of TRAINERS are put to the test!Welcome to the BATTLE DOME!I am your guide to the DOUBLE BATTLE Tournament.
+return
+= BattleFrontier_BattleDomeLobby_EventScript_WelcomeSingles
+msgbox	Where the strategies of TRAINERS are put to the test!Welcome to the BATTLE DOME!I am your guide to the SINGLE BATTLE Tournament.
+return
+= BattleFrontier_BattleDomeLobby_EventScript_Maniac
+dome_getwinnersname
+msgbox	Did you see it? The last Battle Tournament?The winner, STR_VAR_1, was seriously tough.You should check out the results on the monitor beside the PC.
+end
+= BattleFrontier_BattleDomeLobby_EventScript_FatMan
+msgbox	I ran into one of the tournament favorites in the very first round.Of course I got trashed…
+end
+= BattleFrontier_BattleDomeLobby_EventScript_Lass
+msgbox	When a TRAINER chains tournament wins at the BATTLE DOME, he or she gains a reputation as a star.Tough TRAINERS are drawn by that reputation to the BATTLE DOME.A true superstar is a TRAINER who can keep winning tournaments.
+end
+= BattleFrontier_BattleDomeLobby_EventScript_Man
+msgbox	I would've won if I'd kept this POKéMON held in reserve.You need to check your opponent's POKéMON carefully before choosing your battling POKéMON.
+end
+@ A few OutsideWest event scripts are inserted here instead two of which are unused
+goto BattleFrontier_OutsideWest_EventScript_Man3
+= BattleFrontier_OutsideWest_EventScript_Man3
+msgbox	The BATTLE FRONTIER… I've long dreamed about a place like it.
+end
+@ Unused
+goto BattleFrontier_OutsideWest_EventScript_BattleDomeSign2
+= BattleFrontier_OutsideWest_EventScript_BattleDomeSign2
+msgbox	The BATTLE DOME Become the Unbeatable Superstar!
+end
+@ Unused
+goto BattleFrontier_OutsideWest_EventScript_UnderConstructionSign
+= BattleFrontier_OutsideWest_EventScript_UnderConstructionSign
+msgbox	The ?????? Under Construction!
+end
+= BattleFrontier_BattleDomeLobby_EventScript_SinglesAttendant
+lock
+faceplayer
+setvar VAR_FRONTIER_FACILITY FRONTIER_FACILITY_DOME
+setvar VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES
+goto BattleFrontier_BattleDomeLobby_EventScript_AttendantWelcome
+end
+signs
+15 10	The Battle Tournament rules are listed.
+mapsec
+22 12 1 1	BATTLE FRONTIER
+music
+MUS_B_DOME_LOBBY

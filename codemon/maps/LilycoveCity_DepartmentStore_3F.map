@@ -1,0 +1,77 @@
+tileset building__shop
+18 8
+9 4
+648,636,637,638,648,648,648,653,639,639,639,648,781,777,782,781,777,782
+656,644,645,646,656,656,668,661,647,647,647,669,775,593,783,775,592,783
+523,662,687,663,520,520,676,579,686,686,686,677,523,520,520,520,520,520
+518,513,513,513,513,513,684,674,674,674,674,685,518,513,513,513,513,513
+518,513,555,556,516,513,527,520,520,520,520,520,514,513,555,556,516,513
+518,513,563,564,518,513,513,513,513,513,513,513,513,513,563,564,518,513
+518,513,571,572,518,513,513,513,513,513,513,513,513,513,571,572,518,513
+518,513,527,520,514,513,513,513,513,513,513,513,513,513,527,520,514,513
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,1
+0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0
+0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0
+0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0
+0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0
+0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+13 1 LilycoveCity_DepartmentStore_2F 1
+16 1 LilycoveCity_DepartmentStore_4F 0
+2 1 LilycoveCity_DepartmentStoreElevator 0
+npcs
+people_running_triathlete_m 0 5 S wander 0 - 0
+people_pokefan_m 7 7 S wander 0 - 0
+people_woman_5 13 5 S wander 0 - 0
+people_woman_3 8 2 S static 0 - 0
+people_woman_3 10 2 S static 0 - 0
+dialogs
+0	For quickly toughening up POKéMON, items are the best.PROTEIN boosts ATTACK, and CALCIUM raises SP. ATK.
+1	I want my POKéMON to have more endurance.I'm trying to decide whether to raise DEFENSE with IRON, or SP. DEF with ZINC.
+2	I gave a CARBOS to my POKéMON, and its SPEED went up.
+objscripts
+0 LilycoveCity_DepartmentStore_3F_EventScript_TriathleteM
+1 LilycoveCity_DepartmentStore_3F_EventScript_PokefanM
+2 LilycoveCity_DepartmentStore_3F_EventScript_Woman
+3 LilycoveCity_DepartmentStore_3F_EventScript_ClerkLeft
+4 LilycoveCity_DepartmentStore_3F_EventScript_ClerkRight
+shops
+LilycoveCity_DepartmentStore_3F_Pokemart_StatBoosters	ITEM_X_SPEED,ITEM_X_SPECIAL,ITEM_X_ATTACK,ITEM_X_DEFEND,ITEM_DIRE_HIT,ITEM_GUARD_SPEC,ITEM_X_ACCURACY
+LilycoveCity_DepartmentStore_3F_Pokemart_Vitamins	ITEM_PROTEIN,ITEM_CALCIUM,ITEM_IRON,ITEM_ZINC,ITEM_CARBOS,ITEM_HP_UP
+scriptdefs
+= LilycoveCity_DepartmentStore_3F_EventScript_ClerkRight
+lock
+faceplayer
+msgbox	Welcome!How may I serve you?
+waitmessage
+pokemart LilycoveCity_DepartmentStore_3F_Pokemart_StatBoosters
+msgbox	Please come again!
+release
+end
+= LilycoveCity_DepartmentStore_3F_EventScript_ClerkLeft
+lock
+faceplayer
+msgbox	Welcome!How may I serve you?
+waitmessage
+pokemart LilycoveCity_DepartmentStore_3F_Pokemart_Vitamins
+msgbox	Please come again!
+release
+end
+= LilycoveCity_DepartmentStore_3F_EventScript_Woman
+msgbox	I gave a CARBOS to my POKéMON, and its SPEED went up.
+end
+= LilycoveCity_DepartmentStore_3F_EventScript_PokefanM
+msgbox	I want my POKéMON to have more endurance.I'm trying to decide whether to raise DEFENSE with IRON, or SP. DEF with ZINC.
+end
+= LilycoveCity_DepartmentStore_3F_EventScript_TriathleteM
+msgbox	For quickly toughening up POKéMON, items are the best.PROTEIN boosts ATTACK, and CALCIUM raises SP. ATK.
+end
+mapsec
+18 3 2 1	LILYCOVE CITY
+music
+MUS_POKE_MART
+counters
+674,676,677

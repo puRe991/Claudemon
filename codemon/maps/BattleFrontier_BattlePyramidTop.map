@@ -1,0 +1,194 @@
+tileset building__battle_pyramid
+34 23
+17 11
+637,637,637,637,637,637,637,637,637,637,637,637,637,637,637,637,637,637,637,637,637,637,637,637,637,637,637,637,637,637,637,637,637,637
+637,637,637,637,637,637,637,637,637,637,637,637,637,637,637,637,637,637,637,637,637,637,637,637,637,637,637,637,637,637,637,637,637,637
+645,645,645,645,645,645,645,645,645,645,645,645,645,645,645,645,645,645,645,645,645,645,645,645,645,645,645,645,645,645,645,645,645,645
+571,571,571,571,571,571,571,571,571,571,571,571,571,571,571,632,633,634,635,636,571,571,571,571,571,571,571,571,571,571,571,571,571,571
+571,571,571,571,571,571,571,571,571,571,571,571,571,571,571,640,641,642,643,644,571,571,571,571,571,571,571,571,571,571,571,571,571,571
+571,571,571,571,571,571,571,571,571,571,571,571,571,571,571,648,649,650,651,652,571,571,571,571,571,571,571,571,571,571,571,571,571,571
+571,571,571,571,571,571,571,571,571,571,571,571,571,571,571,656,657,658,659,660,571,571,571,571,571,571,571,571,571,571,571,571,571,571
+571,571,571,571,571,571,571,571,571,571,571,571,571,571,571,664,665,666,667,668,571,571,571,571,571,571,571,571,571,571,571,571,571,571
+571,571,571,571,571,571,571,571,571,571,571,571,571,571,568,569,576,577,578,569,570,571,571,571,571,571,571,571,571,571,571,571,571,571
+571,571,571,571,571,571,571,571,571,571,571,571,568,569,576,577,576,585,586,577,578,569,570,571,571,571,571,571,571,571,571,571,571,571
+579,579,579,579,579,579,579,579,579,579,568,569,576,577,584,577,592,593,594,577,578,577,578,569,582,579,579,579,579,579,579,579,579,579
+587,587,587,587,587,587,587,587,588,589,576,577,584,577,576,585,600,601,600,585,578,577,578,577,578,589,590,587,587,587,587,587,587,587
+595,595,595,595,595,595,596,597,576,577,576,585,576,585,592,602,602,593,602,602,594,585,578,577,578,577,578,597,598,595,595,595,595,595
+603,603,603,603,604,605,576,577,584,577,576,585,576,585,600,600,600,601,600,600,600,585,578,585,578,577,578,577,578,605,606,603,603,603
+603,603,604,605,576,577,576,577,584,577,576,585,592,602,602,602,602,593,602,602,602,602,594,585,578,585,578,585,578,577,578,605,606,603
+604,606,576,577,576,577,584,577,576,577,576,585,600,600,600,600,600,601,600,600,600,600,600,585,578,585,578,585,578,585,578,577,578,606
+576,578,576,577,584,577,584,577,576,577,592,602,602,602,602,602,602,593,602,602,602,602,602,602,594,585,578,585,578,585,578,585,578,578
+584,577,584,577,584,577,576,577,584,577,600,600,600,600,600,600,600,601,600,600,600,600,600,600,600,585,578,585,578,585,578,585,578,585
+584,577,584,577,576,577,584,577,592,602,602,602,602,602,602,602,602,602,602,602,602,602,602,602,602,602,594,585,578,585,578,585,578,585
+576,577,576,577,584,577,584,577,600,600,600,600,600,600,600,600,600,600,600,600,600,600,600,600,600,600,600,585,578,585,578,585,578,585
+584,577,584,577,584,577,592,602,602,602,602,602,602,602,602,602,602,602,602,602,602,602,602,602,602,602,602,602,594,585,578,585,578,585
+584,577,584,577,584,577,600,600,600,600,600,600,600,600,600,600,600,600,600,600,600,600,600,600,600,600,600,600,600,585,578,585,578,585
+584,577,584,577,592,602,602,602,602,602,602,602,602,602,602,602,602,602,602,602,602,602,602,602,602,602,602,602,602,602,594,585,578,585
+collision
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,0,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,0,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+npcs
+people_hiker 17 11 S static 0 LOCALID_PYRAMID_TOP_ATTENDANT 0
+people_frontier_brains_brandon 17 7 N static 0 LOCALID_BRANDON 0
+dialogs
+0	It is a delight to see you here! You have reached the summit of the BATTLE PYRAMID!Above here is the PYRAMID's lookout point.It is a place open only to those who have conquered the PYRAMID.Now, please! Up you go!
+objscripts
+0 BattleFrontier_BattlePyramidTop_EventScript_Attendant
+triggers
+17 9 VAR_TEMP_2 0 BattleFrontier_BattlePyramidTop_EventScript_BattleBrandon
+onload
+VAR_TEMP_PLAYING_PYRAMID_MUSIC 0 BattleFrontier_BattlePyramidTop_EventScript_PlayPyramidMusic
+VAR_TEMP_F 1 BattleFrontier_BattlePyramidTop_EventScript_ShowMapName
+movements
+BattleFrontier_BattlePyramidTop_Movement_AttendantBlockPath	left,delay,end
+BattleFrontier_BattlePyramidTop_Movement_AttendantMoveAside	right,delay,end
+BattleFrontier_BattlePyramidTop_Movement_BrandonApproachPlayer	down,end
+BattleFrontier_BattlePyramidTop_Movement_CameraPanUp	up,up,delay,end
+BattleFrontier_BattlePyramidTop_Movement_PlayerClimbToTop	up,up,up,up,up,delay,end
+scriptdefs
+= BattleFrontier_BattlePyramidTop_EventScript_ShowMapName
+special ShowMapNamePopup
+setvar VAR_TEMP_F 0
+end
+= BattleFrontier_BattlePyramidTop_EventScript_PlayPyramidMusic
+playbgm MUS_B_PYRAMID_TOP FALSE
+setvar VAR_TEMP_PLAYING_PYRAMID_MUSIC 1
+end
+= BattleFrontier_BattlePyramidTop_EventScript_BattleBrandon
+lockall
+switch VAR_TEMP_C
+case FRONTIER_BRAIN_GOLD BattleFrontier_BattlePyramidTop_EventScript_BrandonIntroGold
+case FRONTIER_BRAIN_STREAK BattleFrontier_BattlePyramidTop_EventScript_BrandonHeardSilverSpeech
+case FRONTIER_BRAIN_STREAK_LONG BattleFrontier_BattlePyramidTop_EventScript_BrandonHeardGoldSpeech
+frontier_get FRONTIER_DATA_HEARD_BRAIN_SPEECH
+goto_if_ne VAR_RESULT FALSE BattleFrontier_BattlePyramidTop_EventScript_BrandonHeardSilverSpeech
+special SpawnCameraObject
+applymovement LOCALID_CAMERA BattleFrontier_BattlePyramidTop_Movement_CameraPanUp
+waitmovement 0
+msgbox	Young adventurer…Wouldn't you agree that explorations are the grandest of adventures?Your own wits!Your own strength!Your own POKéMON!And, above all, only your own courage to lead you through unknown worlds…
+closemessage
+frontier_set FRONTIER_DATA_HEARD_BRAIN_SPEECH
+applymovement LOCALID_BRANDON BattleFrontier_BattlePyramidTop_Movement_BrandonApproachPlayer
+waitmovement 0
+msgbox	Aah, yes, indeed this life is grand! Grand, it is! Eh?I'm BRANDON!I'm the PYRAMID KING, which means I'm in charge here.Most people call me the chief!You coming here means you have that much confidence in yourself, am I right?Hahahah! This should be exciting!
+goto BattleFrontier_BattlePyramidTop_EventScript_BattleBrandonSilver
+end
+= BattleFrontier_BattlePyramidTop_EventScript_BattleBrandonSilver
+msgbox	Now, then! Bring your courage to our battle!
+call BattleFrontier_BattlePyramidTop_EventScript_DoBrandonBattle
+playbgm MUS_B_PYRAMID_TOP FALSE
+goto_if_eq VAR_RESULT 1 BattleFrontier_BattlePyramidTop_EventScript_DefeatedBrandonSilver
+goto BattleFrontier_BattlePyramid_EventScript_WarpToLobbyLost
+= BattleFrontier_BattlePyramidTop_EventScript_DefeatedBrandonSilver
+frontier_getsymbols
+goto_if_ne VAR_RESULT 0 BattleFrontier_BattlePyramidTop_EventScript_WarpToLobbyWon
+msgbox	BRANDON: Hahahah! Grand it was! Grand, yes, indeed!Well done! You've earned recognition! Your FRONTIER PASS, please!
+playfanfare MUS_OBTAIN_SYMBOL
+msgbox	The Brave Symbol was embossed on the FRONTIER PASS!
+waitmessage
+waitfanfare
+frontier_givesymbol
+msgbox	Young explorer! I look forward to our next meeting!
+goto BattleFrontier_BattlePyramidTop_EventScript_WarpToLobbyWon
+= BattleFrontier_BattlePyramidTop_EventScript_WarpToLobbyWon
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS CHALLENGE_STATUS_WON
+warp BattleFrontier_BattlePyramidLobby 7 13
+waitstate
+end
+= BattleFrontier_BattlePyramidTop_EventScript_DoBrandonBattle
+closemessage
+setvar VAR_0x8004 SPECIAL_BATTLE_PYRAMID
+setvar VAR_0x8005 0
+special DoSpecialTrainerBattle
+return
+= BattleFrontier_BattlePyramidTop_EventScript_BrandonHeardSilverSpeech
+applymovement LOCALID_BRANDON BattleFrontier_BattlePyramidTop_Movement_BrandonApproachPlayer
+waitmovement 0
+goto BattleFrontier_BattlePyramidTop_EventScript_BattleBrandonSilver
+= BattleFrontier_BattlePyramidTop_EventScript_BrandonHeardGoldSpeech
+applymovement LOCALID_BRANDON BattleFrontier_BattlePyramidTop_Movement_BrandonApproachPlayer
+waitmovement 0
+goto BattleFrontier_BattlePyramidTop_EventScript_BattleBrandonGold
+= BattleFrontier_BattlePyramidTop_EventScript_BattleBrandonGold
+msgbox	Everything you have! I'm braced for it all!
+call BattleFrontier_BattlePyramidTop_EventScript_DoBrandonBattle
+playbgm MUS_B_PYRAMID_TOP FALSE
+goto_if_eq VAR_RESULT 1 BattleFrontier_BattlePyramidTop_EventScript_DefeatedBrandonGold
+goto BattleFrontier_BattlePyramid_EventScript_WarpToLobbyLost
+= BattleFrontier_BattlePyramidTop_EventScript_DefeatedBrandonGold
+frontier_getsymbols
+goto_if_eq VAR_RESULT 2 BattleFrontier_BattlePyramidTop_EventScript_WarpToLobbyWon
+msgbox	BRANDON: Hahahah! Remarkable! Yes, it's grand, indeed!Young explorer!You've bested me through and through! Here! I want you to have this!
+playfanfare MUS_OBTAIN_SYMBOL
+msgbox	The Brave Symbol took on a golden shine!
+waitmessage
+waitfanfare
+frontier_givesymbol
+msgbox	Ah, yes! It just goes to show that I have much to learn still!May our paths cross again! Farewell for now, young explorer!
+goto BattleFrontier_BattlePyramidTop_EventScript_WarpToLobbyWon
+= BattleFrontier_BattlePyramidTop_EventScript_BrandonIntroGold
+frontier_get FRONTIER_DATA_HEARD_BRAIN_SPEECH
+goto_if_ne VAR_RESULT FALSE BattleFrontier_BattlePyramidTop_EventScript_BrandonHeardGoldSpeech
+special SpawnCameraObject
+applymovement LOCALID_CAMERA BattleFrontier_BattlePyramidTop_Movement_CameraPanUp
+waitmovement 0
+msgbox	BRANDON: …You've finally returned, young explorer…Your love of adventure seems to come deep from within your heart…Yes… You are exactly as I was in my own youth…… … …Ah…The passionate!The dangerous!The desperate!Those days of death-defying, life-affirming adventures are back…
+closemessage
+frontier_set FRONTIER_DATA_HEARD_BRAIN_SPEECH
+applymovement LOCALID_BRANDON BattleFrontier_BattlePyramidTop_Movement_BrandonApproachPlayer
+waitmovement 0
+msgbox	Now, then!I sense my own courage is off the meter!
+goto BattleFrontier_BattlePyramidTop_EventScript_BattleBrandonGold
+end
+= BattleFrontier_BattlePyramidTop_EventScript_Attendant
+lock
+faceplayer
+goto_if_ne VAR_TEMP_D 0 BattleFrontier_BattlePyramidTop_EventScript_StepForwardWhenReady
+goto_if_ne VAR_TEMP_C FRONTIER_BRAIN_NOT_READY BattleFrontier_BattlePyramidTop_EventScript_BrandonHereMoveAside
+msgbox	It is a delight to see you here! You have reached the summit of the BATTLE PYRAMID!Above here is the PYRAMID's lookout point.It is a place open only to those who have conquered the PYRAMID.Now, please! Up you go!
+closemessage
+applymovement LOCALID_PYRAMID_TOP_ATTENDANT BattleFrontier_BattlePyramidTop_Movement_AttendantMoveAside
+waitmovement 0
+applymovement LOCALID_PLAYER BattleFrontier_BattlePyramidTop_Movement_PlayerClimbToTop
+waitmovement 0
+applymovement LOCALID_PYRAMID_TOP_ATTENDANT BattleFrontier_BattlePyramidTop_Movement_AttendantBlockPath
+waitmovement 0
+msgbox	The PYRAMID's new conqueror! Let the name PLAYER be known!
+waitmessage
+playfanfare MUS_OBTAIN_B_POINTS
+waitfanfare
+closemessage
+goto BattleFrontier_BattlePyramidTop_EventScript_WarpToLobbyWon
+= BattleFrontier_BattlePyramidTop_EventScript_BrandonHereMoveAside
+msgbox	It is a delight to see you here!Unfortunately, you were second by a mere fraction of time!Our chief has already conquered the PYRAMID ahead of you.However, my young explorer… You are a TRAINER!Assert your power and take the glory of the pinnacle from our chief!Now, please! When you are ready, take one more step of courage!
+applymovement LOCALID_PYRAMID_TOP_ATTENDANT BattleFrontier_BattlePyramidTop_Movement_AttendantMoveAside
+setvar VAR_TEMP_D 1
+closemessage
+end
+= BattleFrontier_BattlePyramidTop_EventScript_StepForwardWhenReady
+msgbox	Now, when you are ready, take courage and step forward.
+closemessage
+end
+mapsec
+22 12 1 1	BATTLE FRONTIER

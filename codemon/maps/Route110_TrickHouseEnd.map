@@ -1,0 +1,243 @@
+tileset building__generic_building
+12 8
+5 3
+533,749,750,751,739,535,533,535,740,530,531,532
+541,757,758,759,747,543,541,543,748,538,523,540
+545,765,766,767,755,545,545,545,756,545,545,545
+545,553,553,553,553,553,580,553,553,553,553,553
+545,553,553,553,553,590,591,553,553,553,553,553
+545,553,553,553,580,598,599,580,553,553,553,553
+545,553,553,553,553,553,553,553,553,553,553,553
+545,553,553,553,553,553,553,553,553,553,553,553
+collision
+1,1,1,1,1,1,1,1,1,1,1,1
+1,1,0,1,1,1,1,1,1,1,0,1
+0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,1,1,0,0,0,0,0
+0,0,0,0,0,1,1,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0
+warps
+10 1 Route110_TrickHousePuzzle1 2
+2 1 Route110_TrickHouseCorridor 0
+npcs
+people_man_1 4 5 E static FLAG_HIDE_TRICK_HOUSE_END_MAN LOCALID_TRICK_MASTER_END 0
+dialogs
+0	Aak! You've made it to me? Hmmm… You're sharp!
+objscripts
+0 Route110_TrickHouseEnd_EventScript_TrickMaster
+triggers
+2 2 VAR_TEMP_2 0 Route110_TrickHouseEnd_EventScript_TrickMasterExitTrigger
+4 5 0 0 Route110_TrickHouseEnd_HiddenItem_4_5
+onload
+VAR_TEMP_1 0 Route110_TrickHouseEnd_EventScript_CloseDoor
+movements
+Common_Movement_ExclamationMark	delay,end
+Common_Movement_FacePlayer	face_down,end
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
+Route110_TrickHouseEnd_Movement_KeepPlayerInRoom	down,end
+Route110_TrickHouseEnd_Movement_TrickMasterSurprise	delay,end
+scriptdefs
+= Route110_TrickHouseEnd_EventScript_CloseDoor
+setvar VAR_TEMP_1 1
+call Route110_TrickHouseEnd_EventScript_SetDoorClosedMetatile
+special DrawWholeMapView
+end
+= Route110_TrickHouseEnd_EventScript_SetDoorClosedMetatile
+setmetatile 10 1 METATILE_GenericBuilding_TrickHouse_Door_Closed TRUE
+return
+= Route110_TrickHouseEnd_HiddenItem_4_5
+goto_if_set FLAG_HIDDEN_ITEM_TRICK_HOUSE_NUGGET Route110_TrickHouseEnd_HiddenItem_4_5_Taken
+finditem ITEM_NUGGET
+setflag FLAG_HIDDEN_ITEM_TRICK_HOUSE_NUGGET
+end
+= Route110_TrickHouseEnd_HiddenItem_4_5_Taken
+end
+= Route110_TrickHouseEnd_EventScript_TrickMasterExitTrigger
+lockall
+turnobject LOCALID_TRICK_MASTER_END DIR_WEST
+playse SE_PIN
+applymovement LOCALID_TRICK_MASTER_END Common_Movement_ExclamationMark
+waitmovement 0
+delay 20
+applymovement LOCALID_TRICK_MASTER_END Route110_TrickHouseEnd_Movement_TrickMasterSurprise
+waitmovement 0
+playse SE_M_EXPLOSION
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+msgbox	Now, now! You're ignoring me now? Now that, I consider heartbreaking!
+closemessage
+applymovement LOCALID_PLAYER Route110_TrickHouseEnd_Movement_KeepPlayerInRoom
+waitmovement 0
+delay 4
+turnobject LOCALID_TRICK_MASTER_END DIR_EAST
+releaseall
+end
+= Route110_TrickHouseEnd_EventScript_TrickMaster
+lock
+faceplayer
+msgbox	Aak! You've made it to me? Hmmm… You're sharp!
+setvar VAR_TEMP_2 1
+switch VAR_TRICK_HOUSE_LEVEL
+case 0 Route110_TrickHouseEnd_EventScript_CompletedPuzzle1
+case 1 Route110_TrickHouseEnd_EventScript_CompletedPuzzle2
+case 2 Route110_TrickHouseEnd_EventScript_CompletedPuzzle3
+case 3 Route110_TrickHouseEnd_EventScript_CompletedPuzzle4
+case 4 Route110_TrickHouseEnd_EventScript_CompletedPuzzle5
+case 5 Route110_TrickHouseEnd_EventScript_CompletedPuzzle6
+case 6 Route110_TrickHouseEnd_EventScript_CompletedPuzzle7
+case 7 Route110_TrickHouseEnd_EventScript_CompletedPuzzle8
+end
+= Route110_TrickHouseEnd_EventScript_CompletedPuzzle8
+msgbox	It took me all night polishing floors…You're above me in greatness! Possibly…
+closemessage
+call_if_eq VAR_FACING DIR_SOUTH Route110_TrickHouseEnd_EventScript_TrickMasterFaceAwaySouth
+call_if_eq VAR_FACING DIR_NORTH Route110_TrickHouseEnd_EventScript_TrickMasterFaceAwayNorth
+call_if_eq VAR_FACING DIR_WEST Route110_TrickHouseEnd_EventScript_TrickMasterFaceAwayWest
+call_if_eq VAR_FACING DIR_EAST Route110_TrickHouseEnd_EventScript_TrickMasterFaceAwayEast
+delay 30
+msgbox	Wh-what should I do? My fountain of ideas for tricks has run dry…Perhaps it is time I toured the country on a quest to devise new tricks…
+closemessage
+applymovement LOCALID_TRICK_MASTER_END Common_Movement_FacePlayer
+waitmovement 0
+delay 30
+msgbox	I hate to admit defeat, but you have bested me!Still, you must have been reeled in by my charisma for you to visit me again and again. Yes, you must have!But that has nothing to do with my losing!In recognition of the friendship between you, the driven, and the genius that is myself, I demand that you take this keepsake!Actually there are two-- a RED TENT and a BLUE TENT. Which do you prefer?
+setvar VAR_TRICK_HOUSE_PRIZE_PICKUP 0
+call Route110_TrickHouseEnd_EventScript_ChooseTent
+call_if_eq VAR_RESULT FALSE Route110_TrickHouseEnd_EventScript_NoRoomForTent
+msgbox	… … … … … …I am leaving on a journey of discovery. A quest in search of new tricks.I wish that you will one day visit and entertain me again.And now, farewell!
+call Route110_TrickHouseEnd_EventScript_TrickMasterExit
+special ResetTrickHouseNuggetFlag
+release
+end
+= Route110_TrickHouseEnd_EventScript_TrickMasterExit
+applymovement LOCALID_TRICK_MASTER_END Route110_TrickHouse_Movement_TrickMasterSpin
+waitmovement 0
+playse SE_M_EXPLOSION
+applymovement LOCALID_TRICK_MASTER_END Route110_TrickHouse_Movement_TrickMasterJumpAway
+waitmovement 0
+removeobject LOCALID_TRICK_MASTER_END
+addvar VAR_TRICK_HOUSE_LEVEL 1
+return
+= Route110_TrickHouseEnd_EventScript_NoRoomForTent
+call Common_EventScript_NoRoomForDecor
+msgbox	What? No room in your PC? What am I to make of that?I wish I could say that, but I am much too kind and caring, so come back later!
+setvar VAR_TRICK_HOUSE_PRIZE_PICKUP 1
+return
+= Route110_TrickHouseEnd_EventScript_ChooseTent
+multichoice 0 0 MULTI_TENT TRUE
+switch VAR_RESULT
+case 0 Route110_TrickHouseEnd_EventScript_GiveRedTent
+goto Route110_TrickHouseEnd_EventScript_GiveBlueTent
+= Route110_TrickHouseEnd_EventScript_GiveBlueTent
+givedecoration DECOR_BLUE_TENT
+return
+= Route110_TrickHouseEnd_EventScript_GiveRedTent
+givedecoration DECOR_RED_TENT
+return
+= Route110_TrickHouseEnd_EventScript_TrickMasterFaceAwayEast
+applymovement LOCALID_TRICK_MASTER_END Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+return
+= Route110_TrickHouseEnd_EventScript_TrickMasterFaceAwayWest
+applymovement LOCALID_TRICK_MASTER_END Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+return
+= Route110_TrickHouseEnd_EventScript_TrickMasterFaceAwayNorth
+applymovement LOCALID_TRICK_MASTER_END Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+return
+= Route110_TrickHouseEnd_EventScript_TrickMasterFaceAwaySouth
+applymovement LOCALID_TRICK_MASTER_END Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+return
+= Route110_TrickHouseEnd_EventScript_CompletedPuzzle7
+msgbox	It took me all night setting up arrows…You're my equal in greatness!
+msgbox	Fine! You have earned this reward!
+setvar VAR_TRICK_HOUSE_PRIZE_PICKUP 0
+giveitem ITEM_PP_MAX
+call_if_eq VAR_RESULT FALSE Route110_TrickHouseEnd_EventScript_BagFull
+msgbox	Scrub that smug smirk from your face! It's much too early to think you've won!I'll make new tricks to stump you, I will. You may mock me only when you're done.Come back for the next exciting installment!
+closemessage
+call Route110_TrickHouseEnd_EventScript_TrickMasterExit
+release
+end
+= Route110_TrickHouseEnd_EventScript_BagFull
+call Common_EventScript_BagIsFull
+msgbox	What? Have you no room for this? What manner of items do you carry?But fine, since you've reached me, your reward will be with me till later.
+setvar VAR_TRICK_HOUSE_PRIZE_PICKUP 1
+return
+= Route110_TrickHouseEnd_EventScript_CompletedPuzzle6
+msgbox	It took me all night to install the doors…You're almost my equal in greatness!
+msgbox	Fine! You have earned this reward!
+setvar VAR_TRICK_HOUSE_PRIZE_PICKUP 0
+giveitem ITEM_MAGNET
+call_if_eq VAR_RESULT FALSE Route110_TrickHouseEnd_EventScript_BagFull
+msgbox	Scrub that smug smirk from your face! It's much too early to think you've won!I'll make new tricks to stump you, I will. You may mock me only when you're done.Come back for the next exciting installment!
+closemessage
+call Route110_TrickHouseEnd_EventScript_TrickMasterExit
+release
+end
+= Route110_TrickHouseEnd_EventScript_CompletedPuzzle5
+msgbox	It took me all night to make MECHADOLLS and another to think up the quiz…You're almost my equal in greatness by one, two places!
+msgbox	Fine! You have earned this reward!
+setvar VAR_TRICK_HOUSE_PRIZE_PICKUP 0
+giveitem ITEM_TM_TAUNT
+call_if_eq VAR_RESULT FALSE Route110_TrickHouseEnd_EventScript_BagFull
+msgbox	Scrub that smug smirk from your face! It's much too early to think you've won!I'll make new tricks to stump you, I will. You may mock me only when you're done.Come back for the next exciting installment!
+closemessage
+call Route110_TrickHouseEnd_EventScript_TrickMasterExit
+release
+end
+= Route110_TrickHouseEnd_EventScript_CompletedPuzzle4
+msgbox	It took me all night to shove in those boulders…You're almost my equal in greatness by one, two, three places!
+msgbox	Fine! You have earned this reward!
+setvar VAR_TRICK_HOUSE_PRIZE_PICKUP 0
+giveitem ITEM_SMOKE_BALL
+call_if_eq VAR_RESULT FALSE Route110_TrickHouseEnd_EventScript_BagFull
+msgbox	Scrub that smug smirk from your face! It's much too early to think you've won!I'll make new tricks to stump you, I will. You may mock me only when you're done.Come back for the next exciting installment!
+closemessage
+call Route110_TrickHouseEnd_EventScript_TrickMasterExit
+release
+end
+= Route110_TrickHouseEnd_EventScript_CompletedPuzzle3
+msgbox	It took me all night to prepare the wall panels…You're almost my equal in greatness by one, two, three, four places!
+msgbox	Fine! You have earned this reward!
+setvar VAR_TRICK_HOUSE_PRIZE_PICKUP 0
+giveitem ITEM_HARD_STONE
+call_if_eq VAR_RESULT FALSE Route110_TrickHouseEnd_EventScript_BagFull
+msgbox	Scrub that smug smirk from your face! It's much too early to think you've won!I'll make new tricks to stump you, I will. You may mock me only when you're done.Come back for the next exciting installment!
+closemessage
+call Route110_TrickHouseEnd_EventScript_TrickMasterExit
+release
+end
+= Route110_TrickHouseEnd_EventScript_CompletedPuzzle2
+msgbox	It took me all night to make the maze…You're almost my equal in greatness by one, two, three, four, five places!
+msgbox	Fine! You have earned this reward!
+setvar VAR_TRICK_HOUSE_PRIZE_PICKUP 0
+giveitem ITEM_TIMER_BALL
+call_if_eq VAR_RESULT FALSE Route110_TrickHouseEnd_EventScript_BagFull
+msgbox	Scrub that smug smirk from your face! It's much too early to think you've won!I'll make new tricks to stump you, I will. You may mock me only when you're done.Come back for the next exciting installment!
+closemessage
+call Route110_TrickHouseEnd_EventScript_TrickMasterExit
+release
+end
+= Route110_TrickHouseEnd_EventScript_CompletedPuzzle1
+msgbox	It took me all night to plant all those trees…You're almost my equal in greatness by one, two, three, four, five, six places!
+msgbox	Fine! You have earned this reward!
+setvar VAR_TRICK_HOUSE_PRIZE_PICKUP 0
+giveitem ITEM_RARE_CANDY
+call_if_eq VAR_RESULT FALSE Route110_TrickHouseEnd_EventScript_BagFull
+msgbox	Scrub that smug smirk from your face! It's much too early to think you've won!I'll make new tricks to stump you, I will. You may mock me only when you're done.Come back for the next exciting installment!
+closemessage
+call Route110_TrickHouseEnd_EventScript_TrickMasterExit
+release
+end
+mapsec
+8 7 1 3	ROUTE 110
+music
+MUS_TRICK_HOUSE

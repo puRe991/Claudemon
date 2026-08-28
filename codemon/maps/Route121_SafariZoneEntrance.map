@@ -1,0 +1,142 @@
+tileset building__shop
+18 14
+11 5
+648,648,648,648,648,648,648,648,648,653,648,648,605,648,648,651,648,648
+656,656,656,656,656,656,668,656,656,661,656,668,4,656,656,659,656,656
+632,624,624,624,624,624,680,724,664,665,665,681,613,632,624,624,624,624
+640,616,616,616,616,616,688,673,672,673,673,689,640,616,712,616,616,698
+604,616,616,616,616,616,625,601,602,601,602,624,633,616,616,616,616,698
+612,616,534,535,616,616,616,609,610,609,610,616,616,616,616,616,616,616
+1,1,1,1,1,1,1,1,1,1,1,1,640,616,616,616,707,707
+1,1,1,1,1,1,1,1,1,1,1,1,604,616,616,616,720,721
+1,1,1,1,1,1,1,1,1,1,1,1,612,616,616,616,720,632
+1,1,1,1,1,1,1,1,1,1,1,1,640,616,616,616,720,640
+1,1,1,1,1,1,1,1,1,1,1,1,640,616,616,616,720,722
+1,1,1,1,1,1,1,1,1,1,1,1,640,616,616,616,721,721
+1,1,1,1,1,1,1,1,1,1,1,1,604,616,616,616,625,723
+1,1,1,1,1,1,1,1,1,1,1,1,612,616,534,535,616,628
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0
+0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,0
+1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,0
+1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,0
+1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1
+warps
+2 5 SafariZone_South 0
+3 5 SafariZone_South 0
+14 13 Route121 0
+15 13 Route121 0
+npcs
+people_picnicker 17 9 W static 0 - 0
+people_camper 10 2 S static 0 - 0
+people_camper 8 2 S static 0 - 0
+objscripts
+0 Route121_SafariZoneEntrance_EventScript_WelcomeAttendant
+1 Route121_SafariZoneEntrance_EventScript_InfoAttendant
+triggers
+8 4 VAR_TEMP_1 0 Route121_SafariZoneEntrance_EventScript_EntranceCounterTrigger
+onload
+VAR_SAFARI_ZONE_STATE 1 Route121_SafariZoneEntrance_EventScript_ExitSafariZone
+movements
+Common_Movement_WalkInPlaceFasterUp	delay,end
+Route121_SafariZoneEntrance_Movement_BackAwayFromCounter	right,end
+Route121_SafariZoneEntrance_Movement_EnterSafariZone	left,left,left,left,left,left,down,delay,end
+Route121_SafariZoneEntrance_Movement_ExitSafariZone	up,right,right,right,right,right,right,right,end
+scriptdefs
+= Route121_SafariZoneEntrance_EventScript_ExitSafariZone
+lockall
+applymovement LOCALID_PLAYER Route121_SafariZoneEntrance_Movement_ExitSafariZone
+waitmovement 0
+setvar VAR_SAFARI_ZONE_STATE 0
+releaseall
+end
+= Route121_SafariZoneEntrance_EventScript_EntranceCounterTrigger
+lockall
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+showmoneybox 0 0
+msgboxyesno	Welcome to the SAFARI ZONE!All you can catch for just ¥500! Would you like to play a SAFARI Game?
+goto_if_eq VAR_RESULT YES Route121_SafariZoneEntrance_EventScript_TryEnterSafariZone
+msgbox	Okay. Please play another time!
+goto Route121_SafariZoneEntrance_EventScript_MovePlayerBackFromCounter
+end
+= Route121_SafariZoneEntrance_EventScript_MovePlayerBackFromCounter
+closemessage
+hidemoneybox
+applymovement LOCALID_PLAYER Route121_SafariZoneEntrance_Movement_BackAwayFromCounter
+waitmovement 0
+releaseall
+end
+= Route121_SafariZoneEntrance_EventScript_TryEnterSafariZone
+checkitem ITEM_POKEBLOCK_CASE
+goto_if_eq VAR_RESULT 0 Route121_SafariZoneEntrance_EventScript_NoPokeblockCase
+call Route121_SafariZoneEntrance_EventScript_CheckHasRoomForPokemon
+checkmoney 500
+goto_if_eq VAR_RESULT 0 Route121_SafariZoneEntrance_EventScript_NotEnoughMoney
+playse SE_SHOP
+msgbox	That will be ¥500, please.
+removemoney 500
+updatemoneybox
+msgbox	Here are your SAFARI BALLS.
+playfanfare MUS_OBTAIN_ITEM
+msgbox	PLAYER received 30 SAFARI BALLS.
+waitfanfare
+msgbox	We'll let you know when your game is over.So, until then, enjoy yourself, please! Off you go on your wild excursion!
+closemessage
+hidemoneybox
+applymovement LOCALID_PLAYER Route121_SafariZoneEntrance_Movement_EnterSafariZone
+waitmovement 0
+special EnterSafariMode
+setvar VAR_SAFARI_ZONE_STATE 2
+clearflag FLAG_GOOD_LUCK_SAFARI_ZONE
+warp SafariZone_South 32 33
+waitstate
+end
+= Route121_SafariZoneEntrance_EventScript_NotEnoughMoney
+msgbox	You don't have enough money. Sorry.
+goto Route121_SafariZoneEntrance_EventScript_MovePlayerBackFromCounter
+end
+= Route121_SafariZoneEntrance_EventScript_CheckHasRoomForPokemon
+getpartysize
+goto_if_ne VAR_RESULT PARTY_SIZE Route121_SafariZoneEntrance_EventScript_HasRoomForPokemon
+specialvar VAR_RESULT ScriptCheckFreePokemonStorageSpace
+goto_if_eq VAR_RESULT 1 Route121_SafariZoneEntrance_EventScript_HasRoomForPokemon
+msgbox	Excuse me! Your PC BOX is full.
+goto Route121_SafariZoneEntrance_EventScript_MovePlayerBackFromCounter
+end
+= Route121_SafariZoneEntrance_EventScript_HasRoomForPokemon
+return
+= Route121_SafariZoneEntrance_EventScript_NoPokeblockCase
+msgbox	Excuse me! You seem to be without a CASE.Your SAFARI Game will be much more fruitful if you use S.Please come back with a CASE.You may obtain a CASE from the LILYCOVE CONTEST HALL.
+goto Route121_SafariZoneEntrance_EventScript_MovePlayerBackFromCounter
+end
+= Route121_SafariZoneEntrance_EventScript_InfoAttendant
+lock
+faceplayer
+msgboxyesno	Welcome to the SAFARI ZONE! Is it your first time here?
+goto_if_eq VAR_RESULT YES Route121_SafariZoneEntrance_EventScript_FirstTimeInfo
+msgbox	Come in and enjoy the SAFARI ZONE!
+release
+end
+= Route121_SafariZoneEntrance_EventScript_FirstTimeInfo
+msgbox	When you enter the SAFARI ZONE, you start with 30 SAFARI BALLS for catching POKéMON.The SAFARI Game is over when you run out of SAFARI BALLS, or when you've walked 500 steps.Come in and enjoy the SAFARI ZONE!
+release
+end
+= Route121_SafariZoneEntrance_EventScript_WelcomeAttendant
+msgbox	Welcome to the SAFARI ZONE!Here, you may witness many kinds of POKéMON rarely seen in HOENN.And, you'll see them in their wild, untamed state in natural habitats.What's more, we've thrown open the gates to POKéMON TRAINERS.You're encouraged to catch POKéMON for keeps!Come in and enjoy the SAFARI ZONE!
+end
+mapsec
+14 3 4 1	ROUTE 121
+music
+MUS_FORTREE
+counters
+672,673,680,681,720

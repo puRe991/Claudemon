@@ -1,0 +1,205 @@
+tileset building__oceanic_museum
+20 9
+10 4
+516,516,516,516,516,609,519,611,520,521,549,516,534,535,516,520,521,516,520,521
+524,524,524,524,524,610,527,612,528,529,549,524,542,543,524,528,529,524,528,529
+514,514,589,590,590,591,514,514,536,537,557,514,514,514,514,536,537,514,536,537
+579,513,568,569,576,556,579,513,513,513,565,579,595,596,513,595,596,513,544,513
+579,513,562,563,563,564,579,513,513,513,515,587,603,604,513,603,604,513,552,579
+579,513,581,582,582,583,587,513,513,513,513,513,515,515,513,515,515,513,515,587
+579,513,554,560,561,556,579,513,513,513,513,513,513,593,594,513,513,513,544,513
+579,513,562,563,563,564,579,513,513,513,513,513,513,601,602,579,513,513,552,579
+579,513,515,515,515,515,587,513,513,513,513,513,513,515,515,587,513,513,515,587
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+0,0,1,1,1,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+0,0,1,1,1,1,0,0,0,0,0,0,1,1,0,1,1,0,1,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,1,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,1,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+6 1 SlateportCity_OceanicMuseum_1F 2
+npcs
+people_scientist_1 13 6 S static FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_CAPTAIN_STERN LOCALID_OCEANIC_MUSEUM_2F_CAPT_STERN 0
+people_team_aqua_archie 6 1 S static FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_ARCHIE LOCALID_OCEANIC_MUSEUM_2F_ARCHIE 0
+people_team_aqua_aqua_member_m 6 1 S static FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_AQUA_GRUNT_1 LOCALID_OCEANIC_MUSEUM_2F_GRUNT_1 0
+people_team_aqua_aqua_member_m 6 1 S static FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_AQUA_GRUNT_2 LOCALID_OCEANIC_MUSEUM_2F_GRUNT_2 0
+people_old_man 12 7 E static FLAG_HIDE_SLATEPORT_MUSEUM_POPULATION - 0
+people_pokefan_f 9 6 S static FLAG_HIDE_SLATEPORT_MUSEUM_POPULATION - 0
+people_ninja_boy 1 3 E static FLAG_HIDE_SLATEPORT_MUSEUM_POPULATION - 0
+dialogs
+0	Yes? If you're looking for STERN, that would be me.Ah! Those must be the parts I ordered from MR. STONE of DEVON.Thank you! That's great! We can prepare for our expedition now.
+4	I saw a model of a ship here.It reminded me of the ABANDONED SHIP near DEWFORD TOWN…
+5	Don't you dare run around inside the MUSEUM!
+6	Wow, the submarine's awesome! I want to go for a ride!
+objscripts
+0 SlateportCity_OceanicMuseum_2F_EventScript_CaptStern
+4 SlateportCity_OceanicMuseum_2F_EventScript_MuseumPatron1
+5 SlateportCity_OceanicMuseum_2F_EventScript_MuseumPatron2
+6 SlateportCity_OceanicMuseum_2F_EventScript_MuseumPatron3
+movements
+Common_Movement_FaceOriginalDirection	face_down,end
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
+SlateportCity_OceanicMuseum_2F_Movement_ArchieApproachPlayer	right,end
+SlateportCity_OceanicMuseum_2F_Movement_ArchieEnter	down,down,down,down,down,right,right,right,right,end
+SlateportCity_OceanicMuseum_2F_Movement_FirstGruntApproach	down,down,down,right,right,right,end
+SlateportCity_OceanicMuseum_2F_Movement_FirstGruntEnter	down,right,delay,end
+SlateportCity_OceanicMuseum_2F_Movement_GruntApproachToBattle	right,end
+SlateportCity_OceanicMuseum_2F_Movement_GruntDefeated	delay,left,delay,end
+SlateportCity_OceanicMuseum_2F_Movement_GruntMoveForArchie	delay,delay,delay,delay,delay,delay,delay,delay,delay,down,delay,end
+SlateportCity_OceanicMuseum_2F_Movement_PlayerApproachGruntSouth	left,down,delay,end
+SlateportCity_OceanicMuseum_2F_Movement_PlayerApproachGruntWest	up,left,left,down,delay,end
+SlateportCity_OceanicMuseum_2F_Movement_SecondGruntApproach	down,down,down,down,right,right,right,right,end
+SlateportCity_OceanicMuseum_2F_Movement_SecondGruntEnter	down,end
+scriptdefs
+= SlateportCity_OceanicMuseum_2F_EventScript_MuseumPatron3
+lock
+faceplayer
+msgbox	Wow, the submarine's awesome! I want to go for a ride!
+closemessage
+applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
+waitmovement 0
+release
+end
+= SlateportCity_OceanicMuseum_2F_EventScript_MuseumPatron2
+msgbox	Don't you dare run around inside the MUSEUM!
+end
+= SlateportCity_OceanicMuseum_2F_EventScript_MuseumPatron1
+msgbox	I saw a model of a ship here.It reminded me of the ABANDONED SHIP near DEWFORD TOWN…
+end
+= SlateportCity_OceanicMuseum_2F_EventScript_CaptStern
+lock
+faceplayer
+msgbox	Yes? If you're looking for STERN, that would be me.Ah! Those must be the parts I ordered from MR. STONE of DEVON.Thank you! That's great! We can prepare for our expedition now.
+closemessage
+playbgm MUS_ENCOUNTER_AQUA TRUE
+addobject LOCALID_OCEANIC_MUSEUM_2F_GRUNT_1
+applymovement LOCALID_OCEANIC_MUSEUM_2F_GRUNT_1 SlateportCity_OceanicMuseum_2F_Movement_FirstGruntEnter
+waitmovement 0
+addobject LOCALID_OCEANIC_MUSEUM_2F_GRUNT_2
+applymovement LOCALID_OCEANIC_MUSEUM_2F_GRUNT_2 SlateportCity_OceanicMuseum_2F_Movement_SecondGruntEnter
+waitmovement 0
+applymovement LOCALID_OCEANIC_MUSEUM_2F_GRUNT_1 SlateportCity_OceanicMuseum_2F_Movement_FirstGruntApproach
+applymovement LOCALID_OCEANIC_MUSEUM_2F_GRUNT_2 SlateportCity_OceanicMuseum_2F_Movement_SecondGruntApproach
+waitmovement 0
+call_if_eq VAR_FACING DIR_SOUTH SlateportCity_OceanicMuseum_2F_EventScript_PlayerFaceGrunts
+call_if_eq VAR_FACING DIR_EAST SlateportCity_OceanicMuseum_2F_EventScript_PlayerFaceGrunts
+msgbox	Hehehe, hold it! We'll take those parts!
+call_if_ne VAR_FACING DIR_EAST SlateportCity_OceanicMuseum_2F_EventScript_SternFaceGrunts
+msgbox	CAPT. STERN: Wh-what? Who are you people?
+msgbox	We're TEAM AQUA!Our BOSS wants those parts! Shut your yap and fork them over!
+closemessage
+applymovement LOCALID_OCEANIC_MUSEUM_2F_GRUNT_2 SlateportCity_OceanicMuseum_2F_Movement_GruntApproachToBattle
+waitmovement 0
+call_if_eq VAR_FACING DIR_SOUTH SlateportCity_OceanicMuseum_2F_EventScript_PlayerApproachGruntSouth
+call_if_eq VAR_FACING DIR_WEST SlateportCity_OceanicMuseum_2F_EventScript_PlayerApproachGruntWest
+trainerbattle_no_intro TRAINER_GRUNT_MUSEUM_1 SlateportCity_OceanicMuseum_2F_Text_Grunt1Defeat
+msgbox	Oh, man, what a disaster… The BOSS is going to be furious…
+closemessage
+applymovement LOCALID_OCEANIC_MUSEUM_2F_GRUNT_2 SlateportCity_OceanicMuseum_2F_Movement_GruntDefeated
+waitmovement 0
+applymovement LOCALID_OCEANIC_MUSEUM_2F_GRUNT_1 SlateportCity_OceanicMuseum_2F_Movement_GruntApproachToBattle
+waitmovement 0
+msgbox	Humph, sniveling wimp! Let me take care of this!
+trainerbattle_no_intro TRAINER_GRUNT_MUSEUM_2 SlateportCity_OceanicMuseum_2F_Text_Grunt2Defeat
+applymovement LOCALID_OCEANIC_MUSEUM_2F_GRUNT_1 SlateportCity_OceanicMuseum_2F_Movement_GruntDefeated
+waitmovement 0
+applymovement LOCALID_OCEANIC_MUSEUM_2F_GRUNT_1 Common_Movement_WalkInPlaceFasterDown
+applymovement LOCALID_OCEANIC_MUSEUM_2F_GRUNT_2 Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+msgbox	Now what? If we don't get the parts, we're in for it!Arrgh, I didn't count on being meddled with by some meddling kid!
+closemessage
+delay 35
+addobject LOCALID_OCEANIC_MUSEUM_2F_ARCHIE
+applymovement LOCALID_OCEANIC_MUSEUM_2F_ARCHIE SlateportCity_OceanicMuseum_2F_Movement_ArchieEnter
+applymovement LOCALID_OCEANIC_MUSEUM_2F_GRUNT_2 SlateportCity_OceanicMuseum_2F_Movement_GruntMoveForArchie
+waitmovement 0
+msgbox	I came to see what was taking so long to snatch some parts, and you simps are held up by a mere child?
+closemessage
+applymovement LOCALID_OCEANIC_MUSEUM_2F_ARCHIE SlateportCity_OceanicMuseum_2F_Movement_ArchieApproachPlayer
+waitmovement 0
+msgbox	We are TEAM AQUA, and we love the sea!And I am TEAM AQUA's leader, ARCHIE!What makes you interfere with us?…No! You can't be! You're not one of TEAM MAGMA?Wait, that can't be right. You're not dressed for the part.… … … … … … … … … … … …POKéMON, people… All life depends on the sea.So, TEAM AQUA is dedicated to the expansion of the sea.Don't you agree? What we are doing is a magnificent undertaking.Ah, fine… You're still too young to understand our noble objective.But, I warn you, don't even consider interfering with our plans again.The consequences will cost you dearly!And don't you forget it!
+closemessage
+savebgm MUS_DUMMY
+fadedefaultbgm
+fadescreen FADE_TO_BLACK
+removeobject LOCALID_OCEANIC_MUSEUM_2F_ARCHIE
+removeobject LOCALID_OCEANIC_MUSEUM_2F_GRUNT_1
+removeobject LOCALID_OCEANIC_MUSEUM_2F_GRUNT_2
+fadescreen FADE_FROM_BLACK
+delay 30
+setflag FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_AQUA_GRUNTS
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+msgbox	CAPT. STERN: You're… Ah, okay, you're PLAYER…Anyway, that was a tense situation! Thank you for saving us!Oh, yes, I almost forgot that you even brought the parts from DEVON!
+setvar VAR_0x8004 ITEM_DEVON_GOODS
+call Common_EventScript_PlayerHandedOverTheItem
+msgbox	CAPT. STERN: Whoops! There's no time to lose!We have to set out on our ocean-floor expedition really soon.Thanks again, but now I've got to go!Feel free to wander around and check out our facilities, though.
+closemessage
+fadescreen FADE_TO_BLACK
+playfanfare MUS_HEAL
+waitfanfare
+special HealPlayerParty
+removeobject LOCALID_OCEANIC_MUSEUM_2F_CAPT_STERN
+setflag FLAG_HIDE_ROUTE_110_TEAM_AQUA
+call_if_eq VAR_REGISTER_BIRCH_STATE 0 SlateportCity_OceanicMuseum_2F_EventScript_ReadyRegisterBirch
+setflag FLAG_DELIVERED_DEVON_GOODS
+clearflag FLAG_HIDE_ROUTE_116_DEVON_EMPLOYEE
+setflag FLAG_HIDE_RUSTBORO_CITY_DEVON_CORP_3F_EMPLOYEE
+setvar VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE 1
+fadescreen FADE_FROM_BLACK
+release
+end
+= SlateportCity_OceanicMuseum_2F_EventScript_ReadyRegisterBirch
+setvar VAR_REGISTER_BIRCH_STATE 1
+return
+= SlateportCity_OceanicMuseum_2F_EventScript_PlayerApproachGruntWest
+applymovement LOCALID_PLAYER SlateportCity_OceanicMuseum_2F_Movement_PlayerApproachGruntWest
+waitmovement 0
+return
+= SlateportCity_OceanicMuseum_2F_EventScript_PlayerApproachGruntSouth
+applymovement LOCALID_PLAYER SlateportCity_OceanicMuseum_2F_Movement_PlayerApproachGruntSouth
+waitmovement 0
+return
+= SlateportCity_OceanicMuseum_2F_EventScript_SternFaceGrunts
+applymovement LOCALID_OCEANIC_MUSEUM_2F_CAPT_STERN Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+return
+= SlateportCity_OceanicMuseum_2F_EventScript_PlayerFaceGrunts
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+return
+signs
+18 4	“WATER QUALITY SAMPLE 1,” the label says.The sea is all connected, but the water seems to differ by region.
+18 7	“WATER QUALITY SAMPLE 2,” the label says.Does the saltiness of seawater differ by region, too?
+4 3	“SUBMERSIBLE POD“A replica of a compact, unmanned pod for seafloor exploration.”
+4 4	“SUBMERSIBLE POD“A replica of a compact, unmanned pod for seafloor exploration.”
+3 3	“SUBMARINE EXPLORER 1“A replica of the high-performance ocean floor exploration submarine.”
+2 3	“SUBMARINE EXPLORER 1“A replica of the high-performance ocean floor exploration submarine.”
+3 4	“SUBMARINE EXPLORER 1“A replica of the high-performance ocean floor exploration submarine.”
+3 6	“THE FERRY S.S. TIDAL“A scale replica of the ship under construction at STERN'S SHIPYARD.”
+4 6	“THE FERRY S.S. TIDAL“A scale replica of the ship under construction at STERN'S SHIPYARD.”
+13 7	“S.S. ANNE“A replica of the luxury liner that circles the globe.”
+14 7	“S.S. ANNE“A replica of the luxury liner that circles the globe.”
+18 1	It's a display on the flow of seawater.“Toward the surface, seawater flows as currents driven by the winds.”
+19 1	It's a display on the flow of seawater.“Toward the surface, seawater flows as currents driven by the winds.”
+15 1	It's a display on the flow of seawater.“Near the bottom of the sea, water flows due to differences in such factors as temperature and salinity.”
+16 1	It's a display on the flow of seawater.“Near the bottom of the sea, water flows due to differences in such factors as temperature and salinity.”
+8 1	“MODEL OF HOENN REGION”It's a miniature diorama of the HOENN region.Where is LITTLEROOT TOWN on this?
+9 1	“MODEL OF HOENN REGION”It's a miniature diorama of the HOENN region.Where is LITTLEROOT TOWN on this?
+12 1	A rubber ball is expanding and shrinking.“In the sea, the weight of water itself exerts pressure.“In shallow water, the pressure is not very heavy.“However, in extremely deep water, the pressure can reach even tens of thousands of tons on a small area.”
+13 1	A rubber ball is expanding and shrinking.“In the sea, the weight of water itself exerts pressure.“In shallow water, the pressure is not very heavy.“However, in extremely deep water, the pressure can reach even tens of thousands of tons on a small area.”
+3 7	“THE FERRY S.S. TIDAL“A scale replica of the ship under construction at STERN'S SHIPYARD.”
+4 7	“THE FERRY S.S. TIDAL“A scale replica of the ship under construction at STERN'S SHIPYARD.”
+mapsec
+8 10 1 2	SLATEPORT CITY
+music
+MUS_OCEANIC_MUSEUM
+counters
+563

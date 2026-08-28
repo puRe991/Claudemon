@@ -1,0 +1,367 @@
+tileset building__trainer_hill
+19 17
+9 8
+520,520,520,520,520,520,800,801,826,827,828,801,807,520,520,520,520,520,520
+520,520,520,520,520,520,808,809,834,835,836,809,815,520,520,520,520,520,520
+520,520,520,520,520,520,808,824,790,821,790,790,815,520,520,520,520,520,520
+520,520,520,520,520,520,808,847,846,817,845,844,815,520,520,520,520,520,520
+520,520,520,520,520,520,808,773,843,823,842,773,815,520,520,520,520,520,520
+520,520,520,520,520,520,808,825,789,823,789,825,815,520,520,520,520,520,520
+520,520,520,520,520,520,808,823,789,823,850,823,815,520,520,520,520,520,520
+806,801,801,801,851,852,802,848,793,823,792,849,810,801,801,801,803,804,805
+797,776,771,772,853,854,770,786,787,823,786,787,809,809,809,798,811,812,813
+814,792,779,780,781,782,783,841,788,823,794,840,782,782,781,791,785,821,784
+4,794,773,773,774,773,773,795,796,833,821,794,773,773,774,799,795,820,794
+778,825,790,821,790,821,790,821,832,817,816,821,790,821,790,821,790,821,790
+823,816,817,816,817,816,817,816,817,816,817,816,817,816,817,816,817,816,817
+822,817,816,817,816,817,816,817,816,817,816,817,816,817,816,817,816,817,816
+823,769,769,769,817,816,817,816,817,816,817,816,817,816,817,769,769,769,817
+822,777,777,777,816,817,816,817,816,817,816,817,816,817,816,777,777,777,816
+823,816,817,816,817,816,817,816,817,6,7,816,817,816,817,816,817,816,817
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1
+1,1,1,1,0,0,1,1,1,0,1,1,0,0,0,1,0,0,0
+1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+9 16 Route111 4
+10 16 Route111 4
+9 1 TrainerHill_1F 0
+npcs
+people_teala 11 6 W static 0 LOCALID_TRAINER_HILL_ATTENDANT 0
+people_nurse 4 9 S static 0 LOCALID_TRAINER_HILL_NURSE 0
+people_mart_employee 14 9 S static 0 - 0
+people_girl_3 5 14 S wander 0 LOCALID_TRAINER_HILL_GIRL 0
+people_man_3 14 15 S wander 0 LOCALID_TRAINER_HILL_MAN 0
+dialogs
+0	I hope you give it your best.
+3	Do you see the Time Board over there?My friends and I are trying to see who can reach the top in the least time.
+4	Who knows what sort of TRAINERS and POKéMON combos are ahead?All I know is that I'll knock aside anyone that stands in my way!
+objscripts
+0 TrainerHill_Entrance_EventScript_Attendant
+1 TrainerHill_Entrance_EventScript_Nurse
+2 TrainerHill_Entrance_EventScript_Clerk
+3 TrainerHill_Entrance_EventScript_Girl
+4 TrainerHill_Entrance_EventScript_Man
+triggers
+9 6 VAR_TRAINER_HILL_IS_ACTIVE 0 TrainerHill_Entrance_EventScript_EntryTrigger
+onload
+VAR_TEMP_0 0 TrainerHill_Entrance_EventScript_ExitChallenge
+VAR_TEMP_D 17 TrainerHill_Entrance_EventScript_ExitElevator
+VAR_TEMP_5 1 TrainerHill_Entrance_EventScript_EntryTrigger
+VAR_TEMP_1 1 TrainerHill_EventScript_WarpToEntranceCounter
+movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Movement_PkmnCenterNurse_Bow	delay,delay,end
+TrainerHill_Entrance_Movement_PlayerExitElevator	down,down,end
+TrainerHill_Entrance_Movement_PlayerFaceAttendant	face_right,end
+TrainerHill_Entrance_Movement_PushPlayerBackFromCounter	down,end
+shops
+TrainerHill_Entrance_Pokemart_Basic	ITEM_SUPER_POTION,ITEM_ANTIDOTE,ITEM_PARALYZE_HEAL,ITEM_AWAKENING,ITEM_X_SPEED,ITEM_X_SPECIAL,ITEM_X_ATTACK,ITEM_X_DEFEND,ITEM_DIRE_HIT,ITEM_GUARD_SPEC,ITEM_X_ACCURACY
+TrainerHill_Entrance_Pokemart_Expanded	ITEM_HYPER_POTION,ITEM_MAX_POTION,ITEM_FULL_RESTORE,ITEM_FULL_HEAL,ITEM_REVIVE,ITEM_X_SPEED,ITEM_X_SPECIAL,ITEM_X_ATTACK,ITEM_X_DEFEND,ITEM_DIRE_HIT,ITEM_GUARD_SPEC,ITEM_X_ACCURACY
+scriptdefs
+= TrainerHill_EventScript_WarpToEntranceCounter
+setvar VAR_TEMP_1 0
+warp TrainerHill_Entrance 9 6
+waitstate
+end
+@ Unused
+goto TrainerHill_1F_Movement_SetInvisible
+= TrainerHill_1F_Movement_SetInvisible
+set_invisible
+step_end
+@ TRAINER_PHILLIP is an actual Trainer on the SS Tidal but is used as a placeholder here
+goto TrainerHill_EventScript_TrainerBattle
+= TrainerHill_EventScript_TrainerBattle
+trainerbattle TRAINER_BATTLE_HILL TRAINER_PHILLIP LOCALID_NONE BattleFacility_TrainerBattle_PlaceholderText BattleFacility_TrainerBattle_PlaceholderText
+trainerhill_postbattletext
+waitmessage
+waitbuttonpress
+closemessage
+end
+= TrainerHill_Entrance_EventScript_EntryTrigger
+lockall
+applymovement LOCALID_PLAYER TrainerHill_Entrance_Movement_PlayerFaceAttendant
+goto_if_unset FLAG_SYS_GAME_CLEAR TrainerHill_Entrance_EventScript_Closed
+msgbox	Welcome!This is the TRAINER HILL where you may enjoy tag battles with many TRAINERS!
+trainerhill_getsaved
+call_if_eq VAR_RESULT FALSE TrainerHill_Entrance_EventScript_SaveGame
+trainerhill_allfloorsused
+goto_if_eq VAR_RESULT TRUE TrainerHill_Entrance_EventScript_AllFloorsUsed
+msgbox	Let's see… The TRAINERS here now are…Up to floor no. STR_VAR_1.
+goto TrainerHill_Entrance_EventScript_AskChallengeTrainers
+= TrainerHill_Entrance_EventScript_AskChallengeTrainers
+msgbox	Would you like to challenge the waiting TRAINERS?
+waitmessage
+multichoice 15 6 MULTI_YESNOINFO FALSE
+switch VAR_RESULT
+case 0 TrainerHill_Entrance_EventScript_ChooseChallenge
+case 1 TrainerHill_Entrance_EventScript_CancelEntry
+case 2 TrainerHill_Entrance_EventScript_Info
+case MULTI_B_PRESSED TrainerHill_Entrance_EventScript_CancelEntry
+end
+= TrainerHill_Entrance_EventScript_CancelEntry
+setvar VAR_TEMP_5 0
+msgbox	Please do visit us again!
+closemessage
+applymovement LOCALID_PLAYER TrainerHill_Entrance_Movement_PushPlayerBackFromCounter
+waitmovement 0
+releaseall
+end
+= TrainerHill_Entrance_EventScript_Info
+msgbox	Here at the TRAINER HILL, we conduct an event called the Time Attack.It is a race that measures how long you take to reach our owner on the rooftop from this counter.The fastest times are posted on the Time Board--try competing with your friends.In TRAINER battles along the way, neither Exp. Points nor money will be awarded.
+goto TrainerHill_Entrance_EventScript_AskChallengeTrainers
+end
+= TrainerHill_Entrance_EventScript_ChooseChallenge
+multichoice 13 2 MULTI_TAG_MATCH_TYPE FALSE
+switch VAR_RESULT
+case 4 TrainerHill_Entrance_EventScript_CancelEntry
+case MULTI_B_PRESSED TrainerHill_Entrance_EventScript_CancelEntry
+trainerhill_setmode VAR_RESULT
+setvar VAR_TRAINER_HILL_IS_ACTIVE 1
+setvar VAR_TEMP_5 0
+special HealPlayerParty
+msgbox	I will time your progress. Best of luck!On your marks…Get set…Go!
+trainerhill_start
+releaseall
+end
+= TrainerHill_Entrance_EventScript_AllFloorsUsed
+msgbox	Let's see… The TRAINERS here now are…There appear to be TRAINERS gathered in every room.
+goto TrainerHill_Entrance_EventScript_AskChallengeTrainers
+= TrainerHill_Entrance_EventScript_SaveGame
+msgbox	Is this your first visit here?Before you enter, please save your game.
+trainerhill_setsaved
+setvar VAR_TEMP_5 1
+call Common_EventScript_SaveGame
+goto_if_eq VAR_RESULT FALSE TrainerHill_Entrance_EventScript_SaveFailed
+trainerhill_setsaved
+return
+= TrainerHill_Entrance_EventScript_SaveFailed
+trainerhill_clearsaved
+goto TrainerHill_Entrance_EventScript_CancelEntry
+end
+= Common_EventScript_SaveGame
+special SaveGame
+return
+= TrainerHill_Entrance_EventScript_Closed
+msgbox	This is the TRAINER HILL where you may enjoy tag battles with many TRAINERS.Unfortunately, we're still getting things ready. Please come back later!
+closemessage
+applymovement LOCALID_PLAYER TrainerHill_Entrance_Movement_PushPlayerBackFromCounter
+waitmovement 0
+releaseall
+end
+= TrainerHill_Entrance_EventScript_ExitElevator
+lockall
+applymovement LOCALID_PLAYER TrainerHill_Entrance_Movement_PlayerExitElevator
+waitmovement 0
+setmetatile 17 10 METATILE_TrainerHill_CounterDoor TRUE
+special DrawWholeMapView
+playse SE_CLICK
+waitse
+setvar VAR_TEMP_D 0
+releaseall
+end
+= TrainerHill_Entrance_EventScript_ExitChallenge
+setvar VAR_TEMP_0 1
+trainerhill_getstatus
+switch VAR_RESULT
+case TRAINER_HILL_PLAYER_STATUS_LOST TrainerHill_Entrance_EventScript_ExitChallengeLost
+case TRAINER_HILL_PLAYER_STATUS_ECARD_SCANNED TrainerHill_Entrance_EventScript_ExitChallengeECard
+case TRAINER_HILL_PLAYER_STATUS_NORMAL TrainerHill_Entrance_EventScript_EndExitChallenge
+goto TrainerHill_Entrance_EventScript_ExitChallengeLost
+= TrainerHill_Entrance_EventScript_ExitChallengeLost
+lockall
+applymovement LOCALID_PLAYER TrainerHill_Entrance_Movement_PlayerFaceAttendant
+msgbox	That was too bad.I think you put in a tremendous effort in your battling.Please come back and try again!
+goto TrainerHill_Entrance_EventScript_PlayerExitChallenge
+= TrainerHill_Entrance_EventScript_PlayerExitChallenge
+closemessage
+applymovement LOCALID_PLAYER TrainerHill_Entrance_Movement_PushPlayerBackFromCounter
+waitmovement 0
+setvar VAR_TRAINER_HILL_IS_ACTIVE 0
+special HealPlayerParty
+releaseall
+goto TrainerHill_Entrance_EventScript_EndExitChallenge
+= TrainerHill_Entrance_EventScript_EndExitChallenge
+end
+= TrainerHill_Entrance_EventScript_ExitChallengeECard
+lockall
+applymovement LOCALID_PLAYER TrainerHill_Entrance_Movement_PlayerFaceAttendant
+msgbox	When the TRAINERS switch places, the movement can be hectic.To avoid the stampede, we moved the reception counter here.I'm sorry for the inconvenience.
+goto TrainerHill_Entrance_EventScript_PlayerExitChallenge
+= TrainerHill_Entrance_EventScript_Man
+goto_if_unset FLAG_SYS_GAME_CLEAR TrainerHill_Entrance_EventScript_ManTrainerHillClosed
+msgbox	Who knows what sort of TRAINERS and POKéMON combos are ahead?All I know is that I'll knock aside anyone that stands in my way!
+end
+= TrainerHill_Entrance_EventScript_ManTrainerHillClosed
+msgbox	I heard tough TRAINERS come to this TRAINER HILL from all over.I can't wait to test the waters!I'll knock aside anyone that stands in my way!
+end
+= TrainerHill_Entrance_EventScript_Girl
+goto_if_unset FLAG_SYS_GAME_CLEAR TrainerHill_Entrance_EventScript_GirlTrainerHillClosed
+msgbox	Do you see the Time Board over there?My friends and I are trying to see who can reach the top in the least time.
+end
+= TrainerHill_Entrance_EventScript_GirlTrainerHillClosed
+msgbox	Do you know when they're opening this place up?I'm waiting here to be the first challenger ever!
+end
+= TrainerHill_Entrance_EventScript_Clerk
+lock
+faceplayer
+msgbox	Welcome!How may I serve you?
+waitmessage
+goto_if_set FLAG_SYS_GAME_CLEAR TrainerHill_Entrance_EventScript_ExpandedPokemart
+pokemart TrainerHill_Entrance_Pokemart_Basic
+msgbox	Please come again!
+release
+end
+= TrainerHill_Entrance_EventScript_ExpandedPokemart
+pokemart TrainerHill_Entrance_Pokemart_Expanded
+msgbox	Please come again!
+release
+end
+= TrainerHill_Entrance_EventScript_Nurse
+setvar VAR_0x800B LOCALID_TRAINER_HILL_NURSE
+call Common_EventScript_PkmnCenterNurse
+waitmessage
+waitbuttonpress
+release
+end
+= Common_EventScript_PkmnCenterNurse
+lock
+faceplayer
+setvar VAR_0x8004 0
+specialvar VAR_RESULT CountPlayerTrainerStars
+goto_if_eq VAR_RESULT 4 EventScript_PkmnCenterNurse_GoldCard
+msgboxyesno	Hello, and welcome to the POKéMON CENTER.We restore your tired POKéMON to full health.Would you like to rest your POKéMON?
+goto_if_eq VAR_RESULT YES EventScript_PkmnCenterNurse_HealPkmn
+goto_if_eq VAR_RESULT NO EventScript_PkmnCenterNurse_Goodbye
+end
+= EventScript_PkmnCenterNurse_Goodbye
+msgbox	We hope to see you again!
+return
+@ VAR_0x8004 is 1 when player has Gold Card; jumps are identical
+goto EventScript_PkmnCenterNurse_HealPkmn
+= EventScript_PkmnCenterNurse_HealPkmn
+incrementgamestat GAME_STAT_USED_POKECENTER
+call_if_eq VAR_0x8004 0 EventScript_PkmnCenterNurse_IllTakeYourPkmn
+call_if_eq VAR_0x8004 1 EventScript_PkmnCenterNurse_IllTakeYourPkmn2
+waitmessage
+call EventScript_PkmnCenterNurse_TakeAndHealPkmn
+goto_if_unset FLAG_POKERUS_EXPLAINED EventScript_PkmnCenterNurse_CheckPokerus
+goto EventScript_PkmnCenterNurse_CheckTrainerHillAndUnionRoom
+end
+= EventScript_PkmnCenterNurse_CheckTrainerHillAndUnionRoom
+specialvar VAR_RESULT PlayerNotAtTrainerHillEntrance
+goto_if_eq VAR_RESULT 0 EventScript_PkmnCenterNurse_ReturnPkmn
+specialvar VAR_RESULT BufferUnionRoomPlayerName
+copyvar VAR_0x8008 VAR_RESULT
+goto_if_eq VAR_0x8008 0 EventScript_PkmnCenterNurse_ReturnPkmn
+goto_if_eq VAR_0x8008 1 EventScript_PkmnCenterNurse_PlayerWaitingInUnionRoom
+end
+@ VAR_0x8004 is 1 when player has Gold Card
+goto EventScript_PkmnCenterNurse_ReturnPkmn
+= EventScript_PkmnCenterNurse_ReturnPkmn
+goto_if_eq VAR_0x8004 1 EventScript_PkmnCenterNurse_ReturnPkmn2
+msgbox	Thank you for waiting.We've restored your POKéMON to full health.
+waitmessage
+applymovement VAR_0x800B Movement_PkmnCenterNurse_Bow
+waitmovement 0
+msgbox	We hope to see you again!
+return
+= EventScript_PkmnCenterNurse_ReturnPkmn2
+msgbox	Thank you for waiting.
+waitmessage
+applymovement VAR_0x800B Movement_PkmnCenterNurse_Bow
+waitmovement 0
+msgbox	We hope to see you again!
+return
+= EventScript_PkmnCenterNurse_PlayerWaitingInUnionRoom
+goto_if_set FLAG_NURSE_UNION_ROOM_REMINDER EventScript_PkmnCenterNurse_ReturnPkmn
+msgbox	Thank you for waiting.We've restored your POKéMON to full health.
+setflag FLAG_NURSE_UNION_ROOM_REMINDER
+msgbox	It appears as if STR_VAR_1 is playing right now. Go for it!
+waitmessage
+applymovement VAR_0x800B Movement_PkmnCenterNurse_Bow
+waitmovement 0
+msgbox	We hope to see you again!
+return
+= EventScript_PkmnCenterNurse_CheckPokerus
+specialvar VAR_RESULT IsPokerusInParty
+goto_if_eq VAR_RESULT TRUE EventScript_PkmnCenterNurse_ExplainPokerus
+goto_if_eq VAR_RESULT FALSE EventScript_PkmnCenterNurse_CheckTrainerHillAndUnionRoom
+end
+= EventScript_PkmnCenterNurse_ExplainPokerus
+msgbox	Your POKéMON may be infected with POKéRUS.Little is known about the POKéRUS except that they are microscopic life- forms that attach to POKéMON.While infected, POKéMON are said to grow exceptionally well.
+setflag FLAG_POKERUS_EXPLAINED
+return
+= EventScript_PkmnCenterNurse_TakeAndHealPkmn
+applymovement VAR_0x800B Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+dofieldeffect FLDEFF_POKECENTER_HEAL
+waitfieldeffect FLDEFF_POKECENTER_HEAL
+applymovement VAR_0x800B Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+special HealPlayerParty
+return
+= EventScript_PkmnCenterNurse_IllTakeYourPkmn2
+msgbox	Okay, I'll take your POKéMON for a few seconds.
+return
+= EventScript_PkmnCenterNurse_IllTakeYourPkmn
+msgbox	Okay, I'll take your POKéMON for a few seconds.
+return
+= EventScript_PkmnCenterNurse_GoldCard
+goto_if_set FLAG_NURSE_MENTIONS_GOLD_CARD EventScript_PkmnCenterNurse_AskForUsual
+setflag FLAG_NURSE_MENTIONS_GOLD_CARD
+msgbox	Hello, and welcome to the POKéMON CENTER.We restore your tired POKéMON to full health.Would you like to…
+playse SE_PIN
+applymovement VAR_0x800B Common_Movement_ExclamationMark
+waitmovement 0
+applymovement VAR_0x800B Common_Movement_Delay48
+waitmovement 0
+msgboxyesno	Th-that card… Could it be… The GOLD CARD?!Oh, the gold color is brilliant! The four stars seem to sparkle!I've seen several TRAINERS with a SILVER CARD before, but, PLAYER, you're the first TRAINER I've ever seen with a GOLD CARD!Okay, PLAYER, please allow me the honor of resting your POKéMON!
+goto_if_eq VAR_RESULT YES EventScript_PkmnCenterNurse_GoldCardHealPkmn
+msgbox	We hope to see you again!
+return
+= EventScript_PkmnCenterNurse_GoldCardHealPkmn
+setvar VAR_0x8004 1
+goto EventScript_PkmnCenterNurse_HealPkmn
+end
+= EventScript_PkmnCenterNurse_AskForUsual
+msgboxyesno	I'm delighted to see you, PLAYER! You want the usual, am I right?
+goto_if_eq VAR_RESULT YES EventScript_PkmnCenterNurse_GoldCardHealPkmn
+msgbox	We hope to see you again!
+return
+= TrainerHill_Entrance_EventScript_Attendant
+lock
+faceplayer
+trainerhill_inchallenge
+goto_if_eq VAR_RESULT FALSE TrainerHill_Entrance_EventScript_ThanksForPlaying
+msgbox	I hope you give it your best.
+goto TrainerHill_Entrance_EventScript_AttendantEnd
+= TrainerHill_Entrance_EventScript_AttendantEnd
+release
+end
+= TrainerHill_Entrance_EventScript_ThanksForPlaying
+msgbox	Thank you for playing!
+goto TrainerHill_Entrance_EventScript_AttendantEnd
+mapsec
+8 4 1 1	TRAINER HILL
+music
+MUS_B_TOWER_RS
+counters
+774,850

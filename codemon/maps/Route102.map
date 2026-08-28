@@ -1,0 +1,302 @@
+tileset general__petalburg
+50 20
+25 10
+468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469
+476,477,476,477,476,477,476,477,484,485,484,485,484,485,484,485,484,485,484,485,484,485,484,485,484,485,484,485,476,477,476,477,476,477,476,477,484,485,484,485,484,485,484,485,476,477,476,477,476,477
+468,469,468,469,468,469,468,469,13,13,13,1,1,1,1,1,1,3,1,1,1,1,1,652,653,653,654,1,468,469,468,469,468,469,468,469,13,13,13,13,176,177,177,178,468,469,468,469,468,469
+476,477,484,485,484,485,484,487,13,13,13,1,1,1,464,465,465,466,1,1,1,1,1,275,276,276,277,1,486,485,484,485,484,485,484,487,13,13,13,13,184,161,161,186,484,485,476,477,476,477
+468,469,13,13,13,13,13,13,13,13,13,1,464,465,473,473,473,473,465,466,1,1,1,1,1,1,1,1,1,1,1,1,1,4,255,1,13,13,13,13,184,161,161,194,177,178,468,469,468,469
+484,487,13,13,13,13,13,13,13,13,1,464,473,473,625,633,481,481,481,482,1,1,1,1,1,1,1,1,1,1,462,463,4,1,134,1,1,13,13,13,184,161,161,161,161,186,476,477,476,477
+1,1,1,13,13,13,13,13,13,13,1,472,473,482,470,471,213,214,1,1,213,135,135,135,135,214,462,463,462,463,470,471,1,4,134,1,1,1,13,13,184,161,161,161,161,186,468,469,468,469
+1,1,1,1,13,13,13,13,1,1,1,480,626,463,476,477,1,1,1,1,13,13,13,13,13,1,470,469,468,469,476,477,462,463,134,1,1,1,1,1,2,2,2,2,2,2,486,485,476,477
+1,1,1,1,1,1,1,1,1,1,1,1,470,469,468,469,1,1,13,13,13,13,13,13,13,1,476,477,476,477,468,469,468,471,635,1,1,1,1,1,1,1,1,1,1,1,1,1,468,469
+462,463,462,463,462,463,462,463,1,1,1,1,476,477,476,477,1,13,13,13,13,13,13,13,1,1,468,469,468,469,476,477,476,477,462,463,1,1,1,1,3,1,1,1,1,1,1,1,486,485
+468,469,468,469,468,469,468,471,1,1,462,463,468,469,468,469,13,13,13,13,13,13,1,1,1,1,476,477,476,477,468,469,468,469,468,471,1,1,1,1,1,464,465,465,466,1,1,1,1,1
+476,477,476,477,476,477,484,487,1,1,470,469,476,477,476,477,13,13,13,13,1,1,1,1,1,1,468,469,468,469,484,485,476,477,476,477,1,1,464,465,465,473,473,473,474,1,1,1,462,463
+468,469,468,469,468,469,13,13,1,1,486,485,468,469,468,469,13,13,13,1,1,462,463,1,1,1,486,485,484,487,13,13,468,469,468,469,464,465,473,473,473,473,473,481,482,1,1,1,470,469
+476,477,476,477,476,477,13,13,213,135,135,214,476,477,476,477,454,455,1,1,1,470,471,462,463,1,1,1,13,13,13,13,486,485,484,487,472,473,473,473,473,481,482,1,462,463,462,463,476,477
+468,469,468,469,468,469,13,13,13,1,1,1,468,469,468,469,468,471,1,1,1,486,485,468,471,1,1,1,13,13,13,13,13,1,1,464,473,473,481,481,482,1,1,1,470,469,468,469,468,469
+476,477,476,477,476,477,13,13,13,1,462,463,476,477,476,477,476,477,1,1,13,13,13,486,487,1,1,1,1,13,13,13,1,1,1,480,481,482,1,1,462,463,462,463,476,477,476,477,476,477
+468,469,468,469,468,469,13,13,13,13,470,469,468,469,468,469,468,469,1,13,13,13,13,13,13,13,1,1,1,1,1,1,1,1,1,1,1,1,1,1,470,469,468,469,468,469,468,469,468,469
+476,477,476,477,476,477,454,455,454,455,476,477,476,477,476,477,476,477,462,455,454,455,454,455,13,13,13,1,1,1,1,1,462,463,462,463,462,463,462,463,476,477,476,477,476,477,476,477,476,477
+468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,471,13,13,13,13,1,1,1,1,470,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469,468,469
+476,477,476,477,476,477,476,477,476,477,476,477,476,477,476,477,476,477,476,477,476,477,476,477,454,455,454,455,462,463,462,463,476,477,476,477,476,477,476,477,476,477,476,477,476,477,476,477,476,477
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1
+1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
+1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,0,0,0,0,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1
+1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1
+1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1
+1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+connections
+left -10 PetalburgCity
+right 0 OldaleTown
+npcs
+people_little_boy 18 11 S static 0 - 0
+people_youngster 33 14 S static 0 - 3
+people_bug_catcher 25 15 N static 0 - 2
+people_lass 8 7 S static 0 - 3
+people_boy_1 37 4 S wander 0 - 0
+misc_item_ball 11 15 S static FLAG_ITEM_ROUTE_102_POTION - 0
+people_man_1 24 2 S static 0 - 0
+people_man_1 25 2 S static 0 - 0
+people_youngster 19 4 S static 0 - 3
+dialogs
+0	I'm…not very tall, so I sink right into tall grass.The grass goes up my nose and… Fwafwafwafwafwa…Fwatchoo!
+4	I'm going to catch a whole bunch of POKéMON!
+objscripts
+0 Route102_EventScript_LittleBoy
+1 Route102_EventScript_Calvin
+2 Route102_EventScript_Rick
+3 Route102_EventScript_Tiana
+4 Route102_EventScript_Boy
+5 Route102_EventScript_ItemPotion
+6 BerryTreeScript
+7 BerryTreeScript
+8 Route102_EventScript_Allen
+scriptdefs
+= Route102_EventScript_Allen
+trainerbattle_single TRAINER_ALLEN Route102_Text_AllenIntro Route102_Text_AllenDefeated
+msgbox	I haven't won once yet… I wish I would win soon…
+end
+= BerryTreeScript
+special ObjectEventInteractionGetBerryTreeData
+switch VAR_0x8004
+case BERRY_STAGE_SPARKLING BerryTree_EventScript_Sparkling
+case BERRY_STAGE_NO_BERRY BerryTree_EventScript_CheckSoil
+case BERRY_STAGE_PLANTED BerryTree_EventScript_CheckBerryStage1
+case BERRY_STAGE_SPROUTED BerryTree_EventScript_CheckBerryStage2
+case BERRY_STAGE_TALLER BerryTree_EventScript_CheckBerryStage3
+case BERRY_STAGE_FLOWERING BerryTree_EventScript_CheckBerryStage4
+case BERRY_STAGE_BERRIES BerryTree_EventScript_CheckBerryFullyGrown
+end
+= BerryTree_EventScript_CheckBerryFullyGrown
+buffernumberstring STR_VAR_2 VAR_0x8006
+lock
+faceplayer
+special ObjectEventInteractionGetBerryCountString
+msgboxyesno	You found STR_VAR_2 STR_VAR_1!Do you want to pick the STR_VAR_1?
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_PickBerry
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPickingBerry
+goto BerryTree_EventScript_PickBerry
+= BerryTree_EventScript_PickBerry
+special ObjectEventInteractionPickBerryTree
+goto_if_eq VAR_0x8004 0 BerryTree_EventScript_BerryPocketFull
+special IncrementDailyPickedBerries
+special ObjectEventInteractionRemoveBerryTree
+msgbox	PLAYER picked the STR_VAR_2 STR_VAR_1.
+playfanfare MUS_OBTAIN_BERRY
+waitmessage
+waitfanfare
+waitbuttonpress
+msgbox	PLAYER put away the STR_VAR_1 in the BAG's BERRIES POCKET.The soil returned to its soft and loamy state.
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_BerryPocketFull
+msgbox	The BAG's BERRIES POCKET is full.The STR_VAR_1 couldn't be taken.
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_CancelPickingBerry
+msgbox	PLAYER left the STR_VAR_1 unpicked.
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_CheckBerryStage4
+call BerryTree_EventScript_GetCareAdverb
+lockall
+special ObjectEventInteractionGetBerryName
+msgbox	These STR_VAR_1 flowers are blooming STR_VAR_2.
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+@ VAR_0x8005 here is the number of times watered
+@ Buffered by ObjectEventInteractionGetBerryTreeData
+goto BerryTree_EventScript_GetCareAdverb
+= BerryTree_EventScript_GetCareAdverb
+goto_if_eq VAR_0x8005 0 BerryTree_EventScript_SetAdverbPoor
+goto_if_eq VAR_0x8005 4 BerryTree_EventScript_SetAdverbGreat
+bufferstring STR_VAR_2	prettily
+return
+= BerryTree_EventScript_SetAdverbGreat
+bufferstring STR_VAR_2	very beautifully
+return
+= BerryTree_EventScript_SetAdverbPoor
+bufferstring STR_VAR_2	cutely
+return
+@ VAR_0x8006 here is the number of berries
+goto BerryTree_EventScript_CheckBerryFullyGrown
+= BerryTree_EventScript_WantToWater
+checkitem ITEM_WAILMER_PAIL
+goto_if_eq VAR_RESULT FALSE BerryTree_EventScript_DontWater
+special ObjectEventInteractionGetBerryName
+msgboxyesno	Want to water the STR_VAR_1 with the WAILMER PAIL?
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_WaterBerry
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_DontWater
+goto BerryTree_EventScript_DontWater
+= BerryTree_EventScript_DontWater
+releaseall
+end
+= BerryTree_EventScript_WaterBerry
+special ObjectEventInteractionGetBerryName
+msgbox	PLAYER watered the STR_VAR_1.
+waitmessage
+special ObjectEventInteractionWaterBerryTree
+special DoWateringBerryTreeAnim
+msgbox	The plant seems to be delighted.
+waitmessage
+waitbuttonpress
+releaseall
+end
+= BerryTree_EventScript_CheckBerryStage3
+lockall
+special ObjectEventInteractionGetBerryName
+msgbox	This STR_VAR_1 plant is growing taller.
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckBerryStage2
+lockall
+special ObjectEventInteractionGetBerryName
+msgbox	STR_VAR_1 has sprouted.
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckBerryStage1
+lockall
+special ObjectEventInteractionGetBerryCountString
+msgbox	One STR_VAR_1 was planted here.
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckSoil
+lock
+faceplayer
+specialvar VAR_RESULT PlayerHasBerries
+goto_if_eq VAR_RESULT TRUE BerryTree_EventScript_WantToPlant
+msgbox	It's soft, loamy soil.
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_WantToPlant
+msgboxyesno	It's soft, loamy soil. Want to plant a BERRY?
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_ChooseBerryToPlant
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPlanting
+end
+= BerryTree_EventScript_CancelPlanting
+release
+end
+= BerryTree_EventScript_ChooseBerryToPlant
+fadescreen FADE_TO_BLACK
+closemessage
+special Bag_ChooseBerry
+goto_if_eq VAR_ITEM_ID 0 BerryTree_EventScript_CancelPlanting
+removeitem VAR_ITEM_ID
+call BerryTree_EventScript_PlantBerry
+goto BerryTree_EventScript_CancelPlanting
+= BerryTree_EventScript_PlantBerry
+special ObjectEventInteractionPlantBerryTree
+incrementgamestat GAME_STAT_PLANTED_BERRIES
+special IncrementDailyPlantedBerries
+special ObjectEventInteractionGetBerryCountString
+msgbox	PLAYER planted one STR_VAR_1 in the soft, loamy soil.
+waitmessage
+waitbuttonpress
+return
+= BerryTree_EventScript_Sparkling
+lockall
+msgbox	!
+waitmessage
+waitbuttonpress
+releaseall
+end
+= Route102_EventScript_ItemPotion
+goto_if_set FLAG_ITEM_ROUTE_102_POTION Route102_EventScript_ItemPotion_Taken
+finditem ITEM_POTION
+setflag FLAG_ITEM_ROUTE_102_POTION
+end
+= Route102_EventScript_ItemPotion_Taken
+end
+= Route102_EventScript_Boy
+msgbox	I'm going to catch a whole bunch of POKéMON!
+end
+= Route102_EventScript_Tiana
+trainerbattle_single TRAINER_TIANA Route102_Text_TianaIntro Route102_Text_TianaDefeated
+msgbox	To keep winning my way up, I see that I have to catch more POKéMON.
+end
+= Route102_EventScript_Rick
+trainerbattle_single TRAINER_RICK Route102_Text_RickIntro Route102_Text_RickDefeated
+msgbox	If you lock eyes with a TRAINER, you have to challenge! It's a rule!
+end
+= Route102_EventScript_Calvin
+trainerbattle_single TRAINER_CALVIN_1 Route102_Text_CalvinIntro Route102_Text_CalvinDefeated Route102_EventScript_CalvinRegisterMatchCallAfterBattle
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route102_EventScript_CalvinRematch
+setvar VAR_0x8004 TRAINER_CALVIN_1
+specialvar VAR_RESULT IsTrainerRegistered
+goto_if_eq VAR_RESULT FALSE Route102_EventScript_CalvinTryRegister
+msgbox	Listen, you. If you're strong, you should have told me before!
+release
+end
+= Route102_EventScript_CalvinTryRegister
+goto_if_set FLAG_HAS_MATCH_CALL Route102_EventScript_CalvinRegister
+msgbox	Listen, you. If you're strong, you should have told me before!
+release
+end
+= Route102_EventScript_CalvinRegister
+msgbox	I've been working hard at this since I saw you before.I'd like to battle you again, so can you register me in your POKéNAV?
+register_matchcall TRAINER_CALVIN_1
+release
+end
+= Route102_EventScript_CalvinRematch
+trainerbattle_rematch TRAINER_CALVIN_1 Route102_Text_CalvinRematchIntro Route102_Text_CalvinRematchDefeated
+msgbox	If you're going to get stronger, I'll get stronger, too.
+end
+= Route102_EventScript_CalvinRegisterMatchCallAfterBattle
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+goto_if_set FLAG_HAS_MATCH_CALL Route102_EventScript_CalvinRegisterMatchCall
+release
+end
+= Route102_EventScript_CalvinRegisterMatchCall
+msgbox	I'd like to battle you again, so can you register me in your POKéNAV?
+register_matchcall TRAINER_CALVIN_1
+release
+end
+= Route102_EventScript_LittleBoy
+msgbox	I'm…not very tall, so I sink right into tall grass.The grass goes up my nose and… Fwafwafwafwafwa…Fwatchoo!
+end
+signs
+17 2	ROUTE 102 PETALBURG CITY
+40 9	ROUTE 102 OLDALE TOWN
+grass
+13,454,455
+water
+161,176,177,178,184,186,194
+mapsec
+2 9 2 1	ROUTE 102
+music
+MUS_ROUTE101
+encounters
+land POOCHYENA:3:3,WURMPLE:3:3,POOCHYENA:4:4,WURMPLE:4:4,LOTAD:3:3,LOTAD:4:4,ZIGZAGOON:3:3,ZIGZAGOON:3:3,ZIGZAGOON:4:4,RALTS:4:4,ZIGZAGOON:4:4,SEEDOT:3:3
+water MARILL:20:30,MARILL:10:20,MARILL:30:35,MARILL:5:10,GOLDEEN:20:30
+fishing MAGIKARP:5:10,GOLDEEN:5:10,MAGIKARP:10:30,GOLDEEN:10:30,CORPHISH:10:30,CORPHISH:25:30,CORPHISH:30:35,CORPHISH:20:25,CORPHISH:35:40,CORPHISH:40:45

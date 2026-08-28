@@ -1,0 +1,43 @@
+tileset building__battle_pike
+5 8
+2 4
+677,678,679,672,673
+685,686,687,680,681
+693,694,695,688,689
+565,702,703,696,565
+573,832,833,834,573
+729,840,841,842,730
+564,848,849,850,733
+572,856,857,858,761
+collision
+1,1,1,1,1
+1,1,1,1,1
+1,1,1,1,1
+0,1,1,1,0
+1,0,0,0,1
+0,0,0,0,0
+0,0,0,0,0
+1,0,0,0,1
+npcs
+people_link_receptionist 2 4 S static 0 LOCALID_PIKE_FINAL_ROOM_ATTENDANT 0
+onload
+VAR_TEMP_0 0 BattleFrontier_BattlePikeRoomFinal_EventScript_EnterRoom
+movements
+BattleFrontier_BattlePikeRoomFinal_Movement_AttendantApproachPlayer	down,down,end
+scriptdefs
+= BattleFrontier_BattlePikeRoomFinal_EventScript_EnterRoom
+delay 16
+applymovement LOCALID_PIKE_FINAL_ROOM_ATTENDANT BattleFrontier_BattlePikeRoomFinal_Movement_AttendantApproachPlayer
+waitmovement 0
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS CHALLENGE_STATUS_WON
+lockall
+msgbox	Congratulations… Now, this way, please…
+closemessage
+releaseall
+warp BattleFrontier_BattlePikeLobby 5 6
+waitstate
+end
+mapsec
+22 12 1 1	BATTLE FRONTIER
+music
+MUS_B_PIKE

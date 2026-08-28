@@ -1,0 +1,233 @@
+tileset general__petalburg
+20 20
+10 10
+468,469,468,469,468,469,468,471,472,473,474,1,470,469,468,469,468,469,468,469
+476,477,484,485,484,485,484,487,480,481,482,1,486,485,484,485,476,477,476,477
+468,469,13,13,13,1,1,1,1,1,1,1,1,13,13,13,468,469,468,469
+484,487,13,13,13,13,1,1,1,1,1,1,13,13,13,13,484,485,476,477
+13,13,13,13,13,13,1,1,1,1,1,1,13,13,13,13,13,13,468,469
+454,455,13,13,13,1,1,1,1,1,1,462,455,13,13,13,13,13,486,485
+468,471,13,13,1,1,110,135,135,135,214,470,471,454,455,13,13,1,1,1
+476,477,213,135,135,135,142,1,1,1,1,476,477,468,471,1,1,464,466,1
+468,469,462,463,1,1,1,1,1,1,1,468,469,484,487,1,464,473,474,1
+476,477,468,471,1,3,1,464,465,466,1,486,487,13,13,1,480,473,473,466
+468,469,476,477,1,464,465,473,473,474,1,13,13,13,13,13,1,480,473,474
+476,477,468,469,1,480,473,473,473,482,1,13,13,13,13,13,13,1,480,482
+468,469,484,487,1,1,480,481,482,1,1,13,13,13,13,13,13,1,1,1
+484,487,13,13,1,1,1,1,213,135,135,214,454,455,13,13,13,1,462,463
+13,13,13,13,13,1,1,1,1,1,1,1,470,471,13,13,1,1,470,469
+454,455,13,13,13,13,1,1,1,1,1,1,476,477,454,455,462,463,476,477
+468,471,13,13,13,13,1,1,1,1,1,1,468,469,468,469,468,469,468,469
+476,477,454,455,454,463,462,463,462,463,1,1,476,477,476,477,476,477,476,477
+468,469,468,469,468,469,468,469,468,471,1,1,468,469,468,469,468,469,468,469
+476,477,476,477,476,477,476,477,476,477,1,1,476,477,476,477,476,477,476,477
+collision
+1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1
+1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
+1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0
+1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,0
+1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0
+1,1,1,1,0,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0
+1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,1,1
+1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1
+1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1
+connections
+up 0 OldaleTown
+down 0 LittlerootTown
+npcs
+people_youngster 16 8 S static 0 - 0
+people_prof_birch 9 13 S static FLAG_HIDE_ROUTE_101_BIRCH_ZIGZAGOON_BATTLE LOCALID_ROUTE101_BIRCH 0
+misc_birchs_bag 7 14 S static FLAG_HIDE_ROUTE_101_BIRCH_STARTERS_BAG - 0
+pokemon_zigzagoon 10 13 S static FLAG_HIDE_ROUTE_101_ZIGZAGOON LOCALID_ROUTE101_ZIGZAGOON 0
+people_prof_birch 5 11 S static FLAG_HIDE_ROUTE_101_BIRCH - 0
+people_boy_2 2 13 S wander FLAG_HIDE_ROUTE_101_BOY - 0
+dialogs
+0	If POKéMON get tired, take them to a POKéMON CENTER.There's a POKéMON CENTER in OLDALE TOWN right close by.
+2	PROF. BIRCH: Whew…I was in the tall grass studying wild POKéMON when I was jumped.You saved me. Thanks a lot!Oh?Hi, you're PLAYER!This is not the place to chat, so come by my POKéMON LAB later, okay?
+5	Wild POKéMON will jump out at you in tall grass.If you want to catch POKéMON, you have to go into the tall grass and search.
+objscripts
+0 Route101_EventScript_Youngster
+2 Route101_EventScript_BirchsBag
+4 ProfBirch_EventScript_RatePokedexOrRegister
+5 Route101_EventScript_Boy
+triggers
+10 19 VAR_ROUTE101_STATE 1 Route101_EventScript_StartBirchRescue
+11 19 VAR_ROUTE101_STATE 1 Route101_EventScript_StartBirchRescue
+10 18 VAR_ROUTE101_STATE 2 Route101_EventScript_PreventExitSouth
+11 18 VAR_ROUTE101_STATE 2 Route101_EventScript_PreventExitSouth
+6 16 VAR_ROUTE101_STATE 2 Route101_EventScript_PreventExitWest
+6 15 VAR_ROUTE101_STATE 2 Route101_EventScript_PreventExitWest
+6 17 VAR_ROUTE101_STATE 2 Route101_EventScript_PreventExitWest
+6 18 VAR_ROUTE101_STATE 2 Route101_EventScript_PreventExitWest
+7 13 VAR_ROUTE101_STATE 2 Route101_EventScript_PreventExitNorth
+onload
+VAR_ROUTE101_STATE 0 Route101_EventScript_HideMapNamePopup
+movements
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+Route101_Movement_BirchApproachPlayer	right,end
+Route101_Movement_BirchFaceZigzagoon	delay,delay,delay,delay,end
+Route101_Movement_BirchRunAway1	right,right,right,right,up,up,end
+Route101_Movement_BirchRunInCircles	up,up,right,right,right,down,down,left,left,left,up,up,right,right,right,down,down,left,left,left,up,up,right,right,right,down,down,left,left,left,end
+Route101_Movement_EnterScene	up,up,up,up,delay,end
+Route101_Movement_PreventExitNorth	down,end
+Route101_Movement_PreventExitSouth	up,end
+Route101_Movement_PreventExitWest	right,end
+Route101_Movement_ZigzagoonChase1	up,right,right,right,right,up,end
+Route101_Movement_ZigzagoonChaseInCircles	up,up,up,right,right,right,down,down,left,left,left,up,up,right,right,right,down,down,left,left,left,up,up,right,right,right,down,down,left,left,end
+Route101_Movement_ZigzagoonFaceBirch	delay,delay,delay,delay,end
+scriptdefs
+= Route101_EventScript_HideMapNamePopup
+setflag FLAG_HIDE_MAP_NAME_POPUP
+setvar VAR_ROUTE101_STATE 1
+end
+= Route101_EventScript_PreventExitNorth
+lockall
+msgbox	Wh-Where are you going?! Don't leave me like this!
+closemessage
+applymovement LOCALID_PLAYER Route101_Movement_PreventExitNorth
+waitmovement 0
+releaseall
+end
+= Route101_EventScript_PreventExitWest
+lockall
+msgbox	Wh-Where are you going?! Don't leave me like this!
+closemessage
+applymovement LOCALID_PLAYER Route101_Movement_PreventExitWest
+waitmovement 0
+releaseall
+end
+= Route101_EventScript_PreventExitSouth
+lockall
+msgbox	Wh-Where are you going?! Don't leave me like this!
+closemessage
+applymovement LOCALID_PLAYER Route101_Movement_PreventExitSouth
+waitmovement 0
+releaseall
+end
+= Route101_EventScript_StartBirchRescue
+lockall
+playbgm MUS_HELP TRUE
+msgbox	H-help me!
+closemessage
+setobjectxy LOCALID_ROUTE101_BIRCH 0 15
+setobjectxy LOCALID_ROUTE101_ZIGZAGOON 0 16
+applymovement LOCALID_PLAYER Route101_Movement_EnterScene
+applymovement LOCALID_ROUTE101_BIRCH Route101_Movement_BirchRunAway1
+applymovement LOCALID_ROUTE101_ZIGZAGOON Route101_Movement_ZigzagoonChase1
+waitmovement 0
+applymovement LOCALID_ROUTE101_ZIGZAGOON Route101_Movement_ZigzagoonChaseInCircles
+applymovement LOCALID_ROUTE101_BIRCH Route101_Movement_BirchRunInCircles
+waitmovement 0
+applymovement LOCALID_ROUTE101_BIRCH Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+applymovement LOCALID_ROUTE101_ZIGZAGOON Route101_Movement_ZigzagoonFaceBirch
+applymovement LOCALID_ROUTE101_BIRCH Route101_Movement_BirchFaceZigzagoon
+waitmovement 0
+msgbox	Hello! You over there! Please! Help!In my BAG! There's a POKé BALL!
+closemessage
+setvar VAR_ROUTE101_STATE 2
+releaseall
+end
+= Route101_EventScript_Boy
+msgbox	Wild POKéMON will jump out at you in tall grass.If you want to catch POKéMON, you have to go into the tall grass and search.
+end
+= ProfBirch_EventScript_RatePokedexOrRegister
+lock
+faceplayer
+goto_if_unset FLAG_HAS_MATCH_CALL ProfBirch_EventScript_AskRatePokedex
+goto_if_unset FLAG_ENABLE_PROF_BIRCH_MATCH_CALL EventScript_RegisterProfBirch
+goto ProfBirch_EventScript_AskRatePokedex
+= ProfBirch_EventScript_AskRatePokedex
+msgboxyesno	PROF. BIRCH: Ah, PLAYER!Are you curious about how your POKéDEX is coming along?
+goto_if_eq VAR_RESULT NO ProfBirch_EventScript_DeclineRating
+call ProfBirch_EventScript_RatePokedex
+release
+end
+= ProfBirch_EventScript_RatePokedex
+setvar VAR_0x8004 0
+specialvar VAR_RESULT ScriptGetPokedexInfo
+copyvar VAR_0x8008 VAR_0x8005
+copyvar VAR_0x8009 VAR_0x8006
+copyvar VAR_0x800A VAR_RESULT
+buffernumberstring STR_VAR_1 VAR_0x8008  @ Num Hoenn seen
+buffernumberstring STR_VAR_2 VAR_0x8009  @ Num Hoenn caught
+msgbox	Hmhm…So, you've seen STR_VAR_1 POKéMON, and you've caught STR_VAR_2 POKéMON…
+call ProfBirch_EventScript_ShowRatingMessage
+goto_if_eq VAR_0x800A 0 Common_EventScript_NopReturn  @ National dex not enabled
+setvar VAR_0x8004 1
+specialvar VAR_RESULT ScriptGetPokedexInfo
+copyvar VAR_0x8008 VAR_0x8005
+copyvar VAR_0x8009 VAR_0x8006
+buffernumberstring STR_VAR_1 VAR_0x8008  @ Num National seen
+buffernumberstring STR_VAR_2 VAR_0x8009  @ Num National caught
+msgbox	Hmhm… On a nationwide basis…You've seen STR_VAR_1 POKéMON, and you've caught STR_VAR_2 POKéMON…
+return
+= ProfBirch_EventScript_ShowRatingMessage
+copyvar VAR_0x8004 VAR_0x8009
+special ShowPokedexRatingMessage
+waitmessage
+waitbuttonpress
+return
+= ProfBirch_EventScript_DeclineRating
+msgbox	Hm? Oh, you haven't caught enough POKéMON to make it worthwhile.
+release
+end
+= Route101_EventScript_BirchsBag
+lock
+faceplayer
+setflag FLAG_SYS_POKEMON_GET
+setflag FLAG_RESCUED_BIRCH
+fadescreen FADE_TO_BLACK
+removeobject LOCALID_ROUTE101_ZIGZAGOON
+setobjectxy LOCALID_PLAYER 6 13
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+special ChooseStarter
+applymovement LOCALID_ROUTE101_BIRCH Route101_Movement_BirchApproachPlayer
+waitmovement 0
+msgbox	PROF. BIRCH: Whew…I was in the tall grass studying wild POKéMON when I was jumped.You saved me. Thanks a lot!Oh?Hi, you're PLAYER!This is not the place to chat, so come by my POKéMON LAB later, okay?
+special HealPlayerParty
+setflag FLAG_HIDE_ROUTE_101_BIRCH_ZIGZAGOON_BATTLE
+clearflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_BIRCH
+setflag FLAG_HIDE_ROUTE_101_BIRCH_STARTERS_BAG
+setvar VAR_BIRCH_LAB_STATE 2
+setvar VAR_ROUTE101_STATE 3
+clearflag FLAG_HIDE_MAP_NAME_POPUP
+checkplayergender
+call_if_eq VAR_RESULT MALE Route101_EventScript_HideMayInBedroom
+call_if_eq VAR_RESULT FEMALE Route101_EventScript_HideBrendanInBedroom
+warp LittlerootTown_ProfessorBirchsLab 6 5
+waitstate
+release
+end
+= Route101_EventScript_HideBrendanInBedroom
+setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_BEDROOM
+return
+= Route101_EventScript_HideMayInBedroom
+setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_BEDROOM
+return
+= Route101_EventScript_Youngster
+msgbox	If POKéMON get tired, take them to a POKéMON CENTER.There's a POKéMON CENTER in OLDALE TOWN right close by.
+end
+signs
+5 9	ROUTE 101 OLDALE TOWN
+grass
+13,454,455
+mapsec
+4 10 1 1	ROUTE 101
+music
+MUS_ROUTE101
+encounters
+land WURMPLE:2:2,POOCHYENA:2:2,WURMPLE:2:2,WURMPLE:3:3,POOCHYENA:3:3,POOCHYENA:3:3,WURMPLE:3:3,POOCHYENA:3:3,ZIGZAGOON:2:2,ZIGZAGOON:2:2,ZIGZAGOON:3:3,ZIGZAGOON:3:3

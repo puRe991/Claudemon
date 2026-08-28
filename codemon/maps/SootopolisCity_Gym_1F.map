@@ -1,0 +1,279 @@
+tileset building__sootopolis_gym
+17 26
+8 13
+528,572,586,586,616,617,586,586,596,586,586,616,617,586,586,569,520
+536,580,581,594,624,625,594,594,604,594,594,624,625,594,576,577,520
+586,588,589,582,632,633,561,554,555,556,566,632,633,583,584,585,586
+594,594,597,575,574,574,516,562,563,564,517,574,574,574,592,594,594
+528,600,601,586,586,586,586,570,527,571,586,586,586,586,608,610,520
+536,580,581,594,594,594,594,578,527,579,594,594,594,594,576,577,520
+536,580,589,533,533,534,533,533,525,533,533,533,533,533,584,577,520
+536,580,589,525,525,525,525,525,525,515,525,525,515,525,584,577,520
+536,580,589,525,515,525,525,515,525,525,525,525,525,525,584,577,520
+590,588,589,525,525,525,525,525,525,525,525,515,525,525,584,585,586
+598,594,597,572,586,586,586,570,527,571,586,586,586,569,592,594,594
+528,544,544,580,581,594,594,578,527,579,594,594,576,577,544,544,544
+536,520,520,580,589,533,533,533,525,533,533,533,584,577,520,520,520
+536,520,520,580,589,525,515,525,525,525,515,525,584,577,520,520,520
+590,616,617,588,589,525,525,525,525,525,525,525,584,585,616,617,586
+598,624,625,594,597,572,586,570,527,571,586,569,592,594,624,625,594
+536,632,633,520,520,580,581,578,527,579,576,577,520,520,632,633,520
+536,520,520,520,520,580,589,534,525,533,584,577,520,520,520,520,520
+590,586,586,586,586,588,589,525,525,525,584,585,586,586,586,586,586
+598,594,594,594,594,594,597,525,525,515,592,594,594,594,594,594,594
+528,544,544,600,601,601,603,570,519,571,608,609,609,610,544,544,544
+536,520,520,580,581,594,594,578,519,579,594,594,576,577,520,520,520
+536,520,520,580,589,582,583,583,583,583,583,540,584,577,520,520,520
+536,520,520,580,589,575,535,574,574,574,535,574,584,577,520,520,520
+536,520,520,580,589,575,543,591,574,574,543,591,584,577,520,520,520
+536,520,520,580,589,575,599,607,6,7,599,607,584,577,520,520,520
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,0,1,1,0,0,0,0,0,1,1,0,1,1,1
+1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0
+1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0
+1,1,1,0,0,1,0,0,0,0,0,0,0,0,1,1,0
+1,1,1,0,0,0,0,0,0,1,0,0,1,0,1,1,0
+1,1,1,0,1,0,0,1,0,0,0,0,0,0,1,1,0
+1,1,1,0,0,0,0,0,0,0,0,1,0,0,1,1,1
+1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1
+1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1
+1,1,1,1,1,0,1,0,0,0,1,0,1,1,1,1,1
+1,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,1
+1,0,0,1,1,1,1,1,0,1,1,1,1,1,0,0,1
+1,0,0,0,0,1,1,1,0,1,1,1,0,0,0,0,0
+1,0,0,0,0,1,1,1,0,0,1,1,0,0,0,0,0
+1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1
+1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1
+1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1
+1,1,1,1,1,0,1,0,0,0,1,0,1,1,1,1,1
+1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1
+warps
+8 25 SootopolisCity 2
+9 25 SootopolisCity 2
+11 22 SootopolisCity_Gym_B1F 0
+npcs
+people_gym_leaders_juan 8 2 S static 0 - 0
+people_man_2 7 24 S static 0 - 0
+dialogs
+0	The TRAINERS who have gathered all the GYM BADGES of HOENN should make way to the ultimate destination.The POKéMON LEAGUE.Travel to the easternmost reaches of HOENN, to the island EVER GRANDE.There, you shall find the POKéMON LEAGUE.
+1	Yo! How's it going, CHAMPION- bound PLAYER?SOOTOPOLIS's GYM LEADER JUAN is a master of WATER-type POKéMON.And, to get to JUAN, an icy floor will hamper your progress…Listen, I'm sorry, but that's all the advice that I have for you.The rest of the way, you have to go for it yourself!
+objscripts
+0 SootopolisCity_Gym_1F_EventScript_Juan
+1 SootopolisCity_Gym_1F_EventScript_GymGuide
+onload
+VAR_ICE_STEP_COUNT 8 SootopolisCity_Gym_1F_EventScript_UnlockFirstStairs
+VAR_ICE_STEP_COUNT 28 SootopolisCity_Gym_1F_EventScript_UnlockSecondStairs
+VAR_ICE_STEP_COUNT 67 SootopolisCity_Gym_1F_EventScript_UnlockThirdStairs
+VAR_ICE_STEP_COUNT 0 SootopolisCity_Gym_1F_EventScript_FallThroughIce
+movements
+SootopolisCity_Gym_1F_Movement_FallThroughIce	delay,end
+scriptdefs
+= SootopolisCity_Gym_1F_EventScript_FallThroughIce
+lockall
+delay 20
+applymovement LOCALID_PLAYER SootopolisCity_Gym_1F_Movement_FallThroughIce
+waitmovement 0
+playse SE_FALL
+delay 60
+warphole SootopolisCity_Gym_B1F
+waitstate
+end
+= SootopolisCity_Gym_1F_EventScript_UnlockThirdStairs
+addvar VAR_ICE_STEP_COUNT 1
+delay 40
+playse SE_ICE_STAIRS
+call SootopolisCity_Gym_1F_EventScript_CheckSetStairMetatiles
+special DrawWholeMapView
+end
+= SootopolisCity_Gym_1F_EventScript_CheckSetStairMetatiles
+goto_if_lt VAR_ICE_STEP_COUNT 8 SootopolisCity_Gym_1F_EventScript_StopCheckingStairs  @ All stairs ice
+goto_if_lt VAR_ICE_STEP_COUNT 28 SootopolisCity_Gym_1F_EventScript_OpenFirstStairs
+goto_if_lt VAR_ICE_STEP_COUNT 67 SootopolisCity_Gym_1F_EventScript_OpenFirstAndSecondStairs
+setmetatile 8 4 METATILE_SootopolisGym_Stairs FALSE
+setmetatile 8 5 METATILE_SootopolisGym_Stairs FALSE
+goto SootopolisCity_Gym_1F_EventScript_OpenFirstAndSecondStairs
+= SootopolisCity_Gym_1F_EventScript_OpenFirstAndSecondStairs
+setmetatile 8 10 METATILE_SootopolisGym_Stairs FALSE
+setmetatile 8 11 METATILE_SootopolisGym_Stairs FALSE
+goto SootopolisCity_Gym_1F_EventScript_OpenFirstStairs
+= SootopolisCity_Gym_1F_EventScript_OpenFirstStairs
+setmetatile 8 15 METATILE_SootopolisGym_Stairs FALSE
+setmetatile 8 16 METATILE_SootopolisGym_Stairs FALSE
+goto SootopolisCity_Gym_1F_EventScript_StopCheckingStairs
+= SootopolisCity_Gym_1F_EventScript_StopCheckingStairs
+return
+= SootopolisCity_Gym_1F_EventScript_UnlockSecondStairs
+addvar VAR_ICE_STEP_COUNT 1
+delay 40
+playse SE_ICE_STAIRS
+call SootopolisCity_Gym_1F_EventScript_CheckSetStairMetatiles
+special DrawWholeMapView
+end
+= SootopolisCity_Gym_1F_EventScript_UnlockFirstStairs
+addvar VAR_ICE_STEP_COUNT 1
+delay 40
+playse SE_ICE_STAIRS
+call SootopolisCity_Gym_1F_EventScript_CheckSetStairMetatiles
+special DrawWholeMapView
+end
+= SootopolisCity_Gym_1F_EventScript_GymGuide
+lock
+faceplayer
+goto_if_set FLAG_DEFEATED_SOOTOPOLIS_GYM SootopolisCity_Gym_1F_EventScript_GymGuidePostVictory
+msgbox	Yo! How's it going, CHAMPION- bound PLAYER?SOOTOPOLIS's GYM LEADER JUAN is a master of WATER-type POKéMON.And, to get to JUAN, an icy floor will hamper your progress…Listen, I'm sorry, but that's all the advice that I have for you.The rest of the way, you have to go for it yourself!
+release
+end
+= SootopolisCity_Gym_1F_EventScript_GymGuidePostVictory
+msgbox	Yow! You've beaten even JUAN, who was supposedly the best in all HOENN!Okay! Check out your TRAINER CARD.If you've gotten all the BADGES, you're set for the POKéMON LEAGUE challenge!
+release
+end
+= SootopolisCity_Gym_1F_EventScript_Juan
+trainerbattle_single TRAINER_JUAN_1 SootopolisCity_Gym_1F_Text_JuanIntro SootopolisCity_Gym_1F_Text_JuanDefeat SootopolisCity_Gym_1F_EventScript_JuanDefeated NO_MUSIC
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE SootopolisCity_Gym_1F_EventScript_JuanRematch
+goto_if_unset FLAG_RECEIVED_TM_WATER_PULSE SootopolisCity_Gym_1F_EventScript_GiveWaterPulse2
+goto_if_unset FLAG_BADGE06_GET SootopolisCity_Gym_1F_EventScript_GoGetFortreeBadge
+msgbox	The TRAINERS who have gathered all the GYM BADGES of HOENN should make way to the ultimate destination.The POKéMON LEAGUE.Travel to the easternmost reaches of HOENN, to the island EVER GRANDE.There, you shall find the POKéMON LEAGUE.
+release
+end
+= SootopolisCity_Gym_1F_EventScript_GoGetFortreeBadge
+msgbox	There remains but one BADGE to obtain in HOENN.If you wish to challenge the POKéMON LEAGUE, you must obtain the last BADGE from the GYM in FORTREE.
+release
+end
+= SootopolisCity_Gym_1F_EventScript_GiveWaterPulse2
+giveitem ITEM_TM_WATER_PULSE
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+msgbox	The TECHNICAL MACHINE I handed you contains WATER PULSE.In use, it will occasionally confuse the target with ultrasonic waves.… … … … … …
+setflag FLAG_RECEIVED_TM_WATER_PULSE
+release
+end
+= SootopolisCity_Gym_1F_EventScript_JuanRematch
+trainerbattle_rematch_double TRAINER_JUAN_1 SootopolisCity_Gym_1F_Text_JuanPreRematch SootopolisCity_Gym_1F_Text_JuanRematchDefeat SootopolisCity_Gym_1F_Text_JuanRematchNeedTwoMons
+msgbox	JUAN: If I told you to become my apprentice, you will refuse, I am sure.I would like to make a gift of my coat to you.But again, you will refuse. I imagine that to be so.And that, my friend, is a certain sign of nobility!
+end
+= SootopolisCity_Gym_1F_EventScript_JuanDefeated
+msgbox	PLAYER received the RAIN BADGE from JUAN.
+waitmessage
+call Common_EventScript_PlayGymBadgeFanfare
+msgbox	Having the RAIN BADGE shall assure you the full obedience of all your POKéMON to your every command.The RAIN BADGE also allows the use of the HM move WATERFALL to scale walls of cascading water.And, so that you never forget the battle we shared, take this…
+setflag FLAG_DEFEATED_SOOTOPOLIS_GYM
+setflag FLAG_BADGE08_GET
+setflag FLAG_HIDE_SOOTOPOLIS_CITY_RESIDENTS
+setflag FLAG_HIDE_SOOTOPOLIS_CITY_STEVEN
+setflag FLAG_HIDE_SOOTOPOLIS_CITY_WALLACE
+setvar VAR_SOOTOPOLIS_CITY_STATE 6
+clearflag FLAG_HIDE_SOOTOPOLIS_CITY_MAN_1
+setvar VAR_0x8008 8
+call Common_EventScript_SetGymTrainers
+call SootopolisCity_Gym_1F_EventScript_GiveWaterPulse
+closemessage
+delay 30
+playfanfare MUS_REGISTER_MATCH_CALL
+msgbox	Registered GYM LEADER JUAN in the POKéNAV.
+waitfanfare
+closemessage
+delay 30
+setflag FLAG_ENABLE_JUAN_MATCH_CALL
+release
+end
+= SootopolisCity_Gym_1F_EventScript_GiveWaterPulse
+giveitem ITEM_TM_WATER_PULSE
+goto_if_eq VAR_RESULT FALSE Common_EventScript_BagIsFull
+msgbox	The TECHNICAL MACHINE I handed you contains WATER PULSE.In use, it will occasionally confuse the target with ultrasonic waves.… … … … … …
+setflag FLAG_RECEIVED_TM_WATER_PULSE
+return
+= Common_EventScript_SetGymTrainers
+switch VAR_0x8008
+case 1 RustboroCity_Gym_SetGymTrainers
+case 2 DewfordTown_Gym_SetGymTrainers
+case 3 MauvilleCity_Gym_SetGymTrainers
+case 4 LavaridgeTown_Gym_SetGymTrainers
+case 5 PetalburgCity_Gym_SetGymTrainers
+case 6 FortreeCity_Gym_SetGymTrainers
+case 7 MossdeepCity_Gym_SetGymTrainers
+case 8 SootopolisCity_Gym_SetGymTrainers
+end
+= SootopolisCity_Gym_SetGymTrainers
+settrainerflag TRAINER_ANDREA
+settrainerflag TRAINER_CRISSY
+settrainerflag TRAINER_BRIANNA
+settrainerflag TRAINER_CONNIE
+settrainerflag TRAINER_BRIDGET
+settrainerflag TRAINER_OLIVIA
+settrainerflag TRAINER_TIFFANY
+settrainerflag TRAINER_BETHANY
+settrainerflag TRAINER_ANNIKA
+settrainerflag TRAINER_DAPHNE
+return
+= MossdeepCity_Gym_SetGymTrainers
+settrainerflag TRAINER_PRESTON
+settrainerflag TRAINER_VIRGIL
+settrainerflag TRAINER_BLAKE
+settrainerflag TRAINER_HANNAH
+settrainerflag TRAINER_SAMANTHA
+settrainerflag TRAINER_MAURA
+settrainerflag TRAINER_SYLVIA
+settrainerflag TRAINER_NATE
+settrainerflag TRAINER_KATHLEEN
+settrainerflag TRAINER_CLIFFORD
+settrainerflag TRAINER_MACEY
+settrainerflag TRAINER_NICHOLAS
+return
+= FortreeCity_Gym_SetGymTrainers
+settrainerflag TRAINER_JARED
+settrainerflag TRAINER_FLINT
+settrainerflag TRAINER_ASHLEY
+settrainerflag TRAINER_EDWARDO
+settrainerflag TRAINER_HUMBERTO
+settrainerflag TRAINER_DARIUS
+return
+= PetalburgCity_Gym_SetGymTrainers
+settrainerflag TRAINER_RANDALL
+settrainerflag TRAINER_PARKER
+settrainerflag TRAINER_GEORGE
+settrainerflag TRAINER_BERKE
+settrainerflag TRAINER_MARY
+settrainerflag TRAINER_ALEXIA
+settrainerflag TRAINER_JODY
+return
+= LavaridgeTown_Gym_SetGymTrainers
+settrainerflag TRAINER_COLE
+settrainerflag TRAINER_AXLE
+settrainerflag TRAINER_KEEGAN
+settrainerflag TRAINER_GERALD
+settrainerflag TRAINER_DANIELLE
+settrainerflag TRAINER_JACE
+settrainerflag TRAINER_JEFF
+settrainerflag TRAINER_ELI
+return
+= MauvilleCity_Gym_SetGymTrainers
+settrainerflag TRAINER_KIRK
+settrainerflag TRAINER_SHAWN
+settrainerflag TRAINER_BEN
+settrainerflag TRAINER_VIVIAN
+settrainerflag TRAINER_ANGELO
+return
+= DewfordTown_Gym_SetGymTrainers
+settrainerflag TRAINER_TAKAO
+settrainerflag TRAINER_JOCELYN
+settrainerflag TRAINER_LAURA
+settrainerflag TRAINER_BRENDEN
+settrainerflag TRAINER_CRISTIAN
+settrainerflag TRAINER_LILITH
+return
+= RustboroCity_Gym_SetGymTrainers
+settrainerflag TRAINER_JOSH
+settrainerflag TRAINER_TOMMY
+settrainerflag TRAINER_MARC
+return
+mapsec
+21 7 1 1	SOOTOPOLIS CITY
+music
+MUS_GYM

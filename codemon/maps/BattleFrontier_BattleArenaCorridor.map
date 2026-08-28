@@ -1,0 +1,64 @@
+tileset building__battle_arena
+18 14
+12 4
+598,599,599,598,599,599,1,1,1,1,1,1,599,599,619,599,599,619
+606,607,607,606,607,607,1,1,1,1,1,1,607,607,627,607,607,627
+614,615,615,614,615,615,1,1,1,1,1,1,615,615,635,615,615,635
+677,535,535,535,535,664,1,1,1,1,1,1,680,535,535,535,535,678
+622,513,513,513,513,672,1,1,1,1,1,1,688,513,513,513,513,623
+622,513,513,1,1,1,1,1,1,1,1,1,1,1,1,513,513,623
+622,513,513,1,1,1,1,1,1,1,1,1,1,1,1,513,513,623
+622,513,513,1,1,1,1,1,1,1,1,1,1,1,1,513,513,623
+622,513,623,598,599,599,598,599,599,599,599,619,599,599,619,622,513,623
+622,513,623,598,599,599,598,599,599,599,599,619,599,599,619,622,513,623
+622,513,623,606,607,607,606,607,607,607,607,627,607,607,627,622,513,623
+622,513,623,614,615,615,614,615,615,615,615,635,615,615,635,622,513,623
+622,513,628,535,535,535,535,535,535,535,535,535,535,535,535,634,513,623
+675,513,513,513,513,513,513,513,660,661,662,513,513,513,513,513,513,676
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0
+0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0
+0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0
+0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0
+0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0
+0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0
+0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0
+0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0
+0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+npcs
+people_black_belt 9 12 S static 0 LOCALID_ARENA_CORRIDOR_ATTENDANT 0
+onload
+VAR_TEMP_0 0 BattleFrontier_BattleArenaCorridor_EventScript_WalkToBattleRoom
+movements
+BattleFrontier_BattleArenaCorridor_Movement_AttendantFacePlayer	delay,end
+BattleFrontier_BattleArenaCorridor_Movement_AttendantMoveOutOfWay	up,delay,end
+BattleFrontier_BattleArenaCorridor_Movement_AttendantWalkToDoor	left,left,left,left,left,left,left,left,up,up,up,up,up,up,up,up,right,right,right,right,end
+BattleFrontier_BattleArenaCorridor_Movement_PlayerEnterDoor	right,delay,end
+BattleFrontier_BattleArenaCorridor_Movement_PlayerWalkToDoor	up,left,left,left,left,left,left,left,left,up,up,up,up,up,up,up,up,right,right,right,end
+scriptdefs
+= BattleFrontier_BattleArenaCorridor_EventScript_WalkToBattleRoom
+delay 16
+setvar VAR_TEMP_0 1
+applymovement LOCALID_ARENA_CORRIDOR_ATTENDANT BattleFrontier_BattleArenaCorridor_Movement_AttendantWalkToDoor
+applymovement LOCALID_PLAYER BattleFrontier_BattleArenaCorridor_Movement_PlayerWalkToDoor
+waitmovement 0
+applymovement LOCALID_ARENA_CORRIDOR_ATTENDANT BattleFrontier_BattleArenaCorridor_Movement_AttendantFacePlayer
+waitmovement 0
+msgbox	Your battles shall be waged in the next room. Please step in!
+applymovement LOCALID_ARENA_CORRIDOR_ATTENDANT BattleFrontier_BattleArenaCorridor_Movement_AttendantMoveOutOfWay
+waitmovement 0
+applymovement LOCALID_PLAYER BattleFrontier_BattleArenaCorridor_Movement_PlayerEnterDoor
+waitmovement 0
+setvar VAR_0x8006 0
+warp BattleFrontier_BattleArenaBattleRoom 7 5
+waitstate
+end
+mapsec
+22 12 1 1	BATTLE FRONTIER
+music
+MUS_B_ARENA

@@ -1,0 +1,329 @@
+tileset general__battle_palace
+15 10
+5 7
+587,588,575,587,588,575,587,588,575,587,588,575,584,585,586
+589,590,583,589,590,583,589,590,583,589,590,583,592,593,594
+597,598,591,597,598,591,597,598,591,597,598,591,675,676,677
+393,393,393,385,600,601,602,603,604,605,606,384,385,518,518
+518,518,550,402,608,609,610,611,612,613,614,400,402,518,518
+518,518,550,402,616,617,618,619,620,621,622,400,402,518,518
+518,518,400,402,624,625,626,627,628,629,630,400,402,518,518
+518,518,400,402,632,633,634,635,636,637,638,400,402,518,518
+518,518,400,410,393,393,393,393,393,393,393,408,402,518,518
+518,518,400,368,368,368,368,368,368,368,368,368,410,393,393
+collision
+0,0,1,0,0,1,0,0,1,0,0,1,1,0,1
+0,0,1,0,0,1,0,0,1,0,0,1,1,0,1
+0,0,1,0,0,1,0,0,1,0,0,1,0,0,0
+0,0,0,0,0,1,1,1,1,1,1,0,0,0,0
+0,0,0,0,1,1,1,1,1,1,1,0,0,0,0
+0,0,0,0,1,1,1,1,1,1,1,0,0,0,0
+0,0,0,0,1,1,1,1,1,1,1,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+0 9 BattleFrontier_BattlePalaceCorridor 2
+1 9 BattleFrontier_BattlePalaceCorridor 2
+npcs
+people_expert_m 1 4 E static 0 LOCALID_PALACE_BATTLE_ATTENDANT 0
+pokemon_dusclops 13 1 S static 0 LOCALID_PALACE_DUSCLOPS 0
+pokemon_azurill 13 1 S static 0 LOCALID_PALACE_AZURILL 0
+onload
+VAR_TEMP_0 0 BattleFrontier_BattlePalaceBattleRoom_EventScript_EnterRoom
+movements
+BattleFrontier_BattlePalaceBattleRoom_Movement_AzurillEnter	delay,down,right,down,down,down,down,down,delay,delay,end
+BattleFrontier_BattlePalaceBattleRoom_Movement_DusclopsEnter	delay,delay,delay,down,right,down,delay,end
+BattleFrontier_BattlePalaceBattleRoom_Movement_FaceDown	face_down,end
+BattleFrontier_BattlePalaceBattleRoom_Movement_FaceRight	face_right,end
+BattleFrontier_BattlePalaceBattleRoom_Movement_FaceUp	face_up,end
+BattleFrontier_BattlePalaceBattleRoom_Movement_OpponentEnter	down,down,down,down,face_left,end
+BattleFrontier_BattlePalaceBattleRoom_Movement_OpponentExit	up,up,up,up,end
+BattleFrontier_BattlePalaceBattleRoom_Movement_PlayerEnterRoom	delay,up,up,up,up
+BattleFrontier_BattlePalaceBattleRoom_Movement_PlayerReturnToChallenge	delay,up,up,up,up,end
+BattleFrontier_BattlePalaceBattleRoom_Movement_SpenserEnter	delay,delay,delay,delay,delay,delay,delay,delay,down,down,down,down,face_left,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+Common_Movement_WalkInPlaceLeft	delay,end
+scriptdefs
+= BattleFrontier_BattlePalaceBattleRoom_EventScript_EnterRoom
+showobjectat LOCALID_PALACE_BATTLE_PLAYER MAP_BATTLE_FRONTIER_BATTLE_PALACE_BATTLE_ROOM
+frontier_get FRONTIER_DATA_BATTLE_NUM
+goto_if_eq VAR_RESULT 0 BattleFrontier_BattlePalaceBattleRoom_EventScript_BeginChallenge
+applymovement LOCALID_PALACE_BATTLE_PLAYER BattleFrontier_BattlePalaceBattleRoom_Movement_PlayerReturnToChallenge
+waitmovement 0
+applymovement LOCALID_PALACE_BATTLE_ATTENDANT BattleFrontier_BattlePalaceBattleRoom_Movement_FaceDown
+setvar VAR_TEMP_2 1
+frontier_set FRONTIER_DATA_RECORD_DISABLED TRUE
+goto BattleFrontier_BattlePalaceBattleRoom_EventScript_AskReadyForOpponent
+= BattleFrontier_BattlePalaceBattleRoom_EventScript_AskReadyForOpponent
+frontier_getbrainstatus
+copyvar VAR_TEMP_F VAR_RESULT
+goto_if_ne VAR_RESULT FRONTIER_BRAIN_NOT_READY BattleFrontier_BattlePalaceBattleRoom_EventScript_MavenUpNext
+frontier_get FRONTIER_DATA_BATTLE_NUM
+call_if_eq VAR_RESULT 1 BattleFrontier_BattlePalaceBattleRoom_EventScript_ReadyFor2ndOpponent
+call_if_eq VAR_RESULT 2 BattleFrontier_BattlePalaceBattleRoom_EventScript_ReadyFor3rdOpponent
+call_if_eq VAR_RESULT 3 BattleFrontier_BattlePalaceBattleRoom_EventScript_ReadyFor4thOpponent
+call_if_eq VAR_RESULT 4 BattleFrontier_BattlePalaceBattleRoom_EventScript_ReadyFor5thOpponent
+call_if_eq VAR_RESULT 5 BattleFrontier_BattlePalaceBattleRoom_EventScript_ReadyFor6thOpponent
+call_if_eq VAR_RESULT 6 BattleFrontier_BattlePalaceBattleRoom_EventScript_ReadyFor7thOpponent
+call BattleFrontier_EventScript_GetCantRecordBattle
+goto_if_eq VAR_RESULT TRUE BattleFrontier_BattlePalaceBattleRoom_EventScript_AskReadyForOpponentNoRecord
+multichoice 19 4 MULTI_GO_ON_RECORD_REST_RETIRE TRUE
+switch VAR_RESULT
+case 0 BattleFrontier_BattlePalaceBattleRoom_EventScript_ContinueChallenge
+case 1 BattleFrontier_BattlePalaceBattleRoom_EventScript_AskRecordBattle
+case 2 BattleFrontier_BattlePalaceBattleRoom_EventScript_AskPauseChallenge
+case 3 BattleFrontier_BattlePalaceBattleRoom_EventScript_AskRetireChallenge
+case MULTI_B_PRESSED BattleFrontier_BattlePalaceBattleRoom_EventScript_AskReadyForOpponent
+goto BattleFrontier_BattlePalaceBattleRoom_EventScript_AskReadyForOpponentNoRecord
+= BattleFrontier_BattlePalaceBattleRoom_EventScript_AskReadyForOpponentNoRecord
+multichoice 20 6 MULTI_GO_ON_REST_RETIRE TRUE
+switch VAR_RESULT
+case 0 BattleFrontier_BattlePalaceBattleRoom_EventScript_ContinueChallenge
+case 1 BattleFrontier_BattlePalaceBattleRoom_EventScript_AskPauseChallenge
+case 2 BattleFrontier_BattlePalaceBattleRoom_EventScript_AskRetireChallenge
+case MULTI_B_PRESSED BattleFrontier_BattlePalaceBattleRoom_EventScript_AskReadyForOpponent
+goto BattleFrontier_BattlePalaceBattleRoom_EventScript_AskRecordBattle
+= BattleFrontier_BattlePalaceBattleRoom_EventScript_AskRecordBattle
+msgbox	Do you wish to record your latest match on your FRONTIER PASS?
+waitmessage
+multichoicedefault 20 8 MULTI_YESNO 1 FALSE
+switch VAR_RESULT
+case 1 BattleFrontier_BattlePalaceBattleRoom_EventScript_AskReadyForOpponent
+case 0 BattleFrontier_BattlePalaceBattleRoom_EventScript_RecordBattle
+case MULTI_B_PRESSED BattleFrontier_BattlePalaceBattleRoom_EventScript_AskReadyForOpponent
+goto BattleFrontier_BattlePalaceBattleRoom_EventScript_RecordBattle
+= BattleFrontier_BattlePalaceBattleRoom_EventScript_RecordBattle
+call BattleFrontier_EventScript_SaveBattle
+goto BattleFrontier_BattlePalaceBattleRoom_EventScript_AskReadyForOpponent
+= BattleFrontier_BattlePalaceBattleRoom_EventScript_AskRetireChallenge
+msgbox	Do you wish to quit your challenge?
+waitmessage
+multichoicedefault 20 8 MULTI_YESNO 1 FALSE
+switch VAR_RESULT
+case 1 BattleFrontier_BattlePalaceBattleRoom_EventScript_AskReadyForOpponent
+case 0 BattleFrontier_BattlePalaceBattleRoom_EventScript_WarpToLobbyLost
+case MULTI_B_PRESSED BattleFrontier_BattlePalaceBattleRoom_EventScript_AskReadyForOpponent
+goto BattleFrontier_BattlePalaceBattleRoom_EventScript_ContinueChallenge
+= BattleFrontier_BattlePalaceBattleRoom_EventScript_ContinueChallenge
+applymovement LOCALID_PALACE_BATTLE_PLAYER BattleFrontier_BattlePalaceBattleRoom_Movement_FaceRight
+applymovement LOCALID_PALACE_BATTLE_ATTENDANT BattleFrontier_BattlePalaceBattleRoom_Movement_FaceRight
+closemessage
+goto BattleFrontier_BattlePalaceBattleRoom_EventScript_NextOpponentEnter
+= BattleFrontier_BattlePalaceBattleRoom_EventScript_NextOpponentEnter
+tower_setopponent
+addobject LOCALID_PALACE_BATTLE_OPPONENT
+applymovement LOCALID_PALACE_BATTLE_OPPONENT BattleFrontier_BattlePalaceBattleRoom_Movement_OpponentEnter
+waitmovement 0
+palace_getopponentintro
+msgbox	gStringVar4
+waitmessage
+call BattleFrontier_BattlePalaceBattleRoom_EventScript_DoPalaceBattle
+switch VAR_RESULT
+case 1 BattleFrontier_BattlePalaceBattleRoom_EventScript_DefeatedOpponent
+goto BattleFrontier_BattlePalaceBattleRoom_EventScript_WarpToLobbyLost
+= BattleFrontier_BattlePalaceBattleRoom_EventScript_WarpToLobbyLost
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS CHALLENGE_STATUS_LOST
+goto BattleFrontier_BattlePalaceBattleRoom_EventScript_WarpToLobby
+= BattleFrontier_BattlePalaceBattleRoom_EventScript_WarpToLobby
+copyvar VAR_RESULT VAR_FRONTIER_BATTLE_MODE
+goto_if_eq VAR_RESULT FRONTIER_MODE_DOUBLES BattleFrontier_BattlePalaceBattleRoom_EventScript_WarpToLobbyDoubles
+warp BattleFrontier_BattlePalaceLobby 5 7
+waitstate
+end
+= BattleFrontier_BattlePalaceBattleRoom_EventScript_WarpToLobbyDoubles
+warp BattleFrontier_BattlePalaceLobby 19 7
+waitstate
+end
+= BattleFrontier_BattlePalaceBattleRoom_EventScript_DefeatedOpponent
+call BattleFrontier_EventScript_IncrementWinStreak
+frontier_get FRONTIER_DATA_BATTLE_NUM
+addvar VAR_RESULT 1
+frontier_set FRONTIER_DATA_BATTLE_NUM VAR_RESULT
+switch VAR_RESULT
+case 7 BattleFrontier_BattlePalaceBattleRoom_EventScript_WarpToLobbyWon
+applymovement LOCALID_PALACE_BATTLE_OPPONENT BattleFrontier_BattlePalaceBattleRoom_Movement_OpponentExit
+waitmovement 0
+removeobject LOCALID_PALACE_BATTLE_OPPONENT
+applymovement LOCALID_PALACE_BATTLE_PLAYER BattleFrontier_BattlePalaceBattleRoom_Movement_FaceUp
+applymovement LOCALID_PALACE_BATTLE_ATTENDANT BattleFrontier_BattlePalaceBattleRoom_Movement_FaceDown
+waitmovement 0
+msgbox	Excellent… Let me restore your POKéMON.
+special LoadPlayerParty
+special SavePlayerParty
+frontier_setpartyorder FRONTIER_PARTY_SIZE
+playfanfare MUS_HEAL
+waitfanfare
+special HealPlayerParty
+goto BattleFrontier_BattlePalaceBattleRoom_EventScript_AskReadyForOpponent
+= BattleFrontier_BattlePalaceBattleRoom_EventScript_WarpToLobbyWon
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS CHALLENGE_STATUS_WON
+goto BattleFrontier_BattlePalaceBattleRoom_EventScript_WarpToLobby
+= BattleFrontier_BattlePalaceBattleRoom_EventScript_DoPalaceBattle
+closemessage
+setvar VAR_TEMP_2 0
+frontier_set FRONTIER_DATA_RECORD_DISABLED FALSE
+special HealPlayerParty
+setvar VAR_0x8004 SPECIAL_BATTLE_PALACE
+setvar VAR_0x8005 0
+special DoSpecialTrainerBattle
+frontier_restorehelditems
+special HealPlayerParty
+frontier_resetsketch
+return
+= BattleFrontier_BattlePalaceBattleRoom_EventScript_AskPauseChallenge
+msgboxyesno	Would you like to save and quit the game?
+switch VAR_RESULT
+case NO BattleFrontier_BattlePalaceBattleRoom_EventScript_AskReadyForOpponent
+case YES BattleFrontier_BattlePalaceBattleRoom_EventScript_PauseChallenge
+case MULTI_B_PRESSED BattleFrontier_BattlePalaceBattleRoom_EventScript_AskReadyForOpponent
+goto BattleFrontier_BattlePalaceBattleRoom_EventScript_AskRetireChallenge
+= BattleFrontier_BattlePalaceBattleRoom_EventScript_PauseChallenge
+msgbox	Saving the data. Have patience…
+waitmessage
+palace_save CHALLENGE_STATUS_PAUSED
+playse SE_SAVE
+waitse
+fadescreen FADE_TO_BLACK
+frontier_reset
+end
+= BattleFrontier_BattlePalaceBattleRoom_EventScript_ReadyFor7thOpponent
+msgbox	The 7th opponent is next. Are you prepared?
+waitmessage
+return
+= BattleFrontier_BattlePalaceBattleRoom_EventScript_ReadyFor6thOpponent
+msgbox	The 6th opponent is next. Are you prepared?
+waitmessage
+return
+= BattleFrontier_BattlePalaceBattleRoom_EventScript_ReadyFor5thOpponent
+msgbox	The 5th opponent is next. Are you prepared?
+waitmessage
+return
+= BattleFrontier_BattlePalaceBattleRoom_EventScript_ReadyFor4thOpponent
+msgbox	The 4th opponent is next. Are you prepared?
+waitmessage
+return
+= BattleFrontier_BattlePalaceBattleRoom_EventScript_ReadyFor3rdOpponent
+msgbox	The 3rd opponent is next. Are you prepared?
+waitmessage
+return
+= BattleFrontier_BattlePalaceBattleRoom_EventScript_ReadyFor2ndOpponent
+msgbox	The 2nd opponent is next. Are you prepared?
+waitmessage
+return
+= BattleFrontier_BattlePalaceBattleRoom_EventScript_MavenUpNext
+goto_if_eq VAR_TEMP_2 1 BattleFrontier_BattlePalaceBattleRoom_EventScript_AskReadyForMaven
+msgbox	And now…By winning consistently, you have earned the privilege of challenging our master, the PALACE MAVEN…
+setvar VAR_TEMP_2 1
+goto BattleFrontier_BattlePalaceBattleRoom_EventScript_AskReadyForMaven
+= BattleFrontier_BattlePalaceBattleRoom_EventScript_AskReadyForMaven
+msgbox	I shall send for the PALACE MAVEN. Are you ready?
+waitmessage
+call BattleFrontier_EventScript_GetCantRecordBattle
+goto_if_eq VAR_RESULT TRUE BattleFrontier_BattlePalaceBattleRoom_EventScript_AskReadyForMavenNoRecord
+multichoice 19 4 MULTI_GO_ON_RECORD_REST_RETIRE TRUE
+switch VAR_RESULT
+case 0 BattleFrontier_BattlePalaceBattleRoom_EventScript_BattleSpenser
+case 1 BattleFrontier_BattlePalaceBattleRoom_EventScript_AskRecordBattle
+case 2 BattleFrontier_BattlePalaceBattleRoom_EventScript_AskPauseChallenge
+case 3 BattleFrontier_BattlePalaceBattleRoom_EventScript_AskRetireChallenge
+case MULTI_B_PRESSED BattleFrontier_BattlePalaceBattleRoom_EventScript_AskReadyForMaven
+goto BattleFrontier_BattlePalaceBattleRoom_EventScript_AskReadyForMavenNoRecord
+= BattleFrontier_BattlePalaceBattleRoom_EventScript_AskReadyForMavenNoRecord
+multichoice 20 6 MULTI_GO_ON_REST_RETIRE TRUE
+switch VAR_RESULT
+case 0 BattleFrontier_BattlePalaceBattleRoom_EventScript_BattleSpenser
+case 1 BattleFrontier_BattlePalaceBattleRoom_EventScript_AskPauseChallenge
+case 2 BattleFrontier_BattlePalaceBattleRoom_EventScript_AskRetireChallenge
+case MULTI_B_PRESSED BattleFrontier_BattlePalaceBattleRoom_EventScript_AskReadyForMaven
+goto BattleFrontier_BattlePalaceBattleRoom_EventScript_BattleSpenser
+= BattleFrontier_BattlePalaceBattleRoom_EventScript_BattleSpenser
+call BattleFrontier_EventScript_SetBrainObjectGfx
+msgbox	Let great fanfare announce the arrival of the PALACE MAVEN, SPENSER!
+closemessage
+applymovement LOCALID_PALACE_BATTLE_PLAYER BattleFrontier_BattlePalaceBattleRoom_Movement_FaceRight
+applymovement LOCALID_PALACE_BATTLE_ATTENDANT BattleFrontier_BattlePalaceBattleRoom_Movement_FaceRight
+setobjectxyperm LOCALID_PALACE_BATTLE_OPPONENT 15 1
+addobject LOCALID_PALACE_BATTLE_OPPONENT
+hideobjectat LOCALID_PALACE_BATTLE_OPPONENT MAP_BATTLE_FRONTIER_BATTLE_PALACE_BATTLE_ROOM
+setobjectxy LOCALID_PALACE_BATTLE_OPPONENT 13 1
+setobjectxyperm LOCALID_PALACE_BATTLE_OPPONENT 13 1
+applymovement LOCALID_PALACE_DUSCLOPS BattleFrontier_BattlePalaceBattleRoom_Movement_DusclopsEnter
+applymovement LOCALID_PALACE_AZURILL BattleFrontier_BattlePalaceBattleRoom_Movement_AzurillEnter
+applymovement LOCALID_PALACE_BATTLE_OPPONENT BattleFrontier_BattlePalaceBattleRoom_Movement_SpenserEnter
+waitmovement 0
+switch VAR_TEMP_F
+case FRONTIER_BRAIN_GOLD BattleFrontier_BattlePalaceBattleRoom_EventScript_IntroSpenserGold
+case FRONTIER_BRAIN_STREAK BattleFrontier_BattlePalaceBattleRoom_EventScript_BattleSpenserSilver
+case FRONTIER_BRAIN_STREAK_LONG BattleFrontier_BattlePalaceBattleRoom_EventScript_BattleSpenserGold
+frontier_get FRONTIER_DATA_HEARD_BRAIN_SPEECH
+goto_if_ne VAR_RESULT FALSE BattleFrontier_BattlePalaceBattleRoom_EventScript_BattleSpenserSilver
+msgbox	SPENSER: My physical being is with POKéMON always!My heart beats as one with POKéMON always!Young one of a TRAINER! Do you believe in your POKéMON?Can you believe them through and through?If your bonds of trust are frail, you will never beat my brethren!
+frontier_set FRONTIER_DATA_HEARD_BRAIN_SPEECH
+goto BattleFrontier_BattlePalaceBattleRoom_EventScript_BattleSpenserSilver
+= BattleFrontier_BattlePalaceBattleRoom_EventScript_BattleSpenserSilver
+msgbox	The bond you share with your POKéMON! Prove it to me here!
+call BattleFrontier_BattlePalaceBattleRoom_EventScript_DoPalaceBattle
+goto_if_eq VAR_RESULT 1 BattleFrontier_BattlePalaceBattleRoom_EventScript_DefeatedSpenserSilver
+goto BattleFrontier_BattlePalaceBattleRoom_EventScript_WarpToLobbyLost
+= BattleFrontier_BattlePalaceBattleRoom_EventScript_DefeatedSpenserSilver
+palace_incrementstreak
+frontier_getsymbols
+goto_if_ne VAR_RESULT 0 BattleFrontier_BattlePalaceBattleRoom_EventScript_WarpToLobbyWon
+msgbox	SPENSER: Gwahahah!Hah, you never fell for my bluster! Sorry for trying that stunt!Here! Bring me the thing!
+applymovement LOCALID_PALACE_BATTLE_PLAYER BattleFrontier_BattlePalaceBattleRoom_Movement_FaceUp
+applymovement LOCALID_PALACE_BATTLE_ATTENDANT BattleFrontier_BattlePalaceBattleRoom_Movement_FaceDown
+msgbox	My, my, if only you could maintain that facade of distinguished authority…Here! Let's see your FRONTIER PASS!
+playfanfare MUS_OBTAIN_SYMBOL
+msgbox	The Spirits Symbol was embossed on the FRONTIER PASS!
+waitmessage
+waitfanfare
+frontier_givesymbol
+applymovement LOCALID_PALACE_BATTLE_OPPONENT Common_Movement_WalkInPlaceLeft
+waitmovement 0
+applymovement LOCALID_PALACE_BATTLE_PLAYER Common_Movement_WalkInPlaceFasterRight
+applymovement LOCALID_PALACE_BATTLE_ATTENDANT Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+msgbox	SPENSER: Your POKéMON's eyes are truly clear and unclouded.I will eagerly await the next opportunity to see you.
+goto BattleFrontier_BattlePalaceBattleRoom_EventScript_WarpToLobbyWon
+= BattleFrontier_BattlePalaceBattleRoom_EventScript_BattleSpenserGold
+msgbox	… … …Kaaah!
+call BattleFrontier_BattlePalaceBattleRoom_EventScript_DoPalaceBattle
+goto_if_eq VAR_RESULT 1 BattleFrontier_BattlePalaceBattleRoom_EventScript_DefeatedSpenserGold
+goto BattleFrontier_BattlePalaceBattleRoom_EventScript_WarpToLobbyLost
+= BattleFrontier_BattlePalaceBattleRoom_EventScript_DefeatedSpenserGold
+palace_incrementstreak
+frontier_getsymbols
+goto_if_eq VAR_RESULT 2 BattleFrontier_BattlePalaceBattleRoom_EventScript_WarpToLobbyWon
+msgbox	SPENSER: Well, that was some display! Even fully unleashed, my brethren could not overpower you.Your team spirit is truly admirable!Here! Bring me that thing, will you?
+applymovement LOCALID_PALACE_BATTLE_PLAYER BattleFrontier_BattlePalaceBattleRoom_Movement_FaceUp
+applymovement LOCALID_PALACE_BATTLE_ATTENDANT BattleFrontier_BattlePalaceBattleRoom_Movement_FaceDown
+msgbox	My, my, if only you could maintain a certain level of decorum…Gaaah, here! Hurry with that FRONTIER PASS, you!
+playfanfare MUS_OBTAIN_SYMBOL
+msgbox	The Spirits Symbol took on a golden shine!
+waitmessage
+waitfanfare
+frontier_givesymbol
+applymovement LOCALID_PALACE_BATTLE_OPPONENT Common_Movement_WalkInPlaceLeft
+waitmovement 0
+applymovement LOCALID_PALACE_BATTLE_PLAYER Common_Movement_WalkInPlaceFasterRight
+applymovement LOCALID_PALACE_BATTLE_ATTENDANT Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+msgbox	SPENSER: Gwahahah!Come see me time and again! My brethren and I will be waiting!
+goto BattleFrontier_BattlePalaceBattleRoom_EventScript_WarpToLobbyWon
+= BattleFrontier_BattlePalaceBattleRoom_EventScript_IntroSpenserGold
+frontier_get FRONTIER_DATA_HEARD_BRAIN_SPEECH
+goto_if_ne VAR_RESULT FALSE BattleFrontier_BattlePalaceBattleRoom_EventScript_BattleSpenserGold
+msgbox	SPENSER: Gwahahah! You've battled your way up again?You must have developed a truly formidable bond with your POKéMON.So be it!This time, I won't bluster or hold back. This time, there's no fooling around.Ready now? Prepare to lose!
+frontier_set FRONTIER_DATA_HEARD_BRAIN_SPEECH
+goto BattleFrontier_BattlePalaceBattleRoom_EventScript_BattleSpenserGold
+= BattleFrontier_BattlePalaceBattleRoom_EventScript_BeginChallenge
+applymovement LOCALID_PALACE_BATTLE_PLAYER BattleFrontier_BattlePalaceBattleRoom_Movement_PlayerEnterRoom
+waitmovement 0
+goto BattleFrontier_BattlePalaceBattleRoom_EventScript_NextOpponentEnter
+water
+368,384,385,393,400,402,408,410,550
+mapsec
+22 12 1 1	BATTLE FRONTIER
+music
+MUS_B_PALACE

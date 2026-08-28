@@ -1,0 +1,141 @@
+tileset building__trick_house_puzzle
+15 22
+6 10
+513,513,513,513,513,513,513,513,513,513,513,513,514,623,516
+521,521,521,521,521,521,521,521,521,521,521,521,522,631,524
+528,528,528,528,641,650,528,528,528,528,528,640,528,528,528
+520,520,520,520,520,648,520,520,520,520,649,658,520,520,520
+520,520,641,650,520,657,643,520,640,520,648,520,520,520,520
+520,520,520,648,520,520,520,520,648,520,648,520,520,649,643
+520,520,520,656,520,520,520,520,648,520,657,643,520,656,520
+641,642,643,520,520,520,520,520,648,520,520,520,520,520,520
+520,520,520,520,520,640,520,520,656,520,520,520,520,520,520
+520,520,520,520,520,648,520,520,520,641,642,642,642,642,643
+520,520,520,520,520,648,520,520,520,520,520,520,520,520,520
+520,520,649,642,642,660,642,659,642,643,520,520,520,520,520
+520,520,648,520,520,520,520,656,520,520,520,520,649,642,643
+520,649,658,520,520,640,520,520,520,640,520,520,648,520,531
+520,648,520,520,520,652,642,642,642,658,520,641,651,520,520
+520,648,520,520,520,656,520,520,520,520,520,520,656,520,520
+520,652,642,643,520,520,520,520,520,644,520,520,520,520,520
+520,648,520,520,520,640,520,520,520,520,520,520,520,520,520
+520,656,646,646,646,656,646,646,646,644,646,646,646,646,646
+520,625,625,625,625,625,625,625,625,625,625,625,625,625,625
+520,520,520,520,520,520,520,520,520,520,520,520,520,520,520
+529,530,520,520,520,520,520,520,520,520,520,520,520,520,520
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,1,1,0,0,0,0,0,1,0,0,0
+0,0,0,0,0,1,0,0,0,0,1,1,0,0,0
+0,0,1,1,0,1,1,0,1,0,1,0,0,0,0
+0,0,0,1,0,0,0,0,1,0,1,0,0,1,1
+0,0,0,1,0,0,0,0,1,0,1,1,0,1,0
+1,1,1,0,0,0,0,0,1,0,0,0,0,0,0
+0,0,0,0,0,1,0,0,1,0,0,0,0,0,0
+0,0,0,0,0,1,0,0,0,1,1,1,1,1,1
+0,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+0,0,1,1,1,1,1,1,1,1,0,0,0,0,0
+0,0,1,0,0,0,0,1,0,0,0,0,1,1,1
+0,1,1,0,0,1,0,0,0,1,0,0,1,0,1
+0,1,0,0,0,1,1,1,1,1,0,1,1,0,0
+0,1,0,0,0,1,0,0,0,0,0,0,1,0,0
+0,1,1,1,0,0,0,0,0,1,0,0,0,0,0
+0,1,0,0,0,1,0,0,0,0,0,0,0,0,0
+0,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+0 21 Route110_TrickHouseEntrance 2
+1 21 Route110_TrickHouseEntrance 2
+13 1 Route110_TrickHouseEnd 0
+npcs
+people_girl_3 2 2 S static 0 - 1
+people_girl_3 14 7 W static 0 - 2
+people_black_belt 2 14 E static 0 - 2
+misc_item_ball 2 5 S static FLAG_ITEM_TRICK_HOUSE_PUZZLE_4_MECH_MAIL - 0
+misc_pushable_boulder 13 3 S static FLAG_TEMP_11 - 0
+misc_pushable_boulder 12 5 S static FLAG_TEMP_12 - 0
+misc_pushable_boulder 5 16 S static FLAG_TEMP_13 - 0
+misc_pushable_boulder 4 6 S static FLAG_TEMP_14 - 0
+misc_pushable_boulder 12 2 S static FLAG_TEMP_15 - 0
+misc_pushable_boulder 5 7 S static FLAG_TEMP_16 - 0
+misc_pushable_boulder 9 3 S static FLAG_TEMP_17 - 0
+misc_pushable_boulder 10 12 S static FLAG_TEMP_18 - 0
+misc_pushable_boulder 14 2 S static FLAG_TEMP_19 - 0
+misc_pushable_boulder 10 15 S static FLAG_TEMP_1A - 0
+dialogs
+0	Wouldn't you agree? You would go anywhere if TRAINERS were there.
+1	Has anyone made it to the end?
+2	It's not good enough to be brawny… You have to use your head. Be brainy!
+objscripts
+0 Route110_TrickHousePuzzle4_EventScript_Cora
+1 Route110_TrickHousePuzzle4_EventScript_Paula
+2 Route110_TrickHousePuzzle4_EventScript_Yuji
+3 Route110_TrickHousePuzzle4_EventScript_ItemMechMail
+4 EventScript_StrengthBoulder
+5 EventScript_StrengthBoulder
+6 EventScript_StrengthBoulder
+7 EventScript_StrengthBoulder
+8 EventScript_StrengthBoulder
+9 EventScript_StrengthBoulder
+10 EventScript_StrengthBoulder
+11 EventScript_StrengthBoulder
+12 EventScript_StrengthBoulder
+13 EventScript_StrengthBoulder
+scriptdefs
+= EventScript_StrengthBoulder
+lockall
+goto_if_unset FLAG_BADGE04_GET EventScript_CantStrength
+goto_if_set FLAG_SYS_USE_STRENGTH EventScript_CheckActivatedBoulder
+checkpartymove MOVE_STRENGTH
+goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CantStrength
+setfieldeffectargument 0 VAR_RESULT
+msgboxyesno	It's a big boulder, but a POKéMON may be able to push it aside.Would you like to use STRENGTH?
+goto_if_eq VAR_RESULT NO EventScript_CancelStrength
+closemessage
+dofieldeffect FLDEFF_USE_STRENGTH
+waitstate
+goto EventScript_ActivateStrength
+end
+= EventScript_ActivateStrength
+setflag FLAG_SYS_USE_STRENGTH
+msgbox	STR_VAR_1 used STRENGTH!STR_VAR_1's STRENGTH made it possible to move boulders around!
+releaseall
+end
+= EventScript_CancelStrength
+closemessage
+releaseall
+end
+= EventScript_CantStrength
+msgbox	It's a big boulder, but a POKéMON may be able to push it aside.
+releaseall
+end
+= EventScript_CheckActivatedBoulder
+msgbox	STRENGTH made it possible to move boulders around.
+releaseall
+end
+= Route110_TrickHousePuzzle4_EventScript_ItemMechMail
+goto_if_set FLAG_ITEM_TRICK_HOUSE_PUZZLE_4_MECH_MAIL Route110_TrickHousePuzzle4_EventScript_ItemMechMail_Taken
+finditem ITEM_MECH_MAIL
+setflag FLAG_ITEM_TRICK_HOUSE_PUZZLE_4_MECH_MAIL
+end
+= Route110_TrickHousePuzzle4_EventScript_ItemMechMail_Taken
+end
+= Route110_TrickHousePuzzle4_EventScript_Yuji
+trainerbattle_single TRAINER_YUJI Route110_TrickHousePuzzle4_Text_YujiIntro Route110_TrickHousePuzzle4_Text_YujiDefeat
+msgbox	It's not good enough to be brawny… You have to use your head. Be brainy!
+end
+= Route110_TrickHousePuzzle4_EventScript_Paula
+trainerbattle_single TRAINER_PAULA Route110_TrickHousePuzzle4_Text_PaulaIntro Route110_TrickHousePuzzle4_Text_PaulaDefeat
+msgbox	Has anyone made it to the end?
+end
+= Route110_TrickHousePuzzle4_EventScript_Cora
+trainerbattle_single TRAINER_CORA Route110_TrickHousePuzzle4_Text_CoraIntro Route110_TrickHousePuzzle4_Text_CoraDefeat
+msgbox	Wouldn't you agree? You would go anywhere if TRAINERS were there.
+end
+mapsec
+8 7 1 3	ROUTE 110
+music
+MUS_TRICK_HOUSE

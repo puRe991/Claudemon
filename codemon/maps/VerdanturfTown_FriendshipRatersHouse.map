@@ -1,0 +1,89 @@
+tileset building__generic_building
+11 8
+4 3
+646,647,560,517,517,518,517,517,517,517,632
+654,655,542,525,525,526,525,616,620,621,640
+662,663,568,548,548,548,548,624,628,629,648
+569,547,547,547,547,547,547,547,547,547,547
+569,547,547,547,555,586,587,556,547,547,547
+569,547,547,547,555,594,595,556,547,547,547
+657,547,547,547,547,547,547,547,547,547,546
+665,547,547,520,521,547,547,547,547,547,554
+collision
+1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,1,1,0,0,0,0
+0,0,0,0,0,1,1,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0
+1,0,0,0,0,0,0,0,0,0,1
+warps
+3 7 VerdanturfTown 5
+4 7 VerdanturfTown 5
+npcs
+people_woman_2 3 4 S static 0 - 0
+pokemon_pikachu 4 4 S static 0 - 0
+dialogs
+0	Let me see your POKéMON. I'll check to see how much it likes you.Oh. Your POKéMON…
+1	PIKACHU: Pika pika!
+objscripts
+0 VerdanturfTown_FriendshipRatersHouse_EventScript_FriendshipRater
+1 VerdanturfTown_FriendshipRatersHouse_EventScript_Pikachu
+scriptdefs
+= VerdanturfTown_FriendshipRatersHouse_EventScript_Pikachu
+lock
+faceplayer
+waitse
+playmoncry SPECIES_PIKACHU CRY_MODE_NORMAL
+msgbox	PIKACHU: Pika pika!
+waitmoncry
+release
+end
+= VerdanturfTown_FriendshipRatersHouse_EventScript_FriendshipRater
+lock
+faceplayer
+msgbox	Let me see your POKéMON. I'll check to see how much it likes you.Oh. Your POKéMON…
+specialvar VAR_RESULT GetLeadMonFriendshipScore
+switch VAR_RESULT
+case FRIENDSHIP_NONE VerdanturfTown_FriendshipRatersHouse_EventScript_DetestsYou
+case FRIENDSHIP_1_TO_49 VerdanturfTown_FriendshipRatersHouse_EventScript_VeryWary
+case FRIENDSHIP_50_TO_99 VerdanturfTown_FriendshipRatersHouse_EventScript_NotUsedToYou
+case FRIENDSHIP_100_TO_149 VerdanturfTown_FriendshipRatersHouse_EventScript_GettingUsedToYou
+case FRIENDSHIP_150_TO_199 VerdanturfTown_FriendshipRatersHouse_EventScript_LikesYouQuiteALot
+case FRIENDSHIP_200_TO_254 VerdanturfTown_FriendshipRatersHouse_EventScript_VeryHappy
+case FRIENDSHIP_MAX VerdanturfTown_FriendshipRatersHouse_EventScript_AdoresYou
+release
+end
+= VerdanturfTown_FriendshipRatersHouse_EventScript_AdoresYou
+msgbox	It adores you. It can't possibly love you any more. I even feel happy seeing it.
+release
+end
+= VerdanturfTown_FriendshipRatersHouse_EventScript_VeryHappy
+msgbox	It seems to be very happy. It obviously likes you a whole lot.
+release
+end
+= VerdanturfTown_FriendshipRatersHouse_EventScript_LikesYouQuiteALot
+msgbox	It likes you quite a lot. It seems to want to be babied a little.
+release
+end
+= VerdanturfTown_FriendshipRatersHouse_EventScript_GettingUsedToYou
+msgbox	It's getting used to you. It seems to believe in you.
+release
+end
+= VerdanturfTown_FriendshipRatersHouse_EventScript_NotUsedToYou
+msgbox	It's not very used to you yet. It neither loves nor hates you.
+release
+end
+= VerdanturfTown_FriendshipRatersHouse_EventScript_VeryWary
+msgbox	It's very wary. It has scary viciousness in its eyes. It doesn't like you much at all.
+release
+end
+= VerdanturfTown_FriendshipRatersHouse_EventScript_DetestsYou
+msgbox	This is a little hard for me to say…Your POKéMON simply detests you. Doesn't that make you uncomfortable?
+release
+end
+mapsec
+4 6 1 1	VERDANTURF TOWN
+music
+MUS_VERDANTURF

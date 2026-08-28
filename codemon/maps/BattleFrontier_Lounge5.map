@@ -1,0 +1,76 @@
+tileset building__battle_frontier
+13 8
+5 3
+957,958,957,958,959,957,932,958,957,957,957,957,957
+965,966,967,966,967,966,2,966,967,966,967,966,965
+976,974,975,974,975,974,933,974,975,974,975,974,970
+989,968,1015,968,999,968,988,968,969,968,999,968,986
+997,969,1007,969,991,969,996,969,1007,969,991,969,992
+1005,968,969,968,969,968,988,968,1015,968,999,968,1000
+977,969,968,969,968,969,996,969,1007,969,991,969,968
+1,949,950,968,969,968,969,968,969,968,969,968,1
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1
+0,1,1,1,1,1,0,1,1,1,1,1,0
+0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,1,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,1,0,0,0,0,0,0
+1,0,0,0,0,0,0,0,0,0,0,0,1
+warps
+1 7 BattleFrontier_OutsideEast 7
+2 7 BattleFrontier_OutsideEast 7
+npcs
+people_little_girl 12 4 W static 0 - 0
+people_gentleman 0 4 E static 0 - 0
+people_black_belt 6 5 S wander 0 - 0
+people_little_boy 11 7 S static 0 - 0
+dialogs
+0	Ehehe! I can tell what POKéMON are thinking!Please! Can I see your POKéMON?
+1	How charming! That little lady claims she can understand POKéMON!
+2	I have this feeling that the little girl is saying something profound.
+3	I know something!That little girl plays at the red house a lot!
+objscripts
+0 BattleFrontier_Lounge5_EventScript_NatureGirl
+1 BattleFrontier_Lounge5_EventScript_Gentleman
+2 BattleFrontier_Lounge5_EventScript_BlackBelt
+3 BattleFrontier_Lounge5_EventScript_LittleBoy
+scriptdefs
+= BattleFrontier_Lounge5_EventScript_LittleBoy
+msgbox	I know something!That little girl plays at the red house a lot!
+end
+= BattleFrontier_Lounge5_EventScript_BlackBelt
+msgbox	I have this feeling that the little girl is saying something profound.
+end
+= BattleFrontier_Lounge5_EventScript_Gentleman
+msgbox	How charming! That little lady claims she can understand POKéMON!
+end
+= BattleFrontier_Lounge5_EventScript_NatureGirl
+lock
+faceplayer
+msgboxyesno	Ehehe! I can tell what POKéMON are thinking!Please! Can I see your POKéMON?
+goto_if_eq VAR_RESULT NO BattleFrontier_Lounge5_EventScript_NatureGirlNoneShown
+special ChoosePartyMon
+lock
+faceplayer
+goto_if_eq VAR_0x8004 PARTY_NOTHING_CHOSEN BattleFrontier_Lounge5_EventScript_NatureGirlNoneShown
+specialvar VAR_RESULT ScriptGetPartyMonSpecies
+goto_if_eq VAR_RESULT SPECIES_EGG BattleFrontier_Lounge5_EventScript_NatureGirlEgg
+special ShowNatureGirlMessage
+waitmessage
+waitbuttonpress
+release
+end
+= BattleFrontier_Lounge5_EventScript_NatureGirlEgg
+msgbox	That's silly! An EGG is asleep! I can't talk to it!
+release
+end
+= BattleFrontier_Lounge5_EventScript_NatureGirlNoneShown
+msgbox	Boo! Cheapie!
+release
+end
+mapsec
+22 12 1 1	BATTLE FRONTIER
+music
+MUS_B_TOWER_RS

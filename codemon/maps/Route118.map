@@ -1,0 +1,784 @@
+tileset general__mauville
+80 20
+40 10
+199,199,199,199,199,134,112,115,115,113,113,117,117,114,198,198,198,198,198,198,134,292,293,368,368,368,291,292,292,133,199,199,199,199,199,199,199,199,198,112,115,115,113,113,113,113,113,113,116,124,124,125,113,113,117,114,198,288,289,290,198,112,115,115,113,113,113,113,113,113,113,113,113,113,113,113,113,117,117,114
+199,199,199,199,199,134,112,115,115,113,113,117,117,114,198,198,198,198,198,23,134,292,293,368,368,368,291,292,292,133,23,23,199,199,199,199,199,199,199,112,115,115,113,116,124,124,124,124,125,113,113,113,113,113,117,114,198,288,289,290,198,112,115,115,113,113,113,113,113,113,113,113,113,113,113,113,113,117,117,114
+199,199,199,199,199,134,112,115,115,113,113,117,117,114,198,198,198,198,198,110,513,292,293,368,368,368,291,292,292,699,135,111,199,199,199,198,199,199,198,112,115,115,113,117,116,169,169,169,124,124,124,124,124,124,125,114,198,288,289,290,198,112,115,123,124,124,124,124,137,113,113,113,113,113,113,116,124,125,117,114
+199,199,199,199,199,134,112,115,115,113,116,125,117,114,198,198,23,23,23,134,326,300,301,368,336,337,299,325,128,129,130,133,198,198,199,199,199,199,199,112,115,115,113,117,117,116,145,145,206,206,206,206,206,206,206,122,22,288,289,290,198,112,123,124,124,124,124,137,115,113,113,113,113,116,124,125,116,169,125,114
+198,198,198,23,23,263,112,115,123,124,125,116,125,114,198,23,110,135,135,513,293,368,336,337,344,345,336,341,136,113,138,133,23,198,23,23,23,23,23,112,115,123,124,125,117,114,30,31,199,199,199,22,22,22,22,13,1,288,289,290,22,120,121,145,145,145,137,115,123,124,124,124,124,125,113,113,117,116,145,122
+198,23,23,1,1,1,112,123,124,124,124,125,116,122,23,110,513,128,129,130,340,337,344,345,368,368,344,349,144,416,146,699,111,198,582,332,332,332,583,112,123,124,124,124,125,114,38,39,23,23,23,13,13,13,13,13,1,296,297,298,1,13,13,13,13,1,112,123,169,169,169,137,113,113,116,124,125,114,15,15
+23,1,1,1,1,1,120,145,145,145,145,145,122,3,213,513,226,136,113,138,348,345,368,368,368,368,368,291,292,292,292,226,133,23,945,276,276,276,277,120,145,145,145,145,145,122,1,1,1,1,1,13,13,13,13,13,1,1,1,1,13,13,13,13,13,13,120,416,169,169,137,123,124,124,125,116,145,122,199,199
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,280,618,292,144,121,146,293,368,368,368,368,368,368,291,226,292,292,292,699,135,135,111,14,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,13,13,13,13,1,1,1,1,13,13,13,13,13,13,1,1,1,1,120,145,145,145,145,122,1,14,199,199
+1,1,1,1,1,1,1,1,1,1,1,1,1,280,292,292,292,226,326,300,301,368,368,368,368,368,368,291,292,292,292,292,292,292,292,133,198,14,1,213,135,135,135,135,135,135,135,135,135,135,135,135,135,135,135,214,3,1,1,1,213,135,135,135,135,135,135,135,135,135,135,135,135,135,135,135,214,23,199,199
+1,1,1,1,4,255,4,1,4,1,1,1,280,292,292,292,292,292,293,368,368,368,368,368,368,368,368,291,292,292,292,292,292,292,292,133,23,198,1,1,1,1,1,1,1,1,1,1,13,13,13,13,13,13,1,1,1,1,1,1,1,1,1,13,13,13,13,13,13,13,13,13,13,13,1,1,1,1,23,23
+1,1,1,4,1,134,1,4,1,1,1,1,288,292,292,292,292,292,293,368,368,368,368,368,368,368,368,299,300,300,325,292,292,292,292,699,111,23,1,1,1,1,1,1,1,1,1,1,13,13,13,13,13,13,13,13,1,1,1,1,1,1,1,1,1,13,13,13,13,13,13,13,13,1,1,1,1,1,1,1
+1,14,14,14,14,134,4,1,4,255,1,280,292,292,292,292,292,292,293,368,368,368,368,368,368,368,368,368,368,368,291,292,292,292,292,292,699,111,224,1,1,1,1,1,1,1,1,1,1,13,13,13,13,13,13,13,13,1,1,1,1,1,1,1,1,13,13,13,13,13,13,13,13,1,1,1,1,1,1,1
+14,199,199,199,199,134,1,14,14,134,1,288,292,292,292,292,326,300,301,368,368,368,368,368,368,368,368,368,368,368,291,292,292,292,292,292,292,699,135,135,135,135,214,1,1,1,104,105,106,1,37,37,13,13,13,13,13,1,1,1,14,14,14,14,1,1,13,13,13,13,13,13,1,1,1,1,14,15,14,15
+199,199,199,199,22,134,14,199,22,134,280,292,292,292,292,292,293,368,368,368,368,368,368,368,368,368,368,368,368,368,291,226,292,292,292,292,292,292,292,292,292,618,618,618,618,618,136,113,114,254,199,199,37,37,13,13,13,14,14,14,199,199,199,199,14,1,1,13,13,13,13,13,14,14,14,14,199,199,199,199
+643,644,644,645,135,142,22,22,110,513,292,292,226,292,292,292,293,368,368,368,368,368,368,368,368,368,368,368,368,368,299,300,300,325,292,292,292,292,292,292,292,292,292,292,292,226,144,416,146,133,199,198,198,198,37,37,37,199,199,199,199,199,199,199,199,14,14,14,37,37,37,37,199,199,199,199,199,199,199,199
+651,652,652,653,135,135,135,135,513,292,226,292,292,326,300,300,301,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,368,299,300,300,300,300,325,292,292,292,292,292,292,292,292,292,226,133,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199
+659,660,623,661,400,299,300,300,300,338,339,300,300,301,368,368,368,368,368,368,368,336,337,368,368,368,336,337,368,368,368,368,368,368,368,368,368,368,299,300,300,300,300,300,300,300,338,339,325,133,22,22,22,22,22,22,22,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199
+667,668,631,669,400,368,368,368,368,344,345,336,337,368,368,368,368,368,368,336,337,344,345,368,336,337,344,345,336,337,368,368,336,337,368,368,336,337,368,368,368,368,336,337,336,337,344,345,291,699,135,135,135,135,135,135,111,22,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199
+393,393,393,393,408,368,368,368,368,368,368,344,345,336,337,336,337,336,337,344,345,368,336,337,344,345,368,368,344,345,336,337,344,345,336,337,344,345,336,337,336,337,344,345,344,345,368,368,299,300,300,300,300,300,300,325,699,111,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199
+368,368,368,368,368,368,368,368,368,368,368,368,368,344,345,344,345,344,345,368,368,368,344,345,368,368,368,368,368,368,344,345,368,368,344,345,368,368,344,345,344,345,368,368,368,368,368,368,368,368,368,368,368,368,368,299,325,133,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199,199
+collision
+1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,0,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,1,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,1,1,1,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,1,1,1,1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
+0,0,0,0,1,1,1,1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,0,0,1,1,1,1,0,1,1,1,1,1,1,0,0,1,1,0,0,1,1,0,0,0,0,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,1,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+connections
+up 40 Route119
+left 0 MauvilleCity
+right 0 Route123
+warps
+42 6 TerraCave_Entrance 0
+9 6 TerraCave_Entrance 0
+npcs
+people_man_1 35 5 S static 0 - 0
+people_man_1 36 5 S static 0 - 0
+people_man_1 37 5 S static 0 - 0
+people_man_5 64 10 S static 0 - 3
+people_reporter_f 33 8 S static FLAG_HIDE_ROUTE_118_GABBY_AND_TY_1 LOCALID_ROUTE118_GABBY_1 0
+people_cameraman 34 8 S static FLAG_HIDE_ROUTE_118_GABBY_AND_TY_1 LOCALID_ROUTE118_TY_1 0
+people_girl_2 12 10 S wander 0 - 0
+people_reporter_f 33 8 S static FLAG_HIDE_ROUTE_118_GABBY_AND_TY_2 LOCALID_ROUTE118_GABBY_2 0
+people_cameraman 34 8 S static FLAG_HIDE_ROUTE_118_GABBY_AND_TY_2 LOCALID_ROUTE118_TY_2 0
+people_reporter_f 33 8 S static FLAG_HIDE_ROUTE_118_GABBY_AND_TY_3 LOCALID_ROUTE118_GABBY_3 0
+people_cameraman 34 8 S static FLAG_HIDE_ROUTE_118_GABBY_AND_TY_3 LOCALID_ROUTE118_TY_3 0
+misc_cuttable_tree 38 8 S static FLAG_TEMP_11 - 0
+people_fisherman 28 8 W static 0 - 0
+people_woman_2 7 12 N static 0 - 4
+people_fisherman 14 14 S static 0 - 0
+people_man_5 56 7 S static 0 - 3
+people_fisherman 39 15 S static 0 - 2
+people_man_5 17 11 S static 0 - 3
+people_steven 44 7 S static FLAG_HIDE_ROUTE_118_STEVEN LOCALID_ROUTE118_STEVEN 0
+misc_item_ball 69 7 S static FLAG_ITEM_ROUTE_118_HYPER_POTION - 0
+people_youngster 7 7 S static 0 - 4
+dialogs
+6	Even if there isn't a boat, you can cross rivers and the sea if you have a POKéMON that knows SURF.POKéMON can be counted on to do so much!
+12	Hmm! A GOOD ROD is really good!Wouldn't you agree?
+objscripts
+0 BerryTreeScript
+1 BerryTreeScript
+2 BerryTreeScript
+3 Route118_EventScript_Perry
+4 GabbyAndTy_EventScript_GabbyBattle2
+5 GabbyAndTy_EventScript_TyBattle2
+6 Route118_EventScript_Girl
+7 GabbyAndTy_EventScript_GabbyBattle5
+8 GabbyAndTy_EventScript_TyBattle5
+9 GabbyAndTy_EventScript_GabbyBattle6
+10 GabbyAndTy_EventScript_TyBattle6
+11 EventScript_CutTree
+12 Route118_EventScript_GoodRodFisherman
+13 Route118_EventScript_Rose
+14 Route118_EventScript_Wade
+15 Route118_EventScript_Chester
+16 Route118_EventScript_Barny
+17 Route118_EventScript_Dalton
+19 Route118_EventScript_ItemHyperPotion
+20 Route118_EventScript_Deandre
+triggers
+43 11 VAR_ROUTE118_STATE 0 Route118_EventScript_StevenTrigger0
+44 11 VAR_ROUTE118_STATE 0 Route118_EventScript_StevenTrigger1
+45 11 VAR_ROUTE118_STATE 0 Route118_EventScript_StevenTrigger2
+31 13 0 0 Route118_HiddenItem_31_13
+12 14 0 0 Route118_HiddenItem_12_14
+onload
+VAR_SHOULD_END_ABNORMAL_WEATHER 1 AbnormalWeather_EventScript_EndEventAndCleanup_1
+movements
+Common_Movement_FaceUp	face_up,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
+GabbyAndTy_Movement_WalkInPlaceDown	delay,end
+GabbyAndTy_Movement_WalkInPlaceLeft	delay,end
+GabbyAndTy_Movement_WalkInPlaceUp	delay,end
+Movement_CutTreeDown	delay,end
+Route118_Movement_PlayerWatchStevenExit	delay,delay,end
+Route118_Movement_StevenApproachLedge0	left,end
+Route118_Movement_StevenApproachLedge2	right,end
+Route118_Movement_StevenExit0	right,right,right,right,right,right,right,right,right,right,end
+Route118_Movement_StevenExit1	right,right,right,right,right,right,right,right,right,end
+Route118_Movement_StevenExit2	right,right,right,right,right,right,right,right,end
+Route118_Movement_StevenJumpLedge	down,delay,down,end
+scriptdefs
+= AbnormalWeather_EventScript_EndEventAndCleanup_1
+lockall
+goto_if_ge VAR_ABNORMAL_WEATHER_LOCATION MARINE_CAVE_LOCATIONS_START AbnormalWeather_EventScript_ShowRainEndedMessage
+goto AbnormalWeather_EventScript_ShowSunEndedMessage
+end
+= AbnormalWeather_EventScript_ShowSunEndedMessage
+msgbox	The intense sunshine appears to have subsided…
+goto AbnormalWeather_EventScript_EndEventAndCleanup_2
+end
+= AbnormalWeather_EventScript_EndEventAndCleanup_2
+closemessage
+fadescreenswapbuffers FADE_TO_BLACK
+setweather WEATHER_SUNNY
+doweather
+call AbnormalWeather_EventScript_CleanupMapTiles
+special DrawWholeMapView
+setvar VAR_ABNORMAL_WEATHER_LOCATION ABNORMAL_WEATHER_NONE
+setvar VAR_SHOULD_END_ABNORMAL_WEATHER 0
+clearflag FLAG_HIDE_MAP_NAME_POPUP
+fadescreenswapbuffers FADE_FROM_BLACK
+releaseall
+end
+= AbnormalWeather_EventScript_CleanupMapTiles
+switch VAR_ABNORMAL_WEATHER_LOCATION
+case ABNORMAL_WEATHER_ROUTE_114_NORTH AbnormalWeather_EventScript_CleanupRoute114North
+case ABNORMAL_WEATHER_ROUTE_114_SOUTH AbnormalWeather_EventScript_CleanupRoute114South
+case ABNORMAL_WEATHER_ROUTE_115_WEST AbnormalWeather_EventScript_CleanupRoute115West
+case ABNORMAL_WEATHER_ROUTE_115_EAST AbnormalWeather_EventScript_CleanupRoute115East
+case ABNORMAL_WEATHER_ROUTE_116_NORTH AbnormalWeather_EventScript_CleanupRoute116North
+case ABNORMAL_WEATHER_ROUTE_116_SOUTH AbnormalWeather_EventScript_CleanupRoute116South
+case ABNORMAL_WEATHER_ROUTE_118_EAST AbnormalWeather_EventScript_CleanupRoute118East
+case ABNORMAL_WEATHER_ROUTE_118_WEST AbnormalWeather_EventScript_CleanupRoute118West
+case ABNORMAL_WEATHER_ROUTE_105_NORTH AbnormalWeather_EventScript_CleanupRoute105North
+case ABNORMAL_WEATHER_ROUTE_105_SOUTH AbnormalWeather_EventScript_CleanupRoute105South
+case ABNORMAL_WEATHER_ROUTE_125_WEST AbnormalWeather_EventScript_CleanupRoute125West
+case ABNORMAL_WEATHER_ROUTE_125_EAST AbnormalWeather_EventScript_CleanupRoute125East
+case ABNORMAL_WEATHER_ROUTE_127_NORTH AbnormalWeather_EventScript_CleanupRoute127North
+case ABNORMAL_WEATHER_ROUTE_127_SOUTH AbnormalWeather_EventScript_CleanupRoute127South
+case ABNORMAL_WEATHER_ROUTE_129_WEST AbnormalWeather_EventScript_CleanupRoute129West
+case ABNORMAL_WEATHER_ROUTE_129_EAST AbnormalWeather_EventScript_CleanupRoute129East
+return
+= AbnormalWeather_EventScript_CleanupRoute129East
+setmetatile 42 19 METATILE_General_CalmWater FALSE
+setmetatile 43 19 METATILE_General_CalmWater FALSE
+setmetatile 41 20 METATILE_General_CalmWater FALSE
+setmetatile 42 20 METATILE_General_CalmWater FALSE
+setmetatile 43 20 METATILE_General_CalmWater FALSE
+setmetatile 44 20 METATILE_General_CalmWater FALSE
+setmetatile 41 21 METATILE_General_CalmWater FALSE
+setmetatile 42 21 METATILE_General_CalmWater FALSE
+setmetatile 43 21 METATILE_General_CalmWater FALSE
+setmetatile 44 21 METATILE_General_CalmWater FALSE
+setmetatile 42 22 METATILE_General_CalmWater FALSE
+setmetatile 43 22 METATILE_General_CalmWater FALSE
+return
+= AbnormalWeather_EventScript_CleanupRoute129West
+setmetatile 16 14 METATILE_General_CalmWater FALSE
+setmetatile 17 14 METATILE_General_CalmWater FALSE
+setmetatile 15 15 METATILE_General_CalmWater FALSE
+setmetatile 16 15 METATILE_General_CalmWater FALSE
+setmetatile 17 15 METATILE_General_CalmWater FALSE
+setmetatile 18 15 METATILE_General_CalmWater FALSE
+setmetatile 15 16 METATILE_General_CalmWater FALSE
+setmetatile 16 16 METATILE_General_CalmWater FALSE
+setmetatile 17 16 METATILE_General_CalmWater FALSE
+setmetatile 18 16 METATILE_General_CalmWater FALSE
+setmetatile 16 17 METATILE_General_CalmWater FALSE
+setmetatile 17 17 METATILE_General_CalmWater FALSE
+return
+= AbnormalWeather_EventScript_CleanupRoute127South
+setmetatile 61 30 METATILE_General_CalmWater FALSE
+setmetatile 62 30 METATILE_General_CalmWater FALSE
+setmetatile 60 31 METATILE_General_CalmWater FALSE
+setmetatile 61 31 METATILE_General_CalmWater FALSE
+setmetatile 62 31 METATILE_General_CalmWater FALSE
+setmetatile 63 31 METATILE_General_CalmWater FALSE
+setmetatile 60 32 METATILE_General_CalmWater FALSE
+setmetatile 61 32 METATILE_General_CalmWater FALSE
+setmetatile 62 32 METATILE_General_CalmWater FALSE
+setmetatile 63 32 METATILE_General_CalmWater FALSE
+setmetatile 61 33 METATILE_General_CalmWater FALSE
+setmetatile 62 33 METATILE_General_CalmWater FALSE
+return
+= AbnormalWeather_EventScript_CleanupRoute127North
+setmetatile 57 9 METATILE_General_CalmWater FALSE
+setmetatile 58 9 METATILE_General_CalmWater FALSE
+setmetatile 56 10 METATILE_General_CalmWater FALSE
+setmetatile 57 10 METATILE_General_CalmWater FALSE
+setmetatile 58 10 METATILE_General_CalmWater FALSE
+setmetatile 59 10 METATILE_General_CalmWater FALSE
+setmetatile 56 11 METATILE_General_CalmWater FALSE
+setmetatile 57 11 METATILE_General_CalmWater FALSE
+setmetatile 58 11 METATILE_General_CalmWater FALSE
+setmetatile 59 11 METATILE_General_CalmWater FALSE
+setmetatile 57 12 METATILE_General_CalmWater FALSE
+setmetatile 58 12 METATILE_General_CalmWater FALSE
+return
+= AbnormalWeather_EventScript_CleanupRoute125East
+setmetatile 53 18 METATILE_General_CalmWater FALSE
+setmetatile 54 18 METATILE_General_CalmWater FALSE
+setmetatile 52 19 METATILE_General_CalmWater FALSE
+setmetatile 53 19 METATILE_General_CalmWater FALSE
+setmetatile 54 19 METATILE_General_CalmWater FALSE
+setmetatile 55 19 METATILE_General_CalmWater FALSE
+setmetatile 52 20 METATILE_General_CalmWater FALSE
+setmetatile 53 20 METATILE_General_CalmWater FALSE
+setmetatile 54 20 METATILE_General_CalmWater FALSE
+setmetatile 55 20 METATILE_General_CalmWater FALSE
+setmetatile 53 21 METATILE_General_CalmWater FALSE
+setmetatile 54 21 METATILE_General_CalmWater FALSE
+return
+= AbnormalWeather_EventScript_CleanupRoute125West
+setmetatile 8 16 METATILE_General_CalmWater FALSE
+setmetatile 9 16 METATILE_General_CalmWater FALSE
+setmetatile 7 17 METATILE_General_CalmWater FALSE
+setmetatile 8 17 METATILE_General_CalmWater FALSE
+setmetatile 9 17 METATILE_General_CalmWater FALSE
+setmetatile 10 17 METATILE_General_CalmWater FALSE
+setmetatile 7 18 METATILE_General_CalmWater FALSE
+setmetatile 8 18 METATILE_General_CalmWater FALSE
+setmetatile 9 18 METATILE_General_CalmWater FALSE
+setmetatile 10 18 METATILE_General_CalmWater FALSE
+setmetatile 8 19 METATILE_General_CalmWater FALSE
+setmetatile 9 19 METATILE_General_CalmWater FALSE
+return
+= AbnormalWeather_EventScript_CleanupRoute105South
+setmetatile 20 53 METATILE_General_CalmWater FALSE
+setmetatile 21 53 METATILE_General_CalmWater FALSE
+setmetatile 19 54 METATILE_General_CalmWater FALSE
+setmetatile 20 54 METATILE_General_CalmWater FALSE
+setmetatile 21 54 METATILE_General_CalmWater FALSE
+setmetatile 22 54 METATILE_General_CalmWater FALSE
+setmetatile 19 55 METATILE_General_CalmWater FALSE
+setmetatile 20 55 METATILE_General_CalmWater FALSE
+setmetatile 21 55 METATILE_General_CalmWater FALSE
+setmetatile 22 55 METATILE_General_CalmWater FALSE
+setmetatile 20 56 METATILE_General_CalmWater FALSE
+setmetatile 21 56 METATILE_General_CalmWater FALSE
+return
+= AbnormalWeather_EventScript_CleanupRoute105North
+setmetatile 10 28 METATILE_General_CalmWater FALSE
+setmetatile 11 28 METATILE_General_CalmWater FALSE
+setmetatile 9 29 METATILE_General_CalmWater FALSE
+setmetatile 10 29 METATILE_General_CalmWater FALSE
+setmetatile 11 29 METATILE_General_CalmWater FALSE
+setmetatile 12 29 METATILE_General_CalmWater FALSE
+setmetatile 9 30 METATILE_General_CalmWater FALSE
+setmetatile 10 30 METATILE_General_CalmWater FALSE
+setmetatile 11 30 METATILE_General_CalmWater FALSE
+setmetatile 12 30 METATILE_General_CalmWater FALSE
+setmetatile 10 31 METATILE_General_CalmWater FALSE
+setmetatile 11 31 METATILE_General_CalmWater FALSE
+return
+= AbnormalWeather_EventScript_CleanupRoute118West
+setmetatile 9 5 METATILE_General_RockWall_RockBase TRUE
+setmetatile 9 6 METATILE_General_RockWall_GrassBase TRUE
+return
+= AbnormalWeather_EventScript_CleanupRoute118East
+setmetatile 42 5 METATILE_General_RockWall_RockBase TRUE
+setmetatile 42 6 METATILE_General_RockWall_GrassBase TRUE
+return
+= AbnormalWeather_EventScript_CleanupRoute116South
+setmetatile 79 5 METATILE_General_RockWall_RockBase TRUE
+setmetatile 79 6 METATILE_General_RockWall_RockBase TRUE
+return
+= AbnormalWeather_EventScript_CleanupRoute116North
+setmetatile 59 12 METATILE_General_RockWall_RockBase TRUE
+setmetatile 59 13 METATILE_General_RockWall_RockBase TRUE
+return
+= AbnormalWeather_EventScript_CleanupRoute115East
+setmetatile 36 9 METATILE_Fallarbor_BrownRockWall TRUE
+setmetatile 36 10 METATILE_Fallarbor_BrownRockWall TRUE
+return
+= AbnormalWeather_EventScript_CleanupRoute115West
+setmetatile 21 5 METATILE_Fallarbor_BrownRockWall TRUE
+setmetatile 21 6 METATILE_Fallarbor_BrownRockWall TRUE
+return
+= AbnormalWeather_EventScript_CleanupRoute114South
+setmetatile 6 45 METATILE_Fallarbor_BrownRockWall TRUE
+setmetatile 6 46 METATILE_Fallarbor_BrownRockWall TRUE
+return
+= AbnormalWeather_EventScript_CleanupRoute114North
+setmetatile 7 3 METATILE_Fallarbor_RedRockWall TRUE
+setmetatile 7 4 METATILE_Fallarbor_RedRockWall TRUE
+return
+= AbnormalWeather_EventScript_ShowRainEndedMessage
+msgbox	The massive downpour appears to have stopped…
+goto AbnormalWeather_EventScript_EndEventAndCleanup_2
+end
+= Route118_HiddenItem_12_14
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_118_HEART_SCALE Route118_HiddenItem_12_14_Taken
+finditem ITEM_HEART_SCALE
+setflag FLAG_HIDDEN_ITEM_ROUTE_118_HEART_SCALE
+end
+= Route118_HiddenItem_12_14_Taken
+end
+= Route118_HiddenItem_31_13
+goto_if_set FLAG_HIDDEN_ITEM_ROUTE_118_IRON Route118_HiddenItem_31_13_Taken
+finditem ITEM_IRON
+setflag FLAG_HIDDEN_ITEM_ROUTE_118_IRON
+end
+= Route118_HiddenItem_31_13_Taken
+end
+= Route118_EventScript_StevenTrigger2
+lockall
+setvar VAR_0x8008 2
+applymovement LOCALID_PLAYER Common_Movement_FaceUp
+waitmovement 0
+applymovement LOCALID_ROUTE118_STEVEN Route118_Movement_StevenApproachLedge2
+waitmovement 0
+goto Route118_EventScript_StevenTrigger
+end
+= Route118_EventScript_StevenTrigger
+playse SE_LEDGE
+applymovement LOCALID_ROUTE118_STEVEN Route118_Movement_StevenJumpLedge
+waitmovement 0
+delay 30
+msgbox	STEVEN: Hi, PLAYER!It's me, STEVEN! We met in the cave near DEWFORD.Have you met many kinds of POKéMON since I last saw you?There are many, many kinds of POKéMON in this wide world of ours.If you wanted to raise only your favorites, that's fine.Perhaps you find it more fun to raise all sorts of POKéMON.As a TRAINER of POKéMON, what do you think?Of course, it's not any of my business.It would be nice if we were to meet again somewhere.
+closemessage
+call_if_eq VAR_0x8008 0 Route118_EventScript_StevenExit0
+call_if_eq VAR_0x8008 1 Route118_EventScript_StevenExit1
+call_if_eq VAR_0x8008 2 Route118_EventScript_StevenExit2
+setvar VAR_ROUTE118_STATE 1
+removeobject LOCALID_ROUTE118_STEVEN
+releaseall
+end
+= Route118_EventScript_StevenExit2
+applymovement LOCALID_PLAYER Route118_Movement_PlayerWatchStevenExit
+applymovement LOCALID_ROUTE118_STEVEN Route118_Movement_StevenExit2
+waitmovement 0
+return
+= Route118_EventScript_StevenExit1
+applymovement LOCALID_PLAYER Route118_Movement_PlayerWatchStevenExit
+applymovement LOCALID_ROUTE118_STEVEN Route118_Movement_StevenExit1
+waitmovement 0
+return
+= Route118_EventScript_StevenExit0
+applymovement LOCALID_PLAYER Route118_Movement_PlayerWatchStevenExit
+applymovement LOCALID_ROUTE118_STEVEN Route118_Movement_StevenExit0
+waitmovement 0
+return
+= Route118_EventScript_StevenTrigger1
+lockall
+setvar VAR_0x8008 1
+applymovement LOCALID_PLAYER Common_Movement_FaceUp
+waitmovement 0
+goto Route118_EventScript_StevenTrigger
+end
+= Route118_EventScript_StevenTrigger0
+lockall
+setvar VAR_0x8008 0
+applymovement LOCALID_PLAYER Common_Movement_FaceUp
+waitmovement 0
+applymovement LOCALID_ROUTE118_STEVEN Route118_Movement_StevenApproachLedge0
+waitmovement 0
+goto Route118_EventScript_StevenTrigger
+end
+= Route118_EventScript_Deandre
+trainerbattle_single TRAINER_DEANDRE Route118_Text_DeandreIntro Route118_Text_DeandreDefeat
+msgbox	Isn't it cool that I have a POKéMON battle team?You can copy me--I don't mind!
+end
+= Route118_EventScript_ItemHyperPotion
+goto_if_set FLAG_ITEM_ROUTE_118_HYPER_POTION Route118_EventScript_ItemHyperPotion_Taken
+finditem ITEM_HYPER_POTION
+setflag FLAG_ITEM_ROUTE_118_HYPER_POTION
+end
+= Route118_EventScript_ItemHyperPotion_Taken
+end
+= Route118_EventScript_Dalton
+trainerbattle_single TRAINER_DALTON_1 Route118_Text_DaltonIntro Route118_Text_DaltonDefeat Route118_EventScript_RegisterDalton
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route118_EventScript_RematchDalton
+msgbox	An electric guitar doesn't always have to be noisy…It can be strummed to squeeze out this heart-stirring melody…
+release
+end
+= Route118_EventScript_RematchDalton
+trainerbattle_rematch TRAINER_DALTON_1 Route118_Text_DaltonRematchIntro Route118_Text_DaltonRematchDefeat
+msgbox	When I play, my emotions should reach you through my electric guitar…
+end
+= Route118_EventScript_RegisterDalton
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	When I compose better melodies, you have to come listen, okay?
+register_matchcall TRAINER_DALTON_1
+release
+end
+= Route118_EventScript_Barny
+trainerbattle_single TRAINER_BARNY Route118_Text_BarnyIntro Route118_Text_BarnyDefeat
+msgbox	I couldn't win by training POKéMON while I fished…Was I doing things in half measures?
+end
+= Route118_EventScript_Chester
+trainerbattle_single TRAINER_CHESTER Route118_Text_ChesterIntro Route118_Text_ChesterDefeat
+msgbox	If they'd get stronger, they'd be able to fly more freely…
+end
+= Route118_EventScript_Wade
+trainerbattle_single TRAINER_WADE Route118_Text_WadeIntro Route118_Text_WadeDefeat
+msgbox	Come to think of it, fishing is a battle between a FISHERMAN and a POKéMON.
+end
+= Route118_EventScript_Rose
+trainerbattle_single TRAINER_ROSE_1 Route118_Text_RoseIntro Route118_Text_RoseDefeat Route118_EventScript_RegisterRose
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE Route118_EventScript_RematchRose
+msgbox	Flowers, POKéMON… I love whatever smells nice.Stinky things… I'll pass.
+release
+end
+= Route118_EventScript_RematchRose
+trainerbattle_rematch TRAINER_ROSE_1 Route118_Text_RoseRematchIntro Route118_Text_RoseRematchDefeat
+msgbox	If you use a sweet aroma properly, POKéMON will be attracted by it.
+end
+= Route118_EventScript_RegisterRose
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	Sniff… That odor--it's a POKéNAV! We must register each other!
+register_matchcall TRAINER_ROSE_1
+release
+end
+= Route118_EventScript_GoodRodFisherman
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_GOOD_ROD Route118_EventScript_ReceivedGoodRod
+msgboxyesno	Hmm! A GOOD ROD is really good!Wouldn't you agree?
+goto_if_eq VAR_RESULT YES Route118_EventScript_ReceiveGoodRod
+goto_if_eq VAR_RESULT NO Route118_EventScript_DeclineGoodRod
+end
+= Route118_EventScript_DeclineGoodRod
+msgbox	Don't you like to fish?
+release
+end
+= Route118_EventScript_ReceiveGoodRod
+msgbox	Hmm! We're of identical minds!Hmm! Take this GOOD ROD!
+giveitem ITEM_GOOD_ROD
+setflag FLAG_RECEIVED_GOOD_ROD
+msgbox	Wherever there's water, try your luck at fishing.
+release
+end
+= Route118_EventScript_ReceivedGoodRod
+msgbox	Try catching all sorts of POKéMON with your GOOD ROD.
+release
+end
+= EventScript_CutTree
+lockall
+goto_if_unset FLAG_BADGE01_GET EventScript_CheckTreeCantCut
+checkpartymove MOVE_CUT
+goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CheckTreeCantCut
+setfieldeffectargument 0 VAR_RESULT
+bufferpartymonnick STR_VAR_1 VAR_RESULT
+buffermovename STR_VAR_2 MOVE_CUT
+msgboxyesno	This tree looks like it can be CUT down!Would you like to CUT it?
+goto_if_eq VAR_RESULT NO EventScript_CancelCut
+msgbox	STR_VAR_1 used STR_VAR_2!
+closemessage
+dofieldeffect FLDEFF_USE_CUT_ON_TREE
+waitstate
+goto EventScript_CutTreeDown
+end
+@ Use cut from party menu
+goto EventScript_UseCut
+= EventScript_UseCut
+lockall
+dofieldeffect FLDEFF_USE_CUT_ON_TREE
+waitstate
+goto EventScript_CutTreeDown
+end
+= EventScript_CutTreeDown
+applymovement VAR_LAST_TALKED Movement_CutTreeDown
+waitmovement 0
+removeobject VAR_LAST_TALKED
+releaseall
+end
+= EventScript_CancelCut
+closemessage
+releaseall
+end
+= EventScript_CheckTreeCantCut
+msgbox	This tree looks like it can be CUT down!
+releaseall
+end
+= GabbyAndTy_EventScript_TyBattle6
+trainerbattle_double TRAINER_GABBY_AND_TY_6 GabbyAndTy_Text_TyIntro GabbyAndTy_Text_TyDefeat GabbyAndTy_Text_TyNotEnoughMons GabbyAndTy_EventScript_RequestInterview
+msgbox	TY: You're a natural! Got me some prime footage right here!
+release
+end
+= GabbyAndTy_EventScript_RequestInterview
+special GabbyAndTyBeforeInterview
+special GetGabbyAndTyLocalIds
+call_if_eq VAR_FACING DIR_NORTH GabbyAndTy_EventScript_FacePlayerNorth
+call_if_eq VAR_FACING DIR_SOUTH GabbyAndTy_EventScript_FacePlayerSouth
+call_if_eq VAR_FACING DIR_EAST GabbyAndTy_EventScript_FacePlayerEast
+goto_if_set FLAG_TEMP_SKIP_GABBY_INTERVIEW GabbyAndTy_EventScript_KeepingAnEyeOutForYou
+specialvar VAR_RESULT GabbyAndTyGetLastQuote
+goto_if_eq VAR_RESULT 0 GabbyAndTy_EventScript_DidntInterviewLastTime
+msgbox	GABBY: “STR_VAR_1!”Remember? That's the quote you gave us as the battle clincher last time.I never, ever forget stuff like that!
+specialvar VAR_RESULT GabbyAndTyGetLastBattleTrivia
+switch VAR_RESULT
+case 0 GabbyAndTy_EventScript_RequestInterviewNoTrivia
+case 1 GabbyAndTy_EventScript_RequestInterviewShortBattle
+case 2 GabbyAndTy_EventScript_RequestInterviewThrewBall
+case 3 GabbyAndTy_EventScript_RequestInterviewUsedItems
+case 4 GabbyAndTy_EventScript_RequestInterviewLostAMon
+end
+= GabbyAndTy_EventScript_RequestInterviewLostAMon
+msgboxyesno	The last time we battled, we managed to look respectable.Anyway, what do you think? Do you want to be interviewed again?
+goto GabbyAndTy_EventScript_Interview
+end
+= GabbyAndTy_EventScript_Interview
+goto_if_eq VAR_RESULT NO GabbyAndTy_EventScript_DontGiveUpKeepingEyeOut
+msgbox	You will? Thank you!Okay, I need you to describe your feelings about our battle, but it has to be short and sweet. Go!
+setvar VAR_0x8004 EASY_CHAT_TYPE_GABBY_AND_TY
+call Common_ShowEasyChatScreen
+lock
+faceplayer
+goto_if_eq VAR_RESULT 0 GabbyAndTy_EventScript_DontGiveUpKeepingEyeOut
+msgbox	GABBY: Mmm, yeah! That's the perfect clincher!I get the feeling that this will make a great TV show.There's a chance that they'll air this on TV, so make sure to look for us!Okay! We'll be seeing you!
+special GabbyAndTyAfterInterview
+setflag FLAG_TEMP_SKIP_GABBY_INTERVIEW
+release
+end
+= GabbyAndTy_EventScript_DontGiveUpKeepingEyeOut
+msgbox	GABBY: Oh…Okay, but don't give up! We'll be keeping an eye out for you!
+setflag FLAG_TEMP_SKIP_GABBY_INTERVIEW
+release
+end
+= GabbyAndTy_EventScript_RequestInterviewUsedItems
+msgboxyesno	The last time we battled, your item skills cleverly did us in.Anyway, what do you think? Do you want to be interviewed again?
+goto GabbyAndTy_EventScript_Interview
+end
+= GabbyAndTy_EventScript_RequestInterviewThrewBall
+msgboxyesno	The last time we battled, didn't you throw a POKé BALL at us?We were shocked! So we told everyone, just everyone, about it!Anyway, what do you think? Do you want to be interviewed again?
+goto GabbyAndTy_EventScript_Interview
+end
+= GabbyAndTy_EventScript_RequestInterviewShortBattle
+msgboxyesno	The last time we battled, you stomped us before we could brace ourselves…Anyway, what do you think? Do you want to be interviewed again?
+goto GabbyAndTy_EventScript_Interview
+end
+= GabbyAndTy_EventScript_RequestInterviewNoTrivia
+msgboxyesno	Anyway, what do you think? Do you want to be interviewed again?
+goto GabbyAndTy_EventScript_Interview
+end
+= GabbyAndTy_EventScript_DidntInterviewLastTime
+msgboxyesno	GABBY: Wow, you are something!You've gotten a lot stronger--a lot-- since we last battled.We were right about you when we spotted you as a hot TRAINER.So, anyway, what do you think? Are you willing to give us an interview this time?
+goto GabbyAndTy_EventScript_Interview
+end
+= GabbyAndTy_EventScript_KeepingAnEyeOutForYou
+msgbox	GABBY: We'll be keeping an eye out for you!
+release
+end
+= GabbyAndTy_EventScript_FacePlayerEast
+applymovement VAR_0x8004 GabbyAndTy_Movement_WalkInPlaceLeft
+applymovement VAR_0x8005 Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+return
+= GabbyAndTy_EventScript_FacePlayerSouth
+applymovement VAR_0x8004 GabbyAndTy_Movement_WalkInPlaceUp
+applymovement VAR_0x8005 Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+return
+= GabbyAndTy_EventScript_FacePlayerNorth
+applymovement VAR_0x8004 GabbyAndTy_Movement_WalkInPlaceDown
+waitmovement 0
+return
+= GabbyAndTy_EventScript_GabbyBattle6
+trainerbattle_double TRAINER_GABBY_AND_TY_6 GabbyAndTy_Text_GabbyIntro GabbyAndTy_Text_GabbyDefeat GabbyAndTy_Text_GabbyNotEnoughMons GabbyAndTy_EventScript_RequestInterview
+msgbox	GABBY: We'll be keeping an eye out for you!
+release
+end
+= GabbyAndTy_EventScript_TyBattle5
+trainerbattle_double TRAINER_GABBY_AND_TY_5 GabbyAndTy_Text_TyIntro GabbyAndTy_Text_TyDefeat GabbyAndTy_Text_TyNotEnoughMons GabbyAndTy_EventScript_RequestInterview
+msgbox	TY: You're a natural! Got me some prime footage right here!
+release
+end
+= GabbyAndTy_EventScript_GabbyBattle5
+trainerbattle_double TRAINER_GABBY_AND_TY_5 GabbyAndTy_Text_GabbyIntro GabbyAndTy_Text_GabbyDefeat GabbyAndTy_Text_GabbyNotEnoughMons GabbyAndTy_EventScript_RequestInterview
+msgbox	GABBY: We'll be keeping an eye out for you!
+release
+end
+= Route118_EventScript_Girl
+msgbox	Even if there isn't a boat, you can cross rivers and the sea if you have a POKéMON that knows SURF.POKéMON can be counted on to do so much!
+end
+= GabbyAndTy_EventScript_TyBattle2
+trainerbattle_double TRAINER_GABBY_AND_TY_2 GabbyAndTy_Text_TyIntro GabbyAndTy_Text_TyDefeat GabbyAndTy_Text_TyNotEnoughMons GabbyAndTy_EventScript_RequestInterview
+msgbox	TY: You're a natural! Got me some prime footage right here!
+release
+end
+= GabbyAndTy_EventScript_GabbyBattle2
+trainerbattle_double TRAINER_GABBY_AND_TY_2 GabbyAndTy_Text_GabbyIntro GabbyAndTy_Text_GabbyDefeat GabbyAndTy_Text_GabbyNotEnoughMons GabbyAndTy_EventScript_RequestInterview
+msgbox	GABBY: We'll be keeping an eye out for you!
+release
+end
+= Route118_EventScript_Perry
+trainerbattle_single TRAINER_PERRY Route118_Text_PerryIntro Route118_Text_PerryDefeat
+msgbox	You've got great POKéMON. I'll have to train mine better.
+end
+= BerryTreeScript
+special ObjectEventInteractionGetBerryTreeData
+switch VAR_0x8004
+case BERRY_STAGE_SPARKLING BerryTree_EventScript_Sparkling
+case BERRY_STAGE_NO_BERRY BerryTree_EventScript_CheckSoil
+case BERRY_STAGE_PLANTED BerryTree_EventScript_CheckBerryStage1
+case BERRY_STAGE_SPROUTED BerryTree_EventScript_CheckBerryStage2
+case BERRY_STAGE_TALLER BerryTree_EventScript_CheckBerryStage3
+case BERRY_STAGE_FLOWERING BerryTree_EventScript_CheckBerryStage4
+case BERRY_STAGE_BERRIES BerryTree_EventScript_CheckBerryFullyGrown
+end
+= BerryTree_EventScript_CheckBerryFullyGrown
+buffernumberstring STR_VAR_2 VAR_0x8006
+lock
+faceplayer
+special ObjectEventInteractionGetBerryCountString
+msgboxyesno	You found STR_VAR_2 STR_VAR_1!Do you want to pick the STR_VAR_1?
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_PickBerry
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPickingBerry
+goto BerryTree_EventScript_PickBerry
+= BerryTree_EventScript_PickBerry
+special ObjectEventInteractionPickBerryTree
+goto_if_eq VAR_0x8004 0 BerryTree_EventScript_BerryPocketFull
+special IncrementDailyPickedBerries
+special ObjectEventInteractionRemoveBerryTree
+msgbox	PLAYER picked the STR_VAR_2 STR_VAR_1.
+playfanfare MUS_OBTAIN_BERRY
+waitmessage
+waitfanfare
+waitbuttonpress
+msgbox	PLAYER put away the STR_VAR_1 in the BAG's BERRIES POCKET.The soil returned to its soft and loamy state.
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_BerryPocketFull
+msgbox	The BAG's BERRIES POCKET is full.The STR_VAR_1 couldn't be taken.
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_CancelPickingBerry
+msgbox	PLAYER left the STR_VAR_1 unpicked.
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_CheckBerryStage4
+call BerryTree_EventScript_GetCareAdverb
+lockall
+special ObjectEventInteractionGetBerryName
+msgbox	These STR_VAR_1 flowers are blooming STR_VAR_2.
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+@ VAR_0x8005 here is the number of times watered
+@ Buffered by ObjectEventInteractionGetBerryTreeData
+goto BerryTree_EventScript_GetCareAdverb
+= BerryTree_EventScript_GetCareAdverb
+goto_if_eq VAR_0x8005 0 BerryTree_EventScript_SetAdverbPoor
+goto_if_eq VAR_0x8005 4 BerryTree_EventScript_SetAdverbGreat
+bufferstring STR_VAR_2	prettily
+return
+= BerryTree_EventScript_SetAdverbGreat
+bufferstring STR_VAR_2	very beautifully
+return
+= BerryTree_EventScript_SetAdverbPoor
+bufferstring STR_VAR_2	cutely
+return
+@ VAR_0x8006 here is the number of berries
+goto BerryTree_EventScript_CheckBerryFullyGrown
+= BerryTree_EventScript_WantToWater
+checkitem ITEM_WAILMER_PAIL
+goto_if_eq VAR_RESULT FALSE BerryTree_EventScript_DontWater
+special ObjectEventInteractionGetBerryName
+msgboxyesno	Want to water the STR_VAR_1 with the WAILMER PAIL?
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_WaterBerry
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_DontWater
+goto BerryTree_EventScript_DontWater
+= BerryTree_EventScript_DontWater
+releaseall
+end
+= BerryTree_EventScript_WaterBerry
+special ObjectEventInteractionGetBerryName
+msgbox	PLAYER watered the STR_VAR_1.
+waitmessage
+special ObjectEventInteractionWaterBerryTree
+special DoWateringBerryTreeAnim
+msgbox	The plant seems to be delighted.
+waitmessage
+waitbuttonpress
+releaseall
+end
+= BerryTree_EventScript_CheckBerryStage3
+lockall
+special ObjectEventInteractionGetBerryName
+msgbox	This STR_VAR_1 plant is growing taller.
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckBerryStage2
+lockall
+special ObjectEventInteractionGetBerryName
+msgbox	STR_VAR_1 has sprouted.
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckBerryStage1
+lockall
+special ObjectEventInteractionGetBerryCountString
+msgbox	One STR_VAR_1 was planted here.
+waitmessage
+waitbuttonpress
+goto BerryTree_EventScript_WantToWater
+= BerryTree_EventScript_CheckSoil
+lock
+faceplayer
+specialvar VAR_RESULT PlayerHasBerries
+goto_if_eq VAR_RESULT TRUE BerryTree_EventScript_WantToPlant
+msgbox	It's soft, loamy soil.
+waitmessage
+waitbuttonpress
+release
+end
+= BerryTree_EventScript_WantToPlant
+msgboxyesno	It's soft, loamy soil. Want to plant a BERRY?
+goto_if_eq VAR_RESULT YES BerryTree_EventScript_ChooseBerryToPlant
+goto_if_eq VAR_RESULT NO BerryTree_EventScript_CancelPlanting
+end
+= BerryTree_EventScript_CancelPlanting
+release
+end
+= BerryTree_EventScript_ChooseBerryToPlant
+fadescreen FADE_TO_BLACK
+closemessage
+special Bag_ChooseBerry
+goto_if_eq VAR_ITEM_ID 0 BerryTree_EventScript_CancelPlanting
+removeitem VAR_ITEM_ID
+call BerryTree_EventScript_PlantBerry
+goto BerryTree_EventScript_CancelPlanting
+= BerryTree_EventScript_PlantBerry
+special ObjectEventInteractionPlantBerryTree
+incrementgamestat GAME_STAT_PLANTED_BERRIES
+special IncrementDailyPlantedBerries
+special ObjectEventInteractionGetBerryCountString
+msgbox	PLAYER planted one STR_VAR_1 in the soft, loamy soil.
+waitmessage
+waitbuttonpress
+return
+= BerryTree_EventScript_Sparkling
+lockall
+msgbox	!
+waitmessage
+waitbuttonpress
+releaseall
+end
+signs
+13 6	ROUTE 118 MAUVILLE CITY
+56 8	ROUTE 118 ROUTE 119
+grass
+13,37
+water
+291,293,299,300,301,325,326,368,393,400,408
+mapsec
+10 6 2 1	ROUTE 118
+music
+MUS_ROUTE119
+encounters
+land ZIGZAGOON:24:24,ELECTRIKE:24:24,ZIGZAGOON:26:26,ELECTRIKE:26:26,LINOONE:26:26,MANECTRIC:26:26,WINGULL:25:25,WINGULL:25:25,WINGULL:26:26,WINGULL:26:26,WINGULL:27:27,KECLEON:25:25
+water TENTACOOL:5:35,WINGULL:10:30,WINGULL:15:25,PELIPPER:25:30,PELIPPER:25:30
+fishing MAGIKARP:5:10,TENTACOOL:5:10,MAGIKARP:10:30,TENTACOOL:10:30,CARVANHA:10:30,SHARPEDO:30:35,CARVANHA:30:35,CARVANHA:20:25,CARVANHA:35:40,CARVANHA:40:45

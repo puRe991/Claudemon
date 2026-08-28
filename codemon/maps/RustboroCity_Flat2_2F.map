@@ -1,0 +1,56 @@
+tileset building__generic_building
+14 9
+7 4
+808,809,858,809,810,727,870,871,825,824,825,824,824,824
+816,523,866,537,818,768,878,879,833,832,833,832,835,835
+811,811,811,811,811,768,886,887,811,811,811,811,846,846
+811,812,812,812,812,768,811,812,812,812,812,812,872,873
+811,812,812,812,812,768,811,812,812,812,812,836,880,881
+811,812,812,812,812,768,811,812,669,798,798,798,798,798
+811,812,812,812,812,735,811,812,670,824,824,824,824,824
+811,812,812,812,812,743,811,812,671,832,832,832,832,832
+811,812,812,812,812,811,811,812,811,811,811,811,811,811
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,0,1,0,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,1,0,0,0,0,0,0,1,1
+0,0,0,0,0,1,0,0,0,0,0,0,1,1
+0,0,0,0,0,1,0,0,0,0,0,0,1,1
+0,0,0,0,0,1,0,0,0,0,0,0,0,0
+0,0,0,0,0,1,0,0,1,1,1,1,1,1
+0,0,0,0,0,1,0,0,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+3 1 RustboroCity_Flat2_1F 2
+1 1 RustboroCity_Flat2_3F 0
+npcs
+people_old_man 11 4 E static 0 - 0
+people_ninja_boy 7 3 S wander 0 - 0
+dialogs
+0	Way back in the old days, DEVON was just a teeny, tiny company.
+1	My daddy's working at the CORPORATION.My daddy made this! But I can't use it, so you can have it.
+objscripts
+0 RustboroCity_Flat2_2F_EventScript_OldMan
+1 RustboroCity_Flat2_2F_EventScript_NinjaBoy
+scriptdefs
+= RustboroCity_Flat2_2F_EventScript_NinjaBoy
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_PREMIER_BALL_RUSTBORO RustboroCity_Flat2_2F_EventScript_GavePremierBall
+msgbox	My daddy's working at the CORPORATION.My daddy made this! But I can't use it, so you can have it.
+giveitem ITEM_PREMIER_BALL
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_RECEIVED_PREMIER_BALL_RUSTBORO
+release
+end
+= RustboroCity_Flat2_2F_EventScript_GavePremierBall
+msgbox	My daddy's working at the CORPORATION.When I grow up, I'm going to work for DEVON, too.
+release
+end
+= RustboroCity_Flat2_2F_EventScript_OldMan
+msgbox	Way back in the old days, DEVON was just a teeny, tiny company.
+end
+mapsec
+0 5 1 2	RUSTBORO CITY
+music
+MUS_RUSTBORO

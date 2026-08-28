@@ -1,0 +1,116 @@
+tileset building__battle_pike
+9 20
+3 9
+679,672,673,674,675,676,677,678,679
+687,680,681,682,683,684,685,686,687
+695,688,689,690,691,692,693,694,695
+703,696,731,698,699,700,731,702,703
+729,730,732,739,740,741,732,730,730
+564,733,781,742,744,743,781,733,733
+574,761,761,705,705,705,761,761,761
+567,781,781,733,733,733,781,781,730
+574,761,761,761,761,761,761,761,705
+729,781,781,781,781,781,781,781,733
+707,761,761,761,761,761,761,761,761
+564,781,781,781,781,781,781,730,781
+574,761,761,761,761,761,761,705,761
+788,730,781,781,781,781,781,733,781
+574,705,761,761,761,761,761,761,761
+567,733,781,781,781,781,781,730,781
+574,761,761,761,761,761,761,705,761
+788,781,730,730,730,730,730,733,781
+574,761,795,739,740,741,795,761,761
+729,730,796,742,744,743,796,730,730
+collision
+1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1
+1,1,0,1,0,1,0,1,1
+0,0,1,0,0,0,1,0,0
+0,0,0,0,0,0,0,0,0
+1,1,1,0,0,0,1,1,1
+0,0,0,0,0,0,0,0,0
+1,1,1,1,1,1,1,1,0
+0,0,0,0,0,0,0,0,0
+0,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0
+1,1,1,1,1,1,1,0,1
+0,0,0,0,0,0,0,0,0
+1,0,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0
+1,1,1,1,1,1,1,0,1
+0,0,0,0,0,0,0,0,0
+1,1,0,0,0,0,0,1,1
+0,0,1,0,0,0,1,0,0
+triggers
+4 3 VAR_TEMP_1 0 BattleFrontier_BattlePikeRoomWildMons_EventScript_Exit
+3 18 VAR_TEMP_2 0 BattleFrontier_BattlePikeRoomWildMons_EventScript_SetEnteredRoom
+4 18 VAR_TEMP_2 0 BattleFrontier_BattlePikeRoomWildMons_EventScript_SetEnteredRoom
+5 18 VAR_TEMP_2 0 BattleFrontier_BattlePikeRoomWildMons_EventScript_SetEnteredRoom
+3 19 VAR_TEMP_3 1 BattleFrontier_BattlePikeRoomWildMons_EventScript_NoTurningBack
+4 19 VAR_TEMP_3 1 BattleFrontier_BattlePikeRoomWildMons_EventScript_NoTurningBack
+5 19 VAR_TEMP_3 1 BattleFrontier_BattlePikeRoomWildMons_EventScript_NoTurningBack
+onload
+VAR_TEMP_0 0 BattleFrontier_BattlePikeRoomWildMons_EventScript_SetInWildMonRoom
+VAR_TEMP_1 1 BattleFrontier_BattlePikeRoomWildMons_EventScript_WarpToLobbyLost
+movements
+BattleFrontier_BattlePikeRoom_Movement_HidePlayer	delay,end
+scriptdefs
+= BattleFrontier_BattlePikeRoomWildMons_EventScript_WarpToLobbyLost
+frontier_set FRONTIER_DATA_CHALLENGE_STATUS CHALLENGE_STATUS_LOST
+warp BattleFrontier_BattlePikeLobby 5 6
+waitstate
+end
+= BattleFrontier_BattlePikeRoomWildMons_EventScript_SetInWildMonRoom
+setvar VAR_TEMP_0 1
+pike_inwildmonroom
+end
+= BattleFrontier_BattlePikeRoomWildMons_EventScript_NoTurningBack
+setvar VAR_TEMP_3 0
+setvar VAR_TEMP_2 0
+lockall
+msgbox	The path is blocked! And there is no turning back…
+closemessage
+end
+= BattleFrontier_BattlePikeRoomWildMons_EventScript_SetEnteredRoom
+setvar VAR_TEMP_3 1
+setvar VAR_TEMP_2 1
+end
+= BattleFrontier_BattlePikeRoomWildMons_EventScript_Exit
+pike_exitwildmonroom
+pike_ispartyfullhealth
+call_if_eq VAR_RESULT TRUE BattleFrontier_BattlePikeRoom_EventScript_DisableHealing
+call_if_ne VAR_RESULT TRUE BattleFrontier_BattlePikeRoom_EventScript_EnableHealing
+pike_get PIKE_DATA_WIN_STREAK
+addvar VAR_RESULT 1
+pike_set PIKE_DATA_WIN_STREAK VAR_RESULT
+frontier_get FRONTIER_DATA_BATTLE_NUM
+addvar VAR_RESULT 1
+frontier_set FRONTIER_DATA_BATTLE_NUM VAR_RESULT
+pike_isfinalroom
+call_if_eq VAR_RESULT TRUE BattleFrontier_BattlePikeRoom_EventScript_WarpToFinalRoom
+call_if_eq VAR_RESULT FALSE BattleFrontier_BattlePikeRoom_EventScript_WarpToThreePathRoom
+waitstate
+end
+= BattleFrontier_BattlePikeRoom_EventScript_WarpToThreePathRoom
+applymovement LOCALID_PLAYER BattleFrontier_BattlePikeRoom_Movement_HidePlayer
+waitmovement 0
+call BattleFrontier_BattlePike_EventScript_CloseCurtain
+warpsilent BattleFrontier_BattlePikeThreePathRoom 6 10
+return
+= BattleFrontier_BattlePikeRoom_EventScript_WarpToFinalRoom
+applymovement LOCALID_PLAYER BattleFrontier_BattlePikeRoom_Movement_HidePlayer
+waitmovement 0
+call BattleFrontier_BattlePike_EventScript_CloseCurtain
+warpsilent BattleFrontier_BattlePikeRoomFinal 2 7
+return
+= BattleFrontier_BattlePikeRoom_EventScript_EnableHealing
+pike_nohealing FALSE
+return
+= BattleFrontier_BattlePikeRoom_EventScript_DisableHealing
+pike_nohealing TRUE
+return
+mapsec
+22 12 1 1	BATTLE FRONTIER
+music
+MUS_B_PIKE

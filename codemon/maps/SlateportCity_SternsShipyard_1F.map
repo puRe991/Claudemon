@@ -1,0 +1,116 @@
+tileset general__facility
+21 15
+10 7
+537,537,691,692,693,537,529,537,537,537,537,537,536,539,537,540,537,538,537,537,538
+526,527,699,700,701,545,522,545,560,561,562,545,544,547,545,548,545,546,545,545,546
+534,535,694,516,695,516,522,553,568,569,570,553,531,553,553,553,553,553,553,553,553
+516,516,514,514,514,514,521,523,523,523,523,523,523,523,523,550,553,553,553,553,543
+577,578,514,514,514,514,529,575,725,726,727,720,721,722,723,528,553,553,553,543,551
+585,586,514,514,514,541,522,583,548,603,604,563,564,565,566,544,553,553,553,551,551
+514,541,514,514,524,525,521,591,553,611,612,571,572,573,574,531,553,553,553,559,567
+577,578,514,514,532,533,528,553,553,619,620,579,580,581,582,553,553,553,553,553,553
+585,586,514,514,541,514,544,553,553,553,553,587,588,589,590,553,553,553,553,553,553
+541,514,514,514,514,514,530,553,553,553,821,553,597,598,553,553,553,553,553,553,553
+577,578,514,514,514,514,520,553,553,552,607,552,554,554,821,553,553,553,553,553,543
+585,586,514,514,514,514,529,543,553,552,607,552,552,552,607,553,553,553,543,543,551
+514,541,514,514,514,514,522,551,543,552,599,552,552,552,599,553,553,553,551,551,551
+514,514,514,514,514,514,522,559,551,543,552,552,552,552,552,553,553,553,559,559,567
+514,514,518,519,514,514,522,567,567,559,553,553,553,553,553,553,553,553,553,553,553
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1
+1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1
+0,0,0,0,1,1,1,1,0,1,1,1,1,1,1,0,0,0,0,1,1
+0,0,0,0,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,0,0
+1,1,0,0,0,0,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+0,0,0,0,0,0,1,1,0,0,1,0,0,0,1,0,0,0,1,1,1
+0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1
+0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0
+warps
+2 14 SlateportCity 2
+3 14 SlateportCity 2
+3 1 SlateportCity_SternsShipyard_2F 0
+npcs
+people_man_1 5 5 S static 0 LOCALID_DOCK 0
+people_scientist_1 10 7 N static 0 - 0
+people_scientist_1 18 8 S wander 0 - 0
+people_expert_m 12 11 S wander FLAG_HIDE_SLATEPORT_CITY_STERNS_SHIPYARD_MR_BRINEY - 0
+dialogs
+0	Umm… If this goes here, and that goes over there…Then where does this thing go? And what about that doohickey?Aaargh! I can't make heads or tails of this!
+1	The seasons, the weather, where the moon sits in the sky…These and other conditions make the sea change its expression.That's right! The sea is like a living thing!
+2	I get seasick real easily. So I get to help out here instead.
+3	MR. BRINEY: Ah, PLAYER! It's been too long!Aye, since I met you, this old sea dog's been feeling frisky!So I've decided to help DOCK make a ferry.Aye, after all, a ferry would be able to carry a lot of people.But, you know, that DOCK is really something special.With his knack for technology and my experience, I'm sure that we can build one great ship, aye!
+objscripts
+0 SlateportCity_SternsShipyard_1F_EventScript_Dock
+1 SlateportCity_SternsShipyard_1F_EventScript_Scientist1
+2 SlateportCity_SternsShipyard_1F_EventScript_Scientist2
+3 SlateportCity_SternsShipyard_1F_EventScript_Briney
+movements
+Common_Movement_FaceOriginalDirection	face_down,end
+Common_Movement_FacePlayer	face_down,end
+scriptdefs
+= SlateportCity_SternsShipyard_1F_EventScript_Briney
+msgbox	MR. BRINEY: Ah, PLAYER! It's been too long!Aye, since I met you, this old sea dog's been feeling frisky!So I've decided to help DOCK make a ferry.Aye, after all, a ferry would be able to carry a lot of people.But, you know, that DOCK is really something special.With his knack for technology and my experience, I'm sure that we can build one great ship, aye!
+end
+= SlateportCity_SternsShipyard_1F_EventScript_Scientist2
+msgbox	I get seasick real easily. So I get to help out here instead.
+end
+= SlateportCity_SternsShipyard_1F_EventScript_Scientist1
+msgbox	The seasons, the weather, where the moon sits in the sky…These and other conditions make the sea change its expression.That's right! The sea is like a living thing!
+end
+= SlateportCity_SternsShipyard_1F_EventScript_Dock
+lockall
+goto_if_set FLAG_SYS_GAME_CLEAR SlateportCity_SternsShipyard_1F_EventScript_FerryReady
+goto_if_set FLAG_BADGE07_GET SlateportCity_SternsShipyard_1F_EventScript_BrineyJoined
+goto_if_set FLAG_DELIVERED_DEVON_GOODS SlateportCity_SternsShipyard_1F_EventScript_NeedVeteran
+goto_if_set FLAG_DOCK_REJECTED_DEVON_GOODS SlateportCity_SternsShipyard_1F_EventScript_GoFindStern
+msgbox	Umm… If this goes here, and that goes over there…Then where does this thing go? And what about that doohickey?Aaargh! I can't make heads or tails of this!
+applymovement LOCALID_DOCK Common_Movement_FacePlayer
+waitmovement 0
+msgbox	Hm? Hi, I'm DOCK.CAPT. STERN commissioned me to design a ferry.Oh! That there… Are they DEVON GOODS?But, hmm… This won't do…CAPT. STERN went off somewhere. He said he had some work to do.Could I get you to go find CAPT. STERN and deliver that to him?
+closemessage
+applymovement LOCALID_DOCK Common_Movement_FaceOriginalDirection
+waitmovement 0
+setflag FLAG_DOCK_REJECTED_DEVON_GOODS
+setflag FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA
+releaseall
+end
+= SlateportCity_SternsShipyard_1F_EventScript_GoFindStern
+applymovement LOCALID_DOCK Common_Movement_FacePlayer
+waitmovement 0
+msgbox	DOCK: Where could CAPT. STERN have gone off to?Could you go find CAPT. STERN and deliver that parcel to him?
+closemessage
+applymovement LOCALID_DOCK Common_Movement_FaceOriginalDirection
+waitmovement 0
+releaseall
+end
+= SlateportCity_SternsShipyard_1F_EventScript_NeedVeteran
+applymovement LOCALID_DOCK Common_Movement_FacePlayer
+waitmovement 0
+msgbox	DOCK: Shipbuilding is an art.A lot of things can't be figured out just by calculating.I really could use advice from a veteran who knows the seas…
+releaseall
+end
+= SlateportCity_SternsShipyard_1F_EventScript_BrineyJoined
+applymovement LOCALID_DOCK Common_Movement_FacePlayer
+waitmovement 0
+msgbox	DOCK: Hi! MR. BRINEY's joined us to lend us his help.Thanks to the veteran sailor, the ferry is steadily coming together.
+releaseall
+end
+= SlateportCity_SternsShipyard_1F_EventScript_FerryReady
+applymovement LOCALID_DOCK Common_Movement_FacePlayer
+waitmovement 0
+msgbox	DOCK: The ferry is finally ready!The new S.S. TIDAL is truly a marvel of technology!But, I get the feeling that we can make something even better.You know, there's never an end to technology's march.
+releaseall
+end
+mapsec
+8 10 1 2	SLATEPORT CITY
+music
+MUS_SLATEPORT
+counters
+537

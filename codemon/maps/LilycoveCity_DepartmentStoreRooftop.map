@@ -1,0 +1,105 @@
+tileset building__shop
+18 12
+9 6
+550,641,641,641,641,641,641,641,641,623,623,641,641,641,641,551,543,543
+558,595,595,595,595,595,595,595,595,631,631,595,590,591,565,559,543,543
+566,713,714,586,586,586,586,586,586,589,589,791,598,599,573,634,641,551
+566,715,716,586,586,586,586,586,586,586,586,586,606,607,581,596,595,559
+566,713,714,586,586,586,586,586,586,586,586,586,589,589,589,589,704,567
+566,715,716,586,586,705,706,586,586,705,706,586,586,586,586,586,704,567
+574,597,603,603,603,603,603,603,603,603,603,603,603,603,603,603,603,575
+582,611,611,611,611,611,611,611,611,611,611,611,611,611,611,611,611,583
+740,741,741,741,741,741,741,741,741,741,741,741,741,741,741,741,741,742
+748,752,753,749,749,749,749,749,752,753,749,749,749,749,749,752,753,750
+748,760,761,749,749,749,749,749,760,761,749,749,749,749,749,760,761,750
+748,749,749,749,749,749,749,749,749,749,749,749,749,749,749,749,749,750
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0
+1,0,0,0,0,0,0,0,0,1,1,0,1,1,1,1,0,0
+1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1
+1,1,1,0,0,0,0,0,0,0,0,0,1,0,1,0,0,1
+1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,1,0,0,1,1,0,0,1,1,0,0,0,0,0,1,1
+1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+13 3 LilycoveCity_DepartmentStore_5F 2
+npcs
+people_man_2 4 4 N static 0 - 0
+people_man_3 7 5 S wander 0 - 0
+people_rooftop_sale_woman 6 1 S static FLAG_HIDE_LILYCOVE_DEPARTMENT_STORE_ROOFTOP_SALE_WOMAN - 0
+people_woman_3 15 5 S static 0 - 0
+dialogs
+0	Don't they have set dates for their clear-out sales?I watch TV, but they never show any commercials.
+1	Ohh… I'm bone-dry thirsty!
+objscripts
+0 LilycoveCity_DepartmentStoreRooftop_EventScript_Man
+1 LilycoveCity_DepartmentStoreRooftop_EventScript_ThirstyMan
+2 LilycoveCity_DepartmentStoreRooftop_EventScript_SaleWoman
+3 LilycoveCity_DepartmentStoreRooftop_EventScript_SubstituteTutor
+movements
+LilycoveCity_DepartmentStoreRooftop_PokemartDecor_ClearOutSale	delay,delay
+scriptdefs
+= LilycoveCity_DepartmentStoreRooftop_EventScript_SubstituteTutor
+lock
+faceplayer
+goto_if_set FLAG_MOVE_TUTOR_TAUGHT_SUBSTITUTE MoveTutor_EventScript_SubstituteTaught
+msgboxyesno	When I see the wide world from up here on the roof…I think about how nice it would be if there were more than just one me so I could enjoy all sorts of lives.Of course it's not possible. Giggle…I know! Would you be interested in having a POKéMON learn SUBSTITUTE?
+goto_if_eq VAR_RESULT NO MoveTutor_EventScript_SubstituteDeclined
+call MoveTutor_EventScript_CanOnlyBeLearnedOnce
+goto_if_eq VAR_RESULT NO MoveTutor_EventScript_SubstituteDeclined
+msgbox	Giggle… Which POKéMON do you want me to teach SUBSTITUTE?
+setvar VAR_0x8005 TUTOR_MOVE_SUBSTITUTE
+call MoveTutor_EventScript_OpenPartyMenu
+goto_if_eq VAR_RESULT 0 MoveTutor_EventScript_SubstituteDeclined
+setflag FLAG_MOVE_TUTOR_TAUGHT_SUBSTITUTE
+goto MoveTutor_EventScript_SubstituteTaught
+end
+= MoveTutor_EventScript_SubstituteTaught
+msgbox	We human beings should enjoy our own lives to the utmost!I hope you'll get that way, too!
+release
+end
+= MoveTutor_EventScript_SubstituteDeclined
+msgbox	Oh, no?A POKéMON can make a copy of itself using it, you know.
+release
+end
+= MoveTutor_EventScript_OpenPartyMenu
+special ChooseMonForMoveTutor
+lock
+faceplayer
+return
+= MoveTutor_EventScript_CanOnlyBeLearnedOnce
+msgboxyesno	This move can be learned only once. Is that okay?
+return
+= LilycoveCity_DepartmentStoreRooftop_EventScript_SaleWoman
+lock
+faceplayer
+msgbox	Welcome!How may I serve you?
+waitmessage
+pokemartdecoration LilycoveCity_DepartmentStoreRooftop_PokemartDecor_ClearOutSale
+msgbox	Please come again!
+release
+end
+= LilycoveCity_DepartmentStoreRooftop_EventScript_ThirstyMan
+msgbox	Ohh… I'm bone-dry thirsty!
+end
+= LilycoveCity_DepartmentStoreRooftop_EventScript_Man
+lock
+faceplayer
+getpokenewsactive POKENEWS_LILYCOVE
+call_if_eq VAR_RESULT TRUE LilycoveCity_DepartmentStoreRooftop_EventScript_ManClearOutSale
+msgbox	Don't they have set dates for their clear-out sales?I watch TV, but they never show any commercials.
+release
+end
+= LilycoveCity_DepartmentStoreRooftop_EventScript_ManClearOutSale
+msgbox	Yes! I've been waiting a long time for this clear-out sale.They have items that you can only get here. I'm going to load up, that I am!
+release
+end
+mapsec
+18 3 2 1	LILYCOVE CITY
+music
+MUS_LILYCOVE

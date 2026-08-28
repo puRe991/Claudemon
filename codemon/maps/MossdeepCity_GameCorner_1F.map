@@ -1,0 +1,254 @@
+tileset building__mossdeep_game_corner
+12 10
+6 5
+515,515,515,516,517,553,518,519,515,515,552,515
+531,532,530,524,525,561,526,527,535,523,4,523
+513,514,538,539,540,554,541,542,543,514,560,513
+521,522,546,547,548,562,549,550,551,522,522,522
+521,522,522,522,522,522,522,522,522,522,522,522
+521,522,528,529,522,522,522,528,529,522,522,522
+521,534,536,537,522,522,522,536,537,533,522,522
+521,534,544,545,522,522,522,544,545,533,522,522
+521,522,522,522,522,522,522,522,522,522,522,522
+521,522,522,522,522,557,558,522,522,522,522,522
+collision
+1,1,1,1,1,0,1,1,1,1,0,1
+1,1,1,1,1,0,1,1,1,1,1,1
+0,0,1,1,1,0,1,1,1,0,0,0
+0,0,1,1,1,1,1,1,1,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0
+0,0,1,1,0,0,0,1,1,0,0,0
+0,0,1,1,0,0,0,1,1,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0
+warps
+5 9 MossdeepCity 9
+6 9 MossdeepCity 9
+2 0 MossdeepCity_GameCorner_B1F 0
+npcs
+people_expert_m 6 2 S static 0 - 0
+people_man_4 4 2 S static 0 - 0
+objscripts
+0 MossdeepCity_GameCorner_1F_EventScript_OldMan
+1 MossdeepCity_GameCorner_1F_EventScript_InfoMan
+onload
+VAR_CABLE_CLUB_STATE USING_MINIGAME CableClub_EventScript_ExitMinigameRoom
+movements
+Movement_AttendantFaceDown	face_down,end
+Movement_AttendantFaceLeft	face_left,end
+Movement_PlayerEnterMinigameRoom	left,up,up,up,end
+Movement_PlayerExitLinkRoom	down,down,end
+scriptdefs
+= CableClub_EventScript_ExitMinigameRoom
+lockall
+call CableClub_EventScript_CloseLinkAndExitLinkRoom
+call EventScript_CloseMossdeepGameCornerBarrier
+special DrawWholeMapView
+playse SE_CLICK
+erasebox 0 0 29 19
+releaseall
+end
+= EventScript_CloseMossdeepGameCornerBarrier
+setmetatile 5 2 METATILE_MossdeepGameCorner_CounterClosed_Top TRUE
+setmetatile 5 3 METATILE_MossdeepGameCorner_CounterClosed_Bottom TRUE
+return
+= CableClub_EventScript_CloseLinkAndExitLinkRoom
+special CloseLink
+setvar VAR_CABLE_CLUB_STATE 0
+goto_if_eq VAR_0x8007 0 CableClub_EventScript_PlayerExitLinkRoom
+applymovement VAR_0x8007 Movement_AttendantFaceLeft
+waitmovement 0
+applymovement LOCALID_PLAYER Movement_PlayerExitLinkRoom
+waitmovement 0
+applymovement VAR_0x8007 Movement_AttendantFaceDown
+waitmovement 0
+return
+= CableClub_EventScript_PlayerExitLinkRoom
+applymovement LOCALID_PLAYER Movement_PlayerExitLinkRoom
+waitmovement 0
+return
+= MossdeepCity_GameCorner_1F_EventScript_InfoMan
+lock
+faceplayer
+goto MossdeepCity_GameCorner_1F_EventScript_InfoMan2
+release
+end
+@ Script is redundant the label in the goto also does lock and faceplayer
+goto MossdeepCity_GameCorner_1F_EventScript_OldMan
+= MossdeepCity_GameCorner_1F_EventScript_OldMan
+lock
+faceplayer
+goto MossdeepCity_GameCorner_1F_EventScript_OldMan2
+release
+end
+@ Everything below is leftover from RS
+@ The house that was here in RS was moved to Sootopolis and replaced by the Game Corner
+@ The text below is unused and duplicated in its replacement in Sootopolis City
+@ And the BG Door event was moved inaccessibly into a wall
+goto RS_MysteryEventsHouse_EventScript_Door
+= RS_MysteryEventsHouse_EventScript_Door
+msgbox	The door appears to be locked.
+end
+= MossdeepCity_GameCorner_1F_EventScript_OldMan2
+lock
+faceplayer
+msgbox	Hi, welcome! Are you here to play games using Wireless Communication?Can you wait just a little bit?
+waitmessage
+specialvar VAR_RESULT IsWirelessAdapterConnected
+goto_if_eq VAR_RESULT FALSE MossdeepCity_GameCorner_1F_EventScript_AdapterNotConnected
+delay 60
+msgbox	All right, which game did you want to play?
+waitmessage
+multichoice 0 0 MULTI_WIRELESS_MINIGAME FALSE
+switch VAR_RESULT
+case 0 MossdeepCity_GameCorner_1F_EventScript_PlayPokemonJump
+case 1 MossdeepCity_GameCorner_1F_EventScript_PlayDodrioBerryPicking
+case 2 MossdeepCity_GameCorner_1F_EventScript_AbortMinigame
+case MULTI_B_PRESSED MossdeepCity_GameCorner_1F_EventScript_AbortMinigame
+end
+= MossdeepCity_GameCorner_1F_EventScript_AbortMinigame
+special CloseLink
+msgbox	All right, come again!
+release
+end
+@ Unused
+goto CableClub_EventScript_CableClubWarp
+= CableClub_EventScript_CableClubWarp
+special SetCableClubWarp
+special DoCableClubWarp
+end
+= MossdeepCity_GameCorner_1F_EventScript_PlayDodrioBerryPicking
+setvar VAR_0x8005 1
+special IsDodrioInParty
+goto_if_eq VAR_RESULT FALSE MossdeepCity_GameCorner_1F_EventScript_DontHaveRequiredMon
+msgbox	Which POKéMON would you like to enter?
+fadescreen FADE_TO_BLACK
+setvar VAR_0x8005 1
+special ChooseMonForWirelessMinigame
+goto_if_ge VAR_0x8004 PARTY_SIZE MossdeepCity_GameCorner_1F_EventScript_AbortMinigame
+call Common_EventScript_SaveGame
+goto_if_eq VAR_RESULT 0 MossdeepCity_GameCorner_1F_EventScript_AbortMinigame
+setvar VAR_0x8004 LINK_GROUP_BERRY_PICKING
+goto MossdeepCity_GameCorner_1F_EventScript_ChooseLinkLeader
+end
+= MossdeepCity_GameCorner_1F_EventScript_ChooseLinkLeader
+msgbox	Please decide which of you will become the GROUP LEADER.The other players must then choose “JOIN GROUP.”
+waitmessage
+multichoice 16 6 MULTI_LINK_LEADER FALSE
+switch VAR_RESULT
+case 0 MossdeepCity_GameCorner_1F_EventScript_TryJoinLinkGroup
+case 1 MossdeepCity_GameCorner_1F_EventScript_TryBecomeLinkLeader
+case 2 MossdeepCity_GameCorner_1F_EventScript_AbortMinigame
+case MULTI_B_PRESSED MossdeepCity_GameCorner_1F_EventScript_AbortMinigame
+end
+= MossdeepCity_GameCorner_1F_EventScript_TryBecomeLinkLeader
+call CableClub_EventScript_TryBecomeLinkLeader
+goto_if_eq VAR_RESULT LINKUP_SUCCESS MossdeepCity_GameCorner_1F_EventScript_EnterMinigameRoom
+goto_if_eq VAR_RESULT LINKUP_FAILED MossdeepCity_GameCorner_1F_EventScript_ChooseLinkLeader
+goto_if_eq VAR_RESULT LINKUP_RETRY_ROLE_ASSIGN MossdeepCity_GameCorner_1F_EventScript_TryBecomeLinkLeader
+release
+return
+= MossdeepCity_GameCorner_1F_EventScript_EnterMinigameRoom
+messageautoscroll MossdeepCity_GameCorner_1F_Text_AllGoodToGo
+waitmessage
+delay 60
+closemessage
+copyvar VAR_0x8007 VAR_LAST_TALKED
+call EventScript_OpenMossdeepGameCornerBarrier
+special DrawWholeMapView
+playse SE_CLICK
+delay 60
+applymovement VAR_LAST_TALKED Movement_AttendantFaceLeft
+waitmovement 0
+closemessage
+applymovement LOCALID_PLAYER Movement_PlayerEnterMinigameRoom
+waitmovement 0
+hideplayer
+release
+waitstate
+end
+= EventScript_OpenMossdeepGameCornerBarrier
+setmetatile 5 2 METATILE_MossdeepGameCorner_CounterOpen_Top FALSE
+setmetatile 5 3 METATILE_MossdeepGameCorner_CounterOpen_Bottom FALSE
+return
+= CableClub_EventScript_TryBecomeLinkLeader
+special TryBecomeLinkLeader
+return
+= MossdeepCity_GameCorner_1F_EventScript_TryJoinLinkGroup
+call CableClub_EventScript_TryJoinLinkGroup
+goto_if_eq VAR_RESULT LINKUP_SUCCESS MossdeepCity_GameCorner_1F_EventScript_EnterMinigameRoom
+goto_if_eq VAR_RESULT LINKUP_FAILED MossdeepCity_GameCorner_1F_EventScript_ChooseLinkLeader
+goto_if_eq VAR_RESULT LINKUP_RETRY_ROLE_ASSIGN MossdeepCity_GameCorner_1F_EventScript_TryJoinLinkGroup
+release
+return
+= CableClub_EventScript_TryJoinLinkGroup
+special TryJoinLinkGroup
+return
+= Common_EventScript_SaveGame
+special SaveGame
+return
+= MossdeepCity_GameCorner_1F_EventScript_DontHaveRequiredMon
+msgboxyesno	It doesn't look like you have any POKéMON that you can enter…Would you like me to explain what kinds of POKéMON can enter?
+goto_if_eq VAR_RESULT NO MossdeepCity_GameCorner_1F_EventScript_AbortMinigame
+call_if_eq VAR_0x8005 0 MossdeepCity_GameCorner_1F_EventScript_ExplainPokemonJumpRequirements
+call_if_eq VAR_0x8005 1 MossdeepCity_GameCorner_1F_EventScript_ExplainDodrioBerryPickingRequirements
+goto MossdeepCity_GameCorner_1F_EventScript_AbortMinigame
+end
+= MossdeepCity_GameCorner_1F_EventScript_ExplainDodrioBerryPickingRequirements
+msgbox	DODRIO BERRY-PICKING is a game that only DODRIO may enter.
+return
+= MossdeepCity_GameCorner_1F_EventScript_ExplainPokemonJumpRequirements
+msgbox	“POKéMON JUMP” is open to POKéMON around 28 inches or less.What you can't enter are those POKéMON that can't jump.You know, like POKéMON that only swim, burrow, or fly.That's all you need to know.
+return
+= MossdeepCity_GameCorner_1F_EventScript_PlayPokemonJump
+setvar VAR_0x8005 0
+special IsPokemonJumpSpeciesInParty
+goto_if_eq VAR_RESULT FALSE MossdeepCity_GameCorner_1F_EventScript_DontHaveRequiredMon
+msgbox	Which POKéMON would you like to enter?
+fadescreen FADE_TO_BLACK
+setvar VAR_0x8005 0
+special ChooseMonForWirelessMinigame
+goto_if_ge VAR_0x8004 PARTY_SIZE MossdeepCity_GameCorner_1F_EventScript_AbortMinigame
+call Common_EventScript_SaveGame
+goto_if_eq VAR_RESULT 0 MossdeepCity_GameCorner_1F_EventScript_AbortMinigame
+setvar VAR_0x8004 LINK_GROUP_POKEMON_JUMP
+goto MossdeepCity_GameCorner_1F_EventScript_ChooseLinkLeader
+end
+= MossdeepCity_GameCorner_1F_EventScript_AdapterNotConnected
+delay 60
+msgbox	The Wireless Adapter isn't connected. Come back when it's hooked up!
+release
+end
+= MossdeepCity_GameCorner_1F_EventScript_InfoMan2
+lock
+faceplayer
+msgbox	I can explain game rules to you, if you'd like.Which game should I describe?
+waitmessage
+multichoice 0 0 MULTI_WIRELESS_MINIGAME FALSE
+switch VAR_RESULT
+case 0 MossdeepCity_GameCorner_1F_EventScript_PokemonJumpInfo
+case 1 MossdeepCity_GameCorner_1F_EventScript_DodrioBerryPickingInfo
+case 2 MossdeepCity_GameCorner_1F_EventScript_MinigameInfoExit
+case MULTI_B_PRESSED MossdeepCity_GameCorner_1F_EventScript_MinigameInfoExit
+end
+= MossdeepCity_GameCorner_1F_EventScript_MinigameInfoExit
+msgbox	If you want to play a game, please tell the old man beside me.
+release
+end
+= MossdeepCity_GameCorner_1F_EventScript_DodrioBerryPickingInfo
+msgbox	“DODRIO BERRY-PICKING”Command DODRIO's three heads to catch falling BERRIES.Press right, up, or left on the Control Pad to move the heads.To play this game, you must have a DODRIO.
+release
+end
+= MossdeepCity_GameCorner_1F_EventScript_PokemonJumpInfo
+msgbox	“POKéMON JUMP”Make your POKéMON skip the VINE WHIP rope with the A Button.Only mini POKéMON around 28 inches or less may participate.POKéMON that only swim, burrow, or fly are not good at jumping.As a result, those POKéMON may not participate.Good things happen if everyone jumps in time.
+release
+end
+signs
+3 0	The door appears to be locked.
+mapsec
+24 5 2 1	MOSSDEEP CITY
+music
+MUS_RUSTBORO
+counters
+547,548,549,550

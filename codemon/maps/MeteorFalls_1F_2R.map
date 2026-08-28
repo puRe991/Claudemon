@@ -1,0 +1,146 @@
+tileset general__meteor_falls
+30 32
+14 16
+513,513,513,513,513,513,513,574,574,574,574,574,574,574,574,574,574,574,574,574,574,513,513,513,513,513,513,513,513,513
+513,513,513,513,513,513,564,531,561,561,561,561,561,561,561,561,561,561,561,561,532,572,513,513,513,513,513,513,513,513
+513,513,513,513,513,513,564,530,513,513,513,513,513,513,513,513,513,513,513,513,552,573,574,574,574,574,513,513,513,513
+513,513,513,513,513,513,575,530,513,513,513,513,513,513,513,513,513,513,513,513,560,561,561,561,561,532,573,574,574,574
+574,574,574,574,574,575,531,562,574,574,574,574,574,654,597,598,598,599,597,599,653,573,574,574,513,560,561,561,561,561
+561,561,561,561,561,561,562,531,561,514,561,561,561,670,605,606,606,607,605,607,669,561,561,532,573,574,574,574,574,574
+561,561,561,561,561,561,561,562,574,574,574,574,574,654,597,599,597,598,598,598,599,653,573,560,561,561,561,561,561,561
+513,513,513,513,513,564,531,561,561,514,561,561,561,670,605,607,605,606,606,606,607,669,561,561,561,561,532,572,513,513
+513,574,574,574,574,575,554,574,574,574,574,574,654,597,598,599,597,599,597,598,598,599,653,573,574,574,552,572,513,513
+564,531,561,561,561,561,562,531,561,514,561,561,670,605,606,607,605,607,605,606,606,607,669,561,561,532,552,572,513,513
+564,554,531,561,561,561,561,562,574,574,574,654,597,599,597,598,598,599,513,597,598,598,599,653,573,552,552,573,574,513
+564,554,554,564,531,561,561,561,561,514,561,670,605,607,605,606,606,607,652,605,606,606,607,669,532,552,560,561,532,572
+564,554,554,575,530,513,513,513,513,513,513,652,513,597,598,598,599,513,652,513,513,513,513,513,661,560,561,532,552,572
+564,554,554,531,538,513,513,513,513,513,652,513,513,605,606,606,607,652,513,597,599,597,598,599,661,573,574,552,552,572
+564,554,554,530,525,513,513,513,513,653,654,597,598,598,599,513,513,652,513,605,607,605,606,607,669,561,532,552,552,572
+564,554,554,530,513,513,513,513,652,669,670,605,606,606,607,653,645,647,654,513,513,513,513,513,513,513,552,552,552,572
+564,554,554,646,646,646,647,522,513,513,513,513,513,513,513,661,572,564,662,513,597,599,597,598,598,599,552,552,552,572
+564,554,554,513,513,574,575,530,513,513,513,513,597,598,599,661,573,575,662,513,605,607,605,606,606,607,552,552,552,572
+564,554,554,513,575,531,537,538,513,513,653,654,605,606,607,669,537,537,670,513,513,513,513,513,513,513,552,552,552,572
+564,554,554,575,531,538,513,513,513,513,661,662,513,513,513,513,652,513,513,513,513,513,513,513,513,513,552,552,552,572
+564,554,554,531,538,513,513,525,513,513,669,670,513,513,513,513,513,513,513,652,513,513,513,513,513,513,552,552,552,572
+564,554,554,530,513,513,513,513,513,384,393,346,347,385,513,513,513,513,513,513,513,513,513,513,520,563,646,646,552,572
+564,554,554,530,384,393,393,393,393,408,368,344,345,410,393,393,385,513,513,513,513,513,513,520,552,572,513,513,552,572
+564,554,554,530,400,368,368,368,368,368,336,337,368,368,368,368,402,513,513,513,513,525,513,552,552,520,563,646,646,513
+564,554,554,530,356,337,368,368,336,337,344,345,368,368,368,368,402,513,513,513,513,513,513,552,552,552,572,513,513,513
+564,554,554,530,364,345,336,337,344,345,368,368,368,368,368,368,402,513,513,513,513,513,513,552,552,552,572,513,513,513
+564,554,554,530,400,368,344,345,368,368,368,368,368,402,566,566,566,513,513,513,520,563,646,646,552,552,572,513,513,513
+564,554,554,530,400,368,368,368,368,368,368,368,368,402,513,513,513,513,513,513,552,572,513,513,552,552,572,513,513,513
+564,554,554,530,400,368,368,402,566,566,566,566,566,566,513,513,513,513,513,513,552,572,520,563,646,552,572,513,513,513
+564,554,554,530,400,368,368,402,513,513,519,513,513,513,513,513,513,513,513,513,552,572,552,572,520,563,513,513,513,513
+564,554,554,619,634,625,625,634,619,637,593,639,646,646,646,646,646,646,646,646,646,513,552,572,552,572,513,513,513,513
+513,566,566,646,646,646,646,646,646,646,646,646,646,646,646,646,646,646,646,646,646,646,646,646,646,513,513,513,513,513
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,0,0,0,0,0,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,1,1,1,1,1,1
+1,1,1,1,1,0,0,0,0,0,1,0,0,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1
+1,1,1,1,0,0,0,0,0,1,1,0,0,0,0,0,0,1,0,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1
+1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1
+1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1
+1,1,1,1,1,1,0,0,0,0,1,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,1,1,1
+1,1,1,1,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,1,1
+1,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1
+1,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1
+1,1,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1
+1,1,1,1,1,1,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1
+1,1,1,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+warps
+10 29 MeteorFalls_1F_1R 2
+4 14 MeteorFalls_B1F_1R 0
+7 20 MeteorFalls_B1F_1R 1
+21 23 MeteorFalls_B1F_1R 2
+npcs
+people_man_3 13 2 S static 0 - 1
+people_expert_m 6 12 S static 0 - 1
+people_expert_f 7 12 S static 0 - 1
+dialogs
+0	The road ahead remains long and harsh.When will my POKéMON and I become the best?
+1	JOHN: We've been married for fifty years.Come to think of it, I've yet to beat my dear wife in a battle.
+2	JAY: Fifty years of marriage…If we ever argued, we always settled it with a POKéMON battle…
+objscripts
+0 MeteorFalls_1F_2R_EventScript_Nicolas
+1 MeteorFalls_1F_2R_EventScript_John
+2 MeteorFalls_1F_2R_EventScript_Jay
+scriptdefs
+= MeteorFalls_1F_2R_EventScript_Jay
+trainerbattle_double TRAINER_JOHN_AND_JAY_1 MeteorFalls_1F_2R_Text_JayIntro MeteorFalls_1F_2R_Text_JayDefeat MeteorFalls_1F_2R_Text_JayNotEnoughMons MeteorFalls_1F_2R_EventScript_RegisterJay
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE MeteorFalls_1F_2R_EventScript_RematchJay
+msgbox	JAY: Fifty years of marriage…If we ever argued, we always settled it with a POKéMON battle…
+release
+end
+= MeteorFalls_1F_2R_EventScript_RematchJay
+trainerbattle_rematch_double TRAINER_JOHN_AND_JAY_1 MeteorFalls_1F_2R_Text_JayRematchIntro MeteorFalls_1F_2R_Text_JayRematchDefeat MeteorFalls_1F_2R_Text_JayRematchNotEnoughMons
+msgbox	JAY: Fifty years of marriage… Many things have happened.I hope that we will continue to make happy memories together.
+end
+= MeteorFalls_1F_2R_EventScript_RegisterJay
+msgbox	JOHN: Young TRAINER, if the chance arises, will you battle with us again?
+register_matchcall TRAINER_JOHN_AND_JAY_1
+release
+end
+= MeteorFalls_1F_2R_EventScript_John
+trainerbattle_double TRAINER_JOHN_AND_JAY_1 MeteorFalls_1F_2R_Text_JohnIntro MeteorFalls_1F_2R_Text_JohnDefeat MeteorFalls_1F_2R_Text_JohnNotEnoughMons MeteorFalls_1F_2R_EventScript_RegisterJohn
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE MeteorFalls_1F_2R_EventScript_RematchJohn
+msgbox	JOHN: We've been married for fifty years.Come to think of it, I've yet to beat my dear wife in a battle.
+release
+end
+= MeteorFalls_1F_2R_EventScript_RematchJohn
+trainerbattle_rematch_double TRAINER_JOHN_AND_JAY_1 MeteorFalls_1F_2R_Text_JohnRematchIntro MeteorFalls_1F_2R_Text_JohnRematchDefeat MeteorFalls_1F_2R_Text_JohnRematchNotEnoughMons
+msgbox	JOHN: Married for fifty years…On reflection, the dear wife and I, we battled day in and day out…
+end
+= MeteorFalls_1F_2R_EventScript_RegisterJohn
+msgbox	JOHN: Young TRAINER, if the chance arises, will you battle with us again?
+register_matchcall TRAINER_JOHN_AND_JAY_1
+release
+end
+= MeteorFalls_1F_2R_EventScript_Nicolas
+trainerbattle_single TRAINER_NICOLAS_1 MeteorFalls_1F_2R_Text_NicolasIntro MeteorFalls_1F_2R_Text_NicolasDefeat MeteorFalls_1F_2R_EventScript_RegisterNicolas
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE MeteorFalls_1F_2R_EventScript_RematchNicolas
+msgbox	The road ahead remains long and harsh.When will my POKéMON and I become the best?
+release
+end
+= MeteorFalls_1F_2R_EventScript_RematchNicolas
+trainerbattle_rematch TRAINER_NICOLAS_1 MeteorFalls_1F_2R_Text_NicolasRematchIntro MeteorFalls_1F_2R_Text_NicolasRematchDefeat
+msgbox	You've obviously kept up your POKéMON training.So long as you remain strong, I, too, can become stronger!
+end
+= MeteorFalls_1F_2R_EventScript_RegisterNicolas
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	I want to know more about your power. Let me register you in my POKéNAV.
+register_matchcall TRAINER_NICOLAS_1
+release
+end
+water
+368,384,385,393,400,402,408,410
+mapsec
+0 3 1 1	METEOR FALLS
+music
+MUS_CAVE_OF_ORIGIN
+encounters
+land GOLBAT:33:33,GOLBAT:35:35,GOLBAT:33:33,SOLROCK:35:35,SOLROCK:33:33,SOLROCK:37:37,GOLBAT:35:35,SOLROCK:39:39,GOLBAT:38:38,GOLBAT:40:40,GOLBAT:38:38,GOLBAT:40:40
+water GOLBAT:30:35,GOLBAT:30:35,SOLROCK:25:35,SOLROCK:15:25,SOLROCK:5:15
+fishing MAGIKARP:5:10,GOLDEEN:5:10,MAGIKARP:10:30,GOLDEEN:10:30,BARBOACH:10:30,BARBOACH:25:30,BARBOACH:30:35,WHISCASH:30:35,WHISCASH:35:40,WHISCASH:40:45

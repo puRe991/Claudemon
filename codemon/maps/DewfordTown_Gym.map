@@ -1,0 +1,400 @@
+tileset building__dewford_gym
+18 28
+9 14
+568,569,569,569,569,569,569,569,569,569,569,569,569,569,569,569,569,570
+545,540,540,571,572,540,540,519,520,516,540,519,520,520,516,540,519,524
+553,558,548,579,580,548,558,527,520,524,548,542,519,520,524,548,527,524
+553,566,554,555,556,557,566,542,540,541,513,550,542,519,524,513,527,524
+553,513,562,563,564,565,514,550,548,549,521,523,550,542,541,521,527,524
+561,539,528,528,528,528,534,518,546,546,530,533,523,550,549,521,527,524
+527,532,547,538,538,538,526,540,540,540,540,541,522,523,529,530,535,524
+527,516,540,519,520,520,524,548,548,548,548,549,521,528,527,516,540,544
+545,541,548,542,540,519,532,546,531,514,529,531,515,534,535,524,548,552
+553,549,513,550,548,527,520,520,524,522,527,524,522,527,520,524,513,552
+553,513,515,517,546,535,520,520,524,521,527,524,521,545,540,541,521,552
+561,539,528,527,520,520,516,540,541,521,527,524,521,553,548,549,521,552
+527,524,522,527,516,540,541,548,549,521,542,541,521,561,546,531,515,552
+545,541,521,527,524,548,549,513,514,515,550,549,521,527,520,524,522,552
+553,549,521,542,541,513,529,530,538,533,523,514,515,527,520,524,521,552
+553,513,515,550,549,521,527,520,520,532,525,528,534,535,520,524,521,552
+553,521,528,517,546,530,535,516,540,519,524,522,527,516,540,541,521,552
+561,539,528,527,520,520,520,524,548,527,524,521,542,541,548,549,521,552
+527,532,547,535,520,520,520,524,513,527,524,521,550,549,513,514,536,560
+527,516,540,519,520,520,520,524,521,542,541,521,523,529,530,538,535,524
+527,524,548,542,540,540,540,541,521,550,549,521,528,542,540,540,519,524
+527,524,513,550,548,548,548,549,521,523,514,515,528,550,548,548,527,524
+527,532,539,523,514,514,514,514,536,538,538,533,528,517,546,546,535,524
+527,520,532,525,543,528,528,543,527,520,520,524,522,527,520,520,520,524
+527,520,520,524,551,522,528,551,527,520,520,524,521,527,520,520,520,524
+527,520,520,532,531,515,528,517,535,520,520,532,530,535,520,520,520,524
+542,540,540,540,541,522,528,542,540,540,540,540,540,540,540,540,540,541
+550,548,548,548,549,6,7,550,548,548,548,548,548,548,548,548,548,549
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,0,0,1,1,1,1,1,0,1,1,1,1,0,1,1
+1,0,1,0,0,1,0,1,1,1,0,0,1,1,1,0,1,1
+1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,1
+1,1,0,0,0,0,1,1,1,1,1,1,0,0,0,0,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1
+1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1
+1,1,0,1,1,1,1,1,1,0,1,1,0,1,1,1,0,1
+1,0,0,0,0,1,1,1,1,0,1,1,0,1,1,1,0,1
+1,0,0,1,1,1,1,1,1,0,1,1,0,1,1,1,0,1
+1,1,0,1,1,1,1,1,1,0,1,1,0,1,0,0,0,1
+1,1,0,1,1,1,1,0,0,0,1,1,0,1,1,1,0,1
+1,1,0,1,1,0,0,0,0,0,0,0,0,1,1,1,0,1
+1,0,0,1,1,0,1,1,1,1,0,0,0,1,1,1,0,1
+1,0,0,0,0,0,1,1,1,1,1,0,1,1,1,1,0,1
+1,0,0,1,1,1,1,1,1,1,1,0,1,1,1,1,0,1
+1,1,0,1,1,1,1,1,0,1,1,0,1,1,0,0,0,1
+1,1,1,1,1,1,1,1,0,1,1,0,0,0,0,0,1,1
+1,1,1,1,1,1,1,1,0,1,1,0,0,1,1,1,1,1
+1,1,0,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1
+1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+1,1,1,0,0,0,0,0,1,1,1,1,0,1,1,1,1,1
+1,1,1,1,1,0,0,1,1,1,1,1,0,1,1,1,1,1
+1,1,1,1,0,0,0,0,1,1,1,1,0,1,1,1,1,1
+1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1
+warps
+5 27 DewfordTown 2
+6 27 DewfordTown 2
+npcs
+people_gym_leaders_brawly 4 3 S static 0 - 0
+people_black_belt 2 18 N static 0 - 3
+people_girl_3 15 3 S static 0 - 3
+people_girl_3 12 25 N static 0 - 2
+people_man_2 5 24 S static 0 - 0
+people_black_belt 7 8 E static 0 - 3
+people_girl_3 16 9 S static 0 - 3
+people_sailor 14 12 E static 0 - 2
+dialogs
+0	I can see your talent becoming a giant wave to cause a storm of astonishment among TRAINERS one day!
+1	Your skill overcame my strength! Your technique is commendable!
+2	I'm not going to waste this loss. I'll use it to motivate me to train!One day I'll become a GYM LEADER…No, I'll become the POKéMON LEAGUE CHAMPION!
+3	I battle in the dark to make my heart stronger.But because it's so dark, I can never see BRAWLY's face…
+4	Hey, how's it going, CHAMPION- bound PLAYER?DEWFORD's GYM LEADER BRAWLY commands FIGHTING-type POKéMON.Going against him with NORMAL-type POKéMON is asking for trouble.FIGHTING POKéMON will lay a serious smack down on NORMAL POKéMON, so be careful!What's worse, the GYM is as dark as the ocean floor.But it will get brighter after defeating the TRAINERS in your way.Hey, okay, go for it!
+5	You win! Go after that BADGE!
+6	You deserve to stay lost and end up back at the entrance again!
+7	Oh, aye! You're worthy of seeing our GYM LEADER.
+objscripts
+0 DewfordTown_Gym_EventScript_Brawly
+1 DewfordTown_Gym_EventScript_Takao
+2 DewfordTown_Gym_EventScript_Jocelyn
+3 DewfordTown_Gym_EventScript_Laura
+4 DewfordTown_Gym_EventScript_GymGuide
+5 DewfordTown_Gym_EventScript_Cristian
+6 DewfordTown_Gym_EventScript_Lilith
+7 DewfordTown_Gym_EventScript_Brenden
+movements
+DewfordTown_Gym_EventScript_GiveBulkUp2	delay,delay,delay,delay,delay,delay
+scriptdefs
+= DewfordTown_Gym_EventScript_Brenden
+trainerbattle_single TRAINER_BRENDEN DewfordTown_Gym_Text_BrendenIntro DewfordTown_Gym_Text_BrendenDefeat DewfordTown_Gym_EventScript_BrendenBrightenRoom
+msgbox	Oh, aye! You're worthy of seeing our GYM LEADER.
+end
+= DewfordTown_Gym_EventScript_BrendenBrightenRoom
+call DewfordTown_Gym_EventScript_BrightenRoom
+release
+end
+= DewfordTown_Gym_EventScript_BrightenRoom
+call DewfordTown_Gym_EventScript_CountTrainersDefeated
+nop1
+goto_if_eq VAR_0x8000 VAR_0x8001 DewfordTown_Gym_EventScript_NoLightChange
+copyvar VAR_0x8001 VAR_0x8000
+goto_if_eq VAR_0x8000 1 DewfordTown_Gym_EventScript_AnimateFlash1Trainer
+goto_if_eq VAR_0x8000 2 DewfordTown_Gym_EventScript_AnimateFlash2Trainers
+goto_if_eq VAR_0x8000 3 DewfordTown_Gym_EventScript_AnimateFlash3Trainers
+goto_if_eq VAR_0x8000 4 DewfordTown_Gym_EventScript_AnimateFlash4Trainers
+goto_if_eq VAR_0x8000 5 DewfordTown_Gym_EventScript_AnimateFlash5Trainers
+goto_if_eq VAR_0x8000 6 DewfordTown_Gym_EventScript_AnimateFlash6Trainers
+goto DewfordTown_Gym_EventScript_NoLightChange
+= DewfordTown_Gym_EventScript_NoLightChange
+return
+@ NOTE: A little confusingly a larger animateflash param value is a smaller flash radius
+goto DewfordTown_Gym_EventScript_AnimateFlash1Trainer
+= DewfordTown_Gym_EventScript_AnimateFlash1Trainer
+playse SE_SWITCH
+animateflash 6
+call DewfordTown_Gym_EventScript_SetFlashLevel
+return
+= DewfordTown_Gym_EventScript_SetFlashLevel
+goto_if_defeated TRAINER_BRAWLY_1 DewfordTown_Gym_EventScript_SetLightsOn
+call DewfordTown_Gym_EventScript_CountTrainersDefeated
+copyvar VAR_0x8001 VAR_0x8000
+goto_if_eq VAR_0x8000 0 DewfordTown_Gym_EventScript_SetFlashLevel7
+goto_if_eq VAR_0x8000 1 DewfordTown_Gym_EventScript_SetFlashLevel6
+goto_if_eq VAR_0x8000 2 DewfordTown_Gym_EventScript_SetFlashLevel5
+goto_if_eq VAR_0x8000 3 DewfordTown_Gym_EventScript_SetFlashLevel4
+goto_if_eq VAR_0x8000 4 DewfordTown_Gym_EventScript_SetFlashLevel3
+goto_if_eq VAR_0x8000 5 DewfordTown_Gym_EventScript_SetFlashLevel2
+goto DewfordTown_Gym_EventScript_SetFlashLevel1
+= DewfordTown_Gym_EventScript_SetFlashLevel1
+setflashlevel 1
+return
+= DewfordTown_Gym_EventScript_SetFlashLevel2
+setflashlevel 2
+return
+= DewfordTown_Gym_EventScript_SetFlashLevel3
+setflashlevel 3
+return
+= DewfordTown_Gym_EventScript_SetFlashLevel4
+setflashlevel 4
+return
+= DewfordTown_Gym_EventScript_SetFlashLevel5
+setflashlevel 5
+return
+= DewfordTown_Gym_EventScript_SetFlashLevel6
+setflashlevel 6
+return
+@ Darkest
+goto DewfordTown_Gym_EventScript_SetFlashLevel7
+= DewfordTown_Gym_EventScript_SetFlashLevel7
+setflashlevel 7
+return
+= DewfordTown_Gym_EventScript_CountTrainersDefeated
+setvar VAR_0x8000 0
+goto_if_not_defeated TRAINER_TAKAO DewfordTown_Gym_EventScript_CheckJocelyn
+addvar VAR_0x8000 1
+goto DewfordTown_Gym_EventScript_CheckJocelyn
+= DewfordTown_Gym_EventScript_CheckJocelyn
+goto_if_not_defeated TRAINER_JOCELYN DewfordTown_Gym_EventScript_CheckLaura
+addvar VAR_0x8000 1
+goto DewfordTown_Gym_EventScript_CheckLaura
+= DewfordTown_Gym_EventScript_CheckLaura
+goto_if_not_defeated TRAINER_LAURA DewfordTown_Gym_EventScript_CheckBrenden
+addvar VAR_0x8000 1
+goto DewfordTown_Gym_EventScript_CheckBrenden
+= DewfordTown_Gym_EventScript_CheckBrenden
+goto_if_not_defeated TRAINER_BRENDEN DewfordTown_Gym_EventScript_CheckCristian
+addvar VAR_0x8000 1
+goto DewfordTown_Gym_EventScript_CheckCristian
+= DewfordTown_Gym_EventScript_CheckCristian
+goto_if_not_defeated TRAINER_CRISTIAN DewfordTown_Gym_EventScript_CheckLilith
+addvar VAR_0x8000 1
+goto DewfordTown_Gym_EventScript_CheckLilith
+= DewfordTown_Gym_EventScript_CheckLilith
+goto_if_not_defeated TRAINER_LILITH DewfordTown_Gym_EventScript_StopCountingTrainers
+addvar VAR_0x8000 1
+goto DewfordTown_Gym_EventScript_StopCountingTrainers
+= DewfordTown_Gym_EventScript_StopCountingTrainers
+return
+= DewfordTown_Gym_EventScript_SetLightsOn
+setflashlevel 0
+return
+@ Brightest
+goto DewfordTown_Gym_EventScript_SetFlashLevel1
+= DewfordTown_Gym_EventScript_AnimateFlash6Trainers
+playse SE_SWITCH
+animateflash 1
+call DewfordTown_Gym_EventScript_SetFlashLevel
+return
+= DewfordTown_Gym_EventScript_AnimateFlash5Trainers
+playse SE_SWITCH
+animateflash 2
+call DewfordTown_Gym_EventScript_SetFlashLevel
+return
+= DewfordTown_Gym_EventScript_AnimateFlash4Trainers
+playse SE_SWITCH
+animateflash 3
+call DewfordTown_Gym_EventScript_SetFlashLevel
+return
+= DewfordTown_Gym_EventScript_AnimateFlash3Trainers
+playse SE_SWITCH
+animateflash 4
+call DewfordTown_Gym_EventScript_SetFlashLevel
+return
+= DewfordTown_Gym_EventScript_AnimateFlash2Trainers
+playse SE_SWITCH
+animateflash 5
+call DewfordTown_Gym_EventScript_SetFlashLevel
+return
+= DewfordTown_Gym_EventScript_Lilith
+trainerbattle_single TRAINER_LILITH DewfordTown_Gym_Text_LilithIntro DewfordTown_Gym_Text_LilithDefeat DewfordTown_Gym_EventScript_LilithBrightenRoom
+msgbox	You deserve to stay lost and end up back at the entrance again!
+end
+= DewfordTown_Gym_EventScript_LilithBrightenRoom
+call DewfordTown_Gym_EventScript_BrightenRoom
+release
+end
+= DewfordTown_Gym_EventScript_Cristian
+trainerbattle_single TRAINER_CRISTIAN DewfordTown_Gym_Text_CristianIntro DewfordTown_Gym_Text_CristianDefeat DewfordTown_Gym_EventScript_CristianBrightenRoom
+msgbox	You win! Go after that BADGE!
+end
+= DewfordTown_Gym_EventScript_CristianBrightenRoom
+call DewfordTown_Gym_EventScript_BrightenRoom
+release
+end
+= DewfordTown_Gym_EventScript_GymGuide
+lock
+faceplayer
+goto_if_set FLAG_DEFEATED_DEWFORD_GYM DewfordTown_Gym_EventScript_GymGuidePostVictory
+msgbox	Hey, how's it going, CHAMPION- bound PLAYER?DEWFORD's GYM LEADER BRAWLY commands FIGHTING-type POKéMON.Going against him with NORMAL-type POKéMON is asking for trouble.FIGHTING POKéMON will lay a serious smack down on NORMAL POKéMON, so be careful!What's worse, the GYM is as dark as the ocean floor.But it will get brighter after defeating the TRAINERS in your way.Hey, okay, go for it!
+release
+end
+= DewfordTown_Gym_EventScript_GymGuidePostVictory
+msgbox	Whoah! It's turned too bright in here!Your future is bright, too!
+release
+end
+= DewfordTown_Gym_EventScript_Laura
+trainerbattle_single TRAINER_LAURA DewfordTown_Gym_Text_LauraIntro DewfordTown_Gym_Text_LauraDefeat DewfordTown_Gym_EventScript_LauraBrightenRoom
+msgbox	I battle in the dark to make my heart stronger.But because it's so dark, I can never see BRAWLY's face…
+end
+= DewfordTown_Gym_EventScript_LauraBrightenRoom
+call DewfordTown_Gym_EventScript_BrightenRoom
+release
+end
+= DewfordTown_Gym_EventScript_Jocelyn
+trainerbattle_single TRAINER_JOCELYN DewfordTown_Gym_Text_JocelynIntro DewfordTown_Gym_Text_JocelynDefeat DewfordTown_Gym_EventScript_JocelynBrightenRoom
+msgbox	I'm not going to waste this loss. I'll use it to motivate me to train!One day I'll become a GYM LEADER…No, I'll become the POKéMON LEAGUE CHAMPION!
+end
+= DewfordTown_Gym_EventScript_JocelynBrightenRoom
+call DewfordTown_Gym_EventScript_BrightenRoom
+release
+end
+= DewfordTown_Gym_EventScript_Takao
+trainerbattle_single TRAINER_TAKAO DewfordTown_Gym_Text_TakaoIntro DewfordTown_Gym_Text_TakaoDefeat DewfordTown_Gym_EventScript_TakaoBrightenRoom
+msgbox	Your skill overcame my strength! Your technique is commendable!
+end
+= DewfordTown_Gym_EventScript_TakaoBrightenRoom
+call DewfordTown_Gym_EventScript_BrightenRoom
+release
+end
+= DewfordTown_Gym_EventScript_Brawly
+trainerbattle_single TRAINER_BRAWLY_1 DewfordTown_Gym_Text_BrawlyIntro DewfordTown_Gym_Text_BrawlyDefeat DewfordTown_Gym_EventScript_BrawlyDefeated NO_MUSIC
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE DewfordTown_Gym_EventScript_BrawlyRematch
+goto_if_unset FLAG_RECEIVED_TM_BULK_UP DewfordTown_Gym_EventScript_GiveBulkUp2
+msgbox	I can see your talent becoming a giant wave to cause a storm of astonishment among TRAINERS one day!
+release
+end
+= DewfordTown_Gym_EventScript_BrawlyRematch
+trainerbattle_rematch_double TRAINER_BRAWLY_1 DewfordTown_Gym_Text_BrawlyPreRematch DewfordTown_Gym_Text_BrawlyRematchDefeat DewfordTown_Gym_Text_BrawlyRematchNeedTwoMons
+msgbox	BRAWLY: Battling is vast and it's deep. You can't see the bottom. It's just like the sea of HOENN!
+end
+= DewfordTown_Gym_EventScript_BrawlyDefeated
+call DewfordTown_Gym_EventScript_AnimateFlashFullBrightness
+msgbox	PLAYER received the KNUCKLE BADGE from BRAWLY.
+waitmessage
+call Common_EventScript_PlayGymBadgeFanfare
+msgbox	The KNUCKLE BADGE makes all POKéMON up to Level 30, even those you get in trades, obey without question.And, you'll be able to use the HM move FLASH outside of battle.If you'd like, use this TECHNICAL MACHINE, too.
+setflag FLAG_DEFEATED_DEWFORD_GYM
+setflag FLAG_BADGE02_GET
+addvar VAR_PETALBURG_GYM_STATE 1
+call_if_eq VAR_PETALBURG_GYM_STATE 6 Common_EventScript_ReadyPetalburgGymForBattle
+setvar VAR_0x8008 2
+call Common_EventScript_SetGymTrainers
+call DewfordTown_Gym_EventScript_GiveBulkUp
+closemessage
+delay 30
+playfanfare MUS_REGISTER_MATCH_CALL
+msgbox	Registered GYM LEADER BRAWLY in the POKéNAV.
+waitfanfare
+closemessage
+delay 30
+setflag FLAG_ENABLE_BRAWLY_MATCH_CALL
+setvar VAR_ROXANNE_CALL_STEP_COUNTER 0
+setflag FLAG_ENABLE_ROXANNE_FIRST_CALL
+release
+end
+= DewfordTown_Gym_EventScript_GiveBulkUp
+giveitem ITEM_TM_BULK_UP
+goto_if_eq VAR_RESULT 0 Common_EventScript_BagIsFull
+msgbox	That TM08 contains BULK UP.It's a move that raises both ATTACK and DEFENSE stats.… … … … … …
+setflag FLAG_RECEIVED_TM_BULK_UP
+return
+= Common_EventScript_SetGymTrainers
+switch VAR_0x8008
+case 1 RustboroCity_Gym_SetGymTrainers
+case 2 DewfordTown_Gym_SetGymTrainers
+case 3 MauvilleCity_Gym_SetGymTrainers
+case 4 LavaridgeTown_Gym_SetGymTrainers
+case 5 PetalburgCity_Gym_SetGymTrainers
+case 6 FortreeCity_Gym_SetGymTrainers
+case 7 MossdeepCity_Gym_SetGymTrainers
+case 8 SootopolisCity_Gym_SetGymTrainers
+end
+= SootopolisCity_Gym_SetGymTrainers
+settrainerflag TRAINER_ANDREA
+settrainerflag TRAINER_CRISSY
+settrainerflag TRAINER_BRIANNA
+settrainerflag TRAINER_CONNIE
+settrainerflag TRAINER_BRIDGET
+settrainerflag TRAINER_OLIVIA
+settrainerflag TRAINER_TIFFANY
+settrainerflag TRAINER_BETHANY
+settrainerflag TRAINER_ANNIKA
+settrainerflag TRAINER_DAPHNE
+return
+= MossdeepCity_Gym_SetGymTrainers
+settrainerflag TRAINER_PRESTON
+settrainerflag TRAINER_VIRGIL
+settrainerflag TRAINER_BLAKE
+settrainerflag TRAINER_HANNAH
+settrainerflag TRAINER_SAMANTHA
+settrainerflag TRAINER_MAURA
+settrainerflag TRAINER_SYLVIA
+settrainerflag TRAINER_NATE
+settrainerflag TRAINER_KATHLEEN
+settrainerflag TRAINER_CLIFFORD
+settrainerflag TRAINER_MACEY
+settrainerflag TRAINER_NICHOLAS
+return
+= FortreeCity_Gym_SetGymTrainers
+settrainerflag TRAINER_JARED
+settrainerflag TRAINER_FLINT
+settrainerflag TRAINER_ASHLEY
+settrainerflag TRAINER_EDWARDO
+settrainerflag TRAINER_HUMBERTO
+settrainerflag TRAINER_DARIUS
+return
+= PetalburgCity_Gym_SetGymTrainers
+settrainerflag TRAINER_RANDALL
+settrainerflag TRAINER_PARKER
+settrainerflag TRAINER_GEORGE
+settrainerflag TRAINER_BERKE
+settrainerflag TRAINER_MARY
+settrainerflag TRAINER_ALEXIA
+settrainerflag TRAINER_JODY
+return
+= LavaridgeTown_Gym_SetGymTrainers
+settrainerflag TRAINER_COLE
+settrainerflag TRAINER_AXLE
+settrainerflag TRAINER_KEEGAN
+settrainerflag TRAINER_GERALD
+settrainerflag TRAINER_DANIELLE
+settrainerflag TRAINER_JACE
+settrainerflag TRAINER_JEFF
+settrainerflag TRAINER_ELI
+return
+= MauvilleCity_Gym_SetGymTrainers
+settrainerflag TRAINER_KIRK
+settrainerflag TRAINER_SHAWN
+settrainerflag TRAINER_BEN
+settrainerflag TRAINER_VIVIAN
+settrainerflag TRAINER_ANGELO
+return
+= DewfordTown_Gym_SetGymTrainers
+settrainerflag TRAINER_TAKAO
+settrainerflag TRAINER_JOCELYN
+settrainerflag TRAINER_LAURA
+settrainerflag TRAINER_BRENDEN
+settrainerflag TRAINER_CRISTIAN
+settrainerflag TRAINER_LILITH
+return
+= RustboroCity_Gym_SetGymTrainers
+settrainerflag TRAINER_JOSH
+settrainerflag TRAINER_TOMMY
+settrainerflag TRAINER_MARC
+return
+= DewfordTown_Gym_EventScript_AnimateFlashFullBrightness
+playse SE_SWITCH
+animateflash 0
+call DewfordTown_Gym_EventScript_SetFlashLevel
+return
+mapsec
+2 14 1 1	DEWFORD TOWN
+music
+MUS_GYM

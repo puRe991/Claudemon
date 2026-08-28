@@ -1,0 +1,152 @@
+tileset building__trick_house_puzzle
+15 22
+7 11
+513,513,513,513,513,513,513,513,513,513,513,513,514,623,516
+562,563,563,563,563,563,563,563,563,563,563,564,522,631,524
+547,548,555,548,548,548,555,548,555,548,548,545,528,528,528
+602,602,554,602,602,602,554,602,554,602,602,546,520,520,520
+520,520,538,520,520,520,538,520,538,520,520,546,520,520,520
+520,539,556,540,540,540,556,540,556,540,540,556,541,520,539
+520,547,548,548,555,548,548,548,548,548,548,555,549,520,560
+520,602,602,602,554,602,602,602,602,602,602,554,602,520,602
+520,546,520,520,538,520,520,539,541,520,520,538,520,520,520
+539,556,541,520,552,541,520,560,549,520,539,556,540,540,541
+560,548,545,520,547,545,520,602,602,520,547,555,548,548,549
+602,602,554,520,602,546,520,520,546,520,602,554,602,602,602
+520,520,538,520,520,546,520,520,546,520,520,538,520,520,520
+520,520,552,540,540,556,540,540,556,540,540,556,540,541,520
+520,520,547,548,555,548,555,548,548,548,548,555,548,549,520
+520,520,602,602,546,602,554,602,602,602,602,554,602,602,520
+520,520,520,531,546,520,602,520,520,520,520,538,520,520,520
+539,540,540,540,556,540,540,540,540,540,540,556,541,520,539
+547,548,548,548,555,548,548,548,548,555,548,548,549,520,560
+602,602,602,602,554,602,602,602,602,554,602,602,602,520,602
+520,520,520,520,602,520,520,520,520,602,520,520,520,520,520
+529,530,520,520,520,520,520,520,520,520,520,520,520,520,520
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,0,0,0
+0,0,1,0,0,0,1,0,1,0,0,1,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+0,0,1,0,0,0,1,0,1,0,0,1,0,0,0
+0,1,1,1,1,1,1,1,1,1,1,1,1,0,1
+0,0,0,0,1,0,0,0,0,0,0,1,0,0,0
+0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,1,0,0,1,0,0,1,1,0,0,1,0,0,0
+1,1,1,0,1,1,0,0,0,0,1,1,1,1,1
+0,0,1,0,0,1,0,0,1,0,0,1,0,0,0
+0,0,0,0,0,1,0,0,1,0,0,0,0,0,0
+0,0,1,0,0,1,0,0,1,0,0,1,0,0,0
+0,0,1,1,1,1,1,1,1,1,1,1,1,1,0
+0,0,0,0,1,0,1,0,0,0,0,1,0,0,0
+0,0,0,1,1,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,1,0,0,0,0,0,0,1,0,0,0
+1,1,1,1,1,1,1,1,1,1,1,1,1,0,1
+0,0,0,0,1,0,0,0,0,1,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+0 21 Route110_TrickHouseEntrance 2
+1 21 Route110_TrickHouseEntrance 2
+13 1 Route110_TrickHouseEnd 0
+npcs
+people_lass 14 20 W static 0 - 6
+people_youngster 14 8 W static 0 - 2
+people_lass 2 15 S static 0 - 2
+misc_cuttable_tree 11 16 S static FLAG_TEMP_13 - 0
+misc_cuttable_tree 13 18 S static FLAG_TEMP_12 - 0
+misc_cuttable_tree 14 14 S static FLAG_TEMP_14 - 0
+misc_cuttable_tree 11 8 S static FLAG_TEMP_17 - 0
+misc_cuttable_tree 8 10 S static FLAG_TEMP_16 - 0
+misc_cuttable_tree 11 12 S static FLAG_TEMP_15 - 0
+misc_cuttable_tree 2 4 S static FLAG_TEMP_19 - 0
+misc_cuttable_tree 13 6 S static FLAG_TEMP_18 - 0
+misc_cuttable_tree 0 6 S static FLAG_TEMP_1B - 0
+misc_item_ball 9 4 S static FLAG_ITEM_TRICK_HOUSE_PUZZLE_1_ORANGE_MAIL - 0
+misc_cuttable_tree 4 8 S static FLAG_TEMP_1C - 0
+misc_cuttable_tree 2 12 S static FLAG_TEMP_1E - 0
+dialogs
+0	I never get tired of hacking and slashing!
+1	I lost my way, I lost a battle, and I'm now even more lost… I can't get out…
+2	You're strong! Just who are you?
+objscripts
+0 Route110_TrickHousePuzzle1_EventScript_Sally
+1 Route110_TrickHousePuzzle1_EventScript_Eddie
+2 Route110_TrickHousePuzzle1_EventScript_Robin
+3 EventScript_CutTree
+4 EventScript_CutTree
+5 EventScript_CutTree
+6 EventScript_CutTree
+7 EventScript_CutTree
+8 EventScript_CutTree
+9 EventScript_CutTree
+10 EventScript_CutTree
+11 EventScript_CutTree
+12 Route110_TrickHousePuzzle1_EventScript_ItemOrangeMail
+13 EventScript_CutTree
+14 EventScript_CutTree
+movements
+Movement_CutTreeDown	delay,end
+scriptdefs
+= EventScript_CutTree
+lockall
+goto_if_unset FLAG_BADGE01_GET EventScript_CheckTreeCantCut
+checkpartymove MOVE_CUT
+goto_if_eq VAR_RESULT PARTY_SIZE EventScript_CheckTreeCantCut
+setfieldeffectargument 0 VAR_RESULT
+bufferpartymonnick STR_VAR_1 VAR_RESULT
+buffermovename STR_VAR_2 MOVE_CUT
+msgboxyesno	This tree looks like it can be CUT down!Would you like to CUT it?
+goto_if_eq VAR_RESULT NO EventScript_CancelCut
+msgbox	STR_VAR_1 used STR_VAR_2!
+closemessage
+dofieldeffect FLDEFF_USE_CUT_ON_TREE
+waitstate
+goto EventScript_CutTreeDown
+end
+@ Use cut from party menu
+goto EventScript_UseCut
+= EventScript_UseCut
+lockall
+dofieldeffect FLDEFF_USE_CUT_ON_TREE
+waitstate
+goto EventScript_CutTreeDown
+end
+= EventScript_CutTreeDown
+applymovement VAR_LAST_TALKED Movement_CutTreeDown
+waitmovement 0
+removeobject VAR_LAST_TALKED
+releaseall
+end
+= EventScript_CancelCut
+closemessage
+releaseall
+end
+= EventScript_CheckTreeCantCut
+msgbox	This tree looks like it can be CUT down!
+releaseall
+end
+= Route110_TrickHousePuzzle1_EventScript_ItemOrangeMail
+goto_if_set FLAG_ITEM_TRICK_HOUSE_PUZZLE_1_ORANGE_MAIL Route110_TrickHousePuzzle1_EventScript_ItemOrangeMail_Taken
+finditem ITEM_ORANGE_MAIL
+setflag FLAG_ITEM_TRICK_HOUSE_PUZZLE_1_ORANGE_MAIL
+end
+= Route110_TrickHousePuzzle1_EventScript_ItemOrangeMail_Taken
+end
+= Route110_TrickHousePuzzle1_EventScript_Robin
+trainerbattle_single TRAINER_ROBIN Route110_TrickHousePuzzle1_Text_RobinIntro Route110_TrickHousePuzzle1_Text_RobinDefeat
+msgbox	You're strong! Just who are you?
+end
+= Route110_TrickHousePuzzle1_EventScript_Eddie
+trainerbattle_single TRAINER_EDDIE Route110_TrickHousePuzzle1_Text_EddieIntro Route110_TrickHousePuzzle1_Text_EddieDefeat
+msgbox	I lost my way, I lost a battle, and I'm now even more lost… I can't get out…
+end
+= Route110_TrickHousePuzzle1_EventScript_Sally
+trainerbattle_single TRAINER_SALLY Route110_TrickHousePuzzle1_Text_SallyIntro Route110_TrickHousePuzzle1_Text_SallyDefeat
+msgbox	I never get tired of hacking and slashing!
+end
+mapsec
+8 7 1 3	ROUTE 110
+music
+MUS_TRICK_HOUSE

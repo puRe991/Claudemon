@@ -1,0 +1,224 @@
+tileset building__lab
+20 11
+10 5
+607,648,649,607,619,607,607,607,607,607,607,607,607,607,607,607,636,637,638,607
+615,656,657,615,619,556,557,556,557,556,557,556,557,556,557,615,644,643,646,615
+618,664,665,634,619,564,565,564,565,564,565,564,565,564,565,618,652,634,654,634
+626,608,617,617,627,618,634,634,612,613,634,634,634,612,613,631,617,617,617,617
+599,596,617,617,624,626,617,606,595,596,598,617,606,595,596,598,617,617,617,617
+626,604,617,617,632,626,617,617,650,651,617,617,617,650,651,617,617,617,617,617
+626,617,617,617,640,631,617,617,617,617,617,617,617,617,617,617,617,617,617,617
+626,617,617,617,641,626,617,617,608,609,617,617,617,608,609,617,617,617,617,617
+626,608,617,617,619,626,617,606,595,596,617,617,606,595,596,598,617,617,617,617
+599,596,617,617,619,626,617,617,650,651,617,617,617,650,651,617,617,617,617,617
+626,604,617,617,619,626,617,617,617,617,617,617,617,617,617,617,617,617,617,617
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1
+0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0
+0,1,0,0,1,0,0,0,1,1,0,0,0,1,1,0,0,0,0,0
+0,1,0,0,1,0,0,0,1,1,0,0,0,1,1,0,0,0,0,0
+0,1,0,0,1,0,0,0,1,1,0,0,0,1,1,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,1,0,0,0,1,1,0,0,0,1,1,0,0,0,0,0
+0,1,0,0,1,0,0,0,1,1,0,0,0,1,1,0,0,0,0,0
+0,1,0,0,1,0,0,0,1,1,0,0,0,1,1,0,0,0,0,0
+0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+17 1 Route119_WeatherInstitute_1F 2
+npcs
+people_team_aqua_aqua_member_m 15 6 E static FLAG_HIDE_ROUTE_119_TEAM_AQUA LOCALID_WEATHER_INSTITUTE_2F_GRUNT_1 4
+people_team_aqua_aqua_member_m 10 8 S static FLAG_HIDE_ROUTE_119_TEAM_AQUA LOCALID_WEATHER_INSTITUTE_2F_GRUNT_2 2
+people_team_aqua_aqua_member_f 4 6 E static FLAG_HIDE_ROUTE_119_TEAM_AQUA LOCALID_WEATHER_INSTITUTE_2F_SHELLY 0
+people_man_4 0 6 E static FLAG_HIDE_WEATHER_INSTITUTE_2F_WORKERS - 0
+people_scientist_1 18 6 S static 0 LOCALID_WEATHER_INSTITUTE_2F_SCIENTIST 0
+people_man_4 1 7 E static FLAG_HIDE_WEATHER_INSTITUTE_2F_WORKERS - 0
+people_team_aqua_aqua_member_m 16 6 W static FLAG_HIDE_WEATHER_INSTITUTE_2F_AQUA_GRUNT_M LOCALID_WEATHER_INSTITUTE_2F_GRUNT_3 0
+people_team_aqua_aqua_member_f 19 6 W static FLAG_HIDE_ROUTE_119_TEAM_AQUA LOCALID_WEATHER_INSTITUTE_2F_GRUNT_4 3
+dialogs
+0	If the POKéMON they made here can control the weather freely, then we of TEAM AQUA definitely need it!
+1	You don't have any idea what we of TEAM AQUA are working towards! You stay out of our way!
+2	It's bad enough to have TEAM MAGMA blunder about, but now there's you!What makes you want to sniff around in our business, anyway?
+7	Humph, so what? What we want…What we really want isn't here… Ihihihihi…
+objscripts
+0 Route119_WeatherInstitute_2F_EventScript_Grunt2
+1 Route119_WeatherInstitute_2F_EventScript_Grunt3
+2 Route119_WeatherInstitute_2F_EventScript_Shelly
+4 Route119_WeatherInstitute_2F_EventScript_WeatherScientist
+7 Route119_WeatherInstitute_2F_EventScript_Grunt5
+movements
+Common_Movement_Delay48	delay,delay,delay,end
+Common_Movement_ExclamationMark	delay,end
+Route119_WeatherInstitute_2F_Movement_GruntApproachShelly	left,left,left,left,left,left,left,left,left,left,left,end
+Route119_WeatherInstitute_2F_Movement_PlayerReturnToPosition	delay,delay,end
+Route119_WeatherInstitute_2F_Movement_ScientistApproachPlayer	right,right,right,end
+Route119_WeatherInstitute_2F_Movement_ShovePlayerOutOfWay	delay,delay,delay,delay,delay,delay,delay,end
+scriptdefs
+= Route119_WeatherInstitute_2F_EventScript_Grunt5
+trainerbattle_single TRAINER_GRUNT_WEATHER_INST_5 Route119_WeatherInstitute_2F_Text_Grunt5Intro Route119_WeatherInstitute_2F_Text_Grunt5Defeat
+msgbox	Humph, so what? What we want…What we really want isn't here… Ihihihihi…
+end
+= Route119_WeatherInstitute_2F_EventScript_WeatherScientist
+lock
+faceplayer
+goto_if_set FLAG_RECEIVED_CASTFORM Route119_WeatherInstitute_2F_EventScript_ScientistMentionWeather
+goto Route119_WeatherInstitute_2F_EventScript_ReceiveCastform
+end
+= Route119_WeatherInstitute_2F_EventScript_ReceiveCastform
+msgbox	Thanks! Thanks to you, we're safe!It might be an odd way of thanking you, but take this POKéMON.
+setvar VAR_TEMP_TRANSFERRED_SPECIES SPECIES_CASTFORM
+givemon SPECIES_CASTFORM 25 ITEM_MYSTIC_WATER
+goto_if_eq VAR_RESULT MON_GIVEN_TO_PARTY Route119_WeatherInstitute_2F_EventScript_ReceiveCastformParty
+goto_if_eq VAR_RESULT MON_GIVEN_TO_PC Route119_WeatherInstitute_2F_EventScript_ReceiveCastformPC
+goto Common_EventScript_NoMoreRoomForPokemon
+end
+= Common_EventScript_NoMoreRoomForPokemon
+msgbox	There's no more room for POKéMON!The POKéMON BOXES are full and can't accept any more!
+release
+end
+= Route119_WeatherInstitute_2F_EventScript_ReceiveCastformPC
+call Route119_WeatherInstitute_2F_EventScript_ReceivedCastformFanfare
+msgboxyesno	Do you want to give a nickname to this STR_VAR_1?
+goto_if_eq VAR_RESULT NO Route119_WeatherInstitute_2F_EventScript_SendCastformToPC
+call Common_EventScript_NameReceivedBoxMon
+goto Route119_WeatherInstitute_2F_EventScript_SendCastformToPC
+end
+= Route119_WeatherInstitute_2F_EventScript_SendCastformToPC
+call Common_EventScript_TransferredToPC
+goto Route119_WeatherInstitute_2F_EventScript_ExplainCastform
+end
+= Route119_WeatherInstitute_2F_EventScript_ExplainCastform
+msgbox	That POKéMON changes shape according to the weather conditions.There're plenty of them in the INSTITUTE--go ahead and take it.
+setflag FLAG_RECEIVED_CASTFORM
+release
+end
+= Common_EventScript_TransferredToPC
+bufferboxname STR_VAR_1 VAR_PC_BOX_TO_SEND_MON
+bufferspeciesname STR_VAR_2 VAR_TEMP_TRANSFERRED_SPECIES
+call_if_unset FLAG_SYS_PC_LANETTE EventScript_TransferredSomeonesPC
+call_if_set FLAG_SYS_PC_LANETTE EventScript_TransferredLanettesPC
+return
+= EventScript_TransferredLanettesPC
+specialvar VAR_RESULT ShouldShowBoxWasFullMessage
+goto_if_eq VAR_RESULT TRUE EventScript_LanettesPCBoxFull
+msgbox	STR_VAR_2 was transferred to LANETTE'S PC.It was placed in BOX “STR_VAR_1.”
+return
+= EventScript_LanettesPCBoxFull
+specialvar VAR_RESULT GetPCBoxToSendMon
+bufferboxname STR_VAR_3 VAR_RESULT
+msgbox	BOX “STR_VAR_3” on LANETTE'S PC was full.STR_VAR_2 was transferred to BOX “STR_VAR_1.”
+return
+= EventScript_TransferredSomeonesPC
+specialvar VAR_RESULT ShouldShowBoxWasFullMessage
+goto_if_eq VAR_RESULT TRUE EventScript_SomeonesPCBoxFull
+msgbox	STR_VAR_2 was transferred to SOMEONE'S PC.It was placed in BOX “STR_VAR_1.”
+return
+= EventScript_SomeonesPCBoxFull
+specialvar VAR_RESULT GetPCBoxToSendMon
+bufferboxname STR_VAR_3 VAR_RESULT
+msgbox	BOX “STR_VAR_3” on SOMEONE'S PC was full.STR_VAR_2 was transferred to BOX “STR_VAR_1.”
+return
+= Common_EventScript_NameReceivedBoxMon
+fadescreen FADE_TO_BLACK
+special ChangeBoxPokemonNickname
+lock
+faceplayer
+return
+= Route119_WeatherInstitute_2F_EventScript_ReceivedCastformFanfare
+playfanfare MUS_OBTAIN_ITEM
+msgbox	PLAYER received CASTFORM!
+waitmessage
+waitfanfare
+bufferspeciesname STR_VAR_1 SPECIES_CASTFORM
+return
+= Route119_WeatherInstitute_2F_EventScript_ReceiveCastformParty
+call Route119_WeatherInstitute_2F_EventScript_ReceivedCastformFanfare
+msgboxyesno	Do you want to give a nickname to this STR_VAR_1?
+goto_if_eq VAR_RESULT NO Route119_WeatherInstitute_2F_EventScript_ExplainCastform
+call Common_EventScript_GetGiftMonPartySlot
+call Common_EventScript_NameReceivedPartyMon
+goto Route119_WeatherInstitute_2F_EventScript_ExplainCastform
+end
+= Common_EventScript_GetGiftMonPartySlot
+getpartysize
+subvar VAR_RESULT 1
+copyvar VAR_0x8004 VAR_RESULT
+return
+= Route119_WeatherInstitute_2F_EventScript_ScientistMentionWeather
+goto_if_set FLAG_SYS_GAME_CLEAR Route119_WeatherInstitute_2F_EventScript_TryStartAbnormalWeather
+msgbox	I've been researching rain for many years, but it's ridiculous to think that humans can freely change the weather.
+release
+end
+= Route119_WeatherInstitute_2F_EventScript_TryStartAbnormalWeather
+setvar VAR_0x8004 0
+call_if_set FLAG_DEFEATED_KYOGRE Route119_WeatherInstitute_2F_EventScript_LegendaryDefeated
+call_if_set FLAG_DEFEATED_GROUDON Route119_WeatherInstitute_2F_EventScript_LegendaryDefeated
+goto_if_eq VAR_0x8004 2 Route119_WeatherInstitute_2F_EventScript_NoAbnormalWeather  @ Both defeated
+call_if_unset FLAG_TEMP_2 Route119_WeatherInstitute_2F_EventScript_CreateAbnormalWeather
+specialvar VAR_RESULT GetAbnormalWeatherMapNameAndType
+goto_if_eq VAR_RESULT 1 Route119_WeatherInstitute_2F_EventScript_KyogreWeather
+msgbox	I track weather patterns over the HOENN region.Presently, a drought has been recorded in STR_VAR_1.Could that mean, somewhere near STR_VAR_1…
+release
+end
+= Route119_WeatherInstitute_2F_EventScript_KyogreWeather
+msgbox	I track weather patterns over the HOENN region.Presently, heavy rainfall has been recorded over STR_VAR_1.Could that mean, somewhere near STR_VAR_1…
+release
+end
+= Route119_WeatherInstitute_2F_EventScript_CreateAbnormalWeather
+special CreateAbnormalWeatherEvent
+setflag FLAG_TEMP_2
+return
+= Route119_WeatherInstitute_2F_EventScript_LegendaryDefeated
+addvar VAR_0x8004 1
+return
+= Route119_WeatherInstitute_2F_EventScript_Shelly
+trainerbattle_single TRAINER_SHELLY_WEATHER_INSTITUTE Route119_WeatherInstitute_2F_Text_ShellyIntro Route119_WeatherInstitute_2F_Text_ShellyDefeat Route119_WeatherInstitute_2F_EventScript_ShellyDefeated
+msgbox	It's bad enough to have TEAM MAGMA blunder about, but now there's you!What makes you want to sniff around in our business, anyway?
+end
+= Route119_WeatherInstitute_2F_EventScript_ShellyDefeated
+msgbox	It's bad enough to have TEAM MAGMA blunder about, but now there's you!What makes you want to sniff around in our business, anyway?
+closemessage
+addobject LOCALID_WEATHER_INSTITUTE_2F_GRUNT_3
+applymovement LOCALID_WEATHER_INSTITUTE_2F_GRUNT_3 Route119_WeatherInstitute_2F_Movement_GruntApproachShelly
+applymovement LOCALID_PLAYER Route119_WeatherInstitute_2F_Movement_ShovePlayerOutOfWay
+waitmovement 0
+msgbox	We have a situation here!A TEAM MAGMA mob just passed the WEATHER INSTITUTE.They appear to be headed for MT. PYRE!
+closemessage
+playse SE_PIN
+applymovement LOCALID_WEATHER_INSTITUTE_2F_SHELLY Common_Movement_ExclamationMark
+waitmovement 0
+applymovement LOCALID_WEATHER_INSTITUTE_2F_SHELLY Common_Movement_Delay48
+waitmovement 0
+msgbox	What?!We can't waste any more time here! We have to hurry to MT. PYRE, too!Ahahahaha! TEAM MAGMA, just you wait!
+closemessage
+setvar VAR_WEATHER_INSTITUTE_STATE 1
+clearflag FLAG_HIDE_WEATHER_INSTITUTE_2F_WORKERS
+fadedefaultbgm
+fadescreen FADE_TO_BLACK
+setflag FLAG_HIDE_ROUTE_119_TEAM_AQUA
+setflag FLAG_HIDE_WEATHER_INSTITUTE_2F_AQUA_GRUNT_M
+removeobject LOCALID_WEATHER_INSTITUTE_2F_GRUNT_1
+removeobject LOCALID_WEATHER_INSTITUTE_2F_GRUNT_2
+removeobject LOCALID_WEATHER_INSTITUTE_2F_SHELLY
+removeobject LOCALID_WEATHER_INSTITUTE_2F_GRUNT_4
+removeobject LOCALID_WEATHER_INSTITUTE_2F_GRUNT_3
+applymovement LOCALID_PLAYER Route119_WeatherInstitute_2F_Movement_PlayerReturnToPosition
+waitmovement 0
+fadescreen FADE_FROM_BLACK
+applymovement LOCALID_WEATHER_INSTITUTE_2F_SCIENTIST Route119_WeatherInstitute_2F_Movement_ScientistApproachPlayer
+waitmovement 0
+copyobjectxytoperm LOCALID_WEATHER_INSTITUTE_2F_SCIENTIST
+goto Route119_WeatherInstitute_2F_EventScript_ReceiveCastform
+end
+= Route119_WeatherInstitute_2F_EventScript_Grunt3
+trainerbattle_single TRAINER_GRUNT_WEATHER_INST_3 Route119_WeatherInstitute_2F_Text_Grunt3Intro Route119_WeatherInstitute_2F_Text_Grunt3Defeat
+msgbox	You don't have any idea what we of TEAM AQUA are working towards! You stay out of our way!
+end
+= Route119_WeatherInstitute_2F_EventScript_Grunt2
+trainerbattle_single TRAINER_GRUNT_WEATHER_INST_2 Route119_WeatherInstitute_2F_Text_Grunt2Intro Route119_WeatherInstitute_2F_Text_Grunt2Defeat
+msgbox	If the POKéMON they made here can control the weather freely, then we of TEAM AQUA definitely need it!
+end
+mapsec
+11 0 1 6	ROUTE 119
+music
+MUS_RUSTBORO

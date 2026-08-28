@@ -1,0 +1,80 @@
+tileset general__facility
+13 13
+5 5
+746,707,708,709,740,751,751,751,751,751,751,751,751
+747,715,716,717,748,759,759,759,759,759,759,759,759
+806,744,743,745,806,806,743,743,743,743,743,743,806
+743,742,742,742,750,742,742,742,742,742,742,742,742
+743,742,742,750,750,742,742,742,750,742,742,742,742
+806,742,742,742,742,742,742,750,750,742,742,742,750
+751,751,751,751,751,751,751,751,751,746,734,740,751
+759,759,759,759,759,759,759,759,759,747,734,748,759
+806,743,743,806,806,743,983,743,806,806,743,743,806
+743,742,742,750,742,742,742,742,742,750,742,742,742
+743,1010,742,742,742,742,742,742,742,742,742,742,742
+743,742,742,750,742,742,742,742,742,750,742,742,742
+806,742,742,750,750,742,742,742,750,750,742,742,750
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,0,1,1,1,1,1,1,1,1,1,1
+1,0,0,0,1,1,0,0,0,0,0,0,1
+0,0,0,0,1,0,0,0,0,0,0,0,0
+0,0,0,1,1,0,0,0,1,0,0,0,0
+1,0,0,0,0,0,0,1,1,0,0,0,1
+1,1,1,1,1,1,1,1,1,1,0,1,1
+1,1,1,1,1,1,1,1,1,1,0,1,1
+1,0,0,1,1,0,1,0,1,1,0,0,1
+0,0,0,1,0,0,0,0,0,1,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,1,0,0,0,0,0,1,0,0,0
+1,0,0,1,1,0,0,0,1,1,0,0,1
+warps
+2 1 MtPyre_5F 0
+1 10 MtPyre_5F 2
+npcs
+people_hex_maniac 6 3 S static 0 - 3
+misc_item_ball 6 9 S static FLAG_ITEM_MT_PYRE_6F_TM_SHADOW_BALL - 0
+people_psychic_m 10 3 S static 0 - 3
+dialogs
+0	Perhaps the power is from the spirits of POKéMON in fitful sleep here…
+2	I had this feeling that a lost TRAINER would be panicked and easy to beat.It's dirty and I won't try it again…
+objscripts
+0 MtPyre_6F_EventScript_Valerie
+1 MtPyre_6F_EventScript_ItemTMShadowBall
+2 MtPyre_6F_EventScript_Cedric
+scriptdefs
+= MtPyre_6F_EventScript_Cedric
+trainerbattle_single TRAINER_CEDRIC MtPyre_6F_Text_CedricIntro MtPyre_6F_Text_CedricDefeat
+msgbox	I had this feeling that a lost TRAINER would be panicked and easy to beat.It's dirty and I won't try it again…
+end
+= MtPyre_6F_EventScript_ItemTMShadowBall
+goto_if_set FLAG_ITEM_MT_PYRE_6F_TM_SHADOW_BALL MtPyre_6F_EventScript_ItemTMShadowBall_Taken
+finditem ITEM_TM_SHADOW_BALL
+setflag FLAG_ITEM_MT_PYRE_6F_TM_SHADOW_BALL
+end
+= MtPyre_6F_EventScript_ItemTMShadowBall_Taken
+end
+= MtPyre_6F_EventScript_Valerie
+trainerbattle_single TRAINER_VALERIE_1 MtPyre_6F_Text_ValerieIntro MtPyre_6F_Text_ValerieDefeat MtPyre_6F_EventScript_RegisterValerie
+specialvar VAR_RESULT ShouldTryRematchBattle
+goto_if_eq VAR_RESULT TRUE MtPyre_6F_EventScript_RematchValerie
+msgbox	Perhaps the power is from the spirits of POKéMON in fitful sleep here…
+release
+end
+= MtPyre_6F_EventScript_RematchValerie
+trainerbattle_rematch TRAINER_VALERIE_1 MtPyre_6F_Text_ValerieRematchIntro MtPyre_6F_Text_ValerieRematchDefeat
+msgbox	The POKéMON at rest here… Sometimes, they play…
+end
+= MtPyre_6F_EventScript_RegisterValerie
+special PlayerFaceTrainerAfterBattle
+waitmovement 0
+msgbox	Fufufu… I lost the match, but… I have this little ability…Without ever laying my hands on your POKéNAV… Hiyah!
+register_matchcall TRAINER_VALERIE_1
+release
+end
+mapsec
+16 4 1 1	MT. PYRE
+music
+MUS_MT_PYRE
+encounters
+land SHUPPET:27:27,SHUPPET:28:28,SHUPPET:26:26,SHUPPET:25:25,SHUPPET:29:29,SHUPPET:24:24,SHUPPET:23:23,SHUPPET:22:22,DUSKULL:27:27,DUSKULL:27:27,DUSKULL:25:25,DUSKULL:29:29

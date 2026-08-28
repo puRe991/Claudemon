@@ -1,0 +1,1012 @@
+{
+  "berry_trees_aguav": {
+    "file": "berry_trees_aguav.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_aspear": {
+    "file": "berry_trees_aspear.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_cheri": {
+    "file": "berry_trees_cheri.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_chesto": {
+    "file": "berry_trees_chesto.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_cornn": {
+    "file": "berry_trees_cornn.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_dirt_pile": {
+    "file": "berry_trees_dirt_pile.png",
+    "h": 16,
+    "w": 16
+  },
+  "berry_trees_durin": {
+    "file": "berry_trees_durin.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_figy": {
+    "file": "berry_trees_figy.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_grepa": {
+    "file": "berry_trees_grepa.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_hondew": {
+    "file": "berry_trees_hondew.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_iapapa": {
+    "file": "berry_trees_iapapa.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_kelpsy": {
+    "file": "berry_trees_kelpsy.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_lansat": {
+    "file": "berry_trees_lansat.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_leppa": {
+    "file": "berry_trees_leppa.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_liechi": {
+    "file": "berry_trees_liechi.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_lum": {
+    "file": "berry_trees_lum.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_mago": {
+    "file": "berry_trees_mago.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_nomel": {
+    "file": "berry_trees_nomel.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_oran": {
+    "file": "berry_trees_oran.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_pamtre": {
+    "file": "berry_trees_pamtre.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_pecha": {
+    "file": "berry_trees_pecha.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_persim": {
+    "file": "berry_trees_persim.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_pomeg": {
+    "file": "berry_trees_pomeg.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_rabuta": {
+    "file": "berry_trees_rabuta.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_rawst": {
+    "file": "berry_trees_rawst.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_razz": {
+    "file": "berry_trees_razz.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_sitrus": {
+    "file": "berry_trees_sitrus.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_spelon": {
+    "file": "berry_trees_spelon.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_sprout": {
+    "file": "berry_trees_sprout.png",
+    "h": 16,
+    "w": 32
+  },
+  "berry_trees_tamato": {
+    "file": "berry_trees_tamato.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_wepear": {
+    "file": "berry_trees_wepear.png",
+    "h": 32,
+    "w": 96
+  },
+  "berry_trees_wiki": {
+    "file": "berry_trees_wiki.png",
+    "h": 32,
+    "w": 96
+  },
+  "misc_birchs_bag": {
+    "file": "misc_birchs_bag.png",
+    "h": 16,
+    "w": 16
+  },
+  "misc_birth_island_stone": {
+    "file": "misc_birth_island_stone.png",
+    "h": 32,
+    "w": 32
+  },
+  "misc_breakable_rock": {
+    "file": "misc_breakable_rock.png",
+    "h": 16,
+    "w": 64
+  },
+  "misc_cable_car": {
+    "file": "misc_cable_car.png",
+    "h": 64,
+    "w": 64
+  },
+  "misc_cuttable_tree": {
+    "file": "misc_cuttable_tree.png",
+    "h": 16,
+    "w": 64
+  },
+  "misc_fossil": {
+    "file": "misc_fossil.png",
+    "h": 16,
+    "w": 16
+  },
+  "misc_item_ball": {
+    "file": "misc_item_ball.png",
+    "h": 16,
+    "w": 16
+  },
+  "misc_moving_box": {
+    "file": "misc_moving_box.png",
+    "h": 16,
+    "w": 16
+  },
+  "misc_mr_brineys_boat": {
+    "file": "misc_mr_brineys_boat.png",
+    "h": 32,
+    "w": 96
+  },
+  "misc_pushable_boulder": {
+    "file": "misc_pushable_boulder.png",
+    "h": 16,
+    "w": 16
+  },
+  "misc_ss_tidal": {
+    "file": "misc_ss_tidal.png",
+    "h": 40,
+    "w": 96
+  },
+  "misc_statue": {
+    "file": "misc_statue.png",
+    "h": 32,
+    "w": 16
+  },
+  "misc_submarine_shadow": {
+    "file": "misc_submarine_shadow.png",
+    "h": 32,
+    "w": 88
+  },
+  "misc_truck": {
+    "file": "misc_truck.png",
+    "h": 48,
+    "w": 48
+  },
+  "people_artist": {
+    "file": "people_artist.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_beauty": {
+    "file": "people_beauty.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_black_belt": {
+    "file": "people_black_belt.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_boy_1": {
+    "file": "people_boy_1.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_boy_2": {
+    "file": "people_boy_2.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_boy_3": {
+    "file": "people_boy_3.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_brendan_acro_bike": {
+    "file": "people_brendan_acro_bike.png",
+    "h": 32,
+    "w": 864
+  },
+  "people_brendan_decorating": {
+    "file": "people_brendan_decorating.png",
+    "h": 32,
+    "w": 16
+  },
+  "people_brendan_field_move": {
+    "file": "people_brendan_field_move.png",
+    "h": 32,
+    "w": 160
+  },
+  "people_brendan_fishing": {
+    "file": "people_brendan_fishing.png",
+    "h": 32,
+    "w": 384
+  },
+  "people_brendan_mach_bike": {
+    "file": "people_brendan_mach_bike.png",
+    "h": 32,
+    "w": 288
+  },
+  "people_brendan_running": {
+    "file": "people_brendan_running.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_brendan_surfing": {
+    "file": "people_brendan_surfing.png",
+    "h": 32,
+    "w": 192
+  },
+  "people_brendan_underwater": {
+    "file": "people_brendan_underwater.png",
+    "h": 32,
+    "w": 128
+  },
+  "people_brendan_walking": {
+    "file": "people_brendan_walking.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_brendan_watering": {
+    "file": "people_brendan_watering.png",
+    "h": 32,
+    "w": 192
+  },
+  "people_bug_catcher": {
+    "file": "people_bug_catcher.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_cameraman": {
+    "file": "people_cameraman.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_camper": {
+    "file": "people_camper.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_contest_judge": {
+    "file": "people_contest_judge.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_cook": {
+    "file": "people_cook.png",
+    "h": 32,
+    "w": 48
+  },
+  "people_cycling_triathlete_f": {
+    "file": "people_cycling_triathlete_f.png",
+    "h": 32,
+    "w": 288
+  },
+  "people_cycling_triathlete_m": {
+    "file": "people_cycling_triathlete_m.png",
+    "h": 32,
+    "w": 288
+  },
+  "people_devon_employee": {
+    "file": "people_devon_employee.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_elite_four_drake": {
+    "file": "people_elite_four_drake.png",
+    "h": 32,
+    "w": 48
+  },
+  "people_elite_four_glacia": {
+    "file": "people_elite_four_glacia.png",
+    "h": 32,
+    "w": 48
+  },
+  "people_elite_four_phoebe": {
+    "file": "people_elite_four_phoebe.png",
+    "h": 32,
+    "w": 48
+  },
+  "people_elite_four_sidney": {
+    "file": "people_elite_four_sidney.png",
+    "h": 32,
+    "w": 48
+  },
+  "people_expert_f": {
+    "file": "people_expert_f.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_expert_m": {
+    "file": "people_expert_m.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_fat_man": {
+    "file": "people_fat_man.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_fisherman": {
+    "file": "people_fisherman.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_frontier_brains_anabel": {
+    "file": "people_frontier_brains_anabel.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_frontier_brains_brandon": {
+    "file": "people_frontier_brains_brandon.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_frontier_brains_greta": {
+    "file": "people_frontier_brains_greta.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_frontier_brains_lucy": {
+    "file": "people_frontier_brains_lucy.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_frontier_brains_noland": {
+    "file": "people_frontier_brains_noland.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_frontier_brains_spenser": {
+    "file": "people_frontier_brains_spenser.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_frontier_brains_tucker": {
+    "file": "people_frontier_brains_tucker.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_gameboy_kid": {
+    "file": "people_gameboy_kid.png",
+    "h": 32,
+    "w": 48
+  },
+  "people_gentleman": {
+    "file": "people_gentleman.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_girl_1": {
+    "file": "people_girl_1.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_girl_2": {
+    "file": "people_girl_2.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_girl_3": {
+    "file": "people_girl_3.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_gym_leaders_brawly": {
+    "file": "people_gym_leaders_brawly.png",
+    "h": 32,
+    "w": 48
+  },
+  "people_gym_leaders_flannery": {
+    "file": "people_gym_leaders_flannery.png",
+    "h": 32,
+    "w": 48
+  },
+  "people_gym_leaders_juan": {
+    "file": "people_gym_leaders_juan.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_gym_leaders_liza": {
+    "file": "people_gym_leaders_liza.png",
+    "h": 32,
+    "w": 48
+  },
+  "people_gym_leaders_norman": {
+    "file": "people_gym_leaders_norman.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_gym_leaders_roxanne": {
+    "file": "people_gym_leaders_roxanne.png",
+    "h": 32,
+    "w": 48
+  },
+  "people_gym_leaders_tate": {
+    "file": "people_gym_leaders_tate.png",
+    "h": 32,
+    "w": 48
+  },
+  "people_gym_leaders_wattson": {
+    "file": "people_gym_leaders_wattson.png",
+    "h": 32,
+    "w": 48
+  },
+  "people_gym_leaders_winona": {
+    "file": "people_gym_leaders_winona.png",
+    "h": 32,
+    "w": 48
+  },
+  "people_hex_maniac": {
+    "file": "people_hex_maniac.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_hiker": {
+    "file": "people_hiker.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_hot_springs_old_woman": {
+    "file": "people_hot_springs_old_woman.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_lass": {
+    "file": "people_lass.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_leaf": {
+    "file": "people_leaf.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_link_receptionist": {
+    "file": "people_link_receptionist.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_little_boy": {
+    "file": "people_little_boy.png",
+    "h": 16,
+    "w": 144
+  },
+  "people_little_girl": {
+    "file": "people_little_girl.png",
+    "h": 16,
+    "w": 144
+  },
+  "people_man_1": {
+    "file": "people_man_1.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_man_2": {
+    "file": "people_man_2.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_man_3": {
+    "file": "people_man_3.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_man_4": {
+    "file": "people_man_4.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_man_5": {
+    "file": "people_man_5.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_maniac": {
+    "file": "people_maniac.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_mart_employee": {
+    "file": "people_mart_employee.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_mauville_old_man_1": {
+    "file": "people_mauville_old_man_1.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_mauville_old_man_2": {
+    "file": "people_mauville_old_man_2.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_may_acro_bike": {
+    "file": "people_may_acro_bike.png",
+    "h": 32,
+    "w": 864
+  },
+  "people_may_decorating": {
+    "file": "people_may_decorating.png",
+    "h": 32,
+    "w": 16
+  },
+  "people_may_field_move": {
+    "file": "people_may_field_move.png",
+    "h": 32,
+    "w": 160
+  },
+  "people_may_fishing": {
+    "file": "people_may_fishing.png",
+    "h": 32,
+    "w": 384
+  },
+  "people_may_mach_bike": {
+    "file": "people_may_mach_bike.png",
+    "h": 32,
+    "w": 288
+  },
+  "people_may_running": {
+    "file": "people_may_running.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_may_surfing": {
+    "file": "people_may_surfing.png",
+    "h": 32,
+    "w": 192
+  },
+  "people_may_underwater": {
+    "file": "people_may_underwater.png",
+    "h": 32,
+    "w": 128
+  },
+  "people_may_walking": {
+    "file": "people_may_walking.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_may_watering": {
+    "file": "people_may_watering.png",
+    "h": 32,
+    "w": 192
+  },
+  "people_mom": {
+    "file": "people_mom.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_mystery_event_deliveryman": {
+    "file": "people_mystery_event_deliveryman.png",
+    "h": 32,
+    "w": 48
+  },
+  "people_ninja_boy": {
+    "file": "people_ninja_boy.png",
+    "h": 16,
+    "w": 144
+  },
+  "people_nurse": {
+    "file": "people_nurse.png",
+    "h": 32,
+    "w": 64
+  },
+  "people_old_man": {
+    "file": "people_old_man.png",
+    "h": 32,
+    "w": 48
+  },
+  "people_old_woman": {
+    "file": "people_old_woman.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_picnicker": {
+    "file": "people_picnicker.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_pokefan_f": {
+    "file": "people_pokefan_f.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_pokefan_m": {
+    "file": "people_pokefan_m.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_prof_birch": {
+    "file": "people_prof_birch.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_psychic_m": {
+    "file": "people_psychic_m.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_quinty_plump": {
+    "file": "people_quinty_plump.png",
+    "h": 32,
+    "w": 224
+  },
+  "people_red": {
+    "file": "people_red.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_reporter_f": {
+    "file": "people_reporter_f.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_reporter_m": {
+    "file": "people_reporter_m.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_rich_boy": {
+    "file": "people_rich_boy.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_rooftop_sale_woman": {
+    "file": "people_rooftop_sale_woman.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_rs_little_boy": {
+    "file": "people_rs_little_boy.png",
+    "h": 16,
+    "w": 144
+  },
+  "people_ruby_sapphire_brendan_running": {
+    "file": "people_ruby_sapphire_brendan_running.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_ruby_sapphire_brendan_walking": {
+    "file": "people_ruby_sapphire_brendan_walking.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_ruby_sapphire_may_running": {
+    "file": "people_ruby_sapphire_may_running.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_ruby_sapphire_may_walking": {
+    "file": "people_ruby_sapphire_may_walking.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_running_triathlete_f": {
+    "file": "people_running_triathlete_f.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_running_triathlete_m": {
+    "file": "people_running_triathlete_m.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_sailor": {
+    "file": "people_sailor.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_school_kid_m": {
+    "file": "people_school_kid_m.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_scientist_1": {
+    "file": "people_scientist_1.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_scientist_2": {
+    "file": "people_scientist_2.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_scott": {
+    "file": "people_scott.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_steven": {
+    "file": "people_steven.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_swimmer_f": {
+    "file": "people_swimmer_f.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_swimmer_m": {
+    "file": "people_swimmer_m.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_teala": {
+    "file": "people_teala.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_team_aqua_aqua_member_f": {
+    "file": "people_team_aqua_aqua_member_f.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_team_aqua_aqua_member_m": {
+    "file": "people_team_aqua_aqua_member_m.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_team_aqua_archie": {
+    "file": "people_team_aqua_archie.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_team_magma_magma_member_f": {
+    "file": "people_team_magma_magma_member_f.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_team_magma_magma_member_m": {
+    "file": "people_team_magma_magma_member_m.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_team_magma_maxie": {
+    "file": "people_team_magma_maxie.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_tuber_f": {
+    "file": "people_tuber_f.png",
+    "h": 16,
+    "w": 144
+  },
+  "people_tuber_m": {
+    "file": "people_tuber_m.png",
+    "h": 16,
+    "w": 144
+  },
+  "people_tuber_m_swimming": {
+    "file": "people_tuber_m_swimming.png",
+    "h": 16,
+    "w": 144
+  },
+  "people_twin": {
+    "file": "people_twin.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_union_room_attendant": {
+    "file": "people_union_room_attendant.png",
+    "h": 32,
+    "w": 48
+  },
+  "people_unused_woman": {
+    "file": "people_unused_woman.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_wallace": {
+    "file": "people_wallace.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_wally": {
+    "file": "people_wally.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_woman_1": {
+    "file": "people_woman_1.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_woman_2": {
+    "file": "people_woman_2.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_woman_3": {
+    "file": "people_woman_3.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_woman_4": {
+    "file": "people_woman_4.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_woman_5": {
+    "file": "people_woman_5.png",
+    "h": 32,
+    "w": 144
+  },
+  "people_youngster": {
+    "file": "people_youngster.png",
+    "h": 32,
+    "w": 144
+  },
+  "pokemon_azumarill": {
+    "file": "pokemon_azumarill.png",
+    "h": 16,
+    "w": 48
+  },
+  "pokemon_azurill": {
+    "file": "pokemon_azurill.png",
+    "h": 16,
+    "w": 48
+  },
+  "pokemon_deoxys": {
+    "file": "pokemon_deoxys.png",
+    "h": 32,
+    "w": 64
+  },
+  "pokemon_dusclops": {
+    "file": "pokemon_dusclops.png",
+    "h": 32,
+    "w": 144
+  },
+  "pokemon_enemy_zigzagoon": {
+    "file": "pokemon_enemy_zigzagoon.png",
+    "h": 32,
+    "w": 288
+  },
+  "pokemon_groudon": {
+    "file": "pokemon_groudon.png",
+    "h": 32,
+    "w": 128
+  },
+  "pokemon_ho_oh": {
+    "file": "pokemon_ho_oh.png",
+    "h": 32,
+    "w": 64
+  },
+  "pokemon_kecleon": {
+    "file": "pokemon_kecleon.png",
+    "h": 16,
+    "w": 48
+  },
+  "pokemon_kirlia": {
+    "file": "pokemon_kirlia.png",
+    "h": 32,
+    "w": 144
+  },
+  "pokemon_kyogre": {
+    "file": "pokemon_kyogre.png",
+    "h": 32,
+    "w": 128
+  },
+  "pokemon_latias_latios": {
+    "file": "pokemon_latias_latios.png",
+    "h": 32,
+    "w": 96
+  },
+  "pokemon_lugia": {
+    "file": "pokemon_lugia.png",
+    "h": 32,
+    "w": 64
+  },
+  "pokemon_mew": {
+    "file": "pokemon_mew.png",
+    "h": 32,
+    "w": 144
+  },
+  "pokemon_pikachu": {
+    "file": "pokemon_pikachu.png",
+    "h": 16,
+    "w": 48
+  },
+  "pokemon_poochyena": {
+    "file": "pokemon_poochyena.png",
+    "h": 32,
+    "w": 288
+  },
+  "pokemon_rayquaza": {
+    "file": "pokemon_rayquaza.png",
+    "h": 64,
+    "w": 320
+  },
+  "pokemon_rayquaza_still": {
+    "file": "pokemon_rayquaza_still.png",
+    "h": 64,
+    "w": 64
+  },
+  "pokemon_regi": {
+    "file": "pokemon_regi.png",
+    "h": 32,
+    "w": 32
+  },
+  "pokemon_skitty": {
+    "file": "pokemon_skitty.png",
+    "h": 16,
+    "w": 48
+  },
+  "pokemon_sudowoodo": {
+    "file": "pokemon_sudowoodo.png",
+    "h": 32,
+    "w": 48
+  },
+  "pokemon_vigoroth": {
+    "file": "pokemon_vigoroth.png",
+    "h": 32,
+    "w": 160
+  },
+  "pokemon_wingull": {
+    "file": "pokemon_wingull.png",
+    "h": 16,
+    "w": 96
+  },
+  "pokemon_zigzagoon": {
+    "file": "pokemon_zigzagoon.png",
+    "h": 16,
+    "w": 48
+  }
+}

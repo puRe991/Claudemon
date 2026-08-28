@@ -1,0 +1,121 @@
+tileset general__battle_palace
+17 14
+8 7
+524,522,543,523,524,522,521,521,543,521,521,523,524,522,543,523,525
+525,521,551,521,525,521,521,521,551,521,521,521,525,521,551,521,525
+525,521,521,521,525,528,529,530,521,528,529,530,525,521,521,521,525
+525,526,526,526,525,536,537,538,526,536,537,538,525,526,526,526,525
+569,569,569,569,569,672,673,674,515,664,665,666,569,569,569,569,569
+4,13,4,13,4,565,513,513,513,513,513,563,4,13,4,13,4
+393,393,385,4,13,565,513,513,513,513,513,563,13,4,384,393,393
+368,368,402,13,4,565,513,513,513,513,513,563,13,4,400,368,368
+368,368,402,13,4,565,513,513,513,513,513,563,4,13,400,368,368
+368,368,402,4,13,565,513,513,513,513,513,563,13,4,400,368,368
+368,368,402,13,4,565,513,513,513,513,513,563,4,13,400,368,368
+368,368,402,13,4,565,513,513,513,513,513,563,13,4,400,368,368
+368,368,402,4,13,565,513,513,513,513,513,563,13,4,400,368,368
+572,572,572,572,572,573,513,513,516,517,513,571,572,572,572,572,572
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0
+1,1,1,1,0,1,1,1,1,1,1,1,0,1,1,1,1
+1,1,1,1,0,1,0,1,1,1,0,1,0,1,1,1,1
+1,1,1,1,1,1,0,1,1,1,0,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+8 13 BattleFrontier_BattlePalaceLobby 2
+9 13 BattleFrontier_BattlePalaceLobby 2
+6 3 BattleFrontier_BattlePalaceBattleRoom 0
+10 3 BattleFrontier_BattlePalaceBattleRoom 0
+npcs
+people_expert_m 8 12 N static 0 LOCALID_PALACE_CORRIDOR_ATTENDANT 0
+pokemon_azurill 3 5 S wander 0 - 0
+pokemon_kirlia 12 6 W pace_h 0 - 0
+pokemon_pikachu 15 5 S static 0 - 0
+pokemon_zigzagoon 4 9 W pace_h 0 - 0
+pokemon_azumarill 13 9 S static 0 - 0
+pokemon_wingull 3 10 S wander 0 - 0
+onload
+VAR_TEMP_0 0 BattleFrontier_BattlePalaceCorridor_EventScript_WalkThroughCorridor
+movements
+BattleFrontier_BattlePalaceCorridor_Movement_AttendantEnterBattleRoom	up,delay,end
+BattleFrontier_BattlePalaceCorridor_Movement_AttendantWalkTo50BattleRoom	up,up,left,left,up,up,end
+BattleFrontier_BattlePalaceCorridor_Movement_AttendantWalkToOpenBattleRoom	up,right,right,up,up,up,end
+BattleFrontier_BattlePalaceCorridor_Movement_EnterCorridor	up,up,up,up,end
+BattleFrontier_BattlePalaceCorridor_Movement_PlayerEnterBattleRoom	up
+BattleFrontier_BattlePalaceCorridor_Movement_PlayerWalkTo50BattleRoom	up,up,up,left,left,up,end
+BattleFrontier_BattlePalaceCorridor_Movement_PlayerWalkToOpenBattleRoom	up,up,right,right,up,up,end
+scriptdefs
+= BattleFrontier_BattlePalaceCorridor_EventScript_WalkThroughCorridor
+delay 16
+applymovement LOCALID_PALACE_CORRIDOR_ATTENDANT BattleFrontier_BattlePalaceCorridor_Movement_EnterCorridor
+applymovement LOCALID_PLAYER BattleFrontier_BattlePalaceCorridor_Movement_EnterCorridor
+waitmovement 0
+lockall
+palace_getcomment
+call_if_eq VAR_RESULT 0 BattleFrontier_BattlePalaceCorridor_EventScript_RandomComment1
+call_if_eq VAR_RESULT 1 BattleFrontier_BattlePalaceCorridor_EventScript_RandomComment2
+call_if_eq VAR_RESULT 2 BattleFrontier_BattlePalaceCorridor_EventScript_RandomComment3
+call_if_eq VAR_RESULT 3 BattleFrontier_BattlePalaceCorridor_EventScript_StreakComment
+call_if_eq VAR_RESULT 4 BattleFrontier_BattlePalaceCorridor_EventScript_LongStreakComment
+closemessage
+frontier_get FRONTIER_DATA_LVL_MODE
+goto_if_eq VAR_RESULT FRONTIER_LVL_OPEN BattleFrontier_BattlePalaceCorridor_EventScript_WalkToOpenBattleRoom
+applymovement LOCALID_PALACE_CORRIDOR_ATTENDANT BattleFrontier_BattlePalaceCorridor_Movement_AttendantWalkTo50BattleRoom
+applymovement LOCALID_PLAYER BattleFrontier_BattlePalaceCorridor_Movement_PlayerWalkTo50BattleRoom
+waitmovement 0
+opendoor 6 3
+waitdooranim
+applymovement LOCALID_PALACE_CORRIDOR_ATTENDANT BattleFrontier_BattlePalaceCorridor_Movement_AttendantEnterBattleRoom
+applymovement LOCALID_PLAYER BattleFrontier_BattlePalaceCorridor_Movement_PlayerEnterBattleRoom
+waitmovement 0
+closedoor 6 3
+waitdooranim
+goto BattleFrontier_BattlePalaceCorridor_EventScript_WarpToBattleRoom
+= BattleFrontier_BattlePalaceCorridor_EventScript_WarpToBattleRoom
+warp BattleFrontier_BattlePalaceBattleRoom 7 4
+waitstate
+end
+= BattleFrontier_BattlePalaceCorridor_EventScript_WalkToOpenBattleRoom
+applymovement LOCALID_PALACE_CORRIDOR_ATTENDANT BattleFrontier_BattlePalaceCorridor_Movement_AttendantWalkToOpenBattleRoom
+applymovement LOCALID_PLAYER BattleFrontier_BattlePalaceCorridor_Movement_PlayerWalkToOpenBattleRoom
+waitmovement 0
+opendoor 10 3
+waitdooranim
+applymovement LOCALID_PALACE_CORRIDOR_ATTENDANT BattleFrontier_BattlePalaceCorridor_Movement_AttendantEnterBattleRoom
+applymovement LOCALID_PLAYER BattleFrontier_BattlePalaceCorridor_Movement_PlayerEnterBattleRoom
+waitmovement 0
+closedoor 10 3
+waitdooranim
+goto BattleFrontier_BattlePalaceCorridor_EventScript_WarpToBattleRoom
+= BattleFrontier_BattlePalaceCorridor_EventScript_LongStreakComment
+msgbox	Ah… I see a strong, heartfelt bond between you and your POKéMON…
+return
+= BattleFrontier_BattlePalaceCorridor_EventScript_StreakComment
+msgbox	Are you beginning to understand how a POKéMON's nature makes it behave?
+return
+= BattleFrontier_BattlePalaceCorridor_EventScript_RandomComment3
+msgbox	A POKéMON's nature is a remarkable thing…Some POKéMON behave in a completely different way when they are cornered.
+return
+= BattleFrontier_BattlePalaceCorridor_EventScript_RandomComment2
+msgbox	Rather than trying to make a POKéMON do what it dislikes, try to let it do what it likes and is good at doing.Put yourself in the POKéMON's position and consider what moves it would like.
+return
+= BattleFrontier_BattlePalaceCorridor_EventScript_RandomComment1
+msgbox	People and POKéMON, they are but the same…Their individual nature makes them good at certain things, and not good at others.
+return
+grass
+13
+water
+368,384,385,393,400,402
+mapsec
+22 12 1 1	BATTLE FRONTIER
+music
+MUS_B_PALACE

@@ -1,0 +1,54 @@
+tileset building__generic_building
+10 9
+4 3
+912,913,948,949,913,913,913,913,919,914
+920,936,956,957,921,921,952,953,927,922
+928,944,964,965,929,951,960,961,935,930
+929,916,917,917,917,917,917,917,918,931
+929,924,925,942,938,939,943,925,926,931
+951,924,925,942,946,947,943,925,926,931
+929,932,933,933,933,933,933,933,934,931
+951,931,931,931,931,931,931,931,931,931
+998,931,931,931,940,941,931,931,931,999
+collision
+1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,1,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+0,0,0,0,1,1,0,0,0,0
+1,0,0,0,1,1,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+1,0,0,0,0,0,0,0,0,0
+1,0,0,0,0,0,0,0,0,1
+warps
+4 8 PacifidlogTown 5
+5 8 PacifidlogTown 5
+npcs
+people_expert_m 9 4 E static 0 - 0
+people_gentleman 3 4 E static 0 - 0
+dialogs
+0	I can't see MIRAGE ISLAND today…
+1	MIRAGE ISLAND…It must become visible and invisible depending on the weather conditions that make mirages appear.Or is it really appearing and disappearing?
+objscripts
+0 PacifidlogTown_House5_EventScript_MirageIslandWatcher
+1 PacifidlogTown_House5_EventScript_Gentleman
+scriptdefs
+= PacifidlogTown_House5_EventScript_Gentleman
+msgbox	MIRAGE ISLAND…It must become visible and invisible depending on the weather conditions that make mirages appear.Or is it really appearing and disappearing?
+end
+= PacifidlogTown_House5_EventScript_MirageIslandWatcher
+lock
+faceplayer
+specialvar VAR_RESULT IsMirageIslandPresent
+goto_if_eq VAR_RESULT TRUE PacifidlogTown_House5_EventScript_MirageIslandPresent
+msgbox	I can't see MIRAGE ISLAND today…
+release
+end
+= PacifidlogTown_House5_EventScript_MirageIslandPresent
+msgbox	Oh! Oh my! I can see MIRAGE ISLAND today!
+release
+end
+mapsec
+17 10 1 1	PACIFIDLOG TOWN
+music
+MUS_LILYCOVE

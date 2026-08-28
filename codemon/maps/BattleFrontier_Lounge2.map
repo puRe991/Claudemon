@@ -1,0 +1,132 @@
+tileset building__battle_frontier
+13 8
+5 3
+957,958,957,958,959,957,932,958,957,957,957,957,957
+965,966,967,966,967,966,2,966,967,966,967,966,965
+976,974,975,974,975,974,933,974,975,974,975,974,970
+989,968,1015,968,999,968,988,968,969,968,999,968,986
+997,969,1007,969,991,969,996,969,1007,969,991,969,992
+1005,968,969,968,969,968,988,968,1015,968,999,968,1000
+977,969,968,969,968,969,996,969,1007,969,991,969,968
+1,949,950,968,969,968,969,968,969,968,969,968,1
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1
+0,1,1,1,1,1,0,1,1,1,1,1,0
+0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,1,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,1,0,0,0,0,0,0
+1,0,0,0,0,0,0,0,0,0,0,0,1
+warps
+1 7 BattleFrontier_OutsideWest 3
+2 7 BattleFrontier_OutsideWest 3
+npcs
+people_maniac 8 4 E static 0 - 0
+people_maniac 10 4 W static 0 - 0
+people_maniac 10 3 W static 0 - 0
+people_running_triathlete_f 4 6 S wander 0 - 0
+people_maniac 10 5 W static 0 - 0
+dialogs
+0	Howdy! When it comes to news about the BATTLE FRONTIER, I'm no. 1.You can think of me as the FRONTIER MANIAC.Just checking, but you are a TRAINER, isn't that right?I'll happily share the hottest news I gathered about the BATTLE FRONTIER.
+1	What amazing news-gathering power! My mentor's like none other!
+2	What amazing powers of observation! My mentor's like none other!
+3	…What is this place? It's scaring me…
+4	What amazing power of persuasion! My mentor's like none other!
+objscripts
+0 BattleFrontier_Lounge2_EventScript_FrontierManiac
+1 BattleFrontier_Lounge2_EventScript_Maniac1
+2 BattleFrontier_Lounge2_EventScript_Maniac2
+3 BattleFrontier_Lounge2_EventScript_TriathleteF
+4 BattleFrontier_Lounge2_EventScript_Maniac3
+scriptdefs
+= BattleFrontier_Lounge2_EventScript_Maniac3
+lock
+msgbox	What amazing power of persuasion! My mentor's like none other!
+release
+end
+= BattleFrontier_Lounge2_EventScript_TriathleteF
+msgbox	…What is this place? It's scaring me…
+end
+= BattleFrontier_Lounge2_EventScript_Maniac2
+lock
+msgbox	What amazing powers of observation! My mentor's like none other!
+release
+end
+= BattleFrontier_Lounge2_EventScript_Maniac1
+lock
+msgbox	What amazing news-gathering power! My mentor's like none other!
+release
+end
+= BattleFrontier_Lounge2_EventScript_FrontierManiac
+lock
+faceplayer
+goto_if_set FLAG_MET_BATTLE_FRONTIER_MANIAC BattleFrontier_Lounge2_EventScript_AlreadyMetManiac
+setflag FLAG_MET_BATTLE_FRONTIER_MANIAC
+msgbox	Howdy! When it comes to news about the BATTLE FRONTIER, I'm no. 1.You can think of me as the FRONTIER MANIAC.Just checking, but you are a TRAINER, isn't that right?I'll happily share the hottest news I gathered about the BATTLE FRONTIER.
+goto BattleFrontier_Lounge2_EventScript_GiveAdvice
+end
+= BattleFrontier_Lounge2_EventScript_GiveAdvice
+call_if_eq VAR_FRONTIER_MANIAC_FACILITY FRONTIER_MANIAC_TOWER_SINGLES BattleFrontier_Lounge2_EventScript_BufferSingle
+call_if_eq VAR_FRONTIER_MANIAC_FACILITY FRONTIER_MANIAC_TOWER_DOUBLES BattleFrontier_Lounge2_EventScript_BufferDouble
+call_if_eq VAR_FRONTIER_MANIAC_FACILITY FRONTIER_MANIAC_TOWER_MULTIS BattleFrontier_Lounge2_EventScript_BufferMulti
+call_if_eq VAR_FRONTIER_MANIAC_FACILITY FRONTIER_MANIAC_TOWER_LINK BattleFrontier_Lounge2_EventScript_BufferMultiLink
+call_if_eq VAR_FRONTIER_MANIAC_FACILITY FRONTIER_MANIAC_DOME BattleFrontier_Lounge2_EventScript_BufferBattleDome
+call_if_eq VAR_FRONTIER_MANIAC_FACILITY FRONTIER_MANIAC_FACTORY BattleFrontier_Lounge2_EventScript_BufferBattleFactory
+call_if_eq VAR_FRONTIER_MANIAC_FACILITY FRONTIER_MANIAC_PALACE BattleFrontier_Lounge2_EventScript_BufferBattlePalace
+call_if_eq VAR_FRONTIER_MANIAC_FACILITY FRONTIER_MANIAC_ARENA BattleFrontier_Lounge2_EventScript_BufferBattleArena
+call_if_eq VAR_FRONTIER_MANIAC_FACILITY FRONTIER_MANIAC_PIKE BattleFrontier_Lounge2_EventScript_BufferBattlePike
+call_if_eq VAR_FRONTIER_MANIAC_FACILITY FRONTIER_MANIAC_PYRAMID BattleFrontier_Lounge2_EventScript_BufferBattlePyramid
+@ <= FRONTIER_MANIAC_TOWER_LINK is any Battle Tower mode
+call_if_le VAR_FRONTIER_MANIAC_FACILITY FRONTIER_MANIAC_TOWER_LINK BattleFrontier_Lounge2_EventScript_BattleTowerNews
+@ >= FRONTIER_MANIAC_DOME is any facility other than Battle Tower
+call_if_ge VAR_FRONTIER_MANIAC_FACILITY FRONTIER_MANIAC_DOME BattleFrontier_Lounge2_EventScript_FacilityNews
+special ShowFrontierManiacMessage
+waitmessage
+waitbuttonpress
+release
+end
+= BattleFrontier_Lounge2_EventScript_FacilityNews
+msgbox	Let's see now…It sounds like the STR_VAR_1 is the hottest place going.
+return
+= BattleFrontier_Lounge2_EventScript_BattleTowerNews
+msgbox	Let's see now…It sounds like BATTLE TOWER STR_VAR_1 is the hottest.
+return
+= BattleFrontier_Lounge2_EventScript_BufferBattlePyramid
+bufferstdstring STR_VAR_1 STDSTRING_BATTLE_PYRAMID
+return
+= BattleFrontier_Lounge2_EventScript_BufferBattlePike
+bufferstdstring STR_VAR_1 STDSTRING_BATTLE_PIKE
+return
+= BattleFrontier_Lounge2_EventScript_BufferBattleArena
+bufferstdstring STR_VAR_1 STDSTRING_BATTLE_ARENA
+return
+= BattleFrontier_Lounge2_EventScript_BufferBattlePalace
+bufferstdstring STR_VAR_1 STDSTRING_BATTLE_PALACE
+return
+= BattleFrontier_Lounge2_EventScript_BufferBattleFactory
+bufferstdstring STR_VAR_1 STDSTRING_BATTLE_FACTORY
+return
+= BattleFrontier_Lounge2_EventScript_BufferBattleDome
+bufferstdstring STR_VAR_1 STDSTRING_BATTLE_DOME
+return
+= BattleFrontier_Lounge2_EventScript_BufferMultiLink
+bufferstdstring STR_VAR_1 STDSTRING_MULTI_LINK
+return
+= BattleFrontier_Lounge2_EventScript_BufferMulti
+bufferstdstring STR_VAR_1 STDSTRING_MULTI
+return
+= BattleFrontier_Lounge2_EventScript_BufferDouble
+bufferstdstring STR_VAR_1 STDSTRING_DOUBLE
+return
+= BattleFrontier_Lounge2_EventScript_BufferSingle
+bufferstdstring STR_VAR_1 STDSTRING_SINGLE
+return
+= BattleFrontier_Lounge2_EventScript_AlreadyMetManiac
+msgbox	Howdy! Did you swing by to grill me about the latest word? Oh, all right!
+goto BattleFrontier_Lounge2_EventScript_GiveAdvice
+end
+mapsec
+22 12 1 1	BATTLE FRONTIER
+music
+MUS_B_TOWER_RS

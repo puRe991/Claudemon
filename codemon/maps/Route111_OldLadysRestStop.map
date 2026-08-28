@@ -1,0 +1,53 @@
+tileset building__generic_building
+10 8
+6 3
+739,702,703,535,533,534,678,679,533,740
+747,710,711,543,541,542,686,687,673,748
+755,718,719,545,545,576,694,695,681,756
+545,553,553,580,590,591,580,553,553,553
+545,553,553,580,598,599,580,553,553,553
+545,553,553,553,553,553,553,553,553,553
+800,792,792,792,792,792,792,792,792,792
+803,795,795,528,529,795,795,795,795,795
+collision
+1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0
+0,0,0,0,1,1,0,0,0,0
+0,0,0,0,1,1,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+warps
+3 7 Route111 2
+4 7 Route111 2
+npcs
+people_expert_f 6 3 W static 0 - 0
+dialogs
+0	Oh, dear, dear. Aren't your POKéMON exhausted?If you'd like, rest up here. That's a fine idea! You should do that.
+objscripts
+0 Route111_OldLadysRestStop_EventScript_OldLady
+scriptdefs
+= Route111_OldLadysRestStop_EventScript_OldLady
+lock
+faceplayer
+msgboxyesno	Oh, dear, dear. Aren't your POKéMON exhausted?If you'd like, rest up here. That's a fine idea! You should do that.
+goto_if_eq VAR_RESULT YES Route111_OldLadysRestStop_EventScript_Rest
+goto_if_eq VAR_RESULT NO Route111_OldLadysRestStop_EventScript_DeclineRest
+end
+= Route111_OldLadysRestStop_EventScript_DeclineRest
+msgbox	Is that so? You don't need to be shy about it.
+release
+end
+= Route111_OldLadysRestStop_EventScript_Rest
+msgbox	That's right. Take your time and rest up!
+closemessage
+call Common_EventScript_OutOfCenterPartyHeal
+msgboxyesno	Oh, dear, dear. Are your POKéMON still tired?You should take another rest here. That's a fine idea. You should do that.
+goto_if_eq VAR_RESULT YES Route111_OldLadysRestStop_EventScript_Rest
+goto_if_eq VAR_RESULT NO Route111_OldLadysRestStop_EventScript_DeclineRest
+end
+mapsec
+8 0 1 6	ROUTE 111
+music
+MUS_RUSTBORO

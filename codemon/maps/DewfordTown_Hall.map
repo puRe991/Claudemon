@@ -1,0 +1,242 @@
+tileset building__generic_building
+17 9
+8 4
+517,646,647,517,517,519,517,637,517,560,760,517,517,519,519,517,517
+617,654,655,525,525,527,525,645,525,542,768,525,525,527,527,525,525
+625,662,663,548,548,548,548,548,548,568,768,548,548,635,636,548,548
+569,547,547,547,547,547,547,547,547,547,768,569,555,594,595,556,547
+569,547,744,745,746,556,547,547,547,547,768,569,547,762,763,763,763
+569,555,752,753,754,547,547,547,547,547,776,569,547,770,771,771,771
+569,547,547,547,547,547,547,547,547,547,784,569,547,778,643,644,616
+569,547,547,547,547,547,547,547,547,547,557,559,547,549,651,652,624
+569,547,547,547,547,520,521,547,547,547,547,547,547,547,547,547,547
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,0,0
+0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,0,0
+0,0,1,1,1,0,0,0,0,0,1,0,0,0,0,0,0
+0,0,1,1,1,0,0,0,0,0,1,0,0,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+warps
+5 8 DewfordTown 0
+6 8 DewfordTown 0
+npcs
+people_girl_2 4 6 N static 0 - 0
+people_woman_2 1 5 E static 0 - 0
+people_man_1 5 4 W static 0 - 0
+people_expert_m 9 3 N static 0 LOCALID_DEWFORD_HALL_EXPERT_M 0
+people_twin 5 2 N static 0 LOCALID_DEWFORD_HALL_TWIN 0
+people_little_boy 14 7 S wander 0 - 0
+people_school_kid_m 12 3 E static 0 LOCALID_DEWFORD_HALL_SCHOOL_KID_M 0
+people_psychic_m 15 3 W static 0 LOCALID_DEWFORD_HALL_PSYCHIC_M 0
+people_maniac 8 6 S wander FLAG_HIDE_DEWFORD_HALL_SLUDGE_BOMB_MAN - 0
+dialogs
+0	What's in vogue? Why, it has to be “STR_VAR_1”!I can't imagine what life would be like without “STR_VAR_1”!
+1	I'm teaching my POKéMON about “STR_VAR_1,” but it's not going well.It's a bit too much, I think.
+2	I'm studying up on the hip and trendy “STR_VAR_1” now.Is it true that there's a deep link between “STR_VAR_1” and “STR_VAR_2”?
+3	This whole business about “STR_VAR_1”… Isn't there a TV show on it?
+4	Across the sea…Is “STR_VAR_1” even more popular?
+5	I collect official “STR_VAR_1” licensed merchandise.I have official “STR_VAR_1” DOLLS…Official “STR_VAR_1” brand clothing…And officially licensed “STR_VAR_1” picture books.Heheh, I own! I'm not sharing anything with you!
+8	For me, SLUDGE BOMB is at the peak of popularity. It's the one.Hunh? You're telling me that you don't know about SLUDGE BOMB?That's outright pitiful. I'll give you one.
+objscripts
+0 DewfordTown_Hall_EventScript_Girl
+1 DewfordTown_Hall_EventScript_Woman
+2 DewfordTown_Hall_EventScript_Man
+3 DewfordTown_Hall_EventScript_ExpertM
+4 DewfordTown_Hall_EventScript_Twin
+5 DewfordTown_Hall_EventScript_LittleBoy
+6 DewfordTown_Hall_EventScript_SchoolKidM
+7 DewfordTown_Hall_EventScript_PsychicM
+8 DewfordTown_Hall_EventScript_SludgeBombMan
+movements
+Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterRight	delay,end
+Common_Movement_WalkInPlaceFasterUp	delay,end
+DewfordTown_Hall_Movement_PsychicWalkInPlaceLeft	delay,end
+DewfordTown_Hall_Movement_SchoolKidWalkInPlaceRight	delay,end
+scriptdefs
+= DewfordTown_Hall_EventScript_SludgeBombMan
+lock
+faceplayer
+call Common_EventScript_BufferTrendyPhrase
+goto_if_set FLAG_RECEIVED_TM_SLUDGE_BOMB DewfordTown_Hall_EventScript_ReceivedSludgeBomb
+msgbox	For me, SLUDGE BOMB is at the peak of popularity. It's the one.Hunh? You're telling me that you don't know about SLUDGE BOMB?That's outright pitiful. I'll give you one.
+giveitem ITEM_TM_SLUDGE_BOMB
+goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
+setflag FLAG_RECEIVED_TM_SLUDGE_BOMB
+release
+end
+= DewfordTown_Hall_EventScript_ReceivedSludgeBomb
+msgbox	I love SLUDGE BOMB.But POKéMON with the move “STR_VAR_1” are in, too.
+release
+end
+= DewfordTown_Hall_EventScript_PsychicM
+lockall
+setvar VAR_0x8008 1
+goto DewfordTown_Hall_EventScript_DoTrendDebate
+end
+= DewfordTown_Hall_EventScript_DoTrendDebate
+call Common_EventScript_BufferTrendyPhrase
+special GetDewfordHallPaintingNameIndex
+switch VAR_RESULT
+case 0 DewfordTown_Hall_EventScript_TrendDebate1
+case 1 DewfordTown_Hall_EventScript_TrendDebate1
+case 2 DewfordTown_Hall_EventScript_TrendDebate2
+case 3 DewfordTown_Hall_EventScript_TrendDebate2
+case 4 DewfordTown_Hall_EventScript_TrendDebate3
+case 5 DewfordTown_Hall_EventScript_TrendDebate3
+case 6 DewfordTown_Hall_EventScript_TrendDebate4
+case 7 DewfordTown_Hall_EventScript_TrendDebate5
+end
+= DewfordTown_Hall_EventScript_TrendDebate5
+call DewfordTown_Hall_EventScript_DebateReact1
+msgbox	If you and me team up as a combo, we'll be invincible when it comes to all things “STR_VAR_1”!
+call DewfordTown_Hall_EventScript_DebateReact2
+msgbox	Spot on, my friend!We shall be the “STR_VAR_1” DUO!Isn't that a ripe image? Hahahah!
+releaseall
+end
+= DewfordTown_Hall_EventScript_DebateReact2
+applymovement LOCALID_DEWFORD_HALL_SCHOOL_KID_M DewfordTown_Hall_Movement_SchoolKidWalkInPlaceRight
+waitmovement 0
+goto_if_eq VAR_0x8008 0 DewfordTown_Hall_EventScript_PlayerReactNorthSouth
+goto_if_eq VAR_0x8008 1 DewfordTown_Hall_EventScript_PlayerReactEast
+end
+= DewfordTown_Hall_EventScript_PlayerReactEast
+goto_if_eq VAR_FACING DIR_WEST DewfordTown_Hall_EventScript_DontMovePlayer1
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterLeft
+waitmovement 0
+return
+= DewfordTown_Hall_EventScript_DontMovePlayer1
+return
+= DewfordTown_Hall_EventScript_PlayerReactNorthSouth
+call_if_eq VAR_FACING DIR_NORTH DewfordTown_Hall_EventScript_PlayerWalkInPlaceUp
+call_if_eq VAR_FACING DIR_SOUTH DewfordTown_Hall_EventScript_PlayerWalkInPlaceDown
+return
+= DewfordTown_Hall_EventScript_PlayerWalkInPlaceDown
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterDown
+waitmovement 0
+return
+= DewfordTown_Hall_EventScript_PlayerWalkInPlaceUp
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+return
+= DewfordTown_Hall_EventScript_DebateReact1
+applymovement LOCALID_DEWFORD_HALL_PSYCHIC_M DewfordTown_Hall_Movement_PsychicWalkInPlaceLeft
+waitmovement 0
+goto_if_eq VAR_0x8008 0 DewfordTown_Hall_EventScript_PlayerReactWest
+goto_if_eq VAR_0x8008 1 DewfordTown_Hall_EventScript_DontMovePlayer2
+end
+= DewfordTown_Hall_EventScript_DontMovePlayer2
+return
+= DewfordTown_Hall_EventScript_PlayerReactWest
+goto_if_eq VAR_FACING DIR_EAST DewfordTown_Hall_EventScript_DontMovePlayer1
+applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterRight
+waitmovement 0
+return
+= DewfordTown_Hall_EventScript_TrendDebate4
+call DewfordTown_Hall_EventScript_DebateReact1
+msgbox	I was thinking, though…Wouldn't you agree that “STR_VAR_1” has grown from being something trendy to being a part of our daily lives?
+call DewfordTown_Hall_EventScript_DebateReact2
+msgbox	Beg pardon? That much, what?However, it's true that “STR_VAR_1” weighs heavily on your mind, whether you're awake or asleep.Absolutely, you're the “STR_VAR_1” PROFESSOR, old sport!
+releaseall
+end
+= DewfordTown_Hall_EventScript_TrendDebate3
+call DewfordTown_Hall_EventScript_DebateReact1
+msgbox	Anyway, as I was saying earlier, we should get together and organize a “STR_VAR_1” party on the island.
+call DewfordTown_Hall_EventScript_DebateReact2
+msgbox	Oh, a smashing good idea!It will settle once and for all who is the best at “STR_VAR_1.” Brilliant, indeed!Starting today, our lives will revolve around “STR_VAR_1”!
+releaseall
+end
+= DewfordTown_Hall_EventScript_TrendDebate2
+call DewfordTown_Hall_EventScript_DebateReact1
+msgbox	Hey, listen, I composed a theme song for “STR_VAR_1.”“STR_VAR_1” is really popular right now.Okay, listen! … …Oh! STR_VAR_1!Wonderful STR_VAR_1!
+call DewfordTown_Hall_EventScript_DebateReact2
+msgbox	… …I dare say, chap, it would pay for you to work on your singing before you trifle yourself with “STR_VAR_1.”
+releaseall
+end
+= DewfordTown_Hall_EventScript_TrendDebate1
+call DewfordTown_Hall_EventScript_DebateReact1
+msgbox	I saw “STR_VAR_1”! Cool, huh?It's, like, the coolest thing going!It was awesome! It was the real thing, oh yeah!
+call DewfordTown_Hall_EventScript_DebateReact2
+msgbox	Oh, no, no, no.That alleged “STR_VAR_1” you claim to have seen--it's not.The authentic article is much… How should I say it? Sharper, yet more mellow!Ah, no matter. It's astonishing!
+releaseall
+end
+= DewfordTown_Hall_EventScript_SchoolKidM
+lockall
+setvar VAR_0x8008 0
+goto DewfordTown_Hall_EventScript_DoTrendDebate
+end
+= DewfordTown_Hall_EventScript_LittleBoy
+lock
+faceplayer
+call Common_EventScript_BufferTrendyPhrase
+msgbox	I collect official “STR_VAR_1” licensed merchandise.I have official “STR_VAR_1” DOLLS…Official “STR_VAR_1” brand clothing…And officially licensed “STR_VAR_1” picture books.Heheh, I own! I'm not sharing anything with you!
+release
+end
+= DewfordTown_Hall_EventScript_Twin
+lock
+faceplayer
+call Common_EventScript_BufferTrendyPhrase
+msgbox	Across the sea…Is “STR_VAR_1” even more popular?
+closemessage
+applymovement LOCALID_DEWFORD_HALL_TWIN Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+release
+end
+= DewfordTown_Hall_EventScript_ExpertM
+lock
+faceplayer
+call Common_EventScript_BufferTrendyPhrase
+msgbox	This whole business about “STR_VAR_1”… Isn't there a TV show on it?
+closemessage
+applymovement LOCALID_DEWFORD_HALL_EXPERT_M Common_Movement_WalkInPlaceFasterUp
+waitmovement 0
+release
+end
+= DewfordTown_Hall_EventScript_Man
+lock
+faceplayer
+call Common_EventScript_BufferTrendyPhrase
+special BufferDeepLinkPhrase
+msgboxyesno	I'm studying up on the hip and trendy “STR_VAR_1” now.Is it true that there's a deep link between “STR_VAR_1” and “STR_VAR_2”?
+goto_if_eq VAR_RESULT YES DewfordTown_Hall_EventScript_ConfirmTrendLink
+goto_if_eq VAR_RESULT NO DewfordTown_Hall_EventScript_RejectTrendLink
+end
+= DewfordTown_Hall_EventScript_RejectTrendLink
+msgbox	What?! Is that so?!It's not easy for an older fellow like me to keep up with trends!
+release
+end
+= DewfordTown_Hall_EventScript_ConfirmTrendLink
+msgbox	Oh! So, my hunch was right!I'm one step closer to being hip and happening, yowza!
+release
+end
+= DewfordTown_Hall_EventScript_Woman
+lock
+faceplayer
+call Common_EventScript_BufferTrendyPhrase
+msgbox	I'm teaching my POKéMON about “STR_VAR_1,” but it's not going well.It's a bit too much, I think.
+release
+end
+= DewfordTown_Hall_EventScript_Girl
+lock
+faceplayer
+call Common_EventScript_BufferTrendyPhrase
+special IsTrendyPhraseBoring
+goto_if_eq VAR_RESULT TRUE DewfordTown_Hall_EventScript_GirlBoredOfTrend
+msgbox	What's in vogue? Why, it has to be “STR_VAR_1”!I can't imagine what life would be like without “STR_VAR_1”!
+release
+end
+= DewfordTown_Hall_EventScript_GirlBoredOfTrend
+msgbox	What's in vogue? Why, it has to be “STR_VAR_1”!But I'm getting kind of bored with it.I should look for the next big thing.
+release
+end
+signs
+0 1	IDENTIFYING GOOD “STR_VAR_1” & BAD “STR_VAR_1”…THE LINK BETWEEN “STR_VAR_1” AND POKéMON…USEFUL “STR_VAR_1”…It's neatly jammed with books about “STR_VAR_1.”
+mapsec
+2 14 1 1	DEWFORD TOWN
+music
+MUS_DEWFORD

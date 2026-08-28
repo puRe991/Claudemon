@@ -1,0 +1,103 @@
+tileset building__trainer_hill
+25 16
+12 8
+896,896,896,896,896,896,896,856,857,865,874,874,858,871,871,868,860,861,896,896,896,896,896,896,896
+896,896,896,896,896,896,896,864,865,874,874,874,858,871,871,871,868,869,896,896,896,896,896,896,896
+901,901,901,901,901,901,901,872,873,874,874,874,858,871,871,871,876,877,901,901,901,901,901,901,901
+871,871,871,871,871,871,959,880,881,882,873,874,858,871,876,883,884,885,959,871,871,871,871,871,871
+875,875,875,875,875,875,965,888,889,890,862,863,866,886,887,891,892,893,965,875,875,875,875,875,875
+875,875,875,875,875,875,965,875,897,898,870,871,859,894,895,899,900,875,965,875,875,875,875,875,875
+974,875,974,875,875,875,965,875,875,875,878,879,867,902,903,875,875,875,965,875,875,875,974,875,974
+975,875,975,875,875,875,965,875,875,875,875,875,875,875,875,875,875,875,965,875,875,875,975,875,975
+875,875,875,875,875,875,965,875,875,875,875,875,875,875,875,875,875,875,965,875,875,875,875,875,875
+875,875,875,875,875,875,966,875,875,875,875,875,875,875,875,875,875,875,966,875,875,875,875,875,875
+911,911,911,911,911,911,916,917,875,958,958,958,958,958,958,958,875,936,937,934,934,934,934,934,934
+960,919,919,919,919,919,904,915,916,950,967,967,967,967,967,951,937,938,933,942,942,942,942,942,961
+962,927,927,927,927,927,912,913,914,915,916,917,875,936,937,938,939,940,941,927,927,927,927,927,963
+962,927,927,927,927,927,920,921,922,923,924,925,910,944,945,946,947,948,949,927,927,927,927,927,963
+962,927,935,935,935,927,920,952,953,907,908,909,918,928,929,930,956,957,949,927,935,935,935,927,963
+962,927,943,943,943,927,920,968,969,970,905,896,926,855,932,971,972,973,949,927,943,943,943,927,963
+collision
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,0,1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1
+0,1,0,1,1,1,1,0,0,0,0,1,1,1,0,0,0,0,1,1,1,1,0,1,0
+0,1,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,1,0
+1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1
+warps
+9 5 TrainerHill_4F 1
+15 5 TrainerHill_Elevator 1
+npcs
+people_gentleman 12 7 S static 0 - 0
+objscripts
+0 TrainerHill_Roof_EventScript_Owner
+scriptdefs
+= TrainerHill_Roof_EventScript_Owner
+trainerhill_settrainerflags
+lock
+faceplayer
+trainerhill_getownerstate
+switch VAR_RESULT
+case 0 TrainerHill_Roof_EventScript_Arrived
+case 1 TrainerHill_Roof_EventScript_GivePrize
+case 2 TrainerHill_Roof_EventScript_AlreadyReceivedPrize
+goto TrainerHill_Roof_EventScript_Arrived
+= TrainerHill_Roof_EventScript_Arrived
+msgbox	Hm! Hm!You finally came! Yes, you have arrived!Wait! Don't say it! I know why you came all the way here by yourself!You wanted to see me, the owner of the TRAINER HILL, because…You want to form a tag team with me! Wa-hoo!…Uh? That's not it?Anyway, I watched you on your way up. Marvelous battling! Bravo, indeed!
+goto TrainerHill_Roof_EventScript_GivePrize
+= TrainerHill_Roof_EventScript_GivePrize
+trainerhill_giveprize
+switch VAR_RESULT
+case 0 TrainerHill_Roof_EventScript_ReceivePrize
+case 1 TrainerHill_Roof_EventScript_NoRoomForPrize
+case 2 TrainerHill_Roof_EventScript_CheckFinalTime
+goto TrainerHill_Roof_EventScript_ReceivePrize
+= TrainerHill_Roof_EventScript_ReceivePrize
+msgbox	For a marvelous someone like you, I have the most marvelous gift!
+playfanfare MUS_LEVEL_UP
+msgbox	Obtained the STR_VAR_2!
+waitfanfare
+waitmessage
+goto TrainerHill_Roof_EventScript_CheckFinalTime
+= TrainerHill_Roof_EventScript_CheckFinalTime
+trainerhill_finaltime
+switch VAR_RESULT
+case 0 TrainerHill_Roof_EventScript_NewRecord
+case 1 TrainerHill_Roof_EventScript_NoNewRecord
+case 2 TrainerHill_Roof_EventScript_EndSpeakToOwner
+goto TrainerHill_Roof_EventScript_NewRecord
+= TrainerHill_Roof_EventScript_NewRecord
+msgbox	Oh, hold on here! Did you possibly get here marvelously quickly?How splendid! You needn't have hurried so to see me!That is so delightful. I'll have the Time Board at the reception updated!
+goto TrainerHill_Roof_EventScript_EndSpeakToOwner
+end
+= TrainerHill_Roof_EventScript_EndSpeakToOwner
+msgbox	Perhaps it would please me more if you arrived zippier next time.Then, I should be pleased to form a tag team with you!Until we meet again, amigo!
+release
+end
+= TrainerHill_Roof_EventScript_NoNewRecord
+msgbox	But, oh… You weren't very quick getting here.
+goto TrainerHill_Roof_EventScript_EndSpeakToOwner
+end
+= TrainerHill_Roof_EventScript_NoRoomForPrize
+msgbox	For a marvelous someone like you, I have the most marvelous gift!
+msgbox	The BAG is full…
+msgbox	Oh, no, full up with things! You'll be back later for this!
+goto TrainerHill_Roof_EventScript_CheckFinalTime
+= TrainerHill_Roof_EventScript_AlreadyReceivedPrize
+msgbox	Perhaps it would please me more if you arrived zippier next time.Then, I should be pleased to form a tag team with you!Until we meet again, amigo!
+release
+end
+mapsec
+8 4 1 1	TRAINER HILL
+music
+MUS_B_TOWER_RS

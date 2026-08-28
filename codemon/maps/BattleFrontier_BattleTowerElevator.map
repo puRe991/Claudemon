@@ -1,0 +1,69 @@
+tileset building__battle_frontier
+5 7
+2 3
+808,810,810,810,812
+816,817,817,817,820
+824,825,825,825,828
+604,605,605,605,605
+612,613,613,613,613
+612,613,613,613,613
+612,591,599,613,613
+collision
+0,1,1,1,1
+0,1,1,1,1
+0,1,1,1,1
+0,0,0,0,0
+0,0,0,0,0
+0,0,0,0,0
+0,0,0,0,0
+npcs
+people_teala 1 5 N static 0 LOCALID_TOWER_ELEVATOR_ATTENDANT 0
+onload
+VAR_TEMP_0 0 BattleFrontier_BattleTowerElevator_EventScript_EnterElevator
+movements
+BattleFrontier_BattleTowerElevator_Movement_AttendantEnter	up,right,face_down,end
+BattleFrontier_BattleTowerElevator_Movement_AttendantExit	down,down,delay,end
+BattleFrontier_BattleTowerElevator_Movement_PlayerEnter	up,up,face_down,end
+BattleFrontier_BattleTowerElevator_Movement_PlayerExit	right,down,down,end
+scriptdefs
+= BattleFrontier_BattleTowerElevator_EventScript_EnterElevator
+setvar VAR_TEMP_0 1
+applymovement LOCALID_TOWER_ELEVATOR_ATTENDANT BattleFrontier_BattleTowerElevator_Movement_AttendantEnter
+applymovement LOCALID_PLAYER BattleFrontier_BattleTowerElevator_Movement_PlayerEnter
+waitmovement 0
+special BufferBattleTowerElevatorFloors
+waitse
+special MoveElevator
+delay 48
+applymovement LOCALID_TOWER_ELEVATOR_ATTENDANT BattleFrontier_BattleTowerElevator_Movement_AttendantExit
+applymovement LOCALID_PLAYER BattleFrontier_BattleTowerElevator_Movement_PlayerExit
+waitmovement 0
+call BattleFrontier_BattleTowerElevator_EventScript_WarpToNextRoom
+end
+= BattleFrontier_BattleTowerElevator_EventScript_WarpToNextRoom
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES BattleFrontier_BattleTowerElevator_EventScript_WarpToCorridor
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_DOUBLES BattleFrontier_BattleTowerElevator_EventScript_WarpToCorridor
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_MULTIS BattleFrontier_BattleTowerElevator_EventScript_WarpToNextRoomMulti
+call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_LINK_MULTIS BattleFrontier_BattleTowerElevator_EventScript_WarpToCorridorMulti
+return
+= BattleFrontier_BattleTowerElevator_EventScript_WarpToCorridorMulti
+warp BattleFrontier_BattleTowerMultiCorridor 7 2
+waitstate
+return
+= BattleFrontier_BattleTowerElevator_EventScript_WarpToNextRoomMulti
+goto_if_unset FLAG_CHOSEN_MULTI_BATTLE_NPC_PARTNER BattleFrontier_BattleTowerElevator_EventScript_WarpToPartnerRoom
+warp BattleFrontier_BattleTowerMultiCorridor 7 2
+waitstate
+return
+= BattleFrontier_BattleTowerElevator_EventScript_WarpToPartnerRoom
+warp BattleFrontier_BattleTowerMultiPartnerRoom 10 1
+waitstate
+return
+= BattleFrontier_BattleTowerElevator_EventScript_WarpToCorridor
+warp BattleFrontier_BattleTowerCorridor 8 1
+waitstate
+return
+mapsec
+22 12 1 1	BATTLE FRONTIER
+music
+MUS_B_TOWER
