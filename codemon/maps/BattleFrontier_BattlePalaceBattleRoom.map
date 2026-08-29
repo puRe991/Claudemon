@@ -85,7 +85,7 @@ case 2 BattleFrontier_BattlePalaceBattleRoom_EventScript_AskRetireChallenge
 case MULTI_B_PRESSED BattleFrontier_BattlePalaceBattleRoom_EventScript_AskReadyForOpponent
 goto BattleFrontier_BattlePalaceBattleRoom_EventScript_AskRecordBattle
 = BattleFrontier_BattlePalaceBattleRoom_EventScript_AskRecordBattle
-msgbox	Do you wish to record your latest match on your FRONTIER PASS?
+msgbox	Möchtest du deinen letzten Kampf auf deinem FRONTIER-PASS aufzeichnen?
 waitmessage
 multichoicedefault 20 8 MULTI_YESNO 1 FALSE
 switch VAR_RESULT
@@ -97,7 +97,7 @@ goto BattleFrontier_BattlePalaceBattleRoom_EventScript_RecordBattle
 call BattleFrontier_EventScript_SaveBattle
 goto BattleFrontier_BattlePalaceBattleRoom_EventScript_AskReadyForOpponent
 = BattleFrontier_BattlePalaceBattleRoom_EventScript_AskRetireChallenge
-msgbox	Do you wish to quit your challenge?
+msgbox	Möchtest du deine Herausforderung abbrechen?
 waitmessage
 multichoicedefault 20 8 MULTI_YESNO 1 FALSE
 switch VAR_RESULT
@@ -148,7 +148,7 @@ removeobject LOCALID_PALACE_BATTLE_OPPONENT
 applymovement LOCALID_PALACE_BATTLE_PLAYER BattleFrontier_BattlePalaceBattleRoom_Movement_FaceUp
 applymovement LOCALID_PALACE_BATTLE_ATTENDANT BattleFrontier_BattlePalaceBattleRoom_Movement_FaceDown
 waitmovement 0
-msgbox	Excellent… Let me restore your POKéMON.
+msgbox	Ausgezeichnet… Lass mich deine POKéMON wiederherstellen.
 special LoadPlayerParty
 special SavePlayerParty
 frontier_setpartyorder FRONTIER_PARTY_SIZE
@@ -179,7 +179,7 @@ case YES BattleFrontier_BattlePalaceBattleRoom_EventScript_PauseChallenge
 case MULTI_B_PRESSED BattleFrontier_BattlePalaceBattleRoom_EventScript_AskReadyForOpponent
 goto BattleFrontier_BattlePalaceBattleRoom_EventScript_AskRetireChallenge
 = BattleFrontier_BattlePalaceBattleRoom_EventScript_PauseChallenge
-msgbox	Saving the data. Have patience…
+msgbox	Daten werden gespeichert. Hab etwas Geduld…
 waitmessage
 palace_save CHALLENGE_STATUS_PAUSED
 playse SE_SAVE
@@ -188,36 +188,36 @@ fadescreen FADE_TO_BLACK
 frontier_reset
 end
 = BattleFrontier_BattlePalaceBattleRoom_EventScript_ReadyFor7thOpponent
-msgbox	The 7th opponent is next. Are you prepared?
+msgbox	Als Nächstes wartet der 7. Gegner. Bist du bereit?
 waitmessage
 return
 = BattleFrontier_BattlePalaceBattleRoom_EventScript_ReadyFor6thOpponent
-msgbox	The 6th opponent is next. Are you prepared?
+msgbox	Als Nächstes wartet der 6. Gegner. Bist du bereit?
 waitmessage
 return
 = BattleFrontier_BattlePalaceBattleRoom_EventScript_ReadyFor5thOpponent
-msgbox	The 5th opponent is next. Are you prepared?
+msgbox	Als Nächstes wartet der 5. Gegner. Bist du bereit?
 waitmessage
 return
 = BattleFrontier_BattlePalaceBattleRoom_EventScript_ReadyFor4thOpponent
-msgbox	The 4th opponent is next. Are you prepared?
+msgbox	Als Nächstes wartet der 4. Gegner. Bist du bereit?
 waitmessage
 return
 = BattleFrontier_BattlePalaceBattleRoom_EventScript_ReadyFor3rdOpponent
-msgbox	The 3rd opponent is next. Are you prepared?
+msgbox	Als Nächstes wartet der 3. Gegner. Bist du bereit?
 waitmessage
 return
 = BattleFrontier_BattlePalaceBattleRoom_EventScript_ReadyFor2ndOpponent
-msgbox	The 2nd opponent is next. Are you prepared?
+msgbox	Als Nächstes wartet der 2. Gegner. Bist du bereit?
 waitmessage
 return
 = BattleFrontier_BattlePalaceBattleRoom_EventScript_MavenUpNext
 goto_if_eq VAR_TEMP_2 1 BattleFrontier_BattlePalaceBattleRoom_EventScript_AskReadyForMaven
-msgbox	And now…By winning consistently, you have earned the privilege of challenging our master, the PALACE MAVEN…
+msgbox	Und nun…Durch deine ununterbrochene Siegesserie hast du dir das Recht verdient, unseren Meister herauszufordern, den PALAST-CHAMP…
 setvar VAR_TEMP_2 1
 goto BattleFrontier_BattlePalaceBattleRoom_EventScript_AskReadyForMaven
 = BattleFrontier_BattlePalaceBattleRoom_EventScript_AskReadyForMaven
-msgbox	I shall send for the PALACE MAVEN. Are you ready?
+msgbox	Ich lasse den PALAST-CHAMP rufen. Bist du bereit?
 waitmessage
 call BattleFrontier_EventScript_GetCantRecordBattle
 goto_if_eq VAR_RESULT TRUE BattleFrontier_BattlePalaceBattleRoom_EventScript_AskReadyForMavenNoRecord
@@ -239,7 +239,7 @@ case MULTI_B_PRESSED BattleFrontier_BattlePalaceBattleRoom_EventScript_AskReadyF
 goto BattleFrontier_BattlePalaceBattleRoom_EventScript_BattleSpenser
 = BattleFrontier_BattlePalaceBattleRoom_EventScript_BattleSpenser
 call BattleFrontier_EventScript_SetBrainObjectGfx
-msgbox	Let great fanfare announce the arrival of the PALACE MAVEN, SPENSER!
+msgbox	Mit großem Tusch kündigen wir die Ankunft des PALAST-CHAMP SPENSER an!
 closemessage
 applymovement LOCALID_PALACE_BATTLE_PLAYER BattleFrontier_BattlePalaceBattleRoom_Movement_FaceRight
 applymovement LOCALID_PALACE_BATTLE_ATTENDANT BattleFrontier_BattlePalaceBattleRoom_Movement_FaceRight
@@ -258,11 +258,11 @@ case FRONTIER_BRAIN_STREAK BattleFrontier_BattlePalaceBattleRoom_EventScript_Bat
 case FRONTIER_BRAIN_STREAK_LONG BattleFrontier_BattlePalaceBattleRoom_EventScript_BattleSpenserGold
 frontier_get FRONTIER_DATA_HEARD_BRAIN_SPEECH
 goto_if_ne VAR_RESULT FALSE BattleFrontier_BattlePalaceBattleRoom_EventScript_BattleSpenserSilver
-msgbox	SPENSER: My physical being is with POKéMON always!My heart beats as one with POKéMON always!Young one of a TRAINER! Do you believe in your POKéMON?Can you believe them through and through?If your bonds of trust are frail, you will never beat my brethren!
+msgbox	SPENSER: Mein ganzes Wesen ist stets bei den POKéMON!Mein Herz schlägt stets im Gleichklang mit ihnen!Junger TRAINER! Glaubst du an deine POKéMON?Kannst du ihnen durch und durch vertrauen?Sind deine Vertrauensbande schwach, wirst du meine Gefährten niemals bezwingen!
 frontier_set FRONTIER_DATA_HEARD_BRAIN_SPEECH
 goto BattleFrontier_BattlePalaceBattleRoom_EventScript_BattleSpenserSilver
 = BattleFrontier_BattlePalaceBattleRoom_EventScript_BattleSpenserSilver
-msgbox	The bond you share with your POKéMON! Prove it to me here!
+msgbox	Die Bande, die dich mit deinen POKéMON verbindet! Beweise sie mir hier und jetzt!
 call BattleFrontier_BattlePalaceBattleRoom_EventScript_DoPalaceBattle
 goto_if_eq VAR_RESULT 1 BattleFrontier_BattlePalaceBattleRoom_EventScript_DefeatedSpenserSilver
 goto BattleFrontier_BattlePalaceBattleRoom_EventScript_WarpToLobbyLost
@@ -270,12 +270,12 @@ goto BattleFrontier_BattlePalaceBattleRoom_EventScript_WarpToLobbyLost
 palace_incrementstreak
 frontier_getsymbols
 goto_if_ne VAR_RESULT 0 BattleFrontier_BattlePalaceBattleRoom_EventScript_WarpToLobbyWon
-msgbox	SPENSER: Gwahahah!Hah, you never fell for my bluster! Sorry for trying that stunt!Here! Bring me the thing!
+msgbox	SPENSER: Gwahahah!Hah, auf mein Getöse bist du nie hereingefallen! Verzeih mir den Versuch!Hier! Bring mir das Ding!
 applymovement LOCALID_PALACE_BATTLE_PLAYER BattleFrontier_BattlePalaceBattleRoom_Movement_FaceUp
 applymovement LOCALID_PALACE_BATTLE_ATTENDANT BattleFrontier_BattlePalaceBattleRoom_Movement_FaceDown
-msgbox	My, my, if only you could maintain that facade of distinguished authority…Here! Let's see your FRONTIER PASS!
+msgbox	Meine Güte, wenn du dir diese vornehme Autorität doch nur bewahren könntest…Hier! Zeig mir deinen FRONTIER-PASS!
 playfanfare MUS_OBTAIN_SYMBOL
-msgbox	The Spirits Symbol was embossed on the FRONTIER PASS!
+msgbox	Das Geistersymbol wurde in den FRONTIER-PASS geprägt!
 waitmessage
 waitfanfare
 frontier_givesymbol
@@ -284,7 +284,7 @@ waitmovement 0
 applymovement LOCALID_PALACE_BATTLE_PLAYER Common_Movement_WalkInPlaceFasterRight
 applymovement LOCALID_PALACE_BATTLE_ATTENDANT Common_Movement_WalkInPlaceFasterRight
 waitmovement 0
-msgbox	SPENSER: Your POKéMON's eyes are truly clear and unclouded.I will eagerly await the next opportunity to see you.
+msgbox	SPENSER: Der Blick deiner POKéMON ist wahrhaft klar und ungetrübt.Ich erwarte schon gespannt die nächste Gelegenheit, dich wiederzusehen.
 goto BattleFrontier_BattlePalaceBattleRoom_EventScript_WarpToLobbyWon
 = BattleFrontier_BattlePalaceBattleRoom_EventScript_BattleSpenserGold
 msgbox	… … …Kaaah!
@@ -295,12 +295,12 @@ goto BattleFrontier_BattlePalaceBattleRoom_EventScript_WarpToLobbyLost
 palace_incrementstreak
 frontier_getsymbols
 goto_if_eq VAR_RESULT 2 BattleFrontier_BattlePalaceBattleRoom_EventScript_WarpToLobbyWon
-msgbox	SPENSER: Well, that was some display! Even fully unleashed, my brethren could not overpower you.Your team spirit is truly admirable!Here! Bring me that thing, will you?
+msgbox	SPENSER: Nun, das war eine Vorstellung! Selbst mit voller Kraft konnten meine Gefährten dich nicht bezwingen.Dein Teamgeist ist wahrhaft bewundernswert!Hier! Bring mir das Ding, ja?
 applymovement LOCALID_PALACE_BATTLE_PLAYER BattleFrontier_BattlePalaceBattleRoom_Movement_FaceUp
 applymovement LOCALID_PALACE_BATTLE_ATTENDANT BattleFrontier_BattlePalaceBattleRoom_Movement_FaceDown
-msgbox	My, my, if only you could maintain a certain level of decorum…Gaaah, here! Hurry with that FRONTIER PASS, you!
+msgbox	Meine Güte, wenn du dir doch nur ein wenig Anstand bewahren könntest…Gaaah, hier! Beeil dich mit dem FRONTIER-PASS, du!
 playfanfare MUS_OBTAIN_SYMBOL
-msgbox	The Spirits Symbol took on a golden shine!
+msgbox	Das Geistersymbol erstrahlte in goldenem Glanz!
 waitmessage
 waitfanfare
 frontier_givesymbol
@@ -309,12 +309,12 @@ waitmovement 0
 applymovement LOCALID_PALACE_BATTLE_PLAYER Common_Movement_WalkInPlaceFasterRight
 applymovement LOCALID_PALACE_BATTLE_ATTENDANT Common_Movement_WalkInPlaceFasterRight
 waitmovement 0
-msgbox	SPENSER: Gwahahah!Come see me time and again! My brethren and I will be waiting!
+msgbox	SPENSER: Gwahahah!Komm immer wieder zu mir! Meine Gefährten und ich werden warten!
 goto BattleFrontier_BattlePalaceBattleRoom_EventScript_WarpToLobbyWon
 = BattleFrontier_BattlePalaceBattleRoom_EventScript_IntroSpenserGold
 frontier_get FRONTIER_DATA_HEARD_BRAIN_SPEECH
 goto_if_ne VAR_RESULT FALSE BattleFrontier_BattlePalaceBattleRoom_EventScript_BattleSpenserGold
-msgbox	SPENSER: Gwahahah! You've battled your way up again?You must have developed a truly formidable bond with your POKéMON.So be it!This time, I won't bluster or hold back. This time, there's no fooling around.Ready now? Prepare to lose!
+msgbox	SPENSER: Gwahahah! Du hast dich also erneut hochgekämpft?Du musst wahrhaft eine gewaltige Bande zu deinen POKéMON entwickelt haben.So sei es!Diesmal gibt's kein Getöse und kein Zurückhalten. Diesmal gibt's keine Spielchen.Bereit? Mach dich auf eine Niederlage gefasst!
 frontier_set FRONTIER_DATA_HEARD_BRAIN_SPEECH
 goto BattleFrontier_BattlePalaceBattleRoom_EventScript_BattleSpenserGold
 = BattleFrontier_BattlePalaceBattleRoom_EventScript_BeginChallenge

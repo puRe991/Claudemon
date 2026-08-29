@@ -39,14 +39,14 @@ people_team_magma_magma_member_m 13 2 S static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CEN
 people_ninja_boy 2 5 S static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_MAGMA_NOTE - 0
 people_steven 1 4 S static FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_STEVEN - 0
 dialogs
-1	A rocket launch demands perfection. Not even a 1% margin of error is allowed.Even if it's 99% okay, the whole thing is useless if 1% happens to be no good.Despite that, we never stop trying. Why? It's a dream that never ends.
-2	I was taking a stroll down the beach when I found this.It's not anything I need, so you can have it.
-5	Don't think you're on a roll just because you've beaten me!
-6	Okay, I get it already! The next time, we'll come unannounced.
-7	What are we going to do with the rocket fuel?How would I know? Ask our leader upstairs!
-8	Our leader said no one, but no one, gets past me!
-9	This is… An intent-to-steal notice?“To the staff of the SPACE CENTER: How are you? We are doing fine.“We will soon visit you to take your rocket fuel.“Please don't try to stop us. We will take the fuel no matter what.“Let there be more land! TEAM MAGMA”
-10	STEVEN: PLAYER, have you read that proclamation already?TEAM MAGMA is coming after the rocket fuel on this island.I don't know what they'd need it for, but they can't be allowed to take it.I'll keep an eye on things for a while longer.In the meantime, why don't you go check out the town?
+1	Ein Raketenstart verlangt Perfektion. Nicht einmal 1% Fehlertoleranz ist erlaubt.Selbst wenn 99% in Ordnung sind, ist das Ganze nutzlos, wenn das eine Prozent nicht stimmt.Trotzdem geben wir nie auf. Warum? Es ist ein Traum, der niemals endet.
+2	Ich habe das gefunden, als ich am Strand spazieren ging.Ich brauche es nicht, also kannst du es haben.
+5	Glaub bloß nicht, dass du jetzt eine Glückssträhne hast, nur weil du mich besiegt hast!
+6	Okay, schon verstanden! Nächstes Mal kommen wir unangekündigt.
+7	Was machen wir bloß mit dem Raketentreibstoff?Woher soll ich das wissen? Frag unseren Anführer oben!
+8	Unser Anführer sagte, niemand, aber wirklich niemand, kommt an mir vorbei!
+9	Das ist… eine Ankündigung, dass hier etwas gestohlen wird?„An die Belegschaft des SPACE CENTERS: Wie geht es euch? Uns geht es gut.„Wir werden euch bald besuchen, um euren Raketentreibstoff zu holen.„Bitte versucht nicht, uns aufzuhalten. Wir nehmen den Treibstoff, ganz gleich was passiert.„Es werde mehr Land! TEAM MAGMA“
+10	STEVEN: PLAYER, hast du diese Ankündigung schon gelesen?TEAM MAGMA ist hinter dem Raketentreibstoff auf dieser Insel her.Ich weiß nicht, wofür sie ihn brauchen, aber wir dürfen sie ihn nicht nehmen lassen.Ich behalte hier noch eine Weile alles im Auge.Warum siehst du dich in der Zwischenzeit nicht in der Stadt um?
 objscripts
 0 MossdeepCity_SpaceCenter_1F_EventScript_RocketLaunchCounter
 1 MossdeepCity_SpaceCenter_1F_EventScript_Scientist
@@ -69,21 +69,21 @@ scriptdefs
 = MossdeepCity_SpaceCenter_1F_EventScript_Steven
 lock
 faceplayer
-msgbox	STEVEN: PLAYER, have you read that proclamation already?TEAM MAGMA is coming after the rocket fuel on this island.I don't know what they'd need it for, but they can't be allowed to take it.I'll keep an eye on things for a while longer.In the meantime, why don't you go check out the town?
+msgbox	STEVEN: PLAYER, hast du diese Ankündigung schon gelesen?TEAM MAGMA ist hinter dem Raketentreibstoff auf dieser Insel her.Ich weiß nicht, wofür sie ihn brauchen, aber wir dürfen sie ihn nicht nehmen lassen.Ich behalte hier noch eine Weile alles im Auge.Warum siehst du dich in der Zwischenzeit nicht in der Stadt um?
 applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
 waitmovement 0
 release
 end
 = MossdeepCity_SpaceCenter_1F_EventScript_MagmaNote
 lockall
-msgbox	This is… An intent-to-steal notice?“To the staff of the SPACE CENTER: How are you? We are doing fine.“We will soon visit you to take your rocket fuel.“Please don't try to stop us. We will take the fuel no matter what.“Let there be more land! TEAM MAGMA”
+msgbox	Das ist… eine Ankündigung, dass hier etwas gestohlen wird?„An die Belegschaft des SPACE CENTERS: Wie geht es euch? Uns geht es gut.„Wir werden euch bald besuchen, um euren Raketentreibstoff zu holen.„Bitte versucht nicht, uns aufzuhalten. Wir nehmen den Treibstoff, ganz gleich was passiert.„Es werde mehr Land! TEAM MAGMA“
 releaseall
 end
 = MossdeepCity_SpaceCenter_1F_EventScript_Grunt2
 lock
 faceplayer
 goto_if_set FLAG_DEFEATED_GRUNT_SPACE_CENTER_1F MossdeepCity_SpaceCenter_1F_EventScript_Grunt2Defeated
-msgbox	Our leader said no one, but no one, gets past me!
+msgbox	Unser Anführer sagte, niemand, aber wirklich niemand, kommt an mir vorbei!
 trainerbattle_no_intro TRAINER_GRUNT_SPACE_CENTER_2 MossdeepCity_SpaceCenter_1F_Text_Grunt2Defeat
 setflag FLAG_DEFEATED_GRUNT_SPACE_CENTER_1F
 copyobjectxytoperm LOCALID_SPACE_CENTER_1F_STAIR_GRUNT
@@ -111,20 +111,20 @@ end
 @ This also means VAR_MOSSDEEP_SPACE_CENTER_STAIR_GUARD_STATE can never be 3
 goto MossdeepCity_SpaceCenter_1F_EventScript_MoveGruntFromStairsEast
 = MossdeepCity_SpaceCenter_1F_EventScript_Grunt2Defeated
-msgbox	Please, tell our leader that I never abandoned my post. That I stayed to the bitter end…
+msgbox	Bitte richte unserem Anführer aus, dass ich meinen Posten nie verlassen habe. Dass ich bis zum bitteren Ende geblieben bin…
 release
 end
 = MossdeepCity_SpaceCenter_1F_EventScript_Grunt4
 trainerbattle_single TRAINER_GRUNT_SPACE_CENTER_4 MossdeepCity_SpaceCenter_1F_Text_Grunt4Intro MossdeepCity_SpaceCenter_1F_Text_Grunt4Defeat
-msgbox	What are we going to do with the rocket fuel?How would I know? Ask our leader upstairs!
+msgbox	Was machen wir bloß mit dem Raketentreibstoff?Woher soll ich das wissen? Frag unseren Anführer oben!
 end
 = MossdeepCity_SpaceCenter_1F_EventScript_Grunt1
 trainerbattle_single TRAINER_GRUNT_SPACE_CENTER_1 MossdeepCity_SpaceCenter_1F_Text_Grunt1Intro MossdeepCity_SpaceCenter_1F_Text_Grunt1Defeat
-msgbox	Okay, I get it already! The next time, we'll come unannounced.
+msgbox	Okay, schon verstanden! Nächstes Mal kommen wir unangekündigt.
 end
 = MossdeepCity_SpaceCenter_1F_EventScript_Grunt3
 trainerbattle_single TRAINER_GRUNT_SPACE_CENTER_3 MossdeepCity_SpaceCenter_1F_Text_Grunt3Intro MossdeepCity_SpaceCenter_1F_Text_Grunt3Defeat
-msgbox	Don't think you're on a roll just because you've beaten me!
+msgbox	Glaub bloß nicht, dass du jetzt eine Glückssträhne hast, nur weil du mich besiegt hast!
 end
 = MossdeepCity_SpaceCenter_1F_EventScript_Woman
 lock
@@ -135,11 +135,11 @@ goto_if_lt VAR_MOSSDEEP_CITY_STATE 2 MossdeepCity_SpaceCenter_1F_EventScript_Wom
 goto MossdeepCity_SpaceCenter_1F_EventScript_WomanMagma
 end
 = MossdeepCity_SpaceCenter_1F_EventScript_WomanMagma
-msgbox	TEAM AQUA should take care of TEAM MAGMA!But if they did that, TEAM AQUA will become bold and brazen, won't they?
+msgbox	TEAM AQUA sollte sich TEAM MAGMA vorknöpfen!Aber wenn sie das täten, würde TEAM AQUA doch nur noch dreister und frecher werden, oder?
 release
 end
 = MossdeepCity_SpaceCenter_1F_EventScript_WomanNormal
-msgbox	Some people claim that POKéMON came from space. Could it be true?
+msgbox	Manche behaupten, POKéMON stammten aus dem Weltraum. Könnte das wahr sein?
 release
 end
 = MossdeepCity_SpaceCenter_1F_EventScript_OldMan
@@ -151,14 +151,14 @@ goto_if_lt VAR_MOSSDEEP_CITY_STATE 2 MossdeepCity_SpaceCenter_1F_EventScript_Old
 goto MossdeepCity_SpaceCenter_1F_EventScript_OldManMagma
 end
 = MossdeepCity_SpaceCenter_1F_EventScript_OldManMagma
-msgbox	A giant chunk of metal bursts through the skies and flies into space…But TEAM MAGMA wants to spoil that dream of mine!I'm not having any of that!
+msgbox	Ein gigantischer Metallbrocken durchbricht den Himmel und fliegt ins All…Aber TEAM MAGMA will mir diesen Traum verderben!Das lasse ich mir nicht bieten!
 closemessage
 applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
 waitmovement 0
 release
 end
 = MossdeepCity_SpaceCenter_1F_EventScript_OldManNormal
-msgbox	A giant chunk of metal bursts through the skies and flies into space…It boggles my mind!
+msgbox	Ein gigantischer Metallbrocken durchbricht den Himmel und fliegt ins All…Das übersteigt meinen Verstand!
 closemessage
 applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -169,30 +169,30 @@ lock
 faceplayer
 goto_if_eq VAR_MOSSDEEP_CITY_STATE 2 MossdeepCity_SpaceCenter_1F_EventScript_SunStoneManMagma
 goto_if_set FLAG_RECEIVED_SUN_STONE_MOSSDEEP MossdeepCity_SpaceCenter_1F_EventScript_GaveSunStone
-msgbox	I was taking a stroll down the beach when I found this.It's not anything I need, so you can have it.
+msgbox	Ich habe das gefunden, als ich am Strand spazieren ging.Ich brauche es nicht, also kannst du es haben.
 giveitem ITEM_SUN_STONE
 goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
 setflag FLAG_RECEIVED_SUN_STONE_MOSSDEEP
-msgbox	The HOENN region has been famous for its meteor showers for a long time.
+msgbox	Die HOENN-Region ist schon seit Langem für ihre Meteoritenschauer berühmt.
 release
 end
 = MossdeepCity_SpaceCenter_1F_EventScript_GaveSunStone
-msgbox	The HOENN region has been famous for its meteor showers for a long time.
+msgbox	Die HOENN-Region ist schon seit Langem für ihre Meteoritenschauer berühmt.
 release
 end
 = MossdeepCity_SpaceCenter_1F_EventScript_SunStoneManMagma
 goto_if_set FLAG_RECEIVED_SUN_STONE_MOSSDEEP MossdeepCity_SpaceCenter_1F_EventScript_GaveSunStoneMagma
-msgbox	TEAM MAGMA can't be allowed to steal the rocket fuel.Oh, by the way, you can have this stone I found on the beach.
+msgbox	TEAM MAGMA darf den Raketentreibstoff auf keinen Fall stehlen.Ach, übrigens, du kannst diesen Stein haben, den ich am Strand gefunden habe.
 giveitem ITEM_SUN_STONE
 goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
 setflag FLAG_RECEIVED_SUN_STONE_MOSSDEEP
-msgbox	With TEAM MAGMA around, I guess strolls on the beach aren't safe.
+msgbox	Solange TEAM MAGMA hier herumtreibt, sind Strandspaziergänge wohl nicht sicher.
 applymovement VAR_LAST_TALKED Common_Movement_WalkInPlaceFasterRight
 waitmovement 0
 release
 end
 = MossdeepCity_SpaceCenter_1F_EventScript_GaveSunStoneMagma
-msgbox	With TEAM MAGMA around, I guess strolls on the beach aren't safe.
+msgbox	Solange TEAM MAGMA hier herumtreibt, sind Strandspaziergänge wohl nicht sicher.
 applymovement VAR_LAST_TALKED Common_Movement_WalkInPlaceFasterRight
 waitmovement 0
 release
@@ -201,11 +201,11 @@ end
 lock
 faceplayer
 goto_if_eq VAR_MOSSDEEP_CITY_STATE 2 MossdeepCity_SpaceCenter_1F_EventScript_ScientistMagma
-msgbox	A rocket launch demands perfection. Not even a 1% margin of error is allowed.Even if it's 99% okay, the whole thing is useless if 1% happens to be no good.Despite that, we never stop trying. Why? It's a dream that never ends.
+msgbox	Ein Raketenstart verlangt Perfektion. Nicht einmal 1% Fehlertoleranz ist erlaubt.Selbst wenn 99% in Ordnung sind, ist das Ganze nutzlos, wenn das eine Prozent nicht stimmt.Trotzdem geben wir nie auf. Warum? Es ist ein Traum, der niemals endet.
 release
 end
 = MossdeepCity_SpaceCenter_1F_EventScript_ScientistMagma
-msgbox	Those MAGMA thugs have their sights set on our SPACE CENTER.But we can't allow anything that minor to interfere with our rocket launch!
+msgbox	Diese MAGMA-Schläger haben es auf unser SPACE CENTER abgesehen.Aber so eine Kleinigkeit darf unseren Raketenstart auf keinen Fall stören!
 applymovement VAR_LAST_TALKED Common_Movement_WalkInPlaceFasterRight
 waitmovement 0
 release
@@ -225,10 +225,10 @@ waitmovement 0
 release
 end
 = MossdeepCity_SpaceCenter_1F_EventScript_ShowLaunchNumber
-msgbox	The rocket launched safely! That's successful launch no. STR_VAR_1!
+msgbox	Die Rakete ist sicher gestartet! Das war erfolgreicher Start Nr. STR_VAR_1!
 return
 = MossdeepCity_SpaceCenter_1F_EventScript_NoLaunchesYet
-msgbox	The rocket's launch is imminent!
+msgbox	Der Raketenstart steht kurz bevor!
 return
 = MossdeepCity_SpaceCenter_1F_EventScript_RocketLaunchCounterMagma
 dotimebasedevents
@@ -242,10 +242,10 @@ waitmovement 0
 release
 end
 = MossdeepCity_SpaceCenter_1F_EventScript_ShowLaunchNumberMagma
-msgbox	I know that things are a little haywire right now, but…The rocket launched safely! That's successful launch no. STR_VAR_1!
+msgbox	Ich weiß, im Moment läuft alles etwas durcheinander, aber…Die Rakete ist sicher gestartet! Das war erfolgreicher Start Nr. STR_VAR_1!
 return
 = MossdeepCity_SpaceCenter_1F_EventScript_NoLaunchesYetMagma
-msgbox	I know that things are a little haywire right now, but…The rocket's launch is imminent!
+msgbox	Ich weiß, im Moment läuft alles etwas durcheinander, aber…Der Raketenstart steht kurz bevor!
 return
 mapsec
 24 5 2 1	MOSSDEEP CITY

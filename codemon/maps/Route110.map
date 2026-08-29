@@ -251,18 +251,18 @@ people_man_5 36 40 S static 0 - 3
 misc_item_ball 6 38 S static FLAG_ITEM_ROUTE_110_ELIXIR - 0
 people_prof_birch 9 79 S static FLAG_HIDE_ROUTE_110_BIRCH LOCALID_ROUTE110_BIRCH 0
 dialogs
-0	Which should I choose?Make a beeline for MAUVILLE on CYCLING ROAD, or take the low road and look for POKéMON?
-1	Learning techniques will make BIKE riding even more fun.There are some places that you can reach only by using a BIKE technique.
-2	I don't have a BIKE, so I'll take a leisurely walk on the low road.
-3	Oh, hey, you got that BIKE from RYDEL!Oh, it's glaringly obvious. It says right on your bike…RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,RYDEL, RYDEL, RYDEL, RYDEL, RYDEL… That name's everywhere.You should ride it around all over the place--it's good advertising!
-4	The two roads, one above, one below…A road each for people and POKéMON. Perhaps that is right and fair.
-5	How do you like the way my raven- colored hair streams behind me?I grew my hair out just for that.
-6	Wouldn't it be great to ride a BIKE at full speed on CYCLING ROAD?
-20	Regardless of the results, I count on seeing more challenges from you. Always aim higher!
-21	TEAM AQUA's activities… We can't talk about them yet.
-22	I want to get going to SLATEPORT and kick up a ruckus!
-23	This is my first job after joining TEAM AQUA. It's a little scary.
-24	TEAM AQUA's actions should bring smiles to people's faces!
+0	Was soll ich bloß wählen?Schnurstracks über die RADSTRASSE nach MAUVILLE, oder lieber die untere Straße nehmen und nach POKéMON Ausschau halten?
+1	Wenn du Techniken lernst, macht das Fahrradfahren noch mehr Spaß.Es gibt Orte, die du nur mit einer FAHRRAD-Technik erreichen kannst.
+2	Ich habe kein FAHRRAD, also schlendere ich gemütlich die untere Straße entlang.
+3	Oh, du hast das FAHRRAD also von RYDEL!Oh, das ist doch überdeutlich. Es steht direkt auf deinem Rad…RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,RYDEL, RYDEL, RYDEL, RYDEL, RYDEL… Der Name ist einfach überall.Du solltest damit überall herumfahren--das ist gute Werbung!
+4	Die beiden Straßen, eine oben, eine unten…Für Menschen und POKéMON je eine eigene Straße. Vielleicht ist das nur recht und billig.
+5	Wie gefällt dir, wie mein rabenschwarzes Haar hinter mir herweht?Ich habe es mir extra dafür wachsen lassen.
+6	Wäre es nicht toll, mit Vollgas auf der RADSTRASSE zu fahren?
+20	Ganz gleich, wie es ausgeht, ich erwarte von dir weitere Herausforderungen. Ziel immer höher!
+21	Die Aktivitäten von TEAM AQUA… Darüber können wir noch nicht sprechen.
+22	Ich will endlich nach SLATEPORT und ordentlich Wirbel machen!
+23	Das ist mein erster Auftrag, seit ich TEAM AQUA beigetreten bin. Ein bisschen unheimlich.
+24	Die Taten von TEAM AQUA sollten den Leuten ein Lächeln ins Gesicht zaubern!
 objscripts
 0 Route110_EventScript_Boy2
 1 Route110_EventScript_CyclingGuy2
@@ -384,7 +384,7 @@ call_if_eq VAR_0x8008 1 Route110_EventScript_BirchApproachPlayer1
 call_if_eq VAR_0x8008 2 Route110_EventScript_BirchApproachPlayer2
 call_if_eq VAR_0x8008 3 Route110_EventScript_BirchApproachPlayer3
 call_if_eq VAR_0x8008 4 Route110_EventScript_BirchApproachPlayer4
-msgbox	PROF. BIRCH: Oh, PLAYER! Imagine seeing you here!And where might my RIVAL be?
+msgbox	PROF. BIRCH: Oh, PLAYER! Dich hier zu treffen!Und wo mag mein RIVAL wohl stecken?
 closemessage
 delay 20
 applymovement LOCALID_ROUTE110_BIRCH Common_Movement_WalkInPlaceFasterLeft
@@ -396,16 +396,16 @@ delay 20
 applymovement LOCALID_ROUTE110_BIRCH Common_Movement_WalkInPlaceFasterDown
 waitmovement 0
 delay 30
-msgbox	Oh, I see! You two are running separately. Well, that's fine.Oh, yes, I heard that your POKéNAV had the MATCH CALL system installed.Well, then, I should register you in my POKéNAV as well.That way, even when we're apart, I can rate your POKéDEX anytime.… … … … … …
+msgbox	Ach so! Ihr zwei geht also getrennte Wege. Nun, das ist auch in Ordnung.Ach ja, ich habe gehört, dass dein POKéNAV das ANRUF-SYSTEM installiert hat.Dann sollte ich dich wohl auch in meinem POKéNAV eintragen.So kann ich deinen POKéDEX jederzeit bewerten, auch wenn wir getrennt sind.… … … … … …
 closemessage
 delay 30
 playfanfare MUS_REGISTER_MATCH_CALL
-msgbox	Registered PROF. BIRCH in the POKéNAV.
+msgbox	PROF. BIRCH wurde im POKéNAV eingetragen.
 waitfanfare
 closemessage
 delay 30
 setflag FLAG_ENABLE_PROF_BIRCH_MATCH_CALL
-msgbox	PROF. BIRCH: PLAYER…Please keep an eye out for my RIVAL. … … … … … …Well, I had better get going. See you again, PLAYER!
+msgbox	PROF. BIRCH: PLAYER…Halt bitte ein Auge offen nach meinem RIVAL. … … … … … …Nun, ich sollte mich auf den Weg machen. Bis bald, PLAYER!
 closemessage
 call_if_eq VAR_0x8008 1 Route110_EventScript_BirchExit1
 call_if_eq VAR_0x8008 2 Route110_EventScript_BirchExit2
@@ -484,7 +484,7 @@ goto_if_eq VAR_RESULT FEMALE Route110_EventScript_BrendanBattle
 releaseall
 end
 = Route110_EventScript_BrendanBattle
-msgbox	BRENDAN: Hey, PLAYER. So this is where you were. How's it going?Have you been raising your POKéMON? I'll check for you.
+msgbox	BRENDAN: Hey, PLAYER. Da steckst du also. Wie läuft's?Hast du deine POKéMON trainiert? Ich schau mal nach.
 switch VAR_STARTER_MON
 case 0 Route110_EventScript_BrendanBattleTreecko
 case 1 Route110_EventScript_BrendanBattleTorchic
@@ -495,9 +495,9 @@ trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_110_MUDKIP Route110_Text_BrendanDef
 goto Route110_EventScript_BrendanDefeated
 end
 = Route110_EventScript_BrendanDefeated
-msgbox	BRENDAN: PLAYER, you've trained without me noticing…Good enough! Here, take this.
+msgbox	BRENDAN: PLAYER, du hast trainiert, ohne dass ich es gemerkt habe…Gut genug! Hier, nimm das.
 call Route110_EventScript_GiveItemfinder
-msgbox	BRENDAN: That's an ITEMFINDER.Use it to root around for items that aren't visible.If it senses something, it emits a sound.Anyway, I'm off to look for new POKéMON.
+msgbox	BRENDAN: Das ist ein ITEMFINDER.Benutz ihn, um nach unsichtbaren Items zu suchen.Wenn er etwas ortet, gibt er einen Ton von sich.Jedenfalls, ich mach mich auf die Suche nach neuen POKéMON.
 goto Route110_EventScript_RivalExit
 end
 = Route110_EventScript_RivalExit
@@ -552,7 +552,7 @@ trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_110_TREECKO Route110_Text_BrendanDe
 goto Route110_EventScript_BrendanDefeated
 end
 = Route110_EventScript_MayBattle
-msgbox	MAY: Hi, PLAYER, long time no see!While I was searching for other POKéMON, my POKéMON grew stronger.So… How about a little battle?
+msgbox	MAY: Hi, PLAYER, lange nicht gesehen!Während ich nach anderen POKéMON gesucht habe, sind meine POKéMON stärker geworden.Also… wie wär's mit einem kleinen Kampf?
 switch VAR_STARTER_MON
 case 0 Route110_EventScript_MayBattleTreecko
 case 1 Route110_EventScript_MayBattleTorchic
@@ -563,9 +563,9 @@ trainerbattle_no_intro TRAINER_MAY_ROUTE_110_MUDKIP Route110_Text_MayDefeated
 goto Route110_EventScript_MayDefeated
 end
 = Route110_EventScript_MayDefeated
-msgbox	MAY: PLAYER, you've been busy training, too, haven't you?I think you deserve a reward! This is from me!
+msgbox	MAY: PLAYER, du hast wohl auch fleißig trainiert, oder?Ich finde, du verdienst eine Belohnung! Das ist von mir!
 call Route110_EventScript_GiveItemfinder
-msgbox	MAY: That's an ITEMFINDER.Try it out. If there is an item that's not visible, it emits a sound.Okay, PLAYER, let's meet again!I know it's a little silly coming from me, but I think you should train a lot harder for the next time.
+msgbox	MAY: Das ist ein ITEMFINDER.Probier ihn aus. Wenn es ein unsichtbares Item gibt, gibt er einen Ton von sich.Okay, PLAYER, lass uns wiedersehen!Ich weiß, es klingt komisch, ausgerechnet von mir zu hören, aber du solltest bis dahin noch viel härter trainieren.
 goto Route110_EventScript_RivalExit
 end
 = Route110_EventScript_MayBattleTorchic
@@ -611,7 +611,7 @@ releaseall
 end
 = Route110_EventScript_CyclingChallengeResults
 special FinishCyclingRoadChallenge
-msgbox	Number of collisions: … … STR_VAR_1!Total time: … … STR_VAR_2!
+msgbox	Anzahl der Zusammenstöße: … … STR_VAR_1!Gesamtzeit: … … STR_VAR_2!
 switch VAR_RESULT
 case 10 Route110_EventScript_ChallengeReactionBest
 case 9 Route110_EventScript_ChallengeReactionGood
@@ -626,7 +626,7 @@ case 1 Route110_EventScript_ChallengeReactionBad
 case 0 Route110_EventScript_ChallengeReactionWorst
 end
 = Route110_EventScript_ChallengeReactionWorst
-msgbox	…I am aghast…You're perhaps not cut out for this unfortunate cycling business.You ought to give serious thought to returning that BIKE to RYDEL.
+msgbox	…Ich bin entsetzt…Vielleicht bist du für diese leidige Radfahrerei einfach nicht gemacht.Du solltest ernsthaft darüber nachdenken, das FAHRRAD RYDEL zurückzugeben.
 goto Route110_EventScript_EndChallenge
 end
 = Route110_EventScript_EndChallenge
@@ -635,19 +635,19 @@ savebgm MUS_DUMMY
 fadedefaultbgm
 return
 = Route110_EventScript_ChallengeReactionBad
-msgbox	My word… Your cycling skills border on terrifying.Most certainly, you need much more practice riding.
+msgbox	Meine Güte… Dein Fahrkönnen grenzt an furchterregend.Du brauchst ganz gewiss noch viel mehr Übung.
 goto Route110_EventScript_EndChallenge
 end
 = Route110_EventScript_ChallengeReactionOk
-msgbox	I would consider you a work in progress.Still, I hope you don't forget the sheer pleasure of cycling.
+msgbox	Ich würde sagen, da geht noch was.Trotzdem hoffe ich, du vergisst nicht die schiere Freude am Radfahren.
 goto Route110_EventScript_EndChallenge
 end
 = Route110_EventScript_ChallengeReactionGood
-msgbox	Your technique is remarkable.I suggest you speed up a bit while still avoiding collisions.
+msgbox	Deine Technik ist bemerkenswert.Ich schlage vor, du wirst noch etwas schneller, ohne dabei Zusammenstöße zu riskieren.
 goto Route110_EventScript_EndChallenge
 end
 = Route110_EventScript_ChallengeReactionBest
-msgbox	Bravo! Splendid showing!Your love of cycling comes from deep within your heart. You've shaken me to my very soul!
+msgbox	Bravo! Eine großartige Vorstellung!Deine Liebe zum Radfahren kommt tief aus dem Herzen. Du hast mich bis ins Mark erschüttert!
 goto Route110_EventScript_EndChallenge
 end
 = Route110_EventScript_ItemElixir
@@ -659,46 +659,46 @@ end
 end
 = Route110_EventScript_Joseph
 trainerbattle_single TRAINER_JOSEPH Route110_Text_JosephIntro Route110_Text_JosephDefeated
-msgbox	This isn't going to bring me down! Losing has made me a better man!
+msgbox	Das wirft mich nicht um! Verlieren hat mich zu einem besseren Mann gemacht!
 end
 = Route110_EventScript_Alyssa
 trainerbattle_single TRAINER_ALYSSA Route110_Text_AlyssaIntro Route110_Text_AlyssaDefeated
-msgbox	Falling… Losing… This is so humiliating for me!
+msgbox	Stürzen… Verlieren… Das ist so demütigend für mich!
 end
 = Route110_EventScript_Kaleb
 trainerbattle_single TRAINER_KALEB Route110_Text_KalebIntro Route110_Text_KalebDefeated
-msgbox	Okay, okay, you've done the best you could, my pretties.
+msgbox	Schon gut, schon gut, ihr habt euer Bestes gegeben, meine Süßen.
 end
 = Route110_EventScript_Isabel
 trainerbattle_single TRAINER_ISABEL_1 Route110_Text_IsabelIntro Route110_Text_IsabelDefeated Route110_EventScript_IsabelRegisterMatchCallAfterBattle
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route110_EventScript_IsabelRematch
-msgbox	Rather than battling, perhaps I should show off my POKéMON at the FAN CLUB.
+msgbox	Statt zu kämpfen, sollte ich meine POKéMON vielleicht lieber im FANCLUB vorführen.
 release
 end
 = Route110_EventScript_IsabelRematch
 trainerbattle_rematch TRAINER_ISABEL_1 Route110_Text_IsabelRematchIntro Route110_Text_IsabelRematchDefeated
-msgbox	I don't think that I could ever stop from showing off my POKéMON.But I like to battle, too!
+msgbox	Ich glaube, ich könnte nie damit aufhören, meine POKéMON vorzuführen.Aber ich kämpfe auch gerne!
 end
 = Route110_EventScript_IsabelRegisterMatchCallAfterBattle
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	That wasn't close to what I could do to show off my POKéMON.I'll have you as my captive audience as often as possible!
+msgbox	Das war noch längst nicht alles, was ich zum Vorführen meiner POKéMON draufhabe.Ich mache dich so oft wie möglich zu meinem gefangenen Publikum!
 register_matchcall TRAINER_ISABEL_1
 release
 end
 = Route110_EventScript_Timmy
 trainerbattle_single TRAINER_TIMMY Route110_Text_TimmyIntro Route110_Text_TimmyDefeated
-msgbox	It's hard to battle with POKéMON you just caught.
+msgbox	Es ist schwer, mit gerade erst gefangenen POKéMON zu kämpfen.
 end
 = Route110_EventScript_Jacob
 trainerbattle_single TRAINER_JACOB Route110_Text_JacobIntro Route110_Text_JacobDefeated
-msgbox	Flat tires and brake problems can cause serious injury! Inspect your BIKE for problems!
+msgbox	Platte Reifen und Bremsprobleme können zu ernsten Verletzungen führen! Überprüf dein FAHRRAD auf Mängel!
 end
 = Route110_EventScript_AquaGrunt4
 lock
 faceplayer
-msgbox	TEAM AQUA's actions should bring smiles to people's faces!
+msgbox	Die Taten von TEAM AQUA sollten den Leuten ein Lächeln ins Gesicht zaubern!
 applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
 waitmovement 0
 release
@@ -706,7 +706,7 @@ end
 = Route110_EventScript_AquaGrunt3
 lock
 faceplayer
-msgbox	This is my first job after joining TEAM AQUA. It's a little scary.
+msgbox	Das ist mein erster Auftrag, seit ich TEAM AQUA beigetreten bin. Ein bisschen unheimlich.
 applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
 waitmovement 0
 release
@@ -714,7 +714,7 @@ end
 = Route110_EventScript_AquaGrunt2
 lock
 faceplayer
-msgbox	I want to get going to SLATEPORT and kick up a ruckus!
+msgbox	Ich will endlich nach SLATEPORT und ordentlich Wirbel machen!
 applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
 waitmovement 0
 release
@@ -722,7 +722,7 @@ end
 = Route110_EventScript_AquaGrunt1
 lock
 faceplayer
-msgbox	TEAM AQUA's activities… We can't talk about them yet.
+msgbox	Die Aktivitäten von TEAM AQUA… Darüber können wir noch nicht sprechen.
 applymovement VAR_LAST_TALKED Common_Movement_FaceOriginalDirection
 waitmovement 0
 release
@@ -733,15 +733,15 @@ faceplayer
 specialvar VAR_RESULT GetPlayerAvatarBike
 goto_if_eq VAR_RESULT 1 Route110_EventScript_PlayerRidingAcroBike
 goto_if_eq VAR_CYCLING_CHALLENGE_STATE 0 Route110_EventScript_PlayerNotRidingBike
-msgbox	Regardless of the results, I count on seeing more challenges from you. Always aim higher!
+msgbox	Ganz gleich, wie es ausgeht, ich erwarte von dir weitere Herausforderungen. Ziel immer höher!
 release
 end
 = Route110_EventScript_PlayerNotRidingBike
-msgbox	This is CYCLING ROAD.If you were to ride from MAUVILLE to SLATEPORT on a MACH BIKE, you would be rated for the number of collisions and your total time.
+msgbox	Das ist die RADSTRASSE.Wenn du mit einem MACH-RAD von MAUVILLE nach SLATEPORT fährst, wirst du nach der Anzahl deiner Zusammenstöße und deiner Gesamtzeit bewertet.
 release
 end
 = Route110_EventScript_PlayerRidingAcroBike
-msgbox	On this CYCLING ROAD, those riding MACH BIKES are rated for their number of collisions and their total times.ACRO BIKES do not qualify for rating. They are easy to turn, so it's not fair.
+msgbox	Auf dieser RADSTRASSE werden Fahrer mit MACH-RAD nach ihrer Anzahl an Zusammenstößen und ihrer Gesamtzeit bewertet.AKRO-RÄDER werden nicht bewertet. Sie lassen sich zu leicht lenken, das wäre nicht fair.
 release
 end
 = Route110_EventScript_ItemRareCandy
@@ -783,24 +783,24 @@ special ObjectEventInteractionPickBerryTree
 goto_if_eq VAR_0x8004 0 BerryTree_EventScript_BerryPocketFull
 special IncrementDailyPickedBerries
 special ObjectEventInteractionRemoveBerryTree
-msgbox	PLAYER picked the STR_VAR_2 STR_VAR_1.
+msgbox	PLAYER hat die STR_VAR_2 STR_VAR_1 gepflückt.
 playfanfare MUS_OBTAIN_BERRY
 waitmessage
 waitfanfare
 waitbuttonpress
-msgbox	PLAYER put away the STR_VAR_1 in the BAG's BERRIES POCKET.The soil returned to its soft and loamy state.
+msgbox	PLAYER hat die STR_VAR_1 im BEEREN-Fach der TASCHE verstaut.Der Boden wurde wieder weich und lehmig.
 waitmessage
 waitbuttonpress
 release
 end
 = BerryTree_EventScript_BerryPocketFull
-msgbox	The BAG's BERRIES POCKET is full.The STR_VAR_1 couldn't be taken.
+msgbox	Das BEEREN-Fach der TASCHE ist voll.Die STR_VAR_1 konnte nicht mitgenommen werden.
 waitmessage
 waitbuttonpress
 release
 end
 = BerryTree_EventScript_CancelPickingBerry
-msgbox	PLAYER left the STR_VAR_1 unpicked.
+msgbox	PLAYER hat die STR_VAR_1 ungepflückt gelassen.
 waitmessage
 waitbuttonpress
 release
@@ -809,7 +809,7 @@ end
 call BerryTree_EventScript_GetCareAdverb
 lockall
 special ObjectEventInteractionGetBerryName
-msgbox	These STR_VAR_1 flowers are blooming STR_VAR_2.
+msgbox	Diese STR_VAR_1-Blumen blühen STR_VAR_2.
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
@@ -842,11 +842,11 @@ releaseall
 end
 = BerryTree_EventScript_WaterBerry
 special ObjectEventInteractionGetBerryName
-msgbox	PLAYER watered the STR_VAR_1.
+msgbox	PLAYER hat die STR_VAR_1 gegossen.
 waitmessage
 special ObjectEventInteractionWaterBerryTree
 special DoWateringBerryTreeAnim
-msgbox	The plant seems to be delighted.
+msgbox	Die Pflanze scheint sich zu freuen.
 waitmessage
 waitbuttonpress
 releaseall
@@ -854,21 +854,21 @@ end
 = BerryTree_EventScript_CheckBerryStage3
 lockall
 special ObjectEventInteractionGetBerryName
-msgbox	This STR_VAR_1 plant is growing taller.
+msgbox	Diese STR_VAR_1-Pflanze wird größer.
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
 = BerryTree_EventScript_CheckBerryStage2
 lockall
 special ObjectEventInteractionGetBerryName
-msgbox	STR_VAR_1 has sprouted.
+msgbox	STR_VAR_1 ist gesprossen.
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
 = BerryTree_EventScript_CheckBerryStage1
 lockall
 special ObjectEventInteractionGetBerryCountString
-msgbox	One STR_VAR_1 was planted here.
+msgbox	Hier wurde eine STR_VAR_1 eingepflanzt.
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
@@ -877,7 +877,7 @@ lock
 faceplayer
 specialvar VAR_RESULT PlayerHasBerries
 goto_if_eq VAR_RESULT TRUE BerryTree_EventScript_WantToPlant
-msgbox	It's soft, loamy soil.
+msgbox	Das ist weicher, lehmiger Boden.
 waitmessage
 waitbuttonpress
 release
@@ -903,7 +903,7 @@ special ObjectEventInteractionPlantBerryTree
 incrementgamestat GAME_STAT_PLANTED_BERRIES
 special IncrementDailyPlantedBerries
 special ObjectEventInteractionGetBerryCountString
-msgbox	PLAYER planted one STR_VAR_1 in the soft, loamy soil.
+msgbox	PLAYER hat eine STR_VAR_1 in den weichen, lehmigen Boden gepflanzt.
 waitmessage
 waitbuttonpress
 return
@@ -916,49 +916,49 @@ releaseall
 end
 = Route110_EventScript_Dale
 trainerbattle_single TRAINER_DALE Route110_Text_DaleIntro Route110_Text_DaleDefeated
-msgbox	Fishing is all about concentration. You have to focus on the floater.
+msgbox	Beim Angeln kommt es auf Konzentration an. Du musst dich auf den Schwimmer konzentrieren.
 end
 = Route110_EventScript_Edwin
 trainerbattle_single TRAINER_EDWIN_1 Route110_Text_EdwinIntro Route110_Text_EdwinDefeated Route110_EventScript_EdwinRegisterMatchCallAfterBattle
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route110_EventScript_EdwinRematch
-msgbox	When I see a POKéMON that I don't know, my passion as a collector is ignited!
+msgbox	Wenn ich ein POKéMON sehe, das ich nicht kenne, entflammt meine Sammlerleidenschaft!
 release
 end
 = Route110_EventScript_EdwinRematch
 trainerbattle_rematch TRAINER_EDWIN_1 Route110_Text_EdwinRematchIntro Route110_Text_EdwinRematchDefeated
-msgbox	Oh, I long to make all rare POKéMON mine!
+msgbox	Oh, wie ich mir wünsche, alle seltenen POKéMON mein Eigen zu nennen!
 end
 = Route110_EventScript_EdwinRegisterMatchCallAfterBattle
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	I like collecting MATCH CALL registrations, too…
+msgbox	Ich sammle auch gerne ANRUF-Einträge…
 register_matchcall TRAINER_EDWIN_1
 release
 end
 = Route110_EventScript_Jaclyn
 trainerbattle_single TRAINER_JACLYN Route110_Text_JaclynIntro Route110_Text_JaclynDefeated
-msgbox	You managed to win only because it was a wonder! Yes, a wonder! Don't think you can win all the time!
+msgbox	Du hast nur gewonnen, weil es ein Wunder war! Ja, ein Wunder! Denk bloß nicht, du gewinnst immer!
 end
 = Route110_EventScript_Edward
 trainerbattle_single TRAINER_EDWARD Route110_Text_EdwardIntro Route110_Text_EdwardDefeated
-msgbox	I see your future…Hmm… I see a shining light…
+msgbox	Ich sehe deine Zukunft…Hmm… Ich sehe ein leuchtendes Licht…
 end
 = Route110_EventScript_Benjamin
 trainerbattle_single TRAINER_BENJAMIN_1 Route110_Text_BenjaminIntro Route110_Text_BenjaminDefeated Route110_EventScript_BenjaminRegisterMatchCallAfterBattle
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route110_EventScript_BenjaminRematch
-msgbox	There's no need to panic or stress. Take it easy. There's plenty of time.
+msgbox	Kein Grund zur Panik oder zum Stress. Nimm's locker. Es ist noch reichlich Zeit.
 release
 end
 = Route110_EventScript_BenjaminRematch
 trainerbattle_rematch TRAINER_BENJAMIN_1 Route110_Text_BenjaminRematchIntro Route110_Text_BenjaminRematchDefeated
-msgbox	There's no need to panic or stress. Take it easy. There's plenty of time.
+msgbox	Kein Grund zur Panik oder zum Stress. Nimm's locker. Es ist noch reichlich Zeit.
 end
 = Route110_EventScript_BenjaminRegisterMatchCallAfterBattle
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	I'll keep chugging on without stressing. Give me a shout if you're up to it.
+msgbox	Ich mach einfach entspannt weiter. Ruf mich, wenn du Lust hast.
 register_matchcall TRAINER_BENJAMIN_1
 release
 end
@@ -966,60 +966,60 @@ end
 trainerbattle_single TRAINER_ABIGAIL_1 Route110_Text_AbigailIntro Route110_Text_AbigailDefeated Route110_EventScript_AbigailRegisterMatchCallAfterBattle
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route110_EventScript_AbigailRematch
-msgbox	I'm exhausted, so I need a break. It's important to get proper rest.
+msgbox	Ich bin erschöpft, ich brauche eine Pause. Ausreichend Erholung ist wichtig.
 release
 end
 = Route110_EventScript_AbigailRematch
 trainerbattle_rematch TRAINER_ABIGAIL_1 Route110_Text_AbigailRematchIntro Route110_Text_AbigailRematchDefeated
-msgbox	Were you going after a record?I'm sorry if I held you up!
+msgbox	Wolltest du einen Rekord aufstellen?Tut mir leid, falls ich dich aufgehalten habe!
 end
 = Route110_EventScript_AbigailRegisterMatchCallAfterBattle
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	You know, I like you! Let's have a rematch on CYCLING ROAD.
+msgbox	Weißt du, ich mag dich! Lass uns eine Revanche auf der RADSTRASSE machen.
 register_matchcall TRAINER_ABIGAIL_1
 release
 end
 = Route110_EventScript_Anthony
 trainerbattle_single TRAINER_ANTHONY Route110_Text_AnthonyIntro Route110_Text_AnthonyDefeated
-msgbox	Speed alone won't let me win at POKéMON. I need to reconsider this…
+msgbox	Mit Geschwindigkeit allein gewinne ich noch keine POKéMON-Kämpfe. Ich muss das nochmal überdenken…
 end
 = Route110_EventScript_Jasmine
 trainerbattle_single TRAINER_JASMINE Route110_Text_JasmineIntro Route110_Text_JasmineDefeated
-msgbox	Oh, you have some GYM BADGES? No wonder you're so strong!
+msgbox	Oh, du hast schon ein paar ORDEN? Kein Wunder, dass du so stark bist!
 end
 = Route110_EventScript_Boy1
-msgbox	Wouldn't it be great to ride a BIKE at full speed on CYCLING ROAD?
+msgbox	Wäre es nicht toll, mit Vollgas auf der RADSTRASSE zu fahren?
 end
 = Route110_EventScript_CyclingGirl1
-msgbox	How do you like the way my raven- colored hair streams behind me?I grew my hair out just for that.
+msgbox	Wie gefällt dir, wie mein rabenschwarzes Haar hinter mir herweht?Ich habe es mir extra dafür wachsen lassen.
 end
 = Route110_EventScript_OldMan
-msgbox	The two roads, one above, one below…A road each for people and POKéMON. Perhaps that is right and fair.
+msgbox	Die beiden Straßen, eine oben, eine unten…Für Menschen und POKéMON je eine eigene Straße. Vielleicht ist das nur recht und billig.
 end
 = Route110_EventScript_CyclingGuy1
-msgbox	Oh, hey, you got that BIKE from RYDEL!Oh, it's glaringly obvious. It says right on your bike…RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,RYDEL, RYDEL, RYDEL, RYDEL, RYDEL… That name's everywhere.You should ride it around all over the place--it's good advertising!
+msgbox	Oh, du hast das FAHRRAD also von RYDEL!Oh, das ist doch überdeutlich. Es steht direkt auf deinem Rad…RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,RYDEL, RYDEL, RYDEL, RYDEL, RYDEL… Der Name ist einfach überall.Du solltest damit überall herumfahren--das ist gute Werbung!
 end
 = Route110_EventScript_OldWoman
-msgbox	I don't have a BIKE, so I'll take a leisurely walk on the low road.
+msgbox	Ich habe kein FAHRRAD, also schlendere ich gemütlich die untere Straße entlang.
 end
 = Route110_EventScript_CyclingGuy2
-msgbox	Learning techniques will make BIKE riding even more fun.There are some places that you can reach only by using a BIKE technique.
+msgbox	Wenn du Techniken lernst, macht das Fahrradfahren noch mehr Spaß.Es gibt Orte, die du nur mit einer FAHRRAD-Technik erreichen kannst.
 end
 = Route110_EventScript_Boy2
-msgbox	Which should I choose?Make a beeline for MAUVILLE on CYCLING ROAD, or take the low road and look for POKéMON?
+msgbox	Was soll ich bloß wählen?Schnurstracks über die RADSTRASSE nach MAUVILLE, oder lieber die untere Straße nehmen und nach POKéMON Ausschau halten?
 end
 signs
-15 25	“TEAM AQUA was here!”Someone painted that onto this sign, but then someone else painted over it.“TEAM MAGMA rules!” is what it says now.
+15 25	„TEAM AQUA war hier!“Jemand hat das auf dieses Schild gemalt, aber jemand anderes hat es übermalt.Jetzt steht dort: „TEAM MAGMA regiert!“
 9 51	SEASIDE PARKING
 14 88	SEASIDE CYCLING ROAD
 20 94	ROUTE 110 SLATEPORT CITY
 7 79	ROUTE 110 ROUTE 103
 3 17	ROUTE 110 MAUVILLE CITY
-33 39	TRAINER TIPSThe foe can be made helpless by paralyzing it or causing it to sleep.It is an important technique for POKéMON battles.
-37 70	TRAINER TIPSThe items in the BAG can be reorganized by pressing SELECT.
-8 67	“Three steps and two steps to reach the wondrous TRICK HOUSE.”
-32 93	THE BEST RECORD TO DATE…No. of collisions: STR_VAR_1Elapsed time: STR_VAR_2
+33 39	TRAINER-TIPPSEin Gegner kann durch Paralyse oder Schlaf handlungsunfähig gemacht werden.Das ist eine wichtige Technik für POKéMON-Kämpfe.
+37 70	TRAINER-TIPPSDie Items in der TASCHE lassen sich mit SELECT neu ordnen.
+8 67	„Drei Schritte und zwei Schritte, um das wundersame TRICK-HAUS zu erreichen.“
+32 93	DER BISHER BESTE REKORD…Anzahl Zusammenstöße: STR_VAR_1Verstrichene Zeit: STR_VAR_2
 13 16	SEASIDE CYCLING ROAD
 grass
 13

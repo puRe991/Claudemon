@@ -29,9 +29,9 @@ people_youngster 13 4 S wander 0 - 0
 people_woman_3 7 6 N static 0 - 0
 people_woman_3 9 6 N static 0 - 0
 dialogs
-0	Hmm…An attacking move… Or a defensive move…It's no easy matter to decide which TM moves should be taught to POKéMON…
-1	There are so many different kinds of TM moves.A catalog I read said there are fifty different kinds.
-2	I'd like to get all the different TMs, but a POKéMON learns only four moves.
+0	Hmm…Eine Angriffsattacke… Oder eine defensive Attacke…Es ist keine leichte Entscheidung, welche TM-Attacken man POKéMON beibringen sollte…
+1	Es gibt so viele verschiedene TM-Attacken.In einem Katalog, den ich gelesen habe, stand, es gäbe fünfzig verschiedene Arten.
+2	Ich würde gerne alle verschiedenen TMs sammeln, aber ein POKéMON lernt nur vier Attacken.
 objscripts
 0 LilycoveCity_DepartmentStore_4F_EventScript_Gentleman
 1 LilycoveCity_DepartmentStore_4F_EventScript_Woman
@@ -45,29 +45,29 @@ scriptdefs
 = LilycoveCity_DepartmentStore_4F_EventScript_ClerkRight
 lock
 faceplayer
-msgbox	Welcome!How may I serve you?
+msgbox	Willkommen!Wie kann ich dir behilflich sein?
 waitmessage
 pokemart LilycoveCity_DepartmentStore_4F_Pokemart_DefenseTMs
-msgbox	Please come again!
+msgbox	Komm bald wieder vorbei!
 release
 end
 = LilycoveCity_DepartmentStore_4F_EventScript_ClerkLeft
 lock
 faceplayer
-msgbox	Welcome!How may I serve you?
+msgbox	Willkommen!Wie kann ich dir behilflich sein?
 waitmessage
 pokemart LilycoveCity_DepartmentStore_4F_Pokemart_AttackTMs
-msgbox	Please come again!
+msgbox	Komm bald wieder vorbei!
 release
 end
 = LilycoveCity_DepartmentStore_4F_EventScript_Youngster
-msgbox	I'd like to get all the different TMs, but a POKéMON learns only four moves.
+msgbox	Ich würde gerne alle verschiedenen TMs sammeln, aber ein POKéMON lernt nur vier Attacken.
 end
 = LilycoveCity_DepartmentStore_4F_EventScript_Woman
-msgbox	There are so many different kinds of TM moves.A catalog I read said there are fifty different kinds.
+msgbox	Es gibt so viele verschiedene TM-Attacken.In einem Katalog, den ich gelesen habe, stand, es gäbe fünfzig verschiedene Arten.
 end
 = LilycoveCity_DepartmentStore_4F_EventScript_Gentleman
-msgbox	Hmm…An attacking move… Or a defensive move…It's no easy matter to decide which TM moves should be taught to POKéMON…
+msgbox	Hmm…Eine Angriffsattacke… Oder eine defensive Attacke…Es ist keine leichte Entscheidung, welche TM-Attacken man POKéMON beibringen sollte…
 end
 mapsec
 18 3 2 1	LILYCOVE CITY
