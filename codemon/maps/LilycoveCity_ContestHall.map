@@ -107,38 +107,38 @@ people_man_1 37 20 S static 0 LOCALID_CUTE_AUDIENCE_3 0
 people_little_girl 42 24 W static 0 LOCALID_CUTE_AUDIENCE_2 0
 people_sailor 23 26 S wander 0 - 0
 dialogs
-0	This POKéMON won the BEAUTY CONTEST here before.Well, guess what? Today, I made it win a SMARTNESS CONTEST!My abilities scare even me…
-1	I've entered a bunch of CONTESTS, so I'm seeing how things work.If you're in a COOLNESS CONTEST, cool moves go over as appeals.But smart moves and cute moves don't go over well, for instance.
-2	That young man who won earlier had a whole bunch of different S.Can you win if you had that many of those things?
-3	MC: Okay, SMART POKéMON and their TRAINERS, are you ready?!Give it your best showing! Let's appeal!
-4	JUDGE: Are you enjoying this CONTEST?Come back with three friends, and all of you may enter a CONTEST!
-5	Ayayayay… I entered the wrong CONTEST.I entered this tough POKéMON in the SMARTNESS CONTEST…Come on, wow them with a smart-looking ROCK SMASH.
-6	I've spent many a year, and all my wisdom besides, raising this POKéMON to be smart.It won't be easily bested by some young pup's POKéMON.My dear wife, are you seeing this?
-7	There it is!If my POKéMON pulls a smart move next, the audience's excitement will peak!
-8	Oh, dear, no!My darling ZUBAT's LEECH LIFE is so cute I kept using it over and over!But these mean people don't appreciate it at all!
-9	Kiyaaah! You're beautiful, Grandpa!
-10	When all's said and done, I still love SMARTNESS CONTESTS.That intellectual green color… It's so… So… Cool.
-11	Even when TRAINERS enter the same kind of POKéMON, they all seem to use different moves for appeals.It's just like the way people have different styles for battling.
-12	MC: Are you entering the BEAUTY CONTEST, too? Good luck!
-13	JUDGE: Ah, every POKéMON here is a model of pristine beauty!Why, I almost forgot to score them!
-14	A POKéMON this beautiful… There isn't another one like it.Everyone's eyes will be glued to my beauty.
-15	Waaaah!I brushed and groomed my POKéMON carefully for this CONTEST…But I overdid it… My POKéMON's coat turned all scraggly…What should I do?
-16	This AURORA BEAM is so dazzling, the JUDGE won't be able to see it.Uh, wait a second… That'll be meaningless, then!
-17	This pretty POKéMON looks just like me when I was younger.Right when I said that, my husband spewed the coffee he was drinking.Did I say something funny?
-18	You know, if I win at a BEAUTY CONTEST, sure it makes me happy. More than usual, anyway.
-19	You can't always win on just beauty alone.You have to groom your POKéMON so it's nice and glossy like mine.
-20	Wahahahah!Will you take a gander at all those pretty POKéMON! I just love this sort of glitz!
-21	I think the POKéMON look smarter than their TRAINERS. By a lot.
-22	MC: Uh-oh! Hello! We're in the middle of a CONTEST!Please enter at our registration counter and come out, okay?
-23	JUDGE: Oh, such charming and cute appeals!Oh, my goodness! What a perfectly adorable WATER SPORT appeal!
-24	Oh, no… My sweet AZURILL was distracted by another POKéMON.
-25	My POKéMON has never won in a battle, but put it in a CONTEST and look out!
-26	My POKéMON's PETAL DANCE is a marvel of elegance.I won't let anyone disturb its performance.
-27	Everyone's POKéMON are very cute.However, if my POKéMON were to make a cute appeal…I'm sure that it would be so much cuter than the others.
-28	My child is in this CONTEST.
-29	I think that girl over there is the cutest of the lot.What's that? They're judging POKéMON by their looks?
-30	Ohh, seeing all these cute POKéMON, they make we want to get my own!I'm going to go catch some!
-31	Whoa, isn't this place humongous!The tension in the air… It's not like a CONTEST hall in the sticks.
+0	Dieses POKéMON hat hier schon mal den SCHÖNHEITS-CONTEST gewonnen.Und stell dir vor? Heute hat es einen GESCHEITHEITS-CONTEST gewonnen!Meine Fähigkeiten machen mir selbst Angst…
+1	Ich hab schon an vielen CONTESTS teilgenommen, also weiß ich, wie das läuft.Bei einem COOLNESS-CONTEST kommen coole Attacken als Vorführung gut an.Aber gescheite oder niedliche Attacken kommen dort zum Beispiel nicht so gut an.
+2	Der junge Mann, der vorhin gewonnen hat, hatte einen ganzen Haufen von diesen Dingern.Kann man gewinnen, wenn man so viele davon hat?
+3	MODERATOR: Okay, gescheite POKéMON und ihre TRAINER, seid ihr bereit?!Zeigt euer Bestes! Auf geht's zur Vorführung!
+4	JUROR: Gefällt dir dieser CONTEST?Komm mit drei Freunden wieder, dann könnt ihr alle an einem CONTEST teilnehmen!
+5	Ayayayay… Ich hab beim falschen CONTEST mitgemacht.Ich hab dieses robuste POKéMON beim GESCHEITHEITS-CONTEST angemeldet…Komm schon, beeindruck sie mit einem gescheit aussehenden FELSTANZ.
+6	Ich hab viele Jahre und all meine Weisheit investiert, um dieses POKéMON gescheit zu machen.Es lässt sich nicht so leicht von irgendeinem jungen Spund schlagen.Meine liebe Frau, siehst du das?
+7	Da ist es!Wenn mein POKéMON als Nächstes eine gescheite Attacke zeigt, kocht das Publikum vor Begeisterung über!
+8	Ach du meine Güte, nein!Der AUGENSTECH meines geliebten ZUBAT ist so niedlich, dass ich ihn immer wieder eingesetzt habe!Aber diese fiesen Leute wissen das gar nicht zu schätzen!
+9	Kiyaaah! Du bist wunderschön, Opa!
+10	Wenn alles gesagt und getan ist, liebe ich GESCHEITHEITS-CONTESTS immer noch.Dieses intellektuelle Grün… Es ist so… So… Cool.
+11	Auch wenn TRAINER die gleiche Art von POKéMON antreten lassen, benutzen sie scheinbar alle unterschiedliche Attacken zur Vorführung.Genau wie Menschen unterschiedliche Kampfstile haben.
+12	MODERATOR: Machst du auch beim SCHÖNHEITS-CONTEST mit? Viel Glück!
+13	JUROR: Ah, jedes POKéMON hier ist ein Musterbeispiel reiner Schönheit!Ich hätte fast vergessen, sie zu bewerten!
+14	Ein so wunderschönes POKéMON… Es gibt kein zweites wie es.Alle Augen werden an meiner Schönheit kleben.
+15	Waaaah!Ich hab mein POKéMON für diesen CONTEST sorgfältig gebürstet und gepflegt…Aber ich hab's übertrieben… Das Fell meines POKéMON ist jetzt ganz struppig…Was soll ich nur tun?
+16	Dieser AURORASTRAHL ist so blendend, dass der JUROR ihn gar nicht sehen kann.Äh, Moment mal… Dann ist das doch total sinnlos!
+17	Dieses hübsche POKéMON sieht genau aus wie ich in jungen Jahren.Genau als ich das sagte, hat mein Mann seinen Kaffee ausgespuckt.Hab ich was Lustiges gesagt?
+18	Weißt du, wenn ich bei einem SCHÖNHEITS-CONTEST gewinne, macht mich das schon glücklich. Mehr als sonst jedenfalls.
+19	Mit Schönheit allein kann man nicht immer gewinnen.Du musst dein POKéMON pflegen, damit es schön glänzt, so wie meins.
+20	Wahahahah!Schau dir bloß all diese hübschen POKéMON an! Ich liebe diesen Glanz einfach!
+21	Ich finde, die POKéMON sehen viel gescheiter aus als ihre TRAINER.
+22	MODERATOR: Oje! Hallo! Wir sind mitten in einem CONTEST!Bitte melde dich am Anmeldeschalter an und komm dann wieder, okay?
+23	JUROR: Oh, solch bezaubernde und niedliche Vorführungen!Oh du meine Güte! Was für eine wunderbar liebenswerte AQUAKUNST-Vorführung!
+24	Oh nein… Mein süßes AZURILL wurde von einem anderen POKéMON abgelenkt.
+25	Mein POKéMON hat noch nie einen Kampf gewonnen, aber bei einem CONTEST solltest du dich in Acht nehmen!
+26	Der BLÜTENTANZ meines POKéMON ist ein Wunder an Eleganz.Ich lasse niemanden seinen Auftritt stören.
+27	Alle POKéMON hier sind sehr niedlich.Aber wenn mein POKéMON eine niedliche Vorführung machen würde…Bin ich sicher, dass es viel niedlicher wäre als die anderen.
+28	Mein Kind macht bei diesem CONTEST mit.
+29	Ich finde, das Mädchen dort drüben ist die Niedlichste von allen.Was? Man bewertet die POKéMON nach ihrem Aussehen?
+30	Ohh, bei all diesen niedlichen POKéMON bekomme ich richtig Lust auf eigene!Ich geh mir welche fangen!
+31	Whoa, ist dieser Ort nicht riesig!Diese Spannung in der Luft… Das ist keine CONTEST-Halle aus der Provinz.
 objscripts
 0 LilycoveCity_ContestHall_EventScript_Boy1
 1 LilycoveCity_ContestHall_EventScript_Boy2
@@ -177,12 +177,12 @@ Common_Movement_FaceOriginalDirection	face_down,end
 Common_Movement_FacePlayer	face_down,end
 scriptdefs
 = LilycoveCity_ContestHall_EventScript_Sailor
-msgbox	Whoa, isn't this place humongous!The tension in the air… It's not like a CONTEST hall in the sticks.
+msgbox	Whoa, ist dieser Ort nicht riesig!Diese Spannung in der Luft… Das ist keine CONTEST-Halle aus der Provinz.
 end
 = LilycoveCity_ContestHall_EventScript_CuteContestAudience2
 lock
 faceplayer
-msgbox	Ohh, seeing all these cute POKéMON, they make we want to get my own!I'm going to go catch some!
+msgbox	Ohh, bei all diesen niedlichen POKéMON bekomme ich richtig Lust auf eigene!Ich geh mir welche fangen!
 closemessage
 applymovement LOCALID_CUTE_AUDIENCE_2 Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -191,7 +191,7 @@ end
 = LilycoveCity_ContestHall_EventScript_CuteContestAudience3
 lock
 faceplayer
-msgbox	I think that girl over there is the cutest of the lot.What's that? They're judging POKéMON by their looks?
+msgbox	Ich finde, das Mädchen dort drüben ist die Niedlichste von allen.Was? Man bewertet die POKéMON nach ihrem Aussehen?
 closemessage
 applymovement LOCALID_CUTE_AUDIENCE_3 Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -201,18 +201,18 @@ end
 lockall
 applymovement LOCALID_CUTE_AUDIENCE_1 Common_Movement_FacePlayer
 waitmovement 0
-msgbox	My child is in this CONTEST.
+msgbox	Mein Kind macht bei diesem CONTEST mit.
 closemessage
 applymovement LOCALID_CUTE_AUDIENCE_1 Common_Movement_FaceOriginalDirection
 waitmovement 0
 delay 25
-msgbox	Come on, dear. Go for it! Your POKéMON is the best!
+msgbox	Los, mein Schatz. Zeig, was du kannst! Dein POKéMON ist das Beste!
 releaseall
 end
 = LilycoveCity_ContestHall_EventScript_CuteContestant4
 lock
 faceplayer
-msgbox	Everyone's POKéMON are very cute.However, if my POKéMON were to make a cute appeal…I'm sure that it would be so much cuter than the others.
+msgbox	Alle POKéMON hier sind sehr niedlich.Aber wenn mein POKéMON eine niedliche Vorführung machen würde…Bin ich sicher, dass es viel niedlicher wäre als die anderen.
 closemessage
 applymovement LOCALID_CUTE_CONTESTANT_4 Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -221,7 +221,7 @@ end
 = LilycoveCity_ContestHall_EventScript_CuteContestant3
 lock
 faceplayer
-msgbox	My POKéMON's PETAL DANCE is a marvel of elegance.I won't let anyone disturb its performance.
+msgbox	Der BLÜTENTANZ meines POKéMON ist ein Wunder an Eleganz.Ich lasse niemanden seinen Auftritt stören.
 closemessage
 applymovement LOCALID_CUTE_CONTESTANT_3 Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -230,7 +230,7 @@ end
 = LilycoveCity_ContestHall_EventScript_CuteContestant2
 lock
 faceplayer
-msgbox	My POKéMON has never won in a battle, but put it in a CONTEST and look out!
+msgbox	Mein POKéMON hat noch nie einen Kampf gewonnen, aber bei einem CONTEST solltest du dich in Acht nehmen!
 closemessage
 applymovement LOCALID_CUTE_CONTESTANT_2 Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -239,7 +239,7 @@ end
 = LilycoveCity_ContestHall_EventScript_CuteContestant1
 lock
 faceplayer
-msgbox	Oh, no… My sweet AZURILL was distracted by another POKéMON.
+msgbox	Oh nein… Mein süßes AZURILL wurde von einem anderen POKéMON abgelenkt.
 closemessage
 applymovement LOCALID_CUTE_CONTESTANT_1 Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -248,7 +248,7 @@ end
 = LilycoveCity_ContestHall_EventScript_CuteContestJudge
 lock
 faceplayer
-msgbox	JUDGE: Oh, such charming and cute appeals!Oh, my goodness! What a perfectly adorable WATER SPORT appeal!
+msgbox	JUROR: Oh, solch bezaubernde und niedliche Vorführungen!Oh du meine Güte! Was für eine wunderbar liebenswerte AQUAKUNST-Vorführung!
 closemessage
 applymovement LOCALID_CUTE_JUDGE Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -257,7 +257,7 @@ end
 = LilycoveCity_ContestHall_EventScript_CuteContestMC
 lock
 faceplayer
-msgbox	MC: Uh-oh! Hello! We're in the middle of a CONTEST!Please enter at our registration counter and come out, okay?
+msgbox	MODERATOR: Oje! Hallo! Wir sind mitten in einem CONTEST!Bitte melde dich am Anmeldeschalter an und komm dann wieder, okay?
 closemessage
 applymovement LOCALID_CUTE_MC Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -266,7 +266,7 @@ end
 = LilycoveCity_ContestHall_EventScript_SmartContestAudience3
 lock
 faceplayer
-msgbox	I think the POKéMON look smarter than their TRAINERS. By a lot.
+msgbox	Ich finde, die POKéMON sehen viel gescheiter aus als ihre TRAINER.
 closemessage
 applymovement LOCALID_SMART_AUDIENCE_3 Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -275,7 +275,7 @@ end
 = LilycoveCity_ContestHall_EventScript_BeautyContestAudience2
 lock
 faceplayer
-msgbox	Wahahahah!Will you take a gander at all those pretty POKéMON! I just love this sort of glitz!
+msgbox	Wahahahah!Schau dir bloß all diese hübschen POKéMON an! Ich liebe diesen Glanz einfach!
 closemessage
 applymovement LOCALID_BEAUTY_AUDIENCE_2 Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -284,7 +284,7 @@ end
 = LilycoveCity_ContestHall_EventScript_BeautyContestAudience3
 lock
 faceplayer
-msgbox	You can't always win on just beauty alone.You have to groom your POKéMON so it's nice and glossy like mine.
+msgbox	Mit Schönheit allein kann man nicht immer gewinnen.Du musst dein POKéMON pflegen, damit es schön glänzt, so wie meins.
 closemessage
 applymovement LOCALID_BEAUTY_AUDIENCE_3 Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -293,7 +293,7 @@ end
 = LilycoveCity_ContestHall_EventScript_BeautyContestAudience1
 lock
 faceplayer
-msgbox	You know, if I win at a BEAUTY CONTEST, sure it makes me happy. More than usual, anyway.
+msgbox	Weißt du, wenn ich bei einem SCHÖNHEITS-CONTEST gewinne, macht mich das schon glücklich. Mehr als sonst jedenfalls.
 closemessage
 applymovement LOCALID_BEAUTY_AUDIENCE_1 Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -302,7 +302,7 @@ end
 = LilycoveCity_ContestHall_EventScript_BeautyContestant4
 lock
 faceplayer
-msgbox	This pretty POKéMON looks just like me when I was younger.Right when I said that, my husband spewed the coffee he was drinking.Did I say something funny?
+msgbox	Dieses hübsche POKéMON sieht genau aus wie ich in jungen Jahren.Genau als ich das sagte, hat mein Mann seinen Kaffee ausgespuckt.Hab ich was Lustiges gesagt?
 closemessage
 applymovement LOCALID_BEAUTY_CONTESTANT_4 Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -311,7 +311,7 @@ end
 = LilycoveCity_ContestHall_EventScript_BeautyContestant3
 lock
 faceplayer
-msgbox	This AURORA BEAM is so dazzling, the JUDGE won't be able to see it.Uh, wait a second… That'll be meaningless, then!
+msgbox	Dieser AURORASTRAHL ist so blendend, dass der JUROR ihn gar nicht sehen kann.Äh, Moment mal… Dann ist das doch total sinnlos!
 closemessage
 applymovement LOCALID_BEAUTY_CONTESTANT_3 Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -320,7 +320,7 @@ end
 = LilycoveCity_ContestHall_EventScript_BeautyContestant2
 lock
 faceplayer
-msgbox	Waaaah!I brushed and groomed my POKéMON carefully for this CONTEST…But I overdid it… My POKéMON's coat turned all scraggly…What should I do?
+msgbox	Waaaah!Ich hab mein POKéMON für diesen CONTEST sorgfältig gebürstet und gepflegt…Aber ich hab's übertrieben… Das Fell meines POKéMON ist jetzt ganz struppig…Was soll ich nur tun?
 closemessage
 applymovement LOCALID_BEAUTY_CONTESTANT_2 Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -329,7 +329,7 @@ end
 = LilycoveCity_ContestHall_EventScript_BeautyContestant1
 lock
 faceplayer
-msgbox	A POKéMON this beautiful… There isn't another one like it.Everyone's eyes will be glued to my beauty.
+msgbox	Ein so wunderschönes POKéMON… Es gibt kein zweites wie es.Alle Augen werden an meiner Schönheit kleben.
 closemessage
 applymovement LOCALID_BEAUTY_CONTESTANT_1 Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -338,7 +338,7 @@ end
 = LilycoveCity_ContestHall_EventScript_BeautyContestJudge
 lock
 faceplayer
-msgbox	JUDGE: Ah, every POKéMON here is a model of pristine beauty!Why, I almost forgot to score them!
+msgbox	JUROR: Ah, jedes POKéMON hier ist ein Musterbeispiel reiner Schönheit!Ich hätte fast vergessen, sie zu bewerten!
 closemessage
 applymovement LOCALID_BEAUTY_JUDGE Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -347,7 +347,7 @@ end
 = LilycoveCity_ContestHall_EventScript_BeautyContestMC
 lock
 faceplayer
-msgbox	MC: Are you entering the BEAUTY CONTEST, too? Good luck!
+msgbox	MODERATOR: Machst du auch beim SCHÖNHEITS-CONTEST mit? Viel Glück!
 closemessage
 applymovement LOCALID_BEAUTY_MC Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -356,7 +356,7 @@ end
 = LilycoveCity_ContestHall_EventScript_SmartContestAudience2
 lock
 faceplayer
-msgbox	Even when TRAINERS enter the same kind of POKéMON, they all seem to use different moves for appeals.It's just like the way people have different styles for battling.
+msgbox	Auch wenn TRAINER die gleiche Art von POKéMON antreten lassen, benutzen sie scheinbar alle unterschiedliche Attacken zur Vorführung.Genau wie Menschen unterschiedliche Kampfstile haben.
 closemessage
 applymovement LOCALID_SMART_AUDIENCE_2 Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -365,19 +365,19 @@ end
 = LilycoveCity_ContestHall_EventScript_SmartContestAudience4
 lock
 faceplayer
-msgbox	When all's said and done, I still love SMARTNESS CONTESTS.That intellectual green color… It's so… So… Cool.
+msgbox	Wenn alles gesagt und getan ist, liebe ich GESCHEITHEITS-CONTESTS immer noch.Dieses intellektuelle Grün… Es ist so… So… Cool.
 closemessage
 applymovement LOCALID_SMART_AUDIENCE_4 Common_Movement_FaceOriginalDirection
 waitmovement 0
 release
 end
 = LilycoveCity_ContestHall_EventScript_SmartContestAudience1
-msgbox	Kiyaaah! You're beautiful, Grandpa!
+msgbox	Kiyaaah! Du bist wunderschön, Opa!
 end
 = LilycoveCity_ContestHall_EventScript_SmartContestant4
 lock
 faceplayer
-msgbox	Oh, dear, no!My darling ZUBAT's LEECH LIFE is so cute I kept using it over and over!But these mean people don't appreciate it at all!
+msgbox	Ach du meine Güte, nein!Der AUGENSTECH meines geliebten ZUBAT ist so niedlich, dass ich ihn immer wieder eingesetzt habe!Aber diese fiesen Leute wissen das gar nicht zu schätzen!
 closemessage
 applymovement LOCALID_SMART_CONTESTANT_4 Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -386,7 +386,7 @@ end
 = LilycoveCity_ContestHall_EventScript_SmartContestant3
 lock
 faceplayer
-msgbox	There it is!If my POKéMON pulls a smart move next, the audience's excitement will peak!
+msgbox	Da ist es!Wenn mein POKéMON als Nächstes eine gescheite Attacke zeigt, kocht das Publikum vor Begeisterung über!
 closemessage
 applymovement LOCALID_SMART_CONTESTANT_3 Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -395,7 +395,7 @@ end
 = LilycoveCity_ContestHall_EventScript_SmartContestant2
 lock
 faceplayer
-msgbox	I've spent many a year, and all my wisdom besides, raising this POKéMON to be smart.It won't be easily bested by some young pup's POKéMON.My dear wife, are you seeing this?
+msgbox	Ich hab viele Jahre und all meine Weisheit investiert, um dieses POKéMON gescheit zu machen.Es lässt sich nicht so leicht von irgendeinem jungen Spund schlagen.Meine liebe Frau, siehst du das?
 closemessage
 applymovement LOCALID_SMART_CONTESTANT_2 Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -404,7 +404,7 @@ end
 = LilycoveCity_ContestHall_EventScript_SmartContestant1
 lock
 faceplayer
-msgbox	Ayayayay… I entered the wrong CONTEST.I entered this tough POKéMON in the SMARTNESS CONTEST…Come on, wow them with a smart-looking ROCK SMASH.
+msgbox	Ayayayay… Ich hab beim falschen CONTEST mitgemacht.Ich hab dieses robuste POKéMON beim GESCHEITHEITS-CONTEST angemeldet…Komm schon, beeindruck sie mit einem gescheit aussehenden FELSTANZ.
 closemessage
 applymovement LOCALID_SMART_CONTESTANT_1 Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -413,7 +413,7 @@ end
 = LilycoveCity_ContestHall_EventScript_SmartContestJudge
 lock
 faceplayer
-msgbox	JUDGE: Are you enjoying this CONTEST?Come back with three friends, and all of you may enter a CONTEST!
+msgbox	JUROR: Gefällt dir dieser CONTEST?Komm mit drei Freunden wieder, dann könnt ihr alle an einem CONTEST teilnehmen!
 closemessage
 applymovement LOCALID_SMART_JUDGE Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -422,28 +422,28 @@ end
 = LilycoveCity_ContestHall_EventScript_SmartContestMC
 lock
 faceplayer
-msgbox	MC: Okay, SMART POKéMON and their TRAINERS, are you ready?!Give it your best showing! Let's appeal!
+msgbox	MODERATOR: Okay, gescheite POKéMON und ihre TRAINER, seid ihr bereit?!Zeigt euer Bestes! Auf geht's zur Vorführung!
 closemessage
 applymovement LOCALID_SMART_MC Common_Movement_FaceOriginalDirection
 waitmovement 0
 release
 end
 = LilycoveCity_ContestHall_EventScript_Girl
-msgbox	That young man who won earlier had a whole bunch of different S.Can you win if you had that many of those things?
+msgbox	Der junge Mann, der vorhin gewonnen hat, hatte einen ganzen Haufen von diesen Dingern.Kann man gewinnen, wenn man so viele davon hat?
 end
 = LilycoveCity_ContestHall_EventScript_Boy2
-msgbox	I've entered a bunch of CONTESTS, so I'm seeing how things work.If you're in a COOLNESS CONTEST, cool moves go over as appeals.But smart moves and cute moves don't go over well, for instance.
+msgbox	Ich hab schon an vielen CONTESTS teilgenommen, also weiß ich, wie das läuft.Bei einem COOLNESS-CONTEST kommen coole Attacken als Vorführung gut an.Aber gescheite oder niedliche Attacken kommen dort zum Beispiel nicht so gut an.
 end
 = LilycoveCity_ContestHall_EventScript_Boy1
-msgbox	This POKéMON won the BEAUTY CONTEST here before.Well, guess what? Today, I made it win a SMARTNESS CONTEST!My abilities scare even me…
+msgbox	Dieses POKéMON hat hier schon mal den SCHÖNHEITS-CONTEST gewonnen.Und stell dir vor? Heute hat es einen GESCHEITHEITS-CONTEST gewonnen!Meine Fähigkeiten machen mir selbst Angst…
 end
 signs
-27 16	BEAUTY CONTEST STAGE BE ALLURED BY BEAUTIFUL POKéMON!
-39 28	CUTENESS CONTEST STAGE BE CHARMED BY CUTE POKéMON!
-11 28	SMARTNESS CONTEST STAGE BE IMPRESSED BY SMART POKéMON!
-15 28	SMARTNESS CONTEST STAGE BE IMPRESSED BY SMART POKéMON!
-23 16	BEAUTY CONTEST STAGE BE ALLURED BY BEAUTIFUL POKéMON!
-35 28	CUTENESS CONTEST STAGE BE CHARMED BY CUTE POKéMON!
+27 16	SCHÖNHEITS-CONTEST-BÜHNE LASS DICH VON WUNDERSCHÖNEN POKéMON VERZAUBERN!
+39 28	NIEDLICHKEITS-CONTEST-BÜHNE LASS DICH VON NIEDLICHEN POKéMON BEZAUBERN!
+11 28	GESCHEITHEITS-CONTEST-BÜHNE LASS DICH VON GESCHEITEN POKéMON BEEINDRUCKEN!
+15 28	GESCHEITHEITS-CONTEST-BÜHNE LASS DICH VON GESCHEITEN POKéMON BEEINDRUCKEN!
+23 16	SCHÖNHEITS-CONTEST-BÜHNE LASS DICH VON WUNDERSCHÖNEN POKéMON VERZAUBERN!
+35 28	NIEDLICHKEITS-CONTEST-BÜHNE LASS DICH VON NIEDLICHEN POKéMON BEZAUBERN!
 mapsec
 18 3 2 1	LILYCOVE CITY
 music

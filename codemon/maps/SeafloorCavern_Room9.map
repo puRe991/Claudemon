@@ -136,26 +136,26 @@ waitmovement 0
 applymovement LOCALID_PLAYER SeafloorCavern_Room9_Movement_Delay32
 waitmovement 0
 playbgm MUS_ENCOUNTER_AQUA FALSE
-msgbox	ARCHIE: Hold it right there.
+msgbox	ARCHIE: Halt, keine Bewegung.
 closemessage
 addobject VAR_0x8004
 applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterLeft
 waitmovement 0
 applymovement VAR_0x8004 SeafloorCavern_Room9_Movement_ArchieApproachPlayer
 waitmovement 0
-msgbox	ARCHIE: Fufufu… So it was you, after all.
+msgbox	ARCHIE: Fufufu… Du warst es also doch.
 applymovement VAR_0x8004 Common_Movement_WalkInPlaceFasterUp
 waitmovement 0
-msgbox	ARCHIE: Behold!See how beautiful it is, the sleeping form of the ancient POKéMON KYOGRE!I have waited so long for this day to come…
+msgbox	ARCHIE: Sieh nur!Sieh, wie schön es ist, die schlummernde Gestalt des uralten POKéMON KYOGRE!Ich habe so lange auf diesen Tag gewartet…
 applymovement VAR_0x8004 Common_Movement_FacePlayer
 waitmovement 0
-msgbox	ARCHIE: It surprises me, how you've managed to chase me here.But that's all over now.For the realization of my dream, you must disappear now!
+msgbox	ARCHIE: Es überrascht mich, wie du es geschafft hast, mir bis hierher zu folgen.Aber das ist jetzt vorbei.Für die Verwirklichung meines Traums musst du jetzt verschwinden!
 trainerbattle_no_intro TRAINER_ARCHIE SeafloorCavern_Room9_Text_ArchieDefeat
-msgbox	ARCHIE: Fufufu…I commend you. I must recognize that you are truly gifted.But! I have this in my possession!With this RED ORB, I can make KYOGRE…
+msgbox	ARCHIE: Fufufu…Ich muss dich loben. Ich muss anerkennen, dass du wirklich begabt bist.Aber! Ich habe dies in meinem Besitz!Mit diesem ROTEN ORB kann ich KYOGRE…
 setweather WEATHER_NONE
 doweather
 special Script_FadeOutMapMusic
-msgbox	The RED ORB suddenly began shining by itself!
+msgbox	Der ROTE ORB begann plötzlich von selbst zu leuchten!
 special WaitWeather
 setvar VAR_RESULT 1
 playse SE_M_DETECT
@@ -198,21 +198,21 @@ setvar VAR_0x8004 LOCALID_SEAFLOOR_CAVERN_ARCHIE
 setvar VAR_0x8005 LOCALID_SEAFLOOR_CAVERN_MAXIE
 setvar VAR_0x8006 LOCALID_SEAFLOOR_CAVERN_GRUNT_1
 setvar VAR_0x8007 LOCALID_SEAFLOOR_CAVERN_GRUNT_2
-msgbox	ARCHIE: What?!I didn't do anything. Why did the RED ORB…Where did KYOGRE go?
+msgbox	ARCHIE: Was?!Ich habe nichts getan. Warum hat der ROTE ORB…Wo ist KYOGRE hin?
 playse SE_PC_LOGIN
 applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterLeft
 waitmovement 0
-msgbox	ARCHIE: Hm? It's a message from our members outside…
+msgbox	ARCHIE: Hm? Das ist eine Nachricht von unseren Mitgliedern draußen…
 closemessage
 applymovement VAR_0x8004 SeafloorCavern_Room9_Movement_ArchieListenMessage
 waitmovement 0
-msgbox	ARCHIE: Yes, what is it?Hm… It's raining heavily?Good… That should have happened. That is why we awakened KYOGRE, to realize TEAM AQUA's vision of expanding the sea.What?!It's raining far harder than we envisioned? You're in danger?That can't be… That's just not possible…Hold your position and monitor the situation!
+msgbox	ARCHIE: Ja, was gibt's?Hm… Es regnet stark?Gut… Das sollte auch so sein. Deshalb haben wir KYOGRE erweckt, um TEAM AQUAs Vision einer ausgedehnten See zu verwirklichen.Was?!Es regnet viel heftiger, als wir uns vorgestellt haben? Ihr seid in Gefahr?Das kann nicht sein… Das ist einfach nicht möglich…Haltet eure Position und beobachtet die Lage!
 closemessage
 playse SE_PC_OFF
 delay 20
 applymovement VAR_0x8004 Common_Movement_WalkInPlaceFasterDown
 waitmovement 0
-msgbox	ARCHIE: There's something wrong…The RED ORB is supposed to awaken and control KYOGRE…But… Why? Why did KYOGRE disappear?Why?!
+msgbox	ARCHIE: Da stimmt etwas nicht…Der ROTE ORB soll KYOGRE erwecken und kontrollieren…Aber… Warum? Warum ist KYOGRE verschwunden?Warum?!
 closemessage
 addobject VAR_0x8005
 addobject VAR_0x8006
@@ -223,19 +223,19 @@ applymovement VAR_0x8005 SeafloorCavern_Room9_Movement_MaxieArrive
 waitmovement 0
 applymovement VAR_0x8004 Common_Movement_WalkInPlaceFasterLeft
 waitmovement 0
-msgbox	MAXIE: What have you wrought?ARCHIE… You've finally awoken KYOGRE, haven't you?What will happen to the world if this downpour continues for all eternity?The world's landmass will drown in the deepening sea…
+msgbox	MAXIE: Was hast du da angerichtet?ARCHIE… Du hast KYOGRE endlich erweckt, nicht wahr?Was wird aus der Welt, wenn dieser Regenguss ewig andauert?Das Festland der Welt wird in der immer tieferen See ertrinken…
 playse SE_PIN
 applymovement VAR_0x8004 Common_Movement_ExclamationMark
 waitmovement 0
 applymovement VAR_0x8004 Common_Movement_Delay48
 waitmovement 0
-msgbox	ARCHIE: W-what?! Don't get all high and mighty with me!Wasn't it you, TEAM MAGMA, that infuriated GROUDON?So long as I have this RED ORB, I should be able to control KYOGRE…I should be able to control it…
-msgbox	MAXIE: We don't have the time to argue about it here!Get outside and see for yourself!See if what you've wrought is the world that we desired!
+msgbox	ARCHIE: W-was?! Werd mir gegenüber nicht überheblich!Wart nicht ihr, TEAM MAGMA, es, die GROUDON in Rage gebracht haben?Solange ich diesen ROTEN ORB habe, sollte ich KYOGRE kontrollieren können…Ich sollte es kontrollieren können…
+msgbox	MAXIE: Wir haben keine Zeit, hier darüber zu streiten!Geh nach draußen und überzeug dich selbst!Sieh, ob das, was du angerichtet hast, die Welt ist, die wir uns gewünscht haben!
 closemessage
 applymovement VAR_0x8005 SeafloorCavern_Room9_Movement_MaxieExit
 applymovement VAR_0x8004 SeafloorCavern_Room9_Movement_ArchieExit
 waitmovement 0
-msgbox	MAXIE: PLAYER, come on, you have to get out of here, too!
+msgbox	MAXIE: PLAYER, komm schon, du musst auch hier raus!
 setvar VAR_ROUTE128_STATE 1
 setvar VAR_SOOTOPOLIS_CITY_STATE 1
 clearflag FLAG_HIDE_SOOTOPOLIS_CITY_STEVEN

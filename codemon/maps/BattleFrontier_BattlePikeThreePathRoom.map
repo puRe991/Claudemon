@@ -28,7 +28,7 @@ npcs
 people_link_receptionist 4 10 E static 0 - 0
 people_link_receptionist 8 5 S static 0 LOCALID_PIKE_HINT_GIVER 0
 dialogs
-1	I beg your pardon, but…Are you perhaps finding it difficult to choose your path?
+1	Verzeih die Störung, aber…Fällt es dir vielleicht schwer, deinen Weg zu wählen?
 objscripts
 0 BattleFrontier_BattlePikeThreePathRoom_EventScript_Attendant
 1 BattleFrontier_BattlePikeThreePathRoom_EventScript_HintGiver
@@ -57,7 +57,7 @@ scriptdefs
 applymovement LOCALID_PIKE_HINT_GIVER BattleFrontier_BattlePikeThreePathRoom_Movement_HintGiverApproachPlayer
 waitmovement 0
 lockall
-msgbox	I am sorry to say…A terrifying event, yes, a horrible one, is about to befall you…I urge you to pay the utmost care and prepare for the worst…
+msgbox	Es tut mir leid, sagen zu müssen…Ein schreckliches Ereignis, ja, ein grauenhaftes, steht dir bevor…Ich bitte dich eindringlich, äußerste Vorsicht walten zu lassen und dich auf das Schlimmste einzustellen…
 releaseall
 applymovement LOCALID_PIKE_HINT_GIVER BattleFrontier_BattlePikeThreePathRoom_Movement_HintGiverReturnToPos
 waitmovement 0
@@ -73,7 +73,7 @@ setvar VAR_TEMP_5 1
 end
 = BattleFrontier_BattlePikeThreePathRoom_EventScript_ResumeChallenge
 lockall
-msgbox	We've been awaiting your return…Before resuming your Battle Choice challenge, let me save the game…
+msgbox	Wir haben auf deine Rückkehr gewartet…Bevor du deine Battle-Choice-Herausforderung fortsetzt, lass mich den Spielstand sichern…
 waitmessage
 pike_save CHALLENGE_STATUS_SAVING
 playse SE_SAVE
@@ -82,7 +82,7 @@ frontier_set FRONTIER_DATA_PAUSED FALSE
 setvar VAR_TEMP_CHALLENGE_STATUS 255
 special SavePlayerParty
 frontier_setpartyorder FRONTIER_PARTY_SIZE
-msgbox	Please do enjoy your Battle Choice challenge…
+msgbox	Genieße bitte deine Battle-Choice-Herausforderung…
 closemessage
 releaseall
 frontier_settrainers
@@ -99,7 +99,7 @@ end
 setvar VAR_TEMP_3 0
 setvar VAR_TEMP_2 0
 lockall
-msgbox	The path is blocked! And there is no turning back…
+msgbox	Der Weg ist versperrt! Und es gibt kein Zurück mehr…
 closemessage
 end
 = BattleFrontier_BattlePikeThreePathRoom_EventScript_SetEnteredRoom
@@ -165,7 +165,7 @@ case MULTI_B_PRESSED BattleFrontier_BattlePikeThreePathRoom_EventScript_DeclineH
 release
 end
 = BattleFrontier_BattlePikeThreePathRoom_EventScript_DeclineHint
-msgbox	I see… I apologize for my impertinence…
+msgbox	Ich verstehe… Ich entschuldige mich für meine Unverschämtheit…
 release
 end
 = BattleFrontier_BattlePikeThreePathRoom_EventScript_AcceptHint
@@ -176,7 +176,7 @@ case PIKE_ROOM_CENTER BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveCen
 case PIKE_ROOM_RIGHT BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveRightRoomHint
 end
 = BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveRightRoomHint
-msgbox	Ah, let me see… There is something about the path on the right…
+msgbox	Ah, lass mich sehen… Da ist etwas mit dem Weg auf der rechten Seite…
 goto BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveHint
 = BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveHint
 pike_gethint
@@ -187,31 +187,31 @@ case PIKE_HINT_POKEMON BattleFrontier_BattlePikeThreePathRoom_EventScript_HintPo
 case PIKE_HINT_PEOPLE BattleFrontier_BattlePikeThreePathRoom_EventScript_HintPeople
 end
 = BattleFrontier_BattlePikeThreePathRoom_EventScript_HintPeople
-msgbox	Is it… A TRAINER? I sense the presence of people…
+msgbox	Ist es… Ein TRAINER? Ich spüre die Anwesenheit von Menschen…
 release
 end
 = BattleFrontier_BattlePikeThreePathRoom_EventScript_HintPokemon
-msgbox	It seems to have the distinct aroma of POKéMON wafting around it…
+msgbox	Es scheint, als würde ein deutlicher Duft von POKéMON darum herumwehen…
 release
 end
 = BattleFrontier_BattlePikeThreePathRoom_EventScript_HintWhispering
-msgbox	I seem to have heard something… It may have been whispering…
+msgbox	Ich glaube, ich habe etwas gehört… Es könnte ein Flüstern gewesen sein…
 release
 end
 = BattleFrontier_BattlePikeThreePathRoom_EventScript_HintNostalgia
-msgbox	For some odd reason, I felt a wave of nostalgia coming from it…
+msgbox	Aus irgendeinem seltsamen Grund verspürte ich eine Welle der Wehmut, die davon ausging…
 release
 end
 = BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveCenterRoomHint
-msgbox	Ah, let me see… There is something about the path in the center…
+msgbox	Ah, lass mich sehen… Da ist etwas mit dem Weg in der Mitte…
 goto BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveHint
 = BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveLeftRoomHint
-msgbox	Ah, let me see… There is something about the path on the left…
+msgbox	Ah, lass mich sehen… Da ist etwas mit dem Weg auf der linken Seite…
 goto BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveHint
 = BattleFrontier_BattlePikeThreePathRoom_EventScript_GiveBrainHint
 lock
 faceplayer
-msgbox	From every path I sense a dreadful presence…
+msgbox	Von jedem Weg spüre ich eine furchteinflößende Anwesenheit…
 release
 end
 = BattleFrontier_BattlePikeThreePathRoom_EventScript_Attendant
@@ -228,7 +228,7 @@ end
 = BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom13
 lock
 faceplayer
-msgbox	You are currently in the 13th room…
+msgbox	Du befindest dich derzeit im 13. Raum…
 goto BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge
 end
 = BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge
@@ -247,7 +247,7 @@ case MULTI_B_PRESSED BattleFrontier_BattlePikeThreePathRoom_EventScript_AskRetir
 release
 end
 = BattleFrontier_BattlePikeThreePathRoom_EventScript_AskRetireChallenge
-msgbox	Do you wish to retire from your Battle Choice challenge?
+msgbox	Möchtest du deine Battle-Choice-Herausforderung aufgeben?
 waitmessage
 multichoicedefault 20 8 MULTI_YESNO 1 FALSE
 switch VAR_RESULT
@@ -261,7 +261,7 @@ waitstate
 end
 = BattleFrontier_BattlePikeThreePathRoom_EventScript_PauseChallenge
 frontier_saveparty
-msgbox	I am saving your data… A little time, please…
+msgbox	Ich speichere deine Daten… Einen Moment Geduld bitte…
 waitmessage
 special LoadPlayerParty
 pike_save CHALLENGE_STATUS_PAUSED
@@ -273,37 +273,37 @@ end
 = BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom11
 lock
 faceplayer
-msgbox	You are currently in the 11th room…
+msgbox	Du befindest dich derzeit im 11. Raum…
 goto BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge
 end
 = BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom9
 lock
 faceplayer
-msgbox	You are currently in the 9th room…
+msgbox	Du befindest dich derzeit im 9. Raum…
 goto BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge
 end
 = BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom7
 lock
 faceplayer
-msgbox	You are currently in the 7th room…
+msgbox	Du befindest dich derzeit im 7. Raum…
 goto BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge
 end
 = BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom5
 lock
 faceplayer
-msgbox	You are currently in the 5th room…
+msgbox	Du befindest dich derzeit im 5. Raum…
 goto BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge
 end
 = BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom3
 lock
 faceplayer
-msgbox	You are currently in the 3rd room…
+msgbox	Du befindest dich derzeit im 3. Raum…
 goto BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge
 end
 = BattleFrontier_BattlePikeThreePathRoom_EventScript_AttendantRoom1
 lock
 faceplayer
-msgbox	You are currently in the 1st room…
+msgbox	Du befindest dich derzeit im 1. Raum…
 goto BattleFrontier_BattlePikeThreePathRoom_EventScript_AskContinueChallenge
 end
 mapsec

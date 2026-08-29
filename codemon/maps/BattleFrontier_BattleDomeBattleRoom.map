@@ -63,7 +63,7 @@ call_if_eq VAR_RESULT DOME_ROUND1 BattleFrontier_BattleDomeBattleRoom_EventScrip
 applymovement LOCALID_DOME_ANNOUNCER Common_Movement_WalkInPlaceDown
 waitmovement 0
 call BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayer
-msgbox	PLAYER has entered the BATTLE DOME!
+msgbox	PLAYER hat das BATTLE DOME betreten!
 closemessage
 showobjectat LOCALID_DOME_PLAYER MAP_BATTLE_FRONTIER_BATTLE_DOME_BATTLE_ROOM
 goto_if_ne VAR_TEMP_F DOME_FINAL BattleFrontier_BattleDomeBattleRoom_EventScript_PlayerEnter
@@ -81,7 +81,7 @@ goto_if_ne VAR_TEMP_E FRONTIER_BRAIN_NOT_READY BattleFrontier_BattleDomeBattleRo
 goto BattleFrontier_BattleDomeBattleRoom_EventScript_BattleOpponent
 = BattleFrontier_BattleDomeBattleRoom_EventScript_BattleOpponent
 dome_getopponentname
-msgbox	STR_VAR_1 match!PLAYER versus STR_VAR_2!Let the battle begin!
+msgbox	STR_VAR_1-Kampf!PLAYER gegen STR_VAR_2!Der Kampf beginnt!
 closemessage
 applymovement LOCALID_DOME_PLAYER BattleFrontier_BattleDomeBattleRoom_Movement_PlayerStepForward
 applymovement LOCALID_DOME_OPPONENT BattleFrontier_BattleDomeBattleRoom_Movement_OpponentStepForward
@@ -99,7 +99,7 @@ case B_OUTCOME_FORFEITED BattleFrontier_BattleDomeBattleRoom_EventScript_LostToO
 setvar VAR_TEMP_2 DRAW_TRAINER
 goto BattleFrontier_BattleDomeBattleRoom_EventScript_Draw
 = BattleFrontier_BattleDomeBattleRoom_EventScript_Draw
-msgbox	What an unbelievable finish! We have a double knockout!In this event, the Battle Tournament rules call for a REFEREE'S decision.Please wait while the judging is under way.
+msgbox	Was für ein unglaubliches Ende! Wir haben einen Doppel-K.o.!In diesem Fall verlangen die Turnierregeln eine Entscheidung des SCHIEDSRICHTERS.Bitte wartet, während die Bewertung läuft.
 closemessage
 playse SE_M_ENCORE2
 call BattleFrontier_BattleDomeBattleRoom_EventScript_AudienceLookAround
@@ -221,17 +221,17 @@ turnvobject 31 DIR_SOUTH
 delay 20
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_TuckerWonDraw
-msgbox	The REFEREES have reached a decision!The winner is… Oh, my goodness! The winner is our very own DOME ACE! It's TUCKER!Congratulations! And thank you! Let's hear it for the DOME ACE, TUCKER!
+msgbox	Die SCHIEDSRICHTER haben eine Entscheidung getroffen!Der Sieger ist… Oh, du meine Güte! Der Sieger ist unser eigener DOME-ASS! Es ist TUCKER!Herzlichen Glückwunsch! Und danke! Applaus für den DOME-ASS, TUCKER!
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_OpponentWonDraw
 frontier_gettrainername STR_VAR_1
-msgbox	The REFEREES have reached a decision!The winner is… Oh, my goodness! The winner is STR_VAR_1! Congratulations!
+msgbox	Die SCHIEDSRICHTER haben eine Entscheidung getroffen!Der Sieger ist… Oh, du meine Güte! Der Sieger ist STR_VAR_1! Herzlichen Glückwunsch!
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_OpponentWon
 frontier_gettrainername STR_VAR_2
-msgbox	STR_VAR_2 is the winner! Congratulations!
+msgbox	STR_VAR_2 ist der Sieger! Herzlichen Glückwunsch!
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_DefeatedOpponent
@@ -259,7 +259,7 @@ waitmovement 0
 frontier_get FRONTIER_DATA_LVL_MODE
 switch VAR_RESULT
 case FRONTIER_LVL_OPEN BattleFrontier_BattleDomeBattleRoom_EventScript_WonLvOpenTourney
-msgbox	PLAYER is the Level 50 Battle Tournament Champion!Congratulations!
+msgbox	PLAYER ist der Champion des Level-50-Kampfturniers!Herzlichen Glückwunsch!
 goto BattleFrontier_BattleDomeBattleRoom_EventScript_CelebrateWin
 = BattleFrontier_BattleDomeBattleRoom_EventScript_CelebrateWin
 special DoDomeConfetti
@@ -269,13 +269,13 @@ delay 60
 frontier_set FRONTIER_DATA_CHALLENGE_STATUS CHALLENGE_STATUS_WON
 goto BattleFrontier_BattleDomeBattleRoom_EventScript_WarpToLobby
 = BattleFrontier_BattleDomeBattleRoom_EventScript_WonLvOpenTourney
-msgbox	PLAYER is the Open Level Battle Tournament Champion!Congratulations!
+msgbox	PLAYER ist der Champion des Kampfturniers ohne Levelgrenze!Herzlichen Glückwunsch!
 goto BattleFrontier_BattleDomeBattleRoom_EventScript_CelebrateWin
 = BattleFrontier_BattleDomeBattleRoom_EventScript_PlayerWonDraw
-msgbox	The REFEREES have reached a decision!The winner is… Oh, my goodness! The winner is PLAYER! Congratulations!
+msgbox	Die SCHIEDSRICHTER haben eine Entscheidung getroffen!Der Sieger ist… Oh, du meine Güte! Der Sieger ist PLAYER! Herzlichen Glückwunsch!
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_PlayerWon
-msgbox	PLAYER is the winner! Congratulations!
+msgbox	PLAYER ist der Sieger! Herzlichen Glückwunsch!
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_DoDomeBattle
 frontier_set FRONTIER_DATA_RECORD_DISABLED FALSE
@@ -297,7 +297,7 @@ case FRONTIER_BRAIN_STREAK BattleFrontier_BattleDomeBattleRoom_EventScript_Annou
 case FRONTIER_BRAIN_STREAK_LONG BattleFrontier_BattleDomeBattleRoom_EventScript_AnnounceTuckerGold
 goto BattleFrontier_BattleDomeBattleRoom_EventScript_AnnounceTuckerSilver
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnounceTuckerSilver
-msgbox	And now… The TRAINER standing in PLAYER's record-setting path…Yes! The one and only! The BATTLE DOME COMMISSIONER! Our very own DOME ACE! Make way for TUCKER!
+msgbox	Und jetzt… Der TRAINER, der PLAYERs rekordverdächtigem Weg im Weg steht…Ja! Der Eine und Einzige! Der BATTLE-DOME-KOMMISSAR! Unser eigener DOME-ASS! Platz da für TUCKER!
 goto BattleFrontier_BattleDomeBattleRoom_EventScript_TuckerEnter
 = BattleFrontier_BattleDomeBattleRoom_EventScript_TuckerEnter
 closemessage
@@ -320,7 +320,7 @@ playse SE_M_ENCORE2
 call BattleFrontier_BattleDomeBattleRoom_EventScript_AudienceLookAround
 waitse
 waitmovement 0
-msgbox	Spectators: TUCKER! TUCKER! TUCKER! TUCKER! TUCKER!
+msgbox	Zuschauer: TUCKER! TUCKER! TUCKER! TUCKER! TUCKER!
 waitmessage
 playse SE_M_ENCORE2
 call BattleFrontier_BattleDomeBattleRoom_EventScript_AudienceLookAround
@@ -331,42 +331,42 @@ case FRONTIER_BRAIN_STREAK BattleFrontier_BattleDomeBattleRoom_EventScript_Battl
 case FRONTIER_BRAIN_STREAK_LONG BattleFrontier_BattleDomeBattleRoom_EventScript_BattleTuckerGold
 frontier_get FRONTIER_DATA_HEARD_BRAIN_SPEECH
 goto_if_ne VAR_RESULT FALSE BattleFrontier_BattleDomeBattleRoom_EventScript_BattleTuckerSilver
-msgbox	TUCKER: Ahahah!Do you hear it? This crowd! They're all itching to see our match!Ahahah!I bet you're twitching all over from the tension of getting to battle me!But don't you worry about a thing!I'm the no. 1 star of the BATTLE DOME! I, TUCKER the DOME ACE, will bathe you in my brilliant glow!
+msgbox	TUCKER: Ahahah!Hörst du das? Diese Menge! Sie alle brennen darauf, unseren Kampf zu sehen!Ahahah!Ich wette, du zitterst vor Spannung, weil du gegen mich kämpfen darfst!Aber mach dir keine Sorgen!Ich bin der Star Nummer eins im BATTLE DOME! Ich, TUCKER, der DOME-ASS, werde dich in meinem strahlenden Glanz baden!
 frontier_set FRONTIER_DATA_HEARD_BRAIN_SPEECH
 goto BattleFrontier_BattleDomeBattleRoom_EventScript_BattleTuckerSilver
 = BattleFrontier_BattleDomeBattleRoom_EventScript_BattleTuckerSilver
-msgbox	Your strategy! Let's see it!
+msgbox	Deine Strategie! Zeig sie mir!
 call BattleFrontier_BattleDomeBattleRoom_EventScript_DoTuckerBattle
 switch VAR_RESULT
 case B_OUTCOME_LOST BattleFrontier_BattleDomeBattleRoom_EventScript_LostToTucker
 case B_OUTCOME_FORFEITED BattleFrontier_BattleDomeBattleRoom_EventScript_LostToTucker
 case B_OUTCOME_DREW BattleFrontier_BattleDomeBattleRoom_EventScript_TuckerDraw
-msgbox	Unbelievable! It's incredible! The victor is PLAYER!
+msgbox	Unglaublich! Es ist unfassbar! Der Sieger ist PLAYER!
 dome_resolvewinners DOME_PLAYER_WON_MATCH
 frontier_getsymbols
 goto_if_ne VAR_RESULT 0 BattleFrontier_BattleDomeBattleRoom_EventScript_WonTourney
 closemessage
 applymovement LOCALID_DOME_OPPONENT BattleFrontier_BattleDomeBattleRoom_Movement_TuckerApproachPlayer
 waitmovement 0
-msgbox	TUCKER: Rules are rules! Let me see your FRONTIER PASS.
+msgbox	TUCKER: Regeln sind Regeln! Zeig mir deinen FRONTIER-PASS.
 playfanfare MUS_OBTAIN_SYMBOL
-msgbox	The Tactics Symbol was embossed on the FRONTIER PASS!
+msgbox	Das Taktik-Symbol wurde in den FRONTIER-PASS eingeprägt!
 waitmessage
 waitfanfare
 frontier_givesymbol
-msgbox	… … … … … …I sorely underestimated you. I won't make the same mistake next time…
+msgbox	… … … … … …Ich habe dich gewaltig unterschätzt. Diesen Fehler mache ich beim nächsten Mal nicht noch mal…
 goto BattleFrontier_BattleDomeBattleRoom_EventScript_WonTourney
 = BattleFrontier_BattleDomeBattleRoom_EventScript_TuckerDraw
 setvar VAR_TEMP_2 DRAW_TUCKER
 goto BattleFrontier_BattleDomeBattleRoom_EventScript_Draw
 = BattleFrontier_BattleDomeBattleRoom_EventScript_LostToTucker
-msgbox	The winner is TUCKER! The DOME ACE has prevailed!Congratulations, TUCKER!
+msgbox	Der Sieger ist TUCKER! Der DOME-ASS hat sich durchgesetzt!Herzlichen Glückwunsch, TUCKER!
 playse SE_M_ENCORE2
 call BattleFrontier_BattleDomeBattleRoom_EventScript_AudienceLookAround
 waitse
 goto BattleFrontier_BattleDomeBattleRoom_EventScript_LostTourney
 = BattleFrontier_BattleDomeBattleRoom_EventScript_DoTuckerBattle
-msgbox	The final match!PLAYER versus the DOME ACE, TUCKER!Let the battle begin!
+msgbox	Der letzte Kampf!PLAYER gegen den DOME-ASS TUCKER!Der Kampf beginnt!
 closemessage
 applymovement LOCALID_DOME_PLAYER BattleFrontier_BattleDomeBattleRoom_Movement_PlayerStepForward2
 applymovement LOCALID_DOME_OPPONENT BattleFrontier_BattleDomeBattleRoom_Movement_TuckerStepForward
@@ -374,35 +374,35 @@ waitmovement 0
 call BattleFrontier_BattleDomeBattleRoom_EventScript_DoDomeBattle
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_BattleTuckerGold
-msgbox	I will unleash all the power that I possess! Right here and now!
+msgbox	Ich werde all meine Kraft entfesseln! Genau hier und jetzt!
 call BattleFrontier_BattleDomeBattleRoom_EventScript_DoTuckerBattle
 switch VAR_RESULT
 case B_OUTCOME_LOST BattleFrontier_BattleDomeBattleRoom_EventScript_LostToTucker
 case B_OUTCOME_FORFEITED BattleFrontier_BattleDomeBattleRoom_EventScript_LostToTucker
 case B_OUTCOME_DREW BattleFrontier_BattleDomeBattleRoom_EventScript_TuckerDraw
-msgbox	Unbelievable! It's incredible! The victor is PLAYER!
+msgbox	Unglaublich! Es ist unfassbar! Der Sieger ist PLAYER!
 dome_resolvewinners DOME_PLAYER_WON_MATCH
 frontier_getsymbols
 goto_if_eq VAR_RESULT 2 BattleFrontier_BattleDomeBattleRoom_EventScript_WonTourney
 closemessage
 applymovement LOCALID_DOME_OPPONENT BattleFrontier_BattleDomeBattleRoom_Movement_TuckerApproachPlayer
 waitmovement 0
-msgbox	TUCKER: You're genuinely fantastic!Never before! I haven't ever lost in the times I've had to unleash my power.Yes, quite fantastic! Your FRONTIER PASS, please?
+msgbox	TUCKER: Du bist wirklich fantastisch!Noch nie! Ich habe noch nie verloren, wenn ich meine Kraft entfesseln musste.Ja, ganz fantastisch! Deinen FRONTIER-PASS, bitte?
 playfanfare MUS_OBTAIN_SYMBOL
-msgbox	The Tactics Symbol took on a golden shine!
+msgbox	Das Taktik-Symbol nahm einen goldenen Glanz an!
 waitmessage
 waitfanfare
 frontier_givesymbol
-msgbox	You're strong, but above all, you have a unique charm!In you, I see a definite potential for a superstar like me.I will very much look forward to our next encounter!
+msgbox	Du bist stark, aber vor allem hast du einen ganz eigenen Charme!In dir sehe ich das Potenzial zu einem Superstar wie mir.Ich freue mich schon sehr auf unser nächstes Treffen!
 goto BattleFrontier_BattleDomeBattleRoom_EventScript_WonTourney
 = BattleFrontier_BattleDomeBattleRoom_EventScript_TuckerGoldIntro
 frontier_get FRONTIER_DATA_HEARD_BRAIN_SPEECH
 goto_if_ne VAR_RESULT FALSE BattleFrontier_BattleDomeBattleRoom_EventScript_BattleTuckerGold
-msgbox	TUCKER: Ah… The pummeling roar of the crowd… Their furnace-like heat of excitement… This is a wonderful place…To the crowd, I am the DOME ACE… I represent their hopes and dreams… I must never fade from their sight…I must burn! Brighter and more brilliant! I must light all that gather here!
+msgbox	TUCKER: Ah… Das tosende Brüllen der Menge… Ihre glühende Begeisterung… Das ist ein wunderbarer Ort…Für die Menge bin ich der DOME-ASS… Ich verkörpere ihre Hoffnungen und Träume… Ich darf ihnen niemals aus dem Blick geraten…Ich muss brennen! Heller und strahlender! Ich muss alle erleuchten, die sich hier versammeln!
 frontier_set FRONTIER_DATA_HEARD_BRAIN_SPEECH
 goto BattleFrontier_BattleDomeBattleRoom_EventScript_BattleTuckerGold
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnounceTuckerGold
-msgbox	Ladies and gentlemen! Boys, girls, and POKéMON!Finally! Finally, the legend has returned!Yes, the name of that legend! Our very own DOME ACE! It's none other than TUCKER!
+msgbox	Meine Damen und Herren! Jungs, Mädels und POKéMON!Endlich! Endlich ist die Legende zurückgekehrt!Ja, der Name dieser Legende! Unser eigener DOME-ASS! Niemand anders als TUCKER!
 goto BattleFrontier_BattleDomeBattleRoom_EventScript_TuckerEnter
 = BattleFrontier_BattleDomeBattleRoom_EventScript_PlayerEnterForTucker
 applymovement LOCALID_DOME_PLAYER BattleFrontier_BattleDomeBattleRoom_Movement_PlayerEnterForTucker
@@ -433,29 +433,29 @@ case DOME_SEMIFINAL BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlay
 case DOME_FINAL BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerChampionFinal
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerChampionFinal
-msgbox	The current champion aiming to retain the title!
+msgbox	Der amtierende Champion will seinen Titel verteidigen!
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerChampionSemifinal
-msgbox	Do battles exist solely for this TRAINER?
+msgbox	Gibt es Kämpfe nur für diesen TRAINER?
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerChampionRound2
-msgbox	Can anyone hope to beat this TRAINER?
+msgbox	Kann irgendjemand hoffen, diesen TRAINER zu schlagen?
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerChampionRound1
-msgbox	The invincible champion!
+msgbox	Der unbesiegbare Champion!
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_GetRoundNum
 frontier_get FRONTIER_DATA_BATTLE_NUM
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerPreTuckerGold
-msgbox	Can the win streak be stretched? The confidence is there!
+msgbox	Kann die Siegesserie noch verlängert werden? Das Selbstvertrauen ist jedenfalls da!
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerPreTuckerSilver
-msgbox	Feel the glow of a true master!
+msgbox	Spüre den Glanz eines wahren Meisters!
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerBrokenStreak
 call BattleFrontier_BattleDomeBattleRoom_EventScript_GetRoundNum
@@ -466,19 +466,19 @@ case DOME_SEMIFINAL BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlay
 case DOME_FINAL BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerBrokenStreakFinal
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerBrokenStreakFinal
-msgbox	Will the former champ regain lost glory?
+msgbox	Wird der frühere Champion seinen verlorenen Ruhm zurückgewinnen?
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerBrokenStreakSemifinal
-msgbox	Will this TRAINER do as expected and advance to the finals?
+msgbox	Wird dieser TRAINER wie erwartet ins Finale einziehen?
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerBrokenStreakRound2
-msgbox	The former toughness has returned!
+msgbox	Die frühere Härte ist zurückgekehrt!
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerBrokenStreakRound1
-msgbox	The former champion has returned!
+msgbox	Der frühere Champion ist zurückgekehrt!
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerNeverWon
@@ -490,19 +490,19 @@ case DOME_SEMIFINAL BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlay
 case DOME_FINAL BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerNeverWonFinal
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerNeverWonFinal
-msgbox	Will the long-held dream of a championship finally come true?
+msgbox	Wird der lang gehegte Traum vom Titel endlich wahr?
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerNeverWonSemifinal
-msgbox	A win here means this TRAINER advances to the final!
+msgbox	Ein Sieg hier bedeutet, dass dieser TRAINER ins Finale einzieht!
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerNeverWonRound2
-msgbox	The TRAINER is on fire for the first championship try!
+msgbox	Der TRAINER brennt für seinen ersten Versuch auf den Titel!
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerNeverWonRound1
-msgbox	Can the loss of the last match be avenged?
+msgbox	Kann die Niederlage im letzten Kampf gerächt werden?
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerFirstAttempt
@@ -514,19 +514,19 @@ case DOME_SEMIFINAL BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlay
 case DOME_FINAL BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerFirstAttemptFinal
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerFirstAttemptFinal
-msgbox	Can the feat of a championship on the first try be achieved?
+msgbox	Kann der Titel schon beim ersten Versuch geholt werden?
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerFirstAttemptSemifinal
-msgbox	Will this TRAINER race to the championship?
+msgbox	Wird dieser TRAINER dem Titel entgegenstürmen?
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerFirstAttemptRound2
-msgbox	The rising star!
+msgbox	Der aufgehende Stern!
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_AnnouncePlayerFirstAttemptRound1
-msgbox	The bright new hope!
+msgbox	Die strahlende neue Hoffnung!
 waitmessage
 return
 = BattleFrontier_BattleDomeBattleRoom_EventScript_TryDoAudienceMemberWalkToSeat
