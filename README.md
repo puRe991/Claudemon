@@ -622,7 +622,7 @@ Aus einer Codestruktur-Review von `codemon/main.cpp` (2506 Zeilen) – reines Re
 
 * ❌ Input-Dispatch zusammenführen: der Zustands-Dispatch ("welcher Screen ist aktiv") existiert doppelt – einmal für den interaktiven Loop, einmal separat (leicht abweichend) für den Headless-/Screenshot-Testmodus. Auf eine gemeinsame Implementierung reduzieren.
 
-* ❌ Warp-/Fly-/Whiteout-Übergänge (`do_pending_warp`, `do_pending_fly`, `handle_whiteout`) von Lambdas mit Zugriff auf main()-Locals zu Methoden auf der `Game`-Klasse machen, damit sie unabhängig testbar sind.
+* ✅ Warp-/Fly-/Whiteout-Übergänge (`do_pending_warp`, `do_pending_fly`, `handle_whiteout`) sind jetzt Methoden auf der `Game`-Klasse statt Lambdas mit Zugriff auf main()-Locals.
 
 ## ++ QoL ++
 
