@@ -25,7 +25,7 @@ warps
 npcs
 people_old_man 6 4 E static 0 LOCALID_MYSTERY_EVENTS_OLD_MAN 0
 dialogs
-0	When I was young, I traveled the world as a POKéMON TRAINER.Now that I've become an old buzzard, my only amusement is watching young TRAINERS battle.
+0	Als ich jung war, bin ich als POKéMON-TRAINER durch die Welt gereist.Jetzt, wo ich ein alter Knacker geworden bin, ist es mein einziges Vergnügen, jungen TRAINERN beim Kämpfen zuzusehen.
 objscripts
 0 SootopolisCity_MysteryEventsHouse_1F_EventScript_OldMan
 onload
@@ -59,13 +59,13 @@ setvar VAR_SOOTOPOLIS_MYSTERY_EVENTS_STATE 0
 releaseall
 end
 = SootopolisCity_MysteryEventsHouse_1F_EventScript_BattleTiedComment
-msgbox	So, it became a standoff.It was a brilliant match in which neither side conceded a step!
+msgbox	Also, es endete unentschieden.Ein großartiger Kampf, bei dem keine Seite auch nur einen Schritt zurückwich!
 return
 = SootopolisCity_MysteryEventsHouse_1F_EventScript_BattleLostComment
-msgbox	Ah, too bad for you!But it was a good match. I hope you can win next time.
+msgbox	Ach, wie schade für dich!Aber es war ein guter Kampf. Ich hoffe, du gewinnst nächstes Mal.
 return
 = SootopolisCity_MysteryEventsHouse_1F_EventScript_BattleWonComment
-msgbox	That was superlative!Why, it was like seeing myself in my youth again!
+msgbox	Das war grandios!Es war, als würde ich mich selbst in meiner Jugend wiedersehen!
 return
 = SootopolisCity_MysteryEventsHouse_1F_EventScript_OldMan
 lock
@@ -73,7 +73,7 @@ faceplayer
 frontier_checkvisittrainer
 goto_if_eq VAR_RESULT 1 SootopolisCity_MysteryEventsHouse_1F_EventScript_InvalidVisitingTrainer
 goto_if_eq VAR_TEMP_1 1 SootopolisCity_MysteryEventsHouse_1F_EventScript_TrainerVisiting
-msgbox	When I was young, I traveled the world as a POKéMON TRAINER.Now that I've become an old buzzard, my only amusement is watching young TRAINERS battle.
+msgbox	Als ich jung war, bin ich als POKéMON-TRAINER durch die Welt gereist.Jetzt, wo ich ein alter Knacker geworden bin, ist es mein einziges Vergnügen, jungen TRAINERN beim Kämpfen zuzusehen.
 release
 end
 = SootopolisCity_MysteryEventsHouse_1F_EventScript_TrainerVisiting
@@ -90,7 +90,7 @@ call Common_EventScript_SaveGame
 goto_if_eq VAR_RESULT FALSE SootopolisCity_MysteryEventsHouse_1F_EventScript_DeclineBattle
 special SavePlayerParty
 special ReducePlayerPartyToSelectedMons
-msgbox	I hope to see a good match!
+msgbox	Ich hoffe auf einen guten Kampf!
 closemessage
 call_if_eq VAR_FACING DIR_NORTH SootopolisCity_MysteryEventsHouse_1F_EventScript_EnterBasementNorth
 call_if_eq VAR_FACING DIR_EAST SootopolisCity_MysteryEventsHouse_1F_EventScript_EnterBasementEast
@@ -116,19 +116,19 @@ waitmovement 0
 return
 = SootopolisCity_MysteryEventsHouse_1F_EventScript_DeclineBattle
 special LoadPlayerParty
-msgbox	You won't battle? I'm disappointed that I can't see you battle…
+msgbox	Du willst nicht kämpfen? Wie schade, dass ich dich nicht kämpfen sehen kann…
 release
 end
 = Common_EventScript_SaveGame
 special SaveGame
 return
 = SootopolisCity_MysteryEventsHouse_1F_EventScript_ChooseParty
-msgbox	Oh, good, good!But my house isn't all that sturdy.Could I ask you to keep it down to a 3-on-3 match?
+msgbox	Oh, gut, gut!Aber mein Haus ist nicht besonders stabil.Könnte ich dich bitten, es bei einem 3-gegen-3-Kampf zu belassen?
 fadescreen FADE_TO_BLACK
 special ChooseHalfPartyForBattle
 return
 = SootopolisCity_MysteryEventsHouse_1F_EventScript_InvalidVisitingTrainer
-msgbox	When I was young, I traveled the world as a POKéMON TRAINER.Now that I've become an old buzzard, my only amusement is watching young TRAINERS battle.
+msgbox	Als ich jung war, bin ich als POKéMON-TRAINER durch die Welt gereist.Jetzt, wo ich ein alter Knacker geworden bin, ist es mein einziges Vergnügen, jungen TRAINERN beim Kämpfen zuzusehen.
 release
 end
 mapsec

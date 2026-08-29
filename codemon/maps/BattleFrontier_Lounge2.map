@@ -28,11 +28,11 @@ people_maniac 10 3 W static 0 - 0
 people_running_triathlete_f 4 6 S wander 0 - 0
 people_maniac 10 5 W static 0 - 0
 dialogs
-0	Howdy! When it comes to news about the BATTLE FRONTIER, I'm no. 1.You can think of me as the FRONTIER MANIAC.Just checking, but you are a TRAINER, isn't that right?I'll happily share the hottest news I gathered about the BATTLE FRONTIER.
-1	What amazing news-gathering power! My mentor's like none other!
-2	What amazing powers of observation! My mentor's like none other!
-3	…What is this place? It's scaring me…
-4	What amazing power of persuasion! My mentor's like none other!
+0	Hallihallo! Wenn es um Neuigkeiten zur BATTLE FRONTIER geht, bin ich die Nummer eins.Du kannst mich ruhig den FRONTIER-FREAK nennen.Nur zur Sicherheit, du bist doch ein TRAINER, oder?Ich teile gern die heißesten Neuigkeiten, die ich über die BATTLE FRONTIER gesammelt habe.
+1	Was für eine erstaunliche Fähigkeit, Neuigkeiten zu sammeln! Mein Lehrmeister ist einfach unvergleichlich!
+2	Was für eine erstaunliche Beobachtungsgabe! Mein Lehrmeister ist einfach unvergleichlich!
+3	…Was ist das für ein Ort? Er macht mir Angst…
+4	Was für eine erstaunliche Überzeugungskraft! Mein Lehrmeister ist einfach unvergleichlich!
 objscripts
 0 BattleFrontier_Lounge2_EventScript_FrontierManiac
 1 BattleFrontier_Lounge2_EventScript_Maniac1
@@ -42,20 +42,20 @@ objscripts
 scriptdefs
 = BattleFrontier_Lounge2_EventScript_Maniac3
 lock
-msgbox	What amazing power of persuasion! My mentor's like none other!
+msgbox	Was für eine erstaunliche Überzeugungskraft! Mein Lehrmeister ist einfach unvergleichlich!
 release
 end
 = BattleFrontier_Lounge2_EventScript_TriathleteF
-msgbox	…What is this place? It's scaring me…
+msgbox	…Was ist das für ein Ort? Er macht mir Angst…
 end
 = BattleFrontier_Lounge2_EventScript_Maniac2
 lock
-msgbox	What amazing powers of observation! My mentor's like none other!
+msgbox	Was für eine erstaunliche Beobachtungsgabe! Mein Lehrmeister ist einfach unvergleichlich!
 release
 end
 = BattleFrontier_Lounge2_EventScript_Maniac1
 lock
-msgbox	What amazing news-gathering power! My mentor's like none other!
+msgbox	Was für eine erstaunliche Fähigkeit, Neuigkeiten zu sammeln! Mein Lehrmeister ist einfach unvergleichlich!
 release
 end
 = BattleFrontier_Lounge2_EventScript_FrontierManiac
@@ -63,7 +63,7 @@ lock
 faceplayer
 goto_if_set FLAG_MET_BATTLE_FRONTIER_MANIAC BattleFrontier_Lounge2_EventScript_AlreadyMetManiac
 setflag FLAG_MET_BATTLE_FRONTIER_MANIAC
-msgbox	Howdy! When it comes to news about the BATTLE FRONTIER, I'm no. 1.You can think of me as the FRONTIER MANIAC.Just checking, but you are a TRAINER, isn't that right?I'll happily share the hottest news I gathered about the BATTLE FRONTIER.
+msgbox	Hallihallo! Wenn es um Neuigkeiten zur BATTLE FRONTIER geht, bin ich die Nummer eins.Du kannst mich ruhig den FRONTIER-FREAK nennen.Nur zur Sicherheit, du bist doch ein TRAINER, oder?Ich teile gern die heißesten Neuigkeiten, die ich über die BATTLE FRONTIER gesammelt habe.
 goto BattleFrontier_Lounge2_EventScript_GiveAdvice
 end
 = BattleFrontier_Lounge2_EventScript_GiveAdvice
@@ -87,10 +87,10 @@ waitbuttonpress
 release
 end
 = BattleFrontier_Lounge2_EventScript_FacilityNews
-msgbox	Let's see now…It sounds like the STR_VAR_1 is the hottest place going.
+msgbox	Mal sehen…Es klingt so, als wäre STR_VAR_1 gerade der angesagteste Ort.
 return
 = BattleFrontier_Lounge2_EventScript_BattleTowerNews
-msgbox	Let's see now…It sounds like BATTLE TOWER STR_VAR_1 is the hottest.
+msgbox	Mal sehen…Es klingt so, als wäre BATTLE TOWER STR_VAR_1 gerade am heißesten.
 return
 = BattleFrontier_Lounge2_EventScript_BufferBattlePyramid
 bufferstdstring STR_VAR_1 STDSTRING_BATTLE_PYRAMID
@@ -123,7 +123,7 @@ return
 bufferstdstring STR_VAR_1 STDSTRING_SINGLE
 return
 = BattleFrontier_Lounge2_EventScript_AlreadyMetManiac
-msgbox	Howdy! Did you swing by to grill me about the latest word? Oh, all right!
+msgbox	Hallihallo! Bist du vorbeigekommen, um mich über die neuesten Neuigkeiten auszufragen? Na gut!
 goto BattleFrontier_Lounge2_EventScript_GiveAdvice
 end
 mapsec
