@@ -614,7 +614,7 @@ Alles, was unten abgehakt ist, wurde durch einen Test oder Headless-Screenshot �
 
 Aus einer Codestruktur-Review von `codemon/main.cpp` (2506 Zeilen) – reines Refactoring, keine Verhaltensänderung, gegen die bestehenden `CODEMON_SCREENSHOT`-Tests verifizierbar.
 
-* ❌ `main()` auffächern: aktuell eine ~890-Zeilen-God-Function (Savegame, Titelscreen, Session-Verwaltung, kompletter Event-Loop, Whiteout-Logik, alles inline). Aufteilen in eine `Game`-Klasse mit `handleInput()` / `update(dt)` / `render()` statt lokaler Variablen + Lambdas.
+* ✅ `main()` in eine `Game`-Klasse aufgefächert: Savegame/Titelscreen-Setup, Session-Verwaltung, Warp/Fly/Whiteout-Logik und die beiden Game-Loops (Headless-Screenshot- und interaktiver Modus) sind jetzt benannte Methoden (`run()`, `run_headless()`, `run_interactive()`, `start_new_game()`, `do_pending_warp()`, `do_pending_fly()`, `handle_whiteout()`, `on_map_change()`) statt einer ~890-Zeilen-Funktion mit erfassenden Lambdas; `main()` selbst ist nur noch `Game game; return game.run();`. Reine mechanische Umstellung (Locals → Member, Lambdas → Methoden, Logik unverändert), verifiziert per Rebuild + Testsuite + pixelgleichem Headless-Screenshot-Vergleich (Overworld, Starter-Auswahl, Menü).
 
 * ✅ UI-Screen-Structs aus `main.cpp` auslagern: `StarterSelect`, `YesNoPrompt`, `PartyPicker`, `MultiChoicePrompt`, `DebugMenu`, `Shop`, `TitleScreen`, `GenderSelect`, `EarlyAccessNotice`, `NameEntry` (+ `HealFx`, `ItemDisplay`) haben jetzt je eine eigene Header-Datei; `main.cpp` von 2506 auf 1526 Zeilen geschrumpft, gegen den bestehenden Test-/Screenshot-Build verifiziert.
 

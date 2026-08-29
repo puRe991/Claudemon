@@ -637,23 +637,242 @@ static DIR char_to_dir(char c) {
                  default: return DIR::NONE; }
 }
 
-int main() {
-    const char* map_env = std::getenv("CODEMON_MAP");
-    std::mt19937 rng(1234);
+// Game - owns every piece of session/UI state that used to live as locals
+// and capturing lambdas inside main(), and drives the two run modes
+// (headless screenshot/animation, real interactive play). Splitting this out
+// of main() doesn't change any behavior: every method body below is the same
+// code that used to run inline, just addressing what were main()'s locals as
+// member variables instead (a lambda capturing `sess` by reference and a
+// member function reading `this->sess` see the same thing).
+class Game {
+public:
+    int run();
 
-    static const char* SAVE_PATH = "savegame.dat";
+private:
+    void start_new_game();
+    void run_title_and_character_creation();
+    void run_headless();
+    void run_interactive();
+
+    void on_map_change(const std::string& path, Audio* aud);
+    void do_pending_warp(Audio* aud);
+    void do_pending_fly(Audio* aud);
+    void handle_whiteout(Audio* aud);
+
+    // Map a walk token to a battle button (for scripted battle demos).
+    static BtnInput token_btn(char t) {
+        switch (t) { case 'N': return BTN_UP; case 'S': return BTN_DOWN;
+                     case 'W': return BTN_LEFT; case 'E': return BTN_RIGHT;
+                     default: return BTN_CONFIRM; }
+    }
+
+    static constexpr const char* SAVE_PATH = "savegame.dat";
+
+    const char* map_env = nullptr;
+    std::mt19937 rng{1234};
     GameState gs;
     BattleData bdata;
+    std::vector<Mon> team;      // the player's party
+    std::vector<Mon> pc_box;    // PC storage
+
+    std::string start_map;
+    int start_x = -1, start_y = -1;
+    bool resumed = false;
+
+    Session* sess = nullptr;
+    unsigned win_w = 0, win_h = 0;
+
+    DialogBox box;
+    Battle battle;
+    ScriptVM vm;
+    Menu menu;
+    Minigame games;
+    StarterSelect starter;
+    YesNoPrompt yesno;
+    PartyPicker picker;
+    MultiChoicePrompt multichoice;
+    std::unordered_map<std::string, int> item_prices;
+    Shop shop;
+    HealFx healfx;
+    DebugMenu debugmenu;
+    bool force_enc = false;
+
+    // map-name banner + warp fade-in state
+    std::string banner;
+    float banner_t = 2.2f, fade = 1.0f;
+    sf::Font ban_font;
+
+    // Whiteout recovery for battles the VM never knew about (random wild
+    // encounters started directly by try_encounter()); ScriptVM handles its
+    // own scripted battles (trainerbattle/dowildbattle) itself, the same way.
+    bool battle_was_active = false;
+};
+
+// Story start: the player rides in on the moving truck (InsideOfTruck),
+// which is where pokeemerald's own new-game intro begins -- its own
+// imported script (checkplayergender + SetIntroFlagsMale/Female) hides
+// the unused house's occupants, sets the respawn point and points the
+// truck's WARP_ID_DYNAMIC exit at the right house, all keyed off
+// gs.female (see below). Called both for a genuinely fresh run and when
+// "NEUES SPIEL" is chosen on the title screen after a save was already
+// loaded (discarding it, same as any other save file that's simply never
+// opened again).
+void Game::start_new_game() {
+    gs = GameState(); team.clear(); pc_box.clear();
+    start_map = map_env ? map_env : "maps/InsideOfTruck.map";
+    start_x = start_y = -1;
+    // New-game default world state: every NPC/item hidden until its own
+    // story beat unlocks it (data/scripts/new_game.inc in pokeemerald),
+    // e.g. the rival isn't standing in your bedroom, Birch isn't already
+    // in his lab, Mom's "moving in" dialogue is used instead of the daily one.
+    std::ifstream ngf("assets/new_game_flags.txt");
+    std::string ln;
+    while (std::getline(ngf, ln))
+        if (!ln.empty()) gs.set_flag(ln);
+    // In real pokeemerald VAR_LITTLEROOT_TOWN_STATE only reaches 1 by
+    // visiting the rival's house and finding their poke ball on day 1 --
+    // the one and only way LittlerootTown's Route 101 warning-kid trigger
+    // ever lets the player through to the Birch-rescue scene. Skipping
+    // straight to "wake up on day 2" like above must carry that forward
+    // too, or the kid pushes the player back forever with no way to
+    // proceed.
+    gs.set_var("VAR_LITTLEROOT_TOWN_STATE", 1);
+    // Story start: no starter yet -- team stays empty until the player
+    // actually picks one from Birch's bag on Route 101, same as pokeemerald.
+    // Whiteout recovery point before the player has healed anywhere for
+    // real: default to Brendan's House 2F until the truck's own script
+    // (which runs setrespawn once gender is known) picks the right one
+    // below -- there's no battle before then, so this default is never
+    // actually read as a whiteout target.
+    gs.last_heal_map = "LittlerootTown_BrendansHouse_2F";
+    gs.last_heal_x = 4; gs.last_heal_y = 2;
+}
+
+// Real interactive play only: headless screenshot tests and CODEMON_MAP
+// demos need deterministic, immediate map loading, same reasoning as every
+// other CODEMON_* test hook bypassing normal flow.
+void Game::run_title_and_character_creation() {
+    TitleScreen title;
+    title.load();
+    sf::RenderWindow titlewin(sf::VideoMode(VIEW_TW * 16 * SCALE, VIEW_TH * 16 * SCALE),
+                              "Codemon!");
+    bool wants_continue = title.run(titlewin, resumed);
+    titlewin.close();
+    if (!wants_continue && resumed) { start_new_game(); resumed = false; }
+
+    // A brand new game (not a loaded save) still needs a player before
+    // it can begin: who you are (GenderSelect) and your/your rival's
+    // name (NameEntry), matching real Emerald's own character-select +
+    // naming-screen intro. Skipped entirely when continuing a save.
+    if (!resumed) {
+        sf::RenderWindow setupwin(sf::VideoMode(VIEW_TW * 16 * SCALE, VIEW_TH * 16 * SCALE),
+                                  "Codemon!");
+        GenderSelect gender_ui; gender_ui.load();
+        gs.female = gender_ui.run(setupwin);
+        PLAYER_SHEET = gs.female ? "assets/overworld/people_may_walking.png"
+                                 : "assets/overworld/people_brendan_walking.png";
+        NameEntry name_ui; name_ui.load();
+        gs.player_name = name_ui.run(setupwin, "Wie heisst du?", gs.female ? "MAY" : "BRENDAN");
+        gs.rival_name = name_ui.run(setupwin, "Wie heisst dein Rivale?", gs.female ? "BRENDAN" : "MAY");
+        EarlyAccessNotice().run(setupwin);
+        setupwin.close();
+        // Now that gender is known, point the pre-battle whiteout target
+        // at the matching house (InsideOfTruck's own script sets the
+        // *dynamic warp* target the same way, but never touches
+        // last_heal_* -- see setrespawn's comment in ScriptVM.cpp).
+        if (gs.female) {
+            gs.last_heal_map = "LittlerootTown_MaysHouse_2F";
+            gs.last_heal_x = 4; gs.last_heal_y = 2;
+        }
+    }
+}
+
+void Game::on_map_change(const std::string& path, Audio* aud) {
+    banner = pretty_map(path); banner_t = 2.2f; fade = 1.0f;
+    menu.set_location(banner);
+    menu.set_mapsec(sess->map->has_mapsec(), sess->map->mapsec_x(),
+                     sess->map->mapsec_y(), sess->map->mapsec_w(), sess->map->mapsec_h());
+    if (aud) aud->play_bgm(sess->map->music());
+}
+
+// A script-driven `warp` (e.g. Route 101 Birch's bag sending the player
+// to his lab after picking a starter) swaps the session the same way
+// stepping onto a warp tile does.
+void Game::do_pending_warp(Audio* aud) {
+    if (!vm.has_pending_warp()) return;
+    std::string dest; int wx, wy;
+    vm.get_pending_warp(dest, wx, wy);
+    vm.clear_pending_warp();
+    if (dest == "-") return;
+    Session* ns = load_session("maps/" + dest + ".map", wx, wy, &gs);
+    if (!ns->map->ready()) { free_session(ns); return; }
+    free_session(sess);
+    sess = ns;
+    vm.configure(sess->map, &gs, &box, &battle, aud, sess->player, &sess->actors, &sess->localid_map);
+    run_load_triggers(sess->map, gs, vm);
+    check_trigger(sess, vm, gs);
+    on_map_change(sess->path, aud);
+}
+
+// FLIEGEN: the menu can't touch the session either (same reasoning as
+// do_pending_warp above), so it just names a destination and the game
+// loop performs the actual load_session + player placement.
+void Game::do_pending_fly(Audio* aud) {
+    if (!menu.wants_fly()) return;
+    std::string dest; int fx, fy;
+    menu.fly_destination(dest, fx, fy);
+    menu.ack_fly();
+    Session* ns = load_session("maps/" + dest + ".map", fx, fy, &gs);
+    if (!ns->map->ready()) { free_session(ns); return; }
+    free_session(sess);
+    sess = ns;
+    sess->player->face(DIR::S);
+    vm.configure(sess->map, &gs, &box, &battle, aud, sess->player, &sess->actors, &sess->localid_map);
+    run_load_triggers(sess->map, gs, vm);
+    check_trigger(sess, vm, gs);
+    on_map_change(sess->path, aud);
+}
+
+void Game::handle_whiteout(Audio* aud) {
+    bool battle_just_ended = battle_was_active && !battle.active() && !vm.running();
+    if (battle_just_ended && !battle.won()) {
+        for (Mon& m : team) {
+            m.hp = m.max_hp;
+            m.status = Status::NONE; m.status_turns = 0; m.confusion_turns = 0;
+            bdata.restore_pp(m);
+        }
+        if (!gs.last_heal_map.empty()) {
+            Session* ns = load_session("maps/" + gs.last_heal_map + ".map",
+                                       gs.last_heal_x, gs.last_heal_y, &gs);
+            if (ns->map->ready()) {
+                free_session(sess);
+                sess = ns;
+                vm.configure(sess->map, &gs, &box, &battle, aud, sess->player, &sess->actors, &sess->localid_map);
+                run_load_triggers(sess->map, gs, vm);
+                check_trigger(sess, vm, gs);
+                on_map_change(sess->path, aud);
+            } else {
+                free_session(ns);
+            }
+        }
+    } else if (battle_just_ended && aud) {
+        // Won/fled/caught: same map, just resume its own music over the
+        // battle theme (a loss already resumed it via on_map_change
+        // above, whiteout warping to the last heal spot).
+        aud->play_bgm(sess->map->music());
+    }
+    battle_was_active = battle.active();
+}
+
+int Game::run() {
+    map_env = std::getenv("CODEMON_MAP");
+
     bdata.load("assets/battle");
-    std::vector<Mon> team;                          // the player's party
-    team.reserve(6);                                // keep &team[0] stable
-    std::vector<Mon> pc_box;                         // PC storage
+    team.reserve(6);   // keep &team[0] stable
 
     // A saved run resumes exactly where it left off (map, position, flags,
     // bag, money, party, PC box). CODEMON_MAP/CODEMON_NO_SAVE force a fresh
     // start for demos/tests even when a savegame.dat is lying around.
-    std::string start_map; int start_x = -1, start_y = -1;
-    bool resumed = false;
     if (!map_env && !std::getenv("CODEMON_NO_SAVE")) {
         resumed = SaveGame::load(SAVE_PATH, gs, team, pc_box, start_map, start_x, start_y);
         // A save written before PP tracking existed has no `pp` field at all
@@ -662,87 +881,10 @@ int main() {
         for (Mon& m : team) if (m.pp.size() != m.moves.size()) bdata.restore_pp(m);
         for (Mon& m : pc_box) if (m.pp.size() != m.moves.size()) bdata.restore_pp(m);
     }
-    // Story start: the player rides in on the moving truck (InsideOfTruck),
-    // which is where pokeemerald's own new-game intro begins -- its own
-    // imported script (checkplayergender + SetIntroFlagsMale/Female) hides
-    // the unused house's occupants, sets the respawn point and points the
-    // truck's WARP_ID_DYNAMIC exit at the right house, all keyed off
-    // gs.female (see below). Walking to the exit door then drops the player
-    // right outside their house in Littleroot Town, same as real Emerald.
-    // Factored into a lambda so "NEUES SPIEL" on the title screen below can
-    // also run it even when a save was already loaded (discarding it, same
-    // as any other save file that's simply never opened again).
-    auto start_new_game = [&]() {
-        gs = GameState(); team.clear(); pc_box.clear();
-        start_map = map_env ? map_env : "maps/InsideOfTruck.map";
-        start_x = start_y = -1;
-        // New-game default world state: every NPC/item hidden until its own
-        // story beat unlocks it (data/scripts/new_game.inc in pokeemerald),
-        // e.g. the rival isn't standing in your bedroom, Birch isn't already
-        // in his lab, Mom's "moving in" dialogue is used instead of the daily one.
-        std::ifstream ngf("assets/new_game_flags.txt");
-        std::string ln;
-        while (std::getline(ngf, ln))
-            if (!ln.empty()) gs.set_flag(ln);
-        // In real pokeemerald VAR_LITTLEROOT_TOWN_STATE only reaches 1 by
-        // visiting the rival's house and finding their poke ball on day 1 --
-        // the one and only way LittlerootTown's Route 101 warning-kid trigger
-        // ever lets the player through to the Birch-rescue scene. Skipping
-        // straight to "wake up on day 2" like above must carry that forward
-        // too, or the kid pushes the player back forever with no way to
-        // proceed.
-        gs.set_var("VAR_LITTLEROOT_TOWN_STATE", 1);
-        // Story start: no starter yet -- team stays empty until the player
-        // actually picks one from Birch's bag on Route 101, same as pokeemerald.
-        // Whiteout recovery point before the player has healed anywhere for
-        // real: default to Brendan's House 2F until the truck's own script
-        // (which runs setrespawn once gender is known) picks the right one
-        // below -- there's no battle before then, so this default is never
-        // actually read as a whiteout target.
-        gs.last_heal_map = "LittlerootTown_BrendansHouse_2F";
-        gs.last_heal_x = 4; gs.last_heal_y = 2;
-    };
     if (!resumed) start_new_game();
 
     // --- title screen --------------------------------------------------
-    // Real interactive play only: headless screenshot tests and CODEMON_MAP
-    // demos need deterministic, immediate map loading, same reasoning as
-    // every other CODEMON_* test hook bypassing normal flow.
-    if (!g_headless && !map_env) {
-        TitleScreen title;
-        title.load();
-        sf::RenderWindow titlewin(sf::VideoMode(VIEW_TW * 16 * SCALE, VIEW_TH * 16 * SCALE),
-                                  "Codemon!");
-        bool wants_continue = title.run(titlewin, resumed);
-        titlewin.close();
-        if (!wants_continue && resumed) { start_new_game(); resumed = false; }
-
-        // A brand new game (not a loaded save) still needs a player before
-        // it can begin: who you are (GenderSelect) and your/your rival's
-        // name (NameEntry), matching real Emerald's own character-select +
-        // naming-screen intro. Skipped entirely when continuing a save.
-        if (!resumed) {
-            sf::RenderWindow setupwin(sf::VideoMode(VIEW_TW * 16 * SCALE, VIEW_TH * 16 * SCALE),
-                                      "Codemon!");
-            GenderSelect gender_ui; gender_ui.load();
-            gs.female = gender_ui.run(setupwin);
-            PLAYER_SHEET = gs.female ? "assets/overworld/people_may_walking.png"
-                                     : "assets/overworld/people_brendan_walking.png";
-            NameEntry name_ui; name_ui.load();
-            gs.player_name = name_ui.run(setupwin, "Wie heisst du?", gs.female ? "MAY" : "BRENDAN");
-            gs.rival_name = name_ui.run(setupwin, "Wie heisst dein Rivale?", gs.female ? "BRENDAN" : "MAY");
-            EarlyAccessNotice().run(setupwin);
-            setupwin.close();
-            // Now that gender is known, point the pre-battle whiteout target
-            // at the matching house (InsideOfTruck's own script sets the
-            // *dynamic warp* target the same way, but never touches
-            // last_heal_* -- see setrespawn's comment in ScriptVM.cpp).
-            if (gs.female) {
-                gs.last_heal_map = "LittlerootTown_MaysHouse_2F";
-                gs.last_heal_x = 4; gs.last_heal_y = 2;
-            }
-        }
-    }
+    if (!g_headless && !map_env) run_title_and_character_creation();
 
     // CODEMON_START_X/Y (with CODEMON_MAP): land on a specific tile instead
     // of the map's own default start position -- for headlessly reaching an
@@ -751,40 +893,30 @@ int main() {
         if (const char* ex = std::getenv("CODEMON_START_X")) start_x = atoi(ex);
         if (const char* ey = std::getenv("CODEMON_START_Y")) start_y = atoi(ey);
     }
-    Session* sess = load_session(start_map, start_x, start_y, &gs);
+    sess = load_session(start_map, start_x, start_y, &gs);
 
-    const unsigned win_w = VIEW_TW * sess->map->get_tile_size() * SCALE;
-    const unsigned win_h = VIEW_TH * sess->map->get_tile_size() * SCALE;
+    win_w = VIEW_TW * sess->map->get_tile_size() * SCALE;
+    win_h = VIEW_TH * sess->map->get_tile_size() * SCALE;
 
-    DialogBox box;
     box.load_font();
     box.configure(&gs);
-    Battle battle;
     battle.configure(&bdata, &rng);
     battle.set_capture(&gs, &team, &pc_box);
-    ScriptVM vm;
     vm.set_battle_data(&bdata, &team, &rng, &pc_box);
     vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player, &sess->actors, &sess->localid_map);
     run_load_triggers(sess->map, gs, vm);
     check_trigger(sess, vm, gs);
     if (const char* ts = std::getenv("CODEMON_TEST_SCRIPT")) vm.start(ts, sess->player);
-    Menu menu;
     menu.load_font();
     menu.configure(&gs, &team, &pc_box, &bdata);
-    Minigame games;
     games.load_font();
     games.configure(&gs, &rng);
-    StarterSelect starter;
     starter.load();
     if (std::getenv("CODEMON_CHOOSE_STARTER")) starter.open();
-    YesNoPrompt yesno;
     yesno.load();
-    PartyPicker picker;
     picker.load();
     picker.configure(&team);
-    MultiChoicePrompt multichoice;
     multichoice.load();
-    std::unordered_map<std::string, int> item_prices;
     {
         std::ifstream pf("assets/items/prices.tsv");
         std::string ln;
@@ -794,12 +926,9 @@ int main() {
             item_prices[ln.substr(0, tab)] = std::atoi(ln.c_str() + tab + 1);
         }
     }
-    Shop shop;
     shop.load();
     shop.configure(&gs, &item_prices);
-    HealFx healfx;
     healfx.load();
-    DebugMenu debugmenu;
     debugmenu.load();
     // Story-accurate new game: an empty bag (just the starting 3000 money,
     // GameState's own default) and 0 Game Corner coins, same as pokeemerald --
@@ -812,298 +941,221 @@ int main() {
         for (size_t i = 0; i < xm.size(); ++i) { if (i) joined += '\x1f'; joined += xm[i]; }
         if (!joined.empty()) box.open("", joined);
     }
-    bool force_enc = std::getenv("CODEMON_FORCE_ENCOUNTER") != nullptr;
+    force_enc = std::getenv("CODEMON_FORCE_ENCOUNTER") != nullptr;
 
-    // map-name banner + warp fade-in state
-    std::string banner = pretty_map(start_map);
-    float banner_t = 2.2f, fade = 1.0f;
-    sf::Font ban_font; ban_font.loadFromFile("assets/fonts/DejaVuSans.ttf");
-    auto on_map_change = [&](const std::string& path, Audio* aud) {
-        banner = pretty_map(path); banner_t = 2.2f; fade = 1.0f;
-        menu.set_location(banner);
-        menu.set_mapsec(sess->map->has_mapsec(), sess->map->mapsec_x(),
-                         sess->map->mapsec_y(), sess->map->mapsec_w(), sess->map->mapsec_h());
-        if (aud) aud->play_bgm(sess->map->music());
-    };
-    // A script-driven `warp` (e.g. Route 101 Birch's bag sending the player
-    // to his lab after picking a starter) swaps the session the same way
-    // stepping onto a warp tile does.
-    auto do_pending_warp = [&](Audio* aud) {
-        if (!vm.has_pending_warp()) return;
-        std::string dest; int wx, wy;
-        vm.get_pending_warp(dest, wx, wy);
-        vm.clear_pending_warp();
-        if (dest == "-") return;
-        Session* ns = load_session("maps/" + dest + ".map", wx, wy, &gs);
-        if (!ns->map->ready()) { free_session(ns); return; }
-        free_session(sess);
-        sess = ns;
-        vm.configure(sess->map, &gs, &box, &battle, aud, sess->player, &sess->actors, &sess->localid_map);
-        run_load_triggers(sess->map, gs, vm);
-        check_trigger(sess, vm, gs);
-        on_map_change(sess->path, aud);
-    };
-    // FLIEGEN: the menu can't touch the session either (same reasoning as
-    // do_pending_warp above), so it just names a destination and the game
-    // loop performs the actual load_session + player placement.
-    auto do_pending_fly = [&](Audio* aud) {
-        if (!menu.wants_fly()) return;
-        std::string dest; int fx, fy;
-        menu.fly_destination(dest, fx, fy);
-        menu.ack_fly();
-        Session* ns = load_session("maps/" + dest + ".map", fx, fy, &gs);
-        if (!ns->map->ready()) { free_session(ns); return; }
-        free_session(sess);
-        sess = ns;
-        sess->player->face(DIR::S);
-        vm.configure(sess->map, &gs, &box, &battle, aud, sess->player, &sess->actors, &sess->localid_map);
-        run_load_triggers(sess->map, gs, vm);
-        check_trigger(sess, vm, gs);
-        on_map_change(sess->path, aud);
-    };
+    banner = pretty_map(start_map);
+    banner_t = 2.2f; fade = 1.0f;
+    ban_font.loadFromFile("assets/fonts/DejaVuSans.ttf");
     menu.set_location(banner);
     menu.set_mapsec(sess->map->has_mapsec(), sess->map->mapsec_x(),
                      sess->map->mapsec_y(), sess->map->mapsec_w(), sess->map->mapsec_h());
 
-    // Map a walk token to a battle button (for scripted battle demos).
-    auto token_btn = [](char t) -> BtnInput {
-        switch (t) { case 'N': return BTN_UP; case 'S': return BTN_DOWN;
-                     case 'W': return BTN_LEFT; case 'E': return BTN_RIGHT;
-                     default: return BTN_CONFIRM; }
-    };
-
-    // Whiteout recovery for battles the VM never knew about (random wild
-    // encounters started directly by try_encounter()); ScriptVM handles its
-    // own scripted battles (trainerbattle/dowildbattle) itself, the same way.
-    bool battle_was_active = false;
-    auto handle_whiteout = [&](Audio* aud) {
-        bool battle_just_ended = battle_was_active && !battle.active() && !vm.running();
-        if (battle_just_ended && !battle.won()) {
-            for (Mon& m : team) {
-                m.hp = m.max_hp;
-                m.status = Status::NONE; m.status_turns = 0; m.confusion_turns = 0;
-                bdata.restore_pp(m);
-            }
-            if (!gs.last_heal_map.empty()) {
-                Session* ns = load_session("maps/" + gs.last_heal_map + ".map",
-                                           gs.last_heal_x, gs.last_heal_y, &gs);
-                if (ns->map->ready()) {
-                    free_session(sess);
-                    sess = ns;
-                    vm.configure(sess->map, &gs, &box, &battle, aud, sess->player, &sess->actors, &sess->localid_map);
-                    run_load_triggers(sess->map, gs, vm);
-                    check_trigger(sess, vm, gs);
-                    on_map_change(sess->path, aud);
-                } else {
-                    free_session(ns);
-                }
-            }
-        } else if (battle_just_ended && aud) {
-            // Won/fled/caught: same map, just resume its own music over the
-            // battle theme (a loss already resumed it via on_map_change
-            // above, whiteout warping to the last heal spot).
-            aud->play_bgm(sess->map->music());
-        }
-        battle_was_active = battle.active();
-    };
-
-    // --- headless screenshot / animation mode ------------------------------
-    if (const char* shot = std::getenv("CODEMON_SCREENSHOT")) {
-        int frames = 1;
-        if (const char* fe = std::getenv("CODEMON_FRAMES")) frames = std::max(1, atoi(fe));
-        std::vector<char> walk = parse_walk(std::getenv("CODEMON_WALK"));
-        sf::RenderTexture rt;
-        bool pending_surf = false;   // Ja/Nein prompt is up for a Surf attempt
-        bool pending_waterfall = false;   // ... for a Waterfall climb attempt
-        if (rt.create(win_w, win_h)) {
-            for (int i = 0; i < frames; ++i) {
-                if (i > 0) {
-                    handle_whiteout(nullptr);
-                    char tok = ((size_t)(i - 1) < walk.size()) ? walk[i - 1] : 0;
-                    if (starter.active()) {
-                        if (tok) starter.input(token_btn(tok));
-                    } else if (yesno.active()) {
-                        if (tok) yesno.input(token_btn(tok));
-                    } else if (picker.active()) {
-                        if (tok) picker.input(token_btn(tok));
-                    } else if (multichoice.active()) {
-                        if (tok) multichoice.input(token_btn(tok));
-                    } else if (shop.active()) {
-                        if (tok) shop.input(token_btn(tok));
-                    } else if (battle.active()) {
-                        if (tok) battle.input(token_btn(tok));
-                    } else if (games.active()) {
-                        if (tok) games.input(token_btn(tok));
-                    } else if (tok == 'G') {
-                        games.open();
-                    } else if (menu.active()) {
-                        if (tok == 'M') menu.close();
-                        else if (tok) menu.input(token_btn(tok));
-                    } else if (tok == 'M') {
-                        menu.open();
-                    } else if (vm.running()) {
-                        if (tok == 'T') vm.on_key();
-                        vm.update(0.13f);
-                    } else if (tok == 'T') {
-                        interact(sess, box, nullptr, vm);
-                    } else if (!box.is_active()) {
-                        if (tok) {
-                            int pbx = sess->player->get_tile_x();
-                            int pby = sess->player->get_tile_y();
-                            Session* before = sess;
-                            bool needs_surf = false, needs_waterfall = false;
-                            sess = player_step(sess, char_to_dir(tok), nullptr, &gs, false, &needs_surf,
-                                               false, &needs_waterfall);
-                            if (needs_surf && team_knows_move(team, "SURF")) {
-                                pending_surf = true;
-                                yesno.open("Das Wasser schimmert tiefblau... Möchtest du SURFER einsetzen?");
-                            } else if (needs_waterfall && team_knows_move(team, "WATERFALL")) {
-                                pending_waterfall = true;
-                                yesno.open("Ein gewaltiger Wasserfall stürzt herab... Möchtest du WASSERFALL einsetzen?");
-                            }
-                            if (sess != before) {
-                                vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player, &sess->actors, &sess->localid_map);
-    run_load_triggers(sess->map, gs, vm);
-    check_trigger(sess, vm, gs);
-                                on_map_change(sess->path, nullptr);
-                            } else if (sess->player->get_tile_x() != pbx ||
-                                       sess->player->get_tile_y() != pby) {
-                                // No wild encounters before the player has a
-                                // Pokemon to send out (matches the story: you
-                                // can't be jumped in the grass while trailing
-                                // Birch with an empty team).
-                                if (!team.empty())
-                                    try_encounter(sess, battle, team[0], rng, force_enc);
-                                check_trigger(sess, vm, gs);
-                            }
-                        }
-                        if (walk.empty()) tick_npcs(sess, rng);
-                    }
-                    // Route 101's Birch's-bag script blocks on `special
-                    // ChooseStarter`; show the real chooser and feed the
-                    // pick back so the script (and its Pokedex/heal/warp
-                    // follow-up) continues.
-                    if (starter.done()) {
-                        if (vm.wants_starter()) vm.resolve_starter(starter.chosen());
-                        else if (team.empty()) team.push_back(bdata.make_mon(starter.chosen(), 5, &rng));
-                        else team[0] = bdata.make_mon(starter.chosen(), 5, &rng);
-                        gs.mark_caught(starter.chosen());
-                        starter.ack();
-                    } else if (!starter.active() && vm.wants_starter()) {
-                        starter.open();
-                    }
-                    if (pending_surf && yesno.done()) {
-                        pending_surf = false;
-                        if (yesno.yes()) {
-                            int pbx = sess->player->get_tile_x();
-                            int pby = sess->player->get_tile_y();
-                            Session* before = sess;
-                            sess = player_step(sess, sess->player->get_facing(), nullptr, &gs, true);
-                            if (sess != before) {
-                                vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player, &sess->actors, &sess->localid_map);
-                                run_load_triggers(sess->map, gs, vm);
-                                check_trigger(sess, vm, gs);
-                                on_map_change(sess->path, nullptr);
-                            } else if (sess->player->get_tile_x() != pbx ||
-                                       sess->player->get_tile_y() != pby) {
-                                if (!team.empty())
-                                    try_encounter(sess, battle, team[0], rng, force_enc);
-                                check_trigger(sess, vm, gs);
-                            }
-                        }
-                        yesno.ack();
-                    } else if (pending_waterfall && yesno.done()) {
-                        pending_waterfall = false;
-                        if (yesno.yes()) {
-                            int pbx = sess->player->get_tile_x();
-                            int pby = sess->player->get_tile_y();
-                            Session* before = sess;
-                            sess = player_step(sess, sess->player->get_facing(), nullptr, &gs, false, nullptr, true);
-                            if (sess != before) {
-                                vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player, &sess->actors, &sess->localid_map);
-                                run_load_triggers(sess->map, gs, vm);
-                                check_trigger(sess, vm, gs);
-                                on_map_change(sess->path, nullptr);
-                            } else if (sess->player->get_tile_x() != pbx ||
-                                       sess->player->get_tile_y() != pby) {
-                                if (!team.empty())
-                                    try_encounter(sess, battle, team[0], rng, force_enc);
-                                check_trigger(sess, vm, gs);
-                            }
-                        }
-                        yesno.ack();
-                    } else if (yesno.done()) {
-                        if (vm.wants_yesno()) vm.resolve_yesno(yesno.yes());
-                        yesno.ack();
-                    } else if (!yesno.active() && vm.wants_yesno()) {
-                        yesno.open();
-                    }
-                    if (picker.done()) {
-                        if (vm.wants_choose_party_mon()) vm.resolve_choose_party_mon(picker.chosen());
-                        picker.ack();
-                    } else if (!picker.active() && vm.wants_choose_party_mon()) {
-                        picker.open();
-                    }
-                    if (multichoice.done()) {
-                        if (vm.wants_multichoice()) vm.resolve_multichoice(multichoice.chosen());
-                        multichoice.ack();
-                    } else if (!multichoice.active() && vm.wants_multichoice()) {
-                        multichoice.open(vm.multichoice_options(), vm.multichoice_default());
-                    }
-                    if (shop.done()) {
-                        vm.close_shop();
-                        shop.ack();
-                    } else if (!shop.active() && vm.wants_shop()) {
-                        const std::vector<std::string>* sitems = vm.shop_items();
-                        if (sitems && !sitems->empty()) shop.open(*sitems);
-                        else vm.close_shop();
-                    }
-                    if (!healfx.active() && vm.wants_heal_fx()) healfx.start((int)team.size());
-                    healfx.tick(0.13f);
-                    if (menu.wants_save()) {
-                        bool ok = SaveGame::save(SAVE_PATH, gs, team, pc_box, sess->path,
-                                                  sess->player->get_tile_x(), sess->player->get_tile_y());
-                        menu.set_flash(ok ? "Spiel gespeichert!" : "Speichern fehlgeschlagen.");
-                        menu.ack_save();
-                    }
-                    do_pending_warp(nullptr);
-                    do_pending_fly(nullptr);
-                    battle.tick(0.13f);
-                    games.tick(0.13f);
-                    if (banner_t > 0.f) banner_t -= 0.13f;
-                    if (fade > 0.f) fade -= 0.13f * 1.6f;
-                }
-                rt.clear(sf::Color(40, 72, 56));
-                if (starter.active()) starter.draw(rt);
-                else if (shop.active()) shop.draw(rt);
-                else if (battle.active()) battle.draw(rt);
-                else if (games.active()) games.draw(rt);
-                else {
-                    draw_scene(rt, sess, &healfx); box.draw(rt);
-                    draw_banner(rt, ban_font, banner, banner_t);
-                    menu.draw(rt);
-                    if (yesno.active()) yesno.draw(rt);
-                    if (picker.active()) picker.draw(rt);
-                    if (multichoice.active()) multichoice.draw(rt);
-                    if (fade > 0.f) {
-                        rt.setView(rt.getDefaultView());
-                        sf::RectangleShape f(rt.getView().getSize());
-                        f.setFillColor(sf::Color(0, 0, 0, (sf::Uint8)(std::min(1.f, fade) * 255)));
-                        rt.draw(f);
-                    }
-                }
-                rt.display();
-                char name[512];
-                if (frames == 1) std::snprintf(name, sizeof(name), "%s", shot);
-                else std::snprintf(name, sizeof(name), "%s_%03d.png", shot, i);
-                rt.getTexture().copyToImage().saveToFile(name);
-            }
-        }
-        free_session(sess);
+    if (std::getenv("CODEMON_SCREENSHOT")) {
+        run_headless();
         return 0;
     }
+    run_interactive();
+    return 0;
+}
 
-    // --- interactive game --------------------------------------------------
+// --- headless screenshot / animation mode -----------------------------
+void Game::run_headless() {
+    const char* shot = std::getenv("CODEMON_SCREENSHOT");
+    int frames = 1;
+    if (const char* fe = std::getenv("CODEMON_FRAMES")) frames = std::max(1, atoi(fe));
+    std::vector<char> walk = parse_walk(std::getenv("CODEMON_WALK"));
+    sf::RenderTexture rt;
+    bool pending_surf = false;   // Ja/Nein prompt is up for a Surf attempt
+    bool pending_waterfall = false;   // ... for a Waterfall climb attempt
+    if (rt.create(win_w, win_h)) {
+        for (int i = 0; i < frames; ++i) {
+            if (i > 0) {
+                handle_whiteout(nullptr);
+                char tok = ((size_t)(i - 1) < walk.size()) ? walk[i - 1] : 0;
+                if (starter.active()) {
+                    if (tok) starter.input(token_btn(tok));
+                } else if (yesno.active()) {
+                    if (tok) yesno.input(token_btn(tok));
+                } else if (picker.active()) {
+                    if (tok) picker.input(token_btn(tok));
+                } else if (multichoice.active()) {
+                    if (tok) multichoice.input(token_btn(tok));
+                } else if (shop.active()) {
+                    if (tok) shop.input(token_btn(tok));
+                } else if (battle.active()) {
+                    if (tok) battle.input(token_btn(tok));
+                } else if (games.active()) {
+                    if (tok) games.input(token_btn(tok));
+                } else if (tok == 'G') {
+                    games.open();
+                } else if (menu.active()) {
+                    if (tok == 'M') menu.close();
+                    else if (tok) menu.input(token_btn(tok));
+                } else if (tok == 'M') {
+                    menu.open();
+                } else if (vm.running()) {
+                    if (tok == 'T') vm.on_key();
+                    vm.update(0.13f);
+                } else if (tok == 'T') {
+                    interact(sess, box, nullptr, vm);
+                } else if (!box.is_active()) {
+                    if (tok) {
+                        int pbx = sess->player->get_tile_x();
+                        int pby = sess->player->get_tile_y();
+                        Session* before = sess;
+                        bool needs_surf = false, needs_waterfall = false;
+                        sess = player_step(sess, char_to_dir(tok), nullptr, &gs, false, &needs_surf,
+                                           false, &needs_waterfall);
+                        if (needs_surf && team_knows_move(team, "SURF")) {
+                            pending_surf = true;
+                            yesno.open("Das Wasser schimmert tiefblau... Möchtest du SURFER einsetzen?");
+                        } else if (needs_waterfall && team_knows_move(team, "WATERFALL")) {
+                            pending_waterfall = true;
+                            yesno.open("Ein gewaltiger Wasserfall stürzt herab... Möchtest du WASSERFALL einsetzen?");
+                        }
+                        if (sess != before) {
+                            vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player, &sess->actors, &sess->localid_map);
+                            run_load_triggers(sess->map, gs, vm);
+                            check_trigger(sess, vm, gs);
+                            on_map_change(sess->path, nullptr);
+                        } else if (sess->player->get_tile_x() != pbx ||
+                                   sess->player->get_tile_y() != pby) {
+                            // No wild encounters before the player has a
+                            // Pokemon to send out (matches the story: you
+                            // can't be jumped in the grass while trailing
+                            // Birch with an empty team).
+                            if (!team.empty())
+                                try_encounter(sess, battle, team[0], rng, force_enc);
+                            check_trigger(sess, vm, gs);
+                        }
+                    }
+                    if (walk.empty()) tick_npcs(sess, rng);
+                }
+                // Route 101's Birch's-bag script blocks on `special
+                // ChooseStarter`; show the real chooser and feed the
+                // pick back so the script (and its Pokedex/heal/warp
+                // follow-up) continues.
+                if (starter.done()) {
+                    if (vm.wants_starter()) vm.resolve_starter(starter.chosen());
+                    else if (team.empty()) team.push_back(bdata.make_mon(starter.chosen(), 5, &rng));
+                    else team[0] = bdata.make_mon(starter.chosen(), 5, &rng);
+                    gs.mark_caught(starter.chosen());
+                    starter.ack();
+                } else if (!starter.active() && vm.wants_starter()) {
+                    starter.open();
+                }
+                if (pending_surf && yesno.done()) {
+                    pending_surf = false;
+                    if (yesno.yes()) {
+                        int pbx = sess->player->get_tile_x();
+                        int pby = sess->player->get_tile_y();
+                        Session* before = sess;
+                        sess = player_step(sess, sess->player->get_facing(), nullptr, &gs, true);
+                        if (sess != before) {
+                            vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player, &sess->actors, &sess->localid_map);
+                            run_load_triggers(sess->map, gs, vm);
+                            check_trigger(sess, vm, gs);
+                            on_map_change(sess->path, nullptr);
+                        } else if (sess->player->get_tile_x() != pbx ||
+                                   sess->player->get_tile_y() != pby) {
+                            if (!team.empty())
+                                try_encounter(sess, battle, team[0], rng, force_enc);
+                            check_trigger(sess, vm, gs);
+                        }
+                    }
+                    yesno.ack();
+                } else if (pending_waterfall && yesno.done()) {
+                    pending_waterfall = false;
+                    if (yesno.yes()) {
+                        int pbx = sess->player->get_tile_x();
+                        int pby = sess->player->get_tile_y();
+                        Session* before = sess;
+                        sess = player_step(sess, sess->player->get_facing(), nullptr, &gs, false, nullptr, true);
+                        if (sess != before) {
+                            vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player, &sess->actors, &sess->localid_map);
+                            run_load_triggers(sess->map, gs, vm);
+                            check_trigger(sess, vm, gs);
+                            on_map_change(sess->path, nullptr);
+                        } else if (sess->player->get_tile_x() != pbx ||
+                                   sess->player->get_tile_y() != pby) {
+                            if (!team.empty())
+                                try_encounter(sess, battle, team[0], rng, force_enc);
+                            check_trigger(sess, vm, gs);
+                        }
+                    }
+                    yesno.ack();
+                } else if (yesno.done()) {
+                    if (vm.wants_yesno()) vm.resolve_yesno(yesno.yes());
+                    yesno.ack();
+                } else if (!yesno.active() && vm.wants_yesno()) {
+                    yesno.open();
+                }
+                if (picker.done()) {
+                    if (vm.wants_choose_party_mon()) vm.resolve_choose_party_mon(picker.chosen());
+                    picker.ack();
+                } else if (!picker.active() && vm.wants_choose_party_mon()) {
+                    picker.open();
+                }
+                if (multichoice.done()) {
+                    if (vm.wants_multichoice()) vm.resolve_multichoice(multichoice.chosen());
+                    multichoice.ack();
+                } else if (!multichoice.active() && vm.wants_multichoice()) {
+                    multichoice.open(vm.multichoice_options(), vm.multichoice_default());
+                }
+                if (shop.done()) {
+                    vm.close_shop();
+                    shop.ack();
+                } else if (!shop.active() && vm.wants_shop()) {
+                    const std::vector<std::string>* sitems = vm.shop_items();
+                    if (sitems && !sitems->empty()) shop.open(*sitems);
+                    else vm.close_shop();
+                }
+                if (!healfx.active() && vm.wants_heal_fx()) healfx.start((int)team.size());
+                healfx.tick(0.13f);
+                if (menu.wants_save()) {
+                    bool ok = SaveGame::save(SAVE_PATH, gs, team, pc_box, sess->path,
+                                              sess->player->get_tile_x(), sess->player->get_tile_y());
+                    menu.set_flash(ok ? "Spiel gespeichert!" : "Speichern fehlgeschlagen.");
+                    menu.ack_save();
+                }
+                do_pending_warp(nullptr);
+                do_pending_fly(nullptr);
+                battle.tick(0.13f);
+                games.tick(0.13f);
+                if (banner_t > 0.f) banner_t -= 0.13f;
+                if (fade > 0.f) fade -= 0.13f * 1.6f;
+            }
+            rt.clear(sf::Color(40, 72, 56));
+            if (starter.active()) starter.draw(rt);
+            else if (shop.active()) shop.draw(rt);
+            else if (battle.active()) battle.draw(rt);
+            else if (games.active()) games.draw(rt);
+            else {
+                draw_scene(rt, sess, &healfx); box.draw(rt);
+                draw_banner(rt, ban_font, banner, banner_t);
+                menu.draw(rt);
+                if (yesno.active()) yesno.draw(rt);
+                if (picker.active()) picker.draw(rt);
+                if (multichoice.active()) multichoice.draw(rt);
+                if (fade > 0.f) {
+                    rt.setView(rt.getDefaultView());
+                    sf::RectangleShape f(rt.getView().getSize());
+                    f.setFillColor(sf::Color(0, 0, 0, (sf::Uint8)(std::min(1.f, fade) * 255)));
+                    rt.draw(f);
+                }
+            }
+            rt.display();
+            char name[512];
+            if (frames == 1) std::snprintf(name, sizeof(name), "%s", shot);
+            else std::snprintf(name, sizeof(name), "%s_%03d.png", shot, i);
+            rt.getTexture().copyToImage().saveToFile(name);
+        }
+    }
+    free_session(sess);
+}
+
+// --- interactive game ---------------------------------------------------
+void Game::run_interactive() {
     Audio audio; audio.load("assets");
     audio.play_bgm(sess->map->music());
     battle.set_audio(&audio);
@@ -1462,5 +1514,9 @@ int main() {
     }
 
     free_session(sess);
-    return 0;
+}
+
+int main() {
+    Game game;
+    return game.run();
 }
