@@ -24,7 +24,7 @@ warps
 npcs
 people_expert_m 7 5 S static 0 - 0
 dialogs
-0	Hi, hi! I'm the NAME RATER! I'm the fortune-teller of names!I shall be pleased to rate your POKéMON's nickname.
+0	Hi, hi! Ich bin der NAMENSEXPERTE! Ich bin der Wahrsager der Namen!Es wäre mir eine Freude, den Spitznamen deines POKéMON zu bewerten.
 objscripts
 0 SlateportCity_NameRatersHouse_EventScript_NameRater
 scriptdefs
@@ -36,11 +36,11 @@ goto_if_eq VAR_RESULT YES SlateportCity_NameRatersHouse_EventScript_ChooseMonToR
 goto_if_eq VAR_RESULT NO SlateportCity_NameRatersHouse_EventScript_DeclineNameRate
 end
 = SlateportCity_NameRatersHouse_EventScript_DeclineNameRate
-msgbox	I see. Do come visit again.
+msgbox	Verstehe. Schau doch mal wieder vorbei.
 release
 end
 = SlateportCity_NameRatersHouse_EventScript_ChooseMonToRate
-msgbox	Which POKéMON's nickname should I critique?
+msgbox	Welchen Spitznamen soll ich mir mal vorknöpfen?
 special ChoosePartyMon
 goto_if_ne VAR_0x8004 PARTY_NOTHING_CHOSEN SlateportCity_NameRatersHouse_EventScript_RateMonNickname
 goto_if_eq VAR_0x8004 PARTY_NOTHING_CHOSEN SlateportCity_NameRatersHouse_EventScript_DeclineNameRate
@@ -59,24 +59,24 @@ goto_if_eq VAR_RESULT YES SlateportCity_NameRatersHouse_EventScript_ChangeNickna
 goto_if_eq VAR_RESULT NO SlateportCity_NameRatersHouse_EventScript_DeclineNameRate
 end
 = SlateportCity_NameRatersHouse_EventScript_ChangeNickname
-msgbox	Ah, good. Then, what shall the new nickname be?
+msgbox	Ah, gut. Wie soll denn der neue Spitzname lauten?
 call Common_EventScript_NameReceivedPartyMon
 specialvar VAR_RESULT TryPutNameRaterShowOnTheAir
 special BufferMonNickname
 goto_if_eq VAR_RESULT TRUE SlateportCity_NameRatersHouse_EventScript_NewNameDifferent
-msgbox	Done! From now on, this POKéMON shall be known as STR_VAR_1!It looks no different from before, and yet, this is vastly superior!How fortunate for you!
+msgbox	Fertig! Von nun an heißt dieses POKéMON STR_VAR_1!Es sieht zwar nicht anders aus als vorher, und trotzdem ist das hier viel besser!Was für ein Glück für dich!
 release
 end
 = SlateportCity_NameRatersHouse_EventScript_NewNameDifferent
-msgbox	Done! From now on, this POKéMON shall be known as STR_VAR_1!It is a better name than before! How fortunate for you!
+msgbox	Fertig! Von nun an heißt dieses POKéMON STR_VAR_1!Das ist ein besserer Name als vorher! Was für ein Glück für dich!
 release
 end
 = SlateportCity_NameRatersHouse_EventScript_PlayerNotMonsOT
-msgbox	Hmmm… STR_VAR_1 it is!This is a magnificent nickname! It is impeccably beyond reproach!You'll do well to cherish your STR_VAR_1 now and beyond.
+msgbox	Hmmm… Also STR_VAR_1!Das ist ein großartiger Spitzname! Er ist absolut über jeden Zweifel erhaben!Du solltest dein STR_VAR_1 jetzt und für immer in Ehren halten.
 release
 end
 = SlateportCity_NameRatersHouse_EventScript_CantRateEgg
-msgbox	Now, now. That is merely an EGG!
+msgbox	Aber, aber. Das ist doch nur ein EI!
 release
 end
 mapsec

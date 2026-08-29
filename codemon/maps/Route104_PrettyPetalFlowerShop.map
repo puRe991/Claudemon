@@ -39,30 +39,30 @@ lock
 faceplayer
 dotimebasedevents
 goto_if_set FLAG_DAILY_FLOWER_SHOP_RECEIVED_BERRY Route104_PrettyPetalFlowerShop_EventScript_AlreadyReceivedBerry
-msgbox	I'm trying to be like my big sisters. I'm growing flowers, too!Here you go! It's for you!
+msgbox	Ich versuche, so zu sein wie meine großen Schwestern. Ich ziehe auch Blumen groß!Hier, bitte! Das ist für dich!
 random 8
 addvar VAR_RESULT FIRST_BERRY_INDEX
 giveitem VAR_RESULT
 goto_if_eq VAR_RESULT 0 Common_EventScript_ShowBagIsFull
 setflag FLAG_DAILY_FLOWER_SHOP_RECEIVED_BERRY
-msgbox	You can plant a BERRY and grow it big, or you can make a POKéMON hold it.But now they have a machine that mixes up different BERRIES and makes candies for POKéMON.I want some candy, too.
+msgbox	Du kannst eine BEERE pflanzen und großziehen, oder du gibst sie einem POKéMON zum Tragen.Aber jetzt gibt es eine Maschine, die verschiedene BEEREN mischt und daraus Bonbons für POKéMON macht.So ein Bonbon hätte ich auch gerne mal.
 release
 end
 = Route104_PrettyPetalFlowerShop_EventScript_AlreadyReceivedBerry
-msgbox	You can plant a BERRY and grow it big, or you can make a POKéMON hold it.But now they have a machine that mixes up different BERRIES and makes candies for POKéMON.I want some candy, too.
+msgbox	Du kannst eine BEERE pflanzen und großziehen, oder du gibst sie einem POKéMON zum Tragen.Aber jetzt gibt es eine Maschine, die verschiedene BEEREN mischt und daraus Bonbons für POKéMON macht.So ein Bonbon hätte ich auch gerne mal.
 release
 end
 = Route104_PrettyPetalFlowerShop_EventScript_WailmerPailGirl
 lock
 faceplayer
 goto_if_unset FLAG_RECEIVED_WAILMER_PAIL Route104_PrettyPetalFlowerShop_EventScript_GiveWailmerPail
-msgbox	While BERRY plants are growing, water them with the WAILMER PAIL.Oh, another thing.If you don't pick BERRIES for a while, they'll drop off onto the ground. But they'll sprout again.Isn't that awesome? It's like they have the will to live.
+msgbox	Während BEEREN-Pflanzen wachsen, gießt du sie mit dem WAILMER PAIL.Oh, noch etwas.Wenn du BEEREN eine Weile nicht pflückst, fallen sie zu Boden. Aber sie sprießen dann wieder.Ist das nicht toll? Es ist, als hätten sie den Willen zu leben.
 release
 end
 = Route104_PrettyPetalFlowerShop_EventScript_GiveWailmerPail
-msgbox	Hello!The more attention you give to flowers, the more beautifully they bloom.You'll like tending flowers. I'm sure of it. You can have this.
+msgbox	Hallo!Je mehr Aufmerksamkeit man Blumen schenkt, desto schöner blühen sie.Du wirst es lieben, Blumen zu pflegen. Ich bin mir sicher. Das hier kannst du haben.
 giveitem ITEM_WAILMER_PAIL
-msgbox	While BERRY plants are growing, water them with the WAILMER PAIL.Oh, another thing.If you don't pick BERRIES for a while, they'll drop off onto the ground. But they'll sprout again.Isn't that awesome? It's like they have the will to live.
+msgbox	Während BEEREN-Pflanzen wachsen, gießt du sie mit dem WAILMER PAIL.Oh, noch etwas.Wenn du BEEREN eine Weile nicht pflückst, fallen sie zu Boden. Aber sie sprießen dann wieder.Ist das nicht toll? Es ist, als hätten sie den Willen zu leben.
 setflag FLAG_RECEIVED_WAILMER_PAIL
 release
 end
@@ -70,7 +70,7 @@ end
 lock
 faceplayer
 goto_if_set FLAG_TEMP_1 Route104_PrettyPetalFlowerShop_EventScript_SellDecorations
-msgbox	Hello!This is the PRETTY PETAL flower shop. Spreading flowers all over the world!
+msgbox	Hallo!Das ist der PRETTY PETAL Blumenladen. Wir verbreiten Blumen in der ganzen Welt!
 goto_if_set FLAG_MET_PRETTY_PETAL_SHOP_OWNER Route104_PrettyPetalFlowerShop_EventScript_AlreadyMet
 setflag FLAG_MET_PRETTY_PETAL_SHOP_OWNER
 msgboxyesno	Your name is?PLAYER. That's a nice name.PLAYER, would you like to learn about BERRIES?
@@ -79,10 +79,10 @@ call_if_eq VAR_RESULT NO Route104_PrettyPetalFlowerShop_EventScript_DontExplainB
 release
 end
 = Route104_PrettyPetalFlowerShop_EventScript_DontExplainBerries
-msgbox	Flowers bring so much happiness to people, don't they?
+msgbox	Blumen bringen den Menschen so viel Freude, findest du nicht auch?
 return
 = Route104_PrettyPetalFlowerShop_EventScript_ExplainBerries
-msgbox	BERRIES grow on trees that thrive only in soft, loamy soil.If you take some BERRIES, be sure to plant one in the loamy soil again.A planted BERRY will soon sprout, grow into a plant, flower beautifully, then grow BERRIES again.I want to see the whole wide world filled with beautiful flowers. That's my dream.Please help me, PLAYER. Plant BERRIES and bring more flowers into the world.
+msgbox	BEEREN wachsen an Bäumen, die nur in weicher, lockerer Erde gedeihen.Wenn du dir BEEREN nimmst, pflanz unbedingt wieder eine in die lockere Erde.Eine gepflanzte BEERE keimt bald, wächst zu einer Pflanze heran, blüht wunderschön und trägt dann wieder BEEREN.Ich möchte die ganze weite Welt voller schöner Blumen sehen. Das ist mein Traum.Bitte hilf mir, PLAYER. Pflanz BEEREN und bring der Welt mehr Blumen.
 return
 = Route104_PrettyPetalFlowerShop_EventScript_AlreadyMet
 msgboxyesno	PLAYER, would you like to learn about BERRIES?
@@ -91,10 +91,10 @@ call_if_eq VAR_RESULT NO Route104_PrettyPetalFlowerShop_EventScript_DontExplainB
 release
 end
 = Route104_PrettyPetalFlowerShop_EventScript_SellDecorations
-msgbox	PLAYER, welcome!What can I do for you?
+msgbox	PLAYER, willkommen!Was kann ich für dich tun?
 waitmessage
 pokemartdecoration2 Route104_PrettyPetalFlowerShop_Pokemart_Plants
-msgbox	Please come again!
+msgbox	Besuch uns bald wieder!
 release
 end
 mapsec

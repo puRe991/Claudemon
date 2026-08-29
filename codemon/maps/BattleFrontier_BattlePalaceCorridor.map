@@ -97,19 +97,19 @@ closedoor 10 3
 waitdooranim
 goto BattleFrontier_BattlePalaceCorridor_EventScript_WarpToBattleRoom
 = BattleFrontier_BattlePalaceCorridor_EventScript_LongStreakComment
-msgbox	Ah… I see a strong, heartfelt bond between you and your POKéMON…
+msgbox	Ah… Ich sehe eine starke, innige Bindung zwischen dir und deinen POKéMON…
 return
 = BattleFrontier_BattlePalaceCorridor_EventScript_StreakComment
-msgbox	Are you beginning to understand how a POKéMON's nature makes it behave?
+msgbox	Beginnst du zu verstehen, wie das Wesen eines POKéMON sein Verhalten bestimmt?
 return
 = BattleFrontier_BattlePalaceCorridor_EventScript_RandomComment3
-msgbox	A POKéMON's nature is a remarkable thing…Some POKéMON behave in a completely different way when they are cornered.
+msgbox	Das Wesen eines POKéMON ist eine bemerkenswerte Sache…Manche POKéMON verhalten sich völlig anders, wenn sie in die Enge getrieben werden.
 return
 = BattleFrontier_BattlePalaceCorridor_EventScript_RandomComment2
-msgbox	Rather than trying to make a POKéMON do what it dislikes, try to let it do what it likes and is good at doing.Put yourself in the POKéMON's position and consider what moves it would like.
+msgbox	Anstatt zu versuchen, ein POKéMON zu etwas zu zwingen, was es nicht mag, lass es lieber das tun, was es mag und gut kann.Versetz dich in die Lage des POKéMON und überlege, welche Attacken es gerne einsetzen würde.
 return
 = BattleFrontier_BattlePalaceCorridor_EventScript_RandomComment1
-msgbox	People and POKéMON, they are but the same…Their individual nature makes them good at certain things, and not good at others.
+msgbox	Menschen und POKéMON sind sich darin ganz gleich…Ihr jeweiliges Wesen macht sie in manchen Dingen gut und in anderen weniger gut.
 return
 grass
 13

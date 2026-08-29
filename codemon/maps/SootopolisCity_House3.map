@@ -23,25 +23,25 @@ npcs
 people_woman_4 2 4 S static 0 - 0
 people_girl_2 6 4 S wander 0 - 0
 dialogs
-0	You're a POKéMON TRAINER, aren't you?SOOTOPOLIS's JUAN has many fans. Even more than his student WALLACE!Do you have any?
+0	Du bist doch ein POKéMON-TRAINER, oder?JUAN aus SOOTOPOLIS hat viele Fans. Sogar mehr als sein Schüler WALLACE!Hast du auch welche?
 1	Dedicated fans come over from even outside of HOENN.It was really wild when I went to the TRAINER FAN CLUB in LILYCOVE.
 objscripts
 0 SootopolisCity_House3_EventScript_Woman
 1 SootopolisCity_House3_EventScript_Girl
 scriptdefs
 = SootopolisCity_House3_EventScript_Girl
-msgbox	Dedicated fans come over from even outside of HOENN.It was really wild when I went to the TRAINER FAN CLUB in LILYCOVE.
+msgbox	Treue Fans kommen sogar von außerhalb von HOENN her.Es war echt der Wahnsinn, als ich zum TRAINER FAN CLUB in LILYCOVE gegangen bin.
 end
 = SootopolisCity_House3_EventScript_Woman
 lock
 faceplayer
 msgboxyesno	You're a POKéMON TRAINER, aren't you?SOOTOPOLIS's JUAN has many fans. Even more than his student WALLACE!Do you have any?
 goto_if_eq VAR_RESULT YES SootopolisCity_House3_EventScript_HaveFans
-msgbox	Oh, dear… That's a little lonesome.Try working a little harder to get a fan following.
+msgbox	Oh je… Das ist ein bisschen einsam.Versuch dich etwas mehr anzustrengen, um Fans zu gewinnen.
 release
 end
 = SootopolisCity_House3_EventScript_HaveFans
-msgbox	Oh, then you must be pretty strong.
+msgbox	Oh, dann musst du ja ziemlich stark sein.
 release
 end
 mapsec
