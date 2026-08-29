@@ -189,33 +189,33 @@ objscripts
 scriptdefs
 = Route126_EventScript_Leonardo
 trainerbattle_single TRAINER_LEONARDO Route126_Text_LeonardoIntro Route126_Text_LeonardoDefeat
-msgbox	If you practice at something, you will get better at it.You're young--don't be afraid to try all sorts of things!
+msgbox	Wenn du etwas übst, wirst du besser darin.Du bist jung-- hab keine Angst, alles Mögliche auszuprobieren!
 end
 = Route126_EventScript_Isobel
 trainerbattle_single TRAINER_ISOBEL Route126_Text_IsobelIntro Route126_Text_IsobelDefeat
-msgbox	Ooh, I choked on some water! It's bitter! It's salty!!
+msgbox	Ooh, ich hab mich an etwas Wasser verschluckt! Es ist bitter! Es ist salzig!!
 end
 = Route126_EventScript_Pablo
 trainerbattle_single TRAINER_PABLO_1 Route126_Text_PabloIntro Route126_Text_PabloDefeat Route126_EventScript_RegisterPablo
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route126_EventScript_RematchPablo
-msgbox	Losing to you stimulated my senses! I'll train myself and POKéMON harder!
+msgbox	Die Niederlage gegen dich hat meine Sinne geschärft! Ich werde mich und meine POKéMON härter trainieren!
 release
 end
 = Route126_EventScript_RematchPablo
 trainerbattle_rematch TRAINER_PABLO_1 Route126_Text_PabloRematchIntro Route126_Text_PabloRematchDefeat
-msgbox	I'm going to train even harder! You're a great motivator! You have to come back again!
+msgbox	Ich werde noch härter trainieren! Du bist ein toller Motivator! Du musst unbedingt wiederkommen!
 end
 = Route126_EventScript_RegisterPablo
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Yep, you're not bad at all! I'd like to get to know you more!
+msgbox	Ja, du bist gar nicht schlecht! Ich würde dich gerne besser kennenlernen!
 register_matchcall TRAINER_PABLO_1
 release
 end
 = Route126_EventScript_Sienna
 trainerbattle_single TRAINER_SIENNA Route126_Text_SiennaIntro Route126_Text_SiennaDefeat
-msgbox	I need to cool down now… I think I'll go for a dive.
+msgbox	Ich muss mich jetzt abkühlen… Ich glaube, ich gehe tauchen.
 end
 = Route126_EventScript_ItemGreenShard
 goto_if_set FLAG_ITEM_ROUTE_126_GREEN_SHARD Route126_EventScript_ItemGreenShard_Taken
@@ -226,19 +226,19 @@ end
 end
 = Route126_EventScript_Brenda
 trainerbattle_single TRAINER_BRENDA Route126_Text_BrendaIntro Route126_Text_BrendaDefeat
-msgbox	I love frolicking with POKéMON in the sea like this!
+msgbox	Ich liebe es, so mit POKéMON im Meer herumzutollen!
 end
 = Route126_EventScript_Nikki
 trainerbattle_single TRAINER_NIKKI Route126_Text_NikkiIntro Route126_Text_NikkiDefeat
-msgbox	You thrashed me… I want to disappear in a wave of despair…
+msgbox	Du hast mich total vernichtet… Ich möchte am liebsten in einer Welle der Verzweiflung verschwinden…
 end
 = Route126_EventScript_Dean
 trainerbattle_single TRAINER_DEAN Route126_Text_DeanIntro Route126_Text_DeanDefeat
-msgbox	I can't find the entrance to SOOTOPOLIS. Where could it be?
+msgbox	Ich finde den Eingang nach SOOTOPOLIS nicht. Wo könnte er nur sein?
 end
 = Route126_EventScript_Barry
 trainerbattle_single TRAINER_BARRY Route126_Text_BarryIntro Route126_Text_BarryDefeat
-msgbox	Thanks to my daily swimming routine… Look! Feast your eyes on this physique!
+msgbox	Dank meines täglichen Schwimmtrainings… Schau! Erfreu dich an diesem Körper!
 end
 water
 334,335,368,419,437,445,446,513,518,519,522,523,524,525,526,527,530,531,532,533,534,535,538,539,540,541,542,543,544,545,546,547,559,613,614,621,622,623,627,628,629,631,634,636,638,639,642,645,649,650,652,653,654,655,705,712,713,720,721,728,729,827,828,829

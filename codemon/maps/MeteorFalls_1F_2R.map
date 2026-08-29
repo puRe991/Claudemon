@@ -76,9 +76,9 @@ people_man_3 13 2 S static 0 - 1
 people_expert_m 6 12 S static 0 - 1
 people_expert_f 7 12 S static 0 - 1
 dialogs
-0	The road ahead remains long and harsh.When will my POKéMON and I become the best?
-1	JOHN: We've been married for fifty years.Come to think of it, I've yet to beat my dear wife in a battle.
-2	JAY: Fifty years of marriage…If we ever argued, we always settled it with a POKéMON battle…
+0	Der Weg vor uns bleibt lang und hart.Wann werden mein POKéMON und ich endlich die Besten sein?
+1	JOHN: Wir sind seit fünfzig Jahren verheiratet.Wenn ich so darüber nachdenke, habe ich meine liebe Frau noch nie in einem Kampf besiegt.
+2	JAY: Fünfzig Jahre Ehe…Wenn wir uns je gestritten haben, haben wir es immer mit einem POKéMON-Kampf geklärt…
 objscripts
 0 MeteorFalls_1F_2R_EventScript_Nicolas
 1 MeteorFalls_1F_2R_EventScript_John
@@ -88,15 +88,15 @@ scriptdefs
 trainerbattle_double TRAINER_JOHN_AND_JAY_1 MeteorFalls_1F_2R_Text_JayIntro MeteorFalls_1F_2R_Text_JayDefeat MeteorFalls_1F_2R_Text_JayNotEnoughMons MeteorFalls_1F_2R_EventScript_RegisterJay
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE MeteorFalls_1F_2R_EventScript_RematchJay
-msgbox	JAY: Fifty years of marriage…If we ever argued, we always settled it with a POKéMON battle…
+msgbox	JAY: Fünfzig Jahre Ehe…Wenn wir uns je gestritten haben, haben wir es immer mit einem POKéMON-Kampf geklärt…
 release
 end
 = MeteorFalls_1F_2R_EventScript_RematchJay
 trainerbattle_rematch_double TRAINER_JOHN_AND_JAY_1 MeteorFalls_1F_2R_Text_JayRematchIntro MeteorFalls_1F_2R_Text_JayRematchDefeat MeteorFalls_1F_2R_Text_JayRematchNotEnoughMons
-msgbox	JAY: Fifty years of marriage… Many things have happened.I hope that we will continue to make happy memories together.
+msgbox	JAY: Fünfzig Jahre Ehe… Es ist so viel passiert.Ich hoffe, dass wir weiterhin glückliche Erinnerungen zusammen schaffen werden.
 end
 = MeteorFalls_1F_2R_EventScript_RegisterJay
-msgbox	JOHN: Young TRAINER, if the chance arises, will you battle with us again?
+msgbox	JOHN: Junger TRAINER, wirst du wieder mit uns kämpfen, wenn sich die Gelegenheit ergibt?
 register_matchcall TRAINER_JOHN_AND_JAY_1
 release
 end
@@ -104,15 +104,15 @@ end
 trainerbattle_double TRAINER_JOHN_AND_JAY_1 MeteorFalls_1F_2R_Text_JohnIntro MeteorFalls_1F_2R_Text_JohnDefeat MeteorFalls_1F_2R_Text_JohnNotEnoughMons MeteorFalls_1F_2R_EventScript_RegisterJohn
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE MeteorFalls_1F_2R_EventScript_RematchJohn
-msgbox	JOHN: We've been married for fifty years.Come to think of it, I've yet to beat my dear wife in a battle.
+msgbox	JOHN: Wir sind seit fünfzig Jahren verheiratet.Wenn ich so darüber nachdenke, habe ich meine liebe Frau noch nie in einem Kampf besiegt.
 release
 end
 = MeteorFalls_1F_2R_EventScript_RematchJohn
 trainerbattle_rematch_double TRAINER_JOHN_AND_JAY_1 MeteorFalls_1F_2R_Text_JohnRematchIntro MeteorFalls_1F_2R_Text_JohnRematchDefeat MeteorFalls_1F_2R_Text_JohnRematchNotEnoughMons
-msgbox	JOHN: Married for fifty years…On reflection, the dear wife and I, we battled day in and day out…
+msgbox	JOHN: Fünfzig Jahre verheiratet…Wenn ich zurückblicke, haben meine liebe Frau und ich Tag für Tag gekämpft…
 end
 = MeteorFalls_1F_2R_EventScript_RegisterJohn
-msgbox	JOHN: Young TRAINER, if the chance arises, will you battle with us again?
+msgbox	JOHN: Junger TRAINER, wirst du wieder mit uns kämpfen, wenn sich die Gelegenheit ergibt?
 register_matchcall TRAINER_JOHN_AND_JAY_1
 release
 end
@@ -120,17 +120,17 @@ end
 trainerbattle_single TRAINER_NICOLAS_1 MeteorFalls_1F_2R_Text_NicolasIntro MeteorFalls_1F_2R_Text_NicolasDefeat MeteorFalls_1F_2R_EventScript_RegisterNicolas
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE MeteorFalls_1F_2R_EventScript_RematchNicolas
-msgbox	The road ahead remains long and harsh.When will my POKéMON and I become the best?
+msgbox	Der Weg vor uns bleibt lang und hart.Wann werden mein POKéMON und ich endlich die Besten sein?
 release
 end
 = MeteorFalls_1F_2R_EventScript_RematchNicolas
 trainerbattle_rematch TRAINER_NICOLAS_1 MeteorFalls_1F_2R_Text_NicolasRematchIntro MeteorFalls_1F_2R_Text_NicolasRematchDefeat
-msgbox	You've obviously kept up your POKéMON training.So long as you remain strong, I, too, can become stronger!
+msgbox	Du hast dein POKéMON-Training offensichtlich fortgesetzt.Solange du stark bleibst, kann auch ich stärker werden!
 end
 = MeteorFalls_1F_2R_EventScript_RegisterNicolas
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	I want to know more about your power. Let me register you in my POKéNAV.
+msgbox	Ich möchte mehr über deine Stärke erfahren. Lass mich dich in meinem POKéNAV eintragen.
 register_matchcall TRAINER_NICOLAS_1
 release
 end

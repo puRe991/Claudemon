@@ -33,13 +33,13 @@ objscripts
 2 SafariZone_RestHouse_EventScript_FatMan
 scriptdefs
 = SafariZone_RestHouse_EventScript_FatMan
-msgbox	If you put a on the FEEDER, POKéMON are attracted to it.I think POKéMON with the same sort of nature are drawn by a certain .
+msgbox	Wenn du im FUTTERTROG anbringst, werden POKéMON davon angezogen.Ich glaube, POKéMON mit einer ähnlichen Wesensart werden von einer bestimmten Sorte  angezogen.
 end
 = SafariZone_RestHouse_EventScript_PsychicM
-msgbox	If you use S, wild POKéMON won't be so quick to run away.It's not much use to give S to POKéMON that don't flee easily.
+msgbox	Wenn du S benutzt, laufen wilde POKéMON nicht so schnell weg.Es bringt nicht viel, S bei POKéMON einzusetzen, die nicht so leicht fliehen.
 end
 = SafariZone_RestHouse_EventScript_Youngster
-msgbox	I don't have any S, but I caught a good number of POKéMON.You can improve your chances of making a catch by getting closer to them before throwing a SAFARI BALL.
+msgbox	Ich habe keine S, aber ich habe schon eine ganze Menge POKéMON gefangen.Du kannst deine Fangchancen verbessern, indem du dich näher heranschleichst, bevor du einen SAFARI-BALL wirfst.
 end
 mapsec
 16 2 1 1	SAFARI ZONE

@@ -97,25 +97,25 @@ people_girl_1 10 23 W static 0 - 0
 people_fisherman 11 14 E static 0 - 0
 people_ninja_boy 9 16 S static 0 - 0
 dialogs
-0	The sea between PACIFIDLOG and SLATEPORT has a fast-running tide.If you decide to SURF, you could end up swept away somewhere else.
-1	The SKY PILLAR?…Oh, you must mean that tall, tall tower a little further out.If you asked me, I wouldn't climb it. It's too scary to get up that high.Life at sea level in PACIFIDLOG, that suits me fine.
-2	See, isn't it neat? These houses are on water!I was born here!
+0	Das Meer zwischen PACIFIDLOG und SLATEPORT hat eine starke Strömung.Wenn du SURFEN einsetzt, könntest du woandershin abgetrieben werden.
+1	Der HIMMELSPFEILER?…Oh, du meinst sicher diesen hohen, hohen Turm ein Stück weiter draußen.Wenn du mich fragst, ich würde da nicht hochklettern. Es ist viel zu gruselig, so hoch hinaufzugehen.Das Leben auf Meereshöhe hier in PACIFIDLOG, das genügt mir völlig.
+2	Schau, ist das nicht toll? Diese Häuser stehen auf dem Wasser!Ich bin hier geboren!
 objscripts
 0 PacifidlogTown_EventScript_Girl
 1 PacifidlogTown_EventScript_Fisherman
 2 PacifidlogTown_EventScript_NinjaBoy
 scriptdefs
 = PacifidlogTown_EventScript_NinjaBoy
-msgbox	See, isn't it neat? These houses are on water!I was born here!
+msgbox	Schau, ist das nicht toll? Diese Häuser stehen auf dem Wasser!Ich bin hier geboren!
 end
 = PacifidlogTown_EventScript_Fisherman
-msgbox	The SKY PILLAR?…Oh, you must mean that tall, tall tower a little further out.If you asked me, I wouldn't climb it. It's too scary to get up that high.Life at sea level in PACIFIDLOG, that suits me fine.
+msgbox	Der HIMMELSPFEILER?…Oh, du meinst sicher diesen hohen, hohen Turm ein Stück weiter draußen.Wenn du mich fragst, ich würde da nicht hochklettern. Es ist viel zu gruselig, so hoch hinaufzugehen.Das Leben auf Meereshöhe hier in PACIFIDLOG, das genügt mir völlig.
 end
 = PacifidlogTown_EventScript_Girl
-msgbox	The sea between PACIFIDLOG and SLATEPORT has a fast-running tide.If you decide to SURF, you could end up swept away somewhere else.
+msgbox	Das Meer zwischen PACIFIDLOG und SLATEPORT hat eine starke Strömung.Wenn du SURFEN einsetzt, könntest du woandershin abgetrieben werden.
 end
 signs
-7 16	PACIFIDLOG TOWN“Where the morning sun smiles upon the waters.”
+7 16	PACIFIDLOG TOWN„Wo die Morgensonne auf den Wellen lächelt.“
 water
 368,370,372,384,385,393,408,410,514,515,520,521,522,523,524,552,553,556,560,561,562,563
 visit

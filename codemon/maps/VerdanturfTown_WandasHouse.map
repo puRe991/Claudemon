@@ -28,11 +28,11 @@ people_pokefan_m 7 2 S static FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLYS_UNCL
 people_pokefan_f 2 4 E static 0 - 0
 people_woman_2 5 5 W static FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WANDA - 0
 dialogs
-0	WALLY: I lost to you, PLAYER, but I'm not feeling down anymore.Because I have a new purpose in life. Together with my RALTS, I'm going to challenge POKéMON GYMS and become a great TRAINER.Please watch me, PLAYER. I'm going to be stronger than you.When I do, I'm going to challenge you to another battle.
-1	Thanks to you, I can see my girlfriend every day. Happy? You bet I am!
-2	UNCLE: Oh! PLAYER! WALLY's next door.But, boy, there's something I have to tell you.This natural environment is doing wonders for WALLY's health.Maybe it's not just the environment. It could be POKéMON that are giving the boy hope.
-3	My daughter's boyfriend is a very driven and passionate sort of person.He's been digging a tunnel nonstop just so he can see my daughter.My daughter's a little concerned, so she goes out to the tunnel a lot.
-4	WANDA: Don't worry about WALLY. He'll be just fine.I know my little cousin, and he has POKéMON with him, too.
+0	WALLY: Ich habe gegen dich verloren, PLAYER, aber ich bin nicht mehr niedergeschlagen.Denn ich habe ein neues Ziel im Leben. Zusammen mit meinem RALTS werde ich POKéMON-ARENEN herausfordern und ein großartiger TRAINER werden.Beobachte mich, PLAYER. Ich werde stärker werden als du.Und wenn es soweit ist, fordere ich dich zu einem weiteren Kampf heraus.
+1	Dank dir kann ich meine Freundin jeden Tag sehen. Ob ich glücklich bin? Und wie ich das bin!
+2	ONKEL: Oh! PLAYER! WALLY ist nebenan.Aber, Junge, ich muss dir etwas erzählen.Diese natürliche Umgebung bewirkt wahre Wunder für WALLYs Gesundheit.Vielleicht ist es nicht nur die Umgebung. Es könnten auch die POKéMON sein, die dem Jungen Hoffnung geben.
+3	Der Freund meiner Tochter ist ein sehr zielstrebiger und leidenschaftlicher Mensch.Er gräbt ununterbrochen einen Tunnel, nur um meine Tochter sehen zu können.Meine Tochter ist ein wenig besorgt, deshalb geht sie oft zum Tunnel hinaus.
+4	WANDA: Mach dir keine Sorgen um WALLY. Ihm wird nichts passieren.Ich kenne meinen kleinen Cousin, und er hat auch POKéMON dabei.
 objscripts
 0 VerdanturfTown_WandasHouse_EventScript_Wally
 1 VerdanturfTown_WandasHouse_EventScript_WandasBoyfriend
@@ -45,15 +45,15 @@ lock
 faceplayer
 goto_if_set FLAG_DEFEATED_LAVARIDGE_GYM VerdanturfTown_WandasHouse_EventScript_WandaDontWorry
 goto_if_set FLAG_DEFEATED_WALLY_MAUVILLE VerdanturfTown_WandasHouse_EventScript_MeetWanda
-msgbox	WANDA: Don't worry about WALLY. He'll be just fine.I know my little cousin, and he has POKéMON with him, too.
+msgbox	WANDA: Mach dir keine Sorgen um WALLY. Ihm wird nichts passieren.Ich kenne meinen kleinen Cousin, und er hat auch POKéMON dabei.
 release
 end
 = VerdanturfTown_WandasHouse_EventScript_MeetWanda
-msgbox	WANDA: You are? Oh, right, I get it!You're the PLAYER who WALLY was telling me about.I'm WALLY's cousin. Glad to meet you!I think WALLY's become a lot more lively and healthy since he came here.
+msgbox	WANDA: Bist du das? Oh, richtig, jetzt verstehe ich!Du bist der PLAYER, von dem mir WALLY erzählt hat.Ich bin WALLYs Cousine. Freut mich, dich kennenzulernen!Ich finde, WALLY ist viel lebhafter und gesünder geworden, seit er hierher gekommen ist.
 release
 end
 = VerdanturfTown_WandasHouse_EventScript_WandaDontWorry
-msgbox	WANDA: Don't worry about WALLY. He'll be just fine.I know my little cousin, and he has POKéMON with him, too.
+msgbox	WANDA: Mach dir keine Sorgen um WALLY. Ihm wird nichts passieren.Ich kenne meinen kleinen Cousin, und er hat auch POKéMON dabei.
 release
 end
 = VerdanturfTown_WandasHouse_EventScript_WallysAunt
@@ -62,19 +62,19 @@ faceplayer
 goto_if_set FLAG_DEFEATED_WALLY_VICTORY_ROAD VerdanturfTown_WandasHouse_EventScript_WallysAuntEverGrande
 goto_if_set FLAG_DEFEATED_LAVARIDGE_GYM VerdanturfTown_WandasHouse_EventScript_WallysAuntAnythingHappened
 goto_if_set FLAG_RUSTURF_TUNNEL_OPENED VerdanturfTown_WandasHouse_EventScript_WallysAuntTunnelOpen
-msgbox	My daughter's boyfriend is a very driven and passionate sort of person.He's been digging a tunnel nonstop just so he can see my daughter.My daughter's a little concerned, so she goes out to the tunnel a lot.
+msgbox	Der Freund meiner Tochter ist ein sehr zielstrebiger und leidenschaftlicher Mensch.Er gräbt ununterbrochen einen Tunnel, nur um meine Tochter sehen zu können.Meine Tochter ist ein wenig besorgt, deshalb geht sie oft zum Tunnel hinaus.
 release
 end
 = VerdanturfTown_WandasHouse_EventScript_WallysAuntTunnelOpen
-msgbox	It's amazing. My daughter's boyfriend was digging the tunnel by hand!It's so incredible!
+msgbox	Es ist erstaunlich. Der Freund meiner Tochter hat den Tunnel mit bloßen Händen gegraben!Es ist so unglaublich!
 release
 end
 = VerdanturfTown_WandasHouse_EventScript_WallysAuntAnythingHappened
-msgbox	If anything were to happen to WALLY, I would never be able to look his parents in PETALBURG in the eye…
+msgbox	Wenn WALLY etwas zustoßen würde, könnte ich seinen Eltern in PETALBURG nie mehr in die Augen sehen…
 release
 end
 = VerdanturfTown_WandasHouse_EventScript_WallysAuntEverGrande
-msgbox	WALLY was in EVER GRANDE?His parents in PETALBURG would be astonished to hear that!
+msgbox	WALLY war in EVER GRANDE?Seine Eltern in PETALBURG wären erstaunt, das zu hören!
 release
 end
 = VerdanturfTown_WandasHouse_EventScript_WallysUncle
@@ -82,30 +82,30 @@ lock
 faceplayer
 goto_if_set FLAG_DEFEATED_WALLY_VICTORY_ROAD VerdanturfTown_WandasHouse_EventScript_WallysUncleEverGrande
 goto_if_set FLAG_DEFEATED_LAVARIDGE_GYM VerdanturfTown_WandasHouse_EventScript_WallysUncleSlippedOff
-msgbox	UNCLE: Oh! PLAYER! WALLY's next door.But, boy, there's something I have to tell you.This natural environment is doing wonders for WALLY's health.Maybe it's not just the environment. It could be POKéMON that are giving the boy hope.
+msgbox	ONKEL: Oh! PLAYER! WALLY ist nebenan.Aber, Junge, ich muss dir etwas erzählen.Diese natürliche Umgebung bewirkt wahre Wunder für WALLYs Gesundheit.Vielleicht ist es nicht nur die Umgebung. Es könnten auch die POKéMON sein, die dem Jungen Hoffnung geben.
 release
 end
 = VerdanturfTown_WandasHouse_EventScript_WallysUncleSlippedOff
-msgbox	WALLY's gone away… He slipped off on his own…
+msgbox	WALLY ist weggegangen… Er hat sich ganz allein davongeschlichen…
 release
 end
 = VerdanturfTown_WandasHouse_EventScript_WallysUncleEverGrande
-msgbox	UNCLE: Is that right? WALLY's gone away that far all by himself…Well, I have to give him credit--he is my little brother's son.
+msgbox	ONKEL: Ist das wahr? WALLY ist ganz allein so weit weggegangen…Nun, das muss ich ihm lassen-- er ist eben der Sohn meines kleinen Bruders.
 release
 end
 = VerdanturfTown_WandasHouse_EventScript_WandasBoyfriend
-msgbox	Thanks to you, I can see my girlfriend every day. Happy? You bet I am!
+msgbox	Dank dir kann ich meine Freundin jeden Tag sehen. Ob ich glücklich bin? Und wie ich das bin!
 end
 = VerdanturfTown_WandasHouse_EventScript_Wally
 lock
 faceplayer
 goto_if_set FLAG_WALLY_SPEECH VerdanturfTown_WandasHouse_EventScript_WallyShortSpeech
-msgbox	WALLY: I lost to you, PLAYER, but I'm not feeling down anymore.Because I have a new purpose in life. Together with my RALTS, I'm going to challenge POKéMON GYMS and become a great TRAINER.Please watch me, PLAYER. I'm going to be stronger than you.When I do, I'm going to challenge you to another battle.
+msgbox	WALLY: Ich habe gegen dich verloren, PLAYER, aber ich bin nicht mehr niedergeschlagen.Denn ich habe ein neues Ziel im Leben. Zusammen mit meinem RALTS werde ich POKéMON-ARENEN herausfordern und ein großartiger TRAINER werden.Beobachte mich, PLAYER. Ich werde stärker werden als du.Und wenn es soweit ist, fordere ich dich zu einem weiteren Kampf heraus.
 setflag FLAG_WALLY_SPEECH
 release
 end
 = VerdanturfTown_WandasHouse_EventScript_WallyShortSpeech
-msgbox	WALLY: Please watch me, PLAYER. I'm going to get stronger than you.When I do, I'm going to challenge you to another battle.
+msgbox	WALLY: Beobachte mich, PLAYER. Ich werde stärker werden als du.Und wenn es soweit ist, fordere ich dich zu einem weiteren Kampf heraus.
 release
 end
 mapsec
