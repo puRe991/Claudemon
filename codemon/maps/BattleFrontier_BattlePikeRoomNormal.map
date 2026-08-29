@@ -78,7 +78,7 @@ case 1 BattleFrontier_BattlePikeRoomNormal_EventScript_PreQueenHealOneMon
 case 2 BattleFrontier_BattlePikeRoomNormal_EventScript_PreQueenHealTwoMons
 goto BattleFrontier_BattlePikeRoomNormal_EventScript_LucyEnter
 = BattleFrontier_BattlePikeRoomNormal_EventScript_LucyEnter
-msgbox	I shall go fetch our master…
+msgbox	Ich werde unsere Herrin holen…
 closemessage
 special SpawnCameraObject
 applymovement LOCALID_CAMERA BattleFrontier_BattlePikeRoomNormal_Movement_CameraPanUp
@@ -111,11 +111,11 @@ case FRONTIER_BRAIN_STREAK BattleFrontier_BattlePikeRoomNormal_EventScript_Battl
 case FRONTIER_BRAIN_STREAK_LONG BattleFrontier_BattlePikeRoomNormal_EventScript_BattleLucyGold
 frontier_get FRONTIER_DATA_HEARD_BRAIN_SPEECH
 goto_if_ne VAR_RESULT FALSE BattleFrontier_BattlePikeRoomNormal_EventScript_BattleLucySilver
-msgbox	I am LUCY… I am the law here… For I am the PIKE QUEEN…You already know it, but to advance, you must defeat me……I'm not one for idle chatter. Hurry. Come on…
+msgbox	Ich bin LUCY… Hier bin ich das Gesetz… Denn ich bin die PIKE-QUEEN…Du weißt es sicher schon, aber um weiterzukommen, musst du mich besiegen……Ich bin nicht für Geschwätz zu haben. Beeil dich. Los…
 frontier_set FRONTIER_DATA_HEARD_BRAIN_SPEECH
 goto BattleFrontier_BattlePikeRoomNormal_EventScript_BattleLucySilver
 = BattleFrontier_BattlePikeRoomNormal_EventScript_BattleLucySilver
-msgbox	Your luck… I hope you didn't use it all up here…
+msgbox	Dein Glück… Ich hoffe, du hast es hier nicht schon aufgebraucht…
 call BattleFrontier_BattlePikeRoomNormal_EventScript_DoPikeQueenBattle
 goto_if_eq VAR_RESULT 1 BattleFrontier_BattlePikeRoomNormal_EventScript_DefeatedLucySilver
 goto BattleFrontier_BattlePikeRoomNormal_EventScript_WarpToLobbyLost
@@ -127,14 +127,14 @@ end
 = BattleFrontier_BattlePikeRoomNormal_EventScript_DefeatedLucySilver
 frontier_getsymbols
 goto_if_ne VAR_RESULT 0 BattleFrontier_BattlePikeRoomNormal_EventScript_DefeatedLucy
-msgbox	LUCY: … … … … … … Show me your FRONTIER PASS…
+msgbox	LUCY: … … … … … … Zeig mir deinen FRONTIER PASS…
 waitmessage
 playfanfare MUS_OBTAIN_SYMBOL
-msgbox	The Luck Symbol was embossed on the FRONTIER PASS!
+msgbox	Das Glückssymbol wurde in den FRONTIER PASS geprägt!
 waitmessage
 waitfanfare
 frontier_givesymbol
-msgbox	…That's all there is… Disappear already…
+msgbox	…Das ist alles… Verschwinde schon…
 closemessage
 goto BattleFrontier_BattlePikeRoomNormal_EventScript_DefeatedLucy
 = BattleFrontier_BattlePikeRoomNormal_EventScript_DefeatedLucy
@@ -163,7 +163,7 @@ setvar VAR_0x8005 0
 special DoSpecialTrainerBattle
 return
 = BattleFrontier_BattlePikeRoomNormal_EventScript_BattleLucyGold
-msgbox	Now! Come on!
+msgbox	Jetzt! Los!
 call BattleFrontier_BattlePikeRoomNormal_EventScript_DoPikeQueenBattle
 goto_if_eq VAR_RESULT 1 BattleFrontier_BattlePikeRoomNormal_EventScript_DefeatedLucyGold
 goto BattleFrontier_BattlePikeRoomNormal_EventScript_WarpToLobbyLost
@@ -173,18 +173,18 @@ goto_if_eq VAR_RESULT 2 BattleFrontier_BattlePikeRoomNormal_EventScript_Defeated
 msgbox	LUCY: … … … … … ……FRONTIER PASS…
 waitmessage
 playfanfare MUS_OBTAIN_SYMBOL
-msgbox	The Luck Symbol took on a golden shine!
+msgbox	Das Glückssymbol erstrahlte in goldenem Glanz!
 waitmessage
 waitfanfare
 frontier_givesymbol
-msgbox	…You, I won't forget… …Ever…
+msgbox	…Dich werde ich nicht vergessen… …Niemals…
 closemessage
 goto BattleFrontier_BattlePikeRoomNormal_EventScript_DefeatedLucy
 end
 = BattleFrontier_BattlePikeRoomNormal_EventScript_IntroLucyGold
 frontier_get FRONTIER_DATA_HEARD_BRAIN_SPEECH
 goto_if_ne VAR_RESULT FALSE BattleFrontier_BattlePikeRoomNormal_EventScript_BattleLucyGold
-msgbox	LUCY: …You again…… … … … … ……I've trampled flowers and braved storms to get to where I am…I don't feel any compulsion to keep losing to the same opponent…… … … … … … Fine… I'll do it…
+msgbox	LUCY: …Du schon wieder…… … … … … ……Ich habe Blumen zertreten und Stürme getrotzt, um dorthin zu kommen, wo ich jetzt bin…Ich spüre keinen Drang, ständig gegen denselben Gegner zu verlieren…… … … … … … Gut… Ich mach's…
 frontier_set FRONTIER_DATA_HEARD_BRAIN_SPEECH
 goto BattleFrontier_BattlePikeRoomNormal_EventScript_BattleLucyGold
 = BattleFrontier_BattlePikeRoomNormal_EventScript_SetCurtainTilesOpen
@@ -228,19 +228,19 @@ setmetatile 5 3 METATILE_BattlePike_Curtain_Stage0_Tile6 TRUE
 special DrawWholeMapView
 return
 = BattleFrontier_BattlePikeRoomNormal_EventScript_PreQueenHealTwoMons
-msgbox	I welcome you…Since you have chosen this room, I will restore two POKéMON to full health…
+msgbox	Ich heiße dich willkommen…Da du diesen Raum gewählt hast, heile ich zwei POKéMON vollständig…
 playfanfare MUS_HEAL
 waitfanfare
 goto BattleFrontier_BattlePikeRoomNormal_EventScript_LucyEnter
 end
 = BattleFrontier_BattlePikeRoomNormal_EventScript_PreQueenHealOneMon
-msgbox	I welcome you…Since you have chosen this room, I will restore one POKéMON to full health…
+msgbox	Ich heiße dich willkommen…Da du diesen Raum gewählt hast, heile ich ein POKéMON vollständig…
 playfanfare MUS_HEAL
 waitfanfare
 goto BattleFrontier_BattlePikeRoomNormal_EventScript_LucyEnter
 end
 = BattleFrontier_BattlePikeRoomNormal_EventScript_PreQueenNoHeal
-msgbox	I welcome you…Giggle… You seem to be bereft of luck…If only you hadn't chosen this room, your POKéMON could have been healed…
+msgbox	Ich heiße dich willkommen…Kichern… Du scheinst vom Glück verlassen zu sein…Hättest du diesen Raum nur nicht gewählt, deine POKéMON hätten geheilt werden können…
 goto BattleFrontier_BattlePikeRoomNormal_EventScript_LucyEnter
 end
 = BattleFrontier_BattlePikeRoomNormal_EventScript_EnterDoubleBattleRoom
@@ -286,7 +286,7 @@ end
 = BattleFrontier_BattlePikeRoomNormal_EventScript_EnterHardBattleRoom
 lockall
 delay 16
-msgbox	Welcome…Here, we will have you battle a somewhat-tough TRAINER…
+msgbox	Willkommen…Hier lassen wir dich gegen einen etwas härteren TRAINER antreten…
 waitmessage
 closemessage
 applymovement LOCALID_PIKE_ROOM_NPC_1 BattleFrontier_BattlePikeRoomNormal_Movement_ApproachPlayer
@@ -310,11 +310,11 @@ applymovement LOCALID_PIKE_ROOM_NPC_2 BattleFrontier_BattlePikeRoomNormal_Moveme
 waitmovement 0
 lock
 faceplayer
-msgbox	How wonderful…To honor your victory, your POKéMON shall be restored to full health…
+msgbox	Wie wunderbar…Zu Ehren deines Sieges werden deine POKéMON vollständig geheilt…
 playfanfare MUS_HEAL
 waitfanfare
 special HealPlayerParty
-msgbox	I urge you to enjoy the rest of your Battle Choice challenge…
+msgbox	Ich wünsche dir, dass du den Rest deiner Battle-Choice-Herausforderung genießt…
 closemessage
 release
 applymovement LOCALID_PIKE_ROOM_NPC_2 BattleFrontier_BattlePikeRoomNormal_Movement_NPCExit
@@ -322,19 +322,19 @@ waitmovement 0
 end
 = BattleFrontier_BattlePikeRoomNormal_EventScript_EnterStatusRoom
 lockall
-msgbox	Oh, my!Watch out!
+msgbox	Oh, du meine Güte!Pass auf!
 applymovement LOCALID_PIKE_ROOM_NPC_2 BattleFrontier_BattlePikeRoomNormal_Movement_MonApproachPlayer
 waitmovement 0
 pike_getstatusmon
 copyvar VAR_0x8004 VAR_RESULT
 call_if_eq VAR_0x8004 PIKE_STATUSMON_KIRLIA BattleFrontier_BattlePikeRoomNormal_EventScript_KirliaAttack
 call_if_eq VAR_0x8004 PIKE_STATUSMON_DUSCLOPS BattleFrontier_BattlePikeRoomNormal_EventScript_DusclopsAttack
-msgbox	It attacks without warning if it is startled by another person…Are you and your POKéMON all right?
+msgbox	Es greift ohne Vorwarnung an, wenn eine andere Person es erschreckt…Geht es dir und deinen POKéMON gut?
 closemessage
 releaseall
 end
 = BattleFrontier_BattlePikeRoomNormal_EventScript_DusclopsAttack
-msgbox	Now, now! DUSCLOPS, stop that!
+msgbox	Na, na! DUSCLOPS, lass das!
 closemessage
 waitse
 playmoncry SPECIES_DUSCLOPS CRY_MODE_NORMAL
@@ -351,7 +351,7 @@ waitmovement 0
 waitse
 playmoncry SPECIES_DUSCLOPS CRY_MODE_NORMAL
 waitmoncry
-msgbox	Look here! That's quite enough!
+msgbox	Jetzt hör mal! Das reicht jetzt aber!
 waitse
 playmoncry SPECIES_DUSCLOPS CRY_MODE_NORMAL
 waitmoncry
@@ -359,18 +359,18 @@ closemessage
 applymovement LOCALID_PIKE_ROOM_NPC_2 BattleFrontier_BattlePikeRoomNormal_Movement_MonMoveAside
 applymovement LOCALID_PIKE_ROOM_NPC_1 BattleFrontier_BattlePikeRoomNormal_Movement_StatusNPCApproachPlayer
 waitmovement 0
-msgbox	I must apologize to you…My DUSCLOPS has a TIMID nature…
+msgbox	Ich muss mich bei dir entschuldigen…Mein DUSCLOPS hat ein ÄNGSTLICHES Wesen…
 return
 = BattleFrontier_BattlePikeRoomNormal_EventScript_DusclopsUsedWillOWisp
-msgbox	DUSCLOPS used WILL-O-WISP!
+msgbox	DUSCLOPS setzte IRRLICHT ein!
 waitmessage
 return
 = BattleFrontier_BattlePikeRoomNormal_EventScript_DusclopsUsedIceBeam
-msgbox	DUSCLOPS used ICE BEAM!
+msgbox	DUSCLOPS setzte EISSTRAHL ein!
 waitmessage
 return
 = BattleFrontier_BattlePikeRoomNormal_EventScript_KirliaAttack
-msgbox	Now, now! KIRLIA, stop that!
+msgbox	Na, na! KIRLIA, lass das!
 closemessage
 waitse
 playmoncry SPECIES_KIRLIA CRY_MODE_NORMAL
@@ -389,7 +389,7 @@ waitmovement 0
 waitse
 playmoncry SPECIES_KIRLIA CRY_MODE_NORMAL
 waitmoncry
-msgbox	Look here! That's quite enough!
+msgbox	Jetzt hör mal! Das reicht jetzt aber!
 waitse
 playmoncry SPECIES_KIRLIA CRY_MODE_NORMAL
 waitmoncry
@@ -397,22 +397,22 @@ closemessage
 applymovement LOCALID_PIKE_ROOM_NPC_2 BattleFrontier_BattlePikeRoomNormal_Movement_MonMoveAside
 applymovement LOCALID_PIKE_ROOM_NPC_1 BattleFrontier_BattlePikeRoomNormal_Movement_StatusNPCApproachPlayer
 waitmovement 0
-msgbox	I must apologize to you…My KIRLIA has a TIMID nature…
+msgbox	Ich muss mich bei dir entschuldigen…Mein KIRLIA hat ein ÄNGSTLICHES Wesen…
 return
 = BattleFrontier_BattlePikeRoomNormal_EventScript_KirliaUsedHypnosis
-msgbox	KIRLIA used HYPNOSIS!
+msgbox	KIRLIA setzte HYPNOSE ein!
 waitmessage
 return
 = BattleFrontier_BattlePikeRoomNormal_EventScript_KirliaUsedThunderWave
-msgbox	KIRLIA used THUNDER WAVE!
+msgbox	KIRLIA setzte DONNERWELLE ein!
 waitmessage
 return
 = BattleFrontier_BattlePikeRoomNormal_EventScript_KirliaUsedWillOWisp
-msgbox	KIRLIA used WILL-O-WISP!
+msgbox	KIRLIA setzte IRRLICHT ein!
 waitmessage
 return
 = BattleFrontier_BattlePikeRoomNormal_EventScript_KirliaUsedToxic
-msgbox	KIRLIA used TOXIC!
+msgbox	KIRLIA setzte GIFTIGKEIT ein!
 waitmessage
 return
 = BattleFrontier_BattlePikeRoomNormal_EventScript_EnterFullHealRoom
@@ -420,12 +420,12 @@ lockall
 delay 16
 applymovement LOCALID_PIKE_ROOM_NPC_1 BattleFrontier_BattlePikeRoomNormal_Movement_ApproachPlayer
 waitmovement 0
-msgbox	Welcome… You must be commended for your luck…Your POKéMON shall be restored to full health…
+msgbox	Willkommen… Man muss dich für dein Glück loben…Deine POKéMON werden vollständig geheilt…
 waitmessage
 playfanfare MUS_HEAL
 waitfanfare
 special HealPlayerParty
-msgbox	I urge you to enjoy the rest of your Battle Choice challenge…
+msgbox	Ich wünsche dir, dass du den Rest deiner Battle-Choice-Herausforderung genießt…
 closemessage
 applymovement LOCALID_PIKE_ROOM_NPC_1 BattleFrontier_BattlePikeRoomNormal_Movement_NPCExit
 waitmovement 0
@@ -455,7 +455,7 @@ end
 setvar VAR_TEMP_3 0
 setvar VAR_TEMP_2 0
 lockall
-msgbox	The path is blocked! And there is no turning back…
+msgbox	Der Weg ist versperrt! Und eine Umkehr ist nicht möglich…
 closemessage
 end
 = BattleFrontier_BattlePikeRoomNormal_EventScript_SetEnteredRoom

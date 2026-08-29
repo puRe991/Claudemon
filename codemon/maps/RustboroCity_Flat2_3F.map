@@ -26,17 +26,17 @@ npcs
 people_devon_employee 7 3 S wander 0 - 0
 people_woman_1 12 2 S static 0 - 0
 dialogs
-0	DEVON's PRESIDENT likes to collect rare stones.
-1	I think the PRESIDENT's son also collects rare stones.
+0	Der PRÄSIDENT von DEVON sammelt gerne seltene Steine.
+1	Ich glaube, der Sohn des PRÄSIDENTEN sammelt auch seltene Steine.
 objscripts
 0 RustboroCity_Flat2_3F_EventScript_DevonEmployee
 1 RustboroCity_Flat2_3F_EventScript_Woman
 scriptdefs
 = RustboroCity_Flat2_3F_EventScript_Woman
-msgbox	I think the PRESIDENT's son also collects rare stones.
+msgbox	Ich glaube, der Sohn des PRÄSIDENTEN sammelt auch seltene Steine.
 end
 = RustboroCity_Flat2_3F_EventScript_DevonEmployee
-msgbox	DEVON's PRESIDENT likes to collect rare stones.
+msgbox	Der PRÄSIDENT von DEVON sammelt gerne seltene Steine.
 end
 mapsec
 0 5 1 2	RUSTBORO CITY

@@ -26,8 +26,8 @@ people_mart_employee 1 3 E static 0 LOCALID_SOOTOPOLIS_MART_CLERK 0
 people_fat_man 5 5 E static 0 - 0
 people_gentleman 9 5 E static 0 - 0
 dialogs
-1	What… What is happening?I really want to know, but it's too scary to go outside.
-2	This weather… Did something awaken?
+1	Was… Was geht hier vor?Ich würde es wirklich gern wissen, aber es ist zu gruselig, um nach draußen zu gehen.
+2	Dieses Wetter… Ist da etwas erwacht?
 objscripts
 0 SootopolisCity_Mart_EventScript_Clerk
 1 SootopolisCity_Mart_EventScript_FatMan
@@ -40,11 +40,11 @@ lock
 faceplayer
 goto_if_ge VAR_SKY_PILLAR_STATE 2 SootopolisCity_Mart_EventScript_GentlemanNoLegendaries
 goto_if_unset FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN SootopolisCity_Mart_EventScript_GentlemanNoLegendaries
-msgbox	This weather… Did something awaken?
+msgbox	Dieses Wetter… Ist da etwas erwacht?
 release
 end
 = SootopolisCity_Mart_EventScript_GentlemanNoLegendaries
-msgbox	Do you know FULL RESTORE?Full restoration of HP! Eradication of all status problems!It's truly an item of your dreams!
+msgbox	Kennst du VOLLHEILUNG?Vollständige Wiederherstellung der KP! Beseitigung aller Statusprobleme!Das ist wirklich der Artikel deiner Träume!
 release
 end
 = SootopolisCity_Mart_EventScript_FatMan
@@ -52,20 +52,20 @@ lock
 faceplayer
 goto_if_ge VAR_SKY_PILLAR_STATE 2 SootopolisCity_Mart_EventScript_FatManNoLegendaries
 goto_if_unset FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN SootopolisCity_Mart_EventScript_FatManNoLegendaries
-msgbox	What… What is happening?I really want to know, but it's too scary to go outside.
+msgbox	Was… Was geht hier vor?Ich würde es wirklich gern wissen, aber es ist zu gruselig, um nach draußen zu gehen.
 release
 end
 = SootopolisCity_Mart_EventScript_FatManNoLegendaries
-msgbox	PP UP is great!It raises the POWER POINTS, the PP, of a POKéMON move.
+msgbox	AP PLUS ist großartig!Es erhöht die ANGRIFFSPUNKTE, die AP, einer POKéMON-Attacke.
 release
 end
 = SootopolisCity_Mart_EventScript_Clerk
 lock
 faceplayer
-msgbox	Welcome!How may I serve you?
+msgbox	Willkommen!Womit kann ich dir dienen?
 waitmessage
 pokemart SootopolisCity_Mart_Pokemart
-msgbox	Please come again!
+msgbox	Komm bald wieder!
 release
 end
 mapsec

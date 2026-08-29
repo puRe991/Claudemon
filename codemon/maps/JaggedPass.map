@@ -109,12 +109,12 @@ people_team_magma_magma_member_m 16 19 N static FLAG_HIDE_JAGGED_PASS_MAGMA_GUAR
 people_picnicker 14 25 E static 0 - 3
 people_cycling_triathlete_m 18 25 W static 0 - 3
 dialogs
-0	Yes, I did lose at POKéMON…But, when it comes to the love of the mountains, I have you beat!
-1	If I had an ACRO BIKE, I'd be able to jump ledges.
-3	Did you know?Some people cleverly ride their bicycles up this horribly bumpy pass.
-4	Wah! What are you doing here?What am I doing in a place like this?What business is it of yours?
-5	What is that odd rock protrusion a little up the hill from here?
-6	My bicycle bounced around so much, my rear end's sore…
+0	Ja, ich habe im POKéMON-Kampf verloren…Aber wenn es um die Liebe zu den Bergen geht, schlage ich dich!
+1	Hätte ich ein ACRO-BIKE, könnte ich über Simse springen.
+3	Wusstest du das?Manche Leute fahren geschickt mit dem Fahrrad diesen furchtbar holprigen Pass hinauf.
+4	Wah! Was machst du hier?Was mache ich an so einem Ort?Was geht dich das überhaupt an?
+5	Was ist dieser seltsame Felsvorsprung dort oben am Hang?
+6	Mein Fahrrad hat mich so durchgeschüttelt, mein Hintern tut weh…
 objscripts
 0 JaggedPass_EventScript_Eric
 1 JaggedPass_EventScript_Ethan
@@ -159,7 +159,7 @@ setvar VAR_0x8006 8  @ num shakes
 setvar VAR_0x8007 5  @ shake delay
 special ShakeCamera
 waitstate
-msgbox	Oh! This boulder is shaking in response to the MAGMA EMBLEM!
+msgbox	Oh! Dieser Felsbrocken bebt als Reaktion auf das MAGMA-EMBLEM!
 closemessage
 setvar VAR_0x8004 1   @ vertical pan
 setvar VAR_0x8005 1   @ horizontal pan
@@ -178,11 +178,11 @@ releaseall
 end
 = JaggedPass_EventScript_Julio
 trainerbattle_single TRAINER_JULIO JaggedPass_Text_JulioIntro JaggedPass_Text_JulioDefeat
-msgbox	My bicycle bounced around so much, my rear end's sore…
+msgbox	Mein Fahrrad hat mich so durchgeschüttelt, mein Hintern tut weh…
 end
 = JaggedPass_EventScript_Autumn
 trainerbattle_single TRAINER_AUTUMN JaggedPass_Text_AutumnIntro JaggedPass_Text_AutumnDefeat
-msgbox	What is that odd rock protrusion a little up the hill from here?
+msgbox	Was ist dieser seltsame Felsvorsprung dort oben am Hang?
 end
 = JaggedPass_EventScript_MagmaHideoutGuard
 lockall
@@ -195,7 +195,7 @@ applymovement LOCALID_MAGMA_HIDEOUT_GUARD Common_Movement_Delay48
 waitmovement 0
 applymovement LOCALID_MAGMA_HIDEOUT_GUARD Common_Movement_FacePlayer
 waitmovement 0
-msgbox	Wah! What are you doing here?What am I doing in a place like this?What business is it of yours?
+msgbox	Wah! Was machst du hier?Was mache ich an so einem Ort?Was geht dich das überhaupt an?
 closemessage
 trainerbattle_no_intro TRAINER_GRUNT_JAGGED_PASS JaggedPass_Text_GruntDefeat
 setflag FLAG_BEAT_MAGMA_GRUNT_JAGGED_PASS
@@ -206,7 +206,7 @@ end
 = JaggedPass_EventScript_GuardDefeated
 applymovement LOCALID_MAGMA_HIDEOUT_GUARD Common_Movement_FacePlayer
 waitmovement 0
-msgbox	Okay, oh-kay! I admit it--you're strong!Don't worry about me. Go wherever you want!
+msgbox	Okay, o-kay! Ich geb's zu -- du bist stark!Mach dir um mich keine Sorgen. Geh, wohin du willst!
 closemessage
 applymovement LOCALID_MAGMA_HIDEOUT_GUARD Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -216,16 +216,16 @@ end
 trainerbattle_single TRAINER_DIANA_1 JaggedPass_Text_DianaIntro JaggedPass_Text_DianaDefeat JaggedPass_EventScript_RegisterDiana
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE JaggedPass_EventScript_DianaRematch
-msgbox	Did you know?Some people cleverly ride their bicycles up this horribly bumpy pass.
+msgbox	Wusstest du das?Manche Leute fahren geschickt mit dem Fahrrad diesen furchtbar holprigen Pass hinauf.
 release
 end
 = JaggedPass_EventScript_DianaRematch
 trainerbattle_rematch TRAINER_DIANA_1 JaggedPass_Text_DianaRematchIntro JaggedPass_Text_DianaRematchDefeat
-msgbox	I'll forget about losing and just enjoy this bumpy hike.
+msgbox	Ich vergesse die Niederlage und genieße einfach diese holprige Wanderung.
 end
 = JaggedPass_EventScript_RegisterDiana
 special PlayerFaceTrainerAfterBattle
-msgbox	Will you ever be back in this area? If you do return, I'd like a rematch.
+msgbox	Kommst du irgendwann wieder in diese Gegend? Wenn ja, hätte ich gern eine Revanche.
 register_matchcall TRAINER_DIANA_1
 release
 end
@@ -240,22 +240,22 @@ end
 trainerbattle_single TRAINER_ETHAN_1 JaggedPass_Text_EthanIntro JaggedPass_Text_EthanDefeat JaggedPass_EventScript_RegisterEthan
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE JaggedPass_EventScript_EthanRematch
-msgbox	If I had an ACRO BIKE, I'd be able to jump ledges.
+msgbox	Hätte ich ein ACRO-BIKE, könnte ich über Simse springen.
 release
 end
 = JaggedPass_EventScript_EthanRematch
 trainerbattle_rematch TRAINER_ETHAN_1 JaggedPass_Text_EthanRematchIntro JaggedPass_Text_EthanRematchDefeat
-msgbox	I should get an ACRO BIKE from RYDEL in MAUVILLE CITY…
+msgbox	Ich sollte mir bei RYDEL in MAUVILLE CITY ein ACRO-BIKE holen…
 end
 = JaggedPass_EventScript_RegisterEthan
 special PlayerFaceTrainerAfterBattle
-msgbox	When I get more used to this bumpiness, I'll be sure to win!Can you register me in your POKéNAV?
+msgbox	Wenn ich mich erst an diese Unebenheiten gewöhnt habe, gewinne ich bestimmt!Kannst du mich in deinem POKéNAV eintragen?
 register_matchcall TRAINER_ETHAN_1
 release
 end
 = JaggedPass_EventScript_Eric
 trainerbattle_single TRAINER_ERIC JaggedPass_Text_EricIntro JaggedPass_Text_EricDefeat
-msgbox	Yes, I did lose at POKéMON…But, when it comes to the love of the mountains, I have you beat!
+msgbox	Ja, ich habe im POKéMON-Kampf verloren…Aber wenn es um die Liebe zu den Bergen geht, schlage ich dich!
 end
 grass
 518

@@ -92,7 +92,7 @@ people_woman_5 14 16 N static 0 - 3
 people_youngster 14 12 S static 0 - 3
 misc_item_ball 57 16 S static FLAG_ITEM_ROUTE_123_REVIVAL_HERB - 0
 dialogs
-21	I love GRASS-type POKéMON!Do you have any GRASS-type POKéMON?
+21	Ich liebe PFLANZE-POKéMON!Hast du auch PFLANZE-POKéMON?
 objscripts
 0 BerryTreeScript
 1 BerryTreeScript
@@ -190,11 +190,11 @@ end
 end
 = Route123_EventScript_Davis
 trainerbattle_single TRAINER_DAVIS Route123_Text_DavisIntro Route123_Text_DavisDefeat
-msgbox	Don't tell my brother I lost. You have to keep it a secret!
+msgbox	Sag meinem Bruder nicht, dass ich verloren habe. Das musst du für dich behalten!
 end
 = Route123_EventScript_Jazmyn
 trainerbattle_single TRAINER_JAZMYN Route123_Text_JazmynIntro Route123_Text_JazmynDefeat
-msgbox	They say that you can't judge a person by their appearance.But often, their looks don't lie…
+msgbox	Man sagt, man solle einen Menschen nicht nach dem Äußeren beurteilen.Aber oft lügt das Äußere nicht…
 end
 = Route123_EventScript_ItemPPUp
 goto_if_set FLAG_ITEM_ROUTE_123_PP_UP Route123_EventScript_ItemPPUp_Taken
@@ -205,41 +205,41 @@ end
 end
 = Route123_EventScript_Frederick
 trainerbattle_single TRAINER_FREDRICK Route123_Text_FrederickIntro Route123_Text_FrederickDefeat
-msgbox	Contribute to your allowance? Wasn't the prize money enough?
+msgbox	Dein Taschengeld aufbessern? War das Preisgeld nicht genug?
 end
 = Route123_EventScript_Alberto
 trainerbattle_single TRAINER_ALBERTO Route123_Text_AlbertoIntro Route123_Text_AlbertoDefeat
-msgbox	I gather BIRD POKéMON feathers that scatter during battles.I'm going to make a hat with BIRD POKéMON feathers.
+msgbox	Ich sammle Federn von VOGEL-POKéMON, die bei Kämpfen umherfliegen.Ich werde mir einen Hut aus VOGEL-POKéMON-Federn basteln.
 end
 = Route123_EventScript_Fernando
 trainerbattle_single TRAINER_FERNANDO_1 Route123_Text_FernandoIntro Route123_Text_FernandoDefeat Route123_EventScript_RegisterFernando
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route123_EventScript_RematchFernando
-msgbox	You're rock steady. I'd like to write a tune about you.
+msgbox	Du bist unerschütterlich. Ich würde gern ein Lied über dich schreiben.
 release
 end
 = Route123_EventScript_RematchFernando
 trainerbattle_rematch TRAINER_FERNANDO_1 Route123_Text_FernandoRematchIntro Route123_Text_FernandoRematchDefeat
-msgbox	I thought you'd be so enthralled by my tune, you'd lose.
+msgbox	Ich dachte, mein Lied würde dich so verzaubern, dass du verlierst.
 end
 = Route123_EventScript_RegisterFernando
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	The next time, lend your ears to the full tune, will you?
+msgbox	Hör dir das nächste Mal die ganze Melodie an, ja?
 register_matchcall TRAINER_FERNANDO_1
 release
 end
 = Route123_EventScript_Ed
 trainerbattle_single TRAINER_ED Route123_Text_EdIntro Route123_Text_EdDefeat
-msgbox	Hehe, I'm swiping your battling ideas! I think they'll make me better.
+msgbox	Hehe, ich klaue mir deine Kampftaktiken! Ich glaube, die machen mich besser.
 end
 = Route123_EventScript_Kayley
 trainerbattle_single TRAINER_KAYLEY Route123_Text_KayleyIntro Route123_Text_KayleyDefeat
-msgbox	Using accessories effectively is the secret behind fashion appeal.
+msgbox	Accessoires geschickt einzusetzen ist das Geheimnis modischer Ausstrahlung.
 end
 = Route123_EventScript_Jonas
 trainerbattle_single TRAINER_JONAS Route123_Text_JonasIntro Route123_Text_JonasDefeat
-msgbox	I'm going to ambush a weaker-looking TRAINER next time.
+msgbox	Ich werde als Nächstes einen schwächer wirkenden TRAINER überrumpeln.
 end
 = Route123_EventScript_ItemElixir
 goto_if_set FLAG_ITEM_ROUTE_123_ELIXIR Route123_EventScript_ItemElixir_Taken
@@ -257,23 +257,23 @@ end
 end
 = Route123_EventScript_Kindra
 trainerbattle_single TRAINER_KINDRA Route123_Text_KindraIntro Route123_Text_KindraDefeat
-msgbox	MT. PYRE… Where the spirits of POKéMON sleep…It must overflow with a power that soothes spirits…
+msgbox	Der SEELENBERG… Wo die Geister der POKéMON schlafen…Er muss von einer Kraft durchdrungen sein, die Geister besänftigt…
 end
 = Route123_EventScript_Jacki
 trainerbattle_single TRAINER_JACKI_1 Route123_Text_JackiIntro Route123_Text_JackiDefeat Route123_EventScript_RegisterJacki
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route123_EventScript_RematchJacki
-msgbox	We all have psychic powers. We've just forgotten how to use them.
+msgbox	Wir alle haben psychische Kräfte. Wir haben nur verlernt, sie einzusetzen.
 release
 end
 = Route123_EventScript_RematchJacki
 trainerbattle_rematch TRAINER_JACKI_1 Route123_Text_JackiRematchIntro Route123_Text_JackiRematchDefeat
-msgbox	Your power with POKéMON… That could be a psychic power, too.
+msgbox	Deine Kraft im Umgang mit POKéMON… Das könnte auch eine psychische Kraft sein.
 end
 = Route123_EventScript_RegisterJacki
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	I would like to face you again. Is that okay with you?
+msgbox	Ich würde gern noch einmal gegen dich antreten. Ist das okay für dich?
 register_matchcall TRAINER_JACKI_1
 release
 end
@@ -281,31 +281,31 @@ end
 trainerbattle_single TRAINER_CAMERON_1 Route123_Text_CameronIntro Route123_Text_CameronDefeat Route123_EventScript_RegisterCameron
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route123_EventScript_RematchCameron
-msgbox	Being a psychic is about willpower. I thought I wouldn't lose to you…
+msgbox	Psychisch begabt zu sein ist eine Sache des Willens. Ich dachte, ich würde nicht gegen dich verlieren…
 release
 end
 = Route123_EventScript_RematchCameron
 trainerbattle_rematch TRAINER_CAMERON_1 Route123_Text_CameronRematchIntro Route123_Text_CameronRematchDefeat
-msgbox	I should train at MT. PYRE… I'll never beat you this way…
+msgbox	Ich sollte auf dem SEELENBERG trainieren… So werde ich dich nie besiegen…
 end
 = Route123_EventScript_RegisterCameron
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	I sense it! You and I shall battle again! I can't tell if I'll win, though…Let's see your POKéNAV.
+msgbox	Ich spüre es! Du und ich werden wieder kämpfen! Ob ich gewinne, kann ich allerdings nicht sagen…Zeig mir deinen POKéNAV.
 register_matchcall TRAINER_CAMERON_1
 release
 end
 = Route123_EventScript_Miu
 trainerbattle_double TRAINER_MIU_AND_YUKI Route123_Text_MiuIntro Route123_Text_MiuDefeat Route123_Text_MiuNotEnoughMons
-msgbox	MIU: TRAINER, your POKéMON are strong because you are friends.
+msgbox	MIU: TRAINER, deine POKéMON sind stark, weil ihr Freunde seid.
 end
 = Route123_EventScript_Yuki
 trainerbattle_double TRAINER_MIU_AND_YUKI Route123_Text_YukiIntro Route123_Text_YukiDefeat Route123_Text_YukiNotEnoughMons
-msgbox	YUKI: Why are you so strong? We've never lost before.
+msgbox	YUKI: Warum bist du so stark? Wir haben noch nie zuvor verloren.
 end
 = Route123_EventScript_Violet
 trainerbattle_single TRAINER_VIOLET Route123_Text_VioletIntro Route123_Text_VioletDefeat
-msgbox	The BERRY MASTER's garden is filled with uplifting fragrances.
+msgbox	Der Garten des BEEREN-MEISTERS ist voller erhebender Düfte.
 end
 = BerryTreeScript
 special ObjectEventInteractionGetBerryTreeData
@@ -332,24 +332,24 @@ special ObjectEventInteractionPickBerryTree
 goto_if_eq VAR_0x8004 0 BerryTree_EventScript_BerryPocketFull
 special IncrementDailyPickedBerries
 special ObjectEventInteractionRemoveBerryTree
-msgbox	PLAYER picked the STR_VAR_2 STR_VAR_1.
+msgbox	PLAYER hat STR_VAR_2 STR_VAR_1 gepflückt.
 playfanfare MUS_OBTAIN_BERRY
 waitmessage
 waitfanfare
 waitbuttonpress
-msgbox	PLAYER put away the STR_VAR_1 in the BAG's BERRIES POCKET.The soil returned to its soft and loamy state.
+msgbox	PLAYER hat STR_VAR_1 im BEEREN-FACH der TASCHE verstaut.Der Boden wurde wieder weich und lehmig.
 waitmessage
 waitbuttonpress
 release
 end
 = BerryTree_EventScript_BerryPocketFull
-msgbox	The BAG's BERRIES POCKET is full.The STR_VAR_1 couldn't be taken.
+msgbox	Das BEEREN-FACH der TASCHE ist voll.STR_VAR_1 konnte nicht mitgenommen werden.
 waitmessage
 waitbuttonpress
 release
 end
 = BerryTree_EventScript_CancelPickingBerry
-msgbox	PLAYER left the STR_VAR_1 unpicked.
+msgbox	PLAYER hat STR_VAR_1 ungepflückt gelassen.
 waitmessage
 waitbuttonpress
 release
@@ -358,7 +358,7 @@ end
 call BerryTree_EventScript_GetCareAdverb
 lockall
 special ObjectEventInteractionGetBerryName
-msgbox	These STR_VAR_1 flowers are blooming STR_VAR_2.
+msgbox	Diese STR_VAR_1-Blumen blühen STR_VAR_2.
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
@@ -391,11 +391,11 @@ releaseall
 end
 = BerryTree_EventScript_WaterBerry
 special ObjectEventInteractionGetBerryName
-msgbox	PLAYER watered the STR_VAR_1.
+msgbox	PLAYER hat STR_VAR_1 gegossen.
 waitmessage
 special ObjectEventInteractionWaterBerryTree
 special DoWateringBerryTreeAnim
-msgbox	The plant seems to be delighted.
+msgbox	Die Pflanze scheint sich zu freuen.
 waitmessage
 waitbuttonpress
 releaseall
@@ -403,21 +403,21 @@ end
 = BerryTree_EventScript_CheckBerryStage3
 lockall
 special ObjectEventInteractionGetBerryName
-msgbox	This STR_VAR_1 plant is growing taller.
+msgbox	Diese STR_VAR_1-Pflanze wird größer.
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
 = BerryTree_EventScript_CheckBerryStage2
 lockall
 special ObjectEventInteractionGetBerryName
-msgbox	STR_VAR_1 has sprouted.
+msgbox	STR_VAR_1 ist gesprossen.
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
 = BerryTree_EventScript_CheckBerryStage1
 lockall
 special ObjectEventInteractionGetBerryCountString
-msgbox	One STR_VAR_1 was planted here.
+msgbox	Hier wurde ein STR_VAR_1 gepflanzt.
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
@@ -426,7 +426,7 @@ lock
 faceplayer
 specialvar VAR_RESULT PlayerHasBerries
 goto_if_eq VAR_RESULT TRUE BerryTree_EventScript_WantToPlant
-msgbox	It's soft, loamy soil.
+msgbox	Weicher, lehmiger Boden.
 waitmessage
 waitbuttonpress
 release
@@ -452,7 +452,7 @@ special ObjectEventInteractionPlantBerryTree
 incrementgamestat GAME_STAT_PLANTED_BERRIES
 special IncrementDailyPlantedBerries
 special ObjectEventInteractionGetBerryCountString
-msgbox	PLAYER planted one STR_VAR_1 in the soft, loamy soil.
+msgbox	PLAYER hat ein STR_VAR_1 in den weichen, lehmigen Boden gepflanzt.
 waitmessage
 waitbuttonpress
 return
@@ -467,21 +467,21 @@ end
 lock
 faceplayer
 goto_if_set FLAG_RECEIVED_TM_GIGA_DRAIN Route123_EventScript_ReceivedGigaDrain
-msgbox	I love GRASS-type POKéMON!Do you have any GRASS-type POKéMON?
+msgbox	Ich liebe PFLANZE-POKéMON!Hast du auch PFLANZE-POKéMON?
 special IsGrassTypeInParty
 goto_if_eq VAR_RESULT FALSE Route123_EventScript_NoGrassMons
-msgbox	Oh?You like GRASS-type POKéMON, too, don't you?I'm so happy, you can have this! It's a token of our friendship.
+msgbox	Oh?Du magst auch PFLANZE-POKéMON, nicht wahr?Ich freue mich so, das kannst du haben! Ein Zeichen unserer Freundschaft.
 giveitem ITEM_TM_GIGA_DRAIN
 goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
 setflag FLAG_RECEIVED_TM_GIGA_DRAIN
-msgbox	I check trees with my GRASS-type POKéMON. I'm like a tree doctor.
+msgbox	Ich untersuche Bäume mit meinem PFLANZE-POKéMON. Ich bin sowas wie ein Baumdoktor.
 release
 end
 = Route123_EventScript_NoGrassMons
 release
 end
 = Route123_EventScript_ReceivedGigaDrain
-msgbox	I check trees with my GRASS-type POKéMON. I'm like a tree doctor.
+msgbox	Ich untersuche Bäume mit meinem PFLANZE-POKéMON. Ich bin sowas wie ein Baumdoktor.
 release
 end
 = Route123_EventScript_ItemCalcium
@@ -501,7 +501,7 @@ bufferpartymonnick STR_VAR_1 VAR_RESULT
 buffermovename STR_VAR_2 MOVE_CUT
 msgboxyesno	This tree looks like it can be CUT down!Would you like to CUT it?
 goto_if_eq VAR_RESULT NO EventScript_CancelCut
-msgbox	STR_VAR_1 used STR_VAR_2!
+msgbox	STR_VAR_1 setzte STR_VAR_2 ein!
 closemessage
 dofieldeffect FLDEFF_USE_CUT_ON_TREE
 waitstate
@@ -526,21 +526,21 @@ closemessage
 releaseall
 end
 = EventScript_CheckTreeCantCut
-msgbox	This tree looks like it can be CUT down!
+msgbox	Dieser Baum sieht aus, als könnte man ihn mit ZERSCHNEIDER fällen!
 releaseall
 end
 = Route123_EventScript_Braxton
 trainerbattle_single TRAINER_BRAXTON Route123_Text_BraxtonIntro Route123_Text_BraxtonDefeat
-msgbox	You did your BADGES proud in that match!
+msgbox	Du hast deinen ORDEN in diesem Kampf alle Ehre gemacht!
 end
 = Route123_EventScript_Wendy
 trainerbattle_single TRAINER_WENDY Route123_Text_WendyIntro Route123_Text_WendyDefeat
-msgbox	To best even me… Your strength is marvelous!
+msgbox	Sogar mich zu besiegen… Deine Stärke ist wunderbar!
 end
 signs
-117 10	MT. PYRE “Forbidden to the faint of heart.”
+117 10	SEELENBERG „Zutritt verboten für schwache Nerven.“
 10 12	ROUTE 123 ROUTE 118
-20 7	BERRY MASTER'S HOUSE
+20 7	HAUS DES BEEREN-MEISTERS
 grass
 13,37
 water
