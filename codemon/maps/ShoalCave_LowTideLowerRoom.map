@@ -39,7 +39,7 @@ npcs
 misc_pushable_boulder 25 3 S static FLAG_TEMP_11 - 0
 people_black_belt 11 4 S wander 0 - 0
 dialogs
-1	The penetrating cold around these parts is an impediment to training.But with focus, one can overcome!With this FOCUS BAND, buckle down and withstand the cold!
+1	Die durchdringende Kälte hier in der Gegend erschwert das Training.Aber mit Fokus kann man alles überwinden!Mit diesem FOKUSBAND, kämpf dich durch und widerstehe der Kälte!
 objscripts
 0 EventScript_StrengthBoulder
 1 ShoalCave_LowTideLowerRoom_EventScript_BlackBelt
@@ -48,14 +48,14 @@ scriptdefs
 lock
 faceplayer
 goto_if_set FLAG_RECEIVED_FOCUS_BAND ShoalCave_LowTideLowerRoom_EventScript_ReceivedFocusBand
-msgbox	The penetrating cold around these parts is an impediment to training.But with focus, one can overcome!With this FOCUS BAND, buckle down and withstand the cold!
+msgbox	Die durchdringende Kälte hier in der Gegend erschwert das Training.Aber mit Fokus kann man alles überwinden!Mit diesem FOKUSBAND, kämpf dich durch und widerstehe der Kälte!
 giveitem ITEM_FOCUS_BAND
 goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
 setflag FLAG_RECEIVED_FOCUS_BAND
 release
 end
 = ShoalCave_LowTideLowerRoom_EventScript_ReceivedFocusBand
-msgbox	Everything starts with focus!
+msgbox	Alles beginnt mit Fokus!
 release
 end
 = EventScript_StrengthBoulder
@@ -74,7 +74,7 @@ goto EventScript_ActivateStrength
 end
 = EventScript_ActivateStrength
 setflag FLAG_SYS_USE_STRENGTH
-msgbox	STR_VAR_1 used STRENGTH!STR_VAR_1's STRENGTH made it possible to move boulders around!
+msgbox	STR_VAR_1 setzte KRAFTKOLOSS ein!Dank STR_VAR_1s KRAFTKOLOSS ließen sich die Felsbrocken bewegen!
 releaseall
 end
 = EventScript_CancelStrength
@@ -82,11 +82,11 @@ closemessage
 releaseall
 end
 = EventScript_CantStrength
-msgbox	It's a big boulder, but a POKéMON may be able to push it aside.
+msgbox	Das ist ein großer Felsbrocken, aber vielleicht kann ein POKéMON ihn beiseiteschieben.
 releaseall
 end
 = EventScript_CheckActivatedBoulder
-msgbox	STRENGTH made it possible to move boulders around.
+msgbox	Dank KRAFTKOLOSS ließen sich die Felsbrocken bewegen.
 releaseall
 end
 mapsec

@@ -42,7 +42,7 @@ waitse
 playmoncry SPECIES_AZURILL CRY_MODE_ENCOUNTER
 msgbox	AZURILL: Rururi!
 waitmoncry
-msgbox	It doesn't appear to like the TRAINER very much.
+msgbox	Es scheint den TRAINER nicht besonders gern zu haben.
 release
 end
 = PacifidlogTown_House2_EventScript_HappyAzurill
@@ -52,7 +52,7 @@ waitse
 playmoncry SPECIES_AZURILL CRY_MODE_NORMAL
 msgbox	AZURILL: Rurii.
 waitmoncry
-msgbox	It appears to be very friendly with the TRAINER.
+msgbox	Es scheint mit dem TRAINER sehr vertraut zu sein.
 release
 end
 = PacifidlogTown_House2_EventScript_FanClubYoungerBrother
@@ -71,38 +71,38 @@ goto_if_ge VAR_RESULT FRIENDSHIP_50_TO_99 PacifidlogTown_House2_EventScript_PutI
 goto PacifidlogTown_House2_EventScript_GiveFrustration
 end
 = PacifidlogTown_House2_EventScript_GiveFrustration
-msgbox	It has a vicious look to it.A frightening POKéMON like that deserves a TM like this.
+msgbox	Es hat einen bösartigen Blick.Ein so furchteinflößendes POKéMON verdient ein TM wie dieses hier.
 giveitem ITEM_TM_FRUSTRATION
 goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
 setflag FLAG_RECEIVED_FANCLUB_TM_THIS_WEEK
 special SetPacifidlogTMReceivedDay
-msgbox	If a POKéMON likes you a lot, RETURN's power is enhanced.If it doesn't like you, FRUSTRATION's power goes up.
+msgbox	Wenn ein POKéMON dich sehr mag, wird die Stärke von VERGELTUNG erhöht.Mag es dich nicht, steigt die Stärke von FRUST.
 release
 end
 = PacifidlogTown_House2_EventScript_PutInEffort
-msgbox	Hmm… It's not bad, but it's also not good.You, as the TRAINER, need to put in some more effort.
+msgbox	Hmm… Es ist nicht schlecht, aber auch nicht gut.Du, als TRAINER, musst dich noch etwas mehr anstrengen.
 release
 end
 = PacifidlogTown_House2_EventScript_GiveReturn
-msgbox	It clearly likes you very much.A POKéMON that adoring and adorable deserves a TM like this, no?
+msgbox	Es mag dich ganz offensichtlich sehr.Ein so anhängliches und liebenswertes POKéMON verdient ein TM wie dieses, nicht wahr?
 giveitem ITEM_TM_RETURN
 goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
 setflag FLAG_RECEIVED_FANCLUB_TM_THIS_WEEK
 special SetPacifidlogTMReceivedDay
-msgbox	If a POKéMON likes you a lot, RETURN's power is enhanced.If it doesn't like you, FRUSTRATION's power goes up.
+msgbox	Wenn ein POKéMON dich sehr mag, wird die Stärke von VERGELTUNG erhöht.Mag es dich nicht, steigt die Stärke von FRUST.
 release
 end
 = PacifidlogTown_House2_EventScript_FirstMonAssessment
-msgbox	Er-hem!I am the POKéMON FAN CLUB's most important person, the CHAIRMAN's younger brother.I'm here enjoying my vacation with POKéMON, yes, indeed.
-msgbox	Ah! Your POKéMON…
+msgbox	Ähem!Ich bin die wichtigste Person im POKéMON-FANCLUB, der jüngere Bruder des VORSITZENDEN.Ich genieße hier meinen Urlaub mit POKéMON, jawohl, das tue ich.
+msgbox	Ah! Dein POKéMON…
 return
 = PacifidlogTown_House2_EventScript_MonAssessment
-msgbox	Ah! Your POKéMON…
+msgbox	Ah! Dein POKéMON…
 return
 = PacifidlogTown_House2_EventScript_ComeBackInXDays
 specialvar VAR_RESULT GetDaysUntilPacifidlogTMAvailable
 buffernumberstring STR_VAR_1 VAR_RESULT
-msgbox	Oh, yes. In about STR_VAR_1 or so days, I should be getting a good TM or two.You should come see me then. I'll give you a TM that's suitable for your POKéMON.
+msgbox	Ach ja. In etwa STR_VAR_1 Tagen dürfte ich ein oder zwei gute TMs bekommen.Schau dann mal wieder bei mir vorbei. Ich gebe dir ein TM, das zu deinem POKéMON passt.
 release
 end
 = PacifidlogTown_House2_EventScript_UpdateFanClubTMFlag
