@@ -175,36 +175,36 @@ people_team_aqua_aqua_member_m 25 27 N static FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA
 people_pokefan_f 11 37 W static 0 - 0
 people_scott 10 12 S static FLAG_HIDE_SLATEPORT_CITY_SCOTT LOCALID_SLATEPORT_SCOTT 0
 dialogs
-0	Whew… I'm just bushed…I hiked over from MAUVILLE CITY. But, boy, this city's huge.If I'd known this, I would've ridden my BIKE here.
-1	STERN, the fellow who built the MUSEUM, also happens to be the leader of an undersea exploration team.So, everyone calls him CAPT. STERN.
-2	Wroooar! I'm going to compete in the BATTLE TENT, too!But before that, I need to catch some POKéMON!
-3	What is that over there? That long line…
-4	Hey, there! Quit pushing! This is the line, can't you see?
-5	Ooh, look at this!The seaweed you can get around these parts is fresh and full of life.Why, it looks like it can even rear up and attack!
-6	Where the water is clean, the fruits of bountiful harvest gather.And where people gather, a market soon starts.That is how a town is born and grows.
-7	Shopping where you can breathe the scent of the ocean…SLATEPORT is such a wonderful place!
-8	TY: Okay, CAPT. STERN, a big smile for the camera!
-9	GABBY: I see, I see. You've had a most invaluable experience…
-10	CAPT. STERN: Yes, indeed. We intend to move ahead with our exploration.
-11	The sea is just so vast…Could the sea have been made by the tears shed by POKéMON?
-12	Do you know what they do with old ships that become too creaky to sail?They sink them in the sea so they become habitats for POKéMON.
-13	Whenever I visit here, I get carried away and buy too much.
-14	Recently, a BATTLE TENT was built in SLATEPORT.GYMS are fun, but the BATTLE TENT's awesome in its own way.You should go find tough POKéMON for the BATTLE TENT!
-15	If you want to change your POKéMON's nickname, you'll have to get the NAME RATER to help you.
-16	Any POKéMON you get in a trade, you can't change its nickname.The original TRAINER's love for that POKéMON is in the nickname.
-17	TEAM AQUA has a policy of assembling and dispersing at the operation site.
-18	Our BOSS is brilliant.What would he want to do with a MUSEUM now?
-21	The light of the lighthouse reaches dozens of miles away.I wonder if it doesn't startle POKéMON in the sea.
-22	Oh? Your STR_VAR_1…
-25	What's the new scheme, I wonder?Our BOSS is scary when he's mad, so I'd better not screw things up…
-26	If there's something we need in the MUSEUM, we should take it all!
-27	Hey, you there! Don't butt in!
-28	A long line, huh?It reminds me of the times I lined up to buy smash-hit games…
-29	Why are we even lining up and paying? We should just march in!
-30	What? What do you want?
-31	Grumble…I should've brought my Game Boy Advance so I wouldn't get bored in line…Grumble…
-32	When this operation's over, I'll take you to a hot spring spa!That's what our leader said. I can't wait!
-33	If a wild POKéMON gets hurt, it heals itself by chewing on BERRIES.Did you know that?Somebody saw that and got the idea of making medicine from BERRIES.Did you know that?To turn BERRIES into medicine, they must be crushed into powder.Did you know that?You seem to have an interest in BERRIES!I've got something good for someone like you.
+0	Puh… bin ich geschafft…Ich bin zu Fuß von MAUVILLE CITY hergewandert. Aber diese Stadt ist wirklich riesig.Hätte ich das gewusst, wäre ich lieber mit dem FAHRRAD gefahren.
+1	STERN, der Mann, der das MUSEUM erbaut hat, ist zufällig auch der Leiter eines Unterwasser-Forschungsteams.Deshalb nennt ihn jeder KAPITÄN STERN.
+2	Wroooar! Ich werde auch beim BATTLE TENT mitmachen!Aber vorher muss ich noch ein paar POKéMON fangen!
+3	Was ist da drüben los? Diese lange Schlange…
+4	Hey, du da! Hör auf zu drängeln! Das ist eine Schlange, siehst du das nicht?
+5	Ooh, sieh dir das an!Die Algen, die man hier in der Gegend bekommt, sind frisch und voller Leben.Sieht ja aus, als könnten die sich aufbäumen und angreifen!
+6	Wo das Wasser klar ist, sammeln sich die Früchte einer reichen Ernte.Und wo Menschen zusammenkommen, entsteht bald ein Markt.So entsteht eine Stadt und wächst heran.
+7	Einkaufen, während man den Duft des Meeres atmet…SLATEPORT ist einfach ein wunderbarer Ort!
+8	TY: Okay, KAPITÄN STERN, ein großes Lächeln für die Kamera!
+9	GABBY: Ach so, ach so. Das war also eine unbezahlbare Erfahrung für dich…
+10	KAPITÄN STERN: Ja, in der Tat. Wir beabsichtigen, unsere Erkundung fortzusetzen.
+11	Das Meer ist einfach so unendlich weit…Ob das Meer wohl aus den Tränen der POKéMON entstanden ist?
+12	Weißt du, was mit alten Schiffen passiert, die zu klapprig zum Segeln werden?Man versenkt sie im Meer, damit sie zu Lebensräumen für POKéMON werden.
+13	Immer wenn ich hierher komme, lasse ich mich hinreißen und kaufe zu viel.
+14	Vor Kurzem wurde in SLATEPORT ein BATTLE TENT errichtet.ARENEN machen Spaß, aber das BATTLE TENT ist auf seine eigene Art genauso genial.Du solltest dir starke POKéMON für das BATTLE TENT suchen!
+15	Wenn du den Spitznamen deines POKéMON ändern willst, musst du dir vom NAMENSGEBER helfen lassen.
+16	Bei POKéMON, die du im Tausch bekommst, kannst du den Spitznamen nicht ändern.Die Liebe des ursprünglichen TRAINERS zu diesem POKéMON steckt in seinem Spitznamen.
+17	TEAM AQUA hat den Grundsatz, sich erst am Einsatzort zu versammeln und danach wieder zu zerstreuen.
+18	Unser BOSS ist genial.Was will er wohl jetzt mit einem MUSEUM anfangen?
+21	Das Licht des Leuchtturms reicht Dutzende Kilometer weit.Ob das wohl die POKéMON im Meer erschreckt?
+22	Oh? Dein STR_VAR_1…
+25	Was der neue Plan wohl ist?Unser BOSS ist furchteinflößend, wenn er wütend wird, also sollte ich lieber nichts vermasseln…
+26	Wenn es etwas gibt, das wir im MUSEUM brauchen, sollten wir einfach alles mitnehmen!
+27	Hey, du da! Misch dich nicht ein!
+28	Eine lange Schlange, was?Das erinnert mich an die Zeiten, als ich für Kult-Videospiele angestanden habe…
+29	Warum stehen wir überhaupt an und zahlen? Wir sollten einfach reinmarschieren!
+30	Was? Was willst du?
+31	Grummel…Ich hätte meinen Game Boy Advance mitnehmen sollen, damit mir in der Schlange nicht langweilig wird…Grummel…
+32	Wenn dieser Einsatz vorbei ist, nehme ich dich mit in eine heiße Quelle!Das hat unser Anführer gesagt. Ich kann es kaum erwarten!
+33	Wenn ein wildes POKéMON verletzt wird, heilt es sich selbst, indem es auf BEEREN kaut.Wusstest du das?Jemand hat das gesehen und kam auf die Idee, aus BEEREN Medizin herzustellen.Wusstest du das?Um BEEREN in Medizin zu verwandeln, müssen sie zu Pulver zerkleinert werden.Wusstest du das?Du scheinst dich ja für BEEREN zu interessieren!Ich habe da etwas Gutes für jemanden wie dich.
 objscripts
 0 SlateportCity_EventScript_FatMan
 1 SlateportCity_EventScript_Man1
@@ -283,24 +283,24 @@ addobject LOCALID_SLATEPORT_SCOTT
 applymovement LOCALID_PLAYER SlateportCity_Movement_PlayerFaceScott
 applymovement LOCALID_SLATEPORT_SCOTT SlateportCity_Movement_ScottApproachPlayer
 waitmovement 0
-msgbox	SCOTT: Huh? I'm sure I met you somewhere before.Have I introduced myself to you? If not, my name's SCOTT.I just saw TEAM AQUA run away from here like they were stung.Let me guess--you drove them away?
+msgbox	SCOTT: Hm? Ich bin mir sicher, dass wir uns schon mal irgendwo begegnet sind.Habe ich mich dir schon vorgestellt? Falls nicht, ich heiße SCOTT.Ich habe gerade gesehen, wie TEAM AQUA von hier weggerannt ist, als hätte man sie gestochen.Lass mich raten--du hast sie vertrieben?
 closemessage
 applymovement LOCALID_SLATEPORT_SCOTT Common_Movement_WalkInPlaceFasterLeft
 waitmovement 0
 delay 60
-msgbox	SCOTT: Hmm… Maybe, just maybe, this TRAINER…
+msgbox	SCOTT: Hmm… Vielleicht, ja vielleicht ist dieser TRAINER…
 applymovement LOCALID_SLATEPORT_SCOTT Common_Movement_WalkInPlaceFasterRight
 waitmovement 0
-msgbox	SCOTT: All right! I think you're going to become a good friend.So, let's register each other in our POKéNAVS.… … … … … …
+msgbox	SCOTT: Na gut! Ich glaube, du und ich werden gute Freunde.Lass uns doch gegenseitig unsere POKéNAVS registrieren.… … … … … …
 closemessage
 delay 30
 playfanfare MUS_REGISTER_MATCH_CALL
-msgbox	Registered this SCOTT person in the POKéNAV.
+msgbox	SCOTT wurde im POKéNAV registriert.
 waitfanfare
 closemessage
 delay 30
 setflag FLAG_ENABLE_SCOTT_MATCH_CALL
-msgbox	SCOTT: What I'd like to do is tag along with you, but I do want to keep an eye on the talents of other people, too.So, I'll be off to roam other towns a bit more.Be seeing you, PLAYER!
+msgbox	SCOTT: Am liebsten würde ich dich begleiten, aber ich möchte auch ein Auge auf die Talente anderer Leute haben.Deshalb ziehe ich weiter und schaue mich noch in anderen Städten um.Bis dann, PLAYER!
 closemessage
 applymovement LOCALID_SLATEPORT_SCOTT SlateportCity_Movement_ScottExit
 waitmovement 0
@@ -324,7 +324,7 @@ applymovement LOCALID_SLATEPORT_SCOTT SlateportCity_Movement_ScottExitBattleTent
 waitmovement 0
 closedoor 10 12
 waitdooranim
-msgbox	SCOTT: Oh, hey! If it isn't PLAYER!PLAYER, let me guess--you're going to take the BATTLE TENT challenge?Yeah! That's a good idea! That's a really great idea!After all, a tough TRAINER is the perfect fit for the BATTLE TENT!Give it your best effort!
+msgbox	SCOTT: Oh, hey! Wenn das nicht PLAYER ist!PLAYER, lass mich raten--du willst dich der BATTLE TENT-Herausforderung stellen?Ja! Das ist eine gute Idee! Das ist wirklich eine großartige Idee!Schließlich ist ein starker TRAINER genau das Richtige für das BATTLE TENT!Gib dein Bestes!
 closemessage
 applymovement LOCALID_PLAYER SlateportCity_Movement_PlayerWatchScottExit
 applymovement LOCALID_SLATEPORT_SCOTT SlateportCity_Movement_ScottExitAfterBattleTent
@@ -338,22 +338,22 @@ end
 lock
 faceplayer
 goto_if_set FLAG_RECEIVED_POWDER_JAR SlateportCity_EventScript_ReceivedPowderJar
-msgbox	If a wild POKéMON gets hurt, it heals itself by chewing on BERRIES.Did you know that?Somebody saw that and got the idea of making medicine from BERRIES.Did you know that?To turn BERRIES into medicine, they must be crushed into powder.Did you know that?You seem to have an interest in BERRIES!I've got something good for someone like you.
+msgbox	Wenn ein wildes POKéMON verletzt wird, heilt es sich selbst, indem es auf BEEREN kaut.Wusstest du das?Jemand hat das gesehen und kam auf die Idee, aus BEEREN Medizin herzustellen.Wusstest du das?Um BEEREN in Medizin zu verwandeln, müssen sie zu Pulver zerkleinert werden.Wusstest du das?Du scheinst dich ja für BEEREN zu interessieren!Ich habe da etwas Gutes für jemanden wie dich.
 giveitem ITEM_POWDER_JAR
 setflag FLAG_RECEIVED_POWDER_JAR
-msgbox	I recently had machines installed at POKéMON CENTERS for crushing BERRIES.The BERRY CRUSH machines are at the DIRECT CORNER upstairs.Did you know?Could you make BERRY POWDER for me using those machines?I can make you all sorts of medicine if you bring me lots of BERRY POWDER.
+msgbox	Ich habe kürzlich in POKéMON-CENTERN Maschinen zum Zerkleinern von BEEREN installieren lassen.Die BEEREN-CRUSH-Maschinen stehen oben in der DIRECT CORNER.Wusstest du das?Könntest du mit diesen Maschinen BEEREN-PULVER für mich herstellen?Wenn du mir viel BEEREN-PULVER bringst, kann ich dir allerlei Medizin herstellen.
 release
 end
 = SlateportCity_EventScript_ReceivedPowderJar
 setvar VAR_0x8004 1
 specialvar VAR_RESULT HasEnoughBerryPowder
 goto_if_eq VAR_RESULT FALSE SlateportCity_EventScript_ExplainBerryPowder
-msgbox	Have you brought me some BERRY POWDER?
+msgbox	Hast du mir etwas BEEREN-PULVER mitgebracht?
 special DisplayBerryPowderVendorMenu
 goto SlateportCity_EventScript_ChooseBerryPowderItem
 end
 = SlateportCity_EventScript_ChooseBerryPowderItem
-msgbox	What would you like to exchange it with?
+msgbox	Wogegen möchtest du es eintauschen?
 waitmessage
 setvar VAR_0x8004 SCROLL_MULTI_BERRY_POWDER_VENDOR
 special ShowScrollableMultichoice
@@ -373,7 +373,7 @@ case 11 SlateportCity_EventScript_CancelPowderItemSelect
 case MULTI_B_PRESSED SlateportCity_EventScript_CancelPowderItemSelect
 end
 = SlateportCity_EventScript_CancelPowderItemSelect
-msgbox	Come back if you'd like to trade your BERRY POWDER for some medicine.I'm always running a bazaar here.Did you know?
+msgbox	Komm wieder, wenn du dein BEEREN-PULVER gegen Medizin eintauschen möchtest.Ich betreibe hier immer einen kleinen Basar.Wusstest du das?
 special RemoveBerryPowderVendorMenu
 release
 end
@@ -396,17 +396,17 @@ special TakeBerryPowder
 special PrintPlayerBerryPowderAmount
 msgboxyesno	This is fine BERRY POWDER. It will make excellent medicine.Would you like to trade more of your BERRY POWDER for something else?
 goto_if_eq VAR_RESULT YES SlateportCity_EventScript_ChooseBerryPowderItem
-msgbox	Okay! When you get some more BERRY POWDER, bring it to me, please!
+msgbox	Okay! Wenn du mehr BEEREN-PULVER hast, bring es mir bitte vorbei!
 special RemoveBerryPowderVendorMenu
 release
 end
 = SlateportCity_EventScript_NoRoomForBerryPowderItem
-msgbox	The BAG is full…
+msgbox	Der BEUTEL ist voll…
 special RemoveBerryPowderVendorMenu
 release
 end
 = SlateportCity_EventScript_NotEnoughBerryPowder
-msgbox	Oh, dear. You don't have enough BERRY POWDER.
+msgbox	Ach du liebe Zeit. Du hast nicht genug BEEREN-PULVER.
 goto SlateportCity_EventScript_ChooseBerryPowderItem
 end
 = SlateportCity_EventScript_HPUp
@@ -470,20 +470,20 @@ setvar VAR_0x8009 50
 goto SlateportCity_EventScript_TryBuyBerryPowderItem
 end
 = SlateportCity_EventScript_ExplainBerryPowder
-msgbox	I recently had machines installed at POKéMON CENTERS for crushing BERRIES.The BERRY CRUSH machines are at the DIRECT CORNER upstairs.Did you know?Could you make BERRY POWDER for me using those machines?I can make you all sorts of medicine if you bring me lots of BERRY POWDER.
+msgbox	Ich habe kürzlich in POKéMON-CENTERN Maschinen zum Zerkleinern von BEEREN installieren lassen.Die BEEREN-CRUSH-Maschinen stehen oben in der DIRECT CORNER.Wusstest du das?Könntest du mit diesen Maschinen BEEREN-PULVER für mich herstellen?Wenn du mir viel BEEREN-PULVER bringst, kann ich dir allerlei Medizin herstellen.
 release
 end
 = SlateportCity_EventScript_AquaGrunt11
 lock
 faceplayer
-msgbox	When this operation's over, I'll take you to a hot spring spa!That's what our leader said. I can't wait!
+msgbox	Wenn dieser Einsatz vorbei ist, nehme ich dich mit in eine heiße Quelle!Das hat unser Anführer gesagt. Ich kann es kaum erwarten!
 closemessage
 applymovement LOCALID_SLATEPORT_GRUNT_11 Common_Movement_FaceOriginalDirection
 waitmovement 0
 release
 end
 = SlateportCity_EventScript_AquaGrunt10
-msgbox	Grumble…I should've brought my Game Boy Advance so I wouldn't get bored in line…Grumble…
+msgbox	Grummel…Ich hätte meinen Game Boy Advance mitnehmen sollen, damit mir in der Schlange nicht langweilig wird…Grummel…
 end
 = SlateportCity_EventScript_AquaGrunt9
 lock
@@ -493,7 +493,7 @@ applymovement LOCALID_SLATEPORT_GRUNT_9 Common_Movement_ExclamationMark
 waitmovement 0
 applymovement LOCALID_SLATEPORT_GRUNT_9 Common_Movement_Delay48
 waitmovement 0
-msgbox	What? What do you want?
+msgbox	Was? Was willst du?
 closemessage
 applymovement LOCALID_SLATEPORT_GRUNT_9 Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -501,13 +501,13 @@ applymovement LOCALID_SLATEPORT_GRUNT_9 SlateportCity_Movement_DelayAquaGrunt
 waitmovement 0
 applymovement LOCALID_SLATEPORT_GRUNT_9 Common_Movement_FacePlayer
 waitmovement 0
-msgbox	You want to read this sign? I'll read it for you!
+msgbox	Du willst dieses Schild lesen? Ich lese es dir vor!
 closemessage
 applymovement LOCALID_SLATEPORT_GRUNT_9 Common_Movement_FaceOriginalDirection
 waitmovement 0
 applymovement LOCALID_SLATEPORT_GRUNT_9 SlateportCity_Movement_DelayAquaGrunt
 waitmovement 0
-msgbox	Let's see…Um… I think it says something like “the life in the sea is endless.”Yup, I'm pretty sure that's what it says.
+msgbox	Mal sehen…Ähm… ich glaube, da steht so etwas wie „das Leben im Meer ist unendlich.“Ja, ich bin ziemlich sicher, dass da das steht.
 closemessage
 applymovement LOCALID_SLATEPORT_GRUNT_9 Common_Movement_FacePlayer
 waitmovement 0
@@ -520,7 +520,7 @@ end
 = SlateportCity_EventScript_AquaGrunt8
 lock
 faceplayer
-msgbox	Why are we even lining up and paying? We should just march in!
+msgbox	Warum stehen wir überhaupt an und zahlen? Wir sollten einfach reinmarschieren!
 closemessage
 applymovement LOCALID_SLATEPORT_GRUNT_8 Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -529,7 +529,7 @@ end
 = SlateportCity_EventScript_AquaGrunt7
 lock
 faceplayer
-msgbox	A long line, huh?It reminds me of the times I lined up to buy smash-hit games…
+msgbox	Eine lange Schlange, was?Das erinnert mich an die Zeiten, als ich für Kult-Videospiele angestanden habe…
 closemessage
 applymovement LOCALID_SLATEPORT_GRUNT_7 Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -538,7 +538,7 @@ end
 = SlateportCity_EventScript_AquaGrunt6
 lock
 faceplayer
-msgbox	Hey, you there! Don't butt in!
+msgbox	Hey, du da! Misch dich nicht ein!
 closemessage
 applymovement LOCALID_SLATEPORT_GRUNT_6 Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -547,7 +547,7 @@ end
 = SlateportCity_EventScript_AquaGrunt5
 lock
 faceplayer
-msgbox	If there's something we need in the MUSEUM, we should take it all!
+msgbox	Wenn es etwas gibt, das wir im MUSEUM brauchen, sollten wir einfach alles mitnehmen!
 closemessage
 applymovement LOCALID_SLATEPORT_GRUNT_5 Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -556,7 +556,7 @@ end
 = SlateportCity_EventScript_AquaGrunt4
 lock
 faceplayer
-msgbox	What's the new scheme, I wonder?Our BOSS is scary when he's mad, so I'd better not screw things up…
+msgbox	Was der neue Plan wohl ist?Unser BOSS ist furchteinflößend, wenn er wütend wird, also sollte ich lieber nichts vermasseln…
 closemessage
 applymovement LOCALID_SLATEPORT_GRUNT_4 Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -565,76 +565,76 @@ end
 = SlateportCity_EventScript_EnergyGuru
 lock
 faceplayer
-msgbox	I'm the ENERGY GURU! I'll go for it and sell you what you need!
+msgbox	Ich bin der ENERGIE-GURU! Ich lege los und verkaufe dir, was du brauchst!
 waitmessage
 pokemart SlateportCity_Pokemart_EnergyGuru
-msgbox	Please come again!
+msgbox	Komm bald wieder!
 release
 end
 = SlateportCity_EventScript_PowerTMClerk
 lock
 faceplayer
-msgbox	Welcome!How may I serve you?
+msgbox	Willkommen!Wie kann ich dir helfen?
 waitmessage
 pokemart SlateportCity_Pokemart_PowerTMs
-msgbox	Please come again!
+msgbox	Komm bald wieder!
 release
 end
 = SlateportCity_EventScript_EffortRibbonWoman
 lock
 faceplayer
 bufferleadmonspeciesname STR_VAR_1
-msgbox	Oh? Your STR_VAR_1…
+msgbox	Oh? Dein STR_VAR_1…
 specialvar VAR_RESULT LeadMonHasEffortRibbon
 call_if_eq VAR_RESULT TRUE SlateportCity_EventScript_MonHasEffortRibbon
 specialvar VAR_RESULT Special_AreLeadMonEVsMaxedOut
 call_if_eq VAR_RESULT FALSE SlateportCity_EventScript_MonEVsNotMaxed
-msgbox	Went for it stupendously!As its reward, please give it this EFFORT RIBBON.
+msgbox	Es hat sich unglaublich reingehängt!Als Belohnung gib ihm bitte dieses EFFORT RIBBON.
 playfanfare MUS_OBTAIN_ITEM
-msgbox	PLAYER received the EFFORT RIBBON.
+msgbox	PLAYER erhielt das EFFORT RIBBON.
 waitfanfare
-msgbox	PLAYER put the EFFORT RIBBON on STR_VAR_1.
+msgbox	PLAYER legte STR_VAR_1 das EFFORT RIBBON an.
 special GiveLeadMonEffortRibbon
 release
 end
 = SlateportCity_EventScript_MonEVsNotMaxed
-msgbox	You have to go for it a little harder.If you do, I'll give your POKéMON something nice.
+msgbox	Du musst dich noch ein bisschen mehr reinhängen.Wenn du das schaffst, gebe ich deinem POKéMON etwas Schönes.
 release
 end
 = SlateportCity_EventScript_MonHasEffortRibbon
-msgbox	Oh! Your STR_VAR_1, that EFFORT RIBBON looks good on it!
+msgbox	Oh! Dein STR_VAR_1, das EFFORT RIBBON steht ihm richtig gut!
 release
 end
 = SlateportCity_EventScript_Man3
-msgbox	The light of the lighthouse reaches dozens of miles away.I wonder if it doesn't startle POKéMON in the sea.
+msgbox	Das Licht des Leuchtturms reicht Dutzende Kilometer weit.Ob das wohl die POKéMON im Meer erschreckt?
 end
 = SlateportCity_EventScript_DollClerk
 lock
 faceplayer
-msgbox	Welcome!How may I serve you?
+msgbox	Willkommen!Wie kann ich dir helfen?
 waitmessage
 pokemartdecoration SlateportCity_PokemartDecor_Dolls
-msgbox	Please come again!
+msgbox	Komm bald wieder!
 release
 end
 = SlateportCity_EventScript_DecorClerk
 lock
 faceplayer
 goto_if_unset FLAG_RECEIVED_SECRET_POWER SlateportCity_EventScript_ComeBackWithSecretPower
-msgbox	Welcome!How may I serve you?
+msgbox	Willkommen!Wie kann ich dir helfen?
 waitmessage
 pokemartdecoration SlateportCity_PokemartDecor
-msgbox	Please come again!
+msgbox	Komm bald wieder!
 release
 end
 = SlateportCity_EventScript_ComeBackWithSecretPower
-msgbox	Do you know the TM SECRET POWER?Our group, we love the TM SECRET POWER.One of our members will give it to you. Come back and show me if you get it.We'll accept you as a member and sell you good stuff in secrecy.
+msgbox	Kennst du das TM SECRET POWER?Unsere Gruppe liebt das TM SECRET POWER.Eines unserer Mitglieder wird es dir geben. Komm zurück und zeig es mir, wenn du es hast.Dann nehmen wir dich als Mitglied auf und verkaufen dir heimlich gute Sachen.
 release
 end
 = SlateportCity_EventScript_AquaGrunt3
 lock
 faceplayer
-msgbox	Our BOSS is brilliant.What would he want to do with a MUSEUM now?
+msgbox	Unser BOSS ist genial.Was will er wohl jetzt mit einem MUSEUM anfangen?
 closemessage
 applymovement LOCALID_SLATEPORT_GRUNT_3 Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -643,44 +643,44 @@ end
 = SlateportCity_EventScript_AquaGrunt2
 lock
 faceplayer
-msgbox	TEAM AQUA has a policy of assembling and dispersing at the operation site.
+msgbox	TEAM AQUA hat den Grundsatz, sich erst am Einsatzort zu versammeln und danach wieder zu zerstreuen.
 closemessage
 applymovement LOCALID_SLATEPORT_GRUNT_2 Common_Movement_FaceOriginalDirection
 waitmovement 0
 release
 end
 = SlateportCity_EventScript_Woman2
-msgbox	Any POKéMON you get in a trade, you can't change its nickname.The original TRAINER's love for that POKéMON is in the nickname.
+msgbox	Bei POKéMON, die du im Tausch bekommst, kannst du den Spitznamen nicht ändern.Die Liebe des ursprünglichen TRAINERS zu diesem POKéMON steckt in seinem Spitznamen.
 end
 = SlateportCity_EventScript_Maniac
 lock
 faceplayer
 call_if_eq VAR_SLATEPORT_CITY_STATE 1 SlateportCity_EventScript_ManiacSternInterview
-msgbox	If you want to change your POKéMON's nickname, you'll have to get the NAME RATER to help you.
+msgbox	Wenn du den Spitznamen deines POKéMON ändern willst, musst du dir vom NAMENSGEBER helfen lassen.
 release
 end
 @ Unclear if the text here was meant to be different but its not
 goto SlateportCity_EventScript_ManiacSternInterview
 = SlateportCity_EventScript_ManiacSternInterview
-msgbox	If you want to change your POKéMON's nickname, you'll have to get the NAME RATER to help you.
+msgbox	Wenn du den Spitznamen deines POKéMON ändern willst, musst du dir vom NAMENSGEBER helfen lassen.
 release
 end
 = SlateportCity_EventScript_Man2
-msgbox	Recently, a BATTLE TENT was built in SLATEPORT.GYMS are fun, but the BATTLE TENT's awesome in its own way.You should go find tough POKéMON for the BATTLE TENT!
+msgbox	Vor Kurzem wurde in SLATEPORT ein BATTLE TENT errichtet.ARENEN machen Spaß, aber das BATTLE TENT ist auf seine eigene Art genauso genial.Du solltest dir starke POKéMON für das BATTLE TENT suchen!
 end
 = SlateportCity_EventScript_PokefanF
-msgbox	Whenever I visit here, I get carried away and buy too much.
+msgbox	Immer wenn ich hierher komme, lasse ich mich hinreißen und kaufe zu viel.
 end
 = SlateportCity_EventScript_Sailor2
-msgbox	Do you know what they do with old ships that become too creaky to sail?They sink them in the sea so they become habitats for POKéMON.
+msgbox	Weißt du, was mit alten Schiffen passiert, die zu klapprig zum Segeln werden?Man versenkt sie im Meer, damit sie zu Lebensräumen für POKéMON werden.
 end
 = SlateportCity_EventScript_Sailor1
-msgbox	The sea is just so vast…Could the sea have been made by the tears shed by POKéMON?
+msgbox	Das Meer ist einfach so unendlich weit…Ob das Meer wohl aus den Tränen der POKéMON entstanden ist?
 end
 = SlateportCity_EventScript_CaptStern
 lockall
-msgbox	CAPT. STERN: Yes, indeed. We intend to move ahead with our exploration.
-msgbox	GABBY: That's wonderful, CAPT. STERN! Thank you for taking the time from your busy schedule to talk to us.We hope we can interview you again with news of more discoveries!
+msgbox	KAPITÄN STERN: Ja, in der Tat. Wir beabsichtigen, unsere Erkundung fortzusetzen.
+msgbox	GABBY: Das ist wunderbar, KAPITÄN STERN! Vielen Dank, dass du dir trotz deines vollen Terminplans Zeit für uns genommen hast.Wir hoffen, wir können dich bald wieder interviewen, wenn es neue Entdeckungen gibt!
 closemessage
 applymovement LOCALID_SLATEPORT_GABBY Common_Movement_WalkInPlaceFasterRight
 waitmovement 0
@@ -695,12 +695,12 @@ applymovement LOCALID_SLATEPORT_TY SlateportCity_Movement_TyExit
 waitmovement 0
 removeobject LOCALID_SLATEPORT_GABBY
 removeobject LOCALID_SLATEPORT_TY
-msgbox	CAPT. STERN: Whew…That was my first time to be filmed for TV. That was nerve-wracking.
+msgbox	KAPITÄN STERN: Puh…Das war das erste Mal, dass ich fürs Fernsehen gefilmt wurde. Das war ziemlich nervenaufreibend.
 applymovement LOCALID_SLATEPORT_CAPT_STERN Common_Movement_WalkInPlaceFasterUp
 waitmovement 0
-msgbox	Oh! PLAYER! You're looking great!We made a huge discovery on our last seafloor exploration.We found an underwater cavern on ROUTE 128.We think it's the habitat of a POKéMON that's said to have been long extinct.
+msgbox	Oh! PLAYER! Du siehst großartig aus!Wir haben bei unserer letzten Meeresbodenerkundung eine gewaltige Entdeckung gemacht.Wir haben eine Unterwasserhöhle auf ROUTE 128 gefunden.Wir glauben, dass sie der Lebensraum eines POKéMON ist, das angeblich schon lange als ausgestorben gilt.
 playbgm MUS_ENCOUNTER_AQUA FALSE
-msgbox	Fufufu… CAPT. STERN, I presume.We of TEAM AQUA will assume control of your submarine!Your objections are meaningless! We expect your total cooperation!Fufufu… Just watch and learn what TEAM AQUA has planned!
+msgbox	Fufufu… KAPITÄN STERN, nehme ich an.Wir von TEAM AQUA übernehmen nun die Kontrolle über dein U-Boot!Dein Widerspruch ist zwecklos! Wir erwarten deine volle Kooperation!Fufufu… Schau nur zu und lerne, was TEAM AQUA plant!
 applymovement LOCALID_SLATEPORT_COOK Common_Movement_WalkInPlaceFasterLeft
 applymovement LOCALID_SLATEPORT_FAT_MAN Common_Movement_WalkInPlaceFasterLeft
 applymovement LOCALID_SLATEPORT_OLD_WOMAN SlateportCity_Movement_OldWomanConcern
@@ -709,7 +709,7 @@ applymovement LOCALID_SLATEPORT_MAN_1 SlateportCity_Movement_ManConcern
 waitmovement 0
 applymovement LOCALID_SLATEPORT_CAPT_STERN Common_Movement_WalkInPlaceFasterDown
 waitmovement 0
-msgbox	CAPT. STERN: What was that all about?It sounded like someone using a megaphone…Where did it come from?
+msgbox	KAPITÄN STERN: Was sollte das denn?Das klang, als würde da jemand ein Megafon benutzen…Woher kam das nur?
 playse SE_PIN
 applymovement LOCALID_SLATEPORT_CAPT_STERN Common_Movement_ExclamationMark
 waitmovement 0
@@ -717,8 +717,8 @@ applymovement LOCALID_SLATEPORT_CAPT_STERN Common_Movement_Delay48
 waitmovement 0
 applymovement LOCALID_SLATEPORT_CAPT_STERN Common_Movement_WalkInPlaceFasterUp
 waitmovement 0
-msgbox	It's from the HARBOR!The submarine! They're trying to take it!
-msgbox	PLAYER! Please, come with me!
+msgbox	Das kommt vom HAFEN!Das U-Boot! Sie versuchen, es zu stehlen!
+msgbox	PLAYER! Bitte komm mit mir!
 closemessage
 applymovement LOCALID_SLATEPORT_CAPT_STERN SlateportCity_Movement_SternEnterHarbor
 applymovement LOCALID_PLAYER SlateportCity_Movement_PlayerEnterHarbor
@@ -734,53 +734,53 @@ waitstate
 releaseall
 end
 = SlateportCity_EventScript_Gabby
-msgbox	GABBY: I see, I see. You've had a most invaluable experience…
+msgbox	GABBY: Ach so, ach so. Das war also eine unbezahlbare Erfahrung für dich…
 end
 = SlateportCity_EventScript_Ty
-msgbox	TY: Okay, CAPT. STERN, a big smile for the camera!
+msgbox	TY: Okay, KAPITÄN STERN, ein großes Lächeln für die Kamera!
 end
 = SlateportCity_EventScript_Girl
 lock
 faceplayer
 call_if_eq VAR_SLATEPORT_CITY_STATE 1 SlateportCity_EventScript_GirlSternInterview
 goto_if_set FLAG_RECEIVED_SECRET_POWER SlateportCity_EventScript_GirlSecretBase
-msgbox	Shopping where you can breathe the scent of the ocean…SLATEPORT is such a wonderful place!
+msgbox	Einkaufen, während man den Duft des Meeres atmet…SLATEPORT ist einfach ein wunderbarer Ort!
 release
 end
 = SlateportCity_EventScript_GirlSecretBase
-msgbox	If you put DOLLS or CUSHIONS on the floor, they'll get dirty.I'm going to buy some BRICKS so my DOLLS and CUSHIONS won't get dirty when I leave them out.
+msgbox	Wenn man DOLLS oder CUSHIONS auf den Boden legt, werden sie schmutzig.Ich werde mir ein paar BRICKS kaufen, damit meine DOLLS und CUSHIONS nicht schmutzig werden, wenn ich sie draußen liegen lasse.
 release
 end
 = SlateportCity_EventScript_GirlSternInterview
-msgbox	That lady interviewer is so cool and pretty.When I grow up, I'm going to be an international journalist!
+msgbox	Diese Reporterin ist so cool und hübsch.Wenn ich groß bin, werde ich internationale Journalistin!
 release
 end
 = SlateportCity_EventScript_OldWoman
 lock
 faceplayer
 call_if_eq VAR_SLATEPORT_CITY_STATE 1 SlateportCity_EventScript_OldWomanSternInterview
-msgbox	Where the water is clean, the fruits of bountiful harvest gather.And where people gather, a market soon starts.That is how a town is born and grows.
+msgbox	Wo das Wasser klar ist, sammeln sich die Früchte einer reichen Ernte.Und wo Menschen zusammenkommen, entsteht bald ein Markt.So entsteht eine Stadt und wächst heran.
 release
 end
 = SlateportCity_EventScript_OldWomanSternInterview
-msgbox	I was hoping that it was a famous star so I could get an autograph.But who's that being interviewed? Isn't that CAPT. STERN?
+msgbox	Ich hatte gehofft, es wäre ein berühmter Star, damit ich ein Autogramm bekomme.Aber wer wird da eigentlich interviewt? Ist das nicht KAPITÄN STERN?
 release
 end
 = SlateportCity_EventScript_Cook
 lock
 faceplayer
 call_if_eq VAR_SLATEPORT_CITY_STATE 1 SlateportCity_EventScript_CookSternInterview
-msgbox	Ooh, look at this!The seaweed you can get around these parts is fresh and full of life.Why, it looks like it can even rear up and attack!
+msgbox	Ooh, sieh dir das an!Die Algen, die man hier in der Gegend bekommt, sind frisch und voller Leben.Sieht ja aus, als könnten die sich aufbäumen und angreifen!
 release
 end
 = SlateportCity_EventScript_CookSternInterview
-msgbox	What's going on here?Did the good CAPTAIN come back with a big fish from the ocean floor?
+msgbox	Was geht hier vor sich?Ist der gute KAPITÄN mit einem großen Fisch vom Meeresgrund zurückgekommen?
 release
 end
 = SlateportCity_EventScript_AquaGrunt1
 lock
 faceplayer
-msgbox	Hey, there! Quit pushing! This is the line, can't you see?
+msgbox	Hey, du da! Hör auf zu drängeln! Das ist eine Schlange, siehst du das nicht?
 closemessage
 applymovement LOCALID_SLATEPORT_GRUNT_1 Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -790,51 +790,51 @@ end
 lock
 faceplayer
 goto_if_set FLAG_DOCK_REJECTED_DEVON_GOODS SlateportCity_EventScript_Woman1AquaGone
-msgbox	What is that over there? That long line…
+msgbox	Was ist da drüben los? Diese lange Schlange…
 release
 end
 = SlateportCity_EventScript_Woman1AquaGone
-msgbox	When I was a child, I visited the MUSEUM often.I used to dream about the mysteries of the sea after seeing the exhibits.
+msgbox	Als ich noch klein war, habe ich das MUSEUM oft besucht.Nach dem Anblick der Ausstellungsstücke habe ich immer von den Geheimnissen des Meeres geträumt.
 release
 end
 = SlateportCity_EventScript_RichBoy
 lock
 faceplayer
 call_if_eq VAR_SLATEPORT_CITY_STATE 1 SlateportCity_EventScript_RichBoySternInterview
-msgbox	Wroooar! I'm going to compete in the BATTLE TENT, too!But before that, I need to catch some POKéMON!
+msgbox	Wroooar! Ich werde auch beim BATTLE TENT mitmachen!Aber vorher muss ich noch ein paar POKéMON fangen!
 release
 end
 = SlateportCity_EventScript_RichBoySternInterview
-msgbox	CAPT. STERN says they discovered something at the bottom of the sea.I wonder what it is? What could it be?
+msgbox	KAPITÄN STERN sagt, sie hätten etwas auf dem Meeresgrund entdeckt.Was das wohl ist? Was könnte es nur sein?
 release
 end
 = SlateportCity_EventScript_Man1
 lock
 faceplayer
 call_if_eq VAR_SLATEPORT_CITY_STATE 1 SlateportCity_EventScript_Man1SternInterview
-msgbox	STERN, the fellow who built the MUSEUM, also happens to be the leader of an undersea exploration team.So, everyone calls him CAPT. STERN.
+msgbox	STERN, der Mann, der das MUSEUM erbaut hat, ist zufällig auch der Leiter eines Unterwasser-Forschungsteams.Deshalb nennt ihn jeder KAPITÄN STERN.
 release
 end
 = SlateportCity_EventScript_Man1SternInterview
-msgbox	A TV interview! Here! The CAPTAIN's a celebrity!
+msgbox	Ein Fernsehinterview! Hier! Der KAPITÄN ist ein Star!
 release
 end
 = SlateportCity_EventScript_FatMan
 goto_if_eq VAR_SLATEPORT_CITY_STATE 1 SlateportCity_EventScript_FatManSternInterview
-msgbox	Whew… I'm just bushed…I hiked over from MAUVILLE CITY. But, boy, this city's huge.If I'd known this, I would've ridden my BIKE here.
+msgbox	Puh… bin ich geschafft…Ich bin zu Fuß von MAUVILLE CITY hergewandert. Aber diese Stadt ist wirklich riesig.Hätte ich das gewusst, wäre ich lieber mit dem FAHRRAD gefahren.
 end
 = SlateportCity_EventScript_FatManSternInterview
-msgbox	Hey! Are you watching? Am I on TV?
+msgbox	Hey! Schaust du zu? Bin ich im Fernsehen?
 end
 signs
-8 19	NAME RATER'S HOUSE “POKéMON nicknames rated.”
-24 12	SLATEPORT HARBOR“The ferry S.S. TIDAL is under construction in the SHIPYARD.“Service is scheduled to begin shortly.”
-14 51	SLATEPORT MARKET “Unique items found nowhere else!”
-26 26	“The endless sea sustains all life.”OCEANIC MUSEUM
-16 22	SLATEPORT CITY“The port where people and POKéMON cross paths.”
-8 26	POKéMON FAN CLUB “Calling all fans of POKéMON!”
-7 13	BATTLE TENT SLATEPORT SITE “Find it! The ultimate POKéMON!”
-23 38	STERN'S SHIPYARD“Wanted: A sailor capable of sailing in all currents.”
+8 19	HAUS DES NAMENSGEBERS „POKéMON-Spitznamen bewertet.“
+24 12	SLATEPORT-HAFEN„Die Fähre S.S. TIDAL wird derzeit in der WERFT gebaut.„Der Betrieb soll in Kürze aufgenommen werden.“
+14 51	SLATEPORT-MARKT „Einzigartige Artikel, die es sonst nirgendwo gibt!“
+26 26	„Das endlose Meer erhält alles Leben.“OCEANIC MUSEUM
+16 22	SLATEPORT CITY„Der Hafen, an dem sich die Wege von Menschen und POKéMON kreuzen.“
+8 26	POKéMON FAN CLUB „Alle POKéMON-Fans, herhören!“
+7 13	BATTLE TENT SLATEPORT SITE „Finde es! Das ultimative POKéMON!“
+23 38	STERNS WERFT„Gesucht: Ein Seemann, der in jeder Strömung segeln kann.“
 water
 285,291,293,299,300,301,325,326,368,376,377,392,393,394,400,402,408,410
 visit
