@@ -25,6 +25,7 @@
 #include "GenderSelect.h"
 #include "EarlyAccessNotice.h"
 #include "NameEntry.h"
+#include "InputRouter.h"
 
 #include <algorithm>
 #include <cctype>
@@ -1128,57 +1129,21 @@ int main() {
         while (scr.get_event(&event)) {
             if (event.type == sf::Event::Closed) scr.close();
             else if (event.type == sf::Event::KeyPressed) {
+                BtnInput btn;
+                bool has_btn = key_to_btn(event.key.code, btn);
                 if (starter.active()) {
-                    switch (event.key.code) {
-                    case sf::Keyboard::A: starter.input(BTN_LEFT); break;
-                    case sf::Keyboard::D: starter.input(BTN_RIGHT); break;
-                    case sf::Keyboard::Space:
-                    case sf::Keyboard::Return: starter.input(BTN_CONFIRM); break;
-                    default: break;
-                    }
+                    if (has_btn) starter.input(btn);
                 } else if (yesno.active()) {
-                    switch (event.key.code) {
-                    case sf::Keyboard::W: yesno.input(BTN_UP); break;
-                    case sf::Keyboard::S: yesno.input(BTN_DOWN); break;
-                    case sf::Keyboard::Space:
-                    case sf::Keyboard::Return: yesno.input(BTN_CONFIRM); break;
-                    default: break;
-                    }
+                    if (has_btn) yesno.input(btn);
                 } else if (picker.active()) {
-                    switch (event.key.code) {
-                    case sf::Keyboard::W: picker.input(BTN_UP); break;
-                    case sf::Keyboard::S: picker.input(BTN_DOWN); break;
-                    case sf::Keyboard::Space:
-                    case sf::Keyboard::Return: picker.input(BTN_CONFIRM); break;
-                    default: break;
-                    }
+                    if (has_btn) picker.input(btn);
                 } else if (multichoice.active()) {
-                    switch (event.key.code) {
-                    case sf::Keyboard::W: multichoice.input(BTN_UP); break;
-                    case sf::Keyboard::S: multichoice.input(BTN_DOWN); break;
-                    case sf::Keyboard::Space:
-                    case sf::Keyboard::Return: multichoice.input(BTN_CONFIRM); break;
-                    default: break;
-                    }
+                    if (has_btn) multichoice.input(btn);
                 } else if (shop.active()) {
-                    switch (event.key.code) {
-                    case sf::Keyboard::W: shop.input(BTN_UP); break;
-                    case sf::Keyboard::S: shop.input(BTN_DOWN); break;
-                    case sf::Keyboard::A: shop.input(BTN_LEFT); break;
-                    case sf::Keyboard::Space:
-                    case sf::Keyboard::Return: shop.input(BTN_CONFIRM); break;
-                    default: break;
-                    }
+                    if (has_btn) shop.input(btn);
                 } else if (debugmenu.active()) {
-                    int action = -1;
-                    switch (event.key.code) {
-                    case sf::Keyboard::W: debugmenu.input(BTN_UP); break;
-                    case sf::Keyboard::S: debugmenu.input(BTN_DOWN); break;
-                    case sf::Keyboard::Space:
-                    case sf::Keyboard::Return: action = debugmenu.input(BTN_CONFIRM); break;
-                    case sf::Keyboard::H: debugmenu.close(); break;
-                    default: break;
-                    }
+                    int action = has_btn ? debugmenu.input(btn) : -1;
+                    if (event.key.code == sf::Keyboard::H) debugmenu.close();
                     if (action >= 0) {
                         switch (action) {
                         case DebugMenu::HEAL_TEAM:
@@ -1238,40 +1203,15 @@ int main() {
                            !battle.active() && !shop.active() && !games.active()) {
                     debugmenu.open();
                 } else if (battle.active()) {
-                    switch (event.key.code) {
-                    case sf::Keyboard::W: battle.input(BTN_UP); break;
-                    case sf::Keyboard::S: battle.input(BTN_DOWN); break;
-                    case sf::Keyboard::A: battle.input(BTN_LEFT); break;
-                    case sf::Keyboard::D: battle.input(BTN_RIGHT); break;
-                    case sf::Keyboard::Space:
-                    case sf::Keyboard::Return: battle.input(BTN_CONFIRM); break;
-                    case sf::Keyboard::BackSpace: battle.input(BTN_CANCEL); break;
-                    default: break;
-                    }
+                    if (has_btn) battle.input(btn);
                 } else if (games.active()) {
-                    switch (event.key.code) {
-                    case sf::Keyboard::W: games.input(BTN_UP); break;
-                    case sf::Keyboard::S: games.input(BTN_DOWN); break;
-                    case sf::Keyboard::A: games.input(BTN_LEFT); break;
-                    case sf::Keyboard::D: games.input(BTN_RIGHT); break;
-                    case sf::Keyboard::Space:
-                    case sf::Keyboard::Return: games.input(BTN_CONFIRM); break;
-                    default: break;
-                    }
+                    if (has_btn) games.input(btn);
                 } else if (event.key.code == sf::Keyboard::G &&
                            !box.is_active() && !vm.running() && !menu.active()) {
                     games.open();
                 } else if (menu.active()) {
-                    switch (event.key.code) {
-                    case sf::Keyboard::W: menu.input(BTN_UP); break;
-                    case sf::Keyboard::S: menu.input(BTN_DOWN); break;
-                    case sf::Keyboard::A: menu.input(BTN_LEFT); break;
-                    case sf::Keyboard::D: menu.input(BTN_RIGHT); break;
-                    case sf::Keyboard::Space:
-                    case sf::Keyboard::Return: menu.input(BTN_CONFIRM); break;
-                    case sf::Keyboard::M: menu.close(); break;
-                    default: break;
-                    }
+                    if (has_btn) menu.input(btn);
+                    if (event.key.code == sf::Keyboard::M) menu.close();
                     // The OPTIONS screen's "Ton" row toggles gs.sound_on
                     // directly; sync Audio's live mute state right after
                     // any menu input that could have flipped it.

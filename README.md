@@ -618,7 +618,7 @@ Aus einer Codestruktur-Review von `codemon/main.cpp` (2506 Zeilen) – reines Re
 
 * ✅ UI-Screen-Structs aus `main.cpp` auslagern: `StarterSelect`, `YesNoPrompt`, `PartyPicker`, `MultiChoicePrompt`, `DebugMenu`, `Shop`, `TitleScreen`, `GenderSelect`, `EarlyAccessNotice`, `NameEntry` (+ `HealFx`, `ItemDisplay`) haben jetzt je eine eigene Header-Datei; `main.cpp` von 2506 auf 1526 Zeilen geschrumpft, gegen den bestehenden Test-/Screenshot-Build verifiziert.
 
-* ❌ Zentralen `InputRouter` einführen: WASD/Space/Enter → `BtnInput` wird aktuell für jeden der ~10 UI-Zustände separat per if/else gemappt (fast identischer 6-Zeilen-Switch 8×). Einmal zentral lösen statt dupliziert.
+* ✅ Zentralen `InputRouter` eingeführt (`codemon/InputRouter.h`, `key_to_btn()`): WASD/Space/Enter/Backspace → `BtnInput` wurde vorher für jeden der ~10 UI-Zustände separat per if/else gemappt (fast identischer 6-Zeilen-Switch 8×), jetzt eine einzige Funktion; `main.cpp` dadurch auf 1466 Zeilen geschrumpft. Verifiziert per Rebuild + Testsuite + pixelgleichem Headless-Screenshot-Vergleich.
 
 * ❌ Input-Dispatch zusammenführen: der Zustands-Dispatch ("welcher Screen ist aktiv") existiert doppelt – einmal für den interaktiven Loop, einmal separat (leicht abweichend) für den Headless-/Screenshot-Testmodus. Auf eine gemeinsame Implementierung reduzieren.
 
