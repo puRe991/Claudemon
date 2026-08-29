@@ -28,7 +28,16 @@ private:
 	int fly_cursor;         // selected destination in the FLY screen
 	int dex_cursor = 0;     // selected species (absolute index) in the POKEDEX screen
 	int party_cursor = 0;   // selected party member in the PARTY/SUMMARY screens
+	bool party_moving = false; // reorder mode: party_cursor is the mon currently being dragged
 	int options_cursor = 0; // selected row (Ton/Kampfszene/Rahmenart) in the OPTIONS screen
+
+	// PC-BOX screen: two tabs sharing one screen (0 = BOX, storage list with
+	// withdraw; 1 = TEAMS, saved full-team presets). Each tab keeps its own
+	// cursor so switching tabs doesn't lose your place in the other one.
+	int pc_tab = 0;
+	int box_cursor = 0;     // selected box slot in the BOX tab
+	int teams_cursor = 0;   // selected row in the TEAMS tab (saved_teams.size() == the "save current team" row)
+	std::vector<SavedTeam>* saved_teams;
 	// Visited-town destinations available right now (filtered from the fixed
 	// FLY_DESTINATIONS table by GameState::flag() each time FLY opens).
 	std::vector<int> fly_available;
@@ -48,6 +57,16 @@ private:
 	void teach_selected();
 	// Apply the pending healing/revive item to the selected party member.
 	void use_selected();
+	// Move team[party_cursor] into the PC box (refuses to empty the party).
+	void deposit_selected();
+	// Move box[box_cursor] into the team (refuses once the team has 6).
+	void withdraw_selected();
+	// Swap two party slots (Pokemons im Team verschieben).
+	void swap_party(int a, int b);
+	// Snapshot the current team as a new named SavedTeam.
+	void save_current_team();
+	// Exchange the active team with saved_teams[idx]'s mons in place.
+	void swap_saved_team(int idx);
 	std::map<std::string, sf::Texture> item_tex;
 	std::map<std::string, sf::Texture> mon_tex;
 	std::map<std::string, sf::Texture> type_tex;
@@ -84,7 +103,7 @@ private:
 public:
 	Menu();
 	void configure(GameState* g, std::vector<Mon>* team, std::vector<Mon>* box,
-	               BattleData* bd = nullptr);
+	               BattleData* bd = nullptr, std::vector<SavedTeam>* saved_teams = nullptr);
 	void set_location(const std::string& loc) { this->location = loc; }
 	void set_mapsec(bool has, int x, int y, int w, int h) {
 		this->has_mapsec = has;

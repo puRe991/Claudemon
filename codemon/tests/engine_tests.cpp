@@ -148,10 +148,20 @@ static void test_save_roundtrip(BattleData& bd) {
     team[0].held_item = "ORAN_BERRY";
     box.push_back(bd.make_mon("ZIGZAGOON", 4, &rng));
 
-    CHECK(SaveGame::save(path, gs, team, box, "maps/LittlerootTown.map", 5, 7));
+    std::vector<SavedTeam> teams;
+    SavedTeam preset;
+    preset.name = "TEAM 1";
+    preset.mons.push_back(bd.make_mon("MUDKIP", 8, &rng));
+    teams.push_back(preset);
+
+    CHECK(SaveGame::save(path, gs, team, box, "maps/LittlerootTown.map", 5, 7, teams));
 
     GameState gs2; std::vector<Mon> t2, b2; std::string map2; int x2 = 0, y2 = 0;
-    CHECK(SaveGame::load(path, gs2, t2, b2, map2, x2, y2));
+    std::vector<SavedTeam> teams2;
+    CHECK(SaveGame::load(path, gs2, t2, b2, map2, x2, y2, teams2));
+    CHECK(teams2.size() == 1);
+    CHECK(teams2[0].name == "TEAM 1");
+    CHECK(teams2[0].mons.size() == 1 && teams2[0].mons[0].species == "MUDKIP");
     CHECK(gs2.money == 4321);
     CHECK(gs2.female == true);
     CHECK(gs2.player_name == "MAY" && gs2.rival_name == "BRENDAN");
@@ -182,7 +192,8 @@ static void test_save_empty_party() {
                          "maps/LittlerootTown_BrendansHouse_2F.map", 4, 2));
 
     GameState gs2; std::vector<Mon> t2, b2; std::string map2; int x2 = 0, y2 = 0;
-    CHECK(SaveGame::load(path, gs2, t2, b2, map2, x2, y2));
+    std::vector<SavedTeam> st2;
+    CHECK(SaveGame::load(path, gs2, t2, b2, map2, x2, y2, st2));
     CHECK(t2.empty());
     CHECK(gs2.flag("FLAG_STORY_PROGRESS"));
     CHECK(map2 == "maps/LittlerootTown_BrendansHouse_2F.map");
@@ -194,10 +205,11 @@ static void test_save_rejects_garbage() {
     const char* path = "test_save_bad.dat";
     { std::FILE* f = std::fopen(path, "w"); std::fputs("not a save file\n", f); std::fclose(f); }
     GameState gs; std::vector<Mon> t, b; std::string m; int x = 0, y = 0;
-    CHECK(!SaveGame::load(path, gs, t, b, m, x, y));
+    std::vector<SavedTeam> st;
+    CHECK(!SaveGame::load(path, gs, t, b, m, x, y, st));
     // A well-formed header with no map line is incomplete and must not load.
     { std::FILE* f = std::fopen(path, "w"); std::fputs("SAVE 1\nmoney\t10\n", f); std::fclose(f); }
-    CHECK(!SaveGame::load(path, gs, t, b, m, x, y));
+    CHECK(!SaveGame::load(path, gs, t, b, m, x, y, st));
     std::remove(path);
 }
 

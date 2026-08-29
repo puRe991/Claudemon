@@ -76,7 +76,8 @@ bool SaveGame::exists(const std::string& path) {
 
 bool SaveGame::save(const std::string& path, const GameState& gs,
                     const std::vector<Mon>& team, const std::vector<Mon>& box,
-                    const std::string& map_path, int player_x, int player_y) {
+                    const std::string& map_path, int player_x, int player_y,
+                    const std::vector<SavedTeam>& saved_teams) {
 	std::ofstream f(path, std::ios::trunc);
 	if (!f.is_open()) return false;
 
@@ -108,12 +109,21 @@ bool SaveGame::save(const std::string& path, const GameState& gs,
 	f << "box\t" << box.size() << '\n';
 	for (const Mon& m : box) write_mon(f, m);
 
+	// Saved team presets (QoL "mehrere gespeicherte Teams"): one "steam"
+	// header per preset naming it and its mon count, then that many mon rows.
+	f << "teams\t" << saved_teams.size() << '\n';
+	for (const SavedTeam& st : saved_teams) {
+		f << "steam\t" << st.name << '\t' << st.mons.size() << '\n';
+		for (const Mon& m : st.mons) write_mon(f, m);
+	}
+
 	return (bool)f;
 }
 
 bool SaveGame::load(const std::string& path, GameState& gs,
                     std::vector<Mon>& team, std::vector<Mon>& box,
-                    std::string& map_path, int& player_x, int& player_y) {
+                    std::string& map_path, int& player_x, int& player_y,
+                    std::vector<SavedTeam>& saved_teams) {
 	std::ifstream f(path);
 	if (!f.is_open()) return false;
 
@@ -122,6 +132,7 @@ bool SaveGame::load(const std::string& path, GameState& gs,
 
 	GameState new_gs;
 	std::vector<Mon> new_team, new_box;
+	std::vector<SavedTeam> new_teams;
 	std::string new_map; int new_x = 0, new_y = 0;
 
 	auto split_tab = [](const std::string& s) {
@@ -187,6 +198,21 @@ bool SaveGame::load(const std::string& path, GameState& gs,
 				Mon m;
 				if (read_mon(line, m)) new_box.push_back(m);
 			}
+		} else if (key == "teams" && parts.size() >= 2) {
+			int n = std::atoi(parts[1].c_str());
+			for (int i = 0; i < n; ++i) {
+				if (!std::getline(f, line)) break;
+				auto sp = split_tab(line);
+				if (sp.size() < 3 || sp[0] != "steam") break;
+				SavedTeam st;
+				st.name = sp[1];
+				int mn = std::atoi(sp[2].c_str());
+				for (int j = 0; j < mn && std::getline(f, line); ++j) {
+					Mon m;
+					if (read_mon(line, m)) st.mons.push_back(m);
+				}
+				new_teams.push_back(st);
+			}
 		}
 	}
 
@@ -199,6 +225,7 @@ bool SaveGame::load(const std::string& path, GameState& gs,
 	gs = new_gs;
 	team = new_team;
 	box = new_box;
+	saved_teams = new_teams;
 	map_path = new_map;
 	player_x = new_x;
 	player_y = new_y;

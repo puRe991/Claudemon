@@ -14,12 +14,14 @@ namespace SaveGame {
 
 	bool save(const std::string& path, const GameState& gs,
 	          const std::vector<Mon>& team, const std::vector<Mon>& box,
-	          const std::string& map_path, int player_x, int player_y);
+	          const std::string& map_path, int player_x, int player_y,
+	          const std::vector<SavedTeam>& saved_teams = {});
 
-	// On success, overwrites gs/team/box/map_path/player_x/player_y with the
-	// saved state and returns true. Leaves everything untouched (and returns
-	// false) if the file is missing or malformed.
+	// On success, overwrites gs/team/box/map_path/player_x/player_y/saved_teams
+	// with the saved state and returns true. Leaves everything untouched (and
+	// returns false) if the file is missing or malformed.
 	bool load(const std::string& path, GameState& gs,
 	          std::vector<Mon>& team, std::vector<Mon>& box,
-	          std::string& map_path, int& player_x, int& player_y);
+	          std::string& map_path, int& player_x, int& player_y,
+	          std::vector<SavedTeam>& saved_teams);
 }

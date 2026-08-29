@@ -623,10 +623,11 @@ Alles, was unten abgehakt ist, wurde durch einen Test oder Headless-Screenshot �
 
 ### Team
 
-* ❌ Mehrere gespeicherte Teams
-* ❌ Einfache Teamverwaltung
-* ❌ Teamübersicht
-* ❌ Moveset-Anzeige
+* ✅ Mehrere gespeicherte Teams -- PC-BOX hat jetzt einen TEAMS-Reiter: das aktuelle Team lässt sich als benanntes Preset ablegen und jederzeit wieder aktivieren (tauscht mit dem gerade aktiven Team).
+* ✅ Einfache Teamverwaltung -- PC-BOX-Reiter BOX erlaubt das Herausholen einzelner POKéMON ins Team; im POKéMON-Menü legt → ein Teammitglied ins PC-Lager.
+* ✅ Teamübersicht -- POKéMON-Menü zeigt jetzt zusätzlich die Typen jedes Teammitglieds.
+* ✅ Moveset-Anzeige -- Die Übersichtsseite zeigt zu jeder Attacke die aktuellen/maximalen AP.
+* ✅ Pokemons im Team verschieben -- B im POKéMON-Menü hebt das ausgewählte POKéMON auf; Hoch/Runter tauscht es mit dem Nachbarn, erneutes Bestätigen/B legt es ab.
 
 ### Settings
 

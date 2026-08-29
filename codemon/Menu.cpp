@@ -9,7 +9,7 @@
 Menu::Menu() : font_ok(false), screen(CLOSED), cursor(0),
                bag_cursor(0), teach_cursor(0), use_cursor(0), fly_cursor(0),
                gs(nullptr), bdata(nullptr), team(nullptr), box(nullptr),
-               cursor_ok(false) {}
+               saved_teams(nullptr), cursor_ok(false) {}
 
 // Fixed Fly destinations (pokeemerald's canFly town/city list, region_map.c's
 // GetMapSecType switch): flag -> (map file stem, arrival tile), the same
@@ -37,8 +37,8 @@ static const FlyDest FLY_DESTINATIONS[] = {
 static const int FLY_DESTINATIONS_N = sizeof(FLY_DESTINATIONS) / sizeof(FLY_DESTINATIONS[0]);
 
 void Menu::configure(GameState* g, std::vector<Mon>* t, std::vector<Mon>* b,
-                     BattleData* bd) {
-	this->gs = g; this->team = t; this->box = b; this->bdata = bd;
+                     BattleData* bd, std::vector<SavedTeam>* st) {
+	this->gs = g; this->team = t; this->box = b; this->bdata = bd; this->saved_teams = st;
 }
 
 std::vector<std::pair<std::string, int>> Menu::bag_sorted() const {
@@ -260,6 +260,64 @@ void Menu::use_selected() {
 		this->bag_cursor = std::max(0, (int)items.size() - 1);
 }
 
+// Move team[party_cursor] into the PC box. Refuses to leave the party empty,
+// same rule the real games enforce (there's always a lead mon).
+void Menu::deposit_selected() {
+	if (!this->team || !this->box) return;
+	if (this->team->size() <= 1) { this->flash = "Du kannst dein letztes POKéMON nicht ablegen."; return; }
+	if (this->party_cursor < 0 || this->party_cursor >= (int)this->team->size()) return;
+	Mon m = (*this->team)[this->party_cursor];
+	this->team->erase(this->team->begin() + this->party_cursor);
+	this->box->push_back(m);
+	if (this->party_cursor >= (int)this->team->size())
+		this->party_cursor = std::max(0, (int)this->team->size() - 1);
+	this->flash = pretty(m.species, "") + " wurde ins PC-Lager verschoben.";
+}
+
+// Move box[box_cursor] into the team. Refuses once the team already has 6.
+void Menu::withdraw_selected() {
+	if (!this->team || !this->box) return;
+	if (this->box_cursor < 0 || this->box_cursor >= (int)this->box->size()) return;
+	if (this->team->size() >= 6) { this->flash = "Dein Team ist bereits voll."; return; }
+	Mon m = (*this->box)[this->box_cursor];
+	this->box->erase(this->box->begin() + this->box_cursor);
+	this->team->push_back(m);
+	if (this->box_cursor >= (int)this->box->size())
+		this->box_cursor = std::max(0, (int)this->box->size() - 1);
+	this->flash = pretty(m.species, "") + " kam zum Team dazu.";
+}
+
+// Swap two party slots (Pokemons im Team verschieben).
+void Menu::swap_party(int a, int b) {
+	if (!this->team) return;
+	if (a < 0 || b < 0 || a >= (int)this->team->size() || b >= (int)this->team->size()) return;
+	std::swap((*this->team)[a], (*this->team)[b]);
+}
+
+// Snapshot the current team as a new named preset (mehrere gespeicherte Teams).
+void Menu::save_current_team() {
+	if (!this->team || !this->saved_teams || this->team->empty()) return;
+	SavedTeam st;
+	st.name = "TEAM " + std::to_string(this->saved_teams->size() + 1);
+	st.mons = *this->team;
+	this->saved_teams->push_back(st);
+	this->flash = st.name + " wurde gespeichert.";
+}
+
+// Swap the active team with saved_teams[idx]'s mons: the slot keeps its name
+// but now holds whatever was active before, so both teams stay reachable.
+void Menu::swap_saved_team(int idx) {
+	if (!this->team || !this->saved_teams) return;
+	if (idx < 0 || idx >= (int)this->saved_teams->size()) return;
+	SavedTeam& st = (*this->saved_teams)[idx];
+	if (st.mons.empty()) { this->flash = st.name + " ist leer."; return; }
+	std::vector<Mon> outgoing = *this->team;
+	*this->team = st.mons;
+	st.mons = outgoing;
+	this->party_cursor = 0;
+	this->flash = st.name + " ist jetzt dein aktives Team.";
+}
+
 void Menu::input(BtnInput b) {
 	if (this->screen == MAIN) {
 		if (b == BTN_UP && this->cursor > 0) this->cursor--;
@@ -267,8 +325,11 @@ void Menu::input(BtnInput b) {
 		else if (b == BTN_CONFIRM) {
 			if (this->cursor == 0) { this->screen = POKEDEX; this->flash.clear(); }
 			else if (this->cursor == 1) { this->screen = BAG; this->bag_cursor = 0; this->flash.clear(); }
-			else if (this->cursor == 2) this->screen = PARTY;
-			else if (this->cursor == 3) this->screen = PC;
+			else if (this->cursor == 2) { this->screen = PARTY; this->party_moving = false; this->flash.clear(); }
+			else if (this->cursor == 3) {
+				this->screen = PC; this->pc_tab = 0; this->box_cursor = 0;
+				this->teams_cursor = 0; this->flash.clear();
+			}
 			else if (this->cursor == 4) {
 				this->screen = POKENAV;
 				// Open centered on the player's own location, same as the
@@ -374,12 +435,54 @@ void Menu::input(BtnInput b) {
 		else if (b == BTN_CONFIRM) this->use_selected();
 	} else if (this->screen == PARTY) {
 		int n = this->team ? (int)this->team->size() : 0;
-		if (b == BTN_UP && this->party_cursor > 0) this->party_cursor--;
-		else if (b == BTN_DOWN && this->party_cursor + 1 < n) this->party_cursor++;
-		else if (b == BTN_LEFT) this->screen = MAIN;
-		else if (b == BTN_CONFIRM && this->party_cursor < n) this->screen = SUMMARY;
+		if (this->party_moving) {
+			// Reorder mode (Pokemons im Team verschieben): UP/DOWN drags the
+			// picked-up mon along, swapping it with whichever slot it passes.
+			// CANCEL/CONFIRM both drop it back in place.
+			if (b == BTN_UP && this->party_cursor > 0) {
+				swap_party(this->party_cursor, this->party_cursor - 1);
+				this->party_cursor--;
+			} else if (b == BTN_DOWN && this->party_cursor + 1 < n) {
+				swap_party(this->party_cursor, this->party_cursor + 1);
+				this->party_cursor++;
+			} else if (b == BTN_CANCEL || b == BTN_CONFIRM) {
+				this->party_moving = false;
+				this->flash.clear();
+			}
+		} else {
+			if (b == BTN_UP && this->party_cursor > 0) this->party_cursor--;
+			else if (b == BTN_DOWN && this->party_cursor + 1 < n) this->party_cursor++;
+			else if (b == BTN_LEFT) this->screen = MAIN;
+			else if (b == BTN_CONFIRM && this->party_cursor < n) this->screen = SUMMARY;
+			else if (b == BTN_CANCEL && n > 1) {
+				this->party_moving = true;
+				this->flash = pretty((*this->team)[this->party_cursor].species, "") + " wird verschoben...";
+			} else if (b == BTN_RIGHT && this->party_cursor < n) {
+				deposit_selected();
+			}
+		}
 	} else if (this->screen == SUMMARY) {
 		if (b == BTN_LEFT || b == BTN_CONFIRM) this->screen = PARTY;
+	} else if (this->screen == PC) {
+		if (b == BTN_CANCEL) { this->screen = MAIN; this->flash.clear(); }
+		else if (b == BTN_LEFT || b == BTN_RIGHT) {
+			this->pc_tab = this->pc_tab == 0 ? 1 : 0;
+			this->flash.clear();
+		} else if (this->pc_tab == 0) {   // BOX tab
+			int n = this->box ? (int)this->box->size() : 0;
+			if (b == BTN_UP && this->box_cursor > 0) this->box_cursor--;
+			else if (b == BTN_DOWN && this->box_cursor + 1 < n) this->box_cursor++;
+			else if (b == BTN_CONFIRM && this->box_cursor < n) withdraw_selected();
+		} else {   // TEAMS tab -- one extra row past the list to save the active team
+			int n = this->saved_teams ? (int)this->saved_teams->size() : 0;
+			int rows = n + 1;
+			if (b == BTN_UP && this->teams_cursor > 0) this->teams_cursor--;
+			else if (b == BTN_DOWN && this->teams_cursor + 1 < rows) this->teams_cursor++;
+			else if (b == BTN_CONFIRM) {
+				if (this->teams_cursor == n) save_current_team();
+				else swap_saved_team(this->teams_cursor);
+			}
+		}
 	} else if (this->screen == OPTIONS) {
 		if (b == BTN_UP && this->options_cursor > 0) this->options_cursor--;
 		else if (b == BTN_DOWN && this->options_cursor < 2) this->options_cursor++;
@@ -605,18 +708,37 @@ void Menu::draw(sf::RenderTarget& target) {
 			int row = 0;
 			for (const Mon& m : *this->team) {
 				float ry = y + row * 72;
-				if (row == this->party_cursor) cursor_at(x - 12, ry + 6);
+				bool sel = row == this->party_cursor;
+				// While reordering, the picked-up mon's row pulses with the
+				// held-item accent color instead of the plain cursor arrow,
+				// so it reads as "in your hand" rather than just selected.
+				if (sel && this->party_moving)
+					text("↕", x - 20, ry + 6, 20, sf::Color(200, 130, 20));
+				else if (sel) cursor_at(x - 12, ry + 6);
 				const sf::Texture* ic = mon_icon(m.species);
 				if (ic) { sf::Sprite s(*ic); s.setScale(0.9f, 0.9f); s.setPosition(x, ry); target.draw(s); }
 				text(pretty(m.species, "") + "  Lv" + std::to_string(m.level), x + 66, ry + 6, 20, body_col);
+				const sf::Texture* t1 = type_icon(m.t1);
+				float tix = x + 290;
+				if (t1) { sf::Sprite s(*t1); s.setScale(0.7f, 0.7f); s.setPosition(tix, ry + 2); target.draw(s); tix += 44; }
+				if (m.t2 != m.t1) {
+					const sf::Texture* t2 = type_icon(m.t2);
+					if (t2) { sf::Sprite s(*t2); s.setScale(0.7f, 0.7f); s.setPosition(tix, ry + 2); target.draw(s); }
+				}
 				if (m.status != Status::NONE)
-					text(BattleData::status_name(m.status), x + 290, ry + 8, 15, sf::Color(190, 60, 60));
+					text(BattleData::status_name(m.status), x + 290, ry + 26, 13, sf::Color(190, 60, 60));
 				hp_bar(x + 66, ry + 34, m.hp, m.max_hp);
 				text(std::to_string(m.hp) + "/" + std::to_string(m.max_hp), x + 226, ry + 32, 16, body_col);
 				exp_bar(x + 66, ry + 52, m);
 				if (++row >= 6) break;
 			}
 		}
+		float hy = panel.getPosition().y + panel.getSize().y - 60;
+		if (!this->flash.empty()) text(this->flash, x, hy, 16, sf::Color(190, 90, 20));
+		else if (this->team && this->team->size() > 1)
+			text(this->party_moving ? "Hoch/Runter: verschieben   Bestätigen: ablegen"
+			                        : "Bestätigen: Übersicht   B: verschieben   →: ins PC",
+			     x, hy, 14, muted_col);
 	} else if (this->screen == SUMMARY) {
 		const Mon* m = (this->team && this->party_cursor < (int)this->team->size())
 			? &(*this->team)[this->party_cursor] : nullptr;
@@ -674,8 +796,15 @@ void Menu::draw(sf::RenderTarget& target) {
 			}
 			y += 10;
 			text("Attacken:", x, y, 16, muted_col); y += 24;
-			for (size_t i = 0; i < m->moves.size(); ++i)
-				text(pretty(m->moves[i], ""), x + (i % 2) * 170, y + (i / 2) * 26, 16, body_col);
+			for (size_t i = 0; i < m->moves.size(); ++i) {
+				const MoveInfo* mi = this->bdata ? this->bdata->move(m->moves[i]) : nullptr;
+				int cur_pp = i < m->pp.size() ? m->pp[i] : (mi ? mi->pp : 0);
+				int max_pp = mi ? mi->pp : cur_pp;
+				text(pretty(m->moves[i], ""), x, y, 16, body_col);
+				text("PP " + std::to_string(cur_pp) + "/" + std::to_string(max_pp),
+				     x + 200, y, 15, cur_pp <= 0 ? sf::Color(190, 90, 90) : muted_col);
+				y += 24;
+			}
 		}
 	} else if (this->screen == OPTIONS) {
 		text("OPTIONEN", x, y, 24, head_col); y += 44;
@@ -695,21 +824,56 @@ void Menu::draw(sf::RenderTarget& target) {
 			text(rows[i].value, x + 220, y + i * 40, 20, sel ? head_col : body_col);
 		}
 	} else if (this->screen == PC) {
-		text("PC-BOX", x, y, 24, head_col); y += 40;
-		text("Aufbewahrt: " + std::to_string(this->box ? (int)this->box->size() : 0), x, y, 18, muted_col);
-		y += 30;
-		if (this->box && !this->box->empty()) {
-			int row = 0;
-			for (const Mon& m : *this->box) {
-				float ry = y + row * 40;
-				const sf::Texture* ic = mon_icon(m.species);
-				if (ic) { sf::Sprite s(*ic); s.setScale(0.55f, 0.55f); s.setPosition(x, ry - 6); target.draw(s); }
-				text(pretty(m.species, "") + "  Lv" + std::to_string(m.level), x + 44, ry, 20, body_col);
-				if (++row >= 10) break;
+		text("PC", x, y, 24, head_col);
+		// Tab strip: BOX (individual storage/withdraw) vs. TEAMS (saved presets).
+		const char* tabs[] = {"BOX", "TEAMS"};
+		float tx = x + 90;
+		for (int i = 0; i < 2; ++i) {
+			bool sel = i == this->pc_tab;
+			text(tabs[i], tx, y + 2, 18, sel ? head_col : muted_col);
+			tx += 90;
+		}
+		y += 40;
+
+		if (this->pc_tab == 0) {
+			text("Aufbewahrt: " + std::to_string(this->box ? (int)this->box->size() : 0), x, y, 16, muted_col);
+			y += 28;
+			if (this->box && !this->box->empty()) {
+				int n = (int)this->box->size();
+				const int rows = 8;
+				int first = std::max(0, std::min(this->box_cursor - rows / 2, std::max(0, n - rows)));
+				for (int row = 0; row < rows && first + row < n; ++row) {
+					int idx = first + row;
+					const Mon& m = (*this->box)[idx];
+					float ry = y + row * 38;
+					if (idx == this->box_cursor) cursor_at(x - 12, ry + 4);
+					const sf::Texture* ic = mon_icon(m.species);
+					if (ic) { sf::Sprite s(*ic); s.setScale(0.55f, 0.55f); s.setPosition(x, ry - 6); target.draw(s); }
+					text(pretty(m.species, "") + "  Lv" + std::to_string(m.level), x + 44, ry, 18, body_col);
+				}
+			} else {
+				text("(keine POKéMON aufbewahrt)", x, y, 18, muted_col);
 			}
 		} else {
-			text("(keine POKéMON aufbewahrt)", x, y, 20, muted_col);
+			int n = this->saved_teams ? (int)this->saved_teams->size() : 0;
+			for (int row = 0; row < n; ++row) {
+				const SavedTeam& st = (*this->saved_teams)[row];
+				float ry = y + row * 34;
+				if (row == this->teams_cursor) cursor_at(x - 12, ry + 2);
+				text(st.name, x, ry, 18, body_col);
+				text(std::to_string(st.mons.size()) + " POKéMON", x + 220, ry, 15, muted_col);
+			}
+			// The "save current team as a new preset" row, always last.
+			float sy = y + n * 34;
+			if (n == this->teams_cursor) cursor_at(x - 12, sy + 2);
+			text("+ Aktuelles Team speichern", x, sy, 17, n == this->teams_cursor ? head_col : sf::Color(30, 130, 90));
 		}
+		float hy = panel.getPosition().y + panel.getSize().y - 60;
+		if (!this->flash.empty()) text(this->flash, x, hy, 16, sf::Color(190, 90, 20));
+		else if (this->pc_tab == 0)
+			text("Bestätigen: ins Team   ←→: Reiter   B: zurück", x, hy, 14, muted_col);
+		else
+			text("Bestätigen: Team wechseln/speichern   ←→: Reiter   B: zurück", x, hy, 14, muted_col);
 	} else if (this->screen == POKENAV) {
 		// Real PokeNav's "Hoenn Map Full View" is its own dark navy GBA
 		// screen, not a page inside the light Bag/Party-style frame -- cover

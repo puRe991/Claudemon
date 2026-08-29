@@ -666,7 +666,7 @@ static std::vector<char> parse_walk(const char* env) {
     if (!env) return out;
     std::stringstream ss(env); std::string t;
     while (std::getline(ss, t, ',')) {
-        if (t.size() == 1 && std::string("NSEWTMG").find(t[0]) != std::string::npos)
+        if (t.size() == 1 && std::string("NSEWTMGC").find(t[0]) != std::string::npos)
             out.push_back(t[0]);
     }
     return out;
@@ -1627,6 +1627,7 @@ int main() {
     std::vector<Mon> team;                          // the player's party
     team.reserve(6);                                // keep &team[0] stable
     std::vector<Mon> pc_box;                         // PC storage
+    std::vector<SavedTeam> saved_teams;              // PC-BOX TEAMS tab presets
 
     // A saved run resumes exactly where it left off (map, position, flags,
     // bag, money, party, PC box). CODEMON_MAP/CODEMON_NO_SAVE force a fresh
@@ -1634,12 +1635,14 @@ int main() {
     std::string start_map; int start_x = -1, start_y = -1;
     bool resumed = false;
     if (!map_env && !std::getenv("CODEMON_NO_SAVE")) {
-        resumed = SaveGame::load(SAVE_PATH, gs, team, pc_box, start_map, start_x, start_y);
+        resumed = SaveGame::load(SAVE_PATH, gs, team, pc_box, start_map, start_x, start_y, saved_teams);
         // A save written before PP tracking existed has no `pp` field at all
         // for its party/box mons -- give them full PP rather than leaving
         // the vector empty (which would read as "0 PP, can't move").
         for (Mon& m : team) if (m.pp.size() != m.moves.size()) bdata.restore_pp(m);
         for (Mon& m : pc_box) if (m.pp.size() != m.moves.size()) bdata.restore_pp(m);
+        for (SavedTeam& st : saved_teams)
+            for (Mon& m : st.mons) if (m.pp.size() != m.moves.size()) bdata.restore_pp(m);
     }
     // Story start: the player rides in on the moving truck (InsideOfTruck),
     // which is where pokeemerald's own new-game intro begins -- its own
@@ -1652,7 +1655,7 @@ int main() {
     // also run it even when a save was already loaded (discarding it, same
     // as any other save file that's simply never opened again).
     auto start_new_game = [&]() {
-        gs = GameState(); team.clear(); pc_box.clear();
+        gs = GameState(); team.clear(); pc_box.clear(); saved_teams.clear();
         start_map = map_env ? map_env : "maps/InsideOfTruck.map";
         start_x = start_y = -1;
         // New-game default world state: every NPC/item hidden until its own
@@ -1749,7 +1752,7 @@ int main() {
     if (const char* ts = std::getenv("CODEMON_TEST_SCRIPT")) vm.start(ts, sess->player);
     Menu menu;
     menu.load_font();
-    menu.configure(&gs, &team, &pc_box, &bdata);
+    menu.configure(&gs, &team, &pc_box, &bdata, &saved_teams);
     Minigame games;
     games.load_font();
     games.configure(&gs, &rng);
@@ -1848,6 +1851,7 @@ int main() {
     auto token_btn = [](char t) -> BtnInput {
         switch (t) { case 'N': return BTN_UP; case 'S': return BTN_DOWN;
                      case 'W': return BTN_LEFT; case 'E': return BTN_RIGHT;
+                     case 'C': return BTN_CANCEL;
                      default: return BTN_CONFIRM; }
     };
 
@@ -2041,7 +2045,8 @@ int main() {
                     healfx.tick(0.13f);
                     if (menu.wants_save()) {
                         bool ok = SaveGame::save(SAVE_PATH, gs, team, pc_box, sess->path,
-                                                  sess->player->get_tile_x(), sess->player->get_tile_y());
+                                                  sess->player->get_tile_x(), sess->player->get_tile_y(),
+                                                  saved_teams);
                         menu.set_flash(ok ? "Spiel gespeichert!" : "Speichern fehlgeschlagen.");
                         menu.ack_save();
                     }
@@ -2249,6 +2254,7 @@ int main() {
                     case sf::Keyboard::D: menu.input(BTN_RIGHT); break;
                     case sf::Keyboard::Space:
                     case sf::Keyboard::Return: menu.input(BTN_CONFIRM); break;
+                    case sf::Keyboard::BackSpace: menu.input(BTN_CANCEL); break;
                     case sf::Keyboard::M: menu.close(); break;
                     default: break;
                     }
@@ -2453,7 +2459,8 @@ int main() {
         if (!healfx.active() && vm.wants_heal_fx()) healfx.start((int)team.size());
         if (menu.wants_save()) {
             bool ok = SaveGame::save(SAVE_PATH, gs, team, pc_box, sess->path,
-                                      sess->player->get_tile_x(), sess->player->get_tile_y());
+                                      sess->player->get_tile_x(), sess->player->get_tile_y(),
+                                      saved_teams);
             menu.set_flash(ok ? "Spiel gespeichert!" : "Speichern fehlgeschlagen.");
             menu.ack_save();
         }

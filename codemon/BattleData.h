@@ -73,6 +73,16 @@ struct Mon {
 	bool fainted() const { return hp <= 0; }
 };
 
+// A named snapshot of up to a full party (QoL "mehrere gespeicherte Teams"):
+// swapping one in via the PC-BOX screen's TEAM tab exchanges it with the
+// currently active team, so the outgoing team becomes this slot's new
+// content -- the same "two loadouts" semantics as swapping party <-> box,
+// just for a whole team at once instead of one mon.
+struct SavedTeam {
+	std::string name;
+	std::vector<Mon> mons;
+};
+
 class BattleData
 {
 private:
