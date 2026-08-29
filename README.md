@@ -624,6 +624,14 @@ Aus einer Codestruktur-Review von `codemon/main.cpp` (2506 Zeilen) – reines Re
 
 * ✅ Warp-/Fly-/Whiteout-Übergänge (`do_pending_warp`, `do_pending_fly`, `handle_whiteout`) sind jetzt Methoden auf der `Game`-Klasse statt Lambdas mit Zugriff auf main()-Locals.
 
+* ✅ `Menu::draw()` (409 Zeilen, ein `if/else`-Zweig pro Bildschirm: Hauptmenü, PokéDex, Fliegen, Beutel, TM/Item-Lehren, Team, Statuswerte, Optionen, PC-Box, PokéNav) in elf benannte Methoden aufgeteilt (`draw_main`, `draw_pokedex`, `draw_fly`, `draw_bag`, `draw_teach`, `draw_use_item`, `draw_party`, `draw_summary`, `draw_options`, `draw_pc`, `draw_pokenav`) plus vier gemeinsame Zeichen-Hilfsmethoden (`draw_text`, `draw_cursor_at`, `draw_hp_bar`, `draw_exp_bar` statt vormals lokaler Lambdas). Verifiziert per Rebuild + Testsuite + pixelgleichem Screenshot-Vergleich aller elf Bildschirme einzeln.
+
+### Nächste Kandidaten (noch nicht angegangen)
+
+* `ScriptVM::pump()` (`codemon/ScriptVM.cpp`, ~700 Zeilen) – der Opcode-Dispatch der Skript-VM ist eine einzige große Funktion. Aufteilen wäre riskanter als die bisherigen Schritte (Verhalten hängt an sehr vielen importierten pokeemerald-Skripten), bräuchte also breitere Testabdeckung vor dem Umbau.
+* `Battle::draw()` (`codemon/Battle.cpp`, 174 Zeilen) – kleiner als `Menu::draw()` war, aber gleiches Muster (ein Draw-Call für alle Kampf-Phasen); niedrigeres Risiko, niedrigerer Nutzen.
+* Input-Dispatch zusammenführen (siehe oben) – weiterhin offen, unverändert seit dem letzten Schritt.
+
 ## ++ QoL ++
 
 ### Dex

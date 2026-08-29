@@ -81,6 +81,53 @@ private:
 	// each time POKENAV opens (see Menu::input()'s MAIN handler).
 	int map_cur_x = 14, map_cur_y = 7;
 
+	// Small drawing primitives shared by every draw_<screen>() method below
+	// (used to be local lambdas inside one big draw()).
+	void draw_text(sf::RenderTarget& target, const std::string& s, float x, float y,
+	               unsigned char_size, sf::Color col) const;
+	void draw_cursor_at(sf::RenderTarget& target, float x, float y) const;
+	void draw_hp_bar(sf::RenderTarget& target, float x, float y, int hp, int max_hp) const;
+	void draw_exp_bar(sf::RenderTarget& target, float x, float y, const Mon& m) const;
+
+	// One method per Screen value, each drawing exactly what its old branch
+	// in the former single draw() switch drew -- split out for readability,
+	// not behavior. `x`/`y` are the panel's starting text cursor; `panel`/
+	// `panel_rect` are the already-drawn background frame these can measure
+	// against (bottom edge for a flash message, width for wrapping, ...).
+	void draw_main(sf::RenderTarget& target, float x, float y, const sf::RectangleShape& panel,
+	               const sf::FloatRect& panel_rect, sf::Color head_col, sf::Color body_col,
+	               sf::Color muted_col) const;
+	void draw_pokedex(sf::RenderTarget& target, float x, float y, const sf::RectangleShape& panel,
+	                  const sf::FloatRect& panel_rect, sf::Color head_col, sf::Color body_col,
+	                  sf::Color muted_col);
+	void draw_fly(sf::RenderTarget& target, float x, float y, const sf::RectangleShape& panel,
+	             const sf::FloatRect& panel_rect, sf::Color head_col, sf::Color body_col,
+	             sf::Color muted_col) const;
+	void draw_bag(sf::RenderTarget& target, float x, float y, const sf::RectangleShape& panel,
+	             const sf::FloatRect& panel_rect, sf::Color head_col, sf::Color body_col,
+	             sf::Color muted_col);
+	void draw_teach(sf::RenderTarget& target, float x, float y, const sf::RectangleShape& panel,
+	               const sf::FloatRect& panel_rect, sf::Color head_col, sf::Color body_col,
+	               sf::Color muted_col);
+	void draw_use_item(sf::RenderTarget& target, float x, float y, const sf::RectangleShape& panel,
+	                   const sf::FloatRect& panel_rect, sf::Color head_col, sf::Color body_col,
+	                   sf::Color muted_col);
+	void draw_party(sf::RenderTarget& target, float x, float y, const sf::RectangleShape& panel,
+	               const sf::FloatRect& panel_rect, sf::Color head_col, sf::Color body_col,
+	               sf::Color muted_col);
+	void draw_summary(sf::RenderTarget& target, float x, float y, const sf::RectangleShape& panel,
+	                  const sf::FloatRect& panel_rect, sf::Color head_col, sf::Color body_col,
+	                  sf::Color muted_col);
+	void draw_options(sf::RenderTarget& target, float x, float y, const sf::RectangleShape& panel,
+	                  const sf::FloatRect& panel_rect, sf::Color head_col, sf::Color body_col,
+	                  sf::Color muted_col) const;
+	void draw_pc(sf::RenderTarget& target, float x, float y, const sf::RectangleShape& panel,
+	            const sf::FloatRect& panel_rect, sf::Color head_col, sf::Color body_col,
+	            sf::Color muted_col);
+	void draw_pokenav(sf::RenderTarget& target, float x, float y, const sf::RectangleShape& panel,
+	                  const sf::FloatRect& panel_rect, sf::Color head_col, sf::Color body_col,
+	                  sf::Color muted_col);
+
 public:
 	Menu();
 	void configure(GameState* g, std::vector<Mon>* team, std::vector<Mon>* box,

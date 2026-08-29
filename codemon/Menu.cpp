@@ -395,6 +395,434 @@ void Menu::input(BtnInput b) {
 	}
 }
 
+void Menu::draw_text(sf::RenderTarget& target, const std::string& s, float x, float y,
+                     unsigned char_size, sf::Color col) const {
+	sf::Text t(sf::String::fromUtf8(s.begin(), s.end()), this->font, char_size);
+	t.setPosition(x, y); t.setFillColor(col); target.draw(t);
+}
+
+void Menu::draw_cursor_at(sf::RenderTarget& target, float x, float y) const {
+	if (!this->cursor_ok) { draw_text(target, ">", x - 16, y, 20, sf::Color(24, 72, 160)); return; }
+	sf::Sprite s(this->cursor_tex);
+	s.setPosition(x - 20, y + 2);
+	target.draw(s);
+}
+
+void Menu::draw_hp_bar(sf::RenderTarget& target, float x, float y, int hp, int max_hp) const {
+	float w = 150, r = max_hp > 0 ? (float)hp / max_hp : 0.f;
+	sf::RectangleShape bg(sf::Vector2f(w, 12)); bg.setPosition(x, y);
+	bg.setFillColor(sf::Color(190, 190, 190)); target.draw(bg);
+	sf::RectangleShape fg(sf::Vector2f(w * r, 12)); fg.setPosition(x, y);
+	fg.setFillColor(r > 0.5f ? sf::Color(80, 200, 80)
+	               : r > 0.2f ? sf::Color(230, 200, 60) : sf::Color(220, 70, 70));
+	target.draw(fg);
+}
+
+// Progress to next level, same light-blue bar as the battle HUD's.
+void Menu::draw_exp_bar(sf::RenderTarget& target, float x, float y, const Mon& m) const {
+	if (!this->bdata) return;
+	float w = 150;
+	std::string growth = this->bdata->growth_rate(m.species);
+	long floor_now = BattleData::exp_for_level(growth, m.level);
+	long floor_next = m.level < 100 ? BattleData::exp_for_level(growth, m.level + 1) : floor_now;
+	float r = floor_next > floor_now
+	          ? (float)(m.exp - floor_now) / (float)(floor_next - floor_now) : 1.f;
+	r = std::max(0.f, std::min(1.f, r));
+	sf::RectangleShape bg(sf::Vector2f(w, 5)); bg.setPosition(x, y);
+	bg.setFillColor(sf::Color(190, 190, 190)); target.draw(bg);
+	sf::RectangleShape fg(sf::Vector2f(w * r, 5)); fg.setPosition(x, y);
+	fg.setFillColor(sf::Color(88, 168, 240)); target.draw(fg);
+}
+
+void Menu::draw_main(sf::RenderTarget& target, float x, float y, const sf::RectangleShape& panel,
+                     const sf::FloatRect& panel_rect, sf::Color head_col, sf::Color body_col,
+                     sf::Color muted_col) const {
+	(void)panel; (void)panel_rect; (void)muted_col;
+	draw_text(target, "MENÜ", x, y, 24, head_col); y += 44;
+	const char* opts[] = {"POKéDEX", "BEUTEL", "POKéMON", "PC-BOX", "POKéNAV",
+	                      "FLIEGEN", "OPTIONEN", "SPEICHERN", "SCHLIESSEN"};
+	for (int i = 0; i < 9; ++i) {
+		bool sel = i == this->cursor;
+		if (sel) draw_cursor_at(target, x, y + i * 38);
+		draw_text(target, opts[i], x, y + i * 38, 22, sel ? head_col : body_col);
+	}
+	if (!this->flash.empty())
+		draw_text(target, this->flash, x, y + 9 * 38 + 10, 16, sf::Color(30, 140, 60));
+}
+
+void Menu::draw_pokedex(sf::RenderTarget& target, float x, float y, const sf::RectangleShape& panel,
+                        const sf::FloatRect& panel_rect, sf::Color head_col, sf::Color body_col,
+                        sf::Color muted_col) {
+	(void)panel; (void)panel_rect;
+	int total = this->bdata ? this->bdata->species_count() : 0;
+	int seen = 0, caught = 0;
+	if (this->gs)
+		for (int i = 0; i < total; ++i) {
+			const std::string sp = this->bdata->species_by_id(i);
+			if (this->gs->is_caught(sp)) ++caught;
+			else if (this->gs->is_seen(sp)) ++seen;
+		}
+	draw_text(target, "POKéDEX", x, y, 24, head_col); y += 36;
+	draw_text(target, "Gesehen: " + std::to_string(seen + caught) +
+	     "   Gefangen: " + std::to_string(caught), x, y, 16, muted_col);
+	y += 34;
+	const int rows = 10;
+	int first = std::max(0, std::min(this->dex_cursor - rows / 2, std::max(0, total - rows)));
+	for (int row = 0; row < rows && first + row < total; ++row) {
+		int idx = first + row;
+		std::string sp = this->bdata->species_by_id(idx);
+		bool is_caught = this->gs && this->gs->is_caught(sp);
+		bool is_seen = is_caught || (this->gs && this->gs->is_seen(sp));
+		float ry = y + row * 34;
+		bool sel = idx == this->dex_cursor;
+		if (sel) draw_cursor_at(target, x, ry);
+		char num[16]; std::snprintf(num, sizeof(num), "#%03d", idx + 1);
+		draw_text(target, num, x, ry, 18, muted_col);
+		if (is_seen) {
+			const sf::Texture* ic = mon_icon(sp);
+			if (ic) { sf::Sprite s(*ic); s.setScale(0.5f, 0.5f); s.setPosition(x + 56, ry - 8); target.draw(s); }
+			draw_text(target, pretty(sp, ""), x + 96, ry, 20, is_caught ? body_col : muted_col);
+			if (is_caught) draw_text(target, "●", x + 300, ry, 18, sf::Color(30, 140, 60));
+		} else {
+			draw_text(target, "? ? ? ? ?", x + 96, ry, 20, muted_col);
+		}
+	}
+}
+
+void Menu::draw_fly(sf::RenderTarget& target, float x, float y, const sf::RectangleShape& panel,
+                    const sf::FloatRect& panel_rect, sf::Color head_col, sf::Color body_col,
+                    sf::Color muted_col) const {
+	(void)panel; (void)panel_rect;
+	draw_text(target, "FLIEGEN", x, y, 24, head_col); y += 44;
+	if (this->fly_available.empty()) {
+		draw_text(target, "(keine Ziele)", x, y, 20, muted_col);
+	} else {
+		for (int row = 0; row < (int)this->fly_available.size() && row < 10; ++row) {
+			const FlyDest& d = FLY_DESTINATIONS[this->fly_available[row]];
+			bool sel = row == this->fly_cursor;
+			float ry = y + row * 36;
+			if (sel) draw_cursor_at(target, x, ry);
+			draw_text(target, d.name, x, ry, 20, sel ? head_col : body_col);
+		}
+	}
+}
+
+void Menu::draw_bag(sf::RenderTarget& target, float x, float y, const sf::RectangleShape& panel,
+                    const sf::FloatRect& panel_rect, sf::Color head_col, sf::Color body_col,
+                    sf::Color muted_col) {
+	(void)panel_rect;
+	draw_text(target, "BEUTEL", x, y, 24, head_col); y += 44;
+	if (this->gs) {
+		draw_text(target, "Geld: " + std::to_string(this->gs->money) + " P", x, y, 18, muted_col);
+		y += 30;
+	}
+	auto items = bag_sorted();
+	if (items.empty()) {
+		draw_text(target, "(leer)", x, y, 20, muted_col);
+	} else {
+		for (int row = 0; row < (int)items.size() && row < 10; ++row) {
+			const auto& kv = items[row];
+			bool sel = row == this->bag_cursor;
+			float ry = y + row * 40;
+			if (sel) draw_cursor_at(target, x, ry);
+			const sf::Texture* ic = item_icon(kv.first);
+			if (ic) { sf::Sprite s(*ic); s.setPosition(x, ry - 4); target.draw(s); }
+			bool tm = is_machine(kv.first);
+			std::string label;
+			if (tm) {
+				// ITEM_TM_<move>/ITEM_HM_<move> -> the real games' "TM31"
+				// style bag label (see move_to_tm_code()); falls back to
+				// the move name itself if the code lookup ever misses.
+				std::string mv = kv.first.size() > 8 ? kv.first.substr(8) : std::string();
+				std::string code = this->bdata ? this->bdata->move_to_tm_code(mv) : std::string();
+				label = code.empty() ? pretty(mv, "") : code;
+			} else {
+				label = pretty(kv.first, "ITEM_");
+			}
+			draw_text(target, label, x + 34, ry, 20,
+			     tm ? sf::Color(20, 130, 90) : body_col);
+			draw_text(target, "x" + std::to_string(kv.second),
+			     panel.getPosition().x + panel.getSize().x - 70, ry, 20, body_col);
+		}
+	}
+	if (!this->flash.empty())
+		draw_text(target, this->flash, x, panel.getPosition().y + panel.getSize().y - 60, 16,
+		     sf::Color(190, 90, 20));
+}
+
+void Menu::draw_teach(sf::RenderTarget& target, float x, float y, const sf::RectangleShape& panel,
+                      const sf::FloatRect& panel_rect, sf::Color head_col, sf::Color body_col,
+                      sf::Color muted_col) {
+	(void)panel_rect;
+	draw_text(target, "LEHRE " + pretty(this->teach_move, ""), x, y, 22, head_col);
+	y += 40;
+	draw_text(target, "Wähle ein POKéMON:", x, y, 16, muted_col); y += 30;
+	if (this->team) {
+		for (int row = 0; row < (int)this->team->size() && row < 6; ++row) {
+			const Mon& m = (*this->team)[row];
+			bool sel = row == this->teach_cursor;
+			bool able = this->bdata && this->bdata->can_learn_tm(m.species, this->teach_move);
+			float ry = y + row * 44;
+			if (sel) draw_cursor_at(target, x, ry);
+			const sf::Texture* ic = mon_icon(m.species);
+			if (ic) { sf::Sprite s(*ic); s.setScale(0.55f, 0.55f); s.setPosition(x, ry - 6); target.draw(s); }
+			draw_text(target, pretty(m.species, "") + "  Lv" + std::to_string(m.level), x + 44, ry, 20,
+			     able ? body_col : sf::Color(170, 170, 170));
+			draw_text(target, able ? "OK" : "nicht möglich", panel.getPosition().x + panel.getSize().x - 110, ry, 16,
+			     able ? sf::Color(30, 150, 60) : sf::Color(190, 90, 90));
+		}
+	}
+	if (!this->flash.empty())
+		draw_text(target, this->flash, x, panel.getPosition().y + panel.getSize().y - 60, 16,
+		     sf::Color(190, 90, 20));
+}
+
+void Menu::draw_use_item(sf::RenderTarget& target, float x, float y, const sf::RectangleShape& panel,
+                         const sf::FloatRect& panel_rect, sf::Color head_col, sf::Color body_col,
+                         sf::Color muted_col) {
+	(void)panel_rect;
+	bool revive = is_revive_item(this->use_item);
+	draw_text(target, pretty(this->use_item, "ITEM_") + " benutzen", x, y, 22, head_col);
+	y += 40;
+	draw_text(target, "Wähle ein POKéMON:", x, y, 16, muted_col); y += 30;
+	if (this->team) {
+		for (int row = 0; row < (int)this->team->size() && row < 6; ++row) {
+			const Mon& m = (*this->team)[row];
+			bool sel = row == this->use_cursor;
+			bool able = revive ? m.fainted()
+			          : has_curable_status(this->use_item, m) ||
+			            (!m.fainted() && heal_amount(this->use_item) >= 0 && m.hp < m.max_hp);
+			float ry = y + row * 44;
+			if (sel) draw_cursor_at(target, x, ry);
+			const sf::Texture* ic = mon_icon(m.species);
+			if (ic) { sf::Sprite s(*ic); s.setScale(0.55f, 0.55f); s.setPosition(x, ry - 6); target.draw(s); }
+			draw_text(target, pretty(m.species, "") + "  Lv" + std::to_string(m.level), x + 44, ry, 20,
+			     able ? body_col : sf::Color(170, 170, 170));
+			draw_text(target, std::to_string(m.hp) + "/" + std::to_string(m.max_hp),
+			     panel.getPosition().x + panel.getSize().x - 110, ry, 16,
+			     able ? sf::Color(30, 150, 60) : sf::Color(190, 90, 90));
+		}
+	}
+	if (!this->flash.empty())
+		draw_text(target, this->flash, x, panel.getPosition().y + panel.getSize().y - 60, 16,
+		     sf::Color(190, 90, 20));
+}
+
+void Menu::draw_party(sf::RenderTarget& target, float x, float y, const sf::RectangleShape& panel,
+                      const sf::FloatRect& panel_rect, sf::Color head_col, sf::Color body_col,
+                      sf::Color muted_col) {
+	(void)panel; (void)panel_rect; (void)head_col; (void)muted_col;
+	draw_text(target, "POKéMON", x, y, 24, head_col); y += 40;
+	if (this->team) {
+		int row = 0;
+		for (const Mon& m : *this->team) {
+			float ry = y + row * 72;
+			if (row == this->party_cursor) draw_cursor_at(target, x - 12, ry + 6);
+			const sf::Texture* ic = mon_icon(m.species);
+			if (ic) { sf::Sprite s(*ic); s.setScale(0.9f, 0.9f); s.setPosition(x, ry); target.draw(s); }
+			draw_text(target, pretty(m.species, "") + "  Lv" + std::to_string(m.level), x + 66, ry + 6, 20, body_col);
+			if (m.status != Status::NONE)
+				draw_text(target, BattleData::status_name(m.status), x + 290, ry + 8, 15, sf::Color(190, 60, 60));
+			draw_hp_bar(target, x + 66, ry + 34, m.hp, m.max_hp);
+			draw_text(target, std::to_string(m.hp) + "/" + std::to_string(m.max_hp), x + 226, ry + 32, 16, body_col);
+			draw_exp_bar(target, x + 66, ry + 52, m);
+			if (++row >= 6) break;
+		}
+	}
+}
+
+void Menu::draw_summary(sf::RenderTarget& target, float x, float y, const sf::RectangleShape& panel,
+                        const sf::FloatRect& panel_rect, sf::Color head_col, sf::Color body_col,
+                        sf::Color muted_col) {
+	(void)panel; (void)panel_rect;
+	const Mon* m = (this->team && this->party_cursor < (int)this->team->size())
+		? &(*this->team)[this->party_cursor] : nullptr;
+	if (!m) { draw_text(target, "POKéMON", x, y, 24, head_col); }
+	else {
+		const sf::Texture* ic = mon_icon(m->species);
+		if (ic) { sf::Sprite s(*ic); s.setScale(1.3f, 1.3f); s.setPosition(x, y); target.draw(s); }
+		draw_text(target, pretty(m->species, "") + "  Lv" + std::to_string(m->level), x + 100, y + 10, 22, head_col);
+		const sf::Texture* t1 = type_icon(m->t1);
+		float tx = x + 100;
+		if (t1) { sf::Sprite s(*t1); s.setPosition(tx, y + 42); target.draw(s); tx += 60; }
+		if (m->t2 != m->t1) {
+			const sf::Texture* t2 = type_icon(m->t2);
+			if (t2) { sf::Sprite s(*t2); s.setPosition(tx, y + 42); target.draw(s); }
+		}
+		y += 90;
+		draw_hp_bar(target, x, y, m->hp, m->max_hp);
+		draw_text(target, std::to_string(m->hp) + "/" + std::to_string(m->max_hp), x + 160, y - 4, 18, body_col);
+		y += 22;
+		draw_exp_bar(target, x, y, *m);
+		y += 30;
+		std::string ab = this->bdata ? this->bdata->ability(m->species) : "";
+		draw_text(target, "Wesen: " + pretty(m->nature, "") + "   Fähigkeit: " +
+		     (ab.empty() || ab == "NONE" ? "---" : pretty(ab, "")), x, y, 16, muted_col);
+		y += 20;
+		draw_text(target, "Hält: " + (m->held_item.empty() || m->held_item == "NONE"
+		     ? std::string("---") : pretty(m->held_item, "")), x, y, 16, muted_col);
+		y += 10;
+		// Nature-boosted stat in a warm color, lowered in a cool one (real
+		// games' own summary-screen convention), neutral otherwise.
+		auto stat_col = [&](char stat) -> sf::Color {
+			static const std::map<std::string, std::pair<char,char>> nat = {
+				{"LONELY",{'A','D'}}, {"BRAVE",{'A','E'}}, {"ADAMANT",{'A','S'}}, {"NAUGHTY",{'A','F'}},
+				{"BOLD",{'D','A'}}, {"RELAXED",{'D','E'}}, {"IMPISH",{'D','S'}}, {"LAX",{'D','F'}},
+				{"TIMID",{'E','A'}}, {"HASTY",{'E','D'}}, {"JOLLY",{'E','S'}}, {"NAIVE",{'E','F'}},
+				{"MODEST",{'S','A'}}, {"MILD",{'S','D'}}, {"QUIET",{'S','E'}}, {"RASH",{'S','F'}},
+				{"CALM",{'F','A'}}, {"GENTLE",{'F','D'}}, {"SASSY",{'F','E'}}, {"CAREFUL",{'F','S'}},
+			};
+			auto it = nat.find(m->nature);
+			if (it == nat.end()) return body_col;
+			if (it->second.first == stat) return sf::Color(200, 60, 50);    // boosted
+			if (it->second.second == stat) return sf::Color(60, 100, 200);  // lowered
+			return body_col;
+		};
+		struct StatRow { const char* label; int val; char key; };
+		StatRow rows[] = {
+			{"ANGRIFF", m->atk, 'A'}, {"VERTEIDIGUNG", m->def, 'D'},
+			{"SP. ANGRIFF", m->spa, 'S'}, {"SP. VERTEIDIGUNG", m->spd, 'F'},
+			{"INITIATIVE", m->spe, 'E'},
+		};
+		for (const StatRow& r : rows) {
+			draw_text(target, r.label, x, y, 16, muted_col);
+			draw_text(target, std::to_string(r.val), x + 190, y, 16, stat_col(r.key));
+			y += 24;
+		}
+		y += 10;
+		draw_text(target, "Attacken:", x, y, 16, muted_col); y += 24;
+		for (size_t i = 0; i < m->moves.size(); ++i)
+			draw_text(target, pretty(m->moves[i], ""), x + (i % 2) * 170, y + (i / 2) * 26, 16, body_col);
+	}
+}
+
+void Menu::draw_options(sf::RenderTarget& target, float x, float y, const sf::RectangleShape& panel,
+                        const sf::FloatRect& panel_rect, sf::Color head_col, sf::Color body_col,
+                        sf::Color muted_col) const {
+	(void)panel; (void)panel_rect; (void)muted_col;
+	draw_text(target, "OPTIONEN", x, y, 24, head_col); y += 44;
+	bool sound_on = !this->gs || this->gs->sound_on;
+	bool scene_on = !this->gs || this->gs->battle_scene_on;
+	int ft = this->gs ? this->gs->frame_type : 0;
+	struct Row { const char* label; std::string value; };
+	Row rows[] = {
+		{"TON", sound_on ? "AN" : "AUS"},
+		{"KAMPFSZENE", scene_on ? "AN" : "AUS"},
+		{"RAHMENART", std::to_string(ft + 1) + "/20"},
+	};
+	for (int i = 0; i < 3; ++i) {
+		bool sel = i == this->options_cursor;
+		if (sel) draw_cursor_at(target, x, y + i * 40);
+		draw_text(target, rows[i].label, x, y + i * 40, 20, sel ? head_col : body_col);
+		draw_text(target, rows[i].value, x + 220, y + i * 40, 20, sel ? head_col : body_col);
+	}
+}
+
+void Menu::draw_pc(sf::RenderTarget& target, float x, float y, const sf::RectangleShape& panel,
+                   const sf::FloatRect& panel_rect, sf::Color head_col, sf::Color body_col,
+                   sf::Color muted_col) {
+	(void)panel; (void)panel_rect;
+	draw_text(target, "PC-BOX", x, y, 24, head_col); y += 40;
+	draw_text(target, "Aufbewahrt: " + std::to_string(this->box ? (int)this->box->size() : 0), x, y, 18, muted_col);
+	y += 30;
+	if (this->box && !this->box->empty()) {
+		int row = 0;
+		for (const Mon& m : *this->box) {
+			float ry = y + row * 40;
+			const sf::Texture* ic = mon_icon(m.species);
+			if (ic) { sf::Sprite s(*ic); s.setScale(0.55f, 0.55f); s.setPosition(x, ry - 6); target.draw(s); }
+			draw_text(target, pretty(m.species, "") + "  Lv" + std::to_string(m.level), x + 44, ry, 20, body_col);
+			if (++row >= 10) break;
+		}
+	} else {
+		draw_text(target, "(keine POKéMON aufbewahrt)", x, y, 20, muted_col);
+	}
+}
+
+void Menu::draw_pokenav(sf::RenderTarget& target, float x, float y, const sf::RectangleShape& panel,
+                        const sf::FloatRect& panel_rect, sf::Color head_col, sf::Color body_col,
+                        sf::Color muted_col) {
+	(void)panel; (void)body_col; (void)muted_col;
+	// Real PokeNav's "Hoenn Map Full View" is its own dark navy GBA
+	// screen, not a page inside the light Bag/Party-style frame -- cover
+	// the generic frame just drawn above with that look instead.
+	const sf::Color nav_bg(16, 24, 64), nav_border(120, 180, 232);
+	const sf::Color nav_head(232, 240, 255), nav_muted(160, 190, 224);
+	sf::RectangleShape nav_panel(sf::Vector2f(panel_rect.width, panel_rect.height));
+	nav_panel.setPosition(panel_rect.left, panel_rect.top);
+	nav_panel.setFillColor(nav_bg);
+	nav_panel.setOutlineColor(nav_border);
+	nav_panel.setOutlineThickness(3.f);
+	target.draw(nav_panel);
+
+	draw_text(target, "KARTE HOENN GANZ", x, y, 20, nav_head); y += 26;
+	if (!this->location.empty()) { draw_text(target, this->location, x, y, 13, nav_muted); y += 20; }
+	else y += 6;
+	if (this->region_map_ok) {
+		// Fit the map to the panel width instead of a fixed scale, so it
+		// reads closer to how the original fills nearly the whole GBA
+		// screen rather than sitting small inside a big white sub-panel.
+		const float scale = (panel_rect.width - 48.f) / 128.f;
+		const float map_w = 128.f * scale, map_h = 120.f * scale;
+		sf::Sprite map_spr(this->region_map_tex);
+		map_spr.setPosition(x, y);
+		map_spr.setScale(scale, scale);
+		target.draw(map_spr);
+		float px_per_x = map_w / 28.f, px_per_y = map_h / 15.f;
+		if (this->has_mapsec) {
+			int gender = (this->gs && this->gs->female) ? 1 : 0;
+			if (this->marker_ok[gender]) {
+				float cx = (this->mapsec_x + this->mapsec_w / 2.0f) * px_per_x;
+				float cy = (this->mapsec_y + this->mapsec_h / 2.0f) * px_per_y;
+				sf::Sprite mk(this->marker_tex[gender]);
+				mk.setScale(scale, scale);
+				mk.setPosition(x + cx - 8.f * scale, y + cy - 8.f * scale);
+				target.draw(mk);
+			}
+		}
+		// The moving cursor (see Menu::input()): a bright outline over
+		// whichever grid cell it's currently on, same idea as the real
+		// games' blinking selection box.
+		sf::RectangleShape cur_box(sf::Vector2f(px_per_x, px_per_y));
+		cur_box.setPosition(x + this->map_cur_x * px_per_x, y + this->map_cur_y * px_per_y);
+		cur_box.setFillColor(sf::Color(255, 240, 60, 90));
+		cur_box.setOutlineColor(sf::Color(255, 240, 60, 230));
+		cur_box.setOutlineThickness(-2.f);   // inward, so it stays inside the cell at this scale
+		target.draw(cur_box);
+		y += map_h + 10;
+		// Location name box, same idea as the real screen's bottom bar
+		// naming the section the cursor/marker is over.
+		sf::RectangleShape loc_box(sf::Vector2f(panel_rect.width - 2.f * (x - panel_rect.left), 26));
+		loc_box.setPosition(x, y);
+		loc_box.setFillColor(sf::Color(8, 14, 44));
+		loc_box.setOutlineColor(nav_border); loc_box.setOutlineThickness(1.f);
+		target.draw(loc_box);
+		std::string secname = map_section_at(this->map_cur_x, this->map_cur_y);
+		draw_text(target, secname.empty() ? "OFFENES MEER" : secname, x + 8, y + 3, 18, nav_head);
+		y += 36;
+	}
+	{
+		static const char* names[8] = {"STEIN", "FAUST", "DYNAMO", "HITZE",
+		                               "BALANCE", "FEDER", "GEIST", "REGEN"};
+		int got = 0;
+		// Spread over the panel's own width (not a fixed pixel step) so
+		// all 8 names fit regardless of window size, instead of running
+		// off the right edge.
+		float slot = (panel_rect.width - 2.f * (x - panel_rect.left)) / 8.f;
+		float bx = x;
+		for (int i = 0; i < 8; ++i) {
+			bool have = this->gs && this->gs->flag(
+				"FLAG_BADGE0" + std::to_string(i + 1) + "_GET");
+			if (have) ++got;
+			draw_text(target, names[i], bx, y, 9,
+			     have ? sf::Color(255, 210, 90) : nav_muted);
+			bx += slot;
+		}
+		y += 20;
+		draw_text(target, "Orden: " + std::to_string(got) + "/8", x, y, 14, nav_muted);
+	}
+}
+
 void Menu::draw(sf::RenderTarget& target) {
 	if (this->screen == CLOSED || !this->font_ok) return;
 	sf::View saved = target.getView();
@@ -420,388 +848,33 @@ void Menu::draw(sf::RenderTarget& target) {
 	panel.setPosition(panel_rect.left, panel_rect.top);
 	float x = panel.getPosition().x + 24, y = panel.getPosition().y + 20;
 
-	auto text = [&](const std::string& s, float px, float py, unsigned cs, sf::Color col) {
-		sf::Text t(sf::String::fromUtf8(s.begin(), s.end()), this->font, cs);
-		t.setPosition(px, py); t.setFillColor(col); target.draw(t);
-	};
-	auto cursor_at = [&](float px, float py) {
-		if (!this->cursor_ok) { text(">", px - 16, py, 20, head_col); return; }
-		sf::Sprite s(this->cursor_tex);
-		s.setPosition(px - 20, py + 2);
-		target.draw(s);
-	};
-	auto hp_bar = [&](float bx, float by, int hp, int mx) {
-		float w = 150, r = mx > 0 ? (float)hp / mx : 0.f;
-		sf::RectangleShape bg(sf::Vector2f(w, 12)); bg.setPosition(bx, by);
-		bg.setFillColor(sf::Color(190, 190, 190)); target.draw(bg);
-		sf::RectangleShape fg(sf::Vector2f(w * r, 12)); fg.setPosition(bx, by);
-		fg.setFillColor(r > 0.5f ? sf::Color(80, 200, 80)
-		               : r > 0.2f ? sf::Color(230, 200, 60) : sf::Color(220, 70, 70));
-		target.draw(fg);
-	};
-	// Progress to next level, same light-blue bar as the battle HUD's.
-	auto exp_bar = [&](float bx, float by, const Mon& m) {
-		if (!this->bdata) return;
-		float w = 150;
-		std::string growth = this->bdata->growth_rate(m.species);
-		long floor_now = BattleData::exp_for_level(growth, m.level);
-		long floor_next = m.level < 100 ? BattleData::exp_for_level(growth, m.level + 1) : floor_now;
-		float r = floor_next > floor_now
-		          ? (float)(m.exp - floor_now) / (float)(floor_next - floor_now) : 1.f;
-		r = std::max(0.f, std::min(1.f, r));
-		sf::RectangleShape bg(sf::Vector2f(w, 5)); bg.setPosition(bx, by);
-		bg.setFillColor(sf::Color(190, 190, 190)); target.draw(bg);
-		sf::RectangleShape fg(sf::Vector2f(w * r, 5)); fg.setPosition(bx, by);
-		fg.setFillColor(sf::Color(88, 168, 240)); target.draw(fg);
-	};
-
-	if (this->screen == MAIN) {
-		text("MENÜ", x, y, 24, head_col); y += 44;
-		const char* opts[] = {"POKéDEX", "BEUTEL", "POKéMON", "PC-BOX", "POKéNAV",
-		                      "FLIEGEN", "OPTIONEN", "SPEICHERN", "SCHLIESSEN"};
-		for (int i = 0; i < 9; ++i) {
-			bool sel = i == this->cursor;
-			if (sel) cursor_at(x, y + i * 38);
-			text(opts[i], x, y + i * 38, 22, sel ? head_col : body_col);
-		}
-		if (!this->flash.empty())
-			text(this->flash, x, y + 9 * 38 + 10, 16, sf::Color(30, 140, 60));
-	} else if (this->screen == POKEDEX) {
-		int total = this->bdata ? this->bdata->species_count() : 0;
-		int seen = 0, caught = 0;
-		if (this->gs)
-			for (int i = 0; i < total; ++i) {
-				const std::string sp = this->bdata->species_by_id(i);
-				if (this->gs->is_caught(sp)) ++caught;
-				else if (this->gs->is_seen(sp)) ++seen;
-			}
-		text("POKéDEX", x, y, 24, head_col); y += 36;
-		text("Gesehen: " + std::to_string(seen + caught) +
-		     "   Gefangen: " + std::to_string(caught), x, y, 16, muted_col);
-		y += 34;
-		const int rows = 10;
-		int first = std::max(0, std::min(this->dex_cursor - rows / 2, std::max(0, total - rows)));
-		for (int row = 0; row < rows && first + row < total; ++row) {
-			int idx = first + row;
-			std::string sp = this->bdata->species_by_id(idx);
-			bool is_caught = this->gs && this->gs->is_caught(sp);
-			bool is_seen = is_caught || (this->gs && this->gs->is_seen(sp));
-			float ry = y + row * 34;
-			bool sel = idx == this->dex_cursor;
-			if (sel) cursor_at(x, ry);
-			char num[16]; std::snprintf(num, sizeof(num), "#%03d", idx + 1);
-			text(num, x, ry, 18, muted_col);
-			if (is_seen) {
-				const sf::Texture* ic = mon_icon(sp);
-				if (ic) { sf::Sprite s(*ic); s.setScale(0.5f, 0.5f); s.setPosition(x + 56, ry - 8); target.draw(s); }
-				text(pretty(sp, ""), x + 96, ry, 20, is_caught ? body_col : muted_col);
-				if (is_caught) text("●", x + 300, ry, 18, sf::Color(30, 140, 60));
-			} else {
-				text("? ? ? ? ?", x + 96, ry, 20, muted_col);
-			}
-		}
-	} else if (this->screen == FLY) {
-		text("FLIEGEN", x, y, 24, head_col); y += 44;
-		if (this->fly_available.empty()) {
-			text("(keine Ziele)", x, y, 20, muted_col);
-		} else {
-			for (int row = 0; row < (int)this->fly_available.size() && row < 10; ++row) {
-				const FlyDest& d = FLY_DESTINATIONS[this->fly_available[row]];
-				bool sel = row == this->fly_cursor;
-				float ry = y + row * 36;
-				if (sel) cursor_at(x, ry);
-				text(d.name, x, ry, 20, sel ? head_col : body_col);
-			}
-		}
-	} else if (this->screen == BAG) {
-		text("BEUTEL", x, y, 24, head_col); y += 44;
-		if (this->gs) {
-			text("Geld: " + std::to_string(this->gs->money) + " P", x, y, 18, muted_col);
-			y += 30;
-		}
-		auto items = bag_sorted();
-		if (items.empty()) {
-			text("(leer)", x, y, 20, muted_col);
-		} else {
-			for (int row = 0; row < (int)items.size() && row < 10; ++row) {
-				const auto& kv = items[row];
-				bool sel = row == this->bag_cursor;
-				float ry = y + row * 40;
-				if (sel) cursor_at(x, ry);
-				const sf::Texture* ic = item_icon(kv.first);
-				if (ic) { sf::Sprite s(*ic); s.setPosition(x, ry - 4); target.draw(s); }
-				bool tm = is_machine(kv.first);
-				std::string label;
-				if (tm) {
-					// ITEM_TM_<move>/ITEM_HM_<move> -> the real games' "TM31"
-					// style bag label (see move_to_tm_code()); falls back to
-					// the move name itself if the code lookup ever misses.
-					std::string mv = kv.first.size() > 8 ? kv.first.substr(8) : std::string();
-					std::string code = this->bdata ? this->bdata->move_to_tm_code(mv) : std::string();
-					label = code.empty() ? pretty(mv, "") : code;
-				} else {
-					label = pretty(kv.first, "ITEM_");
-				}
-				text(label, x + 34, ry, 20,
-				     tm ? sf::Color(20, 130, 90) : body_col);
-				text("x" + std::to_string(kv.second),
-				     panel.getPosition().x + panel.getSize().x - 70, ry, 20, body_col);
-			}
-		}
-		if (!this->flash.empty())
-			text(this->flash, x, panel.getPosition().y + panel.getSize().y - 60, 16,
-			     sf::Color(190, 90, 20));
-	} else if (this->screen == TEACH) {
-		text("LEHRE " + pretty(this->teach_move, ""), x, y, 22, head_col);
-		y += 40;
-		text("Wähle ein POKéMON:", x, y, 16, muted_col); y += 30;
-		if (this->team) {
-			for (int row = 0; row < (int)this->team->size() && row < 6; ++row) {
-				const Mon& m = (*this->team)[row];
-				bool sel = row == this->teach_cursor;
-				bool able = this->bdata && this->bdata->can_learn_tm(m.species, this->teach_move);
-				float ry = y + row * 44;
-				if (sel) cursor_at(x, ry);
-				const sf::Texture* ic = mon_icon(m.species);
-				if (ic) { sf::Sprite s(*ic); s.setScale(0.55f, 0.55f); s.setPosition(x, ry - 6); target.draw(s); }
-				text(pretty(m.species, "") + "  Lv" + std::to_string(m.level), x + 44, ry, 20,
-				     able ? body_col : sf::Color(170, 170, 170));
-				text(able ? "OK" : "nicht möglich", panel.getPosition().x + panel.getSize().x - 110, ry, 16,
-				     able ? sf::Color(30, 150, 60) : sf::Color(190, 90, 90));
-			}
-		}
-		if (!this->flash.empty())
-			text(this->flash, x, panel.getPosition().y + panel.getSize().y - 60, 16,
-			     sf::Color(190, 90, 20));
-	} else if (this->screen == USE_ITEM) {
-		bool revive = is_revive_item(this->use_item);
-		text(pretty(this->use_item, "ITEM_") + " benutzen", x, y, 22, head_col);
-		y += 40;
-		text("Wähle ein POKéMON:", x, y, 16, muted_col); y += 30;
-		if (this->team) {
-			for (int row = 0; row < (int)this->team->size() && row < 6; ++row) {
-				const Mon& m = (*this->team)[row];
-				bool sel = row == this->use_cursor;
-				bool able = revive ? m.fainted()
-				          : has_curable_status(this->use_item, m) ||
-				            (!m.fainted() && heal_amount(this->use_item) >= 0 && m.hp < m.max_hp);
-				float ry = y + row * 44;
-				if (sel) cursor_at(x, ry);
-				const sf::Texture* ic = mon_icon(m.species);
-				if (ic) { sf::Sprite s(*ic); s.setScale(0.55f, 0.55f); s.setPosition(x, ry - 6); target.draw(s); }
-				text(pretty(m.species, "") + "  Lv" + std::to_string(m.level), x + 44, ry, 20,
-				     able ? body_col : sf::Color(170, 170, 170));
-				text(std::to_string(m.hp) + "/" + std::to_string(m.max_hp),
-				     panel.getPosition().x + panel.getSize().x - 110, ry, 16,
-				     able ? sf::Color(30, 150, 60) : sf::Color(190, 90, 90));
-			}
-		}
-		if (!this->flash.empty())
-			text(this->flash, x, panel.getPosition().y + panel.getSize().y - 60, 16,
-			     sf::Color(190, 90, 20));
-	} else if (this->screen == PARTY) {
-		text("POKéMON", x, y, 24, head_col); y += 40;
-		if (this->team) {
-			int row = 0;
-			for (const Mon& m : *this->team) {
-				float ry = y + row * 72;
-				if (row == this->party_cursor) cursor_at(x - 12, ry + 6);
-				const sf::Texture* ic = mon_icon(m.species);
-				if (ic) { sf::Sprite s(*ic); s.setScale(0.9f, 0.9f); s.setPosition(x, ry); target.draw(s); }
-				text(pretty(m.species, "") + "  Lv" + std::to_string(m.level), x + 66, ry + 6, 20, body_col);
-				if (m.status != Status::NONE)
-					text(BattleData::status_name(m.status), x + 290, ry + 8, 15, sf::Color(190, 60, 60));
-				hp_bar(x + 66, ry + 34, m.hp, m.max_hp);
-				text(std::to_string(m.hp) + "/" + std::to_string(m.max_hp), x + 226, ry + 32, 16, body_col);
-				exp_bar(x + 66, ry + 52, m);
-				if (++row >= 6) break;
-			}
-		}
-	} else if (this->screen == SUMMARY) {
-		const Mon* m = (this->team && this->party_cursor < (int)this->team->size())
-			? &(*this->team)[this->party_cursor] : nullptr;
-		if (!m) { text("POKéMON", x, y, 24, head_col); }
-		else {
-			const sf::Texture* ic = mon_icon(m->species);
-			if (ic) { sf::Sprite s(*ic); s.setScale(1.3f, 1.3f); s.setPosition(x, y); target.draw(s); }
-			text(pretty(m->species, "") + "  Lv" + std::to_string(m->level), x + 100, y + 10, 22, head_col);
-			const sf::Texture* t1 = type_icon(m->t1);
-			float tx = x + 100;
-			if (t1) { sf::Sprite s(*t1); s.setPosition(tx, y + 42); target.draw(s); tx += 60; }
-			if (m->t2 != m->t1) {
-				const sf::Texture* t2 = type_icon(m->t2);
-				if (t2) { sf::Sprite s(*t2); s.setPosition(tx, y + 42); target.draw(s); }
-			}
-			y += 90;
-			hp_bar(x, y, m->hp, m->max_hp);
-			text(std::to_string(m->hp) + "/" + std::to_string(m->max_hp), x + 160, y - 4, 18, body_col);
-			y += 22;
-			exp_bar(x, y, *m);
-			y += 30;
-			std::string ab = this->bdata ? this->bdata->ability(m->species) : "";
-			text("Wesen: " + pretty(m->nature, "") + "   Fähigkeit: " +
-			     (ab.empty() || ab == "NONE" ? "---" : pretty(ab, "")), x, y, 16, muted_col);
-			y += 20;
-			text("Hält: " + (m->held_item.empty() || m->held_item == "NONE"
-			     ? std::string("---") : pretty(m->held_item, "")), x, y, 16, muted_col);
-			y += 10;
-			// Nature-boosted stat in a warm color, lowered in a cool one (real
-			// games' own summary-screen convention), neutral otherwise.
-			auto stat_col = [&](char stat) -> sf::Color {
-				static const std::map<std::string, std::pair<char,char>> nat = {
-					{"LONELY",{'A','D'}}, {"BRAVE",{'A','E'}}, {"ADAMANT",{'A','S'}}, {"NAUGHTY",{'A','F'}},
-					{"BOLD",{'D','A'}}, {"RELAXED",{'D','E'}}, {"IMPISH",{'D','S'}}, {"LAX",{'D','F'}},
-					{"TIMID",{'E','A'}}, {"HASTY",{'E','D'}}, {"JOLLY",{'E','S'}}, {"NAIVE",{'E','F'}},
-					{"MODEST",{'S','A'}}, {"MILD",{'S','D'}}, {"QUIET",{'S','E'}}, {"RASH",{'S','F'}},
-					{"CALM",{'F','A'}}, {"GENTLE",{'F','D'}}, {"SASSY",{'F','E'}}, {"CAREFUL",{'F','S'}},
-				};
-				auto it = nat.find(m->nature);
-				if (it == nat.end()) return body_col;
-				if (it->second.first == stat) return sf::Color(200, 60, 50);    // boosted
-				if (it->second.second == stat) return sf::Color(60, 100, 200);  // lowered
-				return body_col;
-			};
-			struct StatRow { const char* label; int val; char key; };
-			StatRow rows[] = {
-				{"ANGRIFF", m->atk, 'A'}, {"VERTEIDIGUNG", m->def, 'D'},
-				{"SP. ANGRIFF", m->spa, 'S'}, {"SP. VERTEIDIGUNG", m->spd, 'F'},
-				{"INITIATIVE", m->spe, 'E'},
-			};
-			for (const StatRow& r : rows) {
-				text(r.label, x, y, 16, muted_col);
-				text(std::to_string(r.val), x + 190, y, 16, stat_col(r.key));
-				y += 24;
-			}
-			y += 10;
-			text("Attacken:", x, y, 16, muted_col); y += 24;
-			for (size_t i = 0; i < m->moves.size(); ++i)
-				text(pretty(m->moves[i], ""), x + (i % 2) * 170, y + (i / 2) * 26, 16, body_col);
-		}
-	} else if (this->screen == OPTIONS) {
-		text("OPTIONEN", x, y, 24, head_col); y += 44;
-		bool sound_on = !this->gs || this->gs->sound_on;
-		bool scene_on = !this->gs || this->gs->battle_scene_on;
-		int ft = this->gs ? this->gs->frame_type : 0;
-		struct Row { const char* label; std::string value; };
-		Row rows[] = {
-			{"TON", sound_on ? "AN" : "AUS"},
-			{"KAMPFSZENE", scene_on ? "AN" : "AUS"},
-			{"RAHMENART", std::to_string(ft + 1) + "/20"},
-		};
-		for (int i = 0; i < 3; ++i) {
-			bool sel = i == this->options_cursor;
-			if (sel) cursor_at(x, y + i * 40);
-			text(rows[i].label, x, y + i * 40, 20, sel ? head_col : body_col);
-			text(rows[i].value, x + 220, y + i * 40, 20, sel ? head_col : body_col);
-		}
-	} else if (this->screen == PC) {
-		text("PC-BOX", x, y, 24, head_col); y += 40;
-		text("Aufbewahrt: " + std::to_string(this->box ? (int)this->box->size() : 0), x, y, 18, muted_col);
-		y += 30;
-		if (this->box && !this->box->empty()) {
-			int row = 0;
-			for (const Mon& m : *this->box) {
-				float ry = y + row * 40;
-				const sf::Texture* ic = mon_icon(m.species);
-				if (ic) { sf::Sprite s(*ic); s.setScale(0.55f, 0.55f); s.setPosition(x, ry - 6); target.draw(s); }
-				text(pretty(m.species, "") + "  Lv" + std::to_string(m.level), x + 44, ry, 20, body_col);
-				if (++row >= 10) break;
-			}
-		} else {
-			text("(keine POKéMON aufbewahrt)", x, y, 20, muted_col);
-		}
-	} else if (this->screen == POKENAV) {
-		// Real PokeNav's "Hoenn Map Full View" is its own dark navy GBA
-		// screen, not a page inside the light Bag/Party-style frame -- cover
-		// the generic frame just drawn above with that look instead.
-		const sf::Color nav_bg(16, 24, 64), nav_border(120, 180, 232);
-		const sf::Color nav_head(232, 240, 255), nav_muted(160, 190, 224);
-		sf::RectangleShape nav_panel(sf::Vector2f(panel_rect.width, panel_rect.height));
-		nav_panel.setPosition(panel_rect.left, panel_rect.top);
-		nav_panel.setFillColor(nav_bg);
-		nav_panel.setOutlineColor(nav_border);
-		nav_panel.setOutlineThickness(3.f);
-		target.draw(nav_panel);
-
-		text("KARTE HOENN GANZ", x, y, 20, nav_head); y += 26;
-		if (!this->location.empty()) { text(this->location, x, y, 13, nav_muted); y += 20; }
-		else y += 6;
-		if (this->region_map_ok) {
-			// Fit the map to the panel width instead of a fixed scale, so it
-			// reads closer to how the original fills nearly the whole GBA
-			// screen rather than sitting small inside a big white sub-panel.
-			const float scale = (panel_rect.width - 48.f) / 128.f;
-			const float map_w = 128.f * scale, map_h = 120.f * scale;
-			sf::Sprite map_spr(this->region_map_tex);
-			map_spr.setPosition(x, y);
-			map_spr.setScale(scale, scale);
-			target.draw(map_spr);
-			float px_per_x = map_w / 28.f, px_per_y = map_h / 15.f;
-			if (this->has_mapsec) {
-				int gender = (this->gs && this->gs->female) ? 1 : 0;
-				if (this->marker_ok[gender]) {
-					float cx = (this->mapsec_x + this->mapsec_w / 2.0f) * px_per_x;
-					float cy = (this->mapsec_y + this->mapsec_h / 2.0f) * px_per_y;
-					sf::Sprite mk(this->marker_tex[gender]);
-					mk.setScale(scale, scale);
-					mk.setPosition(x + cx - 8.f * scale, y + cy - 8.f * scale);
-					target.draw(mk);
-				}
-			}
-			// The moving cursor (see Menu::input()): a bright outline over
-			// whichever grid cell it's currently on, same idea as the real
-			// games' blinking selection box.
-			sf::RectangleShape cur_box(sf::Vector2f(px_per_x, px_per_y));
-			cur_box.setPosition(x + this->map_cur_x * px_per_x, y + this->map_cur_y * px_per_y);
-			cur_box.setFillColor(sf::Color(255, 240, 60, 90));
-			cur_box.setOutlineColor(sf::Color(255, 240, 60, 230));
-			cur_box.setOutlineThickness(-2.f);   // inward, so it stays inside the cell at this scale
-			target.draw(cur_box);
-			y += map_h + 10;
-			// Location name box, same idea as the real screen's bottom bar
-			// naming the section the cursor/marker is over.
-			sf::RectangleShape loc_box(sf::Vector2f(panel_rect.width - 2.f * (x - panel_rect.left), 26));
-			loc_box.setPosition(x, y);
-			loc_box.setFillColor(sf::Color(8, 14, 44));
-			loc_box.setOutlineColor(nav_border); loc_box.setOutlineThickness(1.f);
-			target.draw(loc_box);
-			std::string secname = map_section_at(this->map_cur_x, this->map_cur_y);
-			text(secname.empty() ? "OFFENES MEER" : secname, x + 8, y + 3, 18, nav_head);
-			y += 36;
-		}
-		{
-			static const char* names[8] = {"STEIN", "FAUST", "DYNAMO", "HITZE",
-			                               "BALANCE", "FEDER", "GEIST", "REGEN"};
-			int got = 0;
-			// Spread over the panel's own width (not a fixed pixel step) so
-			// all 8 names fit regardless of window size, instead of running
-			// off the right edge.
-			float slot = (panel_rect.width - 2.f * (x - panel_rect.left)) / 8.f;
-			float bx = x;
-			for (int i = 0; i < 8; ++i) {
-				bool have = this->gs && this->gs->flag(
-					"FLAG_BADGE0" + std::to_string(i + 1) + "_GET");
-				if (have) ++got;
-				text(names[i], bx, y, 9,
-				     have ? sf::Color(255, 210, 90) : nav_muted);
-				bx += slot;
-			}
-			y += 20;
-			text("Orden: " + std::to_string(got) + "/8", x, y, 14, nav_muted);
-		}
+	switch (this->screen) {
+	case MAIN:     draw_main(target, x, y, panel, panel_rect, head_col, body_col, muted_col); break;
+	case POKEDEX:  draw_pokedex(target, x, y, panel, panel_rect, head_col, body_col, muted_col); break;
+	case FLY:      draw_fly(target, x, y, panel, panel_rect, head_col, body_col, muted_col); break;
+	case BAG:      draw_bag(target, x, y, panel, panel_rect, head_col, body_col, muted_col); break;
+	case TEACH:    draw_teach(target, x, y, panel, panel_rect, head_col, body_col, muted_col); break;
+	case USE_ITEM: draw_use_item(target, x, y, panel, panel_rect, head_col, body_col, muted_col); break;
+	case PARTY:    draw_party(target, x, y, panel, panel_rect, head_col, body_col, muted_col); break;
+	case SUMMARY:  draw_summary(target, x, y, panel, panel_rect, head_col, body_col, muted_col); break;
+	case OPTIONS:  draw_options(target, x, y, panel, panel_rect, head_col, body_col, muted_col); break;
+	case PC:       draw_pc(target, x, y, panel, panel_rect, head_col, body_col, muted_col); break;
+	case POKENAV:  draw_pokenav(target, x, y, panel, panel_rect, head_col, body_col, muted_col); break;
+	default: break;
 	}
+
 	if (this->screen == BAG)
-		text("[SPACE] benutzen   [A] zurück", x, panel.getPosition().y + panel.getSize().y - 34, 16, muted_col);
+		draw_text(target, "[SPACE] benutzen   [A] zurück", x, panel.getPosition().y + panel.getSize().y - 34, 16, muted_col);
 	else if (this->screen == TEACH)
-		text("[SPACE] lehren   [A] zurück", x, panel.getPosition().y + panel.getSize().y - 34, 16, muted_col);
+		draw_text(target, "[SPACE] lehren   [A] zurück", x, panel.getPosition().y + panel.getSize().y - 34, 16, muted_col);
 	else if (this->screen == USE_ITEM)
-		text("[SPACE] benutzen   [A] zurück", x, panel.getPosition().y + panel.getSize().y - 34, 16, muted_col);
+		draw_text(target, "[SPACE] benutzen   [A] zurück", x, panel.getPosition().y + panel.getSize().y - 34, 16, muted_col);
 	else if (this->screen == OPTIONS)
-		text("[SPACE]/[D] ändern   [A] zurück", x, panel.getPosition().y + panel.getSize().y - 34, 16, muted_col);
+		draw_text(target, "[SPACE]/[D] ändern   [A] zurück", x, panel.getPosition().y + panel.getSize().y - 34, 16, muted_col);
 	else if (this->screen == POKENAV)
-		text("Pfeiltasten: Karte erkunden   [SPACE] zurück",
+		draw_text(target, "Pfeiltasten: Karte erkunden   [SPACE] zurück",
 		     x, panel.getPosition().y + panel.getSize().y - 34, 16, sf::Color(160, 190, 224));
 	else if (this->screen != MAIN)
-		text("[SPACE] zurück", x, panel.getPosition().y + panel.getSize().y - 34, 16, muted_col);
+		draw_text(target, "[SPACE] zurück", x, panel.getPosition().y + panel.getSize().y - 34, 16, muted_col);
 	target.setView(saved);
 }
