@@ -610,6 +610,20 @@ Alles, was unten abgehakt ist, wurde durch einen Test oder Headless-Screenshot �
 
 * ❌ Karteneditor (`codemon_editor`, siehe `codemon/editor/README.md`) – bearbeitet den manuell erstellten Kartensatz `codemon/region/`, nicht die importierten pokeemerald-Karten
 
+## 🔧 Code-Qualität / Engine-Wartbarkeit
+
+Aus einer Codestruktur-Review von `codemon/main.cpp` (2506 Zeilen) – reines Refactoring, keine Verhaltensänderung, gegen die bestehenden `CODEMON_SCREENSHOT`-Tests verifizierbar.
+
+* ❌ `main()` auffächern: aktuell eine ~890-Zeilen-God-Function (Savegame, Titelscreen, Session-Verwaltung, kompletter Event-Loop, Whiteout-Logik, alles inline). Aufteilen in eine `Game`-Klasse mit `handleInput()` / `update(dt)` / `render()` statt lokaler Variablen + Lambdas.
+
+* ❌ UI-Screen-Structs aus `main.cpp` auslagern: `StarterSelect`, `YesNoPrompt`, `PartyPicker`, `MultiChoicePrompt`, `DebugMenu`, `Shop`, `TitleScreen`, `GenderSelect`, `EarlyAccessNotice`, `NameEntry` bekommen je eigene .h/.cpp-Datei.
+
+* ❌ Zentralen `InputRouter` einführen: WASD/Space/Enter → `BtnInput` wird aktuell für jeden der ~10 UI-Zustände separat per if/else gemappt (fast identischer 6-Zeilen-Switch 8×). Einmal zentral lösen statt dupliziert.
+
+* ❌ Input-Dispatch zusammenführen: der Zustands-Dispatch ("welcher Screen ist aktiv") existiert doppelt – einmal für den interaktiven Loop, einmal separat (leicht abweichend) für den Headless-/Screenshot-Testmodus. Auf eine gemeinsame Implementierung reduzieren.
+
+* ❌ Warp-/Fly-/Whiteout-Übergänge (`do_pending_warp`, `do_pending_fly`, `handle_whiteout`) von Lambdas mit Zugriff auf main()-Locals zu Methoden auf der `Game`-Klasse machen, damit sie unabhängig testbar sind.
+
 ## ++ QoL ++
 
 ### Dex
