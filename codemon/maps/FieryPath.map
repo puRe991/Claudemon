@@ -123,7 +123,7 @@ goto EventScript_ActivateStrength
 end
 = EventScript_ActivateStrength
 setflag FLAG_SYS_USE_STRENGTH
-msgbox	STR_VAR_1 used STRENGTH!STR_VAR_1's STRENGTH made it possible to move boulders around!
+msgbox	STR_VAR_1 setzte STÄRKE ein!Dank STÄRKE kann STR_VAR_1 jetzt Felsbrocken bewegen!
 releaseall
 end
 = EventScript_CancelStrength
@@ -131,11 +131,11 @@ closemessage
 releaseall
 end
 = EventScript_CantStrength
-msgbox	It's a big boulder, but a POKéMON may be able to push it aside.
+msgbox	Es ist ein großer Felsbrocken, aber ein POKéMON könnte ihn vielleicht beiseiteschieben.
 releaseall
 end
 = EventScript_CheckActivatedBoulder
-msgbox	STRENGTH made it possible to move boulders around.
+msgbox	Dank STÄRKE lassen sich jetzt Felsbrocken bewegen.
 releaseall
 end
 = FieryPath_EventScript_ItemTMToxic

@@ -28,8 +28,8 @@ people_man_4 6 6 W static 0 - 0
 people_twin 4 4 S static 0 - 0
 pokemon_wingull 4 5 N static FLAG_HIDE_MOSSDEEP_CITY_HOUSE_2_WINGULL LOCALID_MOSSDEEP_HOUSE_WINGULL 0
 dialogs
-0	My little sister exchanges MAIL with her boyfriend in FORTREE.I don't envy her one bit at all.
-1	Even though I can't see my friend in FORTREE, my POKéMON carries MAIL back and forth for us.I'm not lonesome, even though we're apart.
+0	Meine kleine Schwester tauscht POST mit ihrem Freund in FORTREE aus.Ich beneide sie kein bisschen dafür.
+1	Auch wenn ich meinen Freund in FORTREE nicht sehen kann, bringt mein POKéMON die POST zwischen uns hin und her.Ich fühle mich nicht einsam, obwohl wir getrennt sind.
 2	WINGULL: Pihyoh!
 objscripts
 0 MossdeepCity_House2_EventScript_Man
@@ -63,10 +63,10 @@ applymovement LOCALID_MOSSDEEP_HOUSE_WINGULL MossdeepCity_House2_Movement_Wingul
 waitmovement 0
 return
 = MossdeepCity_House2_EventScript_Twin
-msgbox	Even though I can't see my friend in FORTREE, my POKéMON carries MAIL back and forth for us.I'm not lonesome, even though we're apart.
+msgbox	Auch wenn ich meinen Freund in FORTREE nicht sehen kann, bringt mein POKéMON die POST zwischen uns hin und her.Ich fühle mich nicht einsam, obwohl wir getrennt sind.
 end
 = MossdeepCity_House2_EventScript_Man
-msgbox	My little sister exchanges MAIL with her boyfriend in FORTREE.I don't envy her one bit at all.
+msgbox	Meine kleine Schwester tauscht POST mit ihrem Freund in FORTREE aus.Ich beneide sie kein bisschen dafür.
 end
 mapsec
 24 5 2 1	MOSSDEEP CITY

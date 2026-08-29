@@ -27,8 +27,8 @@ npcs
 people_old_man 11 4 E static 0 - 0
 people_ninja_boy 7 3 S wander 0 - 0
 dialogs
-0	Way back in the old days, DEVON was just a teeny, tiny company.
-1	My daddy's working at the CORPORATION.My daddy made this! But I can't use it, so you can have it.
+0	Vor langer Zeit war DEVON nur eine winzige, kleine Firma.
+1	Mein Papa arbeitet beim KONZERN.Mein Papa hat das hier gemacht! Aber ich kann es nicht benutzen, also kannst du es haben.
 objscripts
 0 RustboroCity_Flat2_2F_EventScript_OldMan
 1 RustboroCity_Flat2_2F_EventScript_NinjaBoy
@@ -37,18 +37,18 @@ scriptdefs
 lock
 faceplayer
 goto_if_set FLAG_RECEIVED_PREMIER_BALL_RUSTBORO RustboroCity_Flat2_2F_EventScript_GavePremierBall
-msgbox	My daddy's working at the CORPORATION.My daddy made this! But I can't use it, so you can have it.
+msgbox	Mein Papa arbeitet beim KONZERN.Mein Papa hat das hier gemacht! Aber ich kann es nicht benutzen, also kannst du es haben.
 giveitem ITEM_PREMIER_BALL
 goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
 setflag FLAG_RECEIVED_PREMIER_BALL_RUSTBORO
 release
 end
 = RustboroCity_Flat2_2F_EventScript_GavePremierBall
-msgbox	My daddy's working at the CORPORATION.When I grow up, I'm going to work for DEVON, too.
+msgbox	Mein Papa arbeitet beim KONZERN.Wenn ich groß bin, werde ich auch für DEVON arbeiten.
 release
 end
 = RustboroCity_Flat2_2F_EventScript_OldMan
-msgbox	Way back in the old days, DEVON was just a teeny, tiny company.
+msgbox	Vor langer Zeit war DEVON nur eine winzige, kleine Firma.
 end
 mapsec
 0 5 1 2	RUSTBORO CITY

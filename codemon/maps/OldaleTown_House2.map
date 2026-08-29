@@ -25,17 +25,17 @@ npcs
 people_pokefan_f 4 4 E static 0 - 0
 people_school_kid_m 7 4 W static 0 - 0
 dialogs
-0	When POKéMON battle, they eventually level up and become stronger.
-1	If the POKéMON with you become stronger, you'll be able to go farther away from here.
+0	Wenn POKéMON kämpfen, steigen sie irgendwann im Level auf und werden stärker.
+1	Wenn die POKéMON an deiner Seite stärker werden, kannst du dich weiter von hier entfernen.
 objscripts
 0 OldaleTown_House2_EventScript_Woman
 1 OldaleTown_House2_EventScript_Man
 scriptdefs
 = OldaleTown_House2_EventScript_Man
-msgbox	If the POKéMON with you become stronger, you'll be able to go farther away from here.
+msgbox	Wenn die POKéMON an deiner Seite stärker werden, kannst du dich weiter von hier entfernen.
 end
 = OldaleTown_House2_EventScript_Woman
-msgbox	When POKéMON battle, they eventually level up and become stronger.
+msgbox	Wenn POKéMON kämpfen, steigen sie irgendwann im Level auf und werden stärker.
 end
 mapsec
 4 9 1 1	OLDALE TOWN

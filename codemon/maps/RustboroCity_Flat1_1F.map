@@ -26,17 +26,17 @@ npcs
 people_man_3 9 4 E static 0 - 0
 people_woman_5 12 4 W static 0 - 0
 dialogs
-0	Every POKéMON has a special ability that it can use.
-1	POKéMON are such strange creatures.
+0	Jedes POKéMON besitzt eine besondere Fähigkeit, die es einsetzen kann.
+1	POKéMON sind wirklich seltsame Geschöpfe.
 objscripts
 0 RustboroCity_Flat1_1F_EventScript_Man
 1 RustboroCity_Flat1_1F_EventScript_Woman
 scriptdefs
 = RustboroCity_Flat1_1F_EventScript_Woman
-msgbox	POKéMON are such strange creatures.
+msgbox	POKéMON sind wirklich seltsame Geschöpfe.
 end
 = RustboroCity_Flat1_1F_EventScript_Man
-msgbox	Every POKéMON has a special ability that it can use.
+msgbox	Jedes POKéMON besitzt eine besondere Fähigkeit, die es einsetzen kann.
 end
 mapsec
 0 5 1 2	RUSTBORO CITY
