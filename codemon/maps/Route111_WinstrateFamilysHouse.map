@@ -27,10 +27,10 @@ people_man_1 4 5 E static 0 LOCALID_WINSTRATE_HOUSE_VICTOR 0
 people_pokefan_f 7 4 W static 0 LOCALID_WINSTRATE_HOUSE_VICTORIA 0
 people_expert_f 4 4 E static 0 LOCALID_WINSTRATE_HOUSE_VICKY 0
 dialogs
-0	Mommy is stronger than Daddy.I'm stronger than Mommy.And Grandma's stronger than me!But my big brother is even stronger than Grandma.
-1	You're the first TRAINER I've seen who deploys POKéMON so masterfully.But, I should tell you--my son is stronger than you.He even took the POKéMON LEAGUE challenge, I'll have you know.
-2	We use this MACHO BRACE to more effectively strengthen our POKéMON in training.Since you've beaten all of us here, I don't know if you need it, but we would like you to have our MACHO BRACE.
-3	There's no question that you're strong.But if you were to battle my grandson, you'd end up crying in frustration.He's much stronger than any TRAINER our family knows.He must be challenging the POKéMON LEAGUE CHAMPION by now.Knowing my grandson, he could be the CHAMPION already!
+0	Mama ist stärker als Papa.Ich bin stärker als Mama.Und Oma ist stärker als ich!Aber mein großer Bruder ist noch stärker als Oma.
+1	Du bist der erste TRAINER, den ich so meisterhaft mit POKéMON kämpfen sehe.Aber ich muss dir sagen--mein Sohn ist stärker als du.Er hat sich sogar schon der POKéMON-LIGA gestellt, das kann ich dir sagen.
+2	Wir benutzen dieses MACHO-BAND, um unsere POKéMON im Training effektiver zu stärken.Da du uns alle hier besiegt hast, weiß ich nicht, ob du es brauchst, aber wir möchten dir gern unser MACHO-BAND schenken.
+3	Es steht außer Frage, dass du stark bist.Aber würdest du gegen meinen Enkel kämpfen, würdest du am Ende vor Frust weinen.Er ist viel stärker als jeder TRAINER, den unsere Familie kennt.Er fordert inzwischen bestimmt schon den CHAMP der POKéMON-LIGA heraus.So wie ich meinen Enkel kenne, ist er vielleicht schon der CHAMP!
 objscripts
 0 Route111_WinstrateFamilysHouse_EventScript_Vivi
 1 Route111_WinstrateFamilysHouse_EventScript_Victor
@@ -44,7 +44,7 @@ lock
 faceplayer
 setvar VAR_0x8008 LOCALID_WINSTRATE_HOUSE_VICKY
 goto_if_set FLAG_TEMP_4 Route111_WinstrateFamilysHouse_EventScript_AlreadySpokenTo
-msgbox	There's no question that you're strong.But if you were to battle my grandson, you'd end up crying in frustration.He's much stronger than any TRAINER our family knows.He must be challenging the POKéMON LEAGUE CHAMPION by now.Knowing my grandson, he could be the CHAMPION already!
+msgbox	Es steht außer Frage, dass du stark bist.Aber würdest du gegen meinen Enkel kämpfen, würdest du am Ende vor Frust weinen.Er ist viel stärker als jeder TRAINER, den unsere Familie kennt.Er fordert inzwischen bestimmt schon den CHAMP der POKéMON-LIGA heraus.So wie ich meinen Enkel kenne, ist er vielleicht schon der CHAMP!
 setflag FLAG_TEMP_4
 goto Route111_WinstrateFamilysHouse_EventScript_FaceOriginalDirection
 end
@@ -55,7 +55,7 @@ waitmovement 0
 release
 end
 = Route111_WinstrateFamilysHouse_EventScript_AlreadySpokenTo
-msgbox	My grandson must be challenging the POKéMON LEAGUE CHAMPION by now.Knowing my grandson, he could be the CHAMPION already!
+msgbox	Mein Enkel fordert inzwischen bestimmt schon den CHAMP der POKéMON-LIGA heraus.So wie ich ihn kenne, ist er vielleicht schon der CHAMP!
 goto Route111_WinstrateFamilysHouse_EventScript_FaceOriginalDirection
 end
 = Route111_WinstrateFamilysHouse_EventScript_Victoria
@@ -63,28 +63,28 @@ lock
 faceplayer
 setvar VAR_0x8008 LOCALID_WINSTRATE_HOUSE_VICTORIA
 goto_if_set FLAG_RECEIVED_MACHO_BRACE Route111_WinstrateFamilysHouse_EventScript_ReceivedMachoBrace
-msgbox	We use this MACHO BRACE to more effectively strengthen our POKéMON in training.Since you've beaten all of us here, I don't know if you need it, but we would like you to have our MACHO BRACE.
+msgbox	Wir benutzen dieses MACHO-BAND, um unsere POKéMON im Training effektiver zu stärken.Da du uns alle hier besiegt hast, weiß ich nicht, ob du es brauchst, aber wir möchten dir gern unser MACHO-BAND schenken.
 giveitem ITEM_MACHO_BRACE
 goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
 setflag FLAG_RECEIVED_MACHO_BRACE
 goto Route111_WinstrateFamilysHouse_EventScript_FaceOriginalDirection
 end
 = Route111_WinstrateFamilysHouse_EventScript_ReceivedMachoBrace
-msgbox	When it comes to POKéMON battles, we tend to be pretty passionate.
+msgbox	Wenn es um POKéMON-Kämpfe geht, sind wir ziemlich leidenschaftlich.
 goto Route111_WinstrateFamilysHouse_EventScript_FaceOriginalDirection
 end
 = Route111_WinstrateFamilysHouse_EventScript_Victor
 lock
 faceplayer
 setvar VAR_0x8008 LOCALID_WINSTRATE_HOUSE_VICTOR
-msgbox	You're the first TRAINER I've seen who deploys POKéMON so masterfully.But, I should tell you--my son is stronger than you.He even took the POKéMON LEAGUE challenge, I'll have you know.
+msgbox	Du bist der erste TRAINER, den ich so meisterhaft mit POKéMON kämpfen sehe.Aber ich muss dir sagen--mein Sohn ist stärker als du.Er hat sich sogar schon der POKéMON-LIGA gestellt, das kann ich dir sagen.
 goto Route111_WinstrateFamilysHouse_EventScript_FaceOriginalDirection
 end
 = Route111_WinstrateFamilysHouse_EventScript_Vivi
 lock
 faceplayer
 setvar VAR_0x8008 LOCALID_WINSTRATE_HOUSE_VIVI
-msgbox	Mommy is stronger than Daddy.I'm stronger than Mommy.And Grandma's stronger than me!But my big brother is even stronger than Grandma.
+msgbox	Mama ist stärker als Papa.Ich bin stärker als Mama.Und Oma ist stärker als ich!Aber mein großer Bruder ist noch stärker als Oma.
 goto Route111_WinstrateFamilysHouse_EventScript_FaceOriginalDirection
 end
 mapsec

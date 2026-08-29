@@ -43,23 +43,23 @@ end
 trywondercardscript
 goto CableClub_EventScript_MysteryGiftThankYou
 = CableClub_EventScript_MysteryGiftThankYou
-msgbox	Thank you for accessing the MYSTERY GIFT System.
+msgbox	Danke, dass du das MYSTERY-GESCHENK-System nutzt.
 end
 = CableClub_EventScript_DistributeEonTicket
 checkitem ITEM_EON_TICKET
 goto_if_eq VAR_RESULT TRUE CableClub_EventScript_TryWonderCardScript
 goto_if_set FLAG_ENABLE_SHIP_SOUTHERN_ISLAND CableClub_EventScript_TryWonderCardScript
-msgbox	Thank you for using the MYSTERY EVENT System.You must be PLAYER. There is a ticket here for you.
+msgbox	Danke, dass du das MYSTERY-EVENT-System nutzt.Du musst PLAYER sein. Hier ist ein Ticket für dich.
 giveitem ITEM_EON_TICKET
 setflag FLAG_ENABLE_SHIP_SOUTHERN_ISLAND
 setvar VAR_DISTRIBUTE_EON_TICKET 0
-msgbox	It appears to be for use at the LILYCOVE CITY port.Why not give it a try and see what it is about?
+msgbox	Es scheint für den Hafen von LILYCOVE CITY gedacht zu sein.Warum probierst du nicht einfach mal aus, worum es dabei geht?
 release
 end
 @ Unused?
 goto CableClub_EventScript_MysteryGiftThankYou2
 = CableClub_EventScript_MysteryGiftThankYou2
-msgbox	Thank you for accessing the MYSTERY GIFT System.
+msgbox	Danke, dass du das MYSTERY-GESCHENK-System nutzt.
 release
 end
 mapsec

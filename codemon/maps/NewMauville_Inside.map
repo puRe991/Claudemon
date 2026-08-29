@@ -118,7 +118,7 @@ triggers
 scriptdefs
 = NewMauville_Inside_EventScript_RedButton
 lockall
-msgbox	PLAYER stepped on the switch.Click…… … … … … … … … … … … … … … … …The generator appears to have stopped…
+msgbox	PLAYER hat den Schalter betätigt.Klick…… … … … … … … … … … … … … … … …Der Generator scheint gestoppt zu sein…
 call NewMauville_Inside_EventScript_SetGeneratorOffMetatiles
 setvar VAR_NEW_MAUVILLE_STATE 2
 releaseall
@@ -333,14 +333,14 @@ end
 = NewMauville_Inside_EventScript_ItemUltraBall_Taken
 end
 signs
-32 4	The generator is radiating heat that can be felt even at a distance.It looks like it should be turned off as soon as possible.
-32 3	The generator is radiating heat that can be felt even at a distance.It looks like it should be turned off as soon as possible.
-32 2	The generator is radiating heat that can be felt even at a distance.It looks like it should be turned off as soon as possible.
-33 4	The generator is radiating heat that can be felt even at a distance.It looks like it should be turned off as soon as possible.
-34 4	The generator is radiating heat that can be felt even at a distance.It looks like it should be turned off as soon as possible.
-35 4	The generator is radiating heat that can be felt even at a distance.It looks like it should be turned off as soon as possible.
-35 3	The generator is radiating heat that can be felt even at a distance.It looks like it should be turned off as soon as possible.
-35 2	The generator is radiating heat that can be felt even at a distance.It looks like it should be turned off as soon as possible.
+32 4	Der Generator strahlt eine Hitze aus, die man selbst aus der Ferne spürt.Er sollte wohl so schnell wie möglich abgeschaltet werden.
+32 3	Der Generator strahlt eine Hitze aus, die man selbst aus der Ferne spürt.Er sollte wohl so schnell wie möglich abgeschaltet werden.
+32 2	Der Generator strahlt eine Hitze aus, die man selbst aus der Ferne spürt.Er sollte wohl so schnell wie möglich abgeschaltet werden.
+33 4	Der Generator strahlt eine Hitze aus, die man selbst aus der Ferne spürt.Er sollte wohl so schnell wie möglich abgeschaltet werden.
+34 4	Der Generator strahlt eine Hitze aus, die man selbst aus der Ferne spürt.Er sollte wohl so schnell wie möglich abgeschaltet werden.
+35 4	Der Generator strahlt eine Hitze aus, die man selbst aus der Ferne spürt.Er sollte wohl so schnell wie möglich abgeschaltet werden.
+35 3	Der Generator strahlt eine Hitze aus, die man selbst aus der Ferne spürt.Er sollte wohl so schnell wie möglich abgeschaltet werden.
+35 2	Der Generator strahlt eine Hitze aus, die man selbst aus der Ferne spürt.Er sollte wohl so schnell wie möglich abgeschaltet werden.
 mapsec
 8 7 1 1	NEW MAUVILLE
 music
