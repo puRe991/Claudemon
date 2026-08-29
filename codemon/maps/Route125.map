@@ -119,7 +119,7 @@ goto_if_ge VAR_ABNORMAL_WEATHER_LOCATION MARINE_CAVE_LOCATIONS_START AbnormalWea
 goto AbnormalWeather_EventScript_ShowSunEndedMessage
 end
 = AbnormalWeather_EventScript_ShowSunEndedMessage
-msgbox	The intense sunshine appears to have subsided…
+msgbox	Der grelle Sonnenschein scheint nachgelassen zu haben…
 goto AbnormalWeather_EventScript_EndEventAndCleanup_2
 end
 = AbnormalWeather_EventScript_EndEventAndCleanup_2
@@ -299,7 +299,7 @@ setmetatile 7 3 METATILE_Fallarbor_RedRockWall TRUE
 setmetatile 7 4 METATILE_Fallarbor_RedRockWall TRUE
 return
 = AbnormalWeather_EventScript_ShowRainEndedMessage
-msgbox	The massive downpour appears to have stopped…
+msgbox	Der gewaltige Wolkenbruch scheint aufgehört zu haben…
 goto AbnormalWeather_EventScript_EndEventAndCleanup_2
 end
 = Route125_EventScript_ItemBigPearl
@@ -311,53 +311,53 @@ end
 end
 = Route125_EventScript_Auron
 trainerbattle_single TRAINER_AURON Route125_Text_AuronIntro Route125_Text_AuronDefeat
-msgbox	I found an unsightly bottle bobbing in the waves earlier.It angers me that someone would pollute the sea!
+msgbox	Ich hab vorhin eine hässliche Flasche in den Wellen treiben sehen.Es macht mich wütend, dass jemand das Meer verschmutzt!
 end
 = Route125_EventScript_Presley
 trainerbattle_single TRAINER_PRESLEY Route125_Text_PresleyIntro Route125_Text_PresleyDefeat
-msgbox	I put a message in a bottle and put it out to sea.I'm sure that a girl SWIMMER will find it!
+msgbox	Ich hab eine Nachricht in eine Flasche gesteckt und sie ins Meer geworfen.Ich bin sicher, dass eine SCHWIMMERIN sie findet!
 end
 = Route125_EventScript_Iris
 trainerbattle_double TRAINER_KIM_AND_IRIS Route125_Text_IrisIntro Route125_Text_IrisDefeat Route125_Text_IrisNotEnoughMons
-msgbox	IRIS: KIM, are we really going into the SHOAL CAVE? We'll get all wet.
+msgbox	IRIS: KIM, gehen wir wirklich in die SHOAL CAVE? Wir werden klatschnass.
 end
 = Route125_EventScript_Kim
 trainerbattle_double TRAINER_KIM_AND_IRIS Route125_Text_KimIntro Route125_Text_KimDefeat Route125_Text_KimNotEnoughMons
-msgbox	KIM: A funny old man lives in the SHOAL CAVE, doesn't he?Let's go see him, IRIS!
+msgbox	KIM: In der SHOAL CAVE lebt doch ein komischer alter Mann, oder?Lass uns ihn besuchen, IRIS!
 end
 = Route125_EventScript_Ernest
 trainerbattle_single TRAINER_ERNEST_1 Route125_Text_ErnestIntro Route125_Text_ErnestDefeat Route125_EventScript_RegisterErnest
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route125_EventScript_RematchErnest
-msgbox	The tide ebbs and flows inside the SHOAL CAVE.By the way, it's about six hours from high tide to low tide. Did you know?
+msgbox	In der SHOAL CAVE steigt und fällt die Gezeit.Übrigens dauert es etwa sechs Stunden von Flut bis Ebbe. Wusstest du das?
 release
 end
 = Route125_EventScript_RematchErnest
 trainerbattle_rematch TRAINER_ERNEST_1 Route125_Text_ErnestRematchIntro Route125_Text_ErnestRematchDefeat
-msgbox	The SHOAL CAVE…There are places you can and can't get to depending on the rise and fall of the tide.By the way, it's about six hours from high tide to low tide. Don't forget!
+msgbox	Die SHOAL CAVE…Je nachdem, ob die Gezeit steigt oder fällt, gibt es Stellen, die man erreichen kann und andere, die man nicht erreichen kann.Übrigens dauert es etwa sechs Stunden von Flut bis Ebbe. Vergiss das nicht!
 end
 = Route125_EventScript_RegisterErnest
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Register me in your POKéNAV, and I'll tell you something good.
+msgbox	Trag mich in dein POKéNAV ein, und ich verrate dir etwas Gutes.
 register_matchcall TRAINER_ERNEST_1
 release
 end
 = Route125_EventScript_Sharon
 trainerbattle_single TRAINER_SHARON Route125_Text_SharonIntro Route125_Text_SharonDefeat
-msgbox	Your power… You're the real deal. I'm amazed!
+msgbox	Deine Stärke… Du bist wirklich echt gut. Ich bin beeindruckt!
 end
 = Route125_EventScript_Tanya
 trainerbattle_single TRAINER_TANYA Route125_Text_TanyaIntro Route125_Text_TanyaDefeat
-msgbox	Whew… Which way is it to MOSSDEEP CITY?
+msgbox	Puh… In welcher Richtung liegt eigentlich MOSSDEEP CITY?
 end
 = Route125_EventScript_Stan
 trainerbattle_single TRAINER_STAN Route125_Text_StanIntro Route125_Text_StanDefeat
-msgbox	I was blown away by HORSEA's charm, so I started swimming, too.
+msgbox	Ich war so hin und weg vom Charme von HORSEA, dass ich auch mit dem Schwimmen angefangen habe.
 end
 = Route125_EventScript_Nolen
 trainerbattle_single TRAINER_NOLEN Route125_Text_NolenIntro Route125_Text_NolenDefeat
-msgbox	Sound travels faster in water than it does through air.
+msgbox	Schall breitet sich im Wasser schneller aus als in der Luft.
 end
 water
 368,419,420,429,431,437,439,445,446,447,514,515,545,546,827,828,829

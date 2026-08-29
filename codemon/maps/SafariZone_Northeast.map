@@ -139,7 +139,7 @@ bufferpartymonnick STR_VAR_1 VAR_RESULT
 buffermovename STR_VAR_2 MOVE_ROCK_SMASH
 msgboxyesno	This rock appears to be breakable. Would you like to use ROCK SMASH?
 goto_if_eq VAR_RESULT NO EventScript_CancelSmash
-msgbox	STR_VAR_1 used STR_VAR_2!
+msgbox	STR_VAR_1 setzte STR_VAR_2 ein!
 closemessage
 dofieldeffect FLDEFF_USE_ROCK_SMASH
 waitstate
@@ -172,7 +172,7 @@ closemessage
 releaseall
 end
 = EventScript_CantSmashRock
-msgbox	It's a rugged rock, but a POKéMON may be able to smash it.
+msgbox	Das ist ein grober Felsen, aber vielleicht kann ein POKéMON ihn zertrümmern.
 releaseall
 end
 grass

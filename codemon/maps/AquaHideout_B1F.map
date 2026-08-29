@@ -87,10 +87,10 @@ misc_item_ball 15 10 S static FLAG_ITEM_AQUA_HIDEOUT_B1F_NUGGET - 0
 misc_item_ball 16 10 S static FLAG_HIDE_AQUA_HIDEOUT_B1F_ELECTRODE_2 - 0
 people_team_aqua_aqua_member_f 28 21 N static FLAG_HIDE_AQUA_HIDEOUT_GRUNTS - 4
 dialogs
-0	Our HIDEOUT's secret?Well, let's just say… There's a submarine at the far end!But, by now… Kekekeke…
-1	Humph! This was supposed to happen!My mission was to just hold you up!
-3	If you scurry too much, other TEAM AQUA members might get you.
-8	If you have a cool uniform, you look good even in a loss, don't you think?
+0	Das Geheimnis unseres HIDEOUT?Naja, sagen wir einfach… Am anderen Ende gibt es ein U-Boot!Aber inzwischen… Kekekeke…
+1	Humph! Das sollte so passieren!Meine Aufgabe war es nur, dich aufzuhalten!
+3	Wenn du zu viel herumhuschst, schnappen dich vielleicht andere TEAM-AQUA-Mitglieder.
+8	Mit einer coolen Uniform sieht man auch bei einer Niederlage noch gut aus, findest du nicht?
 objscripts
 0 AquaHideout_B1F_EventScript_Grunt2
 1 AquaHideout_B1F_EventScript_Grunt3
@@ -104,7 +104,7 @@ objscripts
 scriptdefs
 = AquaHideout_B1F_EventScript_Grunt7
 trainerbattle_single TRAINER_GRUNT_AQUA_HIDEOUT_7 AquaHideout_B1F_Text_Grunt7Intro AquaHideout_B1F_Text_Grunt7Defeat
-msgbox	If you have a cool uniform, you look good even in a loss, don't you think?
+msgbox	Mit einer coolen Uniform sieht man auch bei einer Niederlage noch gut aus, findest du nicht?
 end
 = AquaHideout_B1F_EventScript_Electrode2
 lock
@@ -166,7 +166,7 @@ end
 end
 = AquaHideout_B1F_EventScript_Grunt5
 trainerbattle_single TRAINER_GRUNT_AQUA_HIDEOUT_5 AquaHideout_B1F_Text_Grunt5Intro AquaHideout_B1F_Text_Grunt5Defeat
-msgbox	If you scurry too much, other TEAM AQUA members might get you.
+msgbox	Wenn du zu viel herumhuschst, schnappen dich vielleicht andere TEAM-AQUA-Mitglieder.
 end
 = AquaHideout_B1F_EventScript_ItemMaxElixir
 goto_if_set FLAG_ITEM_AQUA_HIDEOUT_B1F_MAX_ELIXIR AquaHideout_B1F_EventScript_ItemMaxElixir_Taken
@@ -177,20 +177,20 @@ end
 end
 = AquaHideout_B1F_EventScript_Grunt3
 trainerbattle_single TRAINER_GRUNT_AQUA_HIDEOUT_3 AquaHideout_B1F_Text_Grunt3Intro AquaHideout_B1F_Text_Grunt3Defeat AquaHideout_B1F_EventScript_Grunt3Defeated
-msgbox	Humph! This was supposed to happen!My mission was to just hold you up!
+msgbox	Humph! Das sollte so passieren!Meine Aufgabe war es nur, dich aufzuhalten!
 end
 = AquaHideout_B1F_EventScript_Grunt3Defeated
-msgbox	Humph! This was supposed to happen!My mission was to just hold you up!
+msgbox	Humph! Das sollte so passieren!Meine Aufgabe war es nur, dich aufzuhalten!
 release
 end
 = AquaHideout_B1F_EventScript_Grunt2
 trainerbattle_single TRAINER_GRUNT_AQUA_HIDEOUT_2 AquaHideout_B1F_Text_Grunt2Intro AquaHideout_B1F_Text_Grunt2Defeat AquaHideout_B1F_EventScript_Grunt2Defeated
-msgbox	Our HIDEOUT's secret?Well, let's just say… There's a submarine at the far end!But, by now… Kekekeke…
+msgbox	Das Geheimnis unseres HIDEOUT?Naja, sagen wir einfach… Am anderen Ende gibt es ein U-Boot!Aber inzwischen… Kekekeke…
 end
 = AquaHideout_B1F_EventScript_Grunt2Defeated
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Our HIDEOUT's secret?Well, let's just say… There's a submarine at the far end!But, by now… Kekekeke…
+msgbox	Das Geheimnis unseres HIDEOUT?Naja, sagen wir einfach… Am anderen Ende gibt es ein U-Boot!Aber inzwischen… Kekekeke…
 release
 end
 water
