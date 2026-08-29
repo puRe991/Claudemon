@@ -621,12 +621,12 @@ Alles, was unten abgehakt ist, wurde durch einen Test oder Headless-Screenshot �
 * ❌ Fehlende Pokémon
 * ❌ Completion Counter
 
-### Team
+### ✅100% Team
 
-* ❌ Mehrere gespeicherte Teams
-* ❌ Einfache Teamverwaltung
-* ❌ Teamübersicht
-* ❌ Moveset-Anzeige
+* ✅ Mehrere gespeicherte Teams
+* ✅ Einfache Teamverwaltung
+* ✅ Teamübersicht
+* ✅ Moveset-Anzeige
 
 ### Settings
 
