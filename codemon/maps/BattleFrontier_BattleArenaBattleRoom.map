@@ -94,7 +94,7 @@ case 2 BattleFrontier_BattleArenaBattleRoom_EventScript_AskRetireChallenge
 case MULTI_B_PRESSED BattleFrontier_BattleArenaBattleRoom_EventScript_AskReadyForOpponent
 goto BattleFrontier_BattleArenaBattleRoom_EventScript_AskRecordBattle
 = BattleFrontier_BattleArenaBattleRoom_EventScript_AskRecordBattle
-msgbox	Would you like to record your last battle on your FRONTIER PASS?
+msgbox	Möchtest du deinen letzten Kampf auf deinem FRONTIER PASS aufzeichnen?
 waitmessage
 multichoicedefault 20 8 MULTI_YESNO 1 FALSE
 switch VAR_RESULT
@@ -106,7 +106,7 @@ goto BattleFrontier_BattleArenaBattleRoom_EventScript_RecordBattle
 call BattleFrontier_EventScript_SaveBattle
 goto BattleFrontier_BattleArenaBattleRoom_EventScript_AskReadyForOpponent
 = BattleFrontier_BattleArenaBattleRoom_EventScript_AskRetireChallenge
-msgbox	Would you like to retire from your Set KO Tourney challenge?
+msgbox	Möchtest du deine K.O.-Turnier-Herausforderung aufgeben?
 waitmessage
 multichoicedefault 20 8 MULTI_YESNO 1 FALSE
 switch VAR_RESULT
@@ -129,7 +129,7 @@ warp BattleFrontier_BattleArenaLobby 7 8
 waitstate
 goto BattleFrontier_BattleArenaBattleRoom_EventScript_ReadyFor2ndOpponent
 = BattleFrontier_BattleArenaBattleRoom_EventScript_ReadyFor2ndOpponent
-msgbox	Next up, your second opponent! Are you ready to move on?
+msgbox	Als Nächstes dein zweiter Gegner! Bist du bereit weiterzumachen?
 waitmessage
 return
 = BattleFrontier_BattleArenaBattleRoom_EventScript_AnnounceTrainers
@@ -141,7 +141,7 @@ applymovement LOCALID_ARENA_BATTLE_ANNOUNCER BattleFrontier_BattleArenaBattleRoo
 playse SE_M_BELLY_DRUM
 waitse
 waitmovement 0
-msgbox	REFEREE: TRAINER PLAYER! Step forward, please!
+msgbox	SCHIEDSRICHTER: TRAINER PLAYER! Bitte tritt vor!
 closemessage
 applymovement LOCALID_ARENA_BATTLE_PLAYER BattleFrontier_BattleArenaBattleRoom_Movement_PlayerStepForward
 waitmovement 0
@@ -150,7 +150,7 @@ playse SE_M_BELLY_DRUM
 waitse
 waitmovement 0
 arena_gettrainername
-msgbox	REFEREE: TRAINER STR_VAR_1! Step forward, please!
+msgbox	SCHIEDSRICHTER: TRAINER STR_VAR_1! Bitte tritt vor!
 closemessage
 applymovement LOCALID_ARENA_BATTLE_OPPONENT BattleFrontier_BattleArenaBattleRoom_Movement_OpponentStepForward
 waitmovement 0
@@ -158,7 +158,7 @@ applymovement LOCALID_ARENA_BATTLE_ANNOUNCER BattleFrontier_BattleArenaBattleRoo
 playse SE_M_BELLY_DRUM
 waitse
 waitmovement 0
-msgbox	REFEREE: Set KO Tourney! Begin!
+msgbox	SCHIEDSRICHTER: K.O.-Turnier! Kampf beginnt!
 closemessage
 applymovement LOCALID_ARENA_BATTLE_PLAYER BattleFrontier_BattleArenaBattleRoom_Movement_PlayerStepForward
 applymovement LOCALID_ARENA_BATTLE_OPPONENT BattleFrontier_BattleArenaBattleRoom_Movement_OpponentStepForward
@@ -180,7 +180,7 @@ playse SE_M_SNORE
 waitse
 waitmovement 0
 arena_gettrainername
-msgbox	REFEREE: The winner is STR_VAR_1!
+msgbox	SCHIEDSRICHTER: Der Gewinner ist STR_VAR_1!
 goto BattleFrontier_BattleArenaBattleRoom_EventScript_WarpToLobbyLost
 = BattleFrontier_BattleArenaBattleRoom_EventScript_WarpToLobbyLost
 frontier_set FRONTIER_DATA_CHALLENGE_STATUS CHALLENGE_STATUS_LOST
@@ -201,7 +201,7 @@ removeobject LOCALID_ARENA_BATTLE_OPPONENT
 applymovement LOCALID_ARENA_BATTLE_ATTENDANT BattleFrontier_BattleArenaBattleRoom_Movement_WalkInPlaceDown
 applymovement LOCALID_ARENA_BATTLE_PLAYER BattleFrontier_BattleArenaBattleRoom_Movement_WalkInPlaceLeft
 waitmovement 0
-msgbox	Your POKéMON will be restored to full health.
+msgbox	Deine POKéMON werden vollständig geheilt.
 special LoadPlayerParty
 special SavePlayerParty
 frontier_setpartyorder FRONTIER_PARTY_SIZE
@@ -218,7 +218,7 @@ applymovement LOCALID_ARENA_BATTLE_BLACK_BELT_4 BattleFrontier_BattleArenaBattle
 playse SE_BANG
 waitse
 waitmovement 0
-msgbox	REFEREE: The winner is PLAYER!
+msgbox	SCHIEDSRICHTER: Der Gewinner ist PLAYER!
 closemessage
 call BattleFrontier_EventScript_IncrementWinStreak
 return
@@ -242,7 +242,7 @@ case YES BattleFrontier_BattleArenaBattleRoom_EventScript_PauseChallenge
 case MULTI_B_PRESSED BattleFrontier_BattleArenaBattleRoom_EventScript_AskReadyForOpponent
 goto BattleFrontier_BattleArenaBattleRoom_EventScript_AskRetireChallenge
 = BattleFrontier_BattleArenaBattleRoom_EventScript_PauseChallenge
-msgbox	I am saving your game data. Please wait.
+msgbox	Ich speichere deine Spieldaten. Bitte warten.
 waitmessage
 arena_save CHALLENGE_STATUS_PAUSED
 playse SE_SAVE
@@ -251,32 +251,32 @@ fadescreen FADE_TO_BLACK
 frontier_reset
 end
 = BattleFrontier_BattleArenaBattleRoom_EventScript_ReadyFor7thOpponent
-msgbox	Next up, your seventh opponent! Are you ready to move on?
+msgbox	Als Nächstes dein siebter Gegner! Bist du bereit weiterzumachen?
 waitmessage
 return
 = BattleFrontier_BattleArenaBattleRoom_EventScript_ReadyFor6thOpponent
-msgbox	Next up, your sixth opponent! Are you ready to move on?
+msgbox	Als Nächstes dein sechster Gegner! Bist du bereit weiterzumachen?
 waitmessage
 return
 = BattleFrontier_BattleArenaBattleRoom_EventScript_ReadyFor5thOpponent
-msgbox	Next up, your fifth opponent! Are you ready to move on?
+msgbox	Als Nächstes dein fünfter Gegner! Bist du bereit weiterzumachen?
 waitmessage
 return
 = BattleFrontier_BattleArenaBattleRoom_EventScript_ReadyFor4thOpponent
-msgbox	Next up, your fourth opponent! Are you ready to move on?
+msgbox	Als Nächstes dein vierter Gegner! Bist du bereit weiterzumachen?
 waitmessage
 return
 = BattleFrontier_BattleArenaBattleRoom_EventScript_ReadyFor3rdOpponent
-msgbox	Next up, your third opponent! Are you ready to move on?
+msgbox	Als Nächstes dein dritter Gegner! Bist du bereit weiterzumachen?
 waitmessage
 return
 = BattleFrontier_BattleArenaBattleRoom_EventScript_TycoonUpNext
 goto_if_eq VAR_TEMP_2 1 BattleFrontier_BattleArenaBattleRoom_EventScript_AskReadyForTycoon
-msgbox	My dear challenger!Your skill level is truly astounding!We now would like you to face our leader, the ARENA TYCOON!
+msgbox	Mein lieber Herausforderer!Dein Können ist wahrhaft erstaunlich!Jetzt möchten wir, dass du dich unserer Anführerin, dem ARENA-MOGUL, stellst!
 setvar VAR_TEMP_2 1
 goto BattleFrontier_BattleArenaBattleRoom_EventScript_AskReadyForTycoon
 = BattleFrontier_BattleArenaBattleRoom_EventScript_AskReadyForTycoon
-msgbox	A battle with the ARENA TYCOON! Are you prepared?
+msgbox	Ein Kampf gegen den ARENA-MOGUL! Bist du bereit?
 waitmessage
 call BattleFrontier_EventScript_GetCantRecordBattle
 goto_if_eq VAR_RESULT TRUE BattleFrontier_BattleArenaBattleRoom_EventScript_AskReadyForTycoonNoRecord
@@ -305,7 +305,7 @@ applymovement LOCALID_ARENA_BATTLE_ANNOUNCER BattleFrontier_BattleArenaBattleRoo
 playse SE_M_BELLY_DRUM
 waitse
 waitmovement 0
-msgbox	REFEREE: TRAINER PLAYER! Step forward, please!
+msgbox	SCHIEDSRICHTER: TRAINER PLAYER! Bitte tritt vor!
 closemessage
 applymovement LOCALID_ARENA_BATTLE_PLAYER BattleFrontier_BattleArenaBattleRoom_Movement_PlayerStepForwardLong
 waitmovement 0
@@ -313,7 +313,7 @@ applymovement LOCALID_ARENA_BATTLE_ANNOUNCER BattleFrontier_BattleArenaBattleRoo
 playse SE_M_BELLY_DRUM
 waitse
 waitmovement 0
-msgbox	REFEREE: The ARENA TYCOON! Make way for GRETA!
+msgbox	SCHIEDSRICHTER: Der ARENA-MOGUL! Platz da für GRETA!
 closemessage
 addobject LOCALID_ARENA_BATTLE_OPPONENT
 applymovement LOCALID_ARENA_BATTLE_OPPONENT BattleFrontier_BattleArenaBattleRoom_Movement_GretaEnter
@@ -326,19 +326,19 @@ case FRONTIER_BRAIN_STREAK BattleFrontier_BattleArenaBattleRoom_EventScript_Batt
 case FRONTIER_BRAIN_STREAK_LONG BattleFrontier_BattleArenaBattleRoom_EventScript_BattleGretaGold
 frontier_get FRONTIER_DATA_HEARD_BRAIN_SPEECH
 goto_if_ne VAR_RESULT FALSE BattleFrontier_BattleArenaBattleRoom_EventScript_BattleGretaSilver
-msgbox	GRETA: Hey! Howdy!…Wait, are you the challenger?
+msgbox	GRETA: Hey! Hallöchen!…Moment, bist du der Herausforderer?
 closemessage
 frontier_set FRONTIER_DATA_HEARD_BRAIN_SPEECH
 applymovement LOCALID_ARENA_BATTLE_OPPONENT BattleFrontier_BattleArenaBattleRoom_Movement_GretaLookAroundPlayer
 waitmovement 0
-msgbox	Is that right? Hmm… Hmhm…
+msgbox	Ach, tatsächlich? Hmm… Hmhm…
 closemessage
 applymovement LOCALID_ARENA_BATTLE_OPPONENT BattleFrontier_BattleArenaBattleRoom_Movement_GretaWalkBackToCenter
 waitmovement 0
-msgbox	I don't know how to say it, but… To put it bluntly, you look pretty weak. Are you sure you're up for me?Hmm…Well, all right! We'll take things easy to start with!
+msgbox	Ich weiß nicht, wie ich es sagen soll, aber… Um es klar zu sagen, du siehst ziemlich schwach aus. Bist du dir sicher, dass du es mit mir aufnehmen kannst?Hmm…Na gut! Wir fangen erstmal locker an!
 goto BattleFrontier_BattleArenaBattleRoom_EventScript_BattleGretaSilver
 = BattleFrontier_BattleArenaBattleRoom_EventScript_BattleGretaSilver
-msgbox	Okay! Let's see you ignite my passion for battle!
+msgbox	Okay! Zeig mir, wie du meine Kampfleidenschaft entfachst!
 call BattleFrontier_BattleArenaBattleRoom_EventScript_StartArenaBattle
 goto_if_eq VAR_RESULT 1 BattleFrontier_BattleArenaBattleRoom_EventScript_DefeatedGretaSilver
 goto BattleFrontier_BattleArenaBattleRoom_EventScript_DeclareOpponentWinner
@@ -348,20 +348,20 @@ frontier_getsymbols
 goto_if_ne VAR_RESULT 0 BattleFrontier_BattleArenaBattleRoom_EventScript_ReturnToLobbyWon
 applymovement LOCALID_ARENA_BATTLE_OPPONENT BattleFrontier_BattleArenaBattleRoom_Movement_OpponentStepForwardLong
 waitmovement 0
-msgbox	GRETA: Ow, wait a second! You are tough after all!I like you! Let's see your FRONTIER PASS.
+msgbox	GRETA: Autsch, Moment mal! Du bist doch ziemlich stark!Du gefällst mir! Zeig mir deinen FRONTIER PASS.
 playfanfare MUS_OBTAIN_SYMBOL
-msgbox	The Guts Symbol was embossed on the FRONTIER PASS!
+msgbox	Das Mut-Symbol wurde in den FRONTIER PASS eingeprägt!
 waitmessage
 waitfanfare
 frontier_givesymbol
-msgbox	Hmm…It's going to be fun the next time! I'm looking forward to it!
+msgbox	Hmm…Beim nächsten Mal wird es Spaß machen! Ich freue mich schon darauf!
 goto BattleFrontier_BattleArenaBattleRoom_EventScript_ReturnToLobbyWon
 = BattleFrontier_BattleArenaBattleRoom_EventScript_StartArenaBattle
-msgbox	REFEREE: Set KO Tourney! Begin!
+msgbox	SCHIEDSRICHTER: K.O.-Turnier! Kampf beginnt!
 call BattleFrontier_BattleArenaBattleRoom_EventScript_DoArenaBattle
 return
 = BattleFrontier_BattleArenaBattleRoom_EventScript_BattleGretaGold
-msgbox	Come on, REFEREE! Let's get this started!
+msgbox	Los, SCHIEDSRICHTER! Fangen wir an!
 call BattleFrontier_BattleArenaBattleRoom_EventScript_StartArenaBattle
 goto_if_eq VAR_RESULT 1 BattleFrontier_BattleArenaBattleRoom_EventScript_DefeatedGretaGold
 goto BattleFrontier_BattleArenaBattleRoom_EventScript_DeclareOpponentWinner
@@ -371,27 +371,27 @@ frontier_getsymbols
 goto_if_eq VAR_RESULT 2 BattleFrontier_BattleArenaBattleRoom_EventScript_ReturnToLobbyWon
 applymovement LOCALID_ARENA_BATTLE_OPPONENT BattleFrontier_BattleArenaBattleRoom_Movement_OpponentStepForwardLong
 waitmovement 0
-msgbox	GRETA: Gaaah! Blown away! Let's see your FRONTIER PASS!
+msgbox	GRETA: Gaaah! Umgehauen! Zeig mir deinen FRONTIER PASS!
 playfanfare MUS_OBTAIN_SYMBOL
-msgbox	The Guts Symbol took on a golden shine!
+msgbox	Das Mut-Symbol nahm einen goldenen Glanz an!
 waitmessage
 waitfanfare
 frontier_givesymbol
-msgbox	Arrrgh! This is so infuriating!If we ever battle again, I won't lose! Don't you forget it! Bye-bye!
+msgbox	Arrgh! Das ist so ärgerlich!Sollten wir jemals wieder kämpfen, werde ich nicht verlieren! Vergiss das nicht! Tschüssi!
 goto BattleFrontier_BattleArenaBattleRoom_EventScript_ReturnToLobbyWon
 = BattleFrontier_BattleArenaBattleRoom_EventScript_IntroGretaGold
 frontier_get FRONTIER_DATA_HEARD_BRAIN_SPEECH
 goto_if_ne VAR_RESULT FALSE BattleFrontier_BattleArenaBattleRoom_EventScript_BattleGretaGold
-msgbox	GRETA: Hey! Howdy! You finally won your way up to me!I was getting worried waiting for you! I was really looking forward to seeing you again!
+msgbox	GRETA: Hey! Hallöchen! Du hast dich endlich zu mir vorgekämpft!Ich habe mir schon Sorgen gemacht, während ich auf dich gewartet habe! Ich habe mich wirklich darauf gefreut, dich wiederzusehen!
 closemessage
 frontier_set FRONTIER_DATA_HEARD_BRAIN_SPEECH
 applymovement LOCALID_ARENA_BATTLE_OPPONENT BattleFrontier_BattleArenaBattleRoom_Movement_GretaLookAroundPlayer
 waitmovement 0
-msgbox	… … … So, are you ready?
+msgbox	… … … Also, bist du bereit?
 closemessage
 applymovement LOCALID_ARENA_BATTLE_OPPONENT BattleFrontier_BattleArenaBattleRoom_Movement_GretaWalkBackToCenter
 waitmovement 0
-msgbox	I won't allow a halfhearted effort! Be ready for a thrashing!
+msgbox	Halbherzigen Einsatz lasse ich nicht durchgehen! Mach dich auf eine ordentliche Abreibung gefasst!
 goto BattleFrontier_BattleArenaBattleRoom_EventScript_BattleGretaGold
 mapsec
 22 12 1 1	BATTLE FRONTIER

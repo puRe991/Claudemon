@@ -78,7 +78,7 @@ lock
 faceplayer
 msgboxyesno	Aye, mate, there's nothing here to see or do on this forgettable island.What say we sail back to LILYCOVE?
 goto_if_eq VAR_RESULT NO SouthernIsland_Exterior_EventScript_AsYouLike
-msgbox	Aye, right, then! Sail home we will!
+msgbox	Aye, gut denn! Wir segeln nach Hause!
 closemessage
 applymovement VAR_LAST_TALKED Common_Movement_WalkInPlaceFasterDown
 waitmovement 0
@@ -91,7 +91,7 @@ waitstate
 release
 end
 = SouthernIsland_Exterior_EventScript_AsYouLike
-msgbox	Aye, right, as you like, then.
+msgbox	Aye, gut, wie du meinst.
 release
 end
 water

@@ -27,17 +27,17 @@ npcs
 people_woman_5 4 5 N static 0 - 0
 people_woman_5 4 4 S static 0 - 0
 dialogs
-0	Far away, deep in EVER GRANDE CITY, is the POKéMON LEAGUE.The TRAINERS who gather there are all frighteningly well skilled.
-1	In the POKéMON LEAGUE, I think the rules say that you have to battle the ELITE FOUR all in a row.If you lose to any of them, you have to begin your challenge again from the first one.
+0	Weit weg, tief in EVER GRANDE CITY, liegt die POKéMON-LIGA.Die TRAINER, die sich dort versammeln, sind alle erschreckend gut trainiert.
+1	In der POKéMON-LIGA lauten die Regeln, glaube ich, so, dass man gegen die TOP VIER nacheinander antreten muss.Wenn man gegen einen von ihnen verliert, muss man seine Herausforderung wieder beim ersten beginnen.
 objscripts
 0 VerdanturfTown_House_EventScript_Woman1
 1 VerdanturfTown_House_EventScript_Woman2
 scriptdefs
 = VerdanturfTown_House_EventScript_Woman2
-msgbox	In the POKéMON LEAGUE, I think the rules say that you have to battle the ELITE FOUR all in a row.If you lose to any of them, you have to begin your challenge again from the first one.
+msgbox	In der POKéMON-LIGA lauten die Regeln, glaube ich, so, dass man gegen die TOP VIER nacheinander antreten muss.Wenn man gegen einen von ihnen verliert, muss man seine Herausforderung wieder beim ersten beginnen.
 end
 = VerdanturfTown_House_EventScript_Woman1
-msgbox	Far away, deep in EVER GRANDE CITY, is the POKéMON LEAGUE.The TRAINERS who gather there are all frighteningly well skilled.
+msgbox	Weit weg, tief in EVER GRANDE CITY, liegt die POKéMON-LIGA.Die TRAINER, die sich dort versammeln, sind alle erschreckend gut trainiert.
 end
 mapsec
 4 6 1 1	VERDANTURF TOWN

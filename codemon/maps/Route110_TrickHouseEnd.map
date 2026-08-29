@@ -24,7 +24,7 @@ warps
 npcs
 people_man_1 4 5 E static FLAG_HIDE_TRICK_HOUSE_END_MAN LOCALID_TRICK_MASTER_END 0
 dialogs
-0	Aak! You've made it to me? Hmmm… You're sharp!
+0	Haa! Du hast es bis zu mir geschafft? Hmmm… Du bist scharfsinnig!
 objscripts
 0 Route110_TrickHouseEnd_EventScript_TrickMaster
 triggers
@@ -69,7 +69,7 @@ waitmovement 0
 playse SE_M_EXPLOSION
 applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterDown
 waitmovement 0
-msgbox	Now, now! You're ignoring me now? Now that, I consider heartbreaking!
+msgbox	Na, na! Ignorierst du mich jetzt etwa? Das finde ich wirklich herzzerreißend!
 closemessage
 applymovement LOCALID_PLAYER Route110_TrickHouseEnd_Movement_KeepPlayerInRoom
 waitmovement 0
@@ -80,7 +80,7 @@ end
 = Route110_TrickHouseEnd_EventScript_TrickMaster
 lock
 faceplayer
-msgbox	Aak! You've made it to me? Hmmm… You're sharp!
+msgbox	Haa! Du hast es bis zu mir geschafft? Hmmm… Du bist scharfsinnig!
 setvar VAR_TEMP_2 1
 switch VAR_TRICK_HOUSE_LEVEL
 case 0 Route110_TrickHouseEnd_EventScript_CompletedPuzzle1
@@ -93,23 +93,23 @@ case 6 Route110_TrickHouseEnd_EventScript_CompletedPuzzle7
 case 7 Route110_TrickHouseEnd_EventScript_CompletedPuzzle8
 end
 = Route110_TrickHouseEnd_EventScript_CompletedPuzzle8
-msgbox	It took me all night polishing floors…You're above me in greatness! Possibly…
+msgbox	Es hat mich die ganze Nacht gekostet, die Böden zu polieren…Du übertriffst mich an Großartigkeit! Vielleicht…
 closemessage
 call_if_eq VAR_FACING DIR_SOUTH Route110_TrickHouseEnd_EventScript_TrickMasterFaceAwaySouth
 call_if_eq VAR_FACING DIR_NORTH Route110_TrickHouseEnd_EventScript_TrickMasterFaceAwayNorth
 call_if_eq VAR_FACING DIR_WEST Route110_TrickHouseEnd_EventScript_TrickMasterFaceAwayWest
 call_if_eq VAR_FACING DIR_EAST Route110_TrickHouseEnd_EventScript_TrickMasterFaceAwayEast
 delay 30
-msgbox	Wh-what should I do? My fountain of ideas for tricks has run dry…Perhaps it is time I toured the country on a quest to devise new tricks…
+msgbox	W-was soll ich nur tun? Mein Ideenquell für Tricks ist versiegt…Vielleicht ist es Zeit, das Land zu bereisen, um neue Tricks zu ersinnen…
 closemessage
 applymovement LOCALID_TRICK_MASTER_END Common_Movement_FacePlayer
 waitmovement 0
 delay 30
-msgbox	I hate to admit defeat, but you have bested me!Still, you must have been reeled in by my charisma for you to visit me again and again. Yes, you must have!But that has nothing to do with my losing!In recognition of the friendship between you, the driven, and the genius that is myself, I demand that you take this keepsake!Actually there are two-- a RED TENT and a BLUE TENT. Which do you prefer?
+msgbox	Es fällt mir schwer, eine Niederlage einzugestehen, aber du hast mich bezwungen!Dennoch musst du von meinem Charisma angezogen worden sein, um mich immer wieder zu besuchen. Ja, das muss so sein!Aber das hat nichts mit meiner Niederlage zu tun!In Anerkennung der Freundschaft zwischen dir, dem Ehrgeizigen, und dem Genie, das ich bin, verlange ich, dass du dieses Andenken annimmst!Eigentlich gibt es zwei-- ein ROTES ZELT und ein BLAUES ZELT. Welches bevorzugst du?
 setvar VAR_TRICK_HOUSE_PRIZE_PICKUP 0
 call Route110_TrickHouseEnd_EventScript_ChooseTent
 call_if_eq VAR_RESULT FALSE Route110_TrickHouseEnd_EventScript_NoRoomForTent
-msgbox	… … … … … …I am leaving on a journey of discovery. A quest in search of new tricks.I wish that you will one day visit and entertain me again.And now, farewell!
+msgbox	… … … … … …Ich breche auf zu einer Reise der Entdeckungen. Auf der Suche nach neuen Tricks.Ich wünsche mir, dass du mich eines Tages wieder besuchst und unterhältst.Und nun, leb wohl!
 call Route110_TrickHouseEnd_EventScript_TrickMasterExit
 special ResetTrickHouseNuggetFlag
 release
@@ -125,7 +125,7 @@ addvar VAR_TRICK_HOUSE_LEVEL 1
 return
 = Route110_TrickHouseEnd_EventScript_NoRoomForTent
 call Common_EventScript_NoRoomForDecor
-msgbox	What? No room in your PC? What am I to make of that?I wish I could say that, but I am much too kind and caring, so come back later!
+msgbox	Was? Kein Platz in deinem PC? Was soll ich davon nur halten?Ich würde das ja gerne sagen, aber ich bin viel zu freundlich und rücksichtsvoll, also komm später wieder!
 setvar VAR_TRICK_HOUSE_PRIZE_PICKUP 1
 return
 = Route110_TrickHouseEnd_EventScript_ChooseTent
@@ -156,83 +156,83 @@ applymovement LOCALID_TRICK_MASTER_END Common_Movement_WalkInPlaceFasterDown
 waitmovement 0
 return
 = Route110_TrickHouseEnd_EventScript_CompletedPuzzle7
-msgbox	It took me all night setting up arrows…You're my equal in greatness!
-msgbox	Fine! You have earned this reward!
+msgbox	Es hat mich die ganze Nacht gekostet, die Pfeile aufzustellen…Du bist mir an Großartigkeit ebenbürtig!
+msgbox	Na gut! Du hast dir diese Belohnung verdient!
 setvar VAR_TRICK_HOUSE_PRIZE_PICKUP 0
 giveitem ITEM_PP_MAX
 call_if_eq VAR_RESULT FALSE Route110_TrickHouseEnd_EventScript_BagFull
-msgbox	Scrub that smug smirk from your face! It's much too early to think you've won!I'll make new tricks to stump you, I will. You may mock me only when you're done.Come back for the next exciting installment!
+msgbox	Wisch dir dieses selbstgefällige Grinsen aus dem Gesicht! Es ist viel zu früh zu glauben, du hättest gewonnen!Ich werde neue Tricks ersinnen, um dich zu verblüffen, das werde ich. Du darfst mich erst verspotten, wenn du fertig bist.Komm wieder für die nächste aufregende Folge!
 closemessage
 call Route110_TrickHouseEnd_EventScript_TrickMasterExit
 release
 end
 = Route110_TrickHouseEnd_EventScript_BagFull
 call Common_EventScript_BagIsFull
-msgbox	What? Have you no room for this? What manner of items do you carry?But fine, since you've reached me, your reward will be with me till later.
+msgbox	Was? Du hast keinen Platz dafür? Was für Sachen trägst du eigentlich mit dir herum?Aber gut, da du mich erreicht hast, bewahre ich deine Belohnung für später auf.
 setvar VAR_TRICK_HOUSE_PRIZE_PICKUP 1
 return
 = Route110_TrickHouseEnd_EventScript_CompletedPuzzle6
-msgbox	It took me all night to install the doors…You're almost my equal in greatness!
-msgbox	Fine! You have earned this reward!
+msgbox	Es hat mich die ganze Nacht gekostet, die Türen einzubauen…Du bist mir an Großartigkeit fast ebenbürtig!
+msgbox	Na gut! Du hast dir diese Belohnung verdient!
 setvar VAR_TRICK_HOUSE_PRIZE_PICKUP 0
 giveitem ITEM_MAGNET
 call_if_eq VAR_RESULT FALSE Route110_TrickHouseEnd_EventScript_BagFull
-msgbox	Scrub that smug smirk from your face! It's much too early to think you've won!I'll make new tricks to stump you, I will. You may mock me only when you're done.Come back for the next exciting installment!
+msgbox	Wisch dir dieses selbstgefällige Grinsen aus dem Gesicht! Es ist viel zu früh zu glauben, du hättest gewonnen!Ich werde neue Tricks ersinnen, um dich zu verblüffen, das werde ich. Du darfst mich erst verspotten, wenn du fertig bist.Komm wieder für die nächste aufregende Folge!
 closemessage
 call Route110_TrickHouseEnd_EventScript_TrickMasterExit
 release
 end
 = Route110_TrickHouseEnd_EventScript_CompletedPuzzle5
-msgbox	It took me all night to make MECHADOLLS and another to think up the quiz…You're almost my equal in greatness by one, two places!
-msgbox	Fine! You have earned this reward!
+msgbox	Es hat mich eine ganze Nacht gekostet, MECHAPUPPEN zu bauen, und eine weitere, mir das Quiz auszudenken…Du bist mir an Großartigkeit fast ebenbürtig, nur um eins, zwei Plätze dahinter!
+msgbox	Na gut! Du hast dir diese Belohnung verdient!
 setvar VAR_TRICK_HOUSE_PRIZE_PICKUP 0
 giveitem ITEM_TM_TAUNT
 call_if_eq VAR_RESULT FALSE Route110_TrickHouseEnd_EventScript_BagFull
-msgbox	Scrub that smug smirk from your face! It's much too early to think you've won!I'll make new tricks to stump you, I will. You may mock me only when you're done.Come back for the next exciting installment!
+msgbox	Wisch dir dieses selbstgefällige Grinsen aus dem Gesicht! Es ist viel zu früh zu glauben, du hättest gewonnen!Ich werde neue Tricks ersinnen, um dich zu verblüffen, das werde ich. Du darfst mich erst verspotten, wenn du fertig bist.Komm wieder für die nächste aufregende Folge!
 closemessage
 call Route110_TrickHouseEnd_EventScript_TrickMasterExit
 release
 end
 = Route110_TrickHouseEnd_EventScript_CompletedPuzzle4
-msgbox	It took me all night to shove in those boulders…You're almost my equal in greatness by one, two, three places!
-msgbox	Fine! You have earned this reward!
+msgbox	Es hat mich die ganze Nacht gekostet, diese Felsbrocken hineinzuschieben…Du bist mir an Großartigkeit fast ebenbürtig, nur um eins, zwei, drei Plätze dahinter!
+msgbox	Na gut! Du hast dir diese Belohnung verdient!
 setvar VAR_TRICK_HOUSE_PRIZE_PICKUP 0
 giveitem ITEM_SMOKE_BALL
 call_if_eq VAR_RESULT FALSE Route110_TrickHouseEnd_EventScript_BagFull
-msgbox	Scrub that smug smirk from your face! It's much too early to think you've won!I'll make new tricks to stump you, I will. You may mock me only when you're done.Come back for the next exciting installment!
+msgbox	Wisch dir dieses selbstgefällige Grinsen aus dem Gesicht! Es ist viel zu früh zu glauben, du hättest gewonnen!Ich werde neue Tricks ersinnen, um dich zu verblüffen, das werde ich. Du darfst mich erst verspotten, wenn du fertig bist.Komm wieder für die nächste aufregende Folge!
 closemessage
 call Route110_TrickHouseEnd_EventScript_TrickMasterExit
 release
 end
 = Route110_TrickHouseEnd_EventScript_CompletedPuzzle3
-msgbox	It took me all night to prepare the wall panels…You're almost my equal in greatness by one, two, three, four places!
-msgbox	Fine! You have earned this reward!
+msgbox	Es hat mich die ganze Nacht gekostet, die Wandpaneele vorzubereiten…Du bist mir an Großartigkeit fast ebenbürtig, nur um eins, zwei, drei, vier Plätze dahinter!
+msgbox	Na gut! Du hast dir diese Belohnung verdient!
 setvar VAR_TRICK_HOUSE_PRIZE_PICKUP 0
 giveitem ITEM_HARD_STONE
 call_if_eq VAR_RESULT FALSE Route110_TrickHouseEnd_EventScript_BagFull
-msgbox	Scrub that smug smirk from your face! It's much too early to think you've won!I'll make new tricks to stump you, I will. You may mock me only when you're done.Come back for the next exciting installment!
+msgbox	Wisch dir dieses selbstgefällige Grinsen aus dem Gesicht! Es ist viel zu früh zu glauben, du hättest gewonnen!Ich werde neue Tricks ersinnen, um dich zu verblüffen, das werde ich. Du darfst mich erst verspotten, wenn du fertig bist.Komm wieder für die nächste aufregende Folge!
 closemessage
 call Route110_TrickHouseEnd_EventScript_TrickMasterExit
 release
 end
 = Route110_TrickHouseEnd_EventScript_CompletedPuzzle2
-msgbox	It took me all night to make the maze…You're almost my equal in greatness by one, two, three, four, five places!
-msgbox	Fine! You have earned this reward!
+msgbox	Es hat mich die ganze Nacht gekostet, das Labyrinth zu bauen…Du bist mir an Großartigkeit fast ebenbürtig, nur um eins, zwei, drei, vier, fünf Plätze dahinter!
+msgbox	Na gut! Du hast dir diese Belohnung verdient!
 setvar VAR_TRICK_HOUSE_PRIZE_PICKUP 0
 giveitem ITEM_TIMER_BALL
 call_if_eq VAR_RESULT FALSE Route110_TrickHouseEnd_EventScript_BagFull
-msgbox	Scrub that smug smirk from your face! It's much too early to think you've won!I'll make new tricks to stump you, I will. You may mock me only when you're done.Come back for the next exciting installment!
+msgbox	Wisch dir dieses selbstgefällige Grinsen aus dem Gesicht! Es ist viel zu früh zu glauben, du hättest gewonnen!Ich werde neue Tricks ersinnen, um dich zu verblüffen, das werde ich. Du darfst mich erst verspotten, wenn du fertig bist.Komm wieder für die nächste aufregende Folge!
 closemessage
 call Route110_TrickHouseEnd_EventScript_TrickMasterExit
 release
 end
 = Route110_TrickHouseEnd_EventScript_CompletedPuzzle1
-msgbox	It took me all night to plant all those trees…You're almost my equal in greatness by one, two, three, four, five, six places!
-msgbox	Fine! You have earned this reward!
+msgbox	Es hat mich die ganze Nacht gekostet, all diese Bäume zu pflanzen…Du bist mir an Großartigkeit fast ebenbürtig, nur um eins, zwei, drei, vier, fünf, sechs Plätze dahinter!
+msgbox	Na gut! Du hast dir diese Belohnung verdient!
 setvar VAR_TRICK_HOUSE_PRIZE_PICKUP 0
 giveitem ITEM_RARE_CANDY
 call_if_eq VAR_RESULT FALSE Route110_TrickHouseEnd_EventScript_BagFull
-msgbox	Scrub that smug smirk from your face! It's much too early to think you've won!I'll make new tricks to stump you, I will. You may mock me only when you're done.Come back for the next exciting installment!
+msgbox	Wisch dir dieses selbstgefällige Grinsen aus dem Gesicht! Es ist viel zu früh zu glauben, du hättest gewonnen!Ich werde neue Tricks ersinnen, um dich zu verblüffen, das werde ich. Du darfst mich erst verspotten, wenn du fertig bist.Komm wieder für die nächste aufregende Folge!
 closemessage
 call Route110_TrickHouseEnd_EventScript_TrickMasterExit
 release

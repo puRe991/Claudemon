@@ -68,16 +68,16 @@ people_beauty 9 7 S static 0 - 3
 people_woman_2 6 13 E static 0 - 3
 people_pokefan_f 10 13 W static 0 - 3
 dialogs
-0	Watch what happens if you crack all the floor tiles.
-1	I'll tell you something good.If you want to reach JUAN, you need to walk on each floor tile once.
-2	You couldn't lay a finger on JUAN, I'm sure. Giggle…
-3	Rather than being satisfied by being in a strong GYM, I imagine training in other places will make you stronger. But above all, it looks more fun.
-4	This is really obvious, but how strong you are as a TRAINER has nothing to do with how young or old you are.
-5	I wish I could forget about lost causes before I can manage an “Oops!”
-6	You might be good enough to avoid being wiped out in one hit by JUAN.
-7	I think you have potential. Why don't you stay and train with us?
-8	The grace you bring to battle is fabulous.Oh… I'm so fortunate to have found POKéMON.
-9	I came to this GYM because JUAN praised me for my darling POKéMON.Oh, if only I'd met JUAN years ago when I was younger…
+0	Schau mal, was passiert, wenn du alle Bodenfliesen zerbrichst.
+1	Ich verrate dir was Gutes.Wenn du zu JUAN gelangen willst, musst du jede Bodenfliese genau einmal betreten.
+2	Du hast JUAN sicher nicht mal ansatzweise berühren können. Kicher…
+3	Anstatt sich mit einer starken ARENA zufriedenzugeben, glaube ich, dass Training an anderen Orten dich stärker macht. Aber vor allem sieht es mehr nach Spaß aus.
+4	Das ist eigentlich offensichtlich, aber wie stark du als TRAINER bist, hat nichts mit deinem Alter zu tun.
+5	Ich wünschte, ich könnte hoffnungslose Fälle vergessen, bevor ich überhaupt „Hoppla!“ sagen kann.
+6	Du bist vielleicht gut genug, um nicht von JUAN mit einem Schlag ausgelöscht zu werden.
+7	Ich finde, du hast Potenzial. Warum bleibst du nicht und trainierst mit uns?
+8	Die Anmut, die du in den Kampf bringst, ist fabelhaft.Oh… Ich schätze mich so glücklich, POKéMON gefunden zu haben.
+9	Ich kam zu dieser ARENA, weil JUAN meine bezaubernden POKéMON gelobt hat.Oh, hätte ich JUAN doch nur vor Jahren getroffen, als ich jünger war…
 objscripts
 0 SootopolisCity_Gym_B1F_EventScript_Andrea
 1 SootopolisCity_Gym_B1F_EventScript_Connie
@@ -92,43 +92,43 @@ objscripts
 scriptdefs
 = SootopolisCity_Gym_B1F_EventScript_Annika
 trainerbattle_single TRAINER_ANNIKA SootopolisCity_Gym_B1F_Text_AnnikaIntro SootopolisCity_Gym_B1F_Text_AnnikaDefeat
-msgbox	I came to this GYM because JUAN praised me for my darling POKéMON.Oh, if only I'd met JUAN years ago when I was younger…
+msgbox	Ich kam zu dieser ARENA, weil JUAN meine bezaubernden POKéMON gelobt hat.Oh, hätte ich JUAN doch nur vor Jahren getroffen, als ich jünger war…
 end
 = SootopolisCity_Gym_B1F_EventScript_Daphne
 trainerbattle_single TRAINER_DAPHNE SootopolisCity_Gym_B1F_Text_DaphneIntro SootopolisCity_Gym_B1F_Text_DaphneDefeat
-msgbox	The grace you bring to battle is fabulous.Oh… I'm so fortunate to have found POKéMON.
+msgbox	Die Anmut, die du in den Kampf bringst, ist fabelhaft.Oh… Ich schätze mich so glücklich, POKéMON gefunden zu haben.
 end
 = SootopolisCity_Gym_B1F_EventScript_Olivia
 trainerbattle_single TRAINER_OLIVIA SootopolisCity_Gym_B1F_Text_OliviaIntro SootopolisCity_Gym_B1F_Text_OliviaDefeat
-msgbox	I think you have potential. Why don't you stay and train with us?
+msgbox	Ich finde, du hast Potenzial. Warum bleibst du nicht und trainierst mit uns?
 end
 = SootopolisCity_Gym_B1F_EventScript_Crissy
 trainerbattle_single TRAINER_CRISSY SootopolisCity_Gym_B1F_Text_CrissyIntro SootopolisCity_Gym_B1F_Text_CrissyDefeat
-msgbox	You might be good enough to avoid being wiped out in one hit by JUAN.
+msgbox	Du bist vielleicht gut genug, um nicht von JUAN mit einem Schlag ausgelöscht zu werden.
 end
 = SootopolisCity_Gym_B1F_EventScript_Bethany
 trainerbattle_single TRAINER_BETHANY SootopolisCity_Gym_B1F_Text_BethanyIntro SootopolisCity_Gym_B1F_Text_BethanyDefeat
-msgbox	I wish I could forget about lost causes before I can manage an “Oops!”
+msgbox	Ich wünschte, ich könnte hoffnungslose Fälle vergessen, bevor ich überhaupt „Hoppla!“ sagen kann.
 end
 = SootopolisCity_Gym_B1F_EventScript_Tiffany
 trainerbattle_single TRAINER_TIFFANY SootopolisCity_Gym_B1F_Text_TiffanyIntro SootopolisCity_Gym_B1F_Text_TiffanyDefeat
-msgbox	This is really obvious, but how strong you are as a TRAINER has nothing to do with how young or old you are.
+msgbox	Das ist eigentlich offensichtlich, aber wie stark du als TRAINER bist, hat nichts mit deinem Alter zu tun.
 end
 = SootopolisCity_Gym_B1F_EventScript_Bridget
 trainerbattle_single TRAINER_BRIDGET SootopolisCity_Gym_B1F_Text_BridgetIntro SootopolisCity_Gym_B1F_Text_BridgetDefeat
-msgbox	Rather than being satisfied by being in a strong GYM, I imagine training in other places will make you stronger. But above all, it looks more fun.
+msgbox	Anstatt sich mit einer starken ARENA zufriedenzugeben, glaube ich, dass Training an anderen Orten dich stärker macht. Aber vor allem sieht es mehr nach Spaß aus.
 end
 = SootopolisCity_Gym_B1F_EventScript_Brianna
 trainerbattle_single TRAINER_BRIANNA SootopolisCity_Gym_B1F_Text_BriannaIntro SootopolisCity_Gym_B1F_Text_BriannaDefeat
-msgbox	You couldn't lay a finger on JUAN, I'm sure. Giggle…
+msgbox	Du hast JUAN sicher nicht mal ansatzweise berühren können. Kicher…
 end
 = SootopolisCity_Gym_B1F_EventScript_Connie
 trainerbattle_single TRAINER_CONNIE SootopolisCity_Gym_B1F_Text_ConnieIntro SootopolisCity_Gym_B1F_Text_ConnieDefeat
-msgbox	I'll tell you something good.If you want to reach JUAN, you need to walk on each floor tile once.
+msgbox	Ich verrate dir was Gutes.Wenn du zu JUAN gelangen willst, musst du jede Bodenfliese genau einmal betreten.
 end
 = SootopolisCity_Gym_B1F_EventScript_Andrea
 trainerbattle_single TRAINER_ANDREA SootopolisCity_Gym_B1F_Text_AndreaIntro SootopolisCity_Gym_B1F_Text_AndreaDefeat
-msgbox	Watch what happens if you crack all the floor tiles.
+msgbox	Schau mal, was passiert, wenn du alle Bodenfliesen zerbrichst.
 end
 mapsec
 21 7 1 1	SOOTOPOLIS CITY

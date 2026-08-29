@@ -88,17 +88,17 @@ end
 @ And the BG Door event was moved inaccessibly into a wall
 goto RS_MysteryEventsHouse_EventScript_Door
 = RS_MysteryEventsHouse_EventScript_Door
-msgbox	The door appears to be locked.
+msgbox	Die Tür scheint verschlossen zu sein.
 end
 = MossdeepCity_GameCorner_1F_EventScript_OldMan2
 lock
 faceplayer
-msgbox	Hi, welcome! Are you here to play games using Wireless Communication?Can you wait just a little bit?
+msgbox	Hi, willkommen! Bist du hier, um Spiele über die Kabellose Kommunikation zu spielen?Kannst du bitte kurz warten?
 waitmessage
 specialvar VAR_RESULT IsWirelessAdapterConnected
 goto_if_eq VAR_RESULT FALSE MossdeepCity_GameCorner_1F_EventScript_AdapterNotConnected
 delay 60
-msgbox	All right, which game did you want to play?
+msgbox	Also gut, welches Spiel möchtest du spielen?
 waitmessage
 multichoice 0 0 MULTI_WIRELESS_MINIGAME FALSE
 switch VAR_RESULT
@@ -109,7 +109,7 @@ case MULTI_B_PRESSED MossdeepCity_GameCorner_1F_EventScript_AbortMinigame
 end
 = MossdeepCity_GameCorner_1F_EventScript_AbortMinigame
 special CloseLink
-msgbox	All right, come again!
+msgbox	Alles klar, komm bald wieder!
 release
 end
 @ Unused
@@ -122,7 +122,7 @@ end
 setvar VAR_0x8005 1
 special IsDodrioInParty
 goto_if_eq VAR_RESULT FALSE MossdeepCity_GameCorner_1F_EventScript_DontHaveRequiredMon
-msgbox	Which POKéMON would you like to enter?
+msgbox	Welches POKéMON möchtest du anmelden?
 fadescreen FADE_TO_BLACK
 setvar VAR_0x8005 1
 special ChooseMonForWirelessMinigame
@@ -133,7 +133,7 @@ setvar VAR_0x8004 LINK_GROUP_BERRY_PICKING
 goto MossdeepCity_GameCorner_1F_EventScript_ChooseLinkLeader
 end
 = MossdeepCity_GameCorner_1F_EventScript_ChooseLinkLeader
-msgbox	Please decide which of you will become the GROUP LEADER.The other players must then choose “JOIN GROUP.”
+msgbox	Bitte entscheidet, wer von euch GRUPPENLEITER wird.Die anderen Spieler müssen dann „GRUPPE BEITRETEN“ wählen.
 waitmessage
 multichoice 16 6 MULTI_LINK_LEADER FALSE
 switch VAR_RESULT
@@ -196,16 +196,16 @@ call_if_eq VAR_0x8005 1 MossdeepCity_GameCorner_1F_EventScript_ExplainDodrioBerr
 goto MossdeepCity_GameCorner_1F_EventScript_AbortMinigame
 end
 = MossdeepCity_GameCorner_1F_EventScript_ExplainDodrioBerryPickingRequirements
-msgbox	DODRIO BERRY-PICKING is a game that only DODRIO may enter.
+msgbox	DODRIO-BEERENPFLÜCKEN ist ein Spiel, an dem nur DODRIO teilnehmen darf.
 return
 = MossdeepCity_GameCorner_1F_EventScript_ExplainPokemonJumpRequirements
-msgbox	“POKéMON JUMP” is open to POKéMON around 28 inches or less.What you can't enter are those POKéMON that can't jump.You know, like POKéMON that only swim, burrow, or fly.That's all you need to know.
+msgbox	„POKéMON-SEILSPRINGEN“ steht POKéMON mit einer Größe von etwa 70 cm oder weniger offen.Was du nicht anmelden kannst, sind POKéMON, die nicht springen können.Du weißt schon, wie POKéMON, die nur schwimmen, graben oder fliegen.Mehr musst du nicht wissen.
 return
 = MossdeepCity_GameCorner_1F_EventScript_PlayPokemonJump
 setvar VAR_0x8005 0
 special IsPokemonJumpSpeciesInParty
 goto_if_eq VAR_RESULT FALSE MossdeepCity_GameCorner_1F_EventScript_DontHaveRequiredMon
-msgbox	Which POKéMON would you like to enter?
+msgbox	Welches POKéMON möchtest du anmelden?
 fadescreen FADE_TO_BLACK
 setvar VAR_0x8005 0
 special ChooseMonForWirelessMinigame
@@ -217,13 +217,13 @@ goto MossdeepCity_GameCorner_1F_EventScript_ChooseLinkLeader
 end
 = MossdeepCity_GameCorner_1F_EventScript_AdapterNotConnected
 delay 60
-msgbox	The Wireless Adapter isn't connected. Come back when it's hooked up!
+msgbox	Der Kabellos-Adapter ist nicht angeschlossen. Komm wieder, wenn er verbunden ist!
 release
 end
 = MossdeepCity_GameCorner_1F_EventScript_InfoMan2
 lock
 faceplayer
-msgbox	I can explain game rules to you, if you'd like.Which game should I describe?
+msgbox	Ich kann dir die Spielregeln erklären, wenn du möchtest.Welches Spiel soll ich dir beschreiben?
 waitmessage
 multichoice 0 0 MULTI_WIRELESS_MINIGAME FALSE
 switch VAR_RESULT
@@ -233,19 +233,19 @@ case 2 MossdeepCity_GameCorner_1F_EventScript_MinigameInfoExit
 case MULTI_B_PRESSED MossdeepCity_GameCorner_1F_EventScript_MinigameInfoExit
 end
 = MossdeepCity_GameCorner_1F_EventScript_MinigameInfoExit
-msgbox	If you want to play a game, please tell the old man beside me.
+msgbox	Wenn du ein Spiel spielen möchtest, sag es bitte dem alten Mann neben mir.
 release
 end
 = MossdeepCity_GameCorner_1F_EventScript_DodrioBerryPickingInfo
-msgbox	“DODRIO BERRY-PICKING”Command DODRIO's three heads to catch falling BERRIES.Press right, up, or left on the Control Pad to move the heads.To play this game, you must have a DODRIO.
+msgbox	„DODRIO-BEERENPFLÜCKEN“Steuere die drei Köpfe von DODRIO, um fallende BEEREN zu fangen.Drücke rechts, hoch oder links auf dem Steuerkreuz, um die Köpfe zu bewegen.Um dieses Spiel zu spielen, brauchst du ein DODRIO.
 release
 end
 = MossdeepCity_GameCorner_1F_EventScript_PokemonJumpInfo
-msgbox	“POKéMON JUMP”Make your POKéMON skip the VINE WHIP rope with the A Button.Only mini POKéMON around 28 inches or less may participate.POKéMON that only swim, burrow, or fly are not good at jumping.As a result, those POKéMON may not participate.Good things happen if everyone jumps in time.
+msgbox	„POKéMON-SEILSPRINGEN“Lass dein POKéMON mit der A-Taste über das RANKENHIEB-Seil springen.Nur kleine POKéMON mit etwa 70 cm oder weniger dürfen teilnehmen.POKéMON, die nur schwimmen, graben oder fliegen, können nicht gut springen.Deshalb dürfen diese POKéMON nicht teilnehmen.Wenn alle im Takt springen, passieren gute Dinge.
 release
 end
 signs
-3 0	The door appears to be locked.
+3 0	Die Tür scheint verschlossen zu sein.
 mapsec
 24 5 2 1	MOSSDEEP CITY
 music
