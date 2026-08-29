@@ -31,7 +31,7 @@ public:
 	               OUTCOME_RAN = 4, OUTCOME_CAUGHT = 7 };
 
 private:
-	enum Phase { INACTIVE, MSG, ACTION, MOVE, SWITCH };
+	enum Phase { INACTIVE, MSG, ACTION, MOVE, SWITCH, BAG, ITEM_TARGET };
 	// Simplified flat rate standing in for pokeemerald's per-trainer-class
 	// money field (not imported -- trainers.tsv only carries id + party).
 	static const int PRIZE_MONEY_PER_LEVEL = 20;
@@ -72,6 +72,26 @@ private:
 	void handle_player_faint();
 	void open_switch();           // POKéMON chosen from the action menu
 	void do_switch(int idx);      // send out team[idx]
+
+	// --- BEUTEL (bag) ---------------------------------------------------------
+	// BEUTEL chosen from the action menu: lists every non-machine item the
+	// player is carrying (real pokeemerald filters TMs/HMs out of the
+	// in-battle Items list too -- those go through the overworld Menu's own
+	// TEACH flow instead).
+	int bag_cursor;
+	int item_target_cursor;       // selected party row while picking who gets `pending_item`
+	std::string pending_item;     // item chosen in BAG, waiting for a target in ITEM_TARGET
+	std::vector<std::pair<std::string, int>> bag_sorted() const;
+	void open_bag();
+	// A Poke Ball (or any other *_BALL item) picked from the bag: same catch
+	// flow as the old dedicated BALL action, just keyed off whichever ball
+	// item was actually selected.
+	void throw_ball(const std::string& item);
+	// A non-ball item picked from the bag: go pick who it's used on.
+	void open_item_target(const std::string& item);
+	// Apply pending_item to team[idx] -- heal/cure/revive, same rules as the
+	// overworld Menu's USE_ITEM screen -- and spend the turn on success.
+	void use_item_on(int idx);
 
 	std::vector<std::string> log;
 	size_t log_pos;
@@ -145,7 +165,6 @@ private:
 	void do_move(Mon& atk, Mon& def, const std::string& mv,
 	             const std::string& atk_name);
 	void resolve_turn(const std::string& player_move);
-	void throw_ball();
 	void flee();
 	void enemy_turn_after();     // enemy attacks once, then back to ACTION / end
 	void send_next_enemy();
@@ -224,14 +243,16 @@ public:
 	// the real state instead of guessing how many presses a message queue
 	// needs -- miscounting there silently re-enters the move menu and picks a
 	// different move than intended.
-	enum Screen { SCR_INACTIVE, SCR_MESSAGE, SCR_ACTION, SCR_MOVE, SCR_SWITCH };
+	enum Screen { SCR_INACTIVE, SCR_MESSAGE, SCR_ACTION, SCR_MOVE, SCR_SWITCH, SCR_BAG, SCR_ITEM_TARGET };
 	Screen screen() const {
 		switch (phase) {
-			case MSG:    return SCR_MESSAGE;
-			case ACTION: return SCR_ACTION;
-			case MOVE:   return SCR_MOVE;
-			case SWITCH: return SCR_SWITCH;
-			default:     return SCR_INACTIVE;
+			case MSG:         return SCR_MESSAGE;
+			case ACTION:      return SCR_ACTION;
+			case MOVE:        return SCR_MOVE;
+			case SWITCH:      return SCR_SWITCH;
+			case BAG:         return SCR_BAG;
+			case ITEM_TARGET: return SCR_ITEM_TARGET;
+			default:          return SCR_INACTIVE;
 		}
 	}
 

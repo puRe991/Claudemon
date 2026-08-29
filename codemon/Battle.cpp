@@ -12,10 +12,56 @@ static void deal_damage(Mon& m, int dmg) {
 	if (m.hp == 0) { m.status = Status::NONE; m.status_turns = 0; m.confusion_turns = 0; }
 }
 
+// --- BEUTEL item effects ---------------------------------------------------
+// Mirrors Menu.cpp's own (file-local) helpers of the same shape -- the
+// overworld Bag and the in-battle Bag apply the exact same items to the
+// exact same Mon fields, just from two different screens.
+static bool item_is_machine(const std::string& item) {
+	return item.rfind("ITEM_TM", 0) == 0 || item.rfind("ITEM_HM", 0) == 0;
+}
+static bool item_is_ball(const std::string& item) {
+	return item.size() > 5 && item.compare(item.size() - 5, 5, "_BALL") == 0;
+}
+// HP restored by a healing item; 0 means a full heal. -1 = not a healing item.
+static int item_heal_amount(const std::string& item) {
+	static const std::unordered_map<std::string, int> tbl = {
+		{"ITEM_POTION", 20}, {"ITEM_SUPER_POTION", 50}, {"ITEM_HYPER_POTION", 200},
+		{"ITEM_MAX_POTION", 0}, {"ITEM_FULL_RESTORE", 0},
+		{"ITEM_FRESH_WATER", 50}, {"ITEM_SODA_POP", 60}, {"ITEM_LEMONADE", 80},
+		{"ITEM_MOOMOO_MILK", 100}, {"ITEM_BERRY_JUICE", 20},
+		{"ITEM_ORAN_BERRY", 10}, {"ITEM_SITRUS_BERRY", 30},
+	};
+	auto it = tbl.find(item);
+	return it == tbl.end() ? -1 : it->second;
+}
+static bool item_is_revive(const std::string& item) {
+	return item == "ITEM_REVIVE" || item == "ITEM_MAX_REVIVE" || item == "ITEM_REVIVAL_HERB";
+}
+// The single status a dedicated status healer cures; NONE if `item` isn't one.
+static Status item_status_cured(const std::string& item) {
+	if (item == "ITEM_ANTIDOTE") return Status::POISON;   // also cures TOXIC, see below
+	if (item == "ITEM_PARALYZE_HEAL") return Status::PARALYSIS;
+	if (item == "ITEM_AWAKENING") return Status::SLEEP;
+	if (item == "ITEM_BURN_HEAL") return Status::BURN;
+	if (item == "ITEM_ICE_HEAL") return Status::FREEZE;
+	return Status::NONE;
+}
+// Full Heal cures any status; Full Restore does too, on top of a full heal.
+static bool item_cures_any_status(const std::string& item) {
+	return item == "ITEM_FULL_HEAL" || item == "ITEM_FULL_RESTORE";
+}
+static bool item_has_curable_status(const std::string& item, const Mon& m) {
+	if (item_cures_any_status(item)) return m.status != Status::NONE;
+	Status cures = item_status_cured(item);
+	if (cures == Status::NONE) return false;
+	return m.status == cures || (cures == Status::POISON && m.status == Status::TOXIC);
+}
+
 Battle::Battle()
 	: data(nullptr), rng(nullptr), gs(nullptr), team(nullptr), box(nullptr),
 	  action_cursor(0), font_ok(false), player(nullptr), active_idx(0),
 	  is_trainer(false), party_idx(0), switch_cursor(0), forced_switch(false),
+	  bag_cursor(0), item_target_cursor(0),
 	  log_pos(0), phase(INACTIVE),
 	  after_msg(INACTIVE), cursor(0), over(false), victory(false),
 	  last_outcome(OUTCOME_NONE),
@@ -793,7 +839,7 @@ void Battle::input(BtnInput b) {
 		return;
 	}
 	if (this->phase == ACTION) {
-		// FIGHT / POKEMON / BALL / RUN
+		// KAMPF / BEUTEL / POKéMON / FLUCHT -- real Gen-3 action-menu order.
 		if (b == BTN_UP && this->action_cursor > 0) this->action_cursor--;
 		else if (b == BTN_DOWN && this->action_cursor < 3) this->action_cursor++;
 		else if (b == BTN_CONFIRM) {
@@ -803,8 +849,8 @@ void Battle::input(BtnInput b) {
 				if (out_of_pp(*this->player)) resolve_turn("STRUGGLE");
 				else { this->cursor = 0; this->phase = MOVE; }
 			}
-			else if (this->action_cursor == 1) open_switch();
-			else if (this->action_cursor == 2) throw_ball();
+			else if (this->action_cursor == 1) open_bag();
+			else if (this->action_cursor == 2) open_switch();
 			else flee();
 		}
 		return;
@@ -836,6 +882,35 @@ void Battle::input(BtnInput b) {
 		else if (b == BTN_DOWN && this->switch_cursor + 1 < n) this->switch_cursor++;
 		else if ((b == BTN_LEFT || b == BTN_CANCEL) && !this->forced_switch) this->phase = ACTION;
 		else if (b == BTN_CONFIRM) do_switch(this->switch_cursor);
+		return;
+	}
+	if (this->phase == BAG) {
+		auto items = bag_sorted();
+		int n = (int)items.size();
+		if (b == BTN_CANCEL) { this->phase = ACTION; return; }
+		if (b == BTN_UP && this->bag_cursor > 0) this->bag_cursor--;
+		else if (b == BTN_DOWN && this->bag_cursor + 1 < n) this->bag_cursor++;
+		else if (b == BTN_CONFIRM) {
+			if (items.empty()) return;
+			const std::string& item = items[this->bag_cursor].first;
+			if (item_is_ball(item)) throw_ball(item);
+			else open_item_target(item);
+		}
+		return;
+	}
+	if (this->phase == ITEM_TARGET) {
+		int n = this->team ? (int)this->team->size() : 0;
+		if (b == BTN_CANCEL) {
+			this->phase = BAG;
+			auto items = bag_sorted();
+			if (this->bag_cursor >= (int)items.size())
+				this->bag_cursor = std::max(0, (int)items.size() - 1);
+			return;
+		}
+		if (b == BTN_UP && this->item_target_cursor > 0) this->item_target_cursor--;
+		else if (b == BTN_DOWN && this->item_target_cursor + 1 < n) this->item_target_cursor++;
+		else if (b == BTN_CONFIRM) use_item_on(this->item_target_cursor);
+		return;
 	}
 }
 
@@ -910,18 +985,76 @@ void Battle::enemy_turn_after() {
 	show_messages(ACTION);
 }
 
-void Battle::throw_ball() {
+std::vector<std::pair<std::string, int>> Battle::bag_sorted() const {
+	std::vector<std::pair<std::string, int>> v;
+	if (this->gs)
+		for (const auto& kv : this->gs->bag_items())
+			if (!item_is_machine(kv.first)) v.push_back(kv);
+	std::sort(v.begin(), v.end(),
+	          [](const auto& a, const auto& b) { return a.first < b.first; });
+	return v;
+}
+
+void Battle::open_bag() {
+	this->bag_cursor = 0;
+	this->phase = BAG;
+}
+
+void Battle::open_item_target(const std::string& item) {
+	this->pending_item = item;
+	this->item_target_cursor = (int)this->active_idx;
+	this->phase = ITEM_TARGET;
+}
+
+void Battle::use_item_on(int idx) {
+	if (!this->team || idx < 0 || idx >= (int)this->team->size()) return;
+	Mon& m = (*this->team)[idx];
+	std::string name = nice(m.species);
+	const std::string item = this->pending_item;
+	this->log.clear();
+
+	if (item_is_revive(item)) {
+		if (!m.fainted()) {
+			queue(name + " ist nicht kampfunfähig!");
+			show_messages(ITEM_TARGET);
+			return;
+		}
+		m.hp = (item == "ITEM_MAX_REVIVE") ? m.max_hp : std::max(1, m.max_hp / 2);
+		if (this->gs) this->gs->take_item(item, 1);
+		queue(name + " wurde wiederbelebt!");
+		enemy_turn_after();
+		return;
+	}
+
+	bool cures = item_has_curable_status(item, m);
+	int amt = item_heal_amount(item);            // -1 = doesn't restore HP
+	bool can_heal = amt >= 0 && !m.fainted() && m.hp < m.max_hp;
+	if (!cures && !can_heal) {
+		queue(m.fainted() ? (name + " ist kampfunfähig!")
+		    : (amt >= 0)  ? (name + " hat bereits volle KP!")
+		                  : "Das würde nichts bewirken!");
+		show_messages(ITEM_TARGET);
+		return;
+	}
+	if (cures) { m.status = Status::NONE; m.status_turns = 0; }
+	if (can_heal) m.hp = (amt == 0) ? m.max_hp : std::min(m.max_hp, m.hp + amt);
+	if (this->gs) this->gs->take_item(item, 1);
+	queue(can_heal ? (name + "s KP wurden aufgefüllt!") : (name + " wurde geheilt!"));
+	enemy_turn_after();
+}
+
+void Battle::throw_ball(const std::string& item) {
 	if (this->is_trainer) {
 		this->log.clear(); queue("Du kannst nicht das POKéMON eines TRAINERS fangen!");
 		show_messages(ACTION); return;
 	}
-	if (!this->gs || this->gs->item_count("ITEM_POKE_BALL") <= 0) {
+	if (!this->gs || this->gs->item_count(item) <= 0) {
 		this->log.clear(); queue("Du hast keine POKéBÄLLE mehr!");
 		show_messages(ACTION); return;
 	}
-	this->gs->give_item("ITEM_POKE_BALL", -1);
+	this->gs->take_item(item, 1);
 	this->log.clear();
-	queue("Du hast einen POKéBALL geworfen!");
+	queue("Du hast " + nice(item.substr(5)) + " geworfen!");
 	// Real Gen-3 catch formula (ball bonus is 1.0 -- only the Poke Ball is
 	// functionally implemented): a = (3*maxHP - 2*hp) * catchRate / (3*maxHP),
 	// scaled by a status bonus (2x asleep/frozen, 1.5x any other status).
@@ -1125,21 +1258,15 @@ void Battle::draw(sf::RenderTarget& target) {
 	} else if (this->phase == ACTION) {
 		sf::Text q("Was soll " + nice(this->player->species) + " tun?", this->font, 20);
 		q.setPosition(tx, ty); q.setFillColor(body_col); target.draw(q);
-		static const std::string acts[] = {"KAMPF", "POKéMON", "BALL", "FLUCHT"};
+		static const std::string acts[] = {"KAMPF", "BEUTEL", "POKéMON", "FLUCHT"};
 		for (int i = 0; i < 4; ++i) {
 			bool sel = i == this->action_cursor;
-			bool dis = (i == 2 || i == 3) && this->is_trainer;   // no catching/running trainers
+			bool dis = (i == 3) && this->is_trainer;   // no running from a trainer
 			if (sel) cursor_at(size.x * 0.46f, ty + i * 34);
 			sf::Text a(sf::String::fromUtf8(acts[i].begin(), acts[i].end()), this->font, 22);
 			a.setPosition(size.x * 0.46f, ty + i * 34);
 			a.setFillColor(dis ? dis_col : sel ? head_col : body_col);
 			target.draw(a);
-		}
-		if (this->gs) {
-			std::string bt = "BÄLLE x" + std::to_string(this->gs->item_count("ITEM_POKE_BALL"));
-			sf::Text bc(sf::String::fromUtf8(bt.begin(), bt.end()), this->font, 16);
-			bc.setPosition(size.x * 0.72f, ty + 34);
-			bc.setFillColor(muted_col); target.draw(bc);
 		}
 	} else if (this->phase == MOVE) {
 		std::string qs = "Wähle eine Attacke:";
@@ -1194,6 +1321,50 @@ void Battle::draw(sf::RenderTarget& target) {
 				                     (cur ? " (im Kampf)" : m.fainted() ? " (K.O.)" : "");
 				sf::Text t(sf::String::fromUtf8(label.begin(), label.end()), this->font, 14);
 				t.setPosition(tx + 28, ry); t.setFillColor(col); target.draw(t);
+				draw_hp_bar(target, size.x * 0.62f, ry + 1, 130, 10, m.hp, m.max_hp);
+			}
+		}
+	} else if (this->phase == BAG) {
+		std::string qs = "BEUTEL";
+		sf::Text q(sf::String::fromUtf8(qs.begin(), qs.end()), this->font, 18);
+		q.setPosition(tx, ty - 4); q.setFillColor(body_col); target.draw(q);
+		auto items = bag_sorted();
+		if (items.empty()) {
+			sf::Text e("Keine Items übrig.", this->font, 16);
+			e.setPosition(tx + 14, ty + 24); e.setFillColor(muted_col); target.draw(e);
+		}
+		// Scroll a 6-row window so the cursor is always visible -- the bag can
+		// easily hold more item types than that.
+		int shown = std::min((int)items.size(), 6);
+		int start = std::max(0, std::min(this->bag_cursor - shown + 1,
+		                                  (int)items.size() - shown));
+		for (int row = 0; row < shown; ++row) {
+			int i = start + row;
+			bool sel = i == this->bag_cursor;
+			float ry = ty + 22 + row * 18;
+			if (sel) cursor_at(tx + 14, ry);
+			std::string id = items[i].first;
+			std::string label = nice(id.rfind("ITEM_", 0) == 0 ? id.substr(5) : id) +
+			                     "  x" + std::to_string(items[i].second);
+			sf::Text t(sf::String::fromUtf8(label.begin(), label.end()), this->font, 14);
+			t.setPosition(tx + 28, ry); t.setFillColor(sel ? head_col : body_col); target.draw(t);
+		}
+	} else if (this->phase == ITEM_TARGET) {
+		std::string qs = "Bei wem einsetzen?";
+		sf::Text q(sf::String::fromUtf8(qs.begin(), qs.end()), this->font, 18);
+		q.setPosition(tx, ty - 4); q.setFillColor(body_col); target.draw(q);
+		if (this->team) {
+			int n = std::min((int)this->team->size(), 6);
+			for (int i = 0; i < n; ++i) {
+				const Mon& m = (*this->team)[i];
+				bool sel = i == this->item_target_cursor;
+				float ry = ty + 22 + i * 18;
+				if (sel) cursor_at(tx + 14, ry);
+				sf::Color col = m.fainted() ? dis_col : body_col;
+				std::string label = nice(m.species) + " Lv" + std::to_string(m.level) +
+				                     (m.fainted() ? " (K.O.)" : "");
+				sf::Text t(sf::String::fromUtf8(label.begin(), label.end()), this->font, 14);
+				t.setPosition(tx + 28, ry); t.setFillColor(sel ? head_col : col); target.draw(t);
 				draw_hp_bar(target, size.x * 0.62f, ry + 1, 130, 10, m.hp, m.max_hp);
 			}
 		}

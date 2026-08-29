@@ -452,15 +452,18 @@ static void test_wild_battle_capture(BattleData& bd) {
     battle.set_capture(&gs, &team, &box);
     CHECK(battle.start_wild("MAGIKARP", 5, &team[0]));
 
-    // BALL is the third action-menu row (KAMPF/POKeMON/BALL/FLUCHT, UP+DOWN
-    // only). Drain whatever messages are up, then walk the cursor back to the
-    // top before stepping down -- overshooting lands on FLUCHT and ends the
-    // battle. Magikarp's real catch rate is 255, so this converges fast.
+    // BEUTEL is the second action-menu row (KAMPF/BEUTEL/POKéMON/FLUCHT,
+    // UP+DOWN only); the Poke Ball is the only item in the bag, so confirming
+    // straight off BEUTEL throws it. Drain whatever messages are up, then walk
+    // the cursor back to the top before stepping down -- overshooting lands on
+    // FLUCHT and ends the battle. Magikarp's real catch rate is 255, so this
+    // converges fast.
     for (int i = 0; i < 4000 && battle.active() && team.size() < 2; ++i) {
         if (battle.screen() == Battle::SCR_MESSAGE) { battle.input(BTN_CONFIRM); continue; }
+        if (battle.screen() == Battle::SCR_BAG) { battle.input(BTN_CONFIRM); continue; }   // -> throw the ball
         if (battle.screen() != Battle::SCR_ACTION) break;
         for (int k = 0; k < 4; ++k) battle.input(BTN_UP);      // back to KAMPF
-        battle.input(BTN_DOWN); battle.input(BTN_DOWN);        // -> BALL
+        battle.input(BTN_DOWN);                                // -> BEUTEL
         battle.input(BTN_CONFIRM);
     }
     CHECK(team.size() == 2);
