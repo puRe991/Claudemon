@@ -44,13 +44,13 @@ people_man_4 3 9 S static 0 - 1
 people_black_belt 6 9 N static 0 - 2
 people_hex_maniac 6 6 S static 0 - 2
 dialogs
-0	People don't come here often, so I thought there'd be rare POKéMON.
-2	Memories of my darling SKITTY… My eyes overflow thinking about it.
-3	Ooch, ouch… There are holes in the ground here and there.I didn't notice and took a tumble from the floor above.
-4	DEZ: We're lovey-dovey, so we don't care if we lose!
-5	LUKE: Well, we lost but that's okay! I'm right here by your side. We'll make it through this dare!
-6	I get freaked out every time I see anything move…I shouldn't have come here to train…
-7	Our family has been TRAINERS here since my great-grandmother's time…It is my duty to protect this mountain…
+0	Hier kommen nicht oft Leute her, deshalb dachte ich, es gäbe seltene POKéMON.
+2	Erinnerungen an mein geliebtes SKITTY… Mir laufen die Tränen, wenn ich daran denke.
+3	Autsch, aua… Hier und da sind Löcher im Boden.Ich habe es nicht bemerkt und bin vom Stockwerk darüber gestürzt.
+4	DEZ: Wir sind verliebt, deshalb macht es uns nichts aus, wenn wir verlieren!
+5	LUKE: Nun, wir haben verloren, aber das ist okay! Ich bin genau hier an deiner Seite. Wir schaffen diese Mutprobe schon!
+6	Ich bekomme jedes Mal einen Schreck, wenn sich etwas bewegt…Ich hätte nicht herkommen sollen, um zu trainieren…
+7	Unsere Familie sind schon seit der Zeit meiner Urgroßmutter TRAINER hier…Es ist meine Pflicht, diesen Berg zu beschützen…
 objscripts
 0 MtPyre_2F_EventScript_Mark
 1 MtPyre_2F_EventScript_ItemUltraBall
@@ -63,25 +63,25 @@ objscripts
 scriptdefs
 = MtPyre_2F_EventScript_Leah
 trainerbattle_single TRAINER_LEAH MtPyre_2F_Text_LeahIntro MtPyre_2F_Text_LeahDefeat
-msgbox	Our family has been TRAINERS here since my great-grandmother's time…It is my duty to protect this mountain…
+msgbox	Unsere Familie sind schon seit der Zeit meiner Urgroßmutter TRAINER hier…Es ist meine Pflicht, diesen Berg zu beschützen…
 end
 = MtPyre_2F_EventScript_Zander
 trainerbattle_single TRAINER_ZANDER MtPyre_2F_Text_ZanderIntro MtPyre_2F_Text_ZanderDefeat
-msgbox	I get freaked out every time I see anything move…I shouldn't have come here to train…
+msgbox	Ich bekomme jedes Mal einen Schreck, wenn sich etwas bewegt…Ich hätte nicht herkommen sollen, um zu trainieren…
 end
 = MtPyre_2F_EventScript_Luke
 trainerbattle_double TRAINER_DEZ_AND_LUKE MtPyre_2F_Text_LukeIntro MtPyre_2F_Text_LukeDefeat MtPyre_2F_Text_LukeNotEnoughMons
-msgbox	LUKE: Well, we lost but that's okay! I'm right here by your side. We'll make it through this dare!
+msgbox	LUKE: Nun, wir haben verloren, aber das ist okay! Ich bin genau hier an deiner Seite. Wir schaffen diese Mutprobe schon!
 end
 = MtPyre_2F_EventScript_Dez
 trainerbattle_double TRAINER_DEZ_AND_LUKE MtPyre_2F_Text_DezIntro MtPyre_2F_Text_DezDefeat MtPyre_2F_Text_DezNotEnoughMons
-msgbox	DEZ: We're lovey-dovey, so we don't care if we lose!
+msgbox	DEZ: Wir sind verliebt, deshalb macht es uns nichts aus, wenn wir verlieren!
 end
 = MtPyre_2F_EventScript_PokefanM
-msgbox	Ooch, ouch… There are holes in the ground here and there.I didn't notice and took a tumble from the floor above.
+msgbox	Autsch, aua… Hier und da sind Löcher im Boden.Ich habe es nicht bemerkt und bin vom Stockwerk darüber gestürzt.
 end
 = MtPyre_2F_EventScript_Woman
-msgbox	Memories of my darling SKITTY… My eyes overflow thinking about it.
+msgbox	Erinnerungen an mein geliebtes SKITTY… Mir laufen die Tränen, wenn ich daran denke.
 end
 = MtPyre_2F_EventScript_ItemUltraBall
 goto_if_set FLAG_ITEM_MT_PYRE_2F_ULTRA_BALL MtPyre_2F_EventScript_ItemUltraBall_Taken
@@ -92,7 +92,7 @@ end
 end
 = MtPyre_2F_EventScript_Mark
 trainerbattle_single TRAINER_MARK MtPyre_2F_Text_MarkIntro MtPyre_2F_Text_MarkDefeat
-msgbox	People don't come here often, so I thought there'd be rare POKéMON.
+msgbox	Hier kommen nicht oft Leute her, deshalb dachte ich, es gäbe seltene POKéMON.
 end
 mapsec
 16 4 1 1	MT. PYRE

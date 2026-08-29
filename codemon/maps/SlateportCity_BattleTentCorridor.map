@@ -38,13 +38,13 @@ waitmovement 0
 goto_if_eq VAR_0x8006 2 SlateportCity_BattleTentCorridor_EventScript_ResumeChallenge
 slateporttent_generaterentalmons
 slateporttent_generateopponentmons
-msgbox	First, we will hold your POKéMON for safekeeping.You may then choose from our selection of POKéMON.
+msgbox	Zunächst nehmen wir deine POKéMON zur sicheren Aufbewahrung entgegen.Danach kannst du aus unserer POKéMON-Auswahl wählen.
 fadescreen FADE_TO_BLACK
 slateporttent_rentmons
 waitstate
 goto SlateportCity_BattleTentCorridor_EventScript_EnterBattleRoom
 = SlateportCity_BattleTentCorridor_EventScript_EnterBattleRoom
-msgbox	Right this way, please!
+msgbox	Hier entlang, bitte!
 closemessage
 applymovement LOCALID_SLATEPORT_TENT_CORRIDOR_ATTENDANT Common_Movement_WalkInPlaceFasterUp
 waitmovement 0
@@ -80,7 +80,7 @@ case YES SlateportCity_BattleTentCorridor_EventScript_PauseChallenge
 case MULTI_B_PRESSED SlateportCity_BattleTentCorridor_EventScript_AskReadyForOpponent
 goto SlateportCity_BattleTentCorridor_EventScript_AskRetireChallenge
 = SlateportCity_BattleTentCorridor_EventScript_AskRetireChallenge
-msgbox	Would you like to retire from your Battle Swap challenge?
+msgbox	Möchtest du deine Kampftausch-Herausforderung abbrechen?
 waitmessage
 multichoicedefault 20 8 MULTI_YESNO 1 FALSE
 switch VAR_RESULT
@@ -101,10 +101,10 @@ fadescreen FADE_TO_BLACK
 slateporttent_swapmons
 waitstate
 goto_if_eq VAR_RESULT 1 SlateportCity_BattleTentCorridor_EventScript_EnterBattleRoom
-msgbox	Thank you! Your POKéMON swap is complete.
+msgbox	Danke! Dein POKéMON-Tausch ist abgeschlossen.
 goto SlateportCity_BattleTentCorridor_EventScript_EnterBattleRoom
 = SlateportCity_BattleTentCorridor_EventScript_PauseChallenge
-msgbox	I am saving your data. Please wait.
+msgbox	Ich speichere deine Daten. Bitte warte.
 waitmessage
 slateporttent_save CHALLENGE_STATUS_PAUSED
 playse SE_SAVE
@@ -113,17 +113,17 @@ fadescreen FADE_TO_BLACK
 frontier_reset
 end
 = SlateportCity_BattleTentCorridor_EventScript_ReadyFor3rdOpponent
-msgbox	The 3rd match is next! Are you ready?
+msgbox	Als Nächstes kommt der 3. Kampf! Bist du bereit?
 waitmessage
 return
 = SlateportCity_BattleTentCorridor_EventScript_ReadyFor2ndOpponent
-msgbox	The 2nd match is next! Are you ready?
+msgbox	Als Nächstes kommt der 2. Kampf! Bist du bereit?
 waitmessage
 return
 = SlateportCity_BattleTentCorridor_EventScript_ReturnToRoomFromBattle
 factory_setopponentmons
 factory_resethelditems
-msgbox	Thank you for competing! Let us restore your POKéMON!
+msgbox	Danke für deine Teilnahme! Lass uns deine POKéMON heilen!
 playfanfare MUS_HEAL
 waitfanfare
 special HealPlayerParty

@@ -126,39 +126,39 @@ end
 end
 = Route134_EventScript_Hudson
 trainerbattle_single TRAINER_HUDSON Route134_Text_HudsonIntro Route134_Text_HudsonDefeat
-msgbox	Our boat drifted out to sea.My buddy's a timid fellow, so I'm worried about him.
+msgbox	Unser Boot ist aufs Meer hinausgetrieben.Mein Kumpel ist ein ängstlicher Typ, deshalb mache ich mir Sorgen um ihn.
 end
 = Route134_EventScript_Reyna
 trainerbattle_single TRAINER_REYNA Route134_Text_ReynaIntro Route134_Text_ReynaDefeat
-msgbox	Haha! You won, all right!I'll work my way back up by taking on TRAINERS I happen to meet!
+msgbox	Haha! Du hast wirklich gewonnen!Ich arbeite mich wieder hoch, indem ich es mit TRAINERN aufnehme, die mir über den Weg laufen!
 end
 = Route134_EventScript_Kelvin
 trainerbattle_single TRAINER_KELVIN Route134_Text_KelvinIntro Route134_Text_KelvinDefeat
-msgbox	If we can't SURF, how are we supposed to get home?Actually, I know a fainted POKéMON can still SURF, but it feels wrong.
+msgbox	Wenn wir nicht SURFEN können, wie sollen wir dann nach Hause kommen?Eigentlich weiß ich, dass ein besiegtes POKéMON immer noch SURFEN kann, aber das fühlt sich falsch an.
 end
 = Route134_EventScript_Marley
 trainerbattle_single TRAINER_MARLEY Route134_Text_MarleyIntro Route134_Text_MarleyDefeat
-msgbox	I haven't lost my passion for speed. I will try harder.
+msgbox	Ich habe meine Leidenschaft für Geschwindigkeit nicht verloren. Ich strenge mich mehr an.
 end
 = Route134_EventScript_Hitoshi
 trainerbattle_single TRAINER_HITOSHI Route134_Text_HitoshiIntro Route134_Text_HitoshiDefeat
-msgbox	It was I who challenged you, and yet I lost. I am deeply shamed…
+msgbox	Ich war es, der dich herausgefordert hat, und trotzdem habe ich verloren. Ich schäme mich zutiefst…
 end
 = Route134_EventScript_Alex
 trainerbattle_single TRAINER_ALEX Route134_Text_AlexIntro Route134_Text_AlexDefeat
-msgbox	My BIRD POKéMON get tired quickly after a long flight…
+msgbox	Meine VOGEL-POKéMON werden nach einem langen Flug schnell müde…
 end
 = Route134_EventScript_Aaron
 trainerbattle_single TRAINER_AARON Route134_Text_AaronIntro Route134_Text_AaronDefeat
-msgbox	We will return for more training at METEOR FALLS.If you'd like, you should go, too. It will definitely toughen you up!
+msgbox	Wir kehren zum weiteren Training zum METEORFALL zurück.Wenn du willst, solltest du auch hingehen. Das härtet dich mit Sicherheit ab!
 end
 = Route134_EventScript_Laurel
 trainerbattle_single TRAINER_LAUREL Route134_Text_LaurelIntro Route134_Text_LaurelDefeat
-msgbox	There's a collector who's after the SCALES of LUVDISC.
+msgbox	Es gibt einen Sammler, der es auf die SCHUPPEN von LUVDISC abgesehen hat.
 end
 = Route134_EventScript_Jack
 trainerbattle_single TRAINER_JACK Route134_Text_JackIntro Route134_Text_JackDefeat
-msgbox	I think POKéMON enjoy the fast-running currents around these parts.
+msgbox	Ich glaube, die POKéMON hier genießen die schnell fließenden Strömungen in dieser Gegend.
 end
 water
 327,342,368,370,372,437,445,446,447

@@ -36,12 +36,12 @@ people_teala 10 5 S static 0 LOCALID_TOWER_ATTENDANT_DOUBLES 0
 people_teala 14 5 S static 0 LOCALID_TOWER_ATTENDANT_MULTIS 0
 people_teala 18 5 S static 0 LOCALID_TOWER_ATTENDANT_LINK_MULTIS 0
 dialogs
-0	Where the talents of TRAINERS are put to the test!Welcome to the BATTLE TOWER!I am your guide to the SINGLE BATTLE ROOMS.
-2	The number of matches you win in a row is recorded.I'd better not get beaten in an embarrassing way!
-3	Once you've entered the BATTLE TOWER, you can't leave until you either lose or you beat seven TRAINERS in a row.You'd best be certain that you're up to the challenge.
-5	Where the talents of TRAINERS are put to the test!Welcome to the BATTLE TOWER!I am your guide to the DOUBLE BATTLE ROOMS.
-6	Where the talents of TRAINERS are put to the test!Welcome to the BATTLE TOWER!I am your guide to the MULTI BATTLE ROOMS.
-7	Where the talents of TRAINERS are put to the test!Welcome to the BATTLE TOWER!I am your guide to the LINK MULTI BATTLE ROOMS.
+0	Hier wird das Talent von TRAINERN auf die Probe gestellt!Willkommen im BATTLE TOWER!Ich bin dein Führer für die SINGLE-BATTLE-RÄUME.
+2	Die Anzahl der Kämpfe, die du in Folge gewinnst, wird festgehalten.Ich sollte lieber nicht auf peinliche Weise besiegt werden!
+3	Hast du den BATTLE TOWER erst betreten, kannst du erst wieder raus, wenn du verlierst oder sieben TRAINER in Folge besiegst.Du solltest dir besser sicher sein, dass du der Herausforderung gewachsen bist.
+5	Hier wird das Talent von TRAINERN auf die Probe gestellt!Willkommen im BATTLE TOWER!Ich bin dein Führer für die DOUBLE-BATTLE-RÄUME.
+6	Hier wird das Talent von TRAINERN auf die Probe gestellt!Willkommen im BATTLE TOWER!Ich bin dein Führer für die MULTI-BATTLE-RÄUME.
+7	Hier wird das Talent von TRAINERN auf die Probe gestellt!Willkommen im BATTLE TOWER!Ich bin dein Führer für die LINK-MULTI-BATTLE-RÄUME.
 objscripts
 0 BattleFrontier_BattleTowerLobby_EventScript_SinglesAttendant
 1 BattleFrontier_BattleTowerLobby_EventScript_FeelingsMan
@@ -74,16 +74,16 @@ goto BattleFrontier_BattleTowerLobby_EventScript_LostThanksForPlaying
 = BattleFrontier_BattleTowerLobby_EventScript_LostThanksForPlaying
 lock
 faceplayer
-msgbox	Thank you for playing!
+msgbox	Danke fürs Spielen!
 waitmessage
 call BattleFrontier_BattleTowerLobby_EventScript_AskSaveBattle
-msgbox	We look forward to seeing you on another challenge!
+msgbox	Wir freuen uns schon auf deine nächste Herausforderung!
 closemessage
 setvar VAR_TEMP_CHALLENGE_STATUS 255
 release
 end
 = BattleFrontier_BattleTowerLobby_EventScript_AskSaveBattle
-msgbox	Your record will be saved. Please wait.
+msgbox	Deine Bestenliste wird gespeichert. Bitte warte.
 waitmessage
 frontier_checkairshow
 special LoadPlayerParty
@@ -93,7 +93,7 @@ playse SE_SAVE
 waitse
 call BattleFrontier_EventScript_GetCantRecordBattle
 goto_if_eq VAR_RESULT TRUE BattleFrontier_BattleTowerLobby_EventScript_EndSaveBattle
-msgbox	Shall I record your last BATTLE TOWER match on your FRONTIER PASS?
+msgbox	Soll ich deinen letzten BATTLE TOWER-Kampf auf deinem FRONTIER PASS vermerken?
 waitmessage
 multichoicedefault 20 8 MULTI_YESNO 1 FALSE
 switch VAR_RESULT
@@ -105,12 +105,12 @@ goto BattleFrontier_EventScript_SaveBattle
 frontier_savebattle
 goto_if_eq VAR_RESULT FALSE BattleFrontier_EventScript_BattleSaveFailed
 playse SE_SAVE
-msgbox	PLAYER's battle was recorded on the FRONTIER PASS.
+msgbox	PLAYERs Kampf wurde auf dem FRONTIER PASS vermerkt.
 goto BattleFrontier_BattleTowerLobby_EventScript_EndSaveBattle
 = BattleFrontier_BattleTowerLobby_EventScript_EndSaveBattle
 return
 = BattleFrontier_EventScript_BattleSaveFailed
-msgbox	There was an error of some sort. Your record could not be saved.
+msgbox	Es ist irgendein Fehler aufgetreten. Dein Ergebnis konnte nicht gespeichert werden.
 goto BattleFrontier_BattleTowerLobby_EventScript_EndSaveBattle
 = BattleFrontier_EventScript_GetCantRecordBattle
 frontier_get FRONTIER_DATA_RECORD_DISABLED
@@ -120,43 +120,43 @@ lock
 faceplayer
 frontier_isbrain
 goto_if_eq VAR_RESULT TRUE BattleFrontier_BattleTowerLobby_EventScript_DefeatedMaiden
-msgbox	Congratulations! You've beaten all seven TRAINERS!
+msgbox	Glückwunsch! Du hast alle sieben TRAINER besiegt!
 waitmessage
 goto BattleFrontier_BattleTowerLobby_EventScript_GiveRibbons
 = BattleFrontier_BattleTowerLobby_EventScript_GiveRibbons
 tower_giveribbons
 goto_if_eq VAR_RESULT FALSE BattleFrontier_BattleTowerLobby_EventScript_GiveBattlePoints
-msgbox	Here are some RIBBONS for beating seven tough TRAINERS in a row.PLAYER received some RIBBONS!
+msgbox	Hier sind ein paar SCHLEIFEN dafür, dass du sieben harte TRAINER in Folge besiegt hast.PLAYER erhielt SCHLEIFEN!
 waitmessage
 playfanfare MUS_OBTAIN_ITEM
 waitfanfare
-msgbox	PLAYER put the RIBBONS on the challenger POKéMON.
+msgbox	PLAYER heftete dem herausfordernden POKéMON die SCHLEIFEN an.
 goto BattleFrontier_BattleTowerLobby_EventScript_GiveBattlePoints
 = BattleFrontier_BattleTowerLobby_EventScript_GiveBattlePoints
-msgbox	In recognition of your infinite talent, we award you these Battle Point(s).
+msgbox	Als Anerkennung für dein unermessliches Talent verleihen wir dir diese Kampfpunkte.
 frontier_givepoints
-msgbox	PLAYER obtained STR_VAR_1 Battle Point(s).
+msgbox	PLAYER erhielt STR_VAR_1 Kampfpunkt(e).
 call BattleFrontier_BattleTowerLobby_EventScript_AskSaveBattle
 tower_get TOWER_DATA_WIN_STREAK
 goto_if_ne VAR_RESULT 49 BattleFrontier_BattleTowerLobby_EventScript_LookForwardToChallenge
-msgbox	You're finally about to face the 50th TRAINER.From here on, every time you beat seven TRAINERS in a row, your POKéMON will receive a commemorative RIBBON.Good luck!
+msgbox	Gleich stehst du endlich dem 50. TRAINER gegenüber.Von nun an erhält dein POKéMON jedes Mal, wenn du sieben TRAINER in Folge besiegst, eine Gedenk-SCHLEIFE.Viel Glück!
 goto BattleFrontier_BattleTowerLobby_EventScript_LookForwardToChallenge
 = BattleFrontier_BattleTowerLobby_EventScript_LookForwardToChallenge
-msgbox	We look forward to seeing you on another challenge!
+msgbox	Wir freuen uns schon auf deine nächste Herausforderung!
 closemessage
 setvar VAR_TEMP_CHALLENGE_STATUS 255
 release
 end
 = BattleFrontier_BattleTowerLobby_EventScript_DefeatedMaiden
-msgbox	Congratulations! You have defeated the SALON MAIDEN and swept seven TRAINERS!
+msgbox	Glückwunsch! Du hast die SALON-DAME besiegt und sieben TRAINER hinweggefegt!
 goto BattleFrontier_BattleTowerLobby_EventScript_GiveRibbons
 = BattleFrontier_BattleTowerLobby_EventScript_ResumeChallenge
 lock
 faceplayer
 call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES BattleFrontier_BattleTowerLobby_EventScript_SetBravoTrainerOn
-msgbox	We've been waiting for you!
+msgbox	Wir haben auf dich gewartet!
 waitmessage
-msgbox	Before entering a BATTLE ROOM, your progress will be saved. Please wait.
+msgbox	Bevor du einen BATTLE-RAUM betrittst, wird dein Fortschritt gespeichert. Bitte warte.
 waitmessage
 tower_save CHALLENGE_STATUS_SAVING
 playse SE_SAVE
@@ -184,7 +184,7 @@ end
 = BattleFrontier_BattleTowerLobby_EventScript_ShowYouToBattleRoom
 call BattleFrontier_BattleTowerLobby_EventScript_BufferModeText
 goto_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_LINK_MULTIS BattleFrontier_BattleTowerLobby_EventScript_ShowYouToLinkMultiBattleRoom
-msgbox	I will now show you to the STR_VAR_1 BATTLE ROOM.
+msgbox	Ich bringe dich jetzt zum STR_VAR_1 BATTLE-RAUM.
 goto BattleFrontier_BattleTowerLobby_EventScript_WalkToElevator
 = BattleFrontier_BattleTowerLobby_EventScript_WalkToElevator
 closemessage
@@ -284,7 +284,7 @@ return
 = BattleFrontier_BattleTowerLobby_EventScript_QuitWithoutSaving
 lock
 faceplayer
-msgbox	Excuse me!You didn't save before you quit your challenge last time.Because of that, your challenge so far has been disqualified. Sorry!
+msgbox	Entschuldige!Du hast letztes Mal nicht gespeichert, bevor du deine Herausforderung abgebrochen hast.Deshalb wurde dein bisheriger Fortschritt disqualifiziert. Tut mir leid!
 closemessage
 tower_set TOWER_DATA_WIN_STREAK 0
 tower_set TOWER_DATA_WIN_STREAK_ACTIVE FALSE
@@ -300,10 +300,10 @@ lock
 faceplayer
 setvar VAR_FRONTIER_FACILITY FRONTIER_FACILITY_TOWER
 special SavePlayerParty
-msgbox	Where the talents of TRAINERS are put to the test!Welcome to the BATTLE TOWER!I am your guide to the LINK MULTI BATTLE ROOMS.
+msgbox	Hier wird das Talent von TRAINERN auf die Probe gestellt!Willkommen im BATTLE TOWER!Ich bin dein Führer für die LINK-MULTI-BATTLE-RÄUME.
 goto BattleFrontier_BattleTowerLobby_EventScript_AskEnterLinkMultisChallenge
 = BattleFrontier_BattleTowerLobby_EventScript_AskEnterLinkMultisChallenge
-msgbox	Would you like to take the LINK MULTI BATTLE ROOM challenge?
+msgbox	Möchtest du die Herausforderung im LINK-MULTI-BATTLE-RAUM annehmen?
 waitmessage
 multichoice 17 6 MULTI_CHALLENGEINFO FALSE
 switch VAR_RESULT
@@ -314,7 +314,7 @@ case MULTI_B_PRESSED BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
 goto BattleFrontier_BattleTowerLobby_EventScript_TryEnterLinkMultisChallenge
 = BattleFrontier_BattleTowerLobby_EventScript_TryEnterLinkMultisChallenge
 setvar VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_LINK_MULTIS
-msgbox	The BATTLE ROOM offers two levels of challenge, Level 50 and Open Level. Which is your choice?
+msgbox	Der BATTLE-RAUM bietet zwei Schwierigkeitsstufen: Level 50 und offenes Level. Welche wählst du?
 waitmessage
 multichoice 17 6 MULTI_LEVEL_MODE FALSE
 switch VAR_RESULT
@@ -323,7 +323,7 @@ case MULTI_B_PRESSED BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
 frontier_checkineligible
 goto_if_eq VAR_0x8004 TRUE BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMons
 frontier_set FRONTIER_DATA_LVL_MODE VAR_RESULT
-msgbox	Now please select the two POKéMON that are to be entered.
+msgbox	Wähle nun bitte die zwei POKéMON aus, die antreten sollen.
 fadescreen FADE_TO_BLACK
 call BattleFrontier_EventScript_GetLvlMode
 copyvar VAR_0x8004 VAR_RESULT
@@ -363,7 +363,7 @@ goto BattleFrontier_BattleTowerLobby_EventScript_TryCableLink
 end
 = BattleFrontier_BattleTowerLobby_EventScript_TryCableLink
 setvar VAR_0x8004 USING_BATTLE_TOWER
-msgbox	Please wait. … … B Button: Cancel
+msgbox	Bitte warten. … … B-Taste: Abbrechen
 waitmessage
 setvar VAR_0x8005 0
 special TryBattleLinkup
@@ -380,56 +380,56 @@ special CloseLink
 call_if_eq VAR_0x8005 0 BattleFrontier_BattleTowerLobby_EventScript_FriendChoseDifferentLvlMode
 call_if_eq VAR_0x8005 1 BattleFrontier_BattleTowerLobby_EventScript_FriendAlsoSelectedMon
 call_if_eq VAR_0x8005 2 BattleFrontier_BattleTowerLobby_EventScript_FriendAlsoSelectedMons
-msgbox	Please choose two POKéMON different from your friend's, match the level you wish to enter, and register again.
+msgbox	Wähle zwei POKéMON, die sich von denen deines Freundes unterscheiden, passe das gewünschte Level an und melde dich erneut an.
 release
 end
 = BattleFrontier_BattleTowerLobby_EventScript_FriendAlsoSelectedMons
-msgbox	Your friend has also selected the POKéMON STR_VAR_1 and STR_VAR_2.
+msgbox	Dein Freund hat ebenfalls die POKéMON STR_VAR_1 und STR_VAR_2 ausgewählt.
 return
 = BattleFrontier_BattleTowerLobby_EventScript_FriendAlsoSelectedMon
-msgbox	Your friend has also selected the POKéMON STR_VAR_1.
+msgbox	Dein Freund hat ebenfalls das POKéMON STR_VAR_1 ausgewählt.
 return
 = BattleFrontier_BattleTowerLobby_EventScript_FriendChoseDifferentLvlMode
-msgbox	Your friend has chosen a different battle level.
+msgbox	Dein Freund hat ein anderes Kampflevel gewählt.
 return
 = CableClub_EventScript_AbortLinkConnectionError
 special CloseLink
-msgbox	Sorry, we have a link error… Please reset and try again.
+msgbox	Entschuldige, es gibt einen Verbindungsfehler… Bitte setze zurück und versuche es erneut.
 release
 end
 = BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
 special CloseLink
-msgbox	We look forward to seeing you on another challenge!
+msgbox	Wir freuen uns schon auf deine nächste Herausforderung!
 goto BattleFrontier_BattleTowerLobby_EventScript_EndCancelChallenge
 = BattleFrontier_BattleTowerLobby_EventScript_EndCancelChallenge
 release
 end
 = BattleFrontier_BattleTowerLobby_EventScript_AbortLinkIncorrectNumberOfPlayers
-msgbox	The LINK MULTI BATTLE ROOM challenge is only for two linked players.
+msgbox	Die Herausforderung im LINK-MULTI-BATTLE-RAUM ist nur für zwei verbundene Spieler.
 special CloseLink
-msgbox	The number of participants is incorrect.
+msgbox	Die Anzahl der Teilnehmer ist nicht korrekt.
 release
 end
 = BattleFrontier_BattleTowerLobby_EventScript_AbortLinkDifferentSelections
 special CloseLink
 goto_if_eq VAR_0x8005 3 BattleFrontier_BattleTowerLobby_EventScript_FriendDifferentSelection
-msgbox	The link partners appear to have made different selections.
+msgbox	Die verbundenen Partner scheinen unterschiedliche Auswahlen getroffen zu haben.
 release
 end
 = BattleFrontier_BattleTowerLobby_EventScript_FriendDifferentSelection
-msgbox	Your friend has chosen a different battle level.
-msgbox	Please choose two POKéMON different from your friend's, match the level you wish to enter, and register again.
+msgbox	Dein Freund hat ein anderes Kampflevel gewählt.
+msgbox	Wähle zwei POKéMON, die sich von denen deines Freundes unterscheiden, passe das gewünschte Level an und melde dich erneut an.
 release
 end
 = CableClub_EventScript_AbortLinkSomeoneNotReady
 special CloseLink
-msgbox	Someone is not ready to link.Please come back after everyone has made preparations.
+msgbox	Jemand ist noch nicht bereit für die Verbindung.Komm bitte wieder, wenn alle ihre Vorbereitungen getroffen haben.
 release
 end
 = BattleFrontier_BattleTowerLobby_EventScript_CableLinkSuccessful
 incrementgamestat GAME_STAT_ENTERED_BATTLE_TOWER
 setvar VAR_BRAVO_TRAINER_BATTLE_TOWER_ON FALSE
-msgbox	I will save the game before showing you in. Please wait.
+msgbox	Ich speichere das Spiel, bevor ich dich hineinbringe. Bitte warte.
 waitmessage
 tower_save CHALLENGE_STATUS_SAVING
 special SaveForBattleTowerLink
@@ -443,7 +443,7 @@ setvar VAR_0x8004 LINK_GROUP_BATTLE_TOWER
 goto BattleFrontier_BattleTowerLobby_EventScript_ChooseLeader
 end
 = BattleFrontier_BattleTowerLobby_EventScript_ChooseLeader
-msgbox	Please decide which of you two will become the LEADER.The other player must then choose “JOIN GROUP.”
+msgbox	Entscheidet, wer von euch beiden ANFÜHRER wird.Der andere Spieler muss dann „GRUPPE BEITRETEN“ wählen.
 waitmessage
 multichoice 16 6 MULTI_LINK_LEADER FALSE
 switch VAR_RESULT
@@ -463,7 +463,7 @@ return
 = BattleFrontier_BattleTowerLobby_EventScript_WirelessLinkSuccessful
 incrementgamestat GAME_STAT_ENTERED_BATTLE_TOWER
 setvar VAR_BRAVO_TRAINER_BATTLE_TOWER_ON FALSE
-msgbox	I will save the game before showing you in. Please wait.
+msgbox	Ich speichere das Spiel, bevor ich dich hineinbringe. Bitte warte.
 waitmessage
 tower_save CHALLENGE_STATUS_SAVING
 special SaveForBattleTowerLink
@@ -507,34 +507,34 @@ goto BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLv50
 switch VAR_FRONTIER_BATTLE_MODE
 case FRONTIER_MODE_SINGLES BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLv50Singles
 case FRONTIER_MODE_DOUBLES BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLv50Doubles
-msgbox	Excuse me!You don't have two eligible POKéMON.You must have two different POKéMON of Level 50 or less to enter.They also must be holding different kinds of items.EGGSSTR_VAR_1 ineligible.Please come see me when you are ready.
+msgbox	Entschuldige!Du hast nicht zwei teilnahmeberechtigte POKéMON.Du brauchst zwei verschiedene POKéMON mit Level 50 oder weniger, um teilzunehmen.Sie müssen außerdem verschiedene Item-Arten tragen.EIER STR_VAR_1 nicht zugelassen.Komm bitte wieder, wenn du bereit bist.
 goto BattleFrontier_BattleTowerLobby_EventScript_EndCancelChallenge
 end
 = BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLv50Doubles
-msgbox	Excuse me!You don't have four eligible POKéMON.You must have four different POKéMON of Level 50 or less to enter.They also must be holding different kinds of items.EGGSSTR_VAR_1 ineligible.Please come see me when you are ready.
+msgbox	Entschuldige!Du hast nicht vier teilnahmeberechtigte POKéMON.Du brauchst vier verschiedene POKéMON mit Level 50 oder weniger, um teilzunehmen.Sie müssen außerdem verschiedene Item-Arten tragen.EIER STR_VAR_1 nicht zugelassen.Komm bitte wieder, wenn du bereit bist.
 goto BattleFrontier_BattleTowerLobby_EventScript_EndCancelChallenge
 end
 = BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLv50Singles
-msgbox	Excuse me!You don't have three eligible POKéMON.You must have three different POKéMON of Level 50 or less to enter.They also must be holding different kinds of items.EGGSSTR_VAR_1 ineligible.Please come see me when you are ready.
+msgbox	Entschuldige!Du hast nicht drei teilnahmeberechtigte POKéMON.Du brauchst drei verschiedene POKéMON mit Level 50 oder weniger, um teilzunehmen.Sie müssen außerdem verschiedene Item-Arten tragen.EIER STR_VAR_1 nicht zugelassen.Komm bitte wieder, wenn du bereit bist.
 goto BattleFrontier_BattleTowerLobby_EventScript_EndCancelChallenge
 end
 = BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLvOpen
 switch VAR_FRONTIER_BATTLE_MODE
 case FRONTIER_MODE_SINGLES BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLvOpenSingles
 case FRONTIER_MODE_DOUBLES BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLvOpenDoubles
-msgbox	Excuse me!You don't have two eligible POKéMON.You must have two different POKéMON to enter.They also must be holding different kinds of items.EGGSSTR_VAR_1 ineligible.Please come see me when you are ready.
+msgbox	Entschuldige!Du hast nicht zwei teilnahmeberechtigte POKéMON.Du brauchst zwei verschiedene POKéMON, um teilzunehmen.Sie müssen außerdem verschiedene Item-Arten tragen.EIER STR_VAR_1 nicht zugelassen.Komm bitte wieder, wenn du bereit bist.
 goto BattleFrontier_BattleTowerLobby_EventScript_EndCancelChallenge
 end
 = BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLvOpenDoubles
-msgbox	Excuse me!You don't have four eligible POKéMON.You must have four different POKéMON to enter.They also must be holding different kinds of items.EGGSSTR_VAR_1 ineligible.Please come see me when you are ready.
+msgbox	Entschuldige!Du hast nicht vier teilnahmeberechtigte POKéMON.Du brauchst vier verschiedene POKéMON, um teilzunehmen.Sie müssen außerdem verschiedene Item-Arten tragen.EIER STR_VAR_1 nicht zugelassen.Komm bitte wieder, wenn du bereit bist.
 goto BattleFrontier_BattleTowerLobby_EventScript_EndCancelChallenge
 end
 = BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLvOpenSingles
-msgbox	Excuse me!You don't have three eligible POKéMON.You must have three different POKéMON to enter.They also must be holding different kinds of items.EGGSSTR_VAR_1 ineligible.Please come see me when you are ready.
+msgbox	Entschuldige!Du hast nicht drei teilnahmeberechtigte POKéMON.Du brauchst drei verschiedene POKéMON, um teilzunehmen.Sie müssen außerdem verschiedene Item-Arten tragen.EIER STR_VAR_1 nicht zugelassen.Komm bitte wieder, wenn du bereit bist.
 goto BattleFrontier_BattleTowerLobby_EventScript_EndCancelChallenge
 end
 = BattleFrontier_BattleTowerLobby_EventScript_ExplainLinkMultisChallenge
-msgbox	The BATTLE TOWER's MULTI BATTLE ROOMS are facilities for conducting MULTI BATTLES with a friend.You must link with your friend using Wireless Adapters or a Game Boy Advance Game Link cable.You must partner with your friend and enter two different kinds of POKéMON.There are many MULTI BATTLE ROOMS in the BATTLE TOWER for team battles.In a MULTI BATTLE ROOM, seven tag teams await you and your friend to make a tag-team challenge.If you manage to defeat all seven teams, you will earn Battle Points.Please beware that unlike other ROOMS, you may not interrupt your challenge.Once you start, you must battle seven MULTI BATTLES in a row nonstop.
+msgbox	Die MULTI-BATTLE-RÄUME des BATTLE TOWER sind Einrichtungen für MULTI-BATTLES mit einem Freund.Du musst dich mit deinem Freund über Wireless-Adapter oder ein Game Boy Advance Game Link-Kabel verbinden.Du musst dich mit deinem Freund zusammentun und zwei verschiedene Arten von POKéMON einsetzen.Es gibt viele MULTI-BATTLE-RÄUME im BATTLE TOWER für Team-Kämpfe.In einem MULTI-BATTLE-RAUM erwarten dich und deinen Freund sieben Tag-Teams zur Herausforderung.Wenn es euch gelingt, alle sieben Teams zu besiegen, erhaltet ihr Kampfpunkte.Beachte, dass du deine Herausforderung anders als bei anderen RÄUMEN nicht unterbrechen darfst.Hast du erst begonnen, musst du sieben MULTI-BATTLES in Folge ohne Unterbrechung bestreiten.
 goto BattleFrontier_BattleTowerLobby_EventScript_AskEnterLinkMultisChallenge
 end
 = BattleFrontier_BattleTowerLobby_EventScript_MultisAttendant
@@ -543,10 +543,10 @@ faceplayer
 setvar VAR_FRONTIER_FACILITY FRONTIER_FACILITY_TOWER
 clearflag FLAG_CHOSEN_MULTI_BATTLE_NPC_PARTNER
 special SavePlayerParty
-msgbox	Where the talents of TRAINERS are put to the test!Welcome to the BATTLE TOWER!I am your guide to the MULTI BATTLE ROOMS.
+msgbox	Hier wird das Talent von TRAINERN auf die Probe gestellt!Willkommen im BATTLE TOWER!Ich bin dein Führer für die MULTI-BATTLE-RÄUME.
 goto BattleFrontier_BattleTowerLobby_EventScript_AskEnterMultisChallenge
 = BattleFrontier_BattleTowerLobby_EventScript_AskEnterMultisChallenge
-msgbox	Would you like to take the MULTI BATTLE ROOM challenge?
+msgbox	Möchtest du die Herausforderung im MULTI-BATTLE-RAUM annehmen?
 waitmessage
 multichoice 17 6 MULTI_CHALLENGEINFO FALSE
 switch VAR_RESULT
@@ -557,7 +557,7 @@ case MULTI_B_PRESSED BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
 goto BattleFrontier_BattleTowerLobby_EventScript_TryEnterMultisChallenge
 = BattleFrontier_BattleTowerLobby_EventScript_TryEnterMultisChallenge
 setvar VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_MULTIS
-msgbox	The BATTLE ROOM offers two levels of challenge, Level 50 and Open Level. Which is your choice?
+msgbox	Der BATTLE-RAUM bietet zwei Schwierigkeitsstufen: Level 50 und offenes Level. Welche wählst du?
 waitmessage
 multichoice 17 6 MULTI_LEVEL_MODE FALSE
 switch VAR_RESULT
@@ -566,7 +566,7 @@ case MULTI_B_PRESSED BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
 frontier_checkineligible
 goto_if_eq VAR_0x8004 TRUE BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMons
 frontier_set FRONTIER_DATA_LVL_MODE VAR_RESULT
-msgbox	Now please select the two POKéMON that are to be entered.
+msgbox	Wähle nun bitte die zwei POKéMON aus, die antreten sollen.
 fadescreen FADE_TO_BLACK
 call BattleFrontier_EventScript_GetLvlMode
 copyvar VAR_0x8004 VAR_RESULT
@@ -596,7 +596,7 @@ setvar VAR_BRAVO_TRAINER_BATTLE_TOWER_ON FALSE
 goto BattleFrontier_BattleTowerLobby_EventScript_EnterElevator
 end
 = BattleFrontier_BattleTowerLobby_EventScript_ExplainMultisChallenge
-msgbox	The BATTLE TOWER's MULTI BATTLE ROOMS are facilities for conducting MULTI BATTLES.For MULTI BATTLES, you must partner with a TRAINER in the TOWER and enter with two POKéMON each.Inside the TOWER is a room named the BATTLE SALON where you may meet other TRAINERS.There, you must find a TRAINER to act as your partner in MULTI BATTLES.Once you have partnered up, you will be shown to a MULTI BATTLE ROOM.In the MULTI BATTLE ROOM, seven tag teams await your challenge.If you manage to defeat all seven teams, you will earn Battle Points.If you want to interrupt your challenge, please save the game.If you don't save before interrupting, you will be disqualified.
+msgbox	Die MULTI-BATTLE-RÄUME des BATTLE TOWER sind Einrichtungen für MULTI-BATTLES.Für MULTI-BATTLES musst du dich mit einem TRAINER im TOWER zusammentun und mit je zwei POKéMON antreten.Im TOWER gibt es einen Raum namens BATTLE-SALON, wo du andere TRAINER treffen kannst.Dort musst du einen TRAINER finden, der als dein Partner in MULTI-BATTLES fungiert.Habt ihr euch zusammengetan, werdet ihr zu einem MULTI-BATTLE-RAUM gebracht.Im MULTI-BATTLE-RAUM erwarten sieben Tag-Teams eure Herausforderung.Wenn es euch gelingt, alle sieben Teams zu besiegen, erhaltet ihr Kampfpunkte.Wenn du deine Herausforderung unterbrechen willst, speichere bitte das Spiel.Wenn du vor der Unterbrechung nicht speicherst, wirst du disqualifiziert.
 goto BattleFrontier_BattleTowerLobby_EventScript_AskEnterMultisChallenge
 end
 = BattleFrontier_BattleTowerLobby_EventScript_DoublesAttendant
@@ -604,10 +604,10 @@ lock
 faceplayer
 setvar VAR_FRONTIER_FACILITY FRONTIER_FACILITY_TOWER
 special SavePlayerParty
-msgbox	Where the talents of TRAINERS are put to the test!Welcome to the BATTLE TOWER!I am your guide to the DOUBLE BATTLE ROOMS.
+msgbox	Hier wird das Talent von TRAINERN auf die Probe gestellt!Willkommen im BATTLE TOWER!Ich bin dein Führer für die DOUBLE-BATTLE-RÄUME.
 goto BattleFrontier_BattleTowerLobby_EventScript_AskEnterDoublesChallenge
 = BattleFrontier_BattleTowerLobby_EventScript_AskEnterDoublesChallenge
-msgbox	Would you like to take the DOUBLE BATTLE ROOM challenge?
+msgbox	Möchtest du die Herausforderung im DOUBLE-BATTLE-RAUM annehmen?
 waitmessage
 multichoice 17 6 MULTI_CHALLENGEINFO FALSE
 switch VAR_RESULT
@@ -618,7 +618,7 @@ case MULTI_B_PRESSED BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
 goto BattleFrontier_BattleTowerLobby_EventScript_TryEnterDoublesChallenge
 = BattleFrontier_BattleTowerLobby_EventScript_TryEnterDoublesChallenge
 setvar VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_DOUBLES
-msgbox	The BATTLE ROOM offers two levels of challenge, Level 50 and Open Level. Which is your choice?
+msgbox	Der BATTLE-RAUM bietet zwei Schwierigkeitsstufen: Level 50 und offenes Level. Welche wählst du?
 waitmessage
 multichoice 17 6 MULTI_LEVEL_MODE FALSE
 switch VAR_RESULT
@@ -627,7 +627,7 @@ case MULTI_B_PRESSED BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
 frontier_checkineligible
 goto_if_eq VAR_0x8004 TRUE BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMons
 frontier_set FRONTIER_DATA_LVL_MODE VAR_RESULT
-msgbox	Now please select the four POKéMON that are to be entered.
+msgbox	Wähle nun bitte die vier POKéMON aus, die antreten sollen.
 fadescreen FADE_TO_BLACK
 call BattleFrontier_EventScript_GetLvlMode
 copyvar VAR_0x8004 VAR_RESULT
@@ -657,7 +657,7 @@ setvar VAR_BRAVO_TRAINER_BATTLE_TOWER_ON FALSE
 goto BattleFrontier_BattleTowerLobby_EventScript_EnterElevator
 end
 = BattleFrontier_BattleTowerLobby_EventScript_ExplainDoublesChallenge
-msgbox	The BATTLE TOWER's DOUBLE BATTLE ROOMS are facilities for conducting DOUBLE BATTLES with four POKéMON.There are many DOUBLE BATTLE ROOMS in the BATTLE TOWER for team battles.In each of the DOUBLE BATTLE ROOMS, seven TRAINERS await your challenge.If you manage to defeat all seven, you will earn Battle Points.If you want to interrupt your challenge, please save the game.If you don't save before interrupting, you will be disqualified.
+msgbox	Die DOUBLE-BATTLE-RÄUME des BATTLE TOWER sind Einrichtungen für DOUBLE-BATTLES mit vier POKéMON.Es gibt viele DOUBLE-BATTLE-RÄUME im BATTLE TOWER für Team-Kämpfe.In jedem der DOUBLE-BATTLE-RÄUME erwarten dich sieben TRAINER zur Herausforderung.Wenn es dir gelingt, alle sieben zu besiegen, erhältst du Kampfpunkte.Wenn du deine Herausforderung unterbrechen willst, speichere bitte das Spiel.Wenn du vor der Unterbrechung nicht speicherst, wirst du disqualifiziert.
 goto BattleFrontier_BattleTowerLobby_EventScript_AskEnterDoublesChallenge
 end
 = BattleFrontier_BattleTowerLobby_EventScript_Reporter
@@ -673,17 +673,17 @@ goto_if_eq VAR_RESULT YES BattleFrontier_BattleTowerLobby_EventScript_AcceptInte
 goto_if_eq VAR_RESULT NO BattleFrontier_BattleTowerLobby_EventScript_DeclineInterview
 end
 = BattleFrontier_BattleTowerLobby_EventScript_DeclineInterview
-msgbox	Oh… Sorry we disturbed you.Please give us an interview the next time you visit the BATTLE TOWER.
+msgbox	Oh… Entschuldige die Störung.Gib uns bitte beim nächsten Besuch im BATTLE TOWER ein Interview.
 release
 end
 = BattleFrontier_BattleTowerLobby_EventScript_AcceptInterview
-msgbox	You will? Really? Thank you! Then, uh…How did things turn out in the BATTLE TOWER today?Were you satisfied with the battle? Or are you unhappy?
+msgbox	Doch? Wirklich? Danke! Also, äh…Wie ist es dir heute im BATTLE TOWER ergangen?Warst du mit dem Kampf zufrieden? Oder bist du unzufrieden?
 waitmessage
 multichoice 20 8 MULTI_SATISFACTION TRUE
 copyvar VAR_0x8008 VAR_RESULT
 call_if_eq VAR_RESULT 0 BattleFrontier_BattleTowerLobby_EventScript_Satisfied
 call_if_eq VAR_RESULT 1 BattleFrontier_BattleTowerLobby_EventScript_Dissatisfied
-msgbox	Oh, oh, may I ask one more question?If you were to describe your impressions about this battle with one saying, what would it be?
+msgbox	Oh, oh, darf ich noch eine Frage stellen?Wenn du deine Eindrücke von diesem Kampf mit einem Spruch beschreiben müsstest, wie würde er lauten?
 setvar VAR_0x8004 EASY_CHAT_TYPE_BATTLE_TOWER_INTERVIEW
 copyvar VAR_0x8005 VAR_0x8009
 call Common_ShowEasyChatScreen
@@ -693,12 +693,12 @@ goto_if_eq VAR_RESULT 1 BattleFrontier_BattleTowerLobby_EventScript_SubmitRespon
 goto_if_eq VAR_RESULT 0 BattleFrontier_BattleTowerLobby_EventScript_CancelInterview
 end
 = BattleFrontier_BattleTowerLobby_EventScript_CancelInterview
-msgbox	Oh, I see…Still, being the silent type is also cool, isn't it?I hope you'll give me the opportunity to share your thoughts again!
+msgbox	Oh, verstehe…Aber der schweigsame Typ zu sein, ist doch auch cool, oder?Ich hoffe, du gibst mir bald wieder die Gelegenheit, deine Gedanken zu teilen!
 release
 end
 = BattleFrontier_BattleTowerLobby_EventScript_SubmitResponse
 goto_if_eq VAR_RESULT 0 BattleFrontier_BattleTowerLobby_EventScript_CancelInterview
-msgbox	Oh, that is stunningly cool!That's a great line! I hope you'll do great next time, too.I hope to see you again!
+msgbox	Oh, das ist unglaublich cool!Ein toller Spruch! Ich hoffe, es läuft auch beim nächsten Mal super für dich.Bis bald!
 setflag FLAG_TEMP_2
 copyvar VAR_0x8004 VAR_0x8008
 setvar VAR_0x8005 TVSHOW_BRAVO_TRAINER_BATTLE_TOWER_PROFILE
@@ -721,11 +721,11 @@ goto_if_eq VAR_RESULT YES SlateportCity_PokemonFanClub_EventScript_AcceptIntervi
 goto_if_eq VAR_RESULT NO SlateportCity_PokemonFanClub_EventScript_DeclineInterview2
 end
 = SlateportCity_PokemonFanClub_EventScript_DeclineInterview2
-msgbox	Oh, okay…Well, if you get the urge to tell me about POKéMON, I'll be here!
+msgbox	Oh, okay…Nun, wenn dich der Drang packt, mir von POKéMON zu erzählen, bin ich hier!
 release
 end
 = SlateportCity_PokemonFanClub_EventScript_AcceptInterview2
-msgbox	Wow, thank you!Okay, then, please tell me anything you'd like about your STR_VAR_1.
+msgbox	Wow, danke!Okay, dann erzähl mir doch alles, was du über dein STR_VAR_1 möchtest.
 setvar VAR_0x8004 EASY_CHAT_TYPE_INTERVIEW
 copyvar VAR_0x8005 VAR_0x8009
 setvar VAR_0x8006 EASY_CHAT_PERSON_REPORTER_FEMALE
@@ -736,34 +736,34 @@ goto_if_eq VAR_RESULT 1 SlateportCity_PokemonFanClub_EventScript_SubmitResponse2
 goto_if_eq VAR_RESULT 0 SlateportCity_PokemonFanClub_EventScript_DeclineInterview2
 end
 = SlateportCity_PokemonFanClub_EventScript_SubmitResponse2
-msgbox	Wow… That's an interesting account.You really are tight with STR_VAR_1, aren't you?I get the feeling that your account will make a great TV story.I promise that I'll turn this into an entertaining show. Keep your eyes out for it.Okay, that's all. Bye-bye!
+msgbox	Wow… Das ist eine interessante Geschichte.Du bist wirklich eng mit STR_VAR_1, oder?Ich habe das Gefühl, deine Geschichte wird eine tolle TV-Story.Ich verspreche, ich mache daraus eine unterhaltsame Sendung. Halt Ausschau danach.Okay, das war's. Tschüss!
 setvar VAR_0x8005 TVSHOW_FAN_CLUB_LETTER
 goto Interview_EventScript_EndInterview
 end
 = SlateportCity_PokemonFanClub_EventScript_AlreadyInterviewed2
-msgbox	I enjoy this job--you get to learn about POKéMON by doing interviews.
+msgbox	Ich mag diesen Job -- man lernt bei den Interviews so viel über POKéMON.
 release
 end
 = BattleFrontier_BattleTowerLobby_EventScript_Dissatisfied
-msgbox	Oh, I see…Well, it certainly is difficult to make a battle turn out exactly as planned.
+msgbox	Oh, verstehe…Nun, es ist sicherlich schwierig, einen Kampf genau nach Plan verlaufen zu lassen.
 return
 = BattleFrontier_BattleTowerLobby_EventScript_Satisfied
-msgbox	Well, of course!That unmistakable look of satisfaction on your face…It's obvious that you've had a great battle.
+msgbox	Na klar!Dieser unverkennbare Ausdruck der Zufriedenheit in deinem Gesicht…Es ist offensichtlich, dass du einen tollen Kampf hattest.
 return
 = BattleFrontier_BattleTowerLobby_EventScript_AlreadyInterviewed
-msgbox	I'll be looking forward to your next battle!
+msgbox	Ich freue mich schon auf deinen nächsten Kampf!
 release
 end
 = BattleFrontier_BattleTowerLobby_EventScript_Boy
-msgbox	Once you've entered the BATTLE TOWER, you can't leave until you either lose or you beat seven TRAINERS in a row.You'd best be certain that you're up to the challenge.
+msgbox	Hast du den BATTLE TOWER erst betreten, kannst du erst wieder raus, wenn du verlierst oder sieben TRAINER in Folge besiegst.Du solltest dir besser sicher sein, dass du der Herausforderung gewachsen bist.
 end
 = BattleFrontier_BattleTowerLobby_EventScript_Woman
-msgbox	The number of matches you win in a row is recorded.I'd better not get beaten in an embarrassing way!
+msgbox	Die Anzahl der Kämpfe, die du in Folge gewinnst, wird festgehalten.Ich sollte lieber nicht auf peinliche Weise besiegt werden!
 end
 = BattleFrontier_BattleTowerLobby_EventScript_FeelingsMan
 lock
 faceplayer
-msgbox	Excuse me, do you have a moment?Can you describe your feelings when you're about to begin a BATTLE TOWER match, or when you've either won or lost a match?
+msgbox	Entschuldige, hast du einen Moment?Kannst du beschreiben, was du fühlst, wenn ein BATTLE TOWER-Kampf beginnt oder wenn du einen Kampf gewonnen oder verloren hast?
 waitmessage
 multichoice 16 4 MULTI_BATTLE_TOWER_FEELINGS FALSE
 switch VAR_RESULT
@@ -775,11 +775,11 @@ case MULTI_B_PRESSED BattleFrontier_BattleTowerLobby_EventScript_FeelingsWontTel
 release
 end
 = BattleFrontier_BattleTowerLobby_EventScript_FeelingsWontTell
-msgbox	Oh, so you don't think much about it? You're one cool customer.
+msgbox	Oh, du machst dir also nicht viele Gedanken darüber? Du bist ein cooler Typ.
 release
 end
 = BattleFrontier_BattleTowerLobby_EventScript_FeelingsILost
-msgbox	Can I hear about your feelings when you have lost a match?
+msgbox	Kann ich hören, was du fühlst, wenn du einen Kampf verloren hast?
 setvar VAR_0x8004 EASY_CHAT_TYPE_BATTLE_LOST
 call Common_ShowEasyChatScreen
 lock
@@ -791,15 +791,15 @@ goto_if_eq VAR_RESULT 0 BattleFrontier_BattleTowerLobby_EventScript_CanceledEasy
 goto_if_eq VAR_RESULT 1 BattleFrontier_BattleTowerLobby_EventScript_SubmittedFeelings
 end
 = BattleFrontier_BattleTowerLobby_EventScript_SubmittedFeelings
-msgbox	Okay, so that's how you feel? That's quite original.Thanks!
+msgbox	Okay, so fühlst du dich also? Das ist ziemlich originell.Danke!
 release
 end
 = BattleFrontier_BattleTowerLobby_EventScript_CanceledEasyChat
-msgbox	Hunh? You changed your mind? I guess you're fickle.
+msgbox	Huh? Du hast es dir anders überlegt? Du bist wohl wankelmütig.
 release
 end
 = BattleFrontier_BattleTowerLobby_EventScript_FeelingsIWon
-msgbox	What do you feel when you've won a match?
+msgbox	Was fühlst du, wenn du einen Kampf gewonnen hast?
 setvar VAR_0x8004 EASY_CHAT_TYPE_BATTLE_WON
 call Common_ShowEasyChatScreen
 lock
@@ -807,7 +807,7 @@ faceplayer
 goto BattleFrontier_BattleTowerLobby_EventScript_CheckFeelings
 end
 = BattleFrontier_BattleTowerLobby_EventScript_FeelingsBattleNow
-msgbox	Okay, what are your feelings when you're about to begin a match?
+msgbox	Okay, was fühlst du, wenn gleich ein Kampf beginnt?
 setvar VAR_0x8004 EASY_CHAT_TYPE_BATTLE_START
 call Common_ShowEasyChatScreen
 lock
@@ -819,10 +819,10 @@ lock
 faceplayer
 setvar VAR_FRONTIER_FACILITY FRONTIER_FACILITY_TOWER
 special SavePlayerParty
-msgbox	Where the talents of TRAINERS are put to the test!Welcome to the BATTLE TOWER!I am your guide to the SINGLE BATTLE ROOMS.
+msgbox	Hier wird das Talent von TRAINERN auf die Probe gestellt!Willkommen im BATTLE TOWER!Ich bin dein Führer für die SINGLE-BATTLE-RÄUME.
 goto BattleFrontier_BattleTowerLobby_EventScript_AskEnterSinglesChallenge
 = BattleFrontier_BattleTowerLobby_EventScript_AskEnterSinglesChallenge
-msgbox	Would you like to take the SINGLE BATTLE ROOM challenge?
+msgbox	Möchtest du die Herausforderung im SINGLE-BATTLE-RAUM annehmen?
 waitmessage
 multichoice 17 6 MULTI_CHALLENGEINFO FALSE
 switch VAR_RESULT
@@ -833,7 +833,7 @@ case MULTI_B_PRESSED BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
 goto BattleFrontier_BattleTowerLobby_EventScript_TryEnterSinglesChallenge
 = BattleFrontier_BattleTowerLobby_EventScript_TryEnterSinglesChallenge
 setvar VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES
-msgbox	The BATTLE ROOM offers two levels of challenge, Level 50 and Open Level. Which is your choice?
+msgbox	Der BATTLE-RAUM bietet zwei Schwierigkeitsstufen: Level 50 und offenes Level. Welche wählst du?
 waitmessage
 multichoice 17 6 MULTI_LEVEL_MODE FALSE
 switch VAR_RESULT
@@ -842,7 +842,7 @@ case MULTI_B_PRESSED BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
 frontier_checkineligible
 goto_if_eq VAR_0x8004 TRUE BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMons
 frontier_set FRONTIER_DATA_LVL_MODE VAR_RESULT
-msgbox	Now please select the three POKéMON that are to be entered.
+msgbox	Wähle nun bitte die drei POKéMON aus, die antreten sollen.
 fadescreen FADE_TO_BLACK
 call BattleFrontier_EventScript_GetLvlMode
 copyvar VAR_0x8004 VAR_RESULT
@@ -872,11 +872,11 @@ setvar VAR_BRAVO_TRAINER_BATTLE_TOWER_ON TRUE
 goto BattleFrontier_BattleTowerLobby_EventScript_EnterElevator
 end
 = BattleFrontier_BattleTowerLobby_EventScript_ExplainSinglesChallenge
-msgbox	The BATTLE TOWER's SINGLE BATTLE ROOMS are facilities for conducting SINGLE BATTLES with three POKéMON.There are many SINGLE BATTLE ROOMS in the BATTLE TOWER for team battles.In each of the SINGLE BATTLE ROOMS, seven TRAINERS await your challenge.If you manage to defeat all seven, you will earn Battle Points.If you want to interrupt your challenge, please save the game.If you don't save before interrupting, you will be disqualified.
+msgbox	Die SINGLE-BATTLE-RÄUME des BATTLE TOWER sind Einrichtungen für SINGLE-BATTLES mit drei POKéMON.Es gibt viele SINGLE-BATTLE-RÄUME im BATTLE TOWER für Team-Kämpfe.In jedem der SINGLE-BATTLE-RÄUME erwarten dich sieben TRAINER zur Herausforderung.Wenn es dir gelingt, alle sieben zu besiegen, erhältst du Kampfpunkte.Wenn du deine Herausforderung unterbrechen willst, speichere bitte das Spiel.Wenn du vor der Unterbrechung nicht speicherst, wirst du disqualifiziert.
 goto BattleFrontier_BattleTowerLobby_EventScript_AskEnterSinglesChallenge
 end
 signs
-2 1	The BATTLE TOWER rules are listed.
+2 1	Die Regeln des BATTLE TOWER sind aufgelistet.
 mapsec
 22 12 1 1	BATTLE FRONTIER
 music
