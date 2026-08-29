@@ -200,8 +200,8 @@ people_picnicker 26 72 S static 0 - 4
 misc_item_ball 31 19 S static FLAG_ITEM_ROUTE_114_ENERGY_POWDER - 0
 people_fisherman 28 16 S static 0 - 3
 dialogs
-11	All my POKéMON does is ROAR… No one dares to come near me…Sigh… If you would, please take this TM away…
-12	Bow! Bowwow!
+11	Mein POKéMON macht nichts als BRÜLLEN… Niemand traut sich in meine Nähe…Seufz… Bitte, nimm mir dieses TM ab…
+12	Wuff! Wuffwuff!
 objscripts
 0 BerryTreeScript
 1 BerryTreeScript
@@ -244,7 +244,7 @@ goto_if_ge VAR_ABNORMAL_WEATHER_LOCATION MARINE_CAVE_LOCATIONS_START AbnormalWea
 goto AbnormalWeather_EventScript_ShowSunEndedMessage
 end
 = AbnormalWeather_EventScript_ShowSunEndedMessage
-msgbox	The intense sunshine appears to have subsided…
+msgbox	Der grelle Sonnenschein scheint nachgelassen zu haben…
 goto AbnormalWeather_EventScript_EndEventAndCleanup_2
 end
 = AbnormalWeather_EventScript_EndEventAndCleanup_2
@@ -424,7 +424,7 @@ setmetatile 7 3 METATILE_Fallarbor_RedRockWall TRUE
 setmetatile 7 4 METATILE_Fallarbor_RedRockWall TRUE
 return
 = AbnormalWeather_EventScript_ShowRainEndedMessage
-msgbox	The massive downpour appears to have stopped…
+msgbox	Der heftige Regenguss scheint aufgehört zu haben…
 goto AbnormalWeather_EventScript_EndEventAndCleanup_2
 end
 = Route114_HiddenItem_7_30
@@ -443,7 +443,7 @@ end
 end
 = Route114_EventScript_Kai
 trainerbattle_single TRAINER_KAI Route114_Text_KaiIntro Route114_Text_KaiDefeat
-msgbox	Okay! I'll just fish me a bigger one!
+msgbox	Okay! Dann angle ich mir eben einen größeren!
 end
 = Route114_EventScript_ItemEnergyPowder
 goto_if_set FLAG_ITEM_ROUTE_114_ENERGY_POWDER Route114_EventScript_ItemEnergyPowder_Taken
@@ -454,19 +454,19 @@ end
 end
 = Route114_EventScript_Angelina
 trainerbattle_single TRAINER_ANGELINA Route114_Text_AngelinaIntro Route114_Text_AngelinaDefeat
-msgbox	Some POKéMON change so much when they evolve, it's startling!
+msgbox	Manche POKéMON verändern sich bei ihrer Entwicklung so sehr, das ist echt erstaunlich!
 end
 = Route114_EventScript_Charlotte
 trainerbattle_single TRAINER_CHARLOTTE Route114_Text_CharlotteIntro Route114_Text_CharlotteDefeat
-msgbox	I don't want a POKéMON that's just cute.I adore cute ones that have a quirk or two!
+msgbox	Ich will kein POKéMON, das einfach nur niedlich ist.Ich liebe niedliche mit dem gewissen Etwas!
 end
 = Route114_EventScript_Tyra
 trainerbattle_double TRAINER_TYRA_AND_IVY Route114_Text_TyraIntro Route114_Text_TyraDefeat Route114_Text_TyraNotEnoughMons
-msgbox	TYRA: I was teaching my junior IVY about POKéMON.
+msgbox	TYRA: Ich habe meiner Schülerin IVY etwas über POKéMON beigebracht.
 end
 = Route114_EventScript_Ivy
 trainerbattle_double TRAINER_TYRA_AND_IVY Route114_Text_IvyIntro Route114_Text_IvyDefeat Route114_Text_IvyNotEnoughMons
-msgbox	IVY: I started training POKéMON because TYRA, my student mentor, taught me!
+msgbox	IVY: Ich habe mit dem POKéMON-Training angefangen, weil TYRA, meine Mentorin, es mir beigebracht hat!
 end
 = EventScript_RockSmash
 lockall
@@ -478,7 +478,7 @@ bufferpartymonnick STR_VAR_1 VAR_RESULT
 buffermovename STR_VAR_2 MOVE_ROCK_SMASH
 msgboxyesno	This rock appears to be breakable. Would you like to use ROCK SMASH?
 goto_if_eq VAR_RESULT NO EventScript_CancelSmash
-msgbox	STR_VAR_1 used STR_VAR_2!
+msgbox	STR_VAR_1 setzte STR_VAR_2 ein!
 closemessage
 dofieldeffect FLDEFF_USE_ROCK_SMASH
 waitstate
@@ -511,52 +511,52 @@ closemessage
 releaseall
 end
 = EventScript_CantSmashRock
-msgbox	It's a rugged rock, but a POKéMON may be able to smash it.
+msgbox	Das ist ein zerklüfteter Felsen, aber vielleicht kann ihn ein POKéMON zertrümmern.
 releaseall
 end
 = Route114_EventScript_Bernie
 trainerbattle_single TRAINER_BERNIE_1 Route114_Text_BernieIntro Route114_Text_BernieDefeat Route114_EventScript_RegisterBernie
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route114_EventScript_RematchBernie
-msgbox	You really do have to be careful with any sort of fire in a forest.Don't ever underestimate the power of fire.
+msgbox	Man muss wirklich mit jeder Art von Feuer im Wald vorsichtig sein.Unterschätze niemals die Macht des Feuers.
 release
 end
 = Route114_EventScript_RematchBernie
 trainerbattle_rematch TRAINER_BERNIE_1 Route114_Text_BernieRematchIntro Route114_Text_BernieRematchDefeat
-msgbox	You really do have to be careful with any sort of fire in a forest.Don't ever underestimate the power of fire.
+msgbox	Man muss wirklich mit jeder Art von Feuer im Wald vorsichtig sein.Unterschätze niemals die Macht des Feuers.
 end
 = Route114_EventScript_RegisterBernie
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	You set my spirit on fire. Let's register each other!
+msgbox	Du hast meinen Kampfgeist entfacht. Lass uns gegenseitig registrieren!
 register_matchcall TRAINER_BERNIE_1
 release
 end
 = Route114_EventScript_Claude
 trainerbattle_single TRAINER_CLAUDE Route114_Text_ClaudeIntro Route114_Text_ClaudeDefeat
-msgbox	I think I'll try my luck at landing a big one at METEOR FALLS.There has to be something in there. I just know it.
+msgbox	Ich glaube, ich versuche mein Glück und angle mir einen Großen bei den METEOR FALLS.Da muss einfach etwas drin sein. Ich spür's genau.
 end
 = Route114_EventScript_Nolan
 trainerbattle_single TRAINER_NOLAN Route114_Text_NolanIntro Route114_Text_NolanDefeat
-msgbox	This time I'll do it!I always think that, so I can't walk away from fishing or POKéMON.
+msgbox	Diesmal schaffe ich es!Das denke ich mir immer, deshalb kann ich vom Angeln und von POKéMON einfach nicht lassen.
 end
 = Route114_EventScript_Man
 lock
 faceplayer
 dotimebasedevents
 goto_if_set FLAG_DAILY_ROUTE_114_RECEIVED_BERRY Route114_EventScript_ReceivedBerry
-msgbox	I love using the BERRY CRUSH machine, so I'm collecting BERRIES.I'll share one with you, if you'd like.
+msgbox	Ich liebe es, die BERRY-CRUSH-Maschine zu benutzen, deshalb sammle ich BEEREN.Wenn du willst, teile ich eine mit dir.
 random NUM_ROUTE_114_MAN_BERRIES
 addvar VAR_RESULT NUM_ROUTE_114_MAN_BERRIES_SKIPPED
 addvar VAR_RESULT FIRST_BERRY_INDEX
 giveitem VAR_RESULT
 goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
 setflag FLAG_DAILY_ROUTE_114_RECEIVED_BERRY
-msgbox	You should try the BERRY CRUSH machine with your friends.
+msgbox	Du solltest die BERRY-CRUSH-Maschine mal mit deinen Freunden ausprobieren.
 release
 end
 = Route114_EventScript_ReceivedBerry
-msgbox	Which BERRY should be planted? Should you use or hoard BERRIES?It's fun to think about.
+msgbox	Welche BEERE sollte man pflanzen? Sollte man BEEREN benutzen oder horten?Es macht Spaß, darüber nachzudenken.
 release
 end
 = Route114_EventScript_Poochyena
@@ -564,7 +564,7 @@ lock
 faceplayer
 waitse
 playmoncry SPECIES_POOCHYENA CRY_MODE_ENCOUNTER
-msgbox	Bow! Bowwow!
+msgbox	Wuff! Wuffwuff!
 waitmoncry
 release
 end
@@ -572,15 +572,15 @@ end
 lock
 faceplayer
 goto_if_set FLAG_RECEIVED_TM_ROAR Route114_EventScript_ReceivedRoar
-msgbox	All my POKéMON does is ROAR… No one dares to come near me…Sigh… If you would, please take this TM away…
+msgbox	Mein POKéMON macht nichts als BRÜLLEN… Niemand traut sich in meine Nähe…Seufz… Bitte, nimm mir dieses TM ab…
 giveitem ITEM_TM_ROAR
 goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
 setflag FLAG_RECEIVED_TM_ROAR
-msgbox	TM05 contains ROAR. A ROAR sends POKéMON scurrying.
+msgbox	TM05 enthält BRÜLLEN. Ein BRÜLLEN schlägt POKéMON in die Flucht.
 release
 end
 = Route114_EventScript_ReceivedRoar
-msgbox	TM05 contains ROAR. A ROAR sends POKéMON scurrying.
+msgbox	TM05 enthält BRÜLLEN. Ein BRÜLLEN schlägt POKéMON in die Flucht.
 release
 end
 = Route114_EventScript_ItemProtein
@@ -622,24 +622,24 @@ special ObjectEventInteractionPickBerryTree
 goto_if_eq VAR_0x8004 0 BerryTree_EventScript_BerryPocketFull
 special IncrementDailyPickedBerries
 special ObjectEventInteractionRemoveBerryTree
-msgbox	PLAYER picked the STR_VAR_2 STR_VAR_1.
+msgbox	PLAYER pflückte STR_VAR_1 STR_VAR_2.
 playfanfare MUS_OBTAIN_BERRY
 waitmessage
 waitfanfare
 waitbuttonpress
-msgbox	PLAYER put away the STR_VAR_1 in the BAG's BERRIES POCKET.The soil returned to its soft and loamy state.
+msgbox	PLAYER verstaute STR_VAR_1 im BEEREN-Fach des BEUTELS.Der Boden wurde wieder weich und locker.
 waitmessage
 waitbuttonpress
 release
 end
 = BerryTree_EventScript_BerryPocketFull
-msgbox	The BAG's BERRIES POCKET is full.The STR_VAR_1 couldn't be taken.
+msgbox	Das BEEREN-Fach des BEUTELS ist voll.STR_VAR_1 konnte nicht mitgenommen werden.
 waitmessage
 waitbuttonpress
 release
 end
 = BerryTree_EventScript_CancelPickingBerry
-msgbox	PLAYER left the STR_VAR_1 unpicked.
+msgbox	PLAYER ließ STR_VAR_1 ungepflückt.
 waitmessage
 waitbuttonpress
 release
@@ -648,7 +648,7 @@ end
 call BerryTree_EventScript_GetCareAdverb
 lockall
 special ObjectEventInteractionGetBerryName
-msgbox	These STR_VAR_1 flowers are blooming STR_VAR_2.
+msgbox	Diese STR_VAR_1-Blüten blühen STR_VAR_2.
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
@@ -681,11 +681,11 @@ releaseall
 end
 = BerryTree_EventScript_WaterBerry
 special ObjectEventInteractionGetBerryName
-msgbox	PLAYER watered the STR_VAR_1.
+msgbox	PLAYER goss STR_VAR_1.
 waitmessage
 special ObjectEventInteractionWaterBerryTree
 special DoWateringBerryTreeAnim
-msgbox	The plant seems to be delighted.
+msgbox	Die Pflanze scheint sich zu freuen.
 waitmessage
 waitbuttonpress
 releaseall
@@ -693,21 +693,21 @@ end
 = BerryTree_EventScript_CheckBerryStage3
 lockall
 special ObjectEventInteractionGetBerryName
-msgbox	This STR_VAR_1 plant is growing taller.
+msgbox	Diese STR_VAR_1-Pflanze wird immer größer.
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
 = BerryTree_EventScript_CheckBerryStage2
 lockall
 special ObjectEventInteractionGetBerryName
-msgbox	STR_VAR_1 has sprouted.
+msgbox	STR_VAR_1 ist gesprossen.
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
 = BerryTree_EventScript_CheckBerryStage1
 lockall
 special ObjectEventInteractionGetBerryCountString
-msgbox	One STR_VAR_1 was planted here.
+msgbox	Hier wurde ein STR_VAR_1 eingepflanzt.
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
@@ -716,7 +716,7 @@ lock
 faceplayer
 specialvar VAR_RESULT PlayerHasBerries
 goto_if_eq VAR_RESULT TRUE BerryTree_EventScript_WantToPlant
-msgbox	It's soft, loamy soil.
+msgbox	Das ist weicher, lockerer Boden.
 waitmessage
 waitbuttonpress
 release
@@ -742,7 +742,7 @@ special ObjectEventInteractionPlantBerryTree
 incrementgamestat GAME_STAT_PLANTED_BERRIES
 special IncrementDailyPlantedBerries
 special ObjectEventInteractionGetBerryCountString
-msgbox	PLAYER planted one STR_VAR_1 in the soft, loamy soil.
+msgbox	PLAYER pflanzte ein STR_VAR_1 in den weichen, lockeren Boden.
 waitmessage
 waitbuttonpress
 return
@@ -757,40 +757,40 @@ end
 trainerbattle_single TRAINER_STEVE_1 Route114_Text_SteveIntro Route114_Text_SteveDefeat Route114_EventScript_RegisterSteve
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route114_EventScript_RematchSteve
-msgbox	A big body that's all lumpy and hard, enormous horns, and vicious fangs…Ufufufufu… I wish I had a POKéMON like that…
+msgbox	Ein großer Körper, ganz knorrig und hart, gewaltige Hörner und bösartige Fangzähne…Ufufufufu… Ich wünschte, ich hätte so ein POKéMON…
 release
 end
 = Route114_EventScript_RematchSteve
 trainerbattle_rematch TRAINER_STEVE_1 Route114_Text_SteveRematchIntro Route114_Text_SteveRematchDefeat
-msgbox	Ufufufufufu…When I see POKéMON battling, I get all shivery and shaky…
+msgbox	Ufufufufufu…Wenn ich POKéMON kämpfen sehe, kribbelt und zittert es in mir…
 end
 = Route114_EventScript_RegisterSteve
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Don't forget what you've done to me! I'll make it so you can't forget!
+msgbox	Vergiss nicht, was du mir angetan hast! Ich sorge dafür, dass du es nicht vergisst!
 register_matchcall TRAINER_STEVE_1
 release
 end
 = Route114_EventScript_Nancy
 trainerbattle_single TRAINER_NANCY Route114_Text_NancyIntro Route114_Text_NancyDefeat
-msgbox	I just had a tasty meal. I'm getting drowsy…
+msgbox	Ich habe gerade lecker gegessen. Ich werde ganz schläfrig…
 end
 = Route114_EventScript_Shane
 trainerbattle_single TRAINER_SHANE Route114_Text_ShaneIntro Route114_Text_ShaneDefeat
-msgbox	I think it's great that I can go camping with my POKéMON.
+msgbox	Ich finde es toll, dass ich mit meinen POKéMON campen gehen kann.
 end
 = Route114_EventScript_Lucas
 trainerbattle_single TRAINER_LUCAS_1 Route114_Text_LucasIntro Route114_Text_LucasDefeat
-msgbox	In the winter, mountains turn deadly with blizzards and avalanches.
+msgbox	Im Winter werden Berge durch Schneestürme und Lawinen lebensgefährlich.
 end
 = Route114_EventScript_Lenny
 trainerbattle_single TRAINER_LENNY Route114_Text_LennyIntro Route114_Text_LennyDefeat
-msgbox	When I was a wee tyke, I believed there was someone copying me and shouting back, “Yodelayhihoo.”
+msgbox	Als ich noch ein kleines Kind war, dachte ich, da würde mir jemand nachäffen und „Jodelahiho“ zurückrufen.
 end
 signs
-7 64	METEOR FALLS RUSTBORO CITY THROUGH HERE
-31 7	FOSSIL MANIAC'S HOUSE “Fossils gratefully accepted!”
-25 38	LANETTE'S HOUSE
+7 64	METEOR FALLS RUSTBORO CITY HIER ENTLANG
+31 7	HAUS DES FOSSILIEN-FANS „Fossilien werden dankend angenommen!“
+25 38	LANETTES HAUS
 grass
 13
 water

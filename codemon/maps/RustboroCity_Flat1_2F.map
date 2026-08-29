@@ -30,12 +30,12 @@ people_man_1 8 5 E static 0 LOCALID_WALDAS_DAD 0
 people_man_1 8 6 S static 0 - 0
 people_man_1 9 7 S static 0 - 0
 dialogs
-0	Oh, it's so hard every day…What's hard? You need to ask?It's trying to figure out what to make for meals every day.It really isn't easy coming up with meals every day.
-2	It's a POKéMON plush DOLL!
-3	It's a POKéMON plush DOLL!
-4	It's a POKéMON plush DOLL!
-6	It's a POKéMON plush DOLL!
-7	It's a POKéMON plush DOLL!
+0	Ach, es ist jeden Tag so schwer…Was so schwer ist? Musst du das fragen?Es ist, sich jeden Tag zu überlegen, was man kochen soll.Es ist wirklich nicht leicht, sich jeden Tag Mahlzeiten auszudenken.
+2	Das ist ein POKéMON-Plüsch-DOLL!
+3	Das ist ein POKéMON-Plüsch-DOLL!
+4	Das ist ein POKéMON-Plüsch-DOLL!
+6	Das ist ein POKéMON-Plüsch-DOLL!
+7	Das ist ein POKéMON-Plüsch-DOLL!
 objscripts
 0 RustboroCity_Flat1_2F_EventScript_WaldasMom
 2 RustboroCity_Flat1_2F_EventScript_PokeDoll
@@ -48,7 +48,7 @@ movements
 Common_Movement_FacePlayer	face_down,end
 scriptdefs
 = RustboroCity_Flat1_2F_EventScript_PokeDoll
-msgbox	It's a POKéMON plush DOLL!
+msgbox	Das ist ein POKéMON-Plüsch-DOLL!
 end
 = RustboroCity_Flat1_2F_EventScript_WaldasDad
 lock
@@ -66,49 +66,49 @@ goto_if_eq VAR_RESULT TRUE RustboroCity_Flat1_2F_EventScript_WaldaLikesPhrase
 goto_if_eq VAR_RESULT FALSE RustboroCity_Flat1_2F_EventScript_WaldaDoesntLikePhrase
 end
 = RustboroCity_Flat1_2F_EventScript_WaldaDoesntLikePhrase
-msgbox	Ah, I see. Well, let's give it a try, shall we?
+msgbox	Ach so, verstehe. Nun, versuchen wir es doch mal, oder?
 call RustboroCity_Flat1_2F_EventScript_WaldasDadFaceWalda
-msgbox	STR_VAR_1. STR_VAR_1.Hmmm… She's not smiling at all. Maybe WALDA is one serious child…
+msgbox	STR_VAR_1. STR_VAR_1.Hmmm… Sie lächelt überhaupt nicht. Vielleicht ist WALDA ein sehr ernstes Kind…
 release
 end
 = RustboroCity_Flat1_2F_EventScript_WaldasDadFaceWalda
 turnobject LOCALID_WALDAS_DAD DIR_EAST
 return
 = RustboroCity_Flat1_2F_EventScript_WaldaLikesPhrase
-msgbox	Ah, I see. Well, let's give it a try, shall we?
+msgbox	Ach so, verstehe. Nun, versuchen wir es doch mal, oder?
 call RustboroCity_Flat1_2F_EventScript_WaldasDadFaceWalda
-msgbox	STR_VAR_1. STR_VAR_1.Oh, yes! She's laughing! Oh, I am as delighted as she!
+msgbox	STR_VAR_1. STR_VAR_1.Oh, ja! Sie lacht! Oh, ich freue mich genauso sehr wie sie!
 applymovement LOCALID_WALDAS_DAD Common_Movement_FacePlayer
 waitmovement 0
-msgbox	Thank you!Thanks to you, my darling WALDA laughed for me!Actually, I may not look all that special, but I'm one of DEVON CORPORATION's top researchers.So, how about I do something in return for you?I know, I'll add some new wallpaper patterns for the BOXES in the PC POKéMON Storage System.In the wallpaper pattern menu, select “FRIENDS.”That will give you access to the new wallpaper patterns.
+msgbox	Vielen Dank!Dank dir hat meine geliebte WALDA für mich gelacht!Eigentlich sehe ich vielleicht nicht besonders aus, aber ich bin eine der Spitzenforscherinnen von DEVON CORPORATION.Wie wäre es also, wenn ich mich im Gegenzug revanchiere?Ich weiß! Ich füge ein paar neue Hintergrundmuster für die BOXEN im PC-POKéMON-Lagersystem hinzu.Wähle im Hintergrundmuster-Menü „FREUNDE“ aus.Dadurch bekommst du Zugriff auf die neuen Hintergrundmuster.
 release
 end
 = RustboroCity_Flat1_2F_EventScript_CancelGiveFirstPhrase
-msgbox	Oh, so you don't know any good words. I'd better think for myself, then.Hmm… How about “STR_VAR_1”? Let's see if that will work.
+msgbox	Oh, du kennst also keine guten Worte. Dann sollte ich mir wohl selbst etwas überlegen.Hmm… Wie wäre es mit „STR_VAR_1“? Mal sehen, ob das funktioniert.
 call RustboroCity_Flat1_2F_EventScript_WaldasDadFaceWalda
-msgbox	STR_VAR_1. STR_VAR_1.Hmmm… She's not smiling at all. Maybe WALDA is one serious child…
+msgbox	STR_VAR_1. STR_VAR_1.Hmmm… Sie lächelt überhaupt nicht. Vielleicht ist WALDA ein sehr ernstes Kind…
 release
 end
 = RustboroCity_Flat1_2F_EventScript_CancelGivePhrase
-msgbox	Oh, so you don't know any good words. I guess I'll try to amuse her with the saying I used before.Anyways, if you have a good suggestion, don't hesitate in telling me, okay?
+msgbox	Oh, du kennst also keine guten Worte. Dann versuche ich wohl, sie mit dem Spruch von vorhin zu unterhalten.Wie auch immer, wenn dir ein guter Vorschlag einfällt, zögere nicht, ihn mir zu sagen, okay?
 release
 end
 = RustboroCity_Flat1_2F_EventScript_WaldasDadNewPhrase
 msgboxyesno	I've been saying “STR_VAR_1” to amuse her lately.Do you know of a better word or a phrase that might work?
 goto_if_eq VAR_RESULT NO RustboroCity_Flat1_2F_EventScript_DeclineGivePhrase
-msgbox	Oh, that's wonderful. So, let's hear it, your suggestion.
+msgbox	Oh, das ist wunderbar. Also, lass mich deinen Vorschlag hören.
 goto RustboroCity_Flat1_2F_EventScript_GivePhrase
 = RustboroCity_Flat1_2F_EventScript_DeclineGivePhrase
-msgbox	Oh, is that right?Well, if you come up with a good suggestion, I'm all ears.
+msgbox	Oh, ist das so?Nun, wenn dir ein guter Vorschlag einfällt, bin ich ganz Ohr.
 release
 end
 = RustboroCity_Flat1_2F_EventScript_WaldasDadFirstPhrase
 msgboxyesno	Oh, hello! Welcome to the PEPPER household.I have a question for you. Have you ever baby-sat?You see, I'm a new father, so raising a child is all new to me.And I have a problem. My daughter WALDA doesn't laugh enough.I think she'd laugh for me if I told her something funny.Do you know of a funny word or phrase you can tell me?
 goto_if_eq VAR_RESULT NO RustboroCity_Flat1_2F_EventScript_DeclineGivePhrase
-msgbox	Oh, that's wonderful. So, let's hear it, your suggestion.
+msgbox	Oh, das ist wunderbar. Also, lass mich deinen Vorschlag hören.
 goto RustboroCity_Flat1_2F_EventScript_GivePhrase
 = RustboroCity_Flat1_2F_EventScript_WaldasMom
-msgbox	Oh, it's so hard every day…What's hard? You need to ask?It's trying to figure out what to make for meals every day.It really isn't easy coming up with meals every day.
+msgbox	Ach, es ist jeden Tag so schwer…Was so schwer ist? Musst du das fragen?Es ist, sich jeden Tag zu überlegen, was man kochen soll.Es ist wirklich nicht leicht, sich jeden Tag Mahlzeiten auszudenken.
 end
 mapsec
 0 5 1 2	RUSTBORO CITY
