@@ -42,7 +42,7 @@ npcs
 people_team_magma_magma_member_m 16 3 S static FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS - 3
 misc_item_ball 5 9 S static FLAG_ITEM_MAGMA_HIDEOUT_3F_2R_PP_MAX - 0
 dialogs
-0	You know, losing to you cleared my mind.The next time I see our leader, I'm going to ask him about what we do.
+0	Weißt du, gegen dich zu verlieren hat meinen Kopf frei gemacht.Wenn ich unseren Anführer das nächste Mal sehe, frage ich ihn, was wir hier eigentlich tun.
 objscripts
 0 MagmaHideout_3F_2R_EventScript_Grunt10
 1 MagmaHideout_3F_2R_EventScript_ItemPPMax
@@ -56,7 +56,7 @@ end
 end
 = MagmaHideout_3F_2R_EventScript_Grunt10
 trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_10 MagmaHideout_3F_2R_Text_Grunt10Intro MagmaHideout_3F_2R_Text_Grunt10Defeat
-msgbox	You know, losing to you cleared my mind.The next time I see our leader, I'm going to ask him about what we do.
+msgbox	Weißt du, gegen dich zu verlieren hat meinen Kopf frei gemacht.Wenn ich unseren Anführer das nächste Mal sehe, frage ich ihn, was wir hier eigentlich tun.
 end
 mapsec
 6 3 1 1	MAGMA HIDEOUT

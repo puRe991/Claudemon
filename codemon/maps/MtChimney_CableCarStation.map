@@ -33,7 +33,7 @@ npcs
 people_beauty 6 6 S static 0 LOCALID_MT_CHIMNEY_CABLE_CAR_ATTENDANT 0
 misc_cable_car 6 3 S static 0 - 0
 dialogs
-0	The CABLE CAR is ready to go down. Would you like to be on it?
+0	Die SEILBAHN ist bereit zur Talfahrt. Möchtest du mitfahren?
 objscripts
 0 MtChimney_CableCarStation_EventScript_Attendant
 onload
@@ -62,11 +62,11 @@ goto_if_eq VAR_RESULT YES MtChimney_CableCarStation_EventScript_RideCableCar
 goto_if_eq VAR_RESULT NO MtChimney_CableCarStation_EventScript_DeclineRide
 end
 = MtChimney_CableCarStation_EventScript_DeclineRide
-msgbox	Please ride with us another time.
+msgbox	Fahr doch ein anderes Mal mit uns mit.
 release
 end
 = MtChimney_CableCarStation_EventScript_RideCableCar
-msgbox	Please step this way.
+msgbox	Bitte komm hier entlang.
 closemessage
 applymovement LOCALID_MT_CHIMNEY_CABLE_CAR_ATTENDANT MtChimney_CableCarStation_Movement_LeadPlayerToCableCar
 applymovement LOCALID_PLAYER MtChimney_CableCarStation_Movement_BoardCableCar

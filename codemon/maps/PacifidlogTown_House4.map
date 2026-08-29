@@ -28,9 +28,9 @@ people_woman_2 3 4 S static 0 - 0
 people_little_girl 7 5 S wander 0 - 0
 people_boy_1 7 4 S wander 0 - 0
 dialogs
-0	People were saying they saw a POKéMON flying high above HOENN.Is it flying around all the time? Doesn't it need to rest somewhere?
-1	A sky POKéMON! A sky POKéMON!
-2	Where did you come from?
+0	Leute haben erzählt, dass sie ein POKéMON hoch über HOENN fliegen gesehen haben.Fliegt es die ganze Zeit umher? Muss es sich nicht irgendwo ausruhen?
+1	Ein Himmels-POKéMON! Ein Himmels-POKéMON!
+2	Woher kommst du?
 objscripts
 0 PacifidlogTown_House4_EventScript_Woman
 1 PacifidlogTown_House4_EventScript_LittleGirl
@@ -44,18 +44,18 @@ goto_if_eq VAR_RESULT YES PacifidlogTown_House4_EventScript_Yes
 goto_if_eq VAR_RESULT NO PacifidlogTown_House4_EventScript_No
 end
 = PacifidlogTown_House4_EventScript_No
-msgbox	No? That doesn't make any sense. You have to come from somewhere.Oh! Wait! You're not going to say you were born at the bottom of the sea?
+msgbox	Nein? Das ergibt keinen Sinn. Irgendwoher musst du kommen.Oh! Warte! Willst du mir etwa erzählen, du bist auf dem Meeresgrund geboren?
 release
 end
 = PacifidlogTown_House4_EventScript_Yes
-msgbox	Yes? YES TOWN?I've never heard of a place like that.
+msgbox	Ja? YES TOWN?Von so einem Ort habe ich noch nie gehört.
 release
 end
 = PacifidlogTown_House4_EventScript_LittleGirl
-msgbox	A sky POKéMON! A sky POKéMON!
+msgbox	Ein Himmels-POKéMON! Ein Himmels-POKéMON!
 end
 = PacifidlogTown_House4_EventScript_Woman
-msgbox	People were saying they saw a POKéMON flying high above HOENN.Is it flying around all the time? Doesn't it need to rest somewhere?
+msgbox	Leute haben erzählt, dass sie ein POKéMON hoch über HOENN fliegen gesehen haben.Fliegt es die ganze Zeit umher? Muss es sich nicht irgendwo ausruhen?
 end
 mapsec
 17 10 1 1	PACIFIDLOG TOWN

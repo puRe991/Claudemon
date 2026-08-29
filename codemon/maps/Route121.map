@@ -79,7 +79,7 @@ people_woman_5 72 9 S static 0 - 6
 misc_item_ball 60 10 S static FLAG_ITEM_ROUTE_121_REVIVE - 0
 misc_item_ball 38 13 S static FLAG_ITEM_ROUTE_121_ZINC - 0
 dialogs
-0	Ahead looms MT. PYRE…It is a natural monument to the spirits of departed POKéMON…
+0	Voraus erhebt sich der PYRE-BERG…Er ist ein natürliches Denkmal für die Seelen verstorbener POKéMON…
 objscripts
 0 Route121_EventScript_Woman
 1 BerryTreeScript
@@ -156,7 +156,7 @@ lockall
 playbgm MUS_ENCOUNTER_AQUA FALSE
 applymovement LOCALID_ROUTE121_GRUNT_2 Common_Movement_WalkInPlaceRight
 waitmovement 0
-msgbox	Okay! We're to move out to MT. PYRE!
+msgbox	Okay! Auf zum PYRE-BERG!
 closemessage
 applymovement LOCALID_ROUTE121_GRUNT_1 Route121_Movement_Grunt1Exit
 applymovement LOCALID_ROUTE121_GRUNT_2 Route121_Movement_Grunt2Exit
@@ -187,35 +187,35 @@ end
 trainerbattle_single TRAINER_CRISTIN_1 Route121_Text_CristinIntro Route121_Text_CristinDefeat Route121_EventScript_RegisterCristin
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route121_EventScript_RematchCristin
-msgbox	I didn't expect to lose this easily… I'll win next time!
+msgbox	Ich hätte nicht gedacht, dass ich so leicht verliere… Nächstes Mal gewinne ich!
 release
 end
 = Route121_EventScript_RematchCristin
 trainerbattle_rematch TRAINER_CRISTIN_1 Route121_Text_CristinRematchIntro Route121_Text_CristinRematchDefeat
-msgbox	An opponent I just can't beat… Snivel… I can't believe this is happening…
+msgbox	Ein Gegner, den ich einfach nicht schlagen kann… Schnief… Ich kann nicht glauben, dass das gerade passiert…
 end
 = Route121_EventScript_RegisterCristin
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	That was total humiliation! I won't forget you… Hand over your POKéNAV!
+msgbox	Das war eine totale Demütigung! Ich werde dich nicht vergessen… Rück dein POKéNAV raus!
 register_matchcall TRAINER_CRISTIN_1
 release
 end
 = Route121_EventScript_Marcel
 trainerbattle_single TRAINER_MARCEL Route121_Text_MarcelIntro Route121_Text_MarcelDefeat
-msgbox	I may have to train my gang some more before entering any CONTEST.
+msgbox	Ich muss meine Truppe wohl noch etwas trainieren, bevor ich an einem CONTEST teilnehme.
 end
 = Route121_EventScript_Pat
 trainerbattle_single TRAINER_PAT Route121_Text_PatIntro Route121_Text_PatDefeat
-msgbox	I raise every POKéMON with the same love and care--I don't pick favorites.
+msgbox	Ich ziehe jedes POKéMON mit derselben Liebe und Sorgfalt auf -- ich habe keine Lieblinge.
 end
 = Route121_EventScript_Myles
 trainerbattle_single TRAINER_MYLES Route121_Text_MylesIntro Route121_Text_MylesDefeat
-msgbox	They're great, your POKéMON! How do you raise them?
+msgbox	Deine POKéMON sind toll! Wie ziehst du sie auf?
 end
 = Route121_EventScript_Cale
 trainerbattle_single TRAINER_CALE Route121_Text_CaleIntro Route121_Text_CaleDefeat
-msgbox	I bought too much stuff at the LILYCOVE DEPT. STORE.It's up the road from here. I wish I had a BAG like yours.
+msgbox	Ich habe im LILYCOVE-KAUFHAUS viel zu viel Zeug gekauft.Es liegt hier die Straße hoch. Ich wünschte, ich hätte eine TASCHE wie deine.
 end
 = EventScript_CutTree
 lockall
@@ -227,7 +227,7 @@ bufferpartymonnick STR_VAR_1 VAR_RESULT
 buffermovename STR_VAR_2 MOVE_CUT
 msgboxyesno	This tree looks like it can be CUT down!Would you like to CUT it?
 goto_if_eq VAR_RESULT NO EventScript_CancelCut
-msgbox	STR_VAR_1 used STR_VAR_2!
+msgbox	STR_VAR_1 setzte STR_VAR_2 ein!
 closemessage
 dofieldeffect FLDEFF_USE_CUT_ON_TREE
 waitstate
@@ -252,7 +252,7 @@ closemessage
 releaseall
 end
 = EventScript_CheckTreeCantCut
-msgbox	This tree looks like it can be CUT down!
+msgbox	Dieser Baum sieht aus, als könnte man ihn mit HAUEN fällen!
 releaseall
 end
 = Route121_EventScript_ItemCarbos
@@ -266,53 +266,53 @@ end
 trainerbattle_single TRAINER_JESSICA_1 Route121_Text_JessicaIntro Route121_Text_JessicaDefeat Route121_EventScript_RegisterJessica
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route121_EventScript_RematchJessica
-msgbox	Maybe I'll go catch more POKéMON at the SAFARI.
+msgbox	Vielleicht fange ich noch mehr POKéMON im SAFARI-PARK.
 release
 end
 = Route121_EventScript_RematchJessica
 trainerbattle_rematch TRAINER_JESSICA_1 Route121_Text_JessicaRematchIntro Route121_Text_JessicaRematchDefeat
-msgbox	Maybe I'll go catch more POKéMON at the SAFARI.
+msgbox	Vielleicht fange ich noch mehr POKéMON im SAFARI-PARK.
 end
 = Route121_EventScript_RegisterJessica
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	I took it easy on you this time! It won't be that way the next time!
+msgbox	Dieses Mal bin ich sanft mit dir umgegangen! Beim nächsten Mal wird das anders sein!
 register_matchcall TRAINER_JESSICA_1
 release
 end
 = Route121_EventScript_Tammy
 trainerbattle_single TRAINER_TAMMY Route121_Text_TammyIntro Route121_Text_TammyDefeat
-msgbox	MT. PYRE… There is a mysterious power at work there…
+msgbox	Der PYRE-BERG… Dort wirkt eine geheimnisvolle Kraft…
 end
 = Route121_EventScript_Walter
 trainerbattle_single TRAINER_WALTER_1 Route121_Text_WalterIntro Route121_Text_WalterDefeat Route121_EventScript_RegisterWalter
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route121_EventScript_RematchWalter
-msgbox	I would like to circle the globe once again with my POKéMON.
+msgbox	Ich würde gern noch einmal mit meinen POKéMON um die Welt reisen.
 release
 end
 = Route121_EventScript_RematchWalter
 trainerbattle_rematch TRAINER_WALTER_1 Route121_Text_WalterRematchIntro Route121_Text_WalterRematchDefeat
-msgbox	Your POKéMON and you…Your prowess together will be considered strong, even overseas.
+msgbox	Du und deine POKéMON…Eure gemeinsame Stärke würde sogar in Übersee als beeindruckend gelten.
 end
 = Route121_EventScript_RegisterWalter
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Your POKéMON prowess is remarkable. Allow me to register you as a memento.
+msgbox	Deine POKéMON-Fähigkeiten sind bemerkenswert. Erlaube mir, dich als Andenken einzutragen.
 register_matchcall TRAINER_WALTER_1
 release
 end
 = Route121_EventScript_Vanessa
 trainerbattle_single TRAINER_VANESSA Route121_Text_VanessaIntro Route121_Text_VanessaDefeat
-msgbox	I'm going to a CONTEST in LILYCOVE.My POKéMON should have no problem sweeping the MASTER CLASS.
+msgbox	Ich fahre zu einem CONTEST in LILYCOVE.Meine POKéMON sollten die MEISTERKLASSE ohne Probleme aufmischen.
 end
 = Route121_EventScript_Joy
 trainerbattle_double TRAINER_KATE_AND_JOY Route121_Text_JoyIntro Route121_Text_JoyDefeat Route121_Text_JoyNotEnoughMons
-msgbox	JOY: Ehehe, I'll have to train with KATE, my senior student partner, again.
+msgbox	JOY: Ehehe, ich muss wohl wieder mit KATE, meiner erfahreneren Trainingspartnerin, üben.
 end
 = Route121_EventScript_Kate
 trainerbattle_double TRAINER_KATE_AND_JOY Route121_Text_KateIntro Route121_Text_KateDefeat Route121_Text_KateNotEnoughMons
-msgbox	KATE: When someone's relying on me, I get this urge to look cool in front of them…
+msgbox	KATE: Wenn sich jemand auf mich verlässt, will ich unbedingt cool vor ihm dastehen…
 end
 = BerryTreeScript
 special ObjectEventInteractionGetBerryTreeData
@@ -339,24 +339,24 @@ special ObjectEventInteractionPickBerryTree
 goto_if_eq VAR_0x8004 0 BerryTree_EventScript_BerryPocketFull
 special IncrementDailyPickedBerries
 special ObjectEventInteractionRemoveBerryTree
-msgbox	PLAYER picked the STR_VAR_2 STR_VAR_1.
+msgbox	PLAYER pflückte STR_VAR_2 STR_VAR_1.
 playfanfare MUS_OBTAIN_BERRY
 waitmessage
 waitfanfare
 waitbuttonpress
-msgbox	PLAYER put away the STR_VAR_1 in the BAG's BERRIES POCKET.The soil returned to its soft and loamy state.
+msgbox	PLAYER verstaute STR_VAR_1 im BEEREN-FACH der TASCHE.Der Boden wurde wieder weich und lehmig.
 waitmessage
 waitbuttonpress
 release
 end
 = BerryTree_EventScript_BerryPocketFull
-msgbox	The BAG's BERRIES POCKET is full.The STR_VAR_1 couldn't be taken.
+msgbox	Das BEEREN-FACH der TASCHE ist voll.STR_VAR_1 konnte nicht mitgenommen werden.
 waitmessage
 waitbuttonpress
 release
 end
 = BerryTree_EventScript_CancelPickingBerry
-msgbox	PLAYER left the STR_VAR_1 unpicked.
+msgbox	PLAYER ließ STR_VAR_1 ungepflückt.
 waitmessage
 waitbuttonpress
 release
@@ -365,7 +365,7 @@ end
 call BerryTree_EventScript_GetCareAdverb
 lockall
 special ObjectEventInteractionGetBerryName
-msgbox	These STR_VAR_1 flowers are blooming STR_VAR_2.
+msgbox	Diese STR_VAR_1-Blumen blühen STR_VAR_2.
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
@@ -398,11 +398,11 @@ releaseall
 end
 = BerryTree_EventScript_WaterBerry
 special ObjectEventInteractionGetBerryName
-msgbox	PLAYER watered the STR_VAR_1.
+msgbox	PLAYER goss STR_VAR_1.
 waitmessage
 special ObjectEventInteractionWaterBerryTree
 special DoWateringBerryTreeAnim
-msgbox	The plant seems to be delighted.
+msgbox	Die Pflanze scheint erfreut zu sein.
 waitmessage
 waitbuttonpress
 releaseall
@@ -410,21 +410,21 @@ end
 = BerryTree_EventScript_CheckBerryStage3
 lockall
 special ObjectEventInteractionGetBerryName
-msgbox	This STR_VAR_1 plant is growing taller.
+msgbox	Diese STR_VAR_1-Pflanze wird größer.
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
 = BerryTree_EventScript_CheckBerryStage2
 lockall
 special ObjectEventInteractionGetBerryName
-msgbox	STR_VAR_1 has sprouted.
+msgbox	STR_VAR_1 ist gekeimt.
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
 = BerryTree_EventScript_CheckBerryStage1
 lockall
 special ObjectEventInteractionGetBerryCountString
-msgbox	One STR_VAR_1 was planted here.
+msgbox	Hier wurde ein STR_VAR_1 gepflanzt.
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
@@ -433,7 +433,7 @@ lock
 faceplayer
 specialvar VAR_RESULT PlayerHasBerries
 goto_if_eq VAR_RESULT TRUE BerryTree_EventScript_WantToPlant
-msgbox	It's soft, loamy soil.
+msgbox	Es ist weicher, lehmiger Boden.
 waitmessage
 waitbuttonpress
 release
@@ -459,7 +459,7 @@ special ObjectEventInteractionPlantBerryTree
 incrementgamestat GAME_STAT_PLANTED_BERRIES
 special IncrementDailyPlantedBerries
 special ObjectEventInteractionGetBerryCountString
-msgbox	PLAYER planted one STR_VAR_1 in the soft, loamy soil.
+msgbox	PLAYER pflanzte ein STR_VAR_1 in den weichen, lehmigen Boden.
 waitmessage
 waitbuttonpress
 return
@@ -471,11 +471,11 @@ waitbuttonpress
 releaseall
 end
 = Route121_EventScript_Woman
-msgbox	Ahead looms MT. PYRE…It is a natural monument to the spirits of departed POKéMON…
+msgbox	Voraus erhebt sich der PYRE-BERG…Er ist ein natürliches Denkmal für die Seelen verstorbener POKéMON…
 end
 signs
-32 14	MT. PYRE PIER…The sign is old and worn out. The words are barely legible…
-39 6	“Filled with rare POKéMON!” SAFARI ZONE
+32 14	PYRE-BERG-ANLEGESTEG…Das Schild ist alt und abgenutzt. Die Worte sind kaum noch lesbar…
+39 6	„Voller seltener POKéMON!“ SAFARI-ZONE
 grass
 13,454,455
 water

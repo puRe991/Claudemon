@@ -29,22 +29,22 @@ people_ninja_boy 4 5 S wander 0 - 0
 people_man_3 8 7 W static 0 - 0
 people_woman_5 8 4 W static 0 - 0
 dialogs
-0	At the BATTLE TOWER, an older girl told me that I have a lot of talent for battling!I like POKéMON CONTESTS more!But I'm no good at CONTESTS!I guess having talent and liking something aren't the same.
-1	What a TRAINER needs…Knowledge… Strategy… Luck… Guts… Spirit… Bravery… And ability…Well, I'm all set in every way! I'll be unstoppable at every building!Huh? POKéMON? What's that?
-2	Do you know about the FRONTIER BRAINS?That's what SCOTT calls the seven special TRAINERS that run the seven facilities in the BATTLE FRONTIER.
+0	Im BATTLE TOWER hat mir ein älteres Mädchen gesagt, ich hätte viel Kampftalent!Mir gefallen POKéMON-CONTESTS aber besser!Nur bin ich bei CONTESTS nicht gut!Ich schätze, Talent zu haben und etwas zu mögen ist nicht dasselbe.
+1	Was ein TRAINER braucht…Wissen… Strategie… Glück… Mut… Willenskraft… Tapferkeit… Und Können…Nun, ich bin in jeder Hinsicht bestens gerüstet! Ich werde in jedem Gebäude unaufhaltsam sein!Huh? POKéMON? Was ist das?
+2	Weißt du etwas über die FRONTIER BRAINS?So nennt SCOTT die sieben besonderen TRAINER, die die sieben Einrichtungen der BATTLE FRONTIER leiten.
 objscripts
 0 BattleFrontier_Lounge8_EventScript_NinjaBoy
 1 BattleFrontier_Lounge8_EventScript_Man
 2 BattleFrontier_Lounge8_EventScript_Woman
 scriptdefs
 = BattleFrontier_Lounge8_EventScript_Woman
-msgbox	Do you know about the FRONTIER BRAINS?That's what SCOTT calls the seven special TRAINERS that run the seven facilities in the BATTLE FRONTIER.
+msgbox	Weißt du etwas über die FRONTIER BRAINS?So nennt SCOTT die sieben besonderen TRAINER, die die sieben Einrichtungen der BATTLE FRONTIER leiten.
 end
 = BattleFrontier_Lounge8_EventScript_Man
-msgbox	What a TRAINER needs…Knowledge… Strategy… Luck… Guts… Spirit… Bravery… And ability…Well, I'm all set in every way! I'll be unstoppable at every building!Huh? POKéMON? What's that?
+msgbox	Was ein TRAINER braucht…Wissen… Strategie… Glück… Mut… Willenskraft… Tapferkeit… Und Können…Nun, ich bin in jeder Hinsicht bestens gerüstet! Ich werde in jedem Gebäude unaufhaltsam sein!Huh? POKéMON? Was ist das?
 end
 = BattleFrontier_Lounge8_EventScript_NinjaBoy
-msgbox	At the BATTLE TOWER, an older girl told me that I have a lot of talent for battling!I like POKéMON CONTESTS more!But I'm no good at CONTESTS!I guess having talent and liking something aren't the same.
+msgbox	Im BATTLE TOWER hat mir ein älteres Mädchen gesagt, ich hätte viel Kampftalent!Mir gefallen POKéMON-CONTESTS aber besser!Nur bin ich bei CONTESTS nicht gut!Ich schätze, Talent zu haben und etwas zu mögen ist nicht dasselbe.
 end
 mapsec
 22 12 1 1	BATTLE FRONTIER

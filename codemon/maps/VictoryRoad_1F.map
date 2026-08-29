@@ -109,13 +109,13 @@ people_wally 31 9 S static FLAG_HIDE_VICTORY_ROAD_EXIT_WALLY - 0
 people_woman_5 29 17 E static 0 - 2
 people_man_3 32 17 W static 0 - 2
 dialogs
-0	You've made it this far. Keep the momentum going and become the CHAMPION! If anyone can, it's you!
-1	You seem to have the potential for becoming the CHAMPION.
-2	I lost here…That means I lack the qualifications to become the CHAMPION…
-3	WALLY: I couldn't beat you today, PLAYER, but one of these days, I'll catch up to you!
-6	WALLY: I couldn't beat you this time, too… But one of these days, PLAYER, I'm going to catch up to you…And challenge the POKéMON LEAGUE!
-7	Humph, go right on ahead. See if I care.
-8	Getting through here safely--that's the final test for any TRAINER aiming to become the POKéMON CHAMPION.That's why it's called the VICTORY ROAD.
+0	So weit hast du es schon geschafft. Halte den Schwung und werde CHAMP! Wenn irgendwer es kann, dann du!
+1	Du scheinst das Zeug zum CHAMP zu haben.
+2	Ich habe hier verloren…Das bedeutet, mir fehlt das Zeug zum CHAMP…
+3	WALLY: Ich konnte dich heute nicht besiegen, PLAYER, aber eines Tages hole ich zu dir auf!
+6	WALLY: Ich konnte dich auch dieses Mal nicht besiegen… Aber eines Tages, PLAYER, hole ich zu dir auf…Und fordere die POKéMON-LIGA heraus!
+7	Hmpf, geh nur weiter. Ist mir doch egal.
+8	Hier sicher durchzukommen -- das ist die letzte Prüfung für jeden TRAINER, der POKéMON-CHAMP werden will.Deshalb heißt sie SIEGESSTRASSE.
 objscripts
 0 VictoryRoad_1F_EventScript_Edgar
 1 VictoryRoad_1F_EventScript_Hope
@@ -153,9 +153,9 @@ end
 = VictoryRoad_1F_EventScript_WallyEntranceBattle
 applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterDown
 waitmovement 0
-msgbox	WALLY: Hi! PLAYER!I bet you're surprised to see me here!I made it all the way here, and it's all thanks to you!PLAYER, losing to you that time made me stronger!But I'm not going to lose anymore!I'm going to win! For the POKéMON who gave me courage and strength!Okay… Here I come!
+msgbox	WALLY: Hi! PLAYER!Ich wette, du bist überrascht, mich hier zu sehen!Ich habe es bis hierher geschafft, und das alles dank dir!PLAYER, damals gegen dich zu verlieren hat mich stärker gemacht!Aber jetzt verliere ich nicht mehr!Ich werde gewinnen! Für die POKéMON, die mir Mut und Kraft gegeben haben!Okay… Ich komme!
 trainerbattle_no_intro TRAINER_WALLY_VR_1 VictoryRoad_1F_Text_WallyEntranceDefeat
-msgbox	WALLY: I couldn't beat you today, PLAYER, but one of these days, I'll catch up to you!
+msgbox	WALLY: Ich konnte dich heute nicht besiegen, PLAYER, aber eines Tages hole ich zu dir auf!
 clearflag FLAG_HIDE_VICTORY_ROAD_ENTRANCE_WALLY
 copyobjectxytoperm LOCALID_VICTORY_ROAD_ENTRANCE_WALLY
 setflag FLAG_DEFEATED_WALLY_VICTORY_ROAD
@@ -172,21 +172,21 @@ goto VictoryRoad_1F_EventScript_WallyEntranceBattle
 end
 = VictoryRoad_1F_EventScript_Quincy
 trainerbattle_single TRAINER_QUINCY VictoryRoad_1F_Text_QuincyIntro VictoryRoad_1F_Text_QuincyDefeat
-msgbox	Getting through here safely--that's the final test for any TRAINER aiming to become the POKéMON CHAMPION.That's why it's called the VICTORY ROAD.
+msgbox	Hier sicher durchzukommen -- das ist die letzte Prüfung für jeden TRAINER, der POKéMON-CHAMP werden will.Deshalb heißt sie SIEGESSTRASSE.
 end
 = VictoryRoad_1F_EventScript_Katelynn
 trainerbattle_single TRAINER_KATELYNN VictoryRoad_1F_Text_KatelynnIntro VictoryRoad_1F_Text_KatelynnDefeat
-msgbox	Humph, go right on ahead. See if I care.
+msgbox	Hmpf, geh nur weiter. Ist mir doch egal.
 end
 = VictoryRoad_1F_EventScript_ExitWally
 trainerbattle_single TRAINER_WALLY_VR_2 VictoryRoad_1F_Text_WallyIntro VictoryRoad_1F_Text_WallyDefeat
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE VictoryRoad_1F_EventScript_RematchWally
-msgbox	WALLY: I couldn't beat you this time, too… But one of these days, PLAYER, I'm going to catch up to you…And challenge the POKéMON LEAGUE!
+msgbox	WALLY: Ich konnte dich auch dieses Mal nicht besiegen… Aber eines Tages, PLAYER, hole ich zu dir auf…Und fordere die POKéMON-LIGA heraus!
 end
 = VictoryRoad_1F_EventScript_RematchWally
 trainerbattle_rematch TRAINER_WALLY_VR_2 VictoryRoad_1F_Text_WallyIntro VictoryRoad_1F_Text_WallyDefeat
-msgbox	WALLY: I couldn't beat you this time, too… But one of these days, PLAYER, I'm going to catch up to you…And challenge the POKéMON LEAGUE!
+msgbox	WALLY: Ich konnte dich auch dieses Mal nicht besiegen… Aber eines Tages, PLAYER, hole ich zu dir auf…Und fordere die POKéMON-LIGA heraus!
 end
 = VictoryRoad_1F_EventScript_ItemPPUp
 goto_if_set FLAG_ITEM_VICTORY_ROAD_1F_PP_UP VictoryRoad_1F_EventScript_ItemPPUp_Taken
@@ -203,21 +203,21 @@ end
 = VictoryRoad_1F_EventScript_ItemMaxElixir_Taken
 end
 = VictoryRoad_1F_EventScript_EntranceWally
-msgbox	WALLY: I couldn't beat you today, PLAYER, but one of these days, I'll catch up to you!
+msgbox	WALLY: Ich konnte dich heute nicht besiegen, PLAYER, aber eines Tages hole ich zu dir auf!
 end
 @ This Wally appears and remains at the exit after the Hall of Fame is entered
 goto VictoryRoad_1F_EventScript_ExitWally
 = VictoryRoad_1F_EventScript_Albert
 trainerbattle_single TRAINER_ALBERT VictoryRoad_1F_Text_AlbertIntro VictoryRoad_1F_Text_AlbertDefeat
-msgbox	I lost here…That means I lack the qualifications to become the CHAMPION…
+msgbox	Ich habe hier verloren…Das bedeutet, mir fehlt das Zeug zum CHAMP…
 end
 = VictoryRoad_1F_EventScript_Hope
 trainerbattle_single TRAINER_HOPE VictoryRoad_1F_Text_HopeIntro VictoryRoad_1F_Text_HopeDefeat
-msgbox	You seem to have the potential for becoming the CHAMPION.
+msgbox	Du scheinst das Zeug zum CHAMP zu haben.
 end
 = VictoryRoad_1F_EventScript_Edgar
 trainerbattle_single TRAINER_EDGAR VictoryRoad_1F_Text_EdgarIntro VictoryRoad_1F_Text_EdgarDefeat
-msgbox	You've made it this far. Keep the momentum going and become the CHAMPION! If anyone can, it's you!
+msgbox	So weit hast du es schon geschafft. Halte den Schwung und werde CHAMP! Wenn irgendwer es kann, dann du!
 end
 mapsec
 27 9 1 1	VICTORY ROAD
