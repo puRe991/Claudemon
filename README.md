@@ -626,10 +626,12 @@ Aus einer Codestruktur-Review von `codemon/main.cpp` (2506 Zeilen) – reines Re
 
 * ✅ `Menu::draw()` (409 Zeilen, ein `if/else`-Zweig pro Bildschirm: Hauptmenü, PokéDex, Fliegen, Beutel, TM/Item-Lehren, Team, Statuswerte, Optionen, PC-Box, PokéNav) in elf benannte Methoden aufgeteilt (`draw_main`, `draw_pokedex`, `draw_fly`, `draw_bag`, `draw_teach`, `draw_use_item`, `draw_party`, `draw_summary`, `draw_options`, `draw_pc`, `draw_pokenav`) plus vier gemeinsame Zeichen-Hilfsmethoden (`draw_text`, `draw_cursor_at`, `draw_hp_bar`, `draw_exp_bar` statt vormals lokaler Lambdas). Verifiziert per Rebuild + Testsuite + pixelgleichem Screenshot-Vergleich aller elf Bildschirme einzeln.
 
+* ✅ `ScriptVM::pump()` (war ~700 Zeilen, ein einziger `if/else-if`-Opcode-Dispatch für alle ~75 importierten pokeemerald-Skriptbefehle) in acht thematische `try_*_op()`-Methoden aufgeteilt: `try_dialog_and_items_op`, `try_control_flow_op`, `try_tile_puzzle_op`, `try_battle_op`, `try_special_op`, `try_shop_and_party_info_op`, `try_object_op`, `try_text_fx_op`. `pump()` selbst ruft sie der Reihe nach auf und bricht beim ersten Treffer ab; jede Methode meldet per `bool`, ob sie den Opcode kannte (Blockieren erkennt `pump()` weiterhin daran, dass sich `st` geändert hat – exakt das gleiche Signal wie vorher). Reine Kontrollfluss-Umformung, keine Opcode-Logik geändert. Vor dem Umbau wurde `codemon/ScriptVM.cpp`/`.h` als lokales Backup gesichert; verifiziert per Rebuild + der bestehenden `codemon_engine_tests`-Regressionssuite (die reale importierte Skripte gegen Fixture-Maps laufen lässt – Arithmetik, Money/Coins, Control-Flow, Buffer-Strings, Items/Gift-Mons, Trainer-Flags) + pixelgleichem Headless-Screenshot-Vergleich (Overworld, Starter-Auswahl, Route 101 inkl. Birch-Skript).
+
 ### Nächste Kandidaten (noch nicht angegangen)
 
-* `ScriptVM::pump()` (`codemon/ScriptVM.cpp`, ~700 Zeilen) – der Opcode-Dispatch der Skript-VM ist eine einzige große Funktion. Aufteilen wäre riskanter als die bisherigen Schritte (Verhalten hängt an sehr vielen importierten pokeemerald-Skripten), bräuchte also breitere Testabdeckung vor dem Umbau.
 * `Battle::draw()` (`codemon/Battle.cpp`, 174 Zeilen) – kleiner als `Menu::draw()` war, aber gleiches Muster (ein Draw-Call für alle Kampf-Phasen); niedrigeres Risiko, niedrigerer Nutzen.
+* Die acht `try_*_op()`-Gruppen in `ScriptVM.cpp` könnten bei Bedarf weiter aufgeteilt werden (`try_special_op` ist mit ~125 Zeilen noch die größte, da `special`/`specialvar` selbst ein verschachtelter Dispatch sind).
 * Input-Dispatch zusammenführen (siehe oben) – weiterhin offen, unverändert seit dem letzten Schritt.
 
 ## ++ QoL ++

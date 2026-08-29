@@ -300,13 +300,26 @@ void ScriptVM::pump() {
 		const Instr& in = code[this->ip];
 		const std::string& op = in[0];
 		size_t argc = in.size() - 1;
-		auto arg = [&](size_t k) -> const std::string& {
-			static const std::string empty;
-			return (k + 1 < in.size()) ? in[k + 1] : empty;
-		};
 		this->ip++;
 
-		if ((op == "msgbox" || op == "msgboxyesno") && argc >= 1) {
+		if (try_dialog_and_items_op(op, argc, in)) { if (this->st != RUN) return; continue; }
+		if (try_control_flow_op(op, argc, in)) { if (this->st != RUN) return; continue; }
+		if (try_tile_puzzle_op(op, argc, in)) { if (this->st != RUN) return; continue; }
+		if (try_battle_op(op, argc, in)) { if (this->st != RUN) return; continue; }
+		if (try_special_op(op, argc, in)) { if (this->st != RUN) return; continue; }
+		if (try_shop_and_party_info_op(op, argc, in)) { if (this->st != RUN) return; continue; }
+		if (try_object_op(op, argc, in)) { if (this->st != RUN) return; continue; }
+		if (try_text_fx_op(op, argc, in)) { if (this->st != RUN) return; continue; }
+		// everything else (lock, release, playse, fadedefaultbgm, ...) is a no-op
+	}
+}
+
+bool ScriptVM::try_dialog_and_items_op(const std::string& op, size_t argc, const Instr& in) {
+	auto arg = [&](size_t k) -> const std::string& {
+		static const std::string empty;
+		return (k + 1 < in.size()) ? in[k + 1] : empty;
+	};
+	if ((op == "msgbox" || op == "msgboxyesno") && argc >= 1) {
 			// "msgboxyesno" (see pe_import.py) is pokeemerald's
 			// MSGBOX_YESNO: once the text is dismissed, the player picks
 			// yes/no and the choice lands in VAR_RESULT.
@@ -333,14 +346,14 @@ void ScriptVM::pump() {
 			}
 			this->box->open(this->owner ? std::string() : std::string(), text);
 			this->st = WAIT_MSG;
-			return;
+			return true;
 		} else if (op == "giveitem" && argc >= 1) {
 			int amt = (argc >= 2) ? value_of(arg(1)) : 1;
 			this->state->give_item(arg(0), amt);
 			this->state->set_var("VAR_RESULT", 1);
 			this->box->open(std::string(), item_name(arg(0)) + " erhalten!");
 			this->st = WAIT_MSG;
-			return;
+			return true;
 		} else if (op == "finditem" && argc >= 1) {
 			// Overworld pickup (item balls / hidden items): same effect as
 			// giveitem, "found" phrasing to match pokeemerald's STD_FIND_ITEM.
@@ -349,7 +362,7 @@ void ScriptVM::pump() {
 			this->state->set_var("VAR_RESULT", 1);
 			this->box->open(std::string(), item_name(arg(0)) + " gefunden!");
 			this->st = WAIT_MSG;
-			return;
+			return true;
 		} else if (op == "applymovement" && argc >= 2) {
 			Character* ch = resolve(arg(0));
 			const std::vector<std::string>& acts = this->map->movement(arg(1));
@@ -362,7 +375,7 @@ void ScriptVM::pump() {
 		} else if (op == "waitmovement") {
 			bool pending = false;
 			for (auto& q : this->queues) if (!q.actions.empty()) pending = true;
-			if (pending) { this->st = WAIT_MOVE; return; }
+			if (pending) { this->st = WAIT_MOVE; return true; }
 		} else if (op == "faceplayer") {
 			if (this->owner) {
 				DIR pf = this->player->get_facing();
@@ -419,7 +432,19 @@ void ScriptVM::pump() {
 			// point the story sets -- so record the id for scripts that read it
 			// back rather than inventing a heal-location table.
 			this->state->set_var("VAR_LAST_RESPAWN", value_of(arg(0)));
-		} else if (op == "goto" && argc >= 1) {
+		}
+	else {
+		return false;
+	}
+	return true;
+}
+
+bool ScriptVM::try_control_flow_op(const std::string& op, size_t argc, const Instr& in) {
+	auto arg = [&](size_t k) -> const std::string& {
+		static const std::string empty;
+		return (k + 1 < in.size()) ? in[k + 1] : empty;
+	};
+	if (op == "goto" && argc >= 1) {
 			jump(arg(0));
 		} else if (op == "goto_if_set" && argc >= 2) {
 			if (this->state->flag(arg(0))) jump(arg(1));
@@ -480,14 +505,26 @@ void ScriptVM::pump() {
 			if (value_of(arg(0)) <= value_of(arg(1)) && this->map->has_script(arg(2))) {
 				this->call_stack.push_back({this->cur, this->ip}); jump(arg(2)); }
 		} else if (op == "return") {
-			if (this->call_stack.empty()) { finish(); return; }
+			if (this->call_stack.empty()) { finish(); return true; }
 			auto fr = this->call_stack.back(); this->call_stack.pop_back();
 			this->cur = fr.first; this->ip = fr.second;
 		} else if (op == "switch" && argc >= 1) {
 			this->switch_value = value_of(arg(0));
 		} else if (op == "case" && argc >= 2) {
 			if (this->switch_value == value_of(arg(0))) jump(arg(1));
-		} else if (op == "setmetatile" && argc >= 3) {
+		}
+	else {
+		return false;
+	}
+	return true;
+}
+
+bool ScriptVM::try_tile_puzzle_op(const std::string& op, size_t argc, const Instr& in) {
+	auto arg = [&](size_t k) -> const std::string& {
+		static const std::string empty;
+		return (k + 1 < in.size()) ? in[k + 1] : empty;
+	};
+	if (op == "setmetatile" && argc >= 3) {
 			bool solid = (argc >= 4) ? value_of(arg(3)) != 0 : false;
 			this->map->set_metatile(value_of(arg(0)), value_of(arg(1)),
 			                        value_of(arg(2)), solid);
@@ -544,7 +581,19 @@ void ScriptVM::pump() {
 				MoveQ q; q.ch = ch; q.actions.push_back(act);
 				this->queues.push_back(q);
 			}
-		} else if (op.rfind("trainerbattle", 0) == 0) {
+		}
+	else {
+		return false;
+	}
+	return true;
+}
+
+bool ScriptVM::try_battle_op(const std::string& op, size_t argc, const Instr& in) {
+	auto arg = [&](size_t k) -> const std::string& {
+		static const std::string empty;
+		return (k + 1 < in.size()) ? in[k + 1] : empty;
+	};
+	if (op.rfind("trainerbattle", 0) == 0) {
 			// trainerbattle_single TRAINER_X, intro, lose[, winScript, flags...]
 			// trainerbattle TYPE, TRAINER_X, ... -- the optional winScript label
 			// (present for gym leaders/story trainers, e.g. the one that hands
@@ -562,16 +611,16 @@ void ScriptVM::pump() {
 			// that trainer's post-defeat line. Without this every trainer could
 			// be re-fought for unlimited EXP/prize money and their after-battle
 			// dialogue was unreachable.
-			if (trainer_defeated(tid)) continue;
+			if (trainer_defeated(tid)) return true;
 			this->pending_trainer_id = tid;
 			if (this->battle && this->bdata && this->team && !this->team->empty() &&
 			    this->battle->start_trainer(tid, name_from_trainer(tid), &(*this->team)[0])) {
 				this->st = WAIT_BATTLE;
-				return;
+				return true;
 			}
 			this->box->open(std::string(), "Ein TRAINER möchte kämpfen!");
 			this->st = WAIT_MSG;
-			return;
+			return true;
 		} else if (op == "settrainerflag" && argc >= 1) {
 			// Marks a trainer beaten without fighting them (story scripts use
 			// it to retire trainers, e.g. the Team Aqua/Magma grunts that leave).
@@ -581,7 +630,7 @@ void ScriptVM::pump() {
 		} else if ((op == "goto_if_defeated" || op == "goto_if_not_defeated") &&
 		           argc >= 2) {
 			bool beaten = trainer_defeated(arg(0));
-			if (beaten == (op == "goto_if_defeated")) { jump(arg(1)); continue; }
+			if (beaten == (op == "goto_if_defeated")) { jump(arg(1)); return true; }
 		} else if ((op == "givemon" || op == "giveegg") && argc >= 1) {
 			// givemon SPECIES, level[, heldItem] -- the Johto starters, Beldum,
 			// Castform, the revived fossils, Wally's Ralts, ... Real result
@@ -616,11 +665,23 @@ void ScriptVM::pump() {
 			this->pending_wild_species = sp;
 			this->pending_wild_level = value_of(arg(1));
 		} else if (op == "dowildbattle") {
-			if (start_pending_wild_battle()) return;
+			if (start_pending_wild_battle()) return true;
 		} else if (op == "checkplayergender") {
 			// Real pokeemerald MALE=0/FEMALE=1, from the GenderSelect choice.
 			this->state->set_var("VAR_RESULT", this->state->female ? 1 : 0);
-		} else if (op == "special" || op == "special2") {
+		}
+	else {
+		return false;
+	}
+	return true;
+}
+
+bool ScriptVM::try_special_op(const std::string& op, size_t argc, const Instr& in) {
+	auto arg = [&](size_t k) -> const std::string& {
+		static const std::string empty;
+		return (k + 1 < in.size()) ? in[k + 1] : empty;
+	};
+	if (op == "special" || op == "special2") {
 			// special <Func> ; special2 <var> <Func>. Implement the few that
 			// have a clear overworld effect; the rest are safely ignored.
 			const std::string& fn = (op == "special2" && argc >= 2) ? arg(1) : arg(0);
@@ -643,7 +704,7 @@ void ScriptVM::pump() {
 				this->state->set_var("VAR_0x8005", this->player->get_tile_y());
 			} else if (fn == "ChooseStarter") {
 				this->st = WAIT_STARTER;
-				return;
+				return true;
 			} else if (fn == "ChoosePartyMon") {
 				// In-game trades (Rustboro/Fortree/Pacifidlog/Battle Frontier
 				// Lounge NPCs): let the player pick which of their own mons
@@ -651,7 +712,7 @@ void ScriptVM::pump() {
 				// PARTY_NOTHING_CHOSEN), matching pokeemerald's own contract
 				// for this special -- see resolve_choose_party_mon().
 				this->st = WAIT_CHOOSE_PARTY;
-				return;
+				return true;
 			} else if (fn == "CreateInGameTradePokemon" && this->bdata && this->team) {
 				// pokeemerald builds the incoming mon with the outgoing mon's
 				// level (see CreateInGameTradePokemonInternal) and otherwise
@@ -676,7 +737,7 @@ void ScriptVM::pump() {
 				// The Regis/Rayquaza/Kyogre/Groudon scripts call one of these
 				// (with special fanfare in the real game) instead of a plain
 				// `dowildbattle` to start the `setwildbattle`d encounter.
-				if (start_pending_wild_battle()) return;
+				if (start_pending_wild_battle()) return true;
 			} else if (fn == "ScriptMenu_CreateStartMenuForPokenavTutorial") {
 				// Rustboro's "here's how to use the PokeNav" tutorial opens
 				// the real START menu and waits for the player to pick
@@ -744,15 +805,27 @@ void ScriptVM::pump() {
 			this->warp_x = (argc >= 2) ? value_of(arg(1)) : -1;
 			this->warp_y = (argc >= 3) ? value_of(arg(2)) : -1;
 			this->pending_warp = true;
-			finish(); return;
-		} else if (op == "setdynamicwarp" && argc >= 3) {
+			finish(); return true;
+		}
+	else {
+		return false;
+	}
+	return true;
+}
+
+bool ScriptVM::try_shop_and_party_info_op(const std::string& op, size_t argc, const Instr& in) {
+	auto arg = [&](size_t k) -> const std::string& {
+		static const std::string empty;
+		return (k + 1 < in.size()) ? in[k + 1] : empty;
+	};
+	if (op == "setdynamicwarp" && argc >= 3) {
 			this->state->dynamic_warp_map = arg(0);
 			this->state->dynamic_warp_x = value_of(arg(1));
 			this->state->dynamic_warp_y = value_of(arg(2));
 		} else if (op == "pokemart" && argc >= 1) {
 			this->pending_shop_label = arg(0);
 			this->st = WAIT_SHOP;
-			return;
+			return true;
 		} else if ((op == "multichoice" || op == "multichoicedefault") && argc >= 3) {
 			// "multichoice X, Y, LIST_ID, B_BOOL" / "multichoicedefault X, Y,
 			// LIST_ID, DEFAULT, B_BOOL" -- X/Y (screen position) and B_BOOL
@@ -767,7 +840,7 @@ void ScriptVM::pump() {
 				this->pending_multichoice_default =
 					(def >= 0 && def < (int)it->second.size()) ? def : 0;
 				this->st = WAIT_MULTICHOICE;
-				return;
+				return true;
 			}
 			// Unknown list (mostly Battle Frontier facility text -- see the
 			// README's audit) -- fall through as a no-op, same as before
@@ -822,7 +895,19 @@ void ScriptVM::pump() {
 			// hand-off's "PLAYER handed the {STR_VAR_1} to the DEVON
 			// RESEARCHER.", and similar item-name-in-a-sentence lines).
 			this->str_vars[arg(0)] = item_name(arg(1));
-		} else if (op == "removeobject" && argc >= 1) {
+		}
+	else {
+		return false;
+	}
+	return true;
+}
+
+bool ScriptVM::try_object_op(const std::string& op, size_t argc, const Instr& in) {
+	auto arg = [&](size_t k) -> const std::string& {
+		static const std::string empty;
+		return (k + 1 < in.size()) ? in[k + 1] : empty;
+	};
+	if (op == "removeobject" && argc >= 1) {
 			Character* ch = resolve(arg(0));
 			// Real pokeemerald removeobject is just a despawn with no flag
 			// side effect -- but a cut tree/smashed rock's own
@@ -950,7 +1035,19 @@ void ScriptVM::pump() {
 				else if (mt == "MOVEMENT_TYPE_FACE_LEFT")  ch->face(DIR::W);
 				else if (mt == "MOVEMENT_TYPE_FACE_RIGHT") ch->face(DIR::E);
 			}
-		} else if (op == "bufferstring" && argc >= 2) {
+		}
+	else {
+		return false;
+	}
+	return true;
+}
+
+bool ScriptVM::try_text_fx_op(const std::string& op, size_t argc, const Instr& in) {
+	auto arg = [&](size_t k) -> const std::string& {
+		static const std::string empty;
+		return (k + 1 < in.size()) ? in[k + 1] : empty;
+	};
+	if (op == "bufferstring" && argc >= 2) {
 			// arg(1) is already the resolved text (pe_import.py substitutes
 			// the text-label argument at import time); {PLAYER}/{RIVAL}
 			// literal tokens still need the same swap msgbox does.
@@ -974,7 +1071,7 @@ void ScriptVM::pump() {
 			// mirrors that timing for the game loop's HealFx animation.
 			this->healfx_timer = 0.f;
 			this->st = WAIT_HEALFX;
-			return;
+			return true;
 		} else if (op == "playbgm" && argc >= 1) {
 			if (this->audio) this->audio->play_bgm(arg(0));
 		} else if (op == "playmoncry" && argc >= 1) {
@@ -984,11 +1081,14 @@ void ScriptVM::pump() {
 			for (char c : sp) lower_sp += (char)std::tolower((unsigned char)c);
 			if (this->audio) this->audio->play_cry(lower_sp);
 		} else if (op == "end") {
-			finish(); return;
+			finish(); return true;
 		}
-		// everything else (lock, release, playse, fadedefaultbgm, ...) is a no-op
+	else {
+		return false;
 	}
+	return true;
 }
+
 
 void ScriptVM::on_key() {
 	if (this->st != WAIT_MSG) return;

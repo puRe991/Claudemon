@@ -208,4 +208,20 @@ private:
 	void pump();                                 // run until blocked or done
 	void apply_move_action(Character* ch, const std::string& act);
 	void finish();
+
+	// pump()'s opcode dispatch, split by theme (used to be one ~700-line
+	// if/else-if chain). Each tries the opcodes it owns against `op`; if none
+	// match, it returns false and pump() tries the next group. A match
+	// returns true whether or not it blocked the script -- pump() itself
+	// checks `st` afterwards to tell the two apart, same as it did with the
+	// single chain's bare `return;` (blocking) vs. falling through
+	// (non-blocking) before this split.
+	bool try_dialog_and_items_op(const std::string& op, size_t argc, const Instr& in);
+	bool try_control_flow_op(const std::string& op, size_t argc, const Instr& in);
+	bool try_tile_puzzle_op(const std::string& op, size_t argc, const Instr& in);
+	bool try_battle_op(const std::string& op, size_t argc, const Instr& in);
+	bool try_special_op(const std::string& op, size_t argc, const Instr& in);
+	bool try_shop_and_party_info_op(const std::string& op, size_t argc, const Instr& in);
+	bool try_object_op(const std::string& op, size_t argc, const Instr& in);
+	bool try_text_fx_op(const std::string& op, size_t argc, const Instr& in);
 };
