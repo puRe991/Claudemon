@@ -24,7 +24,7 @@ warps
 npcs
 people_expert_f 6 3 W static 0 - 0
 dialogs
-0	Oh, dear, dear. Aren't your POKéMON exhausted?If you'd like, rest up here. That's a fine idea! You should do that.
+0	Oh, du meine Güte. Sind deine POKéMON nicht erschöpft?Wenn du magst, ruh dich hier aus. Das ist eine feine Idee! Das solltest du tun.
 objscripts
 0 Route111_OldLadysRestStop_EventScript_OldLady
 scriptdefs
@@ -36,11 +36,11 @@ goto_if_eq VAR_RESULT YES Route111_OldLadysRestStop_EventScript_Rest
 goto_if_eq VAR_RESULT NO Route111_OldLadysRestStop_EventScript_DeclineRest
 end
 = Route111_OldLadysRestStop_EventScript_DeclineRest
-msgbox	Is that so? You don't need to be shy about it.
+msgbox	Ach was? Du musst nicht schüchtern sein.
 release
 end
 = Route111_OldLadysRestStop_EventScript_Rest
-msgbox	That's right. Take your time and rest up!
+msgbox	Genau. Lass dir Zeit und ruh dich aus!
 closemessage
 call Common_EventScript_OutOfCenterPartyHeal
 msgboxyesno	Oh, dear, dear. Are your POKéMON still tired?You should take another rest here. That's a fine idea. You should do that.

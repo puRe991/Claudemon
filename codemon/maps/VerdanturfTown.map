@@ -59,10 +59,10 @@ people_twin 9 2 W static 0 LOCALID_VERDANTURF_TWIN 0
 people_boy_1 7 11 S wander 0 - 0
 people_camper 7 6 S wander 0 - 0
 dialogs
-0	The way the winds blow, volcanic ash is never blown in this direction.The air is clean and delicious here. Living here should do wonders for even frail and sickly people.
-1	My papa told me.He says this tunnel is full of timid POKéMON.They get all scared of loud noise and make a big uproar.So they had to stop the big tunnel project.But there's one man. He's trying to dig the tunnel by himself!
-2	Did you see the cave next to the POKéMON MART?There's a guy in there who's trying to bust up boulders so he can bust out through to the other side.It'd be great if we could go through… It'll make it easy to visit RUSTBORO.
-3	My POKéMON and I, we've been riding a hot winning streak.So I decided to make my BATTLE TENT debut in this town.
+0	So wie der Wind hier weht, wird vulkanische Asche nie in diese Richtung getragen.Die Luft ist sauber und herrlich hier. Hier zu leben tut selbst schwachen und kränklichen Menschen gut.
+1	Mein Papa hat mir erzählt.Er sagt, dieser Tunnel sei voller ängstlicher POKéMON.Sie bekommen bei lauten Geräuschen Angst und machen einen riesigen Aufstand.Deshalb mussten sie das große Tunnelprojekt stoppen.Aber da ist ein Mann. Er versucht, den Tunnel ganz allein zu graben!
+2	Hast du die Höhle neben dem POKéMON-MARKT gesehen?Da drin ist ein Typ, der versucht, Felsbrocken zu zerschlagen, um sich zur anderen Seite durchzukämpfen.Es wäre toll, wenn wir da durchkommen könnten… Dann wäre es leicht, RUSTBORO zu besuchen.
+3	Meine POKéMON und ich, wir sind gerade auf einer heißen Siegessträhne.Deshalb hab ich beschlossen, mein Debüt im KAMPFZELT dieser Stadt zu geben.
 objscripts
 0 VerdanturfTown_EventScript_Man
 1 VerdanturfTown_EventScript_Twin
@@ -72,42 +72,42 @@ movements
 Common_Movement_FaceOriginalDirection	face_down,end
 scriptdefs
 = VerdanturfTown_EventScript_Camper
-msgbox	My POKéMON and I, we've been riding a hot winning streak.So I decided to make my BATTLE TENT debut in this town.
+msgbox	Meine POKéMON und ich, wir sind gerade auf einer heißen Siegessträhne.Deshalb hab ich beschlossen, mein Debüt im KAMPFZELT dieser Stadt zu geben.
 end
 = VerdanturfTown_EventScript_Boy
 lock
 faceplayer
 goto_if_set FLAG_RUSTURF_TUNNEL_OPENED VerdanturfTown_EventScript_BoyTunnelOpen
-msgbox	Did you see the cave next to the POKéMON MART?There's a guy in there who's trying to bust up boulders so he can bust out through to the other side.It'd be great if we could go through… It'll make it easy to visit RUSTBORO.
+msgbox	Hast du die Höhle neben dem POKéMON-MARKT gesehen?Da drin ist ein Typ, der versucht, Felsbrocken zu zerschlagen, um sich zur anderen Seite durchzukämpfen.Es wäre toll, wenn wir da durchkommen könnten… Dann wäre es leicht, RUSTBORO zu besuchen.
 release
 end
 = VerdanturfTown_EventScript_BoyTunnelOpen
-msgbox	That cave next to the POKéMON MART is now a tunnel to the other side.It's great--it's easy to go shop for new DEVON products in RUSTBORO now.
+msgbox	Diese Höhle neben dem POKéMON-MARKT ist jetzt ein Tunnel zur anderen Seite.Es ist toll--jetzt kann man leicht neue DEVON-Produkte in RUSTBORO einkaufen gehen.
 release
 end
 = VerdanturfTown_EventScript_Twin
 lock
 faceplayer
 goto_if_set FLAG_RUSTURF_TUNNEL_OPENED VerdanturfTown_EventScript_TwinTunnelOpen
-msgbox	My papa told me.He says this tunnel is full of timid POKéMON.They get all scared of loud noise and make a big uproar.So they had to stop the big tunnel project.But there's one man. He's trying to dig the tunnel by himself!
+msgbox	Mein Papa hat mir erzählt.Er sagt, dieser Tunnel sei voller ängstlicher POKéMON.Sie bekommen bei lauten Geräuschen Angst und machen einen riesigen Aufstand.Deshalb mussten sie das große Tunnelprojekt stoppen.Aber da ist ein Mann. Er versucht, den Tunnel ganz allein zu graben!
 applymovement LOCALID_VERDANTURF_TWIN Common_Movement_FaceOriginalDirection
 waitmovement 0
 release
 end
 = VerdanturfTown_EventScript_TwinTunnelOpen
-msgbox	There was a man who dug a tunnel for a lady he loved.I don't really get it, but hey!
+msgbox	Es gab einen Mann, der einen Tunnel für eine Frau grub, die er liebte.Ich versteh's nicht so ganz, aber egal!
 applymovement LOCALID_VERDANTURF_TWIN Common_Movement_FaceOriginalDirection
 waitmovement 0
 release
 end
 = VerdanturfTown_EventScript_Man
-msgbox	The way the winds blow, volcanic ash is never blown in this direction.The air is clean and delicious here. Living here should do wonders for even frail and sickly people.
+msgbox	So wie der Wind hier weht, wird vulkanische Asche nie in diese Richtung getragen.Die Luft ist sauber und herrlich hier. Hier zu leben tut selbst schwachen und kränklichen Menschen gut.
 end
 signs
-14 6	VERDANTURF TOWN“The windswept highlands with the sweet fragrance of grass.”
+14 6	VERDANTURF TOWN„Das windgepeitschte Hochland mit dem süßen Duft von Gras.“
 7 14	WANDA'S HOUSE
-1 8	BATTLE TENT VERDANTURF SITE “Feast Your Eyes on Battles!”
-7 3	RUSTURF TUNNEL “Linking RUSTBORO and VERDANTURF“The tunnel project has been canceled.”
+1 8	KAMPFZELT VERDANTURF-STANDORT „Weide deine Augen an Kämpfen!“
+7 3	RUSTURF-TUNNEL „Verbindet RUSTBORO und VERDANTURF„Das Tunnelprojekt wurde eingestellt.“
 visit
 FLAG_VISITED_VERDANTURF_TOWN
 mapsec

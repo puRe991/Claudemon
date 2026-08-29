@@ -41,9 +41,9 @@ people_lass 11 4 S static 0 - 4
 misc_item_ball 0 7 S static FLAG_ITEM_MT_PYRE_3F_SUPER_REPEL - 0
 people_woman_2 6 4 W pace_h 0 - 4
 dialogs
-0	My psychic powers have surely grown several times, but…
-1	This means my training is still not enough…I've got to keep working toward the summit…Go, me!
-3	POKéMON no longer of this world. POKéMON that are with you now.And the POKéMON that you will meet in the future…They are all to be equally cherished. Please remember that.
+0	Meine psychischen Kräfte sind sicher um einiges gewachsen, aber…
+1	Das bedeutet, mein Training reicht noch nicht aus…Ich muss weiter auf den Gipfel hinarbeiten…Los, ich schaff das!
+3	POKéMON, die nicht mehr von dieser Welt sind. POKéMON, die jetzt bei dir sind.Und die POKéMON, denen du in Zukunft begegnen wirst…Sie alle sollten gleichermaßen geschätzt werden. Bitte denk daran.
 objscripts
 0 MtPyre_3F_EventScript_William
 1 MtPyre_3F_EventScript_Kayla
@@ -54,17 +54,17 @@ scriptdefs
 trainerbattle_single TRAINER_GABRIELLE_1 MtPyre_3F_Text_GabrielleIntro MtPyre_3F_Text_GabrielleDefeat MtPyre_3F_EventScript_RegisterGabrielle
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE MtPyre_3F_EventScript_RematchGabrielle
-msgbox	POKéMON no longer of this world. POKéMON that are with you now.And the POKéMON that you will meet in the future…They are all to be equally cherished. Please remember that.
+msgbox	POKéMON, die nicht mehr von dieser Welt sind. POKéMON, die jetzt bei dir sind.Und die POKéMON, denen du in Zukunft begegnen wirst…Sie alle sollten gleichermaßen geschätzt werden. Bitte denk daran.
 release
 end
 = MtPyre_3F_EventScript_RematchGabrielle
 trainerbattle_rematch TRAINER_GABRIELLE_1 MtPyre_3F_Text_GabrielleRematchIntro MtPyre_3F_Text_GabrielleRematchDefeat
-msgbox	POKéMON no longer of this world. POKéMON that are with you now.And the POKéMON that you will meet in the future…They are all to be equally cherished. I see that you've remembered that.
+msgbox	POKéMON, die nicht mehr von dieser Welt sind. POKéMON, die jetzt bei dir sind.Und die POKéMON, denen du in Zukunft begegnen wirst…Sie alle sollten gleichermaßen geschätzt werden. Ich sehe, du hast daran gedacht.
 end
 = MtPyre_3F_EventScript_RegisterGabrielle
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	I would like to see your POKéMON when they grow up some more…Please, I need to see your POKéNAV.
+msgbox	Ich würde gerne deine POKéMON sehen, wenn sie noch etwas größer geworden sind…Bitte, ich muss deinen POKéNAV sehen.
 register_matchcall TRAINER_GABRIELLE_1
 release
 end
@@ -77,11 +77,11 @@ end
 end
 = MtPyre_3F_EventScript_Kayla
 trainerbattle_single TRAINER_KAYLA MtPyre_3F_Text_KaylaIntro MtPyre_3F_Text_KaylaDefeat
-msgbox	This means my training is still not enough…I've got to keep working toward the summit…Go, me!
+msgbox	Das bedeutet, mein Training reicht noch nicht aus…Ich muss weiter auf den Gipfel hinarbeiten…Los, ich schaff das!
 end
 = MtPyre_3F_EventScript_William
 trainerbattle_single TRAINER_WILLIAM MtPyre_3F_Text_WilliamIntro MtPyre_3F_Text_WilliamDefeat
-msgbox	My psychic powers have surely grown several times, but…
+msgbox	Meine psychischen Kräfte sind sicher um einiges gewachsen, aber…
 end
 mapsec
 16 4 1 1	MT. PYRE

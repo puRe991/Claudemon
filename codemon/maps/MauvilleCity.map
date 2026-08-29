@@ -68,14 +68,14 @@ misc_item_ball 28 19 S static FLAG_ITEM_MAUVILLE_CITY_X_SPEED - 0
 people_fat_man 13 7 W static 0 - 0
 people_scott 12 14 N static FLAG_HIDE_MAUVILLE_CITY_SCOTT LOCALID_MAUVILLE_SCOTT 0
 dialogs
-0	You know, it's cool to have POKéMON battles and stuff…But if your POKéMON gets hurt, you have to nurse it back to health.
-1	Even if you're riding a BIKE, wild POKéMON could jump you.
-2	The roads of this town stretch north and south, and east and west.Because of that, we get all sorts of people coming through.
-3	Have you been to RYDEL'S CYCLES yet?RYDEL, the owner, is a very generous man.
-4	Hi, do you check out TV at all?They've added a bunch of cool new shows recently.TV is so cool. I've seen my friends on TV just out of the blue.And, sometimes, they even put you on TV without telling you.I wish I would be on TV sometime.That's why I think you should check out TVs whenever you can.
-5	WALLY: Aww, UNCLE, please?I want to challenge this GYM and see how much better I've become.Please? May I, please?
-6	UNCLE: It's because of POKéMON that this boy's got more pep, I suppose… But he's become a bit too peppy…
-7	WATTSON: Oh, PLAYER! You look like you have a lot of zip! That's a good thing, wahahahaha!Fine! I've decided! I need a favor, PLAYER!MAUVILLE CITY has an underground sector called NEW MAUVILLE.PLAYER, I'd like you to go there and switch off the GENERATOR.The GENERATOR has been running a bit haywire. It's getting unsafe.Here, this is the KEY to get into NEW MAUVILLE.
+0	Weißt du, POKéMON-Kämpfe und so sind schon cool…Aber wenn dein POKéMON verletzt wird, musst du es wieder gesund pflegen.
+1	Selbst wenn du mit dem FAHRRAD unterwegs bist, können dich wilde POKéMON angreifen.
+2	Die Straßen dieser Stadt verlaufen von Norden nach Süden und von Osten nach Westen.Deshalb kommen hier alle möglichen Leute durch.
+3	Warst du schon bei RYDEL'S CYCLES?RYDEL, der Besitzer, ist ein sehr großzügiger Mann.
+4	Hi, schaust du eigentlich manchmal fern?Die haben vor Kurzem ein paar coole neue Sendungen dazubekommen.Fernsehen ist so cool. Ich hab meine Freunde schon aus heiterem Himmel im Fernsehen gesehen.Und manchmal zeigen sie einen sogar im Fernsehen, ohne einem Bescheid zu geben.Ich wünschte, ich käme auch mal ins Fernsehen.Deshalb finde ich, du solltest so oft wie möglich fernsehen.
+5	WALLY: Ach, ONKEL, bitte?Ich will diese ARENA herausfordern und sehen, wie viel besser ich geworden bin.Bitte? Darf ich, bitte?
+6	ONKEL: Ich schätze, wegen der POKéMON hat der Junge mehr Schwung bekommen… Aber er ist ein bisschen zu schwungvoll geworden…
+7	WATTSON: Oh, PLAYER! Du siehst aus, als hättest du jede Menge Schwung! Das ist gut so, wahahahaha!Gut! Ich hab mich entschieden! Ich brauche einen Gefallen, PLAYER!MAUVILLE CITY hat einen unterirdischen Bereich namens NEU-MAUVILLE.PLAYER, ich möchte, dass du dorthin gehst und den GENERATOR abschaltest.Der GENERATOR läuft schon eine Weile verrückt. Das wird langsam gefährlich.Hier, das ist der SCHLÜSSEL für den Zugang zu NEU-MAUVILLE.
 objscripts
 0 MauvilleCity_EventScript_Boy
 1 MauvilleCity_EventScript_RichBoy
@@ -124,7 +124,7 @@ msgboxyesno	Did you know that you can go from here a long way in that direction 
 goto_if_eq VAR_RESULT NO MoveTutor_EventScript_RolloutDeclined
 call MoveTutor_EventScript_CanOnlyBeLearnedOnce
 goto_if_eq VAR_RESULT NO MoveTutor_EventScript_RolloutDeclined
-msgbox	Ehehe, sure thing! It'd be great if the POKéMON looked like me.
+msgbox	Ehehe, klar doch! Es wäre toll, wenn das POKéMON so aussehen würde wie ich.
 setvar VAR_0x8005 TUTOR_MOVE_ROLLOUT
 call MoveTutor_EventScript_OpenPartyMenu
 goto_if_eq VAR_RESULT 0 MoveTutor_EventScript_RolloutDeclined
@@ -132,11 +132,11 @@ setflag FLAG_MOVE_TUTOR_TAUGHT_ROLLOUT
 goto MoveTutor_EventScript_RolloutTaught
 end
 = MoveTutor_EventScript_RolloutTaught
-msgbox	Rolling around in the grass makes me happy. Come on, let's roll!
+msgbox	Sich im Gras zu wälzen macht mich glücklich. Los, wälzen wir uns!
 release
 end
 = MoveTutor_EventScript_RolloutDeclined
-msgbox	You don't need to be shy about it. Let's roll!
+msgbox	Du musst nicht schüchtern sein. Los, wälzen wir uns!
 release
 end
 = MoveTutor_EventScript_OpenPartyMenu
@@ -160,40 +160,40 @@ faceplayer
 goto_if_set FLAG_GOT_TM_THUNDERBOLT_FROM_WATTSON MauvilleCity_EventScript_ReceivedThunderbolt
 goto_if_eq VAR_NEW_MAUVILLE_STATE 2 MauvilleCity_EventScript_CompletedNewMauville
 goto_if_set FLAG_GOT_BASEMENT_KEY_FROM_WATTSON MauvilleCity_EventScript_BegunNewMauville
-msgbox	WATTSON: Oh, PLAYER! You look like you have a lot of zip! That's a good thing, wahahahaha!Fine! I've decided! I need a favor, PLAYER!MAUVILLE CITY has an underground sector called NEW MAUVILLE.PLAYER, I'd like you to go there and switch off the GENERATOR.The GENERATOR has been running a bit haywire. It's getting unsafe.Here, this is the KEY to get into NEW MAUVILLE.
+msgbox	WATTSON: Oh, PLAYER! Du siehst aus, als hättest du jede Menge Schwung! Das ist gut so, wahahahaha!Gut! Ich hab mich entschieden! Ich brauche einen Gefallen, PLAYER!MAUVILLE CITY hat einen unterirdischen Bereich namens NEU-MAUVILLE.PLAYER, ich möchte, dass du dorthin gehst und den GENERATOR abschaltest.Der GENERATOR läuft schon eine Weile verrückt. Das wird langsam gefährlich.Hier, das ist der SCHLÜSSEL für den Zugang zu NEU-MAUVILLE.
 giveitem ITEM_BASEMENT_KEY
 setflag FLAG_GOT_BASEMENT_KEY_FROM_WATTSON
-msgbox	WATTSON: Don't you worry about it. It won't be a challenge to you.The entrance to NEW MAUVILLE is just a short SURF away from ROUTE 110.That's it, then, you have my trust! Wahahahaha!
+msgbox	WATTSON: Mach dir mal keine Sorgen. Für dich wird das keine Herausforderung sein.Der Eingang zu NEU-MAUVILLE liegt nur ein kurzes SURFEN von ROUTE 110 entfernt.Gut, dann hast du mein Vertrauen! Wahahahaha!
 release
 end
 = MauvilleCity_EventScript_BegunNewMauville
-msgbox	WATTSON: Don't you worry about it. It won't be a challenge to you.The entrance to NEW MAUVILLE is just a short SURF away from ROUTE 110.That's it, then, you have my trust! Wahahahaha!
+msgbox	WATTSON: Mach dir mal keine Sorgen. Für dich wird das keine Herausforderung sein.Der Eingang zu NEU-MAUVILLE liegt nur ein kurzes SURFEN von ROUTE 110 entfernt.Gut, dann hast du mein Vertrauen! Wahahahaha!
 release
 end
 = MauvilleCity_EventScript_CompletedNewMauville
-msgbox	WATTSON: Wahahahaha!I knew it, PLAYER! I knew I'd made the right choice asking you!This is my thanks--a TM containing THUNDERBOLT!Go on, you've earned it!
+msgbox	WATTSON: Wahahahaha!Ich wusste es, PLAYER! Ich wusste, dass ich die richtige Wahl getroffen habe, als ich dich gefragt habe!Hier ist mein Dank--ein TM mit DONNERBLITZ!Nimm es ruhig, du hast es dir verdient!
 giveitem ITEM_TM_THUNDERBOLT
 goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
 setflag FLAG_GOT_TM_THUNDERBOLT_FROM_WATTSON
-msgbox	WATTSON: Wahahahaha!It pleases me to no end to see the young step up and take charge!
+msgbox	WATTSON: Wahahahaha!Es freut mich ungemein zu sehen, wie die Jugend Verantwortung übernimmt!
 release
 end
 = MauvilleCity_EventScript_ReceivedThunderbolt
-msgbox	WATTSON: Wahahahaha!It pleases me to no end to see the young step up and take charge!
+msgbox	WATTSON: Wahahahaha!Es freut mich ungemein zu sehen, wie die Jugend Verantwortung übernimmt!
 release
 end
 = MauvilleCity_EventScript_WallysUncle
 lock
 faceplayer
 goto_if_set FLAG_DECLINED_WALLY_BATTLE_MAUVILLE MauvilleCity_EventScript_UncleAskPlayerToBattleWally
-msgbox	UNCLE: It's because of POKéMON that this boy's got more pep, I suppose… But he's become a bit too peppy…
+msgbox	ONKEL: Ich schätze, wegen der POKéMON hat der Junge mehr Schwung bekommen… Aber er ist ein bisschen zu schwungvoll geworden…
 closemessage
 applymovement LOCALID_MAUVILLE_WALLYS_UNCLE Common_Movement_FaceOriginalDirection
 waitmovement 0
 release
 end
 = MauvilleCity_EventScript_UncleAskPlayerToBattleWally
-msgbox	UNCLE: PLAYER, was it? On WALLY's behalf, can I ask you to battle with him just this once?I don't think he's going to listen to any reason the way he is now.
+msgbox	ONKEL: PLAYER, richtig? Kann ich dich im Namen von WALLY bitten, nur dieses eine Mal gegen ihn zu kämpfen?Ich glaube nicht, dass er im Moment auf Vernunft hört.
 closemessage
 applymovement LOCALID_MAUVILLE_WALLYS_UNCLE Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -204,9 +204,9 @@ lockall
 goto_if_set FLAG_DECLINED_WALLY_BATTLE_MAUVILLE MauvilleCity_EventScript_WallyRequestBattleAgain
 applymovement LOCALID_MAUVILLE_WALLY Common_Movement_WalkInPlaceFasterRight
 waitmovement 0
-msgbox	WALLY: Aww, UNCLE, please?I want to challenge this GYM and see how much better I've become.Please? May I, please?
-msgbox	UNCLE: Now hold on, WALLY.Since you started living with POKéMON, you have grown quite a lot stronger.But don't you think you're pushing it to suddenly challenge a GYM?
-msgbox	WALLY: I'm not pushing it.If I combine forces with RALTS, we can beat anyone!
+msgbox	WALLY: Ach, ONKEL, bitte?Ich will diese ARENA herausfordern und sehen, wie viel besser ich geworden bin.Bitte? Darf ich, bitte?
+msgbox	ONKEL: Jetzt warte mal, WALLY.Seit du mit POKéMON lebst, bist du ziemlich viel stärker geworden.Aber findest du nicht, dass es übertrieben ist, plötzlich eine ARENA herauszufordern?
+msgbox	WALLY: Das ist nicht übertrieben.Wenn ich meine Kräfte mit RALTS bündele, können wir jeden besiegen!
 applymovement LOCALID_MAUVILLE_WALLY Common_Movement_FacePlayer
 waitmovement 0
 playse SE_PIN
@@ -235,7 +235,7 @@ waitmovement 0
 delay 30
 applymovement LOCALID_MAUVILLE_WALLYS_UNCLE MauvilleCity_Movement_WallysUncleApproachPlayerEast
 waitmovement 0
-msgbox	UNCLE: PLAYER, it just dawned on me that you must be the TRAINER who kept an eye out for WALLY when he caught his POKéMON.Why don't you visit us in VERDANTURF sometime? I'm sure WALLY would enjoy it.
+msgbox	ONKEL: PLAYER, mir wird gerade klar, dass du der TRAINER sein musst, der ein Auge auf WALLY hatte, als er sein POKéMON gefangen hat.Warum besuchst du uns nicht mal in VERDANTURF? Ich bin sicher, WALLY würde sich freuen.
 closemessage
 applymovement LOCALID_PLAYER MauvilleCity_Movement_PlayerWatchWallyExitEast2
 applymovement LOCALID_MAUVILLE_WALLYS_UNCLE MauvilleCity_Movement_WallysUncleExitEast2
@@ -255,7 +255,7 @@ call_if_eq VAR_FACING DIR_NORTH MauvilleCity_EventScript_ScottApproachPlayerNort
 call_if_eq VAR_FACING DIR_EAST MauvilleCity_EventScript_ScottApproachPlayerEast
 applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterDown
 waitmovement 0
-msgbox	SCOTT: Hehe… I was watching that match!You're friends with that boy WALLY, aren't you?But you didn't hold anything back and beat him impressively.Yeah! That's what a real POKéMON battle is all about!I idolize TRAINERS like that!… … … … … … I'll be cheering for you!
+msgbox	SCOTT: Hehe… Ich hab mir den Kampf angesehen!Du bist doch mit dem Jungen WALLY befreundet, oder?Aber du hast dich nicht zurückgehalten und ihn beeindruckend besiegt.Ja! Genau darum geht es bei einem echten POKéMON-Kampf!Solche TRAINER bewundere ich!… … … … … … Ich werde dir die Daumen drücken!
 closemessage
 addvar VAR_SCOTT_STATE 1
 call_if_eq VAR_FACING DIR_NORTH MauvilleCity_EventScript_ScottExitNorth
@@ -295,7 +295,7 @@ delay 30
 applymovement LOCALID_PLAYER MauvilleCity_Movement_PlayerFaceUncleNorth
 applymovement LOCALID_MAUVILLE_WALLYS_UNCLE MauvilleCity_Movement_WallysUncleApproachPlayerNorth
 waitmovement 0
-msgbox	UNCLE: PLAYER, it just dawned on me that you must be the TRAINER who kept an eye out for WALLY when he caught his POKéMON.Why don't you visit us in VERDANTURF sometime? I'm sure WALLY would enjoy it.
+msgbox	ONKEL: PLAYER, mir wird gerade klar, dass du der TRAINER sein musst, der ein Auge auf WALLY hatte, als er sein POKéMON gefangen hat.Warum besuchst du uns nicht mal in VERDANTURF? Ich bin sicher, WALLY würde sich freuen.
 closemessage
 applymovement LOCALID_PLAYER MauvilleCity_Movement_PlayerWatchWallyExitNorth2
 applymovement LOCALID_MAUVILLE_WALLYS_UNCLE MauvilleCity_Movement_WallysUncleExitNorth2
@@ -305,21 +305,21 @@ goto MauvilleCity_EventScript_DefeatedWally
 end
 = MauvilleCity_EventScript_DeclineWallyBattle
 setflag FLAG_DECLINED_WALLY_BATTLE_MAUVILLE
-msgbox	WALLY: Oh… If you won't battle me, PLAYER, my UNCLE won't know that I've become really strong.
+msgbox	WALLY: Oh… Wenn du nicht gegen mich kämpfst, PLAYER, erfährt mein ONKEL nicht, dass ich wirklich stark geworden bin.
 release
 end
 = MauvilleCity_EventScript_BattleWally
-msgbox	WALLY: PLAYER, thank you.Okay… Here I come!
+msgbox	WALLY: PLAYER, danke dir.Okay… Ich komme jetzt!
 trainerbattle_no_intro TRAINER_WALLY_MAUVILLE MauvilleCity_Text_WallyDefeat
 applymovement LOCALID_MAUVILLE_WALLY Common_Movement_WalkInPlaceFasterRight
 waitmovement 0
-msgbox	WALLY: UNCLE… I'll go back to VERDANTURF…
+msgbox	WALLY: ONKEL… Ich geh zurück nach VERDANTURF…
 applymovement LOCALID_MAUVILLE_WALLY Common_Movement_FacePlayer
 waitmovement 0
-msgbox	PLAYER, thank you. Being a TRAINER is tough, isn't it?It's not enough just to have POKéMON and make them battle. That isn't what being a real TRAINER is about.
+msgbox	PLAYER, danke dir. Ein TRAINER zu sein ist ganz schön hart, oder?Es reicht nicht, einfach POKéMON zu haben und sie kämpfen zu lassen. Das macht keinen echten TRAINER aus.
 applymovement LOCALID_MAUVILLE_WALLY Common_Movement_WalkInPlaceFasterRight
 waitmovement 0
-msgbox	UNCLE: WALLY, there's no need to be so down on yourself.Why, what's keeping you from becoming stronger and stronger?Come on, let's go home. Everyone's waiting for you.
+msgbox	ONKEL: WALLY, du musst dich deswegen nicht so runtermachen.Was hält dich denn davon ab, immer stärker zu werden?Komm, lass uns nach Hause gehen. Alle warten auf dich.
 return
 = MauvilleCity_EventScript_WallyRequestBattleAgain
 applymovement LOCALID_MAUVILLE_WALLY Common_Movement_FacePlayer
@@ -331,31 +331,31 @@ end
 lock
 faceplayer
 goto_if_set FLAG_TV_EXPLAINED MauvilleCity_EventScript_TVExplained
-msgbox	Hi, do you check out TV at all?They've added a bunch of cool new shows recently.TV is so cool. I've seen my friends on TV just out of the blue.And, sometimes, they even put you on TV without telling you.I wish I would be on TV sometime.That's why I think you should check out TVs whenever you can.
+msgbox	Hi, schaust du eigentlich manchmal fern?Die haben vor Kurzem ein paar coole neue Sendungen dazubekommen.Fernsehen ist so cool. Ich hab meine Freunde schon aus heiterem Himmel im Fernsehen gesehen.Und manchmal zeigen sie einen sogar im Fernsehen, ohne einem Bescheid zu geben.Ich wünschte, ich käme auch mal ins Fernsehen.Deshalb finde ich, du solltest so oft wie möglich fernsehen.
 setflag FLAG_TV_EXPLAINED
 release
 end
 = MauvilleCity_EventScript_TVExplained
-msgbox	Hi, have you been checking out TVs?
+msgbox	Hi, schaust du eigentlich fern?
 release
 end
 = MauvilleCity_EventScript_Woman
-msgbox	Have you been to RYDEL'S CYCLES yet?RYDEL, the owner, is a very generous man.
+msgbox	Warst du schon bei RYDEL'S CYCLES?RYDEL, der Besitzer, ist ein sehr großzügiger Mann.
 end
 = MauvilleCity_EventScript_Maniac
-msgbox	The roads of this town stretch north and south, and east and west.Because of that, we get all sorts of people coming through.
+msgbox	Die Straßen dieser Stadt verlaufen von Norden nach Süden und von Osten nach Westen.Deshalb kommen hier alle möglichen Leute durch.
 end
 = MauvilleCity_EventScript_RichBoy
-msgbox	Even if you're riding a BIKE, wild POKéMON could jump you.
+msgbox	Selbst wenn du mit dem FAHRRAD unterwegs bist, können dich wilde POKéMON angreifen.
 end
 = MauvilleCity_EventScript_Boy
-msgbox	You know, it's cool to have POKéMON battles and stuff…But if your POKéMON gets hurt, you have to nurse it back to health.
+msgbox	Weißt du, POKéMON-Kämpfe und so sind schon cool…Aber wenn dein POKéMON verletzt wird, musst du es wieder gesund pflegen.
 end
 signs
-11 6	MAUVILLE CITY POKéMON GYM LEADER: WATTSON “The cheerfully electrifying man!”
-19 7	MAUVILLE CITY “The bright and shiny city of fun!”
-33 6	“Ride in gravel and shake up your soul!” RYDEL'S CYCLES
-11 15	“The play spot for all!” MAUVILLE GAME CORNER
+11 6	MAUVILLE CITY POKéMON-ARENA ARENALEITER: WATTSON „Der fröhlich elektrisierende Mann!“
+19 7	MAUVILLE CITY „Die helle, strahlende Stadt des Spaßes!“
+33 6	„Fahr durch den Kies und bring deine Seele in Schwung!“ RYDEL'S CYCLES
+11 15	„Der Spielplatz für alle!“ MAUVILLE-SPIELHALLE
 water
 368,392,393,400
 visit

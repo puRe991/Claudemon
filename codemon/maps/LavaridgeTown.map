@@ -62,13 +62,13 @@ people_may_walking 6 16 W static FLAG_HIDE_LAVARIDGE_TOWN_RIVAL_ON_BIKE LOCALID_
 people_may_walking 12 15 S static FLAG_HIDE_LAVARIDGE_TOWN_RIVAL LOCALID_LAVARIDGE_RIVAL 0
 people_expert_f 4 7 S static 0 - 0
 dialogs
-0	Oh, you like hot springs, do you?That's surprising for one as young as you.
-1	We draw as much hot water as we need, and yet the hot springs never run dry.Isn't it magical?These hot springs appear near active volcanoes. Veins of water under the ground are heated by magma to well up as hot springs.
-2	Being buried in this hot sand is… Sigh…So warm and heavenly…Eh? Gyaah! Ouch!A POKéMON nipped my backside!
-3	I bathe in the hot springs every day.I want to become a beautiful and strong GYM LEADER like FLANNERY.
-4	If people put POKéMON in hot springs, it might be seriously strange.Why, it might be an electric bath, or a bubble bath, or even a lava bath…
-5	They're claiming that these hot springs are good for calming nervous tension, relieving aching muscles, solving romantic problems, and attracting money…
-8	I have here an EGG.I'd hoped to hatch it by covering it in hot sand by the hot springs. But that doesn't seem to be enough…I've heard it would be best if it were kept together with POKéMON and carried about.You are a TRAINER, yes? And your POKéMON radiate vitality.So, what say you? Will you take this EGG to hatch?
+0	Oh, du magst heiße Quellen, ja?Das ist überraschend für jemand so Jungen wie dich.
+1	Wir schöpfen so viel heißes Wasser, wie wir brauchen, und trotzdem versiegen die heißen Quellen nie.Ist das nicht magisch?Diese heißen Quellen entstehen in der Nähe aktiver Vulkane. Wasseradern unter der Erde werden von Magma erhitzt und sprudeln als heiße Quellen empor.
+2	In diesem heißen Sand vergraben zu sein, ist… Seufz…So warm und himmlisch…Eh? Gyaah! Autsch!Ein POKéMON hat mich in den Hintern gezwickt!
+3	Ich bade jeden Tag in den heißen Quellen.Ich will eine schöne und starke ARENALEITERIN wie FLANNERY werden.
+4	Wenn Leute POKéMON in heiße Quellen setzen würden, könnte das echt seltsam werden.Es könnte ein elektrisches Bad sein, oder ein Schaumbad, oder sogar ein Lavabad…
+5	Sie behaupten, diese heißen Quellen würden Nervosität lindern, schmerzende Muskeln entspannen, Liebesprobleme lösen und Geld anziehen…
+8	Ich habe hier ein EI.Ich hatte gehofft, es auszubrüten, indem ich es im heißen Sand bei den Quellen vergrabe. Aber das scheint nicht zu reichen…Ich habe gehört, es wäre am besten, es zusammen mit POKéMON herumzutragen.Du bist doch ein TRAINER, oder? Und deine POKéMON strotzen vor Vitalität.Also, was sagst du? Nimmst du dieses EI, um es auszubrüten?
 objscripts
 0 LavaridgeTown_EventScript_ExpertF
 1 LavaridgeTown_EventScript_ExpertM
@@ -111,10 +111,10 @@ goto_if_eq VAR_RESULT MALE LavaridgeTown_EventScript_MayGiveGoGoggles
 goto_if_eq VAR_RESULT FEMALE LavaridgeTown_EventScript_BrendanGiveGoGoggles
 end
 = LavaridgeTown_EventScript_BrendanGiveGoGoggles
-msgbox	BRENDAN: PLAYER, hey, it's been a while. How's it going?Hmm… That's a decent collection of BADGES.All right, then. You may as well have this.
+msgbox	BRENDAN: PLAYER, hey, lange nicht gesehen. Wie läuft's?Hmm… Das ist eine ordentliche Sammlung an ORDEN.Alles klar, dann. Das hier kannst du genauso gut haben.
 giveitem ITEM_GO_GOGGLES
 setflag FLAG_RECEIVED_GO_GOGGLES
-msgbox	BRENDAN: Keep those with you if you're planning on going into that desert near ROUTE 111.There should be some POKéMON that are exclusively desert-dwellers. You might look around for those.As for me… I'm considering challenging NORMAN, the GYM LEADER of PETALBURG.Unlike you, PLAYER, your dad looks like he really is tough.See you around!
+msgbox	BRENDAN: Behalt die, falls du vorhast, in diese Wüste bei ROUTE 111 zu gehen.Es soll dort POKéMON geben, die ausschließlich in der Wüste leben. Halt mal Ausschau nach denen.Was mich angeht… Ich überlege, NORMAN, den ARENALEITER von PETALBURG, herauszufordern.Anders als du, PLAYER, sieht dein Vater aus, als wäre er wirklich hart.Bis bald!
 goto LavaridgeTown_EventScript_RivalExit
 end
 = LavaridgeTown_EventScript_RivalExit
@@ -141,10 +141,10 @@ applymovement LOCALID_LAVARIDGE_RIVAL_ON_BIKE LavaridgeTown_Movement_RivalExit1
 waitmovement 0
 return
 = LavaridgeTown_EventScript_MayGiveGoGoggles
-msgbox	MAY: PLAYER! Long time no see!Oh? While I visited the hot springs, you got the LAVARIDGE GYM BADGE.You must have collected good POKéMON… No, I believe you raised some.I guess it would be okay for you to have this.
+msgbox	MAY: PLAYER! Lange nicht gesehen!Oh? Während ich die heißen Quellen besucht habe, hast du dir den LAVARIDGE-ARENAORDEN geholt.Du musst dir gute POKéMON zugelegt haben… Nein, ich glaube, du hast welche großgezogen.Ich denke, du kannst das hier gut gebrauchen.
 giveitem ITEM_GO_GOGGLES
 setflag FLAG_RECEIVED_GO_GOGGLES
-msgbox	MAY: With those GO-GOGGLES, you'll have no trouble getting through the desert near ROUTE 111.But, wow, PLAYER… Challenging GYMS…You're trying hard because you don't want to lose to me, I bet!PLAYER, I think I should challenge your dad in PETALBURG GYM.See you again!
+msgbox	MAY: Mit dieser STAUBSCHUTZBRILLE hast du keine Probleme, durch die Wüste bei ROUTE 111 zu kommen.Aber wow, PLAYER… ARENEN herausfordern…Du strengst dich sicher so an, weil du nicht gegen mich verlieren willst!PLAYER, ich glaube, ich sollte deinen Vater in der PETALBURG-ARENA herausfordern.Bis dann!
 goto LavaridgeTown_EventScript_RivalExit
 end
 = LavaridgeTown_EventScript_RivalApproachPlayer2
@@ -210,48 +210,48 @@ msgboxyesno	I have here an EGG.I'd hoped to hatch it by covering it in hot sand
 goto_if_eq VAR_RESULT NO LavaridgeTown_EventScript_DeclineEgg
 getpartysize
 goto_if_eq VAR_RESULT PARTY_SIZE LavaridgeTown_EventScript_NoRoomForEgg
-msgbox	Good! I hope you'll walk plenty with this here EGG!
+msgbox	Schön! Ich hoffe, du läufst viel mit diesem EI hier herum!
 setflag FLAG_RECEIVED_LAVARIDGE_EGG
 playfanfare MUS_OBTAIN_ITEM
-msgbox	PLAYER received the EGG.
+msgbox	PLAYER erhielt das EI.
 waitfanfare
 giveegg SPECIES_WYNAUT
 release
 end
 = LavaridgeTown_EventScript_NoRoomForEgg
-msgbox	Oh? You've too many POKéMON. There's no room for this EGG…
+msgbox	Oh? Du hast zu viele POKéMON. Es ist kein Platz mehr für dieses EI…
 release
 end
 = LavaridgeTown_EventScript_DeclineEgg
-msgbox	As you wish, then…If you have a change of heart about hatching this EGG, I will be here.
+msgbox	Wie du wünschst, dann…Falls du es dir anders überlegst und dieses EI ausbrüten willst, bin ich hier.
 release
 end
 = LavaridgeTown_EventScript_ReceivedEgg
-msgbox	Every so often, an EGG will be found at the POKéMON DAY CARE.Or at least that's how the rumor goes.
+msgbox	Hin und wieder findet man ein EI im POKéMON-HORT.Zumindest geht so das Gerücht.
 release
 end
 = LavaridgeTown_EventScript_HotSpringsOldWoman2
-msgbox	They're claiming that these hot springs are good for calming nervous tension, relieving aching muscles, solving romantic problems, and attracting money…
+msgbox	Sie behaupten, diese heißen Quellen würden Nervosität lindern, schmerzende Muskeln entspannen, Liebesprobleme lösen und Geld anziehen…
 end
 = LavaridgeTown_EventScript_HotSpringsOldWoman1
-msgbox	If people put POKéMON in hot springs, it might be seriously strange.Why, it might be an electric bath, or a bubble bath, or even a lava bath…
+msgbox	Wenn Leute POKéMON in heiße Quellen setzen würden, könnte das echt seltsam werden.Es könnte ein elektrisches Bad sein, oder ein Schaumbad, oder sogar ein Lavabad…
 end
 = LavaridgeTown_EventScript_Twin
-msgbox	I bathe in the hot springs every day.I want to become a beautiful and strong GYM LEADER like FLANNERY.
+msgbox	Ich bade jeden Tag in den heißen Quellen.Ich will eine schöne und starke ARENALEITERIN wie FLANNERY werden.
 end
 = LavaridgeTown_EventScript_OldMan
-msgbox	Being buried in this hot sand is… Sigh…So warm and heavenly…Eh? Gyaah! Ouch!A POKéMON nipped my backside!
+msgbox	In diesem heißen Sand vergraben zu sein, ist… Seufz…So warm und himmlisch…Eh? Gyaah! Autsch!Ein POKéMON hat mich in den Hintern gezwickt!
 end
 = LavaridgeTown_EventScript_ExpertM
-msgbox	We draw as much hot water as we need, and yet the hot springs never run dry.Isn't it magical?These hot springs appear near active volcanoes. Veins of water under the ground are heated by magma to well up as hot springs.
+msgbox	Wir schöpfen so viel heißes Wasser, wie wir brauchen, und trotzdem versiegen die heißen Quellen nie.Ist das nicht magisch?Diese heißen Quellen entstehen in der Nähe aktiver Vulkane. Wasseradern unter der Erde werden von Magma erhitzt und sprudeln als heiße Quellen empor.
 end
 = LavaridgeTown_EventScript_ExpertF
-msgbox	Oh, you like hot springs, do you?That's surprising for one as young as you.
+msgbox	Oh, du magst heiße Quellen, ja?Das ist überraschend für jemand so Jungen wie dich.
 end
 signs
-14 16	POKéMON HERB SHOP “Bitter taste--better cure!”
-7 15	LAVARIDGE TOWN POKéMON GYM LEADER: FLANNERY “One with a fiery passion that burns!”
-13 8	LAVARIDGE TOWN“POKéMON CENTER HOT SPRINGS An excellent place for relaxing!”
+14 16	POKéMON-KRÄUTERLADEN „Bitterer Geschmack--bessere Heilung!“
+7 15	LAVARIDGE TOWN POKéMON-ARENA ARENALEITERIN: FLANNERY „Die mit der feurigen Leidenschaft, die brennt!“
+13 8	LAVARIDGE TOWN„POKéMON-CENTER MIT HEISSEN QUELLEN Ein hervorragender Ort zum Entspannen!“
 visit
 FLAG_VISITED_LAVARIDGE_TOWN
 mapsec

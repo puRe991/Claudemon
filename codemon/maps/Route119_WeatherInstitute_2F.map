@@ -36,10 +36,10 @@ people_man_4 1 7 E static FLAG_HIDE_WEATHER_INSTITUTE_2F_WORKERS - 0
 people_team_aqua_aqua_member_m 16 6 W static FLAG_HIDE_WEATHER_INSTITUTE_2F_AQUA_GRUNT_M LOCALID_WEATHER_INSTITUTE_2F_GRUNT_3 0
 people_team_aqua_aqua_member_f 19 6 W static FLAG_HIDE_ROUTE_119_TEAM_AQUA LOCALID_WEATHER_INSTITUTE_2F_GRUNT_4 3
 dialogs
-0	If the POKéMON they made here can control the weather freely, then we of TEAM AQUA definitely need it!
-1	You don't have any idea what we of TEAM AQUA are working towards! You stay out of our way!
-2	It's bad enough to have TEAM MAGMA blunder about, but now there's you!What makes you want to sniff around in our business, anyway?
-7	Humph, so what? What we want…What we really want isn't here… Ihihihihi…
+0	Wenn das POKéMON, das sie hier erschaffen haben, das Wetter frei kontrollieren kann, dann brauchen wir von TEAM AQUA es unbedingt!
+1	Du hast keine Ahnung, worauf wir von TEAM AQUA hinarbeiten! Bleib uns aus dem Weg!
+2	Es reicht schon, dass TEAM MAGMA hier herumstolpert, aber jetzt bist auch noch du hier!Was bringt dich überhaupt dazu, in unseren Angelegenheiten herumzuschnüffeln?
+7	Humph, na und? Was wir wollen…Was wir wirklich wollen, ist nicht hier… Ihihihihi…
 objscripts
 0 Route119_WeatherInstitute_2F_EventScript_Grunt2
 1 Route119_WeatherInstitute_2F_EventScript_Grunt3
@@ -56,7 +56,7 @@ Route119_WeatherInstitute_2F_Movement_ShovePlayerOutOfWay	delay,delay,delay,dela
 scriptdefs
 = Route119_WeatherInstitute_2F_EventScript_Grunt5
 trainerbattle_single TRAINER_GRUNT_WEATHER_INST_5 Route119_WeatherInstitute_2F_Text_Grunt5Intro Route119_WeatherInstitute_2F_Text_Grunt5Defeat
-msgbox	Humph, so what? What we want…What we really want isn't here… Ihihihihi…
+msgbox	Humph, na und? Was wir wollen…Was wir wirklich wollen, ist nicht hier… Ihihihihi…
 end
 = Route119_WeatherInstitute_2F_EventScript_WeatherScientist
 lock
@@ -65,7 +65,7 @@ goto_if_set FLAG_RECEIVED_CASTFORM Route119_WeatherInstitute_2F_EventScript_Scie
 goto Route119_WeatherInstitute_2F_EventScript_ReceiveCastform
 end
 = Route119_WeatherInstitute_2F_EventScript_ReceiveCastform
-msgbox	Thanks! Thanks to you, we're safe!It might be an odd way of thanking you, but take this POKéMON.
+msgbox	Danke! Dank dir sind wir in Sicherheit!Es ist vielleicht eine seltsame Art, dir zu danken, aber nimm dieses POKéMON.
 setvar VAR_TEMP_TRANSFERRED_SPECIES SPECIES_CASTFORM
 givemon SPECIES_CASTFORM 25 ITEM_MYSTIC_WATER
 goto_if_eq VAR_RESULT MON_GIVEN_TO_PARTY Route119_WeatherInstitute_2F_EventScript_ReceiveCastformParty
@@ -73,7 +73,7 @@ goto_if_eq VAR_RESULT MON_GIVEN_TO_PC Route119_WeatherInstitute_2F_EventScript_R
 goto Common_EventScript_NoMoreRoomForPokemon
 end
 = Common_EventScript_NoMoreRoomForPokemon
-msgbox	There's no more room for POKéMON!The POKéMON BOXES are full and can't accept any more!
+msgbox	Es ist kein Platz mehr für POKéMON!Die POKéMON-BOXEN sind voll und können keine mehr aufnehmen!
 release
 end
 = Route119_WeatherInstitute_2F_EventScript_ReceiveCastformPC
@@ -88,7 +88,7 @@ call Common_EventScript_TransferredToPC
 goto Route119_WeatherInstitute_2F_EventScript_ExplainCastform
 end
 = Route119_WeatherInstitute_2F_EventScript_ExplainCastform
-msgbox	That POKéMON changes shape according to the weather conditions.There're plenty of them in the INSTITUTE--go ahead and take it.
+msgbox	Dieses POKéMON ändert seine Form je nach Wetterbedingungen.Es gibt jede Menge davon im INSTITUT--nimm es dir ruhig.
 setflag FLAG_RECEIVED_CASTFORM
 release
 end
@@ -101,22 +101,22 @@ return
 = EventScript_TransferredLanettesPC
 specialvar VAR_RESULT ShouldShowBoxWasFullMessage
 goto_if_eq VAR_RESULT TRUE EventScript_LanettesPCBoxFull
-msgbox	STR_VAR_2 was transferred to LANETTE'S PC.It was placed in BOX “STR_VAR_1.”
+msgbox	STR_VAR_2 wurde zu LANETTES PC übertragen.Es wurde in BOX „STR_VAR_1“ abgelegt.
 return
 = EventScript_LanettesPCBoxFull
 specialvar VAR_RESULT GetPCBoxToSendMon
 bufferboxname STR_VAR_3 VAR_RESULT
-msgbox	BOX “STR_VAR_3” on LANETTE'S PC was full.STR_VAR_2 was transferred to BOX “STR_VAR_1.”
+msgbox	BOX „STR_VAR_3“ auf LANETTES PC war voll.STR_VAR_2 wurde zu BOX „STR_VAR_1“ übertragen.
 return
 = EventScript_TransferredSomeonesPC
 specialvar VAR_RESULT ShouldShowBoxWasFullMessage
 goto_if_eq VAR_RESULT TRUE EventScript_SomeonesPCBoxFull
-msgbox	STR_VAR_2 was transferred to SOMEONE'S PC.It was placed in BOX “STR_VAR_1.”
+msgbox	STR_VAR_2 wurde zu JEMANDES PC übertragen.Es wurde in BOX „STR_VAR_1“ abgelegt.
 return
 = EventScript_SomeonesPCBoxFull
 specialvar VAR_RESULT GetPCBoxToSendMon
 bufferboxname STR_VAR_3 VAR_RESULT
-msgbox	BOX “STR_VAR_3” on SOMEONE'S PC was full.STR_VAR_2 was transferred to BOX “STR_VAR_1.”
+msgbox	BOX „STR_VAR_3“ auf JEMANDES PC war voll.STR_VAR_2 wurde zu BOX „STR_VAR_1“ übertragen.
 return
 = Common_EventScript_NameReceivedBoxMon
 fadescreen FADE_TO_BLACK
@@ -126,7 +126,7 @@ faceplayer
 return
 = Route119_WeatherInstitute_2F_EventScript_ReceivedCastformFanfare
 playfanfare MUS_OBTAIN_ITEM
-msgbox	PLAYER received CASTFORM!
+msgbox	PLAYER erhielt CASTFORM!
 waitmessage
 waitfanfare
 bufferspeciesname STR_VAR_1 SPECIES_CASTFORM
@@ -146,7 +146,7 @@ copyvar VAR_0x8004 VAR_RESULT
 return
 = Route119_WeatherInstitute_2F_EventScript_ScientistMentionWeather
 goto_if_set FLAG_SYS_GAME_CLEAR Route119_WeatherInstitute_2F_EventScript_TryStartAbnormalWeather
-msgbox	I've been researching rain for many years, but it's ridiculous to think that humans can freely change the weather.
+msgbox	Ich erforsche Regen schon seit vielen Jahren, aber es ist lächerlich zu denken, dass Menschen das Wetter frei ändern könnten.
 release
 end
 = Route119_WeatherInstitute_2F_EventScript_TryStartAbnormalWeather
@@ -157,11 +157,11 @@ goto_if_eq VAR_0x8004 2 Route119_WeatherInstitute_2F_EventScript_NoAbnormalWeath
 call_if_unset FLAG_TEMP_2 Route119_WeatherInstitute_2F_EventScript_CreateAbnormalWeather
 specialvar VAR_RESULT GetAbnormalWeatherMapNameAndType
 goto_if_eq VAR_RESULT 1 Route119_WeatherInstitute_2F_EventScript_KyogreWeather
-msgbox	I track weather patterns over the HOENN region.Presently, a drought has been recorded in STR_VAR_1.Could that mean, somewhere near STR_VAR_1…
+msgbox	Ich verfolge die Wettermuster über der Region HOENN.Zurzeit wurde eine Dürre in STR_VAR_1 verzeichnet.Könnte das bedeuten, irgendwo nahe STR_VAR_1…
 release
 end
 = Route119_WeatherInstitute_2F_EventScript_KyogreWeather
-msgbox	I track weather patterns over the HOENN region.Presently, heavy rainfall has been recorded over STR_VAR_1.Could that mean, somewhere near STR_VAR_1…
+msgbox	Ich verfolge die Wettermuster über der Region HOENN.Zurzeit wurden starke Regenfälle über STR_VAR_1 verzeichnet.Könnte das bedeuten, irgendwo nahe STR_VAR_1…
 release
 end
 = Route119_WeatherInstitute_2F_EventScript_CreateAbnormalWeather
@@ -173,23 +173,23 @@ addvar VAR_0x8004 1
 return
 = Route119_WeatherInstitute_2F_EventScript_Shelly
 trainerbattle_single TRAINER_SHELLY_WEATHER_INSTITUTE Route119_WeatherInstitute_2F_Text_ShellyIntro Route119_WeatherInstitute_2F_Text_ShellyDefeat Route119_WeatherInstitute_2F_EventScript_ShellyDefeated
-msgbox	It's bad enough to have TEAM MAGMA blunder about, but now there's you!What makes you want to sniff around in our business, anyway?
+msgbox	Es reicht schon, dass TEAM MAGMA hier herumstolpert, aber jetzt bist auch noch du hier!Was bringt dich überhaupt dazu, in unseren Angelegenheiten herumzuschnüffeln?
 end
 = Route119_WeatherInstitute_2F_EventScript_ShellyDefeated
-msgbox	It's bad enough to have TEAM MAGMA blunder about, but now there's you!What makes you want to sniff around in our business, anyway?
+msgbox	Es reicht schon, dass TEAM MAGMA hier herumstolpert, aber jetzt bist auch noch du hier!Was bringt dich überhaupt dazu, in unseren Angelegenheiten herumzuschnüffeln?
 closemessage
 addobject LOCALID_WEATHER_INSTITUTE_2F_GRUNT_3
 applymovement LOCALID_WEATHER_INSTITUTE_2F_GRUNT_3 Route119_WeatherInstitute_2F_Movement_GruntApproachShelly
 applymovement LOCALID_PLAYER Route119_WeatherInstitute_2F_Movement_ShovePlayerOutOfWay
 waitmovement 0
-msgbox	We have a situation here!A TEAM MAGMA mob just passed the WEATHER INSTITUTE.They appear to be headed for MT. PYRE!
+msgbox	Wir haben hier eine Situation!Ein Trupp von TEAM MAGMA ist gerade am WETTERINSTITUT vorbeigezogen.Sie scheinen zum MT. PYRE unterwegs zu sein!
 closemessage
 playse SE_PIN
 applymovement LOCALID_WEATHER_INSTITUTE_2F_SHELLY Common_Movement_ExclamationMark
 waitmovement 0
 applymovement LOCALID_WEATHER_INSTITUTE_2F_SHELLY Common_Movement_Delay48
 waitmovement 0
-msgbox	What?!We can't waste any more time here! We have to hurry to MT. PYRE, too!Ahahahaha! TEAM MAGMA, just you wait!
+msgbox	Was?!Wir können hier keine Zeit mehr verlieren! Wir müssen auch zum MT. PYRE eilen!Ahahahaha! TEAM MAGMA, wartet nur ab!
 closemessage
 setvar VAR_WEATHER_INSTITUTE_STATE 1
 clearflag FLAG_HIDE_WEATHER_INSTITUTE_2F_WORKERS
@@ -212,11 +212,11 @@ goto Route119_WeatherInstitute_2F_EventScript_ReceiveCastform
 end
 = Route119_WeatherInstitute_2F_EventScript_Grunt3
 trainerbattle_single TRAINER_GRUNT_WEATHER_INST_3 Route119_WeatherInstitute_2F_Text_Grunt3Intro Route119_WeatherInstitute_2F_Text_Grunt3Defeat
-msgbox	You don't have any idea what we of TEAM AQUA are working towards! You stay out of our way!
+msgbox	Du hast keine Ahnung, worauf wir von TEAM AQUA hinarbeiten! Bleib uns aus dem Weg!
 end
 = Route119_WeatherInstitute_2F_EventScript_Grunt2
 trainerbattle_single TRAINER_GRUNT_WEATHER_INST_2 Route119_WeatherInstitute_2F_Text_Grunt2Intro Route119_WeatherInstitute_2F_Text_Grunt2Defeat
-msgbox	If the POKéMON they made here can control the weather freely, then we of TEAM AQUA definitely need it!
+msgbox	Wenn das POKéMON, das sie hier erschaffen haben, das Wetter frei kontrollieren kann, dann brauchen wir von TEAM AQUA es unbedingt!
 end
 mapsec
 11 0 1 6	ROUTE 119
