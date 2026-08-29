@@ -149,9 +149,9 @@ misc_item_ball 14 43 S static FLAG_ITEM_ROUTE_112_NUGGET - 0
 people_man_5 31 7 S static 0 - 3
 people_woman_2 31 11 S static 0 - 3
 dialogs
-0	Hey, man, is our leader really going to awaken that thing?
-5	Hey, man, is our leader really going to awaken that thing?
-10	Eh, I'd like to get to MAUVILLE, but if I went down these ledges, it'd be no easy matter to get back to LAVARIDGE.
+0	Hey, Mann, wird unser Anführer dieses Ding wirklich erwecken?
+5	Hey, Mann, wird unser Anführer dieses Ding wirklich erwecken?
+10	Ach, ich würde ja gern nach MAUVILLE, aber wenn ich diese Kanten runtergehe, komme ich nicht so einfach zurück nach LAVARIDGE.
 objscripts
 0 Route112_EventScript_MagmaGrunts
 1 Route112_EventScript_Brice
@@ -174,11 +174,11 @@ Common_Movement_WalkInPlaceFasterRight	delay,end
 scriptdefs
 = Route112_EventScript_Shayla
 trainerbattle_single TRAINER_SHAYLA Route112_Text_ShaylaIntro Route112_Text_ShaylaDefeat
-msgbox	Are you busy right now? I was thinking that maybe we can have a rematch right now… But it's all right if you're busy.
+msgbox	Bist du gerade beschäftigt? Ich dachte, vielleicht können wir jetzt einen Rückkampf machen… Aber es ist auch okay, wenn du keine Zeit hast.
 end
 = Route112_EventScript_Bryant
 trainerbattle_single TRAINER_BRYANT Route112_Text_BryantIntro Route112_Text_BryantDefeat
-msgbox	I like the way you battle. It has a certain flair to it.
+msgbox	Mir gefällt, wie du kämpfst. Das hat einen gewissen Stil.
 end
 = Route112_EventScript_ItemNugget
 goto_if_set FLAG_ITEM_ROUTE_112_NUGGET Route112_EventScript_ItemNugget_Taken
@@ -188,7 +188,7 @@ end
 = Route112_EventScript_ItemNugget_Taken
 end
 = Route112_EventScript_Hiker
-msgbox	Eh, I'd like to get to MAUVILLE, but if I went down these ledges, it'd be no easy matter to get back to LAVARIDGE.
+msgbox	Ach, ich würde ja gern nach MAUVILLE, aber wenn ich diese Kanten runtergehe, komme ich nicht so einfach zurück nach LAVARIDGE.
 end
 = BerryTreeScript
 special ObjectEventInteractionGetBerryTreeData
@@ -215,24 +215,24 @@ special ObjectEventInteractionPickBerryTree
 goto_if_eq VAR_0x8004 0 BerryTree_EventScript_BerryPocketFull
 special IncrementDailyPickedBerries
 special ObjectEventInteractionRemoveBerryTree
-msgbox	PLAYER picked the STR_VAR_2 STR_VAR_1.
+msgbox	PLAYER hat STR_VAR_2 STR_VAR_1 gepflückt.
 playfanfare MUS_OBTAIN_BERRY
 waitmessage
 waitfanfare
 waitbuttonpress
-msgbox	PLAYER put away the STR_VAR_1 in the BAG's BERRIES POCKET.The soil returned to its soft and loamy state.
+msgbox	PLAYER hat die STR_VAR_1 im BEEREN-FACH der TASCHE verstaut.Der Boden kehrte in seinen weichen, lockeren Zustand zurück.
 waitmessage
 waitbuttonpress
 release
 end
 = BerryTree_EventScript_BerryPocketFull
-msgbox	The BAG's BERRIES POCKET is full.The STR_VAR_1 couldn't be taken.
+msgbox	Das BEEREN-FACH der TASCHE ist voll.Die STR_VAR_1 konnte nicht mitgenommen werden.
 waitmessage
 waitbuttonpress
 release
 end
 = BerryTree_EventScript_CancelPickingBerry
-msgbox	PLAYER left the STR_VAR_1 unpicked.
+msgbox	PLAYER hat die STR_VAR_1 ungepflückt gelassen.
 waitmessage
 waitbuttonpress
 release
@@ -241,7 +241,7 @@ end
 call BerryTree_EventScript_GetCareAdverb
 lockall
 special ObjectEventInteractionGetBerryName
-msgbox	These STR_VAR_1 flowers are blooming STR_VAR_2.
+msgbox	Diese STR_VAR_1-Blüten blühen STR_VAR_2.
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
@@ -274,11 +274,11 @@ releaseall
 end
 = BerryTree_EventScript_WaterBerry
 special ObjectEventInteractionGetBerryName
-msgbox	PLAYER watered the STR_VAR_1.
+msgbox	PLAYER hat die STR_VAR_1 gegossen.
 waitmessage
 special ObjectEventInteractionWaterBerryTree
 special DoWateringBerryTreeAnim
-msgbox	The plant seems to be delighted.
+msgbox	Die Pflanze scheint erfreut zu sein.
 waitmessage
 waitbuttonpress
 releaseall
@@ -286,21 +286,21 @@ end
 = BerryTree_EventScript_CheckBerryStage3
 lockall
 special ObjectEventInteractionGetBerryName
-msgbox	This STR_VAR_1 plant is growing taller.
+msgbox	Diese STR_VAR_1-Pflanze wird immer größer.
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
 = BerryTree_EventScript_CheckBerryStage2
 lockall
 special ObjectEventInteractionGetBerryName
-msgbox	STR_VAR_1 has sprouted.
+msgbox	STR_VAR_1 ist aufgekeimt.
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
 = BerryTree_EventScript_CheckBerryStage1
 lockall
 special ObjectEventInteractionGetBerryCountString
-msgbox	One STR_VAR_1 was planted here.
+msgbox	Hier wurde eine STR_VAR_1 eingepflanzt.
 waitmessage
 waitbuttonpress
 goto BerryTree_EventScript_WantToWater
@@ -309,7 +309,7 @@ lock
 faceplayer
 specialvar VAR_RESULT PlayerHasBerries
 goto_if_eq VAR_RESULT TRUE BerryTree_EventScript_WantToPlant
-msgbox	It's soft, loamy soil.
+msgbox	Es ist weicher, lockerer Boden.
 waitmessage
 waitbuttonpress
 release
@@ -335,7 +335,7 @@ special ObjectEventInteractionPlantBerryTree
 incrementgamestat GAME_STAT_PLANTED_BERRIES
 special IncrementDailyPlantedBerries
 special ObjectEventInteractionGetBerryCountString
-msgbox	PLAYER planted one STR_VAR_1 in the soft, loamy soil.
+msgbox	PLAYER hat eine STR_VAR_1 in den weichen, lockeren Boden gepflanzt.
 waitmessage
 waitbuttonpress
 return
@@ -352,7 +352,7 @@ delay 40
 applymovement LOCALID_ROUTE112_GRUNT_1 Common_Movement_WalkInPlaceFasterRight
 waitmovement 0
 delay 20
-msgbox	Hey, man, is our leader really going to awaken that thing?
+msgbox	Hey, Mann, wird unser Anführer dieses Ding wirklich erwecken?
 closemessage
 applymovement LOCALID_ROUTE112_GRUNT_1 Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -360,7 +360,7 @@ delay 40
 applymovement LOCALID_ROUTE112_GRUNT_2 Common_Movement_WalkInPlaceFasterLeft
 waitmovement 0
 delay 20
-msgbox	Sounds like it, yeah. But I heard we need a METEORITE to do it.
+msgbox	Sieht ganz danach aus, ja. Aber ich hab gehört, wir brauchen einen METEORIT dafür.
 closemessage
 applymovement LOCALID_ROUTE112_GRUNT_2 Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -368,7 +368,7 @@ delay 40
 applymovement LOCALID_ROUTE112_GRUNT_1 Common_Movement_WalkInPlaceFasterRight
 waitmovement 0
 delay 20
-msgbox	Oh, I get it now. That's why the rest of the crew went out to FALLARBOR.
+msgbox	Oh, jetzt versteh ich. Deshalb ist der Rest der Truppe nach FALLARBOR gezogen.
 closemessage
 applymovement LOCALID_ROUTE112_GRUNT_1 Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -376,7 +376,7 @@ delay 40
 applymovement LOCALID_ROUTE112_GRUNT_2 Common_Movement_WalkInPlaceFasterLeft
 waitmovement 0
 delay 20
-msgbox	You got it. And until they come back, we're not to let anyone pass, right.
+msgbox	Genau. Und bis sie zurück sind, dürfen wir niemanden durchlassen, klar.
 closemessage
 applymovement LOCALID_ROUTE112_GRUNT_2 Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -386,35 +386,35 @@ end
 trainerbattle_single TRAINER_TRENT_1 Route112_Text_TrentIntro Route112_Text_TrentDefeat Route112_EventScript_RegisterTrent
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route112_EventScript_RematchTrent
-msgbox	Try hiking, and I mean really pounding, on these mountain trails with a heavy pack weighing dozens of pounds.That, my friend, will get your body into serious shape.
+msgbox	Versuch mal, auf diesen Bergpfaden zu wandern, und zwar richtig zu stampfen, mit einem schweren Rucksack, der etliche Kilo wiegt.Das, mein Freund, bringt deinen Körper so richtig in Form.
 release
 end
 = Route112_EventScript_RematchTrent
 trainerbattle_rematch TRAINER_TRENT_1 Route112_Text_TrentRematchIntro Route112_Text_TrentRematchDefeat
-msgbox	I hear there are some seriously tough TRAINERS on top of MT. CHIMNEY.I intend to get up there and give them a challenge!
+msgbox	Ich hab gehört, auf dem Gipfel von MT. CHIMNEY gibt es ziemlich harte TRAINER.Ich hab vor, da hochzugehen und sie herauszufordern!
 end
 = Route112_EventScript_RegisterTrent
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Ow, my legs have cramped up. Can you grab me some bandages from my backpack?No, that's my POKéNAV! Oh, fine, I'll register you.
+msgbox	Au, meine Beine haben sich verkrampft. Kannst du mir Verbandszeug aus meinem Rucksack holen?Nein, das ist mein POKéNAV! Ach, gut, ich registrier dich dann eben.
 register_matchcall TRAINER_TRENT_1
 release
 end
 = Route112_EventScript_Carol
 trainerbattle_single TRAINER_CAROL Route112_Text_CarolIntro Route112_Text_CarolDefeat
-msgbox	It doesn't matter if you're good or bad at singing or POKéMON.If you have the most fun, you win!
+msgbox	Es spielt keine Rolle, ob du gut oder schlecht im Singen oder bei POKéMON bist.Wer am meisten Spaß hat, gewinnt!
 end
 = Route112_EventScript_Larry
 trainerbattle_single TRAINER_LARRY Route112_Text_LarryIntro Route112_Text_LarryDefeat
-msgbox	I'm not crying because I miss my mommy! Snivel…
+msgbox	Ich weine nicht, weil ich meine Mama vermisse! Schnief…
 end
 = Route112_EventScript_Brice
 trainerbattle_single TRAINER_BRICE Route112_Text_BriceIntro Route112_Text_BriceDefeat
-msgbox	Hahahahaha! Something flew up my nose! Hahahaha-hatchoo!
+msgbox	Hahahahaha! Mir ist was in die Nase geflogen! Hahahaha-hatschi!
 end
 signs
-19 44	MT. CHIMNEY“For LAVARIDGE TOWN or the summit, please take the CABLE CAR.”
-22 37	MT. CHIMNEY CABLE CAR “A short walk way!”
+19 44	MT. CHIMNEY„Für LAVARIDGE TOWN oder den Gipfel bitte die SEILBAHN nehmen.“
+22 37	MT.-CHIMNEY-SEILBAHN „Ein kurzer Fußweg!“
 4 49	ROUTE 112 LAVARIDGE TOWN
 grass
 13,37

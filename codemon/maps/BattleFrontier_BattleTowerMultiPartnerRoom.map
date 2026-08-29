@@ -35,7 +35,7 @@ collision
 npcs
 people_teala 11 2 S static 0 LOCALID_TOWER_PARTNER_ROOM_ATTENDANT 0
 dialogs
-0	Then, please find a partner from the TRAINERS gathered here.
+0	Dann such dir bitte einen Partner aus den hier versammelten TRAINERN aus.
 objscripts
 0 BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_Attendant
 onload
@@ -56,7 +56,7 @@ setvar VAR_TEMP_3 0
 goto BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_EnterElevator
 end
 = BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_EnterElevator
-msgbox	Thank you for choosing a partner.I will now show you to your MULTI BATTLE ROOM.
+msgbox	Danke, dass du einen Partner gewählt hast.Ich bringe dich jetzt zu deinem MULTI-KAMPFRAUM.
 closemessage
 applymovement LOCALID_TOWER_PARTNER_ROOM_ATTENDANT Common_Movement_WalkInPlaceFasterUp
 waitmovement 0
@@ -131,7 +131,7 @@ waitmovement 0
 copyobjectxytoperm LOCALID_TOWER_PARTNER_ROOM_ATTENDANT
 applymovement LOCALID_PLAYER Common_Movement_WalkInPlaceFasterUp
 waitmovement 0
-msgbox	Please find a partner from out of the TRAINERS gathered here.
+msgbox	Bitte such dir einen Partner aus den hier versammelten TRAINERN aus.
 special HealPlayerParty
 setvar VAR_TEMP_1 1
 releaseall
@@ -139,11 +139,11 @@ end
 = BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_Attendant
 lock
 faceplayer
-msgbox	PLAYER, you have not found a partner for your tag team.Would you like to quit looking and return to the reception counter?
+msgbox	PLAYER, du hast noch keinen Partner für dein Tag-Team gefunden.Möchtest du die Suche abbrechen und zum Empfangsschalter zurückkehren?
 waitmessage
 multichoicedefault 20 8 MULTI_YESNO 1 FALSE
 goto_if_eq VAR_RESULT 0 BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_QuitChallenge
-msgbox	Then, please find a partner from the TRAINERS gathered here.
+msgbox	Dann such dir bitte einen Partner aus den hier versammelten TRAINERN aus.
 release
 end
 = BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_QuitChallenge

@@ -200,7 +200,7 @@ goto_if_ge VAR_ABNORMAL_WEATHER_LOCATION MARINE_CAVE_LOCATIONS_START AbnormalWea
 goto AbnormalWeather_EventScript_ShowSunEndedMessage
 end
 = AbnormalWeather_EventScript_ShowSunEndedMessage
-msgbox	The intense sunshine appears to have subsided…
+msgbox	Der intensive Sonnenschein scheint nachgelassen zu haben…
 goto AbnormalWeather_EventScript_EndEventAndCleanup_2
 end
 = AbnormalWeather_EventScript_EndEventAndCleanup_2
@@ -380,7 +380,7 @@ setmetatile 7 3 METATILE_Fallarbor_RedRockWall TRUE
 setmetatile 7 4 METATILE_Fallarbor_RedRockWall TRUE
 return
 = AbnormalWeather_EventScript_ShowRainEndedMessage
-msgbox	The massive downpour appears to have stopped…
+msgbox	Der gewaltige Regenguss scheint aufgehört zu haben…
 goto AbnormalWeather_EventScript_EndEventAndCleanup_2
 end
 = Route127_EventScript_ItemRareCandy
@@ -392,41 +392,41 @@ end
 end
 = Route127_EventScript_Athena
 trainerbattle_single TRAINER_ATHENA Route127_Text_AthenaIntro Route127_Text_AthenaDefeat
-msgbox	When I'm surrounded by the blue sea and sky, it feels as if time slows down.
+msgbox	Wenn ich vom blauen Meer und Himmel umgeben bin, fühlt es sich an, als würde die Zeit langsamer vergehen.
 end
 = Route127_EventScript_Koji
 trainerbattle_single TRAINER_KOJI_1 Route127_Text_KojiIntro Route127_Text_KojiDefeat Route127_EventScript_RegisterKoji
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route127_EventScript_RematchKoji
-msgbox	Going barefoot feels great. But your RUNNING SHOES are cool, too.
+msgbox	Barfuß zu gehen fühlt sich toll an. Aber deine LAUFSCHUHE sind auch cool.
 release
 end
 = Route127_EventScript_RematchKoji
 trainerbattle_rematch TRAINER_KOJI_1 Route127_Text_KojiRematchIntro Route127_Text_KojiRematchDefeat
-msgbox	Want to go barefoot for a while? So I can try your RUNNING SHOES?
+msgbox	Hast du Lust, eine Weile barfuß zu gehen? Damit ich deine LAUFSCHUHE ausprobieren kann?
 end
 = Route127_EventScript_RegisterKoji
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	This is what I do to people who beat me! I hope we can do this again.
+msgbox	Das mach ich mit Leuten, die mich besiegen! Ich hoffe, wir können das wiederholen.
 register_matchcall TRAINER_KOJI_1
 release
 end
 = Route127_EventScript_Aidan
 trainerbattle_single TRAINER_AIDAN Route127_Text_AidanIntro Route127_Text_AidanDefeat
-msgbox	There're lots of diving spots in the sea around here.You can spot them easily from the sky because of their darker color.
+msgbox	Es gibt hier in der Gegend jede Menge Tauchstellen im Meer.Man erkennt sie leicht aus der Luft an ihrer dunkleren Farbe.
 end
 = Route127_EventScript_Henry
 trainerbattle_single TRAINER_HENRY Route127_Text_HenryIntro Route127_Text_HenryDefeat
-msgbox	It'd be a handful if I hooked your tough POKéMON!
+msgbox	Es wäre schon eine Herausforderung, wenn ich dein zähes POKéMON an die Angel bekäme!
 end
 = Route127_EventScript_Roger
 trainerbattle_single TRAINER_ROGER Route127_Text_RogerIntro Route127_Text_RogerDefeat
-msgbox	My fishing line's doing a dance! The tangle tango! Hahaha, snarl!
+msgbox	Meine Angelschnur tanzt! Der Wirr-Tango! Hahaha, verheddert!
 end
 = Route127_EventScript_Jonah
 trainerbattle_single TRAINER_JONAH Route127_Text_JonahIntro Route127_Text_JonahDefeat
-msgbox	It matters not that I catch nothing. The line remains in the water…
+msgbox	Es macht nichts, dass ich nichts fange. Die Schnur bleibt im Wasser…
 end
 = Route127_EventScript_ItemCarbos
 goto_if_set FLAG_ITEM_ROUTE_127_CARBOS Route127_EventScript_ItemCarbos_Taken
@@ -444,11 +444,11 @@ end
 end
 = Route127_EventScript_Donny
 trainerbattle_single TRAINER_DONNY Route127_Text_DonnyIntro Route127_Text_DonnyDefeat
-msgbox	If you have a rival, don't you get the feeling that you have to keep getting better?
+msgbox	Wenn man einen Rivalen hat, hat man dann nicht das Gefühl, immer besser werden zu müssen?
 end
 = Route127_EventScript_Camden
 trainerbattle_single TRAINER_CAMDEN Route127_Text_CamdenIntro Route127_Text_CamdenDefeat
-msgbox	A well-played match leaves me feeling refreshed and serene.
+msgbox	Ein gut gespielter Kampf hinterlässt bei mir ein erfrischtes und gelassenes Gefühl.
 end
 water
 334,335,368,370,372,419,420,429,431,437,439,445,446,447,518,519,520,521,523,525,526,527,528,529,531,532,533,535,536,537,541,543,545,546,547,553,560,561,562,564,568,569,570,571,572,574,575,576,577,578,579,580,583,585,586,587,588,589,591,592,593,594,595,596,597,598,599,601,602,604,605,606,607,608,609,827,828,829

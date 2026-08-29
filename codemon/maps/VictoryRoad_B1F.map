@@ -95,11 +95,11 @@ misc_item_ball 32 3 S static FLAG_ITEM_VICTORY_ROAD_B1F_FULL_RESTORE - 0
 people_man_3 14 16 S static 0 - 4
 people_woman_5 14 20 S static 0 - 3
 dialogs
-13	The POKéMON LEAGUE became distant again… What a letdown…
-14	By being together all the time, trust grows between POKéMON and TRAINERS.
-15	You'll do fine, for sure! Your POKéMON are all eager to go!
-19	Even outside of battle, I sense incredible power emanating from you and your POKéMON.
-20	Sure, this is VICTORY ROAD.But it's not all that different from the path you've taken so far.Try to enjoy things the rest of the way!
+13	Die POKéMON-LIGA ist wieder in weite Ferne gerückt… Was für eine Enttäuschung…
+14	Dadurch, dass man immer zusammen ist, wächst das Vertrauen zwischen POKéMON und TRAINERN.
+15	Du schaffst das bestimmt! Deine POKéMON sind alle heiß aufs Loslegen!
+19	Selbst außerhalb von Kämpfen spüre ich eine unglaubliche Kraft, die von dir und deinen POKéMON ausgeht.
+20	Klar, das ist VICTORY ROAD.Aber es ist gar nicht so anders als der Weg, den du bisher gegangen bist.Versuch, den restlichen Weg zu genießen!
 objscripts
 0 EventScript_StrengthBoulder
 1 EventScript_StrengthBoulder
@@ -127,11 +127,11 @@ Movement_SmashRock	delay,end
 scriptdefs
 = VictoryRoad_B1F_EventScript_Halle
 trainerbattle_single TRAINER_HALLE VictoryRoad_B1F_Text_HalleIntro VictoryRoad_B1F_Text_HalleDefeat
-msgbox	Sure, this is VICTORY ROAD.But it's not all that different from the path you've taken so far.Try to enjoy things the rest of the way!
+msgbox	Klar, das ist VICTORY ROAD.Aber es ist gar nicht so anders als der Weg, den du bisher gegangen bist.Versuch, den restlichen Weg zu genießen!
 end
 = VictoryRoad_B1F_EventScript_Mitchell
 trainerbattle_single TRAINER_MITCHELL VictoryRoad_B1F_Text_MitchellIntro VictoryRoad_B1F_Text_MitchellDefeat
-msgbox	Even outside of battle, I sense incredible power emanating from you and your POKéMON.
+msgbox	Selbst außerhalb von Kämpfen spüre ich eine unglaubliche Kraft, die von dir und deinen POKéMON ausgeht.
 end
 = VictoryRoad_B1F_EventScript_ItemFullRestore
 goto_if_set FLAG_ITEM_VICTORY_ROAD_B1F_FULL_RESTORE VictoryRoad_B1F_EventScript_ItemFullRestore_Taken
@@ -157,7 +157,7 @@ bufferpartymonnick STR_VAR_1 VAR_RESULT
 buffermovename STR_VAR_2 MOVE_ROCK_SMASH
 msgboxyesno	This rock appears to be breakable. Would you like to use ROCK SMASH?
 goto_if_eq VAR_RESULT NO EventScript_CancelSmash
-msgbox	STR_VAR_1 used STR_VAR_2!
+msgbox	STR_VAR_1 setzte STR_VAR_2 ein!
 closemessage
 dofieldeffect FLDEFF_USE_ROCK_SMASH
 waitstate
@@ -190,20 +190,20 @@ closemessage
 releaseall
 end
 = EventScript_CantSmashRock
-msgbox	It's a rugged rock, but a POKéMON may be able to smash it.
+msgbox	Es ist ein zerklüfteter Felsen, aber ein POKéMON könnte ihn zerschmettern können.
 releaseall
 end
 = VictoryRoad_B1F_EventScript_Michelle
 trainerbattle_single TRAINER_MICHELLE VictoryRoad_B1F_Text_MichelleIntro VictoryRoad_B1F_Text_MichelleDefeat
-msgbox	You'll do fine, for sure! Your POKéMON are all eager to go!
+msgbox	Du schaffst das bestimmt! Deine POKéMON sind alle heiß aufs Loslegen!
 end
 = VictoryRoad_B1F_EventScript_Shannon
 trainerbattle_single TRAINER_SHANNON VictoryRoad_B1F_Text_ShannonIntro VictoryRoad_B1F_Text_ShannonDefeat
-msgbox	By being together all the time, trust grows between POKéMON and TRAINERS.
+msgbox	Dadurch, dass man immer zusammen ist, wächst das Vertrauen zwischen POKéMON und TRAINERN.
 end
 = VictoryRoad_B1F_EventScript_Samuel
 trainerbattle_single TRAINER_SAMUEL VictoryRoad_B1F_Text_SamuelIntro VictoryRoad_B1F_Text_SamuelDefeat
-msgbox	The POKéMON LEAGUE became distant again… What a letdown…
+msgbox	Die POKéMON-LIGA ist wieder in weite Ferne gerückt… Was für eine Enttäuschung…
 end
 = EventScript_StrengthBoulder
 lockall
@@ -221,7 +221,7 @@ goto EventScript_ActivateStrength
 end
 = EventScript_ActivateStrength
 setflag FLAG_SYS_USE_STRENGTH
-msgbox	STR_VAR_1 used STRENGTH!STR_VAR_1's STRENGTH made it possible to move boulders around!
+msgbox	STR_VAR_1 setzte STÄRKE ein!Die STÄRKE von STR_VAR_1 machte es möglich, Felsbrocken zu bewegen!
 releaseall
 end
 = EventScript_CancelStrength
@@ -229,11 +229,11 @@ closemessage
 releaseall
 end
 = EventScript_CantStrength
-msgbox	It's a big boulder, but a POKéMON may be able to push it aside.
+msgbox	Es ist ein großer Felsbrocken, aber ein POKéMON könnte ihn zur Seite schieben können.
 releaseall
 end
 = EventScript_CheckActivatedBoulder
-msgbox	STRENGTH made it possible to move boulders around.
+msgbox	STÄRKE machte es möglich, Felsbrocken zu bewegen.
 releaseall
 end
 mapsec

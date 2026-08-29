@@ -91,8 +91,8 @@ misc_pushable_boulder 5 22 S static FLAG_TEMP_11 - 0
 misc_pushable_boulder 7 22 S static FLAG_TEMP_12 - 0
 misc_pushable_boulder 6 23 S static FLAG_TEMP_13 - 0
 dialogs
-0	Okay, I'll try to put a little more effort into things from now on…
-2	I won't tell you after all. You'll find out when you get there!It'd be better if you saved surprises to the end, don't you think?
+0	Okay, ich werde von jetzt an versuchen, mich etwas mehr anzustrengen…
+2	Ich sag's dir doch nicht. Du wirst es schon herausfinden, wenn du dort bist!Es ist doch besser, sich Überraschungen bis zum Schluss aufzuheben, oder?
 objscripts
 0 MagmaHideout_1F_EventScript_Grunt1
 1 MagmaHideout_1F_EventScript_ItemRareCandy
@@ -117,7 +117,7 @@ goto EventScript_ActivateStrength
 end
 = EventScript_ActivateStrength
 setflag FLAG_SYS_USE_STRENGTH
-msgbox	STR_VAR_1 used STRENGTH!STR_VAR_1's STRENGTH made it possible to move boulders around!
+msgbox	STR_VAR_1 setzte STÄRKE ein!Die STÄRKE von STR_VAR_1 machte es möglich, Felsbrocken zu bewegen!
 releaseall
 end
 = EventScript_CancelStrength
@@ -125,16 +125,16 @@ closemessage
 releaseall
 end
 = EventScript_CantStrength
-msgbox	It's a big boulder, but a POKéMON may be able to push it aside.
+msgbox	Es ist ein großer Felsbrocken, aber ein POKéMON könnte ihn zur Seite schieben können.
 releaseall
 end
 = EventScript_CheckActivatedBoulder
-msgbox	STRENGTH made it possible to move boulders around.
+msgbox	STÄRKE machte es möglich, Felsbrocken zu bewegen.
 releaseall
 end
 = MagmaHideout_1F_EventScript_Grunt2
 trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_2 MagmaHideout_1F_Text_Grunt2Intro MagmaHideout_1F_Text_Grunt2Defeat
-msgbox	I won't tell you after all. You'll find out when you get there!It'd be better if you saved surprises to the end, don't you think?
+msgbox	Ich sag's dir doch nicht. Du wirst es schon herausfinden, wenn du dort bist!Es ist doch besser, sich Überraschungen bis zum Schluss aufzuheben, oder?
 end
 = MagmaHideout_1F_EventScript_ItemRareCandy
 goto_if_set FLAG_ITEM_MAGMA_HIDEOUT_1F_RARE_CANDY MagmaHideout_1F_EventScript_ItemRareCandy_Taken
@@ -145,7 +145,7 @@ end
 end
 = MagmaHideout_1F_EventScript_Grunt1
 trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_1 MagmaHideout_1F_Text_Grunt1Intro MagmaHideout_1F_Text_Grunt1Defeat
-msgbox	Okay, I'll try to put a little more effort into things from now on…
+msgbox	Okay, ich werde von jetzt an versuchen, mich etwas mehr anzustrengen…
 end
 mapsec
 6 3 1 1	MAGMA HIDEOUT

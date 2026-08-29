@@ -117,19 +117,19 @@ end
 end
 = Route133_EventScript_Conor
 trainerbattle_single TRAINER_CONOR Route133_Text_ConorIntro Route133_Text_ConorDefeat
-msgbox	Don't let others lead you astray. Don't lose direction as you grow older.
+msgbox	Lass dich nicht von anderen in die Irre führen. Verlier nicht die Richtung, wenn du älter wirst.
 end
 = Route133_EventScript_Mollie
 trainerbattle_single TRAINER_MOLLIE Route133_Text_MollieIntro Route133_Text_MollieDefeat
-msgbox	Keep at this, youngster. So you can become like my husband and me.
+msgbox	Mach so weiter, junger Mann. Dann kannst du eines Tages so werden wie mein Mann und ich.
 end
 = Route133_EventScript_Warren
 trainerbattle_single TRAINER_WARREN Route133_Text_WarrenIntro Route133_Text_WarrenDefeat
-msgbox	It's way more fun to do things the way I want than to be like everybody else. I mean, that's obvious!
+msgbox	Es macht viel mehr Spaß, die Dinge so zu machen, wie ich will, als wie alle anderen zu sein. Das ist doch klar!
 end
 = Route133_EventScript_Beck
 trainerbattle_single TRAINER_BECK Route133_Text_BeckIntro Route133_Text_BeckDefeat
-msgbox	I'd like to go back to FORTREE, but I've grown to like this place, too.
+msgbox	Ich würde gern nach FORTREE zurückkehren, aber diesen Ort hab ich auch liebgewonnen.
 end
 = Route133_EventScript_ItemStarPiece
 goto_if_set FLAG_ITEM_ROUTE_133_STAR_PIECE Route133_EventScript_ItemStarPiece_Taken
@@ -147,15 +147,15 @@ end
 end
 = Route133_EventScript_Debra
 trainerbattle_single TRAINER_DEBRA Route133_Text_DebraIntro Route133_Text_DebraDefeat
-msgbox	A life adrift… I don't want it anymore!
+msgbox	Ein Leben in Ziellosigkeit… Das will ich nicht mehr!
 end
 = Route133_EventScript_Linda
 trainerbattle_single TRAINER_LINDA Route133_Text_LindaIntro Route133_Text_LindaDefeat
-msgbox	A strong child TRAINER… That's so annoying!
+msgbox	Ein starker junger TRAINER… Das ist so nervig!
 end
 = Route133_EventScript_Franklin
 trainerbattle_single TRAINER_FRANKLIN Route133_Text_FranklinIntro Route133_Text_FranklinDefeat
-msgbox	It's just my luck that a tough TRAINER like you would drift here… I must be cursed…
+msgbox	Typisch mein Pech, dass ein knallharter TRAINER wie du hier hertreibt… Ich muss wohl verflucht sein…
 end
 water
 335,368,372,419,420,429,445,446,447

@@ -79,7 +79,7 @@ goto EventScript_ActivateStrength
 end
 = EventScript_ActivateStrength
 setflag FLAG_SYS_USE_STRENGTH
-msgbox	STR_VAR_1 used STRENGTH!STR_VAR_1's STRENGTH made it possible to move boulders around!
+msgbox	STR_VAR_1 setzte STÄRKE ein!Die STÄRKE von STR_VAR_1 machte es möglich, Felsbrocken zu bewegen!
 releaseall
 end
 = EventScript_CancelStrength
@@ -87,11 +87,11 @@ closemessage
 releaseall
 end
 = EventScript_CantStrength
-msgbox	It's a big boulder, but a POKéMON may be able to push it aside.
+msgbox	Es ist ein großer Felsbrocken, aber ein POKéMON könnte ihn zur Seite schieben können.
 releaseall
 end
 = EventScript_CheckActivatedBoulder
-msgbox	STRENGTH made it possible to move boulders around.
+msgbox	STÄRKE machte es möglich, Felsbrocken zu bewegen.
 releaseall
 end
 = EventScript_RockSmash
@@ -104,7 +104,7 @@ bufferpartymonnick STR_VAR_1 VAR_RESULT
 buffermovename STR_VAR_2 MOVE_ROCK_SMASH
 msgboxyesno	This rock appears to be breakable. Would you like to use ROCK SMASH?
 goto_if_eq VAR_RESULT NO EventScript_CancelSmash
-msgbox	STR_VAR_1 used STR_VAR_2!
+msgbox	STR_VAR_1 setzte STR_VAR_2 ein!
 closemessage
 dofieldeffect FLDEFF_USE_ROCK_SMASH
 waitstate
@@ -137,7 +137,7 @@ closemessage
 releaseall
 end
 = EventScript_CantSmashRock
-msgbox	It's a rugged rock, but a POKéMON may be able to smash it.
+msgbox	Es ist ein zerklüfteter Felsen, aber ein POKéMON könnte ihn zerschmettern können.
 releaseall
 end
 water

@@ -42,7 +42,7 @@ people_sailor 3 13 S wander 0 - 0
 people_sailor 8 10 S static FLAG_HIDE_LILYCOVE_HARBOR_FERRY_SAILOR LOCALID_LILYCOVE_HARBOR_FERRY_SAILOR 0
 people_expert_m 8 10 S static FLAG_HIDE_LILYCOVE_HARBOR_EVENT_TICKET_TAKER LOCALID_LILYCOVE_HARBOR_BRINEY 0
 dialogs
-2	Until they finish making the ferry, we sailors have nothing to do…I wish they'd get a move on, the folks at the SHIPYARD in SLATEPORT.
+2	Bis die Fähre fertig ist, haben wir Seeleute nichts zu tun…Ich wünschte, die Leute in der WERFT in SLATEPORT würden mal in die Gänge kommen.
 objscripts
 0 LilycoveCity_Harbor_EventScript_FerryAttendant
 2 LilycoveCity_Harbor_EventScript_Sailor
@@ -67,11 +67,11 @@ scriptdefs
 lock
 faceplayer
 goto_if_set FLAG_SYS_GAME_CLEAR LilycoveCity_Harbor_EventScript_SailorFerryAvailable
-msgbox	Until they finish making the ferry, we sailors have nothing to do…I wish they'd get a move on, the folks at the SHIPYARD in SLATEPORT.
+msgbox	Bis die Fähre fertig ist, haben wir Seeleute nichts zu tun…Ich wünschte, die Leute in der WERFT in SLATEPORT würden mal in die Gänge kommen.
 release
 end
 = LilycoveCity_Harbor_EventScript_SailorFerryAvailable
-msgbox	The ferry S.S. TIDAL is finally in operation.The folks at the SHIPYARD in SLATEPORT must've worked extra hard.Well, it's my turn to get busy now!
+msgbox	Die Fähre S.S. TIDAL fährt endlich.Die Leute in der WERFT in SLATEPORT müssen extra hart gearbeitet haben.Na dann, jetzt bin ich an der Reihe, ranzuklotzen!
 release
 end
 = LilycoveCity_Harbor_EventScript_FerryAttendant
@@ -96,8 +96,8 @@ end
 goto LilycoveCity_Harbor_EventScript_NoFirstTimeEventTickets
 = LilycoveCity_Harbor_EventScript_NoFirstTimeEventTickets
 goto_if_eq VAR_TEMP_A 0 LilycoveCity_Harbor_EventScript_NoEventTickets
-msgbox	Hello, are you here for the ferry? May I see your TICKET?
-msgbox	PLAYER flashed the TICKET.Perfect! That's all you need!And where would you like to go?
+msgbox	Hallo, bist du wegen der Fähre hier? Darf ich dein TICKET sehen?
+msgbox	PLAYER zeigte das TICKET vor.Perfekt! Das ist alles, was du brauchst!Und wohin möchtest du reisen?
 waitmessage
 goto LilycoveCity_Harbor_EventScript_FerryRegularLocationSelect
 end
@@ -116,7 +116,7 @@ case 6 LilycoveCity_Harbor_EventScript_ExitSailSelect
 case MULTI_B_PRESSED LilycoveCity_Harbor_EventScript_ExitSailSelect
 end
 = LilycoveCity_Harbor_EventScript_ExitSailSelect
-msgbox	Please sail with us another time!
+msgbox	Segle doch ein anderes Mal mit uns!
 release
 end
 = LilycoveCity_Harbor_EventScript_GoToFarawayIsland
@@ -126,7 +126,7 @@ waitstate
 release
 end
 = LilycoveCity_Harbor_EventScript_BoardFerry
-msgbox	Please board the ferry and wait for departure.
+msgbox	Bitte geh an Bord der Fähre und warte auf die Abfahrt.
 closemessage
 applymovement VAR_LAST_TALKED Common_Movement_WalkInPlaceFasterUp
 waitmovement 0
@@ -174,7 +174,7 @@ waitstate
 release
 end
 = LilycoveCity_Harbor_EventScript_FerryDestinationChangeMind
-msgbox	Then, where would you like to go?
+msgbox	Nun, wohin möchtest du reisen?
 waitmessage
 goto LilycoveCity_Harbor_EventScript_FerryRegularLocationSelect
 end
@@ -188,15 +188,15 @@ waitstate
 release
 end
 = LilycoveCity_Harbor_EventScript_NoEventTickets
-msgbox	Hello, are you here for the ferry? May I see your TICKET?
-msgbox	PLAYER flashed the TICKET.Perfect! That's all you need!And where would you like to go?
+msgbox	Hallo, bist du wegen der Fähre hier? Darf ich dein TICKET sehen?
+msgbox	PLAYER zeigte das TICKET vor.Perfekt! Das ist alles, was du brauchst!Und wohin möchtest du reisen?
 waitmessage
 goto LilycoveCity_Harbor_EventScript_FerryRegularLocationSelect
 end
 @ Unused
 goto LilycoveCity_Harbor_EventScript_NoTicket
 = LilycoveCity_Harbor_EventScript_NoTicket
-msgbox	PLAYER doesn't have the TICKET…I'm terribly sorry.You must have a TICKET to board the ferry.
+msgbox	PLAYER hat kein TICKET…Das tut mir schrecklich leid.Du musst ein TICKET haben, um an Bord der Fähre zu gehen.
 release
 end
 @ Unused
@@ -221,10 +221,10 @@ waitstate
 release
 end
 = LilycoveCity_Harbor_EventScript_MultipleEventTicketsFirstTime
-msgbox	The ferry to SLATEPORT is…Oh? That PASS…
+msgbox	Die Fähre nach SLATEPORT ist…Oh? Dieser PASS…
 closemessage
 call LilycoveCity_Harbor_EventScript_GetEventTicketSailor
-msgbox	Is it you who brought those odd tickets?… … …Hm.These tickets will get you to islands that are far, far away.No one knows what awaits there, or what may happen there.The very thought excites my blood as a sailing man!Get on board, youngster! Where shall we sail first?
+msgbox	Bist du derjenige, der diese seltsamen Tickets mitgebracht hat?… … …Hm.Mit diesen Tickets kommst du zu Inseln, die weit, weit entfernt liegen.Niemand weiß, was einen dort erwartet oder was dort geschehen könnte.Schon der Gedanke lässt mein Seemannsblut in Wallung geraten!Komm an Bord, junger Mann! Wohin sollen wir zuerst segeln?
 waitmessage
 setvar VAR_0x8004 1
 special ScriptMenu_CreateLilycoveSSTidalMultichoice
@@ -239,7 +239,7 @@ case MULTI_B_PRESSED LilycoveCity_Harbor_EventScript_ExitFirstTimeTicketSailSele
 release
 end
 = LilycoveCity_Harbor_EventScript_ExitFirstTimeTicketSailSelect
-msgbox	Aye, right, as you like, then.
+msgbox	Aye, gut, wie du meinst.
 closemessage
 applymovement LOCALID_LILYCOVE_HARBOR_FERRY_SAILOR Common_Movement_WalkInPlaceFasterUp
 waitmovement 0
@@ -250,7 +250,7 @@ applymovement LOCALID_LILYCOVE_HARBOR_ATTENDANT Common_Movement_WalkInPlaceFaste
 waitmovement 0
 showobjectat LOCALID_LILYCOVE_HARBOR_ATTENDANT MAP_LILYCOVE_CITY_HARBOR
 delay 30
-msgbox	Please sail with us another time!
+msgbox	Segle doch ein anderes Mal mit uns!
 release
 end
 = LilycoveCity_Harbor_EventScript_GoToFarawayIslandFirstTime
@@ -306,18 +306,18 @@ waitmovement 0
 return
 = LilycoveCity_Harbor_EventScript_MysticTicketFirstTime
 setflag FLAG_SHOWN_MYSTIC_TICKET
-msgbox	The ferry to SLATEPORT is…Oh? That PASS…
+msgbox	Die Fähre nach SLATEPORT ist…Oh? Dieser PASS…
 closemessage
 call LilycoveCity_Harbor_EventScript_GetEventTicketSailor
-msgbox	Is it you who brought that odd ticket?Where you're trying to go is an island that's far, far away.No one knows what awaits there…The very thought excites my blood as a sailing man!Get on board, youngster!
+msgbox	Bist du derjenige, der dieses seltsame Ticket mitgebracht hat?Wohin du willst, ist eine Insel, die weit, weit entfernt liegt.Niemand weiß, was einen dort erwartet…Schon der Gedanke lässt mein Seemannsblut in Wallung geraten!Komm an Bord, junger Mann!
 goto LilycoveCity_Harbor_EventScript_GoToNavelRockFirstTime
 end
 = LilycoveCity_Harbor_EventScript_OldSeaMapFirstTime
 setflag FLAG_SHOWN_OLD_SEA_MAP
-msgbox	The ferry to SLATEPORT is…I beg your pardon? Can we sail to this place on the map?I know someone who will help you better. Please wait.
+msgbox	Die Fähre nach SLATEPORT ist…Wie bitte? Können wir zu diesem Ort auf der Karte segeln?Ich kenne jemanden, der dir besser helfen kann. Bitte warte.
 closemessage
 call LilycoveCity_Harbor_EventScript_GetEventTicketSailor
-msgbox	What's up, youngster?What, it's you who's supposed to have a tattered old map?Let's have a look. … … … … … …Boy, this is quite a ways away. I'm afraid I can't help you…
+msgbox	Was gibt's, junger Mann?Was, du bist derjenige, der eine zerfledderte alte Karte haben soll?Lass mich mal sehen. … … … … … …Junge, das ist ganz schön weit weg. Ich fürchte, ich kann dir nicht helfen…
 closemessage
 applymovement LOCALID_LILYCOVE_HARBOR_FERRY_SAILOR Common_Movement_WalkInPlaceFasterUp
 waitmovement 0
@@ -331,10 +331,10 @@ call_if_eq VAR_FACING DIR_EAST LilycoveCity_Harbor_EventScript_MoveSailorOutOfWa
 addobject LOCALID_LILYCOVE_HARBOR_BRINEY
 call_if_eq VAR_FACING DIR_NORTH LilycoveCity_Harbor_EventScript_BrineyFaceSailorNorth
 call_if_eq VAR_FACING DIR_EAST LilycoveCity_Harbor_EventScript_BrineyFaceSailorEast
-msgbox	BRINEY: Hold on a second!What's the idea of turning down someone that I owe so much to?
+msgbox	BRINEY: Moment mal!Was soll das, jemandem eine Abfuhr zu erteilen, dem ich so viel schulde?
 call_if_eq VAR_FACING DIR_NORTH LilycoveCity_Harbor_EventScript_BrineyFacePlayerNorth
 call_if_eq VAR_FACING DIR_EAST LilycoveCity_Harbor_EventScript_BrineyFacePlayerEast
-msgbox	PLAYER, I'm terribly sorry.You came to me seeking my help, and we almost turned you away.Well, let me make things right.We'll sail right away, of course!Let's find this island on this OLD SEA MAP!
+msgbox	PLAYER, das tut mir schrecklich leid.Du kamst zu mir und batst um meine Hilfe, und wir haben dich beinahe abgewiesen.Nun, lass mich das wiedergutmachen.Wir segeln natürlich sofort los!Lass uns diese Insel auf der ALTEN SEEKARTE finden!
 closemessage
 call_if_eq VAR_FACING DIR_NORTH LilycoveCity_Harbor_EventScript_BoardFerryWithBrineyAndSailorNorth
 call_if_eq VAR_FACING DIR_EAST LilycoveCity_Harbor_EventScript_BoardFerryWithBrineyAndSailorEast
@@ -382,18 +382,18 @@ waitmovement 0
 return
 = LilycoveCity_Harbor_EventScript_AuroraTicketFirstTime
 setflag FLAG_SHOWN_AURORA_TICKET
-msgbox	The ferry to SLATEPORT is…Oh? That PASS…
+msgbox	Die Fähre nach SLATEPORT ist…Oh? Dieser PASS…
 closemessage
 call LilycoveCity_Harbor_EventScript_GetEventTicketSailor
-msgbox	Is it you who brought that odd ticket?Where you're trying to go is an island that's far, far away.No one knows what awaits there…The very thought excites my blood as a sailing man!Get on board, youngster!
+msgbox	Bist du derjenige, der dieses seltsame Ticket mitgebracht hat?Wohin du willst, ist eine Insel, die weit, weit entfernt liegt.Niemand weiß, was einen dort erwartet…Schon der Gedanke lässt mein Seemannsblut in Wallung geraten!Komm an Bord, junger Mann!
 goto LilycoveCity_Harbor_EventScript_GoToBirthIslandFirstTime
 end
 = LilycoveCity_Harbor_EventScript_EonTicketFirstTime
 setflag FLAG_SHOWN_EON_TICKET
-msgbox	The ferry to SLATEPORT is…Oh? That PASS…
+msgbox	Die Fähre nach SLATEPORT ist…Oh? Dieser PASS…
 closemessage
 call LilycoveCity_Harbor_EventScript_GetEventTicketSailor
-msgbox	Aye, mate, are you the one who brought that mighty odd PASS?I'll tell you, you're trying to reach a tiny spit of an island far in the south.There's no telling what we'll encounter once we reach there, aye. That shivers my timbers!All aboard!
+msgbox	Aye, Kumpel, bist du derjenige, der diesen mächtig seltsamen PASS mitgebracht hat?Ich sag dir, du willst zu einem winzigen Fleckchen Insel weit im Süden.Keiner weiß, was uns dort erwartet, aye. Das lässt mich frösteln!Alle an Bord!
 goto LilycoveCity_Harbor_EventScript_GoToSouthernIslandFirstTime
 end
 = LilycoveCity_Harbor_EventScript_GetHasTicketsState
@@ -471,7 +471,7 @@ goto_if_set FLAG_SHOWN_EON_TICKET Common_EventScript_NopReturn
 setvar VAR_TEMP_E 2
 return
 = LilycoveCity_Harbor_EventScript_FerryUnavailable
-msgbox	I beg your pardon? You're looking for a ship?I'm sorry, the ferry service isn't available at present…
+msgbox	Wie bitte? Du suchst nach einem Schiff?Es tut mir leid, der Fährbetrieb ist momentan nicht verfügbar…
 release
 end
 water
