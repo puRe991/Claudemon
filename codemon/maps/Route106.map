@@ -94,36 +94,36 @@ end
 end
 = Route106_EventScript_Ned
 trainerbattle_single TRAINER_NED Route106_Text_NedIntro Route106_Text_NedDefeated
-msgbox	Oh, no! I've got this feeling I'll hook a big one!
+msgbox	Ach nein! Ich hab das Gefühl, ich werde gleich einen Großen an der Angel haben!
 end
 = Route106_EventScript_Elliot
 trainerbattle_single TRAINER_ELLIOT_1 Route106_Text_ElliotIntro Route106_Text_ElliotDefeated Route106_EventScript_ElliotRegisterMatchCallAfterBattle
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route106_EventScript_ElliotRematch
-msgbox	Fishing is the greatest whether it's in the sea or a stream. You agree with me, right?
+msgbox	Angeln ist einfach das Größte, egal ob im Meer oder in einem Bach. Siehst du das nicht genauso?
 release
 end
 = Route106_EventScript_ElliotRematch
 trainerbattle_rematch TRAINER_ELLIOT_1 Route106_Text_ElliotRematchIntro Route106_Text_ElliotRematchDefeated
-msgbox	Win or lose, POKéMON are the greatest! You agree with me, right?
+msgbox	Ob Sieg oder Niederlage, POKéMON sind einfach das Größte! Siehst du das nicht genauso?
 end
 = Route106_EventScript_ElliotRegisterMatchCallAfterBattle
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Fishing's great, but so is battling. If you don't mind, can we meet again?
+msgbox	Angeln ist toll, aber Kämpfen auch. Wenn es dir nichts ausmacht, können wir uns nochmal treffen?
 register_matchcall TRAINER_ELLIOT_1
 release
 end
 = Route106_EventScript_Kyla
 trainerbattle_single TRAINER_KYLA Route106_Text_KylaIntro Route106_Text_KylaDefeated
-msgbox	Drifting along with the waves… I love it! Why don't you give it a try?
+msgbox	Mit den Wellen treiben… Das liebe ich! Warum versuchst du es nicht auch mal?
 end
 = Route106_EventScript_Douglas
 trainerbattle_single TRAINER_DOUGLAS Route106_Text_DouglasIntro Route106_Text_DouglasDefeated
-msgbox	I wouldn't lose in a swim race…
+msgbox	Bei einem Schwimmrennen würde ich nicht verlieren…
 end
 signs
-59 13	TRAINER TIPSAdvice on catching POKéMON with a ROD: Press the A Button if you get a bite.
+59 13	TRAINER-TIPPSRat zum Fangen von POKéMON mit einer ANGEL: Drücke den A-Knopf, wenn du einen Biss bekommst.
 water
 283,285,291,293,368,370,372
 mapsec

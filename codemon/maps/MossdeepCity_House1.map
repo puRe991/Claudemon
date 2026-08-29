@@ -25,27 +25,27 @@ npcs
 people_black_belt 3 3 S wander 0 - 0
 people_woman_2 7 4 W static 0 - 0
 dialogs
-0	Hmm! Your STR_VAR_1…
-1	My husband can tell what kind of S a POKéMON likes at a glance.
+0	Hmm! Dein STR_VAR_1…
+1	Mein Mann kann auf einen Blick sagen, welche Art von  ein POKéMON mag.
 objscripts
 0 MossdeepCity_House1_EventScript_BlackBelt
 1 MossdeepCity_House1_EventScript_Woman
 scriptdefs
 = MossdeepCity_House1_EventScript_Woman
-msgbox	My husband can tell what kind of S a POKéMON likes at a glance.
+msgbox	Mein Mann kann auf einen Blick sagen, welche Art von  ein POKéMON mag.
 end
 = MossdeepCity_House1_EventScript_BlackBelt
 lock
 faceplayer
 bufferleadmonspeciesname STR_VAR_1
-msgbox	Hmm! Your STR_VAR_1…
+msgbox	Hmm! Dein STR_VAR_1…
 specialvar VAR_RESULT GetPokeblockNameByMonNature
 goto_if_eq VAR_RESULT 0 MossdeepCity_House1_EventScript_NeutralNature
-msgbox	It likes STR_VAR_1S, doesn't it?No, I'm positive of it! It definitely likes STR_VAR_1S!
+msgbox	Es mag STR_VAR_1S, nicht wahr?Nein, ich bin mir sicher! Es mag ganz bestimmt STR_VAR_1S!
 release
 end
 = MossdeepCity_House1_EventScript_NeutralNature
-msgbox	It doesn't appear to like or dislike any S.
+msgbox	Es scheint keine besondere Vorliebe oder Abneigung gegenüber  zu haben.
 release
 end
 mapsec

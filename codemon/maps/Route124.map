@@ -199,25 +199,25 @@ objscripts
 scriptdefs
 = Route124_EventScript_Isabella
 trainerbattle_single TRAINER_ISABELLA Route124_Text_IsabellaIntro Route124_Text_IsabellaDefeat
-msgbox	You can find pretty colored shards of things around here.
+msgbox	Hier in der Gegend findet man hübsche, bunte Scherben von allerlei Dingen.
 end
 = Route124_EventScript_Declan
 trainerbattle_single TRAINER_DECLAN Route124_Text_DeclanIntro Route124_Text_DeclanDefeat
-msgbox	I should chat up lady SWIMMERS and invite them on a long swim.
+msgbox	Ich sollte mal die SCHWIMMERINNEN ansprechen und sie zu einer langen Schwimmtour einladen.
 end
 = Route124_EventScript_Roy
 trainerbattle_double TRAINER_LILA_AND_ROY_1 Route124_Text_RoyIntro Route124_Text_RoyDefeat Route124_Text_RoyNotEnoughMons Route124_EventScript_RegisterRoy
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route124_EventScript_RematchRoy
-msgbox	ROY: My big sister is really scary when she gets angry.That's why she doesn't have a boyfriend.
+msgbox	ROY: Meine große Schwester ist wirklich furchteinflößend, wenn sie sauer wird.Deshalb hat sie auch keinen Freund.
 release
 end
 = Route124_EventScript_RematchRoy
 trainerbattle_rematch_double TRAINER_LILA_AND_ROY_1 Route124_Text_RoyRematchIntro Route124_Text_RoyRematchDefeat Route124_Text_RoyRematchNotEnoughMons
-msgbox	ROY: My big sister is really scary when she gets angry.She's going to make me train really hard with POKéMON later…
+msgbox	ROY: Meine große Schwester ist wirklich furchteinflößend, wenn sie sauer wird.Sie wird mich später mit POKéMON richtig hart trainieren lassen…
 end
 = Route124_EventScript_RegisterRoy
-msgbox	ROY: Will you battle with us again? But take it easy next time, okay?
+msgbox	ROY: Kämpfst du nochmal gegen uns? Aber geh nächstes Mal ein bisschen sanfter mit uns um, okay?
 register_matchcall TRAINER_LILA_AND_ROY_1
 release
 end
@@ -225,15 +225,15 @@ end
 trainerbattle_double TRAINER_LILA_AND_ROY_1 Route124_Text_LilaIntro Route124_Text_LilaDefeat Route124_Text_LilaNotEnoughMons Route124_EventScript_RegisterLila
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route124_EventScript_RematchLila
-msgbox	LILA: Sigh…If only it wasn't my little brother next to me, but a nice boyfriend…
+msgbox	LILA: Seufz…Wenn doch nur nicht mein kleiner Bruder neben mir stünde, sondern ein netter Freund…
 release
 end
 = Route124_EventScript_RematchLila
 trainerbattle_rematch_double TRAINER_LILA_AND_ROY_1 Route124_Text_LilaRematchIntro Route124_Text_LilaRematchDefeat Route124_Text_LilaRematchNotEnoughMons
-msgbox	LILA: Sigh…If I had a nice boyfriend, we'd beat anyone with lovely combinations…
+msgbox	LILA: Seufz…Hätte ich einen netten Freund, würden wir mit wunderschönen Kombinationen jeden besiegen…
 end
 = Route124_EventScript_RegisterLila
-msgbox	ROY: Will you battle with us again? But take it easy next time, okay?
+msgbox	ROY: Kämpfst du nochmal gegen uns? Aber geh nächstes Mal ein bisschen sanfter mit uns um, okay?
 register_matchcall TRAINER_LILA_AND_ROY_1
 release
 end
@@ -260,40 +260,40 @@ end
 end
 = Route124_EventScript_Chad
 trainerbattle_single TRAINER_CHAD Route124_Text_ChadIntro Route124_Text_ChadDefeat
-msgbox	I have it on good authority that there's a DIVE spot around here.It gives me the urge to go deep again…
+msgbox	Ich weiß aus zuverlässiger Quelle, dass es hier in der Nähe eine TAUCHEN-Stelle gibt.Das weckt in mir den Drang, wieder in die Tiefe zu gehen…
 end
 = Route124_EventScript_Grace
 trainerbattle_single TRAINER_GRACE Route124_Text_GraceIntro Route124_Text_GraceDefeat
-msgbox	All the effort you put in must have made you this strong.
+msgbox	Die ganze Mühe, die du investiert hast, hat dich wohl so stark gemacht.
 end
 = Route124_EventScript_Jenny
 trainerbattle_single TRAINER_JENNY_1 Route124_Text_JennyIntro Route124_Text_JennyDefeat Route124_EventScript_RegisterJenny
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route124_EventScript_RematchJenny
-msgbox	While swimming, I noticed that some POKéMON attack, and some just watch.I guess POKéMON have personalities of their own.
+msgbox	Beim Schwimmen ist mir aufgefallen, dass manche POKéMON angreifen und andere nur zuschauen.Ich schätze, POKéMON haben ihre eigenen Persönlichkeiten.
 release
 end
 = Route124_EventScript_RematchJenny
 trainerbattle_rematch TRAINER_JENNY_1 Route124_Text_JennyRematchIntro Route124_Text_JennyRematchDefeat
-msgbox	This has nothing to do with anything, but maybe I'll visit the TRICK HOUSE.
+msgbox	Das hat mit nichts zu tun, aber vielleicht besuche ich mal das TRICKHAUS.
 end
 = Route124_EventScript_RegisterJenny
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	It's only on a whim, but maybe I'll get you to register me in your POKéNAV.
+msgbox	Nur eine spontane Idee, aber vielleicht lässt du mich in deinem POKéNAV registrieren.
 register_matchcall TRAINER_JENNY_1
 release
 end
 = Route124_EventScript_Roland
 trainerbattle_single TRAINER_ROLAND Route124_Text_RolandIntro Route124_Text_RolandDefeat
-msgbox	I'm getting chilled… I've been in the water too long…I wish I could ride a POKéMON like you…
+msgbox	Mir wird kalt… Ich war zu lange im Wasser…Ich wünschte, ich könnte auch auf einem POKéMON reiten wie du…
 end
 = Route124_EventScript_Spencer
 trainerbattle_single TRAINER_SPENCER Route124_Text_SpencerIntro Route124_Text_SpencerDefeat
-msgbox	Many people lose their bearings at sea.If you're that sort, you should refer to the POKéNAV's MAP.
+msgbox	Viele Leute verlieren auf See die Orientierung.Wenn du zu diesen gehörst, solltest du die KARTE deines POKéNAV zu Rate ziehen.
 end
 signs
-73 48	HUNTER'S HOUSE
+73 48	HAUS DES JÄGERS
 water
 334,335,368,370,372,419,420,429,431,437,439,445,446,447,514,515,531,545,546,827,828,829
 dive

@@ -24,8 +24,8 @@ people_man_1 2 4 E static 0 - 0
 people_woman_4 5 2 N static 0 - 0
 pokemon_azumarill 2 3 S static 0 - 0
 dialogs
-0	Listen up, and I'll tell you something good.There's supposed to be an ancient ruin in the sea around here.There could be treasures just waiting to be discovered down there.
-1	Ancient treasures…It would be nice if they existed, but even if they didn't, it would be so beautiful to take an underwater stroll with my POKéMON.
+0	Hör zu, ich erzähl dir was Gutes.Hier in der Gegend soll es angeblich eine uralte Ruine im Meer geben.Dort unten könnten Schätze auf ihre Entdeckung warten.
+1	Uralte Schätze…Es wäre schön, wenn es sie gäbe, aber selbst wenn nicht, wäre es so wunderschön, mit meinem POKéMON einen Unterwasserspaziergang zu machen.
 2	AZUMARILL: Marurii.
 objscripts
 0 SootopolisCity_House4_EventScript_Man
@@ -42,10 +42,10 @@ waitmoncry
 release
 end
 = SootopolisCity_House4_EventScript_Woman
-msgbox	Ancient treasures…It would be nice if they existed, but even if they didn't, it would be so beautiful to take an underwater stroll with my POKéMON.
+msgbox	Uralte Schätze…Es wäre schön, wenn es sie gäbe, aber selbst wenn nicht, wäre es so wunderschön, mit meinem POKéMON einen Unterwasserspaziergang zu machen.
 end
 = SootopolisCity_House4_EventScript_Man
-msgbox	Listen up, and I'll tell you something good.There's supposed to be an ancient ruin in the sea around here.There could be treasures just waiting to be discovered down there.
+msgbox	Hör zu, ich erzähl dir was Gutes.Hier in der Gegend soll es angeblich eine uralte Ruine im Meer geben.Dort unten könnten Schätze auf ihre Entdeckung warten.
 end
 mapsec
 21 7 1 1	SOOTOPOLIS CITY

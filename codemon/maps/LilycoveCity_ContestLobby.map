@@ -58,13 +58,13 @@ people_ninja_boy 26 3 S static FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER - 0
 people_old_man 26 5 E static FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER - 0
 people_little_girl 9 10 E static 0 - 0
 dialogs
-4	Hoo, boy… Master Rank CONTESTS, here I come.The world will know that my dearest POKéMON is the cutest being in all existence. The time has come! Uheheheh.
-5	You can see a whole variety of POKéMON here.That's why I make this place a regular part of my daily stroll.
-6	Wow, coming out to a CONTEST is a feast for these eyes!Would you look at all the POKéMON that just scream to be painted?
-11	Day in and day out, I lavished my care on this POKéMON.Its condition is peaking. Today, victory is mine!
-12	The TOUGHNESS CONTEST is like extreme, man!Those muscular appeals… Cascading sweat… I swoon!
-13	I made S with Mom, Dad, and Big Sister. They turned out great!I bet you can make smoother, better S if you have more people.
-24	Yippee!The lady at the reception counter gave me a case for S!
+4	Oh Mann… Die MASTER-RANG-CONTESTS, ich komme!Die Welt soll erfahren, dass mein liebstes POKéMON das niedlichste Wesen der gesamten Existenz ist. Die Zeit ist gekommen! Uheheheh.
+5	Hier kann man eine ganze Vielfalt an POKéMON sehen.Deshalb mache ich diesen Ort zu einem festen Bestandteil meines täglichen Spaziergangs.
+6	Wow, ein CONTEST-Besuch ist ein Fest für die Augen!Sieh dir nur all die POKéMON an, die geradezu danach schreien, gemalt zu werden!
+11	Tag für Tag habe ich diesem POKéMON meine ganze Fürsorge geschenkt.Sein Zustand ist auf dem Höhepunkt. Heute gehört der Sieg mir!
+12	Der HÄRTE-CONTEST ist einfach extrem, Mann!Diese muskulösen Vorführungen… der strömende Schweiß… mir wird ganz schwindlig!
+13	Ich habe mit Mama, Papa und meiner großen Schwester S gemacht. Die sind super geworden!Ich wette, mit mehr Leuten werden die S noch feiner und besser.
+24	Juhu!Die Dame am Empfang hat mir einen Koffer für S geschenkt!
 objscripts
 0 LilycoveCity_ContestLobby_EventScript_ContestReceptionist
 1 LilycoveCity_ContestLobby_EventScript_LinkContestReceptionist
@@ -124,7 +124,7 @@ applymovement LOCALID_CONTEST_LOBBY_LINK_ARTIST LilycoveCity_ContestLobby_Moveme
 waitmovement LOCALID_CONTEST_LOBBY_LINK_ARTIST
 applymovement LOCALID_PLAYER LilycoveCity_ContestLobby_Movement_PlayerFaceLinkArtist
 waitmovement 0
-msgbox	Congratulations!I did a painting of your POKéMON to commemorate its victory…Well, your POKéMON's appeals were so fantastic, it spurred me into painting better than I usually do. Look, see?
+msgbox	Herzlichen Glückwunsch!Ich habe ein Gemälde von deinem POKéMON gemalt, um seinen Sieg zu feiern…Naja, die Vorführungen deines POKéMON waren so fantastisch, dass sie mich zu besseren Bildern als sonst inspiriert haben. Sieh mal, schau her!
 lockall
 fadescreen FADE_TO_BLACK
 showcontestpainting CONTEST_WINNER_ARTIST
@@ -135,7 +135,7 @@ end
 = LilycoveCity_ContestLobby_EventScript_ConfirmDontTakePaintingLink
 msgboxyesno	Oh… Then, I guess I'll just take this home with me…But, you know, I would like to take this to the art museum… Okay?
 goto_if_eq VAR_RESULT YES LilycoveCity_ContestLobby_EventScript_TakePaintingToMuseumLink
-msgbox	Oh, fine, that's the way it is. I will hang this in my own house.I'll just have to try harder next time. Well, be seeing you.
+msgbox	Ach, na gut, so ist das nun mal. Dann hänge ich es eben bei mir zu Hause auf.Beim nächsten Mal gebe ich mir einfach mehr Mühe. Nun denn, bis dann.
 closemessage
 applymovement LOCALID_CONTEST_LOBBY_LINK_ARTIST LilycoveCity_ContestLobby_Movement_LinkArtistExit
 waitmovement 0
@@ -144,7 +144,7 @@ removeobject LOCALID_CONTEST_LOBBY_LINK_ARTIST
 releaseall
 end
 = LilycoveCity_ContestLobby_EventScript_TakePaintingToMuseumLink
-msgbox	What, really? Then, sure, I will take this painting there right now.I'll give it a proper title, too.I hope they'll like it and consider exhibiting this.Please check if they did accept this. Thank you!
+msgbox	Was, wirklich? Dann bringe ich dieses Gemälde gleich dorthin.Ich gebe ihm auch einen ordentlichen Titel.Ich hoffe, es gefällt ihnen und sie erwägen, es auszustellen.Bitte sieh nach, ob sie es angenommen haben. Danke schön!
 closemessage
 special SaveMuseumContestPainting
 setvar VAR_LILYCOVE_CONTEST_LOBBY_STATE 0
@@ -215,12 +215,12 @@ applymovement LOCALID_CONTEST_LOBBY_LINK_ARTIST Common_Movement_ExclamationMark
 waitmovement 0
 applymovement LOCALID_CONTEST_LOBBY_LINK_ARTIST LilycoveCity_ContestLobby_Movement_LinkArtistReturnToPlayer
 waitmovement 0
-msgbox	Oh, that's right!As a memento of me painting your POKéMON, please take this.
+msgbox	Ach, richtig!Als Andenken daran, dass ich dein POKéMON gemalt habe, nimm bitte das hier.
 playfanfare MUS_OBTAIN_ITEM
-msgbox	PLAYER received a RIBBON.
+msgbox	PLAYER erhielt ein BÄNDCHEN.
 waitfanfare
-msgbox	PLAYER put the RIBBON on STR_VAR_1.
-msgbox	Okay, see you!
+msgbox	PLAYER steckte STR_VAR_1 das BÄNDCHEN an.
+msgbox	Okay, bis bald!
 closemessage
 return
 = LilycoveCity_ContestLobby_EventScript_TryDoContestArtist
@@ -234,7 +234,7 @@ applymovement LOCALID_CONTEST_LOBBY_ARTIST LilycoveCity_ContestLobby_Movement_Ar
 waitmovement LOCALID_CONTEST_LOBBY_ARTIST
 applymovement LOCALID_PLAYER LilycoveCity_ContestLobby_Movement_PlayerFaceArtist
 waitmovement 0
-msgbox	Congratulations!I did a painting of your POKéMON to commemorate its victory…Well, your POKéMON's appeals were so fantastic, it spurred me into painting better than I usually do. Look, see?
+msgbox	Herzlichen Glückwunsch!Ich habe ein Gemälde von deinem POKéMON gemalt, um seinen Sieg zu feiern…Naja, die Vorführungen deines POKéMON waren so fantastisch, dass sie mich zu besseren Bildern als sonst inspiriert haben. Sieh mal, schau her!
 lockall
 fadescreen FADE_TO_BLACK
 showcontestpainting CONTEST_WINNER_ARTIST
@@ -247,7 +247,7 @@ end
 = LilycoveCity_ContestLobby_EventScript_ConfirmDontTakePainting
 msgboxyesno	Oh… Then, I guess I'll just take this home with me…But, you know, I would like to take this to the art museum… Okay?
 goto_if_eq VAR_RESULT YES LilycoveCity_ContestLobby_EventScript_TakePaintingToMuseum
-msgbox	Oh, fine, that's the way it is. I will hang this in my own house.I'll just have to try harder next time. Well, be seeing you.
+msgbox	Ach, na gut, so ist das nun mal. Dann hänge ich es eben bei mir zu Hause auf.Beim nächsten Mal gebe ich mir einfach mehr Mühe. Nun denn, bis dann.
 closemessage
 applymovement LOCALID_CONTEST_LOBBY_ARTIST LilycoveCity_ContestLobby_Movement_ArtistExit
 waitmovement 0
@@ -256,7 +256,7 @@ removeobject LOCALID_CONTEST_LOBBY_ARTIST
 releaseall
 end
 = LilycoveCity_ContestLobby_EventScript_TakePaintingToMuseum
-msgbox	What, really? Then, sure, I will take this painting there right now.I'll give it a proper title, too.I hope they'll like it and consider exhibiting this.Please check if they did accept this. Thank you!
+msgbox	Was, wirklich? Dann bringe ich dieses Gemälde gleich dorthin.Ich gebe ihm auch einen ordentlichen Titel.Ich hoffe, es gefällt ihnen und sie erwägen, es auszustellen.Bitte sieh nach, ob sie es angenommen haben. Danke schön!
 closemessage
 special SaveMuseumContestPainting
 setvar VAR_LILYCOVE_CONTEST_LOBBY_STATE 0
@@ -279,29 +279,29 @@ applymovement LOCALID_CONTEST_LOBBY_ARTIST Common_Movement_ExclamationMark
 waitmovement 0
 applymovement LOCALID_CONTEST_LOBBY_ARTIST LilycoveCity_ContestLobby_Movement_ArtistReturnToPlayer
 waitmovement 0
-msgbox	Oh, that's right!As a memento of me painting your POKéMON, please take this.
+msgbox	Ach, richtig!Als Andenken daran, dass ich dein POKéMON gemalt habe, nimm bitte das hier.
 playfanfare MUS_OBTAIN_ITEM
-msgbox	PLAYER received a RIBBON.
+msgbox	PLAYER erhielt ein BÄNDCHEN.
 waitfanfare
-msgbox	PLAYER put the RIBBON on STR_VAR_1.
-msgbox	Okay, see you!
+msgbox	PLAYER steckte STR_VAR_1 das BÄNDCHEN an.
+msgbox	Okay, bis bald!
 closemessage
 return
 = LilycoveCity_ContestLobby_EventScript_LittleGirl
 lock
 faceplayer
 goto_if_set FLAG_RECEIVED_POKEBLOCK_CASE LilycoveCity_ContestLobby_EventScript_LittleGirlHaveCase
-msgbox	Yippee!The lady at the reception counter gave me a case for S!
+msgbox	Juhu!Die Dame am Empfang hat mir einen Koffer für S geschenkt!
 release
 end
 = LilycoveCity_ContestLobby_EventScript_LittleGirlHaveCase
-msgbox	Make S and put them in there.When you make a , everyone has to put in a different BERRY.
+msgbox	Mach S und pack sie da rein.Wenn man ein  macht, muss jeder eine andere BEERE einwerfen.
 release
 end
 = LilycoveCity_ContestLobby_EventScript_BlendMaster
 lock
 faceplayer
-msgbox	BLEND MASTER: Indeed I am! The BLEND MASTER am I!Blend with me, and you shall witness the mastery I bring to blending!
+msgbox	MIXMEISTER: In der Tat! Der MIXMEISTER, das bin ich!Mixe mit mir, und du wirst die Meisterschaft erleben, die ich ins Mixen bringe!
 goto LilycoveCity_ContestLobby_EventScript_FaceOriginalDirection
 end
 = LilycoveCity_ContestLobby_EventScript_FaceOriginalDirection
@@ -312,61 +312,61 @@ release
 end
 = LilycoveCity_ContestLobby_EventScript_BlendMasterOnlooker1
 lock
-msgbox	Whoa! Awesome!
+msgbox	Wow! Fantastisch!
 release
 end
 = LilycoveCity_ContestLobby_EventScript_BlendMasterOnlooker6
 lock
 faceplayer
-msgbox	The BLEND MASTER's supposed to work on his skills deep in the mountains.Sometimes, he comes to LILYCOVE to blend BERRIES all day long.
+msgbox	Der MIXMEISTER soll angeblich tief in den Bergen an seinen Fähigkeiten feilen.Manchmal kommt er nach LILYCOVE, um den ganzen Tag BEEREN zu mixen.
 goto LilycoveCity_ContestLobby_EventScript_FaceOriginalDirection
 end
 = LilycoveCity_ContestLobby_EventScript_BlendMasterOnlooker5
 lock
 faceplayer
-msgbox	Eyes that track the arrow with machinelike intensity…A hand that taps the A Button with clockwork-like precision…Possessing these qualities makes the BLEND MASTER truly great.
+msgbox	Augen, die den Zeiger mit maschineller Intensität verfolgen…Eine Hand, die den A-Knopf mit uhrwerkartiger Präzision drückt…Diese Eigenschaften machen den MIXMEISTER wahrhaft groß.
 goto LilycoveCity_ContestLobby_EventScript_FaceOriginalDirection
 end
 = LilycoveCity_ContestLobby_EventScript_BlendMasterOnlooker4
 lock
 faceplayer
-msgbox	When I blended with the MASTER, we made amazing S!
+msgbox	Als ich mit dem MEISTER gemixt habe, haben wir erstaunliche S gemacht!
 goto LilycoveCity_ContestLobby_EventScript_FaceOriginalDirection
 end
 = LilycoveCity_ContestLobby_EventScript_BlendMasterOnlooker3
 lock
-msgbox	What an expert!
+msgbox	Was für ein Experte!
 release
 end
 = LilycoveCity_ContestLobby_EventScript_BlendMasterOnlooker2
 lock
-msgbox	Wickedly fast!
+msgbox	Rasend schnell!
 release
 end
 = LilycoveCity_ContestLobby_EventScript_Blender3Girl
-msgbox	I wonder what kind of I'll get? This is so exciting!
+msgbox	Ich frage mich, was für ein  ich wohl bekomme? Das ist so aufregend!
 end
 = BerryBlender_EventScript_Blender1ExpertM
 setvar VAR_0x8008 15
 goto BerryBlender_EventScript_ExpertMCheckGiveBerry
 end
 = BerryBlender_EventScript_Blender3PokefanF
-msgbox	Oh, dear! You look as if you're good at blending. Would you like to join us?
+msgbox	Ach du meine Güte! Du siehst aus, als wärst du gut im Mixen. Möchtest du mitmachen?
 end
 = LilycoveCity_ContestLobby_EventScript_NinjaBoy
-msgbox	I made S with Mom, Dad, and Big Sister. They turned out great!I bet you can make smoother, better S if you have more people.
+msgbox	Ich habe mit Mama, Papa und meiner großen Schwester S gemacht. Die sind super geworden!Ich wette, mit mehr Leuten werden die S noch feiner und besser.
 end
 = LilycoveCity_ContestLobby_EventScript_FatMan
-msgbox	The TOUGHNESS CONTEST is like extreme, man!Those muscular appeals… Cascading sweat… I swoon!
+msgbox	Der HÄRTE-CONTEST ist einfach extrem, Mann!Diese muskulösen Vorführungen… der strömende Schweiß… mir wird ganz schwindlig!
 end
 = LilycoveCity_ContestLobby_EventScript_Fisherman
-msgbox	Day in and day out, I lavished my care on this POKéMON.Its condition is peaking. Today, victory is mine!
+msgbox	Tag für Tag habe ich diesem POKéMON meine ganze Fürsorge geschenkt.Sein Zustand ist auf dem Höhepunkt. Heute gehört der Sieg mir!
 end
 = BerryBlender_EventScript_Blender2Twin
-msgbox	I'm going to make delicious S and make my POKéMON cuter.
+msgbox	Ich werde köstliche S machen und mein POKéMON noch niedlicher machen.
 end
 = LilycoveCity_ContestLobby_EventScript_Blender3Boy
-msgbox	Let's get blending already!
+msgbox	Auf geht's, lass uns endlich mixen!
 end
 = LilycoveCity_ContestLobby_EventScript_Reporter
 lock
@@ -381,11 +381,11 @@ goto_if_eq VAR_RESULT YES LilycoveCity_ContestLobby_EventScript_AcceptInterview
 goto_if_eq VAR_RESULT NO LilycoveCity_ContestLobby_EventScript_DeclineInterview
 end
 = LilycoveCity_ContestLobby_EventScript_DeclineInterview
-msgbox	Oh, too bad…Well, if you come across a good story, please do share it with me.
+msgbox	Ach, wie schade…Naja, falls dir mal eine gute Geschichte über den Weg läuft, erzähl sie mir bitte.
 release
 end
 = LilycoveCity_ContestLobby_EventScript_AcceptInterview
-msgbox	Oh, you will? Thank you.Briefly, how would you describe the CONTEST you just entered?
+msgbox	Ach, wirklich? Danke.Wie würdest du kurz den CONTEST beschreiben, an dem du gerade teilgenommen hast?
 setvar VAR_0x8004 EASY_CHAT_TYPE_CONTEST_INTERVIEW
 copyvar VAR_0x8005 VAR_0x8009
 setvar VAR_0x8006 0
@@ -398,7 +398,7 @@ end
 = LilycoveCity_ContestLobby_EventScript_SubmitResponse
 setvar VAR_0x8004 24
 special SetContestCategoryStringVarForInterview
-msgbox	Ah, I see. That's a very edifying comment.You get a good feel for what the CONTEST was like.I've got one last question.When you hear the word “STR_VAR_2,” what image do you get?
+msgbox	Ach, verstehe. Das ist eine sehr aufschlussreiche Aussage.Man bekommt ein gutes Gefühl dafür, wie der CONTEST war.Ich habe noch eine letzte Frage.Welches Bild kommt dir in den Sinn, wenn du das Wort „STR_VAR_2“ hörst?
 setvar VAR_0x8004 EASY_CHAT_TYPE_CONTEST_INTERVIEW
 copyvar VAR_0x8005 VAR_0x8009
 setvar VAR_0x8006 1
@@ -406,7 +406,7 @@ call Common_ShowEasyChatScreen
 lock
 faceplayer
 goto_if_eq VAR_RESULT 0 LilycoveCity_ContestLobby_EventScript_DeclineInterview
-msgbox	I see!So that's how you imagine the concept of “STR_VAR_2” to be.Thank you! You've given me some good ideas.I think I can write a good story on POKéMON CONTESTS now.Maybe, just maybe, this story will even make it to television. I hope you'll look forward to it!
+msgbox	Verstehe!So stellst du dir also das Konzept von „STR_VAR_2“ vor.Danke! Du hast mir ein paar gute Ideen gegeben.Ich glaube, ich kann jetzt eine gute Geschichte über POKéMON-CONTESTS schreiben.Vielleicht, ganz vielleicht, schafft es diese Geschichte sogar ins Fernsehen. Ich hoffe, du freust dich schon darauf!
 setflag FLAG_TEMP_2
 setvar VAR_0x8005 TVSHOW_BRAVO_TRAINER_POKEMON_PROFILE
 goto Interview_EventScript_EndInterview
@@ -428,11 +428,11 @@ goto_if_eq VAR_RESULT YES SlateportCity_PokemonFanClub_EventScript_AcceptIntervi
 goto_if_eq VAR_RESULT NO SlateportCity_PokemonFanClub_EventScript_DeclineInterview2
 end
 = SlateportCity_PokemonFanClub_EventScript_DeclineInterview2
-msgbox	Oh, okay…Well, if you get the urge to tell me about POKéMON, I'll be here!
+msgbox	Ach, okay…Naja, falls du mal Lust hast, mir von POKéMON zu erzählen, ich bin hier!
 release
 end
 = SlateportCity_PokemonFanClub_EventScript_AcceptInterview2
-msgbox	Wow, thank you!Okay, then, please tell me anything you'd like about your STR_VAR_1.
+msgbox	Wow, danke!Okay, dann erzähl mir doch bitte alles, was du über dein STR_VAR_1 erzählen möchtest.
 setvar VAR_0x8004 EASY_CHAT_TYPE_INTERVIEW
 copyvar VAR_0x8005 VAR_0x8009
 setvar VAR_0x8006 EASY_CHAT_PERSON_REPORTER_FEMALE
@@ -443,39 +443,39 @@ goto_if_eq VAR_RESULT 1 SlateportCity_PokemonFanClub_EventScript_SubmitResponse2
 goto_if_eq VAR_RESULT 0 SlateportCity_PokemonFanClub_EventScript_DeclineInterview2
 end
 = SlateportCity_PokemonFanClub_EventScript_SubmitResponse2
-msgbox	Wow… That's an interesting account.You really are tight with STR_VAR_1, aren't you?I get the feeling that your account will make a great TV story.I promise that I'll turn this into an entertaining show. Keep your eyes out for it.Okay, that's all. Bye-bye!
+msgbox	Wow… Das ist eine interessante Geschichte.Du und STR_VAR_1 seid wirklich ein eingespieltes Team, oder?Ich habe das Gefühl, deine Geschichte wird eine tolle Fernsehreportage abgeben.Ich verspreche, daraus eine unterhaltsame Sendung zu machen. Halte die Augen offen dafür.Okay, das war's. Tschüssi!
 setvar VAR_0x8005 TVSHOW_FAN_CLUB_LETTER
 goto Interview_EventScript_EndInterview
 end
 = SlateportCity_PokemonFanClub_EventScript_AlreadyInterviewed2
-msgbox	I enjoy this job--you get to learn about POKéMON by doing interviews.
+msgbox	Ich liebe diesen Job -- man lernt eine Menge über POKéMON, wenn man Interviews führt.
 release
 end
 = LilycoveCity_ContestLobby_EventScript_AlreadyInterviewed
-msgbox	I'll be looking forward to your next POKéMON CONTEST.
+msgbox	Ich freue mich schon auf deinen nächsten POKéMON-CONTEST.
 release
 end
 = LilycoveCity_ContestLobby_EventScript_Artist
-msgbox	Wow, coming out to a CONTEST is a feast for these eyes!Would you look at all the POKéMON that just scream to be painted?
+msgbox	Wow, ein CONTEST-Besuch ist ein Fest für die Augen!Sieh dir nur all die POKéMON an, die geradezu danach schreien, gemalt zu werden!
 end
 = LilycoveCity_ContestLobby_EventScript_Girl
-msgbox	You can see a whole variety of POKéMON here.That's why I make this place a regular part of my daily stroll.
+msgbox	Hier kann man eine ganze Vielfalt an POKéMON sehen.Deshalb mache ich diesen Ort zu einem festen Bestandteil meines täglichen Spaziergangs.
 end
 = LilycoveCity_ContestLobby_EventScript_BlackBelt
-msgbox	Hoo, boy… Master Rank CONTESTS, here I come.The world will know that my dearest POKéMON is the cutest being in all existence. The time has come! Uheheheh.
+msgbox	Oh Mann… Die MASTER-RANG-CONTESTS, ich komme!Die Welt soll erfahren, dass mein liebstes POKéMON das niedlichste Wesen der gesamten Existenz ist. Die Zeit ist gekommen! Uheheheh.
 end
 = BerryBlender_EventScript_Blender2Man
-msgbox	Okay! Today's going to be the day that I set a new BLENDER speed record!
+msgbox	Okay! Heute ist der Tag, an dem ich einen neuen MIXER-Geschwindigkeitsrekord aufstelle!
 end
 = LilycoveCity_ContestLobby_EventScript_LinkContestReceptionist
 special ClearLinkContestFlags
 lock
 faceplayer
-msgbox	Welcome! This is the POKéMON CONTEST link reception counter.You may enter CONTESTS together with one or more friends.
+msgbox	Willkommen! Dies ist der Anmeldeschalter für POKéMON-CONTEST-Verbindungen.Hier kannst du zusammen mit einem oder mehreren Freunden an CONTESTS teilnehmen.
 goto LilycoveCity_ContestLobby_EventScript_AskEnterLinkContest
 end
 = LilycoveCity_ContestLobby_EventScript_AskEnterLinkContest
-msgbox	Would you like to enter a CONTEST?
+msgbox	Möchtest du an einem CONTEST teilnehmen?
 waitmessage
 multichoice 0 0 MULTI_ENTERINFO FALSE
 switch VAR_RESULT
@@ -486,11 +486,11 @@ case MULTI_B_PRESSED LilycoveCity_ContestLobby_EventScript_CancelLinkContest
 end
 = LilycoveCity_ContestLobby_EventScript_CancelLinkContest
 special CloseLink
-msgbox	We hope you will participate another time.
+msgbox	Wir hoffen, du nimmst ein anderes Mal teil.
 release
 end
 = LilycoveCity_ContestLobby_EventScript_LinkContestInfo
-msgbox	Which topic would you like?
+msgbox	Welches Thema hättest du gerne?
 waitmessage
 multichoice 0 0 MULTI_LINK_CONTEST_INFO FALSE
 switch VAR_RESULT
@@ -501,15 +501,15 @@ case 3 LilycoveCity_ContestLobby_EventScript_AskEnterLinkContest
 case MULTI_B_PRESSED LilycoveCity_ContestLobby_EventScript_AskEnterLinkContest
 end
 = LilycoveCity_ContestLobby_EventScript_ExplainGMode
-msgbox	G-MODE (GLOBAL MODE) is specifically for four players who are linked using GBA Game Link cables.Each player must have a POKéMON Emerald, Ruby, or Sapphire Game Pak.The CONTEST starts after all players choose G-MODE (POKéMON Emerald) or enter through the 4-player reception counter (POKéMON Ruby or Sapphire).
+msgbox	Der G-MODUS (GLOBAL-MODUS) ist speziell für vier Spieler gedacht, die per GBA-Game-Link-Kabel verbunden sind.Jeder Spieler benötigt ein POKéMON Smaragd-, Rubin- oder Saphir-Modul.Der CONTEST beginnt, nachdem alle Spieler den G-MODUS (POKéMON Smaragd) gewählt haben oder über den 4-Spieler-Empfangsschalter beigetreten sind (POKéMON Rubin oder Saphir).
 goto LilycoveCity_ContestLobby_EventScript_LinkContestInfo
 end
 = LilycoveCity_ContestLobby_EventScript_ExplainEMode
-msgbox	In E-MODE (EMERALD MODE), a LINK CONTEST can be held with two to four players. Each player must have a POKéMON Emerald Game Pak.The players must be linked with each other using Wireless Adapters or GBA Game Link cables.If there are fewer than four players, TRAINERS in the hall will join to fill the 4-player CONTEST lineup.Please be aware that E-MODE is not available in POKéMON Ruby or Sapphire.
+msgbox	Im E-MODUS (SMARAGD-MODUS) kann ein LINK-CONTEST mit zwei bis vier Spielern abgehalten werden. Jeder Spieler benötigt ein POKéMON Smaragd-Modul.Die Spieler müssen per Funkadapter oder GBA-Game-Link-Kabel miteinander verbunden sein.Sind es weniger als vier Spieler, füllen TRAINER in der Halle das 4-Spieler-CONTEST-Aufgebot auf.Bitte beachte, dass der E-MODUS in POKéMON Rubin oder Saphir nicht verfügbar ist.
 goto LilycoveCity_ContestLobby_EventScript_LinkContestInfo
 end
 = LilycoveCity_ContestLobby_EventScript_ExplainLinkContest
-msgbox	This is a CONTEST for two to four players linked using a Wireless Adapter or a GBA Game Link cable.Participants are first asked to choose the mode they wish to enter.There are two different modes.E-MODE (EMERALD MODE) is for two to four players, each with a POKéMON Emerald Game Pak.G-MODE (GLOBAL MODE) is only for four players, each with a POKéMON Emerald, Ruby, or Sapphire Game Pak.The players should discuss which mode they want, then choose the same mode.Once all the players have chosen the same CONTEST in the same mode, the entry registration is complete.After that, a CONTEST will start in the usual manner.
+msgbox	Dies ist ein CONTEST für zwei bis vier Spieler, die per Funkadapter oder GBA-Game-Link-Kabel verbunden sind.Die Teilnehmer werden zunächst gebeten, den gewünschten Modus zu wählen.Es gibt zwei verschiedene Modi.Der E-MODUS (SMARAGD-MODUS) ist für zwei bis vier Spieler, jeweils mit einem POKéMON Smaragd-Modul.Der G-MODUS (GLOBAL-MODUS) ist nur für vier Spieler, jeweils mit einem POKéMON Smaragd-, Rubin- oder Saphir-Modul.Die Spieler sollten besprechen, welchen Modus sie möchten, und dann denselben Modus wählen.Sobald alle Spieler denselben CONTEST im selben Modus gewählt haben, ist die Anmeldung abgeschlossen.Danach beginnt ein CONTEST auf die übliche Weise.
 goto LilycoveCity_ContestLobby_EventScript_LinkContestInfo
 end
 = LilycoveCity_ContestLobby_EventScript_TryEnterLinkContest
@@ -517,7 +517,7 @@ msgboxyesno	Before entering a CONTEST, your progress will be saved.
 goto_if_eq VAR_RESULT NO LilycoveCity_ContestLobby_EventScript_CancelLinkContest
 call Common_EventScript_SaveGame
 goto_if_eq VAR_RESULT FALSE LilycoveCity_ContestLobby_EventScript_CancelLinkContest
-msgbox	Which CONTEST MODE would you like to enter?
+msgbox	In welchem CONTEST-MODUS möchtest du antreten?
 waitmessage
 specialvar VAR_TEMP_D IsWirelessAdapterConnected
 multichoice 0 0 MULTI_LINK_CONTEST_MODE FALSE
@@ -620,7 +620,7 @@ applymovement LOCALID_CONTEST_LOBBY_RECEPTIONIST LilycoveCity_ContestLobby_Movem
 waitmovement 0
 applymovement LOCALID_PLAYER LilycoveCity_ContestLobby_Movement_PlayerApproachReceptionist
 waitmovement 0
-msgbox	Please come in through here. Good luck!
+msgbox	Bitte komm hier durch. Viel Glück!
 closemessage
 applymovement LOCALID_CONTEST_LOBBY_RECEPTIONIST LilycoveCity_ContestLobby_Movement_ReceptionistWalkToContestHall
 applymovement LOCALID_PLAYER LilycoveCity_ContestLobby_Movement_PlayerWalkToContestHall
@@ -636,7 +636,7 @@ call_if_unset FLAG_RECEIVED_POKEBLOCK_CASE LilycoveCity_ContestLobby_EventScript
 goto LilycoveCity_ContestLobby_EventScript_AskEnterContest
 end
 = LilycoveCity_ContestLobby_EventScript_AskEnterContest
-msgbox	Would you like to enter your POKéMON in our CONTESTS?
+msgbox	Möchtest du dein POKéMON bei unseren CONTESTS anmelden?
 waitmessage
 multichoice 0 0 MULTI_ENTERINFO FALSE
 switch VAR_RESULT
@@ -646,11 +646,11 @@ case 2 LilycoveCity_ContestLobby_EventScript_CancelEnterContest
 case MULTI_B_PRESSED LilycoveCity_ContestLobby_EventScript_CancelEnterContest
 end
 = LilycoveCity_ContestLobby_EventScript_CancelEnterContest
-msgbox	We hope you will participate another time.
+msgbox	Wir hoffen, du nimmst ein anderes Mal teil.
 release
 end
 = LilycoveCity_ContestLobby_EventScript_ContestInfo
-msgbox	Which topic would you like?
+msgbox	Welches Thema hättest du gerne?
 waitmessage
 multichoice 0 0 MULTI_CONTEST_INFO FALSE
 switch VAR_RESULT
@@ -661,19 +661,19 @@ case 3 LilycoveCity_ContestLobby_EventScript_AskEnterContest
 case MULTI_B_PRESSED LilycoveCity_ContestLobby_EventScript_AskEnterContest
 end
 = LilycoveCity_ContestLobby_EventScript_ExplainContestRanks
-msgbox	There are four ranks of POKéMON CONTESTS.NORMAL, SUPER, HYPER, and MASTER are the four ranks.In the NORMAL Rank, any POKéMON may enter.Any POKéMON that won a NORMAL Rank CONTEST may move up to the SUPER Rank in the same category.In the same way, a SUPER Rank winner can move up to the HYPER Rank, and a HYPER Rank winner can advance to the MASTER Rank in the same category.A POKéMON that won in the MASTER Rank may compete in the MASTER Rank as often as its TRAINER wants.
+msgbox	Es gibt vier Ränge bei POKéMON-CONTESTS.NORMAL, SUPER, HYPER und MASTER sind die vier Ränge.Im NORMAL-Rang darf jedes POKéMON teilnehmen.Jedes POKéMON, das einen NORMAL-Rang-CONTEST gewonnen hat, kann in derselben Kategorie in den SUPER-Rang aufsteigen.Genauso kann ein SUPER-Rang-Gewinner in den HYPER-Rang aufsteigen, und ein HYPER-Rang-Gewinner kann in derselben Kategorie in den MASTER-Rang vorrücken.Ein POKéMON, das im MASTER-Rang gewonnen hat, darf im MASTER-Rang so oft antreten, wie sein TRAINER möchte.
 goto LilycoveCity_ContestLobby_EventScript_ContestInfo
 end
 = LilycoveCity_ContestLobby_EventScript_ExplainContestTypes
-msgbox	There are five kinds of CONTESTS.COOL, BEAUTY, CUTE, SMART, and TOUGH are the five categories.Choose the CONTEST that is right for the POKéMON you plan to enter.
+msgbox	Es gibt fünf Arten von CONTESTS.COOL, SCHÖNHEIT, NIEDLICH, KLUG und HÄRTE sind die fünf Kategorien.Wähle den CONTEST, der zu dem POKéMON passt, mit dem du antreten willst.
 goto LilycoveCity_ContestLobby_EventScript_ContestInfo
 end
 = LilycoveCity_ContestLobby_EventScript_ExplainContests
-msgbox	A POKéMON CONTEST involves four TRAINERS entering one POKéMON each in competitive judging.A CONTEST has two stages of judging, primary and secondary.Primary judging is a popularity poll involving the audience.Secondary judging features appeals by the POKéMON using their moves.Plan appeals carefully to earn the most attention of the JUDGE and excite the audience. Do your best to stand out.The primary and secondary scores are added at the end.The POKéMON garnering the highest score is declared the winner.
+msgbox	Bei einem POKéMON-CONTEST treten vier TRAINER jeweils mit einem POKéMON in einer Wertung gegeneinander an.Ein CONTEST hat zwei Wertungsphasen, die Grundwertung und die Zusatzwertung.Die Grundwertung ist eine Beliebtheitsabstimmung des Publikums.Die Zusatzwertung besteht aus Vorführungen der POKéMON mithilfe ihrer Attacken.Plane deine Vorführungen sorgfältig, um die meiste Aufmerksamkeit des JUROREN zu erhalten und das Publikum zu begeistern. Gib dein Bestes, um herauszustechen.Die Punkte aus Grund- und Zusatzwertung werden am Ende addiert.Das POKéMON mit der höchsten Punktzahl wird zum Sieger erklärt.
 goto LilycoveCity_ContestLobby_EventScript_ContestInfo
 end
 = LilycoveCity_ContestLobby_EventScript_ChooseContestRank
-msgbox	Which Rank would you like to enter?
+msgbox	In welchem Rang möchtest du antreten?
 waitmessage
 multichoice 0 0 MULTI_CONTEST_RANK FALSE
 switch VAR_RESULT
@@ -692,7 +692,7 @@ end
 @ So rather than list the cases they just copy VAR_RESULT for a valid selection into VAR_CONTEST_CATEGORY
 goto LilycoveCity_ContestLobby_EventScript_ChooseContestType
 = LilycoveCity_ContestLobby_EventScript_ChooseContestType
-msgbox	Which CONTEST would you like to enter?
+msgbox	An welchem CONTEST möchtest du teilnehmen?
 waitmessage
 multichoice 0 0 MULTI_CONTEST_TYPE FALSE
 switch VAR_RESULT
@@ -702,7 +702,7 @@ copyvar VAR_CONTEST_CATEGORY VAR_RESULT
 goto LilycoveCity_ContestLobby_EventScript_ChooseContestMon
 end
 = LilycoveCity_ContestLobby_EventScript_ChooseContestMon
-msgbox	Which POKéMON would you like to enter?
+msgbox	Mit welchem POKéMON möchtest du antreten?
 choosecontestmon
 goto_if_eq VAR_0x8004 PARTY_NOTHING_CHOSEN LilycoveCity_ContestLobby_EventScript_CancelEnterContest
 special TryEnterContestMon
@@ -713,20 +713,20 @@ goto_if_eq VAR_RESULT CANT_ENTER_CONTEST_EGG LilycoveCity_ContestLobby_EventScri
 goto_if_eq VAR_RESULT CANT_ENTER_CONTEST_FAINTED LilycoveCity_ContestLobby_EventScript_CantEnterFainted
 end
 = LilycoveCity_ContestLobby_EventScript_CantEnterFainted
-msgbox	Your POKéMON appears to be in no condition to take part in a CONTEST…
+msgbox	Dein POKéMON scheint nicht in der Verfassung zu sein, an einem CONTEST teilzunehmen…
 goto LilycoveCity_ContestLobby_EventScript_ChooseContestMon
 release
 end
 @ The return here is back to LilycoveCity_ContestLobby_EventScript_ContestReceptionist
 goto LilycoveCity_ContestLobby_EventScript_EnterMon
 = LilycoveCity_ContestLobby_EventScript_EnterMon
-msgbox	Okay, your POKéMON will be entered in this CONTEST.Your POKéMON is Entry No. 4. The CONTEST will begin shortly.
+msgbox	Okay, dein POKéMON wird für diesen CONTEST angemeldet.Dein POKéMON ist Startnummer 4. Der CONTEST beginnt in Kürze.
 closemessage
 releaseall
 setvar VAR_CONTEST_HALL_STATE 1
 return
 = LilycoveCity_ContestLobby_EventScript_CantEnterEgg
-msgbox	I'm sorry, but an EGG cannot take part in a POKéMON CONTEST.
+msgbox	Es tut mir leid, aber ein EI kann nicht an einem POKéMON-CONTEST teilnehmen.
 goto LilycoveCity_ContestLobby_EventScript_ChooseContestMon
 release
 end
@@ -737,7 +737,7 @@ case NO LilycoveCity_ContestLobby_EventScript_ChooseContestMon
 case YES LilycoveCity_ContestLobby_EventScript_EnterMon
 end
 = LilycoveCity_ContestLobby_EventScript_CantEnterLowRank
-msgbox	I'm terribly sorry, but your POKéMON is not qualified to compete at this Rank yet…
+msgbox	Es tut mir schrecklich leid, aber dein POKéMON ist noch nicht qualifiziert, um in diesem Rang anzutreten…
 goto LilycoveCity_ContestLobby_EventScript_ChooseContestMon
 release
 end
@@ -762,16 +762,16 @@ setvar VAR_CONTEST_RANK CONTEST_RANK_NORMAL
 goto LilycoveCity_ContestLobby_EventScript_ChooseContestType
 end
 = LilycoveCity_ContestLobby_EventScript_GivePokeblockCase
-msgbox	Hello!This is the reception counter for POKéMON CONTESTS.Oh? It appears that you don't have a CASE yet.In that case, we need to provide you with this!
+msgbox	Hallo!Dies ist der Empfangsschalter für POKéMON-CONTESTS.Oh? Es scheint, du hast noch keinen KOFFER.Dann müssen wir dir schnell diesen hier geben!
 giveitem ITEM_POKEBLOCK_CASE
 setflag FLAG_RECEIVED_POKEBLOCK_CASE
-msgbox	Okay, now that we've cleared that up…Hello!This is the reception counter for POKéMON CONTESTS.
+msgbox	Okay, jetzt, wo das geklärt ist…Hallo!Dies ist der Empfangsschalter für POKéMON-CONTESTS.
 return
 = LilycoveCity_ContestLobby_EventScript_ReceptionWelcome
-msgbox	Hello!This is the reception counter for POKéMON CONTESTS.
+msgbox	Hallo!Dies ist der Empfangsschalter für POKéMON-CONTESTS.
 return
 = LilycoveCity_ContestLobby_EventScript_PickUpPrize
-msgbox	Congratulations! Your POKéMON is the CONTEST winner!We have your prize right here. Please, right this way!
+msgbox	Herzlichen Glückwunsch! Dein POKéMON ist der CONTEST-Sieger!Wir haben deinen Preis gleich hier. Bitte, hier entlang!
 switch VAR_CONTEST_PRIZE_PICKUP
 case 4 LilycoveCity_ContestLobby_EventScript_GiveLuxuryBallAtCounter
 end
@@ -784,7 +784,7 @@ release
 end
 = LilycoveCity_ContestLobby_EventScript_NoRoomForLuxuryBallAtCounter
 call Common_EventScript_BagIsFull
-msgbox	Please come back for your prize later on.
+msgbox	Bitte hol dir deinen Preis später ab.
 release
 end
 mapsec
