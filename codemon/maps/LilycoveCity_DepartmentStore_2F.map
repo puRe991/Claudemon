@@ -29,9 +29,9 @@ people_sailor 13 5 S wander 0 - 0
 people_woman_3 10 6 N static 0 - 0
 people_woman_3 7 6 N static 0 - 0
 dialogs
-0	Learn to use items properly. That's basic, really.
-1	My husband is waiting at home. What would make a good gift for him?
-2	I'm leaving on a long journey soon. I need to stock up on items.
+0	Lerne, Items richtig einzusetzen. Das ist doch selbstverständlich.
+1	Mein Mann wartet zu Hause. Was wäre wohl ein gutes Geschenk für ihn?
+2	Ich breche bald zu einer langen Reise auf. Ich muss mich mit Items eindecken.
 objscripts
 0 LilycoveCity_DepartmentStore_2F_EventScript_Cook
 1 LilycoveCity_DepartmentStore_2F_EventScript_PokefanF
@@ -45,29 +45,29 @@ scriptdefs
 = LilycoveCity_DepartmentStore_2F_EventScript_ClerkLeft
 lock
 faceplayer
-msgbox	Welcome!How may I serve you?
+msgbox	Willkommen!Wie kann ich dir helfen?
 waitmessage
 pokemart LilycoveCity_DepartmentStore_2F_Pokemart1
-msgbox	Please come again!
+msgbox	Komm bald wieder!
 release
 end
 = LilycoveCity_DepartmentStore_2F_EventScript_ClerkRight
 lock
 faceplayer
-msgbox	Welcome!How may I serve you?
+msgbox	Willkommen!Wie kann ich dir helfen?
 waitmessage
 pokemart LilycoveCity_DepartmentStore_2F_Pokemart2
-msgbox	Please come again!
+msgbox	Komm bald wieder!
 release
 end
 = LilycoveCity_DepartmentStore_2F_EventScript_Sailor
-msgbox	I'm leaving on a long journey soon. I need to stock up on items.
+msgbox	Ich breche bald zu einer langen Reise auf. Ich muss mich mit Items eindecken.
 end
 = LilycoveCity_DepartmentStore_2F_EventScript_PokefanF
-msgbox	My husband is waiting at home. What would make a good gift for him?
+msgbox	Mein Mann wartet zu Hause. Was wäre wohl ein gutes Geschenk für ihn?
 end
 = LilycoveCity_DepartmentStore_2F_EventScript_Cook
-msgbox	Learn to use items properly. That's basic, really.
+msgbox	Lerne, Items richtig einzusetzen. Das ist doch selbstverständlich.
 end
 mapsec
 18 3 2 1	LILYCOVE CITY

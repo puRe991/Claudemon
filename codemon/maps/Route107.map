@@ -64,45 +64,45 @@ objscripts
 scriptdefs
 = Route107_EventScript_Camron
 trainerbattle_single TRAINER_CAMRON Route107_Text_CamronIntro Route107_Text_CamronDefeated
-msgbox	I still have swimming and running left to do after this.Am I going to be okay?
+msgbox	Ich muss danach noch schwimmen und laufen.Werde ich das schaffen?
 end
 = Route107_EventScript_Ray
 trainerbattle_double TRAINER_LISA_AND_RAY Route107_Text_RayIntro Route107_Text_RayDefeated Route107_Text_RayNotEnoughPokemon
-msgbox	RAY: My sister gave me my POKéMON. I raised it, and now it's my important partner!
+msgbox	RAY: Meine Schwester hat mir mein POKéMON gegeben. Ich habe es aufgezogen, und jetzt ist es mein wichtiger Partner!
 end
 = Route107_EventScript_Lisa
 trainerbattle_double TRAINER_LISA_AND_RAY Route107_Text_LisaIntro Route107_Text_LisaDefeated Route107_Text_LisaNotEnoughPokemon
-msgbox	LISA: Do you have any friends who would go to the beach with you?
+msgbox	LISA: Hast du Freunde, die mit dir an den Strand gehen würden?
 end
 = Route107_EventScript_Beth
 trainerbattle_single TRAINER_BETH Route107_Text_BethIntro Route107_Text_BethDefeated
-msgbox	I think you're going to keep getting better. I'll go for it, too!
+msgbox	Ich glaube, du wirst immer besser. Ich gebe auch mein Bestes!
 end
 = Route107_EventScript_Denise
 trainerbattle_single TRAINER_DENISE Route107_Text_DeniseIntro Route107_Text_DeniseDefeated
-msgbox	A weird saying is getting really trendy at DEWFORD HALL.
+msgbox	In der DEWFORD HALL wird gerade ein seltsamer Spruch total angesagt.
 end
 = Route107_EventScript_Tony
 trainerbattle_single TRAINER_TONY_1 Route107_Text_TonyIntro Route107_Text_TonyDefeated Route107_EventScript_TonyRegisterMatchCallAfterBattle
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route107_EventScript_TonyRematch
-msgbox	I swim the seas with a heart full of dreams…It's a song! Anyways, I'm swimming some more.
+msgbox	Ich schwimme durch die Meere, das Herz voller Träume…Das ist ein Lied! Wie auch immer, ich schwimme noch etwas weiter.
 release
 end
 = Route107_EventScript_TonyRematch
 trainerbattle_rematch TRAINER_TONY_1 Route107_Text_TonyRematchIntro Route107_Text_TonyRematchDefeated
-msgbox	What you learn in battle makes you a stronger TRAINER. The waves taught me that.
+msgbox	Was man im Kampf lernt, macht einen zu einem stärkeren TRAINER. Das haben mich die Wellen gelehrt.
 end
 = Route107_EventScript_TonyRegisterMatchCallAfterBattle
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	You've shocked me to the bone! Well, so you won't forget me…
+msgbox	Du hast mich bis auf die Knochen erschüttert! Nun, damit du mich nicht vergisst…
 register_matchcall TRAINER_TONY_1
 release
 end
 = Route107_EventScript_Darrin
 trainerbattle_single TRAINER_DARRIN Route107_Text_DarrinIntro Route107_Text_DarrinDefeated
-msgbox	Floating and being rocked by the waves--it's like sleeping in a plush, comfy bed.
+msgbox	Treiben und von den Wellen gewiegt werden--das ist wie Schlafen in einem kuscheligen, bequemen Bett.
 end
 water
 285,293,368,370,372
