@@ -43,7 +43,7 @@ lock
 faceplayer
 msgboxyesno	What an oddly shaped island, eh? Do you want to return to LILYCOVE?
 goto_if_eq VAR_RESULT NO BirthIsland_Harbor_EventScript_AsYouLike
-msgbox	Aye, right, then! Sail home we will!
+msgbox	Aye, gut denn! Nach Hause segeln wir!
 closemessage
 applymovement VAR_LAST_TALKED Common_Movement_WalkInPlaceFasterDown
 waitmovement 0
@@ -56,7 +56,7 @@ waitstate
 release
 end
 = BirthIsland_Harbor_EventScript_AsYouLike
-msgbox	Aye, right, as you like, then.
+msgbox	Aye, gut, wie du willst, dann.
 release
 end
 water

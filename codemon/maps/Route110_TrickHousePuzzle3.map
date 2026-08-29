@@ -59,9 +59,9 @@ misc_item_ball 4 2 S static FLAG_ITEM_TRICK_HOUSE_PUZZLE_3_SHADOW_MAIL - 0
 misc_breakable_rock 1 20 S static FLAG_TEMP_15 - 0
 misc_breakable_rock 2 21 S static FLAG_TEMP_16 - 0
 dialogs
-0	It's full of doors here! It's too small and dark in here! Help!
-1	I know I'm weak! And, I have no sense of direction!
-2	I don't get it. How many traps are in this house?You may be the one to solve that.
+0	Das ist voller Türen hier! Es ist viel zu klein und dunkel hier drin! Hilfe!
+1	Ich weiß, ich bin schwach! Und ich hab keinerlei Orientierungssinn!
+2	Ich verstehe es nicht. Wie viele Fallen sind in diesem Haus?Vielleicht bist du derjenige, der das lösen kann.
 objscripts
 0 Route110_TrickHousePuzzle3_EventScript_Justin
 1 Route110_TrickHousePuzzle3_EventScript_Martha
@@ -325,7 +325,7 @@ bufferpartymonnick STR_VAR_1 VAR_RESULT
 buffermovename STR_VAR_2 MOVE_ROCK_SMASH
 msgboxyesno	This rock appears to be breakable. Would you like to use ROCK SMASH?
 goto_if_eq VAR_RESULT NO EventScript_CancelSmash
-msgbox	STR_VAR_1 used STR_VAR_2!
+msgbox	STR_VAR_1 setzte STR_VAR_2 ein!
 closemessage
 dofieldeffect FLDEFF_USE_ROCK_SMASH
 waitstate
@@ -358,7 +358,7 @@ closemessage
 releaseall
 end
 = EventScript_CantSmashRock
-msgbox	It's a rugged rock, but a POKéMON may be able to smash it.
+msgbox	Es ist ein zerklüfteter Felsen, aber ein POKéMON könnte ihn vielleicht zerschmettern.
 releaseall
 end
 = Route110_TrickHousePuzzle3_EventScript_ItemShadowMail
@@ -377,15 +377,15 @@ end
 end
 = Route110_TrickHousePuzzle3_EventScript_Alan
 trainerbattle_single TRAINER_ALAN Route110_TrickHousePuzzle3_Text_AlanIntro Route110_TrickHousePuzzle3_Text_AlanDefeat
-msgbox	I don't get it. How many traps are in this house?You may be the one to solve that.
+msgbox	Ich verstehe es nicht. Wie viele Fallen sind in diesem Haus?Vielleicht bist du derjenige, der das lösen kann.
 end
 = Route110_TrickHousePuzzle3_EventScript_Martha
 trainerbattle_single TRAINER_MARTHA Route110_TrickHousePuzzle3_Text_MarthaIntro Route110_TrickHousePuzzle3_Text_MarthaDefeat
-msgbox	I know I'm weak! And, I have no sense of direction!
+msgbox	Ich weiß, ich bin schwach! Und ich hab keinerlei Orientierungssinn!
 end
 = Route110_TrickHousePuzzle3_EventScript_Justin
 trainerbattle_single TRAINER_JUSTIN Route110_TrickHousePuzzle3_Text_JustinIntro Route110_TrickHousePuzzle3_Text_JustinDefeat
-msgbox	It's full of doors here! It's too small and dark in here! Help!
+msgbox	Das ist voller Türen hier! Es ist viel zu klein und dunkel hier drin! Hilfe!
 end
 mapsec
 8 7 1 3	ROUTE 110

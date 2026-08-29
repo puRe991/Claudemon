@@ -198,7 +198,7 @@ goto_if_ge VAR_ABNORMAL_WEATHER_LOCATION MARINE_CAVE_LOCATIONS_START AbnormalWea
 goto AbnormalWeather_EventScript_ShowSunEndedMessage
 end
 = AbnormalWeather_EventScript_ShowSunEndedMessage
-msgbox	The intense sunshine appears to have subsided…
+msgbox	Die starke Sonneneinstrahlung scheint nachgelassen zu haben…
 goto AbnormalWeather_EventScript_EndEventAndCleanup_2
 end
 = AbnormalWeather_EventScript_EndEventAndCleanup_2
@@ -378,7 +378,7 @@ setmetatile 7 3 METATILE_Fallarbor_RedRockWall TRUE
 setmetatile 7 4 METATILE_Fallarbor_RedRockWall TRUE
 return
 = AbnormalWeather_EventScript_ShowRainEndedMessage
-msgbox	The massive downpour appears to have stopped…
+msgbox	Der heftige Regenguss scheint aufgehört zu haben…
 goto AbnormalWeather_EventScript_EndEventAndCleanup_2
 end
 = Route105_HiddenItem_5_56
@@ -399,27 +399,27 @@ end
 trainerbattle_single TRAINER_ANDRES_1 Route105_Text_AndresIntro Route105_Text_AndresDefeated Route105_EventScript_AndresRegisterMatchCallAfterBattle
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route105_EventScript_AndresRematch
-msgbox	I'm sure there are many secrets to be discovered in the world's seas.I mean to find them all!
+msgbox	Ich bin sicher, in den Weltmeeren gibt es noch viele Geheimnisse zu entdecken.Ich will sie alle finden!
 release
 end
 = Route105_EventScript_AndresRematch
 trainerbattle_rematch TRAINER_ANDRES_1 Route105_Text_AndresRematchIntro Route105_Text_AndresRematchDefeated
-msgbox	I may be weak at battling, but my drive to explore can't be bested.I will travel the seas all around the world!
+msgbox	Ich bin vielleicht schwach im Kämpfen, aber meinen Forscherdrang schlägt niemand.Ich werde die Meere rund um die Welt bereisen!
 end
 = Route105_EventScript_AndresRegisterMatchCallAfterBattle
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Huh? I'm so weak, but you're willing to register me in your POKéNAV?
+msgbox	Huh? Ich bin so schwach, aber du willst mich trotzdem in deinem POKéNAV eintragen?
 register_matchcall TRAINER_ANDRES_1
 release
 end
 = Route105_EventScript_Josue
 trainerbattle_single TRAINER_JOSUE Route105_Text_JosueIntro Route105_Text_JosueDefeated
-msgbox	Yeah, for me, the sky is a much better match than the sea.
+msgbox	Ja, für mich passt der Himmel viel besser als das Meer.
 end
 = Route105_EventScript_Foster
 trainerbattle_single TRAINER_FOSTER Route105_Text_FosterIntro Route105_Text_FosterDefeated
-msgbox	I can spend hours and hours staring at a nice rock without growing bored.
+msgbox	Ich kann stundenlang einen hübschen Felsen anstarren, ohne mich zu langweilen.
 end
 = Route105_EventScript_ItemIron
 goto_if_set FLAG_ITEM_ROUTE_105_IRON Route105_EventScript_ItemIron_Taken
@@ -430,19 +430,19 @@ end
 end
 = Route105_EventScript_Imani
 trainerbattle_single TRAINER_IMANI Route105_Text_ImaniIntro Route105_Text_ImaniDefeated
-msgbox	I want to be told I'm relaxing to be with. Giggle.
+msgbox	Ich möchte, dass man mir sagt, wie entspannend ich bin. Kicher.
 end
 = Route105_EventScript_Beverly
 trainerbattle_single TRAINER_BEVERLY Route105_Text_BeverlyIntro Route105_Text_BeverlyDefeated
-msgbox	Your body weight is reduced to just one tenth in the water.That would make me… Whoops! I'm not telling you my weight!
+msgbox	Dein Körpergewicht sinkt im Wasser auf nur ein Zehntel.Das würde mich… Huch! Ich verrate dir nicht mein Gewicht!
 end
 = Route105_EventScript_Dominik
 trainerbattle_single TRAINER_DOMINIK Route105_Text_DominikIntro Route105_Text_DominikDefeated
-msgbox	Why is the sea blue?I learned about that at the MUSEUM in SLATEPORT, but I forgot.
+msgbox	Warum ist das Meer blau?Ich hab das im MUSEUM in SLATEPORT gelernt, aber ich hab's vergessen.
 end
 = Route105_EventScript_Luis
 trainerbattle_single TRAINER_LUIS Route105_Text_LuisIntro Route105_Text_LuisDefeated
-msgbox	If you are drowning, the signal is to wave one arm toward the beach.
+msgbox	Wenn du am Ertrinken bist, ist das Signal, mit einem Arm zum Strand zu winken.
 end
 water
 283,285,291,293,299,300,301,325,326,368,370,372

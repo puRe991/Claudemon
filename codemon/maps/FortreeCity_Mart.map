@@ -27,9 +27,9 @@ people_woman_2 9 3 N static 0 - 0
 people_girl_3 8 5 S wander 0 - 0
 people_boy_2 5 6 E static 0 - 0
 dialogs
-1	SUPER REPEL lasts a long time, and it gets the job done.It's much better than an ordinary REPEL.
-2	I always stock up on more items than I'm sure I'll need.You never know what might happen. Better to be safe than sorry!
-3	A RARE CANDY makes a POKéMON grow immediately by one level.
+1	SUPER-REPEL hält lange an und erledigt seine Aufgabe.Es ist viel besser als ein gewöhnliches REPEL.
+2	Ich kaufe immer mehr Items, als ich sicher brauchen werde.Man weiß nie, was passieren könnte. Sicher ist sicher!
+3	Ein RARES BONBON lässt ein POKéMON sofort um eine Stufe wachsen.
 objscripts
 0 FortreeCity_Mart_EventScript_Clerk
 1 FortreeCity_Mart_EventScript_Woman
@@ -39,21 +39,21 @@ shops
 FortreeCity_Mart_Pokemart	ITEM_GREAT_BALL,ITEM_ULTRA_BALL,ITEM_SUPER_POTION,ITEM_HYPER_POTION,ITEM_ANTIDOTE,ITEM_PARALYZE_HEAL,ITEM_AWAKENING,ITEM_REVIVE,ITEM_SUPER_REPEL,ITEM_WOOD_MAIL
 scriptdefs
 = FortreeCity_Mart_EventScript_Boy
-msgbox	A RARE CANDY makes a POKéMON grow immediately by one level.
+msgbox	Ein RARES BONBON lässt ein POKéMON sofort um eine Stufe wachsen.
 end
 = FortreeCity_Mart_EventScript_Girl
-msgbox	I always stock up on more items than I'm sure I'll need.You never know what might happen. Better to be safe than sorry!
+msgbox	Ich kaufe immer mehr Items, als ich sicher brauchen werde.Man weiß nie, was passieren könnte. Sicher ist sicher!
 end
 = FortreeCity_Mart_EventScript_Woman
-msgbox	SUPER REPEL lasts a long time, and it gets the job done.It's much better than an ordinary REPEL.
+msgbox	SUPER-REPEL hält lange an und erledigt seine Aufgabe.Es ist viel besser als ein gewöhnliches REPEL.
 end
 = FortreeCity_Mart_EventScript_Clerk
 lock
 faceplayer
-msgbox	Welcome!How may I serve you?
+msgbox	Willkommen!Wie kann ich dir dienen?
 waitmessage
 pokemart FortreeCity_Mart_Pokemart
-msgbox	Please come again!
+msgbox	Komm bald wieder!
 release
 end
 mapsec

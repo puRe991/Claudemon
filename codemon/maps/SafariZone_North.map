@@ -126,7 +126,7 @@ bufferpartymonnick STR_VAR_1 VAR_RESULT
 buffermovename STR_VAR_2 MOVE_ROCK_SMASH
 msgboxyesno	This rock appears to be breakable. Would you like to use ROCK SMASH?
 goto_if_eq VAR_RESULT NO EventScript_CancelSmash
-msgbox	STR_VAR_1 used STR_VAR_2!
+msgbox	STR_VAR_1 setzte STR_VAR_2 ein!
 closemessage
 dofieldeffect FLDEFF_USE_ROCK_SMASH
 waitstate
@@ -159,14 +159,14 @@ closemessage
 releaseall
 end
 = EventScript_CantSmashRock
-msgbox	It's a rugged rock, but a POKéMON may be able to smash it.
+msgbox	Es ist ein zerklüfteter Felsen, aber ein POKéMON könnte ihn vielleicht zerschmettern.
 releaseall
 end
 = SafariZone_North_EventScript_Man
-msgbox	I'm going to catch a lot of rare POKéMON here and trade them with my friends!
+msgbox	Ich werde hier jede Menge seltene POKéMON fangen und sie mit meinen Freunden tauschen!
 end
 = SafariZone_North_EventScript_Fisherman
-msgbox	I'm on a mission to find WATER POKéMON you don't see in HOENN.Do you have any idea where the lake is?
+msgbox	Ich bin auf einer Mission, um WASSER-POKéMON zu finden, die man in HOENN nicht sieht.Weißt du zufällig, wo der See ist?
 end
 grass
 13,454,455

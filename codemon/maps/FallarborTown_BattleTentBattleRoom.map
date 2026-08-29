@@ -51,7 +51,7 @@ applymovement LOCALID_FALLARBOR_TENT_BATTLE_ATTENDANT FallarborTown_BattleTentBa
 playse SE_M_BELLY_DRUM
 waitse
 waitmovement 0
-msgbox	REFEREE: Set KO Tourney! Begin!
+msgbox	SCHIEDSRICHTER: K.-o.-Turnier! Los geht's!
 battletent_getopponentintro
 msgbox	gStringVar4
 waitmessage
@@ -63,7 +63,7 @@ playse SE_M_SNORE
 waitse
 waitmovement 0
 fallarbortent_getopponentname
-msgbox	REFEREE: The winner is STR_VAR_1!
+msgbox	SCHIEDSRICHTER: Der Sieger ist STR_VAR_1!
 goto FallarborTown_BattleTentBattleRoom_EventScript_WarpToLobbyLost
 = FallarborTown_BattleTentBattleRoom_EventScript_WarpToLobbyLost
 frontier_set FRONTIER_DATA_CHALLENGE_STATUS CHALLENGE_STATUS_LOST
@@ -76,7 +76,7 @@ applymovement LOCALID_FALLARBOR_TENT_BATTLE_ATTENDANT FallarborTown_BattleTentBa
 playse SE_BANG
 waitse
 waitmovement 0
-msgbox	REFEREE: The winner is PLAYER!
+msgbox	SCHIEDSRICHTER: Der Sieger ist PLAYER!
 closemessage
 goto FallarborTown_BattleTentBattleRoom_EventScript_IncrementBattleNum
 = FallarborTown_BattleTentBattleRoom_EventScript_IncrementBattleNum
@@ -92,7 +92,7 @@ applymovement LOCALID_FALLARBOR_TENT_BATTLE_ATTENDANT FallarborTown_BattleTentBa
 waitmovement 0
 applymovement LOCALID_FALLARBOR_TENT_BATTLE_PLAYER FallarborTown_BattleTentBattleRoom_Movement_PlayerFaceAttendant
 waitmovement 0
-msgbox	Your POKéMON will be restored to full health.
+msgbox	Deine POKéMON werden vollständig geheilt.
 special LoadPlayerParty
 special SavePlayerParty
 frontier_setpartyorder FRONTIER_PARTY_SIZE
@@ -118,7 +118,7 @@ case YES FallarborTown_BattleTentBattleRoom_EventScript_PauseChallenge
 case MULTI_B_PRESSED FallarborTown_BattleTentBattleRoom_EventScript_AskContinueChallenge
 goto FallarborTown_BattleTentBattleRoom_EventScript_AskRetireChallenge
 = FallarborTown_BattleTentBattleRoom_EventScript_AskRetireChallenge
-msgbox	Would you like to retire from your Set KO Tourney challenge?
+msgbox	Möchtest du deine Teilnahme am K.-o.-Turnier aufgeben?
 waitmessage
 multichoicedefault 20 8 MULTI_YESNO 1 FALSE
 switch VAR_RESULT
@@ -149,11 +149,11 @@ arena_set ARENA_DATA_WIN_STREAK VAR_RESULT
 @ See above
 goto FallarborTown_BattleTentBattleRoom_EventScript_ReadyFor2ndOpponent
 = FallarborTown_BattleTentBattleRoom_EventScript_ReadyFor2ndOpponent
-msgbox	Next up, your second opponent! Are you ready to move on?
+msgbox	Als Nächstes dein zweiter Gegner! Bist du bereit weiterzumachen?
 waitmessage
 return
 = FallarborTown_BattleTentBattleRoom_EventScript_PauseChallenge
-msgbox	I am saving your game data. Please wait.
+msgbox	Ich speichere deine Spieldaten. Bitte warte.
 waitmessage
 fallarbortent_save CHALLENGE_STATUS_PAUSED
 playse SE_SAVE
@@ -162,7 +162,7 @@ fadescreen FADE_TO_BLACK
 frontier_reset
 end
 = FallarborTown_BattleTentBattleRoom_EventScript_ReadyFor3rdOpponent
-msgbox	Next up, your third opponent! Are you ready to move on?
+msgbox	Als Nächstes dein dritter Gegner! Bist du bereit weiterzumachen?
 waitmessage
 return
 = FallarborTown_BattleTentBattleRoom_EventScript_ResumeChallenge

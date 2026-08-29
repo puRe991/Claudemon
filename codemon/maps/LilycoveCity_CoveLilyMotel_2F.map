@@ -31,12 +31,12 @@ people_gameboy_kid 7 3 S static FLAG_HIDE_LILYCOVE_MOTEL_GAME_DESIGNERS - 0
 people_woman_2 4 4 W static FLAG_HIDE_LILYCOVE_MOTEL_GAME_DESIGNERS - 0
 people_scott 1 7 E static FLAG_HIDE_LILYCOVE_MOTEL_SCOTT - 0
 dialogs
-1	I'm the GRAPHIC ARTIST! Aren't the POKéMON of HOENN interesting?
-2	The girl TUBERS, they're cute, hey? To battle against a cute TUBER…Whoop, it's so awesome!And the TWINS! Aren't they cute? A 2-on-2 battle with TWINS…Whoop, it's unbearably fun!
-3	Me? You're talking to me? I'm the PROGRAMMER.I wonder what the SLOTS are like here.
-4	You never know when and where people will challenge you.That's why I never leave home without my GAME BOY ADVANCE.
-5	The sea breeze tickles my heart. It feels wonderful here!
-6	SCOTT: … … … … … … … … … … Zzz…… … … … … Huh?! Oh, sorry, sorry! I was snoozing!I came to check out this POKéMON CONTEST thing.I have to admit, it does look quite entertaining, but…Consider me a purist--I prefer battles and tough TRAINERS.But that's just me.PLAYER, I hope you'll enjoy everything like the GYMS, CONTESTS, BATTLE TENT, the whole works!
+1	Ich bin der GRAFIKKÜNSTLER! Sind die POKéMON von HOENN nicht interessant?
+2	Die TUBER-Mädchen sind niedlich, oder? Gegen eine niedliche TUBER zu kämpfen…Juhu, das ist so genial!Und die ZWILLINGE! Sind sie nicht niedlich? Ein 2-gegen-2-Kampf mit den ZWILLINGEN…Juhu, das macht unbeschreiblich viel Spaß!
+3	Ich? Du redest mit mir? Ich bin der PROGRAMMIERER.Ich frage mich, wie die SPIELAUTOMATEN hier so sind.
+4	Man weiß nie, wann und wo einen jemand herausfordert.Deshalb verlasse ich nie ohne meinen GAME BOY ADVANCE das Haus.
+5	Die Meeresbrise kitzelt mein Herz. Es fühlt sich wunderbar hier an!
+6	SCOTT: … … … … … … … … … … Zzz…… … … … … Häh?! Oh, sorry, sorry! Ich bin eingenickt!Ich bin hergekommen, um mir diese POKéMON-CONTEST-Sache anzuschauen.Ich muss zugeben, sie sieht ziemlich unterhaltsam aus, aber…Nenn mich einen Puristen--ich bevorzuge Kämpfe und starke TRAINER.Aber das bin nur ich.PLAYER, ich hoffe, du genießt alles, die ARENEN, CONTESTS, das BATTLE TENT, das ganze Programm!
 objscripts
 0 LilycoveCity_CoveLilyMotel_2F_EventScript_GameDesigner
 1 LilycoveCity_CoveLilyMotel_2F_EventScript_GraphicArtist
@@ -50,29 +50,29 @@ scriptdefs
 lock
 faceplayer
 goto_if_set FLAG_MET_SCOTT_IN_LILYCOVE LilycoveCity_CoveLilyMotel_2F_EventScript_MetScott
-msgbox	SCOTT: … … … … … … … … … … Zzz…… … … … … Huh?! Oh, sorry, sorry! I was snoozing!I came to check out this POKéMON CONTEST thing.I have to admit, it does look quite entertaining, but…Consider me a purist--I prefer battles and tough TRAINERS.But that's just me.PLAYER, I hope you'll enjoy everything like the GYMS, CONTESTS, BATTLE TENT, the whole works!
+msgbox	SCOTT: … … … … … … … … … … Zzz…… … … … … Häh?! Oh, sorry, sorry! Ich bin eingenickt!Ich bin hergekommen, um mir diese POKéMON-CONTEST-Sache anzuschauen.Ich muss zugeben, sie sieht ziemlich unterhaltsam aus, aber…Nenn mich einen Puristen--ich bevorzuge Kämpfe und starke TRAINER.Aber das bin nur ich.PLAYER, ich hoffe, du genießt alles, die ARENEN, CONTESTS, das BATTLE TENT, das ganze Programm!
 addvar VAR_SCOTT_STATE 1
 setflag FLAG_MET_SCOTT_IN_LILYCOVE
 release
 end
 = LilycoveCity_CoveLilyMotel_2F_EventScript_MetScott
-msgbox	SCOTT: I think it does take strategy to win a CONTEST.Devising CONTEST strategies is one way of becoming a better TRAINER, I'd say.
+msgbox	SCOTT: Ich glaube, man braucht schon Strategie, um einen CONTEST zu gewinnen.Sich CONTEST-Strategien auszudenken ist, würde ich sagen, ein Weg, ein besserer TRAINER zu werden.
 release
 end
 = LilycoveCity_CoveLilyMotel_2F_EventScript_Woman
-msgbox	The sea breeze tickles my heart. It feels wonderful here!
+msgbox	Die Meeresbrise kitzelt mein Herz. Es fühlt sich wunderbar hier an!
 end
 = LilycoveCity_CoveLilyMotel_2F_EventScript_GameBoyKid
-msgbox	You never know when and where people will challenge you.That's why I never leave home without my GAME BOY ADVANCE.
+msgbox	Man weiß nie, wann und wo einen jemand herausfordert.Deshalb verlasse ich nie ohne meinen GAME BOY ADVANCE das Haus.
 end
 = LilycoveCity_CoveLilyMotel_2F_EventScript_Programmer
-msgbox	Me? You're talking to me? I'm the PROGRAMMER.I wonder what the SLOTS are like here.
+msgbox	Ich? Du redest mit mir? Ich bin der PROGRAMMIERER.Ich frage mich, wie die SPIELAUTOMATEN hier so sind.
 end
 = LilycoveCity_CoveLilyMotel_2F_EventScript_FatMan
-msgbox	The girl TUBERS, they're cute, hey? To battle against a cute TUBER…Whoop, it's so awesome!And the TWINS! Aren't they cute? A 2-on-2 battle with TWINS…Whoop, it's unbearably fun!
+msgbox	Die TUBER-Mädchen sind niedlich, oder? Gegen eine niedliche TUBER zu kämpfen…Juhu, das ist so genial!Und die ZWILLINGE! Sind sie nicht niedlich? Ein 2-gegen-2-Kampf mit den ZWILLINGEN…Juhu, das macht unbeschreiblich viel Spaß!
 end
 = LilycoveCity_CoveLilyMotel_2F_EventScript_GraphicArtist
-msgbox	I'm the GRAPHIC ARTIST! Aren't the POKéMON of HOENN interesting?
+msgbox	Ich bin der GRAFIKKÜNSTLER! Sind die POKéMON von HOENN nicht interessant?
 end
 = LilycoveCity_CoveLilyMotel_2F_EventScript_GameDesigner
 lock
@@ -90,14 +90,14 @@ waitfanfare
 goto LilycoveCity_CoveLilyMotel_2F_EventScript_ShowDiploma
 end
 = LilycoveCity_CoveLilyMotel_2F_EventScript_ShowDiploma
-msgbox	Wow! That's awesome! Yep, it's totally awesome!This POKéDEX is completely filled! You really must love POKéMON!I'm so impressed!Let me give you something in recognition of your feat!
+msgbox	Wow! Das ist genial! Ja, das ist absolut genial!Dieser POKéDEX ist komplett gefüllt! Du musst POKéMON wirklich lieben!Ich bin so beeindruckt!Lass mich dir zur Anerkennung deiner Leistung etwas geben!
 waitmessage
 call Common_EventScript_PlayGymBadgeFanfare
 special Special_ShowDiploma
 release
 end
 = LilycoveCity_CoveLilyMotel_2F_EventScript_ShowMeCompletedDex
-msgbox	I'm the GAME DESIGNER.Oh, is that right? You're working on a POKéDEX?It's tough trying to complete it, but don't give up.If you do complete it, please come show me.
+msgbox	Ich bin der GAME DESIGNER.Oh, ist das wahr? Du arbeitest an einem POKéDEX?Es ist hart, ihn zu vervollständigen, aber gib nicht auf.Wenn du ihn fertigstellst, komm bitte vorbei und zeig ihn mir.
 return
 mapsec
 18 3 2 1	LILYCOVE CITY
