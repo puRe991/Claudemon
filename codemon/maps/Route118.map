@@ -72,8 +72,8 @@ people_steven 44 7 S static FLAG_HIDE_ROUTE_118_STEVEN LOCALID_ROUTE118_STEVEN 0
 misc_item_ball 69 7 S static FLAG_ITEM_ROUTE_118_HYPER_POTION - 0
 people_youngster 7 7 S static 0 - 4
 dialogs
-6	Selbst ohne Boot kannst du Flüsse und Meere überqueren, wenn du ein POKéMON hast, das SURFER kennt.Auf POKéMON ist einfach in so vielem Verlass!
-12	Hmm! Eine GUTE ANGEL ist wirklich gut!Siehst du das nicht auch so?
+6	Auch ohne Boot kannst du Flüsse und Meere überqueren, wenn du ein POKéMON hast, das SURFER beherrscht.Auf POKéMON kann man sich einfach verlassen!
+12	Hmm! Eine GUTE ANGEL ist wirklich gut!Findest du nicht auch?
 objscripts
 0 BerryTreeScript
 1 BerryTreeScript
@@ -305,7 +305,7 @@ setmetatile 7 3 METATILE_Fallarbor_RedRockWall TRUE
 setmetatile 7 4 METATILE_Fallarbor_RedRockWall TRUE
 return
 = AbnormalWeather_EventScript_ShowRainEndedMessage
-msgbox	Der heftige Regenguss scheint aufgehört zu haben…
+msgbox	Der gewaltige Regenguss scheint aufgehört zu haben…
 goto AbnormalWeather_EventScript_EndEventAndCleanup_2
 end
 = Route118_HiddenItem_12_14
@@ -336,7 +336,7 @@ playse SE_LEDGE
 applymovement LOCALID_ROUTE118_STEVEN Route118_Movement_StevenJumpLedge
 waitmovement 0
 delay 30
-msgbox	STEVEN: Hi, PLAYER!Ich bin's, STEVEN! Wir haben uns in der Höhle bei DEWFORD getroffen.Hast du seitdem viele Arten von POKéMON kennengelernt?Es gibt so viele, viele Arten von POKéMON in unserer weiten Welt.Wenn du nur deine Lieblinge aufziehen möchtest, ist das völlig in Ordnung.Vielleicht macht es dir aber auch mehr Spaß, alle möglichen POKéMON aufzuziehen.Was denkst du darüber, als TRAINER von POKéMON?Natürlich geht mich das eigentlich gar nichts an.Es wäre schön, wenn wir uns irgendwo wiedersehen würden.
+msgbox	STEVEN: Hi, PLAYER!Ich bin's, STEVEN! Wir haben uns in der Höhle bei DEWFORD getroffen.Hast du seitdem viele Arten von POKéMON kennengelernt?Es gibt so viele, viele Arten von POKéMON in unserer großen Welt.Wenn du nur deine Lieblinge aufziehen willst, ist das völlig in Ordnung.Vielleicht macht es dir aber auch mehr Spaß, allerlei POKéMON aufzuziehen.Was denkst du als TRAINER von POKéMON darüber?Natürlich geht mich das eigentlich nichts an.Es wäre schön, wenn wir uns irgendwo wiedersehen würden.
 closemessage
 call_if_eq VAR_0x8008 0 Route118_EventScript_StevenExit0
 call_if_eq VAR_0x8008 1 Route118_EventScript_StevenExit1
@@ -378,7 +378,7 @@ goto Route118_EventScript_StevenTrigger
 end
 = Route118_EventScript_Deandre
 trainerbattle_single TRAINER_DEANDRE Route118_Text_DeandreIntro Route118_Text_DeandreDefeat
-msgbox	Ist es nicht cool, dass ich ein POKéMON-Kampfteam habe?Du kannst mich ruhig kopieren--ich hab nichts dagegen!
+msgbox	Ist es nicht cool, dass ich ein POKéMON-Kampfteam habe?Du kannst mich ruhig nachahmen!
 end
 = Route118_EventScript_ItemHyperPotion
 goto_if_set FLAG_ITEM_ROUTE_118_HYPER_POTION Route118_EventScript_ItemHyperPotion_Taken
@@ -401,13 +401,13 @@ end
 = Route118_EventScript_RegisterDalton
 special PlayerFaceTrainerAfterBattle
 waitmovement 0
-msgbox	Wenn ich bessere Melodien komponiere, musst du vorbeikommen und zuhören, okay?
+msgbox	Wenn ich bessere Melodien komponiere, musst du kommen und zuhören, okay?
 register_matchcall TRAINER_DALTON_1
 release
 end
 = Route118_EventScript_Barny
 trainerbattle_single TRAINER_BARNY Route118_Text_BarnyIntro Route118_Text_BarnyDefeat
-msgbox	Ich konnte nicht gewinnen, indem ich beim Angeln POKéMON trainiert habe…Habe ich die Dinge nur halbherzig angepackt?
+msgbox	Ich konnte nicht gewinnen, während ich beim Angeln POKéMON trainiert habe…Habe ich die Dinge nur halbherzig angepackt?
 end
 = Route118_EventScript_Chester
 trainerbattle_single TRAINER_CHESTER Route118_Text_ChesterIntro Route118_Text_ChesterDefeat
@@ -421,7 +421,7 @@ end
 trainerbattle_single TRAINER_ROSE_1 Route118_Text_RoseIntro Route118_Text_RoseDefeat Route118_EventScript_RegisterRose
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE Route118_EventScript_RematchRose
-msgbox	Blumen, POKéMON… Ich liebe alles, was gut riecht.Stinkige Dinge… Nein danke.
+msgbox	Blumen, POKéMON… Ich liebe alles, was gut riecht.Stinkige Dinge… da verzichte ich lieber.
 release
 end
 = Route118_EventScript_RematchRose
@@ -451,11 +451,11 @@ end
 msgbox	Hmm! Wir denken genau gleich!Hmm! Nimm diese GUTE ANGEL!
 giveitem ITEM_GOOD_ROD
 setflag FLAG_RECEIVED_GOOD_ROD
-msgbox	Wo immer es Wasser gibt, versuch dein Glück beim Angeln.
+msgbox	Versuch dein Glück beim Angeln, wo immer es Wasser gibt.
 release
 end
 = Route118_EventScript_ReceivedGoodRod
-msgbox	Versuch, mit deiner GUTEN ANGEL alle möglichen POKéMON zu fangen.
+msgbox	Versuch, mit deiner GUTEN ANGEL allerlei POKéMON zu fangen.
 release
 end
 = EventScript_CutTree
@@ -498,7 +498,7 @@ releaseall
 end
 = GabbyAndTy_EventScript_TyBattle6
 trainerbattle_double TRAINER_GABBY_AND_TY_6 GabbyAndTy_Text_TyIntro GabbyAndTy_Text_TyDefeat GabbyAndTy_Text_TyNotEnoughMons GabbyAndTy_EventScript_RequestInterview
-msgbox	TY: Du bist ein Naturtalent! Das war erstklassiges Filmmaterial!
+msgbox	TY: Du bist ein Naturtalent! Das war klasse Filmmaterial!
 release
 end
 = GabbyAndTy_EventScript_RequestInterview
@@ -510,7 +510,7 @@ call_if_eq VAR_FACING DIR_EAST GabbyAndTy_EventScript_FacePlayerEast
 goto_if_set FLAG_TEMP_SKIP_GABBY_INTERVIEW GabbyAndTy_EventScript_KeepingAnEyeOutForYou
 specialvar VAR_RESULT GabbyAndTyGetLastQuote
 goto_if_eq VAR_RESULT 0 GabbyAndTy_EventScript_DidntInterviewLastTime
-msgbox	GABBY: „STR_VAR_1!“Weißt du noch? Das war dein Zitat, mit dem du letztes Mal den Kampf entschieden hast.So etwas vergesse ich niemals!
+msgbox	GABBY: „STR_VAR_1!“Weißt du noch? Das war das Zitat, das du uns letztes Mal als Kampf-Fazit gegeben hast.So etwas vergesse ich nie, niemals!
 specialvar VAR_RESULT GabbyAndTyGetLastBattleTrivia
 switch VAR_RESULT
 case 0 GabbyAndTy_EventScript_RequestInterviewNoTrivia
@@ -525,13 +525,13 @@ goto GabbyAndTy_EventScript_Interview
 end
 = GabbyAndTy_EventScript_Interview
 goto_if_eq VAR_RESULT NO GabbyAndTy_EventScript_DontGiveUpKeepingEyeOut
-msgbox	Du machst mit? Danke!Okay, ich brauche von dir eine Beschreibung deiner Gefühle über unseren Kampf, aber kurz und knackig. Los!
+msgbox	Du machst mit? Danke!Okay, beschreib mir jetzt deine Gefühle zu unserem Kampf, aber kurz und knackig. Los!
 setvar VAR_0x8004 EASY_CHAT_TYPE_GABBY_AND_TY
 call Common_ShowEasyChatScreen
 lock
 faceplayer
 goto_if_eq VAR_RESULT 0 GabbyAndTy_EventScript_DontGiveUpKeepingEyeOut
-msgbox	GABBY: Mmm, ja! Das ist der perfekte Schlusssatz!Ich habe das Gefühl, das wird eine großartige Fernsehsendung.Es besteht die Chance, dass sie das im Fernsehen zeigen, also halt die Augen offen!Okay! Wir sehen uns!
+msgbox	GABBY: Mmm, ja! Das ist das perfekte Fazit!Ich habe das Gefühl, dass daraus eine großartige Fernsehsendung wird.Es kann sein, dass das im Fernsehen läuft, also halt die Augen nach uns offen!Okay! Wir sehen uns!
 special GabbyAndTyAfterInterview
 setflag FLAG_TEMP_SKIP_GABBY_INTERVIEW
 release
@@ -586,7 +586,7 @@ release
 end
 = GabbyAndTy_EventScript_TyBattle5
 trainerbattle_double TRAINER_GABBY_AND_TY_5 GabbyAndTy_Text_TyIntro GabbyAndTy_Text_TyDefeat GabbyAndTy_Text_TyNotEnoughMons GabbyAndTy_EventScript_RequestInterview
-msgbox	TY: Du bist ein Naturtalent! Das war erstklassiges Filmmaterial!
+msgbox	TY: Du bist ein Naturtalent! Das war klasse Filmmaterial!
 release
 end
 = GabbyAndTy_EventScript_GabbyBattle5
@@ -595,11 +595,11 @@ msgbox	GABBY: Wir behalten dich im Auge!
 release
 end
 = Route118_EventScript_Girl
-msgbox	Even if there isn't a boat, you can cross rivers and the sea if you have a POKéMON that knows SURF.POKéMON can be counted on to do so much!
+msgbox	Auch ohne Boot kannst du Flüsse und Meere überqueren, wenn du ein POKéMON hast, das SURFER beherrscht.Auf POKéMON kann man sich einfach verlassen!
 end
 = GabbyAndTy_EventScript_TyBattle2
 trainerbattle_double TRAINER_GABBY_AND_TY_2 GabbyAndTy_Text_TyIntro GabbyAndTy_Text_TyDefeat GabbyAndTy_Text_TyNotEnoughMons GabbyAndTy_EventScript_RequestInterview
-msgbox	TY: Du bist ein Naturtalent! Das war erstklassiges Filmmaterial!
+msgbox	TY: Du bist ein Naturtalent! Das war klasse Filmmaterial!
 release
 end
 = GabbyAndTy_EventScript_GabbyBattle2
@@ -609,7 +609,7 @@ release
 end
 = Route118_EventScript_Perry
 trainerbattle_single TRAINER_PERRY Route118_Text_PerryIntro Route118_Text_PerryDefeat
-msgbox	Du hast tolle POKéMON. Ich muss meine besser trainieren.
+msgbox	Du hast tolle POKéMON. Ich muss meine noch besser trainieren.
 end
 = BerryTreeScript
 special ObjectEventInteractionGetBerryTreeData
@@ -641,13 +641,13 @@ playfanfare MUS_OBTAIN_BERRY
 waitmessage
 waitfanfare
 waitbuttonpress
-msgbox	PLAYER verstaute STR_VAR_1 im BEEREN-Fach der TASCHE.Der Boden nahm wieder seinen weichen, lockeren Zustand an.
+msgbox	PLAYER verstaute STR_VAR_1 im BEEREN-FACH der TASCHE.Der Boden kehrte in seinen weichen, lehmigen Zustand zurück.
 waitmessage
 waitbuttonpress
 release
 end
 = BerryTree_EventScript_BerryPocketFull
-msgbox	Das BEEREN-Fach der TASCHE ist voll.STR_VAR_1 konnte nicht mitgenommen werden.
+msgbox	Das BEEREN-FACH der TASCHE ist voll.STR_VAR_1 konnte nicht mitgenommen werden.
 waitmessage
 waitbuttonpress
 release
@@ -730,7 +730,7 @@ lock
 faceplayer
 specialvar VAR_RESULT PlayerHasBerries
 goto_if_eq VAR_RESULT TRUE BerryTree_EventScript_WantToPlant
-msgbox	Es ist weicher, lockerer Boden.
+msgbox	Es ist weicher, lehmiger Boden.
 waitmessage
 waitbuttonpress
 release
@@ -756,7 +756,7 @@ special ObjectEventInteractionPlantBerryTree
 incrementgamestat GAME_STAT_PLANTED_BERRIES
 special IncrementDailyPlantedBerries
 special ObjectEventInteractionGetBerryCountString
-msgbox	PLAYER pflanzte ein STR_VAR_1 in den weichen, lockeren Boden.
+msgbox	PLAYER pflanzte ein STR_VAR_1 in den weichen, lehmigen Boden.
 waitmessage
 waitbuttonpress
 return

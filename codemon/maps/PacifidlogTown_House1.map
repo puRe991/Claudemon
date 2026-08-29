@@ -27,17 +27,17 @@ npcs
 people_man_5 3 5 S static 0 - 0
 people_woman_4 6 4 W static 0 - 0
 dialogs
-0	In the HOENN region, there are three POKéMON that represent the power of rock, ice, and steel.Each of them is said to hide away deep inside caves.That's the story I heard when I was just a little kid.
-1	“Six dots open three doors.”Grandpa used to say that, but I don't know what he meant.
+0	In der HOENN-Region gibt es drei POKéMON, die die Macht von Gestein, Eis und Stahl verkörpern.Man sagt, jedes von ihnen verstecke sich tief in Höhlen.Das ist die Geschichte, die ich als kleines Kind gehört habe.
+1	„Sechs Punkte öffnen drei Türen.“Das hat Opa immer gesagt, aber ich weiß nicht, was er damit meinte.
 objscripts
 0 PacifidlogTown_House1_EventScript_Man
 1 PacifidlogTown_House1_EventScript_Woman
 scriptdefs
 = PacifidlogTown_House1_EventScript_Woman
-msgbox	“Six dots open three doors.”Grandpa used to say that, but I don't know what he meant.
+msgbox	„Sechs Punkte öffnen drei Türen.“Das hat Opa immer gesagt, aber ich weiß nicht, was er damit meinte.
 end
 = PacifidlogTown_House1_EventScript_Man
-msgbox	In the HOENN region, there are three POKéMON that represent the power of rock, ice, and steel.Each of them is said to hide away deep inside caves.That's the story I heard when I was just a little kid.
+msgbox	In der HOENN-Region gibt es drei POKéMON, die die Macht von Gestein, Eis und Stahl verkörpern.Man sagt, jedes von ihnen verstecke sich tief in Höhlen.Das ist die Geschichte, die ich als kleines Kind gehört habe.
 end
 mapsec
 17 10 1 1	PACIFIDLOG TOWN

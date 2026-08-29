@@ -66,7 +66,7 @@ case 4 BattleFrontier_BattleDomePreBattleRoom_EventScript_AskRetireChallenge
 case MULTI_B_PRESSED BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound
 goto BattleFrontier_BattleDomePreBattleRoom_EventScript_AskRecordBattle
 = BattleFrontier_BattleDomePreBattleRoom_EventScript_AskRecordBattle
-msgbox	Should I record your last match on your FRONTIER PASS?
+msgbox	Soll ich dein letztes Match auf deinem FRONTIER-PASS speichern?
 waitmessage
 multichoicedefault 20 8 MULTI_YESNO 1 FALSE
 switch VAR_RESULT
@@ -78,7 +78,7 @@ goto BattleFrontier_BattleDomePreBattleRoom_EventScript_RecordBattle
 call BattleFrontier_EventScript_SaveBattle
 goto BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound
 = BattleFrontier_BattleDomePreBattleRoom_EventScript_AskRetireChallenge
-msgbox	Would you like to retire from your Battle Tournament challenge?
+msgbox	Möchtest du deine Teilnahme am Kampfturnier aufgeben?
 waitmessage
 multichoicedefault 20 8 MULTI_YESNO 1 FALSE
 switch VAR_RESULT
@@ -97,7 +97,7 @@ case YES BattleFrontier_BattleDomePreBattleRoom_EventScript_PauseChallenge
 case MULTI_B_PRESSED BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound
 goto BattleFrontier_BattleDomePreBattleRoom_EventScript_AskRetireChallenge
 = BattleFrontier_BattleDomePreBattleRoom_EventScript_PauseChallenge
-msgbox	I am saving your data. Please wait.
+msgbox	Ich speichere deine Daten. Bitte warten.
 waitmessage
 dome_save CHALLENGE_STATUS_PAUSED
 playse SE_SAVE
@@ -106,7 +106,7 @@ fadescreen FADE_TO_BLACK
 frontier_reset
 end
 = BattleFrontier_BattleDomePreBattleRoom_EventScript_ContinueChallenge
-msgbox	Please choose the two POKéMON that are to appear in battle.
+msgbox	Bitte wähle die zwei POKéMON aus, die im Kampf antreten sollen.
 waitmessage
 waitbuttonpress
 fadescreen FADE_TO_BLACK
@@ -119,7 +119,7 @@ goto_if_eq VAR_RESULT 0 BattleFrontier_BattleDomePreBattleRoom_EventScript_AskRe
 dome_set DOME_DATA_SELECTED_MONS
 dome_reduceparty
 dome_setopponent
-msgbox	Right this way, please.
+msgbox	Bitte hier entlang.
 closemessage
 applymovement LOCALID_DOME_PRE_BATTLE_ATTENDANT BattleFrontier_BattleDomePreBattleRoom_Movement_AttendantMoveAside
 waitmovement 0
@@ -150,19 +150,19 @@ case DOME_SEMIFINAL BattleFrontier_BattleDomePreBattleRoom_EventScript_TourneyIn
 case DOME_FINAL BattleFrontier_BattleDomePreBattleRoom_EventScript_TourneyInFinals
 return
 = BattleFrontier_BattleDomePreBattleRoom_EventScript_TourneyInFinals
-msgbox	The tournament is up to the final.
+msgbox	Das Turnier steht im Endkampf.
 return
 = BattleFrontier_BattleDomePreBattleRoom_EventScript_TourneyInSemifinals
-msgbox	The tournament is in the semifinals.
+msgbox	Das Turnier steht im Halbfinale.
 return
 = BattleFrontier_BattleDomePreBattleRoom_EventScript_TourneyInRound2
-msgbox	The tournament is in the 2nd round.
+msgbox	Das Turnier steht in der 2. Runde.
 return
 = BattleFrontier_BattleDomePreBattleRoom_EventScript_TourneyInRound1
-msgbox	The tournament is in the 1st round.
+msgbox	Das Turnier steht in der 1. Runde.
 return
 = BattleFrontier_BattleDomePreBattleRoom_EventScript_ShowOpponentInfo
-msgbox	PLAYER's next opponent is this TRAINER.
+msgbox	PLAYERs nächster Gegner ist dieser TRAINER.
 fadescreen FADE_TO_BLACK
 dome_showopponentinfo
 waitstate
@@ -182,36 +182,36 @@ case FRONTIER_BRAIN_SILVER BattleFrontier_BattleDomePreBattleRoom_EventScript_Re
 case FRONTIER_BRAIN_GOLD BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerGold
 case FRONTIER_BRAIN_STREAK BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerSilver
 case FRONTIER_BRAIN_STREAK_LONG BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerGold
-msgbox	Your final match is next. Are you ready?
+msgbox	Als Nächstes folgt dein Endkampf. Bist du bereit?
 return
 = BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerGold
 goto_if_set FLAG_TEMP_1 BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerGoldShort
-msgbox	Congratulations for advancing to the final match.For the final match, you will challenge the DOME ACE TUCKER.Are you ready?
+msgbox	Glückwunsch zum Erreichen des Endkampfs.Im Endkampf trittst du gegen den DOME-ASS TUCKER an.Bist du bereit?
 setflag FLAG_TEMP_1
 return
 = BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerGoldShort
-msgbox	Your final battle against TUCKER is next. Are you ready?
+msgbox	Als Nächstes folgt dein Endkampf gegen TUCKER. Bist du bereit?
 return
 = BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerSilver
 goto_if_set FLAG_TEMP_1 BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerSilverShort
-msgbox	Congratulations for advancing to the final match.For the final match, you will challenge the DOME ACE TUCKER.Are you ready?
+msgbox	Glückwunsch zum Erreichen des Endkampfs.Im Endkampf trittst du gegen den DOME-ASS TUCKER an.Bist du bereit?
 setflag FLAG_TEMP_1
 return
 = BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerSilverShort
-msgbox	Your final battle against TUCKER is next. Are you ready?
+msgbox	Als Nächstes folgt dein Endkampf gegen TUCKER. Bist du bereit?
 return
 = BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForSemifinals
-msgbox	Your semifinal match is next. Are you ready?
+msgbox	Als Nächstes folgt dein Halbfinale. Bist du bereit?
 return
 = BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForRound2
-msgbox	Your 2nd-round match is next. Are you ready?
+msgbox	Als Nächstes folgt dein Match in der 2. Runde. Bist du bereit?
 return
 = BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForRound1
-msgbox	Your 1st-round match is next. Are you ready?
+msgbox	Als Nächstes folgt dein Match in der 1. Runde. Bist du bereit?
 return
 = BattleFrontier_BattleDomePreBattleRoom_EventScript_ReturnFromBattle
 setvar VAR_TEMP_0 1
-msgbox	Thank you for competing!I'll restore your POKéMON to full health.
+msgbox	Danke für deine Teilnahme!Ich heile deine POKéMON vollständig.
 special LoadPlayerParty
 frontier_setpartyorder FRONTIER_PARTY_SIZE
 playfanfare MUS_HEAL
@@ -230,13 +230,13 @@ case DOME_SEMIFINAL BattleFrontier_BattleDomePreBattleRoom_EventScript_Round2Com
 case DOME_FINAL BattleFrontier_BattleDomePreBattleRoom_EventScript_SemifinalsComplete
 return
 = BattleFrontier_BattleDomePreBattleRoom_EventScript_SemifinalsComplete
-msgbox	All semifinal matches have been completed.These are the teams that advanced!
+msgbox	Alle Halbfinal-Matches sind abgeschlossen.Das sind die Teams, die weitergekommen sind!
 return
 = BattleFrontier_BattleDomePreBattleRoom_EventScript_Round2Complete
-msgbox	All 2nd-round matches have been completed.These are the teams that advanced!
+msgbox	Alle Matches der 2. Runde sind abgeschlossen.Das sind die Teams, die weitergekommen sind!
 return
 = BattleFrontier_BattleDomePreBattleRoom_EventScript_Round1Complete
-msgbox	All 1st-round matches have been completed.These are the teams that advanced!
+msgbox	Alle Matches der 1. Runde sind abgeschlossen.Das sind die Teams, die weitergekommen sind!
 return
 mapsec
 22 12 1 1	BATTLE FRONTIER

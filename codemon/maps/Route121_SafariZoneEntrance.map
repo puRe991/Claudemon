@@ -66,7 +66,7 @@ waitmovement 0
 showmoneybox 0 0
 msgboxyesno	Welcome to the SAFARI ZONE!All you can catch for just ¥500! Would you like to play a SAFARI Game?
 goto_if_eq VAR_RESULT YES Route121_SafariZoneEntrance_EventScript_TryEnterSafariZone
-msgbox	Okay. Please play another time!
+msgbox	Okay. Bitte spiel ein anderes Mal!
 goto Route121_SafariZoneEntrance_EventScript_MovePlayerBackFromCounter
 end
 = Route121_SafariZoneEntrance_EventScript_MovePlayerBackFromCounter
@@ -83,14 +83,14 @@ call Route121_SafariZoneEntrance_EventScript_CheckHasRoomForPokemon
 checkmoney 500
 goto_if_eq VAR_RESULT 0 Route121_SafariZoneEntrance_EventScript_NotEnoughMoney
 playse SE_SHOP
-msgbox	That will be ¥500, please.
+msgbox	Das macht dann 500 ¥, bitte.
 removemoney 500
 updatemoneybox
-msgbox	Here are your SAFARI BALLS.
+msgbox	Hier sind deine SAFARI BALLS.
 playfanfare MUS_OBTAIN_ITEM
-msgbox	PLAYER received 30 SAFARI BALLS.
+msgbox	PLAYER erhielt 30 SAFARI BALLS.
 waitfanfare
-msgbox	We'll let you know when your game is over.So, until then, enjoy yourself, please! Off you go on your wild excursion!
+msgbox	Wir sagen dir Bescheid, wenn dein Spiel vorbei ist.Bis dahin viel Vergnügen! Auf geht's zu deinem wilden Ausflug!
 closemessage
 hidemoneybox
 applymovement LOCALID_PLAYER Route121_SafariZoneEntrance_Movement_EnterSafariZone
@@ -102,7 +102,7 @@ warp SafariZone_South 32 33
 waitstate
 end
 = Route121_SafariZoneEntrance_EventScript_NotEnoughMoney
-msgbox	You don't have enough money. Sorry.
+msgbox	Du hast nicht genug Geld dabei. Tut mir leid.
 goto Route121_SafariZoneEntrance_EventScript_MovePlayerBackFromCounter
 end
 = Route121_SafariZoneEntrance_EventScript_CheckHasRoomForPokemon
@@ -110,13 +110,13 @@ getpartysize
 goto_if_ne VAR_RESULT PARTY_SIZE Route121_SafariZoneEntrance_EventScript_HasRoomForPokemon
 specialvar VAR_RESULT ScriptCheckFreePokemonStorageSpace
 goto_if_eq VAR_RESULT 1 Route121_SafariZoneEntrance_EventScript_HasRoomForPokemon
-msgbox	Excuse me! Your PC BOX is full.
+msgbox	Entschuldigung! Deine PC-BOX ist voll.
 goto Route121_SafariZoneEntrance_EventScript_MovePlayerBackFromCounter
 end
 = Route121_SafariZoneEntrance_EventScript_HasRoomForPokemon
 return
 = Route121_SafariZoneEntrance_EventScript_NoPokeblockCase
-msgbox	Excuse me! You seem to be without a CASE.Your SAFARI Game will be much more fruitful if you use S.Please come back with a CASE.You may obtain a CASE from the LILYCOVE CONTEST HALL.
+msgbox	Entschuldigung! Du scheinst kein CASE dabeizuhaben.Dein SAFARI-Spiel wird viel ergiebiger, wenn du ein S verwendest.Bitte komm mit einem CASE zurück.Ein CASE erhältst du in der LILYCOVE CONTEST HALL.
 goto Route121_SafariZoneEntrance_EventScript_MovePlayerBackFromCounter
 end
 = Route121_SafariZoneEntrance_EventScript_InfoAttendant
@@ -124,15 +124,15 @@ lock
 faceplayer
 msgboxyesno	Welcome to the SAFARI ZONE! Is it your first time here?
 goto_if_eq VAR_RESULT YES Route121_SafariZoneEntrance_EventScript_FirstTimeInfo
-msgbox	Come in and enjoy the SAFARI ZONE!
+msgbox	Komm herein und genieße die SAFARI ZONE!
 release
 end
 = Route121_SafariZoneEntrance_EventScript_FirstTimeInfo
-msgbox	When you enter the SAFARI ZONE, you start with 30 SAFARI BALLS for catching POKéMON.The SAFARI Game is over when you run out of SAFARI BALLS, or when you've walked 500 steps.Come in and enjoy the SAFARI ZONE!
+msgbox	Wenn du die SAFARI ZONE betrittst, startest du mit 30 SAFARI BALLS zum Fangen von POKéMON.Das SAFARI-Spiel endet, wenn dir die SAFARI BALLS ausgehen oder wenn du 500 Schritte gegangen bist.Komm herein und genieße die SAFARI ZONE!
 release
 end
 = Route121_SafariZoneEntrance_EventScript_WelcomeAttendant
-msgbox	Welcome to the SAFARI ZONE!Here, you may witness many kinds of POKéMON rarely seen in HOENN.And, you'll see them in their wild, untamed state in natural habitats.What's more, we've thrown open the gates to POKéMON TRAINERS.You're encouraged to catch POKéMON for keeps!Come in and enjoy the SAFARI ZONE!
+msgbox	Willkommen in der SAFARI ZONE!Hier kannst du viele Arten von POKéMON erleben, die in HOENN nur selten zu sehen sind.Und du siehst sie wild und ungezähmt in ihren natürlichen Lebensräumen.Außerdem haben wir unsere Tore für POKéMON-TRAINER geöffnet.Wir laden dich ein, POKéMON zu fangen und zu behalten!Komm herein und genieße die SAFARI ZONE!
 end
 mapsec
 14 3 4 1	ROUTE 121

@@ -21,9 +21,9 @@ misc_moving_box 0 0 S static 0 LOCALID_TRUCK_BOX_TOP 0
 misc_moving_box 0 3 S static 0 LOCALID_TRUCK_BOX_BOTTOM_L 0
 misc_moving_box 2 3 S static 0 LOCALID_TRUCK_BOX_BOTTOM_R 0
 dialogs
-0	The box is printed with a POKéMON logo.It's a POKéMON brand moving and delivery service.
-1	The box is printed with a POKéMON logo.It's a POKéMON brand moving and delivery service.
-2	The box is printed with a POKéMON logo.It's a POKéMON brand moving and delivery service.
+0	Die Kiste ist mit einem POKéMON-Logo bedruckt.Es ist ein Umzugs- und Lieferservice der Marke POKéMON.
+1	Die Kiste ist mit einem POKéMON-Logo bedruckt.Es ist ein Umzugs- und Lieferservice der Marke POKéMON.
+2	Die Kiste ist mit einem POKéMON-Logo bedruckt.Es ist ein Umzugs- und Lieferservice der Marke POKéMON.
 objscripts
 0 InsideOfTruck_EventScript_MovingBox
 1 InsideOfTruck_EventScript_MovingBox
@@ -65,13 +65,13 @@ setdynamicwarp LittlerootTown 3 10
 releaseall
 end
 = InsideOfTruck_EventScript_MovingBox
-msgbox	The box is printed with a POKéMON logo.It's a POKéMON brand moving and delivery service.
+msgbox	Die Kiste ist mit einem POKéMON-Logo bedruckt.Es ist ein Umzugs- und Lieferservice der Marke POKéMON.
 end
 signs
-1 0	The box is printed with a POKéMON logo.It's a POKéMON brand moving and delivery service.
-3 4	The box is printed with a POKéMON logo.It's a POKéMON brand moving and delivery service.
-2 3	The box is printed with a POKéMON logo.It's a POKéMON brand moving and delivery service.
-0 1	The box is printed with a POKéMON logo.It's a POKéMON brand moving and delivery service.
-0 2	The box is printed with a POKéMON logo.It's a POKéMON brand moving and delivery service.
+1 0	Die Kiste ist mit einem POKéMON-Logo bedruckt.Es ist ein Umzugs- und Lieferservice der Marke POKéMON.
+3 4	Die Kiste ist mit einem POKéMON-Logo bedruckt.Es ist ein Umzugs- und Lieferservice der Marke POKéMON.
+2 3	Die Kiste ist mit einem POKéMON-Logo bedruckt.Es ist ein Umzugs- und Lieferservice der Marke POKéMON.
+0 1	Die Kiste ist mit einem POKéMON-Logo bedruckt.Es ist ein Umzugs- und Lieferservice der Marke POKéMON.
+0 2	Die Kiste ist mit einem POKéMON-Logo bedruckt.Es ist ein Umzugs- und Lieferservice der Marke POKéMON.
 mapsec
 0 0 1 1	INSIDE OF TRUCK
