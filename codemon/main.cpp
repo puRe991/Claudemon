@@ -1039,7 +1039,7 @@ struct MultiChoicePrompt {
 // options vector.
 struct DebugMenu {
     enum Action {
-        HEAL_TEAM, ADD_MONEY, ALL_BADGES, GIVE_STARTER, TEACH_HMS,
+        HEAL_TEAM, ADD_MONEY, ALL_BADGES, GIVE_STARTER, GIVE_ANY_POKEMON, TEACH_HMS,
         GIVE_ITEMS, GIVE_XP, SKIP_SCRIPT, CLOSE, COUNT
     };
     bool open_ = false;
@@ -1064,6 +1064,7 @@ struct DebugMenu {
         case ADD_MONEY:    return "+50.000 Geld";
         case ALL_BADGES:   return "Alle 8 Orden geben";
         case GIVE_STARTER: return "Starter-Pokemon waehlen";
+        case GIVE_ANY_POKEMON: return "Beliebiges Pokemon ins Team";
         case TEACH_HMS:    return "Alle Hm-Attacken lehren (Leadmon)";
         case GIVE_ITEMS:   return "99x Poke Ball / Trank / Rare Candy";
         case GIVE_XP:      return "+1000 EP fuer das ganze Team";
@@ -1112,6 +1113,93 @@ struct DebugMenu {
             std::string s = label(i);
             sf::Text t(sf::String::fromUtf8(s.begin(), s.end()), font, 15);
             t.setPosition(x + 36, ry);
+            t.setFillColor(sel ? sel_col : body_col);
+            target.draw(t);
+        }
+        target.setView(saved);
+    }
+};
+
+// SpeciesPicker - the DebugMenu's "beliebiges Pokemon" submenu: a scrolling
+// list of every species BattleData knows about (species_by_id/species_count,
+// load()-order, not the real Hoenn Dex numbering), so the player can pick any
+// one of them and have it added to the team at a fixed level. Same
+// block-and-resume shape as PartyPicker, but scrollable since the species
+// list is far longer than a party.
+struct SpeciesPicker {
+    static constexpr int VISIBLE = 12;
+    bool open_ = false, done_ = false;
+    int cursor = 0, top = 0;
+    std::vector<std::string> names;
+    sf::Font font; bool font_ok = false;
+    UiFrame frame;
+    sf::Texture cursor_tex; bool cursor_ok = false;
+
+    void load() {
+        font_ok = font.loadFromFile("assets/fonts/DejaVuSans.ttf");
+        frame.load();
+        cursor_ok = cursor_tex.loadFromFile("assets/graphics/interface/arrow_cursor.png");
+        cursor_tex.setSmooth(false);
+    }
+    void configure(const BattleData* bd) {
+        names.clear();
+        int n = bd->species_count();
+        for (int i = 0; i < n; ++i) names.push_back(bd->species_by_id(i));
+    }
+    void open() { open_ = true; done_ = false; cursor = 0; top = 0; }
+    void cancel() { open_ = false; done_ = false; }
+    bool active() const { return open_; }
+    bool done() const { return done_; }
+    void ack() { done_ = false; }
+    const std::string& chosen() const { return names[cursor]; }
+
+    void input(BtnInput b) {
+        int n = (int)names.size();
+        if (n == 0) return;
+        if (b == BTN_UP && cursor > 0) {
+            cursor--;
+            if (cursor < top) top = cursor;
+        } else if (b == BTN_DOWN && cursor + 1 < n) {
+            cursor++;
+            if (cursor >= top + VISIBLE) top = cursor - VISIBLE + 1;
+        } else if (b == BTN_CONFIRM) { done_ = true; open_ = false; }
+    }
+
+    void draw(sf::RenderTarget& target) {
+        if (!open_ || !font_ok) return;
+        sf::View saved = target.getView();
+        target.setView(target.getDefaultView());
+        sf::Vector2f size = target.getView().getSize();
+        int n = (int)names.size();
+        int shown = std::min(n - top, VISIBLE);
+        float w = 300.f, h = 50.f + shown * 26.f;
+        float x = size.x * 0.5f - w / 2.f, y = size.y * 0.5f - h / 2.f;
+        frame.draw(target, x, y, w, h, 2.5f);
+        const sf::Color head_col(255, 232, 160), body_col(40, 40, 56), sel_col(24, 72, 160);
+        std::string title_s = "Waehle ein POKéMON (" + std::to_string(cursor + 1) + "/" +
+                               std::to_string(n) + ")";
+        sf::Text title(sf::String::fromUtf8(title_s.begin(), title_s.end()), font, 16);
+        title.setPosition(x + 12, y + 8);
+        title.setFillColor(head_col);
+        target.draw(title);
+        for (int row = 0; row < shown; ++row) {
+            int i = top + row;
+            bool sel = i == cursor;
+            float ry = y + 40.f + row * 26.f;
+            if (sel) {
+                if (cursor_ok) {
+                    sf::Sprite cs(cursor_tex);
+                    cs.setPosition(x + 8, ry - 2);
+                    target.draw(cs);
+                } else {
+                    sf::Text mark(">", font, 15);
+                    mark.setPosition(x + 10, ry - 2);
+                    mark.setFillColor(sel_col);
+                    target.draw(mark);
+                }
+            }
+            sf::Text t(names[i], font, 14);
+            t.setPosition(x + 32, ry);
             t.setFillColor(sel ? sel_col : body_col);
             target.draw(t);
         }
@@ -1780,6 +1868,9 @@ int main() {
     healfx.load();
     DebugMenu debugmenu;
     debugmenu.load();
+    SpeciesPicker speciespicker;
+    speciespicker.load();
+    speciespicker.configure(&bdata);
     // Story-accurate new game: an empty bag (just the starting 3000 money,
     // GameState's own default) and 0 Game Corner coins, same as pokeemerald --
     // items, TMs and coins all come from actually playing the story.
@@ -2149,6 +2240,20 @@ int main() {
                     case sf::Keyboard::Return: shop.input(BTN_CONFIRM); break;
                     default: break;
                     }
+                } else if (speciespicker.active()) {
+                    switch (event.key.code) {
+                    case sf::Keyboard::W: speciespicker.input(BTN_UP); break;
+                    case sf::Keyboard::S: speciespicker.input(BTN_DOWN); break;
+                    case sf::Keyboard::Space:
+                    case sf::Keyboard::Return: speciespicker.input(BTN_CONFIRM); break;
+                    case sf::Keyboard::BackSpace: speciespicker.cancel(); break;
+                    default: break;
+                    }
+                    if (speciespicker.done()) {
+                        if (team.size() < 6)
+                            team.push_back(bdata.make_mon(speciespicker.chosen(), 25, &rng));
+                        speciespicker.ack();
+                    }
                 } else if (debugmenu.active()) {
                     int action = -1;
                     switch (event.key.code) {
@@ -2177,6 +2282,9 @@ int main() {
                             break;
                         case DebugMenu::GIVE_STARTER:
                             starter.open();
+                            break;
+                        case DebugMenu::GIVE_ANY_POKEMON:
+                            speciespicker.open();
                             break;
                         case DebugMenu::TEACH_HMS:
                             if (!team.empty()) {
@@ -2290,7 +2398,7 @@ int main() {
             bool ui_blocked = starter.active() || yesno.active() || picker.active() ||
                               multichoice.active() ||
                               shop.active() || battle.active() || games.active() ||
-                              menu.active() || debugmenu.active() ||
+                              menu.active() || debugmenu.active() || speciespicker.active() ||
                               box.is_active() || vm.running() ||
                               pending_surf || pending_waterfall ||
                               !pending_dive.empty();
@@ -2488,6 +2596,7 @@ int main() {
             if (picker.active()) picker.draw(*scr.get_window());
             if (multichoice.active()) multichoice.draw(*scr.get_window());
             if (debugmenu.active()) debugmenu.draw(*scr.get_window());
+            if (speciespicker.active()) speciespicker.draw(*scr.get_window());
             if (fade > 0.f) {
                 sf::View sv = scr.get_window()->getView();
                 scr.get_window()->setView(scr.get_window()->getDefaultView());
