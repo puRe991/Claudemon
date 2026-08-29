@@ -53,7 +53,7 @@ case 1 TrainerHill_Roof_EventScript_GivePrize
 case 2 TrainerHill_Roof_EventScript_AlreadyReceivedPrize
 goto TrainerHill_Roof_EventScript_Arrived
 = TrainerHill_Roof_EventScript_Arrived
-msgbox	Hm! Hm!You finally came! Yes, you have arrived!Wait! Don't say it! I know why you came all the way here by yourself!You wanted to see me, the owner of the TRAINER HILL, because…You want to form a tag team with me! Wa-hoo!…Uh? That's not it?Anyway, I watched you on your way up. Marvelous battling! Bravo, indeed!
+msgbox	Hm! Hm!Da bist du endlich! Ja, du bist angekommen!Warte! Sag nichts! Ich weiß, warum du den ganzen Weg allein hierher gekommen bist!Du wolltest mich sehen, den Besitzer des TRAINER-HÜGELS, weil…Du ein Tag-Team mit mir bilden willst! Wa-hu!…Häh? Das ist es nicht?Wie auch immer, ich habe dich auf deinem Weg nach oben beobachtet. Fabelhaftes Kämpfen! Bravo, wirklich!
 goto TrainerHill_Roof_EventScript_GivePrize
 = TrainerHill_Roof_EventScript_GivePrize
 trainerhill_giveprize
@@ -63,9 +63,9 @@ case 1 TrainerHill_Roof_EventScript_NoRoomForPrize
 case 2 TrainerHill_Roof_EventScript_CheckFinalTime
 goto TrainerHill_Roof_EventScript_ReceivePrize
 = TrainerHill_Roof_EventScript_ReceivePrize
-msgbox	For a marvelous someone like you, I have the most marvelous gift!
+msgbox	Für jemanden so Fabelhaftes wie dich habe ich das fabelhafteste Geschenk!
 playfanfare MUS_LEVEL_UP
-msgbox	Obtained the STR_VAR_2!
+msgbox	STR_VAR_2 erhalten!
 waitfanfare
 waitmessage
 goto TrainerHill_Roof_EventScript_CheckFinalTime
@@ -77,24 +77,24 @@ case 1 TrainerHill_Roof_EventScript_NoNewRecord
 case 2 TrainerHill_Roof_EventScript_EndSpeakToOwner
 goto TrainerHill_Roof_EventScript_NewRecord
 = TrainerHill_Roof_EventScript_NewRecord
-msgbox	Oh, hold on here! Did you possibly get here marvelously quickly?How splendid! You needn't have hurried so to see me!That is so delightful. I'll have the Time Board at the reception updated!
+msgbox	Oh, Moment mal! Bist du etwa fabelhaft schnell hierher gekommen?Wie herrlich! Du hättest dich gar nicht so beeilen müssen, um mich zu sehen!Wie entzückend. Ich lasse die Zeittafel am Empfang gleich aktualisieren!
 goto TrainerHill_Roof_EventScript_EndSpeakToOwner
 end
 = TrainerHill_Roof_EventScript_EndSpeakToOwner
-msgbox	Perhaps it would please me more if you arrived zippier next time.Then, I should be pleased to form a tag team with you!Until we meet again, amigo!
+msgbox	Vielleicht würde es mir mehr gefallen, wenn du das nächste Mal etwas flotter herkämst.Dann würde ich mich freuen, ein Tag-Team mit dir zu bilden!Bis wir uns wiedersehen, Amigo!
 release
 end
 = TrainerHill_Roof_EventScript_NoNewRecord
-msgbox	But, oh… You weren't very quick getting here.
+msgbox	Aber, oh… So schnell warst du nun auch wieder nicht hier.
 goto TrainerHill_Roof_EventScript_EndSpeakToOwner
 end
 = TrainerHill_Roof_EventScript_NoRoomForPrize
-msgbox	For a marvelous someone like you, I have the most marvelous gift!
-msgbox	The BAG is full…
-msgbox	Oh, no, full up with things! You'll be back later for this!
+msgbox	Für jemanden so Fabelhaftes wie dich habe ich das fabelhafteste Geschenk!
+msgbox	Die TASCHE ist voll…
+msgbox	Oh nein, alles voller Sachen! Du kommst später wieder dafür!
 goto TrainerHill_Roof_EventScript_CheckFinalTime
 = TrainerHill_Roof_EventScript_AlreadyReceivedPrize
-msgbox	Perhaps it would please me more if you arrived zippier next time.Then, I should be pleased to form a tag team with you!Until we meet again, amigo!
+msgbox	Vielleicht würde es mir mehr gefallen, wenn du das nächste Mal etwas flotter herkämst.Dann würde ich mich freuen, ein Tag-Team mit dir zu bilden!Bis wir uns wiedersehen, Amigo!
 release
 end
 mapsec

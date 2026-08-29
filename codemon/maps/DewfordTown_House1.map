@@ -26,8 +26,8 @@ people_woman_3 6 3 W static 0 - 0
 people_man_1 3 3 E static 0 - 0
 pokemon_zigzagoon 4 2 S static 0 - 0
 dialogs
-0	I left the major port of SLATEPORT CITY when I married my husband here.Life goes by slowly on this little island. But being surrounded by the beautiful sea--that's happiness, too.
-1	There's a lot to be said for living on a small island like this in harmony with POKéMON and the family.
+0	Ich habe den großen Hafen von SLATEPORT CITY verlassen, als ich hier meinen Mann geheiratet habe.Auf dieser kleinen Insel vergeht das Leben langsam. Aber von diesem wunderschönen Meer umgeben zu sein--das ist auch Glück.
+1	Es spricht vieles dafür, auf so einer kleinen Insel im Einklang mit POKéMON und der Familie zu leben.
 2	ZIGZAGOON: Guguuh!
 objscripts
 0 DewfordTown_House1_EventScript_Woman
@@ -44,10 +44,10 @@ waitmoncry
 release
 end
 = DewfordTown_House1_EventScript_Man
-msgbox	There's a lot to be said for living on a small island like this in harmony with POKéMON and the family.
+msgbox	Es spricht vieles dafür, auf so einer kleinen Insel im Einklang mit POKéMON und der Familie zu leben.
 end
 = DewfordTown_House1_EventScript_Woman
-msgbox	I left the major port of SLATEPORT CITY when I married my husband here.Life goes by slowly on this little island. But being surrounded by the beautiful sea--that's happiness, too.
+msgbox	Ich habe den großen Hafen von SLATEPORT CITY verlassen, als ich hier meinen Mann geheiratet habe.Auf dieser kleinen Insel vergeht das Leben langsam. Aber von diesem wunderschönen Meer umgeben zu sein--das ist auch Glück.
 end
 mapsec
 2 14 1 1	DEWFORD TOWN
