@@ -809,7 +809,7 @@ GraniteCave_1F
 GraniteCave_B1F
 GraniteCave_B2F
 GraniteCave_StevensRoom
-✅**InsideOfTruck**
+* ✅**InsideOfTruck**
 IslandCave
 JaggedPass
 LavaridgeTown
@@ -950,7 +950,7 @@ PetalburgCity_PokemonCenter_2F
 PetalburgCity_WallysHouse
 PetalburgWoods
 RecordCorner
-Route101
+* ✅**Route101**
 Route102
 Route103
 Route104
