@@ -53,9 +53,9 @@ pokemon_zigzagoon 10 13 S static FLAG_HIDE_ROUTE_101_ZIGZAGOON LOCALID_ROUTE101_
 people_prof_birch 5 11 S static FLAG_HIDE_ROUTE_101_BIRCH - 0
 people_boy_2 2 13 S wander FLAG_HIDE_ROUTE_101_BOY - 0
 dialogs
-0	If POKéMON get tired, take them to a POKéMON CENTER.There's a POKéMON CENTER in OLDALE TOWN right close by.
-2	PROF. BIRCH: Whew…I was in the tall grass studying wild POKéMON when I was jumped.You saved me. Thanks a lot!Oh?Hi, you're PLAYER!This is not the place to chat, so come by my POKéMON LAB later, okay?
-5	Wild POKéMON will jump out at you in tall grass.If you want to catch POKéMON, you have to go into the tall grass and search.
+0	Wenn deine POKéMON müde werden, bring sie in ein POKéMON-CENTER.Im nahe gelegenen BLÜTENBURG CITY gibt es ein POKéMON-CENTER.
+2	PROF. BIRK: Puh …Ich war im hohen Gras und habe wilde POKéMON untersucht, als ich plötzlich angegriffen wurde.Du hast mich gerettet. Vielen Dank!Oh?Hallo, du bist PLAYER!Hier ist nicht der richtige Ort zum Reden. Komm später in mein POKéMON-LABOR, ja?
+5	Im hohen Gras können wilde POKéMON plötzlich auftauchen.Wenn du POKéMON fangen möchtest, musst du ins hohe Gras gehen und dort suchen.
 objscripts
 0 Route101_EventScript_Youngster
 2 Route101_EventScript_BirchsBag
@@ -94,7 +94,7 @@ setvar VAR_ROUTE101_STATE 1
 end
 = Route101_EventScript_PreventExitNorth
 lockall
-msgbox	Wh-Where are you going?! Don't leave me like this!
+msgbox	W-Wohin gehst du?! Lass mich nicht allein!
 closemessage
 applymovement LOCALID_PLAYER Route101_Movement_PreventExitNorth
 waitmovement 0
@@ -102,7 +102,7 @@ releaseall
 end
 = Route101_EventScript_PreventExitWest
 lockall
-msgbox	Wh-Where are you going?! Don't leave me like this!
+msgbox	W-Wohin gehst du?! Lass mich nicht allein!
 closemessage
 applymovement LOCALID_PLAYER Route101_Movement_PreventExitWest
 waitmovement 0
@@ -110,7 +110,7 @@ releaseall
 end
 = Route101_EventScript_PreventExitSouth
 lockall
-msgbox	Wh-Where are you going?! Don't leave me like this!
+msgbox	W-Wohin gehst du?! Lass mich nicht allein!
 closemessage
 applymovement LOCALID_PLAYER Route101_Movement_PreventExitSouth
 waitmovement 0
@@ -119,7 +119,7 @@ end
 = Route101_EventScript_StartBirchRescue
 lockall
 playbgm MUS_HELP TRUE
-msgbox	H-help me!
+msgbox	H-Hilfe!
 closemessage
 setobjectxy LOCALID_ROUTE101_BIRCH 0 15
 setobjectxy LOCALID_ROUTE101_ZIGZAGOON 0 16
@@ -135,13 +135,13 @@ waitmovement 0
 applymovement LOCALID_ROUTE101_ZIGZAGOON Route101_Movement_ZigzagoonFaceBirch
 applymovement LOCALID_ROUTE101_BIRCH Route101_Movement_BirchFaceZigzagoon
 waitmovement 0
-msgbox	Hello! You over there! Please! Help!In my BAG! There's a POKé BALL!
+msgbox	Hallo! Du dort drüben! Bitte! Hilf mir!In meiner TASCHE! Da ist ein POKéBALL!
 closemessage
 setvar VAR_ROUTE101_STATE 2
 releaseall
 end
 = Route101_EventScript_Boy
-msgbox	Wild POKéMON will jump out at you in tall grass.If you want to catch POKéMON, you have to go into the tall grass and search.
+msgbox	Im hohen Gras können wilde POKéMON plötzlich auftauchen.Wenn du POKéMON fangen möchtest, musst du ins hohe Gras gehen und dort suchen.
 end
 = ProfBirch_EventScript_RatePokedexOrRegister
 lock
@@ -150,7 +150,7 @@ goto_if_unset FLAG_HAS_MATCH_CALL ProfBirch_EventScript_AskRatePokedex
 goto_if_unset FLAG_ENABLE_PROF_BIRCH_MATCH_CALL EventScript_RegisterProfBirch
 goto ProfBirch_EventScript_AskRatePokedex
 = ProfBirch_EventScript_AskRatePokedex
-msgboxyesno	PROF. BIRCH: Ah, PLAYER!Are you curious about how your POKéDEX is coming along?
+msgboxyesno	PROF. BIRK: Ah, PLAYER!Möchtest du wissen, wie weit du mit deinem POKéDEX bist?
 goto_if_eq VAR_RESULT NO ProfBirch_EventScript_DeclineRating
 call ProfBirch_EventScript_RatePokedex
 release
@@ -161,18 +161,18 @@ specialvar VAR_RESULT ScriptGetPokedexInfo
 copyvar VAR_0x8008 VAR_0x8005
 copyvar VAR_0x8009 VAR_0x8006
 copyvar VAR_0x800A VAR_RESULT
-buffernumberstring STR_VAR_1 VAR_0x8008  @ Num Hoenn seen
-buffernumberstring STR_VAR_2 VAR_0x8009  @ Num Hoenn caught
-msgbox	Hmhm…So, you've seen STR_VAR_1 POKéMON, and you've caught STR_VAR_2 POKéMON…
+buffernumberstring STR_VAR_1 VAR_0x8008  @ Num Hoenn gesehen
+buffernumberstring STR_VAR_2 VAR_0x8009  @ Num Hoenn gefangen
+msgbox	Hmhm …Du hast also STR_VAR_1 POKéMON gesehen und STR_VAR_2 POKéMON gefangen …
 call ProfBirch_EventScript_ShowRatingMessage
-goto_if_eq VAR_0x800A 0 Common_EventScript_NopReturn  @ National dex not enabled
+goto_if_eq VAR_0x800A 0 Common_EventScript_NopReturn  @ Nationaler Pokédex nicht aktiviert
 setvar VAR_0x8004 1
 specialvar VAR_RESULT ScriptGetPokedexInfo
 copyvar VAR_0x8008 VAR_0x8005
 copyvar VAR_0x8009 VAR_0x8006
-buffernumberstring STR_VAR_1 VAR_0x8008  @ Num National seen
-buffernumberstring STR_VAR_2 VAR_0x8009  @ Num National caught
-msgbox	Hmhm… On a nationwide basis…You've seen STR_VAR_1 POKéMON, and you've caught STR_VAR_2 POKéMON…
+buffernumberstring STR_VAR_1 VAR_0x8008  @ National gesehen
+buffernumberstring STR_VAR_2 VAR_0x8009  @ National gefangen
+msgbox	Hmhm … Auf nationaler Ebene …Du hast STR_VAR_1 POKéMON gesehen und STR_VAR_2 POKéMON gefangen …
 return
 = ProfBirch_EventScript_ShowRatingMessage
 copyvar VAR_0x8004 VAR_0x8009
@@ -181,7 +181,7 @@ waitmessage
 waitbuttonpress
 return
 = ProfBirch_EventScript_DeclineRating
-msgbox	Hm? Oh, you haven't caught enough POKéMON to make it worthwhile.
+msgbox	Hm? Du hast noch nicht genug POKéMON gefangen, als dass sich das lohnen würde.
 release
 end
 = Route101_EventScript_BirchsBag
@@ -197,7 +197,7 @@ waitmovement 0
 special ChooseStarter
 applymovement LOCALID_ROUTE101_BIRCH Route101_Movement_BirchApproachPlayer
 waitmovement 0
-msgbox	PROF. BIRCH: Whew…I was in the tall grass studying wild POKéMON when I was jumped.You saved me. Thanks a lot!Oh?Hi, you're PLAYER!This is not the place to chat, so come by my POKéMON LAB later, okay?
+msgbox	PROF. BIRK: Puh …Ich war im hohen Gras und habe wilde POKéMON untersucht, als ich plötzlich angegriffen wurde.Du hast mich gerettet. Vielen Dank!Oh?Hallo, du bist PLAYER!Hier ist nicht der richtige Ort zum Reden. Komm später in mein POKéMON-LABOR, ja?
 special HealPlayerParty
 setflag FLAG_HIDE_ROUTE_101_BIRCH_ZIGZAGOON_BATTLE
 clearflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_BIRCH
@@ -219,7 +219,7 @@ return
 setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_BEDROOM
 return
 = Route101_EventScript_Youngster
-msgbox	If POKéMON get tired, take them to a POKéMON CENTER.There's a POKéMON CENTER in OLDALE TOWN right close by.
+msgbox	Wenn deine POKéMON müde werden, bring sie in ein POKéMON-CENTER.Im nahe gelegenen BLÜTENBURG CITY gibt es ein POKéMON-CENTER.
 end
 signs
 5 9	ROUTE 101 OLDALE TOWN
