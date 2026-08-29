@@ -38,10 +38,10 @@ people_hiker 10 9 N static 0 - 0
 people_twin 0 5 W static 0 - 0
 people_beauty 8 9 S wander 0 - 0
 dialogs
-0	Where the luck of TRAINERS is put to the test…Welcome to the BATTLE PIKE…I am your guide to the BATTLE PIKE…
-1	Arrgh! I blew my chance! I was one room away from the goal!In this place, you'd better watch out for poison, freezing, and so on.
-2	I've completed the challenge 10 times now, but I've never had to battle a TRAINER once.
-3	Listen! Listen!Don't you think that the special abilities of POKéMON will be useful here?
+0	Hier wird das Glück von TRAINERN auf die Probe gestellt…Willkommen bei der BATTLE PIKE…Ich bin dein Führer für die BATTLE PIKE…
+1	Argh! Ich habe meine Chance vertan! Ich war nur einen Raum vom Ziel entfernt!Hier solltest du besser auf Gift, Frost und Ähnliches achtgeben.
+2	Ich habe die Herausforderung jetzt schon 10 Mal geschafft, aber ich musste noch nie gegen einen TRAINER kämpfen.
+3	Hör mal! Hör mal!Findest du nicht auch, dass die besonderen Fähigkeiten von POKéMON hier nützlich sein könnten?
 objscripts
 0 BattleFrontier_BattlePikeLobby_EventScript_Attendant
 1 BattleFrontier_BattlePikeLobby_EventScript_Hiker
@@ -58,7 +58,7 @@ BattleFrontier_BattlePikeLobby_Movement_PlayerWalkToCorridor	up
 scriptdefs
 = BattleFrontier_BattlePikeLobby_EventScript_LostChallenge
 lockall
-msgbox	Your challenge has ended…I shall record your results. Please wait…
+msgbox	Deine Herausforderung ist beendet…Ich halte deine Ergebnisse fest. Bitte warte einen Moment…
 waitmessage
 frontier_checkairshow
 frontier_set FRONTIER_DATA_BATTLE_NUM 0
@@ -69,7 +69,7 @@ pike_resethelditems
 pike_save 0
 playse SE_SAVE
 waitse
-msgbox	We look forward to seeing you on another occasion…
+msgbox	Wir freuen uns, dich bei anderer Gelegenheit wiederzusehen…
 closemessage
 setvar VAR_TEMP_CHALLENGE_STATUS 255
 releaseall
@@ -78,13 +78,13 @@ end
 lockall
 frontier_isbrain
 goto_if_eq VAR_RESULT TRUE BattleFrontier_BattlePikeLobby_EventScript_DefeatedQueen
-msgbox	You have completed the challenge…I must say… You seem to possess luck in abundance…
+msgbox	Du hast die Herausforderung gemeistert…Ich muss sagen… Du scheinst über reichlich Glück zu verfügen…
 waitmessage
 goto BattleFrontier_BattlePikeLobby_EventScript_GiveBattlePoints
 = BattleFrontier_BattlePikeLobby_EventScript_GiveBattlePoints
-msgbox	In recognition of your amazing luck, we award you these Battle Point(s)…
+msgbox	Als Anerkennung für dein erstaunliches Glück erhältst du diese Kampfpunkte…
 frontier_givepoints
-msgbox	PLAYER obtained STR_VAR_1 Battle Point(s).
+msgbox	PLAYER hat STR_VAR_1 Kampfpunkt(e) erhalten.
 frontier_checkairshow
 pike_get PIKE_DATA_TOTAL_STREAKS
 addvar VAR_RESULT 1
@@ -92,25 +92,25 @@ pike_set PIKE_DATA_TOTAL_STREAKS VAR_RESULT
 special LoadPlayerParty
 special HealPlayerParty
 pike_resethelditems
-msgbox	I shall record your results. Please wait…
+msgbox	Ich halte deine Ergebnisse fest. Bitte warte einen Moment…
 waitmessage
 pike_save 0
 playse SE_SAVE
 waitse
-msgbox	We look forward to seeing you on another occasion…
+msgbox	Wir freuen uns, dich bei anderer Gelegenheit wiederzusehen…
 closemessage
 setvar VAR_TEMP_CHALLENGE_STATUS 255
 releaseall
 end
 = BattleFrontier_BattlePikeLobby_EventScript_DefeatedQueen
-msgbox	Congratulations…You have snatched victory from the PIKE QUEEN and cleared the event…
+msgbox	Glückwunsch…Du hast der PIKE QUEEN den Sieg entrissen und das Event gemeistert…
 waitmessage
 goto BattleFrontier_BattlePikeLobby_EventScript_GiveBattlePoints
 = BattleFrontier_BattlePikeLobby_EventScript_QuitWithoutSaving
 special HealPlayerParty
 pike_resethelditems
 lockall
-msgbox	I beg your pardon, but…You failed to save before you quit your challenge the last time.Because of that, your challenge so far has been disqualified. I am sorry…
+msgbox	Verzeih bitte, aber…Du hast beim letzten Mal nicht gespeichert, bevor du deine Herausforderung abgebrochen hast.Deshalb wurde deine bisherige Herausforderung annulliert. Das tut mir leid…
 closemessage
 pike_set PIKE_DATA_WIN_STREAK 0
 pike_set PIKE_DATA_WIN_STREAK_ACTIVE FALSE
@@ -122,13 +122,13 @@ end
 frontier_getstatus
 end
 = BattleFrontier_BattlePikeLobby_EventScript_Beauty
-msgbox	Listen! Listen!Don't you think that the special abilities of POKéMON will be useful here?
+msgbox	Hör mal! Hör mal!Findest du nicht auch, dass die besonderen Fähigkeiten von POKéMON hier nützlich sein könnten?
 end
 = BattleFrontier_BattlePikeLobby_EventScript_Twin
-msgbox	I've completed the challenge 10 times now, but I've never had to battle a TRAINER once.
+msgbox	Ich habe die Herausforderung jetzt schon 10 Mal geschafft, aber ich musste noch nie gegen einen TRAINER kämpfen.
 end
 = BattleFrontier_BattlePikeLobby_EventScript_Hiker
-msgbox	Arrgh! I blew my chance! I was one room away from the goal!In this place, you'd better watch out for poison, freezing, and so on.
+msgbox	Argh! Ich habe meine Chance vertan! Ich war nur einen Raum vom Ziel entfernt!Hier solltest du besser auf Gift, Frost und Ähnliches achtgeben.
 end
 = BattleFrontier_BattlePikeLobby_EventScript_Attendant
 lock
@@ -136,10 +136,10 @@ faceplayer
 setvar VAR_FRONTIER_FACILITY FRONTIER_FACILITY_PIKE
 setvar VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES
 special SavePlayerParty
-msgbox	Where the luck of TRAINERS is put to the test…Welcome to the BATTLE PIKE…I am your guide to the BATTLE PIKE…
+msgbox	Hier wird das Glück von TRAINERN auf die Probe gestellt…Willkommen bei der BATTLE PIKE…Ich bin dein Führer für die BATTLE PIKE…
 goto BattleFrontier_BattlePikeLobby_EventScript_AskTakeChallenge
 = BattleFrontier_BattlePikeLobby_EventScript_AskTakeChallenge
-msgbox	Would you like to take the Battle Choice challenge?
+msgbox	Möchtest du die Battle-Choice-Herausforderung annehmen?
 waitmessage
 multichoice 17 6 MULTI_CHALLENGEINFO FALSE
 switch VAR_RESULT
@@ -149,7 +149,7 @@ case 2 BattleFrontier_BattlePikeLobby_EventScript_CancelChallenge
 case MULTI_B_PRESSED BattleFrontier_BattlePikeLobby_EventScript_CancelChallenge
 goto BattleFrontier_BattlePikeLobby_EventScript_TryEnterChallenge
 = BattleFrontier_BattlePikeLobby_EventScript_TryEnterChallenge
-msgbox	You have the choice of two courses, Level 50 and Open Level. Which will you challenge?
+msgbox	Du hast die Wahl zwischen zwei Klassen, Level 50 und Offenes Level. Welche möchtest du herausfordern?
 waitmessage
 multichoice 17 6 MULTI_LEVEL_MODE FALSE
 switch VAR_RESULT
@@ -158,7 +158,7 @@ case MULTI_B_PRESSED BattleFrontier_BattlePikeLobby_EventScript_CancelChallenge
 frontier_checkineligible
 goto_if_eq VAR_0x8004 TRUE BattleFrontier_BattlePikeLobby_EventScript_NotEnoughValidMons
 frontier_set FRONTIER_DATA_LVL_MODE VAR_RESULT
-msgbox	Please choose the three POKéMON you wish to enter in the challenge…
+msgbox	Bitte wähle die drei POKéMON aus, mit denen du zur Herausforderung antreten möchtest…
 fadescreen FADE_TO_BLACK
 call BattleFrontier_EventScript_GetLvlMode
 copyvar VAR_0x8004 VAR_RESULT
@@ -189,7 +189,7 @@ pike_savehelditems
 goto_if_eq VAR_RESULT 0 BattleFrontier_BattlePikeLobby_EventScript_CancelChallengeSaveFailed
 special SavePlayerParty
 frontier_setpartyorder FRONTIER_PARTY_SIZE
-msgbox	Please step this way…
+msgbox	Bitte komm hier entlang…
 closemessage
 frontier_settrainers
 call BattleFrontier_BattlePikeLobby_EventScript_WalkToCorridor
@@ -213,7 +213,7 @@ return
 frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
 goto BattleFrontier_BattlePikeLobby_EventScript_CancelChallenge
 = BattleFrontier_BattlePikeLobby_EventScript_CancelChallenge
-msgbox	We look forward to seeing you on another occasion…
+msgbox	Wir freuen uns, dich bei anderer Gelegenheit wiederzusehen…
 goto BattleFrontier_BattlePikeLobby_EventScript_EndCancelChallenge
 = BattleFrontier_BattlePikeLobby_EventScript_EndCancelChallenge
 release
@@ -230,16 +230,16 @@ case FRONTIER_LVL_50 BattleFrontier_BattlePikeLobby_EventScript_NotEnoughValidMo
 case FRONTIER_LVL_OPEN BattleFrontier_BattlePikeLobby_EventScript_NotEnoughValidMonsLvOpen
 goto BattleFrontier_BattlePikeLobby_EventScript_NotEnoughValidMonsLv50
 = BattleFrontier_BattlePikeLobby_EventScript_NotEnoughValidMonsLv50
-msgbox	I beg your pardon, but…You do not have three eligible POKéMON for the Battle Choice event.You must have three different POKéMON of Level 50 or less to enter.They also must be holding different kinds of items.EGGSSTR_VAR_1 ineligible.Please come see me when you are ready…
+msgbox	Verzeih bitte, aber…Du hast keine drei zugelassenen POKéMON für das Battle-Choice-Event.Du brauchst drei unterschiedliche POKéMON mit höchstens Level 50, um anzutreten.Sie müssen außerdem unterschiedliche Items bei sich tragen.EGGSSTR_VAR_1 nicht zugelassen.Sprich mich an, sobald du bereit bist…
 goto BattleFrontier_BattlePikeLobby_EventScript_EndCancelChallenge
 = BattleFrontier_BattlePikeLobby_EventScript_NotEnoughValidMonsLvOpen
-msgbox	I beg your pardon, but…You do not have three eligible POKéMON for the Battle Choice event.You must have three different POKéMON to enter.They also must be holding different kinds of items.EGGSSTR_VAR_1 ineligible.Please come see me when you are ready…
+msgbox	Verzeih bitte, aber…Du hast keine drei zugelassenen POKéMON für das Battle-Choice-Event.Du brauchst drei unterschiedliche POKéMON, um anzutreten.Sie müssen außerdem unterschiedliche Items bei sich tragen.EGGSSTR_VAR_1 nicht zugelassen.Sprich mich an, sobald du bereit bist…
 goto BattleFrontier_BattlePikeLobby_EventScript_EndCancelChallenge
 = BattleFrontier_BattlePikeLobby_EventScript_ExplainChallenge
-msgbox	Here we conduct an event we call the Battle Choice.The Battle Choice rules are very simple…Choose one of three paths and make your way to the goal room at the end of the BATTLE PIKE. It's that simple.However, what happens on the chosen path depends entirely on the luck of the challenger…If you reach the goal, you will be rewarded with Battle Points.If you want to interrupt your challenge, please have a word with our staff in the big rooms on the way.If you don't save before interrupting, you will be disqualified.
+msgbox	Hier veranstalten wir ein Event namens Battle Choice.Die Regeln der Battle Choice sind sehr einfach…Wähle einen von drei Wegen und bahne dir deinen Weg zum Zielraum am Ende der BATTLE PIKE. So einfach ist das.Was jedoch auf dem gewählten Weg geschieht, hängt ganz vom Glück des Herausforderers ab…Erreichst du das Ziel, wirst du mit Kampfpunkten belohnt.Wenn du deine Herausforderung unterbrechen möchtest, wende dich bitte an unser Personal in den großen Räumen unterwegs.Speicherst du nicht, bevor du unterbrichst, wirst du disqualifiziert.
 goto BattleFrontier_BattlePikeLobby_EventScript_AskTakeChallenge
 signs
-1 3	The Battle Choice's rules are listed.
+1 3	Die Regeln der Battle Choice sind hier aufgelistet.
 mapsec
 22 12 1 1	BATTLE FRONTIER
 music

@@ -46,10 +46,10 @@ people_hex_maniac 14 13 W static 0 LOCALID_PYRAMID_LOBBY_HINT_GIVER 0
 people_woman_3 2 15 S wander 0 - 0
 people_fat_man 12 16 S wander 0 - 0
 dialogs
-0	Where the courage of TRAINERS is put to the test!Welcome to the BATTLE PYRAMID!I am your guide to the Battle Quest.
-1	Welcome…I shall be pleased to tell you what misfortunes await in the PYRAMID…
-2	Did you know?If you run fast, TRAINERS may notice and come after you for a battle.So, if you want to avoid TRAINERS, don't catch their eyes, but sneak cautiously and quietly past them.
-3	Awaaaaaaarrrrgh!I had a whole lot of items, but I lost them all when I lost!Awaaaaaaarrrrgh!
+0	Hier wird der Mut von TRAINERN auf die Probe gestellt!Willkommen bei der BATTLE PYRAMID!Ich bin dein Führer für die Battle Quest.
+1	Willkommen…Es wird mir eine Freude sein, dir zu verraten, welches Unheil in der PYRAMID auf dich wartet…
+2	Wusstest du schon?Wenn du schnell rennst, bemerken TRAINER dich vielleicht und wollen kämpfen.Wenn du TRAINERN also aus dem Weg gehen willst, falle ihnen nicht auf, sondern schleiche vorsichtig und leise an ihnen vorbei.
+3	Aaaaaaaargh!Ich hatte jede Menge Items, aber ich habe sie alle verloren, als ich verloren habe!Aaaaaaaargh!
 objscripts
 0 BattleFrontier_BattlePyramidLobby_EventScript_Attendant
 1 BattleFrontier_BattlePyramidLobby_EventScript_HintGiver
@@ -74,17 +74,17 @@ special LoadPlayerParty
 pyramid_clearhelditems
 special HealPlayerParty
 lockall
-msgbox	How disappointing for you…Here is the BAG we've been holding for you.PLAYER got the BAG back.
+msgbox	Wie enttäuschend für dich…Hier ist deine BAG, die wir für dich verwahrt haben.PLAYER hat die BAG zurückerhalten.
 waitmessage
 playse SE_EXP_MAX
 waitse
-msgbox	I must record your results. Please wait.
+msgbox	Ich muss deine Ergebnisse festhalten. Bitte warte einen Moment.
 waitmessage
 pyramid_set PYRAMID_DATA_WIN_STREAK_ACTIVE FALSE
 pyramid_save 0
 playse SE_SAVE
 waitse
-msgbox	We look forward to your next challenge!
+msgbox	Wir freuen uns schon auf deine nächste Herausforderung!
 closemessage
 setvar VAR_TEMP_CHALLENGE_STATUS 255
 releaseall
@@ -93,7 +93,7 @@ end
 lockall
 frontier_isbrain
 goto_if_eq VAR_RESULT TRUE BattleFrontier_BattlePyramidLobby_EventScript_DefeatedKing
-msgbox	Excellent to see you back!You've conquered the PYRAMID! How splendid!
+msgbox	Schön, dich wiederzusehen!Du hast die PYRAMID bezwungen! Einfach großartig!
 goto BattleFrontier_BattlePyramidLobby_EventScript_GiveBattlePoints
 = BattleFrontier_BattlePyramidLobby_EventScript_GiveBattlePoints
 special DoBattlePyramidMonsHaveHeldItem
@@ -103,30 +103,30 @@ frontier_checkairshow
 special LoadPlayerParty
 pyramid_clearhelditems
 special HealPlayerParty
-msgbox	The BATTLE BAG you used will be kept in readiness for your next challenge.PLAYER turned the BATTLE BAG over for the BAG's return.
+msgbox	Die BATTLE BAG, die du benutzt hast, wird für deine nächste Herausforderung bereitgehalten.PLAYER hat die BATTLE BAG gegen die BAG eingetauscht.
 waitmessage
 playse SE_EXP_MAX
 waitse
-msgbox	Young explorer! In commendation of your courage, we give you these Battle Point(s)!
+msgbox	Junger Entdecker! Als Anerkennung für deinen Mut erhältst du diese Kampfpunkte!
 frontier_givepoints
-msgbox	PLAYER obtained STR_VAR_1 Battle Point(s).
-msgbox	I must record your results. Please wait.
+msgbox	PLAYER hat STR_VAR_1 Kampfpunkt(e) erhalten.
+msgbox	Ich muss deine Ergebnisse festhalten. Bitte warte einen Moment.
 waitmessage
 pyramid_setprize
 pyramid_save 0
 playse SE_SAVE
 waitse
-msgbox	We look forward to your next challenge!
+msgbox	Wir freuen uns schon auf deine nächste Herausforderung!
 closemessage
 setvar VAR_TEMP_CHALLENGE_STATUS 255
 releaseall
 end
 = BattleFrontier_BattlePyramidLobby_EventScript_StoreHeldItemsInPyramidBag
-msgbox	Ah, a slight problem.At least one POKéMON is holding an item.I'm sorry to say, items obtained in the PYRAMID cannot be taken away.
+msgbox	Ah, ein kleines Problem.Mindestens ein POKéMON trägt ein Item bei sich.Leider können Items, die in der PYRAMID erhalten wurden, nicht mitgenommen werden.
 setflag FLAG_STORING_ITEMS_IN_PYRAMID_BAG
 special TryStoreHeldItemsInPyramidBag
 goto_if_eq VAR_RESULT 0 BattleFrontier_BattlePyramidLobby_EventScript_HeldItemsStoredInPyramidBag
-msgbox	The BATTLE BAG cannot hold all your items, I'm sorry to say.Please pick the items you'll keep in the BATTLE BAG, and with your POKéMON.
+msgbox	Leider passen nicht all deine Items in die BATTLE BAG.Bitte wähle aus, welche Items in der BATTLE BAG bleiben und welche bei deinen POKéMON.
 waitmessage
 goto BattleFrontier_BattlePyramidLobby_EventScript_PickItemsToKeep
 end
@@ -143,37 +143,37 @@ special DoBattlePyramidMonsHaveHeldItem
 goto_if_eq VAR_RESULT TRUE BattleFrontier_BattlePyramidLobby_EventScript_PartyStillHasHeldItems
 return
 = BattleFrontier_BattlePyramidLobby_EventScript_PartyStillHasHeldItems
-msgbox	At least one POKéMON is still holding an item.
-msgbox	Please pick the items you'll keep in the BATTLE BAG, and with your POKéMON.
+msgbox	Mindestens ein POKéMON trägt noch immer ein Item bei sich.
+msgbox	Bitte wähle aus, welche Items in der BATTLE BAG bleiben und welche bei deinen POKéMON.
 waitmessage
 goto BattleFrontier_BattlePyramidLobby_EventScript_PickItemsToKeep
 end
 = BattleFrontier_BattlePyramidLobby_EventScript_PickItemsFromParty
 special BattlePyramidChooseMonHeldItems
-msgbox	Please pick the items you'll keep in the BATTLE BAG, and with your POKéMON.
+msgbox	Bitte wähle aus, welche Items in der BATTLE BAG bleiben und welche bei deinen POKéMON.
 waitmessage
 goto BattleFrontier_BattlePyramidLobby_EventScript_PickItemsToKeep
 end
 = BattleFrontier_BattlePyramidLobby_EventScript_PickItemsFromBag
 special ChooseItemsToTossFromPyramidBag
-msgbox	Please pick the items you'll keep in the BATTLE BAG, and with your POKéMON.
+msgbox	Bitte wähle aus, welche Items in der BATTLE BAG bleiben und welche bei deinen POKéMON.
 waitmessage
 goto BattleFrontier_BattlePyramidLobby_EventScript_PickItemsToKeep
 end
 = BattleFrontier_BattlePyramidLobby_EventScript_HeldItemsStoredInPyramidBag
-msgbox	All items held by your POKéMON will be moved to your BATTLE BAG, PLAYER.
+msgbox	Alle Items, die deine POKéMON tragen, werden in deine BATTLE BAG verschoben, PLAYER.
 return
 @ When exiting Battle Pyramid with a full pyramid bag and held items the player must select to keep/toss party held items and make room for any kept items by tossing from the pyramid bag
 goto BattleFrontier_BattlePyramidLobby_EventScript_PickItemsToKeep
 = BattleFrontier_BattlePyramidLobby_EventScript_DefeatedKing
-msgbox	Welcome back! You've done the unthinkable!You've defeated the PYRAMID KING and conquered the BATTLE PYRAMID!
+msgbox	Willkommen zurück! Du hast das Unvorstellbare geschafft!Du hast den PYRAMID KING besiegt und die BATTLE PYRAMID bezwungen!
 goto BattleFrontier_BattlePyramidLobby_EventScript_GiveBattlePoints
 = BattleFrontier_BattlePyramidLobby_EventScript_ResumeChallenge
 goto BattleFrontier_BattlePyramidLobby_EventScript_EnterChallenge
 = BattleFrontier_BattlePyramidLobby_EventScript_EnterChallenge
 special SavePlayerParty
 frontier_setpartyorder FRONTIER_PARTY_SIZE
-msgbox	Very good. I will now show you into the BATTLE PYRAMID.
+msgbox	Sehr gut. Ich führe dich nun in die BATTLE PYRAMID.
 closemessage
 call BattleFrontier_BattlePyramidLobby_EventScript_WalkToPanelAndReceiveBag
 frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
@@ -187,17 +187,17 @@ end
 applymovement LOCALID_PYRAMID_LOBBY_ATTENDANT BattleFrontier_BattlePyramidLobby_Movement_AttendantWalkToPanel
 applymovement LOCALID_PLAYER BattleFrontier_BattlePyramidLobby_Movement_PlayerWalkToPanel
 waitmovement 0
-msgbox	We will hold your BAG for safekeeping, PLAYER, while you are exploring.
+msgbox	Wir verwahren deine BAG sicher, PLAYER, während du auf Entdeckungsreise bist.
 pyramid_get PYRAMID_DATA_WIN_STREAK
 goto_if_eq VAR_RESULT 0 BattleFrontier_BattlePyramidLobby_EventScript_ReceiveNewBattleBag
-msgbox	In exchange, please take this BATTLE BAG, the one you used previously.
+msgbox	Nimm im Austausch bitte diese BATTLE BAG, die du zuvor schon benutzt hast.
 goto BattleFrontier_BattlePyramidLobby_EventScript_ReceiveBattleBag
 = BattleFrontier_BattlePyramidLobby_EventScript_ReceiveBattleBag
-msgbox	PLAYER exchanged the BAG for the BATTLE BAG.
+msgbox	PLAYER hat die BAG gegen die BATTLE BAG eingetauscht.
 waitmessage
 playse SE_EXP_MAX
 waitse
-msgbox	When you step on this floor panel, you will be transported to a higher floor in the PYRAMID.I hope for your sake that your quest goes safely!
+msgbox	Wenn du dieses Bodenfeld betrittst, wirst du in ein höheres Stockwerk der PYRAMID transportiert.Ich hoffe für dich, dass deine Reise sicher verläuft!
 closemessage
 applymovement LOCALID_PYRAMID_LOBBY_ATTENDANT BattleFrontier_BattlePyramidLobby_Movement_AttendantMoveAside
 waitmovement 0
@@ -205,11 +205,11 @@ applymovement LOCALID_PLAYER BattleFrontier_BattlePyramidLobby_Movement_PlayerSt
 waitmovement 0
 return
 = BattleFrontier_BattlePyramidLobby_EventScript_ReceiveNewBattleBag
-msgbox	In exchange, please take this BATTLE BAG.
+msgbox	Nimm im Austausch bitte diese BATTLE BAG.
 goto BattleFrontier_BattlePyramidLobby_EventScript_ReceiveBattleBag
 = BattleFrontier_BattlePyramidLobby_EventScript_QuitWithoutSaving
 lockall
-msgbox	A major problem, explorer!You did not save before ending your challenge the last time.Consequently, your challenge has been disqualified, I'm sorry to say.Here is the BAG we've been holding for you.PLAYER got the BAG back.
+msgbox	Ein ernstes Problem, Entdecker!Du hast das letzte Mal nicht gespeichert, bevor du deine Herausforderung beendet hast.Daher wurde deine Herausforderung leider annulliert.Hier ist deine BAG, die wir für dich verwahrt haben.PLAYER hat die BAG zurückerhalten.
 waitmessage
 playse SE_EXP_MAX
 waitse
@@ -224,18 +224,18 @@ end
 frontier_getstatus
 end
 = BattleFrontier_BattlePyramidLobby_EventScript_FatMan
-msgbox	Awaaaaaaarrrrgh!I had a whole lot of items, but I lost them all when I lost!Awaaaaaaarrrrgh!
+msgbox	Aaaaaaaargh!Ich hatte jede Menge Items, aber ich habe sie alle verloren, als ich verloren habe!Aaaaaaaargh!
 end
 = BattleFrontier_BattlePyramidLobby_EventScript_Woman
-msgbox	Did you know?If you run fast, TRAINERS may notice and come after you for a battle.So, if you want to avoid TRAINERS, don't catch their eyes, but sneak cautiously and quietly past them.
+msgbox	Wusstest du schon?Wenn du schnell rennst, bemerken TRAINER dich vielleicht und wollen kämpfen.Wenn du TRAINERN also aus dem Weg gehen willst, falle ihnen nicht auf, sondern schleiche vorsichtig und leise an ihnen vorbei.
 end
 = BattleFrontier_BattlePyramidLobby_EventScript_HintGiver
 lockall
 applymovement LOCALID_PYRAMID_LOBBY_HINT_GIVER Common_Movement_FacePlayer
 waitmovement 0
-msgbox	Welcome…I shall be pleased to tell you what misfortunes await in the PYRAMID…
+msgbox	Willkommen…Es wird mir eine Freude sein, dir zu verraten, welches Unheil in der PYRAMID auf dich wartet…
 call BattleFrontier_BattlePyramidLobby_EventScript_GiveHint
-msgbox	Whether you believe my fortunes or not, the choice is yours…The future can be changed anytime… I wish you safe passage…
+msgbox	Ob du meinen Weissagungen glaubst oder nicht, das bleibt dir überlassen…Die Zukunft kann sich jederzeit ändern… Ich wünsche dir eine sichere Reise…
 releaseall
 end
 = BattleFrontier_BattlePyramidLobby_EventScript_GiveHint
@@ -283,64 +283,64 @@ case 18 BattleFrontier_BattlePyramidLobby_EventScript_HintStoneEvolve
 case 19 BattleFrontier_BattlePyramidLobby_EventScript_HintNormal
 return
 = BattleFrontier_BattlePyramidLobby_EventScript_HintNormal
-msgbox	I see NORMAL-type POKéMON……And, I see your POKéMON suffering from enormously powerful moves…
+msgbox	Ich sehe POKéMON vom Typ NORMAL……Und ich sehe, wie deine POKéMON unter enorm starken Attacken leiden…
 return
 = BattleFrontier_BattlePyramidLobby_EventScript_HintStoneEvolve
-msgbox	I see those that have evolved from the power of stones…I also sense fire, water, and electricity……And, I see your POKéMON suffering from those three powers…
+msgbox	Ich sehe jene, die sich durch die Kraft von Steinen entwickelt haben…Auch Feuer, Wasser und Elektrizität spüre ich……Und ich sehe, wie deine POKéMON unter diesen drei Kräften leiden…
 return
 = BattleFrontier_BattlePyramidLobby_EventScript_HintFlyingDragon
-msgbox	I see flying POKéMON……And, I see your POKéMON suffering from enormously powerful moves…
+msgbox	Ich sehe fliegende POKéMON……Und ich sehe, wie deine POKéMON unter enorm starken Attacken leiden…
 return
 = BattleFrontier_BattlePyramidLobby_EventScript_HintSteel
-msgbox	I see STEEL-type POKéMON……And, I see your POKéMON suffering from enormously powerful moves…
+msgbox	Ich sehe POKéMON vom Typ STAHL……Und ich sehe, wie deine POKéMON unter enorm starken Attacken leiden…
 return
 = BattleFrontier_BattlePyramidLobby_EventScript_HintGhost
-msgbox	I see GHOST-type POKéMON……And, I see your POKéMON suffering from GHOST-type moves…
+msgbox	Ich sehe POKéMON vom Typ GEIST……Und ich sehe, wie deine POKéMON unter Attacken vom Typ GEIST leiden…
 return
 = BattleFrontier_BattlePyramidLobby_EventScript_HintWater
-msgbox	I see WATER-type POKéMON……And, I see your POKéMON suffering from WATER-type moves…
+msgbox	Ich sehe POKéMON vom Typ WASSER……Und ich sehe, wie deine POKéMON unter Attacken vom Typ WASSER leiden…
 return
 = BattleFrontier_BattlePyramidLobby_EventScript_HintDark
-msgbox	I see DARK-type POKéMON……And, I see your POKéMON suffering from DARK-type moves…
+msgbox	Ich sehe POKéMON vom Typ UNLICHT……Und ich sehe, wie deine POKéMON unter Attacken vom Typ UNLICHT leiden…
 return
 = BattleFrontier_BattlePyramidLobby_EventScript_HintBug
-msgbox	I see BUG-type POKéMON……And, I see your POKéMON suffering from different kinds of attacks…
+msgbox	Ich sehe POKéMON vom Typ KÄFER……Und ich sehe, wie deine POKéMON unter verschiedenartigen Angriffen leiden…
 return
 = BattleFrontier_BattlePyramidLobby_EventScript_HintWeather
-msgbox	RAIN DANCE… SUNNY DAY… SANDSTORM… HAIL…I see POKéMON that become stronger with the weather……And, I see your POKéMON confounded by different types of moves…
+msgbox	REGENTANZ… SONNENTAG… SANDSTURM… HAGEL…Ich sehe POKéMON, die durch das Wetter stärker werden……Und ich sehe, wie deine POKéMON von unterschiedlichsten Attacken verwirrt werden…
 return
 = BattleFrontier_BattlePyramidLobby_EventScript_HintFighting
-msgbox	I see FIGHTING-type POKéMON……And, I see your POKéMON pummeled by FIGHTING moves…
+msgbox	Ich sehe POKéMON vom Typ KAMPF……Und ich sehe, wie deine POKéMON von Attacken vom Typ KAMPF verprügelt werden…
 return
 = BattleFrontier_BattlePyramidLobby_EventScript_HintRock
-msgbox	I see ROCK-type POKéMON……And, I see your POKéMON suffering from ROCK moves…
+msgbox	Ich sehe POKéMON vom Typ GESTEIN……Und ich sehe, wie deine POKéMON unter Attacken vom Typ GESTEIN leiden…
 return
 = BattleFrontier_BattlePyramidLobby_EventScript_HintPsychic
-msgbox	I see PSYCHIC-type POKéMON……And, I see your POKéMON in torment from PSYCHIC moves…
+msgbox	Ich sehe POKéMON vom Typ PSYCHO……Und ich sehe, wie deine POKéMON von Attacken vom Typ PSYCHO gequält werden…
 return
 = BattleFrontier_BattlePyramidLobby_EventScript_HintExplosion
-msgbox	I see a flurry of moves that imperil the user……And, I see your POKéMON falling to them…
+msgbox	Ich sehe eine Flut von Attacken, die den Anwender selbst gefährden……Und ich sehe, wie deine POKéMON ihnen erliegen…
 return
 = BattleFrontier_BattlePyramidLobby_EventScript_HintIce
-msgbox	I see ICE-type POKéMON……And, I see your POKéMON fighting the freezing effects of ice…
+msgbox	Ich sehe POKéMON vom Typ EIS……Und ich sehe, wie deine POKéMON gegen die erfrierende Wirkung des Eises ankämpfen…
 return
 = BattleFrontier_BattlePyramidLobby_EventScript_HintTrapAbility
-msgbox	I sense terrific energy rising from the ground below……And, I see your POKéMON unable to escape the power's clutches…
+msgbox	Ich spüre gewaltige Energie, die aus dem Boden emporsteigt……Und ich sehe, wie deine POKéMON dieser Macht nicht entkommen können…
 return
 = BattleFrontier_BattlePyramidLobby_EventScript_HintLevitate
-msgbox	I see POKéMON loftily airborne……And, I see your POKéMON frustrated by powerless GROUND-type moves…
+msgbox	Ich sehe POKéMON hoch in der Luft schweben……Und ich sehe, wie deine POKéMON von wirkungslosen Attacken vom Typ BODEN frustriert werden…
 return
 = BattleFrontier_BattlePyramidLobby_EventScript_HintPPWaste
-msgbox	I sense the tremendous pressure of unrequited anger…It is a curse……And, I see your POKéMON drained of Power Points and having no recourse but to use STRUGGLE…
+msgbox	Ich spüre den gewaltigen Druck unerwiderten Zorns…Es ist ein Fluch……Und ich sehe, wie deinen POKéMON die Kraftpunkte ausgehen und ihnen nichts anderes übrig bleibt, als VERZWEIFLER einzusetzen…
 return
 = BattleFrontier_BattlePyramidLobby_EventScript_HintBurn
-msgbox	I see bright red flames……And, I see your POKéMON suffering from burns…
+msgbox	Ich sehe leuchtend rote Flammen……Und ich sehe, wie deine POKéMON unter Verbrennungen leiden…
 return
 = BattleFrontier_BattlePyramidLobby_EventScript_HintPoison
-msgbox	I see poison……And, I see your POKéMON suffering from the effects of poison…
+msgbox	Ich sehe Gift……Und ich sehe, wie deine POKéMON unter den Auswirkungen von Gift leiden…
 return
 = BattleFrontier_BattlePyramidLobby_EventScript_HintParalysis
-msgbox	I see a shower of sparks……And in it, I see your POKéMON struggling with paralysis…
+msgbox	Ich sehe einen Funkenregen……Und darin sehe ich, wie deine POKéMON mit einer Paralyse kämpfen…
 return
 = BattleFrontier_BattlePyramidLobby_EventScript_GiveHintGetLvOpenStreak
 pyramid_get PYRAMID_DATA_WIN_STREAK_OPEN
@@ -366,7 +366,7 @@ special SavePlayerParty
 msgbox	Where the courage of TRAINERS is put to the test!Welcome to the BATTLE PYRAMID!I am your guide to the Battle Quest.
 goto BattleFrontier_BattlePyramidLobby_EventScript_AskTakeChallenge
 = BattleFrontier_BattlePyramidLobby_EventScript_AskTakeChallenge
-msgbox	Have you the courage to embark on the Battle Quest challenge?
+msgbox	Hast du den Mut, dich der Herausforderung der Battle Quest zu stellen?
 waitmessage
 multichoice 17 6 MULTI_CHALLENGEINFO FALSE
 switch VAR_RESULT
@@ -376,7 +376,7 @@ case 2 BattleFrontier_BattlePyramidLobby_EventScript_CancelChallenge
 case MULTI_B_PRESSED BattleFrontier_BattlePyramidLobby_EventScript_CancelChallenge
 goto BattleFrontier_BattlePyramidLobby_EventScript_TryEnterChallenge
 = BattleFrontier_BattlePyramidLobby_EventScript_TryEnterChallenge
-msgbox	The PYRAMID offers two courses, Level 50 and Open Level. Which will you enter?
+msgbox	Die PYRAMID bietet zwei Klassen an, Level 50 und Offenes Level. Für welche entscheidest du dich?
 waitmessage
 multichoice 17 6 MULTI_LEVEL_MODE FALSE
 switch VAR_RESULT
@@ -385,7 +385,7 @@ case MULTI_B_PRESSED BattleFrontier_BattlePyramidLobby_EventScript_CancelChallen
 frontier_checkineligible
 goto_if_eq VAR_0x8004 TRUE BattleFrontier_BattlePyramidLobby_EventScript_NotEnoughValidMons
 frontier_set FRONTIER_DATA_LVL_MODE VAR_RESULT
-msgbox	Very good. Now, please select the three POKéMON you wish to accompany you.
+msgbox	Sehr gut. Bitte wähle nun die drei POKéMON aus, die dich begleiten sollen.
 fadescreen FADE_TO_BLACK
 call BattleFrontier_EventScript_GetLvlMode
 copyvar VAR_0x8004 VAR_RESULT
@@ -418,7 +418,7 @@ goto BattleFrontier_BattlePyramidLobby_EventScript_EnterChallenge
 frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
 goto BattleFrontier_BattlePyramidLobby_EventScript_CancelChallenge
 = BattleFrontier_BattlePyramidLobby_EventScript_CancelChallenge
-msgbox	We await your challenge in the future!
+msgbox	Wir erwarten deine Herausforderung in der Zukunft!
 goto BattleFrontier_BattlePyramidLobby_EventScript_EndCancelChallenge
 = BattleFrontier_BattlePyramidLobby_EventScript_EndCancelChallenge
 release
@@ -435,16 +435,16 @@ case FRONTIER_LVL_50 BattleFrontier_BattlePyramidLobby_EventScript_NotEnoughVali
 case FRONTIER_LVL_OPEN BattleFrontier_BattlePyramidLobby_EventScript_NotEnoughValidMonsLvOpen
 goto BattleFrontier_BattlePyramidLobby_EventScript_NotEnoughValidMonsLv50
 = BattleFrontier_BattlePyramidLobby_EventScript_NotEnoughValidMonsLv50
-msgbox	A slight problem, adventurer!You seem to not have the three POKéMON qualified for the challenge.The three POKéMON must be different and each no higher than Level 50.Please also remember to take all items from your POKéMON.EGGSSTR_VAR_1 ineligible.When you are ready, please have a word with me.
+msgbox	Ein kleines Problem, Abenteurer!Du scheinst nicht über die drei für die Herausforderung qualifizierten POKéMON zu verfügen.Die drei POKéMON müssen unterschiedlich sein und dürfen jeweils höchstens Level 50 haben.Denk auch daran, deinen POKéMON alle Items abzunehmen.EGGSSTR_VAR_1 nicht zugelassen.Sprich mich an, sobald du bereit bist.
 goto BattleFrontier_BattlePyramidLobby_EventScript_EndCancelChallenge
 = BattleFrontier_BattlePyramidLobby_EventScript_NotEnoughValidMonsLvOpen
-msgbox	A slight problem, adventurer!You seem to not have the three POKéMON qualified for the challenge.Please also remember to take all items from your POKéMON.EGGSSTR_VAR_1 ineligible.When you are ready, please have a word with me.
+msgbox	Ein kleines Problem, Abenteurer!Du scheinst nicht über die drei für die Herausforderung qualifizierten POKéMON zu verfügen.Denk auch daran, deinen POKéMON alle Items abzunehmen.EGGSSTR_VAR_1 nicht zugelassen.Sprich mich an, sobald du bereit bist.
 goto BattleFrontier_BattlePyramidLobby_EventScript_EndCancelChallenge
 = BattleFrontier_BattlePyramidLobby_EventScript_ExplainChallenge
-msgbox	The Battle Quest is a battling event in which you must explore the PYRAMID and try to reach the top.In the PYRAMID are seven floors of mazes, all of them filled with not only skilled TRAINERS but also wild POKéMON.You must enter with three POKéMON, none of them holding an item.On your ascent, you will be provided with a BATTLE BAG for items.If you fail in your challenge, any item placed in the BATTLE BAG disappears.If you want to interrupt your challenge, you must select “REST” and save the game.If you don't save before interrupting, you will be disqualified.
+msgbox	Die Battle Quest ist ein Kampfevent, bei dem du die PYRAMID erkunden und versuchen musst, die Spitze zu erreichen.Die PYRAMID hat sieben Stockwerke voller Labyrinthe, die nicht nur von geschickten TRAINERN, sondern auch von wilden POKéMON bevölkert sind.Du musst mit drei POKéMON antreten, von denen keines ein Item trägt.Während deines Aufstiegs erhältst du eine BATTLE BAG für Items.Scheiterst du an deiner Herausforderung, verschwinden alle in der BATTLE BAG befindlichen Items.Wenn du deine Herausforderung unterbrechen willst, musst du „RUHEN“ wählen und das Spiel speichern.Speicherst du nicht, bevor du unterbrichst, wirst du disqualifiziert.
 goto BattleFrontier_BattlePyramidLobby_EventScript_AskTakeChallenge
 signs
-1 12	The Battle Quest rules are listed.
+1 12	Die Regeln der Battle Quest sind hier aufgelistet.
 mapsec
 22 12 1 1	BATTLE FRONTIER
 music

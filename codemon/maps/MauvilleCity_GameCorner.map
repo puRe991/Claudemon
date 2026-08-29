@@ -41,18 +41,18 @@ people_man_3 1 7 E static 0 - 0
 people_maniac 9 8 W static 0 - 0
 people_woman_5 4 6 W static 0 - 0
 dialogs
-0	COINS are needed to play here in the GAME CORNER.
-1	This ROULETTE thing… It's rather demanding.Win or lose, it's only by luck.
-2	This is MAUVILLE GAME CORNER.
-3	Welcome.You can exchange your COINS for prizes here.
-4	I made a mistake and got two of the same DOLLS.Would you like one of them?
-5	Hey, kid, if you want to play here, you need a COIN CASE.I think the young lady next door had one. Go see her!
-6	The ROULETTE tables have different rates.Check your COINS if you're going to pick a table.
-7	It's easy to lose track of time in here. I should get back to work.
-8	Welcome.You can exchange your COINS for prizes here.
-9	Up to three COINS can be used to play the SLOTS.
-10	It's very difficult to make it stop right on “7.”If it stops on “7” during the REEL TIME bonus game, you'll receive extra COINS.
-11	Here's some information for you about the SLOTS.The more lightning bolts you stock, the more REEL TIME chances you get.In a game with the maximum five REEL TIME chances…It is possible to receive four regular bonuses, then a big bonus.That would total 660 COINS, but it's very difficult to get.
+0	Man braucht MÜNZEN, um hier in der SPIELHALLE zu spielen.
+1	Dieses ROULETTE-Ding… Es ist ziemlich anspruchsvoll.Ob Gewinn oder Verlust, alles ist reine Glückssache.
+2	Dies ist die MAUVILLE GAME CORNER.
+3	Willkommen.Hier kannst du deine MÜNZEN gegen Preise eintauschen.
+4	Ich habe mich vertan und zwei von der gleichen DOLLS bekommen.Möchtest du eine davon haben?
+5	Hey, Kleiner, wenn du hier spielen willst, brauchst du ein MÜNZETUI.Ich glaube, die junge Dame nebenan hatte eins. Geh sie doch mal besuchen!
+6	Die ROULETTE-Tische haben unterschiedliche Quoten.Schau nach deinen MÜNZEN, bevor du dir einen Tisch aussuchst.
+7	Hier drin verliert man leicht das Zeitgefühl. Ich sollte wieder an die Arbeit gehen.
+8	Willkommen.Hier kannst du deine MÜNZEN gegen Preise eintauschen.
+9	Beim GLÜCKSSPIELAUTOMATEN kannst du bis zu drei MÜNZEN einsetzen.
+10	Es ist sehr schwierig, ihn genau auf der „7“ zum Stehen zu bringen.Wenn er während des REEL-TIME-Bonusspiels auf der „7“ stehen bleibt, bekommst du zusätzliche MÜNZEN.
+11	Hier ein paar Informationen über die GLÜCKSSPIELAUTOMATEN.Je mehr Blitze du sammelst, desto mehr REEL-TIME-Chancen bekommst du.In einem Spiel mit den maximal fünf REEL-TIME-Chancen…ist es möglich, vier normale Boni und dann einen großen Bonus zu erhalten.Das würde insgesamt 660 MÜNZEN ergeben, ist aber sehr schwer zu erreichen.
 objscripts
 0 MauvilleCity_GameCorner_EventScript_Woman2
 1 MauvilleCity_GameCorner_EventScript_Gentleman
@@ -72,7 +72,7 @@ scriptdefs
 = MauvilleCity_GameCorner_EventScript_Woman
 lock
 faceplayer
-msgbox	Here's some information for you about the SLOTS.The more lightning bolts you stock, the more REEL TIME chances you get.In a game with the maximum five REEL TIME chances…It is possible to receive four regular bonuses, then a big bonus.That would total 660 COINS, but it's very difficult to get.
+msgbox	Hier ein paar Informationen über die GLÜCKSSPIELAUTOMATEN.Je mehr Blitze du sammelst, desto mehr REEL-TIME-Chancen bekommst du.In einem Spiel mit den maximal fünf REEL-TIME-Chancen…ist es möglich, vier normale Boni und dann einen großen Bonus zu erhalten.Das würde insgesamt 660 MÜNZEN ergeben, ist aber sehr schwer zu erreichen.
 goto MauvilleCity_GameCorner_EventScript_NPCReturnToSlots
 end
 = MauvilleCity_GameCorner_EventScript_NPCReturnToSlots
@@ -84,25 +84,25 @@ end
 = MauvilleCity_GameCorner_EventScript_Maniac
 lock
 faceplayer
-msgbox	It's very difficult to make it stop right on “7.”If it stops on “7” during the REEL TIME bonus game, you'll receive extra COINS.
+msgbox	Es ist sehr schwierig, ihn genau auf der „7“ zum Stehen zu bringen.Wenn er während des REEL-TIME-Bonusspiels auf der „7“ stehen bleibt, bekommst du zusätzliche MÜNZEN.
 goto MauvilleCity_GameCorner_EventScript_NPCReturnToSlots
 end
 = MauvilleCity_GameCorner_EventScript_Man
 lock
 faceplayer
-msgbox	Up to three COINS can be used to play the SLOTS.
+msgbox	Beim GLÜCKSSPIELAUTOMATEN kannst du bis zu drei MÜNZEN einsetzen.
 goto MauvilleCity_GameCorner_EventScript_NPCReturnToSlots
 end
 = MauvilleCity_GameCorner_EventScript_PrizeCornerTMs
 lock
 faceplayer
-msgbox	Welcome.You can exchange your COINS for prizes here.
+msgbox	Willkommen.Hier kannst du deine MÜNZEN gegen Preise eintauschen.
 checkitem ITEM_COIN_CASE
 goto_if_eq VAR_RESULT TRUE MauvilleCity_GameCorner_EventScript_ChooseTMPrizeMessage
 release
 end
 = MauvilleCity_GameCorner_EventScript_ChooseTMPrizeMessage
-msgbox	Which prize would you like?
+msgbox	Welchen Preis hättest du gern?
 waitmessage
 setvar VAR_TEMP_1 0
 showcoinsbox 1 1
@@ -119,7 +119,7 @@ case 5 MauvilleCity_GameCorner_EventScript_CancelTMSelect
 goto MauvilleCity_GameCorner_EventScript_CancelTMSelect
 end
 = MauvilleCity_GameCorner_EventScript_CancelTMSelect
-msgbox	Oh, is that so? You need to save some COINS before coming back here.
+msgbox	Ach, ist das so? Du musst erst ein paar MÜNZEN sparen, bevor du wiederkommst.
 hidecoinsbox 0 0
 release
 end
@@ -148,11 +148,11 @@ removecoins TM_ICE_BEAM_COINS
 additem ITEM_TM_ICE_BEAM
 updatecoinsbox 1 1
 playse SE_SHOP
-msgbox	Here you go!
+msgbox	Bitte sehr!
 goto MauvilleCity_GameCorner_EventScript_ReturnToChooseTMPrize
 end
 = MauvilleCity_GameCorner_EventScript_ReturnToChooseTMPrize
-msgbox	Which prize would you like?
+msgbox	Welchen Preis hättest du gern?
 waitmessage
 goto MauvilleCity_GameCorner_EventScript_ChooseTMPrize
 = MauvilleCity_GameCorner_EventScript_NoRoomForTM
@@ -160,7 +160,7 @@ call Common_EventScript_BagIsFull
 goto MauvilleCity_GameCorner_EventScript_ReturnToChooseTMPrize
 end
 = MauvilleCity_GameCorner_EventScript_NotEnoughCoinsForTM
-msgbox	You don't have enough COINS.
+msgbox	Du hast nicht genug MÜNZEN.
 goto MauvilleCity_GameCorner_EventScript_ReturnToChooseTMPrize
 end
 = MauvilleCity_GameCorner_EventScript_BuyTMThunderbolt
@@ -172,7 +172,7 @@ removecoins TM_THUNDERBOLT_COINS
 additem ITEM_TM_THUNDERBOLT
 updatecoinsbox 1 1
 playse SE_SHOP
-msgbox	Here you go!
+msgbox	Bitte sehr!
 goto MauvilleCity_GameCorner_EventScript_ReturnToChooseTMPrize
 end
 = MauvilleCity_GameCorner_EventScript_BuyTMFlamethrower
@@ -184,7 +184,7 @@ removecoins TM_FLAMETHROWER_COINS
 additem ITEM_TM_FLAMETHROWER
 updatecoinsbox 1 1
 playse SE_SHOP
-msgbox	Here you go!
+msgbox	Bitte sehr!
 goto MauvilleCity_GameCorner_EventScript_ReturnToChooseTMPrize
 end
 = MauvilleCity_GameCorner_EventScript_BuyTMPsychic
@@ -196,7 +196,7 @@ removecoins TM_PSYCHIC_COINS
 additem ITEM_TM_PSYCHIC
 updatecoinsbox 1 1
 playse SE_SHOP
-msgbox	Here you go!
+msgbox	Bitte sehr!
 goto MauvilleCity_GameCorner_EventScript_ReturnToChooseTMPrize
 end
 = MauvilleCity_GameCorner_EventScript_BuyTMDoubleTeam
@@ -208,7 +208,7 @@ removecoins TM_DOUBLE_TEAM_COINS
 additem ITEM_TM_DOUBLE_TEAM
 updatecoinsbox 1 1
 playse SE_SHOP
-msgbox	Here you go!
+msgbox	Bitte sehr!
 goto MauvilleCity_GameCorner_EventScript_ReturnToChooseTMPrize
 end
 = MauvilleCity_GameCorner_EventScript_TMThunderbolt
@@ -234,13 +234,13 @@ goto MauvilleCity_GameCorner_EventScript_ConfirmTMPrize
 = MauvilleCity_GameCorner_EventScript_Cook
 lock
 faceplayer
-msgbox	It's easy to lose track of time in here. I should get back to work.
+msgbox	Hier drin verliert man leicht das Zeitgefühl. Ich sollte wieder an die Arbeit gehen.
 goto MauvilleCity_GameCorner_EventScript_NPCReturnToSlots
 end
 = MauvilleCity_GameCorner_EventScript_OldMan
 lock
 faceplayer
-msgbox	The ROULETTE tables have different rates.Check your COINS if you're going to pick a table.
+msgbox	Die ROULETTE-Tische haben unterschiedliche Quoten.Schau nach deinen MÜNZEN, bevor du dir einen Tisch aussuchst.
 goto MauvilleCity_GameCorner_EventScript_NPCReturnToSlots
 end
 = MauvilleCity_GameCorner_EventScript_PokefanM
@@ -248,7 +248,7 @@ lock
 faceplayer
 checkitem ITEM_COIN_CASE
 goto_if_eq VAR_RESULT TRUE MauvilleCity_GameCorner_EventScript_TryGive20Coins
-msgbox	Hey, kid, if you want to play here, you need a COIN CASE.I think the young lady next door had one. Go see her!
+msgbox	Hey, Kleiner, wenn du hier spielen willst, brauchst du ein MÜNZETUI.Ich glaube, die junge Dame nebenan hatte eins. Geh sie doch mal besuchen!
 goto MauvilleCity_GameCorner_EventScript_NPCReturnToSlots
 end
 = MauvilleCity_GameCorner_EventScript_TryGive20Coins
@@ -257,12 +257,12 @@ checkcoins VAR_TEMP_1
 goto_if_ge VAR_TEMP_1 1 MauvilleCity_GameCorner_EventScript_PokefanMNormal @ Only give 20 coins if player has no coins
 setflag FLAG_RECEIVED_20_COINS
 addcoins 20
-msgbox	My luck can only last so long. This is too much for me. Here, take some COINS!
+msgbox	Mein Glück kann nicht ewig anhalten. Das ist zu viel für mich. Hier, nimm ein paar MÜNZEN!
 playse SE_SHOP
 goto MauvilleCity_GameCorner_EventScript_PokefanMNormal
 end
 = MauvilleCity_GameCorner_EventScript_PokefanMNormal
-msgbox	MAUVILLE has something for everyone.For me, it's the GAME CORNER.
+msgbox	MAUVILLE hat für jeden etwas zu bieten.Für mich ist es die GAME CORNER.
 goto MauvilleCity_GameCorner_EventScript_NPCReturnToSlots
 end
 = MauvilleCity_GameCorner_EventScript_Girl
@@ -280,25 +280,25 @@ end
 bufferdecorationname STR_VAR_2 DECOR_MUDKIP_DOLL
 checkdecorspace DECOR_MUDKIP_DOLL
 goto_if_eq VAR_RESULT FALSE MauvilleCity_GameCorner_EventScript_NoRoomForStarterDoll
-msgbox	Here you go!
+msgbox	Bitte sehr!
 givedecoration DECOR_MUDKIP_DOLL
 setflag FLAG_RECEIVED_STARTER_DOLL
 goto MauvilleCity_GameCorner_EventScript_ReceivedStarterDoll
 end
 = MauvilleCity_GameCorner_EventScript_ReceivedStarterDoll
-msgbox	There's a prize I want, but I can't win the jackpot.
+msgbox	Es gibt einen Preis, den ich möchte, aber ich kann den Jackpot nicht knacken.
 release
 end
 = MauvilleCity_GameCorner_EventScript_NoRoomForStarterDoll
 call Common_EventScript_NoRoomForDecor
-msgbox	Huh? You want it, but not right now?
+msgbox	Hä? Du willst ihn, aber gerade nicht?
 release
 end
 = MauvilleCity_GameCorner_EventScript_GiveTorchicDoll
 bufferdecorationname STR_VAR_2 DECOR_TORCHIC_DOLL
 checkdecorspace DECOR_TORCHIC_DOLL
 goto_if_eq VAR_RESULT FALSE MauvilleCity_GameCorner_EventScript_NoRoomForStarterDoll
-msgbox	Here you go!
+msgbox	Bitte sehr!
 givedecoration DECOR_TORCHIC_DOLL
 setflag FLAG_RECEIVED_STARTER_DOLL
 goto MauvilleCity_GameCorner_EventScript_ReceivedStarterDoll
@@ -307,25 +307,25 @@ end
 bufferdecorationname STR_VAR_2 DECOR_TREECKO_DOLL
 checkdecorspace DECOR_TREECKO_DOLL
 goto_if_eq VAR_RESULT FALSE MauvilleCity_GameCorner_EventScript_NoRoomForStarterDoll
-msgbox	Here you go!
+msgbox	Bitte sehr!
 givedecoration DECOR_TREECKO_DOLL
 setflag FLAG_RECEIVED_STARTER_DOLL
 goto MauvilleCity_GameCorner_EventScript_ReceivedStarterDoll
 end
 = MauvilleCity_GameCorner_EventScript_DeclineStarterDoll
-msgbox	Oh, don't be so negative! You can have this!
+msgbox	Ach, sei nicht so negativ! Du kannst das hier haben!
 release
 end
 = MauvilleCity_GameCorner_EventScript_PrizeCornerDolls
 lock
 faceplayer
-msgbox	Welcome.You can exchange your COINS for prizes here.
+msgbox	Willkommen.Hier kannst du deine MÜNZEN gegen Preise eintauschen.
 checkitem ITEM_COIN_CASE
 goto_if_eq VAR_RESULT TRUE MauvilleCity_GameCorner_EventScript_ChooseDollPrizeMessage
 release
 end
 = MauvilleCity_GameCorner_EventScript_ChooseDollPrizeMessage
-msgbox	Which prize would you like?
+msgbox	Welchen Preis hättest du gern?
 waitmessage
 setvar VAR_TEMP_1 0
 showcoinsbox 1 1
@@ -340,7 +340,7 @@ case 3 MauvilleCity_GameCorner_EventScript_CancelDollSelect
 goto MauvilleCity_GameCorner_EventScript_CancelDollSelect
 end
 = MauvilleCity_GameCorner_EventScript_CancelDollSelect
-msgbox	Oh, is that so? You need to save some COINS before coming back here.
+msgbox	Ach, ist das so? Du musst erst ein paar MÜNZEN sparen, bevor du wiederkommst.
 hidecoinsbox 0 0
 release
 end
@@ -366,11 +366,11 @@ removecoins DOLL_COINS
 adddecoration DECOR_MUDKIP_DOLL
 updatecoinsbox 1 1
 playse SE_SHOP
-msgbox	Thank you! We'll send it to your PC at home.
+msgbox	Danke schön! Wir schicken es an deinen PC zu Hause.
 goto MauvilleCity_GameCorner_EventScript_ReturnToChooseDollPrize
 end
 = MauvilleCity_GameCorner_EventScript_ReturnToChooseDollPrize
-msgbox	Which prize would you like?
+msgbox	Welchen Preis hättest du gern?
 waitmessage
 goto MauvilleCity_GameCorner_EventScript_ChooseDollPrize
 = MauvilleCity_GameCorner_EventScript_NoRoomForDoll
@@ -378,7 +378,7 @@ call Common_EventScript_NoRoomForDecor
 goto MauvilleCity_GameCorner_EventScript_ReturnToChooseDollPrize
 end
 = MauvilleCity_GameCorner_EventScript_NotEnoughCoinsForDoll
-msgbox	You don't have enough COINS.
+msgbox	Du hast nicht genug MÜNZEN.
 goto MauvilleCity_GameCorner_EventScript_ReturnToChooseDollPrize
 end
 = MauvilleCity_GameCorner_EventScript_BuyTorchicDoll
@@ -391,7 +391,7 @@ removecoins DOLL_COINS
 adddecoration DECOR_TORCHIC_DOLL
 updatecoinsbox 1 1
 playse SE_SHOP
-msgbox	Thank you! We'll send it to your PC at home.
+msgbox	Danke schön! Wir schicken es an deinen PC zu Hause.
 goto MauvilleCity_GameCorner_EventScript_ReturnToChooseDollPrize
 end
 = MauvilleCity_GameCorner_EventScript_BuyTreeckoDoll
@@ -404,7 +404,7 @@ removecoins DOLL_COINS
 adddecoration DECOR_TREECKO_DOLL
 updatecoinsbox 1 1
 playse SE_SHOP
-msgbox	Thank you! We'll send it to your PC at home.
+msgbox	Danke schön! Wir schicken es an deinen PC zu Hause.
 goto MauvilleCity_GameCorner_EventScript_ReturnToChooseDollPrize
 end
 = MauvilleCity_GameCorner_EventScript_TorchicDoll
@@ -418,10 +418,10 @@ goto MauvilleCity_GameCorner_EventScript_ConfirmDollPrize
 = MauvilleCity_GameCorner_EventScript_CoinsClerk
 lock
 faceplayer
-msgbox	This is MAUVILLE GAME CORNER.
+msgbox	Dies ist die MAUVILLE GAME CORNER.
 checkitem ITEM_COIN_CASE
 goto_if_eq VAR_RESULT FALSE MauvilleCity_GameCorner_EventScript_NeedCoinCase
-msgbox	Were you looking for COINS?It's ¥1000 for 50 COINS. Would you like some?
+msgbox	Warst du auf der Suche nach MÜNZEN?Es kostet ¥1000 für 50 MÜNZEN. Möchtest du welche?
 waitmessage
 showmoneybox 0 0
 showcoinsbox 1 6
@@ -443,7 +443,7 @@ case 1 MauvilleCity_GameCorner_EventScript_Buy500Coins
 goto MauvilleCity_GameCorner_EventScript_CancelBuyCoins
 end
 = MauvilleCity_GameCorner_EventScript_CancelBuyCoins
-msgbox	Oh… You don't need COINS, then? Good luck on your adventure!
+msgbox	Ach… Du brauchst also keine MÜNZEN? Viel Glück auf deinem Abenteuer!
 hidemoneybox
 hidecoinsbox 0 5
 release
@@ -458,19 +458,19 @@ removemoney COINS_PRICE_500
 updatemoneybox
 updatecoinsbox 1 6
 playse SE_SHOP
-msgbox	Thank you very much! Here are your COINS!
+msgbox	Vielen Dank! Hier sind deine MÜNZEN!
 hidemoneybox
 hidecoinsbox 0 5
 release
 end
 = MauvilleCity_GameCorner_EventScript_NotEnoughMoney
-msgbox	Um… You don't appear to have enough money…
+msgbox	Hm… Du scheinst nicht genug Geld zu haben…
 hidemoneybox
 hidecoinsbox 0 5
 release
 end
 = MauvilleCity_GameCorner_EventScript_NoRoomForCoins
-msgbox	Oh? Your COIN CASE is full.
+msgbox	Oh? Dein MÜNZETUI ist voll.
 hidemoneybox
 hidecoinsbox 0 5
 release
@@ -485,20 +485,20 @@ removemoney COINS_PRICE_50
 updatemoneybox
 updatecoinsbox 1 6
 playse SE_SHOP
-msgbox	Thank you very much! Here are your COINS!
+msgbox	Vielen Dank! Hier sind deine MÜNZEN!
 hidemoneybox
 hidecoinsbox 0 5
 release
 end
 = MauvilleCity_GameCorner_EventScript_NeedCoinCase
-msgbox	Okay, you wanted some COINS for the games?But you don't have a COIN CASE for stowing the COINS.
+msgbox	Okay, du wolltest also MÜNZEN für die Spiele?Aber du hast kein MÜNZETUI, um die MÜNZEN darin aufzubewahren.
 release
 end
 = MauvilleCity_GameCorner_EventScript_Gentleman
-msgbox	This ROULETTE thing… It's rather demanding.Win or lose, it's only by luck.
+msgbox	Dieses ROULETTE-Ding… Es ist ziemlich anspruchsvoll.Ob Gewinn oder Verlust, alles ist reine Glückssache.
 end
 = MauvilleCity_GameCorner_EventScript_Woman2
-msgbox	COINS are needed to play here in the GAME CORNER.
+msgbox	Man braucht MÜNZEN, um hier in der SPIELHALLE zu spielen.
 end
 mapsec
 8 6 2 1	MAUVILLE CITY

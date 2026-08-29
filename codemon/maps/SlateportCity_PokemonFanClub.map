@@ -38,9 +38,9 @@ pokemon_skitty 8 3 S static 0 - 0
 pokemon_azumarill 10 8 S static 0 - 0
 people_man_4 11 8 W static 0 - 0
 dialogs
-0	If you keep letting a POKéMON faint in battle, it'll come to resent it.Soon, it will become less trusting of the TRAINER.In other words, it certainly won't like you very much.
-1	Do POKéMON enjoy having items used on them?Mine acted really happy when I gave it some PROTEIN.
-3	I love seeing POKéMON that love their TRAINERS.POKéMON are very sensitive to the feelings of their TRAINERS.If you treat your POKéMON with love and care, they'll love you back.When your POKéMON grow to love you, please come show me.
+0	Wenn du zulässt, dass ein POKéMON im Kampf ständig kampfunfähig wird, wird es dir das übel nehmen.Es wird dem TRAINER nach und nach weniger vertrauen.Mit anderen Worten, es wird dich bestimmt nicht besonders mögen.
+1	Freuen sich POKéMON, wenn man Items an ihnen einsetzt?Meins hat sich total gefreut, als ich ihm PROTEIN gegeben habe.
+3	Ich liebe es, POKéMON zu sehen, die ihre TRAINER lieben.POKéMON spüren die Gefühle ihrer TRAINER ganz genau.Wenn du dein POKéMON mit Liebe und Fürsorge behandelst, wird es dich auch lieben.Wenn dein POKéMON dich lieb gewonnen hat, zeig es mir bitte!
 5	ZIGZAGOON: Kyuuu…
 6	SKITTY: Fffnyaaaah…
 7	AZUMARILL: Marimari?
@@ -66,7 +66,7 @@ msgboxyesno	Heh! My POKéMON totally rules! It's cooler than any POKéMON!I was
 goto_if_eq VAR_RESULT NO MoveTutor_EventScript_SwaggerDeclined
 call MoveTutor_EventScript_CanOnlyBeLearnedOnce
 goto_if_eq VAR_RESULT NO MoveTutor_EventScript_SwaggerDeclined
-msgbox	All right, which POKéMON wants to learn how to SWAGGER?
+msgbox	Gut, welches POKéMON soll ANGEBEN erlernen?
 setvar VAR_0x8005 TUTOR_MOVE_SWAGGER
 call MoveTutor_EventScript_OpenPartyMenu
 goto_if_eq VAR_RESULT 0 MoveTutor_EventScript_SwaggerDeclined
@@ -74,11 +74,11 @@ setflag FLAG_MOVE_TUTOR_TAUGHT_SWAGGER
 goto MoveTutor_EventScript_SwaggerTaught
 end
 = MoveTutor_EventScript_SwaggerTaught
-msgbox	I'll just praise my POKéMON from now on without the swagger.
+msgbox	Ich werde mein POKéMON von nun an einfach ohne ANGEBEN loben.
 release
 end
 = MoveTutor_EventScript_SwaggerDeclined
-msgbox	What, no? Can't you get into the spirit of things?
+msgbox	Was, nein? Kannst du dich nicht auf die Sache einlassen?
 release
 end
 = MoveTutor_EventScript_OpenPartyMenu
@@ -128,7 +128,7 @@ case 2 SlateportCity_PokemonFanClub_EventScript_NoMoreScarves
 release
 end
 = SlateportCity_PokemonFanClub_EventScript_NoMoreScarves
-msgbox	I'm sorry, but I've nothing else to give you! None at all!After all, you're blessed with the gift of raising POKéMON without resorting to any items!
+msgbox	Es tut mir leid, aber ich habe nichts mehr für dich! Gar nichts!Schließlich hast du das Talent, POKéMON auch ganz ohne Items großzuziehen!
 release
 end
 = SlateportCity_PokemonFanClub_EventScript_ChairmanTryAssessPokemon
@@ -140,11 +140,11 @@ call_if_set FLAG_RECEIVED_BLUE_SCARF SlateportCity_PokemonFanClub_EventScript_Co
 call_if_set FLAG_RECEIVED_RED_SCARF SlateportCity_PokemonFanClub_EventScript_CountReceivedScarf
 call_if_eq VAR_TEMP_2 CONTEST_CATEGORIES_COUNT SlateportCity_PokemonFanClub_EventScript_ReceivedAllScarves
 goto_if_eq VAR_SLATEPORT_FAN_CLUB_STATE 2 SlateportCity_PokemonFanClub_EventScript_NoMoreScarves
-msgbox	How is your POKéMON growing? Allow me to examine it.
+msgbox	Wie wächst dein POKéMON heran? Lass es mich mal untersuchen.
 goto SlateportCity_PokemonFanClub_EventScript_ChairmanAssessLeadMon
 end
 = SlateportCity_PokemonFanClub_EventScript_ChairmanAssessLeadMon
-msgbox	Hm, hm… I see…
+msgbox	Hm, hm… Ich verstehe…
 setvar VAR_TEMP_1 0
 call_if_unset FLAG_RECEIVED_YELLOW_SCARF SlateportCity_PokemonFanClub_EventScript_CheckMonTough
 call_if_unset FLAG_RECEIVED_GREEN_SCARF SlateportCity_PokemonFanClub_EventScript_CheckMonSmart
@@ -164,54 +164,54 @@ end
 = SlateportCity_PokemonFanClub_EventScript_GiveYellowScarf
 checkitemspace ITEM_YELLOW_SCARF
 goto_if_eq VAR_RESULT FALSE SlateportCity_PokemonFanClub_EventScript_NoRoomForScarf
-msgbox	Your STR_VAR_1, it is growing in a most impressive manner! It is one fine specimen!But! If you were to give it this, it would grow even better! Indeed!
+msgbox	Dein STR_VAR_1 wächst wirklich beeindruckend heran! Es ist ein wahres Prachtexemplar!Aber! Wenn du ihm das hier gibst, würde es noch besser gedeihen! Wirklich wahr!
 setflag FLAG_RECEIVED_YELLOW_SCARF
 giveitem ITEM_YELLOW_SCARF
-msgbox	Let a POKéMON hold that YELLOW SCARF.It will bolster your POKéMON's toughness so much more!
+msgbox	Lass ein POKéMON dieses GELBE TUCH tragen.Es wird die Zähigkeit deines POKéMON noch viel mehr steigern!
 release
 end
 = SlateportCity_PokemonFanClub_EventScript_NoRoomForScarf
-msgbox	Oh, my…Your POKéMON is growing quite well, so you deserve a reward.Unfortunately, you have no space for this in your BAG.
+msgbox	Oh, du meine Güte…Dein POKéMON wächst sehr gut heran, also hast du dir eine Belohnung verdient.Leider hast du keinen Platz mehr dafür in deiner TASCHE.
 release
 end
 = SlateportCity_PokemonFanClub_EventScript_GiveGreenScarf
 checkitemspace ITEM_GREEN_SCARF
 goto_if_eq VAR_RESULT FALSE SlateportCity_PokemonFanClub_EventScript_NoRoomForScarf
-msgbox	Your STR_VAR_1, it is growing in a most impressive manner! It is one fine specimen!But! If you were to give it this, it would grow even better! Indeed!
+msgbox	Dein STR_VAR_1 wächst wirklich beeindruckend heran! Es ist ein wahres Prachtexemplar!Aber! Wenn du ihm das hier gibst, würde es noch besser gedeihen! Wirklich wahr!
 setflag FLAG_RECEIVED_GREEN_SCARF
 giveitem ITEM_GREEN_SCARF
-msgbox	Let a POKéMON hold that GREEN SCARF.That will enhance the smartness of POKéMON!
+msgbox	Lass ein POKéMON dieses GRÜNE TUCH tragen.Das steigert die Klugheit von POKéMON!
 release
 end
 = SlateportCity_PokemonFanClub_EventScript_GivePinkScarf
 checkitemspace ITEM_PINK_SCARF
 goto_if_eq VAR_RESULT FALSE SlateportCity_PokemonFanClub_EventScript_NoRoomForScarf
-msgbox	Your STR_VAR_1, it is growing in a most impressive manner! It is one fine specimen!But! If you were to give it this, it would grow even better! Indeed!
+msgbox	Dein STR_VAR_1 wächst wirklich beeindruckend heran! Es ist ein wahres Prachtexemplar!Aber! Wenn du ihm das hier gibst, würde es noch besser gedeihen! Wirklich wahr!
 setflag FLAG_RECEIVED_PINK_SCARF
 giveitem ITEM_PINK_SCARF
-msgbox	Let a POKéMON hold that PINK SCARF.It will draw out the cuteness of the POKéMON some more!
+msgbox	Lass ein POKéMON dieses PINKE TUCH tragen.Es bringt die Niedlichkeit des POKéMON noch mehr zur Geltung!
 release
 end
 = SlateportCity_PokemonFanClub_EventScript_GiveBlueScarf
 checkitemspace ITEM_BLUE_SCARF
 goto_if_eq VAR_RESULT FALSE SlateportCity_PokemonFanClub_EventScript_NoRoomForScarf
-msgbox	Your STR_VAR_1, it is growing in a most impressive manner! It is one fine specimen!But! If you were to give it this, it would grow even better! Indeed!
+msgbox	Dein STR_VAR_1 wächst wirklich beeindruckend heran! Es ist ein wahres Prachtexemplar!Aber! Wenn du ihm das hier gibst, würde es noch besser gedeihen! Wirklich wahr!
 setflag FLAG_RECEIVED_BLUE_SCARF
 giveitem ITEM_BLUE_SCARF
-msgbox	Let a POKéMON hold that BLUE SCARF.Its beauty will be accentuated much more than now!
+msgbox	Lass ein POKéMON dieses BLAUE TUCH tragen.Seine Schönheit wird dadurch noch viel mehr betont!
 release
 end
 = SlateportCity_PokemonFanClub_EventScript_GiveRedScarf
 checkitemspace ITEM_RED_SCARF
 goto_if_eq VAR_RESULT FALSE SlateportCity_PokemonFanClub_EventScript_NoRoomForScarf
-msgbox	Your STR_VAR_1, it is growing in a most impressive manner! It is one fine specimen!But! If you were to give it this, it would grow even better! Indeed!
+msgbox	Dein STR_VAR_1 wächst wirklich beeindruckend heran! Es ist ein wahres Prachtexemplar!Aber! Wenn du ihm das hier gibst, würde es noch besser gedeihen! Wirklich wahr!
 setflag FLAG_RECEIVED_RED_SCARF
 giveitem ITEM_RED_SCARF
-msgbox	Let a POKéMON hold that RED SCARF.Everyone will recognize the coolness of that POKéMON!
+msgbox	Lass ein POKéMON dieses ROTE TUCH tragen.Jeder wird die Coolness dieses POKéMON erkennen!
 release
 end
 = SlateportCity_PokemonFanClub_EventScript_NoHighConditions
-msgbox	Hmmm… It's not bad, but it's not good, either…You, the TRAINER, must put more effort into raising this POKéMON!For instance, may I suggest that you give it more S?
+msgbox	Hmmm… Es ist nicht schlecht, aber auch nicht gut…Du, der TRAINER, musst dir mehr Mühe geben, dieses POKéMON großzuziehen!Darf ich zum Beispiel vorschlagen, ihm mehr S zu geben?
 release
 end
 = SlateportCity_PokemonFanClub_EventScript_CheckMonCool
@@ -257,28 +257,28 @@ addvar VAR_TEMP_2 1
 return
 = SlateportCity_PokemonFanClub_EventScript_ChairmanFirstAssessment
 setvar VAR_SLATEPORT_FAN_CLUB_STATE 1
-msgbox	Er-hem! I see you've participated in a POKéMON CONTEST!Please! Allow me to examine how you have raised your POKéMON.It delights me no end to see POKéMON raised by other TRAINERS.The happy expressions of POKéMON raised with proper care…The kindly eyes of the TRAINER that nurtured and raised the POKéMON…The very thought fills my heart to overwhelming with joy.Oh! I do beg your pardon! Forgive me for prattling on so!Please! Allow me to examine how much your POKéMON has grown!
+msgbox	Ähem! Ich sehe, du hast an einem POKéMON-CONTEST teilgenommen!Bitte! Lass mich untersuchen, wie du dein POKéMON großgezogen hast.Es erfreut mich ungemein, POKéMON zu sehen, die von anderen TRAINERN aufgezogen wurden.Der glückliche Ausdruck von POKéMON, die mit rechter Sorgfalt aufgezogen wurden…Der gütige Blick des TRAINERS, der das POKéMON gehegt und gepflegt hat…Schon der Gedanke daran erfüllt mein Herz mit überwältigender Freude.Oh! Ich bitte um Verzeihung! Vergib mir mein Geschwätz!Bitte! Lass mich untersuchen, wie sehr dein POKéMON gewachsen ist!
 goto SlateportCity_PokemonFanClub_EventScript_ChairmanAssessLeadMon
 end
 = SlateportCity_PokemonFanClub_EventScript_MeetChairman
-msgbox	Er-hem! I am the CHAIRMAN of the POKéMON FAN CLUB!Being the CHAIRMAN, I am naturally the most important!No one can best me when it comes to raising POKéMON. No one!Well, let me tell you about POKéMON CONTESTS.They're events where one can show off POKéMON for the world to see!However, they're held in far-off towns, so I cannot participate often enough.That is why we gather here to show off our POKéMON, and have others show us theirs.
+msgbox	Ähem! Ich bin der VORSITZENDE des POKéMON-FANCLUBS!Als VORSITZENDER bin ich natürlich der Wichtigste!Niemand übertrifft mich im Großziehen von POKéMON. Niemand!Nun, lass mich dir von POKéMON-CONTESTS erzählen.Das sind Veranstaltungen, bei denen man seine POKéMON der ganzen Welt zeigen kann!Sie finden allerdings in fernen Städten statt, also kann ich nicht oft genug teilnehmen.Deshalb versammeln wir uns hier, um unsere POKéMON zu zeigen und die der anderen zu bewundern.
 setflag FLAG_MET_SLATEPORT_FANCLUB_CHAIRMAN
 return
 = SlateportCity_PokemonFanClub_EventScript_ChairmanNotEnteredContest
 goto_if_set FLAG_MET_SLATEPORT_FANCLUB_CHAIRMAN SlateportCity_PokemonFanClub_EventScript_ChairmanEnterContest
-msgbox	Er-hem! I am the CHAIRMAN of the POKéMON FAN CLUB!Being the CHAIRMAN, I am naturally the most important!No one can best me when it comes to raising POKéMON. No one!Well, let me tell you about POKéMON CONTESTS.They're events where one can show off POKéMON for the world to see!However, they're held in far-off towns, so I cannot participate often enough.That is why we gather here to show off our POKéMON, and have others show us theirs.
+msgbox	Ähem! Ich bin der VORSITZENDE des POKéMON-FANCLUBS!Als VORSITZENDER bin ich natürlich der Wichtigste!Niemand übertrifft mich im Großziehen von POKéMON. Niemand!Nun, lass mich dir von POKéMON-CONTESTS erzählen.Das sind Veranstaltungen, bei denen man seine POKéMON der ganzen Welt zeigen kann!Sie finden allerdings in fernen Städten statt, also kann ich nicht oft genug teilnehmen.Deshalb versammeln wir uns hier, um unsere POKéMON zu zeigen und die der anderen zu bewundern.
 setflag FLAG_MET_SLATEPORT_FANCLUB_CHAIRMAN
 release
 end
 = SlateportCity_PokemonFanClub_EventScript_ChairmanEnterContest
-msgbox	The POKéMON of a TRAINER who has entered a POKéMON CONTEST… That, I would like to see.
+msgbox	Das POKéMON eines TRAINERS, der an einem POKéMON-CONTEST teilgenommen hat… Das würde ich gerne sehen.
 release
 end
 = SlateportCity_PokemonFanClub_EventScript_SootheBellWoman
 lock
 faceplayer
 goto_if_set FLAG_RECEIVED_SOOTHE_BELL SlateportCity_PokemonFanClub_EventScript_ReceivedSootheBell
-msgbox	I love seeing POKéMON that love their TRAINERS.POKéMON are very sensitive to the feelings of their TRAINERS.If you treat your POKéMON with love and care, they'll love you back.When your POKéMON grow to love you, please come show me.
+msgbox	Ich liebe es, POKéMON zu sehen, die ihre TRAINER lieben.POKéMON spüren die Gefühle ihrer TRAINER ganz genau.Wenn du dein POKéMON mit Liebe und Fürsorge behandelst, wird es dich auch lieben.Wenn dein POKéMON dich lieb gewonnen hat, zeig es mir bitte!
 specialvar VAR_RESULT GetLeadMonFriendshipScore
 goto_if_ge VAR_RESULT FRIENDSHIP_150_TO_199 SlateportCity_PokemonFanClub_EventScript_GiveSootheBell
 release
@@ -289,14 +289,14 @@ applymovement VAR_LAST_TALKED Common_Movement_ExclamationMark
 waitmovement 0
 applymovement VAR_LAST_TALKED Common_Movement_Delay48
 waitmovement 0
-msgbox	Your POKéMON really adores you.For you, a most compassionate TRAINER, a gift from the FAN CLUB!
+msgbox	Dein POKéMON vergöttert dich wirklich.Für dich, einen so mitfühlenden TRAINER, ein Geschenk vom FANCLUB!
 giveitem ITEM_SOOTHE_BELL
 goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
 setflag FLAG_RECEIVED_SOOTHE_BELL
 release
 end
 = SlateportCity_PokemonFanClub_EventScript_ReceivedSootheBell
-msgbox	POKéMON are very sensitive to the feelings of their TRAINERS.If you treat your POKéMON with love and care, they'll love you back.
+msgbox	POKéMON spüren die Gefühle ihrer TRAINER ganz genau.Wenn du dein POKéMON mit Liebe und Fürsorge behandelst, wird es dich auch lieben.
 release
 end
 = SlateportCity_PokemonFanClub_EventScript_Reporter
@@ -313,11 +313,11 @@ goto_if_eq VAR_RESULT YES SlateportCity_PokemonFanClub_EventScript_AcceptIntervi
 goto_if_eq VAR_RESULT NO SlateportCity_PokemonFanClub_EventScript_DeclineInterview
 end
 = SlateportCity_PokemonFanClub_EventScript_DeclineInterview
-msgbox	Oh, okay…Well, if you get the urge to tell me about POKéMON, I'll be here!
+msgbox	Oh, na gut…Nun, wenn du mir mal von POKéMON erzählen möchtest, bin ich hier!
 release
 end
 = SlateportCity_PokemonFanClub_EventScript_AcceptInterview
-msgbox	Great! Thank you!Okay, here goes. I just need quick answers, okay?
+msgbox	Super! Danke!Okay, los geht's. Ich brauche nur schnelle Antworten, okay?
 random 3
 copyvar VAR_0x800A VAR_RESULT
 switch VAR_RESULT
@@ -326,7 +326,7 @@ case 1 SlateportCity_PokemonFanClub_EventScript_RandomQuestion2
 case 2 SlateportCity_PokemonFanClub_EventScript_RandomQuestion3
 end
 = SlateportCity_PokemonFanClub_EventScript_RandomQuestion3
-msgbox	This question also relates to your beloved STR_VAR_1.What was it about STR_VAR_1 that attracted you?
+msgbox	Diese Frage betrifft auch dein geliebtes STR_VAR_1.Was hat dich an STR_VAR_1 so angezogen?
 goto SlateportCity_PokemonFanClub_EventScript_ContinueInterview
 end
 = SlateportCity_PokemonFanClub_EventScript_ContinueInterview
@@ -337,13 +337,13 @@ call Common_ShowEasyChatScreen
 lock
 faceplayer
 goto_if_eq VAR_RESULT 0 SlateportCity_PokemonFanClub_EventScript_DeclineInterview
-msgbox	Okay, that makes sense.The next question might be a little on the tough side.Here goes…What do POKéMON mean to you?
+msgbox	Okay, das ergibt Sinn.Die nächste Frage ist vielleicht etwas kniffliger.Los geht's…Was bedeuten POKéMON für dich?
 setvar VAR_0x8006 1
 call Common_ShowEasyChatScreen
 lock
 faceplayer
 goto_if_eq VAR_RESULT 0 SlateportCity_PokemonFanClub_EventScript_DeclineInterview
-msgbox	I see!Hmhm…Okay! Thanks for helping me out.It was fun and enlightening chatting with you.It's possible that our interview will end up on TV. Tune in and check!Okay, that's all. Bye-bye!
+msgbox	Aha!Hmhm…Okay! Danke für deine Hilfe.Es war lustig und aufschlussreich, mit dir zu plaudern.Es kann sein, dass unser Interview im Fernsehen landet. Schau doch mal rein!Okay, das war's. Tschüssikowski!
 copyvar VAR_0x8007 VAR_0x800A
 setvar VAR_0x8005 TVSHOW_PKMN_FAN_CLUB_OPINIONS
 goto Interview_EventScript_EndInterview
@@ -365,11 +365,11 @@ goto_if_eq VAR_RESULT YES SlateportCity_PokemonFanClub_EventScript_AcceptIntervi
 goto_if_eq VAR_RESULT NO SlateportCity_PokemonFanClub_EventScript_DeclineInterview2
 end
 = SlateportCity_PokemonFanClub_EventScript_DeclineInterview2
-msgbox	Oh, okay…Well, if you get the urge to tell me about POKéMON, I'll be here!
+msgbox	Oh, na gut…Nun, wenn du mir mal von POKéMON erzählen möchtest, bin ich hier!
 release
 end
 = SlateportCity_PokemonFanClub_EventScript_AcceptInterview2
-msgbox	Wow, thank you!Okay, then, please tell me anything you'd like about your STR_VAR_1.
+msgbox	Wow, danke!Okay, dann erzähl mir doch, was du möchtest, über dein STR_VAR_1.
 setvar VAR_0x8004 EASY_CHAT_TYPE_INTERVIEW
 copyvar VAR_0x8005 VAR_0x8009
 setvar VAR_0x8006 EASY_CHAT_PERSON_REPORTER_FEMALE
@@ -380,31 +380,31 @@ goto_if_eq VAR_RESULT 1 SlateportCity_PokemonFanClub_EventScript_SubmitResponse2
 goto_if_eq VAR_RESULT 0 SlateportCity_PokemonFanClub_EventScript_DeclineInterview2
 end
 = SlateportCity_PokemonFanClub_EventScript_SubmitResponse2
-msgbox	Wow… That's an interesting account.You really are tight with STR_VAR_1, aren't you?I get the feeling that your account will make a great TV story.I promise that I'll turn this into an entertaining show. Keep your eyes out for it.Okay, that's all. Bye-bye!
+msgbox	Wow… Das ist eine interessante Geschichte.Du bist wirklich eng verbunden mit STR_VAR_1, nicht wahr?Ich habe das Gefühl, dass deine Geschichte eine tolle TV-Story abgeben würde.Ich verspreche, ich mache daraus eine unterhaltsame Sendung. Halt die Augen offen!Okay, das war's. Tschüssikowski!
 setvar VAR_0x8005 TVSHOW_FAN_CLUB_LETTER
 goto Interview_EventScript_EndInterview
 end
 = SlateportCity_PokemonFanClub_EventScript_AlreadyInterviewed2
-msgbox	I enjoy this job--you get to learn about POKéMON by doing interviews.
+msgbox	Ich liebe diesen Job--man erfährt bei Interviews so viel über POKéMON.
 release
 end
 = SlateportCity_PokemonFanClub_EventScript_RandomQuestion2
-msgbox	Your STR_VAR_1 is cared for lovingly.If you were to liken it to something that you like, what would it be?
+msgbox	Dein STR_VAR_1 wird liebevoll umsorgt.Wenn du es mit etwas vergleichen würdest, das du magst, was wäre das?
 goto SlateportCity_PokemonFanClub_EventScript_ContinueInterview
 end
 = SlateportCity_PokemonFanClub_EventScript_RandomQuestion1
-msgbox	When you first met STR_VAR_1, what did you feel?How would you describe your feelings at the time?
+msgbox	Was hast du gefühlt, als du STR_VAR_1 zum ersten Mal getroffen hast?Wie würdest du deine Gefühle von damals beschreiben?
 goto SlateportCity_PokemonFanClub_EventScript_ContinueInterview
 end
 = SlateportCity_PokemonFanClub_EventScript_AlreadyInterviewed
-msgbox	I enjoy this job--you get to learn about POKéMON by doing interviews.
+msgbox	Ich liebe diesen Job--man erfährt bei Interviews so viel über POKéMON.
 release
 end
 = SlateportCity_PokemonFanClub_EventScript_Twin
-msgbox	Do POKéMON enjoy having items used on them?Mine acted really happy when I gave it some PROTEIN.
+msgbox	Freuen sich POKéMON, wenn man Items an ihnen einsetzt?Meins hat sich total gefreut, als ich ihm PROTEIN gegeben habe.
 end
 = SlateportCity_PokemonFanClub_EventScript_Man
-msgbox	If you keep letting a POKéMON faint in battle, it'll come to resent it.Soon, it will become less trusting of the TRAINER.In other words, it certainly won't like you very much.
+msgbox	Wenn du zulässt, dass ein POKéMON im Kampf ständig kampfunfähig wird, wird es dir das übel nehmen.Es wird dem TRAINER nach und nach weniger vertrauen.Mit anderen Worten, es wird dich bestimmt nicht besonders mögen.
 end
 mapsec
 8 10 1 2	SLATEPORT CITY

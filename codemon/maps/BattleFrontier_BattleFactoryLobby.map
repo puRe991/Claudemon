@@ -37,10 +37,10 @@ people_picnicker 13 11 E static 0 - 0
 people_fat_man 6 10 S static 0 - 0
 people_scientist_1 14 7 S static 0 LOCALID_FACTORY_ATTENDANT_DOUBLES 0
 dialogs
-1	Hi! You, there!Are you thinking that the events here are easy since you don't need to have a raised team of POKéMON?I wouldn't be too sure about winning that easily.If you don't have thorough knowledge about POKéMON and their moves, it will be tough to keep winning.
-2	I swapped for a weak POKéMON… I thought it was a good kind to have…They wiped the floor with us…
-3	Things haven't been going my way at all.You need to check your opponent's POKéMON during battle to see if they're any good.
-4	You know how the staff here give you a few hints about your next opponent?Well, I'm a full-grown man, but I have trouble figuring out their hints.
+1	Hey! Du da!Denkst du etwa, die Events hier sind leicht, nur weil du kein selbst trainiertes POKéMON-Team brauchst?So einfach würde ich mir das Gewinnen nicht vorstellen.Wenn du kein gründliches Wissen über POKéMON und ihre Attacken hast, wird es schwer, immer weiter zu gewinnen.
+2	Ich habe gegen ein schwaches POKéMON getauscht… Ich dachte, es wäre eine gute Wahl…Sie haben uns komplett vom Feld gefegt…
+3	Es läuft momentan überhaupt nicht nach meinem Geschmack.Du musst im Kampf die POKéMON deines Gegners prüfen, um zu sehen, ob sie etwas taugen.
+4	Weißt du, wie das Personal hier dir ein paar Hinweise über deinen nächsten Gegner gibt?Nun, ich bin ein erwachsener Mann, aber ich komme trotzdem nicht auf ihre Hinweise.
 objscripts
 0 BattleFrontier_BattleFactoryLobby_EventScript_SinglesAttendant
 1 BattleFrontier_BattleFactoryLobby_EventScript_Woman
@@ -60,7 +60,7 @@ BattleFrontier_BattleFactoryLobby_Movement_PlayerEnterDoor	up,up,up,up,end
 scriptdefs
 = BattleFrontier_BattleFactoryLobby_EventScript_LostChallenge
 lockall
-msgbox	Thank you for participating!I will return your POKéMON in exchange for our rental POKéMON.I must also save the event results. Please wait.
+msgbox	Danke für deine Teilnahme!Ich gebe dir deine POKéMON zurück und nehme unsere Leih-POKéMON entgegen.Auch muss ich die Ergebnisse des Events speichern. Bitte warte einen Moment.
 waitmessage
 frontier_checkairshow
 special LoadPlayerParty
@@ -72,7 +72,7 @@ goto BattleFrontier_BattleFactoryLobby_EventScript_AskRecordBattle
 = BattleFrontier_BattleFactoryLobby_EventScript_AskRecordBattle
 call BattleFrontier_EventScript_GetCantRecordBattle
 goto_if_eq VAR_RESULT TRUE BattleFrontier_BattleFactoryLobby_EventScript_EndRecordBattle
-msgbox	Would you like to record your last BATTLE FACTORY match on your FRONTIER PASS?
+msgbox	Möchtest du deinen letzten Kampf in der BATTLE FACTORY auf deinem FRONTIER PASS festhalten?
 waitmessage
 multichoicedefault 20 8 MULTI_YESNO 1 FALSE
 switch VAR_RESULT
@@ -84,7 +84,7 @@ goto BattleFrontier_BattleFactoryLobby_EventScript_RecordBattle
 call BattleFrontier_EventScript_SaveBattle
 goto BattleFrontier_BattleFactoryLobby_EventScript_EndRecordBattle
 = BattleFrontier_BattleFactoryLobby_EventScript_EndRecordBattle
-msgbox	We look forward to your next visit.
+msgbox	Wir freuen uns schon auf deinen nächsten Besuch.
 closemessage
 setvar VAR_TEMP_CHALLENGE_STATUS 255
 releaseall
@@ -93,14 +93,14 @@ end
 lockall
 frontier_isbrain
 goto_if_eq VAR_RESULT TRUE BattleFrontier_BattleFactoryLobby_EventScript_DefeatedFactoryHead
-msgbox	Congratulations! You've won seven straight Battle Swap matches!
+msgbox	Glückwunsch! Du hast sieben Battle-Swap-Kämpfe in Folge gewonnen!
 waitmessage
 goto BattleFrontier_BattleFactoryLobby_EventScript_GiveBattlePoints
 = BattleFrontier_BattleFactoryLobby_EventScript_GiveBattlePoints
-msgbox	In recognition of your wealth of knowledge and keen intelligence, we award you these Battle Point(s).
+msgbox	Als Anerkennung für deinen reichen Wissensschatz und deinen scharfen Verstand erhältst du diese Kampfpunkte.
 frontier_givepoints
-msgbox	PLAYER obtained STR_VAR_1 Battle Point(s).
-msgbox	Let me exchange your POKéMON for our rental POKéMON.I need to save the battle data, so please wait.
+msgbox	PLAYER hat STR_VAR_1 Kampfpunkt(e) erhalten.
+msgbox	Lass mich deine POKéMON gegen unsere Leih-POKéMON eintauschen.Ich muss die Kampfdaten speichern, bitte warte einen Moment.
 waitmessage
 frontier_checkairshow
 special LoadPlayerParty
@@ -110,12 +110,12 @@ waitse
 goto BattleFrontier_BattleFactoryLobby_EventScript_AskRecordBattle
 end
 = BattleFrontier_BattleFactoryLobby_EventScript_DefeatedFactoryHead
-msgbox	Congratulations for defeating the FACTORY HEAD and winning seven matches in a row!
+msgbox	Glückwunsch, dass du den FACTORY HEAD besiegt und sieben Kämpfe in Folge gewonnen hast!
 waitmessage
 goto BattleFrontier_BattleFactoryLobby_EventScript_GiveBattlePoints
 = BattleFrontier_BattleFactoryLobby_EventScript_ResumeChallenge
 lockall
-msgbox	We've been waiting for you!Before we resume your challenge, I must save the game.
+msgbox	Wir haben schon auf dich gewartet!Bevor wir deine Herausforderung fortsetzen, muss ich das Spiel speichern.
 waitmessage
 factory_save CHALLENGE_STATUS_SAVING
 playse SE_SAVE
@@ -126,7 +126,7 @@ setvar VAR_0x8006 2
 goto BattleFrontier_BattleFactoryLobby_EventScript_EnterChallenge
 = BattleFrontier_BattleFactoryLobby_EventScript_EnterChallenge
 special SavePlayerParty
-msgbox	Please step this way.
+msgbox	Bitte komm hier entlang.
 closemessage
 call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES BattleFrontier_BattleFactoryLobby_EventScript_TalkedToSinglesAttendant
 call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_DOUBLES BattleFrontier_BattleFactoryLobby_EventScript_TalkedToDoublesAttendant
@@ -145,7 +145,7 @@ setvar VAR_LAST_TALKED LOCALID_FACTORY_ATTENDANT_SINGLES
 return
 = BattleFrontier_BattleFactoryLobby_EventScript_QuitWithoutSaving
 lockall
-msgbox	I'm sorry to say this, but you didn't save before you quit playing last time.As a result, you have been disqualified from your challenge.
+msgbox	Es tut mir leid, das sagen zu müssen, aber du hast beim letzten Mal nicht gespeichert, bevor du aufgehört hast zu spielen.Daher wurdest du von deiner Herausforderung disqualifiziert.
 closemessage
 factory_setswapped
 factory_set FACTORY_DATA_WIN_STREAK_SWAPS 0
@@ -180,7 +180,7 @@ case 2 BattleFrontier_BattleFactoryLobby_EventScript_CancelChallenge
 case MULTI_B_PRESSED BattleFrontier_BattleFactoryLobby_EventScript_CancelChallenge
 goto BattleFrontier_BattleFactoryLobby_EventScript_TryEnterChallenge
 = BattleFrontier_BattleFactoryLobby_EventScript_TryEnterChallenge
-msgbox	Which level do you wish to challenge? Level 50 or Open Level?
+msgbox	Welches Level möchtest du herausfordern? Level 50 oder Offenes Level?
 waitmessage
 multichoice 17 6 MULTI_LEVEL_MODE FALSE
 switch VAR_RESULT
@@ -210,7 +210,7 @@ goto BattleFrontier_BattleFactoryLobby_EventScript_EnterChallenge
 frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
 goto BattleFrontier_BattleFactoryLobby_EventScript_CancelChallenge
 = BattleFrontier_BattleFactoryLobby_EventScript_CancelChallenge
-msgbox	We look forward to your next visit.
+msgbox	Wir freuen uns schon auf deinen nächsten Besuch.
 release
 end
 = Common_EventScript_SaveGame
@@ -224,36 +224,36 @@ call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES BattleFrontier_BattleF
 call_if_eq VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_DOUBLES BattleFrontier_BattleFactoryLobby_EventScript_ExplainDoublesChallenge
 goto BattleFrontier_BattleFactoryLobby_EventScript_AskTakeChallenge
 = BattleFrontier_BattleFactoryLobby_EventScript_ExplainDoublesChallenge
-msgbox	The Battle Swap Double Tournament is a DOUBLE BATTLE competition using only rental POKéMON.First, you will be loaned three POKéMON specifically for this event.Using the supplied rental POKéMON, you must conduct a DOUBLE BATTLE.If you win, you are permitted to trade one of your rental POKéMON.Repeat this cycle of battling and trading--if you win seven times in a row, you will earn Battle Points.If you want to interrupt your challenge, please save the game.If you don't save before interrupting, you will be disqualified.
+msgbox	Das Battle-Swap-Doppelturnier ist ein DOPPELKAMPF-Wettbewerb, bei dem nur Leih-POKéMON verwendet werden.Zunächst werden dir drei POKéMON eigens für dieses Event geliehen.Mit den geliehenen POKéMON musst du einen DOPPELKAMPF bestreiten.Gewinnst du, darfst du eines deiner Leih-POKéMON eintauschen.Wiederhole diesen Kreislauf aus Kämpfen und Tauschen -- gewinnst du siebenmal in Folge, erhältst du Kampfpunkte.Wenn du deine Herausforderung unterbrechen willst, speichere bitte das Spiel.Speicherst du nicht, bevor du unterbrichst, wirst du disqualifiziert.
 return
 = BattleFrontier_BattleFactoryLobby_EventScript_ExplainSinglesChallenge
-msgbox	The Battle Swap Single Tournament is a SINGLE BATTLE competition using only rental POKéMON.First, you will be loaned three POKéMON specifically for this event.Using the supplied rental POKéMON, you must conduct a SINGLE BATTLE.If you win, you are permitted to trade one of your rental POKéMON.Repeat this cycle of battling and trading--if you win seven times in a row, you will earn Battle Points.If you want to interrupt your challenge, please save the game.If you don't save, you will be disqualified from your challenge.
+msgbox	Das Battle-Swap-Einzelturnier ist ein EINZELKAMPF-Wettbewerb, bei dem nur Leih-POKéMON verwendet werden.Zunächst werden dir drei POKéMON eigens für dieses Event geliehen.Mit den geliehenen POKéMON musst du einen EINZELKAMPF bestreiten.Gewinnst du, darfst du eines deiner Leih-POKéMON eintauschen.Wiederhole diesen Kreislauf aus Kämpfen und Tauschen -- gewinnst du siebenmal in Folge, erhältst du Kampfpunkte.Wenn du deine Herausforderung unterbrechen willst, speichere bitte das Spiel.Speicherst du nicht, wirst du von deiner Herausforderung disqualifiziert.
 return
 = BattleFrontier_BattleFactoryLobby_EventScript_TakeDoublesChallenge
-msgbox	Would you like to take the Battle Swap Double challenge?
+msgbox	Möchtest du die Battle-Swap-Doppel-Herausforderung annehmen?
 return
 = BattleFrontier_BattleFactoryLobby_EventScript_TakeSinglesChallenge
-msgbox	Would you like to take the Battle Swap Single challenge?
+msgbox	Möchtest du die Battle-Swap-Einzel-Herausforderung annehmen?
 return
 = BattleFrontier_BattleFactoryLobby_EventScript_WelcomeForDoubleBattle
-msgbox	Where the intelligence of TRAINERS is put to the test!Welcome to the BATTLE FACTORY!I am your guide to the Battle Swap Double Tournament.
+msgbox	Hier wird die Klugheit von TRAINERN auf die Probe gestellt!Willkommen bei der BATTLE FACTORY!Ich bin dein Führer für das Battle-Swap-Doppelturnier.
 return
 = BattleFrontier_BattleFactoryLobby_EventScript_WelcomeForSingleBattle
-msgbox	Where the intelligence of TRAINERS is put to the test!Welcome to the BATTLE FACTORY!I am your guide to the Battle Swap Single Tournament.
+msgbox	Hier wird die Klugheit von TRAINERN auf die Probe gestellt!Willkommen bei der BATTLE FACTORY!Ich bin dein Führer für das Battle-Swap-Einzelturnier.
 return
 = BattleFrontier_BattleFactoryLobby_EventScript_FatMan
-msgbox	You know how the staff here give you a few hints about your next opponent?Well, I'm a full-grown man, but I have trouble figuring out their hints.
+msgbox	Weißt du, wie das Personal hier dir ein paar Hinweise über deinen nächsten Gegner gibt?Nun, ich bin ein erwachsener Mann, aber ich komme trotzdem nicht auf ihre Hinweise.
 end
 = BattleFrontier_BattleFactoryLobby_EventScript_Picnicker
 lock
-msgbox	Things haven't been going my way at all.You need to check your opponent's POKéMON during battle to see if they're any good.
+msgbox	Es läuft momentan überhaupt nicht nach meinem Geschmack.Du musst im Kampf die POKéMON deines Gegners prüfen, um zu sehen, ob sie etwas taugen.
 release
 end
 = BattleFrontier_BattleFactoryLobby_EventScript_Camper
-msgbox	I swapped for a weak POKéMON… I thought it was a good kind to have…They wiped the floor with us…
+msgbox	Ich habe gegen ein schwaches POKéMON getauscht… Ich dachte, es wäre eine gute Wahl…Sie haben uns komplett vom Feld gefegt…
 end
 = BattleFrontier_BattleFactoryLobby_EventScript_Woman
-msgbox	Hi! You, there!Are you thinking that the events here are easy since you don't need to have a raised team of POKéMON?I wouldn't be too sure about winning that easily.If you don't have thorough knowledge about POKéMON and their moves, it will be tough to keep winning.
+msgbox	Hey! Du da!Denkst du etwa, die Events hier sind leicht, nur weil du kein selbst trainiertes POKéMON-Team brauchst?So einfach würde ich mir das Gewinnen nicht vorstellen.Wenn du kein gründliches Wissen über POKéMON und ihre Attacken hast, wird es schwer, immer weiter zu gewinnen.
 end
 = BattleFrontier_BattleFactoryLobby_EventScript_SinglesAttendant
 lock
@@ -263,7 +263,7 @@ setvar VAR_FRONTIER_BATTLE_MODE FRONTIER_MODE_SINGLES
 goto BattleFrontier_BattleFactoryLobby_EventScript_Attendant
 end
 signs
-9 4	The Battle Swap rules are listed.
+9 4	Die Regeln des Battle Swap sind hier aufgelistet.
 mapsec
 22 12 1 1	BATTLE FRONTIER
 music

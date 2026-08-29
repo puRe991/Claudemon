@@ -71,14 +71,14 @@ people_black_belt 7 8 E static 0 - 3
 people_girl_3 16 9 S static 0 - 3
 people_sailor 14 12 E static 0 - 2
 dialogs
-0	I can see your talent becoming a giant wave to cause a storm of astonishment among TRAINERS one day!
-1	Your skill overcame my strength! Your technique is commendable!
-2	I'm not going to waste this loss. I'll use it to motivate me to train!One day I'll become a GYM LEADER…No, I'll become the POKéMON LEAGUE CHAMPION!
-3	I battle in the dark to make my heart stronger.But because it's so dark, I can never see BRAWLY's face…
-4	Hey, how's it going, CHAMPION- bound PLAYER?DEWFORD's GYM LEADER BRAWLY commands FIGHTING-type POKéMON.Going against him with NORMAL-type POKéMON is asking for trouble.FIGHTING POKéMON will lay a serious smack down on NORMAL POKéMON, so be careful!What's worse, the GYM is as dark as the ocean floor.But it will get brighter after defeating the TRAINERS in your way.Hey, okay, go for it!
-5	You win! Go after that BADGE!
-6	You deserve to stay lost and end up back at the entrance again!
-7	Oh, aye! You're worthy of seeing our GYM LEADER.
+0	Ich sehe, wie dein Talent eines Tages zu einer gewaltigen Welle wird, die einen Sturm des Staunens unter den TRAINERN auslöst!
+1	Deine Fähigkeit hat meine Stärke überwunden! Deine Technik ist bewundernswert!
+2	Diese Niederlage soll nicht umsonst sein. Ich nutze sie als Ansporn, um zu trainieren!Eines Tages werde ich ein ARENALEITER…Nein, ich werde der POKéMON-LIGA-CHAMP!
+3	Ich kämpfe im Dunkeln, um mein Herz stärker zu machen.Aber weil es so dunkel ist, kann ich BRAWLYs Gesicht nie sehen…
+4	Hey, wie geht's, PLAYER auf dem Weg zum CHAMP?DEWFORDs ARENALEITER BRAWLY setzt KAMPF-POKéMON ein.Gegen ihn mit NORMAL-POKéMON anzutreten ist eine glatte Einladung zu Ärger.KAMPF-POKéMON verpassen NORMAL-POKéMON eine ordentliche Abreibung, also sei vorsichtig!Und um es noch schlimmer zu machen, die ARENA ist so dunkel wie der Meeresgrund.Aber sie wird heller, sobald du die TRAINER auf deinem Weg besiegt hast.Hey, na dann, los geht's!
+5	Du gewinnst! Hol dir diesen ORDEN!
+6	Du hast es verdient, dich zu verirren und wieder am Eingang zu landen!
+7	Oh, ja! Du bist würdig, unseren ARENALEITER zu sehen.
 objscripts
 0 DewfordTown_Gym_EventScript_Brawly
 1 DewfordTown_Gym_EventScript_Takao
@@ -93,7 +93,7 @@ DewfordTown_Gym_EventScript_GiveBulkUp2	delay,delay,delay,delay,delay,delay
 scriptdefs
 = DewfordTown_Gym_EventScript_Brenden
 trainerbattle_single TRAINER_BRENDEN DewfordTown_Gym_Text_BrendenIntro DewfordTown_Gym_Text_BrendenDefeat DewfordTown_Gym_EventScript_BrendenBrightenRoom
-msgbox	Oh, aye! You're worthy of seeing our GYM LEADER.
+msgbox	Oh, ja! Du bist würdig, unseren ARENALEITER zu sehen.
 end
 = DewfordTown_Gym_EventScript_BrendenBrightenRoom
 call DewfordTown_Gym_EventScript_BrightenRoom
@@ -213,7 +213,7 @@ call DewfordTown_Gym_EventScript_SetFlashLevel
 return
 = DewfordTown_Gym_EventScript_Lilith
 trainerbattle_single TRAINER_LILITH DewfordTown_Gym_Text_LilithIntro DewfordTown_Gym_Text_LilithDefeat DewfordTown_Gym_EventScript_LilithBrightenRoom
-msgbox	You deserve to stay lost and end up back at the entrance again!
+msgbox	Du hast es verdient, dich zu verirren und wieder am Eingang zu landen!
 end
 = DewfordTown_Gym_EventScript_LilithBrightenRoom
 call DewfordTown_Gym_EventScript_BrightenRoom
@@ -221,7 +221,7 @@ release
 end
 = DewfordTown_Gym_EventScript_Cristian
 trainerbattle_single TRAINER_CRISTIAN DewfordTown_Gym_Text_CristianIntro DewfordTown_Gym_Text_CristianDefeat DewfordTown_Gym_EventScript_CristianBrightenRoom
-msgbox	You win! Go after that BADGE!
+msgbox	Du gewinnst! Hol dir diesen ORDEN!
 end
 = DewfordTown_Gym_EventScript_CristianBrightenRoom
 call DewfordTown_Gym_EventScript_BrightenRoom
@@ -231,16 +231,16 @@ end
 lock
 faceplayer
 goto_if_set FLAG_DEFEATED_DEWFORD_GYM DewfordTown_Gym_EventScript_GymGuidePostVictory
-msgbox	Hey, how's it going, CHAMPION- bound PLAYER?DEWFORD's GYM LEADER BRAWLY commands FIGHTING-type POKéMON.Going against him with NORMAL-type POKéMON is asking for trouble.FIGHTING POKéMON will lay a serious smack down on NORMAL POKéMON, so be careful!What's worse, the GYM is as dark as the ocean floor.But it will get brighter after defeating the TRAINERS in your way.Hey, okay, go for it!
+msgbox	Hey, wie geht's, PLAYER auf dem Weg zum CHAMP?DEWFORDs ARENALEITER BRAWLY setzt KAMPF-POKéMON ein.Gegen ihn mit NORMAL-POKéMON anzutreten ist eine glatte Einladung zu Ärger.KAMPF-POKéMON verpassen NORMAL-POKéMON eine ordentliche Abreibung, also sei vorsichtig!Und um es noch schlimmer zu machen, die ARENA ist so dunkel wie der Meeresgrund.Aber sie wird heller, sobald du die TRAINER auf deinem Weg besiegt hast.Hey, na dann, los geht's!
 release
 end
 = DewfordTown_Gym_EventScript_GymGuidePostVictory
-msgbox	Whoah! It's turned too bright in here!Your future is bright, too!
+msgbox	Whoa! Hier drin ist es plötzlich viel zu hell geworden!Deine Zukunft ist auch strahlend hell!
 release
 end
 = DewfordTown_Gym_EventScript_Laura
 trainerbattle_single TRAINER_LAURA DewfordTown_Gym_Text_LauraIntro DewfordTown_Gym_Text_LauraDefeat DewfordTown_Gym_EventScript_LauraBrightenRoom
-msgbox	I battle in the dark to make my heart stronger.But because it's so dark, I can never see BRAWLY's face…
+msgbox	Ich kämpfe im Dunkeln, um mein Herz stärker zu machen.Aber weil es so dunkel ist, kann ich BRAWLYs Gesicht nie sehen…
 end
 = DewfordTown_Gym_EventScript_LauraBrightenRoom
 call DewfordTown_Gym_EventScript_BrightenRoom
@@ -248,7 +248,7 @@ release
 end
 = DewfordTown_Gym_EventScript_Jocelyn
 trainerbattle_single TRAINER_JOCELYN DewfordTown_Gym_Text_JocelynIntro DewfordTown_Gym_Text_JocelynDefeat DewfordTown_Gym_EventScript_JocelynBrightenRoom
-msgbox	I'm not going to waste this loss. I'll use it to motivate me to train!One day I'll become a GYM LEADER…No, I'll become the POKéMON LEAGUE CHAMPION!
+msgbox	Diese Niederlage soll nicht umsonst sein. Ich nutze sie als Ansporn, um zu trainieren!Eines Tages werde ich ein ARENALEITER…Nein, ich werde der POKéMON-LIGA-CHAMP!
 end
 = DewfordTown_Gym_EventScript_JocelynBrightenRoom
 call DewfordTown_Gym_EventScript_BrightenRoom
@@ -256,7 +256,7 @@ release
 end
 = DewfordTown_Gym_EventScript_Takao
 trainerbattle_single TRAINER_TAKAO DewfordTown_Gym_Text_TakaoIntro DewfordTown_Gym_Text_TakaoDefeat DewfordTown_Gym_EventScript_TakaoBrightenRoom
-msgbox	Your skill overcame my strength! Your technique is commendable!
+msgbox	Deine Fähigkeit hat meine Stärke überwunden! Deine Technik ist bewundernswert!
 end
 = DewfordTown_Gym_EventScript_TakaoBrightenRoom
 call DewfordTown_Gym_EventScript_BrightenRoom
@@ -267,19 +267,19 @@ trainerbattle_single TRAINER_BRAWLY_1 DewfordTown_Gym_Text_BrawlyIntro DewfordTo
 specialvar VAR_RESULT ShouldTryRematchBattle
 goto_if_eq VAR_RESULT TRUE DewfordTown_Gym_EventScript_BrawlyRematch
 goto_if_unset FLAG_RECEIVED_TM_BULK_UP DewfordTown_Gym_EventScript_GiveBulkUp2
-msgbox	I can see your talent becoming a giant wave to cause a storm of astonishment among TRAINERS one day!
+msgbox	Ich sehe, wie dein Talent eines Tages zu einer gewaltigen Welle wird, die einen Sturm des Staunens unter den TRAINERN auslöst!
 release
 end
 = DewfordTown_Gym_EventScript_BrawlyRematch
 trainerbattle_rematch_double TRAINER_BRAWLY_1 DewfordTown_Gym_Text_BrawlyPreRematch DewfordTown_Gym_Text_BrawlyRematchDefeat DewfordTown_Gym_Text_BrawlyRematchNeedTwoMons
-msgbox	BRAWLY: Battling is vast and it's deep. You can't see the bottom. It's just like the sea of HOENN!
+msgbox	BRAWLY: Das Kämpfen ist weit und tief. Man sieht den Grund nicht. Genau wie das Meer von HOENN!
 end
 = DewfordTown_Gym_EventScript_BrawlyDefeated
 call DewfordTown_Gym_EventScript_AnimateFlashFullBrightness
-msgbox	PLAYER received the KNUCKLE BADGE from BRAWLY.
+msgbox	PLAYER erhielt den KNOCHENORDEN von BRAWLY.
 waitmessage
 call Common_EventScript_PlayGymBadgeFanfare
-msgbox	The KNUCKLE BADGE makes all POKéMON up to Level 30, even those you get in trades, obey without question.And, you'll be able to use the HM move FLASH outside of battle.If you'd like, use this TECHNICAL MACHINE, too.
+msgbox	Der KNOCHENORDEN sorgt dafür, dass dir alle POKéMON bis Level 30, auch getauschte, ohne Widerrede gehorchen.Außerdem kannst du die VM-Attacke BLITZLICHT außerhalb von Kämpfen einsetzen.Wenn du möchtest, nimm auch diese TECHNISCHE MASCHINE.
 setflag FLAG_DEFEATED_DEWFORD_GYM
 setflag FLAG_BADGE02_GET
 addvar VAR_PETALBURG_GYM_STATE 1
@@ -290,7 +290,7 @@ call DewfordTown_Gym_EventScript_GiveBulkUp
 closemessage
 delay 30
 playfanfare MUS_REGISTER_MATCH_CALL
-msgbox	Registered GYM LEADER BRAWLY in the POKéNAV.
+msgbox	ARENALEITER BRAWLY wurde im POKéNAV registriert.
 waitfanfare
 closemessage
 delay 30
@@ -302,7 +302,7 @@ end
 = DewfordTown_Gym_EventScript_GiveBulkUp
 giveitem ITEM_TM_BULK_UP
 goto_if_eq VAR_RESULT 0 Common_EventScript_BagIsFull
-msgbox	That TM08 contains BULK UP.It's a move that raises both ATTACK and DEFENSE stats.… … … … … …
+msgbox	Diese TM08 enthält KRAFTKOLOSS.Das ist eine Attacke, die sowohl ANGRIFF als auch VERTEIDIGUNG erhöht.… … … … … …
 setflag FLAG_RECEIVED_TM_BULK_UP
 return
 = Common_EventScript_SetGymTrainers

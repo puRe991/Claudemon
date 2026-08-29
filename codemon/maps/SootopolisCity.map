@@ -156,21 +156,21 @@ people_team_magma_maxie 29 33 S static FLAG_HIDE_SOOTOPOLIS_CITY_MAXIE LOCALID_S
 people_team_aqua_archie 31 33 S static FLAG_HIDE_SOOTOPOLIS_CITY_ARCHIE LOCALID_SOOTOPOLIS_ARCHIE 0
 people_wallace 31 18 S static FLAG_HIDE_SOOTOPOLIS_CITY_WALLACE LOCALID_SOOTOPOLIS_WALLACE 0
 dialogs
-0	Who might you be?This is the CAVE OF ORIGIN.The spirits of POKéMON, becalmed at MT. PYRE, are said to be revived here.Please leave.
-1	The weather was clear this morning, but…All of a sudden, dark clouds brewed up, rain started falling in sheets, and there was thunder and lightning, too.The weather just went completely wild!Is all of this because of those POKéMON?
-2	A big POKéMON is fighting with another big POKéMON!Please, someone make them stop!
-3	Wow! This is wicked!
-4	These giant POKéMON suddenly appeared in the middle of the city!And, I've never seen them before!Why are they smashing into each other like that?Why can't they be friends, those POKéMON?
-5	Hm! You've come all the way to SOOTOPOLIS? You're no ordinary tourist.But I suppose that doesn't make you an extraordinary tourist, either.
-6	STEVEN: So that's RAYQUAZA…It's incredible how the two rampaging POKéMON would flee from it in fear…
-7	SOOTOPOLIS sprang up as a town in the crater of a volcano.If you look up at the sky, the lip of the crater is also visible. So, all you see is the sky in a circle.But that's what makes the sky above SOOTOPOLIS the most beautiful.
-11	There's an ancient legend that claims the land and sea were shaped by a colossal battle between POKéMON.Well, I'm seeing that happen with my very own eyes!Whoa! I never expected to be witness to something this huge!
-12	Oh, no! SOOTOPOLIS CITY will get wrecked!
-13	Go for it, red POKéMON! Don't back off, blue POKéMON!
-14	I just get this sense somehow that the two POKéMON aren't angry.I think… They probably can't control their own power…
-15	MAXIE: G… GROUDON… Please! Stop what you're doing!I know the extent of your power now!If you keep going, all HOENN, not just SOOTOPOLIS, will be utterly ruined!
-16	ARCHIE: KYOGRE! What's wrong?! Look over here! It's the RED ORB! Calm down! KYOGRE!… … … … … … … … … … … …It's no good! It's not responding at all!
-17	WALLACE: PLAYER…The leaders of TEAM MAGMA and AQUA, I don't think they meant harm.It wouldn't hurt to hear what they have to say for themselves.
+0	Wer bist du denn?Dies ist die URSPRUNGSHÖHLE.Man sagt, hier würden die Geister von POKéMON, die am BEBEN-BERG zur Ruhe kamen, wiedergeboren.Bitte verlasse diesen Ort.
+1	Heute Morgen war der Himmel noch klar, aber…Plötzlich zogen dunkle Wolken auf, es regnete in Strömen und es donnerte und blitzte dazu!Das Wetter ist total verrückt geworden!Liegt das etwa an diesen POKéMON?
+2	Ein riesiges POKéMON kämpft gegen ein anderes riesiges POKéMON!Bitte, irgendjemand muss sie aufhalten!
+3	Wow! Das ist der Wahnsinn!
+4	Diese riesigen POKéMON sind plötzlich mitten in der Stadt aufgetaucht!Und ich habe sie noch nie zuvor gesehen!Warum krachen sie so aufeinander los?Können diese POKéMON nicht einfach Freunde sein?
+5	Hm! Du hast den ganzen Weg bis nach SOOTOPOLIS geschafft? Du bist wohl kein gewöhnlicher Tourist.Aber das macht dich wohl auch nicht zu einem außergewöhnlichen.
+6	STEVEN: Das also ist RAYQUAZA…Unglaublich, wie die beiden tobenden POKéMON aus Angst vor ihm fliehen…
+7	SOOTOPOLIS entstand als Stadt im Krater eines Vulkans.Wenn du zum Himmel hinaufschaust, siehst du auch den Kraterrand. Man sieht also den Himmel nur als Kreis.Aber gerade das macht den Himmel über SOOTOPOLIS so wunderschön.
+11	Es gibt eine uralte Legende, die besagt, dass Land und Meer durch einen gewaltigen Kampf zwischen POKéMON geformt wurden.Und genau das sehe ich hier mit meinen eigenen Augen!Wow! Ich hätte nie gedacht, so etwas Gewaltiges mitzuerleben!
+12	Oh nein! SOOTOPOLIS CITY wird zerstört!
+13	Gib alles, rotes POKéMON! Gib nicht auf, blaues POKéMON!
+14	Ich habe irgendwie das Gefühl, dass die beiden POKéMON gar nicht wütend sind.Ich glaube… Sie können wahrscheinlich einfach ihre eigene Kraft nicht kontrollieren…
+15	MAXIE: G… GROUDON… Bitte! Hör auf damit!Ich kenne jetzt das Ausmaß deiner Kraft!Wenn du so weitermachst, wird nicht nur SOOTOPOLIS, sondern ganz HOENN restlos zerstört!
+16	ARCHIE: KYOGRE! Was ist los?! Sieh hierher! Das ist die ROTE ORB! Beruhige dich! KYOGRE!… … … … … … … … … … … …Es nützt nichts! Es reagiert überhaupt nicht!
+17	WALLACE: PLAYER…Ich glaube nicht, dass die Anführer von TEAM MAGMA und AQUA Böses im Sinn hatten.Es würde nicht schaden, zu hören, was sie selbst dazu zu sagen haben.
 objscripts
 0 SootopolisCity_EventScript_CaveOfOriginExpert
 1 SootopolisCity_EventScript_Woman2
@@ -504,14 +504,14 @@ faceplayer
 goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 4 SootopolisCity_EventScript_GoToSkyPillar
 goto_if_set FLAG_RECEIVED_HM_WATERFALL SootopolisCity_EventScript_GoToGym
 goto_if_set FLAG_SOOTOPOLIS_ARCHIE_MAXIE_LEAVE SootopolisCity_EventScript_GiveWaterfall
-msgbox	WALLACE: PLAYER…The leaders of TEAM MAGMA and AQUA, I don't think they meant harm.It wouldn't hurt to hear what they have to say for themselves.
+msgbox	WALLACE: PLAYER…Ich glaube nicht, dass die Anführer von TEAM MAGMA und AQUA Böses im Sinn hatten.Es würde nicht schaden, zu hören, was sie selbst dazu zu sagen haben.
 release
 end
 = SootopolisCity_EventScript_GiveWaterfall
-msgbox	WALLACE: PLAYER… My eyes didn't deceive me.Thanks to your help, SOOTOPOLIS… No, all of HOENN was saved.On behalf of the people, I thank you.This is a gift from me. Please accept it.
+msgbox	WALLACE: PLAYER… Meine Augen haben mich nicht getäuscht.Dank deiner Hilfe wurde SOOTOPOLIS… nein, ganz HOENN gerettet.Im Namen aller Menschen danke ich dir.Das hier ist ein Geschenk von mir. Bitte nimm es an.
 giveitem ITEM_HM_WATERFALL
 setflag FLAG_RECEIVED_HM_WATERFALL
-msgbox	That HIDDEN MACHINE contains WATERFALL.If you have the RAIN BADGE, a POKéMON that has learned that HM move can force its way up waterfalls.And where does one get the RAIN BADGE? You know, don't you?That's right! You have to beat the SOOTOPOLIS GYM LEADER.When you're all set to go, step through that door.
+msgbox	Diese VERSTECKTE MASCHINE enthält WASSERFALL.Wenn du den REGEN-ORDEN besitzt, kann ein POKéMON, das diese VM-Attacke erlernt hat, sich Wasserfälle hinaufkämpfen.Und wo bekommt man den REGEN-ORDEN her? Das weißt du doch, oder?Genau! Du musst den SOOTOPOLIS-ARENALEITER besiegen.Wenn du bereit bist, geh durch diese Tür.
 closemessage
 call_if_eq VAR_FACING DIR_NORTH SootopolisCity_EventScript_WallaceMoveFromGym
 call_if_eq VAR_FACING DIR_EAST SootopolisCity_EventScript_WallaceMoveFromGym
@@ -531,22 +531,22 @@ copyobjectxytoperm LOCALID_SOOTOPOLIS_WALLACE
 setvar VAR_SOOTOPOLIS_WALLACE_STATE 1
 return
 = SootopolisCity_EventScript_GoToGym
-msgbox	WALLACE: I'm sure that you will be dazzled by my mentor's breathtakingly elegant battle style.
+msgbox	WALLACE: Ich bin mir sicher, dass dich der atemberaubend elegante Kampfstil meines Lehrmeisters verzaubern wird.
 release
 end
 = SootopolisCity_EventScript_GoToSkyPillar
-msgbox	WALLACE: Oh? PLAYER?Haven't you scaled the SKY PILLAR yet?I'm sure that you can make it to the top of the SKY PILLAR…
+msgbox	WALLACE: Oh? PLAYER?Hast du den HIMMELSPFEILER noch nicht erklommen?Ich bin mir sicher, dass du es bis an die Spitze des HIMMELSPFEILERS schaffen kannst…
 release
 end
 = SootopolisCity_EventScript_Archie
 lockall
 goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 5 SootopolisCity_EventScript_ArchieRayquaza
-msgbox	ARCHIE: KYOGRE! What's wrong?! Look over here! It's the RED ORB! Calm down! KYOGRE!… … … … … … … … … … … …It's no good! It's not responding at all!
+msgbox	ARCHIE: KYOGRE! Was ist los?! Sieh hierher! Das ist die ROTE ORB! Beruhige dich! KYOGRE!… … … … … … … … … … … …Es nützt nichts! Es reagiert überhaupt nicht!
 closemessage
 releaseall
 end
 = SootopolisCity_EventScript_ArchieRayquaza
-msgbox	ARCHIE: KYOGRE and GROUDON both flew off to who knows where.The weather in HOENN has returned to its normal state…Haha… Hahaha…Maybe what we were trying to do was something small, even meaningless, to POKéMON…
+msgbox	ARCHIE: KYOGRE und GROUDON sind beide fortgeflogen, wer weiß wohin.Das Wetter in HOENN ist wieder normal geworden…Haha… Hahaha…Vielleicht war das, was wir vorhatten, für POKéMON etwas Kleines, ja sogar Bedeutungsloses…
 setflag FLAG_MET_ARCHIE_SOOTOPOLIS
 goto_if_set FLAG_MET_MAXIE_SOOTOPOLIS SootopolisCity_EventScript_MaxieArchieLeave
 releaseall
@@ -575,12 +575,12 @@ step_end
 = SootopolisCity_EventScript_Maxie
 lockall
 goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 5 SootopolisCity_EventScript_MaxieRayquaza
-msgbox	MAXIE: G… GROUDON… Please! Stop what you're doing!I know the extent of your power now!If you keep going, all HOENN, not just SOOTOPOLIS, will be utterly ruined!
+msgbox	MAXIE: G… GROUDON… Bitte! Hör auf damit!Ich kenne jetzt das Ausmaß deiner Kraft!Wenn du so weitermachst, wird nicht nur SOOTOPOLIS, sondern ganz HOENN restlos zerstört!
 closemessage
 releaseall
 end
 = SootopolisCity_EventScript_MaxieRayquaza
-msgbox	MAXIE: So the super-ancient POKéMON weren't only GROUDON and KYOGRE…After all our fruitless scheming and frantic efforts, that one POKéMON's simple action puts everything right again as if nothing had happened…Fu… Fuhahaha…
+msgbox	MAXIE: Die uralten POKéMON waren also nicht nur GROUDON und KYOGRE…Nach all unseren vergeblichen Plänen und verzweifelten Bemühungen bringt eine einzige, simple Handlung dieses einen POKéMON alles wieder in Ordnung, als wäre nichts geschehen…Fu… Fuhahaha…
 setflag FLAG_MET_MAXIE_SOOTOPOLIS
 goto_if_set FLAG_MET_ARCHIE_SOOTOPOLIS SootopolisCity_EventScript_MaxieArchieLeave
 releaseall
@@ -590,25 +590,25 @@ lockall
 applymovement LOCALID_SOOTOPOLIS_BOY_2 Common_Movement_FacePlayer
 waitmovement 0
 goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 5 SootopolisCity_EventScript_Boy2Rayquaza
-msgbox	I just get this sense somehow that the two POKéMON aren't angry.I think… They probably can't control their own power…
+msgbox	Ich habe irgendwie das Gefühl, dass die beiden POKéMON gar nicht wütend sind.Ich glaube… Sie können wahrscheinlich einfach ihre eigene Kraft nicht kontrollieren…
 closemessage
 applymovement LOCALID_SOOTOPOLIS_BOY_2 Common_Movement_FaceOriginalDirection
 waitmovement 0
 releaseall
 end
 = SootopolisCity_EventScript_Boy2Rayquaza
-msgbox	That flying POKéMON came down from the sky and stopped the rampaging POKéMON…
+msgbox	Das fliegende POKéMON kam vom Himmel herab und stoppte die tobenden POKéMON…
 closemessage
 releaseall
 end
 = SootopolisCity_EventScript_BlackBelt
 lockall
 goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 5 SootopolisCity_EventScript_BlackBeltRayquaza
-msgbox	Go for it, red POKéMON! Don't back off, blue POKéMON!
+msgbox	Gib alles, rotes POKéMON! Gib nicht auf, blaues POKéMON!
 closemessage
 applymovement LOCALID_SOOTOPOLIS_BLACK_BELT Common_Movement_FacePlayer
 waitmovement 0
-msgbox	… … … … … …Hi, do you know the names of those POKéMON fighting over there?
+msgbox	… … … … … …Hi, kennst du die Namen der POKéMON, die dort drüben kämpfen?
 closemessage
 applymovement LOCALID_SOOTOPOLIS_BLACK_BELT Common_Movement_FaceOriginalDirection
 waitmovement 0
@@ -617,7 +617,7 @@ end
 = SootopolisCity_EventScript_BlackBeltRayquaza
 applymovement LOCALID_SOOTOPOLIS_BLACK_BELT Common_Movement_FacePlayer
 waitmovement 0
-msgbox	I was wondering which one would win, the red one or the blue one, but, oh no, it's the green one that settles things!Talk about a huge turn of events!
+msgbox	Ich habe mich gefragt, ob wohl das rote oder das blaue gewinnt, aber oh nein, das grüne entscheidet die Sache!Was für eine gewaltige Wendung!
 releaseall
 end
 = SootopolisCity_EventScript_Girl
@@ -625,14 +625,14 @@ lockall
 applymovement LOCALID_SOOTOPOLIS_GIRL Common_Movement_FacePlayer
 waitmovement 0
 goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 5 SootopolisCity_EventScript_GirlRayquaza
-msgbox	Oh, no! SOOTOPOLIS CITY will get wrecked!
+msgbox	Oh nein! SOOTOPOLIS CITY wird zerstört!
 closemessage
 applymovement LOCALID_SOOTOPOLIS_GIRL Common_Movement_FaceOriginalDirection
 waitmovement 0
 releaseall
 end
 = SootopolisCity_EventScript_GirlRayquaza
-msgbox	SOOTOPOLIS CITY didn't get wrecked!
+msgbox	SOOTOPOLIS CITY wurde nicht zerstört!
 closemessage
 releaseall
 end
@@ -641,14 +641,14 @@ lockall
 applymovement LOCALID_SOOTOPOLIS_MANIAC Common_Movement_FacePlayer
 waitmovement 0
 goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 5 SootopolisCity_EventScript_ManiacRayquaza
-msgbox	There's an ancient legend that claims the land and sea were shaped by a colossal battle between POKéMON.Well, I'm seeing that happen with my very own eyes!Whoa! I never expected to be witness to something this huge!
+msgbox	Es gibt eine uralte Legende, die besagt, dass Land und Meer durch einen gewaltigen Kampf zwischen POKéMON geformt wurden.Und genau das sehe ich hier mit meinen eigenen Augen!Wow! Ich hätte nie gedacht, so etwas Gewaltiges mitzuerleben!
 closemessage
 applymovement LOCALID_SOOTOPOLIS_MANIAC Common_Movement_FaceOriginalDirection
 waitmovement 0
 releaseall
 end
 = SootopolisCity_EventScript_ManiacRayquaza
-msgbox	There's an ancient legend that claims the land and sea were shaped by a colossal battle between POKéMON.Well, I saw that happen with my very own eyes!Whoa! I never expected to be witness to something this huge!
+msgbox	Es gibt eine uralte Legende, die besagt, dass Land und Meer durch einen gewaltigen Kampf zwischen POKéMON geformt wurden.Und genau das habe ich mit meinen eigenen Augen gesehen!Wow! Ich hätte nie gedacht, so etwas Gewaltiges mitzuerleben!
 releaseall
 end
 = SootopolisCity_EventScript_Woman1
@@ -657,22 +657,22 @@ faceplayer
 goto_if_ge VAR_SOOTOPOLIS_CITY_STATE 6 SootopolisCity_EventScript_Woman1PostLegendaries
 goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 5 SootopolisCity_EventScript_Woman1Rayquaza
 goto_if_ge VAR_SOOTOPOLIS_CITY_STATE 2 SootopolisCity_EventScript_Woman1Legendaries
-msgbox	SOOTOPOLIS sprang up as a town in the crater of a volcano.If you look up at the sky, the lip of the crater is also visible. So, all you see is the sky in a circle.But that's what makes the sky above SOOTOPOLIS the most beautiful.
+msgbox	SOOTOPOLIS entstand als Stadt im Krater eines Vulkans.Wenn du zum Himmel hinaufschaust, siehst du auch den Kraterrand. Man sieht also den Himmel nur als Kreis.Aber gerade das macht den Himmel über SOOTOPOLIS so wunderschön.
 release
 end
 = SootopolisCity_EventScript_Woman1Legendaries
-msgbox	When two POKéMON that gigantic are fighting that savagely, there's not much that we can do.
+msgbox	Wenn zwei so riesige POKéMON derart wild kämpfen, können wir kaum etwas tun.
 closemessage
 applymovement LOCALID_SOOTOPOLIS_WOMAN_1 Common_Movement_FaceOriginalDirection
 waitmovement 0
 release
 end
 = SootopolisCity_EventScript_Woman1Rayquaza
-msgbox	When that third POKéMON flew down, I feared the worst.
+msgbox	Als das dritte POKéMON herabflog, befürchtete ich das Schlimmste.
 release
 end
 = SootopolisCity_EventScript_Woman1PostLegendaries
-msgbox	A circle of a night sky framed by the crater of a volcano…And in that ring, stars flicker and blink as if they were alive… It's my favorite scenery.
+msgbox	Ein nächtlicher Himmel, eingerahmt vom Krater eines Vulkans…Und in diesem Ring flackern und funkeln Sterne, als wären sie lebendig… Das ist mein liebster Anblick.
 release
 end
 = SootopolisCity_EventScript_Steven
@@ -684,27 +684,27 @@ goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 2 SootopolisCity_EventScript_StevenHelpWall
 goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 3 SootopolisCity_EventScript_StevenHelpedWallace
 goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 4 SootopolisCity_EventScript_StevenHelpedWallace
 goto_if_set FLAG_SOOTOPOLIS_ARCHIE_MAXIE_LEAVE SootopolisCity_EventScript_StevenMaxieArchieLeft
-msgbox	STEVEN: So that's RAYQUAZA…It's incredible how the two rampaging POKéMON would flee from it in fear…
+msgbox	STEVEN: Das also ist RAYQUAZA…Unglaublich, wie die beiden tobenden POKéMON aus Angst vor ihm fliehen…
 releaseall
 end
 = SootopolisCity_EventScript_StevenMaxieArchieLeft
-msgbox	STEVEN: It looks like both MAXIE and ARCHIE have gone away somewhere.Perhaps they've gone to MT. PYRE to return those ORBS…
+msgbox	STEVEN: Es sieht so aus, als wären MAXIE und ARCHIE beide irgendwohin verschwunden.Vielleicht sind sie zum BEBEN-BERG gegangen, um die ORBS zurückzubringen…
 releaseall
 end
 = SootopolisCity_EventScript_StevenHelpedWallace
-msgbox	STEVEN: The SKY PILLAR…I've never been there. I wonder where it could be?
+msgbox	STEVEN: Der HIMMELSPFEILER…Ich war noch nie dort. Ich frage mich, wo er wohl sein könnte?
 releaseall
 end
 = SootopolisCity_EventScript_StevenHelpWallace
-msgbox	STEVEN: I think you have what's needed to help him…
+msgbox	STEVEN: Ich denke, du hast das Zeug, ihm zu helfen…
 releaseall
 end
 = SootopolisCity_EventScript_StevenLeadPlayerCaveOfOrigin
-msgbox	STEVEN: Those POKéMON fighting… GROUDON… And KYOGRE…The two super-ancient POKéMON were awakened from a long sleep…And now they are smashing each other with their uncontrollable energy……PLAYER.You being here now I'll take to mean that you're prepared to become involved in this crisis.Well, then, there's someone that I'd like you to meet.Come with me, please.
+msgbox	STEVEN: Diese kämpfenden POKéMON… GROUDON… Und KYOGRE…Die beiden uralten POKéMON wurden aus einem langen Schlaf geweckt…Und jetzt zerschmettern sie einander mit ihrer unkontrollierbaren Energie……PLAYER.Dass du jetzt hier bist, nehme ich als Zeichen, dass du bereit bist, dich in diese Krise einzumischen.Nun, dann gibt es jemanden, den ich dich gerne treffen lassen würde.Komm bitte mit mir.
 closemessage
 call_if_eq VAR_FACING DIR_WEST SootopolisCity_EventScript_StartWalkToCaveOfOriginWest
 call_if_eq VAR_FACING DIR_NORTH SootopolisCity_EventScript_StartWalkToCaveOfOriginNorth
-msgbox	STEVEN: Listen, PLAYER.Does seeing GROUDON and KYOGRE make you think POKéMON are to be feared?But that's not true. POKéMON are really more……Why am I asking you this? You already know.
+msgbox	STEVEN: Hör zu, PLAYER.Lässt dich der Anblick von GROUDON und KYOGRE glauben, dass man POKéMON fürchten muss?Aber das stimmt nicht. POKéMON sind eigentlich eher……Warum frage ich dich das überhaupt? Du weißt es doch bereits.
 closemessage
 applymovement LOCALID_SOOTOPOLIS_STEVEN SootopolisCity_Movement_StevenWalkToCaveOfOrigin
 applymovement LOCALID_PLAYER SootopolisCity_Movement_PlayerWalkToCaveOfOrigin
@@ -715,7 +715,7 @@ waitmovement 0
 applymovement LOCALID_SOOTOPOLIS_STEVEN SootopolisCity_Movement_StevenArriveCaveEntrance
 applymovement LOCALID_PLAYER SootopolisCity_Movement_PlayerArriveCaveEntrance
 waitmovement 0
-msgbox	STEVEN: Okay, here we are!Inside here you'll find someone named WALLACE.I think you have what's needed to help him…
+msgbox	STEVEN: Gut, da wären wir!Hier drinnen findest du jemanden namens WALLACE.Ich denke, du hast das Zeug, ihm zu helfen…
 closemessage
 setflag FLAG_STEVEN_GUIDES_TO_CAVE_OF_ORIGIN
 applymovement LOCALID_PLAYER SootopolisCity_Movement_PlayerEnterCaveOfOrigin
@@ -737,11 +737,11 @@ return
 lock
 faceplayer
 goto_if_ge VAR_SOOTOPOLIS_CITY_STATE 6 SootopolisCity_EventScript_ManPostLegendaries
-msgbox	Hm! You've come all the way to SOOTOPOLIS? You're no ordinary tourist.But I suppose that doesn't make you an extraordinary tourist, either.
+msgbox	Hm! Du hast den ganzen Weg bis nach SOOTOPOLIS geschafft? Du bist wohl kein gewöhnlicher Tourist.Aber das macht dich wohl auch nicht zu einem außergewöhnlichen.
 release
 end
 = SootopolisCity_EventScript_ManPostLegendaries
-msgbox	The city has regained its calm…
+msgbox	Die Stadt hat ihre Ruhe wiedergefunden…
 release
 end
 = SootopolisCity_EventScript_Boy1
@@ -752,22 +752,22 @@ goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 5 SootopolisCity_EventScript_Boy1Rayquaza
 goto_if_set FLAG_SYS_GAME_CLEAR SootopolisCity_EventScript_Boy1GameClear
 goto_if_ge VAR_SOOTOPOLIS_CITY_STATE 6 SootopolisCity_EventScript_Boy1Normal
 goto_if_le VAR_SOOTOPOLIS_CITY_STATE 1 SootopolisCity_EventScript_Boy1Normal
-msgbox	These giant POKéMON suddenly appeared in the middle of the city!And, I've never seen them before!Why are they smashing into each other like that?Why can't they be friends, those POKéMON?
+msgbox	Diese riesigen POKéMON sind plötzlich mitten in der Stadt aufgetaucht!Und ich habe sie noch nie zuvor gesehen!Warum krachen sie so aufeinander los?Können diese POKéMON nicht einfach Freunde sein?
 closemessage
 applymovement LOCALID_SOOTOPOLIS_BOY_1 Common_Movement_FaceOriginalDirection
 waitmovement 0
 release
 end
 = SootopolisCity_EventScript_Boy1Normal
-msgbox	Diving in the sea. Climbing up and down stairs all the time…If you live in this town, you end up getting physically fit.
+msgbox	Im Meer tauchen. Ständig Treppen rauf- und runtersteigen…Wenn man in dieser Stadt lebt, kommt man ganz automatisch in Form.
 release
 end
 = SootopolisCity_EventScript_Boy1GameClear
-msgbox	GROUDON and KYOGRE… Where did they go?Will they cause droughts or downpours somewhere else?
+msgbox	GROUDON und KYOGRE… Wo sind sie hin?Werden sie irgendwo anders Dürren oder Sturzfluten verursachen?
 release
 end
 = SootopolisCity_EventScript_Boy1Rayquaza
-msgbox	What? What? What? What is that green POKéMON?!
+msgbox	Was? Was? Was? Was ist das für ein grünes POKéMON?!
 release
 end
 = SootopolisCity_EventScript_NinjaBoy
@@ -777,18 +777,18 @@ waitmovement 0
 goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 5 SootopolisCity_EventScript_NinjaBoyRayquaza
 goto_if_ge VAR_SOOTOPOLIS_CITY_STATE 6 SootopolisCity_EventScript_NinjaBoyNormal
 goto_if_le VAR_SOOTOPOLIS_CITY_STATE 1 SootopolisCity_EventScript_NinjaBoyNormal
-msgbox	Wow! This is wicked!
+msgbox	Wow! Das ist der Wahnsinn!
 closemessage
 applymovement LOCALID_SOOTOPOLIS_NINJA_BOY Common_Movement_FaceOriginalDirection
 waitmovement 0
 release
 end
 = SootopolisCity_EventScript_NinjaBoyNormal
-msgbox	I… I've never been out of this city.I wonder what the world is like on the other side of this round sky?
+msgbox	Ich… Ich war noch nie außerhalb dieser Stadt.Ich frage mich, wie die Welt wohl jenseits dieses runden Himmels aussieht?
 release
 end
 = SootopolisCity_EventScript_NinjaBoyRayquaza
-msgbox	Wow! That was wicked!
+msgbox	Wow! Das war der Wahnsinn!
 release
 end
 = SootopolisCity_EventScript_Kiri
@@ -797,14 +797,14 @@ faceplayer
 goto_if_le VAR_SOOTOPOLIS_CITY_STATE 1 SootopolisCity_EventScript_KiriGiveBerry
 goto_if_ge VAR_SOOTOPOLIS_CITY_STATE 6 SootopolisCity_EventScript_KiriGiveBerry
 goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 5 SootopolisCity_EventScript_KiriRayquaza
-msgbox	A big POKéMON is fighting with another big POKéMON!Please, someone make them stop!
+msgbox	Ein riesiges POKéMON kämpft gegen ein anderes riesiges POKéMON!Bitte, irgendjemand muss sie aufhalten!
 closemessage
 applymovement LOCALID_KIRI Common_Movement_FaceOriginalDirection
 waitmovement 0
 release
 end
 = SootopolisCity_EventScript_KiriRayquaza
-msgbox	A pretty POKéMON came down from the sky…
+msgbox	Ein wunderschönes POKéMON kam vom Himmel herab…
 closemessage
 release
 end
@@ -814,14 +814,14 @@ goto SootopolisCity_EventScript_KiriGiveBerry
 dotimebasedevents
 special GetPlayerBigGuyGirlString
 goto_if_set FLAG_DAILY_SOOTOPOLIS_RECEIVED_BERRY SootopolisCity_EventScript_KiriReceivedBerry
-msgbox	Hi, what's your name?… … … … … … … … … Okay. That's nice!My name is KIRI.My mommy and daddy named me that so I would grow healthy and warmhearted. That's what they wished.You can have one of these.
+msgbox	Hi, wie heißt du?… … … … … … … … … Okay. Das ist schön!Ich heiße KIRI.Meine Mami und mein Papi haben mir diesen Namen gegeben, damit ich gesund und warmherzig aufwachse. Das war ihr Wunsch.Du kannst eines von diesen hier haben.
 random NUM_KIRI_BERRIES
 addvar VAR_RESULT NUM_KIRI_BERRIES_SKIPPED
 addvar VAR_RESULT FIRST_BERRY_INDEX
 giveitem VAR_RESULT
 goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
 setflag FLAG_DAILY_SOOTOPOLIS_RECEIVED_BERRY
-msgbox	KIRI will give you this BERRY, too! I really like it lots!
+msgbox	KIRI schenkt dir auch diese BEERE! Ich mag sie total gerne!
 random 2
 goto_if_eq VAR_RESULT 0 SootopolisCity_EventScript_GiveFigyBerry
 goto_if_eq VAR_RESULT 1 SootopolisCity_EventScript_GiveIapapaBerry
@@ -829,23 +829,23 @@ end
 = SootopolisCity_EventScript_GiveIapapaBerry
 giveitem ITEM_IAPAPA_BERRY
 goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
-msgbox	I wonder what kind of wish is included in your name.
+msgbox	Ich frage mich, welcher Wunsch wohl in deinem Namen steckt.
 release
 end
 = SootopolisCity_EventScript_GiveFigyBerry
 giveitem ITEM_FIGY_BERRY
 goto_if_eq VAR_RESULT FALSE Common_EventScript_ShowBagIsFull
-msgbox	I wonder what kind of wish is included in your name.
+msgbox	Ich frage mich, welcher Wunsch wohl in deinem Namen steckt.
 release
 end
 = SootopolisCity_EventScript_KiriReceivedBerry
 msgboxyesno	Spring, summer, autumn, and winter.If you're born in springtime, do you like the spring, and if you're born in the summer, do you like the summer?
 goto_if_eq VAR_RESULT YES SootopolisCity_EventScript_KiriLikeSeasonBornIn
-msgbox	Oh… It doesn't matter…There's so much that I want to know…
+msgbox	Oh… Ist ja auch egal…Es gibt so vieles, das ich wissen möchte…
 release
 end
 = SootopolisCity_EventScript_KiriLikeSeasonBornIn
-msgbox	Then KIRI was born in the autumn, so I love the autumn!Which season do you like?
+msgbox	KIRI wurde nämlich im Herbst geboren, deshalb liebe ich den Herbst!Welche Jahreszeit magst du?
 release
 end
 = SootopolisCity_EventScript_Woman2
@@ -853,14 +853,14 @@ lockall
 applymovement LOCALID_SOOTOPOLIS_WOMAN_2 Common_Movement_FacePlayer
 waitmovement 0
 goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 5 SootopolisCity_EventScript_Woman2Rayquaza
-msgbox	The weather was clear this morning, but…All of a sudden, dark clouds brewed up, rain started falling in sheets, and there was thunder and lightning, too.The weather just went completely wild!Is all of this because of those POKéMON?
+msgbox	Heute Morgen war der Himmel noch klar, aber…Plötzlich zogen dunkle Wolken auf, es regnete in Strömen und es donnerte und blitzte dazu!Das Wetter ist total verrückt geworden!Liegt das etwa an diesen POKéMON?
 closemessage
 applymovement LOCALID_SOOTOPOLIS_WOMAN_2 Common_Movement_FaceOriginalDirection
 waitmovement 0
 releaseall
 end
 = SootopolisCity_EventScript_Woman2Rayquaza
-msgbox	Oh?It was you who brought that flying POKéMON here?Well, aren't you amazing!
+msgbox	Oh?Du warst es, der dieses fliegende POKéMON hierher gebracht hat?Na, bist du nicht erstaunlich!
 releaseall
 end
 = SootopolisCity_EventScript_CaveOfOriginExpert
@@ -869,24 +869,24 @@ faceplayer
 goto_if_ge VAR_SOOTOPOLIS_CITY_STATE 6 SootopolisCity_EventScript_ExpertPostLegendaries
 goto_if_eq VAR_SOOTOPOLIS_CITY_STATE 5 SootopolisCity_EventScript_ExpertLegendaries
 goto_if_ge VAR_SOOTOPOLIS_CITY_STATE 2 SootopolisCity_EventScript_ExpertLeadToCave
-msgbox	Who might you be?This is the CAVE OF ORIGIN.The spirits of POKéMON, becalmed at MT. PYRE, are said to be revived here.Please leave.
+msgbox	Wer bist du denn?Dies ist die URSPRUNGSHÖHLE.Man sagt, hier würden die Geister von POKéMON, die am BEBEN-BERG zur Ruhe kamen, wiedergeboren.Bitte verlasse diesen Ort.
 release
 end
 = SootopolisCity_EventScript_ExpertLeadToCave
-msgbox	A person with a strong will and superior talent…A TRAINER who has knowledge and experience of many kinds of POKéMON…If such a person were to appear, I was instructed by WALLACE to lead that TRAINER to this CAVE.
+msgbox	Eine Person mit starkem Willen und überragendem Talent…Ein TRAINER mit Wissen und Erfahrung über viele Arten von POKéMON…Falls eine solche Person auftauchen sollte, wurde ich von WALLACE angewiesen, diesen TRAINER zu dieser HÖHLE zu führen.
 release
 end
 = SootopolisCity_EventScript_ExpertLegendaries
-msgbox	Oh, my…The clash between the two awakened POKéMON was quelled by the awakening of a third POKéMON…
+msgbox	Oh je…Der Zusammenstoß der beiden erwachten POKéMON wurde durch das Erwachen eines dritten POKéMON beendet…
 release
 end
 = SootopolisCity_EventScript_ExpertPostLegendaries
-msgbox	This is the CAVE OF ORIGIN…With the passing of the crisis, the cave, too, shall sleep…
+msgbox	Dies ist die URSPRUNGSHÖHLE…Nun, da die Krise vorüber ist, wird auch die Höhle wieder schlafen…
 release
 end
 signs
-33 34	SOOTOPOLIS CITY POKéMON GYM LEADER: JUAN“The GYM LEADER with the beauty of pure water!”
-41 37	SOOTOPOLIS CITY“The mystical city where history slumbers.”
+33 34	SOOTOPOLIS CITY POKéMON-ARENALEITER: JUAN„Der ARENALEITER mit der Schönheit reinen Wassers!“
+41 37	SOOTOPOLIS CITY„Die mystische Stadt, in der Geschichte schlummert.“
 water
 152,154,176,177,178,184,186,192,194,195,196,203,204,617,633,642,643,644,645,646,647,653,654,655
 divewarp
