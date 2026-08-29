@@ -2,6 +2,8 @@
 
 Eine portabel in C++ geschriebene, kachelbasierte 2D-Spiel-Engine mit einem darauf aufbauenden Spiel im Stil von Pokémon Emerald. Projekt können mittels Cross-Compilation für Unix (macOS, Debian-basierte Linux-Systeme) und Windows 8+ erstellt werden. Als Build-System wird CMake verwendet, für Grafik, Audio und Fensterverwaltung kommt SFML (Simple and Fast Multimedia Library) zum Einsatz.
 
+📐 Neu in der Codebasis? [`codemon/ARCHITECTURE.md`](codemon/ARCHITECTURE.md) gibt einen kompakten Überblick über Verzeichnisstruktur, Kernklassen und wie ein Frame durchläuft.
+
 ## Was tatsächlich enthalten ist
 
 Dies ist keine Tech-Demo mit Platzhaltergrafiken – die Welt, die Pokémon und die Spielmechaniken werden aus einem echten **pokeemerald**-Checkout (Pokémon-Emerald-Decompilation) über `codemon/tools/pe_import.py` importiert und anschließend von einer unabhängigen C++-Engine ausgeführt:
@@ -628,10 +630,13 @@ Aus einer Codestruktur-Review von `codemon/main.cpp` (2506 Zeilen) – reines Re
 
 * ✅ `ScriptVM::pump()` (war ~700 Zeilen, ein einziger `if/else-if`-Opcode-Dispatch für alle ~75 importierten pokeemerald-Skriptbefehle) in acht thematische `try_*_op()`-Methoden aufgeteilt: `try_dialog_and_items_op`, `try_control_flow_op`, `try_tile_puzzle_op`, `try_battle_op`, `try_special_op`, `try_shop_and_party_info_op`, `try_object_op`, `try_text_fx_op`. `pump()` selbst ruft sie der Reihe nach auf und bricht beim ersten Treffer ab; jede Methode meldet per `bool`, ob sie den Opcode kannte (Blockieren erkennt `pump()` weiterhin daran, dass sich `st` geändert hat – exakt das gleiche Signal wie vorher). Reine Kontrollfluss-Umformung, keine Opcode-Logik geändert. Vor dem Umbau wurde `codemon/ScriptVM.cpp`/`.h` als lokales Backup gesichert; verifiziert per Rebuild + der bestehenden `codemon_engine_tests`-Regressionssuite (die reale importierte Skripte gegen Fixture-Maps laufen lässt – Arithmetik, Money/Coins, Control-Flow, Buffer-Strings, Items/Gift-Mons, Trainer-Flags) + pixelgleichem Headless-Screenshot-Vergleich (Overworld, Starter-Auswahl, Route 101 inkl. Birch-Skript).
 
+* ✅ Architektur-Übersicht ergänzt: [`codemon/ARCHITECTURE.md`](codemon/ARCHITECTURE.md) fasst Verzeichnisstruktur, Kernklassen und den Frame-Ablauf (`Game`, `Session`, `ScriptVM`, `Battle`, UI-Screens) an einer Stelle zusammen, statt über ~15 Header-Kommentare verteilt zu sein. Reine Dokumentation, kein Code geändert.
+
 ### Nächste Kandidaten (noch nicht angegangen)
 
 * `Battle::draw()` (`codemon/Battle.cpp`, 174 Zeilen) – kleiner als `Menu::draw()` war, aber gleiches Muster (ein Draw-Call für alle Kampf-Phasen); niedrigeres Risiko, niedrigerer Nutzen.
 * Die acht `try_*_op()`-Gruppen in `ScriptVM.cpp` könnten bei Bedarf weiter aufgeteilt werden (`try_special_op` ist mit ~125 Zeilen noch die größte, da `special`/`specialvar` selbst ein verschachtelter Dispatch sind).
+* `main.cpp` (1522 Zeilen) in `Session.h/.cpp` (Agent/Session/load_session/player_step/tick_npcs) und `Game.h/.cpp` trennen – reine Dateiorganisation, kein Verhaltensrisiko.
 * Input-Dispatch zusammenführen (siehe oben) – weiterhin offen, unverändert seit dem letzten Schritt.
 
 ## ++ QoL ++
