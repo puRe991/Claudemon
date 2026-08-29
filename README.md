@@ -616,7 +616,7 @@ Aus einer Codestruktur-Review von `codemon/main.cpp` (2506 Zeilen) – reines Re
 
 * ❌ `main()` auffächern: aktuell eine ~890-Zeilen-God-Function (Savegame, Titelscreen, Session-Verwaltung, kompletter Event-Loop, Whiteout-Logik, alles inline). Aufteilen in eine `Game`-Klasse mit `handleInput()` / `update(dt)` / `render()` statt lokaler Variablen + Lambdas.
 
-* ❌ UI-Screen-Structs aus `main.cpp` auslagern: `StarterSelect`, `YesNoPrompt`, `PartyPicker`, `MultiChoicePrompt`, `DebugMenu`, `Shop`, `TitleScreen`, `GenderSelect`, `EarlyAccessNotice`, `NameEntry` bekommen je eigene .h/.cpp-Datei.
+* ✅ UI-Screen-Structs aus `main.cpp` auslagern: `StarterSelect`, `YesNoPrompt`, `PartyPicker`, `MultiChoicePrompt`, `DebugMenu`, `Shop`, `TitleScreen`, `GenderSelect`, `EarlyAccessNotice`, `NameEntry` (+ `HealFx`, `ItemDisplay`) haben jetzt je eine eigene Header-Datei; `main.cpp` von 2506 auf 1526 Zeilen geschrumpft, gegen den bestehenden Test-/Screenshot-Build verifiziert.
 
 * ❌ Zentralen `InputRouter` einführen: WASD/Space/Enter → `BtnInput` wird aktuell für jeden der ~10 UI-Zustände separat per if/else gemappt (fast identischer 6-Zeilen-Switch 8×). Einmal zentral lösen statt dupliziert.
 
