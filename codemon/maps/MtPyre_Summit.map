@@ -90,12 +90,12 @@ people_team_aqua_aqua_member_m 21 11 E static FLAG_HIDE_MT_PYRE_SUMMIT_TEAM_AQUA
 people_team_aqua_aqua_member_f 25 11 W static FLAG_HIDE_MT_PYRE_SUMMIT_TEAM_AQUA LOCALID_MT_PYRE_SUMMIT_GRUNT_4 3
 people_team_magma_maxie 23 6 N static FLAG_HIDE_MT_PYRE_SUMMIT_MAXIE LOCALID_MT_PYRE_SUMMIT_MAXIE 0
 dialogs
-0	MT. PYRE is where we calm the spirits of POKéMON that have passed on…This is a high place where one can see all of HOENN…The disembodied spirits of POKéMON must find solace here…Is it coincidence that you are here…Will you hear out my tale? A tale long told in the HOENN region?
-2	The BLUE ORB and RED ORB taken by those sinister men…They must never be apart… I fear something terrible will happen…
-3	Yeah, so you are strong… But there're a lot of us!
-4	You don't know anything! So why are you messing with us?
-5	Heh, it doesn't matter! We bought ourselves some time!The BOSS should have snatched what he was after!
-6	We have a great combination going with us members and our leader.
+0	Auf dem SEELENBERG beruhigen wir die Geister verstorbener POKéMON…Dies ist ein hoher Ort, von dem aus man ganz HOENN sehen kann…Die körperlosen Geister der POKéMON müssen hier Trost finden…Ist es Zufall, dass du hier bist…Willst du dir meine Geschichte anhören? Eine Geschichte, die man sich seit Langem in HOENN erzählt?
+2	Die BLAUE KUGEL und die ROTE KUGEL, die diese finsteren Männer geraubt haben…Sie dürfen niemals getrennt sein… Ich fürchte, es wird etwas Schreckliches geschehen…
+3	Ja, du bist also stark… Aber wir sind viele!
+4	Du weißt überhaupt nichts! Warum legst du dich dann mit uns an?
+5	Heh, das ist doch egal! Wir haben uns Zeit verschafft!Der BOSS müsste inzwischen geholt haben, was er wollte!
+6	Wir MITGLIEDER und unser Anführer sind ein großartiges Team.
 objscripts
 0 MtPyre_Summit_EventScript_OldMan
 2 MtPyre_Summit_EventScript_OldLady
@@ -272,7 +272,7 @@ delay 50
 call_if_eq VAR_0x8008 0 MtPyre_Summit_EventScript_ArchieFacePlayer0
 call_if_eq VAR_0x8008 1 MtPyre_Summit_EventScript_ArchieFacePlayer1
 call_if_eq VAR_0x8008 2 MtPyre_Summit_EventScript_ArchieFacePlayer2
-msgbox	ARCHIE: TEAM MAGMA's MAXIE got ahead of us, but we also got what we wanted.The RED ORB preserved at MT. PYRE… I, ARCHIE, now have it in my possession!Fufufu… Now we can bring our ultimate objective to fruition!Okay, TEAM! We're pulling out!
+msgbox	ARCHIE: MAXIE von TEAM MAGMA war uns zuvor, aber auch wir haben bekommen, was wir wollten.Die ROTE KUGEL, die auf dem SEELENBERG aufbewahrt wurde… Ich, ARCHIE, habe sie nun in meinem Besitz!Fufufu… Jetzt können wir unser höchstes Ziel verwirklichen!Okay, TEAM! Wir ziehen uns zurück!
 closemessage
 fadescreen FADE_TO_BLACK
 removeobject LOCALID_MT_PYRE_SUMMIT_ARCHIE
@@ -289,7 +289,7 @@ setvar VAR_MT_PYRE_STATE 1
 call_if_eq VAR_0x8008 0 MtPyre_Summit_EventScript_OldLadyApproachPlayer0
 call_if_eq VAR_0x8008 1 MtPyre_Summit_EventScript_OldLadyApproachPlayer1
 call_if_eq VAR_0x8008 2 MtPyre_Summit_EventScript_OldLadyApproachPlayer2
-msgbox	Oh, no… This cannot happen…Not only the BLUE ORB, but even the RED ORB has been taken…The BLUE ORB and RED ORB must never be separated. They belong together.What are those men trying to do with the two ORBS?… … … … … … … … … … … …Oh, yes. Was it TEAM MAGMA who came and took the BLUE ORB first?Well, in their haste, they left this behind.I couldn't imagine what exactly it could be.I would like you to have it. Perhaps it will be useful in some way.
+msgbox	Oh nein… Das darf nicht wahr sein…Nicht nur die BLAUE KUGEL, sondern auch die ROTE KUGEL wurde geraubt…Die BLAUE KUGEL und die ROTE KUGEL dürfen niemals getrennt werden. Sie gehören zusammen.Was haben diese Männer mit den beiden KUGELN vor?… … … … … … … … … … … …Ach ja. War es nicht TEAM MAGMA, das zuerst die BLAUE KUGEL geholt hat?Nun, in ihrer Eile haben sie dies hier zurückgelassen.Ich konnte mir nicht vorstellen, was es genau sein könnte.Ich möchte, dass du es bekommst. Vielleicht ist es auf irgendeine Weise nützlich.
 giveitem ITEM_MAGMA_EMBLEM
 setflag FLAG_RECEIVED_RED_OR_BLUE_ORB
 setflag FLAG_HIDE_JAGGED_PASS_MAGMA_GUARD
@@ -335,19 +335,19 @@ goto MtPyre_Summit_EventScript_TeamAquaExits
 end
 = MtPyre_Summit_EventScript_Grunt4
 trainerbattle_single TRAINER_GRUNT_MT_PYRE_4 MtPyre_Summit_Text_Grunt4Intro MtPyre_Summit_Text_Grunt4Defeat
-msgbox	We have a great combination going with us members and our leader.
+msgbox	Wir MITGLIEDER und unser Anführer sind ein großartiges Team.
 end
 = MtPyre_Summit_EventScript_Grunt3
 trainerbattle_single TRAINER_GRUNT_MT_PYRE_3 MtPyre_Summit_Text_Grunt3Intro MtPyre_Summit_Text_Grunt3Defeat
-msgbox	Heh, it doesn't matter! We bought ourselves some time!The BOSS should have snatched what he was after!
+msgbox	Heh, das ist doch egal! Wir haben uns Zeit verschafft!Der BOSS müsste inzwischen geholt haben, was er wollte!
 end
 = MtPyre_Summit_EventScript_Grunt2
 trainerbattle_single TRAINER_GRUNT_MT_PYRE_2 MtPyre_Summit_Text_Grunt2Intro MtPyre_Summit_Text_Grunt2Defeat
-msgbox	You don't know anything! So why are you messing with us?
+msgbox	Du weißt überhaupt nichts! Warum legst du dich dann mit uns an?
 end
 = MtPyre_Summit_EventScript_Grunt1
 trainerbattle_single TRAINER_GRUNT_MT_PYRE_1 MtPyre_Summit_Text_Grunt1Intro MtPyre_Summit_Text_Grunt1Defeat
-msgbox	Yeah, so you are strong… But there're a lot of us!
+msgbox	Ja, du bist also stark… Aber wir sind viele!
 end
 = MtPyre_Summit_EventScript_OldLady
 lock
@@ -355,20 +355,20 @@ faceplayer
 goto_if_set FLAG_RETURNED_RED_OR_BLUE_ORB MtPyre_Summit_EventScript_OldLadyAfterOrbsReturned
 call_if_ge VAR_MT_PYRE_STATE 3 MtPyre_Summit_EventScript_OldLadyOrbsReturned
 goto_if_set FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN MtPyre_Summit_EventScript_OldLadyLegendariesAwake
-msgbox	The BLUE ORB and RED ORB taken by those sinister men…They must never be apart… I fear something terrible will happen…
+msgbox	Die BLAUE KUGEL und die ROTE KUGEL, die diese finsteren Männer geraubt haben…Sie dürfen niemals getrennt sein… Ich fürchte, es wird etwas Schreckliches geschehen…
 release
 end
 = MtPyre_Summit_EventScript_OldLadyLegendariesAwake
-msgbox	Oh, my goodness…You say that both GROUDON and KYOGRE have been awakened?It is said that the BLUE ORB and the RED ORB quelled the rage of the two POKéMON…It is also said that the true owner of the ORBS still exists.However, no one knows who, or what exactly, the ORBS belong to.It could be a human, or perhaps a POKéMON, but no one knows.
+msgbox	Oh, du meine Güte…Du sagst, sowohl GROUDON als auch KYOGRE seien erwacht?Es heißt, die BLAUE KUGEL und die ROTE KUGEL hätten den Zorn der beiden POKéMON besänftigt…Es heißt auch, dass der wahre Besitzer der KUGELN noch existiert.Jedoch weiß niemand, wem oder was genau die KUGELN gehören.Es könnte ein Mensch sein, vielleicht auch ein POKéMON, aber niemand weiß es.
 release
 end
 = MtPyre_Summit_EventScript_OldLadyOrbsReturned
-msgbox	The two men who took the ORBS came back to return them on their own.Those men… Perhaps they are not so evil after all…
+msgbox	Die beiden Männer, die die KUGELN genommen hatten, kamen von sich aus zurück, um sie wiederzubringen.Diese Männer… Vielleicht sind sie doch nicht so böse…
 setflag FLAG_RETURNED_RED_OR_BLUE_ORB
 release
 end
 = MtPyre_Summit_EventScript_OldLadyAfterOrbsReturned
-msgbox	The embodiments of the land, sea, and the sky…That is said to be the identities of the super-ancient POKéMON…In the same way that we humans and POKéMON have life, our world, too, is alive…The super-ancient POKéMON have taught us that…
+msgbox	Die Verkörperungen von Land, Meer und Himmel…Das soll die wahre Natur der uralten POKéMON sein…So wie wir Menschen und POKéMON Leben haben, so ist auch unsere Welt lebendig…Das haben uns die uralten POKéMON gelehrt…
 release
 end
 = MtPyre_Summit_EventScript_OldMan
@@ -381,10 +381,10 @@ call_if_eq VAR_RESULT NO MtPyre_Summit_EventScript_DeclineOldManTale
 release
 end
 = MtPyre_Summit_EventScript_DeclineOldManTale
-msgbox	I see… Well, that, too, is fine…
+msgbox	Ich verstehe… Nun, auch das ist gut so…
 return
 = MtPyre_Summit_EventScript_OldManTale
-msgbox	It happened long, long ago…The world was wracked by a ferocious clash between the POKéMON of the land and the POKéMON of the sea…The POKéMON of the land raised mountains and created continents…The POKéMON of the sea raised huge waves and carved out oceans…Their fierce duel raged without end.The world was engulfed in massive infernos and vicious storms.The BLUE ORB and the RED ORB brought an end to the calamity.Light poured from the two ORBS and becalmed the enraged adversaries.The pair, made docile, dove deep into the sea where eventually they disappeared…
+msgbox	Es geschah vor langer, langer Zeit…Die Welt wurde von einem erbitterten Kampf zwischen dem POKéMON des Landes und dem POKéMON des Meeres erschüttert…Das POKéMON des Landes türmte Berge auf und schuf Kontinente…Das POKéMON des Meeres türmte gewaltige Wellen auf und formte Ozeane…Ihr erbitterter Zweikampf tobte ohne Ende.Die Welt wurde von gewaltigen Feuersbrünsten und wilden Stürmen verschlungen.Die BLAUE KUGEL und die ROTE KUGEL beendeten die Katastrophe.Licht strömte aus den beiden KUGELN und besänftigte die erzürnten Widersacher.Das nun sanft gewordene Paar tauchte tief ins Meer, wo es schließlich verschwand…
 return
 = MtPyre_Summit_EventScript_OldManAfterRayquaza
 msgboxyesno	It is my role to pass on the legends of HOENN to future generations.And the crisis that just ended in SOOTOPOLIS rewrote a legend…Have you the time to hear the new legend of HOENN?
@@ -393,7 +393,7 @@ call_if_eq VAR_RESULT NO MtPyre_Summit_EventScript_DeclineOldManTale
 release
 end
 = MtPyre_Summit_EventScript_OldManNewTale
-msgbox	It happened long, long ago…The world was wracked by a ferocious clash between the POKéMON of the land and the POKéMON of the sea…The POKéMON of the land raised mountains and created continents…The POKéMON of the sea raised huge waves and carved out oceans…Their fierce duel raged without end.The world was engulfed in massive fires and vicious storms.It was then that the POKéMON of the sky descended from a storm.The POKéMON, shining a vivid green, becalmed the two enraged POKéMON.Then, its duty done, the green POKéMON flew off into the wild blue yonder…
+msgbox	Es geschah vor langer, langer Zeit…Die Welt wurde von einem erbitterten Kampf zwischen dem POKéMON des Landes und dem POKéMON des Meeres erschüttert…Das POKéMON des Landes türmte Berge auf und schuf Kontinente…Das POKéMON des Meeres türmte gewaltige Wellen auf und formte Ozeane…Ihr erbitterter Zweikampf tobte ohne Ende.Die Welt wurde von gewaltigen Feuern und wilden Stürmen verschlungen.Da stieg das POKéMON des Himmels aus einem Sturm herab.Das POKéMON, das in leuchtendem Grün erstrahlte, besänftigte die beiden erzürnten POKéMON.Dann, nachdem seine Aufgabe erfüllt war, flog das grüne POKéMON hinaus in die weite blaue Ferne…
 return
 grass
 13

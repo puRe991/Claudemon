@@ -55,8 +55,8 @@ misc_breakable_rock 5 10 S static FLAG_TEMP_13 - 0
 people_team_aqua_aqua_member_m 8 6 S static FLAG_HIDE_SEAFLOOR_CAVERN_AQUA_GRUNTS - 2
 people_team_aqua_aqua_member_m 15 10 S static FLAG_HIDE_SEAFLOOR_CAVERN_AQUA_GRUNTS - 3
 dialogs
-3	I want to get a promotion so I can boss around the GRUNTS…
-4	That submarine we jacked, man, it's brutal as a ride. It's way too tight in there!
+3	Ich will befördert werden, damit ich den GRUNZERN Befehle erteilen kann…
+4	Dieses U-Boot, das wir geklaut haben, Mann, das ist echt heftig als Fahrt. Da drin ist es viel zu eng!
 objscripts
 0 EventScript_StrengthBoulder
 1 EventScript_StrengthBoulder
@@ -68,11 +68,11 @@ Movement_SmashRock	delay,end
 scriptdefs
 = SeafloorCavern_Room1_EventScript_Grunt2
 trainerbattle_single TRAINER_GRUNT_SEAFLOOR_CAVERN_2 SeafloorCavern_Room1_Text_Grunt2Intro SeafloorCavern_Room1_Text_Grunt2Defeat
-msgbox	That submarine we jacked, man, it's brutal as a ride. It's way too tight in there!
+msgbox	Dieses U-Boot, das wir geklaut haben, Mann, das ist echt heftig als Fahrt. Da drin ist es viel zu eng!
 end
 = SeafloorCavern_Room1_EventScript_Grunt1
 trainerbattle_single TRAINER_GRUNT_SEAFLOOR_CAVERN_1 SeafloorCavern_Room1_Text_Grunt1Intro SeafloorCavern_Room1_Text_Grunt1Defeat
-msgbox	I want to get a promotion so I can boss around the GRUNTS…
+msgbox	Ich will befördert werden, damit ich den GRUNZERN Befehle erteilen kann…
 end
 = EventScript_RockSmash
 lockall
@@ -84,7 +84,7 @@ bufferpartymonnick STR_VAR_1 VAR_RESULT
 buffermovename STR_VAR_2 MOVE_ROCK_SMASH
 msgboxyesno	This rock appears to be breakable. Would you like to use ROCK SMASH?
 goto_if_eq VAR_RESULT NO EventScript_CancelSmash
-msgbox	STR_VAR_1 used STR_VAR_2!
+msgbox	STR_VAR_1 setzte STR_VAR_2 ein!
 closemessage
 dofieldeffect FLDEFF_USE_ROCK_SMASH
 waitstate
@@ -117,7 +117,7 @@ closemessage
 releaseall
 end
 = EventScript_CantSmashRock
-msgbox	It's a rugged rock, but a POKéMON may be able to smash it.
+msgbox	Ein schroffer Felsen, aber ein POKéMON könnte ihn vielleicht zertrümmern.
 releaseall
 end
 = EventScript_StrengthBoulder
@@ -136,7 +136,7 @@ goto EventScript_ActivateStrength
 end
 = EventScript_ActivateStrength
 setflag FLAG_SYS_USE_STRENGTH
-msgbox	STR_VAR_1 used STRENGTH!STR_VAR_1's STRENGTH made it possible to move boulders around!
+msgbox	STR_VAR_1 setzte KRAFTKOLOSS ein!STR_VAR_1s KRAFTKOLOSS machte es möglich, Felsbrocken zu bewegen!
 releaseall
 end
 = EventScript_CancelStrength
@@ -144,11 +144,11 @@ closemessage
 releaseall
 end
 = EventScript_CantStrength
-msgbox	It's a big boulder, but a POKéMON may be able to push it aside.
+msgbox	Ein großer Felsbrocken, aber ein POKéMON könnte ihn vielleicht beiseiteschieben.
 releaseall
 end
 = EventScript_CheckActivatedBoulder
-msgbox	STRENGTH made it possible to move boulders around.
+msgbox	KRAFTKOLOSS machte es möglich, Felsbrocken zu bewegen.
 releaseall
 end
 mapsec

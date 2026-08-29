@@ -57,9 +57,9 @@ people_girl_3 11 9 W static 0 - 2
 misc_item_ball 8 17 S static FLAG_ITEM_TRICK_HOUSE_PUZZLE_2_WAVE_MAIL - 0
 misc_item_ball 3 13 S static FLAG_ITEM_TRICK_HOUSE_PUZZLE_2_HARBOR_MAIL - 0
 dialogs
-0	Can I get you to push all the buttons for me?
-1	The TRICK MASTER rigged all the tricks in this house all by himself.
-2	You're strong, aren't you? Maybe even enough to be a GYM LEADER!
+0	Kannst du für mich alle Knöpfe drücken?
+1	Der TÜFTEL-MEISTER hat alle Tricks in diesem Haus ganz allein präpariert.
+2	Du bist stark, nicht wahr? Vielleicht sogar stark genug für einen ARENALEITER!
 objscripts
 0 Route110_TrickHousePuzzle2_EventScript_Ted
 1 Route110_TrickHousePuzzle2_EventScript_Paul
@@ -136,15 +136,15 @@ end
 end
 = Route110_TrickHousePuzzle2_EventScript_Georgia
 trainerbattle_single TRAINER_GEORGIA Route110_TrickHousePuzzle2_Text_GeorgiaIntro Route110_TrickHousePuzzle2_Text_GeorgiaDefeat
-msgbox	You're strong, aren't you? Maybe even enough to be a GYM LEADER!
+msgbox	Du bist stark, nicht wahr? Vielleicht sogar stark genug für einen ARENALEITER!
 end
 = Route110_TrickHousePuzzle2_EventScript_Paul
 trainerbattle_single TRAINER_PAUL Route110_TrickHousePuzzle2_Text_PaulIntro Route110_TrickHousePuzzle2_Text_PaulDefeat
-msgbox	The TRICK MASTER rigged all the tricks in this house all by himself.
+msgbox	Der TÜFTEL-MEISTER hat alle Tricks in diesem Haus ganz allein präpariert.
 end
 = Route110_TrickHousePuzzle2_EventScript_Ted
 trainerbattle_single TRAINER_TED Route110_TrickHousePuzzle2_Text_TedIntro Route110_TrickHousePuzzle2_Text_TedDefeat
-msgbox	Can I get you to push all the buttons for me?
+msgbox	Kannst du für mich alle Knöpfe drücken?
 end
 mapsec
 8 7 1 3	ROUTE 110
