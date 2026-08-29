@@ -36,7 +36,7 @@ warps
 npcs
 people_elite_four_drake 6 5 S static 0 - 0
 dialogs
-0	I am the last of the POKéMON LEAGUE ELITE FOUR, DRAKE the DRAGON master!In their natural state, POKéMON are wild living things. They are free.At times, they hinder us. At times, they help us.For us to battle with POKéMON as partners, do you know what it takes?Do you know what is needed?If you don't, then you will never prevail over me!
+0	Ich bin der Letzte der POKéMON-LIGA-TOP VIER, DRAKE, der DRACHEN-Meister!In ihrem natürlichen Zustand sind POKéMON wilde Lebewesen. Sie sind frei.Manchmal behindern sie uns. Manchmal helfen sie uns.Weißt du, was es braucht, damit wir mit POKéMON als Partner kämpfen können?Weißt du, was dafür nötig ist?Wenn nicht, wirst du niemals gegen mich bestehen!
 objscripts
 0 EverGrandeCity_DrakesRoom_EventScript_Drake
 onload
@@ -90,7 +90,7 @@ lock
 faceplayer
 goto_if_set FLAG_DEFEATED_ELITE_4_DRAKE EverGrandeCity_DrakesRoom_EventScript_PostBattleSpeech
 playbgm MUS_ENCOUNTER_ELITE_FOUR FALSE
-msgbox	I am the last of the POKéMON LEAGUE ELITE FOUR, DRAKE the DRAGON master!In their natural state, POKéMON are wild living things. They are free.At times, they hinder us. At times, they help us.For us to battle with POKéMON as partners, do you know what it takes?Do you know what is needed?If you don't, then you will never prevail over me!
+msgbox	Ich bin der Letzte der POKéMON-LIGA-TOP VIER, DRAKE, der DRACHEN-Meister!In ihrem natürlichen Zustand sind POKéMON wilde Lebewesen. Sie sind frei.Manchmal behindern sie uns. Manchmal helfen sie uns.Weißt du, was es braucht, damit wir mit POKéMON als Partner kämpfen können?Weißt du, was dafür nötig ist?Wenn nicht, wirst du niemals gegen mich bestehen!
 trainerbattle_no_intro TRAINER_DRAKE EverGrandeCity_DrakesRoom_Text_Defeat
 goto EverGrandeCity_DrakesRoom_EventScript_Defeated
 end
@@ -99,7 +99,7 @@ setvar VAR_0x8004 FANCOUNTER_DEFEATED_DRAKE
 special Script_TryGainNewFanFromCounter
 setflag FLAG_DEFEATED_ELITE_4_DRAKE
 call PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles
-msgbox	You deserve every credit for coming this far as a TRAINER of POKéMON.You do seem to know what is needed.Yes, what a TRAINER needs is a virtuous heart.POKéMON touch the good hearts of TRAINERS and learn good from wrong.They touch the good hearts of TRAINERS and grow strong.Go! Go onwards! The CHAMPION is waiting!
+msgbox	Du verdienst alle Anerkennung dafür, als TRAINER von POKéMON so weit gekommen zu sein.Du scheinst tatsächlich zu wissen, was nötig ist.Ja, was ein TRAINER braucht, ist ein tugendhaftes Herz.POKéMON berühren die guten Herzen der TRAINER und lernen, Gut von Böse zu unterscheiden.Sie berühren die guten Herzen der TRAINER und wachsen daran.Geh! Geh weiter voran! Der CHAMP wartet!
 release
 end
 = PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles
@@ -121,7 +121,7 @@ setmetatile 12 2 METATILE_EliteFour_LeftSpotlightOff TRUE
 special DrawWholeMapView
 return
 = EverGrandeCity_DrakesRoom_EventScript_PostBattleSpeech
-msgbox	You deserve every credit for coming this far as a TRAINER of POKéMON.You do seem to know what is needed.Yes, what a TRAINER needs is a virtuous heart.POKéMON touch the good hearts of TRAINERS and learn good from wrong.They touch the good hearts of TRAINERS and grow strong.Go! Go onwards! The CHAMPION is waiting!
+msgbox	Du verdienst alle Anerkennung dafür, als TRAINER von POKéMON so weit gekommen zu sein.Du scheinst tatsächlich zu wissen, was nötig ist.Ja, was ein TRAINER braucht, ist ein tugendhaftes Herz.POKéMON berühren die guten Herzen der TRAINER und lernen, Gut von Böse zu unterscheiden.Sie berühren die guten Herzen der TRAINER und wachsen daran.Geh! Geh weiter voran! Der CHAMP wartet!
 release
 end
 mapsec

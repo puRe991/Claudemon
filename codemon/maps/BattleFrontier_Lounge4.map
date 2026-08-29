@@ -29,22 +29,22 @@ people_woman_3 4 4 N static 0 - 0
 people_cook 6 6 S wander 0 - 0
 people_man_3 0 5 E static 0 - 0
 dialogs
-0	I wonder if they'll be airing interviews with tough TRAINERS today?
-1	If I opened a restaurant here, it'd make money for sure.
-2	Whew…I need to take a breather after some intense battles…But even now, I never take a break from plotting strategy and combos.
+0	Ob sie heute wohl Interviews mit starken TRAINERN senden?
+1	Wenn ich hier ein Restaurant eröffnen würde, würde das sicher Geld einbringen.
+2	Puh…Nach ein paar intensiven Kämpfen brauche ich mal eine Verschnaufpause…Aber selbst jetzt höre ich nie auf, über Strategien und Kombos nachzudenken.
 objscripts
 0 BattleFrontier_Lounge4_EventScript_Woman
 1 BattleFrontier_Lounge4_EventScript_Cook
 2 BattleFrontier_Lounge4_EventScript_Man
 scriptdefs
 = BattleFrontier_Lounge4_EventScript_Man
-msgbox	Whew…I need to take a breather after some intense battles…But even now, I never take a break from plotting strategy and combos.
+msgbox	Puh…Nach ein paar intensiven Kämpfen brauche ich mal eine Verschnaufpause…Aber selbst jetzt höre ich nie auf, über Strategien und Kombos nachzudenken.
 end
 = BattleFrontier_Lounge4_EventScript_Cook
-msgbox	If I opened a restaurant here, it'd make money for sure.
+msgbox	Wenn ich hier ein Restaurant eröffnen würde, würde das sicher Geld einbringen.
 end
 = BattleFrontier_Lounge4_EventScript_Woman
-msgbox	I wonder if they'll be airing interviews with tough TRAINERS today?
+msgbox	Ob sie heute wohl Interviews mit starken TRAINERN senden?
 end
 mapsec
 22 12 1 1	BATTLE FRONTIER

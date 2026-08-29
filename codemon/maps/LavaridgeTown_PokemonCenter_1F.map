@@ -31,9 +31,9 @@ people_youngster 11 8 N static 0 - 0
 people_woman_3 10 6 W static 0 - 0
 people_gentleman 1 3 E static 0 - 0
 dialogs
-1	It's sort of magical how just sitting in a hot-spring pool can invigorate.I wish I could let my POKéMON soak, too.
-2	I think POKéMON get closer to their TRAINERS if they spend time together.The longer the better. That's what I think.
-3	Hohoho! Hey, kid, you can reach the hot springs from here.If POKéMON are getting rest, so too should their TRAINERS.
+1	Es ist irgendwie magisch, wie einen schon das bloße Sitzen in einem heißen Quellbecken beleben kann.Ich wünschte, ich könnte auch mein POKéMON darin baden lassen.
+2	Ich glaube, POKéMON kommen ihren TRAINERN näher, wenn sie Zeit miteinander verbringen.Je länger, desto besser. Das denke ich zumindest.
+3	Hohoho! Hey, Kleiner, von hier aus erreichst du die heißen Quellen.Wenn sich POKéMON ausruhen, sollten es ihre TRAINER auch tun.
 objscripts
 0 LavaridgeTown_PokemonCenter_1F_EventScript_Nurse
 1 LavaridgeTown_PokemonCenter_1F_EventScript_Youngster
@@ -47,13 +47,13 @@ Common_Movement_WalkInPlaceFasterLeft	delay,end
 Movement_PkmnCenterNurse_Bow	delay,delay,end
 scriptdefs
 = LavaridgeTown_PokemonCenter_1F_EventScript_Gentleman
-msgbox	Hohoho! Hey, kid, you can reach the hot springs from here.If POKéMON are getting rest, so too should their TRAINERS.
+msgbox	Hohoho! Hey, Kleiner, von hier aus erreichst du die heißen Quellen.Wenn sich POKéMON ausruhen, sollten es ihre TRAINER auch tun.
 end
 = LavaridgeTown_PokemonCenter_1F_EventScript_Woman
-msgbox	I think POKéMON get closer to their TRAINERS if they spend time together.The longer the better. That's what I think.
+msgbox	Ich glaube, POKéMON kommen ihren TRAINERN näher, wenn sie Zeit miteinander verbringen.Je länger, desto besser. Das denke ich zumindest.
 end
 = LavaridgeTown_PokemonCenter_1F_EventScript_Youngster
-msgbox	It's sort of magical how just sitting in a hot-spring pool can invigorate.I wish I could let my POKéMON soak, too.
+msgbox	Es ist irgendwie magisch, wie einen schon das bloße Sitzen in einem heißen Quellbecken beleben kann.Ich wünschte, ich könnte auch mein POKéMON darin baden lassen.
 end
 = LavaridgeTown_PokemonCenter_1F_EventScript_Nurse
 setvar VAR_0x800B LOCALID_LAVARIDGE_NURSE
@@ -73,7 +73,7 @@ goto_if_eq VAR_RESULT YES EventScript_PkmnCenterNurse_HealPkmn
 goto_if_eq VAR_RESULT NO EventScript_PkmnCenterNurse_Goodbye
 end
 = EventScript_PkmnCenterNurse_Goodbye
-msgbox	We hope to see you again!
+msgbox	Wir hoffen, dich bald wiederzusehen!
 return
 @ VAR_0x8004 is 1 when player has Gold Card; jumps are identical
 goto EventScript_PkmnCenterNurse_HealPkmn
@@ -98,28 +98,28 @@ end
 goto EventScript_PkmnCenterNurse_ReturnPkmn
 = EventScript_PkmnCenterNurse_ReturnPkmn
 goto_if_eq VAR_0x8004 1 EventScript_PkmnCenterNurse_ReturnPkmn2
-msgbox	Thank you for waiting.We've restored your POKéMON to full health.
+msgbox	Danke fürs Warten.Wir haben deine POKéMON vollständig geheilt.
 waitmessage
 applymovement VAR_0x800B Movement_PkmnCenterNurse_Bow
 waitmovement 0
-msgbox	We hope to see you again!
+msgbox	Wir hoffen, dich bald wiederzusehen!
 return
 = EventScript_PkmnCenterNurse_ReturnPkmn2
-msgbox	Thank you for waiting.
+msgbox	Danke fürs Warten.
 waitmessage
 applymovement VAR_0x800B Movement_PkmnCenterNurse_Bow
 waitmovement 0
-msgbox	We hope to see you again!
+msgbox	Wir hoffen, dich bald wiederzusehen!
 return
 = EventScript_PkmnCenterNurse_PlayerWaitingInUnionRoom
 goto_if_set FLAG_NURSE_UNION_ROOM_REMINDER EventScript_PkmnCenterNurse_ReturnPkmn
-msgbox	Thank you for waiting.We've restored your POKéMON to full health.
+msgbox	Danke fürs Warten.Wir haben deine POKéMON vollständig geheilt.
 setflag FLAG_NURSE_UNION_ROOM_REMINDER
-msgbox	It appears as if STR_VAR_1 is playing right now. Go for it!
+msgbox	Es sieht so aus, als würde gerade STR_VAR_1 gespielt. Los geht's!
 waitmessage
 applymovement VAR_0x800B Movement_PkmnCenterNurse_Bow
 waitmovement 0
-msgbox	We hope to see you again!
+msgbox	Wir hoffen, dich bald wiederzusehen!
 return
 = EventScript_PkmnCenterNurse_CheckPokerus
 specialvar VAR_RESULT IsPokerusInParty
@@ -127,7 +127,7 @@ goto_if_eq VAR_RESULT TRUE EventScript_PkmnCenterNurse_ExplainPokerus
 goto_if_eq VAR_RESULT FALSE EventScript_PkmnCenterNurse_CheckTrainerHillAndUnionRoom
 end
 = EventScript_PkmnCenterNurse_ExplainPokerus
-msgbox	Your POKéMON may be infected with POKéRUS.Little is known about the POKéRUS except that they are microscopic life- forms that attach to POKéMON.While infected, POKéMON are said to grow exceptionally well.
+msgbox	Dein POKéMON könnte mit dem POKéRUS infiziert sein.Über den POKéRUS ist wenig bekannt, außer dass es sich um mikroskopisch kleine Lebensformen handelt, die sich an POKéMON heften.Während der Infektion sollen POKéMON außergewöhnlich gut wachsen.
 setflag FLAG_POKERUS_EXPLAINED
 return
 = EventScript_PkmnCenterNurse_TakeAndHealPkmn
@@ -140,15 +140,15 @@ waitmovement 0
 special HealPlayerParty
 return
 = EventScript_PkmnCenterNurse_IllTakeYourPkmn2
-msgbox	Okay, I'll take your POKéMON for a few seconds.
+msgbox	Okay, ich nehme deine POKéMON für ein paar Sekunden.
 return
 = EventScript_PkmnCenterNurse_IllTakeYourPkmn
-msgbox	Okay, I'll take your POKéMON for a few seconds.
+msgbox	Okay, ich nehme deine POKéMON für ein paar Sekunden.
 return
 = EventScript_PkmnCenterNurse_GoldCard
 goto_if_set FLAG_NURSE_MENTIONS_GOLD_CARD EventScript_PkmnCenterNurse_AskForUsual
 setflag FLAG_NURSE_MENTIONS_GOLD_CARD
-msgbox	Hello, and welcome to the POKéMON CENTER.We restore your tired POKéMON to full health.Would you like to…
+msgbox	Hallo und willkommen im POKéMON-CENTER.Wir stellen deine müden POKéMON wieder vollständig her.Möchtest du…
 playse SE_PIN
 applymovement VAR_0x800B Common_Movement_ExclamationMark
 waitmovement 0
@@ -156,7 +156,7 @@ applymovement VAR_0x800B Common_Movement_Delay48
 waitmovement 0
 msgboxyesno	Th-that card… Could it be… The GOLD CARD?!Oh, the gold color is brilliant! The four stars seem to sparkle!I've seen several TRAINERS with a SILVER CARD before, but, PLAYER, you're the first TRAINER I've ever seen with a GOLD CARD!Okay, PLAYER, please allow me the honor of resting your POKéMON!
 goto_if_eq VAR_RESULT YES EventScript_PkmnCenterNurse_GoldCardHealPkmn
-msgbox	We hope to see you again!
+msgbox	Wir hoffen, dich bald wiederzusehen!
 return
 = EventScript_PkmnCenterNurse_GoldCardHealPkmn
 setvar VAR_0x8004 1
@@ -165,7 +165,7 @@ end
 = EventScript_PkmnCenterNurse_AskForUsual
 msgboxyesno	I'm delighted to see you, PLAYER! You want the usual, am I right?
 goto_if_eq VAR_RESULT YES EventScript_PkmnCenterNurse_GoldCardHealPkmn
-msgbox	We hope to see you again!
+msgbox	Wir hoffen, dich bald wiederzusehen!
 return
 mapsec
 5 3 1 1	LAVARIDGE TOWN
