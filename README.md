@@ -369,7 +369,9 @@ Dies ist keine Wunschliste: Alles, was als erledigt markiert ist, wurde entweder
 
 * **`specialvar`**: `GetBattleOutcome` und `PlayerHasBerries` liefern echte Ergebnisse. Andere Systeme wie Rückkämpfe, Pokérus, Trading, Zucht, Wettbewerbe, Fanclub und Trainer Hill liefern aktuell ehrlich `0/false`, weil diese Systeme noch nicht existieren.
 
-* **`setobjectsubpriority`/`resetobjectsubpriority`**: echte Opcodes, aber bewusst No-ops. Die Engine sortiert Objekte bereits pro Frame nach ihrer Y-Position, wodurch die erforderliche Zeichenreihenfolge in den realen Anwendungsfällen korrekt ist.
+* **`setobjectsubpriority`/`resetobjectsubpriority`**: seit Kurzem echte Opcodes. Setzen/löschen einen Tiebreak-Wert pro Charakter, der beim Sortieren verwendet wird, wenn zwei Objekte exakt dieselbe Y-Position teilen (z.B. Mr. Brineys Boot-Szenen auf Route104/109/Dewford).
+
+* **Türöffnungsanimationen**: `opendoor`/`closedoor` spielen inzwischen eine echte Frame-Sequenz mit Original-Timing ab (`waitdooranim` blockiert entsprechend); es gibt jedoch keine Tabelle „welche Karte nutzt welches Türgrafik-Set" (pokeemerald hat ~50 verschiedene Sets je nach Ort), daher wird immer das häufigste Set (`general.png`) verwendet statt z.B. `mauville.png` in Mauville.
 
 * **PC-Itemlager / mehrere PC-Boxen**: `checkpcitem` und `bufferboxname` liefern aktuell nichts. Es gibt nur eine unbegrenzte Liste für Pokémon.
 
@@ -386,8 +388,6 @@ Dies ist keine Wunschliste: Alles, was als erledigt markiert ist, wurde entweder
 * ❌ Zucht/Eier, Wettbewerbe, Geheimbasen, Battle Frontier
 
 * ❌ Tausch
-
-* ❌ Türöffnungsanimationen (rein kosmetisch)
 
 * ❌ Karteneditor / prozeduraler Kartengenerator
 
@@ -425,6 +425,14 @@ Die Storyinhalte selbst (Dialoge, Skripte, Karten) sind für das gesamte Spiel i
 ✅ 9. ~~`LOCALID`→Objektverwaltung pro Karte~~ – erledigt. `NpcSpawn` speichert die `LOCALID_*`, `Session::localid_map` löst diese auf und `ScriptVM` kann Objekte gezielt verwalten.
 
 ✅ 10. ~~`multichoice`-Unterstützung~~ – erledigt. `MultiChoicePrompt` besitzt einen echten Cursor, speichert die Auswahl in `VAR_RESULT` und unterstützt `multichoicedefault`. Battle-Frontier-spezifische Texte bleiben teilweise offen.
+
+### 🧱 Größere Engine-weite Lücken (kein einfacher Tabellen-Fix)
+
+* **`BattleData::Mon` hat keinen Spitznamen, keinen Persönlichkeitswert (PID), keinen Original-Trainer-Name/-Geschlecht und keinen Sheen/Glanz-Wert.** Fiel zuerst bei der Korrektur von `INGAME_TRADES` auf (dort fehlen dadurch Spitzname "DOTS"/"PLUSES"/"SEASOR"/"MEOWOW", OT "KOBE"/"ROMAN"/"SKYLAR"/"ISIS" usw.), ist aber keine Trade-spezifische Lücke, sondern gilt für jedes Pokémon im Spiel (gefangen, geschenkt, Starter). Das Beheben braucht:
+  * neue Felder in `BattleData::Mon` (nickname, personality/PID, ot_name, ot_gender, sheen)
+  * Anzeige überall, wo aktuell der Artname statt eines Spitznamens gezeigt wird (Team-Menü, Kampf-UI, `bufferpartymonnick`)
+  * Erweiterung von `SaveGame.cpp`s Textformat um die neuen Felder (mit Rückwärtskompatibilität zu bestehenden Spielständen)
+  * ggf. PID-Ableitung von Geschlecht/Shiny-Status, falls das später auch angegangen wird
 
 ## To-do-Checkliste
 
