@@ -434,6 +434,8 @@ Die Storyinhalte selbst (Dialoge, Skripte, Karten) sind für das gesamte Spiel i
   * Erweiterung von `SaveGame.cpp`s Textformat um die neuen Felder (mit Rückwärtskompatibilität zu bestehenden Spielständen)
   * ggf. PID-Ableitung von Geschlecht/Shiny-Status, falls das später auch angegangen wird
 
+* **Bewusst bei `0`/`false` belassene `specialvar`-Fälle** (kein Tabellen-Bug, sondern jeweils ein komplett fehlendes Subsystem, kein kleiner Fix): Rückkämpfe (`ShouldTryRematchBattle`, 77× in den Karten aufgerufen!), Pokérus, Zucht/Daycare, Mail, Union Room, Wireless, Fanclub, Wettbewerbe, Museum, Mirage Island. Jedes davon bräuchte eine eigene, komplett neue Engine-Funktion (eigener Zustand, eigene UI, teils eigene Assets), nicht nur eine ergänzte Fallunterscheidung in `ScriptVM::pump()`.
+
 ## To-do-Checkliste
 
 Alles, was unten abgehakt ist, wurde durch einen Test oder Headless-Screenshot überprüft und nicht nur theoretisch implementiert.
