@@ -31,7 +31,7 @@ public:
 	               OUTCOME_RAN = 4, OUTCOME_CAUGHT = 7 };
 
 private:
-	enum Phase { INACTIVE, MSG, ACTION, MOVE, SWITCH };
+	enum Phase { INACTIVE, MSG, ACTION, MOVE, SWITCH, BALL };
 	// Simplified flat rate standing in for pokeemerald's per-trainer-class
 	// money field (not imported -- trainers.tsv only carries id + party).
 	static const int PRIZE_MONEY_PER_LEVEL = 20;
@@ -145,7 +145,24 @@ private:
 	void do_move(Mon& atk, Mon& def, const std::string& mv,
 	             const std::string& atk_name);
 	void resolve_turn(const std::string& player_move);
-	void throw_ball();
+	// --- Poke Ball selection & catching -------------------------------------
+	// Every ball type this engine models, in menu order (real pokeemerald's
+	// bag ordering). Not every one has a distinct effect -- several (Luxury,
+	// Premier, Cherish, Friend, Love, Moon, Sport, Park, Dream, Lure, Heavy)
+	// have real-game bonuses this engine has no data to compute (gender,
+	// held-item weight, fishing/contest context, evolution methods, ...) and
+	// fall back to a neutral 1x multiplier, same as an ordinary Poke Ball.
+	static const std::vector<std::string>& ball_types();
+	int ball_cursor = 0;
+	std::vector<std::string> owned_balls;   // rebuilt each time BALL opens
+	void open_ball_menu();
+	// This ball's Gen-3-style catch-rate multiplier against the current
+	// enemy/battle state (turn count, enemy level/species/stats, whether
+	// its species was already caught). 1.f for a ball with no computable
+	// bonus here. Master Ball is handled separately (always succeeds).
+	float ball_multiplier(const std::string& ball_item) const;
+	int turn_count = 0;    // real turns elapsed, for Timer/Quick Ball
+	void throw_ball(const std::string& ball_item);
 	void flee();
 	void enemy_turn_after();     // enemy attacks once, then back to ACTION / end
 	void send_next_enemy();
@@ -224,13 +241,14 @@ public:
 	// the real state instead of guessing how many presses a message queue
 	// needs -- miscounting there silently re-enters the move menu and picks a
 	// different move than intended.
-	enum Screen { SCR_INACTIVE, SCR_MESSAGE, SCR_ACTION, SCR_MOVE, SCR_SWITCH };
+	enum Screen { SCR_INACTIVE, SCR_MESSAGE, SCR_ACTION, SCR_MOVE, SCR_SWITCH, SCR_BALL };
 	Screen screen() const {
 		switch (phase) {
 			case MSG:    return SCR_MESSAGE;
 			case ACTION: return SCR_ACTION;
 			case MOVE:   return SCR_MOVE;
 			case SWITCH: return SCR_SWITCH;
+			case BALL:   return SCR_BALL;
 			default:     return SCR_INACTIVE;
 		}
 	}

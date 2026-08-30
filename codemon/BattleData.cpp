@@ -395,6 +395,12 @@ int BattleData::catch_rate(const std::string& species_name) const {
 	return sp == species.end() ? 45 : sp->second.catch_rate;
 }
 
+std::pair<std::string, std::string> BattleData::species_types(const std::string& species_name) const {
+	auto sp = species.find(species_name);
+	if (sp == species.end()) return {"", ""};
+	return {sp->second.t1, sp->second.t2};
+}
+
 std::string BattleData::ability(const std::string& species_name) const {
 	auto sp = species.find(species_name);
 	return sp == species.end() ? "NONE" : sp->second.ability1;

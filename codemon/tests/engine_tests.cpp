@@ -453,15 +453,18 @@ static void test_wild_battle_capture(BattleData& bd) {
     CHECK(battle.start_wild("MAGIKARP", 5, &team[0]));
 
     // BALL is the third action-menu row (KAMPF/POKeMON/BALL/FLUCHT, UP+DOWN
-    // only). Drain whatever messages are up, then walk the cursor back to the
-    // top before stepping down -- overshooting lands on FLUCHT and ends the
-    // battle. Magikarp's real catch rate is 255, so this converges fast.
+    // only) and now opens a ball-choice submenu (only ITEM_POKE_BALL owned
+    // here, so a single CONFIRM there throws it). Drain whatever messages
+    // are up, then walk the cursor back to the top before stepping down --
+    // overshooting lands on FLUCHT and ends the battle. Magikarp's real
+    // catch rate is 255, so this converges fast.
     for (int i = 0; i < 4000 && battle.active() && team.size() < 2; ++i) {
         if (battle.screen() == Battle::SCR_MESSAGE) { battle.input(BTN_CONFIRM); continue; }
+        if (battle.screen() == Battle::SCR_BALL) { battle.input(BTN_CONFIRM); continue; }
         if (battle.screen() != Battle::SCR_ACTION) break;
         for (int k = 0; k < 4; ++k) battle.input(BTN_UP);      // back to KAMPF
         battle.input(BTN_DOWN); battle.input(BTN_DOWN);        // -> BALL
-        battle.input(BTN_CONFIRM);
+        battle.input(BTN_CONFIRM);                             // open ball submenu
     }
     CHECK(team.size() == 2);
     if (team.size() == 2) {
