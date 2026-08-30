@@ -383,8 +383,6 @@ Dies ist keine Wunschliste: Alles, was als erledigt markiert ist, wurde entweder
 
 * ❌ Fahrrad, Tag-/Nacht-Zyklus, Wetter in der Overworld, Angeln, Beerenanbau
 
-* ❌ Zerschlagen als Feldattacke (im Gegensatz zu Zerschneider gibt es keine Tile-Logik zum Entfernen zerschlagbarer Felsen; `setfieldeffectargument`/`dofieldeffect` für `FLDEFF_USE_ROCK_SMASH` sind noch nicht verdrahtet)
-
 * ❌ Mehrere PC-Boxen und Itemlagerung im PC
 
 * ❌ Zucht/Eier, Wettbewerbe, Geheimbasen, Battle Frontier
@@ -437,6 +435,12 @@ Die Storyinhalte selbst (Dialoge, Skripte, Karten) sind für das gesamte Spiel i
   * ggf. PID-Ableitung von Geschlecht/Shiny-Status, falls das später auch angegangen wird
 
 * **Bewusst bei `0`/`false` belassene `specialvar`-Fälle** (kein Tabellen-Bug, sondern jeweils ein komplett fehlendes Subsystem, kein kleiner Fix): Rückkämpfe (`ShouldTryRematchBattle`, 77× in den Karten aufgerufen!), Pokérus, Zucht/Daycare, Mail, Union Room, Wireless, Fanclub, Wettbewerbe, Museum, Mirage Island. Jedes davon bräuchte eine eigene, komplett neue Engine-Funktion (eigener Zustand, eigene UI, teils eigene Assets), nicht nur eine ergänzte Fallunterscheidung in `ScriptVM::pump()`.
+
+* **Restliche kosmetische Opcodes** (noch nicht umgesetzt, kein Story-Blocker, aber sichtbar näher am Original als der aktuelle No-op):
+  * `playfanfare`/`waitfanfare` (90 Verwendungen, die häufigsten): bräuchten zuerst eine Erweiterung von `tools/pe_import.py`s Musik-Exportliste um die Fanfare-/Jingle-MUS_-IDs (Level-up, Item erhalten, Orden erhalten, Entwicklung, ...) und einen echten Lauf der MIDI→OGG-Konvertierung (`fluidsynth`+`ffmpeg`, in dieser Sandbox nicht verfügbar) – reine Code-Verdrahtung ohne die Audiodateien wäre nicht verifizierbar.
+  * `showmonpic`/`hidemonpic`: statische Pokémon-Bildanzeige (u.a. Namensgeber-Bildschirm), bräuchte eine neue Sprite-Anzeige-Komponente.
+  * `showmoneybox`/`hidemoneybox`/`updatemoneybox`, `showcoinsbox`/`hidecoinsbox`/`updatecoinsbox`: HUD-Overlay für Geld-/Münzenanzeige während Shop/Spielhalle.
+  * `bufferstdstring`: fast ausschließlich Battle-Frontier-Text (`STDSTRING_SINGLE`/`_DOUBLE`/`_MULTI`/...), an das ohnehin nicht implementierte Battle-Frontier-Feature gekoppelt.
 
 ## To-do-Checkliste
 
