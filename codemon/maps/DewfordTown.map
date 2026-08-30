@@ -203,6 +203,8 @@ copyvar VAR_BRINEY_LOCATION VAR_0x8008
 resetobjectsubpriority LOCALID_PLAYER MAP_DEWFORD_TOWN
 resetobjectsubpriority LOCALID_ROUTE109_BRINEY MAP_ROUTE109
 copyobjectxytoperm LOCALID_ROUTE109_BRINEY
+warp Route109 21 28
+waitstate
 release
 end
 = DewfordTown_EventScript_LandedSlateport
