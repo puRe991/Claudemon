@@ -383,6 +383,8 @@ Dies ist keine Wunschliste: Alles, was als erledigt markiert ist, wurde entweder
 
 * ❌ Fahrrad, Tag-/Nacht-Zyklus, Wetter in der Overworld, Angeln, Beerenanbau
 
+* ❌ Zerschlagen als Feldattacke (im Gegensatz zu Zerschneider gibt es keine Tile-Logik zum Entfernen zerschlagbarer Felsen; `setfieldeffectargument`/`dofieldeffect` für `FLDEFF_USE_ROCK_SMASH` sind noch nicht verdrahtet)
+
 * ❌ Mehrere PC-Boxen und Itemlagerung im PC
 
 * ❌ Zucht/Eier, Wettbewerbe, Geheimbasen, Battle Frontier
