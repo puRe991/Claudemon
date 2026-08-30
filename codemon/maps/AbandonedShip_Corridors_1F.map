@@ -43,18 +43,18 @@ npcs
 people_youngster 17 7 S wander 0 - 0
 people_tuber_m 5 10 S static 0 - 3
 dialogs
-0	Isn't it fun here? I get excited just being here!
-1	It's not easy throwing POKé BALLS while hanging on to an inner tube!
+0	Macht es hier nicht Spaß? Ich bin schon ganz aufgeregt, nur weil ich hier bin!
+1	Es ist gar nicht so einfach, POKéBÄLLE zu werfen, während man auf einem Schwimmreifen sitzt!
 objscripts
 0 AbandonedShip_Corridors_1F_EventScript_Youngster
 1 AbandonedShip_Corridors_1F_EventScript_Charlie
 scriptdefs
 = AbandonedShip_Corridors_1F_EventScript_Charlie
 trainerbattle_single TRAINER_CHARLIE AbandonedShip_Corridors_1F_Text_CharlieIntro AbandonedShip_Corridors_1F_Text_CharlieDefeat
-msgbox	It's not easy throwing POKé BALLS while hanging on to an inner tube!
+msgbox	Es ist gar nicht so einfach, POKéBÄLLE zu werfen, während man auf einem Schwimmreifen sitzt!
 end
 = AbandonedShip_Corridors_1F_EventScript_Youngster
-msgbox	Isn't it fun here? I get excited just being here!
+msgbox	Macht es hier nicht Spaß? Ich bin schon ganz aufgeregt, nur weil ich hier bin!
 end
 mapsec
 6 14 1 1	ABANDONED SHIP
