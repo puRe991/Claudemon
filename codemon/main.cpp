@@ -17,6 +17,7 @@
 
 #include <algorithm>
 #include <cctype>
+#include <cmath>
 #include <cstdio>
 #include <cstdlib>
 #include <fstream>
@@ -689,6 +690,24 @@ static void draw_scene(sf::RenderTarget& target, Session* s, const HealFx* healf
         sf::Color c = vm->fade_white() ? sf::Color::White : sf::Color::Black;
         overlay.setFillColor(sf::Color(c.r, c.g, c.b, a));
         target.draw(overlay);
+    }
+    // `dofieldeffectsparkle` (see ScriptVM.h's Sparkle comment): a small
+    // procedural star burst, since this effect has no imported sprite sheet.
+    if (vm) {
+        int tp = s->map->get_tile_size();
+        for (const ScriptVM::Sparkle& sp : vm->sparkles()) {
+            float p = sp.t / ScriptVM::SPARKLE_DURATION;
+            float cx = sp.x * tp + tp * 0.5f, cy = sp.y * tp + tp * 0.5f;
+            sf::Uint8 a = (sf::Uint8)(255.f * (1.f - p));
+            for (int i = 0; i < 4; ++i) {
+                float ang = (float)i * 1.5708f + p * 3.14159f;
+                float r = tp * 0.5f * p;
+                sf::CircleShape dot(2.f);
+                dot.setFillColor(sf::Color(255, 255, 200, a));
+                dot.setPosition(cx + std::cos(ang) * r - 2.f, cy + std::sin(ang) * r - 2.f);
+                target.draw(dot);
+            }
+        }
     }
     if (healfx && healfx->active() && s->player) {
         int tp = s->map->get_tile_size();

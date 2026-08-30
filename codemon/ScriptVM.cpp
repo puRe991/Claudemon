@@ -329,10 +329,15 @@ void ScriptVM::pump() {
 		};
 		this->ip++;
 
-		if ((op == "msgbox" || op == "msgboxyesno") && argc >= 1) {
+		if ((op == "msgbox" || op == "msgboxyesno" || op == "messageautoscroll") && argc >= 1) {
 			// "msgboxyesno" (see pe_import.py) is pokeemerald's
 			// MSGBOX_YESNO: once the text is dismissed, the player picks
-			// yes/no and the choice lands in VAR_RESULT.
+			// yes/no and the choice lands in VAR_RESULT. "messageautoscroll"
+			// is the original's self-closing, no-button-needed variant
+			// (Battle Frontier facility text); this engine has no separate
+			// auto-advancing box, so it's shown like an ordinary message
+			// instead of being silently dropped -- an honest approximation,
+			// not a no-op that loses the text.
 			this->pending_yesno = (op == "msgboxyesno");
 			std::string text = in[1];
 			// Advances past each replacement instead of restarting the
@@ -1089,6 +1094,10 @@ void ScriptVM::pump() {
 			// inverse duration scale rather than replicating the exact LUT.
 			int speed = value_of(arg(1));
 			this->pending_fade_dur_ = FADE_DURATION * (8.f / std::max(1, speed));
+		} else if (op == "dofieldeffectsparkle" && argc >= 2) {
+			this->sparkles_.push_back({value_of(arg(0)), value_of(arg(1)), 0.f});
+		} else if (op == "waitfieldeffect") {
+			if (!this->sparkles_.empty()) { this->st = WAIT_FIELDEFFECT; return; }
 		} else if (op == "incrementgamestat" && argc >= 1 && this->state) {
 			// pokeemerald's play-record stats (Trainer Card, "records"
 			// screen); no dedicated UI shows these yet, but the counts
@@ -1145,6 +1154,12 @@ void ScriptVM::update(float dt) {
 			this->fading = false;
 			if (this->st == WAIT_FADE) { this->st = RUN; this->pump(); return; }
 		}
+	}
+	if (!this->sparkles_.empty()) {
+		for (auto& sp : this->sparkles_) sp.t += dt;
+		this->sparkles_.erase(std::remove_if(this->sparkles_.begin(), this->sparkles_.end(),
+			[](const Sparkle& sp) { return sp.t >= SPARKLE_DURATION; }), this->sparkles_.end());
+		if (this->sparkles_.empty() && this->st == WAIT_FIELDEFFECT) { this->st = RUN; this->pump(); return; }
 	}
 	if (this->door_active) {
 		this->door_timer += dt;

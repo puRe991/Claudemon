@@ -147,6 +147,16 @@ public:
 	bool fade_white() const { return this->fade_to_white; }
 	static constexpr float FADE_DURATION = 0.4f;
 
+	// `dofieldeffectsparkle X, Y[, elevation]`: a non-blocking sparkle burst
+	// at a tile (Abandoned Ship's hidden-item hint, among others) -- doesn't
+	// need a real sprite sheet, drawn procedurally by the game loop. Several
+	// can be active at once (a script that reveals more than one spot in a
+	// row). `waitfieldeffect` blocks only while at least one is still
+	// running; this engine has no other field-effect kinds to wait on.
+	struct Sparkle { int x, y; float t; };
+	const std::vector<Sparkle>& sparkles() const { return this->sparkles_; }
+	static constexpr float SPARKLE_DURATION = 0.6f;
+
 	// `special ChoosePartyMon` (in-game trades: offer up a party mon): same
 	// story as ChooseStarter -- the VM can't drive a real party-list picker
 	// itself, so the game loop shows one and calls resolve_choose_party_mon()
@@ -175,7 +185,7 @@ public:
 private:
 	enum State { IDLE, RUN, WAIT_MSG, WAIT_MOVE, WAIT_BATTLE, WAIT_STARTER, WAIT_YESNO,
 	              WAIT_SHOP, WAIT_HEALFX, WAIT_CHOOSE_PARTY, WAIT_MULTICHOICE, WAIT_DOOR,
-	              WAIT_FADE };
+	              WAIT_FADE, WAIT_FIELDEFFECT };
 
 	Map* map; GameState* state; DialogBox* box; Battle* battle;
 	Audio* audio; Character* player; Character* owner;
@@ -231,6 +241,8 @@ private:
 	float fade_from_ = 0.f, fade_to_target_ = 0.f;
 	float fade_t_ = 0.f, fade_dur_ = FADE_DURATION;
 	float pending_fade_dur_ = -1.f;   // set by `fadescreenspeed`, consumed by the next fade
+	std::vector<Sparkle> sparkles_;
+	bool waiting_fieldeffect = false;
 
 	bool pending_warp = false;
 	std::string warp_dest; int warp_x = -1, warp_y = -1;
