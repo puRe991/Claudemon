@@ -679,120 +679,125 @@ Aus einer Codestruktur-Review von `codemon/main.cpp` (2506 Zeilen) – reines Re
 ### Map Dialoge Übersetzung auf Deutsch
 
 
-AbandonedShip_CaptainsOffice
-AbandonedShip_Corridors_1F
-AbandonedShip_Corridors_B1F
-AbandonedShip_Deck
-AbandonedShip_HiddenFloorCorridors
-AbandonedShip_HiddenFloorRooms
-AbandonedShip_Room_B1F
-AbandonedShip_Rooms2_1F
-AbandonedShip_Rooms2_B1F
-AbandonedShip_Rooms_1F
-AbandonedShip_Rooms_B1F
-AbandonedShip_Underwater1
-AbandonedShip_Underwater2
-AlteringCave
-AncientTomb
-AquaHideout_1F
-AquaHideout_B1F
-AquaHideout_B2F
-AquaHideout_UnusedRubyMap1
-AquaHideout_UnusedRubyMap2
-AquaHideout_UnusedRubyMap3
-ArtisanCave_1F
-ArtisanCave_B1F
-BattleColosseum_2P
-BattleColosseum_4P
-BattleFrontier_BattleArenaBattleRoom
-BattleFrontier_BattleArenaCorridor
-BattleFrontier_BattleArenaLobby
-BattleFrontier_BattleDomeBattleRoom
-BattleFrontier_BattleDomeCorridor
-BattleFrontier_BattleDomeLobby
-BattleFrontier_BattleDomePreBattleRoom
-BattleFrontier_BattleFactoryBattleRoom
-BattleFrontier_BattleFactoryLobby
-BattleFrontier_BattleFactoryPreBattleRoom
-BattleFrontier_BattlePalaceBattleRoom
-BattleFrontier_BattlePalaceCorridor
-BattleFrontier_BattlePalaceLobby
-BattleFrontier_BattlePikeCorridor
-BattleFrontier_BattlePikeLobby
-BattleFrontier_BattlePikeRoomFinal
-BattleFrontier_BattlePikeRoomNormal
-BattleFrontier_BattlePikeRoomWildMons
-BattleFrontier_BattlePikeThreePathRoom
-BattleFrontier_BattlePyramidFloor
-BattleFrontier_BattlePyramidLobby
-BattleFrontier_BattlePyramidTop
-BattleFrontier_BattleTowerBattleRoom
-BattleFrontier_BattleTowerCorridor
-BattleFrontier_BattleTowerElevator
-BattleFrontier_BattleTowerLobby
-BattleFrontier_BattleTowerMultiBattleRoom
-BattleFrontier_BattleTowerMultiCorridor
-BattleFrontier_BattleTowerMultiPartnerRoom
-BattleFrontier_ExchangeServiceCorner
-BattleFrontier_Lounge1
-BattleFrontier_Lounge2
-BattleFrontier_Lounge3
-BattleFrontier_Lounge4
-BattleFrontier_Lounge5
-BattleFrontier_Lounge6
-BattleFrontier_Lounge7
-BattleFrontier_Lounge8
-BattleFrontier_Lounge9
-BattleFrontier_Mart
-BattleFrontier_OutsideEast
-BattleFrontier_OutsideWest
-BattleFrontier_PokemonCenter_1F
-BattleFrontier_PokemonCenter_2F
-BattleFrontier_RankingHall
-BattleFrontier_ReceptionGate
-BattleFrontier_ScottsHouse
-BattlePyramidSquare01
-BattlePyramidSquare02
-BattlePyramidSquare03
-BattlePyramidSquare04
-BattlePyramidSquare05
-BattlePyramidSquare06
-BattlePyramidSquare07
-BattlePyramidSquare08
-BattlePyramidSquare09
-BattlePyramidSquare10
-BattlePyramidSquare11
-BattlePyramidSquare12
-BattlePyramidSquare13
-BattlePyramidSquare14
-BattlePyramidSquare15
-BattlePyramidSquare16
-BirthIsland_Exterior
-BirthIsland_Harbor
-CaveOfOrigin_1F
-CaveOfOrigin_B1F
-CaveOfOrigin_Entrance
-CaveOfOrigin_UnusedRubySapphireMap1
-CaveOfOrigin_UnusedRubySapphireMap2
-CaveOfOrigin_UnusedRubySapphireMap3
-ContestHall
-ContestHallBeauty
-ContestHallCool
-ContestHallCute
-ContestHallSmart
-ContestHallTough
-DesertRuins
-DesertUnderpass
-DewfordTown
-DewfordTown_Gym
-DewfordTown_Hall
-DewfordTown_House1
-DewfordTown_House2
-DewfordTown_PokemonCenter_1F
-DewfordTown_PokemonCenter_2F
-EverGrandeCity
-EverGrandeCity_ChampionsRoom
-EverGrandeCity_DrakesRoom
+* ✅ AbandonedShip_CaptainsOffice
+
+* ✅ AbandonedShip_Corridors_1F
+
+* ❌ AbandonedShip_Corridors_B1F
+
+* ❌ AbandonedShip_Deck
+
+* ❌ AbandonedShip_HiddenFloorCorridors
+* ❌ AbandonedShip_HiddenFloorRooms
+* ❌ AbandonedShip_Room_B1F
+
+* ❌ AbandonedShip_Rooms2_1F
+* ❌ AbandonedShip_Rooms2_B1F
+* ❌ AbandonedShip_Rooms_1F
+* ❌ AbandonedShip_Rooms_B1F
+* ❌ AbandonedShip_Underwater1
+* ❌ AbandonedShip_Underwater2
+* ❌ AlteringCave
+* ❌ AncientTomb
+* ❌ AquaHideout_1F
+* ❌ AquaHideout_B1F
+* ❌ AquaHideout_B2F
+* ❌ AquaHideout_UnusedRubyMap1
+* ❌ AquaHideout_UnusedRubyMap2
+* ❌ AquaHideout_UnusedRubyMap3
+* ❌ ArtisanCave_1F
+* ❌ ArtisanCave_B1F
+* ❌ BattleColosseum_2P
+* ❌ BattleColosseum_4P
+* ❌ BattleFrontier_BattleArenaBattleRoom
+* ❌ BattleFrontier_BattleArenaCorridor
+* ❌ BattleFrontier_BattleArenaLobby
+* ❌ BattleFrontier_BattleDomeBattleRoom
+* ❌ BattleFrontier_BattleDomeCorridor
+* ❌ BattleFrontier_BattleDomeLobby
+* ❌ BattleFrontier_BattleDomePreBattleRoom
+* ❌ BattleFrontier_BattleFactoryBattleRoom
+* ❌ BattleFrontier_BattleFactoryLobby
+* ❌ BattleFrontier_BattleFactoryPreBattleRoom
+* ❌ BattleFrontier_BattlePalaceBattleRoom
+* ❌ BattleFrontier_BattlePalaceCorridor
+* ❌ BattleFrontier_BattlePalaceLobby
+* ❌ BattleFrontier_BattlePikeCorridor
+* ❌ BattleFrontier_BattlePikeLobby
+* ❌ BattleFrontier_BattlePikeRoomFinal
+* ❌ BattleFrontier_BattlePikeRoomNormal
+* ❌ BattleFrontier_BattlePikeRoomWildMons
+* ❌ BattleFrontier_BattlePikeThreePathRoom
+* ❌ BattleFrontier_BattlePyramidFloor
+* ❌ BattleFrontier_BattlePyramidLobby
+* ❌ BattleFrontier_BattlePyramidTop
+* ❌ BattleFrontier_BattleTowerBattleRoom
+* ❌ BattleFrontier_BattleTowerCorridor
+* ❌ BattleFrontier_BattleTowerElevator
+* ❌ BattleFrontier_BattleTowerLobby
+* ❌ BattleFrontier_BattleTowerMultiBattleRoom
+* ❌ BattleFrontier_BattleTowerMultiCorridor
+* ❌ BattleFrontier_BattleTowerMultiPartnerRoom
+* ❌ BattleFrontier_ExchangeServiceCorner
+* ❌ BattleFrontier_Lounge1
+* ❌ BattleFrontier_Lounge2
+* ❌ BattleFrontier_Lounge3
+* ❌ BattleFrontier_Lounge4
+* ❌ BattleFrontier_Lounge5
+* ❌ BattleFrontier_Lounge6
+* ❌ BattleFrontier_Lounge7
+* ❌ BattleFrontier_Lounge8
+* ❌ BattleFrontier_Lounge9
+* ❌ BattleFrontier_Mart
+* ❌ BattleFrontier_OutsideEast
+* ❌ BattleFrontier_OutsideWest
+* ❌ BattleFrontier_PokemonCenter_1F
+* ❌ BattleFrontier_PokemonCenter_2F
+* ❌ BattleFrontier_RankingHall
+* ❌ BattleFrontier_ReceptionGate
+* ❌ BattleFrontier_ScottsHouse
+* ❌ BattlePyramidSquare01
+* ❌ BattlePyramidSquare02
+* ❌ BattlePyramidSquare03
+* ❌ BattlePyramidSquare04
+* ❌ BattlePyramidSquare05
+* ❌ BattlePyramidSquare06
+* ❌ BattlePyramidSquare07
+* ❌ BattlePyramidSquare08
+* ❌ BattlePyramidSquare09
+* ❌ BattlePyramidSquare10
+* ❌ BattlePyramidSquare11
+* ❌ BattlePyramidSquare12
+* ❌ BattlePyramidSquare13
+* ❌ BattlePyramidSquare14
+* ❌ BattlePyramidSquare15
+* ❌ BattlePyramidSquare16
+* ❌ BirthIsland_Exterior
+* ❌ BirthIsland_Harbor
+* ❌ CaveOfOrigin_1F
+* ❌ CaveOfOrigin_B1F
+* ❌ CaveOfOrigin_Entrance
+* ❌ CaveOfOrigin_UnusedRubySapphireMap1
+* ❌ CaveOfOrigin_UnusedRubySapphireMap2
+* ❌ CaveOfOrigin_UnusedRubySapphireMap3
+* ❌ ContestHall
+* ❌ ContestHallBeauty
+* ❌ ContestHallCool
+* ❌ ContestHallCute
+* ❌ ContestHallSmart
+* ❌ ContestHallTough
+* ❌ DesertRuins
+* ❌ DesertUnderpass
+* ❌ DewfordTown
+* ❌ DewfordTown_Gym
+* ❌ DewfordTown_Hall
+* ❌ DewfordTown_House1
+* ❌ DewfordTown_House2
+* ❌ DewfordTown_PokemonCenter_1F
+* ❌ DewfordTown_PokemonCenter_2F
+* ❌ EverGrandeCity
+* ❌ EverGrandeCity_ChampionsRoom
+* ❌ EverGrandeCity_DrakesRoom
 EverGrandeCity_GlaciasRoom
 EverGrandeCity_Hall1
 EverGrandeCity_Hall2
@@ -813,33 +818,33 @@ FallarborTown_BattleTentLobby
 FallarborTown_CozmosHouse
 FallarborTown_Mart
 FallarborTown_MoveRelearnersHouse
-FallarborTown_PokemonCenter_1F
-FallarborTown_PokemonCenter_2F
-FarawayIsland_Entrance
-FarawayIsland_Interior
-FieryPath
-FortreeCity
-FortreeCity_DecorationShop
-FortreeCity_Gym
-FortreeCity_House1
-FortreeCity_House2
-FortreeCity_House3
-FortreeCity_House4
-FortreeCity_House5
-FortreeCity_Mart
-FortreeCity_PokemonCenter_1F
-FortreeCity_PokemonCenter_2F
-GraniteCave_1F
-GraniteCave_B1F
-GraniteCave_B2F
-GraniteCave_StevensRoom
+* ❌ FallarborTown_PokemonCenter_1F
+* ❌ FallarborTown_PokemonCenter_2F
+* ❌ FarawayIsland_Entrance
+* ❌ FarawayIsland_Interior
+* ❌ FieryPath
+* ❌ FortreeCity
+* ❌ FortreeCity_DecorationShop
+* ❌ FortreeCity_Gym
+* ❌ FortreeCity_House1
+* ❌ FortreeCity_House2
+* ❌ FortreeCity_House3
+* ❌ FortreeCity_House4
+* ❌ FortreeCity_House5
+* ❌ FortreeCity_Mart
+* ❌ FortreeCity_PokemonCenter_1F
+* ❌ FortreeCity_PokemonCenter_2F
+* ❌ GraniteCave_1F
+* ❌ GraniteCave_B1F
+* ❌ GraniteCave_B2F
+* ❌ GraniteCave_StevensRoom
 * ✅**InsideOfTruck**
-IslandCave
-JaggedPass
-LavaridgeTown
-LavaridgeTown_Gym_1F
-LavaridgeTown_Gym_B1F
-LavaridgeTown_HerbShop
+* ❌ IslandCave
+* ❌ JaggedPass
+* ❌ LavaridgeTown
+* ❌ LavaridgeTown_Gym_1F
+* ❌ LavaridgeTown_Gym_B1F
+* ❌ LavaridgeTown_HerbShop
 LavaridgeTown_House
 LavaridgeTown_Mart
 LavaridgeTown_PokemonCenter_1F
