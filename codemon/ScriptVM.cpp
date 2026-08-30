@@ -928,12 +928,20 @@ void ScriptVM::pump() {
 			// always rebuilds objects from the map file on load and keeps no
 			// per-object save state, so there is nothing to copy into --
 			// consciously a no-op, not a missed opcode.
-		} else if ((op == "setobjectsubpriority" || op == "resetobjectsubpriority")) {
-			// Draw-order tiebreak for two objects sharing a tile (e.g. Mr.
-			// Briney's boat under a bridge). This engine always sorts actors
-			// by tile-y (see draw_scene in main.cpp), which already gives the
-			// correct order for every real use of this opcode; there's no
-			// separate z-layer to set.
+		} else if (op == "setobjectsubpriority" && argc >= 1) {
+			// `setobjectsubpriority LOCALID [MAP] SUBPRIORITY`: only the
+			// last numeric argument is the subpriority; the (optional) MAP
+			// argument only matters when addressing an object on a
+			// different, currently-loaded map (e.g. the far shore's Briney
+			// during the Route104<->Dewford crossing), which this engine
+			// can't reach from here (only the current map's actors are
+			// resolvable) -- same limitation `resolve()` already has for
+			// every other by-LOCALID opcode.
+			Character* ch = resolve(arg(0));
+			if (ch) ch->set_subpriority(value_of(arg(argc - 1)));
+		} else if (op == "resetobjectsubpriority" && argc >= 1) {
+			Character* ch = resolve(arg(0));
+			if (ch) ch->reset_subpriority();
 		} else if (op == "setobjectmovementtype" && argc >= 2) {
 			// Matches map.h's MoveKind (0=static,1=wander,2=pace-v,3=pace-h);
 			// a MOVEMENT_TYPE_FACE_* also turns the object immediately, same
@@ -983,6 +991,22 @@ void ScriptVM::pump() {
 			std::string lower_sp;
 			for (char c : sp) lower_sp += (char)std::tolower((unsigned char)c);
 			if (this->audio) this->audio->play_cry(lower_sp);
+		} else if ((op == "opendoor" || op == "closedoor") && argc >= 2) {
+			// See ScriptVM.h's door_anim_active() comment: frame sequence
+			// and per-step timing come straight from pokeemerald's
+			// sDoorOpenAnimFrames/sDoorCloseAnimFrames (0, 0x100, 0x200 =
+			// steps 0..2, held 4 GBA frames each); which door_anims sheet
+			// to use is not something this engine's import data records,
+			// so it always draws general.png (the most common one).
+			this->door_x = value_of(arg(0));
+			this->door_y = value_of(arg(1));
+			this->door_opening = (op == "opendoor");
+			this->door_active = true;
+			this->door_step = 0;
+			this->door_timer = 0.f;
+			this->door_frame_idx = this->door_opening ? -1 : 2;
+		} else if (op == "waitdooranim") {
+			if (this->door_active) { this->door_waiting = true; this->st = WAIT_DOOR; return; }
 		} else if (op == "end") {
 			finish(); return;
 		}
@@ -1023,6 +1047,26 @@ void ScriptVM::close_shop() {
 }
 
 void ScriptVM::update(float dt) {
+	if (this->door_active) {
+		this->door_timer += dt;
+		if (this->door_timer >= DOOR_STEP_DURATION) {
+			this->door_timer -= DOOR_STEP_DURATION;
+			this->door_step++;
+			// open: -1 -> 0 -> 1 -> 2(done, stays); close: 2 -> 1 -> 0 -> -1(done, stays)
+			this->door_frame_idx = this->door_opening ? (this->door_step - 1) : (2 - this->door_step);
+			bool done = this->door_opening ? (this->door_step >= 3) : (this->door_step >= 3);
+			if (done) {
+				this->door_frame_idx = this->door_opening ? 2 : -1;
+				this->door_active = false;
+				if (this->door_waiting) {
+					this->door_waiting = false;
+					this->st = RUN;
+					this->pump();
+					return;
+				}
+			}
+		}
+	}
 	if (this->st == WAIT_BATTLE) {
 		if (!this->battle || !this->battle->active()) {
 			bool won = this->battle && this->battle->won();

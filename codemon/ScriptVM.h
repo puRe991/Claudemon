@@ -113,6 +113,26 @@ public:
 	// block-then-resume timer run for the same length of time.
 	static constexpr float HEALFX_DURATION = 1.5f;
 
+	// `opendoor X, Y` / `closedoor X, Y`: pokeemerald's field_door.c swaps in
+	// a small sprite (graphics/door_anims/<set>.png, 4 stacked 16x16 frames:
+	// closed/frame1/frame2/open) drawn over the door metatile while a task
+	// steps through sDoorOpenAnimFrames/sDoorCloseAnimFrames (4 GBA frames
+	// per step, ~0x100 tile offsets between them). This engine has no
+	// per-tileset door-graphics table (see pe_import.py; only the raw PNGs
+	// were mirrored in, not the map->sheet assignment), so it always uses
+	// the most common sheet ("general.png") rather than picking the right
+	// one per location -- a deliberate approximation, not a no-op. Timing
+	// mirrors the original's 4-GBA-frame (~1/15s) hold per step.
+	// `opendoor`/`closedoor` themselves don't block (matching the original,
+	// which schedules them as a task and returns immediately); only the
+	// following `waitdooranim` actually blocks the script.
+	bool door_anim_active() const { return this->door_active; }
+	void get_door_tile(int& x, int& y) const { x = this->door_x; y = this->door_y; }
+	// -1 = draw nothing (closed door metatile shows through as-is), else the
+	// 0-based frame row into the door sheet (0 = just-cracked-open .. 2 = open).
+	int door_frame() const { return this->door_frame_idx; }
+	static constexpr float DOOR_STEP_DURATION = 4.f / 60.f;
+
 	// `special ChoosePartyMon` (in-game trades: offer up a party mon): same
 	// story as ChooseStarter -- the VM can't drive a real party-list picker
 	// itself, so the game loop shows one and calls resolve_choose_party_mon()
@@ -140,7 +160,7 @@ public:
 
 private:
 	enum State { IDLE, RUN, WAIT_MSG, WAIT_MOVE, WAIT_BATTLE, WAIT_STARTER, WAIT_YESNO,
-	              WAIT_SHOP, WAIT_HEALFX, WAIT_CHOOSE_PARTY, WAIT_MULTICHOICE };
+	              WAIT_SHOP, WAIT_HEALFX, WAIT_CHOOSE_PARTY, WAIT_MULTICHOICE, WAIT_DOOR };
 
 	Map* map; GameState* state; DialogBox* box; Battle* battle;
 	Audio* audio; Character* player; Character* owner;
@@ -181,6 +201,14 @@ private:
 		return "TRAINER_DEFEATED_" + trainer_id;
 	}
 	bool trainer_defeated(const std::string& trainer_id) const;
+
+	bool door_active = false;      // a door sprite is currently shown/animating
+	bool door_waiting = false;     // `waitdooranim` is blocked on it
+	bool door_opening = true;      // which frame sequence (open vs close)
+	int door_x = -1, door_y = -1;
+	int door_step = 0;             // 0..3 index into the open/close frame sequence
+	int door_frame_idx = -1;       // frame currently shown (-1 = none)
+	float door_timer = 0.f;
 
 	bool pending_warp = false;
 	std::string warp_dest; int warp_x = -1, warp_y = -1;
