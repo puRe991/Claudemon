@@ -632,9 +632,10 @@ Aus einer Codestruktur-Review von `codemon/main.cpp` (2506 Zeilen) – reines Re
 
 * ✅ Architektur-Übersicht ergänzt: [`codemon/ARCHITECTURE.md`](codemon/ARCHITECTURE.md) fasst Verzeichnisstruktur, Kernklassen und den Frame-Ablauf (`Game`, `Session`, `ScriptVM`, `Battle`, UI-Screens) an einer Stelle zusammen, statt über ~15 Header-Kommentare verteilt zu sein. Reine Dokumentation, kein Code geändert.
 
+* ✅ `Battle::draw()` (war 174 Zeilen, ein `if/else`-Zweig pro Kampf-Phase) in `draw_message`, `draw_action_menu`, `draw_move_menu`, `draw_switch_menu` plus `draw_cursor_at` (statt vormals lokalem Lambda) aufgeteilt. Verifiziert per Rebuild + Testsuite + Screenshot-Vergleich aller vier Phasen (Nachricht, Aktionsmenü, Attackenauswahl inkl. Typ-Icons/PP, Team-Wechsel).
+
 ### Nächste Kandidaten (noch nicht angegangen)
 
-* `Battle::draw()` (`codemon/Battle.cpp`, 174 Zeilen) – kleiner als `Menu::draw()` war, aber gleiches Muster (ein Draw-Call für alle Kampf-Phasen); niedrigeres Risiko, niedrigerer Nutzen.
 * Die acht `try_*_op()`-Gruppen in `ScriptVM.cpp` könnten bei Bedarf weiter aufgeteilt werden (`try_special_op` ist mit ~125 Zeilen noch die größte, da `special`/`specialvar` selbst ein verschachtelter Dispatch sind).
 * `main.cpp` (1522 Zeilen) in `Session.h/.cpp` (Agent/Session/load_session/player_step/tick_npcs) und `Game.h/.cpp` trennen – reine Dateiorganisation, kein Verhaltensrisiko.
 * Input-Dispatch zusammenführen (siehe oben) – weiterhin offen, unverändert seit dem letzten Schritt.

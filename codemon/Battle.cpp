@@ -1112,91 +1112,115 @@ void Battle::draw(sf::RenderTarget& target) {
 	const sf::Color head_col = this->frame.ready() ? sf::Color(24, 72, 160) : sf::Color(150, 210, 255);
 	const sf::Color dis_col = this->frame.ready() ? sf::Color(170, 170, 170) : sf::Color(120, 120, 120);
 	const sf::Color muted_col = this->frame.ready() ? sf::Color(100, 100, 112) : sf::Color(200, 200, 200);
-	auto cursor_at = [&](float px, float py) {
-		sf::Text a(">", this->font, 22); a.setPosition(px - 18, py);
-		a.setFillColor(head_col); target.draw(a);
-	};
 
 	float tx = bm + 18, ty = size.y - bh - bm + 16;
 	if (this->phase == MSG) {
-		std::string line = this->log_pos < this->log.size() ? this->log[this->log_pos] : "";
-		sf::Text t(sf::String::fromUtf8(line.begin(), line.end()), this->font, 22);
-		t.setPosition(tx, ty + 30); t.setFillColor(body_col); target.draw(t);
+		draw_message(target, tx, ty, body_col);
 	} else if (this->phase == ACTION) {
-		sf::Text q("Was soll " + nice(this->player->species) + " tun?", this->font, 20);
-		q.setPosition(tx, ty); q.setFillColor(body_col); target.draw(q);
-		static const std::string acts[] = {"KAMPF", "POKéMON", "BALL", "FLUCHT"};
-		for (int i = 0; i < 4; ++i) {
-			bool sel = i == this->action_cursor;
-			bool dis = (i == 2 || i == 3) && this->is_trainer;   // no catching/running trainers
-			if (sel) cursor_at(size.x * 0.46f, ty + i * 34);
-			sf::Text a(sf::String::fromUtf8(acts[i].begin(), acts[i].end()), this->font, 22);
-			a.setPosition(size.x * 0.46f, ty + i * 34);
-			a.setFillColor(dis ? dis_col : sel ? head_col : body_col);
-			target.draw(a);
-		}
-		if (this->gs) {
-			std::string bt = "BÄLLE x" + std::to_string(this->gs->item_count("ITEM_POKE_BALL"));
-			sf::Text bc(sf::String::fromUtf8(bt.begin(), bt.end()), this->font, 16);
-			bc.setPosition(size.x * 0.72f, ty + 34);
-			bc.setFillColor(muted_col); target.draw(bc);
-		}
+		draw_action_menu(target, tx, ty, size, head_col, body_col, dis_col, muted_col);
 	} else if (this->phase == MOVE) {
-		std::string qs = "Wähle eine Attacke:";
-		sf::Text q(sf::String::fromUtf8(qs.begin(), qs.end()), this->font, 20);
-		q.setPosition(tx, ty); q.setFillColor(body_col); target.draw(q);
-		for (size_t i = 0; i < this->player->moves.size(); ++i) {
-			float mx = size.x * 0.42f + (i % 2) * (size.x * 0.27f);
-			float my = ty + 34 + (i / 2) * 40;
-			bool sel = (int)i == this->cursor;
-			bool no_pp = i < this->player->pp.size() && this->player->pp[i] <= 0;
-			if (sel) cursor_at(mx, my);
-			sf::Text m(nice(this->player->moves[i]), this->font, 20);
-			m.setPosition(mx, my);
-			m.setFillColor(no_pp ? dis_col : sel ? head_col : body_col);
-			target.draw(m);
-			if (i < this->player->pp.size()) {
-				const MoveInfo* pmi = this->data->move(this->player->moves[i]);
-				int max_pp = pmi ? pmi->pp : this->player->pp[i];
-				sf::Text pp(std::to_string(this->player->pp[i]) + "/" + std::to_string(max_pp),
-				            this->font, 14);
-				pp.setPosition(mx, my + 20);
-				pp.setFillColor(no_pp ? sf::Color(190, 90, 90) : muted_col);
-				target.draw(pp);
-			}
-			// type badge next to the move
-			const MoveInfo* mi = this->data->move(this->player->moves[i]);
-			if (mi) {
-				const sf::Texture* ti = type_icon(mi->type);
-				if (ti) {
-					sf::Sprite badge(*ti);
-					badge.setScale(1.2f, 1.2f);
-					badge.setPosition(mx + size.x * 0.19f, my + 2);
-					target.draw(badge);
-				}
-			}
-		}
+		draw_move_menu(target, tx, ty, size, head_col, body_col, dis_col, muted_col);
 	} else if (this->phase == SWITCH) {
-		std::string qs = this->forced_switch ? "Wer soll als nächstes kämpfen?"
-		                                     : "POKéMON wählen:";
-		sf::Text q(sf::String::fromUtf8(qs.begin(), qs.end()), this->font, 18);
-		q.setPosition(tx, ty - 4); q.setFillColor(body_col); target.draw(q);
-		if (this->team) {
-			int n = std::min((int)this->team->size(), 6);
-			for (int i = 0; i < n; ++i) {
-				const Mon& m = (*this->team)[i];
-				bool sel = i == this->switch_cursor;
-				bool cur = (size_t)i == this->active_idx;
-				float ry = ty + 22 + i * 18;
-				if (sel) cursor_at(tx + 14, ry);
-				sf::Color col = m.fainted() ? dis_col : cur ? muted_col : body_col;
-				std::string label = nice(m.species) + " Lv" + std::to_string(m.level) +
-				                     (cur ? " (im Kampf)" : m.fainted() ? " (K.O.)" : "");
-				sf::Text t(sf::String::fromUtf8(label.begin(), label.end()), this->font, 14);
-				t.setPosition(tx + 28, ry); t.setFillColor(col); target.draw(t);
-				draw_hp_bar(target, size.x * 0.62f, ry + 1, 130, 10, m.hp, m.max_hp);
-			}
-		}
+		draw_switch_menu(target, tx, ty, size, head_col, body_col, dis_col, muted_col);
 	}
 	target.setView(saved);
 }
+
+void Battle::draw_cursor_at(sf::RenderTarget& target, float x, float y, sf::Color head_col) const {
+	sf::Text a(">", this->font, 22); a.setPosition(x - 18, y);
+	a.setFillColor(head_col); target.draw(a);
+}
+
+void Battle::draw_message(sf::RenderTarget& target, float tx, float ty, sf::Color body_col) const {
+	std::string line = this->log_pos < this->log.size() ? this->log[this->log_pos] : "";
+	sf::Text t(sf::String::fromUtf8(line.begin(), line.end()), this->font, 22);
+	t.setPosition(tx, ty + 30); t.setFillColor(body_col); target.draw(t);
+}
+
+void Battle::draw_action_menu(sf::RenderTarget& target, float tx, float ty, sf::Vector2f size,
+                              sf::Color head_col, sf::Color body_col, sf::Color dis_col,
+                              sf::Color muted_col) const {
+	sf::Text q("Was soll " + nice(this->player->species) + " tun?", this->font, 20);
+	q.setPosition(tx, ty); q.setFillColor(body_col); target.draw(q);
+	static const std::string acts[] = {"KAMPF", "POKéMON", "BALL", "FLUCHT"};
+	for (int i = 0; i < 4; ++i) {
+		bool sel = i == this->action_cursor;
+		bool dis = (i == 2 || i == 3) && this->is_trainer;   // no catching/running trainers
+		if (sel) draw_cursor_at(target, size.x * 0.46f, ty + i * 34, head_col);
+		sf::Text a(sf::String::fromUtf8(acts[i].begin(), acts[i].end()), this->font, 22);
+		a.setPosition(size.x * 0.46f, ty + i * 34);
+		a.setFillColor(dis ? dis_col : sel ? head_col : body_col);
+		target.draw(a);
+	}
+	if (this->gs) {
+		std::string bt = "BÄLLE x" + std::to_string(this->gs->item_count("ITEM_POKE_BALL"));
+		sf::Text bc(sf::String::fromUtf8(bt.begin(), bt.end()), this->font, 16);
+		bc.setPosition(size.x * 0.72f, ty + 34);
+		bc.setFillColor(muted_col); target.draw(bc);
+	}
+}
+
+void Battle::draw_move_menu(sf::RenderTarget& target, float tx, float ty, sf::Vector2f size,
+                            sf::Color head_col, sf::Color body_col, sf::Color dis_col,
+                            sf::Color muted_col) {
+	std::string qs = "Wähle eine Attacke:";
+	sf::Text q(sf::String::fromUtf8(qs.begin(), qs.end()), this->font, 20);
+	q.setPosition(tx, ty); q.setFillColor(body_col); target.draw(q);
+	for (size_t i = 0; i < this->player->moves.size(); ++i) {
+		float mx = size.x * 0.42f + (i % 2) * (size.x * 0.27f);
+		float my = ty + 34 + (i / 2) * 40;
+		bool sel = (int)i == this->cursor;
+		bool no_pp = i < this->player->pp.size() && this->player->pp[i] <= 0;
+		if (sel) draw_cursor_at(target, mx, my, head_col);
+		sf::Text m(nice(this->player->moves[i]), this->font, 20);
+		m.setPosition(mx, my);
+		m.setFillColor(no_pp ? dis_col : sel ? head_col : body_col);
+		target.draw(m);
+		if (i < this->player->pp.size()) {
+			const MoveInfo* pmi = this->data->move(this->player->moves[i]);
+			int max_pp = pmi ? pmi->pp : this->player->pp[i];
+			sf::Text pp(std::to_string(this->player->pp[i]) + "/" + std::to_string(max_pp),
+			            this->font, 14);
+			pp.setPosition(mx, my + 20);
+			pp.setFillColor(no_pp ? sf::Color(190, 90, 90) : muted_col);
+			target.draw(pp);
+		}
+		// type badge next to the move
+		const MoveInfo* mi = this->data->move(this->player->moves[i]);
+		if (mi) {
+			const sf::Texture* ti = type_icon(mi->type);
+			if (ti) {
+				sf::Sprite badge(*ti);
+				badge.setScale(1.2f, 1.2f);
+				badge.setPosition(mx + size.x * 0.19f, my + 2);
+				target.draw(badge);
+			}
+		}
+	}
+}
+
+void Battle::draw_switch_menu(sf::RenderTarget& target, float tx, float ty, sf::Vector2f size,
+                              sf::Color head_col, sf::Color body_col, sf::Color dis_col,
+                              sf::Color muted_col) const {
+	std::string qs = this->forced_switch ? "Wer soll als nächstes kämpfen?"
+	                                     : "POKéMON wählen:";
+	sf::Text q(sf::String::fromUtf8(qs.begin(), qs.end()), this->font, 18);
+	q.setPosition(tx, ty - 4); q.setFillColor(body_col); target.draw(q);
+	if (this->team) {
+		int n = std::min((int)this->team->size(), 6);
+		for (int i = 0; i < n; ++i) {
+			const Mon& m = (*this->team)[i];
+			bool sel = i == this->switch_cursor;
+			bool cur = (size_t)i == this->active_idx;
+			float ry = ty + 22 + i * 18;
+			if (sel) draw_cursor_at(target, tx + 14, ry, head_col);
+			sf::Color col = m.fainted() ? dis_col : cur ? muted_col : body_col;
+			std::string label = nice(m.species) + " Lv" + std::to_string(m.level) +
+			                     (cur ? " (im Kampf)" : m.fainted() ? " (K.O.)" : "");
+			sf::Text t(sf::String::fromUtf8(label.begin(), label.end()), this->font, 14);
+			t.setPosition(tx + 28, ry); t.setFillColor(col); target.draw(t);
+			draw_hp_bar(target, size.x * 0.62f, ry + 1, 130, 10, m.hp, m.max_hp);
+		}
+	}
+}
+

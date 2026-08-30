@@ -241,4 +241,20 @@ public:
 
 private:
 	float shake_t; int shake_side; int prev_ehp, prev_php;
+
+	// The bottom text-box panel's content, one method per Battle::Phase --
+	// split out of draw() for readability, not behavior. `tx`/`ty` are the
+	// panel's text-start position; the four colors are the frame-aware
+	// palette draw() already resolved (light frame vs. plain fallback box).
+	void draw_cursor_at(sf::RenderTarget& target, float x, float y, sf::Color head_col) const;
+	void draw_message(sf::RenderTarget& target, float tx, float ty, sf::Color body_col) const;
+	void draw_action_menu(sf::RenderTarget& target, float tx, float ty, sf::Vector2f size,
+	                      sf::Color head_col, sf::Color body_col, sf::Color dis_col,
+	                      sf::Color muted_col) const;
+	void draw_move_menu(sf::RenderTarget& target, float tx, float ty, sf::Vector2f size,
+	                    sf::Color head_col, sf::Color body_col, sf::Color dis_col,
+	                    sf::Color muted_col);
+	void draw_switch_menu(sf::RenderTarget& target, float tx, float ty, sf::Vector2f size,
+	                      sf::Color head_col, sf::Color body_col, sf::Color dis_col,
+	                      sf::Color muted_col) const;
 };
