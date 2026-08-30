@@ -79,16 +79,26 @@ static int facing_to_dircode(DIR d) {
 	             case DIR::W: return 3; case DIR::E: return 4; default: return 1; }
 }
 
-// pokeemerald's sIngameTrades[] (src/data/trade.h), trimmed to what this
-// engine actually models (species + which species is wanted back -- no IVs/
-// personality/OT/held mail, none of which exist here, see BattleData::Mon).
-// Indices match the INGAME_TRADE_* constants in value_of() above.
-struct TradeInfo { const char* give; const char* want; };
+// pokeemerald's sIngameTrades[] (src/data/trade.h) -- Emerald only ever
+// defines these 4 (INGAME_TRADE_SEEDOT/PLUSLE/HORSEA/MEOWTH), so nothing is
+// actually trimmed here. `ivs` is HP/Atk/Def/Speed/SpAtk/SpDef (struct
+// InGameTrade's field order, src/trade.c), applied to the incoming mon
+// instead of a fresh make_mon() roll so the traded-in mon has its real,
+// fixed IVs like in the original game. `held_item` is the real item three
+// of the four are holding (a written Mail, in the original); this engine
+// models "holding an item" (BattleData::Mon::held_item) but has no
+// mail-reading/writing feature, so the mon does come out holding the
+// correct item, just without the message it contains. Nickname/personality
+// value/OT name+gender/sheen have no equivalent field on BattleData::Mon at
+// all (this engine has no nickname/OT concept anywhere, not just for
+// trades) -- giving those up is a wider, separate gap than this table, not
+// fixed here.
+struct TradeInfo { const char* give; const char* want; int ivs[6]; const char* held_item; };
 static const TradeInfo INGAME_TRADES[4] = {
-	{"SEEDOT", "RALTS"},     // RustboroCity_House1
-	{"PLUSLE", "VOLBEAT"},   // FortreeCity_House1
-	{"HORSEA", "BAGON"},     // PacifidlogTown_House3
-	{"MEOWTH", "SKITTY"},    // BattleFrontier_Lounge6
+	{"SEEDOT", "RALTS", {5, 4, 5, 4, 4, 4}, "CHESTO_BERRY"},  // RustboroCity_House1
+	{"PLUSLE", "VOLBEAT", {4, 4, 4, 5, 5, 4}, "WOOD_MAIL"},   // FortreeCity_House1
+	{"HORSEA", "BAGON", {5, 4, 4, 4, 5, 4}, "WAVE_MAIL"},     // PacifidlogTown_House3
+	{"MEOWTH", "SKITTY", {4, 5, 4, 5, 4, 4}, "RETRO_MAIL"},   // BattleFrontier_Lounge6
 };
 
 // pokeemerald's sMultichoiceLists[] (src/data/script_menu.h), trimmed to the
@@ -667,19 +677,24 @@ void ScriptVM::pump() {
 				return;
 			} else if (fn == "CreateInGameTradePokemon" && this->bdata && this->team) {
 				// pokeemerald builds the incoming mon with the outgoing mon's
-				// level (see CreateInGameTradePokemonInternal) and otherwise
-				// its own fixed personality/held mail -- neither of which
-				// this engine models (no held items at all), so real
-				// IVs/nature (rolled fresh, same as any other make_mon())
-				// and the matched level are the trade's whole gameplay
-				// effect here.
+				// level (see CreateInGameTradePokemonInternal) but its own
+				// fixed IVs and held item (sIngameTrades, not a fresh roll);
+				// nature still comes from make_mon()'s roll since the
+				// original derives it from the fixed personality value this
+				// engine has no field for (see INGAME_TRADES' comment).
 				int trade_idx = value_of("VAR_0x8004");
 				int party_idx = value_of("VAR_0x8005");
 				if (trade_idx >= 0 && trade_idx < 4 &&
 				    party_idx >= 0 && party_idx < (int)this->team->size()) {
 					int lvl = (*this->team)[party_idx].level;
-					(*this->team)[party_idx] = this->bdata->make_mon(INGAME_TRADES[trade_idx].give, lvl, this->rng);
-					if (this->state) this->state->mark_caught(INGAME_TRADES[trade_idx].give);
+					const TradeInfo& t = INGAME_TRADES[trade_idx];
+					Mon m = this->bdata->make_mon(t.give, lvl, this->rng);
+					m.iv_hp = t.ivs[0]; m.iv_atk = t.ivs[1]; m.iv_def = t.ivs[2];
+					m.iv_spe = t.ivs[3]; m.iv_spa = t.ivs[4]; m.iv_spd = t.ivs[5];
+					m.held_item = t.held_item;
+					this->bdata->recompute_stats(m, false);   // IVs above changed after make_mon()'s own roll
+					(*this->team)[party_idx] = m;
+					if (this->state) this->state->mark_caught(t.give);
 				}
 			} else if (fn == "DoInGameTradeScene") {
 				// The real spinning-Pokeball trade cutscene has no equivalent
