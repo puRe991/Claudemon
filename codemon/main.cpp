@@ -679,6 +679,17 @@ static void draw_scene(sf::RenderTarget& target, Session* s, const HealFx* healf
             target.draw(spr);
         }
     }
+    // `fadescreen`/`fadescreenswapbuffers`: a full-screen black/white overlay
+    // whose alpha ScriptVM animates over FADE_DURATION; see fade_active()'s
+    // comment for what this does and doesn't replicate from the original.
+    if (vm && vm->fade_active()) {
+        sf::RectangleShape overlay(target.getView().getSize());
+        overlay.setPosition(target.getView().getCenter() - target.getView().getSize() / 2.f);
+        sf::Uint8 a = (sf::Uint8)std::clamp(vm->fade_alpha(), 0.f, 255.f);
+        sf::Color c = vm->fade_white() ? sf::Color::White : sf::Color::Black;
+        overlay.setFillColor(sf::Color(c.r, c.g, c.b, a));
+        target.draw(overlay);
+    }
     if (healfx && healfx->active() && s->player) {
         int tp = s->map->get_tile_size();
         float wx = s->player->get_tile_x() * tp + tp * 0.5f;

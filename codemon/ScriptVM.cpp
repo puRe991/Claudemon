@@ -1071,6 +1071,30 @@ void ScriptVM::pump() {
 			this->door_step = 0;
 			this->door_timer = 0.f;
 			this->door_frame_idx = this->door_opening ? -1 : 2;
+		} else if ((op == "fadescreen" || op == "fadescreenswapbuffers") && argc >= 1) {
+			const std::string& mode = arg(0);
+			bool to_black_or_white = (mode == "FADE_TO_BLACK" || mode == "FADE_TO_WHITE" || value_of(mode) == 1 || value_of(mode) == 3);
+			this->fade_to_white = (mode == "FADE_TO_WHITE" || mode == "FADE_FROM_WHITE" || value_of(mode) == 2 || value_of(mode) == 3);
+			this->fade_from_ = this->fade_alpha_;
+			this->fade_to_target_ = to_black_or_white ? 255.f : 0.f;
+			this->fade_dur_ = (this->pending_fade_dur_ > 0.f) ? this->pending_fade_dur_ : FADE_DURATION;
+			this->pending_fade_dur_ = -1.f;
+			this->fade_t_ = 0.f;
+			this->fading = true;
+			this->st = WAIT_FADE;
+			return;
+		} else if (op == "fadescreenspeed" && argc >= 2) {
+			// SPEED is the original's per-frame brightness-LUT step count
+			// (higher = fewer steps = faster); approximated here as an
+			// inverse duration scale rather than replicating the exact LUT.
+			int speed = value_of(arg(1));
+			this->pending_fade_dur_ = FADE_DURATION * (8.f / std::max(1, speed));
+		} else if (op == "incrementgamestat" && argc >= 1 && this->state) {
+			// pokeemerald's play-record stats (Trainer Card, "records"
+			// screen); no dedicated UI shows these yet, but the counts
+			// themselves are now tracked instead of silently discarded.
+			std::string key = "GAME_STAT_" + arg(0);
+			this->state->set_var(key, this->state->get_var(key) + 1);
 		} else if (op == "waitdooranim") {
 			if (this->door_active) { this->door_waiting = true; this->st = WAIT_DOOR; return; }
 		} else if (op == "end") {
@@ -1113,6 +1137,15 @@ void ScriptVM::close_shop() {
 }
 
 void ScriptVM::update(float dt) {
+	if (this->fading) {
+		this->fade_t_ += dt;
+		float p = std::min(1.f, this->fade_t_ / this->fade_dur_);
+		this->fade_alpha_ = this->fade_from_ + (this->fade_to_target_ - this->fade_from_) * p;
+		if (p >= 1.f) {
+			this->fading = false;
+			if (this->st == WAIT_FADE) { this->st = RUN; this->pump(); return; }
+		}
+	}
 	if (this->door_active) {
 		this->door_timer += dt;
 		if (this->door_timer >= DOOR_STEP_DURATION) {

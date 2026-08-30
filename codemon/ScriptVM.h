@@ -133,6 +133,20 @@ public:
 	int door_frame() const { return this->door_frame_idx; }
 	static constexpr float DOOR_STEP_DURATION = 4.f / 60.f;
 
+	// `fadescreen`/`fadescreenswapbuffers MODE` (FADE_TO_BLACK/FADE_FROM_BLACK/
+	// FADE_TO_WHITE/FADE_FROM_WHITE) and `fadescreenspeed MODE, SPEED`: a
+	// blocking full-screen fade, same as pokeemerald's own (the task that
+	// drives it doesn't return control until the fade finishes). This
+	// engine doesn't distinguish "swapbuffers" from the plain version (both
+	// mean "the screen must actually show the faded frame before the script
+	// continues", which our render loop always does anyway), and treats
+	// fadescreenspeed's SPEED as a rough duration scale rather than
+	// replicating the original's exact per-frame brightness LUT.
+	bool fade_active() const { return this->fade_alpha_ > 0.f || this->fading; }
+	float fade_alpha() const { return this->fade_alpha_; }   // 0..255
+	bool fade_white() const { return this->fade_to_white; }
+	static constexpr float FADE_DURATION = 0.4f;
+
 	// `special ChoosePartyMon` (in-game trades: offer up a party mon): same
 	// story as ChooseStarter -- the VM can't drive a real party-list picker
 	// itself, so the game loop shows one and calls resolve_choose_party_mon()
@@ -160,7 +174,8 @@ public:
 
 private:
 	enum State { IDLE, RUN, WAIT_MSG, WAIT_MOVE, WAIT_BATTLE, WAIT_STARTER, WAIT_YESNO,
-	              WAIT_SHOP, WAIT_HEALFX, WAIT_CHOOSE_PARTY, WAIT_MULTICHOICE, WAIT_DOOR };
+	              WAIT_SHOP, WAIT_HEALFX, WAIT_CHOOSE_PARTY, WAIT_MULTICHOICE, WAIT_DOOR,
+	              WAIT_FADE };
 
 	Map* map; GameState* state; DialogBox* box; Battle* battle;
 	Audio* audio; Character* player; Character* owner;
@@ -209,6 +224,13 @@ private:
 	int door_step = 0;             // 0..3 index into the open/close frame sequence
 	int door_frame_idx = -1;       // frame currently shown (-1 = none)
 	float door_timer = 0.f;
+
+	bool fading = false;            // fade in progress (see fade_active())
+	bool fade_to_white = false;
+	float fade_alpha_ = 0.f;        // current overlay alpha, 0..255
+	float fade_from_ = 0.f, fade_to_target_ = 0.f;
+	float fade_t_ = 0.f, fade_dur_ = FADE_DURATION;
+	float pending_fade_dur_ = -1.f;   // set by `fadescreenspeed`, consumed by the next fade
 
 	bool pending_warp = false;
 	std::string warp_dest; int warp_x = -1, warp_y = -1;
