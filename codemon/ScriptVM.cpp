@@ -1,4 +1,5 @@
 #include "ScriptVM.h"
+#include "NameTables.h"
 #include <cctype>
 #include <cstdio>
 #include <algorithm>
@@ -18,7 +19,15 @@ void ScriptVM::configure(Map* m, GameState* s, DialogBox* b, Battle* bt,
 bool ScriptVM::running() const { return this->st != IDLE; }
 bool ScriptVM::waiting_message() const { return this->st == WAIT_MSG; }
 
+// pokeemerald's actual gItems[].name strings (src/data/items.h), not a
+// derived approximation -- real item names don't follow a regular
+// underscore-to-title-case pattern (ITEM_HP_UP is "HP UP", ITEM_TM01 is
+// "TM01", ITEM_POKE_BALL is "POKé BALL", ...). Falls back to the old
+// derivation only for a constant somehow missing from the table (shouldn't
+// happen; every ITEM_* pokeemerald's importer can reference is in there).
 static std::string item_name(const std::string& item) {
+	auto it = REAL_ITEM_NAMES.find(item);
+	if (it != REAL_ITEM_NAMES.end()) return it->second;
 	std::string s = item;
 	if (s.rfind("ITEM_", 0) == 0) s = s.substr(5);
 	std::string out; bool cap = true;
@@ -42,12 +51,16 @@ static std::string nice_name(const std::string& id) {
 	return out;
 }
 
+// pokeemerald's actual gTrainers[].trainerName strings (src/data/trainers.h),
+// keyed by the exact TRAINER_* constant (each rematch id -- TRAINER_CALVIN_1
+// .. _5 -- already has its own entry with the correct name resolved, so no
+// more heuristic suffix-stripping is needed). Falls back to the old
+// derivation only if a constant is somehow missing from the table.
 static std::string name_from_trainer(const std::string& tid) {
+	auto it = REAL_TRAINER_NAMES.find(tid);
+	if (it != REAL_TRAINER_NAMES.end() && !it->second.empty()) return it->second;
 	std::string s = tid;
 	if (s.rfind("TRAINER_", 0) == 0) s = s.substr(8);
-	// Rematch trainers are numbered TRAINER_CALVIN_1 .. _5 in pokeemerald; the
-	// number is table bookkeeping, not part of the name, and reading it out as
-	// "Calvin 1" in the battle intro looks like a bug.
 	if (s.size() > 2 && s[s.size() - 2] == '_' &&
 	    s[s.size() - 1] >= '1' && s[s.size() - 1] <= '5')
 		s = s.substr(0, s.size() - 2);
