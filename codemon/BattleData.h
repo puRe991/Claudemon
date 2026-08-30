@@ -163,6 +163,10 @@ public:
 	// Mewtwo/Registeel up to 255 for Magikarp/Rattata); 45 for an unknown
 	// species (the same default most early/mid-tier Pokemon actually have).
 	int catch_rate(const std::string& species) const;
+	// This species' two types ("" for the second if it has only one) --
+	// used by Battle's per-ball catch multipliers (e.g. Net Ball vs
+	// Water/Bug). Both empty for an unknown species.
+	std::pair<std::string, std::string> species_types(const std::string& species) const;
 	// This species' real pokeemerald ability (always ability1 -- a real
 	// individual picks between ability1/ability2 off a personality-value
 	// bit, which this engine doesn't model; "NONE" for both an unknown

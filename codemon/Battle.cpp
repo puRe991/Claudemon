@@ -1,4 +1,5 @@
 #include "Battle.h"
+#include "NameTables.h"
 #include <cmath>
 #include <cctype>
 #include <algorithm>
@@ -131,6 +132,7 @@ bool Battle::start_wild(const std::string& species, int level, Mon* pm) {
 	this->weather = WEATHER_NONE; this->weather_turns = 0;
 	this->over = this->victory = false;
 	this->last_outcome = OUTCOME_NONE;
+	this->turn_count = 0;
 	this->cursor = 0;
 	load_sprites();
 	this->prev_ehp = this->enemy.hp; this->prev_php = this->player->hp; this->shake_t = 0.f;
@@ -166,6 +168,7 @@ bool Battle::start_trainer(const std::string& trainer_id, const std::string& nam
 	this->weather = WEATHER_NONE; this->weather_turns = 0;
 	this->over = this->victory = false;
 	this->last_outcome = OUTCOME_NONE;
+	this->turn_count = 0;
 	this->cursor = 0;
 	// trainer front sprite for the intro
 	std::string pic = this->data->trainer_pic(trainer_id);
@@ -732,6 +735,7 @@ void Battle::handle_enemy_faint() {
 }
 
 void Battle::resolve_turn(const std::string& player_move) {
+	this->turn_count++;
 	if (try_use_enemy_item()) {
 		// Item use takes the trainer's whole turn -- the player still acts.
 		do_move(*this->player, this->enemy, player_move, nice(this->player->species));
@@ -804,7 +808,7 @@ void Battle::input(BtnInput b) {
 				else { this->cursor = 0; this->phase = MOVE; }
 			}
 			else if (this->action_cursor == 1) open_switch();
-			else if (this->action_cursor == 2) throw_ball();
+			else if (this->action_cursor == 2) open_ball_menu();
 			else flee();
 		}
 		return;
@@ -836,6 +840,14 @@ void Battle::input(BtnInput b) {
 		else if (b == BTN_DOWN && this->switch_cursor + 1 < n) this->switch_cursor++;
 		else if ((b == BTN_LEFT || b == BTN_CANCEL) && !this->forced_switch) this->phase = ACTION;
 		else if (b == BTN_CONFIRM) do_switch(this->switch_cursor);
+	}
+	if (this->phase == BALL) {
+		int n = (int)this->owned_balls.size();
+		if (b == BTN_UP && this->ball_cursor > 0) this->ball_cursor--;
+		else if (b == BTN_DOWN && this->ball_cursor + 1 < n) this->ball_cursor++;
+		else if (b == BTN_CANCEL) this->phase = ACTION;
+		else if (b == BTN_CONFIRM && this->ball_cursor < n)
+			throw_ball(this->owned_balls[this->ball_cursor]);
 	}
 }
 
@@ -901,6 +913,7 @@ void Battle::do_switch(int idx) {
 }
 
 void Battle::enemy_turn_after() {
+	this->turn_count++;
 	if (try_use_enemy_item()) { show_messages(ACTION); return; }
 	std::string em = ai_move();
 	do_move(this->enemy, *this->player, em, nice(this->enemy.species));
@@ -910,28 +923,107 @@ void Battle::enemy_turn_after() {
 	show_messages(ACTION);
 }
 
-void Battle::throw_ball() {
+const std::vector<std::string>& Battle::ball_types() {
+	static const std::vector<std::string> balls = {
+		"ITEM_POKE_BALL", "ITEM_GREAT_BALL", "ITEM_ULTRA_BALL", "ITEM_MASTER_BALL",
+		"ITEM_SAFARI_BALL", "ITEM_NET_BALL", "ITEM_DIVE_BALL", "ITEM_NEST_BALL",
+		"ITEM_REPEAT_BALL", "ITEM_TIMER_BALL", "ITEM_LUXURY_BALL", "ITEM_PREMIER_BALL",
+		"ITEM_DUSK_BALL", "ITEM_HEAL_BALL", "ITEM_QUICK_BALL", "ITEM_CHERISH_BALL",
+		"ITEM_FAST_BALL", "ITEM_LEVEL_BALL", "ITEM_LURE_BALL", "ITEM_HEAVY_BALL",
+		"ITEM_LOVE_BALL", "ITEM_FRIEND_BALL", "ITEM_MOON_BALL", "ITEM_SPORT_BALL",
+		"ITEM_PARK_BALL", "ITEM_DREAM_BALL", "ITEM_BEAST_BALL",
+	};
+	return balls;
+}
+
+void Battle::open_ball_menu() {
+	this->owned_balls.clear();
+	if (this->gs)
+		for (const std::string& b : ball_types())
+			if (this->gs->item_count(b) > 0) this->owned_balls.push_back(b);
+	if (this->owned_balls.empty()) {
+		this->log.clear(); queue("Du hast keine POKéBÄLLE mehr!");
+		show_messages(ACTION); return;
+	}
+	this->ball_cursor = 0;
+	this->phase = BALL;
+}
+
+float Battle::ball_multiplier(const std::string& ball_item) const {
+	if (ball_item == "ITEM_GREAT_BALL") return 1.5f;
+	if (ball_item == "ITEM_ULTRA_BALL") return 2.f;
+	if (ball_item == "ITEM_SAFARI_BALL") return 1.5f;
+	if (ball_item == "ITEM_NET_BALL") {
+		auto t = this->data->species_types(this->enemy.species);
+		return (t.first == "WATER" || t.second == "WATER" ||
+		        t.first == "BUG" || t.second == "BUG") ? 3.f : 1.f;
+	}
+	if (ball_item == "ITEM_NEST_BALL")
+		return this->enemy.level < 41 ? std::max(1.f, (41.f - this->enemy.level) / 10.f) : 1.f;
+	if (ball_item == "ITEM_REPEAT_BALL")
+		return (this->gs && this->gs->is_caught(this->enemy.species)) ? 3.5f : 1.f;
+	if (ball_item == "ITEM_TIMER_BALL")
+		return std::min(4.f, 1.f + 3.f * std::min(this->turn_count, 10) / 10.f);
+	if (ball_item == "ITEM_QUICK_BALL")
+		return this->turn_count <= 0 ? 5.f : 1.f;
+	if (ball_item == "ITEM_FAST_BALL")
+		return this->enemy.spe >= 100 ? 4.f : 1.f;
+	if (ball_item == "ITEM_LEVEL_BALL") {
+		if (!this->player) return 1.f;
+		if (this->player->level >= this->enemy.level * 4) return 8.f;
+		if (this->player->level >= this->enemy.level * 2) return 4.f;
+		if (this->player->level > this->enemy.level) return 2.f;
+		return 1.f;
+	}
+	if (ball_item == "ITEM_BEAST_BALL") return 0.1f;   // no Ultra Beasts to boost against
+	// Dive/Lure (fishing/surfing context), Dusk (cave/night), Heavy (weight),
+	// Love/Friend/Moon (gender/friendship/evolution data this engine doesn't
+	// track), and the never-sold Luxury/Premier/Cherish/Sport/Park/Dream all
+	// fall back to a neutral Poke-Ball-equivalent roll.
+	return 1.f;
+}
+
+void Battle::throw_ball(const std::string& ball_item) {
 	if (this->is_trainer) {
 		this->log.clear(); queue("Du kannst nicht das POKéMON eines TRAINERS fangen!");
 		show_messages(ACTION); return;
 	}
-	if (!this->gs || this->gs->item_count("ITEM_POKE_BALL") <= 0) {
+	if (!this->gs || this->gs->item_count(ball_item) <= 0) {
 		this->log.clear(); queue("Du hast keine POKéBÄLLE mehr!");
 		show_messages(ACTION); return;
 	}
-	this->gs->give_item("ITEM_POKE_BALL", -1);
+	this->gs->give_item(ball_item, -1);
 	this->log.clear();
-	queue("Du hast einen POKéBALL geworfen!");
-	// Real Gen-3 catch formula (ball bonus is 1.0 -- only the Poke Ball is
-	// functionally implemented): a = (3*maxHP - 2*hp) * catchRate / (3*maxHP),
-	// scaled by a status bonus (2x asleep/frozen, 1.5x any other status).
-	// The classic 4-shake check's aggregate success probability collapses to
-	// exactly a/255 (each shake succeeds at (a/255)^(1/4); four independent
-	// successes multiply back to a/255), so a single roll against that is
-	// mathematically equivalent without needing to simulate the shake UI.
+	std::string ball_name = REAL_ITEM_NAMES.count(ball_item) ? REAL_ITEM_NAMES.at(ball_item) : "POKéBALL";
+	queue("Du hast einen " + ball_name + " geworfen!");
+	if (ball_item == "ITEM_MASTER_BALL") {
+		queue("Erwischt! " + nice(this->enemy.species) + " wurde gefangen!");
+		if (this->gs) this->gs->mark_caught(this->enemy.species);
+		Mon caught = this->data->make_mon(this->enemy.species, this->enemy.level);
+		caught.iv_hp = this->enemy.iv_hp; caught.iv_atk = this->enemy.iv_atk;
+		caught.iv_def = this->enemy.iv_def; caught.iv_spa = this->enemy.iv_spa;
+		caught.iv_spd = this->enemy.iv_spd; caught.iv_spe = this->enemy.iv_spe;
+		caught.nature = this->enemy.nature;
+		this->data->recompute_stats(caught, false);
+		if (this->team && this->team->size() < 6) this->team->push_back(caught);
+		else if (this->box) { this->box->push_back(caught);
+			queue(nice(this->enemy.species) + " wurde zur PC-BOX geschickt."); }
+		this->over = true; this->victory = true;
+		this->last_outcome = OUTCOME_CAUGHT;
+		show_messages(INACTIVE);
+		return;
+	}
+	// Real Gen-3 catch formula: a = (3*maxHP - 2*hp) * catchRate * ballBonus /
+	// (3*maxHP), scaled by a status bonus (2x asleep/frozen, 1.5x any other
+	// status). The classic 4-shake check's aggregate success probability
+	// collapses to exactly a/255 (each shake succeeds at (a/255)^(1/4); four
+	// independent successes multiply back to a/255), so a single roll
+	// against that is mathematically equivalent without needing to simulate
+	// the shake UI.
 	int species_catch_rate = this->data->catch_rate(this->enemy.species);
+	float ball_bonus = ball_multiplier(ball_item);
 	long a = this->enemy.max_hp > 0
-		? ((3L * this->enemy.max_hp - 2L * this->enemy.hp) * species_catch_rate) / (3L * this->enemy.max_hp)
+		? (long)(((3L * this->enemy.max_hp - 2L * this->enemy.hp) * species_catch_rate) * ball_bonus / (3L * this->enemy.max_hp))
 		: 0;
 	float status_bonus = (this->enemy.status == Status::SLEEP || this->enemy.status == Status::FREEZE) ? 2.f
 	                    : this->enemy.status != Status::NONE ? 1.5f : 1.f;
@@ -1136,10 +1228,27 @@ void Battle::draw(sf::RenderTarget& target) {
 			target.draw(a);
 		}
 		if (this->gs) {
-			std::string bt = "BÄLLE x" + std::to_string(this->gs->item_count("ITEM_POKE_BALL"));
+			int total_balls = 0;
+			for (const std::string& b : ball_types()) total_balls += this->gs->item_count(b);
+			std::string bt = "BÄLLE x" + std::to_string(total_balls);
 			sf::Text bc(sf::String::fromUtf8(bt.begin(), bt.end()), this->font, 16);
 			bc.setPosition(size.x * 0.72f, ty + 34);
 			bc.setFillColor(muted_col); target.draw(bc);
+		}
+	} else if (this->phase == BALL) {
+		std::string qs = "Welchen BALL werfen?";
+		sf::Text q(sf::String::fromUtf8(qs.begin(), qs.end()), this->font, 20);
+		q.setPosition(tx, ty); q.setFillColor(body_col); target.draw(q);
+		for (size_t i = 0; i < this->owned_balls.size(); ++i) {
+			bool sel = (int)i == this->ball_cursor;
+			float ry = ty + 30 + i * 22;
+			if (sel) cursor_at(tx + 14, ry);
+			const std::string& id = this->owned_balls[i];
+			std::string label = (REAL_ITEM_NAMES.count(id) ? REAL_ITEM_NAMES.at(id) : id)
+			                     + " x" + std::to_string(this->gs ? this->gs->item_count(id) : 0);
+			sf::Text t(sf::String::fromUtf8(label.begin(), label.end()), this->font, 16);
+			t.setPosition(tx + 28, ry); t.setFillColor(sel ? head_col : body_col);
+			target.draw(t);
 		}
 	} else if (this->phase == MOVE) {
 		std::string qs = "Wähle eine Attacke:";
