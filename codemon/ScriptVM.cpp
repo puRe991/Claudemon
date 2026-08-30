@@ -757,6 +757,44 @@ void ScriptVM::pump() {
 				int party_idx = value_of("VAR_0x8005");
 				if (party_idx >= 0 && party_idx < (int)this->team->size())
 					result = this->bdata->species_id((*this->team)[party_idx].species);
+			} else if (fn == "GetPlayerFacingDirection" && this->player) {
+				result = facing_to_dircode(this->player->get_facing());
+			} else if ((fn == "CalculatePlayerPartyCount" || fn == "CountPartyNonEggMons" ||
+			            fn == "CountPartyAliveNonEggMons") && this->team) {
+				// No egg mechanic exists here (see README), so every one of
+				// these three real, distinct pokeemerald counts (all mons /
+				// non-egg mons / non-fainted non-egg mons) collapses to the
+				// same thing: how many of the party aren't fainted, except
+				// the plain count which really does want every slot.
+				if (fn == "CalculatePlayerPartyCount") {
+					result = (int)this->team->size();
+				} else {
+					for (const Mon& m : *this->team) if (!m.fainted()) result++;
+				}
+			} else if (fn == "ScriptGetPartyMonSpecies" && this->team) {
+				int party_idx = value_of("VAR_0x8004");
+				if (party_idx >= 0 && party_idx < (int)this->team->size())
+					result = this->bdata->species_id((*this->team)[party_idx].species);
+			} else if (fn == "IsStarterInParty" && this->team) {
+				for (const Mon& m : *this->team)
+					if (m.species == "TREECKO" || m.species == "TORCHIC" || m.species == "MUDKIP")
+						{ result = 1; break; }
+			} else if (fn == "TryUpdateRusturfTunnelState" && this->state && this->map) {
+				// Real story-relevant (not flavour) logic, ported straight
+				// from src/field_specials.c: while standing in the tunnel
+				// with the shortcut not yet opened, sets
+				// VAR_RUSTURF_TUNNEL_STATE to drive the rock-breaking
+				// cutscene once each of Wanda's two boulders is cleared.
+				if (!this->state->flag("FLAG_RUSTURF_TUNNEL_OPENED") &&
+				    this->map->name() == "RusturfTunnel") {
+					if (this->state->flag("FLAG_HIDE_RUSTURF_TUNNEL_ROCK_1")) {
+						this->state->set_var("VAR_RUSTURF_TUNNEL_STATE", 4);
+						result = 1;
+					} else if (this->state->flag("FLAG_HIDE_RUSTURF_TUNNEL_ROCK_2")) {
+						this->state->set_var("VAR_RUSTURF_TUNNEL_STATE", 5);
+						result = 1;
+					}
+				}
 			}
 			// ShouldTryRematchBattle, ShouldShowBoxWasFullMessage (our PC box
 			// is a single unlimited list), GetPCBoxToSendMon (always box 0),
