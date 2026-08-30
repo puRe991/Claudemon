@@ -1,4 +1,5 @@
 #include "ScriptVM.h"
+#include "NameTables.h"
 #include <cctype>
 #include <cstdio>
 #include <algorithm>
@@ -18,7 +19,15 @@ void ScriptVM::configure(Map* m, GameState* s, DialogBox* b, Battle* bt,
 bool ScriptVM::running() const { return this->st != IDLE; }
 bool ScriptVM::waiting_message() const { return this->st == WAIT_MSG; }
 
+// pokeemerald's actual gItems[].name strings (src/data/items.h), not a
+// derived approximation -- real item names don't follow a regular
+// underscore-to-title-case pattern (ITEM_HP_UP is "HP UP", ITEM_TM01 is
+// "TM01", ITEM_POKE_BALL is "POKé BALL", ...). Falls back to the old
+// derivation only for a constant somehow missing from the table (shouldn't
+// happen; every ITEM_* pokeemerald's importer can reference is in there).
 static std::string item_name(const std::string& item) {
+	auto it = REAL_ITEM_NAMES.find(item);
+	if (it != REAL_ITEM_NAMES.end()) return it->second;
 	std::string s = item;
 	if (s.rfind("ITEM_", 0) == 0) s = s.substr(5);
 	std::string out; bool cap = true;
@@ -42,12 +51,16 @@ static std::string nice_name(const std::string& id) {
 	return out;
 }
 
+// pokeemerald's actual gTrainers[].trainerName strings (src/data/trainers.h),
+// keyed by the exact TRAINER_* constant (each rematch id -- TRAINER_CALVIN_1
+// .. _5 -- already has its own entry with the correct name resolved, so no
+// more heuristic suffix-stripping is needed). Falls back to the old
+// derivation only if a constant is somehow missing from the table.
 static std::string name_from_trainer(const std::string& tid) {
+	auto it = REAL_TRAINER_NAMES.find(tid);
+	if (it != REAL_TRAINER_NAMES.end() && !it->second.empty()) return it->second;
 	std::string s = tid;
 	if (s.rfind("TRAINER_", 0) == 0) s = s.substr(8);
-	// Rematch trainers are numbered TRAINER_CALVIN_1 .. _5 in pokeemerald; the
-	// number is table bookkeeping, not part of the name, and reading it out as
-	// "Calvin 1" in the battle intro looks like a bug.
 	if (s.size() > 2 && s[s.size() - 2] == '_' &&
 	    s[s.size() - 1] >= '1' && s[s.size() - 1] <= '5')
 		s = s.substr(0, s.size() - 2);
@@ -66,16 +79,26 @@ static int facing_to_dircode(DIR d) {
 	             case DIR::W: return 3; case DIR::E: return 4; default: return 1; }
 }
 
-// pokeemerald's sIngameTrades[] (src/data/trade.h), trimmed to what this
-// engine actually models (species + which species is wanted back -- no IVs/
-// personality/OT/held mail, none of which exist here, see BattleData::Mon).
-// Indices match the INGAME_TRADE_* constants in value_of() above.
-struct TradeInfo { const char* give; const char* want; };
+// pokeemerald's sIngameTrades[] (src/data/trade.h) -- Emerald only ever
+// defines these 4 (INGAME_TRADE_SEEDOT/PLUSLE/HORSEA/MEOWTH), so nothing is
+// actually trimmed here. `ivs` is HP/Atk/Def/Speed/SpAtk/SpDef (struct
+// InGameTrade's field order, src/trade.c), applied to the incoming mon
+// instead of a fresh make_mon() roll so the traded-in mon has its real,
+// fixed IVs like in the original game. `held_item` is the real item three
+// of the four are holding (a written Mail, in the original); this engine
+// models "holding an item" (BattleData::Mon::held_item) but has no
+// mail-reading/writing feature, so the mon does come out holding the
+// correct item, just without the message it contains. Nickname/personality
+// value/OT name+gender/sheen have no equivalent field on BattleData::Mon at
+// all (this engine has no nickname/OT concept anywhere, not just for
+// trades) -- giving those up is a wider, separate gap than this table, not
+// fixed here.
+struct TradeInfo { const char* give; const char* want; int ivs[6]; const char* held_item; };
 static const TradeInfo INGAME_TRADES[4] = {
-	{"SEEDOT", "RALTS"},     // RustboroCity_House1
-	{"PLUSLE", "VOLBEAT"},   // FortreeCity_House1
-	{"HORSEA", "BAGON"},     // PacifidlogTown_House3
-	{"MEOWTH", "SKITTY"},    // BattleFrontier_Lounge6
+	{"SEEDOT", "RALTS", {5, 4, 5, 4, 4, 4}, "CHESTO_BERRY"},  // RustboroCity_House1
+	{"PLUSLE", "VOLBEAT", {4, 4, 4, 5, 5, 4}, "WOOD_MAIL"},   // FortreeCity_House1
+	{"HORSEA", "BAGON", {5, 4, 4, 4, 5, 4}, "WAVE_MAIL"},     // PacifidlogTown_House3
+	{"MEOWTH", "SKITTY", {4, 5, 4, 5, 4, 4}, "RETRO_MAIL"},   // BattleFrontier_Lounge6
 };
 
 // pokeemerald's sMultichoiceLists[] (src/data/script_menu.h), trimmed to the
@@ -654,19 +677,24 @@ void ScriptVM::pump() {
 				return;
 			} else if (fn == "CreateInGameTradePokemon" && this->bdata && this->team) {
 				// pokeemerald builds the incoming mon with the outgoing mon's
-				// level (see CreateInGameTradePokemonInternal) and otherwise
-				// its own fixed personality/held mail -- neither of which
-				// this engine models (no held items at all), so real
-				// IVs/nature (rolled fresh, same as any other make_mon())
-				// and the matched level are the trade's whole gameplay
-				// effect here.
+				// level (see CreateInGameTradePokemonInternal) but its own
+				// fixed IVs and held item (sIngameTrades, not a fresh roll);
+				// nature still comes from make_mon()'s roll since the
+				// original derives it from the fixed personality value this
+				// engine has no field for (see INGAME_TRADES' comment).
 				int trade_idx = value_of("VAR_0x8004");
 				int party_idx = value_of("VAR_0x8005");
 				if (trade_idx >= 0 && trade_idx < 4 &&
 				    party_idx >= 0 && party_idx < (int)this->team->size()) {
 					int lvl = (*this->team)[party_idx].level;
-					(*this->team)[party_idx] = this->bdata->make_mon(INGAME_TRADES[trade_idx].give, lvl, this->rng);
-					if (this->state) this->state->mark_caught(INGAME_TRADES[trade_idx].give);
+					const TradeInfo& t = INGAME_TRADES[trade_idx];
+					Mon m = this->bdata->make_mon(t.give, lvl, this->rng);
+					m.iv_hp = t.ivs[0]; m.iv_atk = t.ivs[1]; m.iv_def = t.ivs[2];
+					m.iv_spe = t.ivs[3]; m.iv_spa = t.ivs[4]; m.iv_spd = t.ivs[5];
+					m.held_item = t.held_item;
+					this->bdata->recompute_stats(m, false);   // IVs above changed after make_mon()'s own roll
+					(*this->team)[party_idx] = m;
+					if (this->state) this->state->mark_caught(t.give);
 				}
 			} else if (fn == "DoInGameTradeScene") {
 				// The real spinning-Pokeball trade cutscene has no equivalent
@@ -729,6 +757,44 @@ void ScriptVM::pump() {
 				int party_idx = value_of("VAR_0x8005");
 				if (party_idx >= 0 && party_idx < (int)this->team->size())
 					result = this->bdata->species_id((*this->team)[party_idx].species);
+			} else if (fn == "GetPlayerFacingDirection" && this->player) {
+				result = facing_to_dircode(this->player->get_facing());
+			} else if ((fn == "CalculatePlayerPartyCount" || fn == "CountPartyNonEggMons" ||
+			            fn == "CountPartyAliveNonEggMons") && this->team) {
+				// No egg mechanic exists here (see README), so every one of
+				// these three real, distinct pokeemerald counts (all mons /
+				// non-egg mons / non-fainted non-egg mons) collapses to the
+				// same thing: how many of the party aren't fainted, except
+				// the plain count which really does want every slot.
+				if (fn == "CalculatePlayerPartyCount") {
+					result = (int)this->team->size();
+				} else {
+					for (const Mon& m : *this->team) if (!m.fainted()) result++;
+				}
+			} else if (fn == "ScriptGetPartyMonSpecies" && this->team) {
+				int party_idx = value_of("VAR_0x8004");
+				if (party_idx >= 0 && party_idx < (int)this->team->size())
+					result = this->bdata->species_id((*this->team)[party_idx].species);
+			} else if (fn == "IsStarterInParty" && this->team) {
+				for (const Mon& m : *this->team)
+					if (m.species == "TREECKO" || m.species == "TORCHIC" || m.species == "MUDKIP")
+						{ result = 1; break; }
+			} else if (fn == "TryUpdateRusturfTunnelState" && this->state && this->map) {
+				// Real story-relevant (not flavour) logic, ported straight
+				// from src/field_specials.c: while standing in the tunnel
+				// with the shortcut not yet opened, sets
+				// VAR_RUSTURF_TUNNEL_STATE to drive the rock-breaking
+				// cutscene once each of Wanda's two boulders is cleared.
+				if (!this->state->flag("FLAG_RUSTURF_TUNNEL_OPENED") &&
+				    this->map->name() == "RusturfTunnel") {
+					if (this->state->flag("FLAG_HIDE_RUSTURF_TUNNEL_ROCK_1")) {
+						this->state->set_var("VAR_RUSTURF_TUNNEL_STATE", 4);
+						result = 1;
+					} else if (this->state->flag("FLAG_HIDE_RUSTURF_TUNNEL_ROCK_2")) {
+						this->state->set_var("VAR_RUSTURF_TUNNEL_STATE", 5);
+						result = 1;
+					}
+				}
 			}
 			// ShouldTryRematchBattle, ShouldShowBoxWasFullMessage (our PC box
 			// is a single unlimited list), GetPCBoxToSendMon (always box 0),
@@ -928,12 +994,20 @@ void ScriptVM::pump() {
 			// always rebuilds objects from the map file on load and keeps no
 			// per-object save state, so there is nothing to copy into --
 			// consciously a no-op, not a missed opcode.
-		} else if ((op == "setobjectsubpriority" || op == "resetobjectsubpriority")) {
-			// Draw-order tiebreak for two objects sharing a tile (e.g. Mr.
-			// Briney's boat under a bridge). This engine always sorts actors
-			// by tile-y (see draw_scene in main.cpp), which already gives the
-			// correct order for every real use of this opcode; there's no
-			// separate z-layer to set.
+		} else if (op == "setobjectsubpriority" && argc >= 1) {
+			// `setobjectsubpriority LOCALID [MAP] SUBPRIORITY`: only the
+			// last numeric argument is the subpriority; the (optional) MAP
+			// argument only matters when addressing an object on a
+			// different, currently-loaded map (e.g. the far shore's Briney
+			// during the Route104<->Dewford crossing), which this engine
+			// can't reach from here (only the current map's actors are
+			// resolvable) -- same limitation `resolve()` already has for
+			// every other by-LOCALID opcode.
+			Character* ch = resolve(arg(0));
+			if (ch) ch->set_subpriority(value_of(arg(argc - 1)));
+		} else if (op == "resetobjectsubpriority" && argc >= 1) {
+			Character* ch = resolve(arg(0));
+			if (ch) ch->reset_subpriority();
 		} else if (op == "setobjectmovementtype" && argc >= 2) {
 			// Matches map.h's MoveKind (0=static,1=wander,2=pace-v,3=pace-h);
 			// a MOVEMENT_TYPE_FACE_* also turns the object immediately, same
@@ -983,6 +1057,22 @@ void ScriptVM::pump() {
 			std::string lower_sp;
 			for (char c : sp) lower_sp += (char)std::tolower((unsigned char)c);
 			if (this->audio) this->audio->play_cry(lower_sp);
+		} else if ((op == "opendoor" || op == "closedoor") && argc >= 2) {
+			// See ScriptVM.h's door_anim_active() comment: frame sequence
+			// and per-step timing come straight from pokeemerald's
+			// sDoorOpenAnimFrames/sDoorCloseAnimFrames (0, 0x100, 0x200 =
+			// steps 0..2, held 4 GBA frames each); which door_anims sheet
+			// to use is not something this engine's import data records,
+			// so it always draws general.png (the most common one).
+			this->door_x = value_of(arg(0));
+			this->door_y = value_of(arg(1));
+			this->door_opening = (op == "opendoor");
+			this->door_active = true;
+			this->door_step = 0;
+			this->door_timer = 0.f;
+			this->door_frame_idx = this->door_opening ? -1 : 2;
+		} else if (op == "waitdooranim") {
+			if (this->door_active) { this->door_waiting = true; this->st = WAIT_DOOR; return; }
 		} else if (op == "end") {
 			finish(); return;
 		}
@@ -1023,6 +1113,26 @@ void ScriptVM::close_shop() {
 }
 
 void ScriptVM::update(float dt) {
+	if (this->door_active) {
+		this->door_timer += dt;
+		if (this->door_timer >= DOOR_STEP_DURATION) {
+			this->door_timer -= DOOR_STEP_DURATION;
+			this->door_step++;
+			// open: -1 -> 0 -> 1 -> 2(done, stays); close: 2 -> 1 -> 0 -> -1(done, stays)
+			this->door_frame_idx = this->door_opening ? (this->door_step - 1) : (2 - this->door_step);
+			bool done = this->door_opening ? (this->door_step >= 3) : (this->door_step >= 3);
+			if (done) {
+				this->door_frame_idx = this->door_opening ? 2 : -1;
+				this->door_active = false;
+				if (this->door_waiting) {
+					this->door_waiting = false;
+					this->st = RUN;
+					this->pump();
+					return;
+				}
+			}
+		}
+	}
 	if (this->st == WAIT_BATTLE) {
 		if (!this->battle || !this->battle->active()) {
 			bool won = this->battle && this->battle->won();

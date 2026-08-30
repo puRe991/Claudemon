@@ -643,14 +643,41 @@ struct HealFx {
     }
 };
 
-static void draw_scene(sf::RenderTarget& target, Session* s, const HealFx* healfx = nullptr) {
+static void draw_scene(sf::RenderTarget& target, Session* s, const HealFx* healfx = nullptr,
+                        const ScriptVM* vm = nullptr) {
     target.setView(camera_for(s));
     s->map->render_to(target);
     std::sort(s->actors.begin(), s->actors.end(),
-              [](Character* a, Character* b) { return a->get_tile_y() < b->get_tile_y(); });
+              [](Character* a, Character* b) {
+                  if (a->get_tile_y() != b->get_tile_y())
+                      return a->get_tile_y() < b->get_tile_y();
+                  // Same row: `setobjectsubpriority` breaks the tie (Mr.
+                  // Briney's boat scenes); unset (-1) sorts as if it were the
+                  // lowest value, matching pre-opcode behaviour for every
+                  // object nobody has scripted a subpriority for.
+                  return a->get_subpriority() < b->get_subpriority();
+              });
     for (Character* a : s->actors) {
         a->update_sprite(s->map->get_tile_size());
         target.draw(*a->get_current_sprite());
+    }
+    // `opendoor`/`closedoor`/`waitdooranim` (see ScriptVM.h's door_anim_active()
+    // comment): overlay the matching frame of the imported door sheet on top
+    // of the door tile. Loaded once and reused for every door in every map --
+    // this engine has no per-location door-graphics table, so it's always
+    // the "general" sheet, the most common one in the original game.
+    if (vm && vm->door_anim_active() && vm->door_frame() >= 0) {
+        static sf::Texture door_tex;
+        static bool door_tex_ok = door_tex.loadFromFile("assets/graphics/door_anims/general.png");
+        if (door_tex_ok) {
+            int tp = s->map->get_tile_size();
+            int dx, dy; vm->get_door_tile(dx, dy);
+            sf::Sprite spr(door_tex);
+            spr.setTextureRect(sf::IntRect(0, vm->door_frame() * 16, 16, 16));
+            spr.setPosition((float)(dx * tp), (float)(dy * tp));
+            if (tp != 16) spr.setScale((float)tp / 16.f, (float)tp / 16.f);
+            target.draw(spr);
+        }
     }
     if (healfx && healfx->active() && s->player) {
         int tp = s->map->get_tile_size();
@@ -2149,7 +2176,7 @@ int main() {
                 else if (battle.active()) battle.draw(rt);
                 else if (games.active()) games.draw(rt);
                 else {
-                    draw_scene(rt, sess, &healfx); box.draw(rt);
+                    draw_scene(rt, sess, &healfx, &vm); box.draw(rt);
                     draw_banner(rt, ban_font, banner, banner_t);
                     menu.draw(rt);
                     if (yesno.active()) yesno.draw(rt);
@@ -2588,7 +2615,7 @@ int main() {
         else if (battle.active()) { battle.draw(*scr.get_window()); }
         else if (games.active()) { games.draw(*scr.get_window()); }
         else {
-            draw_scene(*scr.get_window(), sess, &healfx);
+            draw_scene(*scr.get_window(), sess, &healfx, &vm);
             box.draw(*scr.get_window());
             draw_banner(*scr.get_window(), ban_font, banner, banner_t);
             menu.draw(*scr.get_window());

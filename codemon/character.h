@@ -56,6 +56,14 @@ private:
 	// full include here. Initialized from the NpcSpawn this object was built
 	// from; `setobjectmovementtype` (ScriptVM) can change it live.
 	int move_kind = 0;
+	// `setobjectsubpriority`/`resetobjectsubpriority`: draw-order tiebreak for
+	// two objects sharing a tile-y (Mr. Briney's boat: the rider must draw
+	// above the boat while boarding, but the reverse while the boat glides
+	// past land at the same row). -1 = unset -- tile-y order decides alone,
+	// same as before this opcode was wired up; when set, it's the tiebreak
+	// among objects that share the exact same tile-y (lower value = drawn
+	// first = appears behind).
+	int subpriority = -1;
 	bool removed = false;      // `removeobject` also sets this so the object's
 	                           // still-alive Agent entry (main.cpp's `agents`,
 	                           // separate from the `actors` render/collision
@@ -98,6 +106,10 @@ public:
 
 	void set_move_kind(int k) { this->move_kind = k; }
 	int get_move_kind() const { return this->move_kind; }
+
+	void set_subpriority(int p) { this->subpriority = p; }
+	void reset_subpriority() { this->subpriority = -1; }
+	int get_subpriority() const { return this->subpriority; }
 
 	// Where this character would end up after a step in `dir` (signed).
 	void target_tile(DIR dir, int& out_x, int& out_y) const;
