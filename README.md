@@ -673,8 +673,6 @@ Aus einer Codestruktur-Review von `codemon/main.cpp` (2506 Zeilen) – reines Re
 
 * ❌ Importierte pokemon emerald-Karten
 
-* [ ] Prozeduraler Kartengenerator
-
 
 ### Map Dialoge Übersetzung auf Deutsch
 
@@ -798,26 +796,26 @@ Aus einer Codestruktur-Review von `codemon/main.cpp` (2506 Zeilen) – reines Re
 * ❌ EverGrandeCity
 * ❌ EverGrandeCity_ChampionsRoom
 * ❌ EverGrandeCity_DrakesRoom
-EverGrandeCity_GlaciasRoom
-EverGrandeCity_Hall1
-EverGrandeCity_Hall2
-EverGrandeCity_Hall3
-EverGrandeCity_Hall4
-EverGrandeCity_Hall5
-EverGrandeCity_HallOfFame
-EverGrandeCity_PhoebesRoom
-EverGrandeCity_PokemonCenter_1F
-EverGrandeCity_PokemonCenter_2F
-EverGrandeCity_PokemonLeague_1F
-EverGrandeCity_PokemonLeague_2F
-EverGrandeCity_SidneysRoom
-FallarborTown
-FallarborTown_BattleTentBattleRoom
-FallarborTown_BattleTentCorridor
-FallarborTown_BattleTentLobby
-FallarborTown_CozmosHouse
-FallarborTown_Mart
-FallarborTown_MoveRelearnersHouse
+* ❌ EverGrandeCity_GlaciasRoom
+* ❌ EverGrandeCity_Hall1
+* ❌ EverGrandeCity_Hall2
+* ❌ EverGrandeCity_Hall3
+* ❌ EverGrandeCity_Hall4
+* ❌ EverGrandeCity_Hall5
+* ❌ EverGrandeCity_HallOfFame
+* ❌ EverGrandeCity_PhoebesRoom
+* ❌ EverGrandeCity_PokemonCenter_1F
+* ❌ EverGrandeCity_PokemonCenter_2F
+* ❌ EverGrandeCity_PokemonLeague_1F
+* ❌ EverGrandeCity_PokemonLeague_2F
+* ❌ EverGrandeCity_SidneysRoom
+* ❌ FallarborTown
+* ❌ FallarborTown_BattleTentBattleRoom
+* ❌ FallarborTown_BattleTentCorridor
+* ❌ FallarborTown_BattleTentLobby
+* ❌ FallarborTown_CozmosHouse
+* ❌ FallarborTown_Mart
+* ❌ FallarborTown_MoveRelearnersHouse
 * ❌ FallarborTown_PokemonCenter_1F
 * ❌ FallarborTown_PokemonCenter_2F
 * ❌ FarawayIsland_Entrance
@@ -845,332 +843,332 @@ FallarborTown_MoveRelearnersHouse
 * ❌ LavaridgeTown_Gym_1F
 * ❌ LavaridgeTown_Gym_B1F
 * ❌ LavaridgeTown_HerbShop
-LavaridgeTown_House
-LavaridgeTown_Mart
-LavaridgeTown_PokemonCenter_1F
-LavaridgeTown_PokemonCenter_2F
-LilycoveCity
-LilycoveCity_ContestHall
-LilycoveCity_ContestLobby
-LilycoveCity_CoveLilyMotel_1F
-LilycoveCity_CoveLilyMotel_2F
-LilycoveCity_DepartmentStoreElevator
-LilycoveCity_DepartmentStoreRooftop
-LilycoveCity_DepartmentStore_1F
-LilycoveCity_DepartmentStore_2F
-LilycoveCity_DepartmentStore_3F
-LilycoveCity_DepartmentStore_4F
-LilycoveCity_DepartmentStore_5F
-LilycoveCity_Harbor
-LilycoveCity_House1
-LilycoveCity_House2
-LilycoveCity_House3
-LilycoveCity_House4
-LilycoveCity_LilycoveMuseum_1F
-LilycoveCity_LilycoveMuseum_2F
-LilycoveCity_MoveDeletersHouse
-LilycoveCity_PokemonCenter_1F
-LilycoveCity_PokemonCenter_2F
-LilycoveCity_PokemonTrainerFanClub
-LilycoveCity_UnusedMart
-LittlerootTown
-LittlerootTown_BrendansHouse_1F
-LittlerootTown_BrendansHouse_2F
-LittlerootTown_MaysHouse_1F
-LittlerootTown_MaysHouse_2F
-LittlerootTown_ProfessorBirchsLab
-MagmaHideout_1F
-MagmaHideout_2F_1R
-MagmaHideout_2F_2R
-MagmaHideout_2F_3R
-MagmaHideout_3F_1R
-MagmaHideout_3F_2R
-MagmaHideout_3F_3R
-MagmaHideout_4F
-MarineCave_End
-MarineCave_Entrance
-MauvilleCity
-MauvilleCity_BikeShop
-MauvilleCity_GameCorner
-MauvilleCity_Gym
-MauvilleCity_House1
-MauvilleCity_House2
-MauvilleCity_Mart
-MauvilleCity_PokemonCenter_1F
-MauvilleCity_PokemonCenter_2F
-MeteorFalls_1F_1R
-MeteorFalls_1F_2R
-MeteorFalls_B1F_1R
-MeteorFalls_B1F_2R
-MeteorFalls_StevensCave
-MirageTower_1F
-MirageTower_2F
-MirageTower_3F
-MirageTower_4F
-MossdeepCity
-MossdeepCity_GameCorner_1F
-MossdeepCity_GameCorner_B1F
-MossdeepCity_Gym
-MossdeepCity_House1
-MossdeepCity_House2
-MossdeepCity_House3
-MossdeepCity_House4
-MossdeepCity_Mart
-MossdeepCity_PokemonCenter_1F
-MossdeepCity_PokemonCenter_2F
-MossdeepCity_SpaceCenter_1F
-MossdeepCity_SpaceCenter_2F
-MossdeepCity_StevensHouse
-MtChimney
-MtChimney_CableCarStation
-MtPyre_1F
-MtPyre_2F
-MtPyre_3F
-MtPyre_4F
-MtPyre_5F
-MtPyre_6F
-MtPyre_Exterior
-MtPyre_Summit
-NavelRock_B1F
-NavelRock_Bottom
-NavelRock_Down01
-NavelRock_Down02
-NavelRock_Down03
-NavelRock_Down04
-NavelRock_Down05
-NavelRock_Down06
-NavelRock_Down07
-NavelRock_Down08
-NavelRock_Down09
-NavelRock_Down10
-NavelRock_Down11
-NavelRock_Entrance
-NavelRock_Exterior
-NavelRock_Fork
-NavelRock_Harbor
-NavelRock_Top
-NavelRock_Up1
-NavelRock_Up2
-NavelRock_Up3
-NavelRock_Up4
-NewMauville_Entrance
-NewMauville_Inside
-OldaleTown
-OldaleTown_House1
-OldaleTown_House2
-OldaleTown_Mart
-OldaleTown_PokemonCenter_1F
-OldaleTown_PokemonCenter_2F
-PacifidlogTown
-PacifidlogTown_House1
-PacifidlogTown_House2
-PacifidlogTown_House3
-PacifidlogTown_House4
-PacifidlogTown_House5
-PacifidlogTown_PokemonCenter_1F
-PacifidlogTown_PokemonCenter_2F
-PetalburgCity
-PetalburgCity_Gym
-PetalburgCity_House1
-PetalburgCity_House2
-PetalburgCity_Mart
-PetalburgCity_PokemonCenter_1F
-PetalburgCity_PokemonCenter_2F
-PetalburgCity_WallysHouse
-PetalburgWoods
-RecordCorner
-* ✅**Route101**
-Route102
-Route103
-Route104
-Route104_MrBrineysHouse
-Route104_PrettyPetalFlowerShop
-Route104_PrototypePrettyPetalFlowerShop
-Route105
-Route106
-Route107
-Route108
-Route109
-Route109_SeashoreHouse
-Route110
-Route110_SeasideCyclingRoadNorthEntrance
-Route110_SeasideCyclingRoadSouthEntrance
-Route110_TrickHouseCorridor
-Route110_TrickHouseEnd
-Route110_TrickHouseEntrance
-Route110_TrickHousePuzzle1
-Route110_TrickHousePuzzle2
-Route110_TrickHousePuzzle3
-Route110_TrickHousePuzzle4
-Route110_TrickHousePuzzle5
-Route110_TrickHousePuzzle6
-Route110_TrickHousePuzzle7
-Route110_TrickHousePuzzle8
-Route111
-Route111_OldLadysRestStop
-Route111_WinstrateFamilysHouse
-Route112
-Route112_CableCarStation
-Route113
-Route113_GlassWorkshop
-Route114
-Route114_FossilManiacsHouse
-Route114_FossilManiacsTunnel
-Route114_LanettesHouse
-Route115
-Route116
-Route116_TunnelersRestHouse
-Route117
-Route117_PokemonDayCare
-Route118
-Route119
-Route119_House
-Route119_WeatherInstitute_1F
-Route119_WeatherInstitute_2F
-Route120
-Route121
-Route121_SafariZoneEntrance
-Route122
-Route123
-Route123_BerryMastersHouse
-Route124
-Route124_DivingTreasureHuntersHouse
-Route125
-Route126
-Route127
-Route128
-Route129
-Route130
-Route131
-Route132
-Route133
-Route134
-RustboroCity
-RustboroCity_CuttersHouse
-RustboroCity_DevonCorp_1F
-RustboroCity_DevonCorp_2F
-RustboroCity_DevonCorp_3F
-RustboroCity_Flat1_1F
-RustboroCity_Flat1_2F
-RustboroCity_Flat2_1F
-RustboroCity_Flat2_2F
-RustboroCity_Flat2_3F
-RustboroCity_Gym
-RustboroCity_House1
-RustboroCity_House2
-RustboroCity_House3
-RustboroCity_Mart
-RustboroCity_PokemonCenter_1F
-RustboroCity_PokemonCenter_2F
-RustboroCity_PokemonSchool
-RusturfTunnel
-SSTidalCorridor
-SSTidalLowerDeck
-SSTidalRooms
-SafariZone_North
-SafariZone_Northeast
-SafariZone_Northwest
-SafariZone_RestHouse
-SafariZone_South
-SafariZone_Southeast
-SafariZone_Southwest
-ScorchedSlab
-SeafloorCavern_Entrance
-SeafloorCavern_Room1
-SeafloorCavern_Room2
-SeafloorCavern_Room3
-SeafloorCavern_Room4
-SeafloorCavern_Room5
-SeafloorCavern_Room6
-SeafloorCavern_Room7
-SeafloorCavern_Room8
-SeafloorCavern_Room9
-SealedChamber_InnerRoom
-SealedChamber_OuterRoom
-ShoalCave_HighTideEntranceRoom
-ShoalCave_HighTideInnerRoom
-ShoalCave_LowTideEntranceRoom
-ShoalCave_LowTideIceRoom
-ShoalCave_LowTideInnerRoom
-ShoalCave_LowTideLowerRoom
-ShoalCave_LowTideStairsRoom
-SkyPillar_1F
-SkyPillar_2F
-SkyPillar_3F
-SkyPillar_4F
-SkyPillar_5F
-SkyPillar_Entrance
-SkyPillar_Outside
-SkyPillar_Top
-SlateportCity
-SlateportCity_BattleTentBattleRoom
-SlateportCity_BattleTentCorridor
-SlateportCity_BattleTentLobby
-SlateportCity_Harbor
-SlateportCity_House
-SlateportCity_Mart
-SlateportCity_NameRatersHouse
-SlateportCity_OceanicMuseum_1F
-SlateportCity_OceanicMuseum_2F
-SlateportCity_PokemonCenter_1F
-SlateportCity_PokemonCenter_2F
-SlateportCity_PokemonFanClub
-SlateportCity_SternsShipyard_1F
-SlateportCity_SternsShipyard_2F
-SootopolisCity
-SootopolisCity_Gym_1F
-SootopolisCity_Gym_B1F
-SootopolisCity_House1
-SootopolisCity_House2
-SootopolisCity_House3
-SootopolisCity_House4
-SootopolisCity_House5
-SootopolisCity_House6
-SootopolisCity_House7
-SootopolisCity_LotadAndSeedotHouse
-SootopolisCity_Mart
-SootopolisCity_MysteryEventsHouse_1F
-SootopolisCity_MysteryEventsHouse_B1F
-SootopolisCity_PokemonCenter_1F
-SootopolisCity_PokemonCenter_2F
-SouthernIsland_Exterior
-SouthernIsland_Interior
-TerraCave_End
-TerraCave_Entrance
-TradeCenter
-TrainerHill_1F
-TrainerHill_2F
-TrainerHill_3F
-TrainerHill_4F
-TrainerHill_Elevator
-TrainerHill_Entrance
-TrainerHill_Roof
-Underwater_MarineCave
-Underwater_Route105
-Underwater_Route124
-Underwater_Route125
-Underwater_Route126
-Underwater_Route127
-Underwater_Route128
-Underwater_Route129
-Underwater_Route134
-Underwater_SeafloorCavern
-Underwater_SealedChamber
-Underwater_SootopolisCity
-UnionRoom
-VerdanturfTown
-VerdanturfTown_BattleTentBattleRoom
-VerdanturfTown_BattleTentCorridor
-VerdanturfTown_BattleTentLobby
-VerdanturfTown_FriendshipRatersHouse
-VerdanturfTown_House
-VerdanturfTown_Mart
-VerdanturfTown_PokemonCenter_1F
-VerdanturfTown_PokemonCenter_2F
-VerdanturfTown_WandasHouse
-VictoryRoad_1F
-VictoryRoad_B1F
-VictoryRoad_B2F
-littleroot_town
-route
+* ❌ LavaridgeTown_House
+* ❌ LavaridgeTown_Mart
+* ❌ LavaridgeTown_PokemonCenter_1F
+* ❌ LavaridgeTown_PokemonCenter_2F
+* ❌ LilycoveCity
+* ❌ LilycoveCity_ContestHall
+* ❌ LilycoveCity_ContestLobby
+* ❌ LilycoveCity_CoveLilyMotel_1F
+* ❌ LilycoveCity_CoveLilyMotel_2F
+* ❌ LilycoveCity_DepartmentStoreElevator
+* ❌ LilycoveCity_DepartmentStoreRooftop
+* ❌ LilycoveCity_DepartmentStore_1F
+* ❌ LilycoveCity_DepartmentStore_2F
+* ❌ LilycoveCity_DepartmentStore_3F
+* ❌ LilycoveCity_DepartmentStore_4F
+* ❌ LilycoveCity_DepartmentStore_5F
+* ❌ LilycoveCity_Harbor
+* ❌ LilycoveCity_House1
+* ❌ LilycoveCity_House2
+* ❌ LilycoveCity_House3
+* ❌ LilycoveCity_House4
+* ❌ LilycoveCity_LilycoveMuseum_1F
+* ❌ LilycoveCity_LilycoveMuseum_2F
+* ❌ LilycoveCity_MoveDeletersHouse
+* ❌ LilycoveCity_PokemonCenter_1F
+* ❌ LilycoveCity_PokemonCenter_2F
+* ❌ LilycoveCity_PokemonTrainerFanClub
+* ❌ LilycoveCity_UnusedMart
+* ❌ LittlerootTown
+* ❌ LittlerootTown_BrendansHouse_1F
+* ❌ LittlerootTown_BrendansHouse_2F
+* ❌ LittlerootTown_MaysHouse_1F
+* ❌ LittlerootTown_MaysHouse_2F
+* ❌ LittlerootTown_ProfessorBirchsLab
+* ❌ MagmaHideout_1F
+* ❌ MagmaHideout_2F_1R
+* ❌ MagmaHideout_2F_2R
+* ❌ MagmaHideout_2F_3R
+* ❌ MagmaHideout_3F_1R
+* ❌ MagmaHideout_3F_2R
+* ❌ MagmaHideout_3F_3R
+* ❌ MagmaHideout_4F
+* ❌ MarineCave_End
+* ❌ MarineCave_Entrance
+* ❌ MauvilleCity
+* ❌ MauvilleCity_BikeShop
+* ❌ MauvilleCity_GameCorner
+* ❌ MauvilleCity_Gym
+* ❌ MauvilleCity_House1
+* ❌ MauvilleCity_House2
+* ❌ MauvilleCity_Mart
+* ❌ MauvilleCity_PokemonCenter_1F
+* ❌ MauvilleCity_PokemonCenter_2F
+* ❌ MeteorFalls_1F_1R
+* ❌ MeteorFalls_1F_2R
+* ❌ MeteorFalls_B1F_1R
+* ❌ MeteorFalls_B1F_2R
+* ❌ MeteorFalls_StevensCave
+* ❌ MirageTower_1F
+* ❌ MirageTower_2F
+* ❌ MirageTower_3F
+* ❌ MirageTower_4F
+* ❌ MossdeepCity
+* ❌ MossdeepCity_GameCorner_1F
+* ❌ MossdeepCity_GameCorner_B1F
+* ❌ MossdeepCity_Gym
+* ❌ MossdeepCity_House1
+* ❌ MossdeepCity_House2
+* ❌ MossdeepCity_House3
+* ❌ MossdeepCity_House4
+* ❌ MossdeepCity_Mart
+* ❌ MossdeepCity_PokemonCenter_1F
+* ❌ MossdeepCity_PokemonCenter_2F
+* ❌ MossdeepCity_SpaceCenter_1F
+* ❌ MossdeepCity_SpaceCenter_2F
+* ❌ MossdeepCity_StevensHouse
+* ❌ MtChimney
+* ❌ MtChimney_CableCarStation
+* ❌ MtPyre_1F
+* ❌ MtPyre_2F
+* ❌ MtPyre_3F
+* ❌ MtPyre_4F
+* ❌ MtPyre_5F
+* ❌ MtPyre_6F
+* ❌ MtPyre_Exterior
+* ❌ MtPyre_Summit
+* ❌ NavelRock_B1F
+* ❌ NavelRock_Bottom
+* ❌ NavelRock_Down01
+* ❌ NavelRock_Down02
+* ❌ NavelRock_Down03
+* ❌ NavelRock_Down04
+* ❌ NavelRock_Down05
+* ❌ NavelRock_Down06
+* ❌ NavelRock_Down07
+* ❌ NavelRock_Down08
+* ❌ NavelRock_Down09
+* ❌ NavelRock_Down10
+* ❌ NavelRock_Down11
+* ❌ NavelRock_Entrance
+* ❌ NavelRock_Exterior
+* ❌ NavelRock_Fork
+* ❌ NavelRock_Harbor
+* ❌ NavelRock_Top
+* ❌ NavelRock_Up1
+* ❌ NavelRock_Up2
+* ❌ NavelRock_Up3
+* ❌ NavelRock_Up4
+* ❌ NewMauville_Entrance
+* ❌ NewMauville_Inside
+* ✅ **OldaleTown**
+* ❌ OldaleTown_House1
+* ❌ OldaleTown_House2
+* ❌ OldaleTown_Mart
+* ❌ OldaleTown_PokemonCenter_1F
+* ❌ OldaleTown_PokemonCenter_2F
+* ❌ PacifidlogTown
+* ❌ PacifidlogTown_House1
+* ❌ PacifidlogTown_House2
+* ❌ PacifidlogTown_House3
+* ❌ PacifidlogTown_House4
+* ❌ PacifidlogTown_House5
+* ❌ PacifidlogTown_PokemonCenter_1F
+* ❌ PacifidlogTown_PokemonCenter_2F
+* ❌ PetalburgCity
+* ❌ PetalburgCity_Gym
+* ❌ PetalburgCity_House1
+* ❌ PetalburgCity_House2
+* ❌ PetalburgCity_Mart
+* ❌ PetalburgCity_PokemonCenter_1F
+* ❌ PetalburgCity_PokemonCenter_2F
+* ❌ PetalburgCity_WallysHouse
+* ❌ PetalburgWoods
+* ❌ RecordCorner
+* ✅ **Route101**
+* ❌ Route102
+* ❌ Route103
+* ❌ Route104
+* ❌ Route104_MrBrineysHouse
+* ❌ Route104_PrettyPetalFlowerShop
+* ❌ Route104_PrototypePrettyPetalFlowerShop
+* ❌ Route105
+* ❌ Route106
+* ❌ Route107
+* ❌ Route108
+* ❌ Route109
+* ❌ Route109_SeashoreHouse
+* ❌ Route110
+* ❌ Route110_SeasideCyclingRoadNorthEntrance
+* ❌ Route110_SeasideCyclingRoadSouthEntrance
+* ❌ Route110_TrickHouseCorridor
+* ❌ Route110_TrickHouseEnd
+* ❌ Route110_TrickHouseEntrance
+* ❌ Route110_TrickHousePuzzle1
+* ❌ Route110_TrickHousePuzzle2
+* ❌ Route110_TrickHousePuzzle3
+* ❌ Route110_TrickHousePuzzle4
+* ❌ Route110_TrickHousePuzzle5
+* ❌ Route110_TrickHousePuzzle6
+* ❌ Route110_TrickHousePuzzle7
+* ❌ Route110_TrickHousePuzzle8
+* ❌ Route111
+* ❌ Route111_OldLadysRestStop
+* ❌ Route111_WinstrateFamilysHouse
+* ❌ Route112
+* ❌ Route112_CableCarStation
+* ❌ Route113
+* ❌ Route113_GlassWorkshop
+* ❌ Route114
+* ❌ Route114_FossilManiacsHouse
+* ❌ Route114_FossilManiacsTunnel
+* ❌ Route114_LanettesHouse
+* ❌ Route115
+* ❌ Route116
+* ❌ Route116_TunnelersRestHouse
+* ❌ Route117
+* ❌ Route117_PokemonDayCare
+* ❌ Route118
+* ❌ Route119
+* ❌ Route119_House
+* ❌ Route119_WeatherInstitute_1F
+* ❌ Route119_WeatherInstitute_2F
+* ❌ Route120
+* ❌ Route121
+* ❌ Route121_SafariZoneEntrance
+* ❌ Route122
+* ❌ Route123
+* ❌ Route123_BerryMastersHouse
+* ❌ Route124
+* ❌ Route124_DivingTreasureHuntersHouse
+* ❌ Route125
+* ❌ Route126
+* ❌ Route127
+* ❌ Route128
+* ❌ Route129
+* ❌ Route130
+* ❌ Route131
+* ❌ Route132
+* ❌ Route133
+* ❌ Route134
+* ❌ RustboroCity
+* ❌ RustboroCity_CuttersHouse
+* ❌ RustboroCity_DevonCorp_1F
+* ❌ RustboroCity_DevonCorp_2F
+* ❌ RustboroCity_DevonCorp_3F
+* ❌ RustboroCity_Flat1_1F
+* ❌ RustboroCity_Flat1_2F
+* ❌ RustboroCity_Flat2_1F
+* ❌ RustboroCity_Flat2_2F
+* ❌ RustboroCity_Flat2_3F
+* ❌ RustboroCity_Gym
+* ❌ RustboroCity_House1
+* ❌ RustboroCity_House2
+* ❌ RustboroCity_House3
+* ❌ RustboroCity_Mart
+* ❌ RustboroCity_PokemonCenter_1F
+* ❌ RustboroCity_PokemonCenter_2F
+* ❌ RustboroCity_PokemonSchool
+* ❌ RusturfTunnel
+* ❌ SSTidalCorridor
+* ❌ SSTidalLowerDeck
+* ❌ SSTidalRooms
+* ❌ SafariZone_North
+* ❌ SafariZone_Northeast
+* ❌ SafariZone_Northwest
+* ❌ SafariZone_RestHouse
+* ❌ SafariZone_South
+* ❌ SafariZone_Southeast
+* ❌ SafariZone_Southwest
+* ❌ ScorchedSlab
+* ❌ SeafloorCavern_Entrance
+* ❌ SeafloorCavern_Room1
+* ❌ SeafloorCavern_Room2
+* ❌ SeafloorCavern_Room3
+* ❌ SeafloorCavern_Room4
+* ❌ SeafloorCavern_Room5
+* ❌ SeafloorCavern_Room6
+* ❌ SeafloorCavern_Room7
+* ❌ SeafloorCavern_Room8
+* ❌ SeafloorCavern_Room9
+* ❌ SealedChamber_InnerRoom
+* ❌ SealedChamber_OuterRoom
+* ❌ ShoalCave_HighTideEntranceRoom
+* ❌ ShoalCave_HighTideInnerRoom
+* ❌ ShoalCave_LowTideEntranceRoom
+* ❌ ShoalCave_LowTideIceRoom
+* ❌ ShoalCave_LowTideInnerRoom
+* ❌ ShoalCave_LowTideLowerRoom
+* ❌ ShoalCave_LowTideStairsRoom
+* ❌ SkyPillar_1F
+* ❌ SkyPillar_2F
+* ❌ SkyPillar_3F
+* ❌ SkyPillar_4F
+* ❌ SkyPillar_5F
+* ❌ SkyPillar_Entrance
+* ❌ SkyPillar_Outside
+* ❌ SkyPillar_Top
+* ❌ SlateportCity
+* ❌ SlateportCity_BattleTentBattleRoom
+* ❌ SlateportCity_BattleTentCorridor
+* ❌ SlateportCity_BattleTentLobby
+* ❌ SlateportCity_Harbor
+* ❌ SlateportCity_House
+* ❌ SlateportCity_Mart
+* ❌ SlateportCity_NameRatersHouse
+* ❌ SlateportCity_OceanicMuseum_1F
+* ❌ SlateportCity_OceanicMuseum_2F
+* ❌ SlateportCity_PokemonCenter_1F
+* ❌ SlateportCity_PokemonCenter_2F
+* ❌ SlateportCity_PokemonFanClub
+* ❌ SlateportCity_SternsShipyard_1F
+* ❌ SlateportCity_SternsShipyard_2F
+* ❌ SootopolisCity
+* ❌ SootopolisCity_Gym_1F
+* ❌ SootopolisCity_Gym_B1F
+* ❌ SootopolisCity_House1
+* ❌ SootopolisCity_House2
+* ❌ SootopolisCity_House3
+* ❌ SootopolisCity_House4
+* ❌ SootopolisCity_House5
+* ❌ SootopolisCity_House6
+* ❌ SootopolisCity_House7
+* ❌ SootopolisCity_LotadAndSeedotHouse
+* ❌ SootopolisCity_Mart
+* ❌ SootopolisCity_MysteryEventsHouse_1F
+* ❌ SootopolisCity_MysteryEventsHouse_B1F
+* ❌ SootopolisCity_PokemonCenter_1F
+* ❌ SootopolisCity_PokemonCenter_2F
+* ❌ SouthernIsland_Exterior
+* ❌ SouthernIsland_Interior
+* ❌ TerraCave_End
+* ❌ TerraCave_Entrance
+* ❌ TradeCenter
+* ❌ TrainerHill_1F
+* ❌ TrainerHill_2F
+* ❌ TrainerHill_3F
+* ❌ TrainerHill_4F
+* ❌ TrainerHill_Elevator
+* ❌ TrainerHill_Entrance
+* ❌ TrainerHill_Roof
+* ❌ Underwater_MarineCave
+* ❌ Underwater_Route105
+* ❌ Underwater_Route124
+* ❌ Underwater_Route125
+* ❌ Underwater_Route126
+* ❌ Underwater_Route127
+* ❌ Underwater_Route128
+* ❌ Underwater_Route129
+* ❌ Underwater_Route134
+* ❌ Underwater_SeafloorCavern
+* ❌ Underwater_SealedChamber
+* ❌ Underwater_SootopolisCity
+* ❌ UnionRoom
+* ❌ VerdanturfTown
+* ❌ VerdanturfTown_BattleTentBattleRoom
+* ❌ VerdanturfTown_BattleTentCorridor
+* ❌ VerdanturfTown_BattleTentLobby
+* ❌ VerdanturfTown_FriendshipRatersHouse
+* ❌ VerdanturfTown_House
+* ❌ VerdanturfTown_Mart
+* ❌ VerdanturfTown_PokemonCenter_1F
+* ❌ VerdanturfTown_PokemonCenter_2F
+* ❌ VerdanturfTown_WandasHouse
+* ✅ **VictoryRoad_1F**
+* ✅ **VictoryRoad_B1F**
+* ✅ **VictoryRoad_B2F**
+* ✅ **littleroot_town**
+* ✅ **route**
 
