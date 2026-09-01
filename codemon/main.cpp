@@ -682,9 +682,15 @@ static void draw_scene(sf::RenderTarget& target, Session* s, const HealFx* healf
         if (door_tex_ok) {
             int tp = s->map->get_tile_size();
             int dx, dy; vm->get_door_tile(dx, dy);
+            // A door is two tiles tall: pokeemerald's DrawCurrentDoorAnimFrame
+            // draws the top metatile at (x, y-1) and the bottom one at (x, y),
+            // and the frame offsets the VM steps through (0, 0x100, 0x200) are
+            // 0x100 bytes = 16x32 pixels apart at 4bpp. Reading a 16x16 rect at
+            // frame*16 showed half of the wrong frame over the doorway's lower
+            // tile only.
             sf::Sprite spr(door_tex);
-            spr.setTextureRect(sf::IntRect(0, vm->door_frame() * 16, 16, 16));
-            spr.setPosition((float)(dx * tp), (float)(dy * tp));
+            spr.setTextureRect(sf::IntRect(0, vm->door_frame() * 32, 16, 32));
+            spr.setPosition((float)(dx * tp), (float)((dy - 1) * tp));
             if (tp != 16) spr.setScale((float)tp / 16.f, (float)tp / 16.f);
             target.draw(spr);
         }
