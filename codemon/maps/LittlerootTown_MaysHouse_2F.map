@@ -34,8 +34,8 @@ movements
 Common_Movement_Delay48	delay,delay,delay,end
 Common_Movement_ExclamationMark	delay,end
 Common_Movement_FacePlayer	face_down,end
-Common_Movement_WalkInPlaceFasterLeft	delay,end
-Common_Movement_WalkInPlaceFasterUp	delay,end
+Common_Movement_WalkInPlaceFasterLeft	face_left,end
+Common_Movement_WalkInPlaceFasterUp	face_up,end
 LittlerootTown_MaysHouse_2F_Movement_MayApproachPlayerEast	right,right,down,delay,end
 LittlerootTown_MaysHouse_2F_Movement_MayApproachPlayerNorth	right,right,down,down,right,end
 LittlerootTown_MaysHouse_2F_Movement_MayApproachPlayerSouth	right,right,right,end

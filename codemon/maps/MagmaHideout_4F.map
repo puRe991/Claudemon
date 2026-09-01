@@ -85,8 +85,8 @@ objscripts
 7 MagmaHideout_4F_EventScript_ItemMaxRevive
 movements
 Common_Movement_FacePlayer	face_down,end
-Common_Movement_WalkInPlaceFasterRight	delay,end
-Common_Movement_WalkInPlaceFasterUp	delay,end
+Common_Movement_WalkInPlaceFasterRight	face_right,end
+Common_Movement_WalkInPlaceFasterUp	face_up,end
 MagmaHideout_4F_Movement_GroudonApproach	delay,delay,down,delay,delay,delay,down,delay,delay,delay,end
 MagmaHideout_4F_Movement_GroudonExit	delay,delay,end
 MagmaHideout_4F_Movement_MaxieLookAround	face_left,delay,face_right,delay,face_left,delay,face_right,delay,face_up,delay,delay,end

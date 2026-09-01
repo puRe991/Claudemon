@@ -30,8 +30,8 @@ objscripts
 movements
 Common_Movement_Delay48	delay,delay,delay,end
 Common_Movement_ExclamationMark	delay,end
-Common_Movement_WalkInPlaceFasterRight	delay,end
-Common_Movement_WalkInPlaceFasterUp	delay,end
+Common_Movement_WalkInPlaceFasterRight	face_right,end
+Common_Movement_WalkInPlaceFasterUp	face_up,end
 LittlerootTown_BrendansHouse_2F_Movement_BrendanApproachPlayerEast	left,left,left,left,left,delay,end
 LittlerootTown_BrendansHouse_2F_Movement_BrendanApproachPlayerNorth	left,left,down,down,left,end
 LittlerootTown_BrendansHouse_2F_Movement_BrendanApproachPlayerSouth	left,left,left,end

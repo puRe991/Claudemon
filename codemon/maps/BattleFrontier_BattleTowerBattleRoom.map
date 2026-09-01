@@ -43,7 +43,7 @@ BattleFrontier_BattleTowerBattleRoom_Movement_SecondAttendantEnter	delay,delay,u
 BattleFrontier_BattleTowerBattleRoom_Movement_SecondAttendantExit	right,right,down,delay,end
 Common_Movement_Delay48	delay,delay,delay,end
 Common_Movement_ExclamationMark	delay,end
-Common_Movement_WalkInPlaceLeft	delay,end
+Common_Movement_WalkInPlaceLeft	face_left,end
 scriptdefs
 = BattleFrontier_BattleTowerBattleRoom_EventScript_EnterRoom
 setvar VAR_TEMP_0 1

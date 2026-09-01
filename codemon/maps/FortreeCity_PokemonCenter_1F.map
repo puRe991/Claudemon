@@ -41,8 +41,8 @@ objscripts
 movements
 Common_Movement_Delay48	delay,delay,delay,end
 Common_Movement_ExclamationMark	delay,end
-Common_Movement_WalkInPlaceFasterDown	delay,end
-Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterDown	face_down,end
+Common_Movement_WalkInPlaceFasterLeft	face_left,end
 Movement_PkmnCenterNurse_Bow	delay,delay,end
 scriptdefs
 = FortreeCity_PokemonCenter_1F_EventScript_Boy

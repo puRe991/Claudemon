@@ -66,8 +66,8 @@ VAR_TEMP_1 1 TrainerHill_EventScript_WarpToEntranceCounter
 movements
 Common_Movement_Delay48	delay,delay,delay,end
 Common_Movement_ExclamationMark	delay,end
-Common_Movement_WalkInPlaceFasterDown	delay,end
-Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterDown	face_down,end
+Common_Movement_WalkInPlaceFasterLeft	face_left,end
 Movement_PkmnCenterNurse_Bow	delay,delay,end
 TrainerHill_Entrance_Movement_PlayerExitElevator	down,down,end
 TrainerHill_Entrance_Movement_PlayerFaceAttendant	face_right,end

@@ -92,8 +92,8 @@ Common_Movement_Delay48	delay,delay,delay,end
 Common_Movement_ExclamationMark	delay,end
 Common_Movement_FaceOriginalDirection	face_down,end
 Common_Movement_FacePlayer	face_down,end
-Common_Movement_WalkInPlaceFasterDown	delay,end
-Common_Movement_WalkInPlaceFasterRight	delay,end
+Common_Movement_WalkInPlaceFasterDown	face_down,end
+Common_Movement_WalkInPlaceFasterRight	face_right,end
 MauvilleCity_Movement_PlayerFaceUncleNorth	delay,delay,delay,delay,end
 MauvilleCity_Movement_PlayerWatchScottExitEast	delay,delay,delay,end
 MauvilleCity_Movement_PlayerWatchScottExitNorth	delay,delay,end

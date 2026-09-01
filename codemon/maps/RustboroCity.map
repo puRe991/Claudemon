@@ -215,10 +215,10 @@ Common_Movement_FaceLeft	face_left,end
 Common_Movement_FaceOriginalDirection	face_down,end
 Common_Movement_FacePlayer	face_down,end
 Common_Movement_FaceRight	face_right,end
-Common_Movement_WalkInPlaceFasterDown	delay,end
-Common_Movement_WalkInPlaceFasterLeft	delay,end
-Common_Movement_WalkInPlaceFasterRight	delay,end
-Common_Movement_WalkInPlaceFasterUp	delay,end
+Common_Movement_WalkInPlaceFasterDown	face_down,end
+Common_Movement_WalkInPlaceFasterLeft	face_left,end
+Common_Movement_WalkInPlaceFasterRight	face_right,end
+Common_Movement_WalkInPlaceFasterUp	face_up,end
 RustboroCity_Movement_EmployeeApproachDown	down,down,down,right,right,end
 RustboroCity_Movement_EmployeeApproachLeft	down,down,right,right,end
 RustboroCity_Movement_EmployeeApproachPlayerDown	down,end
@@ -239,7 +239,7 @@ RustboroCity_Movement_RivalApproachPlayer6	down,right,right,down,end
 RustboroCity_Movement_RivalApproachPlayer7	down,right,right,right,down,end
 RustboroCity_Movement_ScientistApproachPlayer	down,delay,end
 RustboroCity_Movement_ScientistLeave	up,end
-RustboroCity_Movement_ScientistWalkInPlaceDown	delay,end
+RustboroCity_Movement_ScientistWalkInPlaceDown	face_down,end
 scriptdefs
 = RustboroCity_EventScript_ScientistAddMatchCall
 lockall

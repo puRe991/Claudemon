@@ -73,7 +73,7 @@ triggers
 movements
 Common_Movement_FaceOriginalDirection	face_down,end
 Common_Movement_FacePlayer	face_down,end
-Common_Movement_WalkInPlaceFasterRight	delay,end
+Common_Movement_WalkInPlaceFasterRight	face_right,end
 OldaleTown_Movement_BackUp	up,delay,delay,right,delay,end
 OldaleTown_Movement_EmployeeEast	up,up,up,up,up,up,up,delay,end
 OldaleTown_Movement_EmployeeNorth	up,up,up,up,up,up,up,delay,end

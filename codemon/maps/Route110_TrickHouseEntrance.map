@@ -37,7 +37,7 @@ movements
 Common_Movement_Delay48	delay,delay,delay,end
 Common_Movement_ExclamationMark	delay,end
 Common_Movement_FacePlayer	face_down,end
-Common_Movement_WalkInPlaceFasterUp	delay,end
+Common_Movement_WalkInPlaceFasterUp	face_up,end
 Route110_TrickHouse_Movement_TrickMasterJumpAway	face_up,delay,delay,delay,delay,delay,delay,delay,end
 Route110_TrickHouse_Movement_TrickMasterSpin	face_up,delay,face_left,delay,face_down,delay,face_right,delay,end
 scriptdefs

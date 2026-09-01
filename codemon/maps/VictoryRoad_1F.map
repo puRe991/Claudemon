@@ -136,7 +136,7 @@ triggers
 30 39 0 0 VictoryRoad_1F_HiddenItem_30_39
 
 movements
-Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterDown	face_down,end
 VictoryRoad_1F_Movement_WallyApproachPlayer1	left,left,left,left,left,left,left,left,left,left,up,end
 VictoryRoad_1F_Movement_WallyApproachPlayer2	left,left,left,left,left,left,left,left,left,up,end
 

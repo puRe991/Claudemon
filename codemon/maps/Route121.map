@@ -117,7 +117,7 @@ triggers
 72 5 0 0 Route121_HiddenItem_72_5
 68 8 0 0 Route121_HiddenItem_68_8
 movements
-Common_Movement_WalkInPlaceRight	delay,end
+Common_Movement_WalkInPlaceRight	face_right,end
 Movement_CutTreeDown	delay,end
 Route121_Movement_Grunt1Exit	down,down,down,down,down,down,down,down,end
 Route121_Movement_Grunt2Exit	down,down,down,down,down,down,down,down,end

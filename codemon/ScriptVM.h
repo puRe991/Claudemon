@@ -126,6 +126,16 @@ public:
 	// `opendoor`/`closedoor` themselves don't block (matching the original,
 	// which schedules them as a task and returns immediately); only the
 	// following `waitdooranim` actually blocks the script.
+	// pokeemerald's emote movement actions (Common_Movement_ExclamationMark
+	// and friends): a bubble pops up over an object's head for a moment. The
+	// importer could only turn those movement scripts into a plain delay --
+	// this keeps the delay and tells the renderer to draw the bubble, so a
+	// trainer noticing the player reads as it does in the original.
+	bool emote_active() const { return this->emote_t > 0.f && this->emote_ch; }
+	const Character* emote_target() const { return this->emote_ch; }
+	// 0 = exclamation, 1 = question, 2 = heart
+	int emote_kind() const { return this->emote_icon; }
+
 	bool door_anim_active() const { return this->door_active; }
 	void get_door_tile(int& x, int& y) const { x = this->door_x; y = this->door_y; }
 	// -1 = draw nothing (closed door metatile shows through as-is), else the
@@ -208,6 +218,9 @@ private:
 	int door_x = -1, door_y = -1;
 	int door_step = 0;             // 0..3 index into the open/close frame sequence
 	int door_frame_idx = -1;       // frame currently shown (-1 = none)
+	Character* emote_ch = nullptr;  // object the emote bubble sits above
+	float emote_t = 0.f;            // seconds of bubble left
+	int emote_icon = 0;             // 0 exclamation, 1 question, 2 heart
 	float door_timer = 0.f;
 
 	bool pending_warp = false;

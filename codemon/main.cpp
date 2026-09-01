@@ -671,6 +671,30 @@ static void draw_scene(sf::RenderTarget& target, Session* s, const HealFx* healf
         a->update_sprite(s->map->get_tile_size());
         target.draw(*a->get_current_sprite());
     }
+    // Emote bubble (`Common_Movement_ExclamationMark` and friends): one
+    // 16x16 icon floating just above the object's head, same overlay
+    // approach as the door animation below.
+    if (vm && vm->emote_active() && vm->emote_target()) {
+        static sf::Texture emote_tex[3];
+        static bool emote_ok[3] = {
+            emote_tex[0].loadFromFile("assets/graphics/field_effects/pics/emotion_exclamation.png"),
+            emote_tex[1].loadFromFile("assets/graphics/field_effects/pics/emotion_question.png"),
+            emote_tex[2].loadFromFile("assets/graphics/field_effects/pics/emotion_heart.png"),
+        };
+        int k = vm->emote_kind();
+        if (k >= 0 && k < 3 && emote_ok[k]) {
+            int tp = s->map->get_tile_size();
+            const Character* who = vm->emote_target();
+            sf::Sprite spr(emote_tex[k]);
+            // Objects stand on their tile and are drawn one tile up, so the
+            // head fills the tile above; the bubble sits half a tile clear
+            // of it.
+            spr.setPosition((float)(who->get_tile_x() * tp),
+                            (float)who->get_tile_y() * tp - 1.5f * (float)tp);
+            if (tp != 16) spr.setScale((float)tp / 16.f, (float)tp / 16.f);
+            target.draw(spr);
+        }
+    }
     // `opendoor`/`closedoor`/`waitdooranim` (see ScriptVM.h's door_anim_active()
     // comment): overlay the matching frame of the imported door sheet on top
     // of the door tile. Loaded once and reused for every door in every map --

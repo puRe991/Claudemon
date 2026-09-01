@@ -173,7 +173,7 @@ triggers
 movements
 Common_Movement_FaceOriginalDirection	face_down,end
 Common_Movement_FacePlayer	face_down,end
-Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterDown	face_down,end
 scriptdefs
 = LilycoveCity_HiddenItem_64_31
 goto_if_set FLAG_HIDDEN_ITEM_LILYCOVE_CITY_POKE_BALL LilycoveCity_HiddenItem_64_31_Taken

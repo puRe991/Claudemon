@@ -60,7 +60,7 @@ BattleFrontier_ReceptionGate_Movement_ScottEnter	down,down,down,down,down,down,l
 BattleFrontier_ReceptionGate_Movement_ScottExit	right,up,up,up,up,up,up,end
 Common_Movement_Delay48	delay,delay,delay,end
 Common_Movement_ExclamationMark	delay,end
-Common_Movement_WalkInPlaceFasterUp	delay,end
+Common_Movement_WalkInPlaceFasterUp	face_up,end
 scriptdefs
 = BattleFrontier_ReceptionGate_EventScript_FirstTimeEntering
 lockall

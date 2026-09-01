@@ -26,7 +26,7 @@ warps
 triggers
 4 2 VAR_NEW_MAUVILLE_STATE 0 NewMauville_Entrance_EventScript_Door
 movements
-Common_Movement_WalkInPlaceFasterUp	delay,end
+Common_Movement_WalkInPlaceFasterUp	face_up,end
 scriptdefs
 = NewMauville_Entrance_EventScript_Door
 lockall

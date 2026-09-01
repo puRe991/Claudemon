@@ -264,7 +264,7 @@ movements
 Common_Movement_Delay48	delay,delay,delay,end
 Common_Movement_ExclamationMark	delay,end
 Common_Movement_FacePlayer	face_down,end
-Common_Movement_WalkInPlaceFasterUp	delay,end
+Common_Movement_WalkInPlaceFasterUp	face_up,end
 Movement_CutTreeDown	delay,end
 Route104_Movement_BrineyBoardBoat	down,down,end
 Route104_Movement_BrineyExitBoat	down,delay,end

@@ -37,7 +37,7 @@ Common_Movement_Delay48	delay,delay,delay,end
 Common_Movement_ExclamationMark	delay,end
 Common_Movement_FaceOriginalDirection	face_down,end
 Common_Movement_FacePlayer	face_down,end
-Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterDown	face_down,end
 LilycoveCity_CoveLilyMotel_1F_Movement_OwnerPushPlayer	up,end
 LilycoveCity_CoveLilyMotel_1F_Movement_OwnerReturn	face_down,down,face_up,end
 LilycoveCity_CoveLilyMotel_1F_Movement_PlayerPushFromTV	face_right,delay,left,delay,end

@@ -50,9 +50,9 @@ movements
 Common_Movement_Delay48	delay,delay,delay,end
 Common_Movement_ExclamationMark	delay,end
 Common_Movement_FacePlayer	face_down,end
-Common_Movement_WalkInPlaceFasterDown	delay,end
-Common_Movement_WalkInPlaceFasterLeft	delay,end
-Common_Movement_WalkInPlaceFasterUp	delay,end
+Common_Movement_WalkInPlaceFasterDown	face_down,end
+Common_Movement_WalkInPlaceFasterLeft	face_left,end
+Common_Movement_WalkInPlaceFasterUp	face_up,end
 LilycoveCity_Harbor_Movement_BrineyBoardFerry	delay,delay,delay,end
 LilycoveCity_Harbor_Movement_PlayerBoardFerryEast	right,delay,end
 LilycoveCity_Harbor_Movement_PlayerBoardFerryNorth	up,end

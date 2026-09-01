@@ -52,7 +52,7 @@ objscripts
 5 RustboroCity_PokemonSchool_EventScript_Teacher
 6 RustboroCity_PokemonSchool_EventScript_Scott
 movements
-Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterDown	face_down,end
 RustboroCity_PokemonSchool_Movement_TeacherCheckOnStudentsEast	right,right,down,down,left,left,delay,delay,delay,delay,down,delay,delay,delay,right,delay,delay,delay,up,right,up,up,left,left,end
 RustboroCity_PokemonSchool_Movement_TeacherCheckOnStudentsWest	left,down,down,right,delay,delay,delay,delay,down,delay,delay,delay,right,delay,delay,delay,up,left,left,up,up,right,end
 scriptdefs

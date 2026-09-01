@@ -74,8 +74,8 @@ triggers
 onload
 VAR_ROUTE101_STATE 0 Route101_EventScript_HideMapNamePopup
 movements
-Common_Movement_WalkInPlaceFasterLeft	delay,end
-Common_Movement_WalkInPlaceFasterRight	delay,end
+Common_Movement_WalkInPlaceFasterLeft	face_left,end
+Common_Movement_WalkInPlaceFasterRight	face_right,end
 Route101_Movement_BirchApproachPlayer	right,end
 Route101_Movement_BirchFaceZigzagoon	delay,delay,delay,delay,end
 Route101_Movement_BirchRunAway1	right,right,right,right,up,up,end

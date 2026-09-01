@@ -107,7 +107,7 @@ triggers
 10 20 TRIGGER_RUN_IMMEDIATELY 0 FarawayIsland_Entrance_EventScript_ClearWeather
 22 9 TRIGGER_RUN_IMMEDIATELY 0 FarawayIsland_Entrance_EventScript_SetCloudsWeather
 movements
-Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterDown	face_down,end
 scriptdefs
 = FarawayIsland_Entrance_EventScript_SetCloudsWeather
 setweather WEATHER_SUNNY_CLOUDS

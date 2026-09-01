@@ -43,9 +43,9 @@ people_wallace 6 16 N static 0 LOCALID_HALL_OF_FAME_WALLACE 0
 onload
 VAR_TEMP_1 0 EverGrandeCity_HallOfFame_EventScript_EnterHallOfFame
 movements
-Common_Movement_WalkInPlaceFasterLeft	delay,end
-Common_Movement_WalkInPlaceFasterRight	delay,end
-Common_Movement_WalkInPlaceFasterUp	delay,end
+Common_Movement_WalkInPlaceFasterLeft	face_left,end
+Common_Movement_WalkInPlaceFasterRight	face_right,end
+Common_Movement_WalkInPlaceFasterUp	face_up,end
 EverGrandeCity_HallOfFame_Movement_WalkIntoHallOfFame1	up,up,up,up,up,up,end
 EverGrandeCity_HallOfFame_Movement_WalkIntoHallOfFame2	up,up,up,up,up,end
 scriptdefs

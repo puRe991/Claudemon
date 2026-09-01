@@ -71,7 +71,7 @@ misc_ss_tidal 13 25 E static 0 LOCALID_SOUTHERN_ISLAND_SS_TIDAL 0
 objscripts
 0 SouthernIsland_Exterior_EventScript_Sailor
 movements
-Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterDown	face_down,end
 scriptdefs
 = SouthernIsland_Exterior_EventScript_Sailor
 lock

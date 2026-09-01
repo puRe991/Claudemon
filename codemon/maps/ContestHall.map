@@ -47,7 +47,7 @@ ContestHall_Movement_MCFaceJudge	delay,end
 ContestHall_Movement_MCFaceJudge2	delay,end
 ContestHall_Movement_MCLookAtJudge	face_up,delay,delay,end
 ContestHall_Movement_MCWalkDown	down,end
-ContestHall_Movement_MCWalkInPlaceDown	delay,delay,delay,end
+ContestHall_Movement_MCWalkInPlaceDown	face_down,end
 ContestHall_Movement_Player1ApproachForPrize	right,right,up,end
 ContestHall_Movement_Player1WalkBack	left,left,left,down,delay,end
 ContestHall_Movement_Player1WalkToCenter	up,right,right,right,delay,end

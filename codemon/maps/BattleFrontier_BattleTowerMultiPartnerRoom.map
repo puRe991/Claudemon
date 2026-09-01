@@ -48,7 +48,7 @@ BattleFrontier_BattleTowerMultiPartnerRoom_Movement_PartnerExit	up,up,up,up,up,u
 BattleFrontier_BattleTowerMultiPartnerRoom_Movement_PartnerExitSouth	left,up,up,up,up,up,up,up,end
 BattleFrontier_BattleTowerMultiPartnerRoom_Movement_PlayerEnterElevator	up,up,delay,end
 BattleFrontier_BattleTowerMultiPartnerRoom_Movement_PlayerEnterRoom	down,end
-Common_Movement_WalkInPlaceFasterUp	delay,end
+Common_Movement_WalkInPlaceFasterUp	face_up,end
 scriptdefs
 = BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_ExitRoom
 lockall

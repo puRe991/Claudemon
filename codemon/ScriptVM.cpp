@@ -376,6 +376,21 @@ void ScriptVM::pump() {
 		} else if (op == "applymovement" && argc >= 2) {
 			Character* ch = resolve(arg(0));
 			const std::vector<std::string>& acts = this->map->movement(arg(1));
+			// Emote movements carry their meaning in the name: their body is
+			// just a delay (this engine has no in-place walk actions), so the
+			// bubble has to be raised from the name. See emote_active().
+			if (ch) {
+				const std::string& mv = arg(1);
+				int icon = -1;
+				if (mv.find("ExclamationMark") != std::string::npos) icon = 0;
+				else if (mv.find("QuestionMark") != std::string::npos) icon = 1;
+				else if (mv.find("Heart") != std::string::npos) icon = 2;
+				if (icon >= 0) {
+					this->emote_ch = ch;
+					this->emote_icon = icon;
+					this->emote_t = 0.9f;
+				}
+			}
 			if (ch && !acts.empty()) {
 				MoveQ q; q.ch = ch;
 				for (const std::string& a : acts)
@@ -1113,6 +1128,10 @@ void ScriptVM::close_shop() {
 }
 
 void ScriptVM::update(float dt) {
+	if (this->emote_t > 0.f) {
+		this->emote_t -= dt;
+		if (this->emote_t <= 0.f) { this->emote_t = 0.f; this->emote_ch = nullptr; }
+	}
 	if (this->door_active) {
 		this->door_timer += dt;
 		if (this->door_timer >= DOOR_STEP_DURATION) {

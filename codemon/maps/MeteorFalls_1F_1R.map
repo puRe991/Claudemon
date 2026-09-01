@@ -118,10 +118,10 @@ movements
 Common_Movement_Delay48	delay,delay,delay,end
 Common_Movement_ExclamationMark	delay,end
 Common_Movement_FaceDown	face_down,end
-Common_Movement_WalkInPlaceDown	delay,end
-Common_Movement_WalkInPlaceFasterDown	delay,end
-Common_Movement_WalkInPlaceFasterLeft	delay,end
-Common_Movement_WalkInPlaceFasterUp	delay,end
+Common_Movement_WalkInPlaceDown	face_down,end
+Common_Movement_WalkInPlaceFasterDown	face_down,end
+Common_Movement_WalkInPlaceFasterLeft	face_left,end
+Common_Movement_WalkInPlaceFasterUp	face_up,end
 MeteorFalls_1F_1R_Movement_AquaGrunt1ApproachArchie	right,right,right,delay,end
 MeteorFalls_1F_1R_Movement_AquaGrunt1Arrive	delay,delay,right,right,right,right,right,end
 MeteorFalls_1F_1R_Movement_AquaGrunt1Exit	up,up,right,right,right,right,right,right,right,end

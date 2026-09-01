@@ -40,10 +40,10 @@ VAR_TEMP_1 0 EverGrandeCity_ChampionsRoom_EventScript_EnterRoom
 movements
 Common_Movement_Delay48	delay,delay,delay,end
 Common_Movement_ExclamationMark	delay,end
-Common_Movement_WalkInPlaceFasterDown	delay,end
-Common_Movement_WalkInPlaceFasterLeft	delay,end
-Common_Movement_WalkInPlaceFasterRight	delay,end
-Common_Movement_WalkInPlaceFasterUp	delay,end
+Common_Movement_WalkInPlaceFasterDown	face_down,end
+Common_Movement_WalkInPlaceFasterLeft	face_left,end
+Common_Movement_WalkInPlaceFasterRight	face_right,end
+Common_Movement_WalkInPlaceFasterUp	face_up,end
 Common_Movement_WalkUp4	up,up,up,up,end
 EverGrandeCity_ChampionsRoom_Movement_BirchArrives	up,up,up,up,up,right,up,delay,end
 EverGrandeCity_ChampionsRoom_Movement_PlayerApproachWallace	up,up,end
