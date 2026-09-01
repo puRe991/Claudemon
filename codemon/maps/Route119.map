@@ -289,9 +289,9 @@ warps
 6 32 Route119_WeatherInstitute_1F 0
 33 109 Route119_House 0
 npcs
-people_man_1 24 5 S static 0 - 0
-people_man_1 25 5 S static 0 - 0
-people_man_1 26 5 S static 0 - 0
+berry_trees_pomeg 24 5 S static 0 - 0
+berry_trees_pomeg 25 5 S static 0 - 0
+berry_trees_pomeg 26 5 S static 0 - 0
 people_bug_catcher 12 123 S static 0 - 1
 people_maniac 26 123 S static 0 - 1
 people_maniac 5 125 S static 0 - 1
@@ -304,7 +304,7 @@ people_ninja_boy 28 14 S static 0 - 1
 people_ninja_boy 19 49 S static 0 - 3
 people_man_5 10 50 E static 0 - 3
 people_man_5 8 63 S static 0 - 5
-people_may_walking 25 32 N static FLAG_HIDE_ROUTE_119_RIVAL LOCALID_ROUTE119_RIVAL 0
+people_rival_walking 25 32 N static FLAG_HIDE_ROUTE_119_RIVAL LOCALID_ROUTE119_RIVAL 0
 misc_item_ball 12 121 S static FLAG_ITEM_ROUTE_119_SUPER_REPEL - 0
 misc_item_ball 4 96 S static FLAG_ITEM_ROUTE_119_ZINC - 0
 misc_item_ball 29 53 S static FLAG_ITEM_ROUTE_119_ELIXIR_1 - 0
@@ -315,10 +315,10 @@ people_team_aqua_aqua_member_m 13 33 E static FLAG_HIDE_ROUTE_119_TEAM_AQUA - 0
 people_team_aqua_aqua_member_m 13 34 E static FLAG_HIDE_ROUTE_119_TEAM_AQUA - 0
 people_may_walking 17 33 N static FLAG_HIDE_ROUTE_119_RIVAL_ON_BIKE LOCALID_ROUTE119_RIVAL_ON_BIKE 0
 people_boy_3 31 109 S static 0 - 0
-people_man_1 8 23 S static 0 - 0
-people_man_1 9 23 S static 0 - 0
-people_man_1 29 90 S static 0 - 0
-people_man_1 30 90 S static 0 - 0
+berry_trees_hondew 8 23 S static 0 - 0
+berry_trees_hondew 9 23 S static 0 - 0
+berry_trees_sitrus 29 90 S static 0 - 0
+berry_trees_leppa 30 90 S static 0 - 0
 people_cycling_triathlete_m 19 133 S wander 0 - 0
 misc_item_ball 3 56 S static FLAG_ITEM_ROUTE_119_HYPER_POTION_2 - 0
 people_boy_2 35 93 S wander 0 - 0

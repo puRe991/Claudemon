@@ -172,14 +172,14 @@ warps
 6 46 TerraCave_Entrance 0
 7 4 TerraCave_Entrance 0
 npcs
-people_man_1 31 43 S static 0 - 0
-people_man_1 31 44 S static 0 - 0
+berry_trees_persim 31 43 S static 0 - 0
+berry_trees_persim 31 44 S static 0 - 0
 people_hiker 15 65 E static 0 - 6
 people_hiker 30 72 W static 0 - 4
 people_camper 22 50 E static 0 - 3
 people_picnicker 19 35 S static 0 - 3
 people_maniac 20 56 N static 0 - 3
-people_man_1 31 45 S static 0 - 0
+berry_trees_persim 31 45 S static 0 - 0
 misc_item_ball 7 6 S static FLAG_ITEM_ROUTE_114_RARE_CANDY - 0
 misc_item_ball 11 37 S static FLAG_ITEM_ROUTE_114_PROTEIN - 0
 misc_breakable_rock 12 43 S static FLAG_TEMP_11 - 0

@@ -185,17 +185,17 @@ people_girl_3 28 74 N static 0 - 0
 misc_mr_brineys_boat 12 54 N static FLAG_HIDE_ROUTE_104_MR_BRINEY_BOAT LOCALID_ROUTE104_BOAT 0
 people_expert_m 12 51 E static FLAG_HIDE_ROUTE_104_MR_BRINEY LOCALID_ROUTE104_BRINEY 0
 people_fisherman 29 8 S static 0 - 0
-people_man_1 34 6 S static 0 - 0
-people_man_1 35 6 S static 0 - 0
-people_man_1 36 6 S static 0 - 0
-people_man_1 22 41 S static 0 - 0
-people_man_1 23 41 S static 0 - 0
-people_man_1 24 41 S static 0 - 0
+berry_trees_cheri 34 6 S static 0 - 0
+berry_trees_dirt_pile 35 6 S static 0 - 0
+berry_trees_leppa 36 6 S static 0 - 0
+berry_trees_oran 22 41 S static 0 - 0
+berry_trees_dirt_pile 23 41 S static 0 - 0
+berry_trees_pecha 24 41 S static 0 - 0
 people_expert_f 37 8 W static 0 - 0
-people_man_1 3 22 S static 0 - 0
-people_man_1 3 23 S static 0 - 0
-people_man_1 3 24 S static 0 - 0
-people_man_1 3 25 S static 0 - 0
+berry_trees_dirt_pile 3 22 S static 0 - 0
+berry_trees_oran 3 23 S static 0 - 0
+berry_trees_dirt_pile 3 24 S static 0 - 0
+berry_trees_cheri 3 25 S static 0 - 0
 misc_item_ball 39 15 S static FLAG_ITEM_ROUTE_104_PP_UP - 0
 people_woman_5 8 19 S wander FLAG_HIDE_ROUTE_104_WHITE_HERB_FLORIST - 0
 people_twin 27 15 S static 0 - 1
@@ -209,7 +209,7 @@ misc_cuttable_tree 35 22 S static FLAG_TEMP_11 - 0
 misc_item_ball 5 8 S static FLAG_ITEM_ROUTE_104_POTION - 0
 people_boy_2 5 26 S static 0 - 0
 people_fisherman 15 59 W static 0 - 0
-people_may_walking 17 50 S static FLAG_HIDE_ROUTE_104_RIVAL LOCALID_ROUTE104_RIVAL 0
+people_rival_walking 17 52 S static FLAG_HIDE_ROUTE_104_RIVAL LOCALID_ROUTE104_RIVAL 0
 dialogs
 0	The sea, huh?I wonder what it's like at the bottom of the sea?
 1	That seaside cottage is where MR. BRINEY lives.He was once a mighty sailor who never feared the sea, however stormy.
@@ -320,34 +320,29 @@ delay 50
 applymovement LOCALID_PLAYER Route104_Movement_PlayerExitBoat
 waitmovement 0
 call Common_EventScript_StopBrineysBoatMusic
-showobjectat LOCALID_PLAYER MAP_DEWFORD_TOWN
-applymovement LOCALID_PLAYER Route104_Movement_PlayerMoveForBriney
-waitmovement 0
-setobjectxyperm LOCALID_DEWFORD_BRINEY 12 8
-addobject LOCALID_DEWFORD_BRINEY
-setobjectsubpriority LOCALID_DEWFORD_BRINEY MAP_DEWFORD_TOWN 0
-clearflag FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN
-applymovement LOCALID_DEWFORD_BRINEY Route104_Movement_BrineyExitBoat
-waitmovement 0
-addobject LOCALID_DEWFORD_BOAT
-clearflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
-call Common_EventScript_StopBrineysBoatMusic
+setflag FLAG_HIDE_ROUTE_104_MR_BRINEY
 setflag FLAG_HIDE_ROUTE_104_MR_BRINEY_BOAT
 hideobjectat LOCALID_ROUTE104_BOAT MAP_ROUTE104
+clearflag FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN
+clearflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
 copyvar VAR_BRINEY_LOCATION VAR_0x8008
 resetobjectsubpriority LOCALID_PLAYER MAP_ROUTE104
-resetobjectsubpriority LOCALID_DEWFORD_BRINEY MAP_DEWFORD_TOWN
-copyobjectxytoperm LOCALID_DEWFORD_BRINEY
 setvar VAR_BOARD_BRINEY_BOAT_STATE 0
 goto_if_unset FLAG_DELIVERED_STEVEN_LETTER Route104_EventScript_DeliverLetterReminder
 goto_if_set FLAG_DELIVERED_STEVEN_LETTER Route104_EventScript_LandedInDewford
 end
 = Route104_EventScript_LandedInDewford
 msgbox	MR. BRINEY: Ahoy! We've hit land in DEWFORD!You just go on and tell me whenever you want to set sail again!
+closemessage
+warp DewfordTown 13 9
+waitstate
 releaseall
 end
 = Route104_EventScript_DeliverLetterReminder
 msgbox	MR. BRINEY: Ahoy! We've hit land in DEWFORD.I suppose you're off to deliver that LETTER to, who was it now, STEVEN!
+closemessage
+warp DewfordTown 13 9
+waitstate
 releaseall
 end
 = Route104_EventScript_SailToDewfordNoCall
@@ -400,6 +395,7 @@ waitmovement 0
 delay 10
 addobject LOCALID_ROUTE104_RIVAL
 clearflag FLAG_HIDE_ROUTE_104_RIVAL
+setobjectxy LOCALID_ROUTE104_RIVAL 17 50
 applymovement LOCALID_PLAYER Route104_Movement_PlayerBackUp
 waitmovement 0
 applymovement LOCALID_ROUTE104_RIVAL Route104_Movement_RivalExitBrineysCottage

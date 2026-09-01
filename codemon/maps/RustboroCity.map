@@ -153,7 +153,7 @@ people_team_aqua_aqua_member_m 13 21 E static FLAG_HIDE_RUSTBORO_CITY_AQUA_GRUNT
 people_devon_employee 13 34 S wander 0 - 0
 misc_item_ball 36 51 S static FLAG_ITEM_RUSTBORO_CITY_X_DEFEND - 0
 people_man_4 19 27 S static 0 - 0
-people_may_walking 16 50 S static FLAG_HIDE_RUSTBORO_CITY_RIVAL LOCALID_RUSTBORO_RIVAL 0
+people_rival_walking 16 50 S static FLAG_HIDE_RUSTBORO_CITY_RIVAL LOCALID_RUSTBORO_RIVAL 0
 people_scientist_1 11 15 S static FLAG_HIDE_RUSTBORO_CITY_SCIENTIST LOCALID_RUSTBORO_SCIENTIST 0
 people_boy_1 31 36 S static 0 - 0
 dialogs

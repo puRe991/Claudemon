@@ -52,16 +52,16 @@ warps
 59 13 TerraCave_Entrance 0
 79 6 TerraCave_Entrance 0
 npcs
-people_man_1 18 2 S static 0 - 0
-people_man_1 19 2 S static 0 - 0
+berry_trees_iapapa 18 2 S static 0 - 0
+berry_trees_chesto 19 2 S static 0 - 0
 people_youngster 12 7 S static 0 - 3
 misc_cuttable_tree 21 6 S static FLAG_TEMP_11 - 0
 misc_cuttable_tree 32 10 S static FLAG_TEMP_12 - 0
 people_bug_catcher 13 17 S static 0 - 2
 misc_item_ball 19 6 S static FLAG_ITEM_ROUTE_116_ETHER - 0
 misc_item_ball 10 17 S static FLAG_ITEM_ROUTE_116_REPEL - 0
-people_man_1 20 2 S static 0 - 0
-people_man_1 21 2 S static 0 - 0
+berry_trees_chesto 20 2 S static 0 - 0
+berry_trees_iapapa 21 2 S static 0 - 0
 people_expert_m 46 9 S static FLAG_HIDE_ROUTE_116_MR_BRINEY LOCALID_ROUTE116_BRINEY 0
 misc_cuttable_tree 28 11 S static FLAG_TEMP_13 - 0
 people_hiker 36 17 S static 0 - 3

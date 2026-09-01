@@ -44,7 +44,11 @@ private:
 	int anim_phase;            // 0 = idle, 1 = step A, 2 = step B
 	bool step_toggle;          // alternates the two walk frames
 
-	int frame_w, frame_h;      // 16, 32
+	// Frame geometry, derived from the loaded sheet rather than assumed:
+	// the imported overworld sheets are not all the standard 9x(16x32)
+	// layout. See load_sprite_sheet() for how these are inferred.
+	int frame_w, frame_h;      // usually 16, 32
+	int frame_count;           // frames available on the sheet (>= 1)
 	bool loaded;
 
 	std::string hide_flag;     // this NPC's pokeemerald FLAG_HIDE_*/FLAG_TEMP_*

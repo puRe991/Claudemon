@@ -596,6 +596,53 @@ static void test_dynamic_warp_out_of_truck(BattleData& bd) {
     CHECK(h.gs.dynamic_warp_x == 12 && h.gs.dynamic_warp_y == 10);
 }
 
+static void test_sprite_frame_geometry() {
+    std::printf("[gfx] overworld sheets are cut to their real frame size\n");
+    // Character used to assume every sheet was the standard 144x32 people
+    // layout (9 frames of 16x32). Most imported sheets aren't: an item ball
+    // is a single 16x16 frame, a gym leader has three, and Mr. Briney's boat
+    // is 32px wide. Reading a fixed 16x32 rect out of those sampled past the
+    // end of the texture and drew short sprites a whole tile too high.
+    struct Case { const char* sheet; int fw; int fh; };
+    const Case cases[] = {
+        { "people_man_1",               16, 32 },   // ordinary 9-frame sheet
+        { "misc_item_ball",             16, 16 },   // single small frame
+        { "misc_cuttable_tree",         16, 16 },
+        { "people_gym_leaders_roxanne", 16, 32 },   // 3 frames, no walk cycle
+        { "misc_mr_brineys_boat",       32, 32 },   // two tiles wide
+        { "misc_truck",                 48, 48 },   // whole set piece
+    };
+    for (const Case& c : cases) {
+        Character ch(3, 4);
+        std::string path = std::string("assets/overworld/") + c.sheet + ".png";
+        if (!ch.load_sprite_sheet(path)) { CHECK(false); continue; }
+        ch.face(DIR::S);
+        ch.update_sprite(16);
+        sf::Sprite* sp = ch.get_current_sprite();
+        CHECK(sp != nullptr);
+        if (!sp) continue;
+        sf::IntRect r = sp->getTextureRect();
+        CHECK(r.width == c.fw);
+        CHECK(r.height == c.fh);
+        // The frame must lie inside the texture, never past its edge.
+        CHECK(r.left >= 0 && r.top >= 0);
+        CHECK(r.left + r.width <= (int)ch.get_current_sprite()->getTexture()->getSize().x);
+        CHECK(r.top + r.height <= (int)ch.get_current_sprite()->getTexture()->getSize().y);
+        // It stands on its tile: the sprite's foot is at the tile's bottom.
+        CHECK(sp->getPosition().y + (float)c.fh == 4.f * 16.f + 16.f);
+    }
+
+    // Walk phases on a sheet with no walk frames must fall back to the idle
+    // frame instead of addressing a frame the sheet does not have.
+    Character gl(0, 0);
+    if (gl.load_sprite_sheet("assets/overworld/people_gym_leaders_roxanne.png")) {
+        gl.face(DIR::W);
+        gl.update_sprite(16);
+        sf::IntRect idle = gl.get_current_sprite()->getTextureRect();
+        CHECK(idle.left + idle.width <= 48);
+    }
+}
+
 static void test_region_map_sections() {
     std::printf("[map] PokeNav region map sections\n");
     // The importer used to drop region_map_sections.json entirely, so every
@@ -655,6 +702,7 @@ int main() {
         test_dive_reaches_sootopolis();
         test_dynamic_warp_out_of_truck(bd);
         test_region_map_sections();
+        test_sprite_frame_geometry();
     } else {
         std::printf("[skip] no DISPLAY: Map/ScriptVM/Battle tests need a GL "
                     "context (run under xvfb-run to include them)\n");

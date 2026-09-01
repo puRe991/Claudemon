@@ -4,12 +4,38 @@
 Character::Character()
 	: tile(0, 0), prev_tile(0, 0), move_t(1.f), animated(true), running(false),
 	  facing(DIR::S), anim_phase(0), step_toggle(false),
-	  frame_w(16), frame_h(32), loaded(false) {}
+	  frame_w(16), frame_h(32), frame_count(9), loaded(false) {}
 
 Character::Character(int tile_x, int tile_y)
 	: tile(tile_x, tile_y), prev_tile(tile_x, tile_y), move_t(1.f), animated(true), running(false),
 	  facing(DIR::S), anim_phase(0), step_toggle(false),
-	  frame_w(16), frame_h(32), loaded(false) {}
+	  frame_w(16), frame_h(32), frame_count(9), loaded(false) {}
+
+// Overworld sheets whose frames are 32px wide rather than the usual 16px
+// (pokeemerald's ObjectEventGraphicsInfo .width for these graphics is 32).
+// Everything not listed here is inferred from the sheet's dimensions in
+// load_sprite_sheet() below.
+static bool wide_frame_sheet(const std::string& path) {
+	static const char* WIDE[] = {
+		"misc_birth_island_stone", "misc_mr_brineys_boat",
+		"people_brendan_acro_bike", "people_brendan_field_move",
+		"people_brendan_fishing", "people_brendan_mach_bike",
+		"people_brendan_surfing", "people_brendan_underwater",
+		"people_brendan_watering", "people_cycling_triathlete_f",
+		"people_cycling_triathlete_m", "people_may_acro_bike",
+		"people_may_field_move", "people_may_fishing",
+		"people_may_mach_bike", "people_may_surfing",
+		"people_may_underwater", "people_may_watering",
+		"people_quinty_plump", "pokemon_deoxys", "pokemon_enemy_zigzagoon",
+		"pokemon_ho_oh", "pokemon_lugia", "pokemon_poochyena",
+	};
+	std::string::size_type slash = path.find_last_of("/\\");
+	std::string stem = (slash == std::string::npos) ? path : path.substr(slash + 1);
+	std::string::size_type dot = stem.find_last_of('.');
+	if (dot != std::string::npos) stem = stem.substr(0, dot);
+	for (const char* w : WIDE) if (stem == w) return true;
+	return false;
+}
 
 bool Character::load_sprite_sheet(const std::string& path) {
 	if (!this->sprite_sheet.loadFromFile(path)) {
@@ -18,6 +44,43 @@ bool Character::load_sprite_sheet(const std::string& path) {
 	}
 	this->sprite_sheet.setSmooth(false);   // crisp pixels when scaled up
 	this->current_sprite.setTexture(this->sprite_sheet, true);
+
+	// Work out this sheet's frame layout instead of assuming the ordinary
+	// 144x32 (9 frames of 16x32) people sheet. The imported overworld
+	// graphics are far from uniform: item balls are a single 16x16 frame,
+	// small NPCs (ninja boy, tuber) are 16x16, gym leaders and Pokemon are
+	// often 3 frames with no walk cycle, and set pieces (the moving truck,
+	// the cable car, Rayquaza, the S.S. Tidal) are whole multi-tile images.
+	// Reading a fixed 16x32 rect out of those sampled past the end of the
+	// texture and drew them one tile too high.
+	sf::Vector2u dim = this->sprite_sheet.getSize();
+	int tw = (int)dim.x, th = (int)dim.y;
+	if (tw <= 0 || th <= 0) { this->loaded = false; return false; }
+	if (th <= 32 && wide_frame_sheet(path)) {
+		// Two tiles wide: a 96x32 sheet like Mr. Briney's boat is three
+		// 32x32 frames, not six 16x32 ones. The sheet's dimensions alone
+		// can't tell the two apart, so these follow pokeemerald's own
+		// .width/.height in src/data/object_events/object_event_graphics_info.h.
+		this->frame_w = 32;
+		this->frame_h = th;
+	} else if (th <= 32 && tw % 16 == 0) {
+		// Ordinary character sheet: a row of 16px-wide frames.
+		this->frame_w = 16;
+		this->frame_h = th;
+	} else if (th > 32 && tw % th == 0) {
+		// Large square set piece, possibly several frames side by side
+		// (Rayquaza's 320x64 is five 64x64 frames).
+		this->frame_w = th;
+		this->frame_h = th;
+	} else {
+		// Anything else is one indivisible image (submarine shadow, S.S.
+		// Tidal, ...).
+		this->frame_w = tw;
+		this->frame_h = th;
+	}
+	this->frame_count = tw / this->frame_w;
+	if (this->frame_count < 1) this->frame_count = 1;
+
 	this->loaded = true;
 	this->update_sprite(16);
 	return true;
@@ -130,7 +193,13 @@ float Character::interp_y(int tile_px) const {
 }
 
 void Character::update_sprite(int tile_px) {
+	// A sheet may hold fewer frames than the 9-frame layout addresses (three
+	// facings with no walk cycle, or a single static image). Fall back to the
+	// idle frame for this facing, then to frame 0, rather than sampling past
+	// the edge of the texture.
 	int frame = this->frame_for(this->facing, this->anim_phase);
+	if (frame >= this->frame_count) frame = this->frame_for(this->facing, 0);
+	if (frame >= this->frame_count) frame = 0;
 	int left = frame * this->frame_w;
 
 	sf::IntRect rect;
@@ -142,8 +211,9 @@ void Character::update_sprite(int tile_px) {
 	}
 	this->current_sprite.setTextureRect(rect);
 
-	// 16px-wide sprite sits on its tile; 32px height extends one tile upward.
-	float px = this->interp_x(tile_px);
+	// The sprite stands on its tile: anything taller than one tile extends
+	// upward, anything wider is centred on the tile (multi-tile set pieces).
+	float px = this->interp_x(tile_px) - (float)(this->frame_w - tile_px) / 2.f;
 	float py = this->interp_y(tile_px) - (float)(this->frame_h - tile_px);
 	this->current_sprite.setPosition(px, py);
 }

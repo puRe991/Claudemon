@@ -58,9 +58,9 @@ pokemon_pikachu 49 2 S static 0 - 0
 people_running_triathlete_m 38 16 S static 0 - 4
 people_woman_2 8 10 S static 0 - 3
 people_man_4 33 11 S static 0 - 4
-people_man_1 41 13 S static 0 - 0
-people_man_1 42 13 S static 0 - 0
-people_man_1 43 13 S static 0 - 0
+berry_trees_wepear 41 13 S static 0 - 0
+berry_trees_wepear 42 13 S static 0 - 0
+berry_trees_wepear 43 13 S static 0 - 0
 misc_item_ball 16 18 S static FLAG_ITEM_ROUTE_117_GREAT_BALL - 0
 misc_cuttable_tree 15 2 S static FLAG_TEMP_11 - 0
 misc_item_ball 9 1 S static FLAG_ITEM_ROUTE_117_REVIVE - 0

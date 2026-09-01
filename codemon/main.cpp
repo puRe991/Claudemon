@@ -184,8 +184,18 @@ static Session* load_session(const std::string& path, int arr_x, int arr_y,
         // but its Character still needs to exist for that to work).
         bool hidden = !sp.hide_flag.empty() && gs && gs->flag(sp.hide_flag);
         if (hidden && sp.local_id.empty()) continue;
+        // pokeemerald's OBJ_EVENT_GFX_VAR_0: the rival's sprite is whichever
+        // of the two player characters you did NOT pick (Common_EventScript_
+        // SetupRivalGfxId sets VAR_OBJ_GFX_ID_0 on every map transition).
+        // The maps carry the placeholder key "people_rival_walking" for those
+        // objects; resolve it against the player's gender here, so a female
+        // player meets Brendan instead of a second May.
+        std::string sheet = sp.sheet;
+        if (sheet == "people_rival_walking")
+            sheet = (gs && gs->female) ? "people_brendan_walking"
+                                       : "people_may_walking";
         Character* ch = new Character(sp.x, sp.y);
-        if (!ch->load_sprite_sheet("assets/overworld/" + sp.sheet + ".png")) {
+        if (!ch->load_sprite_sheet("assets/overworld/" + sheet + ".png")) {
             delete ch; continue;
         }
         ch->set_animated(!g_headless);
@@ -195,7 +205,7 @@ static Session* load_session(const std::string& path, int arr_x, int arr_y,
         Agent ag; ag.ch = ch;
         ag.home_x = sp.x; ag.home_y = sp.y;
         ag.pace_dir = (sp.movement == MOVE_PACE_H) ? DIR::E : DIR::N;
-        ag.sheet = sp.sheet; ag.dialog = sp.dialog;
+        ag.sheet = sheet; ag.dialog = sp.dialog;
         ag.npc_index = npc_idx; ag.sight = sp.sight;
         s->agents.push_back(ag);
         s->npc_chars.push_back(ch);
@@ -672,9 +682,15 @@ static void draw_scene(sf::RenderTarget& target, Session* s, const HealFx* healf
         if (door_tex_ok) {
             int tp = s->map->get_tile_size();
             int dx, dy; vm->get_door_tile(dx, dy);
+            // A door is two tiles tall: pokeemerald's DrawCurrentDoorAnimFrame
+            // draws the top metatile at (x, y-1) and the bottom one at (x, y),
+            // and the frame offsets the VM steps through (0, 0x100, 0x200) are
+            // 0x100 bytes = 16x32 pixels apart at 4bpp. Reading a 16x16 rect at
+            // frame*16 showed half of the wrong frame over the doorway's lower
+            // tile only.
             sf::Sprite spr(door_tex);
-            spr.setTextureRect(sf::IntRect(0, vm->door_frame() * 16, 16, 16));
-            spr.setPosition((float)(dx * tp), (float)(dy * tp));
+            spr.setTextureRect(sf::IntRect(0, vm->door_frame() * 32, 16, 32));
+            spr.setPosition((float)(dx * tp), (float)((dy - 1) * tp));
             if (tp != 16) spr.setScale((float)tp / 16.f, (float)tp / 16.f);
             target.draw(spr);
         }

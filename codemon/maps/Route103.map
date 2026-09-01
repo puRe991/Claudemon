@@ -53,14 +53,14 @@ warps
 45 6 AlteringCave 0
 npcs
 people_man_3 49 12 W static 0 - 0
-people_may_walking 10 3 E static FLAG_HIDE_ROUTE_103_RIVAL LOCALID_ROUTE103_RIVAL 0
+people_rival_walking 10 3 E static FLAG_HIDE_ROUTE_103_RIVAL LOCALID_ROUTE103_RIVAL 0
 people_woman_2 71 11 S static 0 - 3
 people_twin 65 12 S static 0 - 1
 people_twin 64 12 S static 0 - 1
 people_fisherman 50 8 S static 0 - 3
-people_man_1 58 5 S static 0 - 0
-people_man_1 59 5 S static 0 - 0
-people_man_1 60 5 S static 0 - 0
+berry_trees_cheri 58 5 S static 0 - 0
+berry_trees_leppa 59 5 S static 0 - 0
+berry_trees_cheri 60 5 S static 0 - 0
 people_boy_1 20 10 S wander 0 - 0
 people_prof_birch 7 3 S wander FLAG_HIDE_ROUTE_103_BIRCH - 0
 people_pokefan_m 56 13 E static 0 - 5

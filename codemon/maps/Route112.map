@@ -140,10 +140,10 @@ people_camper 29 49 S static 0 - 3
 people_picnicker 22 46 S static 0 - 3
 people_hiker 15 40 S static 0 - 3
 people_team_magma_magma_member_m 27 30 N static FLAG_HIDE_ROUTE_112_TEAM_MAGMA LOCALID_ROUTE112_GRUNT_2 0
-people_man_1 27 6 S static 0 - 0
-people_man_1 28 6 S static 0 - 0
-people_man_1 29 6 S static 0 - 0
-people_man_1 30 6 S static 0 - 0
+berry_trees_rawst 27 6 S static 0 - 0
+berry_trees_pecha 28 6 S static 0 - 0
+berry_trees_pecha 29 6 S static 0 - 0
+berry_trees_rawst 30 6 S static 0 - 0
 people_hiker 8 50 S static 0 - 0
 misc_item_ball 14 43 S static FLAG_ITEM_ROUTE_112_NUGGET - 0
 people_man_5 31 7 S static 0 - 3

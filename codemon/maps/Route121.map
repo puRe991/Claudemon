@@ -50,14 +50,14 @@ warps
 37 5 Route121_SafariZoneEntrance 2
 npcs
 people_woman_3 29 14 E static 0 - 0
-people_man_1 14 2 S static 0 - 0
-people_man_1 15 2 S static 0 - 0
-people_man_1 16 2 S static 0 - 0
-people_man_1 17 2 S static 0 - 0
-people_man_1 64 14 S static 0 - 0
-people_man_1 65 14 S static 0 - 0
-people_man_1 66 14 S static 0 - 0
-people_man_1 67 14 S static 0 - 0
+berry_trees_persim 14 2 S static 0 - 0
+berry_trees_aspear 15 2 S static 0 - 0
+berry_trees_rawst 16 2 S static 0 - 0
+berry_trees_chesto 17 2 S static 0 - 0
+berry_trees_dirt_pile 64 14 S static 0 - 0
+berry_trees_mago 65 14 S static 0 - 0
+berry_trees_mago 66 14 S static 0 - 0
+berry_trees_dirt_pile 67 14 S static 0 - 0
 people_lass 39 9 S static 0 - 1
 people_lass 40 9 S static 0 - 1
 people_team_aqua_aqua_member_m 30 8 N static FLAG_HIDE_ROUTE_121_TEAM_AQUA_GRUNTS LOCALID_ROUTE121_GRUNT_1 0

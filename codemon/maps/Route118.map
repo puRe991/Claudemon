@@ -50,9 +50,9 @@ warps
 42 6 TerraCave_Entrance 0
 9 6 TerraCave_Entrance 0
 npcs
-people_man_1 35 5 S static 0 - 0
-people_man_1 36 5 S static 0 - 0
-people_man_1 37 5 S static 0 - 0
+berry_trees_sitrus 35 5 S static 0 - 0
+berry_trees_dirt_pile 36 5 S static 0 - 0
+berry_trees_sitrus 37 5 S static 0 - 0
 people_man_5 64 10 S static 0 - 3
 people_reporter_f 33 8 S static FLAG_HIDE_ROUTE_118_GABBY_AND_TY_1 LOCALID_ROUTE118_GABBY_1 0
 people_cameraman 34 8 S static FLAG_HIDE_ROUTE_118_GABBY_AND_TY_1 LOCALID_ROUTE118_TY_1 0
