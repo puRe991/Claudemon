@@ -117,7 +117,7 @@ people_team_aqua_aqua_member_m 46 12 W static FLAG_HIDE_LILYCOVE_CITY_AQUA_GRUNT
 people_team_aqua_aqua_member_m 45 12 E static FLAG_HIDE_LILYCOVE_CITY_AQUA_GRUNTS - 0
 people_team_aqua_aqua_member_m 38 9 W static FLAG_HIDE_LILYCOVE_CITY_AQUA_GRUNTS - 0
 people_gentleman 50 7 S wander 0 - 0
-people_may_walking 27 7 S static FLAG_HIDE_LILYCOVE_CITY_RIVAL - 0
+people_rival_walking 27 7 S static FLAG_HIDE_LILYCOVE_CITY_RIVAL - 0
 people_school_kid_m 16 23 E static 0 - 0
 people_woman_3 41 25 W static 0 LOCALID_LILYCOVE_WOMAN_1 0
 people_man_2 40 25 E static 0 LOCALID_LILYCOVE_MAN_1 0

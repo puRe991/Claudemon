@@ -298,8 +298,8 @@ people_pokefan_f 13 113 S static FLAG_HIDE_ROUTE_111_VICTORIA_WINSTRATE LOCALID_
 people_lass 13 113 S static FLAG_HIDE_ROUTE_111_VIVI_WINSTRATE LOCALID_ROUTE111_VIVI 0
 people_expert_f 13 113 S static FLAG_HIDE_ROUTE_111_VICKY_WINSTRATE LOCALID_ROUTE111_VICKY 0
 people_picnicker 28 51 S static 0 - 3
-people_man_1 22 5 S static 0 - 0
-people_man_1 23 5 S static 0 - 0
+berry_trees_razz 22 5 S static 0 - 0
+berry_trees_razz 23 5 S static 0 - 0
 people_man_3 8 91 S wander 0 - 0
 people_camper 29 37 S static 0 - 3
 people_hiker 27 69 S static 0 - 2
@@ -311,8 +311,8 @@ misc_breakable_rock 18 101 S static FLAG_TEMP_11 - 0
 misc_breakable_rock 19 100 S static FLAG_TEMP_12 - 0
 people_girl_1 23 8 S wander 0 - 0
 misc_item_ball 33 104 S static FLAG_ITEM_ROUTE_111_TM_SANDSTORM - 0
-people_man_1 18 5 S static 0 - 0
-people_man_1 19 5 S static 0 - 0
+berry_trees_oran 18 5 S static 0 - 0
+berry_trees_oran 19 5 S static 0 - 0
 people_reporter_f 13 86 S static FLAG_HIDE_ROUTE_111_GABBY_AND_TY_2 LOCALID_ROUTE111_GABBY_2 0
 people_cameraman 14 86 S static FLAG_HIDE_ROUTE_111_GABBY_AND_TY_2 LOCALID_ROUTE111_TY_2 0
 people_reporter_f 13 86 S static FLAG_HIDE_ROUTE_111_GABBY_AND_TY_3 LOCALID_ROUTE111_GABBY_3 0

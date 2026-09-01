@@ -55,7 +55,7 @@ people_boy_2 14 17 S wander 0 - 0
 people_mom 5 8 N static FLAG_HIDE_LITTLEROOT_TOWN_MOM_OUTSIDE LOCALID_LITTLEROOT_MOM 0
 misc_truck 2 10 E static FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_TRUCK - 0
 misc_truck 11 10 E static FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_TRUCK - 0
-people_may_walking 13 10 N static FLAG_HIDE_LITTLEROOT_TOWN_RIVAL LOCALID_LITTLEROOT_RIVAL 0
+people_rival_walking 13 10 N static FLAG_HIDE_LITTLEROOT_TOWN_RIVAL LOCALID_LITTLEROOT_RIVAL 0
 people_prof_birch 14 10 N static FLAG_HIDE_LITTLEROOT_TOWN_BIRCH LOCALID_LITTLEROOT_BIRCH 0
 dialogs
 0	Um, um, um!If you go outside and go in the grass, wild POKéMON will jump out!

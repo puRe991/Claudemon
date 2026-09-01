@@ -209,16 +209,16 @@ warps
 7 55 AncientTomb 0
 19 23 ScorchedSlab 0
 npcs
-people_man_1 4 79 S static 0 - 0
-people_man_1 5 79 S static 0 - 0
-people_man_1 6 79 S static 0 - 0
-people_man_1 7 79 S static 0 - 0
-people_man_1 34 24 S static 0 - 0
-people_man_1 35 24 S static 0 - 0
-people_man_1 36 24 S static 0 - 0
-people_man_1 9 92 S static 0 - 0
-people_man_1 10 92 S static 0 - 0
-people_man_1 11 92 S static 0 - 0
+berry_trees_wepear 4 79 S static 0 - 0
+berry_trees_iapapa 5 79 S static 0 - 0
+berry_trees_mago 6 79 S static 0 - 0
+berry_trees_razz 7 79 S static 0 - 0
+berry_trees_aspear 34 24 S static 0 - 0
+berry_trees_aspear 35 24 S static 0 - 0
+berry_trees_aspear 36 24 S static 0 - 0
+berry_trees_pecha 9 92 S static 0 - 0
+berry_trees_pecha 10 92 S static 0 - 0
+berry_trees_pecha 11 92 S static 0 - 0
 people_man_5 5 22 W pace_h 0 - 3
 people_man_5 32 14 E static 0 - 3
 people_camper 27 51 W static 0 - 7

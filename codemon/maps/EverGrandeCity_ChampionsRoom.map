@@ -33,7 +33,7 @@ warps
 6 2 EverGrandeCity_HallOfFame 0
 npcs
 people_wallace 6 5 S static 0 LOCALID_CHAMPIONS_ROOM_WALLACE 0
-people_may_walking 6 12 N static FLAG_HIDE_CHAMPIONS_ROOM_RIVAL LOCALID_CHAMPIONS_ROOM_RIVAL 0
+people_rival_walking 6 12 N static FLAG_HIDE_CHAMPIONS_ROOM_RIVAL LOCALID_CHAMPIONS_ROOM_RIVAL 0
 people_prof_birch 6 12 N static FLAG_HIDE_CHAMPIONS_ROOM_BIRCH LOCALID_CHAMPIONS_ROOM_BIRCH 0
 onload
 VAR_TEMP_1 0 EverGrandeCity_ChampionsRoom_EventScript_EnterRoom

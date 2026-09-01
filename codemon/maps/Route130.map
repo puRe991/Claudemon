@@ -88,7 +88,7 @@ right 0 Route129
 npcs
 people_swimmer_m 70 21 S static 0 - 3
 people_swimmer_f 7 21 S static 0 - 5
-people_man_1 52 9 S static FLAG_TEMP_HIDE_MIRAGE_ISLAND_BERRY_TREE - 0
+berry_trees_liechi 52 9 S static FLAG_TEMP_HIDE_MIRAGE_ISLAND_BERRY_TREE - 0
 people_swimmer_m 7 30 S pace_v 0 - 5
 objscripts
 0 Route130_EventScript_Rodney

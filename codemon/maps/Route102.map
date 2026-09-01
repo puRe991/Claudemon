@@ -52,8 +52,8 @@ people_bug_catcher 25 15 N static 0 - 2
 people_lass 8 7 S static 0 - 3
 people_boy_1 37 4 S wander 0 - 0
 misc_item_ball 11 15 S static FLAG_ITEM_ROUTE_102_POTION - 0
-people_man_1 24 2 S static 0 - 0
-people_man_1 25 2 S static 0 - 0
+berry_trees_oran 24 2 S static 0 - 0
+berry_trees_pecha 25 2 S static 0 - 0
 people_youngster 19 4 S static 0 - 3
 dialogs
 0	I'm…not very tall, so I sink right into tall grass.The grass goes up my nose and… Fwafwafwafwafwa…Fwatchoo!
