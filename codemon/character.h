@@ -49,6 +49,12 @@ private:
 	// layout. See load_sprite_sheet() for how these are inferred.
 	int frame_w, frame_h;      // usually 16, 32
 	int frame_count;           // frames available on the sheet (>= 1)
+	// True for ordinary character sheets, whose frames are facings. False for
+	// object sheets whose frames are states instead (a rock's break stages, a
+	// tree's cut stages, a berry tree's growth) or that have a single picture
+	// (item ball, statue, truck): those must keep frame 0 whichever way the
+	// object is "facing". See directional_sheet() in character.cpp.
+	bool directional;
 	bool loaded;
 
 	std::string hide_flag;     // this NPC's pokeemerald FLAG_HIDE_*/FLAG_TEMP_*

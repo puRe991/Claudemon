@@ -101,12 +101,28 @@ std::string Battle::nice(const std::string& id) {
 	return out;
 }
 
+// A texture that failed to load keeps whatever it held before -- for a
+// reused Battle object that is the previous fight's Pokemon, and for a fresh
+// one it is undefined content, which is what a missing sprite looked like on
+// screen. Blank it instead, so a species with no artwork draws nothing.
+static void load_mon_texture(sf::Texture& tex, const std::string& path,
+                             const std::string& fallback_path) {
+	if (tex.loadFromFile(path)) { tex.setSmooth(false); return; }
+	if (!fallback_path.empty() && tex.loadFromFile(fallback_path)) {
+		tex.setSmooth(false); return;
+	}
+	sf::Image blank;
+	blank.create(64, 64, sf::Color::Transparent);
+	tex.loadFromImage(blank);
+	tex.setSmooth(false);
+}
+
 void Battle::load_sprites() {
-	this->enemy_tex.loadFromFile("assets/pokemon/" + this->enemy.species + ".png");
-	this->enemy_tex.setSmooth(false);
-	if (!this->player_tex.loadFromFile("assets/pokemon/back/" + this->player->species + ".png"))
-		this->player_tex.loadFromFile("assets/pokemon/" + this->player->species + ".png");
-	this->player_tex.setSmooth(false);
+	load_mon_texture(this->enemy_tex,
+	                 "assets/pokemon/" + this->enemy.species + ".png", "");
+	load_mon_texture(this->player_tex,
+	                 "assets/pokemon/back/" + this->player->species + ".png",
+	                 "assets/pokemon/" + this->player->species + ".png");
 }
 
 void Battle::queue(const std::string& line) { this->log.push_back(line); }

@@ -632,6 +632,34 @@ static void test_sprite_frame_geometry() {
         CHECK(sp->getPosition().y + (float)c.fh == 4.f * 16.f + 16.f);
     }
 
+    // An object sheet's frames are states, not facings: talking to a rock
+    // turns it towards the player, which must not pick a half-smashed frame.
+    {
+        Character rock(5, 5);
+        if (rock.load_sprite_sheet("assets/overworld/misc_breakable_rock.png")) {
+            rock.face(DIR::S); rock.update_sprite(16);
+            sf::IntRect intact = rock.get_current_sprite()->getTextureRect();
+            for (DIR d : { DIR::N, DIR::W, DIR::E }) {
+                rock.face(d); rock.update_sprite(16);
+                CHECK(rock.get_current_sprite()->getTextureRect() == intact);
+            }
+            CHECK(intact.left == 0);   // always the unbroken frame
+        }
+        Character tree(5, 5);
+        if (tree.load_sprite_sheet("assets/overworld/misc_cuttable_tree.png")) {
+            tree.face(DIR::W); tree.update_sprite(16);
+            CHECK(tree.get_current_sprite()->getTextureRect().left == 0);
+        }
+        // An ordinary NPC must still turn.
+        Character man(5, 5);
+        if (man.load_sprite_sheet("assets/overworld/people_man_1.png")) {
+            man.face(DIR::S); man.update_sprite(16);
+            sf::IntRect south = man.get_current_sprite()->getTextureRect();
+            man.face(DIR::N); man.update_sprite(16);
+            CHECK(man.get_current_sprite()->getTextureRect() != south);
+        }
+    }
+
     // Walk phases on a sheet with no walk frames must fall back to the idle
     // frame instead of addressing a frame the sheet does not have.
     Character gl(0, 0);
