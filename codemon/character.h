@@ -55,6 +55,12 @@ private:
 	// (item ball, statue, truck): those must keep frame 0 whichever way the
 	// object is "facing". See directional_sheet() in character.cpp.
 	bool directional;
+	// A one-shot run through the sheet's frames, for the object sheets whose
+	// frames are states: a rock shattering, a tree being cut down, the nurse
+	// bowing. -1 in state_frame means "not animating"; see play_state_anim().
+	float state_t = 0.f, state_len = 0.f;
+	int state_frame = -1;
+	bool state_hold_last = false;
 	bool loaded;
 
 	std::string hide_flag;     // this NPC's pokeemerald FLAG_HIDE_*/FLAG_TEMP_*
@@ -81,6 +87,19 @@ private:
 	                           // interacted with again this same session.
 
 	int frame_for(DIR dir, int phase) const;
+
+public:
+	// Play this sheet's frames once over `seconds`. `hold_last` keeps the
+	// final frame afterwards (a smashed rock stays smashed until the script
+	// removes it); otherwise the object returns to its normal frame (the
+	// nurse straightens up again). No-op for a sheet with only one frame.
+	void play_state_anim(float seconds, bool hold_last);
+	// True while such an animation is still running -- `waitmovement` waits
+	// on this the same way it waits on a movement queue.
+	bool state_anim_active() const { return this->state_frame >= 0 && this->state_t < this->state_len; }
+	void tick_state_anim(float dt);
+
+private:
 
 public:
 	Character();

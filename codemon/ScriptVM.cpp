@@ -390,6 +390,19 @@ void ScriptVM::pump() {
 					this->emote_icon = icon;
 					this->emote_t = 0.9f;
 				}
+				// Movements that are an object changing state rather than
+				// moving: the object sheets carry the frames (a rock's break
+				// stages, a tree's cut stages, the nurse's bow), but the
+				// importer could only turn the movement itself into a delay.
+				// Play the frames, and let waitmovement wait for them.
+				if (mv.find("SmashRock") != std::string::npos ||
+				    mv.find("CutTreeDown") != std::string::npos) {
+					ch->play_state_anim(0.5f, true);    // stays broken/felled
+					this->state_anims.push_back(ch);
+				} else if (mv.find("Nurse_Bow") != std::string::npos) {
+					ch->play_state_anim(0.7f, false);   // straightens up again
+					this->state_anims.push_back(ch);
+				}
 			}
 			if (ch && !acts.empty()) {
 				MoveQ q; q.ch = ch;
@@ -400,7 +413,9 @@ void ScriptVM::pump() {
 		} else if (op == "waitmovement") {
 			bool pending = false;
 			for (auto& q : this->queues) if (!q.actions.empty()) pending = true;
+			for (Character* c : this->state_anims) if (c->state_anim_active()) pending = true;
 			if (pending) { this->st = WAIT_MOVE; return; }
+			this->state_anims.clear();
 		} else if (op == "faceplayer") {
 			if (this->owner) {
 				DIR pf = this->player->get_facing();
@@ -1132,6 +1147,7 @@ void ScriptVM::update(float dt) {
 		this->emote_t -= dt;
 		if (this->emote_t <= 0.f) { this->emote_t = 0.f; this->emote_ch = nullptr; }
 	}
+	for (Character* c : this->state_anims) c->tick_state_anim(dt);
 	if (this->door_active) {
 		this->door_timer += dt;
 		if (this->door_timer >= DOOR_STEP_DURATION) {
@@ -1232,5 +1248,11 @@ void ScriptVM::update(float dt) {
 	}
 	bool pending = false;
 	for (auto& q : this->queues) if (!q.actions.empty()) pending = true;
-	if (!pending) { this->queues.clear(); this->st = RUN; this->pump(); }
+	for (Character* c : this->state_anims) if (c->state_anim_active()) pending = true;
+	if (!pending) {
+		this->queues.clear();
+		this->state_anims.clear();
+		this->st = RUN;
+		this->pump();
+	}
 }

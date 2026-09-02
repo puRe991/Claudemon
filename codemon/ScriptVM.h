@@ -221,6 +221,10 @@ private:
 	Character* emote_ch = nullptr;  // object the emote bubble sits above
 	float emote_t = 0.f;            // seconds of bubble left
 	int emote_icon = 0;             // 0 exclamation, 1 question, 2 heart
+	// Objects currently running a one-shot state animation (rock smash, tree
+	// cut, nurse bow). Held only so `waitmovement` can wait for them and
+	// update() can tick them; cleared as soon as they are all done.
+	std::vector<Character*> state_anims;
 	float door_timer = 0.f;
 
 	bool pending_warp = false;

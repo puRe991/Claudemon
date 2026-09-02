@@ -1,5 +1,6 @@
 #include "SFML/Graphics.hpp"
 #include "character.h"
+#include <algorithm>
 
 Character::Character()
 	: tile(0, 0), prev_tile(0, 0), move_t(1.f), animated(true), running(false),
@@ -219,14 +220,44 @@ float Character::interp_y(int tile_px) const {
 	return fy + (ty - fy) * this->move_t;
 }
 
+void Character::play_state_anim(float seconds, bool hold_last) {
+	if (this->frame_count < 2 || seconds <= 0.f) return;
+	this->state_t = 0.f;
+	this->state_len = seconds;
+	this->state_frame = 0;
+	this->state_hold_last = hold_last;
+}
+
+void Character::tick_state_anim(float dt) {
+	if (this->state_frame < 0) return;
+	if (this->state_t >= this->state_len) return;      // finished, frame held
+	this->state_t += dt;
+	if (this->state_t >= this->state_len) {
+		this->state_t = this->state_len;
+		this->state_frame = this->state_hold_last ? this->frame_count - 1 : -1;
+		return;
+	}
+	int f = (int)(this->state_t / this->state_len * (float)this->frame_count);
+	if (f >= this->frame_count) f = this->frame_count - 1;
+	if (f < 0) f = 0;
+	this->state_frame = f;
+}
+
 void Character::update_sprite(int tile_px) {
 	// A sheet may hold fewer frames than the 9-frame layout addresses (three
 	// facings with no walk cycle, or a single static image). Fall back to the
 	// idle frame for this facing, then to frame 0, rather than sampling past
 	// the edge of the texture.
-	int frame = this->directional ? this->frame_for(this->facing, this->anim_phase) : 0;
-	if (frame >= this->frame_count) frame = this->frame_for(this->facing, 0);
-	if (frame >= this->frame_count) frame = 0;
+	int frame;
+	if (this->state_frame >= 0) {
+		// A state animation is running (or holding its last frame): it owns
+		// the frame outright, whichever way the object happens to face.
+		frame = std::min(this->state_frame, this->frame_count - 1);
+	} else {
+		frame = this->directional ? this->frame_for(this->facing, this->anim_phase) : 0;
+		if (frame >= this->frame_count) frame = this->frame_for(this->facing, 0);
+		if (frame >= this->frame_count) frame = 0;
+	}
 	int left = frame * this->frame_w;
 
 	sf::IntRect rect;
