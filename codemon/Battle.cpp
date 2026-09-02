@@ -922,7 +922,15 @@ Mon Battle::caught_mon() const {
 	caught.personality = this->enemy.personality;
 	caught.shiny = this->enemy.shiny;
 	caught.held_item = this->enemy.held_item;
-	this->data->recompute_stats(caught, false);
+	this->data->recompute_stats(caught, false);   // fills HP up to the new max
+	// ... and then the battle-worn state on top: a Pokemon caught at 3 HP and
+	// asleep joins the party at 3 HP and asleep, it does not walk in fully
+	// healed. Confusion is deliberately left behind -- it is volatile in
+	// Gen 3 and wears off with the battle, unlike the major status
+	// conditions, which the mon carries around until it is cured.
+	caught.hp = std::max(1, std::min(this->enemy.hp, caught.max_hp));
+	caught.status = this->enemy.status;
+	caught.status_turns = this->enemy.status_turns;
 	return caught;
 }
 

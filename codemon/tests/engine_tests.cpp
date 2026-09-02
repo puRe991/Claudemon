@@ -598,6 +598,86 @@ static void test_capture_keeps_the_encounter(BattleData& bd) {
     }
 }
 
+static void test_capture_keeps_hp_and_status(BattleData& bd) {
+    std::printf("[battle] a caught mon keeps its HP and status condition\n");
+    // The caught mon was rebuilt from scratch, so it always joined the party
+    // at full HP and healthy: a Numel caught at 3 HP and asleep walked in
+    // fully healed. The individual on the field is the one that is caught.
+    std::mt19937 rng(13);
+    GameState gs;
+    gs.give_item("ITEM_POKE_BALL", 300);
+    std::vector<Mon> team, box;
+    team.reserve(6);
+    // A level-5 attacker with 1 Attack chips the level-40 enemy a point or
+    // two at a time instead of knocking it out, and a huge HP pool means
+    // whatever the enemy hits back with cannot end the battle early.
+    team.push_back(bd.make_mon("MACHOP", 5));
+    team[0].atk = 1;
+    team[0].max_hp = team[0].hp = 9999;
+    team[0].moves = {"TACKLE"};
+    team[0].pp = {35};
+
+    Battle battle;
+    battle.configure(&bd, &rng);
+    battle.set_capture(&gs, &team, &box);
+    CHECK(battle.start_wild("NUMEL", 40, &team[0]));
+
+    // KAMPF is the top action row; move slot 0 is whatever `moves[0]` holds
+    // right now, so swapping that field mid-battle picks the next move
+    // without having to walk the 2x2 move grid.
+    auto attack = [&]() {
+        for (int i = 0; i < 200 && battle.active(); ++i) {
+            if (battle.screen() == Battle::SCR_MESSAGE) { battle.input(BTN_CONFIRM); continue; }
+            if (battle.screen() == Battle::SCR_ACTION) {
+                for (int k = 0; k < 4; ++k) battle.input(BTN_UP);   // -> KAMPF
+                battle.input(BTN_CONFIRM);
+                continue;
+            }
+            if (battle.screen() == Battle::SCR_MOVE) { battle.input(BTN_CONFIRM); return; }
+            return;
+        }
+    };
+
+    for (int i = 0; i < 20 && battle.active() &&
+         battle.enemy_hp() == battle.enemy_max_hp(); ++i) attack();
+    CHECK(battle.enemy_hp() < battle.enemy_max_hp());   // actually damaged
+
+    // Put it to sleep last, so it is still asleep when the ball lands (the
+    // 2x sleep catch bonus also makes that land fast).
+    team[0].moves[0] = "SPORE";                // 100% accurate, EFFECT_SLEEP
+    team[0].pp[0] = 15;
+    for (int i = 0; i < 20 && battle.active() &&
+         battle.enemy_status() != Status::SLEEP; ++i) attack();
+    CHECK(battle.enemy_status() == Status::SLEEP);
+
+    // Throw balls until one sticks, remembering the enemy's state as it was
+    // on the very throw that caught it.
+    int hp_before = battle.enemy_hp();
+    Status status_before = battle.enemy_status();
+    for (int i = 0; i < 4000 && battle.active() && team.size() < 2; ++i) {
+        if (battle.screen() == Battle::SCR_MESSAGE) { battle.input(BTN_CONFIRM); continue; }
+        if (battle.screen() == Battle::SCR_BALL) {
+            hp_before = battle.enemy_hp();
+            status_before = battle.enemy_status();
+            battle.input(BTN_CONFIRM);
+            continue;
+        }
+        if (battle.screen() != Battle::SCR_ACTION) break;
+        for (int k = 0; k < 4; ++k) battle.input(BTN_UP);      // back to KAMPF
+        battle.input(BTN_DOWN); battle.input(BTN_DOWN);        // -> BALL
+        battle.input(BTN_CONFIRM);                             // open ball submenu
+    }
+    CHECK(team.size() == 2);
+    if (team.size() == 2) {
+        CHECK(team[1].species == "NUMEL");
+        CHECK(team[1].hp == hp_before && team[1].hp < team[1].max_hp);
+        CHECK(team[1].status == status_before && status_before == Status::SLEEP);
+        // Confusion is volatile in Gen 3 -- it ends with the battle and is
+        // not something the caught mon carries home.
+        CHECK(team[1].confusion_turns == 0);
+    }
+}
+
 static void test_wild_battle_capture(BattleData& bd) {
     std::printf("[battle] capture moves the mon into the party\n");
     std::mt19937 rng(3);
@@ -955,6 +1035,7 @@ int main() {
         test_wild_battle_capture(bd);
         test_battle_lead_skips_fainted(bd);
         test_capture_keeps_the_encounter(bd);
+        test_capture_keeps_hp_and_status(bd);
         test_trainer_ai_uses_item(bd);
         test_trainer_sight();
         test_sight_only_while_undefeated(bd);
