@@ -527,6 +527,77 @@ static void test_trainer_ai_uses_item(BattleData& bd) {
     CHECK(battle.enemy_items_left() == 0);
 }
 
+static void test_battle_lead_skips_fainted(BattleData& bd) {
+    std::printf("[battle] a fainted lead is not sent out again\n");
+    // Every caller hands Battle the party's slot 0 (`&team[0]`) and the
+    // battle used it unconditionally, so a lead that fainted in the previous
+    // fight was sent straight back into the next one: the encounter opened
+    // with a 0 HP Pokemon, which could do nothing but faint again and force
+    // a switch. The real games send out the first member that can fight.
+    std::mt19937 rng(5);
+    GameState gs;
+    std::vector<Mon> team, box;
+    team.reserve(6);
+    team.push_back(bd.make_mon("MACHOP", 20));
+    team.push_back(bd.make_mon("ZIGZAGOON", 18));
+
+    Battle battle;
+    battle.configure(&bd, &rng);
+    battle.set_capture(&gs, &team, &box);
+
+    // Healthy lead: still slot 0.
+    CHECK(battle.start_wild("POOCHYENA", 3, &team[0]));
+    CHECK(battle.active_party_index() == 0);
+
+    team[0].hp = 0;                       // lead fainted in the previous fight
+    CHECK(battle.start_wild("POOCHYENA", 3, &team[0]));
+    CHECK(battle.active_party_index() == 1);
+    CHECK(battle.start_trainer("TRAINER_ALLEN", "Allen", &team[0]));
+    CHECK(battle.active_party_index() == 1);
+
+    // Whole party down (a whiteout the caller handles): fall back to slot 0
+    // rather than running off the end of the party.
+    team[1].hp = 0;
+    CHECK(battle.start_wild("POOCHYENA", 3, &team[0]));
+    CHECK(battle.active_party_index() == 0);
+}
+
+static void test_capture_keeps_the_encounter(BattleData& bd) {
+    std::printf("[battle] a caught mon keeps its held item and identity\n");
+    // The caught mon is rebuilt with make_mon() and then given the
+    // encounter's rolled values back. The held item was left out of that
+    // list, so every Pokemon arrived in the party empty-handed even though
+    // the wild one had been holding (and could have been eating) an item.
+    // NUMEL's common and rare item are both a Rawst Berry, so make_mon()
+    // always hands it one; its catch rate of 255 keeps the loop short.
+    std::mt19937 rng(11);
+    GameState gs;
+    gs.give_item("ITEM_POKE_BALL", 50);
+    std::vector<Mon> team, box;
+    team.reserve(6);
+    team.push_back(bd.make_mon("MACHOP", 50));
+
+    Battle battle;
+    battle.configure(&bd, &rng);
+    battle.set_capture(&gs, &team, &box);
+    CHECK(battle.start_wild("NUMEL", 5, &team[0]));
+
+    for (int i = 0; i < 4000 && battle.active() && team.size() < 2; ++i) {
+        if (battle.screen() == Battle::SCR_MESSAGE) { battle.input(BTN_CONFIRM); continue; }
+        if (battle.screen() == Battle::SCR_BALL) { battle.input(BTN_CONFIRM); continue; }
+        if (battle.screen() != Battle::SCR_ACTION) break;
+        for (int k = 0; k < 4; ++k) battle.input(BTN_UP);      // back to KAMPF
+        battle.input(BTN_DOWN); battle.input(BTN_DOWN);        // -> BALL
+        battle.input(BTN_CONFIRM);                             // open ball submenu
+    }
+    CHECK(team.size() == 2);
+    if (team.size() == 2) {
+        CHECK(team[1].species == "NUMEL");
+        CHECK(team[1].held_item == "RAWST_BERRY");
+        CHECK(team[1].personality != 0);   // the encounter's, not a fresh mon's
+    }
+}
+
 static void test_wild_battle_capture(BattleData& bd) {
     std::printf("[battle] capture moves the mon into the party\n");
     std::mt19937 rng(3);
@@ -882,6 +953,8 @@ int main() {
         test_script_trainer_flags(bd);
         test_recoil_uses_hp_actually_dealt(bd);
         test_wild_battle_capture(bd);
+        test_battle_lead_skips_fainted(bd);
+        test_capture_keeps_the_encounter(bd);
         test_trainer_ai_uses_item(bd);
         test_trainer_sight();
         test_sight_only_while_undefeated(bd);
