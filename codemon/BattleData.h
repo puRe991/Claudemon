@@ -70,6 +70,18 @@ struct Mon {
 	// common / 5% rare split, see make_mon()), kept for this individual's
 	// whole life like IVs/nature. "NONE" if it isn't holding anything.
 	std::string held_item = "NONE";
+	// pokeemerald's personality value: the 32-bit number rolled once per
+	// individual in make_mon() that the real games derive a mon's "random
+	// but fixed forever" traits from. Only shininess is read off it here
+	// (see BattleData::is_shiny) -- gender, the ability-1/2 pick and Unown's
+	// letter are documented simplifications elsewhere in this file.
+	unsigned personality = 0;
+	// Derived from `personality` against the player's trainer ID pair at
+	// creation time and then kept for life (a mon doesn't stop being shiny
+	// when it's caught, traded into the party or evolves). Only changes
+	// which sprite set is drawn -- shininess has no effect on stats, exactly
+	// like the real games.
+	bool shiny = false;
 	bool fainted() const { return hp <= 0; }
 };
 
@@ -112,10 +124,31 @@ public:
 	int species_count() const { return (int)species_order.size(); }
 
 	// Build a level-scaled pokemon with its natural (level-up) moveset, real
-	// IVs (0..31 per stat) and a random nature when `rng` is given -- nullptr
-	// falls back to neutral IVs (15)/nature (Hardy), for callers without one
-	// handy rather than a hard dependency.
-	Mon make_mon(const std::string& species_name, int level, std::mt19937* rng = nullptr) const;
+	// IVs (0..31 per stat), a random nature and a random personality value
+	// when `rng` is given -- nullptr falls back to neutral IVs (15)/nature
+	// (Hardy) and a never-shiny personality of 0, for callers without one
+	// handy rather than a hard dependency. ot_id/ot_secret are the owning
+	// player's trainer ID pair (GameState::trainer_id/secret_id); they only
+	// feed the shiny check, which stays at its real 1/8192 either way, so
+	// callers with no GameState in reach can leave them at 0.
+	Mon make_mon(const std::string& species_name, int level, std::mt19937* rng = nullptr,
+	             unsigned ot_id = 0, unsigned ot_secret = 0) const;
+
+	// pokeemerald's GET_SHINY_VALUE / SHINY_ODDS (include/pokemon.h): a mon
+	// is shiny when the two halves of its owner's 32-bit OT id (public
+	// trainer ID in the low half, secret ID in the high half) and the two
+	// halves of its personality value XOR to less than 8 -- 8 of 65536
+	// personality values, the real games' 1/8192 chance.
+	static const unsigned SHINY_ODDS = 8;
+	static bool is_shiny(unsigned personality, unsigned ot_id, unsigned ot_secret);
+
+	// Where a species' 64x64 battle artwork lives. On the GBA a shiny mon is
+	// the same pixels read through a second 16-colour palette; the importer
+	// bakes that second palette into a mirrored assets/pokemon/shiny/ tree
+	// (see tools/pe_import.py), so picking a sprite is just picking a folder.
+	// Shared by the battle screen and the menu's party/summary/PC icons.
+	static std::string sprite_path(const std::string& species, bool shiny,
+	                               bool back = false);
 
 	// Trainer's party, or empty if unknown.
 	std::vector<std::pair<std::string, int>> trainer_party(const std::string& t) const;

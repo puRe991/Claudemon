@@ -117,12 +117,27 @@ static void load_mon_texture(sf::Texture& tex, const std::string& path,
 	tex.setSmooth(false);
 }
 
+// The HUD name plate, e.g. "PIKACHU  Lv12". A shiny individual gets a star
+// after its name: the real games mark shininess with a sparkle animation on
+// send-out, which this engine has no animation system for, and without any
+// marker the only clue would be knowing the species' normal colours by heart.
+static std::string hud_name(const Mon& m, const std::string& pretty_name) {
+	return pretty_name + (m.shiny ? " \u2605" : "") + "  Lv" + std::to_string(m.level);
+}
+
 void Battle::load_sprites() {
+	// A shiny individual is drawn from the mirrored shiny sprite set. The
+	// fallback chain keeps its old shape -- the player falls back from back
+	// sprite to front sprite, both from that mon's own set -- with the enemy
+	// additionally falling back from a missing shiny front to the normal
+	// one, so an unimported shiny shows the species in its usual colours
+	// rather than a blank space.
 	load_mon_texture(this->enemy_tex,
-	                 "assets/pokemon/" + this->enemy.species + ".png", "");
+	                 BattleData::sprite_path(this->enemy.species, this->enemy.shiny),
+	                 this->enemy.shiny ? BattleData::sprite_path(this->enemy.species, false) : "");
 	load_mon_texture(this->player_tex,
-	                 "assets/pokemon/back/" + this->player->species + ".png",
-	                 "assets/pokemon/" + this->player->species + ".png");
+	                 BattleData::sprite_path(this->player->species, this->player->shiny, true),
+	                 BattleData::sprite_path(this->player->species, this->player->shiny));
 }
 
 void Battle::queue(const std::string& line) { this->log.push_back(line); }
@@ -142,7 +157,9 @@ bool Battle::start_wild(const std::string& species, int level, Mon* pm) {
 	this->enemy_title.clear();
 	this->party.clear(); this->party_idx = 0;
 	this->enemy_items.clear();   // wild Pokemon never carry items
-	this->enemy = this->data->make_mon(species, level, this->rng);
+	this->enemy = this->data->make_mon(species, level, this->rng,
+	                                   this->gs ? this->gs->trainer_id : 0,
+	                                   this->gs ? this->gs->secret_id : 0);
 	if (this->gs) this->gs->mark_seen(this->enemy.species);
 	this->player_stages = StatStages(); this->enemy_stages = StatStages();
 	this->weather = WEATHER_NONE; this->weather_turns = 0;
@@ -179,6 +196,10 @@ bool Battle::start_trainer(const std::string& trainer_id, const std::string& nam
 	this->party = pty; this->party_idx = 0;
 	this->enemy_items = this->data->trainer_items(trainer_id);
 	this->enemy = this->data->make_mon(pty[0].first, pty[0].second, this->rng);
+	// pokeemerald builds an NPC trainer's party with OT_ID_RANDOM_NO_SHINY
+	// (CreateNPCTrainerParty): it keeps re-rolling the OT id until the mon
+	// comes out non-shiny, so a trainer's Pokemon never sparkles.
+	this->enemy.shiny = false;
 	if (this->gs) this->gs->mark_seen(this->enemy.species);
 	this->player_stages = StatStages(); this->enemy_stages = StatStages();
 	this->weather = WEATHER_NONE; this->weather_turns = 0;
@@ -721,6 +742,7 @@ void Battle::send_next_enemy() {
 	this->party_idx++;
 	this->enemy = this->data->make_mon(this->party[this->party_idx].first,
 	                                   this->party[this->party_idx].second, this->rng);
+	this->enemy.shiny = false;                 // see start_trainer(): NPC parties never are
 	if (this->gs) this->gs->mark_seen(this->enemy.species);
 	this->enemy_stages = StatStages();
 	load_sprites();
@@ -1020,6 +1042,8 @@ void Battle::throw_ball(const std::string& ball_item) {
 		caught.iv_def = this->enemy.iv_def; caught.iv_spa = this->enemy.iv_spa;
 		caught.iv_spd = this->enemy.iv_spd; caught.iv_spe = this->enemy.iv_spe;
 		caught.nature = this->enemy.nature;
+		caught.personality = this->enemy.personality;
+		caught.shiny = this->enemy.shiny;
 		this->data->recompute_stats(caught, false);
 		if (this->team && this->team->size() < 6) this->team->push_back(caught);
 		else if (this->box) { this->box->push_back(caught);
@@ -1056,6 +1080,8 @@ void Battle::throw_ball(const std::string& ball_item) {
 		caught.iv_def = this->enemy.iv_def; caught.iv_spa = this->enemy.iv_spa;
 		caught.iv_spd = this->enemy.iv_spd; caught.iv_spe = this->enemy.iv_spe;
 		caught.nature = this->enemy.nature;
+		caught.personality = this->enemy.personality;
+		caught.shiny = this->enemy.shiny;
 		this->data->recompute_stats(caught, false);
 		if (this->team && this->team->size() < 6) this->team->push_back(caught);
 		else if (this->box) { this->box->push_back(caught);
@@ -1171,8 +1197,8 @@ void Battle::draw(sf::RenderTarget& target) {
 		               size.y * 0.06f + ey);
 		target.draw(es);
 		if (this->font_ok) {
-			sf::Text n(nice(this->enemy.species) + "  Lv" + std::to_string(this->enemy.level),
-			           this->font, 20);
+			std::string en = hud_name(this->enemy, nice(this->enemy.species));
+			sf::Text n(sf::String::fromUtf8(en.begin(), en.end()), this->font, 20);
 			n.setPosition(24, 24); n.setFillColor(sf::Color(20, 20, 20)); target.draw(n);
 			draw_status_badge(target, this->font, 210, 22, this->enemy.status);
 		}
@@ -1187,8 +1213,8 @@ void Battle::draw(sf::RenderTarget& target) {
 	               size.y * 0.40f + pyo);
 	target.draw(ps);
 	if (this->font_ok) {
-		sf::Text n(nice(this->player->species) + "  Lv" + std::to_string(this->player->level),
-		           this->font, 20);
+		std::string pn = hud_name(*this->player, nice(this->player->species));
+		sf::Text n(sf::String::fromUtf8(pn.begin(), pn.end()), this->font, 20);
 		n.setPosition(size.x - 264, size.y * 0.44f);
 		n.setFillColor(sf::Color(20, 20, 20)); target.draw(n);
 		draw_status_badge(target, this->font, size.x - 60, size.y * 0.44f - 2, this->player->status);

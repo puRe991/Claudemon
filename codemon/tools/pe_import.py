@@ -558,7 +558,8 @@ def cmd_battle(src, starters=("TREECKO", "TORCHIC", "MUDKIP", "PIKACHU")):
           f"{len(learn)} learnsets, {len(trainers)} trainers "
           f"({len(trainer_items)} carry AI items), "
           f"{sum(1 for p in prices.values() if p > 0)} priced items; "
-          f"{nf} front + {nb} back sprites -> {os.path.relpath(out)}")
+          f"{nf} front + {nb} back sprites (normal + shiny palette each) "
+          f"-> {os.path.relpath(out)}")
 
 
 def _flatten_to(src_png, dst_png):
@@ -612,7 +613,7 @@ def cmd_extras(src):
     flattened mirror of the other graphics folders."""
     sp = parse_species_info(src)
     nb = sum(1 for s in sp if import_pokemon_back(s, src))
-    print(f"extras: {nb} back sprites")
+    print(f"extras: {nb} back sprites (normal + shiny palette each)")
 
     # trainer battle sprites (front_pics embed their palette)
     tdir = os.path.join(src, "graphics/trainers/front_pics")
@@ -678,38 +679,40 @@ def cmd_extras(src):
     print(f"extras: mirrored {nm} more graphics -> {os.path.relpath(gout)}")
 
 
-def import_pokemon_back(species, src):
-    """Colour a species' back sprite (first 64x64 frame) into assets/pokemon/back."""
-    name = species.lower()
-    base = os.path.join(src, "graphics", "pokemon", name)
-    png = os.path.join(base, "back.png")
-    pal = os.path.join(base, "normal.pal")
-    if not (os.path.isfile(png) and os.path.isfile(pal)):
+def _species_gfx_dir(species, src):
+    """The graphics/pokemon/<name> folder holding a species' front/back sprite.
+
+    A handful of species keep their sprites one level deeper, in a per-form
+    subfolder (Castform's weather forms, Unown's 28 letters); the engine only
+    carries one sprite per species, so those resolve to the default form.
+    """
+    base = os.path.join(src, "graphics", "pokemon", species.lower())
+    if os.path.isfile(os.path.join(base, "front.png")):
+        return base, base
+    for form in ("normal", "a"):        # castform/normal, unown/a
+        sub = os.path.join(base, form)
+        if os.path.isfile(os.path.join(sub, "front.png")):
+            # Unown keeps one shared palette pair at the species level.
+            pal_dir = sub if os.path.isfile(os.path.join(sub, "normal.pal")) else base
+            return sub, pal_dir
+    return None, None
+
+
+def import_pokemon_sprite(species, src, back=False, shiny=False):
+    """Colour one species' front/back sprite (first 64x64 frame) into assets.
+
+    The GBA stores a Pokemon's artwork once as 4bpp indices plus two 16-colour
+    palettes: normal.pal and shiny.pal. Shininess is therefore purely a palette
+    swap on the very same pixels -- so the shiny set is imported here from the
+    identical source PNG, only read through the other palette, and lands in a
+    mirrored assets/pokemon/shiny/ tree the engine picks per individual (see
+    Mon::shiny).
+    """
+    gfx_dir, pal_dir = _species_gfx_dir(species, src)
+    if not gfx_dir:
         return False
-    im = Image.open(png)
-    im = im.convert("P") if im.mode != "P" else im
-    palette = load_jasc_pal(pal)
-    frame = im.crop((0, 0, 64, 64)); idx = frame.load()
-    out = Image.new("RGBA", (64, 64), (0, 0, 0, 0)); op = out.load()
-    for y in range(64):
-        for x in range(64):
-            i = idx[x, y]
-            if i == 0:
-                continue
-            r, g, b = palette[i & 0x0F]
-            op[x, y] = (r, g, b, 255)
-    d = os.path.join(ASSETS_DIR, "pokemon", "back")
-    os.makedirs(d, exist_ok=True)
-    out.save(os.path.join(d, species + ".png"))
-    return True
-
-
-def import_pokemon_front(species, src):
-    """Colour a species' front sprite (first 64x64 frame) into assets/pokemon."""
-    name = species.lower()
-    base = os.path.join(src, "graphics", "pokemon", name)
-    png = os.path.join(base, "front.png")
-    pal = os.path.join(base, "normal.pal")
+    png = os.path.join(gfx_dir, "back.png" if back else "front.png")
+    pal = os.path.join(pal_dir, "shiny.pal" if shiny else "normal.pal")
     if not (os.path.isfile(png) and os.path.isfile(pal)):
         return False
     im = Image.open(png)
@@ -727,10 +730,28 @@ def import_pokemon_front(species, src):
                 continue                      # transparent backdrop
             r, g, b = palette[i & 0x0F]
             op[x, y] = (r, g, b, 255)
-    dst_dir = os.path.join(ASSETS_DIR, "pokemon")
-    os.makedirs(dst_dir, exist_ok=True)
-    out.save(os.path.join(dst_dir, species + ".png"))
+    d = os.path.join(ASSETS_DIR, "pokemon")
+    if shiny:
+        d = os.path.join(d, "shiny")
+    if back:
+        d = os.path.join(d, "back")
+    os.makedirs(d, exist_ok=True)
+    out.save(os.path.join(d, species + ".png"))
     return True
+
+
+def import_pokemon_back(species, src):
+    """Both palettes of a species' back sprite -> assets/pokemon[/shiny]/back."""
+    ok = import_pokemon_sprite(species, src, back=True)
+    import_pokemon_sprite(species, src, back=True, shiny=True)
+    return ok
+
+
+def import_pokemon_front(species, src):
+    """Both palettes of a species' front sprite -> assets/pokemon[/shiny]."""
+    ok = import_pokemon_sprite(species, src)
+    import_pokemon_sprite(species, src, shiny=True)
+    return ok
 
 
 def _tileset_raw(path):

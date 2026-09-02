@@ -1,4 +1,5 @@
 #include "BattleData.h"
+#include <cstdlib>
 #include <fstream>
 #include <sstream>
 #include <algorithm>
@@ -136,13 +137,36 @@ std::string BattleData::species_by_id(int id) const {
 	return (id >= 0 && id < (int)species_order.size()) ? species_order[id] : std::string();
 }
 
-Mon BattleData::make_mon(const std::string& name, int level, std::mt19937* rng) const {
+bool BattleData::is_shiny(unsigned personality, unsigned ot_id, unsigned ot_secret) {
+	// Test/demo hook, same family as main.cpp's other CODEMON_* env switches:
+	// at the real 1/8192 odds a shiny encounter is unreachable in a scripted
+	// headless run, so this makes every roll come out shiny.
+	static const bool forced = std::getenv("CODEMON_FORCE_SHINY") != nullptr;
+	if (forced) return true;
+	unsigned v = (ot_id & 0xFFFFu) ^ (ot_secret & 0xFFFFu)
+	           ^ ((personality >> 16) & 0xFFFFu) ^ (personality & 0xFFFFu);
+	return v < SHINY_ODDS;
+}
+
+std::string BattleData::sprite_path(const std::string& species, bool shiny, bool back) {
+	std::string p = "assets/pokemon/";
+	if (shiny) p += "shiny/";
+	if (back) p += "back/";
+	return p + species + ".png";
+}
+
+Mon BattleData::make_mon(const std::string& name, int level, std::mt19937* rng,
+                         unsigned ot_id, unsigned ot_secret) const {
 	Mon mon; mon.species = name; mon.level = std::max(1, level);
 	if (rng) {
 		auto roll_iv = [&]() { return (int)((*rng)() % 32); };
 		mon.iv_hp = roll_iv(); mon.iv_atk = roll_iv(); mon.iv_def = roll_iv();
 		mon.iv_spa = roll_iv(); mon.iv_spd = roll_iv(); mon.iv_spe = roll_iv();
 		mon.nature = NATURES[(*rng)() % 25].name;
+		// One 32-bit personality value per individual, like pokeemerald's
+		// CreateMon (Random32()); shininess falls straight out of it.
+		mon.personality = (unsigned)((*rng)() & 0xFFFFFFFFu);
+		mon.shiny = is_shiny(mon.personality, ot_id, ot_secret);
 	}
 	auto it = species.find(name);
 	if (it == species.end()) { mon.max_hp = mon.hp = 10 + level; return mon; }

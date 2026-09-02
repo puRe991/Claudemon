@@ -1,8 +1,10 @@
 # Asset credits & licensing
 
-The tilesets, overworld character/NPC sprites and Pokémon cries under
-`assets/tilesets/`, `assets/overworld/` and `assets/sfx/cries/` are derived
-from the **pokeemerald** decompilation project (https://github.com/pret/pokeemerald).
+The tilesets, overworld character/NPC sprites, Pokémon battle sprites and
+Pokémon cries under `assets/tilesets/`, `assets/overworld/`, `assets/pokemon/`
+(including the shiny set under `assets/pokemon/shiny/`, the same artwork read
+through each species' second palette) and `assets/sfx/cries/` are derived from
+the **pokeemerald** decompilation project (https://github.com/pret/pokeemerald).
 
 * pokeemerald's own tooling and code are released under a permissive licence,
   but the **graphics, sprites and audio are the intellectual property of

@@ -149,6 +149,15 @@ static std::string pretty(const std::string& id, const std::string& prefix) {
 	return out;
 }
 
+// A party/box entry's display name. Shiny individuals get a star after the
+// species name -- the recoloured sprite next to it is the real tell, but at
+// icon size (and for a species whose normal colours the player doesn't know
+// by heart) that is easy to miss, and the real games' send-out sparkle has
+// no equivalent outside battle either.
+static std::string mon_label(const Mon& m) {
+	return pretty(m.species, "") + (m.shiny ? " \u2605" : "");
+}
+
 const sf::Texture* Menu::item_icon(const std::string& item) {
 	std::string f = item;
 	if (f.rfind("ITEM_", 0) == 0) f = f.substr(5);
@@ -163,15 +172,18 @@ const sf::Texture* Menu::item_icon(const std::string& item) {
 	return &this->item_tex[f];
 }
 
-const sf::Texture* Menu::mon_icon(const std::string& species) {
-	auto it = this->mon_tex.find(species);
+const sf::Texture* Menu::mon_icon(const std::string& species, bool shiny) {
+	// Shiny artwork is a separate file, so it needs its own cache slot --
+	// hence the key carrying the flag rather than the bare species name.
+	std::string path = BattleData::sprite_path(species, shiny);
+	auto it = this->mon_tex.find(path);
 	if (it != this->mon_tex.end())
 		return it->second.getSize().x ? &it->second : nullptr;
 	sf::Texture tex;
-	if (!tex.loadFromFile("assets/pokemon/" + species + ".png")) { this->mon_tex[species]; return nullptr; }
+	if (!tex.loadFromFile(path)) { this->mon_tex[path]; return nullptr; }
 	tex.setSmooth(false);
-	this->mon_tex[species] = tex;
-	return &this->mon_tex[species];
+	this->mon_tex[path] = tex;
+	return &this->mon_tex[path];
 }
 
 const sf::Texture* Menu::type_icon(const std::string& type) {
@@ -562,9 +574,9 @@ void Menu::draw(sf::RenderTarget& target) {
 				bool able = this->bdata && this->bdata->can_learn_tm(m.species, this->teach_move);
 				float ry = y + row * 44;
 				if (sel) cursor_at(x, ry);
-				const sf::Texture* ic = mon_icon(m.species);
+				const sf::Texture* ic = mon_icon(m.species, m.shiny);
 				if (ic) { sf::Sprite s(*ic); s.setScale(0.55f, 0.55f); s.setPosition(x, ry - 6); target.draw(s); }
-				text(pretty(m.species, "") + "  Lv" + std::to_string(m.level), x + 44, ry, 20,
+				text(mon_label(m) + "  Lv" + std::to_string(m.level), x + 44, ry, 20,
 				     able ? body_col : sf::Color(170, 170, 170));
 				text(able ? "OK" : "nicht möglich", panel.getPosition().x + panel.getSize().x - 110, ry, 16,
 				     able ? sf::Color(30, 150, 60) : sf::Color(190, 90, 90));
@@ -587,9 +599,9 @@ void Menu::draw(sf::RenderTarget& target) {
 				            (!m.fainted() && heal_amount(this->use_item) >= 0 && m.hp < m.max_hp);
 				float ry = y + row * 44;
 				if (sel) cursor_at(x, ry);
-				const sf::Texture* ic = mon_icon(m.species);
+				const sf::Texture* ic = mon_icon(m.species, m.shiny);
 				if (ic) { sf::Sprite s(*ic); s.setScale(0.55f, 0.55f); s.setPosition(x, ry - 6); target.draw(s); }
-				text(pretty(m.species, "") + "  Lv" + std::to_string(m.level), x + 44, ry, 20,
+				text(mon_label(m) + "  Lv" + std::to_string(m.level), x + 44, ry, 20,
 				     able ? body_col : sf::Color(170, 170, 170));
 				text(std::to_string(m.hp) + "/" + std::to_string(m.max_hp),
 				     panel.getPosition().x + panel.getSize().x - 110, ry, 16,
@@ -606,9 +618,9 @@ void Menu::draw(sf::RenderTarget& target) {
 			for (const Mon& m : *this->team) {
 				float ry = y + row * 72;
 				if (row == this->party_cursor) cursor_at(x - 12, ry + 6);
-				const sf::Texture* ic = mon_icon(m.species);
+				const sf::Texture* ic = mon_icon(m.species, m.shiny);
 				if (ic) { sf::Sprite s(*ic); s.setScale(0.9f, 0.9f); s.setPosition(x, ry); target.draw(s); }
-				text(pretty(m.species, "") + "  Lv" + std::to_string(m.level), x + 66, ry + 6, 20, body_col);
+				text(mon_label(m) + "  Lv" + std::to_string(m.level), x + 66, ry + 6, 20, body_col);
 				if (m.status != Status::NONE)
 					text(BattleData::status_name(m.status), x + 290, ry + 8, 15, sf::Color(190, 60, 60));
 				hp_bar(x + 66, ry + 34, m.hp, m.max_hp);
@@ -622,9 +634,9 @@ void Menu::draw(sf::RenderTarget& target) {
 			? &(*this->team)[this->party_cursor] : nullptr;
 		if (!m) { text("POKéMON", x, y, 24, head_col); }
 		else {
-			const sf::Texture* ic = mon_icon(m->species);
+			const sf::Texture* ic = mon_icon(m->species, m->shiny);
 			if (ic) { sf::Sprite s(*ic); s.setScale(1.3f, 1.3f); s.setPosition(x, y); target.draw(s); }
-			text(pretty(m->species, "") + "  Lv" + std::to_string(m->level), x + 100, y + 10, 22, head_col);
+			text(mon_label(*m) + "  Lv" + std::to_string(m->level), x + 100, y + 10, 22, head_col);
 			const sf::Texture* t1 = type_icon(m->t1);
 			float tx = x + 100;
 			if (t1) { sf::Sprite s(*t1); s.setPosition(tx, y + 42); target.draw(s); tx += 60; }
@@ -702,9 +714,9 @@ void Menu::draw(sf::RenderTarget& target) {
 			int row = 0;
 			for (const Mon& m : *this->box) {
 				float ry = y + row * 40;
-				const sf::Texture* ic = mon_icon(m.species);
+				const sf::Texture* ic = mon_icon(m.species, m.shiny);
 				if (ic) { sf::Sprite s(*ic); s.setScale(0.55f, 0.55f); s.setPosition(x, ry - 6); target.draw(s); }
-				text(pretty(m.species, "") + "  Lv" + std::to_string(m.level), x + 44, ry, 20, body_col);
+				text(mon_label(m) + "  Lv" + std::to_string(m.level), x + 44, ry, 20, body_col);
 				if (++row >= 10) break;
 			}
 		} else {

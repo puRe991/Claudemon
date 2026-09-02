@@ -53,6 +53,11 @@ resolved automatically. The game loads `maps/littleroot_town.map` by default
 * `assets/overworld/<key>.png` (+ `index.json`) — every character / NPC /
   pokemon walking sheet, flattened to RGBA with a transparent backdrop. Each is
   a single row of 16×32 frames (see `character.h`).
+* `assets/pokemon/<SPECIES>.png` and `assets/pokemon/back/<SPECIES>.png` —
+  64×64 battle artwork, coloured with the species' `normal.pal`, plus the same
+  two views under `assets/pokemon/shiny/` coloured with its `shiny.pal`. On the
+  GBA shininess is nothing but that second palette on identical pixels, so the
+  engine picks a folder rather than recolouring anything at runtime.
 * `assets/sfx/cries/<species>.wav` — Pokémon cries (SFML-loadable).
 * `assets/sfx/{step,bump,select}.wav` — synthesized UI/movement blips.
 * `assets/sfx/music/` — OGG music if a synth was available, otherwise a note

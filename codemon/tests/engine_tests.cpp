@@ -123,6 +123,60 @@ static void test_species_data(BattleData& bd) {
     CHECK(c.iv_spe >= 0 && c.iv_spe <= 31);
 }
 
+
+static void test_shiny(BattleData& bd) {
+    std::printf("[battle_data] shiny personality values, odds and sprites\n");
+
+    // pokeemerald's GET_SHINY_VALUE: the four 16-bit halves XORed together,
+    // shiny below SHINY_ODDS (8). 0x00000000 with a 0 trainer id XORs to 0.
+    CHECK(BattleData::is_shiny(0x00000000u, 0, 0));
+    CHECK(BattleData::is_shiny(0x00000007u, 0, 0));
+    CHECK(!BattleData::is_shiny(0x00000008u, 0, 0));
+    // The trainer's own ID pair is part of the sum, so the very same
+    // personality value is shiny for one save file and not for the next.
+    CHECK(BattleData::is_shiny(0x12345678u, 0x444Cu, 0x0000u));   // 1234^5678^444C = 0
+    CHECK(!BattleData::is_shiny(0x12345678u, 0x0000u, 0x0000u));
+
+    // Without an RNG a mon is fully deterministic (the headless walk tests
+    // depend on that), which includes never being shiny.
+    Mon plain = bd.make_mon("TREECKO", 5);
+    CHECK(plain.personality == 0 && !plain.shiny);
+
+    // Rolled mons agree with the formula, and the odds come out at the real
+    // 1/8192: 512k rolls average 64 shinies, so a run this far outside that
+    // band means the check itself is wrong, not bad luck.
+    std::mt19937 rng(7);
+    const unsigned tid = 42021, sid = 31337;
+    int shinies = 0;
+    const int rolls = 8192 * 64;
+    for (int i = 0; i < rolls; ++i)
+        if (BattleData::is_shiny((unsigned)rng(), tid, sid)) ++shinies;
+    CHECK(shinies > 25 && shinies < 120);
+
+    Mon rolled = bd.make_mon("TREECKO", 5, &rng, tid, sid);
+    CHECK(rolled.shiny == BattleData::is_shiny(rolled.personality, tid, sid));
+
+    // Both palettes of both views are on disk for every species the engine
+    // can put on screen -- a shiny with no artwork would battle as a blank.
+    CHECK(BattleData::sprite_path("TREECKO", false) == "assets/pokemon/TREECKO.png");
+    CHECK(BattleData::sprite_path("TREECKO", true) == "assets/pokemon/shiny/TREECKO.png");
+    CHECK(BattleData::sprite_path("TREECKO", true, true) == "assets/pokemon/shiny/back/TREECKO.png");
+    int missing = 0;
+    for (int i = 0; i < bd.species_count(); ++i) {
+        const std::string sp = bd.species_by_id(i);
+        for (bool back : {false, true}) {
+            // Only species that have normal artwork can have shiny artwork.
+            std::FILE* n = std::fopen(BattleData::sprite_path(sp, false, back).c_str(), "rb");
+            if (!n) continue;
+            std::fclose(n);
+            std::FILE* sh = std::fopen(BattleData::sprite_path(sp, true, back).c_str(), "rb");
+            if (!sh) { ++missing; continue; }
+            std::fclose(sh);
+        }
+    }
+    CHECK(missing == 0);
+}
+
 // ----------------------------------------------------------------- SaveGame --
 
 static void test_save_roundtrip(BattleData& bd) {
@@ -137,6 +191,7 @@ static void test_save_roundtrip(BattleData& bd) {
     gs.sound_on = false;
     gs.battle_scene_on = false;
     gs.frame_type = 7;
+    gs.trainer_id = 54321; gs.secret_id = 12345;
     gs.set_flag("FLAG_BADGE01_GET");
     gs.give_item("ITEM_POTION", 3);
     gs.mark_caught("TORCHIC");
@@ -146,6 +201,8 @@ static void test_save_roundtrip(BattleData& bd) {
     team.push_back(bd.make_mon("TORCHIC", 12, &rng));
     team[0].pp[0] = 1;
     team[0].held_item = "ORAN_BERRY";
+    team[0].personality = 0xDEADBEEFu;
+    team[0].shiny = true;
     box.push_back(bd.make_mon("ZIGZAGOON", 4, &rng));
 
     CHECK(SaveGame::save(path, gs, team, box, "maps/LittlerootTown.map", 5, 7));
@@ -164,6 +221,12 @@ static void test_save_roundtrip(BattleData& bd) {
     CHECK(t2[0].nature == team[0].nature && t2[0].iv_spe == team[0].iv_spe);
     CHECK(t2[0].held_item == "ORAN_BERRY");
     CHECK(t2[0].pp.size() == t2[0].moves.size() && t2[0].pp[0] == 1);
+    // A caught shiny has to still be shiny after a reload -- the trainer ID
+    // pair the roll was made against has to survive too, or every Pokemon
+    // generated after the reload would be judged against a different one.
+    CHECK(t2[0].personality == 0xDEADBEEFu && t2[0].shiny);
+    CHECK(b2[0].shiny == box[0].shiny && b2[0].personality == box[0].personality);
+    CHECK(gs2.trainer_id == 54321 && gs2.secret_id == 12345);
     std::remove(path);
 }
 
@@ -186,6 +249,32 @@ static void test_save_empty_party() {
     CHECK(t2.empty());
     CHECK(gs2.flag("FLAG_STORY_PROGRESS"));
     CHECK(map2 == "maps/LittlerootTown_BrendansHouse_2F.map");
+    std::remove(path);
+}
+
+static void test_save_pre_shiny_file() {
+    std::printf("[savegame] a save written before shiny support still loads\n");
+    // Mon lines grew two fields (personality value + shiny flag) and the file
+    // grew a `trainerid` line. An older save has neither, and must still
+    // reload -- with the mon non-shiny, which is exactly what it was.
+    const char* path = "test_save_legacy.dat";
+    {
+        std::FILE* f = std::fopen(path, "w");
+        std::fputs("SAVE 1\n"
+                   "map\tmaps/LittlerootTown.map\n"
+                   "pos\t5\t7\n"
+                   "team\t1\n"
+                   "TORCHIC\t12\t30\t30\t18\t14\t20\t14\t16\t"
+                   "FIRE\tFIRE\t1000\tSCRATCH,GROWL\t0\t0\t0\t"
+                   "HARDY\t15\t15\t15\t15\t15\t15\t35,40\tNONE\n",
+                   f);
+        std::fclose(f);
+    }
+    GameState gs; std::vector<Mon> t, b; std::string m; int x = 0, y = 0;
+    CHECK(SaveGame::load(path, gs, t, b, m, x, y));
+    CHECK(t.size() == 1 && t[0].species == "TORCHIC");
+    CHECK(t[0].held_item == "NONE" && t[0].personality == 0 && !t[0].shiny);
+    CHECK(gs.trainer_id == 0 && gs.secret_id == 0);
     std::remove(path);
 }
 
@@ -780,8 +869,10 @@ int main() {
     test_struggle_ignores_type_chart(bd);
     test_pp_and_movesets(bd);
     test_species_data(bd);
+    test_shiny(bd);
     test_save_roundtrip(bd);
     test_save_empty_party();
+    test_save_pre_shiny_file();
     test_save_rejects_garbage();
 
     if (has_display()) {

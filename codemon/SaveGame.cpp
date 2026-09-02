@@ -1,4 +1,5 @@
 #include "SaveGame.h"
+#include <cstdlib>
 #include <fstream>
 #include <sstream>
 
@@ -19,7 +20,7 @@ void write_mon(std::ofstream& f, const Mon& m) {
 		if (i) f << ',';
 		f << m.pp[i];
 	}
-	f << '\t' << m.held_item << '\n';
+	f << '\t' << m.held_item << '\t' << m.personality << '\t' << (m.shiny ? 1 : 0) << '\n';
 }
 
 // Splits on '\t'; returns false if the line doesn't have enough fields.
@@ -64,6 +65,13 @@ bool read_mon(const std::string& line, Mon& m) {
 		while (std::getline(ps, tok, ',')) if (!tok.empty()) m.pp.push_back(std::atoi(tok.c_str()));
 	}
 	if (f.size() >= 25) m.held_item = f[24];
+	// Saves written before shiny Pokemon existed have no personality value;
+	// leaving those two at their defaults keeps such a mon non-shiny, which
+	// is exactly what it was when the file was written.
+	if (f.size() >= 27) {
+		m.personality = (unsigned)std::strtoul(f[25].c_str(), nullptr, 10);
+		m.shiny = f[26] != "0";
+	}
 	return true;
 }
 
@@ -86,6 +94,7 @@ bool SaveGame::save(const std::string& path, const GameState& gs,
 	f << "money\t" << gs.money << '\n';
 	f << "heal\t" << gs.last_heal_map << '\t' << gs.last_heal_x << '\t' << gs.last_heal_y << '\n';
 	f << "player\t" << (gs.female ? 1 : 0) << '\t' << gs.player_name << '\t' << gs.rival_name << '\n';
+	f << "trainerid\t" << gs.trainer_id << '\t' << gs.secret_id << '\n';
 	f << "options\t" << (gs.sound_on ? 1 : 0) << '\t' << (gs.battle_scene_on ? 1 : 0)
 	  << '\t' << gs.frame_type << '\n';
 
@@ -151,6 +160,9 @@ bool SaveGame::load(const std::string& path, GameState& gs,
 			new_gs.female = parts[1] != "0";
 			new_gs.player_name = parts[2];
 			new_gs.rival_name = parts[3];
+		} else if (key == "trainerid" && parts.size() >= 3) {
+			new_gs.trainer_id = (unsigned)std::strtoul(parts[1].c_str(), nullptr, 10);
+			new_gs.secret_id = (unsigned)std::strtoul(parts[2].c_str(), nullptr, 10);
 		} else if (key == "options" && parts.size() >= 4) {
 			new_gs.sound_on = parts[1] != "0";
 			new_gs.battle_scene_on = parts[2] != "0";
