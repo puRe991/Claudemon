@@ -37,6 +37,10 @@ Alles oben Genannte wurde anhand der Quelldaten überprüft und ist nicht frei e
 <td><img src="docs/screenshots/battle_wurmple.png" width="380" alt="Wilder Kampf gegen ein Waumpel auf Route 102"><br><sub>Wilde Begegnung auf Route 102, entsprechend der Begegnungstabelle der Quelldaten</sub></td>
 <td><img src="docs/screenshots/tm_teach.png" width="380" alt="Gigadrain wird von Treecko gelernt"><br><sub>TM-Lernen aus dem Beutel, abhängig vom echten Lernset</sub></td>
 </tr>
+<tr>
+<td><img src="docs/screenshots/shiny_battle.png" width="380" alt="Wilder Kampf gegen ein schillerndes Zigzagoon"><br><sub>Schillernde (shiny) Pokémon mit der echten zweiten Palette – 1/8192, hier per <code>CODEMON_FORCE_SHINY</code> erzwungen</sub></td>
+<td></td>
+</tr>
 </table>
 
 ### Eine von Grund auf neu entwickelte C++/SFML-Neuimplementierung von Pokémon Emerald mit echten, aus pokeemerald importierten Daten
@@ -238,6 +242,7 @@ Wichtige Umgebungsvariablen:
 * `CODEMON_FRAMES` – Anzahl der Frames
 * `CODEMON_FORCE_ENCOUNTER` / `CODEMON_NO_WILD` – Wildbegegnungen erzwingen/deaktivieren
 * `CODEMON_GRANT_EXP` – Start-EP vergeben, um Levelaufstieg/Entwicklung sofort zu testen
+* `CODEMON_FORCE_SHINY` – jedes erzeugte Pokémon ist schillernd (shiny). Bei den echten 1/8192 wäre der Fall in einem Testlauf sonst nicht erreichbar.
 * `CODEMON_NO_SAVE` – vorhandenes `savegame.dat` ignorieren und neu beginnen
 * `CODEMON_TEST_SCRIPT` – ein Skript anhand seines Labels direkt beim Start ausführen, beispielsweise für eine legendäre Begegnung, ohne die Welt dorthin navigieren zu müssen
 
@@ -344,6 +349,8 @@ Dies ist keine Wunschliste: Alles, was als erledigt markiert ist, wurde entweder
 
 ✅ * Echte IVs (0–31 pro Wert) und Wesen. Jeder einzelne Mon erhält seine Werte einmalig und behält sie dauerhaft. EVs werden noch nicht gesammelt.
 
+✅ * Schillernde (shiny) Pokémon mit der echten Gen-3-Mechanik: Jedes Pokémon bekommt beim Erzeugen einen 32-Bit-Persönlichkeitswert, der zusammen mit dem Trainer-ID-Paar des Spielstands (sichtbare ID + Secret ID, einmalig pro neuem Spiel gewürfelt) über `GET_SHINY_VALUE` entscheidet – 8 von 65536, also die echten 1/8192. Gezeichnet wird dann die zweite, ebenfalls importierte 16-Farben-Palette der Art (Vorder- **und** Rückansicht, alle 385 Arten). Der Status bleibt beim Fangen, Speichern und Entwickeln erhalten und wird im Kampf sowie im Team-/Box-Menü mit einem ★ hinter dem Namen markiert (die Funkel-Animation des Originals hat diese Engine nicht). Trainer-Pokémon sind wie im Original nie schillernd (`OT_ID_RANDOM_NO_SHINY`).
+
 ✅ * Echte PP pro Attacke, PP-Verbrauch auch bei Fehlschlägen, Erzwingen von Verzweifler bei 0 PP sowie Rückstoßschaden. PP wird bei vollständiger Heilung wiederhergestellt.
 
 ✅ * Getragene Items bei wilden Pokémon mit echten Wahrscheinlichkeiten. Ein ausgewählter Teil der Items besitzt echte Effekte, darunter Statusbeeren, Oran-/Sitrusbeere, Überreste, Typverstärker und Ewigstein.
@@ -428,11 +435,11 @@ Die Storyinhalte selbst (Dialoge, Skripte, Karten) sind für das gesamte Spiel i
 
 ### 🧱 Größere Engine-weite Lücken (kein einfacher Tabellen-Fix)
 
-* **`BattleData::Mon` hat keinen Spitznamen, keinen Persönlichkeitswert (PID), keinen Original-Trainer-Name/-Geschlecht und keinen Sheen/Glanz-Wert.** Fiel zuerst bei der Korrektur von `INGAME_TRADES` auf (dort fehlen dadurch Spitzname "DOTS"/"PLUSES"/"SEASOR"/"MEOWOW", OT "KOBE"/"ROMAN"/"SKYLAR"/"ISIS" usw.), ist aber keine Trade-spezifische Lücke, sondern gilt für jedes Pokémon im Spiel (gefangen, geschenkt, Starter). Das Beheben braucht:
-  * neue Felder in `BattleData::Mon` (nickname, personality/PID, ot_name, ot_gender, sheen)
+* **`BattleData::Mon` hat keinen Spitznamen, keinen Original-Trainer-Name/-Geschlecht und keinen Sheen/Glanz-Wert.** (Ein echter Persönlichkeitswert existiert seit den schillernden Pokémon, ausgewertet wird daraus bisher aber nur der Shiny-Status – Geschlecht, die Wahl zwischen Fähigkeit 1 und 2 sowie Unowns Buchstabe hängen im Original ebenfalls daran.) Fiel zuerst bei der Korrektur von `INGAME_TRADES` auf (dort fehlen dadurch Spitzname "DOTS"/"PLUSES"/"SEASOR"/"MEOWOW", OT "KOBE"/"ROMAN"/"SKYLAR"/"ISIS" usw.), ist aber keine Trade-spezifische Lücke, sondern gilt für jedes Pokémon im Spiel (gefangen, geschenkt, Starter). Das Beheben braucht:
+  * neue Felder in `BattleData::Mon` (nickname, ot_name, ot_gender, sheen)
   * Anzeige überall, wo aktuell der Artname statt eines Spitznamens gezeigt wird (Team-Menü, Kampf-UI, `bufferpartymonnick`)
   * Erweiterung von `SaveGame.cpp`s Textformat um die neuen Felder (mit Rückwärtskompatibilität zu bestehenden Spielständen)
-  * ggf. PID-Ableitung von Geschlecht/Shiny-Status, falls das später auch angegangen wird
+  * ggf. weitere PID-Ableitungen (Geschlecht, Fähigkeitsslot), analog zum bereits daraus abgeleiteten Shiny-Status
 
 * **Bewusst bei `0`/`false` belassene `specialvar`-Fälle** (kein Tabellen-Bug, sondern jeweils ein komplett fehlendes Subsystem, kein kleiner Fix): Rückkämpfe (`ShouldTryRematchBattle`, 77× in den Karten aufgerufen!), Pokérus, Zucht/Daycare, Mail, Union Room, Wireless, Fanclub, Wettbewerbe, Museum, Mirage Island. Jedes davon bräuchte eine eigene, komplett neue Engine-Funktion (eigener Zustand, eigene UI, teils eigene Assets), nicht nur eine ergänzte Fallunterscheidung in `ScriptVM::pump()`.
 
@@ -479,6 +486,8 @@ Alles, was unten abgehakt ist, wurde durch einen Test oder Headless-Screenshot �
 * ✅ Fähigkeiten
 
 * ✅ IVs und Wesen
+
+* ✅ Schillernde (shiny) Pokémon (Persönlichkeitswert + Trainer-ID-Paar, 1/8192, eigene Sprite-Palette)
 
 * ✅ PP und Verzweifler
 

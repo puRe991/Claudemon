@@ -49,11 +49,13 @@ private:
 	// Apply the pending healing/revive item to the selected party member.
 	void use_selected();
 	std::map<std::string, sf::Texture> item_tex;
-	std::map<std::string, sf::Texture> mon_tex;
+	std::map<std::string, sf::Texture> mon_tex;   // keyed by sprite path (normal vs shiny)
 	std::map<std::string, sf::Texture> type_tex;
 
 	const sf::Texture* item_icon(const std::string& item);
-	const sf::Texture* mon_icon(const std::string& species);
+	// `shiny` picks this individual's own artwork; the Pokedex, which lists
+	// species rather than individuals, always asks for the normal set.
+	const sf::Texture* mon_icon(const std::string& species, bool shiny = false);
 	const sf::Texture* type_icon(const std::string& type);
 	UiFrame frame;
 	sf::Texture cursor_tex; bool cursor_ok;

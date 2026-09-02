@@ -67,6 +67,18 @@ private:
 	int switch_cursor;            // selected row in the SWITCH party list
 	bool forced_switch;           // true when the active mon just fainted (no cancel)
 	bool has_healthy_reserve() const;
+	// The party slot a battle starts from: pokeemerald sends out the first
+	// member that can still fight, not slot 1. Callers only ever hand over
+	// &team[0], so without this a party whose lead fainted in the previous
+	// battle would put that fainted mon straight back on the field.
+	size_t lead_index() const;
+	// Point `player`/`active_idx` at that slot. `fallback` is the caller's
+	// own Mon, used when this battle has no party at all (headless drivers
+	// and the demo hooks fight with a single loose Mon).
+	void set_lead(Mon* fallback);
+	// The wild mon as it joins the party after a successful ball: the same
+	// individual that was on the field, since a Pokeball rerolls nothing.
+	Mon caught_mon() const;
 	// Common "active mon just fainted" handling: force a switch if the team
 	// has another healthy member, else end the battle in a loss.
 	void handle_player_faint();
@@ -235,6 +247,9 @@ public:
 	int enemy_max_hp() const { return this->enemy.max_hp; }
 	Status enemy_status() const { return this->enemy.status; }
 	size_t enemy_items_left() const { return this->enemy_items.size(); }
+	// Which party slot is on the field. Also the only way to see which mon a
+	// battle picked as its lead (see lead_index()).
+	size_t active_party_index() const { return this->active_idx; }
 
 	// Which sub-screen the battle is currently showing. Exposed so a headless
 	// driver (the engine tests, a CODEMON_WALK script) can step the menus off

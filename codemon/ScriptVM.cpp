@@ -240,8 +240,13 @@ void ScriptVM::resolve_starter(const std::string& species) {
 		// A fresh game's team is empty until this very moment (pokeemerald
 		// never gives you a Pokemon before you actually pick one from
 		// Birch's bag), so this is normally a push_back, not a replace.
-		if (this->team->empty()) this->team->push_back(this->bdata->make_mon(species, 5, this->rng));
-		else (*this->team)[0] = this->bdata->make_mon(species, 5, this->rng);
+		// The starter is generated against the player's own trainer ID pair,
+		// so it has the same 1/8192 shiny chance as anything else caught --
+		// pokeemerald hands it over with a plain CreateMon/OT_ID_PLAYER too.
+		unsigned tid = this->state ? this->state->trainer_id : 0;
+		unsigned sid = this->state ? this->state->secret_id : 0;
+		if (this->team->empty()) this->team->push_back(this->bdata->make_mon(species, 5, this->rng, tid, sid));
+		else (*this->team)[0] = this->bdata->make_mon(species, 5, this->rng, tid, sid);
 	}
 	if (this->state) {
 		this->state->set_flag("FLAG_SYS_POKEMON_GET");
@@ -646,7 +651,9 @@ void ScriptVM::pump() {
 			int lv = (op == "givemon" && argc >= 2) ? value_of(arg(1)) : 5;
 			int result = 2;
 			if (this->bdata && this->team) {
-				Mon m = this->bdata->make_mon(sp, lv, this->rng);
+				Mon m = this->bdata->make_mon(sp, lv, this->rng,
+				                              this->state ? this->state->trainer_id : 0,
+				                              this->state ? this->state->secret_id : 0);
 				if (op == "givemon" && argc >= 3) {
 					std::string it = arg(2);
 					if (it.rfind("ITEM_", 0) == 0) it = it.substr(5);
@@ -722,6 +729,11 @@ void ScriptVM::pump() {
 					m.iv_hp = t.ivs[0]; m.iv_atk = t.ivs[1]; m.iv_def = t.ivs[2];
 					m.iv_spe = t.ivs[3]; m.iv_spa = t.ivs[4]; m.iv_spd = t.ivs[5];
 					m.held_item = t.held_item;
+					// sIngameTrades carries each trade mon's own fixed
+					// personality value and OT id, and none of the four
+					// works out shiny -- so a traded-in mon never is,
+					// whatever make_mon()'s roll said.
+					m.shiny = false;
 					this->bdata->recompute_stats(m, false);   // IVs above changed after make_mon()'s own roll
 					(*this->team)[party_idx] = m;
 					if (this->state) this->state->mark_caught(t.give);

@@ -54,6 +54,14 @@ public:
 	std::string player_name = "BRENDAN";
 	std::string rival_name = "MAY";
 
+	// The player's trainer ID pair (pokeemerald's gSaveBlock2Ptr->
+	// playerTrainerId): the visible 5-digit ID plus the hidden "secret ID",
+	// rolled once when a new game starts. Nothing displays them yet -- they
+	// exist because together with a Pokemon's personality value they decide
+	// which individuals are shiny (BattleData::is_shiny), so they have to be
+	// the same on every load or a caught shiny would stop being one.
+	unsigned trainer_id = 0, secret_id = 0;
+
 	// Options screen (a curated subset of pokeemerald's real SaveBlock2
 	// options, see the OPTIONS screen in Menu.cpp/main.cpp and README for
 	// what's simplified/skipped -- Text Speed and Battle Style aren't

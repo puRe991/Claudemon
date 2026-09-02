@@ -117,12 +117,27 @@ static void load_mon_texture(sf::Texture& tex, const std::string& path,
 	tex.setSmooth(false);
 }
 
+// The HUD name plate, e.g. "PIKACHU  Lv12". A shiny individual gets a star
+// after its name: the real games mark shininess with a sparkle animation on
+// send-out, which this engine has no animation system for, and without any
+// marker the only clue would be knowing the species' normal colours by heart.
+static std::string hud_name(const Mon& m, const std::string& pretty_name) {
+	return pretty_name + (m.shiny ? " \u2605" : "") + "  Lv" + std::to_string(m.level);
+}
+
 void Battle::load_sprites() {
+	// A shiny individual is drawn from the mirrored shiny sprite set. The
+	// fallback chain keeps its old shape -- the player falls back from back
+	// sprite to front sprite, both from that mon's own set -- with the enemy
+	// additionally falling back from a missing shiny front to the normal
+	// one, so an unimported shiny shows the species in its usual colours
+	// rather than a blank space.
 	load_mon_texture(this->enemy_tex,
-	                 "assets/pokemon/" + this->enemy.species + ".png", "");
+	                 BattleData::sprite_path(this->enemy.species, this->enemy.shiny),
+	                 this->enemy.shiny ? BattleData::sprite_path(this->enemy.species, false) : "");
 	load_mon_texture(this->player_tex,
-	                 "assets/pokemon/back/" + this->player->species + ".png",
-	                 "assets/pokemon/" + this->player->species + ".png");
+	                 BattleData::sprite_path(this->player->species, this->player->shiny, true),
+	                 BattleData::sprite_path(this->player->species, this->player->shiny));
 }
 
 void Battle::queue(const std::string& line) { this->log.push_back(line); }
@@ -135,14 +150,15 @@ void Battle::show_messages(Phase next) {
 
 bool Battle::start_wild(const std::string& species, int level, Mon* pm) {
 	if (!this->data || !this->data->has_species(species)) return false;
-	this->player = pm;
-	this->active_idx = 0;
+	set_lead(pm);
 	this->forced_switch = false;
 	this->is_trainer = false;
 	this->enemy_title.clear();
 	this->party.clear(); this->party_idx = 0;
 	this->enemy_items.clear();   // wild Pokemon never carry items
-	this->enemy = this->data->make_mon(species, level, this->rng);
+	this->enemy = this->data->make_mon(species, level, this->rng,
+	                                   this->gs ? this->gs->trainer_id : 0,
+	                                   this->gs ? this->gs->secret_id : 0);
 	if (this->gs) this->gs->mark_seen(this->enemy.species);
 	this->player_stages = StatStages(); this->enemy_stages = StatStages();
 	this->weather = WEATHER_NONE; this->weather_turns = 0;
@@ -171,14 +187,17 @@ bool Battle::start_trainer(const std::string& trainer_id, const std::string& nam
 	if (!this->data) return false;
 	auto pty = this->data->trainer_party(trainer_id);
 	if (pty.empty()) pty.push_back({"POOCHYENA", 12});   // fallback opponent
-	this->player = pm;
-	this->active_idx = 0;
+	set_lead(pm);
 	this->forced_switch = false;
 	this->is_trainer = true;
 	this->enemy_title = name.empty() ? "TRAINER" : name;
 	this->party = pty; this->party_idx = 0;
 	this->enemy_items = this->data->trainer_items(trainer_id);
 	this->enemy = this->data->make_mon(pty[0].first, pty[0].second, this->rng);
+	// pokeemerald builds an NPC trainer's party with OT_ID_RANDOM_NO_SHINY
+	// (CreateNPCTrainerParty): it keeps re-rolling the OT id until the mon
+	// comes out non-shiny, so a trainer's Pokemon never sparkles.
+	this->enemy.shiny = false;
 	if (this->gs) this->gs->mark_seen(this->enemy.species);
 	this->player_stages = StatStages(); this->enemy_stages = StatStages();
 	this->weather = WEATHER_NONE; this->weather_turns = 0;
@@ -721,6 +740,7 @@ void Battle::send_next_enemy() {
 	this->party_idx++;
 	this->enemy = this->data->make_mon(this->party[this->party_idx].first,
 	                                   this->party[this->party_idx].second, this->rng);
+	this->enemy.shiny = false;                 // see start_trainer(): NPC parties never are
 	if (this->gs) this->gs->mark_seen(this->enemy.species);
 	this->enemy_stages = StatStages();
 	load_sprites();
@@ -873,6 +893,47 @@ bool Battle::has_healthy_reserve() const {
 	return false;
 }
 
+void Battle::set_lead(Mon* fallback) {
+	this->active_idx = lead_index();
+	this->player = (this->team && this->active_idx < this->team->size())
+		? &(*this->team)[this->active_idx] : fallback;
+}
+
+size_t Battle::lead_index() const {
+	if (!this->team) return 0;
+	for (size_t i = 0; i < this->team->size(); ++i)
+		if (!(*this->team)[i].fainted()) return i;
+	return 0;   // whole party down: the caller's whiteout handling takes over
+}
+
+Mon Battle::caught_mon() const {
+	// Reuse the encounter's own already-rolled values rather than generating
+	// new ones -- they were "always" this individual's, same as a wild
+	// Pokemon's stats not changing at the moment you catch it. make_mon()
+	// without an RNG is only used to rebuild the moveset/base stats, so
+	// everything it would otherwise have rolled is copied over here; missing
+	// the held item out of that list handed every caught Pokemon an empty
+	// item slot, even one that had just been eating its own Oran Berry.
+	Mon caught = this->data->make_mon(this->enemy.species, this->enemy.level);
+	caught.iv_hp = this->enemy.iv_hp; caught.iv_atk = this->enemy.iv_atk;
+	caught.iv_def = this->enemy.iv_def; caught.iv_spa = this->enemy.iv_spa;
+	caught.iv_spd = this->enemy.iv_spd; caught.iv_spe = this->enemy.iv_spe;
+	caught.nature = this->enemy.nature;
+	caught.personality = this->enemy.personality;
+	caught.shiny = this->enemy.shiny;
+	caught.held_item = this->enemy.held_item;
+	this->data->recompute_stats(caught, false);   // fills HP up to the new max
+	// ... and then the battle-worn state on top: a Pokemon caught at 3 HP and
+	// asleep joins the party at 3 HP and asleep, it does not walk in fully
+	// healed. Confusion is deliberately left behind -- it is volatile in
+	// Gen 3 and wears off with the battle, unlike the major status
+	// conditions, which the mon carries around until it is cured.
+	caught.hp = std::max(1, std::min(this->enemy.hp, caught.max_hp));
+	caught.status = this->enemy.status;
+	caught.status_turns = this->enemy.status_turns;
+	return caught;
+}
+
 void Battle::handle_player_faint() {
 	queue(nice(this->player->species) + " wurde besiegt!");
 	if (has_healthy_reserve()) {
@@ -1015,12 +1076,7 @@ void Battle::throw_ball(const std::string& ball_item) {
 	if (ball_item == "ITEM_MASTER_BALL") {
 		queue("Erwischt! " + nice(this->enemy.species) + " wurde gefangen!");
 		if (this->gs) this->gs->mark_caught(this->enemy.species);
-		Mon caught = this->data->make_mon(this->enemy.species, this->enemy.level);
-		caught.iv_hp = this->enemy.iv_hp; caught.iv_atk = this->enemy.iv_atk;
-		caught.iv_def = this->enemy.iv_def; caught.iv_spa = this->enemy.iv_spa;
-		caught.iv_spd = this->enemy.iv_spd; caught.iv_spe = this->enemy.iv_spe;
-		caught.nature = this->enemy.nature;
-		this->data->recompute_stats(caught, false);
+		Mon caught = caught_mon();
 		if (this->team && this->team->size() < 6) this->team->push_back(caught);
 		else if (this->box) { this->box->push_back(caught);
 			queue(nice(this->enemy.species) + " wurde zur PC-BOX geschickt."); }
@@ -1047,16 +1103,7 @@ void Battle::throw_ball(const std::string& ball_item) {
 	if ((*this->rng)() % 65536 < (unsigned)(p * 65536.f)) {
 		queue("Erwischt! " + nice(this->enemy.species) + " wurde gefangen!");
 		if (this->gs) this->gs->mark_caught(this->enemy.species);
-		// Reuse the encounter's own already-rolled IVs/nature rather than
-		// generating new ones -- they were "always" this individual's real
-		// values, same as a wild Pokemon's stats not changing at the moment
-		// you catch it.
-		Mon caught = this->data->make_mon(this->enemy.species, this->enemy.level);
-		caught.iv_hp = this->enemy.iv_hp; caught.iv_atk = this->enemy.iv_atk;
-		caught.iv_def = this->enemy.iv_def; caught.iv_spa = this->enemy.iv_spa;
-		caught.iv_spd = this->enemy.iv_spd; caught.iv_spe = this->enemy.iv_spe;
-		caught.nature = this->enemy.nature;
-		this->data->recompute_stats(caught, false);
+		Mon caught = caught_mon();
 		if (this->team && this->team->size() < 6) this->team->push_back(caught);
 		else if (this->box) { this->box->push_back(caught);
 			queue(nice(this->enemy.species) + " wurde zur PC-BOX geschickt."); }
@@ -1171,8 +1218,8 @@ void Battle::draw(sf::RenderTarget& target) {
 		               size.y * 0.06f + ey);
 		target.draw(es);
 		if (this->font_ok) {
-			sf::Text n(nice(this->enemy.species) + "  Lv" + std::to_string(this->enemy.level),
-			           this->font, 20);
+			std::string en = hud_name(this->enemy, nice(this->enemy.species));
+			sf::Text n(sf::String::fromUtf8(en.begin(), en.end()), this->font, 20);
 			n.setPosition(24, 24); n.setFillColor(sf::Color(20, 20, 20)); target.draw(n);
 			draw_status_badge(target, this->font, 210, 22, this->enemy.status);
 		}
@@ -1187,8 +1234,8 @@ void Battle::draw(sf::RenderTarget& target) {
 	               size.y * 0.40f + pyo);
 	target.draw(ps);
 	if (this->font_ok) {
-		sf::Text n(nice(this->player->species) + "  Lv" + std::to_string(this->player->level),
-		           this->font, 20);
+		std::string pn = hud_name(*this->player, nice(this->player->species));
+		sf::Text n(sf::String::fromUtf8(pn.begin(), pn.end()), this->font, 20);
 		n.setPosition(size.x - 264, size.y * 0.44f);
 		n.setFillColor(sf::Color(20, 20, 20)); target.draw(n);
 		draw_status_badge(target, this->font, size.x - 60, size.y * 0.44f - 2, this->player->status);

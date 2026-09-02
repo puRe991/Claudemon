@@ -1949,6 +1949,13 @@ int main() {
         // actually read as a whiteout target.
         gs.last_heal_map = "LittlerootTown_BrendansHouse_2F";
         gs.last_heal_x = 4; gs.last_heal_y = 2;
+        // The trainer ID pair pokeemerald rolls in NewGameInitData(): the
+        // visible 5-digit ID and the hidden secret ID. Every Pokemon this
+        // save ever generates is checked for shininess against them (see
+        // BattleData::is_shiny), so they are rolled once here and then
+        // ride along in the save file.
+        gs.trainer_id = (unsigned)(rng() % 65536);
+        gs.secret_id = (unsigned)(rng() % 65536);
     };
     if (!resumed) start_new_game();
 
@@ -2270,8 +2277,8 @@ int main() {
                     // follow-up) continues.
                     if (starter.done()) {
                         if (vm.wants_starter()) vm.resolve_starter(starter.chosen());
-                        else if (team.empty()) team.push_back(bdata.make_mon(starter.chosen(), 5, &rng));
-                        else team[0] = bdata.make_mon(starter.chosen(), 5, &rng);
+                        else if (team.empty()) team.push_back(bdata.make_mon(starter.chosen(), 5, &rng, gs.trainer_id, gs.secret_id));
+                        else team[0] = bdata.make_mon(starter.chosen(), 5, &rng, gs.trainer_id, gs.secret_id);
                         gs.mark_caught(starter.chosen());
                         starter.ack();
                     } else if (!starter.active() && vm.wants_starter()) {
@@ -2510,7 +2517,7 @@ int main() {
                     }
                     if (speciespicker.done()) {
                         if (team.size() < 6)
-                            team.push_back(bdata.make_mon(speciespicker.chosen(), 25, &rng));
+                            team.push_back(bdata.make_mon(speciespicker.chosen(), 25, &rng, gs.trainer_id, gs.secret_id));
                         speciespicker.ack();
                     }
                 } else if (debugmenu.active()) {
@@ -2715,8 +2722,8 @@ int main() {
         }
         if (starter.done()) {
             if (vm.wants_starter()) vm.resolve_starter(starter.chosen());
-            else if (team.empty()) team.push_back(bdata.make_mon(starter.chosen(), 5, &rng));
-                        else team[0] = bdata.make_mon(starter.chosen(), 5, &rng);
+            else if (team.empty()) team.push_back(bdata.make_mon(starter.chosen(), 5, &rng, gs.trainer_id, gs.secret_id));
+                        else team[0] = bdata.make_mon(starter.chosen(), 5, &rng, gs.trainer_id, gs.secret_id);
             gs.mark_caught(starter.chosen());
             starter.ack();
         } else if (!starter.active() && vm.wants_starter()) {
