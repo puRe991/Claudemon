@@ -228,8 +228,8 @@ struct VmHarness {
         actors.push_back(&player);
         vm.configure(&map, &gs, &box, &battle, nullptr, &player, &actors);
     }
-    void run(const std::string& label) {
-        vm.start(label, nullptr);
+    void run(const std::string& label, Character* owner = nullptr) {
+        vm.start(label, owner);
         for (int i = 0; i < 2000 && vm.running(); ++i) {
             if (vm.waiting_message()) vm.on_key();
             vm.update(0.1f);
@@ -632,6 +632,34 @@ static void test_sprite_frame_geometry() {
         CHECK(sp->getPosition().y + (float)c.fh == 4.f * 16.f + 16.f);
     }
 
+    // An object sheet's frames are states, not facings: talking to a rock
+    // turns it towards the player, which must not pick a half-smashed frame.
+    {
+        Character rock(5, 5);
+        if (rock.load_sprite_sheet("assets/overworld/misc_breakable_rock.png")) {
+            rock.face(DIR::S); rock.update_sprite(16);
+            sf::IntRect intact = rock.get_current_sprite()->getTextureRect();
+            for (DIR d : { DIR::N, DIR::W, DIR::E }) {
+                rock.face(d); rock.update_sprite(16);
+                CHECK(rock.get_current_sprite()->getTextureRect() == intact);
+            }
+            CHECK(intact.left == 0);   // always the unbroken frame
+        }
+        Character tree(5, 5);
+        if (tree.load_sprite_sheet("assets/overworld/misc_cuttable_tree.png")) {
+            tree.face(DIR::W); tree.update_sprite(16);
+            CHECK(tree.get_current_sprite()->getTextureRect().left == 0);
+        }
+        // An ordinary NPC must still turn.
+        Character man(5, 5);
+        if (man.load_sprite_sheet("assets/overworld/people_man_1.png")) {
+            man.face(DIR::S); man.update_sprite(16);
+            sf::IntRect south = man.get_current_sprite()->getTextureRect();
+            man.face(DIR::N); man.update_sprite(16);
+            CHECK(man.get_current_sprite()->getTextureRect() != south);
+        }
+    }
+
     // Walk phases on a sheet with no walk frames must fall back to the idle
     // frame instead of addressing a frame the sheet does not have.
     Character gl(0, 0);
@@ -640,6 +668,73 @@ static void test_sprite_frame_geometry() {
         gl.update_sprite(16);
         sf::IntRect idle = gl.get_current_sprite()->getTextureRect();
         CHECK(idle.left + idle.width <= 48);
+    }
+}
+
+static void test_object_state_animation(BattleData& bd) {
+    std::printf("[gfx] rock smash / tree cut / nurse bow play the object's frames\n");
+    // Movement_SmashRock and friends were imported as a bare "delay,end" --
+    // the frames the object sheet carries (a rock's break stages) never
+    // played, so a smashed rock simply blinked out of existence.
+    Character rock(3, 3);
+    if (rock.load_sprite_sheet("assets/overworld/misc_breakable_rock.png")) {
+        rock.update_sprite(16);
+        CHECK(rock.get_current_sprite()->getTextureRect().left == 0);   // intact
+        CHECK(!rock.state_anim_active());
+
+        rock.play_state_anim(0.5f, true);
+        CHECK(rock.state_anim_active());
+        rock.tick_state_anim(0.3f);
+        rock.update_sprite(16);
+        int mid = rock.get_current_sprite()->getTextureRect().left;
+        CHECK(mid > 0);                       // partway through breaking
+        CHECK(mid < 4 * 16);
+
+        rock.tick_state_anim(0.3f);
+        CHECK(!rock.state_anim_active());     // finished
+        rock.update_sprite(16);
+        CHECK(rock.get_current_sprite()->getTextureRect().left == 3 * 16);
+        // The held last frame must survive being turned towards the player.
+        rock.face(DIR::W);
+        rock.update_sprite(16);
+        CHECK(rock.get_current_sprite()->getTextureRect().left == 3 * 16);
+    }
+
+    // The nurse straightens up again rather than holding the bow.
+    Character nurse(1, 1);
+    if (nurse.load_sprite_sheet("assets/overworld/people_nurse.png")) {
+        nurse.play_state_anim(0.7f, false);
+        CHECK(nurse.state_anim_active());
+        nurse.tick_state_anim(0.7f);
+        CHECK(!nurse.state_anim_active());
+        nurse.update_sprite(16);
+        CHECK(nurse.get_current_sprite()->getTextureRect().left == 0);
+    }
+
+    // A single-frame sheet has nothing to animate and must not leave the
+    // script waiting forever on it.
+    Character ball(2, 2);
+    if (ball.load_sprite_sheet("assets/overworld/misc_item_ball.png")) {
+        ball.play_state_anim(0.5f, true);
+        CHECK(!ball.state_anim_active());
+    }
+
+    // End to end: Route 111's own rock-smash script must hold `waitmovement`
+    // until the break animation has played, and only then remove the rock.
+    VmHarness h(bd, "maps/Route111.map");
+    Character target(5, 5);
+    if (target.load_sprite_sheet("assets/overworld/misc_breakable_rock.png")) {
+        h.actors.push_back(&target);
+        h.vm.start("EventScript_SmashRock", &target);
+        h.vm.update(0.05f);
+        CHECK(target.state_anim_active());    // still breaking, script waiting
+        CHECK(h.vm.running());
+        for (int i = 0; i < 200 && h.vm.running(); ++i) {
+            if (h.vm.waiting_message()) h.vm.on_key();
+            h.vm.update(0.1f);
+        }
+        CHECK(!target.state_anim_active());
+        CHECK(target.is_removed());           // removeobject ran afterwards
     }
 }
 
@@ -703,6 +798,7 @@ int main() {
         test_dynamic_warp_out_of_truck(bd);
         test_region_map_sections();
         test_sprite_frame_geometry();
+        test_object_state_animation(bd);
     } else {
         std::printf("[skip] no DISPLAY: Map/ScriptVM/Battle tests need a GL "
                     "context (run under xvfb-run to include them)\n");

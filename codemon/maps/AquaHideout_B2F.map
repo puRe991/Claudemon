@@ -86,7 +86,7 @@ movements
 AquaHideout_B2F_Movement_SumbarineDepartLeft	left,left,left,left,end
 Common_Movement_ExclamationMark	delay,end
 Common_Movement_FacePlayer	face_down,end
-Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterLeft	face_left,end
 scriptdefs
 = AquaHideout_B2F_EventScript_MattNoticePlayer
 lockall

@@ -23,7 +23,7 @@ people_scientist_1 2 6 N static 0 LOCALID_SLATEPORT_TENT_CORRIDOR_ATTENDANT 0
 onload
 VAR_TEMP_0 0 SlateportCity_BattleTentCorridor_EventScript_EnterCorridor
 movements
-Common_Movement_WalkInPlaceFasterUp	delay,end
+Common_Movement_WalkInPlaceFasterUp	face_up,end
 SlateportCity_BattleTentCorridor_Movement_AttendantEnter	up,up,up,up,delay,end
 SlateportCity_BattleTentCorridor_Movement_AttendantExit	up,delay,end
 SlateportCity_BattleTentCorridor_Movement_PlayerEnter	up,up,up,up,end

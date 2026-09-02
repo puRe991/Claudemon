@@ -121,8 +121,8 @@ triggers
 onload
 VAR_SHOULD_END_ABNORMAL_WEATHER 1 AbnormalWeather_EventScript_EndEventAndCleanup_1
 movements
-Common_Movement_WalkInPlaceFasterLeft	delay,end
-Common_Movement_WalkInPlaceFasterRight	delay,end
+Common_Movement_WalkInPlaceFasterLeft	face_left,end
+Common_Movement_WalkInPlaceFasterRight	face_right,end
 Movement_CutTreeDown	delay,end
 Route116_Movement_DevonEmployeeExit	left,left,left,left,left,left,left,left,end
 Route116_Movement_DevonEmployeeExitEast	down,left,left,left,left,left,left,left,left,left,end

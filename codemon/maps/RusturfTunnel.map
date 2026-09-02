@@ -95,8 +95,8 @@ Common_Movement_Delay48	delay,delay,delay,end
 Common_Movement_ExclamationMark	delay,end
 Common_Movement_FaceOriginalDirection	face_down,end
 Common_Movement_FacePlayer	face_down,end
-Common_Movement_WalkInPlaceFasterDown	delay,end
-Common_Movement_WalkInPlaceFasterUp	delay,end
+Common_Movement_WalkInPlaceFasterDown	face_down,end
+Common_Movement_WalkInPlaceFasterUp	face_up,end
 Movement_SmashRock	delay,end
 RusturfTunnel_Movement_BoyfriendApproachWanda	delay,delay,right,delay,end
 RusturfTunnel_Movement_BoyfriendApproachWanda1	delay,delay,up,right,end

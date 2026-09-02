@@ -68,8 +68,8 @@ triggers
 5 4 VAR_FOSSIL_MANIAC_STATE 1 Route114_FossilManiacsTunnel_EventScript_ManiacMentionCaveIn
 6 4 VAR_FOSSIL_MANIAC_STATE 1 Route114_FossilManiacsTunnel_EventScript_ManiacMentionCaveIn
 movements
-Common_Movement_WalkInPlaceFasterDown	delay,end
-Common_Movement_WalkInPlaceFasterUp	delay,end
+Common_Movement_WalkInPlaceFasterDown	face_down,end
+Common_Movement_WalkInPlaceFasterUp	face_up,end
 scriptdefs
 = Route114_FossilManiacsTunnel_EventScript_ManiacMentionCaveIn
 lockall

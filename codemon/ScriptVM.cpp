@@ -376,6 +376,34 @@ void ScriptVM::pump() {
 		} else if (op == "applymovement" && argc >= 2) {
 			Character* ch = resolve(arg(0));
 			const std::vector<std::string>& acts = this->map->movement(arg(1));
+			// Emote movements carry their meaning in the name: their body is
+			// just a delay (this engine has no in-place walk actions), so the
+			// bubble has to be raised from the name. See emote_active().
+			if (ch) {
+				const std::string& mv = arg(1);
+				int icon = -1;
+				if (mv.find("ExclamationMark") != std::string::npos) icon = 0;
+				else if (mv.find("QuestionMark") != std::string::npos) icon = 1;
+				else if (mv.find("Heart") != std::string::npos) icon = 2;
+				if (icon >= 0) {
+					this->emote_ch = ch;
+					this->emote_icon = icon;
+					this->emote_t = 0.9f;
+				}
+				// Movements that are an object changing state rather than
+				// moving: the object sheets carry the frames (a rock's break
+				// stages, a tree's cut stages, the nurse's bow), but the
+				// importer could only turn the movement itself into a delay.
+				// Play the frames, and let waitmovement wait for them.
+				if (mv.find("SmashRock") != std::string::npos ||
+				    mv.find("CutTreeDown") != std::string::npos) {
+					ch->play_state_anim(0.5f, true);    // stays broken/felled
+					this->state_anims.push_back(ch);
+				} else if (mv.find("Nurse_Bow") != std::string::npos) {
+					ch->play_state_anim(0.7f, false);   // straightens up again
+					this->state_anims.push_back(ch);
+				}
+			}
 			if (ch && !acts.empty()) {
 				MoveQ q; q.ch = ch;
 				for (const std::string& a : acts)
@@ -385,7 +413,9 @@ void ScriptVM::pump() {
 		} else if (op == "waitmovement") {
 			bool pending = false;
 			for (auto& q : this->queues) if (!q.actions.empty()) pending = true;
+			for (Character* c : this->state_anims) if (c->state_anim_active()) pending = true;
 			if (pending) { this->st = WAIT_MOVE; return; }
+			this->state_anims.clear();
 		} else if (op == "faceplayer") {
 			if (this->owner) {
 				DIR pf = this->player->get_facing();
@@ -1113,6 +1143,11 @@ void ScriptVM::close_shop() {
 }
 
 void ScriptVM::update(float dt) {
+	if (this->emote_t > 0.f) {
+		this->emote_t -= dt;
+		if (this->emote_t <= 0.f) { this->emote_t = 0.f; this->emote_ch = nullptr; }
+	}
+	for (Character* c : this->state_anims) c->tick_state_anim(dt);
 	if (this->door_active) {
 		this->door_timer += dt;
 		if (this->door_timer >= DOOR_STEP_DURATION) {
@@ -1213,5 +1248,11 @@ void ScriptVM::update(float dt) {
 	}
 	bool pending = false;
 	for (auto& q : this->queues) if (!q.actions.empty()) pending = true;
-	if (!pending) { this->queues.clear(); this->st = RUN; this->pump(); }
+	for (Character* c : this->state_anims) if (c->state_anim_active()) pending = true;
+	if (!pending) {
+		this->queues.clear();
+		this->state_anims.clear();
+		this->st = RUN;
+		this->pump();
+	}
 }

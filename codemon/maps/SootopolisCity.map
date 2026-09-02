@@ -193,8 +193,8 @@ VAR_SKY_PILLAR_STATE 1 SootopolisCity_EventScript_StartRayquazaScene
 movements
 Common_Movement_FaceOriginalDirection	face_down,end
 Common_Movement_FacePlayer	face_down,end
-Common_Movement_WalkInPlaceFasterLeft	delay,end
-Common_Movement_WalkInPlaceFasterRight	delay,end
+Common_Movement_WalkInPlaceFasterLeft	face_left,end
+Common_Movement_WalkInPlaceFasterRight	face_right,end
 SootopolisCity_Movement_ExpertMoveAside	left,delay,end
 SootopolisCity_Movement_GroudonAttack	delay,delay,delay,delay,delay,delay,right,end
 SootopolisCity_Movement_GroudonDefend	delay,delay,delay,delay,delay,delay,delay,delay,delay,right,end

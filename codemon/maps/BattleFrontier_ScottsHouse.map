@@ -27,10 +27,10 @@ objscripts
 0 BattleFrontier_ScottsHouse_EventScript_Scott
 movements
 Common_Movement_FacePlayer	face_down,end
-Common_Movement_WalkInPlaceFasterDown	delay,end
-Common_Movement_WalkInPlaceFasterLeft	delay,end
-Common_Movement_WalkInPlaceFasterRight	delay,end
-Common_Movement_WalkInPlaceFasterUp	delay,end
+Common_Movement_WalkInPlaceFasterDown	face_down,end
+Common_Movement_WalkInPlaceFasterLeft	face_left,end
+Common_Movement_WalkInPlaceFasterRight	face_right,end
+Common_Movement_WalkInPlaceFasterUp	face_up,end
 scriptdefs
 = BattleFrontier_ScottsHouse_EventScript_Scott
 lock

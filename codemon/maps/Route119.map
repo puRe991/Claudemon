@@ -389,7 +389,7 @@ triggers
 movements
 Common_Movement_FaceOriginalDirection	face_down,end
 Common_Movement_FacePlayer	face_down,end
-Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterDown	face_down,end
 Movement_KecleonAppears	delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,end
 Route119_Movement_PlayerWatchRivalExit1	delay,delay,delay,delay,end
 Route119_Movement_PlayerWatchRivalExit2	delay,delay,delay,delay,end

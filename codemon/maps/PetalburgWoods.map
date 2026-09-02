@@ -137,9 +137,9 @@ triggers
 40 29 0 0 PetalburgWoods_HiddenItem_40_29
 4 19 0 0 PetalburgWoods_HiddenItem_4_19
 movements
-Common_Movement_WalkInPlaceFasterDown	delay,end
-Common_Movement_WalkInPlaceFasterLeft	delay,end
-Common_Movement_WalkInPlaceFasterUp	delay,end
+Common_Movement_WalkInPlaceFasterDown	face_down,end
+Common_Movement_WalkInPlaceFasterLeft	face_left,end
+Common_Movement_WalkInPlaceFasterUp	face_up,end
 Movement_CutTreeDown	delay,end
 PetalburgWoods_Movement_AquaApproachPlayer	down,end
 PetalburgWoods_Movement_AquaApproachResearcherLeft	down,down,end

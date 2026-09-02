@@ -1,20 +1,51 @@
 #include "SFML/Graphics.hpp"
 #include "character.h"
+#include <algorithm>
 
 Character::Character()
 	: tile(0, 0), prev_tile(0, 0), move_t(1.f), animated(true), running(false),
 	  facing(DIR::S), anim_phase(0), step_toggle(false),
-	  frame_w(16), frame_h(32), frame_count(9), loaded(false) {}
+	  frame_w(16), frame_h(32), frame_count(9), directional(true), loaded(false) {}
 
 Character::Character(int tile_x, int tile_y)
 	: tile(tile_x, tile_y), prev_tile(tile_x, tile_y), move_t(1.f), animated(true), running(false),
 	  facing(DIR::S), anim_phase(0), step_toggle(false),
-	  frame_w(16), frame_h(32), frame_count(9), loaded(false) {}
+	  frame_w(16), frame_h(32), frame_count(9), directional(true), loaded(false) {}
 
 // Overworld sheets whose frames are 32px wide rather than the usual 16px
 // (pokeemerald's ObjectEventGraphicsInfo .width for these graphics is 32).
 // Everything not listed here is inferred from the sheet's dimensions in
 // load_sprite_sheet() below.
+// "assets/overworld/misc_item_ball.png" -> "misc_item_ball"
+static std::string sheet_stem(const std::string& path) {
+	std::string::size_type slash = path.find_last_of("/\\");
+	std::string stem = (slash == std::string::npos) ? path : path.substr(slash + 1);
+	std::string::size_type dot = stem.find_last_of('.');
+	return (dot == std::string::npos) ? stem : stem.substr(0, dot);
+}
+
+// Whether this sheet's frames are facings (an ordinary character) or states.
+// pokeemerald picks per graphics id: the character sheets use
+// sAnimTable_Standard and friends, while item balls, statues, the truck and
+// the cable car are sAnimTable_Inanimate, and rocks, cut trees and berry
+// trees have their own tables whose frames are break/cut/growth stages.
+// Turning one of those "towards the player" (which is what talking to it
+// does) would otherwise pick a half-smashed rock or a younger tree.
+static bool directional_sheet(const std::string& stem) {
+	static const char* STATE_FRAMES[] = {
+		"misc_birchs_bag", "misc_birth_island_stone", "misc_breakable_rock",
+		"misc_cable_car", "misc_cuttable_tree", "misc_fossil", "misc_item_ball",
+		"misc_moving_box", "misc_pushable_boulder", "misc_statue", "misc_truck",
+		"people_brendan_decorating", "people_may_decorating", "people_nurse",
+		"pokemon_rayquaza", "pokemon_rayquaza_still",
+	};
+	if (stem.rfind("berry_trees_", 0) == 0) return false;   // growth stages
+	if (stem.rfind("dolls_", 0) == 0) return false;         // decorations
+	if (stem.rfind("cushions_", 0) == 0) return false;
+	for (const char* n : STATE_FRAMES) if (stem == n) return false;
+	return true;
+}
+
 static bool wide_frame_sheet(const std::string& path) {
 	static const char* WIDE[] = {
 		"misc_birth_island_stone", "misc_mr_brineys_boat",
@@ -29,11 +60,7 @@ static bool wide_frame_sheet(const std::string& path) {
 		"people_quinty_plump", "pokemon_deoxys", "pokemon_enemy_zigzagoon",
 		"pokemon_ho_oh", "pokemon_lugia", "pokemon_poochyena",
 	};
-	std::string::size_type slash = path.find_last_of("/\\");
-	std::string stem = (slash == std::string::npos) ? path : path.substr(slash + 1);
-	std::string::size_type dot = stem.find_last_of('.');
-	if (dot != std::string::npos) stem = stem.substr(0, dot);
-	for (const char* w : WIDE) if (stem == w) return true;
+	for (const char* w : WIDE) if (sheet_stem(path) == w) return true;
 	return false;
 }
 
@@ -56,6 +83,7 @@ bool Character::load_sprite_sheet(const std::string& path) {
 	sf::Vector2u dim = this->sprite_sheet.getSize();
 	int tw = (int)dim.x, th = (int)dim.y;
 	if (tw <= 0 || th <= 0) { this->loaded = false; return false; }
+	this->directional = directional_sheet(sheet_stem(path));
 	if (th <= 32 && wide_frame_sheet(path)) {
 		// Two tiles wide: a 96x32 sheet like Mr. Briney's boat is three
 		// 32x32 frames, not six 16x32 ones. The sheet's dimensions alone
@@ -192,18 +220,48 @@ float Character::interp_y(int tile_px) const {
 	return fy + (ty - fy) * this->move_t;
 }
 
+void Character::play_state_anim(float seconds, bool hold_last) {
+	if (this->frame_count < 2 || seconds <= 0.f) return;
+	this->state_t = 0.f;
+	this->state_len = seconds;
+	this->state_frame = 0;
+	this->state_hold_last = hold_last;
+}
+
+void Character::tick_state_anim(float dt) {
+	if (this->state_frame < 0) return;
+	if (this->state_t >= this->state_len) return;      // finished, frame held
+	this->state_t += dt;
+	if (this->state_t >= this->state_len) {
+		this->state_t = this->state_len;
+		this->state_frame = this->state_hold_last ? this->frame_count - 1 : -1;
+		return;
+	}
+	int f = (int)(this->state_t / this->state_len * (float)this->frame_count);
+	if (f >= this->frame_count) f = this->frame_count - 1;
+	if (f < 0) f = 0;
+	this->state_frame = f;
+}
+
 void Character::update_sprite(int tile_px) {
 	// A sheet may hold fewer frames than the 9-frame layout addresses (three
 	// facings with no walk cycle, or a single static image). Fall back to the
 	// idle frame for this facing, then to frame 0, rather than sampling past
 	// the edge of the texture.
-	int frame = this->frame_for(this->facing, this->anim_phase);
-	if (frame >= this->frame_count) frame = this->frame_for(this->facing, 0);
-	if (frame >= this->frame_count) frame = 0;
+	int frame;
+	if (this->state_frame >= 0) {
+		// A state animation is running (or holding its last frame): it owns
+		// the frame outright, whichever way the object happens to face.
+		frame = std::min(this->state_frame, this->frame_count - 1);
+	} else {
+		frame = this->directional ? this->frame_for(this->facing, this->anim_phase) : 0;
+		if (frame >= this->frame_count) frame = this->frame_for(this->facing, 0);
+		if (frame >= this->frame_count) frame = 0;
+	}
 	int left = frame * this->frame_w;
 
 	sf::IntRect rect;
-	if (this->facing == DIR::E) {
+	if (this->facing == DIR::E && this->directional) {
 		// horizontal mirror: negative width flips the source rectangle
 		rect = sf::IntRect(left + this->frame_w, 0, -this->frame_w, this->frame_h);
 	} else {

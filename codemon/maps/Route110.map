@@ -316,9 +316,9 @@ movements
 Common_Movement_Delay48	delay,delay,delay,end
 Common_Movement_ExclamationMark	delay,end
 Common_Movement_FaceOriginalDirection	face_down,end
-Common_Movement_WalkInPlaceFasterDown	delay,end
-Common_Movement_WalkInPlaceFasterLeft	delay,end
-Common_Movement_WalkInPlaceFasterRight	delay,end
+Common_Movement_WalkInPlaceFasterDown	face_down,end
+Common_Movement_WalkInPlaceFasterLeft	face_left,end
+Common_Movement_WalkInPlaceFasterRight	face_right,end
 Route110_Movement_BirchApproachPlayer1	down,left,left,down,end
 Route110_Movement_BirchApproachPlayer2	down,left,down,end
 Route110_Movement_BirchApproachPlayer3	down,down,end

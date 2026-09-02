@@ -36,7 +36,7 @@ misc_ss_tidal 8 7 E static 0 LOCALID_NAVEL_ROCK_SS_TIDAL 0
 objscripts
 0 NavelRock_Harbor_EventScript_Sailor
 movements
-Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterDown	face_down,end
 scriptdefs
 = NavelRock_Harbor_EventScript_Sailor
 lock

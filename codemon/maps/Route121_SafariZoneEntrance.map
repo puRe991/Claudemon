@@ -47,7 +47,7 @@ triggers
 onload
 VAR_SAFARI_ZONE_STATE 1 Route121_SafariZoneEntrance_EventScript_ExitSafariZone
 movements
-Common_Movement_WalkInPlaceFasterUp	delay,end
+Common_Movement_WalkInPlaceFasterUp	face_up,end
 Route121_SafariZoneEntrance_Movement_BackAwayFromCounter	right,end
 Route121_SafariZoneEntrance_Movement_EnterSafariZone	left,left,left,left,left,left,down,delay,end
 Route121_SafariZoneEntrance_Movement_ExitSafariZone	up,right,right,right,right,right,right,right,end

@@ -41,8 +41,8 @@ objscripts
 movements
 Common_Movement_Delay48	delay,delay,delay,end
 Common_Movement_ExclamationMark	delay,end
-Common_Movement_WalkInPlaceFasterDown	delay,end
-Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterDown	face_down,end
+Common_Movement_WalkInPlaceFasterLeft	face_left,end
 EverGrandeCity_PokemonCenter_1F_Movement_ScottExit	down,down,left,left,down,down,end
 EverGrandeCity_PokemonCenter_1F_Movement_ScottExitNorth	left,down,down,left,down,down,end
 Movement_PkmnCenterNurse_Bow	delay,delay,end

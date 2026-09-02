@@ -112,9 +112,9 @@ movements
 Common_Movement_Delay48	delay,delay,delay,end
 Common_Movement_ExclamationMark	delay,end
 Common_Movement_FacePlayer	face_down,end
-Common_Movement_WalkInPlaceFasterDown	delay,end
-Common_Movement_WalkInPlaceFasterLeft	delay,end
-Common_Movement_WalkInPlaceFasterUp	delay,end
+Common_Movement_WalkInPlaceFasterDown	face_down,end
+Common_Movement_WalkInPlaceFasterLeft	face_left,end
+Common_Movement_WalkInPlaceFasterUp	face_up,end
 SeafloorCavern_Room9_Movement_ArchieApproachPlayer	right,right,right,right,right,right,right,end
 SeafloorCavern_Room9_Movement_ArchieExit	face_up,delay,down,delay,delay,end
 SeafloorCavern_Room9_Movement_ArchieListenMessage	left,delay,end

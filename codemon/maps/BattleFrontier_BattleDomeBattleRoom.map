@@ -54,7 +54,7 @@ BattleFrontier_BattleDomeBattleRoom_Movement_RefereeExit	left,left,left,left,end
 BattleFrontier_BattleDomeBattleRoom_Movement_TuckerApproachPlayer	left,left,end
 BattleFrontier_BattleDomeBattleRoom_Movement_TuckerEnterAndDance	delay,up,up,up,face_left,delay,delay,face_down,delay,delay,face_right,delay,delay,face_up,delay,delay,face_left,delay,up,up,face_left,delay,delay,face_down,delay,delay,face_right,delay,delay,face_up,delay,delay,face_left,left,delay,face_up,delay,left,left,delay,face_right,delay,left,delay,face_down,delay,face_left,delay,delay,face_up,delay,delay,face_right,delay,delay,face_down,delay,delay,face_left,delay,face_up,delay,face_right,delay,face_down,delay,face_left,delay,face_up,delay,face_right,delay,face_down,delay,face_left,delay,right,right,right,right,delay,face_up,delay,delay,delay,delay,right,right,right,delay,delay,right,down,down,face_left,delay,face_up,delay,face_right,delay,face_down,delay,face_left,delay,left,left,end
 BattleFrontier_BattleDomeBattleRoom_Movement_TuckerStepForward	left,end
-Common_Movement_WalkInPlaceDown	delay,end
+Common_Movement_WalkInPlaceDown	face_down,end
 scriptdefs
 = BattleFrontier_BattleDomeBattleRoom_EventScript_EnterRoom
 lockall

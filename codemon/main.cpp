@@ -17,6 +17,7 @@
 
 #include <algorithm>
 #include <cctype>
+#include <filesystem>
 #include <cstdio>
 #include <cstdlib>
 #include <fstream>
@@ -671,6 +672,30 @@ static void draw_scene(sf::RenderTarget& target, Session* s, const HealFx* healf
         a->update_sprite(s->map->get_tile_size());
         target.draw(*a->get_current_sprite());
     }
+    // Emote bubble (`Common_Movement_ExclamationMark` and friends): one
+    // 16x16 icon floating just above the object's head, same overlay
+    // approach as the door animation below.
+    if (vm && vm->emote_active() && vm->emote_target()) {
+        static sf::Texture emote_tex[3];
+        static bool emote_ok[3] = {
+            emote_tex[0].loadFromFile("assets/graphics/field_effects/pics/emotion_exclamation.png"),
+            emote_tex[1].loadFromFile("assets/graphics/field_effects/pics/emotion_question.png"),
+            emote_tex[2].loadFromFile("assets/graphics/field_effects/pics/emotion_heart.png"),
+        };
+        int k = vm->emote_kind();
+        if (k >= 0 && k < 3 && emote_ok[k]) {
+            int tp = s->map->get_tile_size();
+            const Character* who = vm->emote_target();
+            sf::Sprite spr(emote_tex[k]);
+            // Objects stand on their tile and are drawn one tile up, so the
+            // head fills the tile above; the bubble sits half a tile clear
+            // of it.
+            spr.setPosition((float)(who->get_tile_x() * tp),
+                            (float)who->get_tile_y() * tp - 1.5f * (float)tp);
+            if (tp != 16) spr.setScale((float)tp / 16.f, (float)tp / 16.f);
+            target.draw(spr);
+        }
+    }
     // `opendoor`/`closedoor`/`waitdooranim` (see ScriptVM.h's door_anim_active()
     // comment): overlay the matching frame of the imported door sheet on top
     // of the door tile. Loaded once and reused for every door in every map --
@@ -709,7 +734,7 @@ static std::vector<char> parse_walk(const char* env) {
     if (!env) return out;
     std::stringstream ss(env); std::string t;
     while (std::getline(ss, t, ',')) {
-        if (t.size() == 1 && std::string("NSEWTMG").find(t[0]) != std::string::npos)
+        if (t.size() == 1 && std::string("NSEWTMGH").find(t[0]) != std::string::npos)
             out.push_back(t[0]);
     }
     return out;
@@ -1083,7 +1108,7 @@ struct MultiChoicePrompt {
 struct DebugMenu {
     enum Action {
         HEAL_TEAM, ADD_MONEY, ALL_BADGES, GIVE_STARTER, GIVE_ANY_POKEMON, TEACH_HMS,
-        GIVE_ITEMS, GIVE_XP, SKIP_SCRIPT, CLOSE, COUNT
+        GIVE_ITEMS, GIVE_XP, WARP_TO_MAP, SKIP_SCRIPT, CLOSE, COUNT
     };
     bool open_ = false;
     int cursor = 0;
@@ -1111,6 +1136,7 @@ struct DebugMenu {
         case TEACH_HMS:    return "Alle Hm-Attacken lehren (Leadmon)";
         case GIVE_ITEMS:   return "99x Poke Ball / Trank / Rare Candy";
         case GIVE_XP:      return "+1000 EP fuer das ganze Team";
+        case WARP_TO_MAP:  return "Zu beliebiger Karte warpen";
         case SKIP_SCRIPT:  return "Laufendes Skript/Dialog abbrechen";
         case CLOSE:        return "Schliessen";
         default: return "";
@@ -1130,7 +1156,7 @@ struct DebugMenu {
         sf::View saved = target.getView();
         target.setView(target.getDefaultView());
         sf::Vector2f size = target.getView().getSize();
-        float w = 340.f, h = 30.f + COUNT * 30.f;
+        float w = 340.f, h = 44.f + COUNT * 30.f;
         float x = size.x * 0.5f - w / 2.f, y = size.y * 0.5f - h / 2.f;
         frame.draw(target, x, y, w, h, 2.5f);
         std::string title_s = "DEBUG-MENUE";
@@ -1242,6 +1268,118 @@ struct SpeciesPicker {
                 }
             }
             sf::Text t(names[i], font, 14);
+            t.setPosition(x + 32, ry);
+            t.setFillColor(sel ? sel_col : body_col);
+            target.draw(t);
+        }
+        target.setView(saved);
+    }
+};
+
+// MapPicker - the DebugMenu's "zu beliebiger Karte warpen" submenu: every
+// .map file next to the binary, sorted, with the player dropped on the map's
+// own authored start tile. Same block-and-resume shape as SpeciesPicker, but
+// the list is ~490 entries long, so it also takes page jumps and a letter key
+// to jump straight to the first map starting with that letter.
+struct MapPicker {
+    static constexpr int VISIBLE = 14;
+    bool open_ = false, done_ = false;
+    int cursor = 0, top = 0;
+    std::vector<std::string> names;   // map basenames, without "maps/" or ".map"
+    sf::Font font; bool font_ok = false;
+    UiFrame frame;
+    sf::Texture cursor_tex; bool cursor_ok = false;
+
+    void load() {
+        font_ok = font.loadFromFile("assets/fonts/DejaVuSans.ttf");
+        frame.load();
+        cursor_ok = cursor_tex.loadFromFile("assets/graphics/interface/arrow_cursor.png");
+        cursor_tex.setSmooth(false);
+    }
+    // Read the map directory once. Scanned rather than hardcoded so a newly
+    // added map shows up without touching this list.
+    void configure() {
+        if (!names.empty()) return;
+        std::error_code ec;
+        std::filesystem::directory_iterator it("maps", ec);
+        if (ec) return;
+        for (const std::filesystem::directory_entry& e : it)
+            if (e.path().extension() == ".map") names.push_back(e.path().stem().string());
+        std::sort(names.begin(), names.end());
+    }
+    void open() { configure(); open_ = true; done_ = false; cursor = 0; top = 0; }
+    void cancel() { open_ = false; done_ = false; }
+    bool active() const { return open_; }
+    bool done() const { return done_; }
+    void ack() { done_ = false; }
+    bool empty() const { return names.empty(); }
+    const std::string& chosen() const { return names[cursor]; }
+
+    void scroll_into_view() {
+        if (cursor < top) top = cursor;
+        else if (cursor >= top + VISIBLE) top = cursor - VISIBLE + 1;
+        int n = (int)names.size();
+        if (top > n - VISIBLE) top = std::max(0, n - VISIBLE);
+        if (top < 0) top = 0;
+    }
+    void move(int delta) {
+        int n = (int)names.size();
+        if (n == 0) return;
+        cursor = std::min(std::max(cursor + delta, 0), n - 1);
+        scroll_into_view();
+    }
+    // Jump to the first map whose name starts with `c` (case-insensitive).
+    void jump_to_letter(char c) {
+        char want = (char)std::tolower((unsigned char)c);
+        for (size_t i = 0; i < names.size(); ++i) {
+            if (names[i].empty()) continue;
+            if ((char)std::tolower((unsigned char)names[i][0]) == want) {
+                cursor = (int)i; scroll_into_view(); return;
+            }
+        }
+    }
+    void confirm() { if (!names.empty()) { done_ = true; open_ = false; } }
+
+    void draw(sf::RenderTarget& target) {
+        if (!open_ || !font_ok) return;
+        sf::View saved = target.getView();
+        target.setView(target.getDefaultView());
+        sf::Vector2f size = target.getView().getSize();
+        int n = (int)names.size();
+        int shown = std::min(n - top, VISIBLE);
+        float w = 360.f, h = 78.f + shown * 24.f;
+        float x = size.x * 0.5f - w / 2.f, y = size.y * 0.5f - h / 2.f;
+        frame.draw(target, x, y, w, h, 2.5f);
+        const sf::Color head_col(255, 232, 160), body_col(40, 40, 56), sel_col(24, 72, 160);
+        std::string title_s = n ? ("Karte waehlen (" + std::to_string(cursor + 1) + "/" +
+                                   std::to_string(n) + ")")
+                                : std::string("Keine Karten gefunden");
+        sf::Text title(sf::String::fromUtf8(title_s.begin(), title_s.end()), font, 16);
+        title.setPosition(x + 14, y + 14);
+        title.setFillColor(head_col);
+        target.draw(title);
+        std::string hint_s = "Pfeile: blaettern  Buchstabe: springen  Enter: warpen";
+        sf::Text hint(sf::String::fromUtf8(hint_s.begin(), hint_s.end()), font, 11);
+        hint.setPosition(x + 14, y + 36);
+        hint.setFillColor(sf::Color(150, 150, 170));
+        target.draw(hint);
+        for (int row = 0; row < shown; ++row) {
+            int i = top + row;
+            bool sel = i == cursor;
+            float ry = y + 58.f + row * 24.f;
+            if (sel) {
+                if (cursor_ok) {
+                    sf::Sprite cs(cursor_tex);
+                    cs.setPosition(x + 8, ry - 2);
+                    target.draw(cs);
+                } else {
+                    sf::Text mark(">", font, 15);
+                    mark.setPosition(x + 10, ry - 2);
+                    mark.setFillColor(sel_col);
+                    target.draw(mark);
+                }
+            }
+            sf::Text t(names[i], font, 13);
             t.setPosition(x + 32, ry);
             t.setFillColor(sel ? sel_col : body_col);
             target.draw(t);
@@ -1914,6 +2052,8 @@ int main() {
     SpeciesPicker speciespicker;
     speciespicker.load();
     speciespicker.configure(&bdata);
+    MapPicker mappicker;
+    mappicker.load();
     // Story-accurate new game: an empty bag (just the starting 3000 money,
     // GameState's own default) and 0 Game Corner coins, same as pokeemerald --
     // items, TMs and coins all come from actually playing the story.
@@ -2049,6 +2189,38 @@ int main() {
                         if (tok) games.input(token_btn(tok));
                     } else if (tok == 'G') {
                         games.open();
+                    } else if (mappicker.active()) {
+                        // Same headless hooks as every other blocking UI, so
+                        // the debug warp can be driven from a screenshot run.
+                        if (tok == 'N') mappicker.move(-1);
+                        else if (tok == 'S') mappicker.move(1);
+                        else if (tok == 'W') mappicker.move(-MapPicker::VISIBLE);
+                        else if (tok == 'E') mappicker.move(MapPicker::VISIBLE);
+                        else if (tok == 'T') mappicker.confirm();
+                        if (mappicker.done()) {
+                            std::string dest = "maps/" + mappicker.chosen() + ".map";
+                            mappicker.ack();
+                            Session* ns = load_session(dest, -1, -1, &gs);
+                            if (ns->map->ready()) {
+                                free_session(sess);
+                                sess = ns;
+                                vm.configure(sess->map, &gs, &box, &battle, nullptr,
+                                             sess->player, &sess->actors, &sess->localid_map);
+                                run_load_triggers(sess->map, gs, vm);
+                                check_trigger(sess, vm, gs);
+                                on_map_change(sess->path, nullptr);
+                            } else {
+                                free_session(ns);
+                            }
+                        }
+                    } else if (debugmenu.active()) {
+                        int action = -1;
+                        if (tok == 'N') debugmenu.input(BTN_UP);
+                        else if (tok == 'S') debugmenu.input(BTN_DOWN);
+                        else if (tok == 'T') action = debugmenu.input(BTN_CONFIRM);
+                        if (action == DebugMenu::WARP_TO_MAP) mappicker.open();
+                    } else if (tok == 'H') {
+                        debugmenu.open();
                     } else if (menu.active()) {
                         if (tok == 'M') menu.close();
                         else if (tok) menu.input(token_btn(tok));
@@ -2198,6 +2370,8 @@ int main() {
                     if (yesno.active()) yesno.draw(rt);
                     if (picker.active()) picker.draw(rt);
                     if (multichoice.active()) multichoice.draw(rt);
+                    if (debugmenu.active()) debugmenu.draw(rt);
+                    if (mappicker.active()) mappicker.draw(rt);
                     if (fade > 0.f) {
                         rt.setView(rt.getDefaultView());
                         sf::RectangleShape f(rt.getView().getSize());
@@ -2283,6 +2457,48 @@ int main() {
                     case sf::Keyboard::Return: shop.input(BTN_CONFIRM); break;
                     default: break;
                     }
+                } else if (mappicker.active()) {
+                    switch (event.key.code) {
+                    case sf::Keyboard::Up:   mappicker.move(-1); break;
+                    case sf::Keyboard::Down: mappicker.move(1); break;
+                    case sf::Keyboard::Left:
+                    case sf::Keyboard::PageUp:   mappicker.move(-MapPicker::VISIBLE); break;
+                    case sf::Keyboard::Right:
+                    case sf::Keyboard::PageDown: mappicker.move(MapPicker::VISIBLE); break;
+                    case sf::Keyboard::Space:
+                    case sf::Keyboard::Return: mappicker.confirm(); break;
+                    case sf::Keyboard::BackSpace:
+                    case sf::Keyboard::Escape: mappicker.cancel(); break;
+                    default:
+                        // Any letter jumps to the first map starting with it --
+                        // stepping through ~490 entries one row at a time is
+                        // otherwise unusable. Arrow keys do the scrolling here
+                        // (rather than the usual WASD) so every letter stays
+                        // free for jumping.
+                        if (event.key.code >= sf::Keyboard::A && event.key.code <= sf::Keyboard::Z)
+                            mappicker.jump_to_letter((char)('a' + (event.key.code - sf::Keyboard::A)));
+                        break;
+                    }
+                    if (mappicker.done()) {
+                        // Same sequence as every other map change (warp,
+                        // connection, dive): load, hand the new map to the VM,
+                        // run its on-load scripts, then any coord trigger the
+                        // arrival tile carries.
+                        std::string dest = "maps/" + mappicker.chosen() + ".map";
+                        mappicker.ack();
+                        Session* ns = load_session(dest, -1, -1, &gs);
+                        if (ns->map->ready()) {
+                            free_session(sess);
+                            sess = ns;
+                            vm.configure(sess->map, &gs, &box, &battle, &audio, sess->player,
+                                         &sess->actors, &sess->localid_map);
+                            run_load_triggers(sess->map, gs, vm);
+                            check_trigger(sess, vm, gs);
+                            on_map_change(sess->path, &audio);
+                        } else {
+                            free_session(ns);   // unreadable map: stay put
+                        }
+                    }
                 } else if (speciespicker.active()) {
                     switch (event.key.code) {
                     case sf::Keyboard::W: speciespicker.input(BTN_UP); break;
@@ -2357,6 +2573,9 @@ int main() {
                                 bdata.grant_exp(m, 1000, xm);
                             break;
                         }
+                        case DebugMenu::WARP_TO_MAP:
+                            mappicker.open();
+                            break;
                         case DebugMenu::SKIP_SCRIPT:
                             if (vm.running()) vm.abort();
                             if (box.is_active()) box.close();
@@ -2640,6 +2859,7 @@ int main() {
             if (multichoice.active()) multichoice.draw(*scr.get_window());
             if (debugmenu.active()) debugmenu.draw(*scr.get_window());
             if (speciespicker.active()) speciespicker.draw(*scr.get_window());
+            if (mappicker.active()) mappicker.draw(*scr.get_window());
             if (fade > 0.f) {
                 sf::View sv = scr.get_window()->getView();
                 scr.get_window()->setView(scr.get_window()->getDefaultView());

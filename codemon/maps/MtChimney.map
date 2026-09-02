@@ -198,7 +198,7 @@ Common_Movement_Delay48	delay,delay,delay,end
 Common_Movement_ExclamationMark	delay,end
 Common_Movement_FaceOriginalDirection	face_down,end
 Common_Movement_FacePlayer	face_down,end
-Common_Movement_WalkInPlaceFasterLeft	delay,end
+Common_Movement_WalkInPlaceFasterLeft	face_left,end
 MtChimney_Movement_ArchieApproachPlayerEast	up,up,up,up,up,up,right,end
 MtChimney_Movement_ArchieApproachPlayerNorth	up,up,up,up,up,right,right,end
 MtChimney_Movement_ArchieExitEast	left,down,down,down,down,down,down,down,end

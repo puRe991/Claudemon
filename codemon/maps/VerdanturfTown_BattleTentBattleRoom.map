@@ -25,9 +25,9 @@ people_expert_m 2 4 E static 0 LOCALID_VERDANTURF_TENT_BATTLE_ATTENDANT 0
 onload
 VAR_TEMP_0 0 VerdanturfTown_BattleTentBattleRoom_EventScript_EnterRoom
 movements
-Common_Movement_WalkInPlaceFasterDown	delay,end
-Common_Movement_WalkInPlaceFasterRight	delay,end
-Common_Movement_WalkInPlaceFasterUp	delay,end
+Common_Movement_WalkInPlaceFasterDown	face_down,end
+Common_Movement_WalkInPlaceFasterRight	face_right,end
+Common_Movement_WalkInPlaceFasterUp	face_up,end
 VerdanturfTown_BattleTentBattleRoom_Movement_OpponentEnter	down,down,down,down,face_left,end
 VerdanturfTown_BattleTentBattleRoom_Movement_OpponentExit	up,up,up,up,end
 VerdanturfTown_BattleTentBattleRoom_Movement_PlayerEnter	delay,up,up,up,face_right,end

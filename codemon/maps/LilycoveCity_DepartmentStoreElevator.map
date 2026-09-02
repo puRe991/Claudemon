@@ -22,7 +22,7 @@ people_teala 0 5 S static 0 - 0
 objscripts
 0 LilycoveCity_DepartmentStoreElevator_EventScript_Attendant
 movements
-Common_Movement_WalkInPlaceFasterDown	delay,end
+Common_Movement_WalkInPlaceFasterDown	face_down,end
 scriptdefs
 = LilycoveCity_DepartmentStoreElevator_EventScript_Attendant
 lock

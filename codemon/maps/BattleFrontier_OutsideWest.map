@@ -234,10 +234,10 @@ BattleFrontier_OutsideWest_Movement_GirlShudderSouth	delay,delay,end
 BattleFrontier_OutsideWest_Movement_GirlShudderWest	delay,delay,end
 Common_Movement_FaceAwayPlayer	face_down,end
 Common_Movement_FaceOriginalDirection	face_down,end
-Common_Movement_WalkInPlaceFasterDown	delay,end
-Common_Movement_WalkInPlaceFasterLeft	delay,end
-Common_Movement_WalkInPlaceFasterRight	delay,end
-Common_Movement_WalkInPlaceFasterUp	delay,end
+Common_Movement_WalkInPlaceFasterDown	face_down,end
+Common_Movement_WalkInPlaceFasterLeft	face_left,end
+Common_Movement_WalkInPlaceFasterRight	face_right,end
+Common_Movement_WalkInPlaceFasterUp	face_up,end
 scriptdefs
 = BattleFrontier_OutsideWest_EventScript_PokefanF
 msgbox	I heard a rumor that someone saw a POKéMON with an unusually long tail somewhere in the BATTLE FRONTIER.It must be adorable. I'm sure of it…Oh, challenges can wait. I feel driven to find the delightful creature!
