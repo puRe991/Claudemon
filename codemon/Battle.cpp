@@ -876,6 +876,7 @@ void Battle::input(BtnInput b) {
 		else if (b == BTN_DOWN && this->switch_cursor + 1 < n) this->switch_cursor++;
 		else if ((b == BTN_LEFT || b == BTN_CANCEL) && !this->forced_switch) this->phase = ACTION;
 		else if (b == BTN_CONFIRM) do_switch(this->switch_cursor);
+		return;
 	}
 	if (this->phase == BALL) {
 		int n = (int)this->owned_balls.size();
@@ -938,10 +939,7 @@ void Battle::handle_player_faint() {
 	queue(nice(this->player->species) + " wurde besiegt!");
 	if (has_healthy_reserve()) {
 		this->forced_switch = true;
-		this->switch_cursor = 0;
-		if (this->team)
-			for (size_t i = 0; i < this->team->size(); ++i)
-				if (!(*this->team)[i].fainted()) { this->switch_cursor = (int)i; break; }
+		this->switch_cursor = first_switchable();
 		show_messages(SWITCH);
 	} else {
 		queue("Du hast den Kampf verloren ...");
@@ -951,18 +949,37 @@ void Battle::handle_player_faint() {
 	}
 }
 
+int Battle::first_switchable() const {
+	if (!this->team) return 0;
+	// A slot the player could really send out: healthy and not already on
+	// the field.
+	for (size_t i = 0; i < this->team->size(); ++i)
+		if (i != this->active_idx && !(*this->team)[i].fainted()) return (int)i;
+	// Nothing left to switch to -- point at any other slot rather than at
+	// the mon that is already fighting.
+	for (size_t i = 0; i < this->team->size(); ++i)
+		if (i != this->active_idx) return (int)i;
+	return 0;
+}
+
 void Battle::open_switch() {
-	this->switch_cursor = 0;
-	if (this->team)
-		for (size_t i = 0; i < this->team->size(); ++i)
-			if (i != this->active_idx) { this->switch_cursor = (int)i; break; }
+	// Start on a Pokemon that can actually come out. This used to be "the
+	// first slot that is not the active one", so a party whose lead had
+	// fainted opened with the cursor parked on that K.O.'d lead -- pressing
+	// A there only ever produced "... kann nicht kämpfen!".
+	this->switch_cursor = first_switchable();
 	this->forced_switch = false;
 	this->phase = SWITCH;
 }
 
 void Battle::do_switch(int idx) {
 	if (!this->team || idx < 0 || idx >= (int)this->team->size()) return;
-	if ((size_t)idx == this->active_idx) return;   // already out
+	if ((size_t)idx == this->active_idx) {         // already out
+		this->log.clear();
+		queue(nice((*this->team)[idx].species) + " kämpft bereits!");
+		show_messages(SWITCH);
+		return;
+	}
 	Mon& chosen = (*this->team)[idx];
 	if (chosen.fainted()) {
 		this->log.clear();
@@ -1250,8 +1267,27 @@ void Battle::draw(sf::RenderTarget& target) {
 		draw_exp_bar(target, *this->data, size.x - 264, size.y * 0.44f + 68, 240, 6,
 		             *this->player);
 
-	// bottom panel (pokeemerald's own textbox frame)
-	const float bh = 150.f, bm = 14.f;
+	// bottom panel (pokeemerald's own textbox frame). The frame art spends
+	// the outer 6 of its 8 border pixels on the decoration, so at scale 3
+	// only what sits FRAME_INSET px inside the panel is on the white fill.
+	const float bm = 14.f, FRAME_INSET = 18.f;
+	// The party list needs one row per member, which does not fit in a
+	// single text box: the list used to run straight over the frame's
+	// bottom edge (the last member was cut in half). The switch screen gets
+	// a panel tall enough for the whole party instead.
+	const int party_rows = (this->phase == SWITCH && this->team)
+	                         ? std::min((int)this->team->size(), 6) : 0;
+	const float SW_ROW_H = 24.f, SW_LIST_TOP = 38.f;   // header sits above row 0
+	const float BALL_ROW_H = 24.f;
+	const int BALL_MAX_ROWS = 6;                       // longer bags scroll
+	const int ball_rows = (this->phase == BALL)
+	                        ? std::max(1, std::min((int)this->owned_balls.size(), BALL_MAX_ROWS))
+	                        : 0;
+	float bh = 150.f;
+	if (this->phase == SWITCH)
+		bh = std::max(bh, 2 * FRAME_INSET + SW_LIST_TOP + party_rows * SW_ROW_H + 8.f);
+	else if (this->phase == BALL)
+		bh = std::max(bh, 2 * FRAME_INSET + 32.f + ball_rows * BALL_ROW_H + 8.f);
 	if (this->frame.ready()) {
 		this->frame.draw(target, bm, size.y - bh - bm, size.x - 2 * bm, bh, 3.f);
 	} else {
@@ -1272,21 +1308,25 @@ void Battle::draw(sf::RenderTarget& target) {
 		a.setFillColor(head_col); target.draw(a);
 	};
 
-	float tx = bm + 18, ty = size.y - bh - bm + 16;
+	// tx/ty are the top-left of the panel's white fill: anything drawn above
+	// or left of them lands on the frame decoration.
+	float tx = bm + FRAME_INSET + 8.f, ty = size.y - bh - bm + FRAME_INSET;
 	if (this->phase == MSG) {
 		std::string line = this->log_pos < this->log.size() ? this->log[this->log_pos] : "";
 		sf::Text t(sf::String::fromUtf8(line.begin(), line.end()), this->font, 22);
 		t.setPosition(tx, ty + 30); t.setFillColor(body_col); target.draw(t);
 	} else if (this->phase == ACTION) {
+		const float ax = size.x * 0.46f, arow = 26.f;
 		sf::Text q("Was soll " + nice(this->player->species) + " tun?", this->font, 20);
-		q.setPosition(tx, ty); q.setFillColor(body_col); target.draw(q);
+		q.setPosition(tx, ty + 40); q.setFillColor(body_col); target.draw(q);
 		static const std::string acts[] = {"KAMPF", "POKéMON", "BALL", "FLUCHT"};
 		for (int i = 0; i < 4; ++i) {
 			bool sel = i == this->action_cursor;
 			bool dis = (i == 2 || i == 3) && this->is_trainer;   // no catching/running trainers
-			if (sel) cursor_at(size.x * 0.46f, ty + i * 34);
+			float ay = ty + 4 + i * arow;
+			if (sel) cursor_at(ax, ay);
 			sf::Text a(sf::String::fromUtf8(acts[i].begin(), acts[i].end()), this->font, 22);
-			a.setPosition(size.x * 0.46f, ty + i * 34);
+			a.setPosition(ax, ay);
 			a.setFillColor(dis ? dis_col : sel ? head_col : body_col);
 			target.draw(a);
 		}
@@ -1295,24 +1335,37 @@ void Battle::draw(sf::RenderTarget& target) {
 			for (const std::string& b : ball_types()) total_balls += this->gs->item_count(b);
 			std::string bt = "BÄLLE x" + std::to_string(total_balls);
 			sf::Text bc(sf::String::fromUtf8(bt.begin(), bt.end()), this->font, 16);
-			bc.setPosition(size.x * 0.72f, ty + 34);
+			bc.setPosition(size.x * 0.72f, ty + 4 + 2 * arow + 4);
 			bc.setFillColor(muted_col); target.draw(bc);
 		}
 	} else if (this->phase == BALL) {
 		std::string qs = "Welchen BALL werfen?";
 		sf::Text q(sf::String::fromUtf8(qs.begin(), qs.end()), this->font, 20);
-		q.setPosition(tx, ty); q.setFillColor(body_col); target.draw(q);
-		for (size_t i = 0; i < this->owned_balls.size(); ++i) {
-			bool sel = (int)i == this->ball_cursor;
-			float ry = ty + 30 + i * 22;
-			if (sel) cursor_at(tx + 14, ry);
+		q.setPosition(tx, ty + 2); q.setFillColor(body_col); target.draw(q);
+		// A well stocked bag has more ball types than fit even in the taller
+		// panel, so the list scrolls around the cursor instead of drawing
+		// its tail across the frame.
+		int total = (int)this->owned_balls.size();
+		int first = std::max(0, std::min(this->ball_cursor - ball_rows + 1,
+		                                 total - ball_rows));
+		for (int i = first; i < std::min(total, first + ball_rows); ++i) {
+			bool sel = i == this->ball_cursor;
+			float ry = ty + 32 + (i - first) * BALL_ROW_H;
+			if (sel) cursor_at(tx + 20, ry);
 			const std::string& id = this->owned_balls[i];
 			std::string label = (REAL_ITEM_NAMES.count(id) ? REAL_ITEM_NAMES.at(id) : id)
 			                     + " x" + std::to_string(this->gs ? this->gs->item_count(id) : 0);
 			sf::Text t(sf::String::fromUtf8(label.begin(), label.end()), this->font, 16);
-			t.setPosition(tx + 28, ry); t.setFillColor(sel ? head_col : body_col);
+			t.setPosition(tx + 34, ry); t.setFillColor(sel ? head_col : body_col);
 			target.draw(t);
 		}
+		// "there is more above/below" markers, same as the real bag.
+		auto marker = [&](const std::string& glyph, float my) {
+			sf::Text mk(sf::String::fromUtf8(glyph.begin(), glyph.end()), this->font, 12);
+			mk.setPosition(tx + 4, my); mk.setFillColor(muted_col); target.draw(mk);
+		};
+		if (first > 0) marker("▲", ty + 32);
+		if (first + ball_rows < total) marker("▼", ty + 32 + (ball_rows - 1) * BALL_ROW_H);
 	} else if (this->phase == MOVE) {
 		std::string qs = "Wähle eine Attacke:";
 		sf::Text q(sf::String::fromUtf8(qs.begin(), qs.end()), this->font, 20);
@@ -1349,24 +1402,32 @@ void Battle::draw(sf::RenderTarget& target) {
 			}
 		}
 	} else if (this->phase == SWITCH) {
+		// Everything here is laid out from the panel's white fill, not from
+		// its outer edge, so no row lands on the frame decoration.
+		const float lx = tx + 18.f;                           // party names
+		const float bar_w = 130.f, bar_x = size.x - bm - FRAME_INSET - 80.f - bar_w;
 		std::string qs = this->forced_switch ? "Wer soll als nächstes kämpfen?"
 		                                     : "POKéMON wählen:";
 		sf::Text q(sf::String::fromUtf8(qs.begin(), qs.end()), this->font, 18);
-		q.setPosition(tx, ty - 4); q.setFillColor(body_col); target.draw(q);
+		q.setPosition(tx, ty + 6.f);
+		q.setFillColor(body_col); target.draw(q);
 		if (this->team) {
-			int n = std::min((int)this->team->size(), 6);
-			for (int i = 0; i < n; ++i) {
+			for (int i = 0; i < party_rows; ++i) {
 				const Mon& m = (*this->team)[i];
 				bool sel = i == this->switch_cursor;
 				bool cur = (size_t)i == this->active_idx;
-				float ry = ty + 22 + i * 18;
-				if (sel) cursor_at(tx + 14, ry);
+				float ry = ty + SW_LIST_TOP + i * SW_ROW_H;
+				if (sel) cursor_at(lx, ry);
 				sf::Color col = m.fainted() ? dis_col : cur ? muted_col : body_col;
 				std::string label = nice(m.species) + " Lv" + std::to_string(m.level) +
 				                     (cur ? " (im Kampf)" : m.fainted() ? " (K.O.)" : "");
-				sf::Text t(sf::String::fromUtf8(label.begin(), label.end()), this->font, 14);
-				t.setPosition(tx + 28, ry); t.setFillColor(col); target.draw(t);
-				draw_hp_bar(target, size.x * 0.62f, ry + 1, 130, 10, m.hp, m.max_hp);
+				sf::Text t(sf::String::fromUtf8(label.begin(), label.end()), this->font, 16);
+				t.setPosition(lx, ry); t.setFillColor(col); target.draw(t);
+				draw_hp_bar(target, bar_x, ry + 5, bar_w, 10, m.hp, m.max_hp);
+				sf::Text hp(std::to_string(m.hp) + "/" + std::to_string(m.max_hp),
+				            this->font, 13);
+				hp.setPosition(bar_x + bar_w + 10.f, ry + 1);
+				hp.setFillColor(m.fainted() ? dis_col : muted_col); target.draw(hp);
 			}
 		}
 	}

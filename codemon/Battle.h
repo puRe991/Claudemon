@@ -82,6 +82,9 @@ private:
 	// Common "active mon just fainted" handling: force a switch if the team
 	// has another healthy member, else end the battle in a loss.
 	void handle_player_faint();
+	// The party slot the switch menu should start on: the first member that
+	// is neither fainted nor already fighting.
+	int first_switchable() const;
 	void open_switch();           // POKéMON chosen from the action menu
 	void do_switch(int idx);      // send out team[idx]
 
@@ -250,6 +253,10 @@ public:
 	// Which party slot is on the field. Also the only way to see which mon a
 	// battle picked as its lead (see lead_index()).
 	size_t active_party_index() const { return this->active_idx; }
+	// Which party row the switch menu is pointing at (only meaningful while
+	// SCR_SWITCH is up) -- the menu's own default pick is state a headless
+	// driver has no other way to observe.
+	int switch_index() const { return this->switch_cursor; }
 
 	// Which sub-screen the battle is currently showing. Exposed so a headless
 	// driver (the engine tests, a CODEMON_WALK script) can step the menus off
