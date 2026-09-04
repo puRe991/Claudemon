@@ -59,11 +59,11 @@ struct Mon {
 	Status status = Status::NONE;
 	int status_turns = 0;       // SLEEP: turns left asleep; TOXIC: turns badly poisoned so far
 	int confusion_turns = 0;    // 0 = not confused
-	// Individual variation (real Gen-3 mechanics): IVs 0..31 per stat (EVs
-	// are always 0 here -- this engine doesn't track battling-based EV gain,
-	// same simplification as the rest of the "no EVs" scope) and one of 25
-	// natures, both rolled once in make_mon() and kept for this mon's whole
-	// life (persisted to the savegame, unlike a battle's stat stages).
+	// Individual variation (real Gen-3 mechanics): IVs 0..31 per stat and one
+	// of 25 natures, both rolled once in make_mon() and kept for this mon's
+	// whole life (persisted to the savegame, unlike a battle's stat stages).
+	// EVs live further down and take part in the same formula; nothing grants
+	// them during normal play, since species.tsv carries no EV yields.
 	int iv_hp = 15, iv_atk = 15, iv_def = 15, iv_spa = 15, iv_spd = 15, iv_spe = 15;
 	std::string nature = "HARDY";
 	// Real per-species wild held-item roll (pokeemerald's 45% none / 50%
@@ -82,8 +82,58 @@ struct Mon {
 	// which sprite set is drawn -- shininess has no effect on stats, exactly
 	// like the real games.
 	bool shiny = false;
+
+	// --- identity & bookkeeping (PartySystem) ------------------------------
+	// A process-unique handle for this individual, minted by PartySystem
+	// (see PartySystem::adopt) and persisted with the savegame. The party and
+	// the PC boxes are two views onto the same population, so "move to box"
+	// has to be a change of which container holds the mon, never a copy --
+	// this id is what lets the rest of the engine say "that one" without
+	// caring which container it currently sits in. 0 = never adopted.
+	unsigned uid = 0;
+	// Player-given name; empty means "show the species name", exactly like a
+	// real games' mon that was never nicknamed.
+	std::string nickname;
+	// Original Trainer. ot_id/ot_secret are the pair the shiny check already
+	// used at creation time (see `shiny`), kept per-mon so a traded-in mon
+	// keeps its own OT rather than inheriting the current player's.
+	std::string ot_name;
+	unsigned ot_id = 0, ot_secret = 0;
+	// The ball this mon was caught in (ITEM_POKE_BALL, ITEM_NET_BALL, ...);
+	// "NONE" for a mon that was never caught (a starter, a gift, a hatched
+	// egg in games that have them).
+	std::string ball = "NONE";
+	// Where and at what level it joined the player (pokeemerald's metLocation
+	// /metLevel). Empty/0 for a mon whose origin was never recorded.
+	std::string met_location;
+	int met_level = 0;
+	// pokeemerald's friendship byte: 70 for most caught mons, 120 for a
+	// starter/gift. Nothing consumes it yet (Return/Frustration and
+	// friendship evolutions are out of scope); it is tracked, saved and
+	// shown so the data model matches the real one.
+	int friendship = 70;
+	// Effort values, 0..255 per stat, capped at 510 total -- part of the real
+	// stat formula (see calc_stat). This engine has no EV *yields* imported
+	// from the species table, so nothing grants them during normal play; they
+	// exist so externally granted EVs (vitamins, a future import) compute
+	// correctly and survive a save/load round trip.
+	int ev_hp = 0, ev_atk = 0, ev_def = 0, ev_spa = 0, ev_spd = 0, ev_spe = 0;
+	// Ribbons/badges this individual earned, as bare RIBBON_* style ids.
+	std::vector<std::string> ribbons;
+
 	bool fainted() const { return hp <= 0; }
+	// What the party/summary screens should call this mon.
+	std::string display_name() const { return nickname.empty() ? species : nickname; }
+	// Total EVs, for the real games' 510 cap (see PartySystem::add_ev).
+	int ev_total() const { return ev_hp + ev_atk + ev_def + ev_spa + ev_spd + ev_spe; }
 };
+
+// Which page of a summary screen is being shown. The real games' summary is
+// paged rather than one long list, and each page answers a different question
+// -- kept here (not in Menu) so a second summary surface (a box screen, a
+// battle-time "check" view) shows the same pages in the same order.
+enum class SummaryPage { OVERVIEW, MOVES, STATS, DETAILS, RIBBONS, COUNT };
+const char* summary_page_title(SummaryPage p);
 
 class BattleData
 {
@@ -141,6 +191,16 @@ public:
 	// personality values, the real games' 1/8192 chance.
 	static const unsigned SHINY_ODDS = 8;
 	static bool is_shiny(unsigned personality, unsigned ot_id, unsigned ot_secret);
+
+	// 'M', 'F' or 'N' (genderless). pokeemerald derives this from the
+	// species' genderRatio against the low byte of the personality value;
+	// species.tsv carries no gender ratio (it isn't in the imported columns),
+	// so this uses the same personality byte against a plain 50/50 split,
+	// with a table for the species that are genuinely genderless or
+	// single-gender. Documented simplification: a species with a skewed but
+	// non-absolute ratio (Bulbasaur's 87.5% male, ...) comes out 50/50 here.
+	static char gender(const std::string& species, unsigned personality);
+	static const char* gender_symbol(char g);   // "♂"/"♀"/"" for the UI
 
 	// Where a species' 64x64 battle artwork lives. On the GBA a shiny mon is
 	// the same pixels read through a second 16-colour palette; the importer
@@ -213,9 +273,27 @@ public:
 	// Restore every move's PP to max (Pokémon Center full heal).
 	void restore_pp(Mon& mon) const;
 
+	// What a grant_exp() call actually did, for callers that need to react to
+	// it rather than just print its messages (PartySystem raises its
+	// PokemonLevelUp/LearnedMove/Evolution* events off this).
+	struct LevelUpReport {
+		int levels_gained = 0;
+		std::vector<std::string> learned;         // moves that fit and were learned
+		// Level-up moves that did NOT fit because the mon already knows four.
+		// With a report in hand grant_exp defers them here instead of silently
+		// overwriting move slot 0, so the caller can ask the player which move
+		// to replace (the real games' "should a move be forgotten?" prompt).
+		std::vector<std::string> pending_moves;
+		std::string evolved_from, evolved_to;     // empty unless it evolved
+	};
+
 	// Grant experience; applies level-ups (stat gains, level-up moves learned,
-	// evolutions). Any player-facing lines are appended to `msgs`.
-	void grant_exp(Mon& mon, long gained, std::vector<std::string>& msgs) const;
+	// evolutions). Any player-facing lines are appended to `msgs`. `report`
+	// is optional: passing one both records what happened and switches the
+	// full-moveset case from "overwrite slot 0" to "defer to the caller"
+	// (see LevelUpReport::pending_moves).
+	void grant_exp(Mon& mon, long gained, std::vector<std::string>& msgs,
+	               LevelUpReport* report = nullptr) const;
 
 	// TM support.
 	// "CUT" -> "HM01" (the bag's TM/HM number label); "" if not a TM/HM

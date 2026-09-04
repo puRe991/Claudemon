@@ -5,17 +5,42 @@
 #include "SFML/Graphics.hpp"
 #include "GameState.h"
 #include "BattleData.h"   // Mon
+#include "PartySystem.h"
 #include "Battle.h"       // BtnInput
 #include "UiFrame.h"
 
 /******************************************************************************
 Menu - the overworld start menu with a Bag (item icons + counts) and a Pokemon
 (party) screen. Opened with M; drawn in screen space over the world.
+
+The party half of this screen owns no game data: it reads PartySystem and calls
+its operations, and PartySystem's events tell it which row to redraw. See
+PartySystem.h for why the data lives there instead of here.
 *****************************************************************************/
+
+// Which actions the party screen may offer right now. Field and box menus
+// answer that question differently (design brief §26), so the filter is a
+// parameter rather than a hardcoded list.
+enum class PartyContext { FIELD, BOX };
+
+// One row of the "what do you want to do with this POKéMON?" menu.
+enum class PartyAction {
+	SUMMARY,        // Bericht
+	SWAP,           // Pokemon bewegen/wechseln (party order only)
+	GIVE_ITEM,
+	TAKE_ITEM,
+	TO_BOX,
+	TO_PARTY,       // from the box side
+	SET_LEAD,       // make this the mon a battle starts with
+	SET_COMPANION,  // walk with this one (§25)
+	CANCEL,
+};
+
 class Menu
 {
 private:
-	enum Screen { CLOSED, MAIN, BAG, PARTY, PC, POKENAV, TEACH, USE_ITEM, FLY, POKEDEX, SUMMARY, OPTIONS };
+	enum Screen { CLOSED, MAIN, BAG, PARTY, PC, POKENAV, TEACH, USE_ITEM, FLY, POKEDEX,
+	              SUMMARY, OPTIONS, PARTY_ACTION, GIVE_ITEM, MOVE_LEARN };
 	sf::Font font; bool font_ok;
 	Screen screen;
 	int cursor;
@@ -27,7 +52,39 @@ private:
 	std::string use_item;   // ITEM_POTION / ITEM_REVIVE / ... pending use
 	int fly_cursor;         // selected destination in the FLY screen
 	int dex_cursor = 0;     // selected species (absolute index) in the POKEDEX screen
-	int party_cursor = 0;   // selected party member in the PARTY/SUMMARY screens
+	// Selected party SLOT (0..5) in the PARTY screen -- slots, not members, so
+	// the cursor can sit on an empty one exactly like the real games.
+	int party_cursor = 0;
+	int box_cursor = 0;     // selected stored mon in the PC screen
+
+	// --- party action menu -------------------------------------------------
+	std::vector<PartyAction> actions;   // rebuilt per selection, see build_actions()
+	int action_cursor = 0;
+	int action_slot = 0;                // slot the action menu was opened on
+	PartyContext action_context = PartyContext::FIELD;
+	// While >= 0 the party screen is picking the second half of a swap: the
+	// next confirmed slot changes the party order (§4/§13).
+	int swap_from = -1;
+
+	// --- summary -----------------------------------------------------------
+	SummaryPage summary_page = SummaryPage::OVERVIEW;
+	bool summary_from_box = false;      // the summary can be opened over a box mon
+	int summary_index = 0;              // party slot, or box index when from_box
+
+	// --- give held item ----------------------------------------------------
+	int give_cursor = 0;
+	int give_slot = 0;
+	std::vector<std::string> give_items;   // holdable bag entries, rebuilt on open
+
+	// --- "which move should be forgotten?" ---------------------------------
+	// The prompt PartySystem queues when a level-up move does not fit (§9).
+	// The menu only renders and answers it; the request itself lives in the
+	// party system, so it survives the menu being closed and reopened.
+	int learn_cursor = 0;               // 0..3 = replace that move, 4 = decline
+	// The TM to spend once the prompt is answered with a replacement (empty
+	// for a level-up move and for HMs, which are reusable). A declined TM is
+	// never consumed, same as the real games.
+	std::string learn_item;
 	int options_cursor = 0; // selected row (Ton/Kampfszene/Rahmenart) in the OPTIONS screen
 	// Visited-town destinations available right now (filtered from the fixed
 	// FLY_DESTINATIONS table by GameState::flag() each time FLY opens).
@@ -38,9 +95,36 @@ private:
 	std::string flash;      // transient status line (e.g. "X learned MOVE!")
 	GameState* gs;
 	BattleData* bdata;
-	std::vector<Mon>* team;
-	std::vector<Mon>* box;
+	PartySystem* party;
 	std::string location;
+
+	// Cached per-slot presentation, rebuilt only for the slots whose
+	// PartySystem revision moved (§28: a Pikachu losing 10 HP redraws that one
+	// row, it does not rebuild the party screen).
+	struct SlotView {
+		unsigned rev = 0;
+		bool present = false;
+		std::string name, level_text, hp_text, status_text, item_text, gender;
+		std::string item_id;   // raw ITEM_* id, for the icon lookup
+		std::string sprite;
+		bool shiny = false, fainted = false;
+		int hp = 0, max_hp = 0;
+	};
+	SlotView slot_views[PartySystem::MAX_SLOTS];
+	int party_token = -1;        // PartySystem subscription, -1 when not subscribed
+	// Slots the party system told us to refresh since the last draw.
+	bool slot_dirty[PartySystem::MAX_SLOTS] = {true, true, true, true, true, true};
+	void on_party_event(const PartyNotice& n);
+	void refresh_slot_views();               // rebuilds only the dirty rows
+	const SlotView& slot_view(int slot) const { return this->slot_views[slot]; }
+
+	// Which actions are valid for `slot` in `ctx` right now -- an action that
+	// cannot succeed is never offered (§5/§26).
+	std::vector<PartyAction> build_actions(int slot, PartyContext ctx) const;
+	static const char* action_label(PartyAction a);
+	void run_action(PartyAction a);
+	// Report a PartyResult to the player via the status line.
+	void report(PartyResult r, const std::string& ok_text = std::string());
 
 	// Sorted snapshot of the bag (unordered_map has no stable order for a cursor).
 	std::vector<std::pair<std::string, int>> bag_sorted() const;
@@ -85,8 +169,9 @@ private:
 
 public:
 	Menu();
-	void configure(GameState* g, std::vector<Mon>* team, std::vector<Mon>* box,
-	               BattleData* bd = nullptr);
+	// The menu reads the party through PartySystem and never keeps its own
+	// copy of it.
+	void configure(GameState* g, PartySystem* party, BattleData* bd = nullptr);
 	void set_location(const std::string& loc) { this->location = loc; }
 	void set_mapsec(bool has, int x, int y, int w, int h) {
 		this->has_mapsec = has;
@@ -98,6 +183,12 @@ public:
 	bool active() const { return screen != CLOSED; }
 	void open();
 	void close();
+	// Jump straight to the party screen (a script or the field's "use an HM"
+	// flow wanting the player to pick a mon).
+	void open_party();
+	// Open the pending "which move should be forgotten?" prompt. Returns
+	// false when PartySystem has no request waiting.
+	bool open_move_learn();
 	void input(BtnInput b);
 	void draw(sf::RenderTarget& target);
 

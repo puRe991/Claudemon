@@ -735,7 +735,9 @@ static std::vector<char> parse_walk(const char* env) {
     if (!env) return out;
     std::stringstream ss(env); std::string t;
     while (std::getline(ss, t, ',')) {
-        if (t.size() == 1 && std::string("NSEWTMGH").find(t[0]) != std::string::npos)
+        // B and X are UI-only tokens (the B/X buttons); they have no
+        // movement meaning, so they only do anything while a menu is open.
+        if (t.size() == 1 && std::string("NSEWTMGHBX").find(t[0]) != std::string::npos)
             out.push_back(t[0]);
     }
     return out;
@@ -1894,9 +1896,19 @@ int main() {
     GameState gs;
     BattleData bdata;
     bdata.load("assets/battle");
-    std::vector<Mon> team;                          // the player's party
-    team.reserve(6);                                // keep &team[0] stable
-    std::vector<Mon> pc_box;                         // PC storage
+    // The party and the PC boxes as one gameplay system (see PartySystem.h):
+    // every rule about them (six slots, no gaps, never strand the player
+    // without a usable pokemon, held-item transfers, level-up prompts) lives
+    // there, and the party screen only reads it. `team`/`pc_box` are
+    // references into that system's own storage, kept because Battle and
+    // ScriptVM address the party as a plain vector; every path that writes
+    // through them is followed by party.sync() below, which turns those raw
+    // writes back into party events.
+    PartySystem party;
+    party.configure(&bdata, &gs);
+    std::vector<Mon>& team = party.party_storage();  // the player's party
+    team.reserve(6);                                 // keep &team[0] stable
+    std::vector<Mon>& pc_box = party.box_storage();  // PC storage
 
     // A saved run resumes exactly where it left off (map, position, flags,
     // bag, money, party, PC box). CODEMON_MAP/CODEMON_NO_SAVE force a fresh
@@ -1904,12 +1916,13 @@ int main() {
     std::string start_map; int start_x = -1, start_y = -1;
     bool resumed = false;
     if (!map_env && !std::getenv("CODEMON_NO_SAVE")) {
-        resumed = SaveGame::load(SAVE_PATH, gs, team, pc_box, start_map, start_x, start_y);
+        resumed = SaveGame::load(SAVE_PATH, gs, party, start_map, start_x, start_y);
         // A save written before PP tracking existed has no `pp` field at all
         // for its party/box mons -- give them full PP rather than leaving
         // the vector empty (which would read as "0 PP, can't move").
         for (Mon& m : team) if (m.pp.size() != m.moves.size()) bdata.restore_pp(m);
         for (Mon& m : pc_box) if (m.pp.size() != m.moves.size()) bdata.restore_pp(m);
+        party.sync();
     }
     // Story start: the player rides in on the moving truck (InsideOfTruck),
     // which is where pokeemerald's own new-game intro begins -- its own
@@ -1922,7 +1935,7 @@ int main() {
     // also run it even when a save was already loaded (discarding it, same
     // as any other save file that's simply never opened again).
     auto start_new_game = [&]() {
-        gs = GameState(); team.clear(); pc_box.clear();
+        gs = GameState(); party.clear();
         start_map = map_env ? map_env : "maps/InsideOfTruck.map";
         start_x = start_y = -1;
         // New-game default world state: every NPC/item hidden until its own
@@ -2018,6 +2031,7 @@ int main() {
     Battle battle;
     battle.configure(&bdata, &rng);
     battle.set_capture(&gs, &team, &pc_box);
+    battle.set_party_system(&party);
     ScriptVM vm;
     vm.set_battle_data(&bdata, &team, &rng, &pc_box);
     vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player, &sess->actors, &sess->localid_map);
@@ -2026,7 +2040,7 @@ int main() {
     if (const char* ts = std::getenv("CODEMON_TEST_SCRIPT")) vm.start(ts, sess->player);
     Menu menu;
     menu.load_font();
-    menu.configure(&gs, &team, &pc_box, &bdata);
+    menu.configure(&gs, &party, &bdata);
     Minigame games;
     games.load_font();
     games.configure(&gs, &rng);
@@ -2082,6 +2096,8 @@ int main() {
     auto on_map_change = [&](const std::string& path, Audio* aud) {
         banner = pretty_map(path); banner_t = 2.2f; fade = 1.0f;
         menu.set_location(banner);
+        battle.set_met_location(banner);   // stamped onto anything caught here
+        vm.set_met_location(banner);       // ... and onto anything a script gives
         menu.set_mapsec(sess->map->has_mapsec(), sess->map->mapsec_x(),
                          sess->map->mapsec_y(), sess->map->mapsec_w(), sess->map->mapsec_h());
         if (aud) aud->play_bgm(sess->map->music());
@@ -2122,7 +2138,20 @@ int main() {
         check_trigger(sess, vm, gs);
         on_map_change(sess->path, aud);
     };
+    // A starter handed over outside the VM's own `special ChooseStarter`
+    // path (the debug/demo route). It joins through the party system so it
+    // gets a uid, an origin stamp and the usual events -- the same way any
+    // other new party member does.
+    auto give_starter = [&](const std::string& species) {
+        Mon m = bdata.make_mon(species, 5, &rng, gs.trainer_id, gs.secret_id);
+        PartySystem::stamp_origin(m, gs, "ITEM_POKE_BALL", banner);
+        if (party.empty()) party.add(m);
+        else { team[0] = m; party.touch(0); }
+    };
+
     menu.set_location(banner);
+    battle.set_met_location(banner);
+    vm.set_met_location(banner);
     menu.set_mapsec(sess->map->has_mapsec(), sess->map->mapsec_x(),
                      sess->map->mapsec_y(), sess->map->mapsec_w(), sess->map->mapsec_h());
 
@@ -2130,6 +2159,7 @@ int main() {
     auto token_btn = [](char t) -> BtnInput {
         switch (t) { case 'N': return BTN_UP; case 'S': return BTN_DOWN;
                      case 'W': return BTN_LEFT; case 'E': return BTN_RIGHT;
+                     case 'B': return BTN_CANCEL; case 'X': return BTN_ALT;
                      default: return BTN_CONFIRM; }
     };
 
@@ -2140,11 +2170,9 @@ int main() {
     auto handle_whiteout = [&](Audio* aud) {
         bool battle_just_ended = battle_was_active && !battle.active() && !vm.running();
         if (battle_just_ended && !battle.won()) {
-            for (Mon& m : team) {
-                m.hp = m.max_hp;
-                m.status = Status::NONE; m.status_turns = 0; m.confusion_turns = 0;
-                bdata.restore_pp(m);
-            }
+            // A whiteout is a full Pokemon Center heal of the whole party --
+            // through the party system, so every slot's row updates itself.
+            party.heal_all();
             if (!gs.last_heal_map.empty()) {
                 Session* ns = load_session("maps/" + gs.last_heal_map + ".map",
                                            gs.last_heal_x, gs.last_heal_y, &gs);
@@ -2278,8 +2306,7 @@ int main() {
                     // follow-up) continues.
                     if (starter.done()) {
                         if (vm.wants_starter()) vm.resolve_starter(starter.chosen());
-                        else if (team.empty()) team.push_back(bdata.make_mon(starter.chosen(), 5, &rng, gs.trainer_id, gs.secret_id));
-                        else team[0] = bdata.make_mon(starter.chosen(), 5, &rng, gs.trainer_id, gs.secret_id);
+                        else give_starter(starter.chosen());
                         gs.mark_caught(starter.chosen());
                         starter.ack();
                     } else if (!starter.active() && vm.wants_starter()) {
@@ -2354,7 +2381,7 @@ int main() {
                     if (!healfx.active() && vm.wants_heal_fx()) healfx.start((int)team.size());
                     healfx.tick(0.13f);
                     if (menu.wants_save()) {
-                        bool ok = SaveGame::save(SAVE_PATH, gs, team, pc_box, sess->path,
+                        bool ok = SaveGame::save(SAVE_PATH, gs, party, sess->path,
                                                   sess->player->get_tile_x(), sess->player->get_tile_y());
                         menu.set_flash(ok ? "Spiel gespeichert!" : "Speichern fehlgeschlagen.");
                         menu.ack_save();
@@ -2363,6 +2390,7 @@ int main() {
                     do_pending_fly(nullptr);
                     battle.tick(0.13f);
                     games.tick(0.13f);
+                    party.sync();   // same raw-write reconciliation as the live loop
                     if (banner_t > 0.f) banner_t -= 0.13f;
                     if (fade > 0.f) fade -= 0.13f * 1.6f;
                 }
@@ -2517,8 +2545,10 @@ int main() {
                     default: break;
                     }
                     if (speciespicker.done()) {
-                        if (team.size() < 6)
-                            team.push_back(bdata.make_mon(speciespicker.chosen(), 25, &rng, gs.trainer_id, gs.secret_id));
+                        Mon dbg = bdata.make_mon(speciespicker.chosen(), 25, &rng,
+                                                 gs.trainer_id, gs.secret_id);
+                        PartySystem::stamp_origin(dbg, gs, "ITEM_POKE_BALL", banner, 70);
+                        party.add(dbg);   // party if there is room, else the PC
                         speciespicker.ack();
                     }
                 } else if (debugmenu.active()) {
@@ -2534,11 +2564,7 @@ int main() {
                     if (action >= 0) {
                         switch (action) {
                         case DebugMenu::HEAL_TEAM:
-                            for (Mon& m : team) {
-                                m.hp = m.max_hp;
-                                m.status = Status::NONE; m.status_turns = 0; m.confusion_turns = 0;
-                                bdata.restore_pp(m);
-                            }
+                            party.heal_all();
                             break;
                         case DebugMenu::ADD_MONEY:
                             gs.money += 50000;
@@ -2554,19 +2580,14 @@ int main() {
                             speciespicker.open();
                             break;
                         case DebugMenu::TEACH_HMS:
-                            if (!team.empty()) {
-                                Mon& m = team[0];
+                            if (!party.empty()) {
                                 static const char* HMS[] = {
                                     "CUT", "SURF", "STRENGTH", "WATERFALL",
                                     "FLY", "DIVE", "ROCK_SMASH"};
-                                for (const char* mv : HMS) {
-                                    if (m.moves.size() >= 4) break;
-                                    if (std::find(m.moves.begin(), m.moves.end(), mv) != m.moves.end())
-                                        continue;
-                                    const MoveInfo* mi = bdata.move(mv);
-                                    m.moves.push_back(mv);
-                                    m.pp.push_back(mi ? mi->pp : 20);
-                                }
+                                // learn_move refuses once the mon knows four
+                                // and for a move it already has, so this just
+                                // fills whatever slots are still free.
+                                for (const char* mv : HMS) party.learn_move(0, mv, -1);
                                 gs.set_flag("FLAG_SYS_USE_STRENGTH");
                             }
                             break;
@@ -2577,8 +2598,8 @@ int main() {
                             break;
                         case DebugMenu::GIVE_XP: {
                             std::vector<std::string> xm;   // level-up/evolution
-                            for (Mon& m : team)             // text, unused here
-                                bdata.grant_exp(m, 1000, xm);
+                            for (int i = 0; i < party.size(); ++i)   // text, unused here
+                                party.grant_exp(i, 1000, xm);
                             break;
                         }
                         case DebugMenu::WARP_TO_MAP:
@@ -2620,13 +2641,27 @@ int main() {
                            !box.is_active() && !vm.running() && !menu.active()) {
                     games.open();
                 } else if (menu.active()) {
+                    // Both WASD and the arrow keys drive the menus, plus a real
+                    // B button (Backspace/Escape) and the pad's L/R and X:
+                    // Q/E page through the summary the way the shoulder
+                    // buttons do, X is the party screen's jump-to-report
+                    // shortcut. Keeping M as "close" as well.
                     switch (event.key.code) {
-                    case sf::Keyboard::W: menu.input(BTN_UP); break;
-                    case sf::Keyboard::S: menu.input(BTN_DOWN); break;
-                    case sf::Keyboard::A: menu.input(BTN_LEFT); break;
-                    case sf::Keyboard::D: menu.input(BTN_RIGHT); break;
+                    case sf::Keyboard::W:
+                    case sf::Keyboard::Up:    menu.input(BTN_UP); break;
+                    case sf::Keyboard::S:
+                    case sf::Keyboard::Down:  menu.input(BTN_DOWN); break;
+                    case sf::Keyboard::A:
+                    case sf::Keyboard::Q:
+                    case sf::Keyboard::Left:  menu.input(BTN_LEFT); break;
+                    case sf::Keyboard::D:
+                    case sf::Keyboard::E:
+                    case sf::Keyboard::Right: menu.input(BTN_RIGHT); break;
                     case sf::Keyboard::Space:
                     case sf::Keyboard::Return: menu.input(BTN_CONFIRM); break;
+                    case sf::Keyboard::BackSpace:
+                    case sf::Keyboard::Escape: menu.input(BTN_CANCEL); break;
+                    case sf::Keyboard::X: menu.input(BTN_ALT); break;
                     case sf::Keyboard::M: menu.close(); break;
                     default: break;
                     }
@@ -2723,8 +2758,7 @@ int main() {
         }
         if (starter.done()) {
             if (vm.wants_starter()) vm.resolve_starter(starter.chosen());
-            else if (team.empty()) team.push_back(bdata.make_mon(starter.chosen(), 5, &rng, gs.trainer_id, gs.secret_id));
-                        else team[0] = bdata.make_mon(starter.chosen(), 5, &rng, gs.trainer_id, gs.secret_id);
+            else give_starter(starter.chosen());
             gs.mark_caught(starter.chosen());
             starter.ack();
         } else if (!starter.active() && vm.wants_starter()) {
@@ -2830,7 +2864,7 @@ int main() {
         }
         if (!healfx.active() && vm.wants_heal_fx()) healfx.start((int)team.size());
         if (menu.wants_save()) {
-            bool ok = SaveGame::save(SAVE_PATH, gs, team, pc_box, sess->path,
+            bool ok = SaveGame::save(SAVE_PATH, gs, party, sess->path,
                                       sess->player->get_tile_x(), sess->player->get_tile_y());
             menu.set_flash(ok ? "Spiel gespeichert!" : "Speichern fehlgeschlagen.");
             menu.ack_save();
@@ -2841,6 +2875,18 @@ int main() {
         if (vm.running()) vm.update(dt);
         battle.tick(dt);
         games.tick(dt);
+        // Battle and the script VM write straight into the party's Mons (a hit
+        // lands, `healparty` runs). One diff per frame turns those raw writes
+        // into the same party events a menu operation would have raised, so the
+        // party screen never shows stale HP.
+        party.sync();
+        // A level-up (or a TM) that hit a full moveset leaves a "which move
+        // should be forgotten?" request in the party system. Ask it as soon as
+        // nothing else owns the screen.
+        if (party.has_pending_move_learn() && !menu.active() && !battle.active() &&
+            !vm.running() && !box.is_active() && !games.active() && !starter.active() &&
+            !shop.active() && !yesno.active() && !picker.active() && !multichoice.active())
+            menu.open_move_learn();
         if (banner_t > 0.f) banner_t -= dt;
         if (fade > 0.f) fade -= dt * 1.6f;
         // NPCs freeze while a dialog/battle/script/menu/minigame is running.

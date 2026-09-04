@@ -31,9 +31,17 @@ static const NatureRow* nature_row(const std::string& n) {
 }
 // -1/0/+1 -> the real 0.9/1.0/1.1 multiplier.
 static float nature_mult(int delta) { return 1.f + delta * 0.1f; }
-// Gen-3 non-HP stat: floor(floor((2*base+iv)*level/100 + 5) * natureMult).
-static int calc_stat(int base, int iv, int level, float mult) {
-	return (int)(((2 * base + iv) * level / 100 + 5) * mult);
+// Gen-3 non-HP stat:
+//   floor(floor((2*base + iv + ev/4) * level/100 + 5) * natureMult).
+// EVs are 0 for everything this engine creates (no EV yields are imported),
+// so this is the same number the IV-only form produced -- the term is here
+// so an externally granted EV (a vitamin, a future import) actually counts.
+static int calc_stat(int base, int iv, int ev, int level, float mult) {
+	return (int)(((2 * base + iv + ev / 4) * level / 100 + 5) * mult);
+}
+// Gen-3 HP stat, same shape with the +level+10 tail and no nature term.
+static int calc_hp(int base, int iv, int ev, int level) {
+	return (2 * base + iv + ev / 4) * level / 100 + level + 10;
 }
 
 bool BattleData::load(const std::string& dir) {
@@ -172,12 +180,12 @@ Mon BattleData::make_mon(const std::string& name, int level, std::mt19937* rng,
 	if (it == species.end()) { mon.max_hp = mon.hp = 10 + level; return mon; }
 	const SpeciesInfo& s = it->second;
 	const NatureRow* nr = nature_row(mon.nature);
-	mon.max_hp = mon.hp = (2 * s.hp + mon.iv_hp) * mon.level / 100 + mon.level + 10;
-	mon.atk = calc_stat(s.atk, mon.iv_atk, mon.level, nature_mult(nr->atk));
-	mon.def = calc_stat(s.def, mon.iv_def, mon.level, nature_mult(nr->def));
-	mon.spa = calc_stat(s.spa, mon.iv_spa, mon.level, nature_mult(nr->spa));
-	mon.spd = calc_stat(s.spd, mon.iv_spd, mon.level, nature_mult(nr->spd));
-	mon.spe = calc_stat(s.spe, mon.iv_spe, mon.level, nature_mult(nr->spe));
+	mon.max_hp = mon.hp = calc_hp(s.hp, mon.iv_hp, mon.ev_hp, mon.level);
+	mon.atk = calc_stat(s.atk, mon.iv_atk, mon.ev_atk, mon.level, nature_mult(nr->atk));
+	mon.def = calc_stat(s.def, mon.iv_def, mon.ev_def, mon.level, nature_mult(nr->def));
+	mon.spa = calc_stat(s.spa, mon.iv_spa, mon.ev_spa, mon.level, nature_mult(nr->spa));
+	mon.spd = calc_stat(s.spd, mon.iv_spd, mon.ev_spd, mon.level, nature_mult(nr->spd));
+	mon.spe = calc_stat(s.spe, mon.iv_spe, mon.ev_spe, mon.level, nature_mult(nr->spe));
 	mon.t1 = s.t1; mon.t2 = s.t2;
 	mon.exp = exp_for_level(s.growth, mon.level);
 	if (rng) {
@@ -377,7 +385,7 @@ void BattleData::recompute_stats(Mon& mon, bool keep_ratio) const {
 	if (it == species.end()) return;
 	const SpeciesInfo& s = it->second;
 	const NatureRow* nr = nature_row(mon.nature);
-	int new_max = (2 * s.hp + mon.iv_hp) * mon.level / 100 + mon.level + 10;
+	int new_max = calc_hp(s.hp, mon.iv_hp, mon.ev_hp, mon.level);
 	if (keep_ratio) {
 		float r = mon.max_hp > 0 ? (float)mon.hp / mon.max_hp : 1.f;
 		mon.hp = std::max(1, (int)(new_max * r));
@@ -385,11 +393,11 @@ void BattleData::recompute_stats(Mon& mon, bool keep_ratio) const {
 		mon.hp += (new_max - mon.max_hp);      // level-up: gain the delta
 	}
 	mon.max_hp = new_max;
-	mon.atk = calc_stat(s.atk, mon.iv_atk, mon.level, nature_mult(nr->atk));
-	mon.def = calc_stat(s.def, mon.iv_def, mon.level, nature_mult(nr->def));
-	mon.spa = calc_stat(s.spa, mon.iv_spa, mon.level, nature_mult(nr->spa));
-	mon.spd = calc_stat(s.spd, mon.iv_spd, mon.level, nature_mult(nr->spd));
-	mon.spe = calc_stat(s.spe, mon.iv_spe, mon.level, nature_mult(nr->spe));
+	mon.atk = calc_stat(s.atk, mon.iv_atk, mon.ev_atk, mon.level, nature_mult(nr->atk));
+	mon.def = calc_stat(s.def, mon.iv_def, mon.ev_def, mon.level, nature_mult(nr->def));
+	mon.spa = calc_stat(s.spa, mon.iv_spa, mon.ev_spa, mon.level, nature_mult(nr->spa));
+	mon.spd = calc_stat(s.spd, mon.iv_spd, mon.ev_spd, mon.level, nature_mult(nr->spd));
+	mon.spe = calc_stat(s.spe, mon.iv_spe, mon.ev_spe, mon.level, nature_mult(nr->spe));
 	mon.t1 = s.t1; mon.t2 = s.t2;
 }
 
@@ -430,28 +438,40 @@ std::string BattleData::ability(const std::string& species_name) const {
 	return sp == species.end() ? "NONE" : sp->second.ability1;
 }
 
-void BattleData::grant_exp(Mon& mon, long gained, std::vector<std::string>& msgs) const {
+void BattleData::grant_exp(Mon& mon, long gained, std::vector<std::string>& msgs,
+                           LevelUpReport* report) const {
 	if (mon.fainted() || gained <= 0) return;
 	auto sp = species.find(mon.species);
 	std::string growth = sp == species.end() ? "MEDIUM_FAST" : sp->second.growth;
 	mon.exp += gained;
-	msgs.push_back(disp(mon.species) + " erhält " + std::to_string(gained) + " EP!");
+	msgs.push_back(disp(mon.display_name()) + " erhält " + std::to_string(gained) + " EP!");
 	while (mon.level < 100 && mon.exp >= exp_for_level(growth, mon.level + 1)) {
 		mon.level++;
+		if (report) report->levels_gained++;
 		recompute_stats(mon, false);
-		msgs.push_back(disp(mon.species) + " erreicht Level " + std::to_string(mon.level) + "!");
+		msgs.push_back(disp(mon.display_name()) + " erreicht Level " +
+		               std::to_string(mon.level) + "!");
 		// learn any move taught at this level
 		auto li = learn.find(mon.species);
 		if (li != learn.end()) {
 			for (auto& lv : li->second) if (lv.first == mon.level) {
 				const MoveInfo* nmi = move(lv.second);
 				int new_pp = nmi ? nmi->pp : 20;
+				// Already knows it (a move can appear twice in a learnset, and
+				// an evolved form re-teaches moves the pre-evolution had).
+				if (std::find(mon.moves.begin(), mon.moves.end(), lv.second) != mon.moves.end())
+					continue;
 				if (mon.moves.size() < 4) {
 					mon.moves.push_back(lv.second);
 					mon.pp.push_back(new_pp);
-					msgs.push_back(disp(mon.species) + " erlernt " + disp(lv.second) + "!");
+					msgs.push_back(disp(mon.display_name()) + " erlernt " + disp(lv.second) + "!");
+					if (report) report->learned.push_back(lv.second);
+				} else if (report) {
+					// Four moves already: the real games stop and ask which one
+					// to forget. Defer to the caller rather than deciding here.
+					report->pending_moves.push_back(lv.second);
 				} else {
-					msgs.push_back(disp(mon.species) + " erlernt " + disp(lv.second) +
+					msgs.push_back(disp(mon.display_name()) + " erlernt " + disp(lv.second) +
 					               " (vergisst " + disp(mon.moves[0]) + ")");
 					mon.moves[0] = lv.second;
 					if (!mon.pp.empty()) mon.pp[0] = new_pp; else mon.pp.push_back(new_pp);
@@ -464,14 +484,66 @@ void BattleData::grant_exp(Mon& mon, long gained, std::vector<std::string>& msgs
 			for (const Evolution& e : ei->second) {
 				if (e.method.rfind("LEVEL", 0) == 0 &&
 				    mon.level >= std::atoi(e.param.c_str())) {
-					std::string from = disp(mon.species);
+					std::string from_id = mon.species, from = disp(mon.species);
 					mon.species = e.target;
 					recompute_stats(mon, true);
 					msgs.push_back(from + " entwickelt sich zu " + disp(mon.species) + "!");
+					if (report) { report->evolved_from = from_id; report->evolved_to = e.target; }
 					break;
 				}
 			}
 		}
+	}
+}
+
+// ------------------------------------------------------------------ gender --
+// The species that have no gender at all, or only ever one. Everything else
+// falls back to the 50/50 personality split -- see the header for why the real
+// per-species ratio isn't available here.
+static bool species_in(const std::string& s, const char* const* list) {
+	for (const char* const* p = list; *p; ++p) if (s == *p) return true;
+	return false;
+}
+char BattleData::gender(const std::string& sp, unsigned personality) {
+	static const char* GENDERLESS[] = {
+		"MAGNEMITE", "MAGNETON", "VOLTORB", "ELECTRODE", "STARYU", "STARMIE",
+		"DITTO", "PORYGON", "PORYGON2", "ARTICUNO", "ZAPDOS", "MOLTRES",
+		"MEWTWO", "MEW", "UNOWN", "LUNATONE", "SOLROCK", "BALTOY", "CLAYDOL",
+		"BELDUM", "METANG", "METAGROSS", "REGIROCK", "REGICE", "REGISTEEL",
+		"LATIOS", "KYOGRE", "GROUDON", "RAYQUAZA", "JIRACHI", "DEOXYS",
+		"RAIKOU", "ENTEI", "SUICUNE", "LUGIA", "HO_OH", "CELEBI", "SHEDINJA",
+		"CLAMPERL", "HUNTAIL", "GOREBYSS", nullptr
+	};
+	static const char* ALWAYS_FEMALE[] = {
+		"NIDORAN_F", "NIDORINA", "NIDOQUEEN", "CHANSEY", "BLISSEY", "KANGASKHAN",
+		"JYNX", "MILTANK", "SMOOCHUM", "ILLUMISE", "LATIAS", nullptr
+	};
+	static const char* ALWAYS_MALE[] = {
+		"NIDORAN_M", "NIDORINO", "NIDOKING", "HITMONLEE", "HITMONCHAN",
+		"HITMONTOP", "TAUROS", "TYROGUE", "VOLBEAT", nullptr
+	};
+	if (species_in(sp, GENDERLESS)) return 'N';
+	if (species_in(sp, ALWAYS_FEMALE)) return 'F';
+	if (species_in(sp, ALWAYS_MALE)) return 'M';
+	// pokeemerald reads the low byte of the personality value against the
+	// species' gender ratio; with no ratio imported this is the even split.
+	return (personality & 0xFFu) < 127u ? 'F' : 'M';
+}
+
+const char* BattleData::gender_symbol(char g) {
+	if (g == 'M') return "\u2642";
+	if (g == 'F') return "\u2640";
+	return "";
+}
+
+const char* summary_page_title(SummaryPage p) {
+	switch (p) {
+	case SummaryPage::OVERVIEW: return "ÜBERSICHT";
+	case SummaryPage::MOVES:    return "ATTACKEN";
+	case SummaryPage::STATS:    return "STATUSWERTE";
+	case SummaryPage::DETAILS:  return "DETAILS";
+	case SummaryPage::RIBBONS:  return "BÄNDER";
+	default:                    return "";
 	}
 }
 

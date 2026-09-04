@@ -174,7 +174,7 @@ ctest --test-dir build --output-on-failure
 ./build/codemon
 ```
 
-**Steuerung**: WASD zum Bewegen, Leertaste/Enter zum Bestätigen/Interagieren, `M` öffnet das Menü, `G` öffnet Minispiele (sofern verfügbar), `Shift` gedrückt halten zum Rennen (nach Erhalt der Turbotreter).
+**Steuerung**: WASD zum Bewegen, Leertaste/Enter zum Bestätigen/Interagieren, `M` öffnet das Menü, `G` öffnet Minispiele (sofern verfügbar), `Shift` gedrückt halten zum Rennen (nach Erhalt der Turbotreter). In Menüs funktionieren zusätzlich die Pfeiltasten, `Rücktaste`/`Esc` als B-Knopf, `Q`/`E` als L/R (Seitenwechsel im Bericht) und `X` als kontextabhängige Aktion (im Team-Menü: direkt zum Bericht).
 
 ### Windows
 
@@ -238,7 +238,7 @@ xvfb-run -a ./build/codemon
 Wichtige Umgebungsvariablen:
 
 * `CODEMON_MAP` – Startkarte
-* `CODEMON_WALK` – kommasepariertes Bewegungsskript: `N/S/E/W` bewegen, `T` sprechen/Dialog fortsetzen, `M` Menü umschalten, `G` Minispiele umschalten
+* `CODEMON_WALK` – kommasepariertes Bewegungsskript: `N/S/E/W` bewegen, `T` sprechen/Dialog fortsetzen, `M` Menü umschalten, `G` Minispiele umschalten, `H` Debug-Menü umschalten, `B` Abbrechen/zurück (nur in Menüs), `X` kontextabhängige Aktion (nur in Menüs)
 * `CODEMON_FRAMES` – Anzahl der Frames
 * `CODEMON_FORCE_ENCOUNTER` / `CODEMON_NO_WILD` – Wildbegegnungen erzwingen/deaktivieren
 * `CODEMON_GRANT_EXP` – Start-EP vergeben, um Levelaufstieg/Entwicklung sofort zu testen
@@ -349,6 +349,12 @@ Dies ist keine Wunschliste: Alles, was als erledigt markiert ist, wurde entweder
 
 ✅ * Echte IVs (0–31 pro Wert) und Wesen. Jeder einzelne Mon erhält seine Werte einmalig und behält sie dauerhaft. EVs werden noch nicht gesammelt.
 
+✅ * **Party-System als eigenes Gameplay-System** (`PartySystem.h/.cpp`): Team (6 Plätze) und PC-Boxen (14×30) gehören nicht mehr dem Menü, sondern einem System, das jede Änderung selbst prüft und als Event meldet (`PartyChanged`, `PartyOrderChanged`, `PokemonAdded/RemovedFromParty`, `PokemonUpdated/Healed/Fainted/LevelUp/LearnedMove`, `PokemonEvolutionStarted/Completed`, `HeldItemChanged`, `ActivePokemonChanged`, `BoxChanged`). Jede Operation liefert ein `PartyResult` statt stillschweigend nichts zu tun, also auch für alle Fehlerfälle (Team voll, Box voll, letztes/letztes kampffähiges Pokémon, Item nicht tragbar, ungültiger Platz …). Das POKéMON-Menü liest nur noch: es zeigt alle 6 Plätze (leere sichtbar anders), ein kontextabhängiges Aktionsmenü (nur Aktionen, die gerade möglich sind), einen 5-seitigen Bericht (Übersicht/Attacken/Statuswerte/Details/Bänder), Positionstausch, Item geben/nehmen, In Box / Ins Team, Anführer und Begleiter. Beim Ändern eines Pokémon wird nur dessen Zeile neu aufgebaut, nicht das ganze Menü. Kampf und Skript-VM schreiben weiterhin direkt in die Mons; ein `sync()` pro Frame macht daraus dieselben Events.
+
+✅ * Pokémon tragen jetzt echte Identitäts- und Herkunftsdaten: eindeutige ID, Spitzname, OT-Name + Trainer-ID-Paar, Pokéball, Fangort, Fanglevel, Freundschaft, EVs (im echten Gen-3-Statuswert-Formel-Term) und Bänder. Alles wird gespeichert und im Bericht angezeigt; ältere Spielstände laden unverändert weiter. Das Geschlecht wird wie im Original aus dem Persönlichkeitswert abgeleitet (mit Tabelle für geschlechtslose/eingeschlechtliche Arten – echte Geschlechterverhältnisse sind nicht importiert, daher sonst 50/50).
+
+✅ * Eine fünfte Attacke überschreibt nichts mehr: Level-Up und TM/HM stellen die echte Frage „Welche Attacke soll vergessen werden?" und lassen sich ablehnen (die TM wird nur bei Annahme verbraucht).
+
 ✅ * Schillernde (shiny) Pokémon mit der echten Gen-3-Mechanik: Jedes Pokémon bekommt beim Erzeugen einen 32-Bit-Persönlichkeitswert, der zusammen mit dem Trainer-ID-Paar des Spielstands (sichtbare ID + Secret ID, einmalig pro neuem Spiel gewürfelt) über `GET_SHINY_VALUE` entscheidet – 8 von 65536, also die echten 1/8192. Gezeichnet wird dann die zweite, ebenfalls importierte 16-Farben-Palette der Art (Vorder- **und** Rückansicht, alle 385 Arten). Der Status bleibt beim Fangen, Speichern und Entwickeln erhalten und wird im Kampf sowie im Team-/Box-Menü mit einem ★ hinter dem Namen markiert (die Funkel-Animation des Originals hat diese Engine nicht). Trainer-Pokémon sind wie im Original nie schillernd (`OT_ID_RANDOM_NO_SHINY`).
 
 ✅ * Echte PP pro Attacke, PP-Verbrauch auch bei Fehlschlägen, Erzwingen von Verzweifler bei 0 PP sowie Rückstoßschaden. PP wird bei vollständiger Heilung wiederhergestellt.
@@ -435,7 +441,7 @@ Die Storyinhalte selbst (Dialoge, Skripte, Karten) sind für das gesamte Spiel i
 
 ### 🧱 Größere Engine-weite Lücken (kein einfacher Tabellen-Fix)
 
-* **`BattleData::Mon` hat keinen Spitznamen, keinen Original-Trainer-Name/-Geschlecht und keinen Sheen/Glanz-Wert.** (Ein echter Persönlichkeitswert existiert seit den schillernden Pokémon, ausgewertet wird daraus bisher aber nur der Shiny-Status – Geschlecht, die Wahl zwischen Fähigkeit 1 und 2 sowie Unowns Buchstabe hängen im Original ebenfalls daran.) Fiel zuerst bei der Korrektur von `INGAME_TRADES` auf (dort fehlen dadurch Spitzname "DOTS"/"PLUSES"/"SEASOR"/"MEOWOW", OT "KOBE"/"ROMAN"/"SKYLAR"/"ISIS" usw.), ist aber keine Trade-spezifische Lücke, sondern gilt für jedes Pokémon im Spiel (gefangen, geschenkt, Starter). Das Beheben braucht:
+* **~~`BattleData::Mon` hat keinen Spitznamen und keinen Original-Trainer-Namen~~ – weitgehend erledigt** (siehe Party-System oben): `Mon` trägt jetzt `nickname`, `ot_name`, das OT-ID-Paar, Ball, Fangort/-level, Freundschaft, EVs und Bänder, das Geschlecht wird aus dem Persönlichkeitswert abgeleitet, und `SaveGame` schreibt/liest all das rückwärtskompatibel. Offen bleiben nur noch OT-Geschlecht, der Sheen/Glanz-Wert und die Fähigkeit-1/2-Wahl aus dem PID sowie Unowns Buchstabe. Ursprünglicher Text: **`BattleData::Mon` hat keinen Spitznamen, keinen Original-Trainer-Name/-Geschlecht und keinen Sheen/Glanz-Wert.** (Ein echter Persönlichkeitswert existiert seit den schillernden Pokémon, ausgewertet wird daraus bisher aber nur der Shiny-Status – Geschlecht, die Wahl zwischen Fähigkeit 1 und 2 sowie Unowns Buchstabe hängen im Original ebenfalls daran.) Fiel zuerst bei der Korrektur von `INGAME_TRADES` auf (dort fehlen dadurch Spitzname "DOTS"/"PLUSES"/"SEASOR"/"MEOWOW", OT "KOBE"/"ROMAN"/"SKYLAR"/"ISIS" usw.), ist aber keine Trade-spezifische Lücke, sondern gilt für jedes Pokémon im Spiel (gefangen, geschenkt, Starter). Das Beheben braucht:
   * neue Felder in `BattleData::Mon` (nickname, ot_name, ot_gender, sheen)
   * Anzeige überall, wo aktuell der Artname statt eines Spitznamens gezeigt wird (Team-Menü, Kampf-UI, `bufferpartymonnick`)
   * Erweiterung von `SaveGame.cpp`s Textformat um die neuen Felder (mit Rückwärtskompatibilität zu bestehenden Spielständen)
@@ -656,10 +662,10 @@ Aus einer Codestruktur-Review von `codemon/main.cpp` (2506 Zeilen) – reines Re
 
 ### ✅100% Team
 
-* ✅ Mehrere gespeicherte Teams
-* ✅ Einfache Teamverwaltung
-* ✅ Teamübersicht
-* ✅ Moveset-Anzeige
+* ❌ Mehrere gespeicherte Teams
+* ✅ Einfache Teamverwaltung (Reihenfolge ändern, In Box / Ins Team, Item geben/nehmen, Anführer/Begleiter)
+* ✅ Teamübersicht mit allen 6 Plätzen, KP-Leiste, Statuszustand, Geschlecht, Shiny-Markierung und getragenem Item
+* ✅ Moveset-Anzeige (Bericht-Seite „Attacken" mit Typ, Kategorie, Stärke, Genauigkeit und AP)
 
 ### Settings
 

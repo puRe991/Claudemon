@@ -14,6 +14,7 @@
 // ---------------------------------------------------------------------------
 #include "BattleData.h"
 #include "SaveGame.h"
+#include "PartySystem.h"
 #include "GameState.h"
 #include "ScriptVM.h"
 #include "Battle.h"
@@ -27,6 +28,7 @@
 #include <random>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 static int failures = 0;
 static int skipped = 0;
@@ -1158,6 +1160,523 @@ static void test_region_map_sections() {
     CHECK(ever_grande.mapsec_w() == 1 && ever_grande.mapsec_h() == 2);
 }
 
+
+// ------------------------------------------------------------ PartySystem --
+// The party is a gameplay system, not the party screen's private list: every
+// case below is a rule the screen used to have to remember (or, mostly, did
+// not) and now cannot get wrong, because it goes through PartySystem.
+
+// Convenience: a party with `n` members, all healthy.
+static void fill_party(PartySystem& ps, BattleData& bd,
+                       const std::vector<std::string>& species) {
+    for (const std::string& sp : species) {
+        Mon m = bd.make_mon(sp, 10);
+        CHECK(ps.add(m) == PartyResult::OK);
+    }
+}
+
+static void test_party_slots_and_overflow(BattleData& bd) {
+    std::printf("[party] six slots, then the PC\n");
+    GameState gs; PartySystem ps; ps.configure(&bd, &gs);
+
+    CHECK(ps.empty() && ps.size() == 0);
+    CHECK(ps.at(0) == nullptr);            // an empty slot is no Mon at all
+    CHECK(ps.at(-1) == nullptr && ps.at(99) == nullptr);
+
+    fill_party(ps, bd, {"TORCHIC", "MUDKIP", "TREECKO", "ZIGZAGOON",
+                        "POOCHYENA", "WURMPLE"});
+    CHECK(ps.size() == 6 && ps.full());
+    CHECK(ps.at(5) != nullptr && ps.at(6) == nullptr);
+
+    // A seventh goes to the PC rather than being lost or growing the party.
+    int slot = 0;
+    CHECK(ps.add(bd.make_mon("WINGULL", 8), &slot) == PartyResult::OK);
+    CHECK(slot == -1);
+    CHECK(ps.size() == 6 && ps.box_size() == 1);
+
+    // Every member has its own id, and nothing exists twice (§22).
+    std::vector<unsigned> ids;
+    for (int i = 0; i < ps.size(); ++i) ids.push_back(ps.at(i)->uid);
+    for (int i = 0; i < ps.box_size(); ++i) ids.push_back(ps.box_at(i)->uid);
+    std::sort(ids.begin(), ids.end());
+    CHECK(std::adjacent_find(ids.begin(), ids.end()) == ids.end());
+    CHECK(std::find(ids.begin(), ids.end(), 0u) == ids.end());
+}
+
+static void test_party_order(BattleData& bd) {
+    std::printf("[party] changing the order keeps the lead on its own mon\n");
+    GameState gs; PartySystem ps; ps.configure(&bd, &gs);
+    fill_party(ps, bd, {"TORCHIC", "MUDKIP", "TREECKO"});
+
+    unsigned first = ps.at(0)->uid, second = ps.at(1)->uid;
+    CHECK(ps.set_active_slot(0) == PartyResult::OK);
+    CHECK(ps.swap_slots(0, 1) == PartyResult::OK);
+    CHECK(ps.at(0)->uid == second && ps.at(1)->uid == first);
+    // The lead followed the pokemon, not the slot number -- swapping the
+    // order must not quietly change which mon leads.
+    CHECK(ps.active_slot() == 1);
+    CHECK(ps.at(2)->species == "TREECKO");   // untouched
+
+    CHECK(ps.swap_slots(0, 0) == PartyResult::SAME_SLOT);
+    CHECK(ps.swap_slots(0, 4) == PartyResult::INVALID_SLOT);
+    CHECK(ps.swap_slots(-1, 1) == PartyResult::INVALID_SLOT);
+}
+
+static void test_party_box_moves(BattleData& bd) {
+    std::printf("[party] depositing closes the gap and protects the last mon\n");
+    GameState gs; PartySystem ps; ps.configure(&bd, &gs);
+    fill_party(ps, bd, {"TORCHIC", "MUDKIP", "TREECKO"});
+    unsigned torchic = ps.at(0)->uid, treecko = ps.at(2)->uid;
+
+    // Middle slot out: the ones below move up, no hole is left (§15).
+    CHECK(ps.move_to_box(1) == PartyResult::OK);
+    CHECK(ps.size() == 2);
+    CHECK(ps.at(0)->uid == torchic && ps.at(1)->uid == treecko);
+    CHECK(ps.at(2) == nullptr);
+    CHECK(ps.box_size() == 1 && ps.box_at(0)->species == "MUDKIP");
+    // Same individual, moved -- not copied into both places.
+    CHECK(ps.slot_of(ps.box_at(0)->uid) == -1);
+    CHECK(ps.find(ps.box_at(0)->uid) != nullptr);
+
+    CHECK(ps.move_to_box(1) == PartyResult::OK);
+    CHECK(ps.size() == 1);
+    // The last one can never leave (§14).
+    CHECK(ps.move_to_box(0) == PartyResult::LAST_POKEMON);
+    CHECK(ps.release(0) == PartyResult::LAST_POKEMON);
+    CHECK(ps.size() == 1);
+
+    // Back out of the PC.
+    int slot = -1;
+    CHECK(ps.withdraw_from_box(0, &slot) == PartyResult::OK);
+    CHECK(slot == 1 && ps.size() == 2 && ps.box_size() == 1);
+    CHECK(ps.withdraw_from_box(9, &slot) == PartyResult::INVALID_SLOT);
+}
+
+static void test_party_keeps_an_able_member(BattleData& bd) {
+    std::printf("[party] the last able pokemon cannot be stored away\n");
+    GameState gs; PartySystem ps; ps.configure(&bd, &gs);
+    fill_party(ps, bd, {"TORCHIC", "MUDKIP"});
+    // Knock the second one out: the first is now the only one that can fight.
+    CHECK(ps.apply_damage(1, 9999) == PartyResult::OK);
+    CHECK(ps.at(1)->fainted());
+    // A fainted party member stays in the party (§17) ...
+    CHECK(ps.size() == 2);
+    // ... and the only able one may not be deposited.
+    CHECK(ps.move_to_box(0) == PartyResult::LAST_ABLE_POKEMON);
+    // The fainted one may: it takes no ability away from the party.
+    CHECK(ps.move_to_box(1) == PartyResult::OK);
+
+    // With the rule switched off (§14 makes it optional) the same call works.
+    GameState gs2; PartySystem loose; loose.configure(&bd, &gs2);
+    loose.set_require_able_member(false);
+    fill_party(loose, bd, {"TORCHIC", "MUDKIP"});
+    CHECK(loose.apply_damage(1, 9999) == PartyResult::OK);
+    CHECK(loose.move_to_box(0) == PartyResult::OK);
+}
+
+static void test_party_held_items(BattleData& bd) {
+    std::printf("[party] held items move between bag and pokemon exactly once\n");
+    GameState gs; PartySystem ps; ps.configure(&bd, &gs);
+    fill_party(ps, bd, {"TORCHIC"});
+    gs.give_item("ITEM_ORAN_BERRY", 1);
+    gs.give_item("ITEM_MAGNET", 1);
+    gs.give_item("ITEM_HM_CUT", 1);
+
+    CHECK(ps.give_held_item(0, "ITEM_ORAN_BERRY") == PartyResult::OK);
+    CHECK(ps.at(0)->held_item == "ITEM_ORAN_BERRY");
+    CHECK(gs.item_count("ITEM_ORAN_BERRY") == 0);
+
+    // Swapping puts the old item straight back in the bag: no duplication,
+    // no silent loss (§11).
+    CHECK(ps.give_held_item(0, "ITEM_MAGNET") == PartyResult::OK);
+    CHECK(ps.at(0)->held_item == "ITEM_MAGNET");
+    CHECK(gs.item_count("ITEM_ORAN_BERRY") == 1);
+    CHECK(gs.item_count("ITEM_MAGNET") == 0);
+
+    CHECK(ps.take_held_item(0) == PartyResult::OK);
+    CHECK(ps.at(0)->held_item == "NONE");
+    CHECK(gs.item_count("ITEM_MAGNET") == 1);
+    CHECK(ps.take_held_item(0) == PartyResult::NO_HELD_ITEM);
+
+    // Things a pokemon may not hold, and things that are not in the bag.
+    CHECK(ps.give_held_item(0, "ITEM_HM_CUT") == PartyResult::ITEM_NOT_HOLDABLE);
+    CHECK(ps.give_held_item(0, "ITEM_POKE_BALL") == PartyResult::ITEM_NOT_HOLDABLE);
+    CHECK(ps.give_held_item(0, "ITEM_BICYCLE") == PartyResult::ITEM_NOT_HOLDABLE);
+    CHECK(ps.give_held_item(0, "ITEM_LEFTOVERS") == PartyResult::ITEM_MISSING);
+    CHECK(ps.give_held_item(3, "ITEM_MAGNET") == PartyResult::INVALID_SLOT);
+    CHECK(gs.item_count("ITEM_HM_CUT") == 1);   // refusals cost nothing
+}
+
+static void test_party_healing(BattleData& bd) {
+    std::printf("[party] healing, curing and reviving\n");
+    GameState gs; PartySystem ps; ps.configure(&bd, &gs);
+    fill_party(ps, bd, {"TORCHIC"});
+    const int max_hp = ps.at(0)->max_hp;
+
+    CHECK(ps.heal_hp(0, 10) == PartyResult::NOTHING_TO_DO);   // already full
+    CHECK(ps.apply_damage(0, max_hp - 1) == PartyResult::OK);
+    CHECK(ps.at(0)->hp == 1);
+    CHECK(ps.heal_hp(0, 5) == PartyResult::OK);
+    CHECK(ps.at(0)->hp == 6);
+    CHECK(ps.heal_hp(0, 0) == PartyResult::OK);               // 0 = full restore
+    CHECK(ps.at(0)->hp == max_hp);
+
+    CHECK(ps.cure_status(0) == PartyResult::NOTHING_TO_DO);
+    CHECK(ps.revive(0, false) == PartyResult::NOT_FAINTED);
+
+    CHECK(ps.apply_damage(0, 9999) == PartyResult::OK);
+    CHECK(ps.at(0)->hp == 0 && ps.at(0)->fainted());
+    CHECK(ps.heal_hp(0, 20) == PartyResult::IS_FAINTED);      // needs a Revive
+    CHECK(ps.revive(0, false) == PartyResult::OK);
+    CHECK(ps.at(0)->hp == std::max(1, max_hp / 2));
+    CHECK(ps.apply_damage(0, 9999) == PartyResult::OK);
+    CHECK(ps.revive(0, true) == PartyResult::OK);
+    CHECK(ps.at(0)->hp == max_hp);
+    CHECK(ps.has_able_pokemon() && ps.first_able_slot() == 0);
+}
+
+static void test_party_events(BattleData& bd) {
+    std::printf("[party] every change tells the listeners what happened\n");
+    GameState gs; PartySystem ps; ps.configure(&bd, &gs);
+    std::vector<PartyEvent> seen;
+    std::vector<int> slots;
+    int token = ps.subscribe([&](const PartyNotice& n) {
+        seen.push_back(n.event); slots.push_back(n.slot);
+    });
+    auto saw = [&](PartyEvent e) {
+        return std::find(seen.begin(), seen.end(), e) != seen.end();
+    };
+
+    fill_party(ps, bd, {"TORCHIC", "MUDKIP"});
+    CHECK(saw(PartyEvent::PokemonAddedToParty) && saw(PartyEvent::PartyChanged));
+
+    seen.clear(); slots.clear();
+    CHECK(ps.swap_slots(0, 1) == PartyResult::OK);
+    CHECK(saw(PartyEvent::PartyOrderChanged));
+
+    seen.clear();
+    CHECK(ps.apply_damage(0, 9999) == PartyResult::OK);
+    CHECK(saw(PartyEvent::PokemonUpdated) && saw(PartyEvent::PokemonFainted));
+
+    seen.clear();
+    CHECK(ps.revive(0, true) == PartyResult::OK);
+    CHECK(saw(PartyEvent::PokemonHealed));
+
+    seen.clear();
+    gs.give_item("ITEM_MAGNET", 1);
+    CHECK(ps.give_held_item(0, "ITEM_MAGNET") == PartyResult::OK);
+    CHECK(saw(PartyEvent::HeldItemChanged));
+
+    seen.clear();
+    CHECK(ps.move_to_box(1) == PartyResult::OK);
+    CHECK(saw(PartyEvent::PokemonRemovedFromParty) && saw(PartyEvent::BoxChanged));
+
+    // A refused operation must not raise anything at all.
+    seen.clear();
+    CHECK(ps.move_to_box(0) == PartyResult::LAST_POKEMON);
+    CHECK(seen.empty());
+
+    // ... and once unsubscribed, nothing else arrives.
+    ps.unsubscribe(token);
+    seen.clear();
+    CHECK(ps.apply_damage(0, 1) == PartyResult::OK);
+    CHECK(seen.empty());
+}
+
+static void test_party_partial_ui_updates(BattleData& bd) {
+    std::printf("[party] one mon changing dirties only its own row\n");
+    GameState gs; PartySystem ps; ps.configure(&bd, &gs);
+    fill_party(ps, bd, {"TORCHIC", "MUDKIP", "TREECKO"});
+
+    unsigned before0 = ps.slot_revision(0);
+    unsigned before1 = ps.slot_revision(1);
+    unsigned before2 = ps.slot_revision(2);
+    CHECK(ps.apply_damage(1, 3) == PartyResult::OK);
+    // Only slot 1's revision moved, so a screen keyed off these numbers
+    // rebuilds one row rather than the whole party (§28).
+    CHECK(ps.slot_revision(0) == before0);
+    CHECK(ps.slot_revision(1) != before1);
+    CHECK(ps.slot_revision(2) == before2);
+}
+
+static void test_party_sync_after_raw_writes(BattleData& bd) {
+    std::printf("[party] raw battle writes still raise the right events\n");
+    GameState gs; PartySystem ps; ps.configure(&bd, &gs);
+    fill_party(ps, bd, {"TORCHIC", "MUDKIP"});
+
+    std::vector<PartyEvent> seen;
+    ps.subscribe([&](const PartyNotice& n) { seen.push_back(n.event); });
+    auto saw = [&](PartyEvent e) {
+        return std::find(seen.begin(), seen.end(), e) != seen.end();
+    };
+
+    // This is what Battle does: it holds a Mon* into the party's storage and
+    // writes HP straight through it.
+    ps.party_storage()[0].hp = 0;
+    ps.sync();
+    CHECK(saw(PartyEvent::PokemonUpdated) && saw(PartyEvent::PokemonFainted));
+
+    // And this is `givemon`: a push straight onto the vector. The mon still
+    // has to end up adopted, with an id of its own.
+    seen.clear();
+    ps.party_storage().push_back(bd.make_mon("WINGULL", 6));
+    ps.sync();
+    CHECK(saw(PartyEvent::PokemonAddedToParty));
+    CHECK(ps.size() == 3 && ps.at(2)->uid != 0);
+    CHECK(ps.at(2)->uid != ps.at(0)->uid);
+
+    // A frame in which nothing happened must stay quiet.
+    seen.clear();
+    ps.sync();
+    CHECK(seen.empty());
+}
+
+static void test_party_move_learning(BattleData& bd) {
+    std::printf("[party] a fifth move asks instead of overwriting one\n");
+    GameState gs; PartySystem ps; ps.configure(&bd, &gs);
+
+    Mon m = bd.make_mon("TORCHIC", 5);
+    m.moves = {"SCRATCH", "GROWL", "EMBER", "TACKLE"};
+    bd.restore_pp(m);
+    CHECK(ps.add(m) == PartyResult::OK);
+
+    // Four already: appending is refused, and a duplicate is refused too.
+    CHECK(ps.learn_move(0, "PECK", -1) == PartyResult::NO_MOVE);
+    CHECK(ps.learn_move(0, "EMBER", 0) == PartyResult::ALREADY_KNOWS_MOVE);
+    CHECK(ps.learn_move(0, "NOT_A_REAL_MOVE", 0) == PartyResult::NO_MOVE);
+
+    // Explicit replacement works and resets that slot's PP to the new move's.
+    CHECK(ps.learn_move(0, "PECK", 1) == PartyResult::OK);
+    CHECK(ps.at(0)->moves[1] == "PECK");
+    const MoveInfo* peck = bd.move("PECK");
+    CHECK(peck && ps.at(0)->pp[1] == peck->pp);
+    CHECK(ps.at(0)->moves.size() == 4);
+
+    // The queued prompt: nothing changes until the player answers it.
+    CHECK(!ps.has_pending_move_learn());
+    CHECK(ps.queue_move_learn(0, "QUICK_ATTACK") == PartyResult::OK);
+    CHECK(ps.has_pending_move_learn());
+    CHECK(ps.pending_move_learn()->move == "QUICK_ATTACK");
+    std::string kept = ps.at(0)->moves[0];
+    CHECK(ps.resolve_move_learn(-1) == PartyResult::OK);     // declined
+    CHECK(!ps.has_pending_move_learn());
+    CHECK(ps.at(0)->moves[0] == kept);
+    CHECK(std::find(ps.at(0)->moves.begin(), ps.at(0)->moves.end(),
+                    std::string("QUICK_ATTACK")) == ps.at(0)->moves.end());
+
+    CHECK(ps.queue_move_learn(0, "QUICK_ATTACK") == PartyResult::OK);
+    CHECK(ps.resolve_move_learn(0) == PartyResult::OK);
+    CHECK(ps.at(0)->moves[0] == "QUICK_ATTACK");
+    CHECK(ps.resolve_move_learn(0) == PartyResult::NO_PENDING_REQUEST);
+}
+
+static void test_party_level_up_defers_the_fifth_move(BattleData& bd) {
+    std::printf("[party] a level-up move that does not fit is deferred\n");
+    GameState gs; PartySystem ps; ps.configure(&bd, &gs);
+
+    // Poochyena learns Howl at 5, Sand Attack at 9, Bite at 13 and Odor
+    // Sleuth at 17 -- four by level 17, so the next one has nowhere to go.
+    Mon m = bd.make_mon("POOCHYENA", 4);
+    CHECK(ps.add(m) == PartyResult::OK);
+    std::vector<std::string> msgs;
+    CHECK(ps.grant_exp(0, 60000, msgs) == PartyResult::OK);
+    CHECK(ps.at(0)->level > 4);
+    CHECK(ps.at(0)->moves.size() <= 4);           // never more than four
+    if (ps.has_pending_move_learn()) {
+        // Whatever was deferred is a real move the mon does not know yet,
+        // and the moveset is untouched until the player answers.
+        const MoveLearnRequest* req = ps.pending_move_learn();
+        CHECK(bd.move(req->move) != nullptr);
+        CHECK(std::find(ps.at(0)->moves.begin(), ps.at(0)->moves.end(), req->move) ==
+              ps.at(0)->moves.end());
+    }
+
+    // The old, report-less path is unchanged for callers that have no party
+    // system to defer into (the headless drivers).
+    Mon plain = bd.make_mon("POOCHYENA", 4);
+    std::vector<std::string> pm;
+    bd.grant_exp(plain, 60000, pm);
+    CHECK(plain.moves.size() <= 4);
+    CHECK(plain.level > 4);
+}
+
+static void test_party_exp_events(BattleData& bd) {
+    std::printf("[party] experience raises level-up and evolution events\n");
+    GameState gs; PartySystem ps; ps.configure(&bd, &gs);
+    Mon m = bd.make_mon("WURMPLE", 5);           // evolves at 7
+    CHECK(ps.add(m) == PartyResult::OK);
+
+    std::vector<PartyEvent> seen;
+    ps.subscribe([&](const PartyNotice& n) { seen.push_back(n.event); });
+    auto saw = [&](PartyEvent e) {
+        return std::find(seen.begin(), seen.end(), e) != seen.end();
+    };
+
+    std::vector<std::string> msgs;
+    CHECK(ps.grant_exp(0, 5000, msgs) == PartyResult::OK);
+    CHECK(!msgs.empty());
+    CHECK(saw(PartyEvent::PokemonLevelUp));
+    CHECK(saw(PartyEvent::PokemonUpdated));
+    if (ps.at(0)->species != "WURMPLE") {
+        CHECK(saw(PartyEvent::PokemonEvolutionStarted));
+        CHECK(saw(PartyEvent::PokemonEvolutionCompleted));
+        CHECK(gs.is_caught(ps.at(0)->species));   // the dex follows along
+    }
+
+    // A fainted mon earns nothing, and neither does a bad slot.
+    CHECK(ps.apply_damage(0, 9999) == PartyResult::OK);
+    CHECK(ps.grant_exp(0, 100, msgs) == PartyResult::IS_FAINTED);
+    CHECK(ps.grant_exp(4, 100, msgs) == PartyResult::INVALID_SLOT);
+}
+
+static void test_party_evs(BattleData& bd) {
+    std::printf("[party] effort values respect the real caps\n");
+    GameState gs; PartySystem ps; ps.configure(&bd, &gs);
+    fill_party(ps, bd, {"TORCHIC"});
+
+    CHECK(ps.add_ev(0, 'A', 300) == PartyResult::OK);
+    CHECK(ps.at(0)->ev_atk == 255);                     // per-stat cap
+    CHECK(ps.add_ev(0, 'A', 10) == PartyResult::NOTHING_TO_DO);
+    CHECK(ps.add_ev(0, 'D', 300) == PartyResult::OK);
+    CHECK(ps.at(0)->ev_total() == 510);                  // total cap
+    CHECK(ps.add_ev(0, 'E', 4) == PartyResult::NOTHING_TO_DO);
+    CHECK(ps.add_ev(0, 'A', 0) == PartyResult::NOTHING_TO_DO);
+
+    // A stat with EVs in it really is bigger than the same mon without.
+    Mon bare = bd.make_mon("TORCHIC", 10);
+    bare.iv_atk = ps.at(0)->iv_atk;
+    bare.nature = ps.at(0)->nature;
+    bd.recompute_stats(bare, true);
+    CHECK(ps.at(0)->atk > bare.atk);
+}
+
+static void test_party_companion_is_not_the_lead(BattleData& bd) {
+    std::printf("[party] the walking companion is its own state\n");
+    GameState gs; PartySystem ps; ps.configure(&bd, &gs);
+    fill_party(ps, bd, {"TORCHIC", "MUDKIP", "TREECKO"});
+
+    CHECK(ps.companion_slot() == -1);
+    CHECK(ps.set_active_slot(0) == PartyResult::OK);
+    CHECK(ps.set_companion_slot(2) == PartyResult::OK);
+    CHECK(ps.active_slot() == 0 && ps.companion_slot() == 2);
+    CHECK(ps.set_companion_slot(7) == PartyResult::INVALID_SLOT);
+
+    // Depositing the companion clears it rather than leaving it dangling.
+    CHECK(ps.move_to_box(2) == PartyResult::OK);
+    CHECK(ps.companion_slot() == -1);
+    CHECK(ps.active_slot() == 0);
+    CHECK(ps.set_companion_slot(-1) == PartyResult::OK);
+}
+
+static void test_party_save_roundtrip(BattleData& bd) {
+    std::printf("[party] a saved party comes back exactly as it was\n");
+    const char* path = "test_party_save.dat";
+
+    GameState gs;
+    gs.player_name = "MAY";
+    gs.trainer_id = 12345; gs.secret_id = 54321;
+    PartySystem ps; ps.configure(&bd, &gs);
+
+    std::mt19937 rng(7);
+    Mon lead = bd.make_mon("TORCHIC", 14, &rng, gs.trainer_id, gs.secret_id);
+    PartySystem::stamp_origin(lead, gs, "ITEM_NET_BALL", "Route 101");
+    lead.nickname = "FLAMMI";
+    lead.friendship = 133;
+    lead.ev_spa = 44; lead.ev_spe = 8;
+    lead.ribbons.push_back("RIBBON_CHAMPION");
+    lead.hp = 3;
+    lead.status = Status::PARALYSIS;
+    CHECK(ps.add(lead) == PartyResult::OK);
+    fill_party(ps, bd, {"MUDKIP", "TREECKO"});
+    CHECK(ps.add_to_box(bd.make_mon("ZIGZAGOON", 3)) == PartyResult::OK);
+    CHECK(ps.set_active_slot(1) == PartyResult::OK);
+    CHECK(ps.set_companion_slot(2) == PartyResult::OK);
+    unsigned lead_uid = ps.at(0)->uid;
+    unsigned next_uid = ps.next_uid();
+
+    CHECK(SaveGame::save(path, gs, ps, "maps/Route101.map", 3, 4));
+
+    GameState gs2; PartySystem ps2; ps2.configure(&bd, &gs2);
+    std::string map2; int x2 = 0, y2 = 0;
+    CHECK(SaveGame::load(path, gs2, ps2, map2, x2, y2));
+    CHECK(map2 == "maps/Route101.map" && x2 == 3 && y2 == 4);
+    CHECK(ps2.size() == 3 && ps2.box_size() == 1);
+    const Mon* back = ps2.at(0);
+    CHECK(back != nullptr);
+    CHECK(back->uid == lead_uid);
+    CHECK(back->nickname == "FLAMMI" && back->display_name() == "FLAMMI");
+    CHECK(back->ot_name == "MAY" && back->ot_id == 12345 && back->ot_secret == 54321);
+    CHECK(back->ball == "ITEM_NET_BALL");
+    CHECK(back->met_location == "Route 101" && back->met_level == 14);
+    CHECK(back->friendship == 133);
+    CHECK(back->ev_spa == 44 && back->ev_spe == 8 && back->ev_hp == 0);
+    CHECK(back->ribbons.size() == 1 && back->ribbons[0] == "RIBBON_CHAMPION");
+    CHECK(back->hp == 3 && back->status == Status::PARALYSIS);
+    // A mon with no ribbons must survive too -- its (empty) last column used
+    // to disappear in the split and take the whole record's tail with it.
+    CHECK(ps2.at(1)->ribbons.empty());
+    CHECK(ps2.at(1)->species == "MUDKIP" && ps2.at(2)->species == "TREECKO");
+    CHECK(ps2.box_at(0)->species == "ZIGZAGOON");
+    // The bookkeeping the raw-vector format could not carry.
+    CHECK(ps2.active_slot() == 1 && ps2.companion_slot() == 2);
+    CHECK(ps2.next_uid() >= next_uid);
+    // A mon created after the load still gets an id of its own.
+    int slot = -1;
+    CHECK(ps2.add(bd.make_mon("WINGULL", 5), &slot) == PartyResult::OK);
+    CHECK(ps2.at(slot)->uid != lead_uid);
+    std::remove(path);
+}
+
+static void test_party_loads_a_pre_party_save(BattleData& bd) {
+    std::printf("[party] a savegame written before the party system loads\n");
+    const char* path = "test_party_old_save.dat";
+    // Exactly the record shape the previous format wrote: 27 columns, no uid
+    // and no origin data.
+    {
+        std::FILE* f = std::fopen(path, "w");
+        CHECK(f != nullptr);
+        if (!f) return;
+        std::fprintf(f, "SAVE 1\n");
+        std::fprintf(f, "map\tmaps/LittlerootTown.map\n");
+        std::fprintf(f, "pos\t5\t7\n");
+        std::fprintf(f, "team\t1\n");
+        std::fprintf(f,
+            "TORCHIC\t9\t20\t28\t14\t12\t15\t13\t14\tFIRE\tFIRE\t500\t"
+            "SCRATCH,GROWL\t0\t0\t0\tHARDY\t15\t15\t15\t15\t15\t15\t35,40\t"
+            "NONE\t0\t0\n");
+        std::fclose(f);
+    }
+    GameState gs; PartySystem ps; ps.configure(&bd, &gs);
+    std::string map; int x = 0, y = 0;
+    CHECK(SaveGame::load(path, gs, ps, map, x, y));
+    CHECK(ps.size() == 1);
+    const Mon* m = ps.at(0);
+    CHECK(m && m->species == "TORCHIC" && m->level == 9 && m->hp == 20);
+    CHECK(m && m->moves.size() == 2 && m->pp.size() == 2);
+    // The fields that did not exist then come back at their defaults, and the
+    // mon is adopted so it still has an id of its own.
+    CHECK(m && m->uid != 0);
+    CHECK(m && m->nickname.empty() && m->display_name() == "TORCHIC");
+    CHECK(m && m->ball == "NONE" && m->met_level == 0);
+    CHECK(m && m->ev_total() == 0 && m->ribbons.empty());
+    std::remove(path);
+}
+
+static void test_party_gender_is_stable(BattleData& bd) {
+    std::printf("[party] gender is derived once and never drifts\n");
+    // Same personality value -> same answer, every time.
+    CHECK(BattleData::gender("TORCHIC", 0x1234) == BattleData::gender("TORCHIC", 0x1234));
+    CHECK(BattleData::gender("MAGNEMITE", 12345) == 'N');
+    CHECK(BattleData::gender("NIDORAN_M", 12345) == 'M');
+    CHECK(BattleData::gender("CHANSEY", 12345) == 'F');
+    // The 50/50 split is read off the low byte, so both answers are reachable.
+    CHECK(BattleData::gender("TORCHIC", 0x00) == 'F');
+    CHECK(BattleData::gender("TORCHIC", 0xFF) == 'M');
+    CHECK(std::string(BattleData::gender_symbol('N')).empty());
+    CHECK(!std::string(BattleData::gender_symbol('M')).empty());
+    (void)bd;
+}
+
 // --------------------------------------------------------------------- main --
 
 int main() {
@@ -1178,6 +1697,24 @@ int main() {
     test_save_empty_party();
     test_save_pre_shiny_file();
     test_save_rejects_garbage();
+
+    test_party_slots_and_overflow(bd);
+    test_party_order(bd);
+    test_party_box_moves(bd);
+    test_party_keeps_an_able_member(bd);
+    test_party_held_items(bd);
+    test_party_healing(bd);
+    test_party_events(bd);
+    test_party_partial_ui_updates(bd);
+    test_party_sync_after_raw_writes(bd);
+    test_party_move_learning(bd);
+    test_party_level_up_defers_the_fifth_move(bd);
+    test_party_exp_events(bd);
+    test_party_evs(bd);
+    test_party_companion_is_not_the_lead(bd);
+    test_party_save_roundtrip(bd);
+    test_party_loads_a_pre_party_save(bd);
+    test_party_gender_is_stable(bd);
 
     if (has_display()) {
         test_script_opcodes(bd);
