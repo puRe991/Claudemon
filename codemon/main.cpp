@@ -478,7 +478,8 @@ static bool talk_to_npc_at(Session* s, DialogBox& box, Audio* audio, ScriptVM& v
                 vm.start(label, ag.ch);                        // run its event script
             } else {
                 box.open(speaker_name(ag.sheet),
-                         ag.dialog.empty() ? "..." : ag.dialog);
+                         ag.dialog.empty() ? "..."
+                                           : vm.expand_text(ag.dialog));
             }
             return true;
         }

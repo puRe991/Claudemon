@@ -53,6 +53,12 @@ public:
 	bool female = false;
 	std::string player_name = "BRENDAN";
 	std::string rival_name = "MAY";
+	// Dewford's "trendy saying": the phrase its townspeople will not stop
+	// talking about, and which every one of their lines interpolates as
+	// STR_VAR_1. In pokeemerald it is an Easy Chat phrase the player can
+	// replace at the Hall; this engine has no Easy Chat screen, so it stays
+	// at its starting value -- without it those lines showed the raw token.
+	std::string trendy_phrase = "SUPER COOL";
 
 	// The player's trainer ID pair (pokeemerald's gSaveBlock2Ptr->
 	// playerTrainerId): the visible 5-digit ID plus the hidden "secret ID",

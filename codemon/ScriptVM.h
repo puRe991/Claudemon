@@ -131,6 +131,13 @@ public:
 	// importer could only turn those movement scripts into a plain delay --
 	// this keeps the delay and tells the renderer to draw the bubble, so a
 	// trainer noticing the player reads as it does in the original.
+	// Substitute the dialogue tokens the importer leaves in text: STR_VAR_n
+	// buffered by the script, plus PLAYER/RIVAL. Public because plain NPC
+	// lines (an object with no script of its own) are shown straight from the
+	// map data by main.cpp and need exactly the same treatment -- without it
+	// they greeted the player as "PLAYER".
+	std::string expand_text(const std::string& in) const;
+
 	bool emote_active() const { return this->emote_t > 0.f && this->emote_ch; }
 	const Character* emote_target() const { return this->emote_ch; }
 	// 0 = exclamation, 1 = question, 2 = heart

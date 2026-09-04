@@ -339,26 +339,7 @@ void ScriptVM::pump() {
 			// MSGBOX_YESNO: once the text is dismissed, the player picks
 			// yes/no and the choice lands in VAR_RESULT.
 			this->pending_yesno = (op == "msgboxyesno");
-			std::string text = in[1];
-			// Advances past each replacement instead of restarting the
-			// search from 0 -- otherwise a value that contains its own
-			// token (e.g. a player naming themselves "PLAYER") would match
-			// forever and hang here.
-			auto sub = [&](const std::string& tok, const std::string& val) {
-				size_t pos = 0;
-				while ((pos = text.find(tok, pos)) != std::string::npos) {
-					text.replace(pos, tok.size(), val);
-					pos += val.size();
-				}
-			};
-			for (const auto& kv : this->str_vars) sub(kv.first, kv.second);
-			// pe_import.py turns pokeemerald's {PLAYER}/{RIVAL} escape codes
-			// into these literal tokens on import (see _clean_dialog); swap
-			// in the chosen names the same way STR_VAR_n is substituted above.
-			if (this->state) {
-				sub("PLAYER", this->state->player_name);
-				sub("RIVAL", this->state->rival_name);
-			}
+			std::string text = expand_text(in[1]);
 			this->box->open(this->owner ? std::string() : std::string(), text);
 			this->st = WAIT_MSG;
 			return;
@@ -512,6 +493,11 @@ void ScriptVM::pump() {
 			if (this->map->has_script(arg(0))) {
 				this->call_stack.push_back({this->cur, this->ip});
 				jump(arg(0));
+			} else if (arg(0) == "Common_EventScript_BufferTrendyPhrase" &&
+			           this->state) {
+				// pokeemerald's helper is a `buffertrendystring STR_VAR_1`
+				// that the per-map importer never saw. Do what it does.
+				this->str_vars["STR_VAR_1"] = this->state->trendy_phrase;
 			}
 		} else if (op == "call_if_set" && argc >= 2) {
 			if (this->state->flag(arg(0)) && this->map->has_script(arg(1))) {
@@ -1152,6 +1138,34 @@ void ScriptVM::close_shop() {
 	if (this->st != WAIT_SHOP) return;
 	this->st = RUN;
 	this->pump();
+}
+
+std::string ScriptVM::expand_text(const std::string& in) const {
+	std::string text = in;
+	// Advances past each replacement instead of restarting the search from 0 --
+	// otherwise a value that contains its own token (e.g. a player naming
+	// themselves "PLAYER") would match forever and hang here.
+	auto sub = [&text](const std::string& tok, const std::string& val) {
+		size_t pos = 0;
+		while ((pos = text.find(tok, pos)) != std::string::npos) {
+			text.replace(pos, tok.size(), val);
+			pos += val.size();
+		}
+	};
+	for (const auto& kv : this->str_vars) sub(kv.first, kv.second);
+	// Dewford's townspeople are all talking about the trendy saying, and their
+	// lines come straight from the map data with no script to buffer it, so
+	// this stands in for pokeemerald's buffertrendystring. A script that
+	// buffered STR_VAR_1 itself already replaced it in the loop above.
+	if (this->state) sub("STR_VAR_1", this->state->trendy_phrase);
+	// pe_import.py turns pokeemerald's {PLAYER}/{RIVAL} escape codes into these
+	// literal tokens on import (see _clean_dialog); swap in the chosen names
+	// the same way STR_VAR_n is substituted above.
+	if (this->state) {
+		sub("PLAYER", this->state->player_name);
+		sub("RIVAL", this->state->rival_name);
+	}
+	return text;
 }
 
 void ScriptVM::update(float dt) {

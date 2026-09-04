@@ -978,6 +978,114 @@ static void test_object_state_animation(BattleData& bd) {
     }
 }
 
+static void test_briney_voyage(BattleData& bd) {
+    std::printf("[map] Briney's crossing stays on water and lands somewhere you can leave\n");
+    Map r104("maps/Route104.map");
+    Map dew("maps/DewfordTown.map");
+    CHECK(r104.ready());
+    CHECK(dew.ready());
+    if (!r104.ready() || !dew.ready()) return;
+
+    // The boat sails Route 104's own water: pokeemerald's own movement crosses
+    // map connections mid-cutscene, which this engine cannot do, so the path
+    // ran aground on the beach and then off the map entirely.
+    int bx = -1, by = -1;
+    for (const NpcSpawn& n : r104.npcs())
+        if (n.sheet == "misc_mr_brineys_boat") { bx = n.x; by = n.y; }
+    CHECK(bx >= 0);
+    auto sail_from = [&](const std::string& label, int sx, int sy, int& ex, int& ey) {
+        ex = sx; ey = sy;
+        for (const std::string& a : r104.movement(label)) {
+            if (a == "up") ey--;
+            else if (a == "down") ey++;
+            else if (a == "left") ex--;
+            else if (a == "right") ex++;
+            else continue;
+            CHECK(r104.in_bounds(ex, ey));                 // never off the map
+            if (r104.in_bounds(ex, ey)) CHECK(r104.is_water(ex, ey));   // never over land
+        }
+    };
+    if (bx >= 0) {
+        int ex, ey;
+        sail_from("Route104_Movement_SailToDewford", bx, by, ex, ey);
+        // The Pokenav-call variant is the same voyage split in two: the second
+        // half has to pick up exactly where the first one stopped.
+        int mx, my;
+        sail_from("Route104_Movement_SailToDewfordBeforeDadCalls", bx, by, mx, my);
+        int fx, fy;
+        sail_from("Route104_Movement_SailToDewfordAfterDadCalls", mx, my, fx, fy);
+        CHECK(fx == ex && fy == ey);
+    }
+
+    // Where the arrival script actually drops the player -- taken from the
+    // script itself rather than hardcoded, so moving the warp moves the test.
+    VmHarness h(bd, "maps/Route104.map");
+    h.run("Route104_EventScript_LandedInDewford");
+    CHECK(h.vm.has_pending_warp());
+    if (!h.vm.has_pending_warp()) return;
+    std::string dest; int ax = -1, ay = -1;
+    h.vm.get_pending_warp(dest, ax, ay);
+    CHECK(dest == "DewfordTown");
+    CHECK(dew.in_bounds(ax, ay));
+    if (!dew.in_bounds(ax, ay)) return;
+    CHECK(dew.passable(ax, ay));
+    CHECK(!dew.is_water(ax, ay));
+
+    // Mr. Briney spawns on the pier on arrival. The landing tile was chosen
+    // one tile too far out, so he stood between the player and the shore with
+    // deep water on every other side -- an inescapable tile.
+    int nx = -1, ny = -1;
+    for (const NpcSpawn& n : dew.npcs())
+        if (n.local_id == "LOCALID_DEWFORD_BRINEY") { nx = n.x; ny = n.y; }
+    CHECK(nx >= 0);
+
+    // Walk out on foot (no Surf): flood fill over dry, passable tiles, with
+    // Briney's tile blocked, and demand it reaches a building entrance.
+    const int W = (int)dew.get_width(), H = (int)dew.get_height();
+    std::vector<char> seen((size_t)W * H, 0);
+    std::vector<std::pair<int,int>> stack{{ax, ay}};
+    seen[(size_t)ay * W + ax] = 1;
+    while (!stack.empty()) {
+        auto [cx, cy] = stack.back();
+        stack.pop_back();
+        const int dx[4] = {0, 0, -1, 1}, dy[4] = {-1, 1, 0, 0};
+        for (int i = 0; i < 4; ++i) {
+            int tx = cx + dx[i], ty = cy + dy[i];
+            if (!dew.in_bounds(tx, ty)) continue;
+            if (seen[(size_t)ty * W + tx]) continue;
+            if (tx == nx && ty == ny) continue;            // Briney is in the way
+            // A door tile is deliberately impassable metatile-wise -- the warp
+            // overrides collision (see player_step) -- so it counts as walkable.
+            if (dew.is_water(tx, ty)) continue;
+            if (!dew.passable(tx, ty) && !dew.warp_at(tx, ty)) continue;
+            seen[(size_t)ty * W + tx] = 1;
+            stack.push_back({tx, ty});
+        }
+    }
+    int reachable_doors = 0;
+    for (const Warp& wp : dew.warps())
+        if (dew.in_bounds(wp.x, wp.y) && seen[(size_t)wp.y * W + wp.x]) ++reachable_doors;
+    CHECK(reachable_doors > 0);
+}
+
+static void test_plain_dialog_tokens(BattleData& bd) {
+    std::printf("[scriptvm] plain NPC lines get the same token substitution as msgbox\n");
+    // An NPC with no script of its own has its line shown straight from the
+    // map data, which skipped substitution entirely: those NPCs greeted the
+    // player as "PLAYER" and Dewford's whole town talked about "STR_VAR_1".
+    VmHarness h(bd);
+    h.gs.player_name = "ASH";
+    h.gs.rival_name = "GARY";
+    CHECK(h.vm.expand_text("Hallo PLAYER!") == "Hallo ASH!");
+    CHECK(h.vm.expand_text("PLAYER und RIVAL") == "ASH und GARY");
+    CHECK(h.vm.expand_text("ohne \u201cSTR_VAR_1\u201d") ==
+          "ohne \u201c" + h.gs.trendy_phrase + "\u201d");
+    // A script that buffers STR_VAR_1 itself still wins over the fallback.
+    h.run("Test_BufferString");
+    if (h.vm.str_var("STR_VAR_1") == "prettily")
+        CHECK(h.vm.expand_text("STR_VAR_1") == "prettily");
+}
+
 static void test_region_map_sections() {
     std::printf("[map] PokeNav region map sections\n");
     // The importer used to drop region_map_sections.json entirely, so every
@@ -1044,6 +1152,8 @@ int main() {
         test_region_map_sections();
         test_sprite_frame_geometry();
         test_object_state_animation(bd);
+        test_briney_voyage(bd);
+        test_plain_dialog_tokens(bd);
     } else {
         std::printf("[skip] no DISPLAY: Map/ScriptVM/Battle tests need a GL "
                     "context (run under xvfb-run to include them)\n");
