@@ -1068,6 +1068,24 @@ static void test_briney_voyage(BattleData& bd) {
     CHECK(reachable_doors > 0);
 }
 
+static void test_plain_dialog_tokens(BattleData& bd) {
+    std::printf("[scriptvm] plain NPC lines get the same token substitution as msgbox\n");
+    // An NPC with no script of its own has its line shown straight from the
+    // map data, which skipped substitution entirely: those NPCs greeted the
+    // player as "PLAYER" and Dewford's whole town talked about "STR_VAR_1".
+    VmHarness h(bd);
+    h.gs.player_name = "ASH";
+    h.gs.rival_name = "GARY";
+    CHECK(h.vm.expand_text("Hallo PLAYER!") == "Hallo ASH!");
+    CHECK(h.vm.expand_text("PLAYER und RIVAL") == "ASH und GARY");
+    CHECK(h.vm.expand_text("ohne \u201cSTR_VAR_1\u201d") ==
+          "ohne \u201c" + h.gs.trendy_phrase + "\u201d");
+    // A script that buffers STR_VAR_1 itself still wins over the fallback.
+    h.run("Test_BufferString");
+    if (h.vm.str_var("STR_VAR_1") == "prettily")
+        CHECK(h.vm.expand_text("STR_VAR_1") == "prettily");
+}
+
 static void test_region_map_sections() {
     std::printf("[map] PokeNav region map sections\n");
     // The importer used to drop region_map_sections.json entirely, so every
@@ -1135,6 +1153,7 @@ int main() {
         test_sprite_frame_geometry();
         test_object_state_animation(bd);
         test_briney_voyage(bd);
+        test_plain_dialog_tokens(bd);
     } else {
         std::printf("[skip] no DISPLAY: Map/ScriptVM/Battle tests need a GL "
                     "context (run under xvfb-run to include them)\n");
