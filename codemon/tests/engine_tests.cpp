@@ -562,6 +562,51 @@ static void test_battle_lead_skips_fainted(BattleData& bd) {
     CHECK(battle.active_party_index() == 0);
 }
 
+static void test_switch_menu_starts_on_a_usable_mon(BattleData& bd) {
+    std::printf("[battle] the party menu opens on a Pokemon that can fight\n");
+    // The menu opened on "the first slot that is not the active one", so a
+    // party led by a fainted Pokemon pointed the cursor straight at that
+    // K.O.'d lead -- confirming it could only ever answer "... kann nicht
+    // kaempfen!". It has to start on a member that can actually come out.
+    std::mt19937 rng(9);
+    GameState gs;
+    std::vector<Mon> team, box;
+    team.reserve(6);
+    team.push_back(bd.make_mon("MACHOP", 30));
+    team.push_back(bd.make_mon("ZIGZAGOON", 28));
+    team.push_back(bd.make_mon("POOCHYENA", 26));
+    team[0].hp = 0;                       // K.O. lead: slot 1 leads the battle
+
+    Battle battle;
+    battle.configure(&bd, &rng);
+    battle.set_capture(&gs, &team, &box);
+    CHECK(battle.start_wild("POOCHYENA", 3, &team[0]));
+    auto to_action = [&]() {
+        for (int i = 0; i < 60 && battle.screen() == Battle::SCR_MESSAGE; ++i)
+            battle.input(BTN_CONFIRM);
+    };
+    auto open_party = [&]() {
+        to_action();
+        CHECK(battle.screen() == Battle::SCR_ACTION);
+        for (int k = 0; k < 4; ++k) battle.input(BTN_UP);   // action cursor -> KAMPF
+        battle.input(BTN_DOWN);           // KAMPF -> POKéMON
+        battle.input(BTN_CONFIRM);
+        CHECK(battle.screen() == Battle::SCR_SWITCH);
+    };
+
+    CHECK(battle.active_party_index() == 1);
+    open_party();
+    CHECK(battle.switch_index() == 2);    // not the fainted slot 0
+    battle.input(BTN_CONFIRM);            // and confirming really sends it out
+    CHECK(battle.active_party_index() == 2);
+
+    // Nothing healthy left in reserve: the cursor still must not sit on the
+    // Pokemon that is already fighting, where confirming does nothing.
+    team[1].hp = 0;
+    open_party();
+    CHECK(battle.switch_index() != (int)battle.active_party_index());
+}
+
 static void test_capture_keeps_the_encounter(BattleData& bd) {
     std::printf("[battle] a caught mon keeps its held item and identity\n");
     // The caught mon is rebuilt with make_mon() and then given the
@@ -1142,6 +1187,7 @@ int main() {
         test_recoil_uses_hp_actually_dealt(bd);
         test_wild_battle_capture(bd);
         test_battle_lead_skips_fainted(bd);
+        test_switch_menu_starts_on_a_usable_mon(bd);
         test_capture_keeps_the_encounter(bd);
         test_capture_keeps_hp_and_status(bd);
         test_trainer_ai_uses_item(bd);
