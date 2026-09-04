@@ -276,9 +276,9 @@ Route104_Movement_PlayerMoveForBriney	down,left,delay,end
 Route104_Movement_RivalApproachPlayer	down,face_right,end
 Route104_Movement_RivalExitBrineysCottage	down,end
 Route104_Movement_RivalWalkSlowLeft	left,end
-Route104_Movement_SailToDewford	down,down,down,down,down,down,down,down,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,down,down,down,down,right,right,delay,delay,delay,delay,delay,delay,right,right,down,down,down,down,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,down,down,down,down,right,right,right,right,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,right,right,right,right,right,right,down,down,down,down,down,down,down,down,down,down,down,down,down,down,down,down,down,down,down,end
-Route104_Movement_SailToDewfordAfterDadCalls	delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,down,down,down,down,right,right,right,right,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,right,right,right,right,right,right,down,down,down,down,down,down,down,down,down,down,down,down,down,down,down,down,down,down,down,end
-Route104_Movement_SailToDewfordBeforeDadCalls	down,down,down,down,down,down,down,down,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,down,down,down,down,right,right,delay,delay,delay,delay,delay,delay,right,right,down,down,down,down,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,end
+Route104_Movement_SailToDewford	down,down,down,delay,down,down,down,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,down,down,delay,down,down,down,delay,delay,delay,delay,delay,delay,delay,down,down,delay,down,down,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,down,delay,down,down,down,delay,down,down,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,right,right,right,delay,down,right,delay,right,right,down,delay,right,right,right,delay,down,right,delay,right,right,down,delay,right,right,end
+Route104_Movement_SailToDewfordAfterDadCalls	delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,down,delay,down,down,down,delay,down,down,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,right,right,right,delay,down,right,delay,right,right,down,delay,right,right,right,delay,down,right,delay,right,right,down,delay,right,right,end
+Route104_Movement_SailToDewfordBeforeDadCalls	down,down,down,delay,down,down,down,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,down,down,delay,down,down,down,delay,delay,delay,delay,delay,delay,delay,down,down,delay,down,down,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,delay,end
 scriptdefs
 = Route104_EventScript_StartSailToDewford
 lockall
@@ -334,14 +334,14 @@ end
 = Route104_EventScript_LandedInDewford
 msgbox	MR. BRINEY: Ahoy! We've hit land in DEWFORD!You just go on and tell me whenever you want to set sail again!
 closemessage
-warp DewfordTown 13 9
+warp DewfordTown 11 9
 waitstate
 releaseall
 end
 = Route104_EventScript_DeliverLetterReminder
 msgbox	MR. BRINEY: Ahoy! We've hit land in DEWFORD.I suppose you're off to deliver that LETTER to, who was it now, STEVEN!
 closemessage
-warp DewfordTown 13 9
+warp DewfordTown 11 9
 waitstate
 releaseall
 end
