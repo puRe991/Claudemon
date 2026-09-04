@@ -1,4 +1,5 @@
 #include "ScriptVM.h"
+#include "PartySystem.h"
 #include "NameTables.h"
 #include <cctype>
 #include <cstdio>
@@ -645,6 +646,12 @@ void ScriptVM::pump() {
 					if (it.rfind("ITEM_", 0) == 0) it = it.substr(5);
 					if (it != "NONE") m.held_item = it;
 				}
+				// A gift mon carries the player as its OT, no ball, and the
+				// map it was handed over on -- the same origin data a caught
+				// one gets (see Battle::caught_mon).
+				if (this->state)
+					PartySystem::stamp_origin(m, *this->state, "NONE",
+					                          this->met_location);
 				if (this->team->size() < 6) { this->team->push_back(m); result = 0; }
 				else if (this->pc_box) { this->pc_box->push_back(m); result = 1; }
 				if (result != 2 && this->state) this->state->mark_caught(m.species);

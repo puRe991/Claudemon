@@ -52,6 +52,11 @@ public:
 	// for make_mon()'s IV/nature roll (givemon, in-game trades, starters).
 	// `pc` is the PC box, where `givemon` puts a gift mon when the party is
 	// already full (optional: without it a full party just refuses the gift).
+	// Human-readable name of the current map, stamped as the met location on
+	// anything `givemon`/`giveegg` hands over here (§2). Set by the game loop
+	// on every map change; empty just leaves the field blank.
+	void set_met_location(const std::string& loc) { this->met_location = loc; }
+
 	void set_battle_data(BattleData* bd, std::vector<Mon>* team, std::mt19937* rng,
 	                     std::vector<Mon>* pc = nullptr) {
 		this->bdata = bd; this->team = team; this->rng = rng; this->pc_box = pc;
@@ -183,6 +188,7 @@ private:
 	Audio* audio; Character* player; Character* owner;
 	BattleData* bdata; std::vector<Mon>* team; std::mt19937* rng = nullptr;
 	std::vector<Mon>* pc_box = nullptr;   // givemon overflow when the party is full
+	std::string met_location;
 	std::vector<Character*>* actors = nullptr;
 	const std::unordered_map<std::string, Character*>* localid_map = nullptr;
 

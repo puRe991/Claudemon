@@ -3,6 +3,7 @@
 #include <vector>
 #include "GameState.h"
 #include "BattleData.h"
+#include "PartySystem.h"
 
 /******************************************************************************
 SaveGame - persists the whole run (flags/vars, bag, money, party, PC box,
@@ -21,5 +22,16 @@ namespace SaveGame {
 	// false) if the file is missing or malformed.
 	bool load(const std::string& path, GameState& gs,
 	          std::vector<Mon>& team, std::vector<Mon>& box,
+	          std::string& map_path, int& player_x, int& player_y);
+
+	// PartySystem-shaped overloads -- the ones the game actually uses. They
+	// carry two things the raw-vector pair cannot: the uid counter (so a mon
+	// created after a load can never collide with a saved one) and which slot
+	// is the lead / the walking companion. Loading goes through
+	// PartySystem::reset(), so the party screen sees one PartyChanged rather
+	// than a half-restored team.
+	bool save(const std::string& path, const GameState& gs, const PartySystem& party,
+	          const std::string& map_path, int player_x, int player_y);
+	bool load(const std::string& path, GameState& gs, PartySystem& party,
 	          std::string& map_path, int& player_x, int& player_y);
 }

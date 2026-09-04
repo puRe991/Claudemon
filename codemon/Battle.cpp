@@ -1,4 +1,5 @@
 #include "Battle.h"
+#include "PartySystem.h"
 #include "NameTables.h"
 #include <cmath>
 #include <cctype>
@@ -754,7 +755,17 @@ void Battle::handle_enemy_faint() {
 	long gain = (long)this->data->exp_yield(this->enemy.species) *
 	            this->enemy.level / 7;
 	std::vector<std::string> xm;
-	this->data->grant_exp(*this->player, gain, xm);
+	// Prefer the party system when this battle is being fought out of a real
+	// party: it raises the level-up/evolution events the party screen redraws
+	// off, and defers a fifth move to the post-battle prompt.
+	int slot = -1;
+	if (this->party_sys && this->team &&
+	    this->team == &this->party_sys->party_storage() &&
+	    this->active_idx < this->team->size() &&
+	    this->player == &(*this->team)[this->active_idx])
+		slot = (int)this->active_idx;
+	if (slot >= 0) this->party_sys->grant_exp(slot, gain, xm);
+	else this->data->grant_exp(*this->player, gain, xm);
 	for (const std::string& m : xm) queue(m);
 	if (this->is_trainer && this->party_idx + 1 < this->party.size()) {
 		send_next_enemy();
@@ -907,7 +918,28 @@ size_t Battle::lead_index() const {
 	return 0;   // whole party down: the caller's whiteout handling takes over
 }
 
-Mon Battle::caught_mon() const {
+void Battle::deliver_caught(const Mon& caught) {
+	// The party system enforces the six-slot rule and the PC overflow itself,
+	// and raises the events the party screen redraws off; without one (the
+	// headless drivers) fall back to the plain vectors.
+	if (this->party_sys && this->team == &this->party_sys->party_storage()) {
+		int slot = -1;
+		PartyResult r = this->party_sys->add(caught, &slot);
+		if (r == PartyResult::BOX_FULL) {
+			queue("Es ist kein Platz mehr für " + nice(caught.species) + "!");
+		} else if (slot < 0) {
+			queue(nice(caught.species) + " wurde zur PC-BOX geschickt.");
+		}
+		return;
+	}
+	if (this->team && this->team->size() < 6) this->team->push_back(caught);
+	else if (this->box) {
+		this->box->push_back(caught);
+		queue(nice(caught.species) + " wurde zur PC-BOX geschickt.");
+	}
+}
+
+Mon Battle::caught_mon(const std::string& ball_item) const {
 	// Reuse the encounter's own already-rolled values rather than generating
 	// new ones -- they were "always" this individual's, same as a wild
 	// Pokemon's stats not changing at the moment you catch it. make_mon()
@@ -932,6 +964,18 @@ Mon Battle::caught_mon() const {
 	caught.hp = std::max(1, std::min(this->enemy.hp, caught.max_hp));
 	caught.status = this->enemy.status;
 	caught.status_turns = this->enemy.status_turns;
+	// Origin data, stamped once and then kept for life (§2): who caught it,
+	// in what, where and at what level. The trainer ID pair is the same one
+	// the shiny check already used, so a caught shiny stays shiny.
+	caught.ball = ball_item.empty() ? std::string("ITEM_POKE_BALL") : ball_item;
+	caught.met_location = this->met_location;
+	caught.met_level = this->enemy.level;
+	caught.friendship = 70;              // pokeemerald's default for a caught mon
+	if (this->gs) {
+		caught.ot_name = this->gs->player_name;
+		caught.ot_id = this->gs->trainer_id;
+		caught.ot_secret = this->gs->secret_id;
+	}
 	return caught;
 }
 
@@ -1093,10 +1137,7 @@ void Battle::throw_ball(const std::string& ball_item) {
 	if (ball_item == "ITEM_MASTER_BALL") {
 		queue("Erwischt! " + nice(this->enemy.species) + " wurde gefangen!");
 		if (this->gs) this->gs->mark_caught(this->enemy.species);
-		Mon caught = caught_mon();
-		if (this->team && this->team->size() < 6) this->team->push_back(caught);
-		else if (this->box) { this->box->push_back(caught);
-			queue(nice(this->enemy.species) + " wurde zur PC-BOX geschickt."); }
+		deliver_caught(caught_mon(ball_item));
 		this->over = true; this->victory = true;
 		this->last_outcome = OUTCOME_CAUGHT;
 		show_messages(INACTIVE);
@@ -1120,10 +1161,7 @@ void Battle::throw_ball(const std::string& ball_item) {
 	if ((*this->rng)() % 65536 < (unsigned)(p * 65536.f)) {
 		queue("Erwischt! " + nice(this->enemy.species) + " wurde gefangen!");
 		if (this->gs) this->gs->mark_caught(this->enemy.species);
-		Mon caught = caught_mon();
-		if (this->team && this->team->size() < 6) this->team->push_back(caught);
-		else if (this->box) { this->box->push_back(caught);
-			queue(nice(this->enemy.species) + " wurde zur PC-BOX geschickt."); }
+		deliver_caught(caught_mon(ball_item));
 		this->over = true; this->victory = true;
 		this->last_outcome = OUTCOME_CAUGHT;
 		show_messages(INACTIVE);

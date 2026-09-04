@@ -10,6 +10,8 @@
 #include "UiFrame.h"
 #include "Audio.h"
 
+class PartySystem;
+
 /******************************************************************************
 Battle - a turn-based pokemon battle for wild encounters and trainer fights.
 
@@ -20,7 +22,10 @@ log and a 2x2 move menu, and resolves turns with the BattleData damage model
 Input is fed one button at a time; the game loop draws it and reads active().
 The player's Mon is mutated in place so HP carries across battles.
 *****************************************************************************/
-enum BtnInput { BTN_UP, BTN_DOWN, BTN_LEFT, BTN_RIGHT, BTN_CONFIRM, BTN_CANCEL };
+// BTN_ALT is the pad's X button / the keyboard's X key: a screen-specific
+// shortcut where one is offered (the party screen jumps straight to a mon's
+// report). Screens that have no shortcut simply ignore it.
+enum BtnInput { BTN_UP, BTN_DOWN, BTN_LEFT, BTN_RIGHT, BTN_CONFIRM, BTN_CANCEL, BTN_ALT };
 
 class Battle
 {
@@ -42,6 +47,8 @@ private:
 	Audio* audio = nullptr;
 	std::vector<Mon>* team;
 	std::vector<Mon>* box;
+	PartySystem* party_sys = nullptr;
+	std::string met_location;
 	int action_cursor;
 	sf::Font font; bool font_ok;
 	UiFrame frame;
@@ -78,7 +85,15 @@ private:
 	void set_lead(Mon* fallback);
 	// The wild mon as it joins the party after a successful ball: the same
 	// individual that was on the field, since a Pokeball rerolls nothing.
-	Mon caught_mon() const;
+	// The wild mon as it joins the player, in `ball_item`. Beyond its battle
+	// state this stamps the origin data a caught pokemon keeps for life (OT,
+	// trainer ID pair, ball, where and at what level it was met) -- the
+	// summary screen's Details page reads all of it back.
+	Mon caught_mon(const std::string& ball_item) const;
+	// Hand `caught` to the player: into the party when there is room, else the
+	// PC. Goes through the party system when there is one, so the party screen
+	// hears about it like any other change.
+	void deliver_caught(const Mon& caught);
 	// Common "active mon just fainted" handling: force a switch if the team
 	// has another healthy member, else end the battle in a loss.
 	void handle_player_faint();
@@ -221,6 +236,18 @@ public:
 	void configure(BattleData* d, std::mt19937* r);
 	// where caught pokemon go, and the bag for Poke Balls
 	void set_capture(GameState* g, std::vector<Mon>* team, std::vector<Mon>* box);
+	// The party system that owns `team`, when there is one. Only used to
+	// route earned experience: PartySystem::grant_exp raises the level-up /
+	// learned-move / evolution events and, when a level-up move does not fit,
+	// queues the "which move should be forgotten?" prompt the game loop shows
+	// after the battle -- instead of the old behaviour of silently
+	// overwriting move slot 0. A battle with no party system (the headless
+	// test drivers) keeps that old behaviour.
+	void set_party_system(PartySystem* ps) { this->party_sys = ps; }
+	// Human-readable name of the map the player is standing on, stamped onto
+	// anything caught here as its met location. Set by the game loop on every
+	// map change; empty just leaves the field blank.
+	void set_met_location(const std::string& loc) { this->met_location = loc; }
 	// Optional (headless tests run without one): battle music + cries.
 	void set_audio(Audio* a) { this->audio = a; }
 

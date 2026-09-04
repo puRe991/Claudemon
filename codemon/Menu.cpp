@@ -8,7 +8,7 @@
 
 Menu::Menu() : font_ok(false), screen(CLOSED), cursor(0),
                bag_cursor(0), teach_cursor(0), use_cursor(0), fly_cursor(0),
-               gs(nullptr), bdata(nullptr), team(nullptr), box(nullptr),
+               gs(nullptr), bdata(nullptr), party(nullptr),
                cursor_ok(false) {}
 
 // Fixed Fly destinations (pokeemerald's canFly town/city list, region_map.c's
@@ -36,9 +36,33 @@ static const FlyDest FLY_DESTINATIONS[] = {
 };
 static const int FLY_DESTINATIONS_N = sizeof(FLY_DESTINATIONS) / sizeof(FLY_DESTINATIONS[0]);
 
-void Menu::configure(GameState* g, std::vector<Mon>* t, std::vector<Mon>* b,
-                     BattleData* bd) {
-	this->gs = g; this->team = t; this->box = b; this->bdata = bd;
+void Menu::configure(GameState* g, PartySystem* p, BattleData* bd) {
+	this->gs = g; this->bdata = bd;
+	if (this->party && this->party_token >= 0) {
+		this->party->unsubscribe(this->party_token);
+		this->party_token = -1;
+	}
+	this->party = p;
+	if (this->party)
+		this->party_token = this->party->subscribe(
+			[this](const PartyNotice& n) { this->on_party_event(n); });
+	for (int i = 0; i < PartySystem::MAX_SLOTS; ++i) this->slot_dirty[i] = true;
+}
+
+// The whole point of the event plumbing: an event marks the affected row (or
+// every row, for a change of who is in the party at all) for rebuilding, and
+// nothing else is touched. A mon taking 10 damage costs one row (§28).
+void Menu::on_party_event(const PartyNotice& n) {
+	bool all = n.slot < 0 ||
+	           n.event == PartyEvent::PartyChanged ||
+	           n.event == PartyEvent::PartyOrderChanged ||
+	           n.event == PartyEvent::PokemonAddedToParty ||
+	           n.event == PartyEvent::PokemonRemovedFromParty;
+	if (all) {
+		for (int i = 0; i < PartySystem::MAX_SLOTS; ++i) this->slot_dirty[i] = true;
+	} else if (n.slot < PartySystem::MAX_SLOTS) {
+		this->slot_dirty[n.slot] = true;
+	}
 }
 
 std::vector<std::pair<std::string, int>> Menu::bag_sorted() const {
@@ -155,7 +179,35 @@ static std::string pretty(const std::string& id, const std::string& prefix) {
 // by heart) that is easy to miss, and the real games' send-out sparkle has
 // no equivalent outside battle either.
 static std::string mon_label(const Mon& m) {
-	return pretty(m.species, "") + (m.shiny ? " \u2605" : "");
+	return pretty(m.display_name(), "") + (m.shiny ? " \u2605" : "");
+}
+
+// German status labels for the party/summary screens. BattleData::status_name
+// gives the three-letter battle codes (PSN/BRN/...); these are what the German
+// games print in their own menus.
+static const char* status_short_de(Status s, bool fainted) {
+	if (fainted) return "KO";
+	switch (s) {
+	case Status::SLEEP:     return "SLF";
+	case Status::POISON:    return "GIF";
+	case Status::TOXIC:     return "GIF";
+	case Status::BURN:      return "BRT";
+	case Status::PARALYSIS: return "PAR";
+	case Status::FREEZE:    return "GFR";
+	default:                return "";
+	}
+}
+static const char* status_long_de(Status s, bool fainted) {
+	if (fainted) return "Kampfunfähig";
+	switch (s) {
+	case Status::SLEEP:     return "Schlaf";
+	case Status::POISON:    return "Vergiftet";
+	case Status::TOXIC:     return "Schwer vergiftet";
+	case Status::BURN:      return "Verbrennung";
+	case Status::PARALYSIS: return "Paralyse";
+	case Status::FREEZE:    return "Vereisung";
+	default:                return "Normal";
+	}
 }
 
 const sf::Texture* Menu::item_icon(const std::string& item) {
@@ -201,75 +253,275 @@ const sf::Texture* Menu::type_icon(const std::string& type) {
 }
 
 void Menu::open() { this->screen = MAIN; this->cursor = 0; this->flash.clear(); }
-void Menu::close() { this->screen = CLOSED; }
+void Menu::close() { this->screen = CLOSED; this->swap_from = -1; }
 
-// Teach teach_move to team[teach_cursor], consuming the TM (HMs are reusable).
+void Menu::open_party() {
+	this->screen = PARTY;
+	this->swap_from = -1;
+	this->party_cursor = 0;
+	this->flash.clear();
+}
+
+bool Menu::open_move_learn() {
+	if (!this->party || !this->party->has_pending_move_learn()) return false;
+	this->learn_cursor = 0;
+	this->screen = MOVE_LEARN;
+	this->flash.clear();
+	return true;
+}
+
+// Teach teach_move to the selected party member, consuming the TM (HMs are
+// reusable). A mon that already knows four moves gets the same "which one
+// should be forgotten?" prompt a level-up move gets, instead of silently
+// losing move slot 0 -- the TM is only spent once the player picks one.
 void Menu::teach_selected() {
-	if (!this->bdata || !this->team || this->team->empty()) return;
-	if (this->teach_cursor < 0 || this->teach_cursor >= (int)this->team->size()) return;
-	Mon& m = (*this->team)[this->teach_cursor];
+	if (!this->bdata || !this->party) return;
+	const Mon* sel = this->party->at(this->teach_cursor);
+	if (!sel) return;
+	std::string name = pretty(sel->display_name(), "");
 	std::string mv_disp = pretty(this->teach_move, "");
-	if (!this->bdata->can_learn_tm(m.species, this->teach_move)) {
-		this->flash = pretty(m.species, "") + " kann " + mv_disp + " nicht erlernen.";
+	if (!this->bdata->can_learn_tm(sel->species, this->teach_move)) {
+		this->flash = name + " kann " + mv_disp + " nicht erlernen.";
 		return;
 	}
-	if (std::find(m.moves.begin(), m.moves.end(), this->teach_move) != m.moves.end()) {
-		this->flash = pretty(m.species, "") + " kennt " + mv_disp + " bereits.";
+	bool reusable = is_hm(this->teach_item);
+	if (sel->moves.size() >= 4) {
+		PartyResult r = this->party->queue_move_learn(this->teach_cursor, this->teach_move);
+		if (!party_ok(r)) { report(r); return; }
+		this->learn_item = reusable ? std::string() : this->teach_item;
+		this->learn_cursor = 0;
+		this->screen = MOVE_LEARN;
+		this->flash.clear();
 		return;
 	}
-	const MoveInfo* mi = this->bdata->move(this->teach_move);
-	int new_pp = mi ? mi->pp : 20;
-	if (m.moves.size() < 4) { m.moves.push_back(this->teach_move); m.pp.push_back(new_pp); }
-	else { m.moves[0] = this->teach_move;   // overwrite the oldest move
-		if (!m.pp.empty()) m.pp[0] = new_pp; else m.pp.push_back(new_pp); }
-	if (!is_hm(this->teach_item) && this->gs) this->gs->take_item(this->teach_item, 1);
-	this->flash = pretty(m.species, "") + " erlernt " + mv_disp + "!";
+	PartyResult r = this->party->learn_move(this->teach_cursor, this->teach_move, -1);
+	if (!party_ok(r)) { report(r); return; }
+	if (!reusable && this->gs) this->gs->take_item(this->teach_item, 1);
+	this->flash = name + " erlernt " + mv_disp + "!";
 	this->screen = BAG;
 	auto items = bag_sorted();
 	if (this->bag_cursor >= (int)items.size())
 		this->bag_cursor = std::max(0, (int)items.size() - 1);
 }
 
-// Apply use_item to team[use_cursor]: heals HP, cures a status, and/or
-// revives a fainted mon, depending on what the item actually is.
+// Apply use_item to the selected party member: heals HP, cures a status,
+// and/or revives a fainted mon, depending on what the item actually is. The
+// menu decides *what the item means*; PartySystem decides whether the change
+// is legal and performs it.
 void Menu::use_selected() {
-	if (!this->team || this->use_cursor < 0 || this->use_cursor >= (int)this->team->size()) return;
-	Mon& m = (*this->team)[this->use_cursor];
-	std::string name = pretty(m.species, "");
-	const std::string& item = this->use_item;
+	if (!this->party) return;
+	const Mon* sel = this->party->at(this->use_cursor);
+	if (!sel) return;
+	const int slot = this->use_cursor;
+	std::string name = pretty(sel->display_name(), "");
+	const std::string item = this->use_item;
 
-	if (is_revive_item(item)) {
-		if (!m.fainted()) { this->flash = name + " ist nicht kampfunfähig."; return; }
-		m.hp = (item == "ITEM_MAX_REVIVE") ? m.max_hp : std::max(1, m.max_hp / 2);
+	auto consume_and_close = [&](const std::string& msg) {
 		if (this->gs) this->gs->take_item(item, 1);
-		this->flash = name + " wurde wiederbelebt!";
+		this->flash = msg;
 		this->screen = BAG;
 		auto items = bag_sorted();
 		if (this->bag_cursor >= (int)items.size())
 			this->bag_cursor = std::max(0, (int)items.size() - 1);
+	};
+
+	if (is_revive_item(item)) {
+		PartyResult r = this->party->revive(slot, item == "ITEM_MAX_REVIVE");
+		if (!party_ok(r)) { report(r); return; }
+		consume_and_close(name + " wurde wiederbelebt!");
 		return;
 	}
 
-	bool cures = has_curable_status(item, m);
+	bool wants_cure = has_curable_status(item, *sel);
 	int amt = heal_amount(item);          // -1 = this item doesn't restore HP
-	bool healed = false;
-	if (cures) { m.status = Status::NONE; m.status_turns = 0; }
-	if (amt >= 0 && !m.fainted() && m.hp < m.max_hp) {
-		m.hp = (amt == 0) ? m.max_hp : std::min(m.max_hp, m.hp + amt);
-		healed = true;
-	}
-	if (!cures && !healed) {
-		this->flash = m.fainted() ? (name + " ist kampfunfähig.")
-		            : (amt >= 0)  ? (name + " hat bereits volle KP.")
-		                          : (name + " hat kein Problem, das behandelt werden müsste.");
+	bool cured = wants_cure && party_ok(this->party->cure_status(slot));
+	bool healed = amt >= 0 && party_ok(this->party->heal_hp(slot, amt));
+	if (!cured && !healed) {
+		this->flash = sel->fainted() ? (name + " ist kampfunfähig.")
+		            : (amt >= 0)     ? (name + " hat bereits volle KP.")
+		                             : (name + " hat kein Problem, das behandelt werden müsste.");
 		return;
 	}
-	if (this->gs) this->gs->take_item(item, 1);
-	this->flash = name + " wurde behandelt!";
-	this->screen = BAG;
-	auto items = bag_sorted();
-	if (this->bag_cursor >= (int)items.size())
-		this->bag_cursor = std::max(0, (int)items.size() - 1);
+	consume_and_close(name + " wurde behandelt!");
+}
+
+// ---------------------------------------------------------- party actions --
+
+const char* Menu::action_label(PartyAction a) {
+	switch (a) {
+	case PartyAction::SUMMARY:       return "BERICHT";
+	case PartyAction::SWAP:          return "POSITION";
+	case PartyAction::GIVE_ITEM:     return "ITEM GEBEN";
+	case PartyAction::TAKE_ITEM:     return "ITEM NEHMEN";
+	case PartyAction::TO_BOX:        return "IN BOX";
+	case PartyAction::TO_PARTY:      return "INS TEAM";
+	case PartyAction::SET_LEAD:      return "ANFÜHRER";
+	case PartyAction::SET_COMPANION: return "BEGLEITER";
+	case PartyAction::CANCEL:        return "ZURÜCK";
+	}
+	return "";
+}
+
+// Only actions that can actually succeed right now are offered -- the brief's
+// rule that a menu must never show an impossible option (§5/§26). "In BOX" is
+// left out entirely when it would strand the party rather than shown and then
+// refused, and "Item nehmen" only appears when something is held.
+std::vector<PartyAction> Menu::build_actions(int slot, PartyContext ctx) const {
+	std::vector<PartyAction> out;
+	if (!this->party) return out;
+	if (ctx == PartyContext::BOX) {
+		const Mon* m = this->party->box_at(slot);
+		if (!m) return out;
+		out.push_back(PartyAction::SUMMARY);
+		if (!this->party->full()) out.push_back(PartyAction::TO_PARTY);
+		out.push_back(PartyAction::CANCEL);
+		return out;
+	}
+	const Mon* m = this->party->at(slot);
+	if (!m) return out;
+	out.push_back(PartyAction::SUMMARY);
+	if (this->party->size() > 1) out.push_back(PartyAction::SWAP);
+	// "Give" is pointless with nothing holdable in the bag; "take" only makes
+	// sense when something is actually held.
+	bool has_holdable = false;
+	if (this->gs)
+		for (const auto& kv : this->gs->bag_items())
+			if (kv.second > 0 && PartySystem::is_holdable(kv.first)) { has_holdable = true; break; }
+	if (has_holdable) out.push_back(PartyAction::GIVE_ITEM);
+	if (!m->held_item.empty() && m->held_item != "NONE")
+		out.push_back(PartyAction::TAKE_ITEM);
+	if (this->party->active_slot() != slot && !m->fainted())
+		out.push_back(PartyAction::SET_LEAD);
+	if (this->party->companion_slot() != slot && !m->fainted())
+		out.push_back(PartyAction::SET_COMPANION);
+	// Depositing is only offered when it would be allowed: never the last
+	// member, never the last able one, never into a full PC (§14/§31).
+	if (this->party->size() > 1 && !this->party->box_full()) {
+		bool would_strand = this->party->requires_able_member() && !m->fainted();
+		if (would_strand) {
+			for (int i = 0; i < this->party->size(); ++i) {
+				const Mon* o = this->party->at(i);
+				if (i != slot && o && !o->fainted()) { would_strand = false; break; }
+			}
+		}
+		if (!would_strand) out.push_back(PartyAction::TO_BOX);
+	}
+	out.push_back(PartyAction::CANCEL);
+	return out;
+}
+
+void Menu::report(PartyResult r, const std::string& ok_text) {
+	this->flash = party_ok(r) ? ok_text : party_result_text(r);
+}
+
+void Menu::run_action(PartyAction a) {
+	if (!this->party) return;
+	const int slot = this->action_slot;
+	switch (a) {
+	case PartyAction::SUMMARY:
+		this->summary_from_box = this->action_context == PartyContext::BOX;
+		this->summary_index = slot;
+		this->summary_page = SummaryPage::OVERVIEW;
+		this->screen = SUMMARY;
+		this->flash.clear();
+		break;
+	case PartyAction::SWAP:
+		this->swap_from = slot;
+		this->screen = PARTY;
+		this->flash = "Mit welchem POKéMON tauschen?";
+		break;
+	case PartyAction::GIVE_ITEM: {
+		this->give_slot = slot;
+		this->give_cursor = 0;
+		this->give_items.clear();
+		if (this->gs)
+			for (const auto& kv : this->gs->bag_items())
+				if (kv.second > 0 && PartySystem::is_holdable(kv.first))
+					this->give_items.push_back(kv.first);
+		std::sort(this->give_items.begin(), this->give_items.end());
+		if (this->give_items.empty()) { this->flash = "Du hast kein passendes Item."; break; }
+		this->screen = GIVE_ITEM;
+		this->flash.clear();
+		break;
+	}
+	case PartyAction::TAKE_ITEM: {
+		const Mon* m = this->party->at(slot);
+		std::string item = m ? m->held_item : std::string();
+		PartyResult r = this->party->take_held_item(slot);
+		report(r, pretty(item, "ITEM_") + " zurück in den BEUTEL.");
+		this->screen = PARTY;
+		break;
+	}
+	case PartyAction::TO_BOX: {
+		const Mon* m = this->party->at(slot);
+		std::string name = m ? pretty(m->display_name(), "") : std::string();
+		PartyResult r = this->party->move_to_box(slot);
+		report(r, name + " wurde in der BOX aufbewahrt.");
+		if (party_ok(r) && this->party_cursor >= this->party->size())
+			this->party_cursor = std::max(0, this->party->size() - 1);
+		this->screen = PARTY;
+		break;
+	}
+	case PartyAction::TO_PARTY: {
+		const Mon* m = this->party->box_at(slot);
+		std::string name = m ? pretty(m->display_name(), "") : std::string();
+		PartyResult r = this->party->withdraw_from_box(slot);
+		report(r, name + " kam ins Team.");
+		if (this->box_cursor >= this->party->box_size())
+			this->box_cursor = std::max(0, this->party->box_size() - 1);
+		this->screen = PC;
+		break;
+	}
+	case PartyAction::SET_LEAD: {
+		const Mon* m = this->party->at(slot);
+		PartyResult r = this->party->set_active_slot(slot);
+		report(r, m ? pretty(m->display_name(), "") + " führt das Team an." : std::string());
+		this->screen = PARTY;
+		break;
+	}
+	case PartyAction::SET_COMPANION: {
+		const Mon* m = this->party->at(slot);
+		PartyResult r = this->party->set_companion_slot(slot);
+		report(r, m ? pretty(m->display_name(), "") + " läuft jetzt mit dir." : std::string());
+		this->screen = PARTY;
+		break;
+	}
+	case PartyAction::CANCEL:
+		this->screen = this->action_context == PartyContext::BOX ? PC : PARTY;
+		this->flash.clear();
+		break;
+	}
+}
+
+// Rebuild only the rows an event marked dirty. Everything the party screen
+// draws for a slot comes from here, so the draw path never reads a Mon field
+// directly and a row that did not change costs nothing to re-render.
+void Menu::refresh_slot_views() {
+	for (int i = 0; i < PartySystem::MAX_SLOTS; ++i) {
+		unsigned rev = this->party ? this->party->slot_revision(i) : 0;
+		if (!this->slot_dirty[i] && this->slot_views[i].rev == rev) continue;
+		SlotView v;
+		v.rev = rev;
+		const Mon* m = this->party ? this->party->at(i) : nullptr;
+		if (m) {
+			v.present = true;
+			v.name = pretty(m->display_name(), "");
+			v.level_text = "Lv" + std::to_string(m->level);
+			v.hp_text = std::to_string(m->hp) + "/" + std::to_string(m->max_hp);
+			v.hp = m->hp; v.max_hp = m->max_hp;
+			v.fainted = m->fainted();
+			v.status_text = status_short_de(m->status, v.fainted);
+			bool holding = !m->held_item.empty() && m->held_item != "NONE";
+			v.item_id = holding ? m->held_item : std::string();
+			v.item_text = holding ? pretty(m->held_item, "ITEM_") : std::string();
+			v.gender = BattleData::gender_symbol(
+				BattleData::gender(m->species, m->personality));
+			v.shiny = m->shiny;
+			v.sprite = m->species;
+		}
+		this->slot_views[i] = v;
+		this->slot_dirty[i] = false;
+	}
 }
 
 void Menu::input(BtnInput b) {
@@ -294,11 +546,7 @@ void Menu::input(BtnInput b) {
 				// FLIEGEN: only meaningful once a party member knows FLY --
 				// mirrors the badge-free "does the team know the move"
 				// simplification Surf/Strength/Waterfall already use.
-				bool knows_fly = false;
-				if (this->team)
-					for (const Mon& m : *this->team)
-						if (std::find(m.moves.begin(), m.moves.end(), "FLY") != m.moves.end())
-							{ knows_fly = true; break; }
+				bool knows_fly = this->party && this->party->knows_move("FLY");
 				if (!knows_fly) { this->flash = "Kein POKéMON kennt FLIEGEN."; }
 				else {
 					this->fly_available.clear();
@@ -373,25 +621,139 @@ void Menu::input(BtnInput b) {
 			}
 		}
 	} else if (this->screen == TEACH) {
-		int n = this->team ? (int)this->team->size() : 0;
+		int n = this->party ? this->party->size() : 0;
 		if (b == BTN_UP && this->teach_cursor > 0) this->teach_cursor--;
 		else if (b == BTN_DOWN && this->teach_cursor + 1 < n) this->teach_cursor++;
-		else if (b == BTN_LEFT) this->screen = BAG;
+		else if (b == BTN_LEFT || b == BTN_CANCEL) this->screen = BAG;
 		else if (b == BTN_CONFIRM) this->teach_selected();
 	} else if (this->screen == USE_ITEM) {
-		int n = this->team ? (int)this->team->size() : 0;
+		int n = this->party ? this->party->size() : 0;
 		if (b == BTN_UP && this->use_cursor > 0) this->use_cursor--;
 		else if (b == BTN_DOWN && this->use_cursor + 1 < n) this->use_cursor++;
-		else if (b == BTN_LEFT) { this->screen = BAG; this->flash.clear(); }
+		else if (b == BTN_LEFT || b == BTN_CANCEL) { this->screen = BAG; this->flash.clear(); }
 		else if (b == BTN_CONFIRM) this->use_selected();
 	} else if (this->screen == PARTY) {
-		int n = this->team ? (int)this->team->size() : 0;
+		// The cursor walks all six SLOTS, not just the filled ones, so an
+		// empty slot is a real place to stand (§16) -- it just has no actions.
 		if (b == BTN_UP && this->party_cursor > 0) this->party_cursor--;
-		else if (b == BTN_DOWN && this->party_cursor + 1 < n) this->party_cursor++;
-		else if (b == BTN_LEFT) this->screen = MAIN;
-		else if (b == BTN_CONFIRM && this->party_cursor < n) this->screen = SUMMARY;
+		else if (b == BTN_DOWN && this->party_cursor + 1 < PartySystem::MAX_SLOTS)
+			this->party_cursor++;
+		else if (b == BTN_LEFT || b == BTN_CANCEL) {
+			if (this->swap_from >= 0) { this->swap_from = -1; this->flash.clear(); }
+			else this->screen = MAIN;
+		} else if (b == BTN_CONFIRM) {
+			if (!this->party || !this->party->at(this->party_cursor)) {
+				this->flash = "Dieser Platz ist leer.";
+			} else if (this->swap_from >= 0) {
+				// Second half of "Position tauschen": the party ORDER changes,
+				// which is not the same thing as switching mid-battle (§13).
+				int from = this->swap_from;
+				this->swap_from = -1;
+				PartyResult r = this->party->swap_slots(from, this->party_cursor);
+				report(r, "Die Reihenfolge wurde geändert.");
+			} else {
+				this->action_slot = this->party_cursor;
+				this->action_context = PartyContext::FIELD;
+				this->actions = build_actions(this->action_slot, PartyContext::FIELD);
+				this->action_cursor = 0;
+				this->flash.clear();
+				if (!this->actions.empty()) this->screen = PARTY_ACTION;
+			}
+		} else if (b == BTN_ALT && this->party && this->party->at(this->party_cursor)) {
+			// Shoulder-style shortcut straight into the report (§27's X button).
+			this->summary_from_box = false;
+			this->summary_index = this->party_cursor;
+			this->summary_page = SummaryPage::OVERVIEW;
+			this->screen = SUMMARY;
+		}
+	} else if (this->screen == PARTY_ACTION) {
+		int n = (int)this->actions.size();
+		if (b == BTN_UP && this->action_cursor > 0) this->action_cursor--;
+		else if (b == BTN_DOWN && this->action_cursor + 1 < n) this->action_cursor++;
+		else if (b == BTN_LEFT || b == BTN_CANCEL)
+			this->screen = this->action_context == PartyContext::BOX ? PC : PARTY;
+		else if (b == BTN_CONFIRM && this->action_cursor < n)
+			run_action(this->actions[this->action_cursor]);
+	} else if (this->screen == GIVE_ITEM) {
+		int n = (int)this->give_items.size();
+		if (b == BTN_UP && this->give_cursor > 0) this->give_cursor--;
+		else if (b == BTN_DOWN && this->give_cursor + 1 < n) this->give_cursor++;
+		else if (b == BTN_LEFT || b == BTN_CANCEL) { this->screen = PARTY; this->flash.clear(); }
+		else if (b == BTN_CONFIRM && this->give_cursor < n) {
+			const std::string item = this->give_items[this->give_cursor];
+			const Mon* m = this->party ? this->party->at(this->give_slot) : nullptr;
+			std::string who = m ? pretty(m->display_name(), "") : std::string();
+			PartyResult r = this->party ? this->party->give_held_item(this->give_slot, item)
+			                            : PartyResult::NOT_CONFIGURED;
+			report(r, who + " trägt jetzt " + pretty(item, "ITEM_") + ".");
+			if (party_ok(r)) this->screen = PARTY;
+		}
+	} else if (this->screen == MOVE_LEARN) {
+		const MoveLearnRequest* req = this->party ? this->party->pending_move_learn() : nullptr;
+		if (!req) { this->screen = this->learn_item.empty() ? PARTY : BAG; this->learn_item.clear(); }
+		else {
+			const Mon* m = this->party->find(req->uid);
+			int rows = (m ? (int)m->moves.size() : 0) + 1;   // + "Verzichten"
+			if (b == BTN_UP && this->learn_cursor > 0) this->learn_cursor--;
+			else if (b == BTN_DOWN && this->learn_cursor + 1 < rows) this->learn_cursor++;
+			else if (b == BTN_LEFT || b == BTN_CANCEL) this->learn_cursor = rows - 1;
+			else if (b == BTN_CONFIRM) {
+				bool decline = m == nullptr || this->learn_cursor >= (int)m->moves.size();
+				std::string forgot = decline ? std::string() : pretty(m->moves[this->learn_cursor], "");
+				std::string learned = pretty(req->move, "");
+				std::string who = m ? pretty(m->display_name(), "") : std::string();
+				PartyResult r = this->party->resolve_move_learn(decline ? -1 : this->learn_cursor);
+				if (party_ok(r)) {
+					// A declined TM stays in the bag; a used one is spent here,
+					// after the player actually committed to it.
+					if (!decline && !this->learn_item.empty() && this->gs)
+						this->gs->take_item(this->learn_item, 1);
+					this->flash = decline
+						? (who + " hat " + learned + " nicht erlernt.")
+						: (who + " vergisst " + forgot + " und erlernt " + learned + "!");
+				} else {
+					report(r);
+				}
+				this->learn_cursor = 0;
+				// More prompts can be queued (two level-ups in one battle);
+				// stay on this screen until the queue is empty.
+				if (!this->party->has_pending_move_learn()) {
+					this->screen = this->learn_item.empty() ? PARTY : BAG;
+					this->learn_item.clear();
+				}
+			}
+		}
 	} else if (this->screen == SUMMARY) {
-		if (b == BTN_LEFT || b == BTN_CONFIRM) this->screen = PARTY;
+		// L/R (or left/right) page through the report; B closes it. The pages
+		// are SummaryPage's own order, so any other summary surface shows the
+		// same five in the same sequence (§6).
+		int page = (int)this->summary_page;
+		if (b == BTN_RIGHT) this->summary_page = (SummaryPage)((page + 1) % (int)SummaryPage::COUNT);
+		else if (b == BTN_LEFT)
+			this->summary_page = (SummaryPage)((page + (int)SummaryPage::COUNT - 1) %
+			                                   (int)SummaryPage::COUNT);
+		else if (b == BTN_DOWN) this->summary_page = (SummaryPage)((page + 1) % (int)SummaryPage::COUNT);
+		else if (b == BTN_UP)
+			this->summary_page = (SummaryPage)((page + (int)SummaryPage::COUNT - 1) %
+			                                   (int)SummaryPage::COUNT);
+		else if (b == BTN_CANCEL || b == BTN_CONFIRM)
+			this->screen = this->summary_from_box ? PC : PARTY;
+	} else if (this->screen == PC) {
+		int n = this->party ? this->party->box_size() : 0;
+		if (b == BTN_UP && this->box_cursor > 0) this->box_cursor--;
+		else if (b == BTN_DOWN && this->box_cursor + 1 < n) this->box_cursor++;
+		else if (b == BTN_LEFT || b == BTN_CANCEL) { this->screen = MAIN; this->flash.clear(); }
+		else if (b == BTN_CONFIRM) {
+			if (this->box_cursor >= n) { this->flash = "Die BOX ist leer."; }
+			else {
+				this->action_slot = this->box_cursor;
+				this->action_context = PartyContext::BOX;
+				this->actions = build_actions(this->action_slot, PartyContext::BOX);
+				this->action_cursor = 0;
+				this->flash.clear();
+				if (!this->actions.empty()) this->screen = PARTY_ACTION;
+			}
+		}
 	} else if (this->screen == OPTIONS) {
 		if (b == BTN_UP && this->options_cursor > 0) this->options_cursor--;
 		else if (b == BTN_DOWN && this->options_cursor < 2) this->options_cursor++;
@@ -402,8 +764,8 @@ void Menu::input(BtnInput b) {
 			else if (this->options_cursor == 1) this->gs->battle_scene_on = !this->gs->battle_scene_on;
 			else this->gs->frame_type = (this->gs->frame_type + 1) % 20;
 		}
-	} else if (b == BTN_CONFIRM || b == BTN_LEFT) {
-		this->screen = MAIN;   // back from PC
+	} else if (b == BTN_CONFIRM || b == BTN_LEFT || b == BTN_CANCEL) {
+		this->screen = MAIN;   // any screen without its own back handling
 	}
 }
 
@@ -465,6 +827,28 @@ void Menu::draw(sf::RenderTarget& target) {
 		bg.setFillColor(sf::Color(190, 190, 190)); target.draw(bg);
 		sf::RectangleShape fg(sf::Vector2f(w * r, 5)); fg.setPosition(bx, by);
 		fg.setFillColor(sf::Color(88, 168, 240)); target.draw(fg);
+	};
+
+	// The action menu floats over whichever list opened it, so the row it acts
+	// on stays visible while it is open (§34: as few detached submenus as
+	// possible).
+	auto draw_action_menu = [&](float anchor_y) {
+		if (this->actions.empty()) return;
+		float aw = 190.f, ah = 22.f + this->actions.size() * 26.f;
+		float ax = panel.getPosition().x + panel.getSize().x - aw - 24;
+		float ay = std::min(anchor_y,
+		                    panel.getPosition().y + panel.getSize().y - ah - 20);
+		sf::RectangleShape bg(sf::Vector2f(aw, ah));
+		bg.setPosition(ax, ay);
+		bg.setFillColor(sf::Color(250, 250, 252, 245));
+		bg.setOutlineColor(head_col); bg.setOutlineThickness(2.f);
+		target.draw(bg);
+		for (size_t i = 0; i < this->actions.size(); ++i) {
+			bool sel = (int)i == this->action_cursor;
+			float ry = ay + 10 + i * 26.f;
+			if (sel) cursor_at(ax + 18, ry);
+			text(action_label(this->actions[i]), ax + 34, ry, 17, sel ? head_col : body_col);
+		}
 	};
 
 	if (this->screen == MAIN) {
@@ -567,9 +951,9 @@ void Menu::draw(sf::RenderTarget& target) {
 		text("LEHRE " + pretty(this->teach_move, ""), x, y, 22, head_col);
 		y += 40;
 		text("Wähle ein POKéMON:", x, y, 16, muted_col); y += 30;
-		if (this->team) {
-			for (int row = 0; row < (int)this->team->size() && row < 6; ++row) {
-				const Mon& m = (*this->team)[row];
+		if (this->party) {
+			for (int row = 0; row < this->party->size() && row < 6; ++row) {
+				const Mon& m = *this->party->at(row);
 				bool sel = row == this->teach_cursor;
 				bool able = this->bdata && this->bdata->can_learn_tm(m.species, this->teach_move);
 				float ry = y + row * 44;
@@ -590,9 +974,9 @@ void Menu::draw(sf::RenderTarget& target) {
 		text(pretty(this->use_item, "ITEM_") + " benutzen", x, y, 22, head_col);
 		y += 40;
 		text("Wähle ein POKéMON:", x, y, 16, muted_col); y += 30;
-		if (this->team) {
-			for (int row = 0; row < (int)this->team->size() && row < 6; ++row) {
-				const Mon& m = (*this->team)[row];
+		if (this->party) {
+			for (int row = 0; row < this->party->size() && row < 6; ++row) {
+				const Mon& m = *this->party->at(row);
 				bool sel = row == this->use_cursor;
 				bool able = revive ? m.fainted()
 				          : has_curable_status(this->use_item, m) ||
@@ -611,83 +995,291 @@ void Menu::draw(sf::RenderTarget& target) {
 		if (!this->flash.empty())
 			text(this->flash, x, panel.getPosition().y + panel.getSize().y - 60, 16,
 			     sf::Color(190, 90, 20));
-	} else if (this->screen == PARTY) {
-		text("POKéMON", x, y, 24, head_col); y += 40;
-		if (this->team) {
-			int row = 0;
-			for (const Mon& m : *this->team) {
-				float ry = y + row * 72;
-				if (row == this->party_cursor) cursor_at(x - 12, ry + 6);
-				const sf::Texture* ic = mon_icon(m.species, m.shiny);
-				if (ic) { sf::Sprite s(*ic); s.setScale(0.9f, 0.9f); s.setPosition(x, ry); target.draw(s); }
-				text(mon_label(m) + "  Lv" + std::to_string(m.level), x + 66, ry + 6, 20, body_col);
-				if (m.status != Status::NONE)
-					text(BattleData::status_name(m.status), x + 290, ry + 8, 15, sf::Color(190, 60, 60));
-				hp_bar(x + 66, ry + 34, m.hp, m.max_hp);
-				text(std::to_string(m.hp) + "/" + std::to_string(m.max_hp), x + 226, ry + 32, 16, body_col);
-				exp_bar(x + 66, ry + 52, m);
-				if (++row >= 6) break;
+	} else if (this->screen == PARTY ||
+	           (this->screen == PARTY_ACTION && this->action_context == PartyContext::FIELD)) {
+		refresh_slot_views();
+		text("POKéMON", x, y, 24, head_col);
+		if (this->party)
+			text(std::to_string(this->party->size()) + "/" +
+			     std::to_string(PartySystem::MAX_SLOTS),
+			     panel.getPosition().x + panel.getSize().x - 70, y + 6, 16, muted_col);
+		y += 38;
+		// Six slots, always. A filled one shows the row the brief asks for
+		// (icon, name, gender, level, HP bar, HP numbers, status, held item);
+		// an empty one is drawn as a visibly different placeholder rather
+		// than being skipped (§16).
+		const float pitch = 66.f;
+		for (int slot = 0; slot < PartySystem::MAX_SLOTS; ++slot) {
+			const SlotView& v = slot_view(slot);
+			float ry = y + slot * pitch;
+			bool sel = slot == this->party_cursor && this->screen == PARTY;
+			if (sel) cursor_at(x - 12, ry + 4);
+			if (!v.present) {
+				sf::RectangleShape empty(sf::Vector2f(panel.getSize().x - 70, pitch - 12));
+				empty.setPosition(x - 2, ry);
+				empty.setFillColor(sf::Color(0, 0, 0, 18));
+				empty.setOutlineColor(sf::Color(150, 150, 160, 120));
+				empty.setOutlineThickness(1.f);
+				target.draw(empty);
+				text("LEER", x + 16, ry + 14, 18, sf::Color(150, 150, 160));
+				continue;
 			}
+			// A filled slot gets the same plate as an empty one so the six
+			// rows read as one list; the mon being moved is tinted, and the
+			// lead/companion are labelled, so "which one am I acting on?" is
+			// never a guess.
+			sf::RectangleShape plate(sf::Vector2f(panel.getSize().x - 70, pitch - 12));
+			plate.setPosition(x - 2, ry);
+			plate.setFillColor(slot == this->swap_from ? sf::Color(240, 200, 80, 70)
+			                  : sel                    ? sf::Color(120, 170, 240, 45)
+			                                           : sf::Color(0, 0, 0, 10));
+			plate.setOutlineColor(sf::Color(150, 150, 160, 90));
+			plate.setOutlineThickness(1.f);
+			target.draw(plate);
+			const sf::Texture* ic = mon_icon(v.sprite, v.shiny);
+			if (ic) {
+				sf::Sprite sp(*ic); sp.setScale(0.8f, 0.8f); sp.setPosition(x, ry - 2);
+				target.draw(sp);
+			}
+			std::string title = v.name + (v.shiny ? " ★" : "") + v.gender;
+			text(title, x + 60, ry, 19, v.fainted ? sf::Color(150, 90, 90) : body_col);
+			text(v.level_text, panel.getPosition().x + panel.getSize().x - 90, ry + 2, 17,
+			     v.fainted ? sf::Color(150, 90, 90) : body_col);
+			hp_bar(x + 60, ry + 26, v.hp, v.max_hp);
+			text(v.hp_text, x + 218, ry + 24, 15,
+			     v.fainted ? sf::Color(200, 70, 70) : body_col);
+			float badge_x = x + 60;
+			if (!v.status_text.empty()) {
+				text(v.status_text, badge_x, ry + 42, 14,
+				     v.fainted ? sf::Color(200, 70, 70) : sf::Color(190, 120, 40));
+				badge_x += 40;
+			}
+			if (!v.item_text.empty()) {
+				const sf::Texture* it = item_icon(v.item_id);
+				if (it) {
+					sf::Sprite is(*it); is.setScale(0.6f, 0.6f);
+					is.setPosition(badge_x, ry + 38); target.draw(is);
+					badge_x += 22;
+				}
+				text(v.item_text, badge_x, ry + 42, 14, muted_col);
+			}
+			if (this->party && this->party->active_slot() == slot)
+				text("ANFÜHRER", panel.getPosition().x + panel.getSize().x - 90, ry + 24, 12,
+				     sf::Color(60, 120, 200));
+			if (this->party && this->party->companion_slot() == slot)
+				text("BEGLEITER", panel.getPosition().x + panel.getSize().x - 90, ry + 40, 12,
+				     sf::Color(60, 150, 90));
 		}
+		if (this->screen == PARTY_ACTION)
+			draw_action_menu(y + this->action_slot * pitch);
+		if (!this->flash.empty())
+			text(this->flash, x, panel.getPosition().y + panel.getSize().y - 58, 15,
+			     sf::Color(190, 90, 20));
+	} else if (this->screen == GIVE_ITEM) {
+		const Mon* m = this->party ? this->party->at(this->give_slot) : nullptr;
+		text("ITEM GEBEN", x, y, 22, head_col); y += 34;
+		text(m ? pretty(m->display_name(), "") : std::string("---"), x, y, 17, muted_col);
+		y += 30;
+		for (size_t i = 0; i < this->give_items.size() && i < 12; ++i) {
+			bool sel = (int)i == this->give_cursor;
+			float ry = y + i * 30.f;
+			if (sel) cursor_at(x, ry);
+			const sf::Texture* it = item_icon(this->give_items[i]);
+			if (it) { sf::Sprite is(*it); is.setPosition(x + 26, ry - 4); target.draw(is); }
+			text(pretty(this->give_items[i], "ITEM_"), x + 56, ry, 17, sel ? head_col : body_col);
+			text("x" + std::to_string(this->gs ? this->gs->item_count(this->give_items[i]) : 0),
+			     panel.getPosition().x + panel.getSize().x - 80, ry, 15, muted_col);
+		}
+		if (!this->flash.empty())
+			text(this->flash, x, panel.getPosition().y + panel.getSize().y - 58, 15,
+			     sf::Color(190, 90, 20));
+	} else if (this->screen == MOVE_LEARN) {
+		// The real games' "1, 2 und ... zack! Welche Attacke soll vergessen
+		// werden?" prompt. The request lives in PartySystem; this only shows
+		// it and reports the answer back (§9).
+		const MoveLearnRequest* req = this->party ? this->party->pending_move_learn() : nullptr;
+		const Mon* m = req && this->party ? this->party->find(req->uid) : nullptr;
+		text("NEUE ATTACKE", x, y, 22, head_col); y += 34;
+		if (!req || !m) {
+			text("(nichts offen)", x, y, 17, muted_col);
+		} else {
+			text(pretty(m->display_name(), "") + " möchte " + pretty(req->move, "") +
+			     " erlernen.", x, y, 16, body_col);
+			y += 24;
+			const MoveInfo* nmi = this->bdata ? this->bdata->move(req->move) : nullptr;
+			if (nmi) {
+				text(pretty(nmi->type, "") + "   " +
+				     (nmi->power > 0 ? "Stärke " + std::to_string(nmi->power) : std::string("Status")) +
+				     "   AP " + std::to_string(nmi->pp), x, y, 14, muted_col);
+			}
+			y += 28;
+			text("Welche Attacke soll vergessen werden?", x, y, 15, muted_col);
+			y += 26;
+			for (size_t i = 0; i < m->moves.size(); ++i) {
+				bool sel = (int)i == this->learn_cursor;
+				float ry = y + i * 30.f;
+				if (sel) cursor_at(x, ry);
+				const MoveInfo* mi = this->bdata ? this->bdata->move(m->moves[i]) : nullptr;
+				text(pretty(m->moves[i], ""), x + 26, ry, 17, sel ? head_col : body_col);
+				if (mi)
+					text("AP " + std::to_string(i < m->pp.size() ? m->pp[i] : mi->pp) +
+					     "/" + std::to_string(mi->pp),
+					     panel.getPosition().x + panel.getSize().x - 110, ry, 15, muted_col);
+			}
+			float ry = y + m->moves.size() * 30.f;
+			bool sel = this->learn_cursor >= (int)m->moves.size();
+			if (sel) cursor_at(x, ry);
+			text("VERZICHTEN", x + 26, ry, 17, sel ? head_col : body_col);
+		}
+		if (!this->flash.empty())
+			text(this->flash, x, panel.getPosition().y + panel.getSize().y - 58, 15,
+			     sf::Color(190, 90, 20));
 	} else if (this->screen == SUMMARY) {
-		const Mon* m = (this->team && this->party_cursor < (int)this->team->size())
-			? &(*this->team)[this->party_cursor] : nullptr;
+		const Mon* m = this->summary_from_box
+			? (this->party ? this->party->box_at(this->summary_index) : nullptr)
+			: (this->party ? this->party->at(this->summary_index) : nullptr);
 		if (!m) { text("POKéMON", x, y, 24, head_col); }
 		else {
+			// --- header, shared by every page ---------------------------------
 			const sf::Texture* ic = mon_icon(m->species, m->shiny);
-			if (ic) { sf::Sprite s(*ic); s.setScale(1.3f, 1.3f); s.setPosition(x, y); target.draw(s); }
-			text(mon_label(*m) + "  Lv" + std::to_string(m->level), x + 100, y + 10, 22, head_col);
-			const sf::Texture* t1 = type_icon(m->t1);
-			float tx = x + 100;
-			if (t1) { sf::Sprite s(*t1); s.setPosition(tx, y + 42); target.draw(s); tx += 60; }
-			if (m->t2 != m->t1) {
-				const sf::Texture* t2 = type_icon(m->t2);
-				if (t2) { sf::Sprite s(*t2); s.setPosition(tx, y + 42); target.draw(s); }
-			}
-			y += 90;
-			hp_bar(x, y, m->hp, m->max_hp);
-			text(std::to_string(m->hp) + "/" + std::to_string(m->max_hp), x + 160, y - 4, 18, body_col);
-			y += 22;
-			exp_bar(x, y, *m);
-			y += 30;
-			std::string ab = this->bdata ? this->bdata->ability(m->species) : "";
-			text("Wesen: " + pretty(m->nature, "") + "   Fähigkeit: " +
-			     (ab.empty() || ab == "NONE" ? "---" : pretty(ab, "")), x, y, 16, muted_col);
-			y += 20;
-			text("Hält: " + (m->held_item.empty() || m->held_item == "NONE"
-			     ? std::string("---") : pretty(m->held_item, "")), x, y, 16, muted_col);
-			y += 10;
-			// Nature-boosted stat in a warm color, lowered in a cool one (real
-			// games' own summary-screen convention), neutral otherwise.
-			auto stat_col = [&](char stat) -> sf::Color {
-				static const std::map<std::string, std::pair<char,char>> nat = {
-					{"LONELY",{'A','D'}}, {"BRAVE",{'A','E'}}, {"ADAMANT",{'A','S'}}, {"NAUGHTY",{'A','F'}},
-					{"BOLD",{'D','A'}}, {"RELAXED",{'D','E'}}, {"IMPISH",{'D','S'}}, {"LAX",{'D','F'}},
-					{"TIMID",{'E','A'}}, {"HASTY",{'E','D'}}, {"JOLLY",{'E','S'}}, {"NAIVE",{'E','F'}},
-					{"MODEST",{'S','A'}}, {"MILD",{'S','D'}}, {"QUIET",{'S','E'}}, {"RASH",{'S','F'}},
-					{"CALM",{'F','A'}}, {"GENTLE",{'F','D'}}, {"SASSY",{'F','E'}}, {"CAREFUL",{'F','S'}},
-				};
-				auto it = nat.find(m->nature);
-				if (it == nat.end()) return body_col;
-				if (it->second.first == stat) return sf::Color(200, 60, 50);    // boosted
-				if (it->second.second == stat) return sf::Color(60, 100, 200);  // lowered
-				return body_col;
-			};
-			struct StatRow { const char* label; int val; char key; };
-			StatRow rows[] = {
-				{"ANGRIFF", m->atk, 'A'}, {"VERTEIDIGUNG", m->def, 'D'},
-				{"SP. ANGRIFF", m->spa, 'S'}, {"SP. VERTEIDIGUNG", m->spd, 'F'},
-				{"INITIATIVE", m->spe, 'E'},
-			};
-			for (const StatRow& r : rows) {
-				text(r.label, x, y, 16, muted_col);
-				text(std::to_string(r.val), x + 190, y, 16, stat_col(r.key));
+			if (ic) { sf::Sprite sp(*ic); sp.setScale(1.1f, 1.1f); sp.setPosition(x, y); target.draw(sp); }
+			char g = BattleData::gender(m->species, m->personality);
+			text(pretty(m->display_name(), "") + (m->shiny ? " ★" : "") +
+			     BattleData::gender_symbol(g), x + 84, y + 4, 21, head_col);
+			text("Lv" + std::to_string(m->level), x + 84, y + 30, 18, body_col);
+			if (m->nickname.empty())
+				text("", x, y, 12, muted_col);
+			else
+				text(pretty(m->species, ""), x + 150, y + 32, 14, muted_col);
+			text(std::string(summary_page_title(this->summary_page)) + "   " +
+			     std::to_string((int)this->summary_page + 1) + "/" +
+			     std::to_string((int)SummaryPage::COUNT),
+			     panel.getPosition().x + panel.getSize().x - 190, y + 4, 15, muted_col);
+			text("< L    R >", panel.getPosition().x + panel.getSize().x - 190, y + 26, 13,
+			     muted_col);
+			y += 84;
+
+			if (this->summary_page == SummaryPage::OVERVIEW) {
+				const sf::Texture* t1 = type_icon(m->t1);
+				float tx = x;
+				if (t1) { sf::Sprite sp(*t1); sp.setPosition(tx, y); target.draw(sp); tx += 60; }
+				if (m->t2 != m->t1) {
+					const sf::Texture* t2 = type_icon(m->t2);
+					if (t2) { sf::Sprite sp(*t2); sp.setPosition(tx, y); target.draw(sp); }
+				}
+				y += 34;
+				hp_bar(x, y, m->hp, m->max_hp);
+				text(std::to_string(m->hp) + "/" + std::to_string(m->max_hp), x + 160, y - 4, 18,
+				     m->fainted() ? sf::Color(200, 70, 70) : body_col);
 				y += 24;
+				exp_bar(x, y, *m);
+				y += 24;
+				text("Zustand: " + std::string(status_long_de(m->status, m->fainted())), x, y, 16,
+				     m->fainted() || m->status != Status::NONE ? sf::Color(190, 90, 20) : muted_col);
+				y += 24;
+				std::string ab = this->bdata ? this->bdata->ability(m->species) : "";
+				text("Fähigkeit: " + (ab.empty() || ab == "NONE" ? std::string("---") : pretty(ab, "")),
+				     x, y, 16, muted_col);
+				y += 22;
+				text("Wesen: " + pretty(m->nature, ""), x, y, 16, muted_col);
+				y += 22;
+				text("Hält: " + (m->held_item.empty() || m->held_item == "NONE"
+				     ? std::string("---") : pretty(m->held_item, "ITEM_")), x, y, 16, muted_col);
+				y += 22;
+				text("Freundschaft: " + std::to_string(m->friendship), x, y, 16, muted_col);
+			} else if (this->summary_page == SummaryPage::MOVES) {
+				// Up to four moves with everything the brief lists per move
+				// (§8): type, category, power, accuracy, current/max AP.
+				for (size_t i = 0; i < m->moves.size() && i < 4; ++i) {
+					const MoveInfo* mi = this->bdata ? this->bdata->move(m->moves[i]) : nullptr;
+					float ry = y + i * 58.f;
+					text(pretty(m->moves[i], ""), x, ry, 18, body_col);
+					if (!mi) continue;
+					const sf::Texture* ti = type_icon(mi->type);
+					if (ti) { sf::Sprite sp(*ti); sp.setScale(0.8f, 0.8f); sp.setPosition(x + 190, ry); target.draw(sp); }
+					std::string cat = mi->power <= 0 ? "Status"
+					                : BattleData::is_physical(mi->type) ? "Physisch" : "Spezial";
+					text(cat + "   Stärke " + (mi->power > 0 ? std::to_string(mi->power) : std::string("---")) +
+					     "   Gen. " + (mi->accuracy > 0 ? std::to_string(mi->accuracy) : std::string("---")),
+					     x, ry + 22, 14, muted_col);
+					text("AP " + std::to_string(i < m->pp.size() ? m->pp[i] : mi->pp) +
+					     "/" + std::to_string(mi->pp),
+					     panel.getPosition().x + panel.getSize().x - 110, ry + 2, 15, body_col);
+				}
+				if (m->moves.empty()) text("(keine Attacken)", x, y, 17, muted_col);
+			} else if (this->summary_page == SummaryPage::STATS) {
+				// Nature-boosted stat in a warm color, lowered in a cool one
+				// (the real games' own summary convention), neutral otherwise.
+				auto stat_col = [&](char stat) -> sf::Color {
+					static const std::map<std::string, std::pair<char,char>> nat = {
+						{"LONELY",{'A','D'}}, {"BRAVE",{'A','E'}}, {"ADAMANT",{'A','S'}}, {"NAUGHTY",{'A','F'}},
+						{"BOLD",{'D','A'}}, {"RELAXED",{'D','E'}}, {"IMPISH",{'D','S'}}, {"LAX",{'D','F'}},
+						{"TIMID",{'E','A'}}, {"HASTY",{'E','D'}}, {"JOLLY",{'E','S'}}, {"NAIVE",{'E','F'}},
+						{"MODEST",{'S','A'}}, {"MILD",{'S','D'}}, {"QUIET",{'S','E'}}, {"RASH",{'S','F'}},
+						{"CALM",{'F','A'}}, {"GENTLE",{'F','D'}}, {"SASSY",{'F','E'}}, {"CAREFUL",{'F','S'}},
+					};
+					auto it = nat.find(m->nature);
+					if (it == nat.end()) return body_col;
+					if (it->second.first == stat) return sf::Color(200, 60, 50);    // boosted
+					if (it->second.second == stat) return sf::Color(60, 100, 200);  // lowered
+					return body_col;
+				};
+				struct StatRow { const char* label; int val; int iv; int ev; char key; };
+				StatRow rows[] = {
+					{"KP",                m->max_hp, m->iv_hp,  m->ev_hp,  'H'},
+					{"ANGRIFF",           m->atk,    m->iv_atk, m->ev_atk, 'A'},
+					{"VERTEIDIGUNG",      m->def,    m->iv_def, m->ev_def, 'D'},
+					{"SP. ANGRIFF",       m->spa,    m->iv_spa, m->ev_spa, 'S'},
+					{"SP. VERTEIDIGUNG",  m->spd,    m->iv_spd, m->ev_spd, 'F'},
+					{"INITIATIVE",        m->spe,    m->iv_spe, m->ev_spe, 'E'},
+				};
+				for (const StatRow& r : rows) {
+					text(r.label, x, y, 16, muted_col);
+					text(std::to_string(r.val), x + 190, y, 16, stat_col(r.key));
+					text("DV " + std::to_string(r.iv) + "   FP " + std::to_string(r.ev),
+					     x + 250, y + 2, 13, muted_col);
+					y += 24;
+				}
+				y += 8;
+				std::string growth = this->bdata ? this->bdata->growth_rate(m->species) : "MEDIUM_FAST";
+				long floor_next = m->level < 100
+					? BattleData::exp_for_level(growth, m->level + 1) : m->exp;
+				text("EP: " + std::to_string(m->exp), x, y, 15, muted_col); y += 20;
+				text("Bis Level " + std::to_string(std::min(100, m->level + 1)) + ": " +
+				     std::to_string(std::max(0L, floor_next - m->exp)), x, y, 15, muted_col);
+				y += 22;
+				exp_bar(x, y, *m);
+			} else if (this->summary_page == SummaryPage::DETAILS) {
+				auto row = [&](const std::string& label, const std::string& value) {
+					text(label, x, y, 15, muted_col);
+					text(value, x + 170, y, 15, body_col);
+					y += 24;
+				};
+				row("OT", m->ot_name.empty() ? std::string("---") : m->ot_name);
+				char idbuf[16];
+				std::snprintf(idbuf, sizeof(idbuf), "%05u", m->ot_id % 100000u);
+				row("Trainer-ID", m->ot_id ? std::string(idbuf) : std::string("---"));
+				row("Ball", m->ball == "NONE" || m->ball.empty()
+				            ? std::string("---") : pretty(m->ball, "ITEM_"));
+				row("Fangort", m->met_location.empty() ? std::string("---") : m->met_location);
+				row("Fanglevel", m->met_level > 0 ? std::to_string(m->met_level) : std::string("---"));
+				row("Geschlecht", g == 'N' ? std::string("---")
+				                  : std::string(BattleData::gender_symbol(g)));
+				row("Schillernd", m->shiny ? std::string("Ja") : std::string("Nein"));
+				row("Freundschaft", std::to_string(m->friendship));
+				row("ID", std::to_string(m->uid));
+			} else if (this->summary_page == SummaryPage::RIBBONS) {
+				if (m->ribbons.empty()) {
+					text("Noch keine Bänder.", x, y, 17, muted_col);
+					y += 30;
+					text("Bänder erinnern an besondere", x, y, 14, muted_col); y += 20;
+					text("Erfolge dieses POKéMON.", x, y, 14, muted_col);
+				} else {
+					for (size_t i = 0; i < m->ribbons.size(); ++i)
+						text("• " + pretty(m->ribbons[i], "RIBBON_"),
+						     x + (i % 2) * 180.f, y + (i / 2) * 26.f, 16, body_col);
+				}
 			}
-			y += 10;
-			text("Attacken:", x, y, 16, muted_col); y += 24;
-			for (size_t i = 0; i < m->moves.size(); ++i)
-				text(pretty(m->moves[i], ""), x + (i % 2) * 170, y + (i / 2) * 26, 16, body_col);
 		}
 	} else if (this->screen == OPTIONS) {
 		text("OPTIONEN", x, y, 24, head_col); y += 44;
@@ -706,22 +1298,40 @@ void Menu::draw(sf::RenderTarget& target) {
 			text(rows[i].label, x, y + i * 40, 20, sel ? head_col : body_col);
 			text(rows[i].value, x + 220, y + i * 40, 20, sel ? head_col : body_col);
 		}
-	} else if (this->screen == PC) {
+	} else if (this->screen == PC ||
+	           (this->screen == PARTY_ACTION && this->action_context == PartyContext::BOX)) {
+		int stored = this->party ? this->party->box_size() : 0;
 		text("PC-BOX", x, y, 24, head_col); y += 40;
-		text("Aufbewahrt: " + std::to_string(this->box ? (int)this->box->size() : 0), x, y, 18, muted_col);
+		text("Aufbewahrt: " + std::to_string(stored) + "/" +
+		     std::to_string(PartySystem::BOX_CAPACITY), x, y, 18, muted_col);
 		y += 30;
-		if (this->box && !this->box->empty()) {
-			int row = 0;
-			for (const Mon& m : *this->box) {
+		if (stored > 0) {
+			// Scroll the window with the cursor so a box past the tenth row is
+			// still reachable.
+			const int VISIBLE = 10;
+			int first = std::max(0, std::min(this->box_cursor - VISIBLE / 2,
+			                                 stored - VISIBLE));
+			if (first < 0) first = 0;
+			for (int row = 0; row < VISIBLE && first + row < stored; ++row) {
+				const Mon& m = *this->party->box_at(first + row);
 				float ry = y + row * 40;
+				bool sel = first + row == this->box_cursor;
+				if (sel) cursor_at(x - 12, ry);
 				const sf::Texture* ic = mon_icon(m.species, m.shiny);
 				if (ic) { sf::Sprite s(*ic); s.setScale(0.55f, 0.55f); s.setPosition(x, ry - 6); target.draw(s); }
-				text(mon_label(m) + "  Lv" + std::to_string(m.level), x + 44, ry, 20, body_col);
-				if (++row >= 10) break;
+				text(mon_label(m) + "  Lv" + std::to_string(m.level), x + 44, ry, 20,
+				     sel ? head_col : body_col);
+				if (m.fainted())
+					text("KO", panel.getPosition().x + panel.getSize().x - 70, ry + 2, 14,
+					     sf::Color(200, 70, 70));
 			}
 		} else {
 			text("(keine POKéMON aufbewahrt)", x, y, 20, muted_col);
 		}
+		if (this->screen == PARTY_ACTION) draw_action_menu(y + 20.f);
+		if (!this->flash.empty())
+			text(this->flash, x, panel.getPosition().y + panel.getSize().y - 58, 15,
+			     sf::Color(190, 90, 20));
 	} else if (this->screen == POKENAV) {
 		// Real PokeNav's "Hoenn Map Full View" is its own dark navy GBA
 		// screen, not a page inside the light Bag/Party-style frame -- cover
@@ -813,6 +1423,20 @@ void Menu::draw(sf::RenderTarget& target) {
 	else if (this->screen == POKENAV)
 		text("Pfeiltasten: Karte erkunden   [SPACE] zurück",
 		     x, panel.getPosition().y + panel.getSize().y - 34, 16, sf::Color(160, 190, 224));
+	else if (this->screen == PARTY)
+		text(this->swap_from >= 0 ? "[SPACE] tauschen   [B] abbrechen"
+		                          : "[SPACE] auswählen   [X] Bericht   [B] zurück",
+		     x, panel.getPosition().y + panel.getSize().y - 34, 15, muted_col);
+	else if (this->screen == SUMMARY)
+		text("[A]/[D] Seite wechseln   [B] zurück",
+		     x, panel.getPosition().y + panel.getSize().y - 34, 15, muted_col);
+	else if (this->screen == PC)
+		text("[SPACE] auswählen   [B] zurück",
+		     x, panel.getPosition().y + panel.getSize().y - 34, 15, muted_col);
+	else if (this->screen == GIVE_ITEM || this->screen == PARTY_ACTION ||
+	         this->screen == MOVE_LEARN)
+		text("[SPACE] bestätigen   [B] zurück",
+		     x, panel.getPosition().y + panel.getSize().y - 34, 15, muted_col);
 	else if (this->screen != MAIN)
 		text("[SPACE] zurück", x, panel.getPosition().y + panel.getSize().y - 34, 16, muted_col);
 	target.setView(saved);

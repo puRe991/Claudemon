@@ -20,7 +20,24 @@ void write_mon(std::ofstream& f, const Mon& m) {
 		if (i) f << ',';
 		f << m.pp[i];
 	}
-	f << '\t' << m.held_item << '\t' << m.personality << '\t' << (m.shiny ? 1 : 0) << '\n';
+	f << '\t' << m.held_item << '\t' << m.personality << '\t' << (m.shiny ? 1 : 0);
+	// Fields 27.. were added with the party system. They are appended rather
+	// than woven in so a savegame written before it still reads back (see
+	// read_mon's size checks) -- the same rule the shiny fields followed.
+	f << '\t' << m.uid << '\t' << m.nickname << '\t' << m.ot_name
+	  << '\t' << m.ot_id << '\t' << m.ot_secret << '\t' << m.ball
+	  << '\t' << m.met_location << '\t' << m.met_level << '\t' << m.friendship
+	  << '\t' << m.ev_hp << ',' << m.ev_atk << ',' << m.ev_def << ','
+	  << m.ev_spa << ',' << m.ev_spd << ',' << m.ev_spe << '\t';
+	// Ribbons are the last field, so "no ribbons" is written as "-" rather
+	// than as nothing: a trailing empty column would be swallowed by the
+	// tab split on read, and the whole record would look one field short.
+	if (m.ribbons.empty()) f << '-';
+	for (size_t i = 0; i < m.ribbons.size(); ++i) {
+		if (i) f << ',';
+		f << m.ribbons[i];
+	}
+	f << '\n';
 }
 
 // Splits on '\t'; returns false if the line doesn't have enough fields.
@@ -72,6 +89,32 @@ bool read_mon(const std::string& line, Mon& m) {
 		m.personality = (unsigned)std::strtoul(f[25].c_str(), nullptr, 10);
 		m.shiny = f[26] != "0";
 	}
+	// Party-system fields. A pre-party-system save has none of them; the
+	// defaults on Mon are already the right answer there (uid 0 means "not
+	// adopted yet", which PartySystem mints an id for on load).
+	if (f.size() >= 38) {
+		m.uid = (unsigned)std::strtoul(f[27].c_str(), nullptr, 10);
+		m.nickname = f[28];
+		m.ot_name = f[29];
+		m.ot_id = (unsigned)std::strtoul(f[30].c_str(), nullptr, 10);
+		m.ot_secret = (unsigned)std::strtoul(f[31].c_str(), nullptr, 10);
+		m.ball = f[32];
+		m.met_location = f[33];
+		m.met_level = std::atoi(f[34].c_str());
+		m.friendship = std::atoi(f[35].c_str());
+		std::vector<int> evs;
+		std::stringstream es(f[36]);
+		while (std::getline(es, tok, ',')) evs.push_back(std::atoi(tok.c_str()));
+		if (evs.size() >= 6) {
+			m.ev_hp = evs[0]; m.ev_atk = evs[1]; m.ev_def = evs[2];
+			m.ev_spa = evs[3]; m.ev_spd = evs[4]; m.ev_spe = evs[5];
+		}
+		m.ribbons.clear();
+		if (f[37] != "-") {
+			std::stringstream rs(f[37]);
+			while (std::getline(rs, tok, ',')) if (!tok.empty()) m.ribbons.push_back(tok);
+		}
+	}
 	return true;
 }
 
@@ -118,6 +161,47 @@ bool SaveGame::save(const std::string& path, const GameState& gs,
 	for (const Mon& m : box) write_mon(f, m);
 
 	return (bool)f;
+}
+
+bool SaveGame::save(const std::string& path, const GameState& gs, const PartySystem& party,
+                    const std::string& map_path, int player_x, int player_y) {
+	if (!save(path, gs, party.party_storage(), party.box_storage(), map_path,
+	          player_x, player_y))
+		return false;
+	// The party system's own bookkeeping goes on the end of the same file:
+	// the uid counter (so a mon created after loading can't reuse a saved
+	// mon's id) plus which slot leads and which one walks with the player.
+	std::ofstream f(path, std::ios::app);
+	if (!f.is_open()) return false;
+	f << "partystate\t" << party.next_uid() << '\t' << party.active_slot()
+	  << '\t' << party.companion_slot() << '\n';
+	return (bool)f;
+}
+
+bool SaveGame::load(const std::string& path, GameState& gs, PartySystem& party,
+                    std::string& map_path, int& player_x, int& player_y) {
+	std::vector<Mon> team, box;
+	if (!load(path, gs, team, box, map_path, player_x, player_y)) return false;
+	party.reset(std::move(team), std::move(box));
+
+	// Re-read just the partystate line; the vector-shaped load above ignores
+	// keys it doesn't know, which is what keeps the two formats one file.
+	std::ifstream f(path);
+	std::string line;
+	while (std::getline(f, line)) {
+		if (line.rfind("partystate\t", 0) != 0) continue;
+		std::stringstream ss(line);
+		std::string key, uid_s, active_s, companion_s;
+		std::getline(ss, key, '\t');
+		std::getline(ss, uid_s, '\t');
+		std::getline(ss, active_s, '\t');
+		std::getline(ss, companion_s, '\t');
+		party.set_next_uid((unsigned)std::strtoul(uid_s.c_str(), nullptr, 10));
+		party.set_active_slot(std::atoi(active_s.c_str()));
+		party.set_companion_slot(std::atoi(companion_s.c_str()));
+		break;
+	}
+	return true;
 }
 
 bool SaveGame::load(const std::string& path, GameState& gs,
