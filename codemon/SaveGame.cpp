@@ -140,6 +140,12 @@ bool SaveGame::save(const std::string& path, const GameState& gs,
 	f << "trainerid\t" << gs.trainer_id << '\t' << gs.secret_id << '\n';
 	f << "options\t" << (gs.sound_on ? 1 : 0) << '\t' << (gs.battle_scene_on ? 1 : 0)
 	  << '\t' << gs.frame_type << '\n';
+	// AUFGABEN: only the player's own two choices -- which quest is pinned to
+	// the HUD and whether the HUD box is shown. Quest progress itself is
+	// derived from the flags/vars written below (see QuestLog.h), so there is
+	// nothing else here to keep in sync.
+	f << "quest\t" << (gs.tracked_quest.empty() ? "-" : gs.tracked_quest)
+	  << '\t' << (gs.quest_hud_on ? 1 : 0) << '\n';
 
 	f << "vars\t" << gs.all_vars().size() << '\n';
 	for (const auto& kv : gs.all_vars()) f << kv.first << '\t' << kv.second << '\n';
@@ -251,6 +257,9 @@ bool SaveGame::load(const std::string& path, GameState& gs,
 			new_gs.sound_on = parts[1] != "0";
 			new_gs.battle_scene_on = parts[2] != "0";
 			new_gs.frame_type = std::atoi(parts[3].c_str());
+		} else if (key == "quest" && parts.size() >= 3) {
+			new_gs.tracked_quest = (parts[1] == "-") ? std::string() : parts[1];
+			new_gs.quest_hud_on = parts[2] != "0";
 		} else if (key == "vars" && parts.size() >= 2) {
 			int n = std::atoi(parts[1].c_str());
 			for (int i = 0; i < n && std::getline(f, line); ++i) {
