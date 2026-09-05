@@ -1923,9 +1923,12 @@ int main() {
     // bag, money, party, PC box). CODEMON_MAP/CODEMON_NO_SAVE force a fresh
     // start for demos/tests even when a savegame.dat is lying around.
     std::string start_map; int start_x = -1, start_y = -1;
+    std::vector<Mon> stored_party;   // handed to the ScriptVM once it exists
     bool resumed = false;
     if (!map_env && !std::getenv("CODEMON_NO_SAVE")) {
         resumed = SaveGame::load(SAVE_PATH, gs, party, start_map, start_x, start_y);
+        if (resumed)   // a facility holding the player's own team (Battle Tent)
+            SaveGame::load_stored_party(SAVE_PATH, stored_party);
         // A save written before PP tracking existed has no `pp` field at all
         // for its party/box mons -- give them full PP rather than leaving
         // the vector empty (which would read as "0 PP, can't move").
@@ -2042,6 +2045,7 @@ int main() {
     battle.set_capture(&gs, &team, &pc_box);
     battle.set_party_system(&party);
     ScriptVM vm;
+    vm.set_stored_party(std::move(stored_party));   // Battle Tent, mid-challenge
     vm.set_battle_data(&bdata, &team, &rng, &pc_box);
     vm.configure(sess->map, &gs, &box, &battle, nullptr, sess->player, &sess->actors, &sess->localid_map);
     run_load_triggers(sess->map, gs, vm);
@@ -2392,10 +2396,19 @@ int main() {
                     if (menu.wants_save()) {
                         bool ok = SaveGame::save(SAVE_PATH, gs, party, sess->path,
                                                   sess->player->get_tile_x(), sess->player->get_tile_y());
+                        if (ok) SaveGame::save_stored_party(SAVE_PATH, vm.stored_party());
                         menu.set_flash(ok ? "Spiel gespeichert!" : "Speichern fehlgeschlagen.");
                         menu.ack_save();
                     }
                     do_pending_warp(nullptr);
+                    // After the warp, so a challenge saved on the way out of
+                    // the corridor records the lobby the player ends up in.
+                    if (vm.wants_save()) {   // the Battle Tent saving a challenge
+                        if (SaveGame::save(SAVE_PATH, gs, party, sess->path,
+                                           sess->player->get_tile_x(), sess->player->get_tile_y()))
+                            SaveGame::save_stored_party(SAVE_PATH, vm.stored_party());
+                        vm.ack_save();
+                    }
                     do_pending_fly(nullptr);
                     battle.tick(0.13f);
                     games.tick(0.13f);
@@ -2875,10 +2888,19 @@ int main() {
         if (menu.wants_save()) {
             bool ok = SaveGame::save(SAVE_PATH, gs, party, sess->path,
                                       sess->player->get_tile_x(), sess->player->get_tile_y());
+            if (ok) SaveGame::save_stored_party(SAVE_PATH, vm.stored_party());
             menu.set_flash(ok ? "Spiel gespeichert!" : "Speichern fehlgeschlagen.");
             menu.ack_save();
         }
         do_pending_warp(&audio);
+        // After the warp, so a challenge saved on the way out of the corridor
+        // records the lobby the player ends up in.
+        if (vm.wants_save()) {   // the Battle Tent saving a challenge
+            if (SaveGame::save(SAVE_PATH, gs, party, sess->path,
+                               sess->player->get_tile_x(), sess->player->get_tile_y()))
+                SaveGame::save_stored_party(SAVE_PATH, vm.stored_party());
+            vm.ack_save();
+        }
         do_pending_fly(&audio);
         healfx.tick(dt);
         if (vm.running()) vm.update(dt);

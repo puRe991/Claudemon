@@ -300,3 +300,31 @@ bool SaveGame::load(const std::string& path, GameState& gs,
 	player_y = new_y;
 	return true;
 }
+
+bool SaveGame::save_stored_party(const std::string& path, const std::vector<Mon>& mons) {
+	if (mons.empty()) return true;   // nothing being held: leave the file alone
+	std::ofstream f(path, std::ios::app);
+	if (!f.is_open()) return false;
+	f << "storedparty\t" << mons.size() << '\n';
+	for (const Mon& m : mons) write_mon(f, m);
+	return (bool)f;
+}
+
+bool SaveGame::load_stored_party(const std::string& path, std::vector<Mon>& mons) {
+	std::ifstream f(path);
+	if (!f.is_open()) return false;
+	std::string line;
+	while (std::getline(f, line)) {
+		if (line.rfind("storedparty\t", 0) != 0) continue;
+		int n = std::atoi(line.c_str() + sizeof("storedparty"));
+		std::vector<Mon> out;
+		for (int i = 0; i < n && std::getline(f, line); ++i) {
+			Mon m;
+			if (read_mon(line, m)) out.push_back(m);
+		}
+		mons = out;
+		return true;
+	}
+	mons.clear();
+	return true;
+}

@@ -34,4 +34,12 @@ namespace SaveGame {
 	          const std::string& map_path, int player_x, int player_y);
 	bool load(const std::string& path, GameState& gs, PartySystem& party,
 	          std::string& map_path, int& player_x, int& player_y);
+
+	// The party a facility is holding for the player while they battle with
+	// borrowed Pokemon (the Battle Tent). It is not part of the run's state
+	// the way the team and the box are -- it exists only mid-challenge -- so
+	// it gets its own section, appended after a save and read back after a
+	// load. Both are no-ops for an empty list / a save without the section.
+	bool save_stored_party(const std::string& path, const std::vector<Mon>& mons);
+	bool load_stored_party(const std::string& path, std::vector<Mon>& mons);
 }

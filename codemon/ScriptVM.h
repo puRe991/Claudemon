@@ -146,6 +146,16 @@ public:
 	// way the opcodes do -- the game loop needs it for map on-load triggers,
 	// whose values are symbolic constants as often as they are numbers.
 	int const_value(const std::string& s) const { return value_of(s); }
+	// The Battle Tent saves the game from inside a script (pokeemerald's
+	// slateporttent_save). The VM cannot reach the save file itself, so the
+	// game loop performs it, the same way it handles a pending warp.
+	bool wants_save() const { return this->pending_save; }
+	void ack_save() { this->pending_save = false; }
+	// The party a facility is holding for the player (see party_backup): the
+	// game loop hands it to the save file and back, so a challenge saved
+	// mid-run cannot lose the player's own team.
+	const std::vector<Mon>& stored_party() const { return this->party_backup; }
+	void set_stored_party(std::vector<Mon> mons) { this->party_backup = std::move(mons); }
 
 	bool emote_active() const { return this->emote_t > 0.f && this->emote_ch; }
 	const Character* emote_target() const { return this->emote_ch; }
@@ -265,23 +275,33 @@ private:
 	bool start_pending_wild_battle();   // true if a battle actually started
 
 	// --- Battle Tent (Slateport's Battle Swap event) -------------------
-	// pokeemerald keeps all of this in the save file's frontier data; this
-	// engine holds it here for the duration of one challenge (the VM object
-	// outlives every warp between lobby, corridor and battle room), which is
-	// why a challenge cannot be paused and resumed across a save.
+	// Everything a paused challenge has to survive on lives in GameState's
+	// vars, which the save file already carries: the status, the win count,
+	// the prize still owed, and the three teams in play (as species ids +
+	// levels, see tent_store_team). The player's own party is the exception
+	// -- it is only stashed for the length of one challenge, and a pause
+	// hands it back before saving, so it never needs to be written out.
 	std::vector<Mon> party_backup;                             // SavePlayerParty
-	std::vector<std::pair<std::string, int>> tent_rentals;     // the loaned three
-	std::vector<std::pair<std::string, int>> tent_opponent;    // this round's three
-	std::vector<std::pair<std::string, int>> tent_swap_pool;   // the beaten team, to swap from
-	int tent_battle_num = 0;          // FRONTIER_DATA_BATTLE_NUM (wins so far)
-	int tent_status = 0;              // FRONTIER_DATA_CHALLENGE_STATUS
-	int tent_lvl_mode = 0;            // FRONTIER_DATA_LVL_MODE
-	bool tent_paused = false;         // FRONTIER_DATA_PAUSED
-	std::string tent_prize;           // ITEM_* still owed, "" = none
-	bool tent_swap_pending = false;   // a slateporttent_swapmons multichoice is open
+	std::vector<std::pair<std::string, int>> tent_pool;         // rentals still on offer
+	// Which chained multichoice is open: the tent's two selection screens
+	// have no UI here, so they run as lists (pick 3 of 6, then give/take).
+	enum TentChoice { TENT_NONE, TENT_RENT, TENT_SWAP_GIVE, TENT_SWAP_TAKE };
+	TentChoice tent_choice = TENT_NONE;
+	int tent_swap_give = -1;          // slot the player offered up
 	bool special_battle = false;      // battle started by DoSpecialTrainerBattle
-	std::vector<std::pair<std::string, int>> roll_tent_team();
-	void tent_give_rentals();
+	bool pending_save = false;        // the facility asked for a real save
+
+	int tent_var(const char* key) const;
+	void set_tent_var(const char* key, int v);
+	// Teams live in vars as "<key>_N" plus "<key>_<i>" species id / "<key>_<i>L"
+	// level, so they ride along in the save file with no format change.
+	void tent_store_team(const char* key, const std::vector<std::pair<std::string, int>>& t);
+	std::vector<std::pair<std::string, int>> tent_load_team(const char* key) const;
+	std::vector<std::pair<std::string, int>> roll_tent_team(int count);
+	void tent_give_team(const std::vector<std::pair<std::string, int>>& t);
+	void tent_open_choice(TentChoice which,
+	                      const std::vector<std::pair<std::string, int>>& from,
+	                      bool with_cancel);
 
 	int value_of(const std::string& s) const;   // resolve a symbol/number
 	Character* resolve(const std::string& localid) const;

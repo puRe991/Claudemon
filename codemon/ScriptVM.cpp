@@ -171,6 +171,7 @@ static const std::unordered_map<std::string, std::vector<std::string>> MULTICHOI
 // imported; this stands in for them with a pool of ordinary Hoenn species that
 // the imported species table is guaranteed to have.
 static const int TENT_LEVEL = 30;
+static const int TENT_RENTAL_CHOICES = 6;   // pokeemerald offers six, you keep three
 static const char* TENT_MON_POOL[] = {
 	"ZIGZAGOON", "LINOONE", "POOCHYENA", "MIGHTYENA", "WINGULL", "PELIPPER",
 	"TAILLOW", "SWELLOW", "WHISMUR", "LOUDRED", "MAKUHITA", "HARIYAMA",
@@ -180,8 +181,48 @@ static const char* TENT_MON_POOL[] = {
 	"CACNEA", "CACTURNE", "TRAPINCH", "VIBRAVA", "BALTOY", "CLAYDOL",
 	"SPINDA", "SWABLU", "ROSELIA", "GOLDEEN", "BARBOACH", "CORPHISH",
 };
+// The prize pool the lobby draws from (pokeemerald's own Battle Tent prizes).
+static const char* TENT_PRIZES[] = {
+	"ITEM_HP_UP", "ITEM_PROTEIN", "ITEM_IRON",
+	"ITEM_CALCIUM", "ITEM_ZINC", "ITEM_CARBOS",
+};
 
-std::vector<std::pair<std::string, int>> ScriptVM::roll_tent_team() {
+int ScriptVM::tent_var(const char* key) const {
+	return this->state ? this->state->get_var(key) : 0;
+}
+
+void ScriptVM::set_tent_var(const char* key, int v) {
+	if (this->state) this->state->set_var(key, v);
+}
+
+void ScriptVM::tent_store_team(const char* key,
+                               const std::vector<std::pair<std::string, int>>& t) {
+	if (!this->state || !this->bdata) return;
+	std::string k(key);
+	this->state->set_var(k + "_N", (int)t.size());
+	for (size_t i = 0; i < t.size(); ++i) {
+		std::string slot = k + "_" + std::to_string(i);
+		this->state->set_var(slot, this->bdata->species_id(t[i].first) + 1);   // 0 = empty
+		this->state->set_var(slot + "L", t[i].second);
+	}
+}
+
+std::vector<std::pair<std::string, int>> ScriptVM::tent_load_team(const char* key) const {
+	std::vector<std::pair<std::string, int>> out;
+	if (!this->state || !this->bdata) return out;
+	std::string k(key);
+	int n = this->state->get_var(k + "_N");
+	for (int i = 0; i < n; ++i) {
+		std::string slot = k + "_" + std::to_string(i);
+		int id = this->state->get_var(slot) - 1;
+		std::string sp = (id >= 0) ? this->bdata->species_by_id(id) : std::string();
+		if (sp.empty()) continue;
+		out.push_back({sp, this->state->get_var(slot + "L")});
+	}
+	return out;
+}
+
+std::vector<std::pair<std::string, int>> ScriptVM::roll_tent_team(int count) {
 	std::vector<std::pair<std::string, int>> out;
 	if (!this->bdata || !this->rng) return out;
 	std::vector<std::string> pool;
@@ -192,24 +233,36 @@ std::vector<std::pair<std::string, int>> ScriptVM::roll_tent_team() {
 	if (pool.empty())
 		for (int i = 0; i < this->bdata->species_count(); ++i)
 			pool.push_back(this->bdata->species_by_id(i));
-	if (pool.empty()) return out;
-	for (int k = 0; k < 3 && !pool.empty(); ++k) {
+	for (int k = 0; k < count && !pool.empty(); ++k) {
 		size_t i = (size_t)((*this->rng)() % pool.size());
 		out.push_back({pool[i], TENT_LEVEL});
-		pool.erase(pool.begin() + (long)i);   // no duplicates within one team
+		pool.erase(pool.begin() + (long)i);   // no duplicates within one offer
 	}
 	return out;
 }
 
-// Hand the rentals over: the player's own party is already stashed by
-// `special SavePlayerParty` (the lobby attendant), and comes back from
+// Put a rented team in the player's hands. Their own party is already stashed
+// by `special SavePlayerParty` (the lobby attendant) and comes back from
 // `special LoadPlayerParty` when the challenge ends.
-void ScriptVM::tent_give_rentals() {
-	if (!this->team || !this->bdata || !this->rng) return;
-	if (this->tent_rentals.empty()) this->tent_rentals = roll_tent_team();
+void ScriptVM::tent_give_team(const std::vector<std::pair<std::string, int>>& t) {
+	if (!this->team || !this->bdata || t.empty()) return;
 	this->team->clear();
-	for (const auto& r : this->tent_rentals)
+	for (const auto& r : t)
 		this->team->push_back(this->bdata->make_mon(r.first, r.second, this->rng));
+}
+
+// Open one step of a selection as a plain option list -- the real facility's
+// rental and swap screens (sprites, stats, movesets) have no equivalent here.
+void ScriptVM::tent_open_choice(TentChoice which,
+                                const std::vector<std::pair<std::string, int>>& from,
+                                bool with_cancel) {
+	this->pending_multichoice_options.clear();
+	for (const auto& m : from)
+		this->pending_multichoice_options.push_back(nice_name(m.first));
+	if (with_cancel) this->pending_multichoice_options.push_back("ABBRECHEN");
+	this->pending_multichoice_default = 0;
+	this->tent_choice = which;
+	this->st = WAIT_MULTICHOICE;
 }
 
 int ScriptVM::value_of(const std::string& s) const {
@@ -330,21 +383,67 @@ void ScriptVM::resolve_choose_party_mon(int idx) {
 
 void ScriptVM::resolve_multichoice(int idx) {
 	if (this->st != WAIT_MULTICHOICE) return;
-	if (this->tent_swap_pending) {
-		// slateporttent_swapmons: the last entry is "cancel" (VAR_RESULT 1,
-		// which sends the script straight on to the battle room).
-		this->tent_swap_pending = false;
+	if (this->tent_choice != TENT_NONE) {
+		const TentChoice which = this->tent_choice;
+		this->tent_choice = TENT_NONE;
 		this->pending_multichoice_options.clear();
-		bool cancelled = !this->team || idx < 0 || idx >= (int)this->team->size();
-		if (!cancelled && this->bdata && !this->tent_swap_pool.empty()) {
-			size_t k = this->rng ? (*this->rng)() % this->tent_swap_pool.size() : 0;
-			const auto& got = this->tent_swap_pool[k];
-			(*this->team)[idx] = this->bdata->make_mon(got.first, got.second, this->rng);
-			this->tent_rentals[idx] = got;
-			this->tent_swap_pool.erase(this->tent_swap_pool.begin() + (long)k);
+		if (which == TENT_RENT) {
+			// One of the six on offer; keep asking until three are picked.
+			auto kept = tent_load_team("VAR_TENT_RENTALS");
+			if (idx >= 0 && idx < (int)this->tent_pool.size()) {
+				kept.push_back(this->tent_pool[idx]);
+				this->tent_pool.erase(this->tent_pool.begin() + idx);
+				tent_store_team("VAR_TENT_RENTALS", kept);
+			}
+			if (kept.size() < 3 && !this->tent_pool.empty()) {
+				tent_open_choice(TENT_RENT, this->tent_pool, false);
+				return;
+			}
+			tent_give_team(kept);
+			this->tent_pool.clear();
+			std::string line = "Sie erhalten ";
+			for (size_t k = 0; k < kept.size(); ++k) {
+				if (k) line += (k + 1 == kept.size()) ? " und " : ", ";
+				line += nice_name(kept[k].first);
+			}
+			line += " als Leih-POKéMON!";
+			this->box->open(std::string(), line);
+			this->st = WAIT_MSG;
+			return;
+		}
+		if (which == TENT_SWAP_GIVE) {
+			// The last entry is "cancel" (VAR_RESULT 1, which sends the
+			// script straight on to the battle room).
+			auto pool = tent_load_team("VAR_TENT_SWAP");
+			if (!this->team || idx < 0 || idx >= (int)this->team->size() || pool.empty()) {
+				if (this->state) this->state->set_var("VAR_RESULT", 1);
+				this->st = RUN; this->pump();
+				return;
+			}
+			this->tent_swap_give = idx;
+			tent_open_choice(TENT_SWAP_TAKE, pool, true);
+			return;
+		}
+		// TENT_SWAP_TAKE: which of the beaten team to take in exchange.
+		auto pool = tent_load_team("VAR_TENT_SWAP");
+		auto kept = tent_load_team("VAR_TENT_RENTALS");
+		bool ok = this->team && this->bdata && idx >= 0 && idx < (int)pool.size() &&
+		          this->tent_swap_give >= 0 &&
+		          this->tent_swap_give < (int)this->team->size();
+		if (ok) {
+			const auto& got = pool[idx];
+			(*this->team)[this->tent_swap_give] =
+				this->bdata->make_mon(got.first, got.second, this->rng);
+			if (this->tent_swap_give < (int)kept.size()) {
+				pool[idx] = kept[this->tent_swap_give];   // yours joins their side
+				kept[this->tent_swap_give] = got;
+				tent_store_team("VAR_TENT_RENTALS", kept);
+			}
+			tent_store_team("VAR_TENT_SWAP", pool);
 			this->str_vars["STR_VAR_1"] = nice_name(got.first);
 		}
-		if (this->state) this->state->set_var("VAR_RESULT", cancelled ? 1 : 0);
+		this->tent_swap_give = -1;
+		if (this->state) this->state->set_var("VAR_RESULT", ok ? 0 : 1);
 		this->st = RUN;
 		this->pump();
 		return;
@@ -812,6 +911,7 @@ void ScriptVM::pump() {
 			} else if (fn == "SaveGame") {
 				// No in-script save screen here; the callers only check that
 				// it did not fail (VAR_RESULT 0 = the player backed out).
+				this->pending_save = true;
 				if (this->state) this->state->set_var("VAR_RESULT", 1);
 			} else if (fn == "SavePlayerParty" && this->team) {
 				// The Battle Tent stores the player's own team while they
@@ -820,10 +920,10 @@ void ScriptVM::pump() {
 			} else if (fn == "LoadPlayerParty" && this->team) {
 				if (!this->party_backup.empty()) *this->team = this->party_backup;
 			} else if (fn == "DoSpecialTrainerBattle") {
-				if (this->tent_opponent.empty()) this->tent_opponent = roll_tent_team();
+				auto opp = tent_load_team("VAR_TENT_OPP");
+				if (opp.empty()) { opp = roll_tent_team(3); tent_store_team("VAR_TENT_OPP", opp); }
 				if (this->battle && this->bdata && this->team && !this->team->empty() &&
-				    this->battle->start_trainer_party("TENT-TRAINER",
-				                                      this->tent_opponent,
+				    this->battle->start_trainer_party("TENT-TRAINER", opp,
 				                                      &(*this->team)[0])) {
 					// Unlike a story trainer, losing here is a normal script
 					// outcome (the attendant walks you out), not a whiteout --
@@ -979,116 +1079,123 @@ void ScriptVM::pump() {
 		           op == "battletent_getopponentintro") {
 			// --- Slateport's BATTLE TENT (the Battle Swap event) ---------
 			// The imported scripts drive the whole facility through these
-			// opcodes; none of them existed, so entering the tent walked
-			// into a battle that never happened and bounced the player back
-			// out of the lobby as a loser. What runs here is the real flow
-			// (three rolled opponents, a rented team, a swap after each win,
-			// a prize for 3-0) minus the two parts that need screens this
-			// engine has no UI for: picking which rentals to take, and
-			// picking which of the beaten team to take -- both are chosen
-			// for the player, and the swap asks only which mon to give up.
+			// opcodes; none of them existed, so entering the tent walked into
+			// a battle that never happened and bounced the player back out of
+			// the lobby as a loser. The real flow runs here: three of six
+			// rentals, a rolled opponent per round, a give-and-take swap
+			// after each win, a prize for 3-0, and a save that a later
+			// session can resume. The only thing missing against pokeemerald
+			// is the look of the two selection screens -- they are option
+			// lists here rather than sprite/stat screens.
 			if (op == "slateporttent_init") {
-				this->tent_battle_num = 0;
-				this->tent_status = 0;
-				this->tent_prize.clear();
-				this->tent_rentals.clear();
-				this->tent_opponent.clear();
-				this->tent_swap_pool.clear();
+				set_tent_var("VAR_TENT_BATTLE_NUM", 0);
+				set_tent_var("VAR_TENT_STATUS", 0);
+				set_tent_var("VAR_TENT_PRIZE", 0);
+				set_tent_var("VAR_TENT_PAUSED", 0);
+				tent_store_team("VAR_TENT_RENTALS", {});
+				tent_store_team("VAR_TENT_OPP", {});
+				tent_store_team("VAR_TENT_SWAP", {});
 			} else if (op == "slateporttent_generaterentalmons") {
-				this->tent_rentals = roll_tent_team();
+				this->tent_pool = roll_tent_team(TENT_RENTAL_CHOICES);
 			} else if (op == "slateporttent_generateopponentmons") {
-				this->tent_opponent = roll_tent_team();
+				tent_store_team("VAR_TENT_OPP", roll_tent_team(3));
 			} else if (op == "slateporttent_rentmons") {
-				tent_give_rentals();
-				std::string line = "Sie erhalten ";
-				for (size_t k = 0; k < this->tent_rentals.size(); ++k) {
-					if (k) line += (k + 1 == this->tent_rentals.size()) ? " und " : ", ";
-					line += nice_name(this->tent_rentals[k].first);
-				}
-				line += " als Leih-POKéMON!";
-				this->box->open(std::string(), line);
-				this->st = WAIT_MSG;
+				// Pick three of the six on offer, one list at a time.
+				if (this->tent_pool.empty()) this->tent_pool = roll_tent_team(TENT_RENTAL_CHOICES);
+				tent_store_team("VAR_TENT_RENTALS", {});
+				tent_open_choice(TENT_RENT, this->tent_pool, false);
 				return;
 			} else if (op == "slateporttent_swapmons") {
-				// Which of the three to give up (the incoming one is picked
-				// for the player -- see the block comment above).
-				if (this->team && !this->team->empty() && !this->tent_swap_pool.empty()) {
-					this->pending_multichoice_options.clear();
-					for (const Mon& m : *this->team)
-						this->pending_multichoice_options.push_back(nice_name(m.species));
-					this->pending_multichoice_options.push_back("ABBRECHEN");
-					this->pending_multichoice_default = 0;
-					this->tent_swap_pending = true;
-					this->st = WAIT_MULTICHOICE;
+				// Which of yours goes, then which of the beaten team comes.
+				std::vector<std::pair<std::string, int>> mine;
+				if (this->team)
+					for (const Mon& m : *this->team) mine.push_back({m.species, m.level});
+				if (!mine.empty() && !tent_load_team("VAR_TENT_SWAP").empty()) {
+					tent_open_choice(TENT_SWAP_GIVE, mine, true);
 					return;
 				}
 				this->state->set_var("VAR_RESULT", 1);   // nothing to swap = cancelled
 			} else if (op == "slateporttent_save") {
-				// Real saving mid-challenge would have to persist the rented
-				// team and the frontier data; this engine keeps a challenge
-				// in memory only (see ScriptVM.h), so there is nothing to
-				// write here and a paused challenge simply cannot resume.
+				// pokeemerald writes the challenge into the save file here;
+				// everything this engine needs is in GameState's vars by now
+				// (see ScriptVM.h), so it just asks the game loop to save.
+				if (argc >= 1) set_tent_var("VAR_TENT_STATUS", value_of(arg(0)));
+				this->pending_save = true;
 			} else if (op == "slateporttent_setrandomprize") {
-				static const char* PRIZES[] = {
-					"ITEM_HP_UP", "ITEM_PROTEIN", "ITEM_IRON", "ITEM_CALCIUM",
-					"ITEM_ZINC", "ITEM_CARBOS",
-				};
-				const size_t n = sizeof(PRIZES) / sizeof(PRIZES[0]);
-				this->tent_prize = PRIZES[this->rng ? (*this->rng)() % n : 0];
+				const int n = (int)(sizeof(TENT_PRIZES) / sizeof(TENT_PRIZES[0]));
+				set_tent_var("VAR_TENT_PRIZE",
+				             1 + (this->rng ? (int)((*this->rng)() % (unsigned)n) : 0));
 			} else if (op == "slateporttent_getprize") {
 				// The lobby attendant checks this to see whether a prize is
 				// still owed, comparing against ITEM_NONE (0).
-				this->state->set_var("VAR_RESULT", this->tent_prize.empty() ? 0 : 1);
+				this->state->set_var("VAR_RESULT", tent_var("VAR_TENT_PRIZE"));
 			} else if (op == "slateporttent_giveprize") {
-				if (!this->tent_prize.empty() && this->state) {
-					this->state->give_item(this->tent_prize, 1);
-					this->tent_prize.clear();
+				int p = tent_var("VAR_TENT_PRIZE");
+				const int n = (int)(sizeof(TENT_PRIZES) / sizeof(TENT_PRIZES[0]));
+				if (p >= 1 && p <= n && this->state) {
+					this->state->give_item(TENT_PRIZES[p - 1], 1);
+					set_tent_var("VAR_TENT_PRIZE", 0);
 				}
 				this->state->set_var("VAR_RESULT", 1);
 			} else if (op == "frontier_get" && argc >= 1) {
 				int v = 0;
-				if (arg(0) == "FRONTIER_DATA_BATTLE_NUM")            v = this->tent_battle_num;
-				else if (arg(0) == "FRONTIER_DATA_CHALLENGE_STATUS") v = this->tent_status;
-				else if (arg(0) == "FRONTIER_DATA_LVL_MODE")         v = this->tent_lvl_mode;
-				else if (arg(0) == "FRONTIER_DATA_PAUSED")           v = this->tent_paused ? 1 : 0;
+				if (arg(0) == "FRONTIER_DATA_BATTLE_NUM")            v = tent_var("VAR_TENT_BATTLE_NUM");
+				else if (arg(0) == "FRONTIER_DATA_CHALLENGE_STATUS") v = tent_var("VAR_TENT_STATUS");
+				else if (arg(0) == "FRONTIER_DATA_LVL_MODE")         v = tent_var("VAR_TENT_LVL_MODE");
+				else if (arg(0) == "FRONTIER_DATA_PAUSED")           v = tent_var("VAR_TENT_PAUSED");
 				this->state->set_var("VAR_RESULT", v);
 			} else if (op == "frontier_set" && argc >= 1) {
 				// `frontier_set FRONTIER_DATA_SELECTED_MON_ORDER` (no value)
 				// only matters for the real selection screen -- ignored.
 				int v = (argc >= 2) ? value_of(arg(1)) : 0;
-				if (arg(0) == "FRONTIER_DATA_BATTLE_NUM")            this->tent_battle_num = v;
-				else if (arg(0) == "FRONTIER_DATA_CHALLENGE_STATUS") this->tent_status = v;
-				else if (arg(0) == "FRONTIER_DATA_LVL_MODE")         this->tent_lvl_mode = v;
-				else if (arg(0) == "FRONTIER_DATA_PAUSED")           this->tent_paused = (v != 0);
+				if (arg(0) == "FRONTIER_DATA_BATTLE_NUM")            set_tent_var("VAR_TENT_BATTLE_NUM", v);
+				else if (arg(0) == "FRONTIER_DATA_CHALLENGE_STATUS") {
+					set_tent_var("VAR_TENT_STATUS", v);
+					// Status 0 means the challenge is over, however it ended
+					// (won, retired, or disqualified for quitting without
+					// saving -- that last path has no LoadPlayerParty of its
+					// own). Hand the player's own team back either way.
+					if (v == 0 && this->team && !this->party_backup.empty()) {
+						*this->team = this->party_backup;
+						this->party_backup.clear();
+					}
+				}
+				else if (arg(0) == "FRONTIER_DATA_LVL_MODE")         set_tent_var("VAR_TENT_LVL_MODE", v);
+				else if (arg(0) == "FRONTIER_DATA_PAUSED")           set_tent_var("VAR_TENT_PAUSED", v);
 			} else if (op == "frontier_getstatus") {
 				// pokeemerald re-enters the lobby's map-script table after
 				// this, which dispatches on the status it just wrote. The
 				// on-load table here runs once per map load, so make the
 				// dispatch explicit: jump to the entry for the new status.
-				this->state->set_var("VAR_TEMP_CHALLENGE_STATUS", this->tent_status);
+				const int status = tent_var("VAR_TENT_STATUS");
+				this->state->set_var("VAR_TEMP_CHALLENGE_STATUS", status);
 				std::string handler;
 				if (this->map)
 					for (const LoadTrigger& t : this->map->on_load_triggers())
 						if (t.var == "VAR_TEMP_CHALLENGE_STATUS" &&
-						    value_of(t.val) == this->tent_status)
+						    value_of(t.val) == status)
 							{ handler = t.label; break; }
 				if (!handler.empty() && handler != this->cur && this->map->has_script(handler)) {
 					jump(handler);
 					continue;
 				}
 			} else if (op == "frontier_reset") {
-				// Quitting the challenge: the rentals go back, the player's
-				// own team comes out of storage.
+				// Leaving the corridor: the rentals go back and the player's
+				// own team comes out of storage. A paused challenge keeps its
+				// data (that is the whole point of pausing); any other exit
+				// clears it.
 				if (this->team && !this->party_backup.empty()) *this->team = this->party_backup;
-				this->tent_status = 0;
-				this->tent_battle_num = 0;
-				this->tent_opponent.clear();
-				this->tent_swap_pool.clear();
+				if (tent_var("VAR_TENT_STATUS") != 2) {          // CHALLENGE_STATUS_PAUSED
+					set_tent_var("VAR_TENT_STATUS", 0);
+					set_tent_var("VAR_TENT_BATTLE_NUM", 0);
+					tent_store_team("VAR_TENT_RENTALS", {});
+				}
+				tent_store_team("VAR_TENT_OPP", {});
+				tent_store_team("VAR_TENT_SWAP", {});
 				this->state->set_var("VAR_TEMP_CHALLENGE_STATUS", 255);
-				// pokeemerald ends here by saving and returning to the title
-				// screen; without a resumable challenge that would strand the
-				// player in the corridor, which has no exit of its own, so
-				// walk them back out to the lobby instead.
+				// pokeemerald ends here by returning to the title screen;
+				// that would strand the player in the corridor, which has no
+				// exit of its own, so walk them back out to the lobby.
 				if (this->map) {
 					const std::string& here = this->map->name();
 					size_t cut = here.find("_BattleTent");
@@ -1101,15 +1208,17 @@ void ScriptVM::pump() {
 				}
 			} else if (op == "factory_setopponentmons") {
 				// After a win the beaten team is what the swap draws from.
-				this->tent_swap_pool = this->tent_opponent;
+				tent_store_team("VAR_TENT_SWAP", tent_load_team("VAR_TENT_OPP"));
+			} else if (op == "factory_setparties") {
+				// Resuming a saved challenge: hand the rented team back.
+				tent_give_team(tent_load_team("VAR_TENT_RENTALS"));
 			} else if (op == "battletent_getopponentintro") {
 				// The room script shows this with `msgbox gStringVar4`.
 				this->str_vars["gStringVar4"] =
 					"Ich werde nicht verlieren! Auf geht's!";
 			}
-			// factory_setopponentgfx / factory_setparties /
-			// factory_resethelditems: sprite and held-item bookkeeping for
-			// the real facility -- nothing to do here.
+			// factory_setopponentgfx / factory_resethelditems: sprite and
+			// held-item bookkeeping for the real facility -- nothing to do.
 		} else if (op == "setdynamicwarp" && argc >= 3) {
 			this->state->dynamic_warp_map = arg(0);
 			this->state->dynamic_warp_x = value_of(arg(1));

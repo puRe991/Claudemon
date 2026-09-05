@@ -1218,19 +1218,129 @@ static void test_battle_tent(BattleData& bd) {
         CHECK(h.gs.get_var("VAR_TEMP_0") == 0);
         CHECK(h.gs.get_var("VAR_SLATEPORT_CITY_STATE") == 3);
     }
-    {   // The corridor: your own team goes into storage, three rentals come
-        // out, and the attendant walks you into the battle room.
+    // The two selection steps are option lists here, so a test has to answer
+    // them the way the game loop's prompt does.
+    auto run_answering = [](VmHarness& h, const std::string& label,
+                            std::vector<int>* picks = nullptr) {
+        h.vm.start(label, nullptr);
+        for (int i = 0; i < 6000 && h.vm.running(); ++i) {
+            if (h.vm.waiting_message()) h.vm.on_key();
+            else if (h.vm.wants_multichoice()) {
+                if (picks) picks->push_back((int)h.vm.multichoice_options().size());
+                h.vm.resolve_multichoice(0);       // always the first entry
+            }
+            h.vm.update(0.1f);
+        }
+    };
+    {   // The corridor: your own team goes into storage, you pick three of the
+        // six on offer, and the attendant walks you into the battle room.
         VmHarness h(bd, "maps/SlateportCity_BattleTentCorridor.map");
         CHECK(h.map.ready());
         if (!h.map.ready()) return;
         h.team.push_back(bd.make_mon("MUDKIP", 40));
-        h.run("SlateportCity_BattleTentCorridor_EventScript_EnterCorridor");
+        std::vector<int> lists;
+        run_answering(h, "SlateportCity_BattleTentCorridor_EventScript_EnterCorridor", &lists);
+        // Three picks, from a shrinking offer of six.
+        CHECK(lists.size() == 3);
+        if (lists.size() == 3) {
+            CHECK(lists[0] == 6); CHECK(lists[1] == 5); CHECK(lists[2] == 4);
+        }
         CHECK(h.team.size() == 3);
         for (const Mon& m : h.team) CHECK(m.level == 30);
         CHECK(h.vm.has_pending_warp());
         std::string dest; int wx, wy;
         h.vm.get_pending_warp(dest, wx, wy);
         CHECK(dest == "SlateportCity_BattleTentBattleRoom");
+    }
+    {   // The swap after a win: you choose what to give AND what to take.
+        VmHarness h(bd, "maps/SlateportCity_BattleTentCorridor.map");
+        CHECK(h.map.ready());
+        if (!h.map.ready()) return;
+        for (const char* sp : {"ZIGZAGOON", "WINGULL", "MAKUHITA"})
+            h.team.push_back(bd.make_mon(sp, 30));
+        // The beaten team, as factory_setopponentmons would have left it.
+        const char* beaten[] = {"NUMEL", "SPHEAL", "BALTOY"};
+        h.gs.set_var("VAR_TENT_SWAP_N", 3);
+        h.gs.set_var("VAR_TENT_RENTALS_N", 3);
+        for (int i = 0; i < 3; ++i) {
+            std::string k = "VAR_TENT_SWAP_" + std::to_string(i);
+            h.gs.set_var(k, bd.species_id(beaten[i]) + 1);
+            h.gs.set_var(k + "L", 30);
+            std::string r = "VAR_TENT_RENTALS_" + std::to_string(i);
+            h.gs.set_var(r, bd.species_id(h.team[(size_t)i].species) + 1);
+            h.gs.set_var(r + "L", 30);
+        }
+        std::vector<int> lists;
+        run_answering(h, "SlateportCity_BattleTentCorridor_EventScript_SwapMons", &lists);
+        CHECK(lists.size() == 2);                 // give, then take
+        if (lists.size() == 2) {
+            CHECK(lists[0] == 4);                 // three of yours + cancel
+            CHECK(lists[1] == 4);                 // three of theirs + cancel
+        }
+        CHECK(h.team.size() == 3);
+        CHECK(h.team[0].species == "NUMEL");      // took their first
+        CHECK(h.team[1].species == "WINGULL");    // the other two untouched
+        CHECK(h.team[2].species == "MAKUHITA");
+    }
+    {   // Pausing writes the challenge into the save; resuming hands the same
+        // rented team back instead of starting over.
+        VmHarness h(bd, "maps/SlateportCity_BattleTentCorridor.map");
+        CHECK(h.map.ready());
+        if (!h.map.ready()) return;
+        h.team.push_back(bd.make_mon("MUDKIP", 40));
+        std::vector<int> lists;
+        run_answering(h, "SlateportCity_BattleTentCorridor_EventScript_EnterCorridor", &lists);
+        std::vector<std::string> rented;
+        for (const Mon& m : h.team) rented.push_back(m.species);
+        CHECK(rented.size() == 3);
+
+        // ... a save round-trip in between (the challenge rides along in the
+        // ordinary vars, so no save-format change was needed) ...
+        GameState reloaded;
+        std::vector<Mon> team2, box2;
+        std::string map_path = "maps/SlateportCity_BattleTentCorridor.map";
+        int px = 2, py = 7;
+        CHECK(SaveGame::save("tent_test_save.dat", h.gs, h.team, box2, map_path, px, py));
+        CHECK(SaveGame::load("tent_test_save.dat", reloaded, team2, box2, map_path, px, py));
+        std::remove("tent_test_save.dat");
+        CHECK(reloaded.get_var("VAR_TENT_RENTALS_N") == 3);
+
+        VmHarness h2(bd, "maps/SlateportCity_BattleTentCorridor.map");
+        h2.gs = reloaded;
+        h2.team.push_back(bd.make_mon("MUDKIP", 40));       // the player's own again
+        h2.gs.set_var("VAR_0x8006", 2);                     // "resuming" (the lobby sets this)
+        run_answering(h2, "SlateportCity_BattleTentCorridor_EventScript_EnterCorridor");
+        CHECK(h2.team.size() == 3);
+        for (size_t i = 0; i < h2.team.size() && i < rented.size(); ++i)
+            CHECK(h2.team[i].species == rented[i]);
+    }
+    {   // Quitting without saving: the lobby disqualifies you, and the team
+        // it hands back has to be your own -- that path has no LoadPlayerParty
+        // of its own, and the save now carries the held party through a
+        // reload (a manual save mid-challenge used to lose it outright).
+        VmHarness h(bd, "maps/SlateportCity_BattleTentLobby.map");
+        CHECK(h.map.ready());
+        if (!h.map.ready()) return;
+        std::vector<Mon> own{bd.make_mon("SWAMPERT", 45), bd.make_mon("GARDEVOIR", 43)};
+        h.team.push_back(bd.make_mon("ZIGZAGOON", 30));    // still holding a rental
+        std::vector<Mon> box2;
+        std::string map_path = "maps/SlateportCity_BattleTentLobby.map";
+        int px = 6, py = 6;
+        CHECK(SaveGame::save("tent_test_save2.dat", h.gs, h.team, box2, map_path, px, py));
+        CHECK(SaveGame::save_stored_party("tent_test_save2.dat", own));
+        std::vector<Mon> held;
+        CHECK(SaveGame::load_stored_party("tent_test_save2.dat", held));
+        std::remove("tent_test_save2.dat");
+        CHECK(held.size() == 2);
+        if (held.size() == 2) CHECK(held[0].species == "SWAMPERT");
+
+        h.vm.set_stored_party(held);
+        h.run("SlateportCity_BattleTentLobby_EventScript_QuitWithoutSaving");
+        CHECK(h.team.size() == 2);
+        if (h.team.size() == 2) {
+            CHECK(h.team[0].species == "SWAMPERT");
+            CHECK(h.team[1].species == "GARDEVOIR");
+        }
     }
     {   // The battle room: the opponent's intro is real text (it used to show
         // the raw "gStringVar4"), and the round actually starts a battle.
