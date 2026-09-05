@@ -629,6 +629,8 @@ Alles, was unten abgehakt ist, wurde durch einen Test oder Headless-Screenshot �
 
 * ❌ Battle Frontier (Tower/Dome/Palace/Arena/Factory/Pike/Pyramid)
 
+* ⚠️ Battle Tent SLATEPORT (Battle Swap): spielbar – drei ausgeloste Gegner, Leih-Team auf Level 30, Tausch nach jedem Sieg, Preis nach 3 Siegen. Zwei Abweichungen mangels eigener Auswahlbildschirme: die drei Leih-Pokémon werden zugeteilt statt gewählt, und beim Tausch wählt man nur, welches eigene Pokémon abgegeben wird (das neue kommt zufällig aus dem besiegten Team). Eine begonnene Herausforderung lässt sich nicht speichern und später fortsetzen; „REST" bringt einen zurück in die Lobby. Die Tents in FALLARBOR und VERDANTURF nutzen eigene Opcodes und sind weiterhin offen.
+
 **Derzeit außerhalb des Umfangs**
 
 * ❌ Zucht/Eier (Tausch aktuell noch nicht möglich)

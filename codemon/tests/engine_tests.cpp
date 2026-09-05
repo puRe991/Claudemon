@@ -1167,6 +1167,110 @@ static void test_briney_voyage_from_dewford(BattleData& bd) {
             CHECK(!(n.x == ax && n.y == ay));
 }
 
+static void test_slateport_mon_name_tokens(BattleData& bd) {
+    std::printf("[scriptvm] Slateport's NAME RATER and TV reporters name the mon, not STR_VAR_1\n");
+    // Both lean on specials this engine ignored (BufferMonNickname,
+    // InterviewBefore), so STR_VAR_1 was never filled and expand_text's
+    // trendy-phrase fallback took over: the NAME RATER solemnly critiqued
+    // Dewford's catchphrase instead of the pokemon in front of him.
+    {
+        VmHarness h(bd, "maps/SlateportCity_NameRatersHouse.map");
+        CHECK(h.map.ready());
+        if (!h.map.ready()) return;
+        h.team.push_back(bd.make_mon("MUDKIP", 20));
+        h.gs.set_var("VAR_0x8004", 0);                 // ChoosePartyMon's pick
+        h.run("SlateportCity_NameRatersHouse_EventScript_RateMonNickname");
+        CHECK(h.vm.expand_text("STR_VAR_1") == "Mudkip");
+        CHECK(h.vm.expand_text("STR_VAR_1") != h.gs.trendy_phrase);
+    }
+    {
+        VmHarness h(bd, "maps/SlateportCity_PokemonFanClub.map");
+        CHECK(h.map.ready());
+        if (!h.map.ready()) return;
+        h.team.push_back(bd.make_mon("TAILLOW", 12));
+        h.run("SlateportCity_PokemonFanClub_EventScript_ReporterNoNickname");
+        CHECK(h.vm.expand_text("STR_VAR_1") == "Taillow");
+    }
+}
+
+static void test_battle_tent(BattleData& bd) {
+    std::printf("[scriptvm] the Slateport BATTLE TENT rents a team and runs its rounds\n");
+    // None of the facility opcodes existed: the corridor handed out no
+    // rentals, the room's battle never started, and the lobby's on-load table
+    // -- whose values are CHALLENGE_STATUS_* constants that atoi() read as 0
+    // -- fired every one of its entries at once on the way back in.
+    {
+        Map lobby("maps/SlateportCity_BattleTentLobby.map");
+        CHECK(lobby.ready());
+        VmHarness h(bd);
+        std::vector<int> vals;
+        for (const LoadTrigger& t : lobby.on_load_triggers())
+            if (t.var == "VAR_TEMP_CHALLENGE_STATUS")
+                vals.push_back(h.vm.const_value(t.val));
+        CHECK(vals.size() >= 5);
+        std::sort(vals.begin(), vals.end());
+        CHECK(std::unique(vals.begin(), vals.end()) == vals.end());   // one status each
+        // VAR_TEMP_* must not survive a map change, or the corridor's
+        // "VAR_TEMP_0 == 0" guard never lets the player back in for round 2.
+        h.gs.set_var("VAR_TEMP_0", 1);
+        h.gs.set_var("VAR_SLATEPORT_CITY_STATE", 3);
+        h.gs.clear_temp_vars();
+        CHECK(h.gs.get_var("VAR_TEMP_0") == 0);
+        CHECK(h.gs.get_var("VAR_SLATEPORT_CITY_STATE") == 3);
+    }
+    {   // The corridor: your own team goes into storage, three rentals come
+        // out, and the attendant walks you into the battle room.
+        VmHarness h(bd, "maps/SlateportCity_BattleTentCorridor.map");
+        CHECK(h.map.ready());
+        if (!h.map.ready()) return;
+        h.team.push_back(bd.make_mon("MUDKIP", 40));
+        h.run("SlateportCity_BattleTentCorridor_EventScript_EnterCorridor");
+        CHECK(h.team.size() == 3);
+        for (const Mon& m : h.team) CHECK(m.level == 30);
+        CHECK(h.vm.has_pending_warp());
+        std::string dest; int wx, wy;
+        h.vm.get_pending_warp(dest, wx, wy);
+        CHECK(dest == "SlateportCity_BattleTentBattleRoom");
+    }
+    {   // The battle room: the opponent's intro is real text (it used to show
+        // the raw "gStringVar4"), and the round actually starts a battle.
+        VmHarness h(bd, "maps/SlateportCity_BattleTentBattleRoom.map");
+        CHECK(h.map.ready());
+        if (!h.map.ready()) return;
+        h.team.push_back(bd.make_mon("ZIGZAGOON", 30));
+        h.run("SlateportCity_BattleTentBattleRoom_EventScript_EnterRoom");
+        CHECK(h.vm.expand_text("gStringVar4") != "gStringVar4");
+        CHECK(h.battle.active());          // waiting on the round, not warping out
+        CHECK(!h.vm.has_pending_warp());
+    }
+    {   // Losing a round is an ordinary script outcome -- the attendant shows
+        // you out to the lobby and gives your own team back. Routed through
+        // the normal trainer-battle path it was a whiteout instead: healed,
+        // warped to the last Pokemon Center, still holding the rentals.
+        VmHarness h(bd, "maps/SlateportCity_BattleTentBattleRoom.map");
+        CHECK(h.map.ready());
+        if (!h.map.ready()) return;
+        h.gs.last_heal_map = "SlateportCity_PokemonCenter_1F";
+        h.gs.last_heal_x = 7; h.gs.last_heal_y = 8;
+        h.team.push_back(bd.make_mon("MAGIKARP", 3));   // no chance against Lv30
+        h.run("SlateportCity_BattleTentBattleRoom_EventScript_EnterRoom");
+        CHECK(h.battle.active());
+        for (int i = 0; i < 20000 && h.battle.active(); ++i) h.battle.input(BTN_CONFIRM);
+        CHECK(!h.battle.active());
+        CHECK(!h.battle.won());
+        for (int i = 0; i < 2000 && h.vm.running(); ++i) {
+            if (h.vm.waiting_message()) h.vm.on_key();
+            h.vm.update(0.1f);
+        }
+        CHECK(h.vm.has_pending_warp());
+        if (h.vm.has_pending_warp()) {
+            std::string dest; int wx, wy;
+            h.vm.get_pending_warp(dest, wx, wy);
+            CHECK(dest == "SlateportCity_BattleTentLobby");
+        }
+    }
+}
+
 static void test_plain_dialog_tokens(BattleData& bd) {
     std::printf("[scriptvm] plain NPC lines get the same token substitution as msgbox\n");
     // An NPC with no script of its own has its line shown straight from the
@@ -1789,6 +1893,8 @@ int main() {
         test_object_state_animation(bd);
         test_briney_voyage(bd);
         test_briney_voyage_from_dewford(bd);
+        test_slateport_mon_name_tokens(bd);
+        test_battle_tent(bd);
         test_plain_dialog_tokens(bd);
     } else {
         std::printf("[skip] no DISPLAY: Map/ScriptVM/Battle tests need a GL "

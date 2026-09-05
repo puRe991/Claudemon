@@ -33,6 +33,17 @@ public:
 	// what needs to survive a save/load round-trip).
 	const std::unordered_map<std::string, int>& all_vars() const { return vars; }
 
+	// pokeemerald's ClearTempFieldEventData(): VAR_TEMP_* live only for as
+	// long as the player stays on one map (the map on-load scripts that guard
+	// themselves with "VAR_TEMP_0 == 0" rely on that to run again next time
+	// the map is entered), so every map change wipes them.
+	void clear_temp_vars() {
+		for (auto it = vars.begin(); it != vars.end(); ) {
+			if (it->first.rfind("VAR_TEMP", 0) == 0) it = vars.erase(it);
+			else ++it;
+		}
+	}
+
 	// Poke Dollars. pokeemerald starts a new save with 3000; scripts read/
 	// write it only through native code (AddMoney/RemoveMoney specials),
 	// never a plain VAR_*, so it gets its own home instead of living in `vars`.

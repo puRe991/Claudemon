@@ -142,6 +142,10 @@ public:
 	// map data by main.cpp and need exactly the same treatment -- without it
 	// they greeted the player as "PLAYER".
 	std::string expand_text(const std::string& in) const;
+	// Resolve a script symbol (constant name, VAR_*, literal number) the same
+	// way the opcodes do -- the game loop needs it for map on-load triggers,
+	// whose values are symbolic constants as often as they are numbers.
+	int const_value(const std::string& s) const { return value_of(s); }
 
 	bool emote_active() const { return this->emote_t > 0.f && this->emote_ch; }
 	const Character* emote_target() const { return this->emote_ch; }
@@ -259,6 +263,25 @@ private:
 	std::string pending_wild_species;
 	int pending_wild_level = 5;
 	bool start_pending_wild_battle();   // true if a battle actually started
+
+	// --- Battle Tent (Slateport's Battle Swap event) -------------------
+	// pokeemerald keeps all of this in the save file's frontier data; this
+	// engine holds it here for the duration of one challenge (the VM object
+	// outlives every warp between lobby, corridor and battle room), which is
+	// why a challenge cannot be paused and resumed across a save.
+	std::vector<Mon> party_backup;                             // SavePlayerParty
+	std::vector<std::pair<std::string, int>> tent_rentals;     // the loaned three
+	std::vector<std::pair<std::string, int>> tent_opponent;    // this round's three
+	std::vector<std::pair<std::string, int>> tent_swap_pool;   // the beaten team, to swap from
+	int tent_battle_num = 0;          // FRONTIER_DATA_BATTLE_NUM (wins so far)
+	int tent_status = 0;              // FRONTIER_DATA_CHALLENGE_STATUS
+	int tent_lvl_mode = 0;            // FRONTIER_DATA_LVL_MODE
+	bool tent_paused = false;         // FRONTIER_DATA_PAUSED
+	std::string tent_prize;           // ITEM_* still owed, "" = none
+	bool tent_swap_pending = false;   // a slateporttent_swapmons multichoice is open
+	bool special_battle = false;      // battle started by DoSpecialTrainerBattle
+	std::vector<std::pair<std::string, int>> roll_tent_team();
+	void tent_give_rentals();
 
 	int value_of(const std::string& s) const;   // resolve a symbol/number
 	Character* resolve(const std::string& localid) const;

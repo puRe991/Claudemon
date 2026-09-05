@@ -85,7 +85,7 @@ slateporttent_giveprize
 switch VAR_RESULT
 case FALSE SlateportCity_BattleTentLobby_EventScript_NoRoomForPrize
 frontier_set FRONTIER_DATA_CHALLENGE_STATUS 0
-msgbox	BattleFrontier_BattleTowerLobby_Text_ReceivedPrize  @ Odd that it uses Tower's instead of Factory's or its own
+msgbox	PLAYER received the prize!  @ pokeemerald reuses the TOWER lobby's line here; the importer only carried its label over
 waitmessage
 playfanfare MUS_OBTAIN_ITEM
 waitfanfare

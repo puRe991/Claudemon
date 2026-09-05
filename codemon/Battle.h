@@ -254,6 +254,11 @@ public:
 	bool start_wild(const std::string& species, int level, Mon* player_mon);
 	bool start_trainer(const std::string& trainer_id, const std::string& name,
 	                   Mon* player_mon);
+	// A trainer battle against a party built at run time rather than looked up
+	// from a TRAINER_* id -- the Battle Tent's rolled opponents.
+	bool start_trainer_party(const std::string& name,
+	                         const std::vector<std::pair<std::string, int>>& party,
+	                         Mon* player_mon);
 
 	bool active() const { return phase != INACTIVE; }
 	bool won() const { return victory; }
@@ -307,5 +312,10 @@ public:
 	void draw(sf::RenderTarget& target);
 
 private:
+	// Shared body of both trainer-battle entry points above; `trainer_id` is
+	// empty for a run-time party (no items/pic/music to look up).
+	bool begin_trainer(const std::string& trainer_id, const std::string& name,
+	                   const std::vector<std::pair<std::string, int>>& party,
+	                   Mon* player_mon);
 	float shake_t; int shake_side; int prev_ehp, prev_php;
 };

@@ -188,6 +188,23 @@ bool Battle::start_trainer(const std::string& trainer_id, const std::string& nam
 	if (!this->data) return false;
 	auto pty = this->data->trainer_party(trainer_id);
 	if (pty.empty()) pty.push_back({"POOCHYENA", 12});   // fallback opponent
+	return begin_trainer(trainer_id, name, pty, pm);
+}
+
+// The Battle Tent's opponents are rolled at run time (see ScriptVM's
+// slateporttent_* opcodes) instead of coming out of trainers.h, so they have
+// no TRAINER_* id at all: no AI item set, no front sprite, no per-trainer
+// music, and nothing to mark as beaten afterwards.
+bool Battle::start_trainer_party(const std::string& name,
+                                 const std::vector<std::pair<std::string, int>>& pty,
+                                 Mon* pm) {
+	if (!this->data || pty.empty()) return false;
+	return begin_trainer(std::string(), name, pty, pm);
+}
+
+bool Battle::begin_trainer(const std::string& trainer_id, const std::string& name,
+                           const std::vector<std::pair<std::string, int>>& pty,
+                           Mon* pm) {
 	set_lead(pm);
 	this->forced_switch = false;
 	this->is_trainer = true;

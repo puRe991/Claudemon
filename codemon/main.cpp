@@ -520,8 +520,17 @@ static bool interact(Session* s, DialogBox& box, Audio* audio, ScriptVM& vm) {
 // These are simple setflag/setvar scripts with no blocking ops, so running
 // them inline to completion is safe.
 static void run_load_triggers(Map* map, GameState& gs, ScriptVM& vm) {
+    // Every call site here follows an actual map load, which is exactly when
+    // pokeemerald wipes its temporary field vars -- and the on-load scripts
+    // below are the main thing that depends on it (the Battle Tent corridor's
+    // "VAR_TEMP_0 == 0" guard has to pass again on the way back in).
+    gs.clear_temp_vars();
     for (const LoadTrigger& t : map->on_load_triggers()) {
-        if (gs.get_var(t.var) == std::atoi(t.val.c_str()))
+        // The value is a script symbol as often as a number (the Battle Tent
+        // lobby keys its whole table off CHALLENGE_STATUS_*), and atoi() read
+        // every one of those as 0 -- so entering that lobby fired all five
+        // entries at once and the last one won.
+        if (gs.get_var(t.var) == vm.const_value(t.val))
             vm.start(t.label, nullptr);
     }
 }
