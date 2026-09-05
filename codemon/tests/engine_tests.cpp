@@ -1115,6 +1115,58 @@ static void test_briney_voyage(BattleData& bd) {
     CHECK(reachable_doors > 0);
 }
 
+static void test_briney_voyage_from_dewford(BattleData& bd) {
+    std::printf("[map] Briney's Dewford departures stay on water and land on dry ground\n");
+    Map dew("maps/DewfordTown.map");
+    Map r109("maps/Route109.map");
+    CHECK(dew.ready());
+    CHECK(r109.ready());
+    if (!dew.ready() || !r109.ready()) return;
+
+    // Same problem as Route 104's crossing: pokeemerald sails these voyages
+    // across map connections, which this engine cannot do, so the imported
+    // movement walked the boat straight off the 20x20 Dewford map.
+    int bx = -1, by = -1;
+    for (const NpcSpawn& n : dew.npcs())
+        if (n.local_id == "LOCALID_DEWFORD_BOAT") { bx = n.x; by = n.y; }
+    CHECK(bx >= 0);
+    if (bx < 0) return;
+    const char* voyages[] = {"DewfordTown_Movement_SailToSlateport",
+                             "DewfordTown_Movement_SailToPetalburg"};
+    for (const char* label : voyages) {
+        int ex = bx, ey = by;
+        const std::vector<std::string>& acts = dew.movement(label);
+        CHECK(!acts.empty());
+        for (const std::string& a : acts) {
+            if (a == "up") ey--;
+            else if (a == "down") ey++;
+            else if (a == "left") ex--;
+            else if (a == "right") ex++;
+            else continue;
+            CHECK(dew.in_bounds(ex, ey));                  // never off the map
+            if (dew.in_bounds(ex, ey)) CHECK(dew.is_water(ex, ey));   // never over land
+        }
+    }
+
+    // Landing in Slateport put the player on open sea off Route 109's beach,
+    // standing on water without surfing. Read the tile out of the script.
+    VmHarness h(bd, "maps/DewfordTown.map");
+    h.run("DewfordTown_EventScript_SailToSlateport");
+    CHECK(h.vm.has_pending_warp());
+    if (!h.vm.has_pending_warp()) return;
+    std::string dest; int ax = -1, ay = -1;
+    h.vm.get_pending_warp(dest, ax, ay);
+    CHECK(dest == "Route109");
+    CHECK(r109.in_bounds(ax, ay));
+    if (!r109.in_bounds(ax, ay)) return;
+    CHECK(r109.passable(ax, ay));
+    CHECK(!r109.is_water(ax, ay));
+    // ... and not on top of Mr. Briney, who spawns on the beach on arrival.
+    for (const NpcSpawn& n : r109.npcs())
+        if (n.local_id == "LOCALID_ROUTE109_BRINEY")
+            CHECK(!(n.x == ax && n.y == ay));
+}
+
 static void test_plain_dialog_tokens(BattleData& bd) {
     std::printf("[scriptvm] plain NPC lines get the same token substitution as msgbox\n");
     // An NPC with no script of its own has its line shown straight from the
@@ -1736,6 +1788,7 @@ int main() {
         test_sprite_frame_geometry();
         test_object_state_animation(bd);
         test_briney_voyage(bd);
+        test_briney_voyage_from_dewford(bd);
         test_plain_dialog_tokens(bd);
     } else {
         std::printf("[skip] no DISPLAY: Map/ScriptVM/Battle tests need a GL "
