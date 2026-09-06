@@ -14,10 +14,13 @@
 #include "Minigame.h"
 #include "UiFrame.h"
 #include "SaveGame.h"
+#include "QuestLog.h"
+#include "Bike.h"
 
 #include <algorithm>
 #include <cctype>
 #include <filesystem>
+#include <cmath>
 #include <cstdio>
 #include <cstdlib>
 #include <fstream>
@@ -655,6 +658,200 @@ struct HealFx {
     }
 };
 
+// --- Fahrrad ---------------------------------------------------------------
+// Mounting swaps the player's overworld sheet (the bike sheets are the same
+// 9-frame layout, just 32px wide per frame) and changes how fast steps come;
+// everything else about riding -- the rules, the speed, which sheet -- lives
+// in Bike.h. Returns the line to show the player, or "" when there is nothing
+// to say (a silent forced dismount).
+static std::string bike_apply(Bike& bike, BikeResult r, Session* s, GameState& gs) {
+    gs.on_bike = bike.riding();
+    switch (r) {
+    case BikeResult::MOUNTED:
+    case BikeResult::DISMOUNTED:
+        s->player->load_sprite_sheet(Bike::sheet_for(bike.riding_kind(), gs.female));
+        s->player->set_idle();
+        break;
+    default: break;
+    }
+    switch (r) {
+    case BikeResult::MOUNTED:
+        return std::string("Du steigst auf das ") + Bike::display_name(bike.riding_kind()) + ".";
+    case BikeResult::DISMOUNTED: return "Du steigst vom Rad ab.";
+    case BikeResult::NO_BIKE:    return "Du hast kein Fahrrad dabei.";
+    case BikeResult::INDOORS:    return "Hier kannst du nicht Rad fahren!";
+    case BikeResult::SURFING:    return "Nicht, solange du surfst!";
+    }
+    return std::string();
+}
+
+// A forced dismount: walking into a building, starting to surf, a whiteout.
+// Silent -- the player can see they are back on foot, and the real games say
+// nothing either.
+static void bike_force_dismount(Bike& bike, Session* s, GameState& gs) {
+    if (!bike.dismount()) { gs.on_bike = false; return; }
+    gs.on_bike = false;
+    s->player->load_sprite_sheet(Bike::sheet_for(BikeKind::NONE, gs.female));
+    s->player->set_idle();
+}
+
+// --- AUFGABEN: HUD + world marker (design brief §17/§18) --------------------
+// The active objective follows the player around instead of hiding in the
+// menu: a small "NÄCHSTES ZIEL" box in the corner, and -- when the objective
+// is somewhere on the map the player is standing on, or behind a door leading
+// there -- a marker over the exact tile with a live distance.
+
+// Where the tracked step points on *this* map, in tiles. Returns false when
+// the objective isn't reachable from here in one step: either it names a map
+// the player is already on but no particular tile ("get to Route 101" -- done
+// by being here), or a map this one has no door to.
+static bool quest_target_tile(Session* s, const QuestStep* step, int& tx, int& ty) {
+    if (!s || !step || step->target_map.empty()) return false;
+    // "maps/RustboroCity.map" -> "RustboroCity"
+    std::string here = s->path;
+    size_t slash = here.find_last_of('/');
+    if (slash != std::string::npos) here = here.substr(slash + 1);
+    size_t dot = here.find_last_of('.');
+    if (dot != std::string::npos) here = here.substr(0, dot);
+
+    if (here == step->target_map) {
+        if (step->target_x < 0 || step->target_y < 0) return false;
+        tx = step->target_x; ty = step->target_y;
+        return true;
+    }
+    // Not on the target map: point at the door that leads there. This is what
+    // makes a single "<map>" target useful for the whole route -- every city
+    // map already knows the warp tile of its own gym.
+    for (const Warp& w : s->map->warps()) {
+        if (w.dest != step->target_map) continue;
+        tx = w.x; ty = w.y;
+        return true;
+    }
+    return false;
+}
+
+// One tile is one metre, the same scale the real games' Town Map uses for its
+// "how far is it" flavour text.
+static int quest_distance_m(Session* s, int tx, int ty) {
+    float dx = (float)(tx - s->player->get_tile_x());
+    float dy = (float)(ty - s->player->get_tile_y());
+    return (int)(std::sqrt(dx * dx + dy * dy) + 0.5f);
+}
+
+// Drawn right after draw_scene(), while the world camera is still the target's
+// view: a star over the objective tile with its distance, or -- when that tile
+// is off-screen -- an arrow at the screen edge pointing the way (§18).
+static void draw_quest_marker(sf::RenderTarget& target, const sf::Font& font,
+                              Session* s, const QuestStep* step) {
+    int tx = 0, ty = 0;
+    if (!quest_target_tile(s, step, tx, ty)) return;
+    int tp = s->map->get_tile_size();
+    sf::View cam = camera_for(s);
+    sf::Vector2i px = target.mapCoordsToPixel(
+        sf::Vector2f(tx * tp + tp * 0.5f, (float)(ty * tp)), cam);
+
+    sf::View saved = target.getView();
+    target.setView(target.getDefaultView());
+    sf::Vector2f size = target.getView().getSize();
+    const sf::Color gold(255, 214, 92), shadow(20, 28, 48, 210);
+    std::string dist = std::to_string(quest_distance_m(s, tx, ty)) + " m";
+
+    auto label = [&](const std::string& str, unsigned cs, float cx, float cy, sf::Color col) {
+        sf::Text t(sf::String::fromUtf8(str.begin(), str.end()), font, cs);
+        sf::FloatRect b = t.getLocalBounds();
+        t.setPosition(cx - b.width / 2.f, cy);
+        t.setFillColor(shadow);
+        t.move(1.5f, 1.5f); target.draw(t);
+        t.move(-1.5f, -1.5f); t.setFillColor(col); target.draw(t);
+    };
+
+    const float margin = 26.f;
+    bool on_screen = px.x >= margin && px.x <= size.x - margin &&
+                     px.y >= margin + 40 && px.y <= size.y - margin;
+    if (on_screen) {
+        // The design brief's stack, bottom-anchored on the tile itself:
+        //   ★ / QUEST / ↓ / 245 m
+        float bx = (float)px.x, by = (float)px.y;
+        // Slow bob, so the marker reads as an overlay rather than scenery.
+        // Wall time, not the game loop's dt: the marker is pure decoration and
+        // has no business threading a timer through every caller.
+        static sf::Clock bob_clock;
+        float bob = std::sin(bob_clock.getElapsedTime().asSeconds() * 3.f) * 3.f;
+        label("★", 26, bx, by - 96 + bob, gold);
+        label("QUEST", 14, bx, by - 68 + bob, gold);
+        label("↓", 16, bx, by - 50 + bob, gold);
+        label(dist, 14, bx, by - 30, sf::Color(240, 240, 245));
+    } else {
+        // Off-screen: pin the marker to the edge nearest the objective and
+        // turn it into a direction arrow.
+        float cx = std::max(margin, std::min((float)px.x, size.x - margin));
+        float cy = std::max(margin + 40, std::min((float)px.y, size.y - margin));
+        // Keep clear of the two corner overlays -- the map-name banner on the
+        // left and the ZIEL box on the right -- rather than hiding the arrow
+        // behind whichever one it lands on.
+        if (cy < 130.f && (cx > size.x - 330.f || cx < 320.f)) cy = 130.f;
+        float dx = (float)px.x - size.x / 2.f, dy = (float)px.y - size.y / 2.f;
+        const char* arrow = "→";
+        if (std::abs(dx) > std::abs(dy) * 2.f)      arrow = dx > 0 ? "→" : "←";
+        else if (std::abs(dy) > std::abs(dx) * 2.f) arrow = dy > 0 ? "↓" : "↑";
+        else if (dx > 0)                            arrow = dy > 0 ? "↘" : "↗";
+        else                                        arrow = dy > 0 ? "↙" : "↖";
+        label(arrow, 26, cx, cy - 26, gold);
+        label(dist, 13, cx, cy + 4, sf::Color(240, 240, 245));
+    }
+    target.setView(saved);
+}
+
+// The "NÄCHSTES ZIEL" box (§17): the tracked quest's current step, always
+// visible in the corner so the player never has to open the menu to remember
+// what they were doing. Hidden by Options > ZIEL-ANZEIGE, and while anything
+// else owns the screen (a message, the menu, a battle).
+static void draw_quest_hud(sf::RenderTarget& target, const sf::Font& font, UiFrame& frame,
+                           const QuestLog& quests, const GameState& gs, Session* s) {
+    if (!gs.quest_hud_on) return;
+    const Quest* q = quests.tracked_quest(gs);
+    const QuestStep* step = quests.tracked_step(gs);
+    if (!q || !step) return;
+
+    sf::View saved = target.getView();
+    target.setView(target.getDefaultView());
+    sf::Vector2f size = target.getView().getSize();
+
+    const float w = 300.f, h = 92.f;
+    const float bx = size.x - w - 16.f, by = 14.f;
+    frame.load_type(gs.frame_type);
+    if (frame.ready()) frame.draw(target, bx, by, w, h, 2.f);
+    else {
+        sf::RectangleShape bg(sf::Vector2f(w, h));
+        bg.setPosition(bx, by);
+        bg.setFillColor(sf::Color(20, 28, 48, 225));
+        bg.setOutlineColor(sf::Color(245, 245, 245)); bg.setOutlineThickness(2.f);
+        target.draw(bg);
+    }
+    auto text = [&](const std::string& str, float px, float py, unsigned cs, sf::Color col) {
+        sf::Text t(sf::String::fromUtf8(str.begin(), str.end()), font, cs);
+        t.setPosition(px, py); t.setFillColor(col); target.draw(t);
+    };
+    const sf::Color head(96, 108, 140), body(40, 40, 56);
+    text("NÄCHSTES ZIEL", bx + 18, by + 12, 13, head);
+    // The objective, wrapped by hand at the box width: one break is enough for
+    // every step text in quests.txt, and a second line is all the box has room
+    // for anyway.
+    std::string line = "→ " + step->text, rest;
+    if (line.size() > 30) {
+        size_t cut = line.rfind(' ', 30);
+        if (cut != std::string::npos && cut > 4) { rest = line.substr(cut + 1); line = line.substr(0, cut); }
+    }
+    text(line, bx + 18, by + 32, 17, body);
+    if (!rest.empty()) text(rest, bx + 30, by + 52, 17, body);
+    // ... and how far it still is, when the objective is on this very map.
+    int tx = 0, ty = 0;
+    if (quest_target_tile(s, step, tx, ty))
+        text(std::to_string(quest_distance_m(s, tx, ty)) + " m",
+             bx + w - 74, by + 12, 14, head);
+    target.setView(saved);
+}
+
 static void draw_scene(sf::RenderTarget& target, Session* s, const HealFx* healfx = nullptr,
                         const ScriptVM* vm = nullptr) {
     target.setView(camera_for(s));
@@ -737,7 +934,7 @@ static std::vector<char> parse_walk(const char* env) {
     while (std::getline(ss, t, ',')) {
         // B and X are UI-only tokens (the B/X buttons); they have no
         // movement meaning, so they only do anything while a menu is open.
-        if (t.size() == 1 && std::string("NSEWTMGHBX").find(t[0]) != std::string::npos)
+        if (t.size() == 1 && std::string("NSEWTMGHBXF").find(t[0]) != std::string::npos)
             out.push_back(t[0]);
     }
     return out;
@@ -2038,9 +2235,22 @@ int main() {
     run_load_triggers(sess->map, gs, vm);
     check_trigger(sess, vm, gs);
     if (const char* ts = std::getenv("CODEMON_TEST_SCRIPT")) vm.start(ts, sess->player);
+    // AUFGABEN (QuestLog.h): purely derived from the flags/vars the scripts
+    // already set, so it only has to be re-evaluated, never updated -- the
+    // loop below refreshes it once per frame and both the menu screen and the
+    // HUD read the same log.
+    // The bike (Bike.h). Which one the player owns is just a bag item Rydel's
+    // own script hands over; this only tracks whether they are currently on it.
+    Bike bike;
+    QuestLog quests;
+    quests.load("assets/quests.txt");
+    quests.refresh(gs);
+    UiFrame quest_frame;
+    quest_frame.load();
     Menu menu;
     menu.load_font();
     menu.configure(&gs, &party, &bdata);
+    menu.configure_quests(&quests);
     Minigame games;
     games.load_font();
     games.configure(&gs, &rng);
@@ -2087,6 +2297,10 @@ int main() {
         for (size_t i = 0; i < xm.size(); ++i) { if (i) joined += '\x1f'; joined += xm[i]; }
         if (!joined.empty()) box.open("", joined);
     }
+    // demo/test hook: start with a bike in the bag instead of walking to
+    // Rydel's shop in Mauville first ("mach" or "acro"; anything else = mach).
+    if (const char* be = std::getenv("CODEMON_GIVE_BIKE"))
+        gs.give_item(std::string(be) == "acro" ? "ITEM_ACRO_BIKE" : "ITEM_MACH_BIKE", 1);
     bool force_enc = std::getenv("CODEMON_FORCE_ENCOUNTER") != nullptr;
 
     // map-name banner + warp fade-in state
@@ -2100,6 +2314,14 @@ int main() {
         vm.set_met_location(banner);       // ... and onto anything a script gives
         menu.set_mapsec(sess->map->has_mapsec(), sess->map->mapsec_x(),
                          sess->map->mapsec_y(), sess->map->mapsec_w(), sess->map->mapsec_h());
+        // Each map change builds a fresh player Character with the walking
+        // sheet, so a ride has to be re-applied here -- or given up, walking
+        // into a building being exactly how the real games take the bike away.
+        bike.on_stop();
+        if (bike.riding()) {
+            if (sess->map->is_indoor()) bike_force_dismount(bike, sess, gs);
+            else sess->player->load_sprite_sheet(Bike::sheet_for(bike.riding_kind(), gs.female));
+        }
         if (aud) aud->play_bgm(sess->map->music());
     };
     // A script-driven `warp` (e.g. Route 101 Birch's bag sending the player
@@ -2148,6 +2370,16 @@ int main() {
         if (party.empty()) party.add(m);
         else { team[0] = m; party.touch(0); }
     };
+
+    // A save written while cycling puts the player back on the bike (real
+    // games do the same) -- unless they saved somewhere it isn't allowed, or
+    // sold/swapped the bike out of the bag since.
+    if (gs.on_bike) {
+        bike.resume(gs);
+        if (bike.riding() && !sess->map->is_indoor())
+            sess->player->load_sprite_sheet(Bike::sheet_for(bike.riding_kind(), gs.female));
+        else bike_force_dismount(bike, sess, gs);
+    }
 
     menu.set_location(banner);
     battle.set_met_location(banner);
@@ -2260,6 +2492,12 @@ int main() {
                     } else if (menu.active()) {
                         if (tok == 'M') menu.close();
                         else if (tok) menu.input(token_btn(tok));
+                    } else if (tok == 'F') {
+                        // Same toggle the F key drives in interactive play.
+                        BikeResult br = bike.toggle(gs, sess->map->is_indoor(),
+                                                    sess->player->is_surfing());
+                        std::string bmsg = bike_apply(bike, br, sess, gs);
+                        if (!bmsg.empty()) box.open("", bmsg);
                     } else if (tok == 'M') {
                         menu.open();
                     } else if (vm.running()) {
@@ -2386,11 +2624,19 @@ int main() {
                         menu.set_flash(ok ? "Spiel gespeichert!" : "Speichern fehlgeschlagen.");
                         menu.ack_save();
                     }
+                    if (menu.wants_bike()) {
+                        BikeResult br = bike.toggle(gs, sess->map->is_indoor(),
+                                                    sess->player->is_surfing());
+                        std::string bmsg = bike_apply(bike, br, sess, gs);
+                        menu.ack_bike();
+                        if (!bmsg.empty()) box.open("", bmsg);
+                    }
                     do_pending_warp(nullptr);
                     do_pending_fly(nullptr);
                     battle.tick(0.13f);
                     games.tick(0.13f);
                     party.sync();   // same raw-write reconciliation as the live loop
+                    quests.refresh(gs);
                     if (banner_t > 0.f) banner_t -= 0.13f;
                     if (fade > 0.f) fade -= 0.13f * 1.6f;
                 }
@@ -2400,8 +2646,13 @@ int main() {
                 else if (battle.active()) battle.draw(rt);
                 else if (games.active()) games.draw(rt);
                 else {
-                    draw_scene(rt, sess, &healfx, &vm); box.draw(rt);
+                    draw_scene(rt, sess, &healfx, &vm);
+                    if (!menu.active() && !box.is_active())
+                        draw_quest_marker(rt, ban_font, sess, quests.tracked_step(gs));
+                    box.draw(rt);
                     draw_banner(rt, ban_font, banner, banner_t);
+                    if (!menu.active() && !box.is_active())
+                        draw_quest_hud(rt, ban_font, quest_frame, quests, gs, sess);
                     menu.draw(rt);
                     if (yesno.active()) yesno.draw(rt);
                     if (picker.active()) picker.draw(rt);
@@ -2595,6 +2846,11 @@ int main() {
                             gs.give_item("ITEM_POKE_BALL", 99);
                             gs.give_item("ITEM_POTION", 99);
                             gs.give_item("ITEM_RARE_CANDY", 99);
+                            // ... and the bike, so cycling can be tried out
+                            // without walking to Rydel's shop in Mauville
+                            // first (FLAG_RECEIVED_BIKE stays his to set --
+                            // this is the item, not the story beat).
+                            gs.give_item("ITEM_MACH_BIKE", 1);
                             break;
                         case DebugMenu::GIVE_XP: {
                             std::vector<std::string> xm;   // level-up/evolution
@@ -2669,6 +2925,15 @@ int main() {
                     // directly; sync Audio's live mute state right after
                     // any menu input that could have flipped it.
                     audio.set_muted(!gs.sound_on);
+                } else if (event.key.code == sf::Keyboard::F &&
+                           !box.is_active() && !vm.running() && !menu.active() &&
+                           !battle.active() && !shop.active() && !games.active()) {
+                    // F = Fahrrad, the counterpart to the real games' key item
+                    // registered on SELECT (the BEUTEL entry does the same).
+                    BikeResult r = bike.toggle(gs, sess->map->is_indoor(),
+                                               sess->player->is_surfing());
+                    std::string msg = bike_apply(bike, r, sess, gs);
+                    if (!msg.empty()) box.open("", msg);
                 } else if (event.key.code == sf::Keyboard::M &&
                            !box.is_active() && !vm.running()) {
                     menu.open();
@@ -2707,11 +2972,17 @@ int main() {
                               box.is_active() || vm.running() ||
                               pending_surf || pending_waterfall ||
                               !pending_dive.empty();
-            bool run_held = !ui_blocked && gs.flag("FLAG_SYS_B_DASH") &&
+            // The Running Shoes do nothing while cycling -- the bike has its
+            // own (faster, and for the MACH BIKE accelerating) cadence.
+            bool run_held = !ui_blocked && !bike.riding() && gs.flag("FLAG_SYS_B_DASH") &&
                             (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) ||
                              sf::Keyboard::isKeyPressed(sf::Keyboard::RShift));
-            float interval = run_held ? RUN_MOVE_INTERVAL : MOVE_INTERVAL;
+            float interval = bike.riding() ? bike.step_interval(MOVE_INTERVAL)
+                                           : (run_held ? RUN_MOVE_INTERVAL : MOVE_INTERVAL);
             sess->player->set_running(run_held);
+            // Keep the slide as long as the gap between steps, so a faster
+            // ride reads as faster movement instead of a stutter.
+            sess->player->set_step_duration(bike.riding() ? interval : 0.f);
             DIR held = DIR::NONE;
             if (!ui_blocked) {
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) held = DIR::N;
@@ -2722,6 +2993,7 @@ int main() {
             if (held == DIR::NONE) {
                 if (!ui_blocked) sess->player->set_idle();
                 move_cooldown = 0.f;
+                bike.on_stop();   // the MACH BIKE loses its run-up when you stop
             } else if (sess->player->get_facing() != held) {
                 sess->player->face(held);
                 move_cooldown = interval;
@@ -2749,10 +3021,16 @@ int main() {
                         on_map_change(sess->path, &audio);
                     } else if (sess->player->get_tile_x() != pbx ||
                                sess->player->get_tile_y() != pby) {
+                        bike.on_step(held);
                         if (!team.empty())
                             try_encounter(sess, battle, team[0], rng, false);
                         check_trigger(sess, vm, gs);
                     }
+                    // Surfing and cycling are mutually exclusive: stepping
+                    // onto water (or being warped onto it) puts the player on
+                    // a Pokemon's back, so the bike goes away.
+                    if (bike.riding() && sess->player->is_surfing())
+                        bike_force_dismount(bike, sess, gs);
                 }
             }
         }
@@ -2869,6 +3147,13 @@ int main() {
             menu.set_flash(ok ? "Spiel gespeichert!" : "Speichern fehlgeschlagen.");
             menu.ack_save();
         }
+        if (menu.wants_bike()) {
+            BikeResult r = bike.toggle(gs, sess->map->is_indoor(),
+                                       sess->player->is_surfing());
+            std::string msg = bike_apply(bike, r, sess, gs);
+            menu.ack_bike();
+            if (!msg.empty()) box.open("", msg);
+        }
         do_pending_warp(&audio);
         do_pending_fly(&audio);
         healfx.tick(dt);
@@ -2898,6 +3183,11 @@ int main() {
             npc_accum = 0.f;
         }
 
+        // Quests are pure derived state (QuestLog.h): re-evaluating the whole
+        // log is a few dozen table lookups, cheaper than tracking which flag
+        // any given script just wrote.
+        quests.refresh(gs);
+
         scr.clear();
         if (starter.active()) { starter.draw(*scr.get_window()); }
         else if (shop.active()) { shop.draw(*scr.get_window()); }
@@ -2905,8 +3195,19 @@ int main() {
         else if (games.active()) { games.draw(*scr.get_window()); }
         else {
             draw_scene(*scr.get_window(), sess, &healfx, &vm);
+            // The quest marker belongs to the world (it points at a tile), the
+            // HUD box to the screen; both step aside for anything that takes
+            // the player's attention on purpose.
+            bool hud_free = !menu.active() && !box.is_active() && !yesno.active() &&
+                            !picker.active() && !multichoice.active() &&
+                            !debugmenu.active() && !mappicker.active() &&
+                            !speciespicker.active();
+            if (hud_free) draw_quest_marker(*scr.get_window(), ban_font, sess,
+                                            quests.tracked_step(gs));
             box.draw(*scr.get_window());
             draw_banner(*scr.get_window(), ban_font, banner, banner_t);
+            if (hud_free)
+                draw_quest_hud(*scr.get_window(), ban_font, quest_frame, quests, gs, sess);
             menu.draw(*scr.get_window());
             if (yesno.active()) yesno.draw(*scr.get_window());
             if (picker.active()) picker.draw(*scr.get_window());

@@ -14,6 +14,8 @@
 // ---------------------------------------------------------------------------
 #include "BattleData.h"
 #include "SaveGame.h"
+#include "QuestLog.h"
+#include "Bike.h"
 #include "PartySystem.h"
 #include "GameState.h"
 #include "ScriptVM.h"
@@ -1731,6 +1733,299 @@ static void test_party_gender_is_stable(BattleData& bd) {
 
 // --------------------------------------------------------------------- main --
 
+
+// ---------------------------------------------------------------- QuestLog --
+// The quest log owns no state: every step is a predicate over the flags and
+// vars the imported scripts already set (QuestLog.h). These cases pin that
+// down -- a quest must never be able to disagree with the world, and the one
+// piece of player intent it does keep (which quest is pinned to the HUD) has
+// to survive a save/load.
+
+static void test_quest_conditions() {
+    std::printf("[quest] condition grammar\n");
+    GameState gs;
+    gs.set_flag("FLAG_BADGE01_GET");
+    gs.set_var("VAR_RUSTBORO_CITY_STATE", 3);
+    gs.give_item("ITEM_POTION", 2);
+    gs.mark_caught("TORCHIC");
+    gs.money = 500;
+
+    CHECK(QuestLog::eval_condition("FLAG_BADGE01_GET", gs));
+    CHECK(!QuestLog::eval_condition("FLAG_BADGE02_GET", gs));
+    // An unknown name reads as "not set" instead of failing the whole quest.
+    CHECK(!QuestLog::eval_condition("FLAG_NEVER_HEARD_OF_IT", gs));
+    CHECK(QuestLog::eval_condition("!FLAG_BADGE02_GET", gs));
+    CHECK(QuestLog::eval_condition("VAR_RUSTBORO_CITY_STATE >= 3", gs));
+    CHECK(!QuestLog::eval_condition("VAR_RUSTBORO_CITY_STATE > 3", gs));
+    CHECK(QuestLog::eval_condition("VAR_RUSTBORO_CITY_STATE != 4", gs));
+    CHECK(QuestLog::eval_condition("ITEM_POTION", gs));
+    CHECK(QuestLog::eval_condition("ITEM_POTION >= 2", gs));
+    CHECK(!QuestLog::eval_condition("ITEM_POTION >= 3", gs));
+    CHECK(QuestLog::eval_condition("caught:TORCHIC", gs));
+    CHECK(!QuestLog::eval_condition("caught:MUDKIP", gs));
+    CHECK(QuestLog::eval_condition("badges == 1", gs));
+    CHECK(QuestLog::eval_condition("money >= 500", gs));
+    // & binds tighter than |, and an empty condition is "already satisfied"
+    // (that's what makes `start` optional).
+    CHECK(QuestLog::eval_condition("FLAG_BADGE01_GET & !FLAG_BADGE02_GET", gs));
+    CHECK(!QuestLog::eval_condition("FLAG_BADGE01_GET & FLAG_BADGE02_GET", gs));
+    CHECK(QuestLog::eval_condition("FLAG_BADGE02_GET | FLAG_BADGE01_GET", gs));
+    CHECK(QuestLog::eval_condition("FLAG_BADGE02_GET & FLAG_BADGE03_GET | FLAG_BADGE01_GET", gs));
+    CHECK(QuestLog::eval_condition("", gs));
+}
+
+// Writes a throwaway quests.txt and loads it, so the test doesn't depend on
+// the shipped story data staying the same shape forever.
+static bool write_test_quests(const char* path) {
+    std::FILE* f = std::fopen(path, "w");
+    if (!f) return false;
+    std::fputs("# comment line\n"
+               "quest QUEST_A main\n"
+               "title Erste Aufgabe\n"
+               "desc Eine Beschreibung.\n"
+               "step Erreiche die Stadt | FLAG_VISITED_RUSTBORO_CITY | RustboroCity\n"
+               "step Besiege Rocko | FLAG_BADGE01_GET | RustboroCity_Gym 27 19\n"
+               "\n"
+               "quest QUEST_B side\n"
+               "title Zweite Aufgabe\n"
+               "start FLAG_BADGE01_GET\n"
+               "step Hole das Fahrrad | FLAG_RECEIVED_BIKE | MauvilleCity_BikeShop\n",
+               f);
+    std::fclose(f);
+    return true;
+}
+
+static void test_quest_progress() {
+    std::printf("[quest] progress is derived from world flags\n");
+    const char* path = "test_quests.txt";
+    CHECK(write_test_quests(path));
+    QuestLog log;
+    CHECK(log.load(path));
+    CHECK(log.quests().size() == 2);
+
+    GameState gs;
+    log.refresh(gs);
+    // Nothing done yet: the main quest is active on its first step, the side
+    // quest is still hidden behind its own start condition.
+    CHECK(log.active(QuestKind::MAIN).size() == 1);
+    CHECK(log.active(QuestKind::SIDE).empty());
+    CHECK(log.quests()[0].percent == 0);
+    CHECK(log.quests()[0].current_step == 0);
+    CHECK(log.tracked(gs) == 0);
+    const QuestStep* st = log.tracked_step(gs);
+    CHECK(st && st->target_map == "RustboroCity");
+    // An exact tile is optional; the first step only names a map.
+    CHECK(st && st->target_x == -1);
+
+    gs.set_flag("FLAG_VISITED_RUSTBORO_CITY");
+    log.refresh(gs);
+    CHECK(log.quests()[0].percent == 50);
+    CHECK(log.quests()[0].current_step == 1);
+    st = log.tracked_step(gs);
+    CHECK(st && st->target_map == "RustboroCity_Gym" && st->target_x == 27 && st->target_y == 19);
+
+    gs.set_flag("FLAG_BADGE01_GET");
+    log.refresh(gs);
+    // Main quest done -> off the active list, and the side quest its badge
+    // unlocked takes over the HUD without anyone tracking anything by hand.
+    CHECK(log.quests()[0].status == QuestStatus::DONE);
+    CHECK(log.quests()[0].percent == 100);
+    CHECK(log.completed().size() == 1);
+    CHECK(log.active(QuestKind::MAIN).empty());
+    CHECK(log.active(QuestKind::SIDE).size() == 1);
+    CHECK(log.tracked(gs) == 1);
+
+    // A pinned quest wins over the automatic pick -- but only while it is
+    // still active, so finishing it can never leave the HUD stuck on it.
+    gs.tracked_quest = "QUEST_A";
+    CHECK(log.tracked(gs) == 1);
+    gs.tracked_quest = "QUEST_B";
+    CHECK(log.tracked(gs) == 1);
+    // An id from an edited quests.txt falls back instead of blanking the HUD.
+    gs.tracked_quest = "QUEST_GONE";
+    CHECK(log.tracked(gs) == 1);
+
+    gs.set_flag("FLAG_RECEIVED_BIKE");
+    log.refresh(gs);
+    CHECK(log.tracked(gs) == -1);          // nothing left to do
+    CHECK(log.tracked_step(gs) == nullptr);
+    std::remove(path);
+}
+
+static void test_quest_hud_choice_survives_a_save(BattleData& bd) {
+    std::printf("[quest] tracked quest + HUD toggle round-trip\n");
+    GameState gs;
+    gs.tracked_quest = "QUEST_BADGE_STONE";
+    gs.quest_hud_on = false;
+    PartySystem ps; ps.configure(&bd, &gs);
+    const char* path = "test_quest_save.dat";
+    CHECK(SaveGame::save(path, gs, ps, "maps/LittlerootTown.map", 5, 9));
+
+    GameState loaded; PartySystem lp; lp.configure(&bd, &loaded);
+    std::string map; int px = 0, py = 0;
+    CHECK(SaveGame::load(path, loaded, lp, map, px, py));
+    CHECK(loaded.tracked_quest == "QUEST_BADGE_STONE");
+    CHECK(loaded.quest_hud_on == false);
+    std::remove(path);
+}
+
+// The shipped story data has to actually parse and chain: exactly one main
+// mission active on a fresh save, and no step pointing at a map that isn't in
+// the game (a typo there would silently kill the world marker).
+static void test_shipped_quest_data() {
+    std::printf("[quest] assets/quests.txt is consistent\n");
+    QuestLog log;
+    if (!log.load("assets/quests.txt")) {
+        std::printf("  (skipped: assets/quests.txt not staged)\n");
+        return;
+    }
+    GameState gs;
+    log.refresh(gs);
+    CHECK(log.active(QuestKind::MAIN).size() == 1);
+    CHECK(log.tracked(gs) >= 0);
+    for (const Quest& q : log.quests()) {
+        CHECK(!q.id.empty());
+        CHECK(!q.title.empty());
+        CHECK(!q.steps.empty());
+        for (const QuestStep& st : q.steps) {
+            CHECK(!st.text.empty());
+            CHECK(!st.done_cond.empty());
+            if (st.target_map.empty()) continue;
+            std::string mp = "maps/" + st.target_map + ".map";
+            std::FILE* f = std::fopen(mp.c_str(), "r");
+            if (!f) std::printf("  missing target map: %s\n", mp.c_str());
+            CHECK(f != nullptr);
+            if (f) std::fclose(f);
+        }
+    }
+}
+
+
+// -------------------------------------------------------------------- Bike --
+// Rydel's script already hands the bike over; these pin the rules that come
+// after that -- when you may ride, how fast, and which sheet you are drawn
+// with (Bike.h).
+
+static void test_bike_mount_rules() {
+    std::printf("[bike] when the bike may be used\n");
+    GameState gs;
+    Bike bike;
+    CHECK(Bike::in_bag(gs) == BikeKind::NONE);
+    // No bike in the bag: nothing else matters yet.
+    CHECK(bike.toggle(gs, false, false) == BikeResult::NO_BIKE);
+    CHECK(!bike.riding());
+
+    gs.give_item("ITEM_MACH_BIKE", 1);
+    CHECK(Bike::in_bag(gs) == BikeKind::MACH);
+    // Refused indoors and while surfing -- and refusing must not leave the
+    // player half-mounted.
+    CHECK(bike.toggle(gs, true, false) == BikeResult::INDOORS);
+    CHECK(!bike.riding());
+    CHECK(bike.toggle(gs, false, true) == BikeResult::SURFING);
+    CHECK(!bike.riding());
+
+    CHECK(bike.toggle(gs, false, false) == BikeResult::MOUNTED);
+    CHECK(bike.riding() && bike.riding_kind() == BikeKind::MACH);
+    // Toggling again gets off, wherever you are.
+    CHECK(bike.toggle(gs, false, false) == BikeResult::DISMOUNTED);
+    CHECK(!bike.riding());
+    // A forced dismount (walked into a building) only reports work it did.
+    CHECK(!bike.dismount());
+    CHECK(bike.toggle(gs, false, false) == BikeResult::MOUNTED);
+    CHECK(bike.dismount());
+
+    // Swapping bikes at the shop swaps which one you ride.
+    gs.take_item("ITEM_MACH_BIKE", 1);
+    gs.give_item("ITEM_ACRO_BIKE", 1);
+    CHECK(bike.toggle(gs, false, false) == BikeResult::MOUNTED);
+    CHECK(bike.riding_kind() == BikeKind::ACRO);
+}
+
+static void test_bike_speed() {
+    std::printf("[bike] the mach bike accelerates, the acro bike doesn't\n");
+    const float walk = 0.15f;
+    GameState gs;
+    gs.give_item("ITEM_ACRO_BIKE", 1);
+    Bike acro;
+    CHECK(acro.step_interval(walk) == walk);            // on foot: unchanged
+    CHECK(acro.toggle(gs, false, false) == BikeResult::MOUNTED);
+    for (int i = 0; i < 10; ++i) acro.on_step(DIR::N);
+    CHECK(acro.step_interval(walk) == walk / 2.f);      // flat 2x, forever
+
+    gs.take_item("ITEM_ACRO_BIKE", 1);
+    gs.give_item("ITEM_MACH_BIKE", 1);
+    Bike mach;
+    CHECK(mach.toggle(gs, false, false) == BikeResult::MOUNTED);
+    CHECK(mach.step_interval(walk) == walk / 2.f);      // starts at 2x
+    for (int i = 0; i < Bike::MACH_RAMP_STEPS - 1; ++i) mach.on_step(DIR::N);
+    CHECK(mach.step_interval(walk) == walk / 2.f);      // still winding up
+    mach.on_step(DIR::N);
+    CHECK(mach.step_interval(walk) == walk / 3.f);      // at full speed
+    // Turning throws the run-up away, and so does stopping.
+    mach.on_step(DIR::E);
+    CHECK(mach.step_interval(walk) == walk / 2.f);
+    for (int i = 0; i < Bike::MACH_RAMP_STEPS; ++i) mach.on_step(DIR::E);
+    CHECK(mach.step_interval(walk) == walk / 3.f);
+    mach.on_stop();
+    CHECK(mach.step_interval(walk) == walk / 2.f);
+    // Off the bike the interval is the walking one again, whatever happened.
+    mach.dismount();
+    CHECK(mach.step_interval(walk) == walk);
+}
+
+static void test_bike_sheets_exist() {
+    std::printf("[bike] both bikes have both genders' overworld sheets\n");
+    const BikeKind kinds[] = {BikeKind::MACH, BikeKind::ACRO, BikeKind::NONE};
+    for (BikeKind k : kinds)
+        for (bool female : {false, true}) {
+            std::string path = Bike::sheet_for(k, female);
+            std::FILE* f = std::fopen(path.c_str(), "r");
+            if (!f) std::printf("  missing sheet: %s\n", path.c_str());
+            CHECK(f != nullptr);
+            if (f) std::fclose(f);
+        }
+}
+
+static void test_bike_survives_a_save(BattleData& bd) {
+    std::printf("[bike] still riding after a save/load\n");
+    GameState gs;
+    gs.give_item("ITEM_MACH_BIKE", 1);
+    gs.on_bike = true;
+    PartySystem ps; ps.configure(&bd, &gs);
+    const char* path = "test_bike_save.dat";
+    CHECK(SaveGame::save(path, gs, ps, "maps/Route110.map", 10, 10));
+
+    GameState loaded; PartySystem lp; lp.configure(&bd, &loaded);
+    std::string map; int px = 0, py = 0;
+    CHECK(SaveGame::load(path, loaded, lp, map, px, py));
+    CHECK(loaded.on_bike);
+    Bike bike;
+    bike.resume(loaded);
+    CHECK(bike.riding() && bike.riding_kind() == BikeKind::MACH);
+    std::remove(path);
+}
+
+// Which maps refuse the bike. The .map files in the tree carry no map type
+// yet (pe_import.py writes one now), so this pins the fallback derivation --
+// interiors out, routes/towns/caves in.
+static void test_map_indoor_classification() {
+    std::printf("[bike] indoor maps are recognised\n");
+    Map center("maps/OldaleTown_PokemonCenter_1F.map");
+    CHECK(center.ready() && center.is_indoor());
+    Map gym("maps/RustboroCity_Gym.map");
+    CHECK(gym.ready() && gym.is_indoor());
+    Map shop("maps/MauvilleCity_BikeShop.map");
+    CHECK(shop.ready() && shop.is_indoor());
+
+    Map town("maps/OldaleTown.map");
+    CHECK(town.ready() && !town.is_indoor());
+    Map route("maps/Route110.map");
+    CHECK(route.ready() && !route.is_indoor());
+    // A cave is not an interior: the real games let you ride in one.
+    Map cave("maps/GraniteCave_1F.map");
+    CHECK(cave.ready() && !cave.is_indoor());
+}
+
 int main() {
     std::printf("Running Codemon engine tests...\n");
 
@@ -1768,6 +2063,16 @@ int main() {
     test_party_loads_a_pre_party_save(bd);
     test_party_gender_is_stable(bd);
 
+    test_quest_conditions();
+    test_quest_progress();
+    test_quest_hud_choice_survives_a_save(bd);
+    test_shipped_quest_data();
+
+    test_bike_mount_rules();
+    test_bike_speed();
+    test_bike_sheets_exist();
+    test_bike_survives_a_save(bd);
+
     if (has_display()) {
         test_script_opcodes(bd);
         test_script_text_and_objects(bd);
@@ -1785,6 +2090,7 @@ int main() {
         test_dive_reaches_sootopolis();
         test_dynamic_warp_out_of_truck(bd);
         test_region_map_sections();
+        test_map_indoor_classification();
         test_sprite_frame_geometry();
         test_object_state_animation(bd);
         test_briney_voyage(bd);

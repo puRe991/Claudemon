@@ -197,7 +197,13 @@ static const float RUN_MOVE_DURATION = MOVE_DURATION / 2.f;
 
 void Character::tick(float dt) {
 	if (this->move_t < 1.f) {
-		float duration = this->running ? RUN_MOVE_DURATION : MOVE_DURATION;
+		// The bike (Bike.h) sets its own slide length so the animation keeps
+		// up with its shorter step interval -- and, for the MACH BIKE, keeps
+		// changing as it accelerates. Walking and running use the two fixed
+		// durations above.
+		float duration = this->step_duration > 0.f
+		                     ? this->step_duration
+		                     : (this->running ? RUN_MOVE_DURATION : MOVE_DURATION);
 		this->move_t += dt / duration;
 		if (this->move_t > 1.f) this->move_t = 1.f;
 	}

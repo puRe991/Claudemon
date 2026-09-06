@@ -8,6 +8,7 @@
 #include "PartySystem.h"
 #include "Battle.h"       // BtnInput
 #include "UiFrame.h"
+#include "QuestLog.h"
 
 /******************************************************************************
 Menu - the overworld start menu with a Bag (item icons + counts) and a Pokemon
@@ -40,7 +41,7 @@ class Menu
 {
 private:
 	enum Screen { CLOSED, MAIN, BAG, PARTY, PC, POKENAV, TEACH, USE_ITEM, FLY, POKEDEX,
-	              SUMMARY, OPTIONS, PARTY_ACTION, GIVE_ITEM, MOVE_LEARN };
+	              SUMMARY, OPTIONS, PARTY_ACTION, GIVE_ITEM, MOVE_LEARN, QUESTS };
 	sf::Font font; bool font_ok;
 	Screen screen;
 	int cursor;
@@ -85,6 +86,15 @@ private:
 	// for a level-up move and for HMs, which are reusable). A declined TM is
 	// never consumed, same as the real games.
 	std::string learn_item;
+	// AUFGABEN screen: the quest log is read-only here -- picking a row only
+	// records which quest the HUD should track (GameState::tracked_quest).
+	QuestLog* quests = nullptr;
+	int quest_cursor = 0;
+	// Rows currently listed, as indices into quests->quests(): the active
+	// main missions first, then the active side missions, then everything
+	// already finished. Rebuilt every time the screen is drawn or moved, so
+	// a quest completed while the menu is open cannot leave a stale cursor.
+	std::vector<int> quest_rows() const;
 	int options_cursor = 0; // selected row (Ton/Kampfszene/Rahmenart) in the OPTIONS screen
 	// Visited-town destinations available right now (filtered from the fixed
 	// FLY_DESTINATIONS table by GameState::flag() each time FLY opens).
@@ -172,6 +182,10 @@ public:
 	// The menu reads the party through PartySystem and never keeps its own
 	// copy of it.
 	void configure(GameState* g, PartySystem* party, BattleData* bd = nullptr);
+	// The quest log the AUFGABEN screen lists (owned by the game loop, which
+	// also keeps it refreshed). Without one the screen just says there is
+	// nothing to do.
+	void configure_quests(QuestLog* q) { this->quests = q; }
 	void set_location(const std::string& loc) { this->location = loc; }
 	void set_mapsec(bool has, int x, int y, int w, int h) {
 		this->has_mapsec = has;
@@ -209,6 +223,13 @@ public:
 	}
 	void ack_fly() { this->fly_requested = false; this->screen = CLOSED; }
 
+	// Using the bike from the BEUTEL: like SPEICHERN/FLIEGEN, the menu can
+	// only ask -- mounting needs the current map (indoors?) and the player
+	// sprite, both of which live in the game loop.
+	bool wants_bike() const { return this->bike_requested; }
+	void ack_bike() { this->bike_requested = false; }
+
 private:
 	bool save_requested = false;
+	bool bike_requested = false;
 };

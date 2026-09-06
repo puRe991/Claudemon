@@ -524,10 +524,24 @@ void Menu::refresh_slot_views() {
 	}
 }
 
+// The AUFGABEN list in reading order: what to do now (main missions first,
+// then side missions), then what has already been done. Derived on every use
+// rather than cached -- a quest can complete while the screen is open (a
+// script running under a msgbox), and a stale row would then point the HUD at
+// something already finished.
+std::vector<int> Menu::quest_rows() const {
+	std::vector<int> rows;
+	if (!this->quests) return rows;
+	for (int i : this->quests->active(QuestKind::MAIN)) rows.push_back(i);
+	for (int i : this->quests->active(QuestKind::SIDE)) rows.push_back(i);
+	for (int i : this->quests->completed()) rows.push_back(i);
+	return rows;
+}
+
 void Menu::input(BtnInput b) {
 	if (this->screen == MAIN) {
 		if (b == BTN_UP && this->cursor > 0) this->cursor--;
-		else if (b == BTN_DOWN && this->cursor < 8) this->cursor++;
+		else if (b == BTN_DOWN && this->cursor < 9) this->cursor++;
 		else if (b == BTN_CONFIRM) {
 			if (this->cursor == 0) { this->screen = POKEDEX; this->flash.clear(); }
 			else if (this->cursor == 1) { this->screen = BAG; this->bag_cursor = 0; this->flash.clear(); }
@@ -543,6 +557,14 @@ void Menu::input(BtnInput b) {
 				}
 			}
 			else if (this->cursor == 5) {
+				// AUFGABEN (§16): the quest list. Nothing to configure -- the
+				// game loop keeps the log refreshed, so it is always current
+				// by the time this screen opens.
+				this->screen = QUESTS;
+				this->quest_cursor = 0;
+				this->flash.clear();
+			}
+			else if (this->cursor == 6) {
 				// FLIEGEN: only meaningful once a party member knows FLY --
 				// mirrors the badge-free "does the team know the move"
 				// simplification Surf/Strength/Waterfall already use.
@@ -558,8 +580,8 @@ void Menu::input(BtnInput b) {
 					else { this->screen = FLY; this->fly_cursor = 0; this->flash.clear(); }
 				}
 			}
-			else if (this->cursor == 6) { this->screen = OPTIONS; this->options_cursor = 0; }
-			else if (this->cursor == 7) { this->save_requested = true; this->flash.clear(); }
+			else if (this->cursor == 7) { this->screen = OPTIONS; this->options_cursor = 0; }
+			else if (this->cursor == 8) { this->save_requested = true; this->flash.clear(); }
 			else this->screen = CLOSED;
 		}
 	} else if (this->screen == POKEDEX) {
@@ -611,6 +633,14 @@ void Menu::input(BtnInput b) {
 						this->teach_cursor = 0; this->flash.clear();
 						this->screen = TEACH;
 					}
+				} else if (item == "ITEM_MACH_BIKE" || item == "ITEM_ACRO_BIKE") {
+					// Getting on (or off) the bike is the game loop's job --
+					// it owns the player sprite and knows whether this map is
+					// an interior -- so the menu only asks for it and closes,
+					// same request/ack shape as SPEICHERN and FLIEGEN.
+					this->bike_requested = true;
+					this->flash.clear();
+					this->screen = CLOSED;
 				} else if (heal_amount(item) >= 0 || is_revive_item(item) ||
 				           status_cured(item) != Status::NONE || cures_any_status(item)) {
 					this->use_item = item; this->use_cursor = 0; this->flash.clear();
@@ -754,14 +784,37 @@ void Menu::input(BtnInput b) {
 				if (!this->actions.empty()) this->screen = PARTY_ACTION;
 			}
 		}
+	} else if (this->screen == QUESTS) {
+		std::vector<int> rows = quest_rows();
+		if (b == BTN_UP && this->quest_cursor > 0) this->quest_cursor--;
+		else if (b == BTN_DOWN && this->quest_cursor + 1 < (int)rows.size()) this->quest_cursor++;
+		else if (b == BTN_LEFT || b == BTN_CANCEL) { this->screen = MAIN; this->flash.clear(); }
+		else if (b == BTN_CONFIRM && this->gs && this->quests &&
+		         this->quest_cursor < (int)rows.size()) {
+			// Pin this quest to the HUD (§17). A finished quest can't be
+			// tracked -- there would be nothing left to point at -- and
+			// confirming the already-tracked one unpins it, back to "whatever
+			// the current main mission is".
+			const Quest& q = this->quests->quests()[rows[this->quest_cursor]];
+			if (q.status != QuestStatus::ACTIVE) {
+				this->flash = "Diese Aufgabe ist bereits erledigt.";
+			} else if (this->gs->tracked_quest == q.id) {
+				this->gs->tracked_quest.clear();
+				this->flash = "Verfolgung aufgehoben.";
+			} else {
+				this->gs->tracked_quest = q.id;
+				this->flash = "Wird verfolgt: " + q.title;
+			}
+		}
 	} else if (this->screen == OPTIONS) {
 		if (b == BTN_UP && this->options_cursor > 0) this->options_cursor--;
-		else if (b == BTN_DOWN && this->options_cursor < 2) this->options_cursor++;
+		else if (b == BTN_DOWN && this->options_cursor < 3) this->options_cursor++;
 		else if (b == BTN_LEFT) this->screen = MAIN;
 		else if (b == BTN_CONFIRM || b == BTN_RIGHT) {
 			if (!this->gs) { /* nothing to toggle without a GameState */ }
 			else if (this->options_cursor == 0) this->gs->sound_on = !this->gs->sound_on;
 			else if (this->options_cursor == 1) this->gs->battle_scene_on = !this->gs->battle_scene_on;
+			else if (this->options_cursor == 2) this->gs->quest_hud_on = !this->gs->quest_hud_on;
 			else this->gs->frame_type = (this->gs->frame_type + 1) % 20;
 		}
 	} else if (b == BTN_CONFIRM || b == BTN_LEFT || b == BTN_CANCEL) {
@@ -854,14 +907,14 @@ void Menu::draw(sf::RenderTarget& target) {
 	if (this->screen == MAIN) {
 		text("MENÜ", x, y, 24, head_col); y += 44;
 		const char* opts[] = {"POKéDEX", "BEUTEL", "POKéMON", "PC-BOX", "POKéNAV",
-		                      "FLIEGEN", "OPTIONEN", "SPEICHERN", "SCHLIESSEN"};
-		for (int i = 0; i < 9; ++i) {
+		                      "AUFGABEN", "FLIEGEN", "OPTIONEN", "SPEICHERN", "SCHLIESSEN"};
+		for (int i = 0; i < 10; ++i) {
 			bool sel = i == this->cursor;
-			if (sel) cursor_at(x, y + i * 38);
-			text(opts[i], x, y + i * 38, 22, sel ? head_col : body_col);
+			if (sel) cursor_at(x, y + i * 34);
+			text(opts[i], x, y + i * 34, 22, sel ? head_col : body_col);
 		}
 		if (!this->flash.empty())
-			text(this->flash, x, y + 9 * 38 + 10, 16, sf::Color(30, 140, 60));
+			text(this->flash, x, y + 10 * 34 + 8, 16, sf::Color(30, 140, 60));
 	} else if (this->screen == POKEDEX) {
 		int total = this->bdata ? this->bdata->species_count() : 0;
 		int seen = 0, caught = 0;
@@ -1281,18 +1334,106 @@ void Menu::draw(sf::RenderTarget& target) {
 				}
 			}
 		}
+	} else if (this->screen == QUESTS) {
+		text("AUFGABEN", x, y, 24, head_col); y += 40;
+		std::vector<int> rows = quest_rows();
+		if (rows.empty()) {
+			text("Zurzeit gibt es nichts zu tun.", x, y, 18, muted_col);
+		} else {
+			if (this->quest_cursor >= (int)rows.size())
+				this->quest_cursor = (int)rows.size() - 1;
+			const std::vector<Quest>& all = this->quests->quests();
+			int tracked = this->gs ? this->quests->tracked(*this->gs) : -1;
+			// Section headings are emitted as the kind/status changes while
+			// walking the rows, so an empty section prints no heading at all.
+			int prev_section = -1;
+			float bottom = panel.getPosition().y + panel.getSize().y - 60;
+			for (int row = 0; row < (int)rows.size() && y < bottom; ++row) {
+				const Quest& q = all[rows[row]];
+				int section = q.status == QuestStatus::DONE ? 2
+				              : (q.kind == QuestKind::MAIN ? 0 : 1);
+				if (section != prev_section) {
+					prev_section = section;
+					y += 6;
+					text(section == 0 ? "HAUPTMISSION"
+					     : section == 1 ? "NEBENMISSIONEN" : "ERLEDIGT",
+					     x, y, 16, muted_col);
+					y += 26;
+				}
+				bool sel = row == this->quest_cursor;
+				if (sel) cursor_at(x, y);
+				// Filled bullet = the quest the HUD is pointing at, hollow =
+				// merely active, check = done (the mockup in the design brief).
+				bool is_tracked = rows[row] == tracked && q.status == QuestStatus::ACTIVE;
+				const char* bullet = q.status == QuestStatus::DONE ? "✔"
+				                     : (is_tracked ? "●" : "○");
+				sf::Color row_col = q.status == QuestStatus::DONE ? muted_col
+				                    : (sel ? head_col : body_col);
+				text(bullet, x, y, 18, q.status == QuestStatus::DONE
+				                          ? sf::Color(120, 170, 130) : row_col);
+				text(q.title, x + 26, y, 20, row_col);
+				y += 30;
+				// Only the selected quest unfolds: its description, the step
+				// the player is on, and the progress bar.
+				if (!sel) continue;
+				if (!q.description.empty()) {
+					// Wrapped by word at the panel width -- a description long
+					// enough to run off the frame used to just get clipped.
+					std::string rest = q.description;
+					for (int line = 0; line < 3 && !rest.empty(); ++line) {
+						std::string head = rest;
+						if (head.size() > 46) {
+							size_t cut = head.rfind(' ', 46);
+							if (cut == std::string::npos || cut < 8) cut = 46;
+							head = rest.substr(0, cut);
+							rest = rest.substr(cut + (rest[cut] == ' ' ? 1 : 0));
+						} else {
+							rest.clear();
+						}
+						text(head, x + 26, y, 15, muted_col);
+						y += 20;
+					}
+					y += 4;
+				}
+				if (q.current_step < (int)q.steps.size()) {
+					text("→ " + q.steps[q.current_step].text, x + 26, y, 17,
+					     sf::Color(30, 110, 60));
+					y += 26;
+				}
+				// "████████████░░░░ 75 %" as a real bar: 16 cells, same
+				// proportion, drawn instead of typed so it lines up at any
+				// font size.
+				const float bw = 200.f, bh = 12.f;
+				sf::RectangleShape bg(sf::Vector2f(bw, bh));
+				bg.setPosition(x + 26, y + 4);
+				bg.setFillColor(sf::Color(200, 200, 208));
+				target.draw(bg);
+				sf::RectangleShape fg(sf::Vector2f(bw * q.percent / 100.f, bh));
+				fg.setPosition(x + 26, y + 4);
+				fg.setFillColor(q.percent >= 100 ? sf::Color(90, 180, 110)
+				                                 : sf::Color(60, 130, 220));
+				target.draw(fg);
+				text(std::to_string(q.percent) + " %", x + 26 + bw + 10, y - 2, 16, muted_col);
+				y += 30;
+			}
+		}
+		if (!this->flash.empty())
+			text(this->flash, x, panel.getPosition().y + panel.getSize().y - 58, 15,
+			     sf::Color(30, 140, 60));
 	} else if (this->screen == OPTIONS) {
 		text("OPTIONEN", x, y, 24, head_col); y += 44;
 		bool sound_on = !this->gs || this->gs->sound_on;
 		bool scene_on = !this->gs || this->gs->battle_scene_on;
 		int ft = this->gs ? this->gs->frame_type : 0;
 		struct Row { const char* label; std::string value; };
+		bool hud_on = !this->gs || this->gs->quest_hud_on;
 		Row rows[] = {
 			{"TON", sound_on ? "AN" : "AUS"},
 			{"KAMPFSZENE", scene_on ? "AN" : "AUS"},
+			{"ZIEL-ANZEIGE", hud_on ? "AN" : "AUS"},
 			{"RAHMENART", std::to_string(ft + 1) + "/20"},
 		};
-		for (int i = 0; i < 3; ++i) {
+		for (int i = 0; i < 4; ++i) {
 			bool sel = i == this->options_cursor;
 			if (sel) cursor_at(x, y + i * 40);
 			text(rows[i].label, x, y + i * 40, 20, sel ? head_col : body_col);
@@ -1420,6 +1561,9 @@ void Menu::draw(sf::RenderTarget& target) {
 		text("[SPACE] benutzen   [A] zurück", x, panel.getPosition().y + panel.getSize().y - 34, 16, muted_col);
 	else if (this->screen == OPTIONS)
 		text("[SPACE]/[D] ändern   [A] zurück", x, panel.getPosition().y + panel.getSize().y - 34, 16, muted_col);
+	else if (this->screen == QUESTS)
+		text("[SPACE] verfolgen   [A] zurück", x, panel.getPosition().y + panel.getSize().y - 34,
+		     16, muted_col);
 	else if (this->screen == POKENAV)
 		text("Pfeiltasten: Karte erkunden   [SPACE] zurück",
 		     x, panel.getPosition().y + panel.getSize().y - 34, 16, sf::Color(160, 190, 224));

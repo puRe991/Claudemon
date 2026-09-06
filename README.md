@@ -174,7 +174,7 @@ ctest --test-dir build --output-on-failure
 ./build/codemon
 ```
 
-**Steuerung**: WASD zum Bewegen, Leertaste/Enter zum Bestätigen/Interagieren, `M` öffnet das Menü, `G` öffnet Minispiele (sofern verfügbar), `Shift` gedrückt halten zum Rennen (nach Erhalt der Turbotreter). In Menüs funktionieren zusätzlich die Pfeiltasten, `Rücktaste`/`Esc` als B-Knopf, `Q`/`E` als L/R (Seitenwechsel im Bericht) und `X` als kontextabhängige Aktion (im Team-Menü: direkt zum Bericht).
+**Steuerung**: WASD zum Bewegen, Leertaste/Enter zum Bestätigen/Interagieren, `M` öffnet das Menü, `G` öffnet Minispiele (sofern verfügbar), `F` steigt auf das Fahrrad bzw. wieder ab (sobald man eines besitzt), `Shift` gedrückt halten zum Rennen (nach Erhalt der Turbotreter). In Menüs funktionieren zusätzlich die Pfeiltasten, `Rücktaste`/`Esc` als B-Knopf, `Q`/`E` als L/R (Seitenwechsel im Bericht) und `X` als kontextabhängige Aktion (im Team-Menü: direkt zum Bericht).
 
 ### Windows
 
@@ -282,6 +282,8 @@ Dies ist keine Wunschliste: Alles, was als erledigt markiert ist, wurde entweder
 
 * Turbotreter: Sobald erhalten (`FLAG_SYS_B_DASH`), bewegt sich der Spieler bei gedrückter Shift-Taste mit der echten 2×-Geschwindigkeit des Originals.
 
+✅ * Fahrrad (`Bike`): Rydels Fahrradladen in Mauville City übergibt MACHO-RAD oder AKRO-RAD über sein eigenes importiertes Skript; danach steigt man mit `F` oder über den Beutel-Eintrag auf und ab. Das Rad ist doppelt so schnell wie Gehen, wobei das MACHO-RAD auf gerader Strecke nach vier Schritten auf dreifache Gehgeschwindigkeit beschleunigt und beim Abbiegen oder Anhalten wieder von vorn anfängt. Der Spieler wird mit den echten Fahrrad-Overworld-Sheets gezeichnet (`people_{brendan,may}_{mach,acro}_bike.png`), in Gebäuden wird das Radfahren wie im Original verweigert (`Map::is_indoor`) und beim Betreten eines Hauses bzw. beim Surfen steigt man automatisch ab. Ein Spielstand merkt sich, dass man gefahren ist. Nicht modelliert: die geländeabhängigen Tricks beider Räder (Schlammhänge des MACHO-RADs, Bunny-Hop des AKRO-RADs) – dafür fehlen die Metatile-Verhalten – und `MUS_CYCLING`, das nie nach `assets/sfx/music` konvertiert wurde, weshalb die Kartenmusik weiterläuft.
+
 ✅ * Alle 4 Ingame-Tauschaktionen (Graphitport? etc.) mit echtem Team-Picker (`ChoosePartyMon`), Art-Abgleich (`GetTradeSpecies`/`GetInGameTradeSpeciesInfo`) und Tauschvorgang (`CreateInGameTradePokemon`). Das Level wird wie im Original angepasst. IVs, Persönlichkeit und getragene Post werden nicht berücksichtigt, da diese Systeme auch an anderer Stelle nicht modelliert sind.
 
 ✅ * EP-Gewinn, alle 6 Wachstumsverläufe, Neuberechnung der Werte beim Levelaufstieg, Level-Up-Lernsets (411) und **Level-Up-Entwicklung** (172 Wege), einschließlich einer echten EP-Leiste. Diese zeigt den Fortschritt zum nächsten Level im Kampf unter dem KP-Balken und neben jedem Teammitglied im POKéMON-Menü.
@@ -293,6 +295,8 @@ Dies ist keine Wunschliste: Alles, was als erledigt markiert ist, wurde entweder
 ✅ * Stärke: Die Aktivierung verwendet die vorhandene `checkpartymove`/Ja-Nein/`setflag`-Struktur. Zusätzlich schiebt eine neue native Mechanik in `player_step()` Felsbrocken wie `TryPushBoulder` aus pokeemerald.
 
 ✅ * Kaskade: eigene `MB_WATERFALL`-Metatile-Klassifizierung. Kaskadieren wird nur beim Surfen nach Norden in einen Wasserfall angeboten, entsprechend `IsPlayerSurfingNorth`.
+
+✅ * Quest-/Aufgaben-System (`QuestLog`): Ein AUFGABEN-Eintrag im Startmenü listet die aktive HAUPTMISSION mit Beschreibung, aktuellem Teilziel und Fortschrittsbalken sowie alle offenen NEBENMISSIONEN und die bereits erledigten Aufgaben. Zusätzlich steht das aktuelle Ziel dauerhaft als „NÄCHSTES ZIEL"-Kasten im HUD (abschaltbar unter OPTIONEN → ZIEL-ANZEIGE), und in der Welt zeigt ein Quest-Marker mit Entfernungsangabe auf die Zielkachel – liegt sie außerhalb des Bildschirms, wird stattdessen ein Richtungspfeil am Bildrand eingeblendet. Die Aufgaben selbst besitzen keinen eigenen Zustand: Jeder Schritt ist eine Bedingung über die Flags/Variablen, die die importierten pokeemerald-Skripte ohnehin setzen (`FLAG_BADGE01_GET`, `VAR_RUSTBORO_CITY_STATE`, …), definiert in `assets/quests.txt`. Dadurch kann eine Quest nie im Widerspruch zum Spielstand stehen, und gespeichert werden nur die zwei Spielerentscheidungen „welche Aufgabe wird verfolgt" und „HUD an/aus".
 
 ✅ * Fliegen: Das Startmenü besitzt einen FLIEGEN-Eintrag mit allen bereits besuchten Städten/Orten. Nach Auswahl wird direkt zur jeweiligen Stadt teleportiert und am entsprechenden Heilpunkt angekommen. Die Besuchsflags werden auf Basis der echten pokeemerald-Logik gesetzt.
 
@@ -394,7 +398,7 @@ Dies ist keine Wunschliste: Alles, was als erledigt markiert ist, wurde entweder
 
 * ❌ Blitz (dunkle Höhlen werden stattdessen vollständig beleuchtet dargestellt)
 
-* ❌ Fahrrad, Tag-/Nacht-Zyklus, Wetter in der Overworld, Angeln, Beerenanbau
+* ❌ Tag-/Nacht-Zyklus, Wetter in der Overworld, Angeln, Beerenanbau
 
 * ❌ Mehrere PC-Boxen und Itemlagerung im PC
 
@@ -597,7 +601,7 @@ Alles, was unten abgehakt ist, wurde durch einen Test oder Headless-Screenshot �
 
 * ✅ Turbotreter
 
-* ❌ Fahrrad
+* ✅ Fahrrad (MACHO-RAD/AKRO-RAD, `F` zum Auf-/Absteigen)
 
 * ❌ Tag-/Nacht-Zyklus und Overworld-Wetter
 

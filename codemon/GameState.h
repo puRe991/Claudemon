@@ -68,6 +68,20 @@ public:
 	// the same on every load or a caught shiny would stop being one.
 	unsigned trainer_id = 0, secret_id = 0;
 
+	// AUFGABEN (QuestLog.h): which quest the player pinned to the HUD, and
+	// whether the "NÄCHSTES ZIEL" box is shown at all. A quest's own progress
+	// is never stored -- it is derived from the flags/vars below every frame --
+	// so these two lines of player preference are the whole quest save state.
+	// An id naming a quest that no longer exists (an edited quests.txt) simply
+	// falls back to the current main mission, so it can never wedge the HUD.
+	std::string tracked_quest;
+	bool quest_hud_on = true;
+
+	// Riding the MACH/ACRO BIKE (see Bike.h). Saved, because the real games
+	// put you back on the bike where you got off -- which bike it is comes
+	// from the bag, so this is the only bit that needs storing.
+	bool on_bike = false;
+
 	// Options screen (a curated subset of pokeemerald's real SaveBlock2
 	// options, see the OPTIONS screen in Menu.cpp/main.cpp and README for
 	// what's simplified/skipped -- Text Speed and Battle Style aren't

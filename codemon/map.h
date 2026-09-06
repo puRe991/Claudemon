@@ -125,6 +125,10 @@ private:
 	Coordinates dimensions;      // width, height in tiles
 	Coordinates start_pos;       // player spawn tile
 	std::string map_name;        // bare stem, e.g. "OldaleTown_PokemonCenter_1F"
+	// pokeemerald's MAP_TYPE_* for this map, when the importer wrote one:
+	// 1 = indoor, 0 = outdoor, -1 = the file didn't say (fall back to the
+	// derivation in is_indoor()).
+	int maptype_indoor_ = -1;
 	std::string visit_flag_;     // pokeemerald's FLAG_VISITED_* this map sets
 	                             // unconditionally on entry (Fly destination
 	                             // gating); empty if this map doesn't have one
@@ -261,6 +265,19 @@ public:
 	// surfing, see main.cpp's Surf gate)
 	bool encounter_here(int tile_x, int tile_y) const;
 	bool has_encounters() const;
+
+	// Is this an interior (house, gym, Pokemon Center, shop)? The bike is
+	// refused on such maps, exactly like pokeemerald's MAP_TYPE_INDOOR check.
+	//
+	// The .map format carries no map type of its own -- pe_import.py now
+	// writes one (`maptype`) but the maps already in the tree predate it, so
+	// this falls back to the shape of the data every map does carry: an
+	// interior is a map with no edge connections to walk out of, no
+	// FLAG_VISITED_* of its own (every town and city has one) and no wild
+	// encounters (caves have those, and the real game lets you ride in a
+	// cave). That misfiles nothing in the shipped maps that the player can
+	// reach on a bike, and an explicit `maptype` line always wins over it.
+	bool is_indoor() const;
 	// Pick a wild pokemon by the land (or, on a water tile, surf) slot
 	// weights; fills species + level.
 	bool roll_encounter(std::mt19937& rng, int tile_x, int tile_y,
