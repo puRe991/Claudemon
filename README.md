@@ -174,7 +174,7 @@ ctest --test-dir build --output-on-failure
 ./build/codemon
 ```
 
-**Steuerung**: WASD zum Bewegen, Leertaste/Enter zum Bestätigen/Interagieren, `M` öffnet das Menü, `G` öffnet Minispiele (sofern verfügbar), `Shift` gedrückt halten zum Rennen (nach Erhalt der Turbotreter). In Menüs funktionieren zusätzlich die Pfeiltasten, `Rücktaste`/`Esc` als B-Knopf, `Q`/`E` als L/R (Seitenwechsel im Bericht) und `X` als kontextabhängige Aktion (im Team-Menü: direkt zum Bericht).
+**Steuerung**: WASD zum Bewegen, Leertaste/Enter zum Bestätigen/Interagieren, `M` öffnet das Menü, `G` öffnet Minispiele (sofern verfügbar), `F` steigt auf das Fahrrad bzw. wieder ab (sobald man eines besitzt), `Shift` gedrückt halten zum Rennen (nach Erhalt der Turbotreter). In Menüs funktionieren zusätzlich die Pfeiltasten, `Rücktaste`/`Esc` als B-Knopf, `Q`/`E` als L/R (Seitenwechsel im Bericht) und `X` als kontextabhängige Aktion (im Team-Menü: direkt zum Bericht).
 
 ### Windows
 
@@ -281,6 +281,8 @@ Dies ist keine Wunschliste: Alles, was als erledigt markiert ist, wurde entweder
 ✅ * Zerschneider als echte Feldattacke: Ein Teammitglied mit Zerschneider kann die schneidbaren Bäume beseitigen. `checkpartymove`, `bufferpartymonnick`/`buffermovename`, `removeobject` sowie die zugehörige Textinterpolation funktionieren; die Nutzung ist am ersten Orden gebunden. Gesteinshieb verwendet dieselben gemeinsamen Opcodes und funktioniert entsprechend.
 
 * Turbotreter: Sobald erhalten (`FLAG_SYS_B_DASH`), bewegt sich der Spieler bei gedrückter Shift-Taste mit der echten 2×-Geschwindigkeit des Originals.
+
+✅ * Fahrrad (`Bike`): Rydels Fahrradladen in Mauville City übergibt MACHO-RAD oder AKRO-RAD über sein eigenes importiertes Skript; danach steigt man mit `F` oder über den Beutel-Eintrag auf und ab. Das Rad ist doppelt so schnell wie Gehen, wobei das MACHO-RAD auf gerader Strecke nach vier Schritten auf dreifache Gehgeschwindigkeit beschleunigt und beim Abbiegen oder Anhalten wieder von vorn anfängt. Der Spieler wird mit den echten Fahrrad-Overworld-Sheets gezeichnet (`people_{brendan,may}_{mach,acro}_bike.png`), in Gebäuden wird das Radfahren wie im Original verweigert (`Map::is_indoor`) und beim Betreten eines Hauses bzw. beim Surfen steigt man automatisch ab. Ein Spielstand merkt sich, dass man gefahren ist. Nicht modelliert: die geländeabhängigen Tricks beider Räder (Schlammhänge des MACHO-RADs, Bunny-Hop des AKRO-RADs) – dafür fehlen die Metatile-Verhalten – und `MUS_CYCLING`, das nie nach `assets/sfx/music` konvertiert wurde, weshalb die Kartenmusik weiterläuft.
 
 ✅ * Alle 4 Ingame-Tauschaktionen (Graphitport? etc.) mit echtem Team-Picker (`ChoosePartyMon`), Art-Abgleich (`GetTradeSpecies`/`GetInGameTradeSpeciesInfo`) und Tauschvorgang (`CreateInGameTradePokemon`). Das Level wird wie im Original angepasst. IVs, Persönlichkeit und getragene Post werden nicht berücksichtigt, da diese Systeme auch an anderer Stelle nicht modelliert sind.
 
@@ -396,7 +398,7 @@ Dies ist keine Wunschliste: Alles, was als erledigt markiert ist, wurde entweder
 
 * ❌ Blitz (dunkle Höhlen werden stattdessen vollständig beleuchtet dargestellt)
 
-* ❌ Fahrrad, Tag-/Nacht-Zyklus, Wetter in der Overworld, Angeln, Beerenanbau
+* ❌ Tag-/Nacht-Zyklus, Wetter in der Overworld, Angeln, Beerenanbau
 
 * ❌ Mehrere PC-Boxen und Itemlagerung im PC
 
@@ -599,7 +601,7 @@ Alles, was unten abgehakt ist, wurde durch einen Test oder Headless-Screenshot �
 
 * ✅ Turbotreter
 
-* ❌ Fahrrad
+* ✅ Fahrrad (MACHO-RAD/AKRO-RAD, `F` zum Auf-/Absteigen)
 
 * ❌ Tag-/Nacht-Zyklus und Overworld-Wetter
 

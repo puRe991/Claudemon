@@ -98,6 +98,7 @@ set(ENGINE_SOURCES
     "${SRC_DIR}/Minigame.cpp"
     "${SRC_DIR}/SaveGame.cpp"
     "${SRC_DIR}/QuestLog.cpp"
+    "${SRC_DIR}/Bike.cpp"
     "${SRC_DIR}/view_utils.cpp"
     "${SRC_DIR}/MenuModel.cpp"
     "${SRC_DIR}/MainMenu.cpp")

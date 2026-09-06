@@ -88,6 +88,7 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 		       s == "dive" ||   // exact: the connections block also has a
 		                        // "dive <offset> <map>" line
 
+		       s.rfind("maptype", 0) == 0 ||
 		       s.rfind("visit", 0) == 0 ||
 		       s.rfind("mapsec", 0) == 0 ||
 		       s.rfind("music", 0) == 0 ||
@@ -242,6 +243,14 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 				std::vector<int> g;
 				parse_int_row(ids_str, g);
 				for (int id : g) this->ledge_ids[id] = d;
+			}
+		} else if (head.rfind("maptype", 0) == 0) {
+			// single line: "indoor" or "outdoor" (pokeemerald's MAP_TYPE_*,
+			// collapsed to the one distinction this engine acts on -- see
+			// Map::is_indoor). Only newer imports have it.
+			if (++i < rest.size()) {
+				this->maptype_indoor_ = (rest[i].rfind("indoor", 0) == 0) ? 1 : 0;
+				++i;
 			}
 		} else if (head.rfind("visit", 0) == 0) {
 			// single line: the FLAG_VISITED_* this map sets on entry
@@ -427,6 +436,12 @@ bool Map::is_waterfall(int tile_x, int tile_y) const {
 	if (!in_bounds(tile_x, tile_y) || this->waterfall_ids.empty()) return false;
 	int id = this->tile_map[this->index(tile_x, tile_y)];
 	return this->waterfall_ids.count(id) > 0;
+}
+
+bool Map::is_indoor() const {
+	if (this->maptype_indoor_ >= 0) return this->maptype_indoor_ != 0;
+	return this->connection_list.empty() && this->visit_flag_.empty() &&
+	       !this->has_encounters();
 }
 
 bool Map::has_encounters() const {

@@ -146,6 +146,7 @@ bool SaveGame::save(const std::string& path, const GameState& gs,
 	// nothing else here to keep in sync.
 	f << "quest\t" << (gs.tracked_quest.empty() ? "-" : gs.tracked_quest)
 	  << '\t' << (gs.quest_hud_on ? 1 : 0) << '\n';
+	f << "bike\t" << (gs.on_bike ? 1 : 0) << '\n';
 
 	f << "vars\t" << gs.all_vars().size() << '\n';
 	for (const auto& kv : gs.all_vars()) f << kv.first << '\t' << kv.second << '\n';
@@ -260,6 +261,8 @@ bool SaveGame::load(const std::string& path, GameState& gs,
 		} else if (key == "quest" && parts.size() >= 3) {
 			new_gs.tracked_quest = (parts[1] == "-") ? std::string() : parts[1];
 			new_gs.quest_hud_on = parts[2] != "0";
+		} else if (key == "bike" && parts.size() >= 2) {
+			new_gs.on_bike = parts[1] != "0";
 		} else if (key == "vars" && parts.size() >= 2) {
 			int n = std::atoi(parts[1].c_str());
 			for (int i = 0; i < n && std::getline(f, line); ++i) {

@@ -1903,6 +1903,15 @@ def cmd_world(src, limit=None):
         if entry:
             lines.append("mapsec")
             lines.append(f"{entry[0]} {entry[1]} {entry[2]} {entry[3]}\t{entry[4]}")
+        # pokeemerald's MAP_TYPE_* for this map, collapsed to the single
+        # distinction the engine acts on: the bike is refused indoors (see
+        # Map::is_indoor / Bike.h). Maps imported before this line existed
+        # fall back to a derivation from connections/visit flag/encounters.
+        mtype = (mj.get("map_type") or "").upper()
+        if mtype:
+            indoor = mtype in ("MAP_TYPE_INDOOR", "MAP_TYPE_SECRET_BASE")
+            lines.append("maptype")
+            lines.append("indoor" if indoor else "outdoor")
         # This map's own background music (Audio::play_bgm, called on every
         # map load -- see main.cpp).
         mus = mj.get("music") or ""

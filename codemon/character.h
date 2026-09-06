@@ -37,6 +37,9 @@ private:
 	                           // tick() slides at RUN_MOVE_DURATION instead
 	                           // of MOVE_DURATION, matching main.cpp's
 	                           // shortened RUN_MOVE_INTERVAL between steps.
+	float step_duration = 0.f; // >0 overrides MOVE_DURATION/RUN_MOVE_DURATION
+	                           // for the slide animation (the bike, see
+	                           // set_step_duration)
 	bool surfing = false;      // true once the player has confirmed Surf onto
 	                           // water (main.cpp's Surf gate); dismounts
 	                           // automatically on reaching a non-water tile.
@@ -124,6 +127,11 @@ public:
 	// Shift, gated on FLAG_SYS_B_DASH (see main.cpp). Only meaningful while
 	// animated -- headless mode never calls tick() so it has no effect there.
 	void set_running(bool r) { this->running = r; }
+
+	// Explicit slide length per step, overriding the walk/run durations --
+	// the bike sets this to its own step interval (Bike::step_interval) so a
+	// faster ride actually looks faster. 0 restores the default.
+	void set_step_duration(float seconds) { this->step_duration = seconds; }
 
 	void set_surfing(bool s) { this->surfing = s; }
 	bool is_surfing() const { return this->surfing; }

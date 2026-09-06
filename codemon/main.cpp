@@ -15,6 +15,7 @@
 #include "UiFrame.h"
 #include "SaveGame.h"
 #include "QuestLog.h"
+#include "Bike.h"
 
 #include <algorithm>
 #include <cctype>
@@ -657,6 +658,43 @@ struct HealFx {
     }
 };
 
+// --- Fahrrad ---------------------------------------------------------------
+// Mounting swaps the player's overworld sheet (the bike sheets are the same
+// 9-frame layout, just 32px wide per frame) and changes how fast steps come;
+// everything else about riding -- the rules, the speed, which sheet -- lives
+// in Bike.h. Returns the line to show the player, or "" when there is nothing
+// to say (a silent forced dismount).
+static std::string bike_apply(Bike& bike, BikeResult r, Session* s, GameState& gs) {
+    gs.on_bike = bike.riding();
+    switch (r) {
+    case BikeResult::MOUNTED:
+    case BikeResult::DISMOUNTED:
+        s->player->load_sprite_sheet(Bike::sheet_for(bike.riding_kind(), gs.female));
+        s->player->set_idle();
+        break;
+    default: break;
+    }
+    switch (r) {
+    case BikeResult::MOUNTED:
+        return std::string("Du steigst auf das ") + Bike::display_name(bike.riding_kind()) + ".";
+    case BikeResult::DISMOUNTED: return "Du steigst vom Rad ab.";
+    case BikeResult::NO_BIKE:    return "Du hast kein Fahrrad dabei.";
+    case BikeResult::INDOORS:    return "Hier kannst du nicht Rad fahren!";
+    case BikeResult::SURFING:    return "Nicht, solange du surfst!";
+    }
+    return std::string();
+}
+
+// A forced dismount: walking into a building, starting to surf, a whiteout.
+// Silent -- the player can see they are back on foot, and the real games say
+// nothing either.
+static void bike_force_dismount(Bike& bike, Session* s, GameState& gs) {
+    if (!bike.dismount()) { gs.on_bike = false; return; }
+    gs.on_bike = false;
+    s->player->load_sprite_sheet(Bike::sheet_for(BikeKind::NONE, gs.female));
+    s->player->set_idle();
+}
+
 // --- AUFGABEN: HUD + world marker (design brief §17/§18) --------------------
 // The active objective follows the player around instead of hiding in the
 // menu: a small "NÄCHSTES ZIEL" box in the corner, and -- when the objective
@@ -896,7 +934,7 @@ static std::vector<char> parse_walk(const char* env) {
     while (std::getline(ss, t, ',')) {
         // B and X are UI-only tokens (the B/X buttons); they have no
         // movement meaning, so they only do anything while a menu is open.
-        if (t.size() == 1 && std::string("NSEWTMGHBX").find(t[0]) != std::string::npos)
+        if (t.size() == 1 && std::string("NSEWTMGHBXF").find(t[0]) != std::string::npos)
             out.push_back(t[0]);
     }
     return out;
@@ -2201,6 +2239,9 @@ int main() {
     // already set, so it only has to be re-evaluated, never updated -- the
     // loop below refreshes it once per frame and both the menu screen and the
     // HUD read the same log.
+    // The bike (Bike.h). Which one the player owns is just a bag item Rydel's
+    // own script hands over; this only tracks whether they are currently on it.
+    Bike bike;
     QuestLog quests;
     quests.load("assets/quests.txt");
     quests.refresh(gs);
@@ -2256,6 +2297,10 @@ int main() {
         for (size_t i = 0; i < xm.size(); ++i) { if (i) joined += '\x1f'; joined += xm[i]; }
         if (!joined.empty()) box.open("", joined);
     }
+    // demo/test hook: start with a bike in the bag instead of walking to
+    // Rydel's shop in Mauville first ("mach" or "acro"; anything else = mach).
+    if (const char* be = std::getenv("CODEMON_GIVE_BIKE"))
+        gs.give_item(std::string(be) == "acro" ? "ITEM_ACRO_BIKE" : "ITEM_MACH_BIKE", 1);
     bool force_enc = std::getenv("CODEMON_FORCE_ENCOUNTER") != nullptr;
 
     // map-name banner + warp fade-in state
@@ -2269,6 +2314,14 @@ int main() {
         vm.set_met_location(banner);       // ... and onto anything a script gives
         menu.set_mapsec(sess->map->has_mapsec(), sess->map->mapsec_x(),
                          sess->map->mapsec_y(), sess->map->mapsec_w(), sess->map->mapsec_h());
+        // Each map change builds a fresh player Character with the walking
+        // sheet, so a ride has to be re-applied here -- or given up, walking
+        // into a building being exactly how the real games take the bike away.
+        bike.on_stop();
+        if (bike.riding()) {
+            if (sess->map->is_indoor()) bike_force_dismount(bike, sess, gs);
+            else sess->player->load_sprite_sheet(Bike::sheet_for(bike.riding_kind(), gs.female));
+        }
         if (aud) aud->play_bgm(sess->map->music());
     };
     // A script-driven `warp` (e.g. Route 101 Birch's bag sending the player
@@ -2317,6 +2370,16 @@ int main() {
         if (party.empty()) party.add(m);
         else { team[0] = m; party.touch(0); }
     };
+
+    // A save written while cycling puts the player back on the bike (real
+    // games do the same) -- unless they saved somewhere it isn't allowed, or
+    // sold/swapped the bike out of the bag since.
+    if (gs.on_bike) {
+        bike.resume(gs);
+        if (bike.riding() && !sess->map->is_indoor())
+            sess->player->load_sprite_sheet(Bike::sheet_for(bike.riding_kind(), gs.female));
+        else bike_force_dismount(bike, sess, gs);
+    }
 
     menu.set_location(banner);
     battle.set_met_location(banner);
@@ -2429,6 +2492,12 @@ int main() {
                     } else if (menu.active()) {
                         if (tok == 'M') menu.close();
                         else if (tok) menu.input(token_btn(tok));
+                    } else if (tok == 'F') {
+                        // Same toggle the F key drives in interactive play.
+                        BikeResult br = bike.toggle(gs, sess->map->is_indoor(),
+                                                    sess->player->is_surfing());
+                        std::string bmsg = bike_apply(bike, br, sess, gs);
+                        if (!bmsg.empty()) box.open("", bmsg);
                     } else if (tok == 'M') {
                         menu.open();
                     } else if (vm.running()) {
@@ -2554,6 +2623,13 @@ int main() {
                                                   sess->player->get_tile_x(), sess->player->get_tile_y());
                         menu.set_flash(ok ? "Spiel gespeichert!" : "Speichern fehlgeschlagen.");
                         menu.ack_save();
+                    }
+                    if (menu.wants_bike()) {
+                        BikeResult br = bike.toggle(gs, sess->map->is_indoor(),
+                                                    sess->player->is_surfing());
+                        std::string bmsg = bike_apply(bike, br, sess, gs);
+                        menu.ack_bike();
+                        if (!bmsg.empty()) box.open("", bmsg);
                     }
                     do_pending_warp(nullptr);
                     do_pending_fly(nullptr);
@@ -2770,6 +2846,11 @@ int main() {
                             gs.give_item("ITEM_POKE_BALL", 99);
                             gs.give_item("ITEM_POTION", 99);
                             gs.give_item("ITEM_RARE_CANDY", 99);
+                            // ... and the bike, so cycling can be tried out
+                            // without walking to Rydel's shop in Mauville
+                            // first (FLAG_RECEIVED_BIKE stays his to set --
+                            // this is the item, not the story beat).
+                            gs.give_item("ITEM_MACH_BIKE", 1);
                             break;
                         case DebugMenu::GIVE_XP: {
                             std::vector<std::string> xm;   // level-up/evolution
@@ -2844,6 +2925,15 @@ int main() {
                     // directly; sync Audio's live mute state right after
                     // any menu input that could have flipped it.
                     audio.set_muted(!gs.sound_on);
+                } else if (event.key.code == sf::Keyboard::F &&
+                           !box.is_active() && !vm.running() && !menu.active() &&
+                           !battle.active() && !shop.active() && !games.active()) {
+                    // F = Fahrrad, the counterpart to the real games' key item
+                    // registered on SELECT (the BEUTEL entry does the same).
+                    BikeResult r = bike.toggle(gs, sess->map->is_indoor(),
+                                               sess->player->is_surfing());
+                    std::string msg = bike_apply(bike, r, sess, gs);
+                    if (!msg.empty()) box.open("", msg);
                 } else if (event.key.code == sf::Keyboard::M &&
                            !box.is_active() && !vm.running()) {
                     menu.open();
@@ -2882,11 +2972,17 @@ int main() {
                               box.is_active() || vm.running() ||
                               pending_surf || pending_waterfall ||
                               !pending_dive.empty();
-            bool run_held = !ui_blocked && gs.flag("FLAG_SYS_B_DASH") &&
+            // The Running Shoes do nothing while cycling -- the bike has its
+            // own (faster, and for the MACH BIKE accelerating) cadence.
+            bool run_held = !ui_blocked && !bike.riding() && gs.flag("FLAG_SYS_B_DASH") &&
                             (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) ||
                              sf::Keyboard::isKeyPressed(sf::Keyboard::RShift));
-            float interval = run_held ? RUN_MOVE_INTERVAL : MOVE_INTERVAL;
+            float interval = bike.riding() ? bike.step_interval(MOVE_INTERVAL)
+                                           : (run_held ? RUN_MOVE_INTERVAL : MOVE_INTERVAL);
             sess->player->set_running(run_held);
+            // Keep the slide as long as the gap between steps, so a faster
+            // ride reads as faster movement instead of a stutter.
+            sess->player->set_step_duration(bike.riding() ? interval : 0.f);
             DIR held = DIR::NONE;
             if (!ui_blocked) {
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) held = DIR::N;
@@ -2897,6 +2993,7 @@ int main() {
             if (held == DIR::NONE) {
                 if (!ui_blocked) sess->player->set_idle();
                 move_cooldown = 0.f;
+                bike.on_stop();   // the MACH BIKE loses its run-up when you stop
             } else if (sess->player->get_facing() != held) {
                 sess->player->face(held);
                 move_cooldown = interval;
@@ -2924,10 +3021,16 @@ int main() {
                         on_map_change(sess->path, &audio);
                     } else if (sess->player->get_tile_x() != pbx ||
                                sess->player->get_tile_y() != pby) {
+                        bike.on_step(held);
                         if (!team.empty())
                             try_encounter(sess, battle, team[0], rng, false);
                         check_trigger(sess, vm, gs);
                     }
+                    // Surfing and cycling are mutually exclusive: stepping
+                    // onto water (or being warped onto it) puts the player on
+                    // a Pokemon's back, so the bike goes away.
+                    if (bike.riding() && sess->player->is_surfing())
+                        bike_force_dismount(bike, sess, gs);
                 }
             }
         }
@@ -3043,6 +3146,13 @@ int main() {
                                       sess->player->get_tile_x(), sess->player->get_tile_y());
             menu.set_flash(ok ? "Spiel gespeichert!" : "Speichern fehlgeschlagen.");
             menu.ack_save();
+        }
+        if (menu.wants_bike()) {
+            BikeResult r = bike.toggle(gs, sess->map->is_indoor(),
+                                       sess->player->is_surfing());
+            std::string msg = bike_apply(bike, r, sess, gs);
+            menu.ack_bike();
+            if (!msg.empty()) box.open("", msg);
         }
         do_pending_warp(&audio);
         do_pending_fly(&audio);

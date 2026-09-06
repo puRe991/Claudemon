@@ -15,6 +15,7 @@
 #include "BattleData.h"
 #include "SaveGame.h"
 #include "QuestLog.h"
+#include "Bike.h"
 #include "PartySystem.h"
 #include "GameState.h"
 #include "ScriptVM.h"
@@ -1899,6 +1900,132 @@ static void test_shipped_quest_data() {
     }
 }
 
+
+// -------------------------------------------------------------------- Bike --
+// Rydel's script already hands the bike over; these pin the rules that come
+// after that -- when you may ride, how fast, and which sheet you are drawn
+// with (Bike.h).
+
+static void test_bike_mount_rules() {
+    std::printf("[bike] when the bike may be used\n");
+    GameState gs;
+    Bike bike;
+    CHECK(Bike::in_bag(gs) == BikeKind::NONE);
+    // No bike in the bag: nothing else matters yet.
+    CHECK(bike.toggle(gs, false, false) == BikeResult::NO_BIKE);
+    CHECK(!bike.riding());
+
+    gs.give_item("ITEM_MACH_BIKE", 1);
+    CHECK(Bike::in_bag(gs) == BikeKind::MACH);
+    // Refused indoors and while surfing -- and refusing must not leave the
+    // player half-mounted.
+    CHECK(bike.toggle(gs, true, false) == BikeResult::INDOORS);
+    CHECK(!bike.riding());
+    CHECK(bike.toggle(gs, false, true) == BikeResult::SURFING);
+    CHECK(!bike.riding());
+
+    CHECK(bike.toggle(gs, false, false) == BikeResult::MOUNTED);
+    CHECK(bike.riding() && bike.riding_kind() == BikeKind::MACH);
+    // Toggling again gets off, wherever you are.
+    CHECK(bike.toggle(gs, false, false) == BikeResult::DISMOUNTED);
+    CHECK(!bike.riding());
+    // A forced dismount (walked into a building) only reports work it did.
+    CHECK(!bike.dismount());
+    CHECK(bike.toggle(gs, false, false) == BikeResult::MOUNTED);
+    CHECK(bike.dismount());
+
+    // Swapping bikes at the shop swaps which one you ride.
+    gs.take_item("ITEM_MACH_BIKE", 1);
+    gs.give_item("ITEM_ACRO_BIKE", 1);
+    CHECK(bike.toggle(gs, false, false) == BikeResult::MOUNTED);
+    CHECK(bike.riding_kind() == BikeKind::ACRO);
+}
+
+static void test_bike_speed() {
+    std::printf("[bike] the mach bike accelerates, the acro bike doesn't\n");
+    const float walk = 0.15f;
+    GameState gs;
+    gs.give_item("ITEM_ACRO_BIKE", 1);
+    Bike acro;
+    CHECK(acro.step_interval(walk) == walk);            // on foot: unchanged
+    CHECK(acro.toggle(gs, false, false) == BikeResult::MOUNTED);
+    for (int i = 0; i < 10; ++i) acro.on_step(DIR::N);
+    CHECK(acro.step_interval(walk) == walk / 2.f);      // flat 2x, forever
+
+    gs.take_item("ITEM_ACRO_BIKE", 1);
+    gs.give_item("ITEM_MACH_BIKE", 1);
+    Bike mach;
+    CHECK(mach.toggle(gs, false, false) == BikeResult::MOUNTED);
+    CHECK(mach.step_interval(walk) == walk / 2.f);      // starts at 2x
+    for (int i = 0; i < Bike::MACH_RAMP_STEPS - 1; ++i) mach.on_step(DIR::N);
+    CHECK(mach.step_interval(walk) == walk / 2.f);      // still winding up
+    mach.on_step(DIR::N);
+    CHECK(mach.step_interval(walk) == walk / 3.f);      // at full speed
+    // Turning throws the run-up away, and so does stopping.
+    mach.on_step(DIR::E);
+    CHECK(mach.step_interval(walk) == walk / 2.f);
+    for (int i = 0; i < Bike::MACH_RAMP_STEPS; ++i) mach.on_step(DIR::E);
+    CHECK(mach.step_interval(walk) == walk / 3.f);
+    mach.on_stop();
+    CHECK(mach.step_interval(walk) == walk / 2.f);
+    // Off the bike the interval is the walking one again, whatever happened.
+    mach.dismount();
+    CHECK(mach.step_interval(walk) == walk);
+}
+
+static void test_bike_sheets_exist() {
+    std::printf("[bike] both bikes have both genders' overworld sheets\n");
+    const BikeKind kinds[] = {BikeKind::MACH, BikeKind::ACRO, BikeKind::NONE};
+    for (BikeKind k : kinds)
+        for (bool female : {false, true}) {
+            std::string path = Bike::sheet_for(k, female);
+            std::FILE* f = std::fopen(path.c_str(), "r");
+            if (!f) std::printf("  missing sheet: %s\n", path.c_str());
+            CHECK(f != nullptr);
+            if (f) std::fclose(f);
+        }
+}
+
+static void test_bike_survives_a_save(BattleData& bd) {
+    std::printf("[bike] still riding after a save/load\n");
+    GameState gs;
+    gs.give_item("ITEM_MACH_BIKE", 1);
+    gs.on_bike = true;
+    PartySystem ps; ps.configure(&bd, &gs);
+    const char* path = "test_bike_save.dat";
+    CHECK(SaveGame::save(path, gs, ps, "maps/Route110.map", 10, 10));
+
+    GameState loaded; PartySystem lp; lp.configure(&bd, &loaded);
+    std::string map; int px = 0, py = 0;
+    CHECK(SaveGame::load(path, loaded, lp, map, px, py));
+    CHECK(loaded.on_bike);
+    Bike bike;
+    bike.resume(loaded);
+    CHECK(bike.riding() && bike.riding_kind() == BikeKind::MACH);
+    std::remove(path);
+}
+
+// Which maps refuse the bike. The .map files in the tree carry no map type
+// yet (pe_import.py writes one now), so this pins the fallback derivation --
+// interiors out, routes/towns/caves in.
+static void test_map_indoor_classification() {
+    std::printf("[bike] indoor maps are recognised\n");
+    Map center("maps/OldaleTown_PokemonCenter_1F.map");
+    CHECK(center.ready() && center.is_indoor());
+    Map gym("maps/RustboroCity_Gym.map");
+    CHECK(gym.ready() && gym.is_indoor());
+    Map shop("maps/MauvilleCity_BikeShop.map");
+    CHECK(shop.ready() && shop.is_indoor());
+
+    Map town("maps/OldaleTown.map");
+    CHECK(town.ready() && !town.is_indoor());
+    Map route("maps/Route110.map");
+    CHECK(route.ready() && !route.is_indoor());
+    // A cave is not an interior: the real games let you ride in one.
+    Map cave("maps/GraniteCave_1F.map");
+    CHECK(cave.ready() && !cave.is_indoor());
+}
+
 int main() {
     std::printf("Running Codemon engine tests...\n");
 
@@ -1941,6 +2068,11 @@ int main() {
     test_quest_hud_choice_survives_a_save(bd);
     test_shipped_quest_data();
 
+    test_bike_mount_rules();
+    test_bike_speed();
+    test_bike_sheets_exist();
+    test_bike_survives_a_save(bd);
+
     if (has_display()) {
         test_script_opcodes(bd);
         test_script_text_and_objects(bd);
@@ -1958,6 +2090,7 @@ int main() {
         test_dive_reaches_sootopolis();
         test_dynamic_warp_out_of_truck(bd);
         test_region_map_sections();
+        test_map_indoor_classification();
         test_sprite_frame_geometry();
         test_object_state_animation(bd);
         test_briney_voyage(bd);

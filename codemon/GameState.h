@@ -77,6 +77,11 @@ public:
 	std::string tracked_quest;
 	bool quest_hud_on = true;
 
+	// Riding the MACH/ACRO BIKE (see Bike.h). Saved, because the real games
+	// put you back on the bike where you got off -- which bike it is comes
+	// from the bag, so this is the only bit that needs storing.
+	bool on_bike = false;
+
 	// Options screen (a curated subset of pokeemerald's real SaveBlock2
 	// options, see the OPTIONS screen in Menu.cpp/main.cpp and README for
 	// what's simplified/skipped -- Text Speed and Battle Style aren't

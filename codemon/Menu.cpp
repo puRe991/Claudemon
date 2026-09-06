@@ -633,6 +633,14 @@ void Menu::input(BtnInput b) {
 						this->teach_cursor = 0; this->flash.clear();
 						this->screen = TEACH;
 					}
+				} else if (item == "ITEM_MACH_BIKE" || item == "ITEM_ACRO_BIKE") {
+					// Getting on (or off) the bike is the game loop's job --
+					// it owns the player sprite and knows whether this map is
+					// an interior -- so the menu only asks for it and closes,
+					// same request/ack shape as SPEICHERN and FLIEGEN.
+					this->bike_requested = true;
+					this->flash.clear();
+					this->screen = CLOSED;
 				} else if (heal_amount(item) >= 0 || is_revive_item(item) ||
 				           status_cured(item) != Status::NONE || cures_any_status(item)) {
 					this->use_item = item; this->use_cursor = 0; this->flash.clear();

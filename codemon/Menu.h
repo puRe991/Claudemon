@@ -223,6 +223,13 @@ public:
 	}
 	void ack_fly() { this->fly_requested = false; this->screen = CLOSED; }
 
+	// Using the bike from the BEUTEL: like SPEICHERN/FLIEGEN, the menu can
+	// only ask -- mounting needs the current map (indoors?) and the player
+	// sprite, both of which live in the game loop.
+	bool wants_bike() const { return this->bike_requested; }
+	void ack_bike() { this->bike_requested = false; }
+
 private:
 	bool save_requested = false;
+	bool bike_requested = false;
 };
