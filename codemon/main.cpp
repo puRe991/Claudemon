@@ -324,7 +324,8 @@ static std::string dive_target(Session* s, const std::vector<Mon>& team,
 // north into an MB_WATERFALL tile while already surfing).
 static Session* player_step(Session* s, DIR dir, Audio* audio, GameState* gs,
                             bool surf_confirmed = false, bool* needs_surf = nullptr,
-                            bool waterfall_confirmed = false, bool* needs_waterfall = nullptr) {
+                            bool waterfall_confirmed = false, bool* needs_waterfall = nullptr,
+                            const Bike* bike = nullptr) {
     if (needs_surf) *needs_surf = false;
     if (needs_waterfall) *needs_waterfall = false;
     bool can_surf = s->player->is_surfing() || surf_confirmed;
@@ -423,7 +424,15 @@ static Session* player_step(Session* s, DIR dir, Audio* audio, GameState* gs,
     // direction (floating down/across its base) is ordinary open water.
     bool waterfall = dir == DIR::N && s->player->is_surfing() && s->map->is_waterfall(tx, ty);
     bool can_waterfall = waterfall_confirmed;
-    bool clear = (s->map->passable(tx, ty) || target_warp) && !blocked_by_actor;
+    // ACRO BIKE rails (pokeemerald's WillPlayerCollideWithCollision): a rail
+    // metatile is solid to everyone -- except the ACRO BIKE riding along the
+    // rail's own axis, which is what the bunny hop is for. Riding across one
+    // is still a wall, in either vehicle.
+    Map::RailAxis axis = s->map->rail_axis(tx, ty);
+    bool on_rail = axis != Map::RailAxis::NONE &&
+                   Bike::can_ride_rail((int)axis, dir,
+                                       bike ? bike->riding_kind() : BikeKind::NONE);
+    bool clear = (s->map->passable(tx, ty) || target_warp || on_rail) && !blocked_by_actor;
     if (!clear || (water && !can_surf) || (waterfall && !can_waterfall)) {
         s->player->face(dir);
         if (clear && water && needs_surf) *needs_surf = true;
@@ -664,13 +673,18 @@ struct HealFx {
 // everything else about riding -- the rules, the speed, which sheet -- lives
 // in Bike.h. Returns the line to show the player, or "" when there is nothing
 // to say (a silent forced dismount).
-static std::string bike_apply(Bike& bike, BikeResult r, Session* s, GameState& gs) {
+static std::string bike_apply(Bike& bike, BikeResult r, Session* s, GameState& gs,
+                              Audio* audio = nullptr) {
     gs.on_bike = bike.riding();
     switch (r) {
     case BikeResult::MOUNTED:
     case BikeResult::DISMOUNTED:
         s->player->load_sprite_sheet(Bike::sheet_for(bike.riding_kind(), gs.female));
         s->player->set_idle();
+        // MUS_CYCLING plays over whatever the map plays for as long as the
+        // ride lasts, and the map's own track comes back on dismount -- the
+        // real games' one piece of music that isn't a place's.
+        if (audio) audio->play_bgm(bike.riding() ? "MUS_CYCLING" : s->map->music());
         break;
     default: break;
     }
@@ -685,14 +699,40 @@ static std::string bike_apply(Bike& bike, BikeResult r, Session* s, GameState& g
     return std::string();
 }
 
+// pokeemerald's ForcedMovement_MuddySlope: standing on a muddy slope pushes
+// the player one tile back down (south) unless they are climbing it northwards
+// at PLAYER_SPEED_FASTEST -- a speed only the MACH BIKE at full acceleration
+// ever reaches. `moved` is the direction of the step that just happened (or
+// DIR::NONE when the player is standing still on the slope). Returns true if
+// the player was slid down.
+static bool slide_down_muddy_slope(Session* s, Bike& bike, DIR moved) {
+    Character* p = s->player;
+    if (!s->map->is_muddy_slope(p->get_tile_x(), p->get_tile_y())) return false;
+    if (moved == DIR::N && bike.at_full_speed()) return true;   // climbing it
+    int bx, by;
+    p->target_tile(DIR::S, bx, by);
+    if (!s->map->in_bounds(bx, by) || !s->map->passable(bx, by)) return false;
+    // Losing your footing also costs the MACH BIKE its run-up, so a second
+    // attempt from the bottom has to build the speed up again.
+    bike.on_stop();
+    // The slide is southward but the player keeps looking the way they were
+    // heading (pokeemerald locks the facing direction for exactly this).
+    DIR facing = p->get_facing();
+    p->step(DIR::S);
+    p->set_facing(facing);
+    return true;
+}
+
 // A forced dismount: walking into a building, starting to surf, a whiteout.
 // Silent -- the player can see they are back on foot, and the real games say
 // nothing either.
-static void bike_force_dismount(Bike& bike, Session* s, GameState& gs) {
+static void bike_force_dismount(Bike& bike, Session* s, GameState& gs,
+                                Audio* audio = nullptr) {
     if (!bike.dismount()) { gs.on_bike = false; return; }
     gs.on_bike = false;
     s->player->load_sprite_sheet(Bike::sheet_for(BikeKind::NONE, gs.female));
     s->player->set_idle();
+    if (audio) audio->play_bgm(s->map->music());
 }
 
 // --- AUFGABEN: HUD + world marker (design brief §17/§18) --------------------
@@ -2322,7 +2362,9 @@ int main() {
             if (sess->map->is_indoor()) bike_force_dismount(bike, sess, gs);
             else sess->player->load_sprite_sheet(Bike::sheet_for(bike.riding_kind(), gs.female));
         }
-        if (aud) aud->play_bgm(sess->map->music());
+        // Riding keeps MUS_CYCLING across the map change; on foot the new
+        // map's own track takes over as usual.
+        if (aud) aud->play_bgm(bike.riding() ? "MUS_CYCLING" : sess->map->music());
     };
     // A script-driven `warp` (e.g. Route 101 Birch's bag sending the player
     // to his lab after picking a starter) swaps the session the same way
@@ -2512,7 +2554,7 @@ int main() {
                             Session* before = sess;
                             bool needs_surf = false, needs_waterfall = false;
                             sess = player_step(sess, char_to_dir(tok), nullptr, &gs, false, &needs_surf,
-                                               false, &needs_waterfall);
+                                               false, &needs_waterfall, &bike);
                             if (needs_surf && team_knows_move(team, "SURF")) {
                                 pending_surf = true;
                                 yesno.open("Das Wasser schimmert tiefblau... Möchtest du SURFER einsetzen?");
@@ -2531,6 +2573,8 @@ int main() {
                                 // Pokemon to send out (matches the story: you
                                 // can't be jumped in the grass while trailing
                                 // Birch with an empty team).
+                                bike.on_step(char_to_dir(tok));
+                                slide_down_muddy_slope(sess, bike, char_to_dir(tok));
                                 if (!team.empty())
                                     try_encounter(sess, battle, team[0], rng, force_enc);
                                 check_trigger(sess, vm, gs);
@@ -2679,7 +2723,8 @@ int main() {
 
     // --- interactive game --------------------------------------------------
     Audio audio; audio.load("assets");
-    audio.play_bgm(sess->map->music());
+    // A save resumed on the bike starts on the bike's own track.
+    audio.play_bgm(bike.riding() ? "MUS_CYCLING" : sess->map->music());
     battle.set_audio(&audio);
     // Re-attach the real Audio* now that it exists -- run_load_triggers()
     // already ran once for this starting session above (nullptr Audio), and
@@ -2932,7 +2977,7 @@ int main() {
                     // registered on SELECT (the BEUTEL entry does the same).
                     BikeResult r = bike.toggle(gs, sess->map->is_indoor(),
                                                sess->player->is_surfing());
-                    std::string msg = bike_apply(bike, r, sess, gs);
+                    std::string msg = bike_apply(bike, r, sess, gs, &audio);
                     if (!msg.empty()) box.open("", msg);
                 } else if (event.key.code == sf::Keyboard::M &&
                            !box.is_active() && !vm.running()) {
@@ -2992,8 +3037,19 @@ int main() {
             }
             if (held == DIR::NONE) {
                 if (!ui_blocked) sess->player->set_idle();
-                move_cooldown = 0.f;
                 bike.on_stop();   // the MACH BIKE loses its run-up when you stop
+                // Standing still on a muddy slope doesn't keep you there --
+                // you slide down it, one tile per step interval.
+                if (!ui_blocked && !sess->player->is_moving()) {
+                    move_cooldown -= dt;
+                    if (move_cooldown <= 0.f) {
+                        if (slide_down_muddy_slope(sess, bike, DIR::NONE))
+                            move_cooldown += interval;
+                        else move_cooldown = 0.f;
+                    }
+                } else {
+                    move_cooldown = 0.f;
+                }
             } else if (sess->player->get_facing() != held) {
                 sess->player->face(held);
                 move_cooldown = interval;
@@ -3005,7 +3061,7 @@ int main() {
                     Session* before = sess;
                     bool needs_surf = false, needs_waterfall = false;
                     sess = player_step(sess, held, &audio, &gs, false, &needs_surf,
-                                       false, &needs_waterfall);
+                                       false, &needs_waterfall, &bike);
                     move_cooldown += interval;
                     if (needs_surf && team_knows_move(team, "SURF")) {
                         pending_surf = true;
@@ -3022,6 +3078,10 @@ int main() {
                     } else if (sess->player->get_tile_x() != pbx ||
                                sess->player->get_tile_y() != pby) {
                         bike.on_step(held);
+                        // Muddy slope: unless the MACH BIKE is climbing it at
+                        // full speed, the step just taken is undone by a slide
+                        // back down (which is what makes the slope a gate).
+                        slide_down_muddy_slope(sess, bike, held);
                         if (!team.empty())
                             try_encounter(sess, battle, team[0], rng, false);
                         check_trigger(sess, vm, gs);
@@ -3030,7 +3090,7 @@ int main() {
                     // onto water (or being warped onto it) puts the player on
                     // a Pokemon's back, so the bike goes away.
                     if (bike.riding() && sess->player->is_surfing())
-                        bike_force_dismount(bike, sess, gs);
+                        bike_force_dismount(bike, sess, gs, &audio);
                 }
             }
         }
@@ -3150,7 +3210,7 @@ int main() {
         if (menu.wants_bike()) {
             BikeResult r = bike.toggle(gs, sess->map->is_indoor(),
                                        sess->player->is_surfing());
-            std::string msg = bike_apply(bike, r, sess, gs);
+            std::string msg = bike_apply(bike, r, sess, gs, &audio);
             menu.ack_bike();
             if (!msg.empty()) box.open("", msg);
         }

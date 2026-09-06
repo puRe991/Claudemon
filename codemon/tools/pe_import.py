@@ -183,6 +183,13 @@ MB_WATERFALL          = 19
 # MB_INTERIOR_DEEP_WATER, MB_DEEP_WATER, MB_SOOTOPOLIS_DEEP_WATER. All three
 # are surfable water as well, so this is a subset of MB_WATER_IDS.
 MB_DIVE_IDS           = {17, 18, 20}
+# Bike terrain (see Bike.h / codemon's muddy-slope + rail handling):
+# MB_MUDDY_SLOPE slides anything that isn't a MACH BIKE at full speed back
+# down; the four rail behaviors are solid to everything except an ACRO BIKE
+# travelling along the rail's own axis.
+MB_MUDDY_SLOPE        = 0xD0
+MB_VERTICAL_RAIL_IDS  = {0xD3, 0xD5}   # MB_ISOLATED_VERTICAL_RAIL, MB_VERTICAL_RAIL
+MB_HORIZONTAL_RAIL_IDS = {0xD4, 0xD6}  # MB_ISOLATED_HORIZONTAL_RAIL, MB_HORIZONTAL_RAIL
 
 
 def _tileset_behaviors(ts_path):
@@ -253,6 +260,24 @@ def combined_waterfall_ids(prim_path, sec_path):
             if b == MB_WATERFALL:
                 falls.add(NUM_METATILES_PRIMARY + i)
     return falls
+
+
+def combined_bike_terrain_ids(prim_path, sec_path):
+    """The three bike-terrain metatile id sets of a tileset pair: muddy
+    slopes, vertical rails and horizontal rails (see the MB_* constants
+    above). Same combined-sheet numbering as every other id set here."""
+    mud, vrail, hrail = set(), set(), set()
+    for base, path in ((0, prim_path), (NUM_METATILES_PRIMARY, sec_path)):
+        if not path:
+            continue
+        for i, b in enumerate(_tileset_behaviors(path)):
+            if b == MB_MUDDY_SLOPE:
+                mud.add(base + i)
+            elif b in MB_VERTICAL_RAIL_IDS:
+                vrail.add(base + i)
+            elif b in MB_HORIZONTAL_RAIL_IDS:
+                hrail.add(base + i)
+    return mud, vrail, hrail
 
 
 def derive_visited_flag(map_dir_name, mapdir):
@@ -1415,6 +1440,7 @@ def cmd_world(src, limit=None):
     counter_cache = {}   # (prim,sec) -> set of shop/PC-counter metatile ids
     water_cache = {}   # (prim,sec) -> set of surfable-water metatile ids
     waterfall_cache = {}   # (prim,sec) -> set of MB_WATERFALL metatile ids
+    bike_cache = {}        # (prim,sec) -> (muddy slope, v-rail, h-rail) id sets
     dive_cache = {}    # (prim,sec) -> set of diveable deep-water metatile ids
     catalog = []
     encounters = load_encounters(src)
@@ -1536,12 +1562,14 @@ def cmd_world(src, limit=None):
             water_cache[key] = combined_water_ids(prim_path, sec_path)
             waterfall_cache[key] = combined_waterfall_ids(prim_path, sec_path)
             dive_cache[key] = combined_dive_ids(prim_path, sec_path)
+            bike_cache[key] = combined_bike_terrain_ids(prim_path, sec_path)
         sheet_name = pair_cache[key]
         grass_ids = grass_cache.get(key, set())
         counter_ids = counter_cache.get(key, set())
         water_ids = water_cache.get(key, set())
         waterfall_ids = waterfall_cache.get(key, set())
         dive_ids = dive_cache.get(key, set())
+        mud_ids, vrail_ids, hrail_ids = bike_cache.get(key, (set(), set(), set()))
 
         w, h = layout["width"], layout["height"]
         try:
@@ -1853,6 +1881,20 @@ def cmd_world(src, limit=None):
         if used_water:
             lines.append("water")
             lines.append(",".join(str(g) for g in used_water))
+        # Bike terrain on this map: muddy slopes (slide back down unless a
+        # MACH BIKE is climbing them at full speed) and rails (solid except
+        # to an ACRO BIKE riding along them). See Map::is_muddy_slope /
+        # Map::rail_axis.
+        used_mud = sorted(set(ids) & mud_ids)
+        if used_mud:
+            lines.append("mudslope")
+            lines.append(",".join(str(g) for g in used_mud))
+        used_vrail = sorted(set(ids) & vrail_ids)
+        used_hrail = sorted(set(ids) & hrail_ids)
+        if used_vrail or used_hrail:
+            lines.append("rails")
+            lines.append(",".join(str(g) for g in used_vrail))
+            lines.append(",".join(str(g) for g in used_hrail))
         # MB_WATERFALL metatile ids on this map: surfable like water, but
         # climbing them (moving north into one) also needs the Waterfall HM.
         # Diveable deep-water metatile ids on this map: surfable like the
@@ -2084,6 +2126,9 @@ DEFAULT_SONGS = (
     "mus_vs_rival", "mus_vs_elite_four",
     # victory jingles (played once on a won battle, then map music resumes)
     "mus_victory_wild", "mus_victory_trainer",
+    # not a map's own BGM: the bike theme, played over whatever the map plays
+    # for as long as the player is riding (see Bike.h / Audio::play_bgm).
+    "mus_cycling",
 )
 
 

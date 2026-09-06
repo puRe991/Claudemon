@@ -151,6 +151,10 @@ private:
 	std::unordered_set<int> counter_ids;      // metatile ids that are shop/PC counters
 	std::unordered_set<int> water_ids;        // metatile ids that are surfable water
 	std::unordered_set<int> waterfall_ids;    // metatile ids that are MB_WATERFALL
+	// Bike terrain (see is_muddy_slope/rail_axis): MB_MUDDY_SLOPE, and the
+	// vertical/horizontal rail behaviors an ACRO BIKE can ride along.
+	std::unordered_set<int> mudslope_ids;
+	std::unordered_set<int> vrail_ids, hrail_ids;
 	std::unordered_set<int> dive_ids;         // deep-water metatile ids you can Dive into
 	std::unordered_map<int, DIR> ledge_ids;   // MB_JUMP_* metatile id -> the one direction it can be crossed in
 	std::string dive_dest_;                   // underwater map below this one ("" = none)
@@ -229,6 +233,18 @@ public:
 	// MB_WATERFALL: surfable like water, but climbing it (moving north into
 	// one) also needs the Waterfall HM (see main.cpp's Waterfall gate).
 	bool is_waterfall(int tile_x, int tile_y) const;
+
+	// MB_MUDDY_SLOPE: standing on one slides the player back down (south)
+	// unless they are climbing it northwards on a MACH BIKE at full speed --
+	// pokeemerald's ForcedMovement_MuddySlope, see main.cpp.
+	bool is_muddy_slope(int tile_x, int tile_y) const;
+	// The rail axis of this tile, or RailAxis::NONE. A rail is solid to
+	// everything except an ACRO BIKE moving along its own axis (pokeemerald's
+	// WillPlayerCollideWithCollision/CanBikeFaceDirOnMetatile).
+	// The values are the ints Bike::can_ride_rail takes (Bike.h can't include
+	// map.h), so they must stay 0/1/2.
+	enum class RailAxis { NONE = 0, VERTICAL = 1, HORIZONTAL = 2 };
+	RailAxis rail_axis(int tile_x, int tile_y) const;
 	// MB_JUMP_*: a one-way ledge. Returns the single direction it can be
 	// crossed in (DIR::NONE if this tile isn't a ledge) -- stepping onto it
 	// from that direction hops two tiles instead of one; from any other

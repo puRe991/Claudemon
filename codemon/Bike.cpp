@@ -31,6 +31,13 @@ std::string Bike::sheet_for(BikeKind kind, bool female) {
 	}
 }
 
+bool Bike::can_ride_rail(int axis, DIR dir, BikeKind kind) {
+	if (axis == 0) return true;               // not a rail: nothing to gate
+	if (kind != BikeKind::ACRO) return false; // on foot or on the MACH BIKE
+	if (axis == 1) return dir == DIR::N || dir == DIR::S;   // vertical rail
+	return dir == DIR::E || dir == DIR::W;                  // horizontal rail
+}
+
 BikeResult Bike::toggle(const GameState& gs, bool indoors, bool surfing) {
 	if (riding()) { dismount(); return BikeResult::DISMOUNTED; }
 	// The refusals in the order the real game checks them: you can be told

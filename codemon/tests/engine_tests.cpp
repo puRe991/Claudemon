@@ -2026,6 +2026,64 @@ static void test_map_indoor_classification() {
     CHECK(cave.ready() && !cave.is_indoor());
 }
 
+
+static void test_bike_rail_rules() {
+    std::printf("[bike] rails only take the acro bike, along their own axis\n");
+    // Not a rail: never gated, whatever you are riding.
+    CHECK(Bike::can_ride_rail(0, DIR::N, BikeKind::NONE));
+    CHECK(Bike::can_ride_rail(0, DIR::E, BikeKind::MACH));
+    // A vertical rail takes the ACRO BIKE going north/south and nothing else.
+    CHECK(Bike::can_ride_rail(1, DIR::N, BikeKind::ACRO));
+    CHECK(Bike::can_ride_rail(1, DIR::S, BikeKind::ACRO));
+    CHECK(!Bike::can_ride_rail(1, DIR::E, BikeKind::ACRO));
+    CHECK(!Bike::can_ride_rail(1, DIR::N, BikeKind::MACH));
+    CHECK(!Bike::can_ride_rail(1, DIR::N, BikeKind::NONE));
+    // ... and a horizontal one is the same rule turned 90 degrees.
+    CHECK(Bike::can_ride_rail(2, DIR::E, BikeKind::ACRO));
+    CHECK(Bike::can_ride_rail(2, DIR::W, BikeKind::ACRO));
+    CHECK(!Bike::can_ride_rail(2, DIR::S, BikeKind::ACRO));
+    CHECK(!Bike::can_ride_rail(2, DIR::E, BikeKind::MACH));
+}
+
+static void test_bike_terrain_data() {
+    std::printf("[bike] muddy slopes and rails are imported per map\n");
+    // Route 119's rails (the Acro bike ones over the water) and the muddy
+    // slope on its southern climb -- the tiles pe_import.py derives from
+    // pokeemerald's own metatile behaviours.
+    Map r119("maps/Route119.map");
+    CHECK(r119.ready());
+    CHECK(r119.rail_axis(5, 8) == Map::RailAxis::VERTICAL);
+    CHECK(r119.rail_axis(9, 5) == Map::RailAxis::HORIZONTAL);
+    CHECK(r119.is_muddy_slope(6, 54));
+    // Ordinary ground is neither.
+    CHECK(r119.rail_axis(5, 12) == Map::RailAxis::NONE);
+    CHECK(!r119.is_muddy_slope(5, 12));
+    // A map with a slope but no rails still parses both sections correctly.
+    Map r115("maps/Route115.map");
+    CHECK(r115.ready());
+    bool any_slope = false;
+    for (int y = 0; y < r115.get_height() && !any_slope; ++y)
+        for (int x = 0; x < r115.get_width(); ++x)
+            if (r115.is_muddy_slope(x, y)) { any_slope = true; break; }
+    CHECK(any_slope);
+    // And a map with neither answers "no" everywhere rather than misreading
+    // some other map's ids.
+    Map town("maps/OldaleTown.map");
+    CHECK(town.ready());
+    CHECK(!town.is_muddy_slope(6, 16));
+    CHECK(town.rail_axis(6, 16) == Map::RailAxis::NONE);
+}
+
+static void test_cycling_track_present() {
+    std::printf("[bike] MUS_CYCLING is converted\n");
+    // The bike theme is the one track that isn't any map's own music, so a
+    // re-import has to be told to convert it (pe_import.py's DEFAULT_SONGS).
+    std::FILE* f = std::fopen("assets/sfx/music/mus_cycling.ogg", "r");
+    if (!f) std::printf("  missing assets/sfx/music/mus_cycling.ogg\n");
+    CHECK(f != nullptr);
+    if (f) std::fclose(f);
+}
+
 int main() {
     std::printf("Running Codemon engine tests...\n");
 
@@ -2072,6 +2130,8 @@ int main() {
     test_bike_speed();
     test_bike_sheets_exist();
     test_bike_survives_a_save(bd);
+    test_bike_rail_rules();
+    test_cycling_track_present();
 
     if (has_display()) {
         test_script_opcodes(bd);
@@ -2091,6 +2151,7 @@ int main() {
         test_dynamic_warp_out_of_truck(bd);
         test_region_map_sections();
         test_map_indoor_classification();
+        test_bike_terrain_data();
         test_sprite_frame_geometry();
         test_object_state_animation(bd);
         test_briney_voyage(bd);

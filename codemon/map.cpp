@@ -89,6 +89,8 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 		                        // "dive <offset> <map>" line
 
 		       s.rfind("maptype", 0) == 0 ||
+		       s.rfind("mudslope", 0) == 0 ||
+		       s.rfind("rails", 0) == 0 ||
 		       s.rfind("visit", 0) == 0 ||
 		       s.rfind("mapsec", 0) == 0 ||
 		       s.rfind("music", 0) == 0 ||
@@ -243,6 +245,29 @@ Map::Map(const std::string& map_path, const std::string& tileset_dir)
 				std::vector<int> g;
 				parse_int_row(ids_str, g);
 				for (int id : g) this->ledge_ids[id] = d;
+			}
+		} else if (head.rfind("mudslope", 0) == 0) {
+			// single line of comma-separated MB_MUDDY_SLOPE metatile ids
+			if (++i < rest.size()) {
+				std::vector<int> g;
+				parse_int_row(rest[i], g);
+				for (int id : g) this->mudslope_ids.insert(id);
+				++i;
+			}
+		} else if (head.rfind("rails", 0) == 0) {
+			// two lines: the vertical rail ids, then the horizontal ones
+			// (either may be empty -- a map can have only one kind).
+			if (++i < rest.size()) {
+				std::vector<int> g;
+				parse_int_row(rest[i], g);
+				for (int id : g) this->vrail_ids.insert(id);
+				++i;
+			}
+			if (i < rest.size()) {
+				std::vector<int> g;
+				parse_int_row(rest[i], g);
+				for (int id : g) this->hrail_ids.insert(id);
+				++i;
 			}
 		} else if (head.rfind("maptype", 0) == 0) {
 			// single line: "indoor" or "outdoor" (pokeemerald's MAP_TYPE_*,
@@ -436,6 +461,21 @@ bool Map::is_waterfall(int tile_x, int tile_y) const {
 	if (!in_bounds(tile_x, tile_y) || this->waterfall_ids.empty()) return false;
 	int id = this->tile_map[this->index(tile_x, tile_y)];
 	return this->waterfall_ids.count(id) > 0;
+}
+
+bool Map::is_muddy_slope(int tile_x, int tile_y) const {
+	if (!in_bounds(tile_x, tile_y) || this->mudslope_ids.empty()) return false;
+	int id = this->tile_map[this->index(tile_x, tile_y)];
+	return this->mudslope_ids.count(id) > 0;
+}
+
+Map::RailAxis Map::rail_axis(int tile_x, int tile_y) const {
+	if (!in_bounds(tile_x, tile_y)) return RailAxis::NONE;
+	if (this->vrail_ids.empty() && this->hrail_ids.empty()) return RailAxis::NONE;
+	int id = this->tile_map[this->index(tile_x, tile_y)];
+	if (this->vrail_ids.count(id)) return RailAxis::VERTICAL;
+	if (this->hrail_ids.count(id)) return RailAxis::HORIZONTAL;
+	return RailAxis::NONE;
 }
 
 bool Map::is_indoor() const {

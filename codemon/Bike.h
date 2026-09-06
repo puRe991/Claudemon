@@ -57,6 +57,14 @@ public:
 	// 9-frame layout as the walking sheet, just 32px wide per frame.
 	static std::string sheet_for(BikeKind kind, bool female);
 
+	// May a rider on `kind` enter a rail tile heading `dir`? Rails are solid
+	// to everything but the ACRO BIKE, and even then only along the rail's
+	// own axis -- pokeemerald's WillPlayerCollideWithCollision plus
+	// CanBikeFaceDirOnMetatile, which together are what the bunny hop is for.
+	// `axis`: 0 = not a rail, 1 = vertical, 2 = horizontal (Map::RailAxis is
+	// declared in map.h, which this header deliberately doesn't pull in).
+	static bool can_ride_rail(int axis, DIR dir, BikeKind kind);
+
 	bool riding() const { return this->kind != BikeKind::NONE; }
 	BikeKind riding_kind() const { return this->kind; }
 
@@ -84,6 +92,13 @@ public:
 	// as the Running Shoes; the MACH BIKE starts there and accelerates to 3x
 	// after MACH_RAMP_STEPS steps in one direction, then holds that.
 	float step_interval(float walk_interval) const;
+
+	// Is this a MACH BIKE that has built up its full speed? That is the one
+	// state pokeemerald's ForcedMovement_MuddySlope lets climb a muddy slope
+	// (PLAYER_SPEED_FASTEST, which only the MACH BIKE ever reaches).
+	bool at_full_speed() const {
+		return this->kind == BikeKind::MACH && this->streak >= MACH_RAMP_STEPS;
+	}
 
 	static constexpr int MACH_RAMP_STEPS = 4;
 
